@@ -37,6 +37,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
+import android.os.SystemProperties;
 import android.provider.Settings;
 import android.telephony.PhoneStateListener;
 import android.telephony.ServiceState;
@@ -64,8 +65,8 @@ import java.util.Locale;
 public class NetworkController extends BroadcastReceiver {
     // debug
     static final String TAG = "StatusBar.NetworkController";
-    static final boolean DEBUG = false;
-    static final boolean CHATTY = false; // additional diagnostics, but not logspew
+    static final boolean DEBUG = true;
+    static final boolean CHATTY = true; // additional diagnostics, but not logspew
 
     // telephony
     boolean mHspaDataDistinguishable;
@@ -473,9 +474,19 @@ public class NetworkController extends BroadcastReceiver {
         @Override
         public void onServiceStateChanged(ServiceState state) {
             if (DEBUG) {
-                Slog.d(TAG, "onServiceStateChanged state=" + state.getState());
+                Slog.d(TAG, "onServiceStateChanged state=" + state);
             }
             mServiceState = state;
+            if (SystemProperties.getBoolean("ro.config.combined_signal", true)) {
+                /*
+                 * if combined_signal is set to true only then consider data
+                 * service state for signal display
+                 */
+                mDataServiceState = mServiceState.getDataRegState();
+                if (DEBUG) {
+                    Slog.d(TAG, "Combining data service state" + mDataServiceState + "for signal");
+                }
+            }
             updateTelephonySignalStrength();
             updateDataNetType();
             updateDataIcon();
@@ -575,31 +586,19 @@ public class NetworkController extends BroadcastReceiver {
     }
 
     private final void updateTelephonySignalStrength() {
-        if (!hasService()) {
-            if (CHATTY) Slog.d(TAG, "updateTelephonySignalStrength: !hasService()");
-            if (mHideSignal) {
+        if (!hasService() &&
+                (mDataServiceState != ServiceState.STATE_IN_SERVICE)) {
+            if (DEBUG) Slog.d(TAG, " No service");
                 mPhoneSignalIconId = 0;
                 mDataSignalIconId = 0;
-            } else {
-                mPhoneSignalIconId = (mUseAltSignal ? R.drawable.stat_sys_signal_null_alt :
-                    R.drawable.stat_sys_signal_null);
-                mQSPhoneSignalIconId = R.drawable.ic_qs_signal_no_signal;
-                mDataSignalIconId = (mUseAltSignal ? R.drawable.stat_sys_signal_null_alt :
-                    R.drawable.stat_sys_signal_null);
-            }
         } else {
-            if (mSignalStrength == null) {
-                if (CHATTY) Slog.d(TAG, "updateTelephonySignalStrength: mSignalStrength == null");
-                if (mHideSignal) {
-                    mPhoneSignalIconId = 0;
-                    mDataSignalIconId = 0;
-                } else {
-                    mPhoneSignalIconId = (mUseAltSignal ? R.drawable.stat_sys_signal_null_alt :
-                        R.drawable.stat_sys_signal_null);
-                    mQSPhoneSignalIconId = R.drawable.ic_qs_signal_no_signal;
-                    mDataSignalIconId = (mUseAltSignal ? R.drawable.stat_sys_signal_null_alt :
-                        R.drawable.stat_sys_signal_null);
+            if ((mSignalStrength == null) || (mServiceState == null)) {
+                if (DEBUG) {
+                    Slog.d(TAG, " Null object, mSignalStrength= " + mSignalStrength
+                            + " mServiceState " + mServiceState);
                 }
+                mPhoneSignalIconId = 0;
+                mDataSignalIconId = 0;
                 mContentDescriptionPhoneSignal = mContext.getString(
                         AccessibilityContentDescriptions.PHONE_SIGNAL_STRENGTH[0]);
             } else {
@@ -614,8 +613,8 @@ public class NetworkController extends BroadcastReceiver {
                     mLastSignalLevel = iconLevel = mSignalStrength.getLevel();
                 }
 
-                if (isCdma()) {
-                    if (isCdmaEri()) {
+                // Though mPhone is a Manager, this call is not an IPC
+                if ((isCdma() && isCdmaEri()) || mPhone.isNetworkRoaming()) {
                         iconList = mUseAltSignal ? TelephonyIcons.TELEPHONY_SIGNAL_STRENGTH_ROAMING_ALT[mInetCondition] :
                             TelephonyIcons.TELEPHONY_SIGNAL_STRENGTH_ROAMING[mInetCondition];
                     } else {
@@ -660,6 +659,9 @@ public class NetworkController extends BroadcastReceiver {
         } else {
             switch (mDataNetType) {
                 case TelephonyManager.NETWORK_TYPE_UNKNOWN:
+                    if (DEBUG) {
+                        Slog.e(TAG, "updateDataNetType NETWORK_TYPE_UNKNOWN");
+                    }
                     if (!mShowAtLeastThreeGees) {
                         mDataIconList = mUseAltSignal ? TelephonyIcons.DATA_G_ALT[mInetCondition] :
                             TelephonyIcons.DATA_G[mInetCondition];
@@ -787,7 +789,7 @@ public class NetworkController extends BroadcastReceiver {
                                 R.string.accessibility_data_connection_lte);
                     }
                     break;
-                default:
+                case TelephonyManager.NETWORK_TYPE_GPRS:
                     if (!mShowAtLeastThreeGees) {
                         mDataIconList = mUseAltSignal ? TelephonyIcons.DATA_G_ALT[mInetCondition] :
                             TelephonyIcons.DATA_G[mInetCondition];
@@ -805,6 +807,13 @@ public class NetworkController extends BroadcastReceiver {
                         mContentDescriptionDataType = mContext.getString(
                                 R.string.accessibility_data_connection_3g);
                     }
+                    break;
+                default:
+                    if (DEBUG) {
+                        Slog.e(TAG, "updateDataNetType unknown radio:" + mDataNetType);
+                    }
+                    mDataNetType = TelephonyManager.NETWORK_TYPE_UNKNOWN;
+                    mDataTypeIconId = 0;
                     break;
             }
         }

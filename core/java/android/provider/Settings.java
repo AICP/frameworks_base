@@ -6827,6 +6827,13 @@ public final class Settings {
         public static final String SHOW_STATUSBAR_IME_SWITCHER = "show_statusbar_ime_switcher";
 
         /**
+         * Hide Singal Bars
+         *
+         * @hide
+         */
+        public static final String STATUSBAR_HIDE_SIGNAL_BARS = "statusbar_hide_signal_bars";
+
+        /**
          * Whether to display the ADB notification.
          * @hide
          */

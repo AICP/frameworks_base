@@ -106,6 +106,7 @@ import android.os.ServiceSpecificException;
 import android.os.ShellCallback;
 import android.os.ShellCommand;
 import android.os.SystemClock;
+import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.os.UserManager;
 import android.provider.Settings;
@@ -916,6 +917,10 @@ public class ConnectivityService extends IConnectivityManager.Stub
 
         mDnsManager = new DnsManager(mContext, mNetd, mSystemProperties);
         registerPrivateDnsSettingsCallbacks();
+
+        String hostname = Settings.Secure.getString(context.getContentResolver(),
+                Settings.Secure.DEVICE_HOSTNAME);
+        SystemProperties.set("net.hostname", hostname);
     }
 
     private Tethering makeTethering() {

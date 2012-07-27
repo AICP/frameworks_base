@@ -34,6 +34,8 @@ import android.view.IWindowManager;
 import android.view.WindowManagerGlobal;
 import android.view.accessibility.AccessibilityManager;
 
+import android.widget.FrameLayout;
+
 public class SystemUIService extends Service {
     static final String TAG = "SystemUIService";
 
@@ -95,7 +97,9 @@ public class SystemUIService extends Service {
                 throw new RuntimeException(ex);
             }
             mServices[i].mContext = this;
+            mServices[i].mStatusBarContainer = new FrameLayout(this);
             Slog.d(TAG, "running: " + mServices[i]);
+
             mServices[i].start();
         }
     }

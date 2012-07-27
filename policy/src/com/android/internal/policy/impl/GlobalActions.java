@@ -68,7 +68,8 @@ import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.android.internal.app.ThemeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,6 +87,8 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
     private final Context mContext;
     private final WindowManagerFuncs mWindowManagerFuncs;
+
+    private Context mUiContext;
     private final AudioManager mAudioManager;
     private final IDreamManager mDreamManager;
 
@@ -122,6 +125,8 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         filter.addAction(TelephonyIntents.ACTION_EMERGENCY_CALLBACK_MODE_CHANGED);
         context.registerReceiver(mBroadcastReceiver, filter);
 
+        ThemeUtils.registerThemeChangeReceiver(context, mThemeChangeReceiver);
+
         // get notified of phone state changes
         TelephonyManager telephonyManager =
                 (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
@@ -143,7 +148,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
     public void showDialog(boolean keyguardShowing, boolean isDeviceProvisioned) {
         mKeyguardShowing = keyguardShowing;
         mDeviceProvisioned = isDeviceProvisioned;
-        if (mDialog != null) {
+        if (mDialog != null && mUiContext == null) {
             mDialog.hide();
             mDialog.cancel();
             mDialog = null;
@@ -176,6 +181,13 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         mDialog.getWindow().setAttributes(attrs);
         mDialog.show();
         mDialog.getWindow().getDecorView().setSystemUiVisibility(View.STATUS_BAR_DISABLE_EXPAND);
+    }
+
+    private Context getUiContext() {
+        if (mUiContext == null) {
+            mUiContext = ThemeUtils.createUiContext(mContext);
+        }
+        return mUiContext != null ? mUiContext : mContext;
     }
 
     /**
@@ -292,7 +304,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                         R.string.global_action_bug_report) {
 
                     public void onPress() {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getUiContext());
                         builder.setTitle(com.android.internal.R.string.bugreport_title);
                         builder.setMessage(com.android.internal.R.string.bugreport_message);
                         builder.setNegativeButton(com.android.internal.R.string.cancel, null);
@@ -511,7 +523,8 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
         public View getView(int position, View convertView, ViewGroup parent) {
             Action action = getItem(position);
-            return action.create(mContext, convertView, parent, LayoutInflater.from(mContext));
+            final Context context = getUiContext();
+            return action.create(context, convertView, parent, LayoutInflater.from(context));
         }
     }
 
@@ -857,6 +870,12 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         }
     };
 
+    private BroadcastReceiver mThemeChangeReceiver = new BroadcastReceiver() {
+        public void onReceive(Context context, Intent intent) {
+            mUiContext = null;
+        }
+    };
+
     PhoneStateListener mPhoneStateListener = new PhoneStateListener() {
         @Override
         public void onServiceStateChanged(ServiceState serviceState) {
@@ -1058,7 +1077,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         final String[] rebootOptions = mContext.getResources().getStringArray(R.array.reboot_options);
         final String[] rebootReasons = mContext.getResources().getStringArray(R.array.reboot_values);
 
-        AlertDialog d = new AlertDialog.Builder(mContext)
+        AlertDialog d = new AlertDialog.Builder(getUiContext())
                 .setSingleChoiceItems(rebootOptions, 0,
                         new DialogInterface.OnClickListener() {
                             @Override

@@ -3107,6 +3107,11 @@ public final class Settings {
                 "navigation_custom_app_icon_5",
                 "navigation_custom_app_icon_6",
         };
+        
+        /**
+         * Widgets to show, should be separated by |
+         */
+        public static final String NAVIGATION_BAR_WIDGETS = "navigation_bar_widgets";
 
         /**
          * @hide

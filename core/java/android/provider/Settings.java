@@ -3452,6 +3452,13 @@ public final class Settings {
         public static final String INSTALL_NON_MARKET_APPS = Global.INSTALL_NON_MARKET_APPS;
 
         /**
+         * Whether to blink the LED when screen is on
+         *
+         * @hide
+         */
+        public static final String LED_SCREEN_ON = "led_screen_on";
+
+        /**
          * Comma-separated list of location providers that activities may access.
          */
         public static final String LOCATION_PROVIDERS_ALLOWED = "location_providers_allowed";

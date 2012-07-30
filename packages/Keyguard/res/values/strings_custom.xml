@@ -57,4 +57,6 @@
     <!-- Skeleton string format for displaying the date. -->
     <string name="full_wday_month_day_no_year">EEEEMMMMd</string>
 
+    <string name="keyguard_discharging">Discharging, <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
+
 </resources>

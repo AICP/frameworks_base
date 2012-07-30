@@ -3529,6 +3529,15 @@ public final class Settings {
          */
         public static final String LOCKSCREEN_TARGETS = "lockscreen_targets";
 
+        /**
+         * Lockscreen battery status visibility mode
+         * 0 = show if charging
+         * 1 = always show
+         * 2 = never show
+         * @hide
+         */
+        public static final String LOCKSCREEN_BATTERY_VISIBILITY = "lockscreen_always_show_battery";
+
        /**
          * @hide
          */
@@ -4546,7 +4555,8 @@ public final class Settings {
             TELO_RADIO_LTE,
             TELO_RADIO_2G_SCREENOFF,
             TELO_RADIO_GO3G_UNLOCK,
-            INCOMING_CALL_STYLE
+            INCOMING_CALL_STYLE,
+            LOCKSCREEN_BATTERY_VISIBILITY
         };
 
         /**

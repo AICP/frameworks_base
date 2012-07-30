@@ -249,4 +249,6 @@
     <string name="usb_ext_media_nomedia_notification_title">Removed USB storage</string>
     <string name="usb_ext_media_nomedia_notification_message">USB storage removed. Insert new media.</string>
 
+    <string name="lockscreen_discharging">Discharging, <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
+
 </resources>

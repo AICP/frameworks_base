@@ -367,4 +367,7 @@
   <java-symbol type="string" name="usb_ext_media_unmountable_notification_message" />
   <java-symbol type="string" name="usb_ext_media_unmountable_notification_title" />
 
+  <!-- Lock screen always show battery -->
+  <java-symbol type="string" name="lockscreen_discharging" />
+
 </resources>

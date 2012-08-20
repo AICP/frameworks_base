@@ -84,5 +84,6 @@ public class SystemSettings {
         Settings.System.DISPLAY_COLOR_MODE,
         Settings.System.ALARM_ALERT,
         Settings.System.NOTIFICATION_LIGHT_PULSE,
+        Settings.System.VOLUME_KEY_CURSOR_CONTROL,
     };
 }

@@ -6756,6 +6756,14 @@ public final class Settings {
          * @hide
          */
         public static final String DOUBLE_TAP_VOLUME_KEYS = "volume_keys_double_tap_action";
+
+        /**
+         * IME Switcher
+         *
+         * @hide
+         */
+        public static final String SHOW_STATUSBAR_IME_SWITCHER = "show_statusbar_ime_switcher";
+
     }
 
     /**

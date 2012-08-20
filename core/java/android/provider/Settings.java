@@ -5645,6 +5645,15 @@ public final class Settings {
         public static final String AICP_DOUBLE_TAP_SLEEP_LOCKSCREEN =
                 "double_tap_sleep_lockscreen";
 
+        /**
+          * Volume keys control cursor in text fields (default is 0)
+          * 0 - Disabled
+          * 1 - Volume up/down moves cursor left/right
+          * 2 - Volume up/down moves cursor right/left
+          * @hide
+          */
+        public static final String VOLUME_KEY_CURSOR_CONTROL = "volume_key_cursor_control";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5731,6 +5740,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(LOCKSCREEN_PIN_SCRAMBLE_LAYOUT, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(AICP_DOUBLE_TAP_SLEEP_GESTURE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(AICP_DOUBLE_TAP_SLEEP_LOCKSCREEN, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(VOLUME_KEY_CURSOR_CONTROL, ANY_INTEGER_VALIDATOR);
         }
 
         /**

@@ -4835,6 +4835,19 @@ public final class Settings {
                 BOOLEAN_VALIDATOR;
 
         /**
+          * Volume keys control cursor in text fields (default is 0)
+          * 0 - Disabled
+          * 1 - Volume up/down moves cursor left/right
+          * 2 - Volume up/down moves cursor right/left
+          * @hide
+          */
+        public static final String VOLUME_KEY_CURSOR_CONTROL = "volume_key_cursor_control";
+
+        /** @hide */
+        private static final Validator VOLUME_KEY_CURSOR_CONTROL_VALIDATOR =
+                new SettingsValidators.InclusiveIntegerRangeValidator(0, 2);
+
+        /**
          * Whether to wake the screen with the volume keys, the value is boolean.
          * 0 = 0ff, 1 = on
          */
@@ -4967,6 +4980,7 @@ public final class Settings {
             MENU_WAKE_SCREEN,
             APP_SWITCH_WAKE_SCREEN,
             CAMERA_WAKE_SCREEN,
+            VOLUME_KEY_CURSOR_CONTROL,
             // AICP Settings end
         };
 
@@ -5152,6 +5166,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(MENU_WAKE_SCREEN);
             PRIVATE_SETTINGS.add(APP_SWITCH_WAKE_SCREEN);
             PRIVATE_SETTINGS.add(CAMERA_WAKE_SCREEN);
+            PRIVATE_SETTINGS.add(VOLUME_KEY_CURSOR_CONTROL);
             // AICP Settings end
         }
 
@@ -5315,6 +5330,7 @@ public final class Settings {
             VALIDATORS.put(MENU_WAKE_SCREEN, MENU_WAKE_SCREEN_VALIDATOR);
             VALIDATORS.put(APP_SWITCH_WAKE_SCREEN, APP_SWITCH_WAKE_SCREEN_VALIDATOR);
             VALIDATORS.put(CAMERA_WAKE_SCREEN, CAMERA_WAKE_SCREEN_VALIDATOR);
+            VALIDATORS.put(VOLUME_KEY_CURSOR_CONTROL, VOLUME_KEY_CURSOR_CONTROL_VALIDATOR);
             // AICP Settings end
         }
 

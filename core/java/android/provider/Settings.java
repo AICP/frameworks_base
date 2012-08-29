@@ -2391,6 +2391,13 @@ public final class Settings {
         */
         public static final String TORCH_STATE = "torch_state";
 
+        /**
+         * whether to hide the kill-all-button on recent switcher
+         *
+         * @hide
+         */
+        public static final String RECENT_KILL_ALL_BUTTON = "recent_kill_all_button";
+
        /**
         * Lefty mode
         * @hide

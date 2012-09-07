@@ -3246,6 +3246,13 @@ public final class Settings {
          */
         public static final String NAVIGATION_BAR_COLOR = "navigation_bar_color";
 
+        /**
+         * use Alt Statusbar Signal Layout
+         * boolean
+         *
+         * @hide
+         */
+        public static final String STATUSBAR_SIGNAL_CLUSTER_ALT = "statusbar_signal_cluster_alt";
     }
 
     /**

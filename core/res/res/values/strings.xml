@@ -4005,4 +4005,8 @@
     <!-- Default name of the owner user [CHAR LIMIT=20] -->
     <string name="owner_name" msgid="3879126011135546571">Owner</string>
 
+    <!-- Vibration picker dialog title -->
+    <string name="vibration_picker_title">Select vibration</string>
+    <string name="vibration_picker_del_title">Delete vibration</string>
+
 </resources>

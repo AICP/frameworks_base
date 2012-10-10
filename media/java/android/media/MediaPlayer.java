@@ -706,7 +706,7 @@ public class MediaPlayer
      * surface rendering area. When the surface has the same aspect ratio
      * as the content, the aspect ratio of the content is maintained;
      * otherwise, the aspect ratio of the content is not maintained when video
-     * is being rendered. Unlike {@ #VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING},
+     * is being rendered. Unlike {@link #VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING},
      * there is no content cropping with this video scaling mode.
      */
     public static final int VIDEO_SCALING_MODE_SCALE_TO_FIT = 1;
@@ -1152,6 +1152,8 @@ public class MediaPlayer
      * Checks whether the MediaPlayer is playing.
      *
      * @return true if currently playing, false otherwise
+     * @throws IllegalStateException if the internal player engine has not been
+     * initialized or has been released.
      */
     public native boolean isPlaying();
 
@@ -2024,6 +2026,7 @@ public class MediaPlayer
                     if (msg.obj instanceof Parcel) {
                         Parcel parcel = (Parcel)msg.obj;
                         TimedText text = new TimedText(parcel);
+                        parcel.recycle();
                         mOnTimedTextListener.onTimedText(mMediaPlayer, text);
                     }
                 }

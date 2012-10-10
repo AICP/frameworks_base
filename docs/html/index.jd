@@ -14,7 +14,7 @@ page.metaDescription=The official site for Android developers. Provides the Andr
             <ul>
                 <li class="item carousel-home">
                     <div class="content-left col-9">
-                        <a href="/about/versions/jelly-bean.html"><img src="/images/home/android-jellybean.png" ></a>
+                        <a href="{@docRoot}about/versions/jelly-bean.html"><img src="{@docRoot}images/home/android-jellybean.png" ></a>
                     </div>
                     <div class="content-right col-6">
                     <h1>Jelly Bean now available!</h1>
@@ -23,7 +23,7 @@ page.metaDescription=The official site for Android developers. Provides the Andr
                     <p>New APIs are also available that allow you to build richer and more
                       interactive notifications, transfer larger
                     payloads through NFC, discover services over Wi-Fi, and much more.</p>
-                    <p><a href="/about/versions/jelly-bean.html" class="button">More 
+                    <p><a href="{@docRoot}about/versions/jelly-bean.html" class="button">More 
                         about Jelly Bean</a></p>
                     </div>
                 </li>
@@ -35,24 +35,24 @@ page.metaDescription=The official site for Android developers. Provides the Andr
                     <h1>Make your Android apps<br>look great</h1>
                     <p>New templates in the design guide make it easier than ever to design apps
 that are beautiful and easy to use.</p>
-                    <p><a href="/design/index.html" class="button">Learn More</a></p>
+                    <p><a href="{@docRoot}design/index.html" class="button">Learn More</a></p>
                     </div>
                 </li>
                 <li class="item carousel-home">
                         <div class="content-left col-10">
-                        <img src="/images/home/google-io.png">
+                        <img src="{@docRoot}images/home/google-io.png">
                         </div>
                         <div class="content-right col-5">
-                        <h1>Watch Android at <br/>Google I/O!</h1>
-                        <p>See the keynote and more than 40 Android developer sessions streamed live from Moscone Center in San Francisco.</p>
-                        <p>Begins June 27, 9AM PDT (UTC-7).</p>
-                        <p><a href="https://developers.google.com/events/io/sessions#android"
-class="button">See the Android Sessions</a></p>
+                        <h1>Android videos<br/> from Google I/O!</h1>
+                        <p>If you couldn't make it to Google I/O this year or want to review some of the material,
+                          all of the Android sessions are now available for viewing online.</p>
+                        <p><a href="http://www.youtube.com/playlist?list=PL4C6BCDE45E05F49E&feature=plcp"
+class="button">Watch the Android sessions</a></p>
                         </div>
                 </li>
                 <li class="item carousel-home">
                         <div class="content-left col-10">
-                            <img src="/images/home/google-play.png"
+                            <img src="{@docRoot}images/home/google-play.png"
                                   style="margin-top:50px">
                         </div>
                         <div class="content-right col-5">
@@ -66,7 +66,6 @@ class="button">See the Android Sessions</a></p>
         </div>
     </div>
     <!-- /End slideshow -->
-    
     
     
 </div>

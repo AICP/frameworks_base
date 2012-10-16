@@ -979,7 +979,7 @@ public final class Settings {
          * with that name.  Note that internally setting values are always
          * stored as strings, so this function converts the given value to a
          * string (1 or 0) before storing it.
-         * 
+         *
          * @param cr The ContentResolver to access.
          * @param name The name of the setting to modify.
          * @param value The new value for the setting.
@@ -3224,6 +3224,13 @@ public final class Settings {
          * @hide
          */
         public static final String RECENT_KILL_ALL_BUTTON = "recent_kill_all_button";
+
+        /**
+         * whether to hide the Ram Usage Bar on recent switcher
+         *
+         * @hide
+         */
+        public static final String RAM_USAGE_BAR = "ram_usage_bar";
 
         /**
          * whether to enable end app on back longpress functionality

@@ -7168,6 +7168,12 @@ public final class Settings {
          */
         public static final String STATUS_BAR_NETWORK_STATS_TEXT_COLOR = "status_bar_network_stats_text_color";
 
+        /**
+         * whether to hide the Ram Usage Bar on recent switcher
+         *
+         *@hide
+         */
+        public static final String RAM_USAGE_BAR = "ram_usage_bar";
     }
 
     /**

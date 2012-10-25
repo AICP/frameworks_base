@@ -2661,6 +2661,18 @@ public final class Settings {
          */
         public static final String NAVIGATION_BAR_WIDTH = "navigation_bar_width";
 
+        /**
+         *
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_WIDTH_PORT = "navigation_bar_width_port";
+
+        /**
+         *
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_WIDTH_LAND = "navigation_bar_width_land";
+
          /**
          * @hide
          */

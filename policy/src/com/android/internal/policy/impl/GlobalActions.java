@@ -68,6 +68,7 @@ import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -102,6 +103,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
     private boolean mIsWaitingForEcmExit = false;
     private boolean mHasTelephony;
     private boolean mHasVibrator;
+    private static int rebootIndex = 0;
 
     /**
      * @param context everything needs a context :(
@@ -142,7 +144,8 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         mKeyguardShowing = keyguardShowing;
         mDeviceProvisioned = isDeviceProvisioned;
         if (mDialog != null) {
-            mDialog.dismiss();
+            mDialog.hide();
+            mDialog.cancel();
             mDialog = null;
             // Show delayed, so that the dismiss of the previous dialog completes
             mHandler.sendEmptyMessage(MESSAGE_SHOW);
@@ -255,6 +258,28 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                     return true;
                 }
             });
+
+        // next: reboot
+        mItems.add(
+                new SinglePressAction(
+                        com.android.internal.R.drawable.ic_lock_reboot,
+                        com.android.internal.R.string.reboot) {
+
+                    @Override
+                    public boolean showDuringKeyguard() {
+                        return true;
+                    }
+
+                    @Override
+                    public boolean showBeforeProvisioning() {
+                        return true;
+                    }
+
+                    @Override
+                    public void onPress() {
+                        createRebootDialog().show();
+                    }
+                });
 
         // next: airplane mode
         mItems.add(mAirplaneModeOn);
@@ -1027,5 +1052,45 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
             }
             return super.onKeyUp(keyCode, event);
         }
+    }
+
+    private AlertDialog createRebootDialog() {
+        final String[] rebootOptions = mContext.getResources().getStringArray(R.array.reboot_options);
+        final String[] rebootReasons = mContext.getResources().getStringArray(R.array.reboot_values);
+
+        AlertDialog d = new AlertDialog.Builder(mContext)
+                .setSingleChoiceItems(rebootOptions, 0,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                rebootIndex = which;
+                            }
+                        })
+                .setNegativeButton(android.R.string.cancel,
+                        new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                .setPositiveButton(R.string.reboot, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mWindowManagerFuncs.reboot(rebootReasons[rebootIndex]);
+                    }
+                })
+                .setCancelable(false)
+                .create();
+
+        d.getListView().setItemsCanFocus(true);
+        if (mKeyguardShowing) {
+            d.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
+        } else {
+            d.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_DIALOG);
+        }
+
+        return d;
     }
 }

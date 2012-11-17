@@ -1201,6 +1201,8 @@
   <java-symbol type="array" name="lockscreen_targets_when_soundon" />
   <java-symbol type="array" name="lockscreen_targets_with_camera" />
   <java-symbol type="array" name="lockscreen_num_pad_klondike" />
+  <java-symbol type="array" name="reboot_options" />
+  <java-symbol type="array" name="reboot_values" />
   <java-symbol type="attr" name="actionModePopupWindowStyle" />
   <java-symbol type="attr" name="dialogCustomTitleDecorLayout" />
   <java-symbol type="attr" name="dialogTitleDecorLayout" />
@@ -1248,6 +1250,7 @@
   <java-symbol type="drawable" name="ic_jog_dial_vibrate_on" />
   <java-symbol type="drawable" name="ic_lock_airplane_mode" />
   <java-symbol type="drawable" name="ic_lock_airplane_mode_off" />
+  <java-symbol type="drawable" name="ic_lock_reboot" />
   <java-symbol type="drawable" name="ic_menu_cc" />
   <java-symbol type="drawable" name="jog_tab_bar_left_unlock" />
   <java-symbol type="drawable" name="jog_tab_bar_right_sound_off" />
@@ -1446,6 +1449,7 @@
   <java-symbol type="string" name="lockscreen_too_many_failed_pin_attempts_dialog_message" />
   <java-symbol type="string" name="lockscreen_unlock_label" />
   <java-symbol type="string" name="status_bar_device_locked" />
+  <java-symbol type="string" name="reboot" />
   <java-symbol type="style" name="Animation.LockScreen" />
   <java-symbol type="style" name="Theme.Dialog.RecentApplications" />
   <java-symbol type="style" name="Theme.ExpandedMenu" />
@@ -1674,6 +1678,7 @@
   <java-symbol type="string" name="wifi_display_notification_title" />
   <java-symbol type="string" name="wifi_display_notification_message" />
   <java-symbol type="string" name="wifi_display_notification_disconnect" />
+  <java-symbol type="string" name="reboot_progress" />
   <java-symbol type="style" name="Theme.Dialog.AppError" />
   <java-symbol type="style" name="Theme.Toast" />
   <java-symbol type="xml" name="storage_list" />
@@ -1686,9 +1691,11 @@
   <java-symbol type="string" name="enable_explore_by_touch_warning_message" />
 
   <java-symbol type="layout" name="resolver_grid" />
+  <java-symbol type="layout" name="resolver_grid_alt" />
   <java-symbol type="id" name="resolver_grid" />
   <java-symbol type="id" name="button_once" />
   <java-symbol type="id" name="button_always" />
+  <java-symbol type="id" name="checkbox_always" />
   <java-symbol type="integer" name="config_maxResolverActivityColumns" />
 
   <!-- From SystemUI -->

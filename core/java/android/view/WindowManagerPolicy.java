@@ -398,6 +398,7 @@ public interface WindowManagerPolicy {
         public void switchKeyboardLayout(int deviceId, int direction);
 
         public void shutdown(boolean confirm);
+        public void reboot(String reason);
         public void rebootSafeMode(boolean confirm);
     }
 

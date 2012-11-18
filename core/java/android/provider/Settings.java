@@ -6943,12 +6943,24 @@ public final class Settings {
          * @hide
          */
         public static final String SWIPE_TO_SWITCH = "swipe_to_switch";
-         
+
         /**
          * Should the non-intrsive incall ui be used
          * @hide
          */
         public static final String NON_INTRUSIVE_INCALL = "non_intrusive_incall";
+
+        /**
+         * Whether the volume keys wake the screen.
+         * @hide
+         */
+        public static final String VOLUME_WAKE_SCREEN = "volume_wake_screen";
+
+        /**
+         * Whether volume up/down can be long pressed to skip tracks
+         * @hide
+         */
+        public static final String VOLUME_MUSIC_CONTROLS = "volume_music_controls";
 
     }
 

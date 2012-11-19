@@ -51,6 +51,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
@@ -62,6 +63,9 @@ import com.android.systemui.statusbar.BaseStatusBar;
 import com.android.systemui.statusbar.phone.PhoneStatusBar;
 import com.android.systemui.statusbar.tablet.StatusBarPanel;
 import com.android.systemui.statusbar.tablet.TabletStatusBar;
+
+import com.android.internal.util.MemInfoReader;
+import android.text.format.Formatter;
 
 import java.util.ArrayList;
 
@@ -81,6 +85,9 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
     private ViewHolder mItemToAnimateInWhenWindowAnimationIsFinished;
     private boolean mWaitingForWindowAnimation;
 
+    private Button mRecentsKillAllButton;
+    private LinearColorBar mRamUsageBar;
+
     private RecentTasksLoader mRecentTasksLoader;
     private ArrayList<TaskDescription> mRecentTaskDescriptions;
     private TaskDescriptionAdapter mListAdapter;
@@ -88,6 +95,28 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
     private boolean mFitThumbnailToXY;
     private int mRecentItemLayoutId;
     private boolean mHighEndGfx;
+
+    int mLastNumBackgroundProcesses = -1;
+    int mLastNumForegroundProcesses = -1;
+    int mLastNumServiceProcesses = -1;
+    long mLastBackgroundProcessMemory = -1;
+    long mLastForegroundProcessMemory = -1;
+    long mLastServiceProcessMemory = -1;
+    long mLastAvailMemory = -1;
+    long SECONDARY_SERVER_MEM;
+
+    TextView mBackgroundProcessText;
+    TextView mForegroundProcessText;
+
+    ActivityManager mAm;
+
+    RunningState mState;
+
+    MemInfoReader mMemInfoReader = new MemInfoReader();
+
+    public static interface OnRecentsPanelVisibilityChangedListener {
+        public void onRecentsPanelVisibilityChanged(boolean visible);
+    }
 
     public static interface RecentsScrollView {
         public int numItemsInOneScreenful();
@@ -443,6 +472,17 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
                 ((BitmapDrawable) mRecentsScrim.getBackground()).setTileModeY(TileMode.REPEAT);
             }
         }
+
+        mRecentsKillAllButton = (Button) findViewById(R.id.recents_kill_all_button);
+        if (mRecentsKillAllButton != null){
+                mRecentsKillAllButton.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        killAllRecentApps();
+                    }
+                });
+        }
+       UpdateRamBar();
     }
 
     public void setMinSwipeAlpha(float minAlpha) {
@@ -601,6 +641,7 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
         if (((RecentsActivity) mContext).isActivityShowing()) {
             refreshViews();
         }
+      UpdateRamBar();
     }
 
     private void updateUiElements() {
@@ -621,6 +662,7 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
                 R.plurals.status_bar_accessibility_recent_apps, numRecentApps, numRecentApps);
         }
         setContentDescription(recentAppsAccessibilityDescription);
+        UpdateRamBar();
     }
 
     public boolean simulateClick(int persistentTaskId) {
@@ -674,6 +716,7 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
         if (usingDrawingCache) {
             holder.thumbnailViewImage.setDrawingCacheEnabled(false);
         }
+        UpdateRamBar();
     }
 
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -710,6 +753,7 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
             sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_SELECTED);
             setContentDescription(null);
         }
+        UpdateRamBar();
     }
 
     private void startApplicationDetailsActivity(String packageName) {
@@ -761,5 +805,93 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
             }
         });
         popup.show();
+    }
+
+    private void killAllRecentApps(){
+        final ActivityManager am = (ActivityManager)
+                mContext.getSystemService(Context.ACTIVITY_SERVICE);
+        if(!mRecentTaskDescriptions.isEmpty()){
+            for(TaskDescription ad : mRecentTaskDescriptions){
+                am.removeTask(ad.persistentTaskId, ActivityManager.REMOVE_TASK_KILL_PROCESS);
+                // Accessibility feedback
+                setContentDescription(
+                        mContext.getString(R.string.accessibility_recents_item_dismissed, ad.getLabel()));
+                sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_SELECTED);
+                setContentDescription(null);
+            }
+            mRecentTaskDescriptions.clear();
+        }
+        dismissAndGoBack();
+    }
+
+    private void UpdateRamBar(){
+        mAm = (ActivityManager)getContext().getSystemService(Context.ACTIVITY_SERVICE);
+        mState = RunningState.getInstance(getContext());
+
+        boolean recent_kill_all_button = Settings.System.getBoolean(mContext.getContentResolver(),
+                      Settings.System.RECENT_KILL_ALL_BUTTON, false);
+
+        if (recent_kill_all_button){
+                mRecentsKillAllButton.setVisibility(View.VISIBLE);
+        } else { // hide the button completely (gone)
+                mRecentsKillAllButton.setVisibility(View.GONE);
+        }
+
+        boolean mRamBar = Settings.System.getBoolean(mContext.getContentResolver(),
+                             Settings.System.RAM_USAGE_BAR, false);
+
+        mRamUsageBar = (LinearColorBar) findViewById(R.id.ram_usage_bar);
+         if (mRamUsageBar != null){
+           if (mRamBar){
+                mRamUsageBar.setVisibility(View.VISIBLE);
+            } else { // hide the button completely (gone)
+                mRamUsageBar.setVisibility(View.GONE);
+            }
+        }
+        mForegroundProcessText = (TextView)findViewById(R.id.foregroundText);
+        mBackgroundProcessText = (TextView)findViewById(R.id.backgroundText);
+        ActivityManager.MemoryInfo memInfo = new ActivityManager.MemoryInfo();
+        mAm.getMemoryInfo(memInfo);
+        SECONDARY_SERVER_MEM = memInfo.secondaryServerThreshold;
+        mMemInfoReader.readMemInfo();
+        long availMem = mMemInfoReader.getFreeSize() + mMemInfoReader.getCachedSize()
+                - SECONDARY_SERVER_MEM;
+        if (availMem < 0) {
+            availMem = 0;
+        }
+
+        synchronized (mState.mLock) {
+            if (mLastNumBackgroundProcesses != mState.mNumBackgroundProcesses
+                    || mLastBackgroundProcessMemory != mState.mBackgroundProcessMemory
+                    || mLastAvailMemory != availMem) {
+                mLastNumBackgroundProcesses = mState.mNumBackgroundProcesses;
+                mLastBackgroundProcessMemory = mState.mBackgroundProcessMemory;
+                mLastAvailMemory = availMem;
+                long freeMem = mLastAvailMemory + mLastBackgroundProcessMemory;
+                String sizeStr = Formatter.formatShortFileSize(getContext(), freeMem);
+                mBackgroundProcessText.setText(getResources().getString(
+                        R.string.service_background_processes, sizeStr));
+                sizeStr = Formatter.formatShortFileSize(getContext(),
+                        mMemInfoReader.getTotalSize() - freeMem);
+                mForegroundProcessText.setText(getResources().getString(
+                        R.string.service_foreground_processes, sizeStr));
+            }
+            if (mLastNumForegroundProcesses != mState.mNumForegroundProcesses
+                    || mLastForegroundProcessMemory != mState.mForegroundProcessMemory
+                    || mLastNumServiceProcesses != mState.mNumServiceProcesses
+                    || mLastServiceProcessMemory != mState.mServiceProcessMemory) {
+                mLastNumForegroundProcesses = mState.mNumForegroundProcesses;
+                mLastForegroundProcessMemory = mState.mForegroundProcessMemory;
+                mLastNumServiceProcesses = mState.mNumServiceProcesses;
+                mLastServiceProcessMemory = mState.mServiceProcessMemory;
+            }
+
+            float totalMem = mMemInfoReader.getTotalSize();
+            float totalShownMem = availMem + mLastBackgroundProcessMemory
+                    + mLastServiceProcessMemory;
+            mRamUsageBar.setRatios((totalMem-totalShownMem)/totalMem,
+                    mLastServiceProcessMemory/totalMem,
+                    mLastBackgroundProcessMemory/totalMem);
+        }
     }
 }

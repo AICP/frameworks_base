@@ -1159,7 +1159,7 @@ public final class Settings {
          * with that name.  Note that internally setting values are always
          * stored as strings, so this function converts the given value to a
          * string (1 or 0) before storing it.
-         * 
+         *
          * @param cr The ContentResolver to access.
          * @param name The name of the setting to modify.
          * @param value The new value for the setting.
@@ -2391,11 +2391,25 @@ public final class Settings {
          */
         public static final String VOLUME_MUSIC_CONTROLS = "volume_music_controls";
 
+        /**
+         * whether to hide the Ram Usage Bar on recent switcher
+         *
+         * @hide
+         */
+        public static final String RAM_USAGE_BAR = "ram_usage_bar";
+
        /**
         * Key to store Torch state.
         * @hide 
         */
         public static final String TORCH_STATE = "torch_state";
+
+        /**
+         * whether to hide the kill-all-button on recent switcher
+         *
+         * @hide
+         */
+        public static final String RECENT_KILL_ALL_BUTTON = "recent_kill_all_button";
 
        /**
         * Lefty mode
@@ -2439,6 +2453,17 @@ public final class Settings {
                 "navring_long_2",
                 "navring_long_3",
                 "navring_long_4",
+        };
+
+        /**
+         * Clock Actions 0 = single, 1 = long, 2 = double click
+         *
+         * @hide
+         */
+        public static final String[] NOTIFICATION_CLOCK = new String[] {
+                "notification_clock_0",
+                "notification_clock_1",
+                "notification_clock_2",
         };
 
         /**

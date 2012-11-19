@@ -25,6 +25,7 @@ import android.app.ActivityManagerNative;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.ContentUris;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.Intent.ShortcutIconResource;
@@ -39,6 +40,7 @@ import android.graphics.drawable.Drawable;
 import android.hardware.input.InputManager;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
+import android.net.Uri;
 import android.os.Vibrator;
 import android.os.Bundle;
 import android.os.Handler;
@@ -49,7 +51,11 @@ import android.os.Parcelable;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemClock;
+import android.provider.AlarmClock;
+import android.provider.CalendarContract;
+import android.provider.CalendarContract.Events;
 import android.provider.Settings;
+import android.speech.RecognizerIntent;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.InputDevice;
@@ -82,6 +88,11 @@ public class AokpTarget {
     public final static String ACTION_SILENT = "**ring_silent**";
     public final static String ACTION_VIB = "**ring_vib**";
     public final static String ACTION_SILENT_VIB = "**ring_vib_silent**";
+    public final static String ACTION_EVENT = "**event**";
+    public final static String ACTION_ALARM = "**alarm**";
+    public final static String ACTION_TODAY = "**today**";
+    public final static String ACTION_CLOCKOPTIONS = "**clockoptions**";
+	public final static String ACTION_VOICEASSIST = "**voiceassist**";
     public final static String ACTION_NULL = "**null**";
 
     private int mInjectKeyCode;
@@ -130,6 +141,42 @@ public class AokpTarget {
             takeScreenshot();
             return true;
         }
+        if (action.equals(ACTION_TODAY)) {
+            long startMillis = System.currentTimeMillis();
+            Uri.Builder builder = CalendarContract.CONTENT_URI.buildUpon();
+            builder.appendPath("time");
+            ContentUris.appendId(builder, startMillis);
+            Intent intent = new Intent(Intent.ACTION_VIEW)
+                      .setData(builder.build());
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            mContext.startActivity(intent);
+            return true;
+        }
+        if (action.equals(ACTION_CLOCKOPTIONS)) {
+            Intent intent = new Intent(Intent.ACTION_QUICK_CLOCK);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            mContext.startActivity(intent);
+            return true;
+        }
+        if (action.equals(ACTION_EVENT)) {
+            Intent intent = new Intent(Intent.ACTION_INSERT)
+                      .setData(Events.CONTENT_URI);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            mContext.startActivity(intent);
+            return true;
+        }
+        if (action.equals(ACTION_VOICEASSIST)) {
+            Intent intent = new Intent(RecognizerIntent.ACTION_WEB_SEARCH);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            mContext.startActivity(intent);
+            return true;
+        }
+        if (action.equals(ACTION_ALARM)) {
+			Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            mContext.startActivity(intent);
+			return true;
+		}
         if (action.equals(ACTION_ASSIST)) {
             Intent intent = new Intent(Intent.ACTION_ASSIST);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

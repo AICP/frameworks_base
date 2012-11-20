@@ -2456,6 +2456,96 @@ public final class Settings {
         };
 
         /**
+         * Setting to enable volume options.
+         *
+         * @hide
+         */
+        public static final String ENABLE_VOLUME_OPTIONS = "enable_volume_options";
+
+        /**
+         * Setting to Link Ringtone and Notification.
+         *
+         * @hide
+         */
+        public static final String VOLUME_LINK_NOTIFICATION = "volume_link_notification";
+
+        /**
+         * How long to keep the notification LED on (in milliseconds)
+         * 
+         * @hide
+         */
+        public static final String NOTIFICATION_LIGHT_ON = "notification_light_on";
+
+        /**
+         * How long to keep the notification LED off (in milliseconds)
+         * 
+         * @hide
+         */
+        public static final String NOTIFICATION_LIGHT_OFF = "notification_light_off";
+
+        /**
+         * What color to use for the notificaion LED
+         *
+         * @hide
+         */
+        public static final String NOTIFICATION_LIGHT_COLOR = "notification_light_color";
+
+        /**
+         * Custom string for package;color|pacakge;color
+         * so we can change custom colors per app
+         * @hide
+         */
+        public static final String LED_CUSTOM_VALUES = "led_custom_values";
+
+        /* What brightness to use for the notificaion LED
+         *
+         * @hide
+         */
+        public static final String LED_BRIGHTNESS = "led_brightness";
+
+        /**
+         * Whether to enable quiet hours.
+         * @hide
+         */
+        public static final String QUIET_HOURS_ENABLED = "quiet_hours_enabled";
+
+        /**
+         * Sets when quiet hours starts. This is stored in minutes from the start of the day.
+         * @hide
+         */
+        public static final String QUIET_HOURS_START = "quiet_hours_start";
+
+        /**
+         * Sets when quiet hours end. This is stored in minutes from the start of the day.
+         * @hide
+         */
+        public static final String QUIET_HOURS_END = "quiet_hours_end";
+
+        /**
+         * Whether to remove the sound from outgoing notifications during quiet hours.
+         * @hide
+         */
+        public static final String QUIET_HOURS_NOTIFICATIONS = "quiet_hours_notifications";
+
+        /**
+         * Whether to mute phone ringtones during quiet hours.
+         * @hide
+         */
+        public static final String QUIET_HOURS_RINGER = "quiet_hours_ringer";
+
+        /**
+         * Whether to disable vibrations during quiet hours.
+         * @hide
+         */
+        public static final String QUIET_HOURS_STILL = "quiet_hours_still";
+
+        /**
+         * Whether to attempt to dim the LED color during quiet hours.
+         * @hide
+         */
+        public static final String QUIET_HOURS_DIM = "quiet_hours_dim";
+
+        /**
          * Clock Actions 0 = single, 1 = long, 2 = double click
          *
          * @hide
@@ -3482,6 +3572,13 @@ public final class Settings {
          */
         @Deprecated
         public static final String INSTALL_NON_MARKET_APPS = Global.INSTALL_NON_MARKET_APPS;
+
+        /**
+         * Whether to blink the LED when screen is on
+         *
+         * @hide
+         */
+        public static final String LED_SCREEN_ON = "led_screen_on";
 
         /**
          * Comma-separated list of location providers that activities may access.

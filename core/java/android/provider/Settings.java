@@ -2466,6 +2466,109 @@ public final class Settings {
                 "notification_clock_2",
         };
 
+       /**
+        * Whether the UI is in tablet UI
+        * @hide
+        */
+        public static final String TABLET_UI = "tablet_ui";
+
+        /**
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_SHOW = "navigation_bar_show";
+
+        /**
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_HEIGHT = "navigation_bar_height";
+
+        /**
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_HEIGHT_LANDSCAPE = "navigation_bar_height_landscape";
+
+        /**
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_WIDTH = "navigation_bar_width";
+
+        /**
+         * @hide
+         */
+        public static final String MENU_LOCATION = "menu_location";
+
+        /**
+         * @hide
+         */
+        public static final String MENU_VISIBILITY = "menu_visibility";
+
+        /**
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_BUTTONS_QTY = "navigation_bar_buttons_qty";
+
+        /**
+         * @hide
+         */
+        public static final String[] NAVIGATION_CUSTOM_ACTIVITIES = new String[] {
+            "navigation_custom_app_intent_0",
+            "navigation_custom_app_intent_1",
+            "navigation_custom_app_intent_2",
+            "navigation_custom_app_intent_3",
+            "navigation_custom_app_intent_4",
+            "navigation_custom_app_intent_5",
+            "navigation_custom_app_intent_6",
+        };
+
+        /**
+         * @hide
+         */
+        public static final String[] NAVIGATION_LONGPRESS_ACTIVITIES = new String[] {
+            "navigation_longpress_app_intent_0",
+            "navigation_longpress_app_intent_1",
+            "navigation_longpress_app_intent_2",
+            "navigation_longpress_app_intent_3",
+            "navigation_longpress_app_intent_4",
+            "navigation_longpress_app_intent_5",
+            "navigation_longpress_app_intent_6",
+        };
+
+        /**
+         * @hide
+         */
+        public static final String[] NAVIGATION_CUSTOM_APP_ICONS = new String[] {
+            "navigation_custom_app_icon_0",
+            "navigation_custom_app_icon_1",
+            "navigation_custom_app_icon_2",
+            "navigation_custom_app_icon_3",
+            "navigation_custom_app_icon_4",
+            "navigation_custom_app_icon_5",
+            "navigation_custom_app_icon_6",
+        };
+
+        /**
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_BUTTON_ALPHA = "navigation_bar_button_alpha";
+
+        /**
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_TINT = "navigation_bar_tint";
+
+        /**
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_GLOW_TINT = "navigation_bar_glow_tint";
+
+        /**
+         * @hide
+         */
+        public static final String[] NAVIGATION_BAR_GLOW_DURATION = new String[] {
+            "navigation_bar_glow_duration_off",
+            "navigation_bar_glow_duration_on",
+        };
+
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.

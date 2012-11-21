@@ -455,7 +455,7 @@ public class PhoneStatusBar extends BaseStatusBar {
         mHasFlipSettings = res.getBoolean(R.bool.config_hasFlipSettingsPanel);
 
         mDateTimeView = mNotificationPanelHeader.findViewById(R.id.datetime);
-        if (mHasFlipSettings) {
+        if (mDateTimeView != null) {
             mDateTimeView.setOnClickListener(mClockClickListener);
             mDateTimeView.setOnLongClickListener(mClockLongClickListener);
             mDateTimeView.setEnabled(true);

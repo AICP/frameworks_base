@@ -17,6 +17,10 @@
 package com.android.keyguard;
 
 import android.content.Context;
+import android.database.ContentObserver;
+import android.net.Uri;
+import android.os.Handler;
+import android.provider.Settings;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -30,6 +34,20 @@ import android.widget.TextView.OnEditorActionListener;
  */
 public class KeyguardPINView extends KeyguardAbsKeyInputView
         implements KeyguardSecurityView, OnEditorActionListener, TextWatcher {
+
+    private boolean mQuickUnlock;
+
+    private ContentObserver mContentObserver = new ContentObserver(new Handler()) {
+        @Override
+        public void onChange(boolean selfChange) {
+            updateSettings();
+        }
+
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
+            updateSettings();
+        }
+    };
 
     public KeyguardPINView(Context context) {
         this(context, null);
@@ -104,6 +122,27 @@ public class KeyguardPINView extends KeyguardAbsKeyInputView
         mPasswordEntry.setInputType(InputType.TYPE_CLASS_NUMBER
                 | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
 
+        mPasswordEntry.addTextChangedListener(new TextWatcher() {
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            public void afterTextChanged(Editable s) {
+                if (mCallback != null) {
+                    mCallback.userActivity(0);
+                }
+                if (mQuickUnlock) {
+                    String entry = mPasswordEntry.getText().toString();
+                    if (entry.length() > MINIMUM_PASSWORD_LENGTH_BEFORE_REPORT &&
+                        mLockPatternUtils.checkPassword(entry)) {
+                        verifyPasswordAndUnlock();
+                    }
+                }
+            }
+        });
+
         mPasswordEntry.requestFocus();
     }
 
@@ -114,5 +153,25 @@ public class KeyguardPINView extends KeyguardAbsKeyInputView
     @Override
     public int getWrongPasswordStringId() {
         return R.string.kg_wrong_pin;
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        mContext.getContentResolver().registerContentObserver(
+                Settings.AOKP.getUriFor(Settings.AOKP.LOCKSCREEN_QUICK_UNLOCK_CONTROL),
+                false, mContentObserver);
+        updateSettings();
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        mContext.getContentResolver().unregisterContentObserver(mContentObserver);
+    }
+
+    private void updateSettings() {
+        mQuickUnlock = Settings.AOKP.getBoolean(mContext.getContentResolver(),
+                Settings.AOKP.LOCKSCREEN_QUICK_UNLOCK_CONTROL, false);
     }
 }

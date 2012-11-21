@@ -19,6 +19,10 @@ package com.android.keyguard;
 import android.app.admin.DevicePolicyManager;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.database.ContentObserver;
+import android.net.Uri;
+import android.os.Handler;
+import android.provider.Settings;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -44,8 +48,21 @@ public class KeyguardPasswordView extends KeyguardAbsKeyInputView
         implements KeyguardSecurityView, OnEditorActionListener, TextWatcher {
 
     private final boolean mShowImeAtScreenOn;
+    private boolean mQuickUnlock;
 
     InputMethodManager mImm;
+
+    private ContentObserver mContentObserver = new ContentObserver(new Handler()) {
+        @Override
+        public void onChange(boolean selfChange) {
+            updateSettings();
+        }
+
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
+            updateSettings();
+        }
+    };
 
     public KeyguardPasswordView(Context context) {
         this(context, null);
@@ -117,6 +134,13 @@ public class KeyguardPasswordView extends KeyguardAbsKeyInputView
             public void afterTextChanged(Editable s) {
                 if (mCallback != null) {
                     mCallback.userActivity(0);
+                }
+                if (mQuickUnlock) {
+                    String entry = mPasswordEntry.getText().toString();
+                    if (entry.length() > MINIMUM_PASSWORD_LENGTH_BEFORE_REPORT &&
+                        mLockPatternUtils.checkPassword(entry)) {
+                        verifyPasswordAndUnlock();
+                    }
                 }
             }
         });
@@ -203,5 +227,25 @@ public class KeyguardPasswordView extends KeyguardAbsKeyInputView
     @Override
     public int getWrongPasswordStringId() {
         return R.string.kg_wrong_password;
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        mContext.getContentResolver().registerContentObserver(
+                Settings.AOKP.getUriFor(Settings.AOKP.LOCKSCREEN_QUICK_UNLOCK_CONTROL),
+                false, mContentObserver);
+        updateSettings();
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        mContext.getContentResolver().unregisterContentObserver(mContentObserver);
+    }
+
+    private void updateSettings() {
+        mQuickUnlock = Settings.AOKP.getBoolean(mContext.getContentResolver(),
+                Settings.AOKP.LOCKSCREEN_QUICK_UNLOCK_CONTROL, false);
     }
 }

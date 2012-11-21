@@ -6801,6 +6801,12 @@ public final class Settings {
          */
         public static final String QUICK_TOGGLE_VIBRATE = "statusbar_toggles_vibrate_on_click";
 
+        /**
+         * Whether to use the custom quick unlock screen control
+         * @hide
+         */
+        public static final String LOCKSCREEN_QUICK_UNLOCK_CONTROL = "lockscreen_quick_unlock_control";
+
     }
 
     /**

@@ -11781,6 +11781,21 @@ public final class Settings {
          */
         public static final String EXTENDED_MONET_THEMES = "monet_themes_style";
 
+        /**
+         * The time in ms to keep the button backlight on after pressing a button.
+         * A value of 0 will keep the buttons on for as long as the screen is on.
+         * @hide
+         */
+        public static final String BUTTON_BACKLIGHT_TIMEOUT = "button_backlight_timeout";
+
+        /**
+         * The button brightness to be used while the screen is on or after a button press,
+         * depending on the value of {@link BUTTON_BACKLIGHT_TIMEOUT}.
+         * Valid value range is between 0 and {@link PowerManager#getMaximumButtonBrightness()}
+         * @hide
+         */
+        public static final String BUTTON_BRIGHTNESS = "button_brightness";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/
@@ -11838,7 +11853,6 @@ public final class Settings {
          */
         @Readable
         public static final String GAME_DASHBOARD_ALWAYS_ON = "game_dashboard_always_on";
-
 
         /**
          * For this device state, no specific auto-rotation lock setting should be applied.

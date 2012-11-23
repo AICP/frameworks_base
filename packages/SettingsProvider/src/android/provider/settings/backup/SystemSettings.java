@@ -192,5 +192,7 @@ public class SystemSettings {
         Settings.System.TOAST_ANIMATION,
         Settings.System.SWAP_VOLUME_BUTTONS,
         Settings.System.VOLUME_KEYS_CONTROL_RING_TONE,
+        Settings.System.BUTTON_BACKLIGHT_TIMEOUT,
+        Settings.System.BUTTON_BRIGHTNESS,
     };
 }

@@ -224,5 +224,7 @@ public class SecureSettings {
         Settings.Secure.ENABLE_LOCATION_PRIVACY_INDICATOR,
         Settings.Secure.ENABLE_CAMERA_PRIVACY_INDICATOR,
         Settings.Secure.ENABLE_PROJECTION_PRIVACY_INDICATOR,
+        Settings.Secure.BUTTON_BACKLIGHT_TIMEOUT,
+        Settings.Secure.BUTTON_BRIGHTNESS,
     };
 }

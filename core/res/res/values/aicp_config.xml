@@ -189,4 +189,8 @@
 
     <!-- Wired/BT headset focus mode -->
     <bool name="config_deviceRingtoneFocusMode">false</bool>
+
+    <!-- Button backlight -->
+    <dimen name="config_buttonBrightnessSettingDefaultFloat">1.0</dimen>
+    <bool name="config_deviceHasVariableButtonBrightness">false</bool>
 </resources>

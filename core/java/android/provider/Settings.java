@@ -6266,6 +6266,22 @@ public final class Settings {
          */
         public static final String QS_DATAUSAGE = "qs_datausage";
 
+        /**
+         * The time in ms to keep the button backlight on after pressing a button.
+         * A value of 0 will keep the buttons on for as long as the screen is on.
+         * @hide
+         */
+        public static final String BUTTON_BACKLIGHT_TIMEOUT = "button_backlight_timeout";
+
+        /**
+         * The button brightness to be used while the screen is on or after a button press,
+         * depending on the value of {@link BUTTON_BACKLIGHT_TIMEOUT}.
+         * Valid value range is between 0 and {@link PowerManager#getMaximumButtonBrightness()}
+         * @hide
+         */
+        public static final String BUTTON_BRIGHTNESS = "button_brightness";
+
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6444,6 +6460,8 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(PULSE_ON_NEW_TRACKS, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(QS_SHOW_BATTERY_PERCENT, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(QS_DATAUSAGE, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(BUTTON_BACKLIGHT_TIMEOUT, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(BUTTON_BRIGHTNESS, ANY_INTEGER_VALIDATOR);
         }
 
         /**

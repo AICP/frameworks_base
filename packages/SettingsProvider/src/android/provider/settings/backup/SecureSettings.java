@@ -225,5 +225,7 @@ public class SecureSettings {
         Settings.Secure.BERRY_BLACK_THEME,
         Settings.Secure.EXTENDED_MONET_THEMES,
         Settings.Secure.SHOW_MEDIA_SQUIGGLE_ANIMATION,
+        Settings.Secure.BUTTON_BACKLIGHT_TIMEOUT,
+        Settings.Secure.BUTTON_BRIGHTNESS,
     };
 }

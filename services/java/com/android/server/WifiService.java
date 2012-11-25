@@ -1802,6 +1802,7 @@ public class WifiService extends IWifiManager.Stub {
         } else {
             if(mNotificationBroadcastReceiver != null) {
                 mContext.unregisterReceiver(mNotificationBroadcastReceiver);
+                mNotificationBroadcastReceiver = null;
             }
             notificationManager.cancelAsUser(null, ICON_NETWORKS_AVAILABLE, UserHandle.ALL);
         }

@@ -756,16 +756,16 @@ public class PackageManagerService extends IPackageManager.Stub {
                                     }
                                 }
                             }
-                            String category = null;
-                            if (res.pkg.mIsThemeApk) {
-                                category = Intent.CATEGORY_THEME_PACKAGE_INSTALLED_STATE_CHANGE;
-                            }
                             sendPackageBroadcast(Intent.ACTION_PACKAGE_ADDED,
-                                    res.pkg.applicationInfo.packageName, category,
+                                    res.pkg.applicationInfo.packageName, null,
                                     extras, null, null, firstUsers);
                             final boolean update = res.removedInfo.removedPackage != null;
                             if (update) {
                                 extras.putBoolean(Intent.EXTRA_REPLACING, true);
+                            }
+                            String category = null;
+                            if(res.pkg.mIsThemeApk) {
+                                category = Intent.CATEGORY_THEME_PACKAGE_INSTALLED_STATE_CHANGE;
                             }
                             sendPackageBroadcast(Intent.ACTION_PACKAGE_ADDED,
                                     res.pkg.applicationInfo.packageName, category,
@@ -5746,14 +5746,10 @@ public class PackageManagerService extends IPackageManager.Stub {
                     sendAdded = true;
                 }
             }
-            PackageParser.Package p = mPackages.get(packageName);
-            String category = null;
-            if (p.mIsThemeApk) {
-                category = Intent.CATEGORY_THEME_PACKAGE_INSTALLED_STATE_CHANGE;
-            }
+
             if (sendAdded) {
-                sendPackageBroadcast(Intent.ACTION_PACKAGE_ADDED,
-                        packageName, category, extras, null, null, new int[] {userId});
+                sendPackageBroadcast(Intent.ACTION_PACKAGE_ADDED, null,
+                        packageName, extras, null, null, new int[] {userId});
             }
         } finally {
             Binder.restoreCallingIdentity(callingId);

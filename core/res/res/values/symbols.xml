@@ -1823,4 +1823,8 @@
   <!-- From PinyinIME(!!!) -->
   <java-symbol type="string" name="inputMethod" />
 
+  <!-- Always show battery status on lockscreen -->
+  <java-symbol type="string" name="lockscreen_always_battery" />
+  <java-symbol type="string" name="lockscreen_always_low_battery" />
+
 </resources>

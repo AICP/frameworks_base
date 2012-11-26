@@ -539,6 +539,26 @@
     <string name="app_killed_message">App Killed</string>
     <string name="recents_kill_all_button_text">Kill all</string>
 
+    <!--  Quick Settings -->
+    <string name="quick_settings_vibrate_on_label">Vibrate On</string>
+    <string name="quick_settings_vibrate_off_label">Vibrate Off</string>
+    <string name="quick_settings_silent_on_label">Silent On</string>
+    <string name="quick_settings_silent_off_label">Silent Off</string>
+    <string name="quick_settings_fcharge_on_label">F-Charge On</string>
+    <string name="quick_settings_fcharge_off_label">F-Charge Off</string>
+    <string name="quick_settings_torch_on_label">Torch On</string>
+    <string name="quick_settings_torch_off_label">Torch Off</string>
+    <string name="quick_settings_nfc_on_label">NFC On</string>
+    <string name="quick_settings_nfc_off_label">NFC Off</string>
+    <string name="quick_settings_wifi_tether_on_label">Wifi Tether On</string>
+    <string name="quick_settings_wifi_tether_off_label">Wifi Tether Off</string>
+    <string name="quick_settings_bt_tether_on_label">BT Tether On</string>
+    <string name="quick_settings_bt_tether_off_label">BT Tether Off</string>
+    <string name="quick_settings_usb_tether_on_label">USB Tether On</string>
+    <string name="quick_settings_usb_tether_off_label">USB Tether Off</string>
+    <string name="quick_settings_sync_on_label">Sync On</string>
+    <string name="quick_settings_sync_off_label">Sync Off</string>
+
     <!--  RamBar -->
     <string name="memory">RAM</string>
     <!-- [CHAR LIMIT=10] Running services, summary of background processes -->

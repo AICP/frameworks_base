@@ -93,6 +93,7 @@ public class AokpTarget {
     public final static String ACTION_TODAY = "**today**";
     public final static String ACTION_CLOCKOPTIONS = "**clockoptions**";
 	public final static String ACTION_VOICEASSIST = "**voiceassist**";
+	public final static String ACTION_TORCH = "**torch**";
     public final static String ACTION_NULL = "**null**";
 
     private int mInjectKeyCode;
@@ -139,6 +140,14 @@ public class AokpTarget {
         }
         if (action.equals(ACTION_SCREENSHOT)) {
             takeScreenshot();
+            return true;
+        }
+        if (action.equals(ACTION_TORCH)) {
+            Intent intent = new Intent("android.intent.action.MAIN");
+            intent.setComponent(ComponentName.unflattenFromString("com.aokp.Torch/.TorchActivity"));
+            intent.addCategory("android.intent.category.LAUNCHER");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            mContext.startActivity(intent);
             return true;
         }
         if (action.equals(ACTION_TODAY)) {

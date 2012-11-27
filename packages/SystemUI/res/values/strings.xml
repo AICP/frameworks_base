@@ -558,6 +558,10 @@
     <string name="quick_settings_usb_tether_off_label">USB Tether Off</string>
     <string name="quick_settings_sync_on_label">Sync On</string>
     <string name="quick_settings_sync_off_label">Sync Off</string>
+    <string name="quick_settings_twog_on_label">2g On</string>
+    <string name="quick_settings_twog_off_label">2g Off</string>
+    <string name="quick_settings_lte_on_label">LTE On</string>
+    <string name="quick_settings_lte_off_label">LTE Off</string>
 
     <!--  RamBar -->
     <string name="memory">RAM</string>

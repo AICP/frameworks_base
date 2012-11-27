@@ -45,6 +45,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.view.inputmethod.InputMethodSubtype;
 
 import com.android.internal.view.RotationPolicy;
+import com.android.internal.telephony.PhoneConstants;
 import com.android.systemui.R;
 import com.android.systemui.statusbar.policy.BatteryController.BatteryStateChangeCallback;
 import com.android.systemui.statusbar.policy.BrightnessController.BrightnessStateChangeCallback;
@@ -72,6 +73,8 @@ class QuickSettingsModel implements BluetoothStateChangeCallback,
 
     public static final String FAST_CHARGE_DIR = "/sys/kernel/fast_charge";
     public static final String FAST_CHARGE_FILE = "force_fast_charge";
+    
+    private int dataState = -1;
 
     private WifiManager wifiManager;
 
@@ -195,8 +198,6 @@ class QuickSettingsModel implements BluetoothStateChangeCallback,
     private final BugreportObserver mBugreportObserver;
     private final BrightnessObserver mBrightnessObserver;
 
-    private NfcAdapter adapter;
-
     private QuickSettingsTileView mUserTile;
     private RefreshCallback mUserCallback;
     private UserState mUserState = new UserState();
@@ -261,6 +262,14 @@ class QuickSettingsModel implements BluetoothStateChangeCallback,
     private RefreshCallback mNFCCallback;
     private State mNFCState = new State();
 
+    private QuickSettingsTileView m2gTile;
+    private RefreshCallback m2gCallback;
+    private State m2gState = new State();
+
+    private QuickSettingsTileView mLTETile;
+    private RefreshCallback mLTECallback;
+    private State mLTEState = new State();
+
     private QuickSettingsTileView mSyncTile;
     private RefreshCallback mSyncCallback;
     private State mSyncState = new State();
@@ -295,7 +304,6 @@ class QuickSettingsModel implements BluetoothStateChangeCallback,
 
     public QuickSettingsModel(Context context) {
         mContext = context;
-        adapter = NfcAdapter.getDefaultAdapter(mContext);
         mHandler = new Handler();
         mUserTracker = new CurrentUserTracker(mContext) {
             @Override
@@ -315,7 +323,22 @@ class QuickSettingsModel implements BluetoothStateChangeCallback,
         IntentFilter alarmIntentFilter = new IntentFilter();
         alarmIntentFilter.addAction(Intent.ACTION_ALARM_CHANGED);
         context.registerReceiver(mAlarmIntentReceiver, alarmIntentFilter);
+
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(NfcAdapter.ACTION_ADAPTER_STATE_CHANGED);
+        context.registerReceiver(mBroadcastReceiver, filter);
     }
+
+    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            NfcAdapter mNfcAdapter = NfcAdapter.getDefaultAdapter(context);
+            if (NfcAdapter.ACTION_ADAPTER_STATE_CHANGED.equals(intent.getAction())) {
+                refreshNFCTile();
+            }
+        }
+    };
 
     void updateResources(ArrayList<String> toggles) {
         for (String toggle : toggles) {
@@ -347,6 +370,10 @@ class QuickSettingsModel implements BluetoothStateChangeCallback,
                 refreshBTTetherTile();  */
             if (toggle.equals(QuickSettings.FCHARGE_TOGGLE))
                 refreshFChargeTile();
+            if (toggle.equals(QuickSettings.TWOG_TOGGLE))
+                refresh2gTile();
+            if (toggle.equals(QuickSettings.LTE_TOGGLE))
+                refreshLTETile();
         }
 
     }
@@ -927,14 +954,80 @@ class QuickSettingsModel implements BluetoothStateChangeCallback,
         }
     }
 
+    // LTE
+    void addLTETile(QuickSettingsTileView view, RefreshCallback cb) {
+        mLTETile = view;
+        mLTECallback = cb;
+        onLTEChanged();
+    }
+
+    void onLTEChanged() {
+        try {
+            dataState = Settings.Global.getInt(mContext.getContentResolver(), Settings.Global.PREFERRED_NETWORK_MODE);
+        } catch (SettingNotFoundException e) {
+            e.printStackTrace();
+        }
+        boolean enabled = (dataState == PhoneConstants.NT_MODE_LTE_CDMA_EVDO) || (dataState == PhoneConstants.NT_MODE_GLOBAL);
+        mLTEState.enabled = enabled;
+        mLTEState.iconId = enabled
+                ? R.drawable.ic_qs_lte_on
+                : R.drawable.ic_qs_lte_off;
+        mLTEState.label = enabled
+                ? mContext.getString(R.string.quick_settings_lte_on_label)
+                : mContext.getString(R.string.quick_settings_lte_off_label);
+
+        if (mLTETile != null && mLTECallback != null) {
+            mLTECallback.refreshView(mLTETile, mLTEState);
+        }
+    }
+
+    void refreshLTETile() {
+        if (mLTETile != null) {
+            onLTEChanged();
+        }
+    }
+
+    // 2g
+    void add2gTile(QuickSettingsTileView view, RefreshCallback cb) {
+        m2gTile = view;
+        m2gCallback = cb;
+        on2gChanged();
+    }
+
+    void on2gChanged() {
+        try {
+            dataState = Settings.Global.getInt(mContext.getContentResolver(), Settings.Global.PREFERRED_NETWORK_MODE);
+        } catch (SettingNotFoundException e) {
+            e.printStackTrace();
+        }
+        boolean enabled = dataState == PhoneConstants.NT_MODE_GSM_ONLY;
+        m2gState.enabled = enabled;
+        m2gState.iconId = enabled
+                ? R.drawable.ic_qs_2g_on
+                : R.drawable.ic_qs_2g_off;
+        m2gState.label = enabled
+                ? mContext.getString(R.string.quick_settings_twog_on_label)
+                : mContext.getString(R.string.quick_settings_twog_off_label);
+
+        if (m2gTile != null && m2gCallback != null) {
+            m2gCallback.refreshView(m2gTile, m2gState);
+        }
+    }
+
+    void refresh2gTile() {
+        if (m2gTile != null) {
+            on2gChanged();
+        }
+    }
+
     // NFC
     void addNFCTile(QuickSettingsTileView view, RefreshCallback cb) {
         mNFCTile = view;
         mNFCCallback = cb;
-        onNFCChanged();
     }
 
     void onNFCChanged() {
+        NfcAdapter adapter = NfcAdapter.getDefaultAdapter();
         boolean enabled = adapter.isEnabled();
         mNFCState.enabled = enabled;
         mNFCState.iconId = enabled
@@ -1097,7 +1190,7 @@ class QuickSettingsModel implements BluetoothStateChangeCallback,
         String toggles = Settings.System.getString(resolver, Settings.System.QUICK_TOGGLES);
        
         if (toggles != null) {
-            ArrayList<String> tiles = new ArrayList<String>();
+            ArrayList tiles = new ArrayList();
             String[] splitter = toggles.split("\\|");
             for (String toggle : splitter) {
                 tiles.add(toggle);
@@ -1108,8 +1201,8 @@ class QuickSettingsModel implements BluetoothStateChangeCallback,
         return getDefaultTiles().contains(tile);
     }
     
-    private ArrayList<String> getDefaultTiles() {
-        ArrayList<String> tiles = new ArrayList<String>();
+    private ArrayList getDefaultTiles() {
+        ArrayList tiles = new ArrayList();
         tiles.add(QuickSettings.USER_TOGGLE);
         tiles.add(QuickSettings.BRIGHTNESS_TOGGLE);
         tiles.add(QuickSettings.SETTINGS_TOGGLE);

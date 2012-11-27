@@ -107,7 +107,6 @@
         <item name="android:textStyle">normal</item>
         <item name="android:textColor">#CCCCCC</item>
         <item name="android:textAllCaps">true</item>
-        <item name="android:singleLine">true</item>
         <item name="android:ellipsize">marquee</item>
         <item name="android:fadingEdge">horizontal</item>
     </style>

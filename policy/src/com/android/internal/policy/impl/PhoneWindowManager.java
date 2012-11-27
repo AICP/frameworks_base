@@ -3455,6 +3455,11 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             isWakeKey = false;
         }
 
+        // don't wake the screen for headset play/pause
+        if ((keyCode == KeyEvent.KEYCODE_HEADSETHOOK) && isWakeKey) {
+            isWakeKey = false;
+        }
+
         if (DEBUG_INPUT) {
             Log.d(TAG, "interceptKeyTq keycode=" + keyCode
                     + " screenIsOn=" + isScreenOn + " keyguardActive=" + keyguardActive

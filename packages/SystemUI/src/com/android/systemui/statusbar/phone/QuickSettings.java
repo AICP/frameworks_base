@@ -504,6 +504,8 @@ class QuickSettings {
                 mModel.addTimeTile(quick, new QuickSettingsModel.RefreshCallback() {
                      @Override
                     public void refreshView(QuickSettingsTileView view, State alarmState) {
+                         TextView tv = (TextView) view.findViewById(R.id.clock_textview);
+                         tv.setTextSize(1, mTileTextSize);
                     }
                 });
                 mDynamicSpannedTiles.add(quick);
@@ -1161,6 +1163,8 @@ class QuickSettings {
                 quick = (QuickSettingsTileView)
                         inflater.inflate(R.layout.quick_settings_tile, parent, false);
                 quick.setContent(R.layout.quick_settings_tile_swagger, inflater);
+                TextView tv = (TextView) quick.findViewById(R.id.swagger_textview);
+                tv.setTextSize(1, mTileTextSize);
                 quick.setOnTouchListener(new View.OnTouchListener() {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {

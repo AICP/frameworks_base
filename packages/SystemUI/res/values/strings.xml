@@ -562,6 +562,10 @@
     <string name="quick_settings_twog_off_label">2g Off</string>
     <string name="quick_settings_lte_on_label">LTE On</string>
     <string name="quick_settings_lte_off_label">LTE Off</string>
+    <string name="quick_settings_gps_on_label">GPS On</string>
+    <string name="quick_settings_gps_off_label">GPS Off</string>
+    <string name="quick_settings_data_on_label">Data On</string>
+    <string name="quick_settings_data_off_label">Data Off</string>
 
     <!--  RamBar -->
     <string name="memory">RAM</string>

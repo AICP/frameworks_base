@@ -915,7 +915,10 @@ class QuickSettings {
                     @Override
                     public void onClick(View v) {
                         NfcAdapter mNfcAdapter = NfcAdapter.getDefaultAdapter(mContext);
-                        boolean enabled = mNfcAdapter.isEnabled();
+                        boolean enabled = false;
+                        if (mNfcAdapter != null) {
+                            enabled = mNfcAdapter.isEnabled();
+                        }
                         if (enabled) {
                             mNfcAdapter.disable();
                         } else {

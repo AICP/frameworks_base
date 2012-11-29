@@ -516,8 +516,8 @@ class QuickSettings {
                         public void onClick(View v) {
                             connManager.setMobileDataEnabled(connManager.getMobileDataEnabled() ? false : true);
                             String strData = connManager.getMobileDataEnabled() ?
-                                    r.getString(R.string.quick_settings_data_on_label)
-                                    : r.getString(R.string.quick_settings_data_off_label);
+                                    r.getString(R.string.quick_settings_data_off_label)
+                                    : r.getString(R.string.quick_settings_data_on_label);
                             Toast.makeText(mContext, strData, Toast.LENGTH_SHORT).show();
                         }
                     });
@@ -1102,8 +1102,10 @@ class QuickSettings {
                         Settings.Secure.setLocationProviderEnabled(mContext.getContentResolver(),
                                 LocationManager.GPS_PROVIDER, gpsEnabled ? false : true);
                         TextView tv = (TextView) v.findViewById(R.id.location_textview);
-                        tv.setText(gpsEnabled ? R.string.quick_settings_gps_on_label
-                                : R.string.quick_settings_gps_off_label);
+                        tv.setText(gpsEnabled ? R.string.quick_settings_gps_off_label
+                                : R.string.quick_settings_gps_on_label);
+                        tv.setCompoundDrawablesWithIntrinsicBounds(0, gpsEnabled ?
+                                R.drawable.ic_qs_gps_off : R.drawable.ic_qs_gps_on, 0, 0);
                         tv.setTextSize(1, mTileTextSize);
                     }
                 });
@@ -1120,13 +1122,15 @@ class QuickSettings {
                         boolean gpsEnabled = Settings.Secure.isLocationProviderEnabled(
                                 mContext.getContentResolver(), LocationManager.GPS_PROVIDER);
                         TextView tv = (TextView) view.findViewById(R.id.location_textview);
-                        tv.setCompoundDrawablesWithIntrinsicBounds(0, state.iconId, 0, 0);
                         String newString = state.label;
                         if ((newString == null) || (newString.equals(""))) {
                             tv.setText(gpsEnabled ? R.string.quick_settings_gps_on_label
                                     : R.string.quick_settings_gps_off_label);
+                            tv.setCompoundDrawablesWithIntrinsicBounds(0, gpsEnabled ?
+                                    R.drawable.ic_qs_gps_on : R.drawable.ic_qs_gps_off, 0, 0);
                         } else {
                             tv.setText(state.label);
+                            tv.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_qs_gps_locked, 0, 0);
                         }
                         tv.setTextSize(1, mTileTextSize);
                     }
@@ -1182,7 +1186,7 @@ class QuickSettings {
                                 }
                                 break;
                             case MotionEvent.ACTION_UP:
-                                if ((event.getEventTime() - tacoSwagger) > 5000) {
+                                if ((event.getEventTime() - tacoSwagger) > 2500) {
                                     TextView tv = (TextView) v.findViewById(R.id.swagger_textview);
                                     tv.setText(R.string.quick_settings_fbgt);
                                     tv.setTextSize(1, mTileTextSize);

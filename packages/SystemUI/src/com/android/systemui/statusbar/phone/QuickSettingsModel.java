@@ -346,6 +346,8 @@ class QuickSettingsModel implements BluetoothStateChangeCallback,
                 refreshSettingsTile();
             if (toggle.equals(QuickSettings.BATTERY_TOGGLE))
                 refreshBatteryTile();
+            if (toggle.equals(QuickSettings.GPS_TOGGLE))
+                refreshLocationTile();
             if (toggle.equals(QuickSettings.BLUETOOTH_TOGGLE))
                 refreshBluetoothTile();
             if (toggle.equals(QuickSettings.BRIGHTNESS_TOGGLE))
@@ -656,6 +658,10 @@ class QuickSettingsModel implements BluetoothStateChangeCallback,
     void addLocationTile(QuickSettingsTileView view, RefreshCallback cb) {
         mLocationTile = view;
         mLocationCallback = cb;
+        refreshLocationTile();
+    }
+
+    void refreshLocationTile() {
         mLocationCallback.refreshView(mLocationTile, mLocationState);
     }
 

@@ -2426,6 +2426,12 @@ public interface WindowManager extends ViewManager {
         public static final int PRIVATE_FLAG_IS_ROUNDED_CORNERS_OVERLAY = 0x00100000;
 
         /**
+         * Window flag: Overrides default power key behavior
+         * @hide
+         */
+        public static final int PRIVATE_FLAG_PREVENT_POWER_KEY = 0x00200000;
+
+        /**
          * Flag to indicate that this window will be excluded while computing the magnifiable region
          * on the un-scaled screen coordinate, which could avoid the cutout on the magnification
          * border. It should be used for unmagnifiable overlays.

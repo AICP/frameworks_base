@@ -2371,6 +2371,12 @@ public interface WindowManager extends ViewManager {
         public static final int PRIVATE_FLAG_IS_ROUNDED_CORNERS_OVERLAY = 0x00100000;
 
         /**
+         * Window flag: Overrides default power key behavior
+         * @hide
+         */
+        public static final int PRIVATE_FLAG_PREVENT_POWER_KEY = 0x00200000;
+
+        /**
          * Flag to prevent the window from being magnified by the accessibility magnifier.
          *
          * TODO(b/190623172): This is a temporary solution and need to find out another way instead.

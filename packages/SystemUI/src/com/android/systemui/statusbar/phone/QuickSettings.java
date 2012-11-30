@@ -181,6 +181,7 @@ class QuickSettings {
     private BluetoothState mBluetoothState;
     private TelephonyManager tm;
     private ConnectivityManager mConnService;
+    private NfcAdapter mNfcAdapter;
 
     private AokpTarget mAokpTarget;
 
@@ -317,15 +318,16 @@ class QuickSettings {
         updateWifiDisplayStatus();
         updateResources();
 
-        if (getCustomUserTiles().contains(SIGNAL_TOGGLE))
+        ArrayList<String> userTiles = getCustomUserTiles();
+        if (userTiles.contains(SIGNAL_TOGGLE) || userTiles.contains(WIFI_TOGGLE))
             networkController.addNetworkSignalChangedCallback(mModel);
-        if (getCustomUserTiles().contains(BLUETOOTH_TOGGLE))
+        if (userTiles.contains(BLUETOOTH_TOGGLE))
             bluetoothController.addStateChangedCallback(mModel);
-        if (getCustomUserTiles().contains(BATTERY_TOGGLE))
+        if (userTiles.contains(BATTERY_TOGGLE))
             batteryController.addStateChangedCallback(mModel);
-        if (getCustomUserTiles().contains(GPS_TOGGLE))
+        if (userTiles.contains(GPS_TOGGLE))
             locationController.addStateChangedCallback(mModel);
-        if (getCustomUserTiles().contains(ROTATE_TOGGLE))
+        if (userTiles.contains(ROTATE_TOGGLE))
             RotationPolicy.registerRotationPolicyListener(mContext, mRotationPolicyListener,
                     UserHandle.USER_ALL);
     }
@@ -616,7 +618,7 @@ class QuickSettings {
                 quick.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        wifiManager.setWifiEnabled(wifiManager.isWifiEnabled() ? false : true);
+                        wifiManager.setWifiEnabled(!wifiManager.isWifiEnabled());
                     }
                 });
                 quick.setOnLongClickListener(new View.OnLongClickListener() {
@@ -928,17 +930,17 @@ class QuickSettings {
                 quick.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        NfcAdapter mNfcAdapter = NfcAdapter.getDefaultAdapter(mContext);
                         boolean enabled = false;
-                        if (mNfcAdapter != null) {
-                            enabled = mNfcAdapter.isEnabled();
+                        if (mNfcAdapter == null) {
+                            mNfcAdapter = NfcAdapter.getDefaultAdapter();
+                            mModel.setNfcAdapter(mNfcAdapter);
                         }
+                        enabled = mNfcAdapter.isEnabled();
                         if (enabled) {
                             mNfcAdapter.disable();
                         } else {
                             mNfcAdapter.enable();
                         }
-                        mHandler.postDelayed(delayedRefresh, 1000);  
                     }
                 });
                 quick.setOnLongClickListener(new View.OnLongClickListener() {
@@ -1582,7 +1584,6 @@ class QuickSettings {
         public void run() {
             mModel.refreshWifiTetherTile();
             mModel.refreshUSBTetherTile();
-            mModel.refreshNFCTile();
             mModel.refreshTorchTile();
         }
     };

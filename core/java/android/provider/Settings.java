@@ -2403,14 +2403,6 @@ public final class Settings {
         public static final String STATUSBAR_BATTERY_BAR_ANIMATE = "statusbar_battery_bar_animate";
 
         /**
-         * use Alt Activity Resolver Grid (GB style)
-         * boolean
-         *
-         * @hide
-         */
-        public static final String ACTIVITY_RESOLVER_USE_ALT = "activity_resolver_use_alt";
-
-        /**
          * Holds the text for the Carrier label. An empty string
          * will bring the default text back.
          * @hide

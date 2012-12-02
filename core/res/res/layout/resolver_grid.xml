@@ -37,7 +37,7 @@
             android:clipToPadding="false"
             android:scrollbarStyle="outsideOverlay" />
     </FrameLayout>
-    <LinearLayout
+    <RadioGroup
         android:id="@+id/button_bar"
         android:visibility="gone"
         style="?android:attr/buttonBarStyle"
@@ -46,7 +46,7 @@
         android:orientation="horizontal"
         android:layoutDirection="locale"
         android:measureWithLargestChild="true">
-        <Button android:id="@+id/button_always"
+        <RadioButton android:id="@+id/button_always"
                 android:layout_width="wrap_content"
                 android:layout_gravity="end"
                 android:layout_weight="1"
@@ -55,10 +55,10 @@
                 style="?android:attr/buttonBarButtonStyle"
                 android:textSize="14sp"
                 android:layout_height="wrap_content"
-                android:enabled="false"
-                android:text="@string/activity_resolver_use_always"
-                android:onClick="onButtonClick" />
-        <Button android:id="@+id/button_once"
+                android:enabled="true"
+                android:checked="false"
+                android:text="@string/activity_resolver_use_always" />
+        <RadioButton android:id="@+id/button_once"
                 android:layout_width="wrap_content"
                 android:layout_gravity="start"
                 android:layout_weight="1"
@@ -67,8 +67,8 @@
                 android:textSize="14sp"
                 android:minHeight="@dimen/alert_dialog_button_bar_height"
                 android:layout_height="wrap_content"
-                android:enabled="false"
-                android:text="@string/activity_resolver_use_once"
-                android:onClick="onButtonClick" />
-    </LinearLayout>
+                android:enabled="true"
+                android:checked="true"
+                android:text="@string/activity_resolver_use_once" />
+    </RadioGroup>
 </LinearLayout>

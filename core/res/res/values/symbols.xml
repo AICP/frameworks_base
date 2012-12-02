@@ -1698,11 +1698,9 @@
   <java-symbol type="drawable" name="ic_stat_turn_wifi_off" />
 
   <java-symbol type="layout" name="resolver_grid" />
-  <java-symbol type="layout" name="resolver_grid_alt" />
   <java-symbol type="id" name="resolver_grid" />
   <java-symbol type="id" name="button_once" />
   <java-symbol type="id" name="button_always" />
-  <java-symbol type="id" name="checkbox_always" />
   <java-symbol type="integer" name="config_maxResolverActivityColumns" />
 
   <!-- From SystemUI -->

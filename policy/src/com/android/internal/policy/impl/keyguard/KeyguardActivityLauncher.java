@@ -23,6 +23,7 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProviderInfo;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -32,6 +33,7 @@ import android.os.RemoteException;
 import android.os.SystemClock;
 import android.os.UserHandle;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.WindowManager;
 
@@ -116,22 +118,40 @@ public abstract class KeyguardActivityLauncher {
     }
 
     public void launchWidgetPicker(int appWidgetId) {
+        boolean allWidgets = Settings.System.getBoolean(getContext().getContentResolver(),
+                               Settings.System.LOCKSCREEN_ALL_WIDGETS, false);
         Intent pickIntent = new Intent(AppWidgetManager.ACTION_KEYGUARD_APPWIDGET_PICK);
+        if (allWidgets) {
+            pickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+            pickIntent.putExtra(AppWidgetManager.EXTRA_CUSTOM_SORT, false);
+            pickIntent.putExtra(AppWidgetManager.EXTRA_CATEGORY_FILTER,
+                    AppWidgetProviderInfo.WIDGET_CATEGORY_HOME_SCREEN);
 
-        pickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-        pickIntent.putExtra(AppWidgetManager.EXTRA_CUSTOM_SORT, false);
-        pickIntent.putExtra(AppWidgetManager.EXTRA_CATEGORY_FILTER,
-                AppWidgetProviderInfo.WIDGET_CATEGORY_KEYGUARD);
+            Bundle options = new Bundle();
+            options.putInt(AppWidgetManager.OPTION_APPWIDGET_HOST_CATEGORY,
+                    AppWidgetProviderInfo.WIDGET_CATEGORY_HOME_SCREEN);
+            pickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_OPTIONS, options);
+            pickIntent.addFlags(
+                    Intent.FLAG_ACTIVITY_NEW_TASK
+                    | Intent.FLAG_ACTIVITY_SINGLE_TOP
+                    | Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+        } else {
+            pickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+            pickIntent.putExtra(AppWidgetManager.EXTRA_CUSTOM_SORT, false);
+            pickIntent.putExtra(AppWidgetManager.EXTRA_CATEGORY_FILTER,
+                    AppWidgetProviderInfo.WIDGET_CATEGORY_KEYGUARD);
 
-        Bundle options = new Bundle();
-        options.putInt(AppWidgetManager.OPTION_APPWIDGET_HOST_CATEGORY,
-                AppWidgetProviderInfo.WIDGET_CATEGORY_KEYGUARD);
-        pickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_OPTIONS, options);
-        pickIntent.addFlags(
-                Intent.FLAG_ACTIVITY_NEW_TASK
-                | Intent.FLAG_ACTIVITY_SINGLE_TOP
-                | Intent.FLAG_ACTIVITY_CLEAR_TOP
-                | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+            Bundle options = new Bundle();
+            options.putInt(AppWidgetManager.OPTION_APPWIDGET_HOST_CATEGORY,
+                    AppWidgetProviderInfo.WIDGET_CATEGORY_KEYGUARD);
+            pickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_OPTIONS, options);
+            pickIntent.addFlags(
+                    Intent.FLAG_ACTIVITY_NEW_TASK
+                    | Intent.FLAG_ACTIVITY_SINGLE_TOP
+                    | Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+        }
 
         launchActivity(pickIntent, false, false, null, null);
     }

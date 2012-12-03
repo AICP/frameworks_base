@@ -17,7 +17,7 @@
 -->
 
 <!--  navigation bar for sw600dp (small tablets) -->
-<com.android.systemui.statusbar.phone.NavigationBarView
+<com.android.systemui.statusbar.NavigationBarView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:systemui="http://schemas.android.com/apk/res/com.android.systemui"
     android:layout_height="match_parent"
@@ -352,4 +352,4 @@
         android:visibility="gone"
         />
 
-</com.android.systemui.statusbar.phone.NavigationBarView>
+</com.android.systemui.statusbar.NavigationBarView>

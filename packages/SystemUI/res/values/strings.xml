@@ -531,6 +531,7 @@
     <string name="action_ime">Open IME Switcher</string>
     <string name="action_kill">Kill task</string>
     <string name="action_power">Power</string>
+    <string name="action_search">Search</string>
     <string name="action_notifications">Notifications</string>
     <string name="action_none">Empty</string>
 

@@ -205,4 +205,28 @@
     <!-- How far to slide the panel out when you touch it -->
     <!-- For phones, this is close_handle_height + header_height -->
     <dimen name="peek_height">84dp</dimen>
+
+    <!--  Tablet UI Stuff -->
+    <!-- The minimum height of the notification panel window -->
+    <dimen name="notification_panel_min_height">300dp</dimen>
+    <!-- Bottom margin (from display edge) for status bar panels -->
+    <dimen name="panel_float">10dp</dimen>
+    <!-- The width of the ticker, including the icon -->
+    <dimen name="notification_ticker_width">280dp</dimen>
+    <!-- The width of the notification panel window -->
+    <dimen name="notification_panel_width">300dp</dimen>
+    <!-- The height of the notification panel title -->
+    <dimen name="notification_panel_title_height">130dp</dimen>
+    <!--  Amount of Margin to offset NavRing in Portrait Mode -->
+    <dimen name="navring_left_margin_port">-600dp</dimen>
+    <!--  Amount of Margin to offset NavRing in Landscape Mode -->
+    <dimen name="navring_left_margin_land">-800dp</dimen>
+    <!--  Height of NavRing in Tablet Mode Landscape -->
+    <dimen name="navring_height_tablet_landscape">300dp</dimen>
+    <!--  Height of NavRing in Tablet Mode Portrait -->
+    <dimen name="navring_height_tablet_portrait">250dp</dimen>
+    <!--  Radius of NavRing in Tablet Mode Landscape -->
+    <dimen name="navring_radius_tablet_landscape">300dp</dimen>
+    <!--  Radius of NavRing in Tablet Mode Landscape -->
+    <dimen name="navring_radius_tablet_portrait">300dp</dimen>
 </resources>

@@ -167,7 +167,6 @@ public class PhoneStatusBar extends BaseStatusBar {
     int mIconHPadding = -1;
     Display mDisplay;
     Point mCurrentDisplaySize = new Point();
-    int mCurrentUIMode = 0; 
 
     IDreamManager mDreamManager;
 

@@ -16,26 +16,21 @@
 
 package com.android.systemui.statusbar.tablet;
 
-import com.android.systemui.R;
-import com.android.systemui.statusbar.BaseStatusBar;
-import com.android.systemui.statusbar.DelegateViewHelper;
-
 import android.content.Context;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Slog;
 import android.view.View;
 import android.view.MotionEvent;
-import android.widget.FrameLayout;
+import com.android.systemui.statusbar.phone.PanelBar;
 
-public class TabletStatusBarView extends FrameLayout {
+public class TabletStatusBarView extends PanelBar {
     private Handler mHandler;
 
     private final int MAX_PANELS = 5;
     private final View[] mIgnoreChildren = new View[MAX_PANELS];
     private final View[] mPanels = new View[MAX_PANELS];
     private final int[] mPos = new int[2];
-    private DelegateViewHelper mDelegateHelper;
 
     public TabletStatusBarView(Context context) {
         this(context, null);
@@ -43,37 +38,22 @@ public class TabletStatusBarView extends FrameLayout {
 
     public TabletStatusBarView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        mDelegateHelper = new DelegateViewHelper(this);
     }
 
     public void setDelegateView(View view) {
-        mDelegateHelper.setDelegateView(view);
     }
 
-    public void setBar(BaseStatusBar phoneStatusBar) {
-        mDelegateHelper.setBar(phoneStatusBar);
+    public void setBar(TabletStatusBar phoneStatusBar) {
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (mDelegateHelper != null) {
-            mDelegateHelper.onInterceptTouchEvent(event);
-        }
         return true;
     }
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-        // Find the view we wish to grab events from in order to detect search gesture.
-        // Depending on the device, this will be one of the id's listed below.
-        // If we don't find one, we'll use the view provided in the constructor above (this view).
-        View view = findViewById(R.id.navigationArea);
-        if (view == null) {
-            view = findViewById(R.id.nav_buttons);
-        }
-        mDelegateHelper.setSourceView(view);
-        mDelegateHelper.setInitialTouchRegion(view);
     }
 
     @Override
@@ -107,9 +87,6 @@ public class TabletStatusBarView extends FrameLayout {
         }
         if (TabletStatusBar.DEBUG) {
             Slog.d(TabletStatusBar.TAG, "TabletStatusBarView not intercepting event");
-        }
-        if (mDelegateHelper != null && mDelegateHelper.onInterceptTouchEvent(ev)) {
-            return true;
         }
         return super.onInterceptTouchEvent(ev);
     }

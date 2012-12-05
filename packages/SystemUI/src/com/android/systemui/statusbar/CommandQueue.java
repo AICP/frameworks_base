@@ -87,6 +87,7 @@ public class CommandQueue extends IStatusBar.Stub {
         public void removeNotification(IBinder key);
         public void disable(int state);
         public void animateExpandNotificationsPanel();
+        public void animateCollapsePanels();
         public void animateCollapsePanels(int flags);
         public void animateExpandSettingsPanel();
         public void setSystemUiVisibility(int vis, int mask);

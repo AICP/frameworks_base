@@ -32,6 +32,7 @@
         android:id="@+id/feedbackIconArea"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
         >
 
@@ -59,6 +60,7 @@
             android:id="@+id/notificationIcons"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:gravity="center_vertical"
             >
             <view
                 class="com.android.systemui.statusbar.tablet.NotificationIconArea$IconLayout"
@@ -129,12 +131,11 @@
                 android:paddingLeft="4dip"
                 android:visibility="gone"
                 />
-            <ImageView
-                android:id="@+id/battery"
-                android:layout_height="wrap_content"
+            <include layout="@layout/battery_cluster_view"
+                android:id="@+id/battery_cluster"
                 android:layout_width="wrap_content"
-                android:paddingLeft="4dip"
-                />
+                android:layout_height="wrap_content"
+            />
         </LinearLayout>
     </LinearLayout>
 </com.android.systemui.statusbar.tablet.NotificationArea>

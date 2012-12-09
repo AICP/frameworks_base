@@ -52,6 +52,7 @@ import android.content.res.Resources;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LevelListDrawable;
@@ -61,6 +62,7 @@ import android.location.LocationManager;
 import android.nfc.NfcAdapter;
 import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.RemoteException;
@@ -93,6 +95,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.InputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -129,6 +132,7 @@ class QuickSettings {
     private static final int USB_TETHER_TILE = 20;
     private static final int TWOG_TILE = 21;
     private static final int LTE_TILE = 22;
+    private static final int FAV_CONTACT_TILE = 23;
    // private static final int BT_TETHER_TILE = 23;
 
     public static final String USER_TOGGLE = "USER";
@@ -155,6 +159,7 @@ class QuickSettings {
     public static final String USB_TETHER_TOGGLE = "USBTETHER";
     public static final String TWOG_TOGGLE = "2G";
     public static final String LTE_TOGGLE = "LTE";
+    public static final String FAV_CONTACT_TOGGLE = "FAVCONTACT";
 
     private static final String DEFAULT_TOGGLES = "default";
 
@@ -193,6 +198,7 @@ class QuickSettings {
     private int mBrightnessDialogLongTimeout;
 
     private AsyncTask<Void, Void, Pair<String, Drawable>> mUserInfoTask;
+    private AsyncTask<Void, Void, Pair<String, Drawable>> mFavContactInfoTask;
 
     private LevelListDrawable mBatteryLevels;
     private LevelListDrawable mChargingBatteryLevels;
@@ -235,6 +241,7 @@ class QuickSettings {
             toggleMap.put(USB_TETHER_TOGGLE, USB_TETHER_TILE);
             toggleMap.put(TWOG_TOGGLE, TWOG_TILE);
             toggleMap.put(LTE_TOGGLE, LTE_TILE);
+            toggleMap.put(FAV_CONTACT_TOGGLE, FAV_CONTACT_TILE);
             //toggleMap.put(BT_TETHER_TOGGLE, BT_TETHER_TILE);
         }
         return toggleMap;
@@ -400,6 +407,55 @@ class QuickSettings {
         mUserInfoTask.execute();
     }
 
+    private void queryForFavContactInformation() {
+        mFavContactInfoTask = new AsyncTask<Void, Void, Pair<String, Drawable>>() {
+            @Override
+            protected Pair<String, Drawable> doInBackground(Void... params) {
+                String name = "";
+                Drawable avatar = mContext.getResources().getDrawable(R.drawable.ic_qs_default_user);
+                Bitmap rawAvatar = null;
+                String lookupKey = Settings.System.getString(mContext.getContentResolver(),
+                    Settings.System.QUICK_TOGGLE_FAV_CONTACT);
+                if (lookupKey != null && lookupKey.length() > 0) {
+                    Uri lookupUri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_LOOKUP_URI, lookupKey);
+                    Uri res = ContactsContract.Contacts.lookupContact(mContext.getContentResolver(), lookupUri);
+                    String[] projection = new String[] {
+                        ContactsContract.Contacts.DISPLAY_NAME,
+                        ContactsContract.Contacts.PHOTO_URI,
+                        ContactsContract.Contacts.LOOKUP_KEY};
+
+                    final Cursor cursor = mContext.getContentResolver().query(res,projection,null,null,null);
+                    if (cursor != null) {
+                        try {
+                            if (cursor.moveToFirst()) {
+                                name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+                            }
+                        } finally {
+                            cursor.close();
+                        }
+                    }
+                    InputStream input = ContactsContract.Contacts.openContactPhotoInputStream(mContext.getContentResolver(), res, true);
+                    if (input != null) {
+                        rawAvatar = BitmapFactory.decodeStream(input);
+                    }
+
+                    if (rawAvatar != null) {
+                        avatar = new BitmapDrawable(mContext.getResources(), rawAvatar);
+                    }
+                }
+                return new Pair<String, Drawable>(name, avatar);
+            }
+
+            @Override
+            protected void onPostExecute(Pair<String, Drawable> result) {
+                super.onPostExecute(result);
+                mModel.setFavContactTileInfo(result.first, result.second);
+                mFavContactInfoTask = null;
+            }
+        };
+        mFavContactInfoTask.execute();
+    }
+
     private void setupQuickSettings() {
         // Setup the tiles that we are going to be showing (including the
         // temporary ones)
@@ -409,6 +465,7 @@ class QuickSettings {
         addTemporaryTiles(mContainerView, inflater);
 
         queryForUserInformation();
+        queryForFavContactInformation();
         mTilesSetUp = true;
     }
 
@@ -1201,6 +1258,42 @@ class QuickSettings {
                     }
                 });
                 break;
+            case FAV_CONTACT_TILE:
+                quick = (QuickSettingsTileView)
+                        inflater.inflate(R.layout.quick_settings_tile, parent, false);
+                quick.setContent(R.layout.quick_settings_tile_user, inflater);
+                quick.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String lookupKey = Settings.System.getString(mContext.getContentResolver(),
+                        Settings.System.QUICK_TOGGLE_FAV_CONTACT);
+
+                        if (lookupKey != null && lookupKey.length() > 0) {
+                            mBar.collapseAllPanels(true);
+                            Uri lookupUri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_LOOKUP_URI, lookupKey);
+                            Uri res = ContactsContract.Contacts.lookupContact(mContext.getContentResolver(), lookupUri);
+                            Intent intent = ContactsContract.QuickContact.composeQuickContactsIntent(
+                                    mContext, v, res,
+                                    ContactsContract.QuickContact.MODE_LARGE, null);
+                            mContext.startActivityAsUser(intent, new UserHandle(UserHandle.USER_CURRENT));
+                        }
+                    }
+                });
+                mModel.addFavContactTile(quick, new QuickSettingsModel.RefreshCallback() {
+                    @Override
+                    public void refreshView(QuickSettingsTileView view, State state) {
+                        UserState us = (UserState) state;
+                        ImageView iv = (ImageView) view.findViewById(R.id.user_imageview);
+                        TextView tv = (TextView) view.findViewById(R.id.user_textview);
+                        tv.setText(state.label);
+                        tv.setTextSize(1, mTileTextSize);
+                        iv.setImageDrawable(us.avatar);
+                        view.setContentDescription(mContext.getString(
+                                R.string.accessibility_quick_settings_user, state.label));
+                    }
+                });
+                mDynamicSpannedTiles.add(quick);
+                break;
         }
         return quick;
     }
@@ -1475,6 +1568,16 @@ class QuickSettings {
         }
     }
 
+    void reloadFavContactInfo() {
+        if (mFavContactInfoTask != null) {
+            mFavContactInfoTask.cancel(false);
+            mFavContactInfoTask = null;
+        }
+        if (mTilesSetUp) {
+            queryForFavContactInformation();
+        }
+    }
+
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -1496,6 +1599,7 @@ class QuickSettings {
                 applyBluetoothStatus();
             } else if (Intent.ACTION_USER_SWITCHED.equals(action)) {
                 reloadUserInfo();
+                reloadFavContactInfo();
             }
         }
     };
@@ -1510,6 +1614,7 @@ class QuickSettings {
                     final int userId = ActivityManagerNative.getDefault().getCurrentUser().id;
                     if (getSendingUserId() == userId) {
                         reloadUserInfo();
+                        reloadFavContactInfo();
                     }
                 } catch (RemoteException e) {
                     Log.e(TAG, "Couldn't get current user id for profile change", e);
@@ -1614,6 +1719,7 @@ class QuickSettings {
         setupQuickSettings();
         updateWifiDisplayStatus();
         updateResources();
+        reloadFavContactInfo();
     }
 
     class SettingsObserver extends ContentObserver {
@@ -1628,6 +1734,9 @@ class QuickSettings {
                     false, this);
             resolver.registerContentObserver(Settings.System
                     .getUriFor(Settings.System.QUICK_TOGGLES_PER_ROW),
+                    false, this);
+            resolver.registerContentObserver(Settings.System
+                    .getUriFor(Settings.System.QUICK_TOGGLE_FAV_CONTACT),
                     false, this);
             updateSettings();
         }

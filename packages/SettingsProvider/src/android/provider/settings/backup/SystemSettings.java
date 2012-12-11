@@ -249,5 +249,6 @@ public class SystemSettings {
         Settings.System.SLIM_RECENTS_BLACKLIST_VALUES,
         Settings.System.SLIM_RECENT_ENTER_EXIT_ANIMATION,
         Settings.System.NAV_BAR_COMPACT_LAYOUT,
+        Settings.System.NAVIGATION_BAR_MENU_ARROW_KEYS,
     };
 }

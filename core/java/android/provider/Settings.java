@@ -7099,6 +7099,13 @@ public final class Settings {
         public static final String STATUS_BAR_TICKER_TICK_DURATION =
                 "status_bar_ticker_tick_duration";
 
+        /**
+         * boolean value. toggles using arrow key locations on nav bar
+         * as left and right dpad keys
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_MENU_ARROW_KEYS = "navigation_bar_menu_arrow_keys";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7361,6 +7368,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(STATUS_BAR_SHOW_TICKER, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(STATUS_BAR_TICKER_ANIMATION_MODE, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(STATUS_BAR_TICKER_TICK_DURATION, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(NAVIGATION_BAR_MENU_ARROW_KEYS, BOOLEAN_VALIDATOR);
         }
 
         /**

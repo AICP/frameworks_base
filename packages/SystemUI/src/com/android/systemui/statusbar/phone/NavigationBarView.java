@@ -57,12 +57,16 @@ import com.android.systemui.plugins.statusbar.phone.NavGesture.GestureHelper;
 import com.android.systemui.stackdivider.Divider;
 import com.android.systemui.statusbar.policy.DeadZone;
 import com.android.systemui.statusbar.policy.KeyButtonDrawable;
+import com.android.systemui.tuner.TunerService;
+
+import lineageos.providers.LineageSettings;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.util.function.Consumer;
 
-public class NavigationBarView extends FrameLayout implements Navigator {
+public class NavigationBarView extends FrameLayout implements Navigator,
+        TunerService.Tunable {
     final static boolean DEBUG = false;
     final static String TAG = "StatusBar/NavBarView";
 
@@ -118,6 +122,8 @@ public class NavigationBarView extends FrameLayout implements Navigator {
     private NavigationBarInflaterView mNavigationInflaterView;
     private RecentsComponent mRecentsComponent;
     private Divider mDivider;
+
+    private boolean mShowDpadArrowKeys;
 
     private class NavTransitionListener implements TransitionListener {
         private boolean mBackTransitioning;
@@ -301,6 +307,10 @@ public class NavigationBarView extends FrameLayout implements Navigator {
         return mButtonDispatchers;
     }
 
+    public ViewGroup getDpadView() {
+        return (ViewGroup) getCurrentView().findViewById(R.id.dpad_group);
+    }
+
     private void updateCarModeIcons(Context ctx) {
         mBackCarModeIcon = getDrawable(ctx,
                 R.drawable.ic_sysbar_back_carmode, R.drawable.ic_sysbar_back_carmode);
@@ -419,8 +429,8 @@ public class NavigationBarView extends FrameLayout implements Navigator {
 
         // The Accessibility button always overrides the appearance of the IME switcher
         final boolean showImeButton =
-                !mShowAccessibilityButton && ((hints & StatusBarManager.NAVIGATION_HINT_IME_SHOWN)
-                        != 0);
+                !mShowAccessibilityButton && !mShowDpadArrowKeys &&
+                ((hints & StatusBarManager.NAVIGATION_HINT_IME_SHOWN) != 0);
         getImeSwitchButton().setVisibility(showImeButton ? View.VISIBLE : View.INVISIBLE);
         getImeSwitchButton().setImageDrawable(mImeIcon);
 
@@ -434,6 +444,8 @@ public class NavigationBarView extends FrameLayout implements Navigator {
         setDisabledFlags(mDisabledFlags, true);
 
         mBarTransitions.reapplyDarkIntensity();
+
+        updateDpadKeys();
     }
 
     public void setDisabledFlags(int disabledFlags) {
@@ -753,12 +765,15 @@ public class NavigationBarView extends FrameLayout implements Navigator {
         onPluginDisconnected(null); // Create default gesture helper
         Dependency.get(PluginManager.class).addPluginListener(this,
                 NavGesture.class, false /* Only one */);
+        Dependency.get(TunerService.class).addTunable(this,
+                "lineagesystem:" + LineageSettings.System.NAVIGATION_BAR_MENU_ARROW_KEYS);
     }
 
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         Dependency.get(PluginManager.class).removePluginListener(this);
+        Dependency.get(TunerService.class).removeTunable(this);
         if (mGestureHelper != null) {
             mGestureHelper.destroy();
         }
@@ -779,6 +794,13 @@ public class NavigationBarView extends FrameLayout implements Navigator {
         }
         mGestureHelper = defaultHelper;
         updateTaskSwitchHelper();
+    }
+
+    @Override
+    public void onTuningChanged(String key, String newValue) {
+        mShowDpadArrowKeys = LineageSettings.System.getInt(getContext().getContentResolver(),
+                LineageSettings.System.NAVIGATION_BAR_MENU_ARROW_KEYS, 0) != 0;
+        setNavigationIconHints(mNavigationIconHints, true);
     }
 
     public void dump(FileDescriptor fd, PrintWriter pw, String[] args) {
@@ -826,6 +848,15 @@ public class NavigationBarView extends FrameLayout implements Navigator {
                     );
         }
         pw.println();
+    }
+
+    public void updateDpadKeys() {
+        if (mShowDpadArrowKeys) { // overrides IME button
+            final boolean showingIme = ((mNavigationIconHints
+                    & StatusBarManager.NAVIGATION_HINT_BACK_ALT) != 0);
+
+            getDpadView().setVisibility(showingIme ? View.VISIBLE : View.INVISIBLE);
+        }
     }
 
     private final Consumer<Boolean> mDockedListener = exists -> mHandler.post(() -> {

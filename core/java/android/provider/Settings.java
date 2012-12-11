@@ -6603,6 +6603,13 @@ public final class Settings {
          */
         public static final String NAV_BAR_COMPACT_LAYOUT = "navigation_bar_compact_layout";
 
+        /**
+         * boolean value. toggles using arrow key locations on nav bar
+         * as left and right dpad keys
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_MENU_ARROW_KEYS = "navigation_bar_menu_arrow_keys";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6865,6 +6872,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUS_BAR_SHOW_BATTERY_PERCENT);
             PRIVATE_SETTINGS.add(STATUS_BAR_BATTERY_TEXT_CHARGING);
             PRIVATE_SETTINGS.add(NAV_BAR_COMPACT_LAYOUT);
+            PRIVATE_SETTINGS.add(NAVIGATION_BAR_MENU_ARROW_KEYS);
         }
 
         /**

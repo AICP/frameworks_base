@@ -340,4 +340,8 @@
 
     <!-- Binary clock -->
     <string name="clock_title_binary" translatable="false">Binary</string>
+
+    <!-- Navigation bar dpad -->
+    <string name="accessibility_dpad_left">Cursor left</string>
+    <string name="accessibility_dpad_right">Cursor right</string>
 </resources>

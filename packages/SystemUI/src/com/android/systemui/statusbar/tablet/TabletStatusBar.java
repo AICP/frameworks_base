@@ -710,14 +710,14 @@ public class TabletStatusBar extends BaseStatusBar implements
 
     public void onBarHeightChanged(int height) {
         final WindowManager.LayoutParams lp
-                = (WindowManager.LayoutParams)mStatusBarContainer.getLayoutParams();
+                = (WindowManager.LayoutParams)mStatusBarView.getLayoutParams();
         if (lp == null) {
             // haven't been added yet
             return;
         }
         if (lp.height != height) {
             lp.height = height;
-            mWindowManager.updateViewLayout(mStatusBarContainer, lp);
+            mWindowManager.updateViewLayout(mStatusBarView, lp);
         }
     }
 

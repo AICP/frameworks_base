@@ -2606,6 +2606,13 @@ public final class Settings {
         public static final String ENABLE_VOLUME_OPTIONS = "enable_volume_options";
 
         /**
+         * Volume Adjust Sounds Enable, This is the noise made when using volume hard buttons
+         * Defaults to 1 - sounds enabled
+         * @hide
+         */
+        public static final String VOLUME_ADJUST_SOUNDS_ENABLED = "volume_adjust_sounds_enabled";
+
+        /**
          * Setting to Link Ringtone and Notification.
          *
          * @hide

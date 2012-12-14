@@ -33,6 +33,7 @@ import android.media.AudioManager;
 import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
 import android.nfc.NfcAdapter;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.UserHandle;
 import android.provider.Settings;
@@ -52,10 +53,14 @@ import com.android.systemui.statusbar.policy.BrightnessController.BrightnessStat
 import com.android.systemui.statusbar.policy.CurrentUserTracker;
 import com.android.systemui.statusbar.policy.LocationController.LocationGpsStateChangeCallback;
 import com.android.systemui.statusbar.policy.NetworkController.NetworkSignalChangedCallback;
+import com.android.systemui.statusbar.policy.Prefs;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.DataInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -71,8 +76,7 @@ class QuickSettingsModel implements BluetoothStateChangeCallback,
     // Sett InputMethoManagerService
     private static final String TAG_TRY_SUPPRESSING_IME_SWITCHER = "TrySuppressingImeSwitcher";
 
-    public static final String FAST_CHARGE_DIR = "/sys/kernel/fast_charge";
-    public static final String FAST_CHARGE_FILE = "force_fast_charge";
+    private String mFastChargePath;
     
     private int dataState = -1;
 
@@ -318,6 +322,7 @@ class QuickSettingsModel implements BluetoothStateChangeCallback,
             }
         };
 
+        mFastChargePath = mContext.getString(com.android.internal.R.string.config_fastChargePath);
         mNextAlarmObserver = new NextAlarmObserver(mHandler);
         mNextAlarmObserver.startObserving();
         mBugreportObserver = new BugreportObserver(mHandler);
@@ -381,6 +386,21 @@ class QuickSettingsModel implements BluetoothStateChangeCallback,
                 refreshLTETile();
         }
 
+    }
+
+    void refreshFChargeTile() {
+        new AsyncTask<Void, Void, Boolean>() {
+            @Override
+            protected Boolean doInBackground(Void... params) {
+                return isFastChargeOn();
+            }
+
+            @Override
+            protected void onPostExecute(Boolean result) {
+                Prefs.setLastFastChargeState(mContext, result);
+                updateFastChargeTile(result);
+            }
+        }.execute();
     }
 
     void removeAllViews() {
@@ -919,39 +939,22 @@ class QuickSettingsModel implements BluetoothStateChangeCallback,
     void addFChargeTile(QuickSettingsTileView view, RefreshCallback cb) {
         mFChargeTile = view;
         mFChargeCallback = cb;
-        onFChargeChanged();
+        refreshFChargeTile();
     }
 
-    void onFChargeChanged() {
-        boolean enabled = isFastChargeOn();
-        mFChargeState.enabled = enabled;
-        mFChargeState.iconId = enabled
-                ? R.drawable.ic_qs_fcharge_on
-                : R.drawable.ic_qs_fcharge_off;
-        mFChargeState.label = enabled
-                ? mContext.getString(R.string.quick_settings_fcharge_on_label)
-                : mContext.getString(R.string.quick_settings_fcharge_off_label);
-
-        if (mFChargeTile != null && mFChargeCallback != null) {
-            mFChargeCallback.refreshView(mFChargeTile, mFChargeState);
-        }
-    }
-
-    void refreshFChargeTile() {
+    void updateFastChargeTile(boolean enabled) {
         if (mFChargeTile != null) {
-            onFChargeChanged();
-        }
-    }
+            mFChargeState.enabled = enabled;
+            mFChargeState.iconId = enabled
+                    ? R.drawable.ic_qs_fcharge_on
+                    : R.drawable.ic_qs_fcharge_off;
+            mFChargeState.label = enabled
+                    ? mContext.getString(R.string.quick_settings_fcharge_on_label)
+                    : mContext.getString(R.string.quick_settings_fcharge_off_label);
 
-    public boolean isFastChargeOn() {
-        try {
-            File fastcharge = new File(FAST_CHARGE_DIR, FAST_CHARGE_FILE);
-            FileReader reader = new FileReader(fastcharge);
-            BufferedReader breader = new BufferedReader(reader);
-            return (breader.readLine().equals("1"));
-        } catch (IOException e) {
-            Log.e("FChargeToggle", "Couldn't read fast_charge file");
-            return false;
+            if (mFChargeTile != null && mFChargeCallback != null) {
+                mFChargeCallback.refreshView(mFChargeTile, mFChargeState);
+            }
         }
     }
 
@@ -1265,5 +1268,33 @@ class QuickSettingsModel implements BluetoothStateChangeCallback,
 
     public void setNfcAdapter(NfcAdapter adapter) {
         mNfcAdapter = adapter;
+    }
+
+    protected boolean isFastChargeOn() {
+        if(mFastChargePath == null || mFastChargePath.isEmpty()) {
+            return false;
+        }
+        File file = new File(mFastChargePath);
+        if(!file.exists()) {
+            return false;
+        }
+        String content = null;
+        FileReader reader = null;
+        try {
+            reader = new FileReader(file);
+            char[] chars = new char[(int) file.length()];
+            reader.read(chars);
+            content = new String(chars).trim();
+        } catch (Exception e) {
+            e.printStackTrace();
+            content = null;
+        } finally {
+            try {
+                reader.close();
+            } catch (IOException e) {
+                // ignore
+            }
+        }
+        return "1".equals(content) || "Y".equalsIgnoreCase(content);
     }
 }

@@ -63,6 +63,7 @@ public class KeyButtonView extends ImageView {
     int mDurationSpeedOff = 50;
     float mGlowAlpha = 0f, mGlowScale = 1f, mDrawingAlpha = 1f;
     boolean mSupportsLongpress = true;
+    boolean mShouldTintIcons = true;
     protected boolean mHandlingLongpress = false;
     RectF mRect = new RectF(0f,0f,0f,0f);
     AnimatorSet mPressedAnim;
@@ -147,7 +148,6 @@ public class KeyButtonView extends ImageView {
             }
             mGlowBG.setColorFilter(null);
             mGlowBG.setColorFilter(mGlowBGColor, PorterDuff.Mode.SRC_ATOP);
-
         }
     }
 
@@ -225,6 +225,24 @@ public class KeyButtonView extends ImageView {
             // interfere
             ((View)getParent()).invalidate();
         }
+    }
+
+    public void setTint(boolean tint) {
+        if (tint) {
+            int defaultButtonColor = mContext.getResources().getColor(
+                    com.android.internal.R.color.white);
+            int color = Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.NAVIGATION_BAR_TINT, defaultButtonColor);
+            if (color == Integer.MIN_VALUE) {
+                setColorFilter(null);
+            } else {
+                setColorFilter(null);
+                setColorFilter(color);
+            }
+        } else {
+            setColorFilter(null);
+        }
+        mShouldTintIcons = tint;
     }
 
     public void setPressed(boolean pressed) {
@@ -391,18 +409,7 @@ public class KeyButtonView extends ImageView {
             mGlowBG.setColorFilter(null);
             mGlowBG.setColorFilter(mGlowBGColor, PorterDuff.Mode.SRC_ATOP);
         }
-
-        int defaultButtonColor = mContext.getResources().getColor(
-                    com.android.internal.R.color.white);
-        int color = Settings.System.getInt(resolver,
-                Settings.System.NAVIGATION_BAR_TINT, defaultButtonColor);
-        if (color == Integer.MIN_VALUE) {
-            setColorFilter(null);
-        } else {
-            setColorFilter(null);
-            setColorFilter(color);
-        }
-                  
+        setTint(mShouldTintIcons);
         invalidate();
     }
 }

@@ -286,8 +286,10 @@ public class NavigationBarView extends LinearLayout {
                     if (f.exists()) {
                         v.setImageDrawable(new BitmapDrawable(getResources(), f.getAbsolutePath()));
                     }
+                    v.setTint(false);
                 } else {
-                        v.setImageDrawable(mAokpTarget.getIconImage(mClickActions[j]));
+                    v.setImageDrawable(mAokpTarget.getIconImage(mClickActions[j]));
+                    v.setTint(mClickActions[j].startsWith("**"));
                 }
                 addButton(navButtonLayout, v, landscape && !mLeftyMode);
                 // if we are in LeftyMode, then we want to add to end, like Portrait
@@ -422,7 +424,7 @@ public class NavigationBarView extends LinearLayout {
 
         return v;
     }
-    
+
     private ExtensibleKeyButtonView generateKey(boolean landscape, String clickAction,
             String longpress,
             String iconUri) {

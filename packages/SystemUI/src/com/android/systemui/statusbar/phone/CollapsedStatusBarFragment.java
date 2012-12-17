@@ -68,6 +68,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
     private StatusBar mStatusBarComponent;
     private DarkIconManager mDarkIconManager;
     private SignalClusterView mSignalClusterView;
+    private LinearLayout mCenterClockLayout;
 
     // Aicp additions start
     private View mAicpLogo;
@@ -146,6 +147,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
         Dependency.get(StatusBarIconController.class).addIconGroup(mDarkIconManager);
         mSystemIconArea = mStatusBar.findViewById(R.id.system_icon_area);
         mSignalClusterView = mStatusBar.findViewById(R.id.signal_cluster);
+        mCenterClockLayout = (LinearLayout) mStatusBar.findViewById(R.id.center_clock_layout);
         Dependency.get(DarkIconDispatcher.class).addDarkReceiver(mSignalClusterView);
         mAicpLogo = mStatusBar.findViewById(R.id.status_bar_logo);
         mAicpLogoRight = mStatusBar.findViewById(R.id.status_bar_logo_right);
@@ -262,6 +264,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
             animateHide(mAicpLogoRight, animate, false);
         }
         animateHide(mBatteryBar, animate, true);
+        animateHide(mCenterClockLayout, animate, true);
     }
 
     public void showSystemIconArea(boolean animate) {
@@ -270,6 +273,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
             animateShow(mAicpLogoRight, animate);
         }
         animateShow(mBatteryBar, animate);
+        animateShow(mCenterClockLayout, animate);
     }
 
     public void hideNotificationIconArea(boolean animate) {
@@ -278,6 +282,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
             animateHide(mAicpLogo, animate, false);
         }
         animateHide(mBatteryBar, animate, true);
+        animateHide(mCenterClockLayout, animate, true);
     }
 
     public void showNotificationIconArea(boolean animate) {
@@ -286,6 +291,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
             animateShow(mAicpLogo, animate);
         }
         animateShow(mBatteryBar, animate);
+        animateShow(mCenterClockLayout, animate);
     }
 
     public void hideCarrierName(boolean animate) {

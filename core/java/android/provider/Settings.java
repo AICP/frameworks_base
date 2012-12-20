@@ -6813,6 +6813,20 @@ public final class Settings {
          */
         public static final String DEVICE_HOSTNAME = "device_hostname";
 
+        /**
+         * enable and disable fast toggle in settings
+         *
+         * @hide
+         */
+        public static final String FAST_TOGGLE = "fast_toggle";
+
+        /**
+         * enable and disable fast toggle in settings
+         *
+         * @hide
+         */
+        public static final String CHOOSE_FASTTOGGLE_SIDE = "choose_fasttoggle_side";
+
     }
 
     /**

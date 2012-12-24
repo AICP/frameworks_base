@@ -135,6 +135,9 @@ public class AokpTarget {
         } else if (action.equals(ACTION_MENU)) {
             injectKeyDelayed(KeyEvent.KEYCODE_MENU);
             return true;
+        } else if (action.equals(ACTION_SEARCH)) {
+            injectKeyDelayed(KeyEvent.KEYCODE_SEARCH);
+            return true;
         } else if (action.equals(ACTION_POWER)) {
             injectKeyDelayed(KeyEvent.KEYCODE_POWER);
             return true;

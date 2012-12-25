@@ -6827,6 +6827,13 @@ public final class Settings {
          */
         public static final String CHOOSE_FASTTOGGLE_SIDE = "choose_fasttoggle_side";
 
+        /**
+         * Swipe to switch from notifications to tiles
+         *
+         * @hide
+         */
+        public static final String SWIPE_TO_SWITCH = "swipe_to_switch";
+
     }
 
     /**

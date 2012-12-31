@@ -205,4 +205,70 @@
     <string name="quick_settings_brightness_dialog_auto_brightness_label" msgid="5064982743784071218">"自动"</string>
     <string name="status_bar_help_title" msgid="1199237744086469217">"通知会显示在这里"</string>
     <string name="status_bar_help_text" msgid="7874607155052076323">"向下滑动可随时查看通知。"\n"再次向下滑动可使用系统控制功能。"</string>
+
+    <!--  AOKP 文本 -->
+
+    <!-- Target/Action Strings -->
+    <string name="shortcut_label">AOKP 动作</string>
+    <string name="action_home">主屏幕</string>
+    <string name="action_back">返回</string>
+    <string name="action_recents">近期任务</string>
+    <string name="action_screenshot">屏幕截图</string>
+    <string name="action_menu">菜单</string>
+    <string name="action_ime">输入法选择</string>
+    <string name="action_kill">结束进程</string>
+    <string name="action_power">电源</string>
+    <string name="action_search">搜索</string>
+    <string name="action_notifications">通知</string>
+    <string name="action_none">空</string>
+
+    <string name="widgets">小部件</string>
+    <string name="toggle_navbar">导航栏 - 开关</string>
+    <string name="toggle_widgets">小部件 - 开关</string>
+    <string name="toggle_ring_vib">铃声/振动 - 开关</string>
+    <string name="toggle_ring_silent">铃声/静音 - 开关</string>
+    <string name="toggle_ring_vib_silent">铃声/振动/静音 - 开关</string>
+    <string name="app_killed_message">应用程序已结束</string>
+    <string name="recents_kill_all_button_text">全部结束</string>
+
+    <!--  Quick Settings -->
+    <string name="quick_settings_vibrate_on_label">振动已打开</string>
+    <string name="quick_settings_vibrate_off_label">振动已关闭</string>
+    <string name="quick_settings_silent_on_label">静音已打开</string>
+    <string name="quick_settings_silent_off_label">静音已关闭</string>
+    <string name="quick_settings_fcharge_on_label">快速充电已打开</string>
+    <string name="quick_settings_fcharge_off_label">快速充电已关闭</string>
+    <string name="quick_settings_torch_on_label">灯光已打开</string>
+    <string name="quick_settings_torch_off_label">灯光已关闭</string>
+    <string name="quick_settings_nfc_on_label">NFC已打开</string>
+    <string name="quick_settings_nfc_off_label">NFC已关闭</string>
+    <string name="quick_settings_wifi_tether_on_label">Wifi共享网络已打开</string>
+    <string name="quick_settings_wifi_tether_off_label">Wifi共享网络已关闭</string>
+    <string name="quick_settings_bt_tether_on_label">蓝牙共享网络已打开</string>
+    <string name="quick_settings_bt_tether_off_label">蓝牙共享网络已关闭</string>
+    <string name="quick_settings_usb_tether_on_label">USB共享网络已打开</string>
+    <string name="quick_settings_usb_tether_off_label">USB共享网络已关闭</string>
+    <string name="quick_settings_sync_on_label">数据同步已打开</string>
+    <string name="quick_settings_sync_off_label">数据同步已关闭</string>
+    <string name="quick_settings_twog_on_label">仅使用2G网络已打开</string>
+    <string name="quick_settings_twog_off_label">仅使用2G网络已关闭</string>
+    <string name="quick_settings_lte_on_label">LTE网络已打开</string>
+    <string name="quick_settings_lte_off_label">LTE网络已关闭</string>
+    <string name="quick_settings_gps_on_label">GPS已打开</string>
+    <string name="quick_settings_gps_off_label">GPS已关闭</string>
+    <string name="quick_settings_data_on_label">数据网络已打开</string>
+    <string name="quick_settings_data_off_label">数据网络已关闭</string>
+
+    <!--  RamBar -->
+    <string name="memory">RAM</string>
+    <string name="service_background_processes"><xliff:g id="memory">%1$s</xliff:g> 空闲</string>
+    <string name="service_foreground_processes"><xliff:g id="memory">%1$s</xliff:g> 使用</string>
+    <string name="service_process_name"><xliff:g id="process">%1$s</xliff:g></string>
+    <string name="service_client_name"><xliff:g id="client_name">%1$s</xliff:g></string>
+    <string name="service_started_by_app">已运行应用程序</string>
+    <string name="running_processes_item_description_s_s"><xliff:g id="numprocess">%1$d</xliff:g> 进程和 <xliff:g id="numservices">%2$d</xliff:g> 服务</string>
+    <string name="running_processes_item_description_s_p"><xliff:g id="numprocess">%1$d</xliff:g> 进程和 <xliff:g id="numservices">%2$d</xliff:g> 服务</string>
+    <string name="running_processes_item_description_p_s"><xliff:g id="numprocess">%1$d</xliff:g> 进程和 <xliff:g id="numservices">%2$d</xliff:g> 服务</string>
+    <string name="running_processes_item_description_p_p"><xliff:g id="numprocess">%1$d</xliff:g> 进程和 <xliff:g id="numservices">%2$d</xliff:g> 服务</string>
+    <string name="running_process_item_user_label">用户： <xliff:g id="user_name">%1$s</xliff:g></string>
 </resources>

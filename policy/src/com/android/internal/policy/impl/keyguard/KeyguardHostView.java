@@ -251,6 +251,7 @@ public class KeyguardHostView extends KeyguardViewBase {
 
         showPrimarySecurityScreen(false);
         updateSecurityViews();
+        minimizeChallengeIfNeeded();
     }
 
     private int getDisabledFeatures(DevicePolicyManager dpm) {
@@ -844,6 +845,15 @@ public class KeyguardHostView extends KeyguardViewBase {
 
         if (mViewStateManager != null) {
             mViewStateManager.showUsabilityHints();
+        }
+        minimizeChallengeIfNeeded();
+    }
+
+    private void minimizeChallengeIfNeeded() {
+        if (Settings.System.getBoolean(getContext().getContentResolver(), Settings.System.LOCKSCREEN_MINIMIZE_LOCKSCREEN_CHALLENGE, false)) {
+            if (mSlidingChallengeLayout != null) {
+                mSlidingChallengeLayout.fadeOutChallenge();
+            }
         }
     }
 

@@ -137,17 +137,14 @@ public class KeyButtonView extends ImageView {
             setDrawingAlpha(BUTTON_QUIESCENT_ALPHA);
             mGlowWidth = mGlowBG.getIntrinsicWidth();
             mGlowHeight = mGlowBG.getIntrinsicHeight();
-            int defaultColor = mContext.getResources().getColor(
-                    com.android.internal.R.color.white);
             ContentResolver resolver = mContext.getContentResolver();
             mGlowBGColor = Settings.System.getInt(resolver,
-                    Settings.System.NAVIGATION_BAR_GLOW_TINT, defaultColor);
+                    Settings.System.NAVIGATION_BAR_GLOW_TINT, -1);
 
-            if (mGlowBGColor == Integer.MIN_VALUE) {
-                mGlowBGColor = defaultColor;
-            }
             mGlowBG.setColorFilter(null);
-            mGlowBG.setColorFilter(mGlowBGColor, PorterDuff.Mode.SRC_ATOP);
+            if (mGlowBGColor != -1) {
+                mGlowBG.setColorFilter(mGlowBGColor, PorterDuff.Mode.SRC_ATOP);
+            }
         }
     }
 
@@ -228,19 +225,13 @@ public class KeyButtonView extends ImageView {
     }
 
     public void setTint(boolean tint) {
+        setColorFilter(null);
         if (tint) {
-            int defaultButtonColor = mContext.getResources().getColor(
-                    com.android.internal.R.color.white);
             int color = Settings.System.getInt(mContext.getContentResolver(),
-                    Settings.System.NAVIGATION_BAR_TINT, defaultButtonColor);
-            if (color == Integer.MIN_VALUE) {
-                setColorFilter(null);
-            } else {
-                setColorFilter(null);
+                    Settings.System.NAVIGATION_BAR_TINT, -1);
+            if (color != -1) {
                 setColorFilter(color);
             }
-        } else {
-            setColorFilter(null);
         }
         mShouldTintIcons = tint;
     }
@@ -398,16 +389,13 @@ public class KeyButtonView extends ImageView {
         setDrawingAlpha(BUTTON_QUIESCENT_ALPHA);
 
         if (mGlowBG != null) {
-            int defaultColor = mContext.getResources().getColor(
-                    com.android.internal.R.color.white);
             mGlowBGColor = Settings.System.getInt(resolver,
-                    Settings.System.NAVIGATION_BAR_GLOW_TINT, defaultColor);
+                    Settings.System.NAVIGATION_BAR_GLOW_TINT, -1);
 
-            if (mGlowBGColor == Integer.MIN_VALUE) {
-                mGlowBGColor = defaultColor;
-            }
             mGlowBG.setColorFilter(null);
-            mGlowBG.setColorFilter(mGlowBGColor, PorterDuff.Mode.SRC_ATOP);
+            if (mGlowBGColor != -1) {
+                mGlowBG.setColorFilter(mGlowBGColor, PorterDuff.Mode.SRC_ATOP);
+            }
         }
         setTint(mShouldTintIcons);
         invalidate();

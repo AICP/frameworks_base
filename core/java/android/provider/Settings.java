@@ -3226,6 +3226,13 @@ public final class Settings {
          */
         public static final String NAVIGATION_BAR_ALPHA = "navigation_bar_alpha";
 
+        /**
+         * Navigation bar color.
+         *
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_COLOR = "navigation_bar_color";
+
     }
 
     /**

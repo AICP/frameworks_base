@@ -31,6 +31,7 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
@@ -80,7 +81,6 @@ public class NavigationBarView extends LinearLayout {
     boolean mHidden, mLowProfile, mShowMenu;
     int mDisabledFlags = 0;
     int mNavigationIconHints = 0;
-
     private Drawable mBackIcon, mBackLandIcon, mBackAltIcon, mBackAltLandIcon;
     private boolean mMenuArrowKeys;
     
@@ -100,6 +100,8 @@ public class NavigationBarView extends LinearLayout {
      * 2 = Phablet UI
      */
     int mCurrentUIMode = 0;
+
+    int mNavigationBarColor = -1;
 
     private float mNavigationBarAlpha;
     public static final float KEYGUARD_ALPHA = 0.44f;
@@ -336,7 +338,9 @@ public class NavigationBarView extends LinearLayout {
         }
         Drawable bg = mContext.getResources().getDrawable(R.drawable.nav_bar_bg);
         if(bg instanceof ColorDrawable) {
-            setBackground(new BackgroundAlphaColorDrawable(((ColorDrawable) bg).getColor()));
+            BackgroundAlphaColorDrawable bacd = new BackgroundAlphaColorDrawable(
+                    mNavigationBarColor > 0 ? mNavigationBarColor : ((ColorDrawable) bg).getColor());
+            setBackground(bacd);
         }
         setBackgroundAlpha(mNavigationBarAlpha);
     }
@@ -546,7 +550,7 @@ public class NavigationBarView extends LinearLayout {
     }
 
     private void updateKeyguardAlpha() {
-        if(!isKeyguardEnabled() && (mNavigationIconHints & StatusBarManager.NAVIGATION_HINT_BACK_ALT) != 0) {
+        if((mNavigationIconHints & StatusBarManager.NAVIGATION_HINT_BACK_ALT) != 0) {
             // keyboard up, always darken it
             setBackgroundAlpha(1);
         } else {
@@ -956,6 +960,8 @@ public class NavigationBarView extends LinearLayout {
             resolver.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.NAVIGATION_BAR_ALPHA), false, this);
             resolver.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.NAVIGATION_BAR_COLOR), false, this);
+            resolver.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.MENU_LOCATION), false,
                     this);
             resolver.registerContentObserver(
@@ -1000,7 +1006,17 @@ public class NavigationBarView extends LinearLayout {
         Drawable bg = getBackground();
         if(bg == null) return;
 
-        int a = (int) (alpha * 255);
+        if(bg instanceof BackgroundAlphaColorDrawable) {
+         // if there's a custom color while the lockscreen is on, clear it momentarily, otherwise it won't match.
+            if(mNavigationBarColor > 0) {
+                if(isKeyguardEnabled()) {
+                    ((BackgroundAlphaColorDrawable) bg).setBgColor(-1);
+                } else {
+                    ((BackgroundAlphaColorDrawable) bg).setBgColor(mNavigationBarColor);
+                }
+            }
+        }
+        int a = Math.round(alpha * 255);
         bg.setAlpha(a);
     }
 
@@ -1010,7 +1026,11 @@ public class NavigationBarView extends LinearLayout {
         mMenuLocation = Settings.System.getInt(resolver,
                 Settings.System.MENU_LOCATION, SHOW_RIGHT_MENU);
         mNavigationBarAlpha = Settings.System.getFloat(resolver,
-                Settings.System.NAVIGATION_BAR_ALPHA, new Float(mContext.getResources().getInteger(R.integer.navigation_bar_transparency) / 255));
+                Settings.System.NAVIGATION_BAR_ALPHA,
+                new Float(mContext.getResources().getInteger(
+                        R.integer.navigation_bar_transparency) / 255));
+        mNavigationBarColor = Settings.System.getInt(resolver,
+                Settings.System.NAVIGATION_BAR_COLOR, -1);
         mMenuVisbility = Settings.System.getInt(resolver,
                 Settings.System.MENU_VISIBILITY, VISIBILITY_SYSTEM);
         mMenuArrowKeys = Settings.System.getBoolean(resolver,

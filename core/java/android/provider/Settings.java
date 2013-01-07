@@ -6139,6 +6139,15 @@ public final class Settings {
         private static final Validator LOCKSCREEN_LOCK_ICON_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
+        /**
+         * Whether to launch default music player when headset plugged in
+         * @hide
+         */
+        public static final String HEADSET_CONNECT_PLAYER = "headset_connect_player";
+        /** @hide */
+        private static final Validator HEADSET_CONNECT_PLAYER_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6369,6 +6378,7 @@ public final class Settings {
             PULSE_AMBIENT_LIGHT_DURATION,
             FLASHLIGHT_ON_CALL,
             LOCKSCREEN_LOCK_ICON,
+            HEADSET_CONNECT_PLAYER,
             // AICP Settings end
         };
 
@@ -6653,6 +6663,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(PULSE_AMBIENT_LIGHT_DURATION);
             PRIVATE_SETTINGS.add(FLASHLIGHT_ON_CALL);
             PRIVATE_SETTINGS.add(LOCKSCREEN_LOCK_ICON);
+            PRIVATE_SETTINGS.add(HEADSET_CONNECT_PLAYER);
             // AICP Settings end
         }
 
@@ -6927,6 +6938,7 @@ public final class Settings {
             VALIDATORS.put(PULSE_AMBIENT_LIGHT_DURATION, PULSE_AMBIENT_LIGHT_DURATION_VALIDATOR);
             VALIDATORS.put(FLASHLIGHT_ON_CALL, FLASHLIGHT_ON_CALL_VALIDATOR);
             VALIDATORS.put(LOCKSCREEN_LOCK_ICON, LOCKSCREEN_LOCK_ICON_VALIDATOR);
+            VALIDATORS.put(HEADSET_CONNECT_PLAYER, HEADSET_CONNECT_PLAYER_VALIDATOR);
             // AICP Settings end
         }
 

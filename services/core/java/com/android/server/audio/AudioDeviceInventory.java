@@ -22,6 +22,9 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHearingAid;
 import android.bluetooth.BluetoothProfile;
+import android.content.ActivityNotFoundException;
+import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.media.AudioDevicePort;
 import android.media.AudioFormat;
@@ -34,6 +37,8 @@ import android.os.Binder;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.os.UserHandle;
+import android.provider.Settings;
+import android.telecom.TelecomManager;
 import android.text.TextUtils;
 import android.util.ArrayMap;
 import android.util.ArraySet;
@@ -53,13 +58,13 @@ import java.util.ArrayList;
 public class AudioDeviceInventory {
 
     private static final String TAG = "AS.AudioDeviceInventory";
-
     // Actual list of connected devices
     // Key for map created from DeviceInfo.makeDeviceListKey()
     private final ArrayMap<String, DeviceInfo> mConnectedDevices = new ArrayMap<>();
 
     private @NonNull AudioDeviceBroker mDeviceBroker;
-
+    private final Context mContext;
+    private final ContentResolver mContentResolver;
     // cache of the address of the last dock the device was connected to
     private String mDockAddress;
 
@@ -68,14 +73,19 @@ public class AudioDeviceInventory {
     final RemoteCallbackList<IAudioRoutesObserver> mRoutesObservers =
             new RemoteCallbackList<IAudioRoutesObserver>();
 
-    /*package*/ AudioDeviceInventory(@NonNull AudioDeviceBroker broker) {
+    /*package*/ AudioDeviceInventory(Context context, @NonNull AudioDeviceBroker broker) {
         mDeviceBroker = broker;
+        mContext = context;
+        mContentResolver = context.getContentResolver();
     }
+
 
     //-----------------------------------------------------------
     /** for mocking only */
     /*package*/ AudioDeviceInventory() {
         mDeviceBroker = null;
+        mContext = null;
+        mContentResolver = null;
     }
 
     /*package*/ void setDeviceBroker(@NonNull AudioDeviceBroker broker) {
@@ -370,6 +380,23 @@ public class AudioDeviceInventory {
         }
         mRoutesObservers.finishBroadcast();
         mDeviceBroker.postObserveDevicesForAllStreams();
+    }
+
+    private void startMusicPlayer() {
+        boolean launchPlayer = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.HEADSET_CONNECT_PLAYER, 0, UserHandle.USER_CURRENT) != 0;
+        TelecomManager tm = (TelecomManager) mContext.getSystemService(Context.TELECOM_SERVICE);
+
+        if (launchPlayer && !tm.isInCall()) {
+            try {
+                Intent playerIntent = new Intent(Intent.ACTION_MAIN);
+                playerIntent.addCategory(Intent.CATEGORY_APP_MUSIC);
+                playerIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                mContext.startActivity(playerIntent);
+            } catch (ActivityNotFoundException | IllegalArgumentException e) {
+                Log.w(TAG, "No music player Activity could be found");
+            }
+        }
     }
 
     private static final int DEVICE_OVERRIDE_A2DP_ROUTE_ON_PLUG =
@@ -840,11 +867,17 @@ public class AudioDeviceInventory {
             case AudioSystem.DEVICE_OUT_WIRED_HEADSET:
                 intent.setAction(Intent.ACTION_HEADSET_PLUG);
                 intent.putExtra("microphone", 1);
+                if (state == 1) {
+                    startMusicPlayer();
+                }
                 break;
             case AudioSystem.DEVICE_OUT_WIRED_HEADPHONE:
             case AudioSystem.DEVICE_OUT_LINE:
                 intent.setAction(Intent.ACTION_HEADSET_PLUG);
                 intent.putExtra("microphone", 0);
+                if (state == 1) {
+                    startMusicPlayer();
+                }
                 break;
             case AudioSystem.DEVICE_OUT_USB_HEADSET:
                 intent.setAction(Intent.ACTION_HEADSET_PLUG);

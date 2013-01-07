@@ -91,7 +91,7 @@ import com.android.internal.annotations.GuardedBy;
         mContext = context;
         mAudioService = service;
         mBtHelper = new BtHelper(this);
-        mDeviceInventory = new AudioDeviceInventory(this);
+        mDeviceInventory = new AudioDeviceInventory(mContext,this);
 
         init();
     }

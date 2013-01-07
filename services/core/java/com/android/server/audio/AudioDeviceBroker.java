@@ -110,7 +110,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
         mContext = context;
         mAudioService = service;
         mBtHelper = new BtHelper(this);
-        mDeviceInventory = new AudioDeviceInventory(this);
+        mDeviceInventory = new AudioDeviceInventory(mContext,this);
         mSystemServer = SystemServerAdapter.getDefaultAdapter(mContext);
 
         init();

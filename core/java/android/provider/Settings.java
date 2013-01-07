@@ -4033,11 +4033,6 @@ public final class Settings {
         public static final String TRANSPARENT_POWER_DIALOG_DIM = "transparent_power_dialog_dim";
 
         /**
-         * --- AICP System settings end
-         *  Add new system settings above this comment
-         */
-
-        /**
          * Enable\Disable Bluetooth Battery bar
          * @hide
          */
@@ -4102,6 +4097,12 @@ public final class Settings {
          * @hide
          */
         public static final String BRIGHTNESS_ICON_POSITION = "brightness_icon_position";
+
+        /**
+         * Whether to launch default music player when headset plugged in
+         * @hide
+         */
+        public static final String HEADSET_CONNECT_PLAYER = "headset_connect_player";
 
         /**
          * --- AICP System settings end

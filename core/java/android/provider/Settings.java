@@ -6625,6 +6625,12 @@ public final class Settings {
          */
         public static final String FLASHLIGHT_ON_CALL_RATE = "flashlight_on_call_rate";
 
+        /**
+         * Whether to launch default music player when headset plugged in
+         * @hide
+         */
+        public static final String HEADSET_CONNECT_PLAYER = "headset_connect_player";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6855,6 +6861,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(FLASHLIGHT_ON_CALL_WAITING, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(FLASHLIGHT_ON_CALL_IGNORE_DND, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(FLASHLIGHT_ON_CALL_RATE, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(HEADSET_CONNECT_PLAYER, BOOLEAN_VALIDATOR);
         }
 
         /**

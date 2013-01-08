@@ -47,6 +47,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.content.res.Resources.NotFoundException;
 import android.database.ContentObserver;
 import android.graphics.Bitmap;
 import android.graphics.Paint;
@@ -334,10 +335,13 @@ public abstract class BaseStatusBar extends SystemUI implements
             } catch (NameNotFoundException ex) {
                 Slog.e(TAG, "Failed looking up ApplicationInfo for " + sbn.pkg, ex);
             }
-            if (version > 0 && version < Build.VERSION_CODES.GINGERBREAD) {
-                content.setBackgroundResource(R.drawable.notification_row_legacy_bg);
-            } else {
-                content.setBackgroundResource(com.android.internal.R.drawable.notification_bg);
+            try {
+                if (version > 0 && version < Build.VERSION_CODES.GINGERBREAD) {
+                    content.setBackgroundResource(R.drawable.notification_row_legacy_bg);
+                } else {
+                    content.setBackgroundResource(com.android.internal.R.drawable.notification_bg);
+                }
+            } catch (NotFoundException ignore) {
             }
         }
     }

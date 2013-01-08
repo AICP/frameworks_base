@@ -567,8 +567,8 @@ public class KeyguardWidgetPager extends PagedView implements PagedView.PageSwit
         for (int i = 0; i < count; i++) {
             KeyguardWidgetFrame child = getWidgetPageAt(i);
             if (i != mCurrentPage) {
-                if (Settings.System.getBoolean(getContext().getContentResolver(),
-                        Settings.System.LOCKSCREEN_HIDE_INITIAL_PAGE_HINTS, true)) {
+                if (!Settings.System.getBoolean(getContext().getContentResolver(),
+                        Settings.System.LOCKSCREEN_HIDE_INITIAL_PAGE_HINTS, false)) {
                     child.fadeFrame(this, true, KeyguardWidgetFrame.OUTLINE_ALPHA_MULTIPLIER,
                             CHILDREN_OUTLINE_FADE_IN_DURATION);
                 }

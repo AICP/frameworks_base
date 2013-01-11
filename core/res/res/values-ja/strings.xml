@@ -1444,4 +1444,34 @@
     <string name="enable_accessibility_canceled" msgid="3833923257966635673">"ユーザー補助をキャンセルしました。"</string>
     <string name="user_switched" msgid="3768006783166984410">"現在のユーザーは<xliff:g id="NAME">%1$s</xliff:g>です。"</string>
     <string name="owner_name" msgid="2716755460376028154">"所有者"</string>
+
+    <!-- label for item that screenshots in phone options dialog -->
+    <string name="global_action_screenshot">スクリーンショット</string>
+    <!-- label for item that torches in phone options dialog -->
+    <string name="global_action_torch">トーチ</string>
+    <!-- label for item that toggles NavBar Hide -->
+    <string name="global_actions_toggle_navbar_hide">ナビゲーションバー</string>
+
+    <!-- Reboot -->
+    <string name="reboot">再起動</string>
+    <!-- Reboot recovery option -->
+    <string name="reboot_recovery">リカバリー</string>
+    <!-- Reboot recovery option -->
+    <string name="reboot_download">ダウンロード</string>
+    <!-- Reboot recovery option -->
+    <string name="reboot_bootloader">ブートローダー</string>
+    <!-- Rebooting message -->
+    <string name="reboot_progress">再起動中\u2026</string>
+
+    <!-- Vibration picker dialog title -->
+    <string name="vibration_picker_title">バイブレーションを選択</string>
+    <string name="vibration_picker_del_title">バイブレーションを削除</string>
+
+    <!-- In WiFi notification -->
+    <string name="notify_turn_wifi_off_title">Wi-Fiをオフにする</string>
+
+    <!-- Showing the Battery % while not plugged in. -->
+    <string name="lockscreen_always_battery">放電中: <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
+    <string name="lockscreen_always_low_battery">充電してください: <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
+
 </resources>

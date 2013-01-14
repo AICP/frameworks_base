@@ -2853,6 +2853,13 @@ public final class Settings {
         public static final String LOCKSCREEN_USE_WIDGET_CONTAINER_CAROUSEL = "lockscreen_use_widget_container_carousel";
 
         /**
+         * Enable longpress on expand challenge handle to unlock device
+         * @hide
+         */
+        public static final String LOCKSCREEN_LONGPRESS_CHALLENGE = "lockscreen_longpress_challenge";
+
+
+        /**
          * enabled and order of quick toggles
          * 
          * @hide

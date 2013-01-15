@@ -1182,16 +1182,11 @@ class QuickSettings {
                         boolean gpsEnabled = Settings.Secure.isLocationProviderEnabled(
                                 mContext.getContentResolver(), LocationManager.GPS_PROVIDER);
                         TextView tv = (TextView) view.findViewById(R.id.location_textview);
-                        String newString = state.label;
-                        if ((newString == null) || (newString.equals(""))) {
-                            tv.setText(gpsEnabled ? R.string.quick_settings_gps_on_label
-                                    : R.string.quick_settings_gps_off_label);
-                            tv.setCompoundDrawablesWithIntrinsicBounds(0, gpsEnabled ?
-                                    R.drawable.ic_qs_gps_on : R.drawable.ic_qs_gps_off, 0, 0);
-                        } else {
-                            tv.setText(state.label);
-                            tv.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_qs_gps_locked, 0, 0);
-                        }
+                        tv.setText(gpsEnabled
+                                ? R.string.quick_settings_gps_on_label
+                                : R.string.quick_settings_gps_off_label);
+                        tv.setCompoundDrawablesWithIntrinsicBounds(0, gpsEnabled ?
+                                R.drawable.ic_qs_gps_on : R.drawable.ic_qs_gps_off, 0, 0);
                         tv.setTextSize(1, mTileTextSize);
                     }
                 });

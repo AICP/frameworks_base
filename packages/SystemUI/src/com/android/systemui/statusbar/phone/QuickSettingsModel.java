@@ -263,6 +263,10 @@ class QuickSettingsModel implements BluetoothStateChangeCallback,
     private RefreshCallback mSilentCallback;
     private State mSilentState = new State();
 
+    private QuickSettingsTileView mSoundStateTile;
+    private RefreshCallback mSoundStateCallback;
+    private State mSoundStateState = new State();
+
     private QuickSettingsTileView mFChargeTile;
     private RefreshCallback mFChargeCallback;
     private State mFChargeState = new State();
@@ -915,6 +919,12 @@ class QuickSettingsModel implements BluetoothStateChangeCallback,
         onSilentChanged();
     }
 
+    void addSoundStateTile(QuickSettingsTileView view, RefreshCallback cb) {
+        mSoundStateTile = view;
+        mSoundStateCallback = cb;
+        refreshSoundStateTile();
+    }
+
     void onSilentChanged() {
         AudioManager am = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
         boolean enabled = am.getRingerMode() == AudioManager.RINGER_MODE_SILENT;
@@ -934,6 +944,40 @@ class QuickSettingsModel implements BluetoothStateChangeCallback,
     void refreshSilentTile() {
         if (mSilentTile != null) {
             onSilentChanged();
+        }
+    }
+
+    void refreshSoundStateTile() {
+        if (mSoundStateTile != null) {
+            AudioManager am = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
+            boolean enabled;
+            int iconId;
+            int label;
+            switch(am.getRingerMode()) {
+                case AudioManager.RINGER_MODE_NORMAL:
+                default:
+                    enabled = false;
+                    iconId = R.drawable.ic_qs_sound_off;
+                    label = R.string.quick_settings_sound_on;
+                    break;
+                case AudioManager.RINGER_MODE_VIBRATE:
+                    enabled = true;
+                    iconId = R.drawable.ic_qs_vibrate_on;
+                    label = R.string.quick_settings_vibrate_on_label;
+                    break;
+                case AudioManager.RINGER_MODE_SILENT:
+                    enabled = true;
+                    iconId = R.drawable.ic_qs_silence_on;
+                    label = R.string.quick_settings_silent_on_label;
+                    break;
+            }
+            mSoundStateState.enabled = enabled;
+            mSoundStateState.iconId = iconId;
+            mSoundStateState.label = mContext.getString(label);
+
+            if (mSoundStateCallback != null) {
+                mSoundStateCallback.refreshView(mSoundStateTile, mSoundStateState);
+            }
         }
     }
 

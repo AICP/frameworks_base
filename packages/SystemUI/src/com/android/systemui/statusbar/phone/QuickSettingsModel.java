@@ -263,6 +263,10 @@ class QuickSettingsModel implements BluetoothStateChangeCallback,
     private RefreshCallback mSilentCallback;
     private State mSilentState = new State();
 
+    private QuickSettingsTileView mNavBarHideTile;
+    private RefreshCallback mNavBarHideCallback;
+    private State mNavBarHideState = new State();
+
     private QuickSettingsTileView mSoundStateTile;
     private RefreshCallback mSoundStateCallback;
     private State mSoundStateState = new State();
@@ -391,6 +395,8 @@ class QuickSettingsModel implements BluetoothStateChangeCallback,
                 refresh2gTile();
             if (toggle.equals(QuickSettings.LTE_TOGGLE))
                 refreshLTETile();
+            if (toggle.equals(QuickSettings.NAVBAR_HIDE_TOGGLE))
+                refreshNavBarHideTile();
         }
 
     }
@@ -1233,6 +1239,34 @@ class QuickSettingsModel implements BluetoothStateChangeCallback,
     void refreshTorchTile() {
         if (mTorchTile != null) {
             onTorchChanged();
+        }
+    }
+
+    // NavBar Hide
+    void addNavBarHideTile(QuickSettingsTileView view, RefreshCallback cb) {
+        mNavBarHideTile = view;
+        mNavBarHideCallback = cb;
+        onNavBarHideChanged();
+    }
+
+    void onNavBarHideChanged() {
+        boolean enabled = Settings.System.getBoolean(mContext.getContentResolver(), Settings.System.NAV_HIDE_ENABLE, false);
+        mNavBarHideState.enabled = enabled;
+        mNavBarHideState.iconId = enabled
+                ? R.drawable.ic_qs_navbar_hide_on
+                : R.drawable.ic_qs_navbar_hide_off;
+        mNavBarHideState.label = enabled
+                ? mContext.getString(R.string.quick_settings_navbar_hide_on_label)
+                : mContext.getString(R.string.quick_settings_navbar_hide_off_label);
+
+        if (mNavBarHideTile != null && mNavBarHideCallback != null) {
+            mNavBarHideCallback.refreshView(mNavBarHideTile, mNavBarHideState);
+        }
+    }
+
+    void refreshNavBarHideTile() {
+        if (mNavBarHideTile != null) {
+            onNavBarHideChanged();
         }
     }
 

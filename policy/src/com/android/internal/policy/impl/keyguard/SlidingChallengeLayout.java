@@ -21,11 +21,15 @@ import com.android.internal.R;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.database.ContentObserver;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.os.Handler;
+import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.FloatProperty;
@@ -131,6 +135,8 @@ public class SlidingChallengeLayout extends ViewGroup implements ChallengeLayout
     // We have an internal and external version, and we and them together.
     private boolean mChallengeInteractiveExternal = true;
     private boolean mChallengeInteractiveInternal = true;
+
+    private boolean mNavBarAutoHide = false;
 
     static final Property<SlidingChallengeLayout, Float> HANDLE_ALPHA =
             new FloatProperty<SlidingChallengeLayout>("handleAlpha") {
@@ -258,6 +264,9 @@ public class SlidingChallengeLayout extends ViewGroup implements ChallengeLayout
 
         // how much space to account for in the handle when closed
         mChallengeBottomBound = res.getDimensionPixelSize(R.dimen.kg_widget_pager_bottom_padding);
+
+        SettingsObserver settingsObserver = new SettingsObserver(new Handler());
+        settingsObserver.observe();
 
         setWillNotDraw(false);
         setSystemUiVisibility(SYSTEM_UI_FLAG_LAYOUT_STABLE);
@@ -1241,4 +1250,48 @@ public class SlidingChallengeLayout extends ViewGroup implements ChallengeLayout
             a.recycle();
         }
     }
+
+    @Override
+    public int getPaddingBottom() {
+        int padding = super.getPaddingBottom();
+
+        if (mNavBarAutoHide) {
+            int adjustment = Settings.System.getInt(
+                        mContext.getContentResolver(),
+                        Settings.System.NAVIGATION_BAR_HEIGHT,
+                        mContext.getResources()
+                                .getDimensionPixelSize(
+                                        com.android.internal.R.dimen.navigation_bar_height));
+            padding += adjustment;
+        }
+
+        return padding;
+    }
+
+    class SettingsObserver extends ContentObserver {
+        SettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        void observe() {
+            ContentResolver resolver = mContext.getContentResolver();
+
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.NAV_HIDE_ENABLE), false, this);
+            updateSettings();
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            updateSettings();
+        }
+    }
+
+     protected void updateSettings() {
+        ContentResolver resolver = mContext.getContentResolver();
+
+        mNavBarAutoHide = Settings.System.getBoolean(resolver,
+                Settings.System.NAV_HIDE_ENABLE, false);
+    }
+
 }

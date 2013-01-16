@@ -2733,6 +2733,26 @@ public final class Settings {
         /**
          * @hide
          */
+        public static final String NAV_HIDE_TIMEOUT = "nav_hide_timeout";
+
+        /**
+         * @hide
+         */
+        public static final String NAV_HIDE_ENABLE = "nav_hide_enable";
+
+        /**
+         * @hide
+         */
+        public static final String DRAG_HANDLE_WEIGHT = "drag_handle_weight";
+
+        /**
+         * @hide
+         */
+        public static final String DRAG_HANDLE_OPACITY = "drag_handle_opacity";
+
+        /**
+         * @hide
+         */
         public static final String MENU_LOCATION = "menu_location";
 
         /**

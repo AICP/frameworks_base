@@ -575,6 +575,8 @@
     <string name="quick_settings_gps_off_label">GPS Off</string>
     <string name="quick_settings_data_on_label">Data On</string>
     <string name="quick_settings_data_off_label">Data Off</string>
+    <string name="quick_settings_navbar_hide_on_label">NavBar Hide On</string>
+    <string name="quick_settings_navbar_hide_off_label">NavBAr Hide Off</string>
     <string name="quick_settings_sound_on">Sound on</string>
 
     <!--  RamBar -->

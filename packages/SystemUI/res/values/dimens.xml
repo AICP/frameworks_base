@@ -229,4 +229,8 @@
     <dimen name="navring_radius_tablet_landscape">300dp</dimen>
     <!--  Radius of NavRing in Tablet Mode Landscape -->
     <dimen name="navring_radius_tablet_portrait">300dp</dimen>
+
+    <!-- Constant for hidden navbar drag handle -->
+    <dimen name="drag_handle_height">10dp</dimen>
+
 </resources>

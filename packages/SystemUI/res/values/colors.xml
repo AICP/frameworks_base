@@ -36,4 +36,5 @@
     <!-- the darkening filter applied to notifications -->
     <drawable name="notification_icon_area_smoke">#aa000000</drawable>
     <color name="notification_panel_scrim_color">#B0000000</color>
+    <color name="qs_tile_user_label">#CC000000</color>
 </resources>

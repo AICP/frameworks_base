@@ -20,6 +20,7 @@ import android.animation.LayoutTransition;
 import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.KeyguardManager;
 import android.app.SearchManager;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningAppProcessInfo;
@@ -145,7 +146,52 @@ public class SearchPanelView extends FrameLayout implements
         SettingsObserver observer = new SettingsObserver(new Handler());
         observer.observe();
         updateSettings();
+    }
 
+    private void startAssistActivity() {
+        if (!mBar.isDeviceProvisioned()) return;
+
+        // Close Recent Apps if needed
+        mBar.animateCollapsePanels(CommandQueue.FLAG_EXCLUDE_SEARCH_PANEL);
+        boolean isKeyguardShowing = false;
+        try {
+            isKeyguardShowing = mWm.isKeyguardLocked();
+        } catch (RemoteException e) {
+
+        }
+
+        if (isKeyguardShowing) {
+            // Have keyguard show the bouncer and launch the activity if the user succeeds.
+            try {
+                mWm.showAssistant();
+            } catch (RemoteException e) {
+                // too bad, so sad...
+            }
+            onAnimationStarted();
+        } else {
+            // Otherwise, keyguard isn't showing so launch it from here.
+            Intent intent = ((SearchManager) mContext.getSystemService(Context.SEARCH_SERVICE))
+                    .getAssistIntent(mContext, UserHandle.USER_CURRENT);
+            if (intent == null) return;
+
+            try {
+                ActivityManagerNative.getDefault().dismissKeyguardOnNextActivity();
+            } catch (RemoteException e) {
+                // too bad, so sad...
+            }
+
+            try {
+                ActivityOptions opts = ActivityOptions.makeCustomAnimation(mContext,
+                        R.anim.search_launch_enter, R.anim.search_launch_exit,
+                        getHandler(), this);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                mContext.startActivityAsUser(intent, opts.toBundle(),
+                        new UserHandle(UserHandle.USER_CURRENT));
+            } catch (ActivityNotFoundException e) {
+                Slog.w(TAG, "Activity not found for " + intent.getAction());
+                onAnimationStarted();
+            }
+        }
     }
 
     private class H extends Handler {
@@ -202,11 +248,20 @@ public class SearchPanelView extends FrameLayout implements
         }
 
         public void onTrigger(View v, final int target) {
-            final int resId = mGlowPadView.getResourceIdForTarget(target);
             mTarget = target;
             if (!mLongPress) {
-                AwesomeAction.getInstance(mContext).launchAction(intentList.get(target));
-               mHandler.removeCallbacks(SetLongPress);
+                if (AwesomeAction.ACTION_ASSIST.equals(intentList.get(target))) {
+                    startAssistActivity();
+                } else {
+                    try {
+                        if (mWm.isKeyguardLocked() && !mWm.isKeyguardSecure()) {
+                            ActivityManagerNative.getDefault().dismissKeyguardOnNextActivity();
+                        }
+                    } catch (RemoteException ignored) {
+                    }
+                    AwesomeAction.getInstance(mContext).launchAction(intentList.get(target));
+                }
+                mHandler.removeCallbacks(SetLongPress);
             }
         }
 

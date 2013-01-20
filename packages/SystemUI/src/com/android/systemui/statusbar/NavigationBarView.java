@@ -84,6 +84,7 @@ public class NavigationBarView extends LinearLayout {
     int mNavigationIconHints = 0;
     private Drawable mBackIcon, mBackLandIcon, mBackAltIcon, mBackAltLandIcon;
     private boolean mMenuArrowKeys;
+    private boolean mColorAllIcons;
     
     public DelegateViewHelper mDelegateHelper;
 
@@ -293,10 +294,10 @@ public class NavigationBarView extends LinearLayout {
                     if (f.exists()) {
                         v.setImageDrawable(new BitmapDrawable(getResources(), f.getAbsolutePath()));
                     }
-                    v.setTint(false);
+                    v.setTint(mColorAllIcons);
                 } else {
                     v.setImageDrawable(AwesomeAction.getInstance(mContext).getIconImage(mClickActions[j]));
-                    v.setTint(mClickActions[j].startsWith("**"));
+                    v.setTint(mClickActions[j].startsWith("**") || mColorAllIcons);
                 }
                 addButton(navButtonLayout, v, landscape && !mLeftyMode);
                 // if we are in LeftyMode, then we want to add to end, like Portrait
@@ -947,6 +948,8 @@ public class NavigationBarView extends LinearLayout {
             resolver.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.NAVIGATION_BAR_COLOR), false, this);
             resolver.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.NAVIGATION_BAR_ALLCOLOR), false, this);
+            resolver.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.MENU_LOCATION), false,
                     this);
             resolver.registerContentObserver(
@@ -1012,6 +1015,8 @@ public class NavigationBarView extends LinearLayout {
                 Settings.System.MENU_LOCATION, SHOW_RIGHT_MENU);
         mNavigationBarColor = Settings.System.getInt(resolver,
                 Settings.System.NAVIGATION_BAR_COLOR, -1);
+        mColorAllIcons = Settings.System.getBoolean(resolver,
+                Settings.System.NAVIGATION_BAR_ALLCOLOR, false);
         mMenuVisbility = Settings.System.getInt(resolver,
                 Settings.System.MENU_VISIBILITY, VISIBILITY_SYSTEM);
         mMenuArrowKeys = Settings.System.getBoolean(resolver,

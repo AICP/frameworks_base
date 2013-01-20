@@ -1860,4 +1860,6 @@
   <java-symbol type="string" name="toast_rotation_unlocked" />
   <java-symbol type="string" name="toast_rotation_locked" />
 
+  <java-symbol type="bool" name="config_noDelayInATwoDP" />
+
 </resources>

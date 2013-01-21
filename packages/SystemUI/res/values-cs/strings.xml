@@ -247,6 +247,7 @@
     <string name="quick_settings_gps_off_label">GPS vypnuta</string>
     <string name="quick_settings_data_on_label">Data zapnuta</string>
     <string name="quick_settings_data_off_label">Data vypnuta</string>
+    <string name="quick_settings_sound_on">Hlasitě zapnuto</string>
     <string name="memory">RAM</string>
     <string name="service_background_processes"><xliff:g id="memory">%1$s</xliff:g> volno</string>
     <string name="service_foreground_processes"><xliff:g id="memory">%1$s</xliff:g> použito</string>

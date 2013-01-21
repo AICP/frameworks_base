@@ -93,6 +93,7 @@
               android:background="@null"
               android:src="@drawable/keyguard_expand_challenge_handle"
               android:scaleType="center"
+              android:hapticFeedbackEnabled="true"
               android:contentDescription="@string/keyguard_accessibility_expand_lock_area" />
 
     </com.android.internal.policy.impl.keyguard.SlidingChallengeLayout>

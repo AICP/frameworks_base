@@ -347,6 +347,9 @@ class QuickSettingsModel implements BluetoothStateChangeCallback,
         @Override
         public void onReceive(Context context, Intent intent) {
             if (NfcAdapter.ACTION_ADAPTER_STATE_CHANGED.equals(intent.getAction())) {
+                if (mNfcAdapter == null) {
+                    mNfcAdapter = NfcAdapter.getDefaultAdapter(context);
+                }
                 refreshNFCTile();
             }
         }

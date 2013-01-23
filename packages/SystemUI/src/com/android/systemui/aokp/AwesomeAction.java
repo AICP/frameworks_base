@@ -86,6 +86,7 @@ public class AwesomeAction {
     public final static String ACTION_TORCH = "**torch**";
     public final static String ACTION_SEARCH = "**search**";
     public final static String ACTION_LAST_APP = "**lastapp**";
+    public final static String ACTION_RECENTS_GB = "**recentsgb**";
     public final static String ACTION_NULL = "**null**";
 
     private int mInjectKeyCode;
@@ -135,6 +136,9 @@ public class AwesomeAction {
             return true;
         } else if (action.equals(ACTION_POWER)) {
             injectKeyDelayed(KeyEvent.KEYCODE_POWER);
+            return true;
+        } else if (action.equals(ACTION_RECENTS_GB)) {
+            injectKeyDelayed(KeyEvent.KEYCODE_APP_SWITCH);
             return true;
         } else if (action.equals(ACTION_IME)) {
             mContext.sendBroadcast(new Intent("android.settings.SHOW_INPUT_METHOD_PICKER"));
@@ -280,6 +284,8 @@ public class AwesomeAction {
             return mContext.getResources().getDrawable(R.drawable.ic_sysbar_back);
         if (uri.equals(ACTION_RECENTS))
             return mContext.getResources().getDrawable(R.drawable.ic_sysbar_recent);
+        if (uri.equals(ACTION_RECENTS_GB))
+            return mContext.getResources().getDrawable(R.drawable.ic_sysbar_recent_gb);
         if (uri.equals(ACTION_SCREENSHOT))
             return mContext.getResources().getDrawable(R.drawable.ic_sysbar_screenshot);
         if (uri.equals(ACTION_MENU))

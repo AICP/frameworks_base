@@ -377,6 +377,8 @@
     <string name="permdesc_clearAppCache" product="default" msgid="2459441021956436779">"允许该应用删除其他应用的缓存目录中的文件，从而释放手机存储空间。此权限可能会导致其他应用的启动速度变慢，因为应用必须重新检索数据。"</string>
     <string name="permlab_movePackage" msgid="3289890271645921411">"移动应用资源"</string>
     <string name="permdesc_movePackage" msgid="319562217778244524">"允许应用在内部与外部媒体之间移动应用资源。"</string>
+    <string name="permlab_preventpower">重定义电源键</string>
+    <string name="permdesc_preventpower">允许应用程序覆盖电源键的行为定义</string>
     <string name="permlab_readLogs" msgid="6615778543198967614">"查阅敏感日志数据"</string>
     <string name="permdesc_readLogs" product="tablet" msgid="82061313293455151">"允许应用从系统的各种日志文件中读取信息。这样，应用就可以发现关于您平板电脑使用情况的一般信息，其中可能包含个人信息或隐私信息。"</string>
     <string name="permdesc_readLogs" product="default" msgid="2063438140241560443">"允许应用从系统的各个日志文件中读取信息。这样，应用就可以发现关于您手机使用情况的一般信息，其中可能包含个人信息或隐私信息。"</string>

@@ -20,4 +20,5 @@
     <item type="id" name="user_expanded_tag" />
     <item type="id" name="user_lock_tag" />
     <item type="id" name="status_bar_cling_stub" />
+    <item type="id" name="navbar_menu_big" />
 </resources>

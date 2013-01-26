@@ -33,7 +33,7 @@ public class ExtensibleKeyButtonView extends KeyButtonView {
                 setId(R.id.back);
             } else if (clickAction.equals(AwesomeAction.ACTION_MENU)) {
                 setCode(KeyEvent.KEYCODE_MENU);
-                setId(R.id.menu);
+                setId(R.id.navbar_menu_big);
             } else if (clickAction.equals(AwesomeAction.ACTION_POWER)) {
                 setCode(KeyEvent.KEYCODE_POWER);
             } else if (clickAction.equals(AwesomeAction.ACTION_SEARCH)) {

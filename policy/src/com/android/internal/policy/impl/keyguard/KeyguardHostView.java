@@ -278,9 +278,11 @@ public class KeyguardHostView extends KeyguardViewBase {
     private final OnLongClickListener mFastUnlockClickListener = new OnLongClickListener() {
         @Override
         public boolean onLongClick(View v) {
-            performHapticFeedback(HapticFeedbackConstants.LONG_PRESS,
+            if (mLockPatternUtils.isTactileFeedbackEnabled()) {
+                v.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS,
                     HapticFeedbackConstants.FLAG_IGNORE_VIEW_SETTING
                     | HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING);
+            }
             showNextSecurityScreenOrFinish(false);
             return true;
         }

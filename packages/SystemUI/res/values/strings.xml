@@ -536,6 +536,7 @@
     <string name="action_power">Power</string>
     <string name="action_search">Search</string>
     <string name="action_notifications">Notifications</string>
+    <string name="action_lastapp">Last App</string>
     <string name="action_none">Empty</string>
 
     <string name="widgets">Widgets</string>

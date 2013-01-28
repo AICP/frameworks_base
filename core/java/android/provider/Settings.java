@@ -6743,6 +6743,13 @@ public final class Settings {
          */
         public static final String STATUSBAR_ENABLE_BRIGHTNESS_SLIDER = "statusbar_enable_brightness_slider";
 
+        /**
+         * wake up when plugged or unplugged
+         *
+         * @hide
+         */
+        public static final String WAKEUP_WHEN_PLUGGED_UNPLUGGED = "wakeup_when_plugged_unplugged";
+
     }
 
     /**

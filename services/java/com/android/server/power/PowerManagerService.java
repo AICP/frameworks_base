@@ -1272,6 +1272,11 @@ public final class PowerManagerService extends IPowerManager.Stub
             return false;
         }
 
+        if (!Settings.AOKP.getBoolean(mContext.getContentResolver(),
+                Settings.AOKP.WAKEUP_WHEN_PLUGGED_UNPLUGGED, true)) {
+            return false;
+        }
+
         // Otherwise wake up!
         return true;
     }

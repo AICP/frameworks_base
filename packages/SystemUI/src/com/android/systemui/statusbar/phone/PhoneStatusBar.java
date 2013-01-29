@@ -2447,9 +2447,12 @@ public class PhoneStatusBar extends BaseStatusBar {
     }
 
     void vibrate() {
-        android.os.Vibrator vib = (android.os.Vibrator)mContext.getSystemService(
-                Context.VIBRATOR_SERVICE);
-        vib.vibrate(50);
+        if (Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.HAPTIC_FEEDBACK_ENABLED, 1, UserHandle.USER_CURRENT) != 0) {
+            android.os.Vibrator vib = (android.os.Vibrator)mContext.getSystemService(
+                    Context.VIBRATOR_SERVICE);
+            vib.vibrate(50);
+        }
     }
 
     Runnable mStartTracing = new Runnable() {

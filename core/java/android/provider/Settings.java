@@ -2656,6 +2656,13 @@ public final class Settings {
         public static final String USER_UI_MODE = "user_ui_mode";
 
         /**
+         * This is used to change from singlepane mode forcing it to
+         * Change into multipane mode. Default is disabled.
+         * @hide
+         */
+        public static final String FORCE_DUAL_PANEL = "force_dualpanel";
+
+        /**
          * User configurable flag for determining if NavBar is enabled
          *
          * @hide

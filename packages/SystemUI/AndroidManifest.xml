@@ -247,6 +247,19 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="com.android.systemui.aokp.StatusbarToggle"
+            android:label="@string/toggle_statusbar"
+            android:icon="@drawable/toggle_statusbar"
+            android:theme="@android:style/Theme.Holo.Panel"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTop" >
+            <intent-filter>
+                <action android:name="com.android.systemui.INTENT_STATUSBAR_TOGGLE" />
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="com.android.systemui.SHORTCUT" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name="com.android.systemui.aokp.WidgetToggle"
             android:label="@string/toggle_widgets"
             android:icon="@drawable/ic_sysbar_widget"

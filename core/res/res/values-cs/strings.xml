@@ -1469,5 +1469,5 @@
     <string name="notify_turn_wifi_off_title">Vypnout Wi-Fi</string>
     <string name="lockscreen_always_battery">Vybíjení, <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
     <string name="lockscreen_always_low_battery">Připojte dobíjecí zařízení, <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
-    <string name="global_actions_toggle_navbar_hide">Ovládání navigační lišty</string>
+    <string name="global_actions_toggle_navbar_hide">Ovládání navigační a stavové lišty</string>
 </resources>

@@ -382,7 +382,7 @@
     <string name="global_action_torch">Torch</string>
 
     <!-- label for item that toggles NavBar Hide -->
-    <string name="global_actions_toggle_navbar_hide">Navigation Bar Controls</string>
+    <string name="global_actions_toggle_navbar_hide">Navigation and Status Bar Controls</string>
 
     <!-- Text to use when the number in a notification info is too large
          (greater than status_bar_notification_info_maxnum, defined in

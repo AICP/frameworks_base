@@ -58,6 +58,8 @@ public class CreateShortcut extends LauncherActivity {
         return R.drawable.toggle_torch;
       } else if (c.equals ("NavbarToggle")) {
           return R.drawable.toggle_navbar;
+      } else if (c.equals ("StatusbarToggle")) {
+          return R.drawable.toggle_statusbar;
       } else if (c.equals ("WidgetToggle")) {
           return R.drawable.ic_sysbar_widget;
       } else if (c.equals ("RingVibToggle")) {

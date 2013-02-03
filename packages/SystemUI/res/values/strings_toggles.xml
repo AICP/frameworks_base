@@ -43,4 +43,5 @@
     <string name="toggle_NAVBARHIDE">Navbar hide</string>
     <string name="toggle_QUICKRECORD">Quick record</string>
     <string name="toggle_QUIETHOURS">Quiet Hours</string>
+    <string name="toggle_STATUSBAR">Statusbar</string>
 </resources>

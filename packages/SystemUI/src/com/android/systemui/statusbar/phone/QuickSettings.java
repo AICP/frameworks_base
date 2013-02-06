@@ -61,11 +61,15 @@ import android.graphics.drawable.LevelListDrawable;
 import android.hardware.display.DisplayManager;
 import android.hardware.display.WifiDisplayStatus;
 import android.location.LocationManager;
+import android.media.MediaRecorder;
+import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnCompletionListener;
 import android.nfc.NfcAdapter;
 import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.RemoteException;
 import android.os.UserHandle;
@@ -94,6 +98,7 @@ import com.android.systemui.aokp.AwesomeAction;
 
 import java.io.File;
 import java.io.InputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -133,6 +138,14 @@ public class QuickSettings {
    // private static final int BT_TETHER_TILE = 23;
     private static final int SOUND_STATE_TILE = 24;
     private static final int NAVBAR_HIDE_TILE = 25;
+    private static final int QUICKRECORD_TILE = 26;
+
+    public static final int STATE_IDLE = 0;
+    public static final int STATE_PLAYING = 1;
+    public static final int STATE_RECORDING = 2;
+    public static final int STATE_JUST_RECORDED = 3;
+    public static final int STATE_NO_RECORDING = 4;
+
 
     public static final String USER_TOGGLE = "USER";
     public static final String BRIGHTNESS_TOGGLE = "BRIGHTNESS";
@@ -161,11 +174,15 @@ public class QuickSettings {
     public static final String FAV_CONTACT_TOGGLE = "FAVCONTACT";
     public static final String SOUND_STATE_TOGGLE = "SOUNDSTATE";
     public static final String NAVBAR_HIDE_TOGGLE = "NAVBARHIDE";
+    public static final String QUICKRECORD_TOGGLE = "QUICKRECORD";
+    private static final String LOG_TAG = "AudioRecord";
+    private static String mQuickAudio = null;
 
     private static final String DEFAULT_TOGGLES = "default";
 
     private int mWifiApState = WifiManager.WIFI_AP_STATE_DISABLED;
     private int mWifiState = WifiManager.WIFI_STATE_DISABLED;
+    private int mRecordingState;
 
     private int mDataState = -1;
 
@@ -177,6 +194,8 @@ public class QuickSettings {
     private ViewGroup mContainerView;
 
     private DisplayManager mDisplayManager;
+    private MediaPlayer mPlayer = null;
+    private MediaRecorder mRecorder = null;
     private WifiDisplayStatus mWifiDisplayStatus;
     private WifiManager wifiManager;
     private ConnectivityManager connManager;
@@ -242,6 +261,7 @@ public class QuickSettings {
             toggleMap.put(FAV_CONTACT_TOGGLE, FAV_CONTACT_TILE);
             toggleMap.put(SOUND_STATE_TOGGLE, SOUND_STATE_TILE);
             toggleMap.put(NAVBAR_HIDE_TOGGLE, NAVBAR_HIDE_TILE);
+            toggleMap.put(QUICKRECORD_TOGGLE, QUICKRECORD_TILE);
             //toggleMap.put(BT_TETHER_TOGGLE, BT_TETHER_TILE);
         }
         return toggleMap;
@@ -277,6 +297,8 @@ public class QuickSettings {
         mBrightnessDialogShortTimeout =
                 r.getInteger(R.integer.quick_settings_brightness_dialog_short_timeout);
         mFastChargePath = r.getString(com.android.internal.R.string.config_fastChargePath);
+        mQuickAudio = Environment.getExternalStorageDirectory().getAbsolutePath();
+        mQuickAudio += "/quickrecord.3gp";
 
         IntentFilter filter = new IntentFilter();
         filter.addAction(DisplayManager.ACTION_WIFI_DISPLAY_STATUS_CHANGED);
@@ -451,6 +473,116 @@ public class QuickSettings {
         mFavContactInfoTask.execute();
     }
 
+    private void queryRecordingInformation() {
+        final Resources r = mContext.getResources();
+        String playStateName = r.getString(
+                R.string.quick_settings_quickrecord);
+        int playStateIcon = R.drawable.ic_qs_quickrecord;
+        File file = new File(mQuickAudio);
+        if (!file.exists()) {
+            mRecordingState = STATE_NO_RECORDING;
+        }
+        switch (mRecordingState) {
+            case STATE_IDLE:
+                playStateName = r.getString(
+                        R.string.quick_settings_quickrecord);
+                playStateIcon = R.drawable.ic_qs_quickrecord;
+                break;
+            case STATE_PLAYING:
+                playStateName = r.getString(
+                        R.string.quick_settings_playing);
+                playStateIcon = R.drawable.ic_qs_playing;
+                break;
+            case STATE_RECORDING:
+                playStateName = r.getString(
+                        R.string.quick_settings_recording);
+                playStateIcon = R.drawable.ic_qs_recording;
+                break;
+            case STATE_JUST_RECORDED:
+                playStateName = r.getString(
+                        R.string.quick_settings_recordingcap);
+                playStateIcon = R.drawable.ic_qs_saved;
+                break;
+            case STATE_NO_RECORDING:
+                playStateName = r.getString(
+                        R.string.quick_settings_nofile);
+                playStateIcon = R.drawable.ic_qs_quickrecord;
+                break;
+        }
+        mModel.setQuickRecordTileInfo(playStateName, playStateIcon);
+    };
+
+    final Runnable delayTileRevert = new Runnable () {
+        public void run() {
+            if (mRecordingState == STATE_JUST_RECORDED) {
+                mRecordingState = STATE_IDLE;
+                queryRecordingInformation();
+            }
+        }
+    };
+
+    final Runnable autoStopRecord = new Runnable() {
+        public void run() {
+            if (mRecordingState == STATE_RECORDING) {
+                stopRecording();
+            }
+        }
+    };
+
+    final OnCompletionListener stoppedPlaying = new OnCompletionListener(){
+        public void onCompletion(MediaPlayer mp) {
+            mRecordingState = STATE_IDLE;
+            queryRecordingInformation();
+        }
+    };
+
+    private void startPlaying() {
+        mPlayer = new MediaPlayer();
+        try {
+            mPlayer.setDataSource(mQuickAudio);
+            mPlayer.prepare();
+            mPlayer.start();
+            mRecordingState = STATE_PLAYING;
+            queryRecordingInformation();
+            mPlayer.setOnCompletionListener(stoppedPlaying);
+        } catch (IOException e) {
+            Log.e(LOG_TAG, "prepare() failed", e);
+        }
+    }
+
+    private void stopPlaying() {
+        mPlayer.release();
+        mPlayer = null;
+        mRecordingState = STATE_IDLE;
+        queryRecordingInformation();
+    }
+
+    private void startRecording() {
+        mRecorder = new MediaRecorder();
+        mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        mRecorder.setOutputFile(mQuickAudio);
+        mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+        try {
+            mRecorder.prepare();
+            mRecorder.start();
+            mRecordingState = STATE_RECORDING;
+            queryRecordingInformation();
+            mHandler.postDelayed(autoStopRecord, 60000);
+        } catch (IOException e) {
+            Log.e(LOG_TAG, "prepare() failed", e);
+        }
+    }
+
+    private void stopRecording() {
+        mRecorder.stop();
+        mRecorder.release();
+        mRecorder = null;
+        mRecordingState = STATE_JUST_RECORDED;
+        queryRecordingInformation();
+        mHandler.postDelayed(delayTileRevert, 2000);
+    }
+
     private void setupQuickSettings() {
         // Setup the tiles that we are going to be showing (including the
         // temporary ones)
@@ -461,6 +593,7 @@ public class QuickSettings {
 
         queryForUserInformation();
         queryForFavContactInformation();
+        queryRecordingInformation();
         mTilesSetUp = true;
     }
 
@@ -1370,6 +1503,56 @@ public class QuickSettings {
                         iv.setImageDrawable(us.avatar);
                         view.setContentDescription(mContext.getString(
                                 R.string.accessibility_quick_settings_user, state.label));
+                    }
+                });
+                break;
+            case QUICKRECORD_TILE:
+                quick = (QuickSettingsTileView)
+                        inflater.inflate(R.layout.quick_settings_tile, parent, false);
+                quick.setContent(R.layout.quick_settings_tile_quickrecord, inflater);
+                quick.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        File file = new File(mQuickAudio);
+                        if (!file.exists()) {
+                            mRecordingState = STATE_NO_RECORDING;
+                        }
+                        switch (mRecordingState) {
+                            case STATE_RECORDING:
+                                stopRecording();
+                                break;
+                            case STATE_NO_RECORDING:
+                                return;
+                            case STATE_IDLE:
+                            case STATE_JUST_RECORDED:
+                                startPlaying();
+                                break;
+                            case STATE_PLAYING:
+                                stopPlaying();
+                                break;
+                        }
+                    }
+                });
+                quick.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        switch (mRecordingState) {
+                            case STATE_NO_RECORDING:
+                            case STATE_IDLE:
+                            case STATE_JUST_RECORDED:
+                            startRecording();
+                            break;
+                        }
+                        return true;
+                    }
+                });
+                mModel.addQuickRecordTile(quick, new QuickSettingsModel.RefreshCallback() {
+                    @Override
+                    public void refreshView(QuickSettingsTileView view, State state) {
+                        TextView tv = (TextView) view.findViewById(R.id.quickrecord_textview);
+                        tv.setText(state.label);
+                        tv.setTextSize(1, mTileTextSize);
+                        tv.setCompoundDrawablesWithIntrinsicBounds(0, state.iconId, 0, 0);
                     }
                 });
                 break;

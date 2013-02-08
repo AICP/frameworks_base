@@ -258,6 +258,7 @@
     <string name="quick_settings_gps_off_label">GPS已关闭</string>
     <string name="quick_settings_data_on_label">数据网络已打开</string>
     <string name="quick_settings_data_off_label">数据网络已关闭</string>
+    <string name="quick_settings_sound_on">声音已打开</string>
 
     <!--  RamBar -->
     <string name="memory">RAM</string>

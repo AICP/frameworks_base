@@ -203,6 +203,88 @@
     <string name="quick_settings_wifi_display_no_connection_label" msgid="2355298740765736918">"ワイヤレスディスプレイ"</string>
     <string name="quick_settings_brightness_dialog_title" msgid="8599674057673605368">"画面の明るさ"</string>
     <string name="quick_settings_brightness_dialog_auto_brightness_label" msgid="5064982743784071218">"自動"</string>
+    <string name="quick_settings_swagger">Swagger</string>
+    <string name="quick_settings_fbgt">FBGT</string>
+
     <string name="status_bar_help_title" msgid="1199237744086469217">"ここに通知が表示されます"</string>
     <string name="status_bar_help_text" msgid="7874607155052076323">"下にスワイプすると、いつでも通知を表示できます。"\n"システムを管理するにはもう一度下にスワイプしてください。"</string>
+
+    <!--  AOKP Strings can go here... -->
+
+    <!--  Target/Action Strings -->
+    <string name="shortcut_label">AOKPアクション</string>
+    <string name="action_home">ホーム</string>
+    <string name="action_back">戻る</string>
+    <string name="action_recents">アプリ履歴</string>
+    <string name="action_screenshot">スクリーンショット</string>
+    <string name="action_menu">メニュー</string>
+    <string name="action_ime">IME変更</string>
+    <string name="action_kill">タスクキル</string>
+    <string name="action_power">電源</string>
+    <string name="action_search">検索</string>
+    <string name="action_notifications">通知</string>
+    <string name="action_lastapp">直前のアプリ</string>
+    <string name="action_none">設定なし</string>
+
+    <string name="widgets">ウィジェット</string>
+    <string name="toggle_navbar">ナビゲーションバー - トグル</string>
+    <string name="toggle_widgets">ウィジェット - トグル</string>
+    <string name="toggle_ring_vib">サウンド/バイブ - トグル</string>
+    <string name="toggle_ring_silent">サウンド/サイレント - トグル</string>
+    <string name="toggle_ring_vib_silent">サウンド/バイブ/サイレント - トグル</string>
+    <string name="app_killed_message">アプリを終了しました</string>
+    <string name="recents_kill_all_button_text">全タスク終了</string>
+
+    <!--  Quick Settings -->
+    <string name="quick_settings_vibrate_on_label">バイブ On</string>
+    <string name="quick_settings_vibrate_off_label">バイブ Off</string>
+    <string name="quick_settings_silent_on_label">サイレント On</string>
+    <string name="quick_settings_silent_off_label">サイレント Off</string>
+    <string name="quick_settings_fcharge_on_label">急速充電 On</string>
+    <string name="quick_settings_fcharge_off_label">急速充電 Off</string>
+    <string name="quick_settings_torch_on_label">トーチ On</string>
+    <string name="quick_settings_torch_off_label">トーチ Off</string>
+    <string name="quick_settings_nfc_on_label">NFC On</string>
+    <string name="quick_settings_nfc_off_label">NFC Off</string>
+    <string name="quick_settings_wifi_tether_on_label">Wi-Fiテザリング On</string>
+    <string name="quick_settings_wifi_tether_off_label">Wi-Fiテザリング Off</string>
+    <string name="quick_settings_bt_tether_on_label">BTテザリング On</string>
+    <string name="quick_settings_bt_tether_off_label">BTテザリング Off</string>
+    <string name="quick_settings_usb_tether_on_label">USBテザリング On</string>
+    <string name="quick_settings_usb_tether_off_label">USBテザリング Off</string>
+    <string name="quick_settings_sync_on_label">同期 On</string>
+    <string name="quick_settings_sync_off_label">同期 Off</string>
+    <string name="quick_settings_twog_on_label">2g On</string>
+    <string name="quick_settings_twog_off_label">2g Off</string>
+    <string name="quick_settings_lte_on_label">LTE On</string>
+    <string name="quick_settings_lte_off_label">LTE Off</string>
+    <string name="quick_settings_gps_on_label">GPS On</string>
+    <string name="quick_settings_gps_off_label">GPS Off</string>
+    <string name="quick_settings_data_on_label">データ通信 On</string>
+    <string name="quick_settings_data_off_label">データ通信 Off</string>
+    <string name="quick_settings_sound_on">サウンド On</string>
+
+    <!--  RamBar -->
+    <string name="memory">RAM</string>
+    <!-- [CHAR LIMIT=10] Running services, summary of background processes -->
+    <string name="service_background_processes"><xliff:g id="memory">%1$s</xliff:g> 空き</string>
+    <!-- [CHAR LIMIT=10] Running services, summary of foreground processes -->
+    <string name="service_foreground_processes"><xliff:g id="memory">%1$s</xliff:g> 使用</string>
+    <!-- Text to label a process entry with the process name. -->
+    <string name="service_process_name"><xliff:g id="process">%1$s</xliff:g></string>
+    <!-- Running services, description for a service in the started state -->
+    <string name="service_client_name"><xliff:g id="client_name">%1$s</xliff:g></string>
+    <!-- Running services, description for a service in the started state -->
+    <string name="service_started_by_app">アプリによって開始されました</string>
+    <!-- Descriptive text of a running process: singular process, singular service. -->
+    <string name="running_processes_item_description_s_s"><xliff:g id="numprocess">%1$d</xliff:g>個のプロセスと<xliff:g id="numservices">%2$d</xliff:g>個のサービス</string>
+    <!-- Descriptive text of a running process: singular process, plural service. -->
+    <string name="running_processes_item_description_s_p"><xliff:g id="numprocess">%1$d</xliff:g>個のプロセスと<xliff:g id="numservices">%2$d</xliff:g>個のサービス</string>
+     <!-- Descriptive text of a running process: plural process, singular service. -->
+    <string name="running_processes_item_description_p_s"><xliff:g id="numprocess">%1$d</xliff:g>個のプロセスと<xliff:g id="numservices">%2$d</xliff:g>個のサービス</string>
+    <!-- Descriptive text of a running process: plural process, plural service. -->
+    <string name="running_processes_item_description_p_p"><xliff:g id="numprocess">%1$d</xliff:g>個のプロセスと<xliff:g id="numservices">%2$d</xliff:g>個のサービス</string>
+    <!-- [CHAR LIMIT=NONE] Label of a running process that represents another user -->
+    <string name="running_process_item_user_label">ユーザー: <xliff:g id="user_name">%1$s</xliff:g></string>
+
 </resources>

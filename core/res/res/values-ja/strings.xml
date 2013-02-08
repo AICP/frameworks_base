@@ -163,6 +163,14 @@
     <string name="global_actions_toggle_airplane_mode" msgid="5884330306926307456">"機内モード"</string>
     <string name="global_actions_airplane_mode_on_status" msgid="2719557982608919750">"機内モードON"</string>
     <string name="global_actions_airplane_mode_off_status" msgid="5075070442854490296">"機内モードOFF"</string>
+
+    <!-- label for item that screenshots in phone options dialog -->
+    <string name="global_action_screenshot">スクリーンショット</string>
+    <!-- label for item that torches in phone options dialog -->
+    <string name="global_action_torch">トーチ</string>
+    <!-- label for item that toggles NavBar Hide -->
+    <string name="global_actions_toggle_navbar_hide">ナビゲーションバー</string>
+
     <string name="status_bar_notification_info_overflow" msgid="5301981741705354993">"999+"</string>
     <string name="safeMode" msgid="2788228061547930246">"セーフモード"</string>
     <string name="android_system_label" msgid="6577375335728551336">"Androidシステム"</string>
@@ -374,6 +382,8 @@
     <string name="permdesc_clearAppCache" product="default" msgid="2459441021956436779">"他のアプリのキャッシュディレクトリからファイルを削除して端末のストレージ領域を解放することをアプリに許可します。他のアプリはデータを再取得する必要があるため、これにより他のアプリの起動が遅れる場合があります。"</string>
     <string name="permlab_movePackage" msgid="3289890271645921411">"アプリのリソースの移動"</string>
     <string name="permdesc_movePackage" msgid="319562217778244524">"内部メディアと外部メディアの間でアプリのリソースを移動することをアプリに許可します。"</string>
+    <string name="permlab_preventpower">電源キーの無効化</string>
+    <string name="permdesc_preventpower">電源キーを無効にすることをアプリに許可します。</string>
     <string name="permlab_readLogs" msgid="6615778543198967614">"機密ログデータの読み取り"</string>
     <string name="permdesc_readLogs" product="tablet" msgid="82061313293455151">"システムの各種ログファイルの読み取りをアプリに許可します。許可すると、アプリではタブレットの使用に関する全般的な情報を読み取れるようになります。この情報には個人情報や機密情報が含まれる場合があります。"</string>
     <string name="permdesc_readLogs" product="default" msgid="2063438140241560443">"システムの各種ログファイルの読み取りをアプリに許可します。許可すると、アプリでは携帯端末の使用に関する全般的な情報を読み取れるようになります。この情報には個人情報や機密情報が含まれる場合があります。"</string>
@@ -765,6 +775,10 @@
     <string name="lockscreen_charged" msgid="321635745684060624">"充電完了"</string>
     <string name="lockscreen_battery_short" msgid="4477264849386850266">"<xliff:g id="NUMBER">%d</xliff:g><xliff:g id="PERCENT">%%</xliff:g>"</string>
     <string name="lockscreen_low_battery" msgid="1482873981919249740">"充電してください"</string>
+    <!-- Showing the Battery % while not plugged in. -->
+    <string name="lockscreen_always_battery">放電中: <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
+    <string name="lockscreen_always_low_battery">充電してください: <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
+
     <string name="lockscreen_missing_sim_message_short" msgid="5099439277819215399">"SIMカードが挿入されていません"</string>
     <string name="lockscreen_missing_sim_message" product="tablet" msgid="151659196095791474">"タブレット内にSIMカードがありません。"</string>
     <string name="lockscreen_missing_sim_message" product="default" msgid="2186920585695169078">"SIMカードが挿入されていません"</string>
@@ -1388,6 +1402,18 @@
     <string name="default_audio_route_category_name" msgid="3722811174003886946">"システム"</string>
     <string name="bluetooth_a2dp_audio_route_name" msgid="8575624030406771015">"Bluetooth音声"</string>
     <string name="media_route_chooser_grouping_done" msgid="7966438307723317169">"完了"</string>
+
+    <!-- Reboot -->
+    <string name="reboot">再起動</string>
+    <!-- Reboot recovery option -->
+    <string name="reboot_recovery">リカバリー</string>
+    <!-- Reboot recovery option -->
+    <string name="reboot_download">ダウンロード</string>
+    <!-- Reboot recovery option -->
+    <string name="reboot_bootloader">ブートローダー</string>
+    <!-- Rebooting message -->
+    <string name="reboot_progress">再起動中\u2026</string>
+
     <string name="media_route_button_content_description" msgid="5758553567065145276">"メディア出力"</string>
     <string name="media_route_status_scanning" msgid="7279908761758293783">"スキャン中..."</string>
     <string name="media_route_status_connecting" msgid="6422571716007825440">"接続中..."</string>
@@ -1445,24 +1471,6 @@
     <string name="user_switched" msgid="3768006783166984410">"現在のユーザーは<xliff:g id="NAME">%1$s</xliff:g>です。"</string>
     <string name="owner_name" msgid="2716755460376028154">"所有者"</string>
 
-    <!-- label for item that screenshots in phone options dialog -->
-    <string name="global_action_screenshot">スクリーンショット</string>
-    <!-- label for item that torches in phone options dialog -->
-    <string name="global_action_torch">トーチ</string>
-    <!-- label for item that toggles NavBar Hide -->
-    <string name="global_actions_toggle_navbar_hide">ナビゲーションバー</string>
-
-    <!-- Reboot -->
-    <string name="reboot">再起動</string>
-    <!-- Reboot recovery option -->
-    <string name="reboot_recovery">リカバリー</string>
-    <!-- Reboot recovery option -->
-    <string name="reboot_download">ダウンロード</string>
-    <!-- Reboot recovery option -->
-    <string name="reboot_bootloader">ブートローダー</string>
-    <!-- Rebooting message -->
-    <string name="reboot_progress">再起動中\u2026</string>
-
     <!-- Vibration picker dialog title -->
     <string name="vibration_picker_title">バイブレーションを選択</string>
     <string name="vibration_picker_del_title">バイブレーションを削除</string>
@@ -1470,8 +1478,7 @@
     <!-- In WiFi notification -->
     <string name="notify_turn_wifi_off_title">Wi-Fiをオフにする</string>
 
-    <!-- Showing the Battery % while not plugged in. -->
-    <string name="lockscreen_always_battery">放電中: <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
-    <string name="lockscreen_always_low_battery">充電してください: <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
-
+    <!-- Hardware Rotation lock string -->
+    <string name="toast_rotation_unlocked">画面の自動回転を有効にしました</string>
+    <string name="toast_rotation_locked">画面の向きをロックしました</string>
 </resources>

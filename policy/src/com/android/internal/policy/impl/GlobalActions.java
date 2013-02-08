@@ -135,6 +135,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
     private boolean mEnableScreenshotToggle = false;
     private boolean mEnableTorchToggle = false;
     private boolean mEnableAirplaneToggle = true;
+    private boolean mShowRebootOnLock = true;
     private static int rebootIndex = 0;
 
     /**
@@ -241,6 +242,9 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                 Settings.System.POWER_DIALOG_SHOW_NAVBAR_HIDE, false);
         mNavBarHideToggle = new NavBarAction(mHandler);
 
+        mShowRebootOnLock = Settings.System.getBoolean(mContext.getContentResolver(),
+                Settings.System.POWER_DIALOG_SHOW_REBOOT_KEYGUARD, true);
+
         mEnableAirplaneToggle = Settings.System.getBoolean(mContext.getContentResolver(),
                 Settings.System.POWER_DIALOG_SHOW_AIRPLANE_TOGGLE, true);
 
@@ -322,7 +326,11 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
                     @Override
                     public boolean showDuringKeyguard() {
-                        return true;
+                        if (mShowRebootOnLock) {
+                            return true;
+                        } else {
+                            return false;
+                        }
                     }
 
                     @Override

@@ -206,6 +206,7 @@
     <string name="status_bar_help_title" msgid="1199237744086469217">"Zde se zobrazují oznámení"</string>
     <string name="status_bar_help_text" msgid="7874607155052076323">"Můžete je kdykoli zobrazit tím, že přejedete prstem dolů."\n"Přejedete-li prstem dolů ještě jednou, zobrazí se ovládací prvky systému."</string>
     <!-- AOKP translations -->
+    <string name="shortcut_label">Akce AOKP</string>
     <string name="action_home">Domů</string>
     <string name="action_back">Zpět</string>
     <string name="action_recents">Spuštěné aplikace</string>
@@ -216,9 +217,12 @@
     <string name="action_power">Napájení</string>
     <string name="action_notifications">Notifikace</string>
     <string name="action_none">Prázdné</string>
+    <string name="widgets">Widgety</string>
+    <string name="toggle_navbar">Přepnout navigační lištu</string>
     <string name="toggle_ring_vib">Přepnout hlasitý/vibrace</string>
     <string name="toggle_ring_silent">Přepnout hlasitý/tichý</string>
     <string name="toggle_ring_vib_silent">Přepnout hlasitý/vibrace/tichý</string>
+    <string name="toggle_widgets">Přepnout widgety</string>
     <string name="app_killed_message">Aplikace ukončena</string>
     <string name="recents_kill_all_button_text">Ukončit vše</string>
     <string name="quick_settings_vibrate_on_label">Jen vibrace zapnuty</string>

@@ -39,7 +39,7 @@ public class NotificationPanelView extends PanelView {
     private static final float STATUS_BAR_SETTINGS_FLIP_PERCENTAGE_LEFT = 0.85f;
 
     Drawable mHandleBar;
-    float mHandleBarHeight;
+    int mHandleBarHeight;
     View mHandleView;
     int mFingers;
     PhoneStatusBar mStatusBar;
@@ -64,7 +64,7 @@ public class NotificationPanelView extends PanelView {
 
         Resources resources = getContext().getResources();
         mHandleBar = resources.getDrawable(R.drawable.status_bar_close);
-        mHandleBarHeight = resources.getDimension(R.dimen.close_handle_height);
+        mHandleBarHeight = resources.getDimensionPixelSize(R.dimen.close_handle_height);
         mHandleView = findViewById(R.id.handle);
 
         setContentDescription(resources.getString(

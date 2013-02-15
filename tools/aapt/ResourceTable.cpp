@@ -2000,6 +2000,9 @@ uint32_t ResourceTable::getResId(const String16& package,
                                  const String16& name,
                                  bool onlyPublic) const
 {
+    uint32_t id = ResourceIdCache::lookup(package, type, name, onlyPublic);
+    if (id != 0) return id;     // cache hit
+
     sp<Package> p = mPackages.valueFor(package);
     if (p == NULL) return 0;
 
@@ -2018,11 +2021,10 @@ uint32_t ResourceTable::getResId(const String16& package,
         }
         
         if (Res_INTERNALID(rid)) {
-            return rid;
+            return ResourceIdCache::store(package, type, name, onlyPublic, rid);
         }
-        return Res_MAKEID(p->getAssignedId()-1,
-                          Res_GETTYPE(rid),
-                          Res_GETENTRY(rid));
+        return ResourceIdCache::store(package, type, name, onlyPublic,
+                Res_MAKEID(p->getAssignedId()-1, Res_GETTYPE(rid), Res_GETENTRY(rid)));
     }
 
     sp<Type> t = p->getTypes().valueFor(type);
@@ -2031,7 +2033,9 @@ uint32_t ResourceTable::getResId(const String16& package,
     if (c == NULL) return 0;
     int32_t ei = c->getEntryIndex();
     if (ei < 0) return 0;
-    return getResId(p, t, ei);
+
+    return ResourceIdCache::store(package, type, name, onlyPublic,
+            getResId(p, t, ei));
 }
 
 uint32_t ResourceTable::getResId(const String16& ref,
@@ -2058,11 +2062,7 @@ uint32_t ResourceTable::getResId(const String16& ref,
                      String8(name).string()));
         return 0;
     }
-    uint32_t res = ResourceIdCache::lookup(package, type, name, onlyPublic && refOnlyPublic);
-    if (res == 0) {
-        res = getResId(package, type, name, onlyPublic && refOnlyPublic);
-        ResourceIdCache::store(package, type, name, onlyPublic && refOnlyPublic, res);
-    }
+    uint32_t res = getResId(package, type, name, onlyPublic && refOnlyPublic);
     NOISY(printf("Expanded resource: p=%s, t=%s, n=%s, res=%d\n",
                  String8(package).string(), String8(type).string(),
                  String8(name).string(), res));

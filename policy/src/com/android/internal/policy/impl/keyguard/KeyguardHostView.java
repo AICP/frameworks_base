@@ -291,18 +291,11 @@ public class KeyguardHostView extends KeyguardViewBase {
         addDefaultWidgets();
 
         addWidgetsFromSettings();
+
         if (!shouldEnableAddWidget()) {
             mAppWidgetContainer.setAddWidgetEnabled(false);
-        mUnlimitedWidgets = Settings.System.getBoolean(getContext().getContentResolver(),
-                                  Settings.System.LOCKSCREEN_UNLIMITED_WIDGETS, false);
-        if (mUnlimitedWidgets) {
-            MAX_WIDGETS = numWidgets() + 1;
-        } else {
-            MAX_WIDGETS = 5;
         }
-        if (numWidgets() >= MAX_WIDGETS) {
-            setAddWidgetEnabled(false);
-        }
+
         checkAppWidgetConsistency();
         mSwitchPageRunnable.run();
         // This needs to be called after the pages are all added.
@@ -323,6 +316,13 @@ public class KeyguardHostView extends KeyguardViewBase {
     }
 
     private boolean shouldEnableAddWidget() {
+        mUnlimitedWidgets = Settings.System.getBoolean(getContext().getContentResolver(),
+                                  Settings.System.LOCKSCREEN_UNLIMITED_WIDGETS, false);
+        if (mUnlimitedWidgets) {
+            MAX_WIDGETS = numWidgets() + 1;
+        } else {
+            MAX_WIDGETS = 5;
+        }
         return numWidgets() < MAX_WIDGETS && mUserSetupCompleted;
     }
 
@@ -423,15 +423,6 @@ public class KeyguardHostView extends KeyguardViewBase {
         public void onAddView(View v) {
             if (!shouldEnableAddWidget()) {
                 mAppWidgetContainer.setAddWidgetEnabled(false);
-            mUnlimitedWidgets = Settings.System.getBoolean(getContext().getContentResolver(),
-                                  Settings.System.LOCKSCREEN_UNLIMITED_WIDGETS, false);
-            if (mUnlimitedWidgets) {
-                MAX_WIDGETS = numWidgets() + 1;
-            } else {
-                MAX_WIDGETS = 5;
-            }
-            if (numWidgets() >= MAX_WIDGETS) {
-                setAddWidgetEnabled(false);
             }
         }
 
@@ -445,21 +436,6 @@ public class KeyguardHostView extends KeyguardViewBase {
                 }
             }
         }
-
-        @Override
-        public void onRemoveView(View v) {
-            mUnlimitedWidgets = Settings.System.getBoolean(getContext().getContentResolver(),
-                                  Settings.System.LOCKSCREEN_UNLIMITED_WIDGETS, false);
-            if (mUnlimitedWidgets) {
-                MAX_WIDGETS = numWidgets() + 1;
-            } else {
-                MAX_WIDGETS = 5;
-            }
-            if (numWidgets() < MAX_WIDGETS) {
-                setAddWidgetEnabled(true);
-            }
-        }
-    };
 
         @Override
         public void onRemoveViewAnimationCompleted() {

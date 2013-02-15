@@ -113,6 +113,7 @@ public class KeyguardWidgetCarousel extends KeyguardWidgetPager {
                             Settings.System.LOCKSCREEN_HIDE_INITIAL_PAGE_HINTS, false)) {
                     child.setBackgroundAlpha(KeyguardWidgetFrame.OUTLINE_ALPHA_MULTIPLIER);
                     child.setContentAlpha(1f);
+                }
             } else {
                 child.setBackgroundAlpha(0f);
                 child.setContentAlpha(0f);

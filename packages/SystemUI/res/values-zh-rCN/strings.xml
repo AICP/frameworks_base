@@ -220,6 +220,7 @@
     <string name="action_power">电源</string>
     <string name="action_search">搜索</string>
     <string name="action_notifications">通知</string>
+    <string name="action_lastapp">上次运行程序</string>
     <string name="action_none">空</string>
 
     <string name="widgets">小部件</string>
@@ -258,6 +259,8 @@
     <string name="quick_settings_gps_off_label">GPS已关闭</string>
     <string name="quick_settings_data_on_label">数据网络已打开</string>
     <string name="quick_settings_data_off_label">数据网络已关闭</string>
+    <string name="quick_settings_navbar_hide_on_label">隐藏导航栏已打开</string>
+    <string name="quick_settings_navbar_hide_off_label">隐藏导航栏已关闭</string>
     <string name="quick_settings_sound_on">声音已打开</string>
 
     <!--  RamBar -->

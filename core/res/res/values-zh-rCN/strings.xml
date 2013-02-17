@@ -770,6 +770,8 @@
     <string name="lockscreen_charged" msgid="321635745684060624">"充电完成"</string>
     <string name="lockscreen_battery_short" msgid="4477264849386850266">"<xliff:g id="NUMBER">%d</xliff:g><xliff:g id="PERCENT">%%</xliff:g>"</string>
     <string name="lockscreen_low_battery" msgid="1482873981919249740">"连接您的充电器。"</string>
+    <string name="lockscreen_always_battery">当前电量： <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
+    <string name="lockscreen_always_low_battery">连接您的充电器： <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
     <string name="lockscreen_missing_sim_message_short" msgid="5099439277819215399">"没有 SIM 卡"</string>
     <string name="lockscreen_missing_sim_message" product="tablet" msgid="151659196095791474">"平板电脑中没有 SIM 卡。"</string>
     <string name="lockscreen_missing_sim_message" product="default" msgid="2186920585695169078">"手机中无 SIM 卡"</string>
@@ -1395,6 +1397,7 @@
     <string name="sending" msgid="3245653681008218030">"正在发送..."</string>
     <string name="launchBrowserDefault" msgid="2057951947297614725">"要启动浏览器吗？"</string>
     <string name="SetupCallDefault" msgid="5834948469253758575">"要接听电话吗？"</string>
+    <string name="app_killed_message">应用程序已结束</string>
     <string name="activity_resolver_use_always" msgid="8017770747801494933">"始终"</string>
     <string name="activity_resolver_use_once" msgid="2404644797149173758">"仅此一次"</string>
     <string name="default_audio_route_name" product="tablet" msgid="4617053898167127471">"平板电脑"</string>
@@ -1405,6 +1408,11 @@
     <string name="default_audio_route_category_name" msgid="3722811174003886946">"系统"</string>
     <string name="bluetooth_a2dp_audio_route_name" msgid="8575624030406771015">"蓝牙音频"</string>
     <string name="media_route_chooser_grouping_done" msgid="7966438307723317169">"完成"</string>
+    <string name="reboot">重新启动</string>
+    <string name="reboot_recovery">恢复模式</string>
+    <string name="reboot_download">刷机模式</string>
+    <string name="reboot_bootloader">引导模式</string>
+    <string name="reboot_progress">您的设备正在重新启动...</string>
     <string name="media_route_button_content_description" msgid="5758553567065145276">"媒体输出线路"</string>
     <string name="media_route_status_scanning" msgid="7279908761758293783">"正在扫描..."</string>
     <string name="media_route_status_connecting" msgid="6422571716007825440">"正在连接..."</string>
@@ -1461,14 +1469,10 @@
     <string name="enable_accessibility_canceled" msgid="3833923257966635673">"已取消辅助功能。"</string>
     <string name="user_switched" msgid="3768006783166984410">"当前用户是<xliff:g id="NAME">%1$s</xliff:g>。"</string>
     <string name="owner_name" msgid="2716755460376028154">"机主"</string>
-    <string name="reboot">重新启动</string>
-    <string name="reboot_recovery">恢复模式</string>
-    <string name="reboot_download">刷机模式</string>
-    <string name="reboot_bootloader">引导模式</string>
-    <string name="reboot_progress">您的设备正在重新启动...</string>
+
     <string name="vibration_picker_title">选择振动效果</string>
     <string name="vibration_picker_del_title">删除振动效果</string>
     <string name="notify_turn_wifi_off_title">关闭 Wi-Fi</string>
-    <string name="lockscreen_always_battery">当前电量： <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
-    <string name="lockscreen_always_low_battery">连接您的充电器： <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
+    <string name="toast_rotation_unlocked">屏幕方向自动旋转</string>
+    <string name="toast_rotation_locked">屏幕方向已锁定</string>
 </resources>

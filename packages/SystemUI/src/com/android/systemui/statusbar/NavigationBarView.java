@@ -590,7 +590,8 @@ public class NavigationBarView extends LinearLayout {
 
             }
         }
-        getSearchLight().setVisibility(isKeyguardEnabled() ? View.VISIBLE : View.GONE);
+     // if Home is to be shown, then we hide the Searchlight.
+        getSearchLight().setVisibility((isKeyguardEnabled()&& disableHome) ? View.VISIBLE : View.GONE);
         if (mNavBarAutoHide && !isRotating) {
             if (isKeyguardEnabled())
                 mBar.setSearchLightOn(true);

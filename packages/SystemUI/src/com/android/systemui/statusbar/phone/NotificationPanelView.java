@@ -103,6 +103,13 @@ public class NotificationPanelView extends PanelView {
     }
 
     @Override
+    protected void onDetachedFromWindow() {
+        getContext().getContentResolver().unregisterContentObserver(mEnableObserver);
+        getContext().getContentResolver().unregisterContentObserver(mChangeSideObserver);
+        super.onDetachedFromWindow();
+    }
+
+    @Override
     public void fling(float vel, boolean always) {
         GestureRecorder gr =
                 ((PhoneStatusBarView) mBar).mBar.getGestureRecorder();

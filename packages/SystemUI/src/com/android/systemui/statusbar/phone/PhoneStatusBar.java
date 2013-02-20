@@ -949,10 +949,10 @@ public class PhoneStatusBar extends BaseStatusBar {
         if (!mNavBarAutoHide) {
             // we don't add the NavBar if AutoHide is on.
             mWindowManager.addView(mNavigationBarView, getNavigationBarLayoutParams());
-            mNavigationBarView.setTransparencyManager(mTransparencyManager);
-            mTransparencyManager.setNavbar(mNavigationBarView);
-            mTransparencyManager.update();
         }
+        mNavigationBarView.setTransparencyManager(mTransparencyManager);
+        mTransparencyManager.setNavbar(mNavigationBarView);
+        mTransparencyManager.update();
     }
 
     private void repositionNavigationBar() {

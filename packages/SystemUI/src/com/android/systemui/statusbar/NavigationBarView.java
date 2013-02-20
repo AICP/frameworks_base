@@ -91,6 +91,7 @@ public class NavigationBarView extends LinearLayout {
     
     public DelegateViewHelper mDelegateHelper;
     private BaseStatusBar mBar;
+    private SettingsObserver mSettingsObserver;
 
     // workaround for LayoutTransitions leaving the nav buttons in a weird state (bug 5549288)
     final static boolean WORKAROUND_INVALID_LAYOUT = true;
@@ -799,8 +800,21 @@ public class NavigationBarView extends LinearLayout {
          mCurrentView = mRotatedViews[Surface.ROTATION_0];
 
          // this takes care of making the buttons
-         SettingsObserver settingsObserver = new SettingsObserver(new Handler());
-         settingsObserver.observe();
+         mSettingsObserver = new SettingsObserver(new Handler());
+         updateSettings();
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        mSettingsObserver.observe();
+        updateSettings();
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        mContext.getContentResolver().unregisterContentObserver(mSettingsObserver);
+        super.onDetachedFromWindow();
     }
 
     public void reorient() {

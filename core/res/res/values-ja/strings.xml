@@ -1404,6 +1404,7 @@
     <string name="sending" msgid="3245653681008218030">"送信中..."</string>
     <string name="launchBrowserDefault" msgid="2057951947297614725">"ブラウザを起動しますか？"</string>
     <string name="SetupCallDefault" msgid="5834948469253758575">"通話を受けますか？"</string>
+    <string name="app_killed_message">アプリを強制終了しました</string>
     <string name="activity_resolver_use_always" msgid="8017770747801494933">"常時"</string>
     <string name="activity_resolver_use_once" msgid="2404644797149173758">"1回のみ"</string>
     <string name="default_audio_route_name" product="tablet" msgid="4617053898167127471">"タブレット"</string>

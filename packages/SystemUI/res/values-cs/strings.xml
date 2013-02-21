@@ -254,6 +254,11 @@
     <string name="quick_settings_navbar_hide_on_label">Skrytá NL zapnuta</string>
     <string name="quick_settings_navbar_hide_off_label">Skrytá NL vypnuta</string>
     <string name="quick_settings_sound_on">Hlasitě zapnuto</string>
+    <string name="quick_settings_recording">Nahrávání...</string>
+    <string name="quick_settings_recordingcap">Nahrávka zaznamenána</string>
+    <string name="quick_settings_playing">Přehrávání...</string>
+    <string name="quick_settings_quickrecord">Rychlé nahrávání</string>
+    <string name="quick_settings_nofile">Dlouhý stisk pro nahrávání</string>
     <string name="memory">RAM</string>
     <string name="service_background_processes"><xliff:g id="memory">%1$s</xliff:g> volno</string>
     <string name="service_foreground_processes"><xliff:g id="memory">%1$s</xliff:g> použito</string>

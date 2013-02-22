@@ -1477,7 +1477,7 @@ public class QuickSettings {
                                     tv.setText(R.string.quick_settings_fbgt);
                                     tv.setCompoundDrawablesWithIntrinsicBounds(0,
                                             R.drawable.ic_qs_fbgt_on, 0, 0);
-                                    tacoToggle = true
+                                    tacoToggle = true;
                                 }
                                 break;
                             }

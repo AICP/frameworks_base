@@ -203,6 +203,14 @@
     <string name="quick_settings_wifi_display_no_connection_label" msgid="2355298740765736918">"无线显示"</string>
     <string name="quick_settings_brightness_dialog_title" msgid="8599674057673605368">"亮度"</string>
     <string name="quick_settings_brightness_dialog_auto_brightness_label" msgid="5064982743784071218">"自动"</string>
+    <string name="quick_settings_swagger">屌爆</string>
+    <string name="quick_settings_swaggersun">屌爆的周日</string>
+    <string name="quick_settings_fbgt">FBGT</string>
+    <string name="quick_settings_recording">正在录制……</string>
+    <string name="quick_settings_recordingcap">录音已捕获</string>
+    <string name="quick_settings_playing">正在播放……</string>
+    <string name="quick_settings_quickrecord">快捷录音</string>
+    <string name="quick_settings_nofile">长按开始录音</string>
     <string name="status_bar_help_title" msgid="1199237744086469217">"通知会显示在这里"</string>
     <string name="status_bar_help_text" msgid="7874607155052076323">"向下滑动可随时查看通知。"\n"再次向下滑动可使用系统控制功能。"</string>
 
@@ -262,6 +270,7 @@
     <string name="quick_settings_navbar_hide_on_label">隐藏导航栏已打开</string>
     <string name="quick_settings_navbar_hide_off_label">隐藏导航栏已关闭</string>
     <string name="quick_settings_sound_on">声音已打开</string>
+    <string name="quick_settings_swaggersuntoast">#屌爆的周日</string>
 
     <!--  RamBar -->
     <string name="memory">RAM</string>

@@ -7,11 +7,11 @@ import android.database.ContentObserver;
 import android.os.Handler;
 import android.provider.Settings;
 
+import static com.android.internal.util.aokp.AwesomeConstants.*;
 import com.android.systemui.R;
 import com.android.systemui.aokp.AwesomeAction;
 
 public class TorchToggle extends StatefulToggle {
-
     TorchObserver mObserver = null;
 
     @Override
@@ -32,12 +32,12 @@ public class TorchToggle extends StatefulToggle {
 
     @Override
     protected void doEnable() {
-        AwesomeAction.getInstance(mContext).launchAction(AwesomeAction.ACTION_TORCH);
+        AwesomeAction.launchAction(mContext, AwesomeConstant.ACTION_TORCH.value());
     }
 
     @Override
     protected void doDisable() {
-        AwesomeAction.getInstance(mContext).launchAction(AwesomeAction.ACTION_TORCH);
+        AwesomeAction.launchAction(mContext, AwesomeConstant.ACTION_TORCH.value());
     }
 
     @Override

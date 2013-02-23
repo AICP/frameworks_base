@@ -37,7 +37,7 @@ public class RecentsKeyButtonView extends ExtensibleKeyButtonView {
             if (mRecentsLocked)
                 return;
 
-            AwesomeAction.getInstance(mContext).launchAction(mClickAction);
+            AwesomeAction.launchAction(mContext, mClickAction);
             mRecentsLocked = true;
             postDelayed(mUnlockRecents, 100); // just to prevent spamming, it
                                               // looks ugly

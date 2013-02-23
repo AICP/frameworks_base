@@ -26,6 +26,7 @@ import static android.view.WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN;
 import static android.view.WindowManager.LayoutParams.FLAG_SHOW_WALLPAPER;
 import static android.view.WindowManager.LayoutParams.FLAG_SPLIT_TOUCH;
 
+import static com.android.internal.util.aokp.AwesomeConstants.*;
 import com.android.internal.view.RootViewSurfaceTaker;
 import com.android.internal.view.StandaloneActionMode;
 import com.android.internal.view.menu.ContextMenuBuilder;
@@ -40,17 +41,23 @@ import com.android.internal.widget.ActionBarContextView;
 import com.android.internal.widget.ActionBarView;
 
 import android.app.KeyguardManager;
+import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.database.ContentObserver;
 import android.graphics.Canvas;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.net.Uri;
+import android.provider.Settings;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcel;
@@ -65,6 +72,8 @@ import android.util.SparseArray;
 import android.util.TypedValue;
 import android.view.ActionMode;
 import android.view.ContextThemeWrapper;
+import android.view.GestureDetector;
+import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.Gravity;
 import android.view.IRotationWatcher;
 import android.view.IWindowManager;
@@ -131,7 +140,9 @@ public class PhoneWindow extends Window implements MenuBuilder.Callback {
     SurfaceHolder.Callback2 mTakeSurfaceCallback;
     
     InputQueue.Callback mTakeInputQueueCallback;
-    
+
+    private Context mContext;
+
     private boolean mIsFloating;
 
     private LayoutInflater mLayoutInflater;
@@ -215,6 +226,7 @@ public class PhoneWindow extends Window implements MenuBuilder.Callback {
 
     public PhoneWindow(Context context) {
         super(context);
+        mContext = context;
         mLayoutInflater = LayoutInflater.from(context);
     }
 
@@ -1812,9 +1824,15 @@ public class PhoneWindow extends Window implements MenuBuilder.Callback {
         private PopupWindow mActionModePopup;
         private Runnable mShowActionModePopup;
 
+        private Handler mConfigHandler;
+        private boolean mEnableSpen;
+        private SettingsObserver settingsObserver;
+
         public DecorView(Context context, int featureId) {
             super(context);
             mFeatureId = featureId;
+            mConfigHandler = new Handler();
+            settingsObserver = new SettingsObserver(mConfigHandler);
         }
 
         @Override
@@ -1895,8 +1913,127 @@ public class PhoneWindow extends Window implements MenuBuilder.Callback {
             return false;
         }
 
+
+        private final StylusGestureFilter mStylusFilter = new StylusGestureFilter();
+
+        private class StylusGestureFilter extends SimpleOnGestureListener {
+            final ContentResolver resolver = mContext.getContentResolver();
+            private final static int SWIPE_MIN_DISTANCE = 50;
+            private final static int SWIPE_MIN_VELOCITY = 100;
+            private GestureDetector mDetector;
+            private final static String TAG = "StylusGestureFilter";
+
+            public StylusGestureFilter() {
+                mDetector = new GestureDetector(this);
+            }
+
+            public boolean onTouchEvent(MotionEvent event) {
+                return mDetector.onTouchEvent(event);
+            }
+
+            @Override
+            public boolean onFling(MotionEvent e1, MotionEvent e2,
+                    float velocityX, float velocityY) {
+
+                final float xDistance = Math.abs(e1.getX() - e2.getX());
+                final float yDistance = Math.abs(e1.getY() - e2.getY());
+
+                velocityX = Math.abs(velocityX);
+                velocityY = Math.abs(velocityY);
+                boolean result = false;
+
+                if (velocityX > SWIPE_MIN_VELOCITY
+                        && xDistance > SWIPE_MIN_DISTANCE
+                        && xDistance > yDistance) {
+                    if (e1.getX() > e2.getX()) { // right to left
+                        // Swipe Left
+                        SendBroadcast(
+                            Settings.System.getString(resolver,
+                               Settings.System.SPEN_ACTIONS[SWIPE_LEFT]));
+                    } else {
+                        // Swipe Right
+                        SendBroadcast(
+                            Settings.System.getString(resolver,
+                               Settings.System.SPEN_ACTIONS[SWIPE_RIGHT]));
+                    }
+                    result = true;
+                } else if (velocityY > SWIPE_MIN_VELOCITY
+                        && yDistance > SWIPE_MIN_DISTANCE
+                        && yDistance > xDistance) {
+                    if (e1.getY() > e2.getY()) { // bottom to up
+                        // Swipe Up
+                        SendBroadcast(
+                            Settings.System.getString(resolver,
+                               Settings.System.SPEN_ACTIONS[SWIPE_UP]));
+                    } else {
+                        // Swipe Down
+                        SendBroadcast(
+                            Settings.System.getString(resolver,
+                               Settings.System.SPEN_ACTIONS[SWIPE_DOWN]));
+                    }
+                    result = true;
+                }
+                return result;
+            }
+
+            @Override
+            public boolean onDoubleTap(MotionEvent arg0) {
+                SendBroadcast(
+                     Settings.System.getString(resolver,
+                          Settings.System.SPEN_ACTIONS[TAP_DOUBLE]));
+                return true;
+            }
+
+            public void onLongPress(MotionEvent e) {
+                SendBroadcast(
+                     Settings.System.getString(resolver,
+                          Settings.System.SPEN_ACTIONS[PRESS_LONG]));
+            }
+
+        }
+
+        private void SendBroadcast(String action){
+                Intent i = new Intent();
+                i.setAction("com.android.systemui.aokp.LAUNCH_ACTION");
+                i.putExtra("action", action);
+                mContext.sendBroadcast(i);
+        }
+
+    private final class SettingsObserver extends ContentObserver {
+        SettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        void observe() {
+            ContentResolver resolver = mContext.getContentResolver();
+            resolver.registerContentObserver(Settings.System
+                .getUriFor(Settings.System.ENABLE_SPEN_ACTIONS), false, this);
+            updateSettings();
+        }
+
+        void unobserve() {
+            ContentResolver resolver = mContext.getContentResolver();
+            resolver.unregisterContentObserver(this);
+        }
+
+         @Override
+        public void onChange(boolean selfChange) {
+            updateSettings();
+        }
+
+        void updateSettings() {
+            mEnableSpen = Settings.System.getBoolean(
+                    mContext.getContentResolver(),
+                    Settings.System.ENABLE_SPEN_ACTIONS, false);
+        }
+    }
+
         @Override
         public boolean dispatchTouchEvent(MotionEvent ev) {
+            if (mEnableSpen && MotionEvent.BUTTON_SECONDARY == ev.getButtonState()) {
+                mStylusFilter.onTouchEvent(ev);
+                return false;
+            }
             final Callback cb = getCallback();
             return cb != null && !isDestroyed() && mFeatureId < 0 ? cb.dispatchTouchEvent(ev)
                     : super.dispatchTouchEvent(ev);
@@ -2463,6 +2600,8 @@ public class PhoneWindow extends Window implements MenuBuilder.Callback {
             super.onAttachedToWindow();
             
             updateWindowResizeState();
+
+            settingsObserver.observe();
             
             final Callback cb = getCallback();
             if (cb != null && !isDestroyed() && mFeatureId < 0) {
@@ -2484,7 +2623,9 @@ public class PhoneWindow extends Window implements MenuBuilder.Callback {
         @Override
         protected void onDetachedFromWindow() {
             super.onDetachedFromWindow();
-            
+
+            settingsObserver.unobserve();
+
             final Callback cb = getCallback();
             if (cb != null && mFeatureId < 0) {
                 cb.onDetachedFromWindow();

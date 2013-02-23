@@ -20,6 +20,15 @@ public class AwesomeConstants {
 
     public static final String ASSIST_ICON_METADATA_NAME = "com.android.systemui.action_assist_icon";
 
+    public final static int SWIPE_LEFT = 0;
+    public final static int SWIPE_RIGHT = 1;
+    public final static int SWIPE_DOWN = 2;
+    public final static int SWIPE_UP = 3;
+    public final static int TAP_DOUBLE = 4;
+    public final static int PRESS_LONG = 5;
+    public final static int SPEN_REMOVE = 6;
+    public final static int SPEN_INSERT = 7;
+
     public static enum AwesomeConstant {
         ACTION_HOME          { @Override public String value() { return "**home**";}},
         ACTION_BACK          { @Override public String value() { return "**back**";}},

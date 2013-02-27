@@ -84,10 +84,10 @@ public class UserToggle extends BaseToggle {
             currentUserContext = mContext.createPackageContextAsUser("android", 0,
                     new UserHandle(userInfo.id));
         } catch (NameNotFoundException e) {
-            Log.e(TAG, "Couldn't create user context", e);
+           log("Couldn't create user context", e);
             throw new RuntimeException(e);
         } catch (RemoteException e) {
-            Log.e(TAG, "Couldn't get user info", e);
+           log("Couldn't get user info", e);
         }
         final int userId = userInfo.id;
         final String userName = userInfo.name;

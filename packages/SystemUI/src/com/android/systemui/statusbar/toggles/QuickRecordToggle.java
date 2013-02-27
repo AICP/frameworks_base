@@ -7,7 +7,6 @@ import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.media.MediaRecorder;
 import android.os.Environment;
-import android.util.Log;
 import android.view.View;
 
 import com.android.systemui.R;
@@ -23,7 +22,6 @@ public class QuickRecordToggle extends BaseToggle {
     public static final int STATE_JUST_RECORDED = 3;
     public static final int STATE_NO_RECORDING = 4;
 
-    private static final String LOG_TAG = "AudioRecord";
     private static String mQuickAudio = null;
 
     private int mRecordingState;
@@ -146,7 +144,7 @@ public class QuickRecordToggle extends BaseToggle {
             queryRecordingInformation();
             mPlayer.setOnCompletionListener(stoppedPlaying);
         } catch (IOException e) {
-            Log.e(LOG_TAG, "prepare() failed", e);
+            log("prepare() failed", e);
         }
     }
 
@@ -170,7 +168,7 @@ public class QuickRecordToggle extends BaseToggle {
             queryRecordingInformation();
             mHandler.postDelayed(autoStopRecord, 60000);
         } catch (IOException e) {
-            Log.e(LOG_TAG, "prepare() failed", e);
+            log("prepare() failed", e);
         }
     }
 

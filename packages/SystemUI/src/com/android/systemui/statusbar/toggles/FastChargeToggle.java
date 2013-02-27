@@ -4,7 +4,6 @@ package com.android.systemui.statusbar.toggles;
 import android.content.Context;
 import android.content.Intent;
 import android.os.FileObserver;
-import android.util.Log;
 
 import com.android.systemui.R;
 
@@ -26,7 +25,7 @@ public class FastChargeToggle extends StatefulToggle {
             public void onEvent(int event, String file) {
                 if (file == null)
                     file = "null";
-                Log.d(TAG, "fast charge file modified, event:" + event + ", file: " + file);
+                log("fast charge file modified, event:" + event + ", file: " + file);
                 scheduleViewUpdate();
             }
         };
@@ -100,7 +99,7 @@ public class FastChargeToggle extends StatefulToggle {
         }
         if (content == null)
             content = "";
-        Log.d(TAG, "isFastChargeOn(): content: " + content);
+        log("isFastChargeOn(): content: " + content);
         return "1".equals(content) || "Y".equalsIgnoreCase(content);
     }
 

@@ -11,7 +11,6 @@ import android.os.Handler;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.UserHandle;
-import android.provider.Settings;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
@@ -217,5 +216,13 @@ public abstract class BaseToggle
             string.substring(0, length - 1);
         }
         return string;
+    }
+
+    protected static void log(String msg) {
+        ToggleManager.log(msg);
+    }
+
+    protected static void log(String msg, Exception e) {
+        ToggleManager.log(msg, e);
     }
 }

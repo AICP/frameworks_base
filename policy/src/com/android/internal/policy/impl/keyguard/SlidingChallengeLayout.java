@@ -25,7 +25,6 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.database.ContentObserver;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Handler;
@@ -135,8 +134,6 @@ public class SlidingChallengeLayout extends ViewGroup implements ChallengeLayout
     // We have an internal and external version, and we and them together.
     private boolean mChallengeInteractiveExternal = true;
     private boolean mChallengeInteractiveInternal = true;
-
-    private boolean mNavBarAutoHide = false;
 
     static final Property<SlidingChallengeLayout, Float> HANDLE_ALPHA =
             new FloatProperty<SlidingChallengeLayout>("handleAlpha") {
@@ -264,9 +261,6 @@ public class SlidingChallengeLayout extends ViewGroup implements ChallengeLayout
 
         // how much space to account for in the handle when closed
         mChallengeBottomBound = res.getDimensionPixelSize(R.dimen.kg_widget_pager_bottom_padding);
-
-        SettingsObserver settingsObserver = new SettingsObserver(new Handler());
-        settingsObserver.observe();
 
         setWillNotDraw(false);
         setSystemUiVisibility(SYSTEM_UI_FLAG_LAYOUT_STABLE);
@@ -1255,7 +1249,8 @@ public class SlidingChallengeLayout extends ViewGroup implements ChallengeLayout
     public int getPaddingBottom() {
         int padding = super.getPaddingBottom();
 
-        if (mNavBarAutoHide) {
+        if (Settings.System.getBoolean(mContext.getContentResolver(),
+                Settings.System.NAV_HIDE_ENABLE, false)) {
             int adjustment = Settings.System.getInt(
                         mContext.getContentResolver(),
                         Settings.System.NAVIGATION_BAR_HEIGHT,
@@ -1266,32 +1261,6 @@ public class SlidingChallengeLayout extends ViewGroup implements ChallengeLayout
         }
 
         return padding;
-    }
-
-    class SettingsObserver extends ContentObserver {
-        SettingsObserver(Handler handler) {
-            super(handler);
-        }
-
-        void observe() {
-            ContentResolver resolver = mContext.getContentResolver();
-
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.NAV_HIDE_ENABLE), false, this);
-            updateSettings();
-        }
-
-        @Override
-        public void onChange(boolean selfChange) {
-            updateSettings();
-        }
-    }
-
-     protected void updateSettings() {
-        ContentResolver resolver = mContext.getContentResolver();
-
-        mNavBarAutoHide = Settings.System.getBoolean(resolver,
-                Settings.System.NAV_HIDE_ENABLE, false);
     }
 
 }

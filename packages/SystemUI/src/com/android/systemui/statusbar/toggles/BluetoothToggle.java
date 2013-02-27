@@ -20,7 +20,7 @@ public class BluetoothToggle extends StatefulToggle {
             return;
         }
         boolean enabled = bt.isEnabled();
-        setIcon(enabled ? R.drawable.ic_qs_bluetooth_on : R.drawable.ic_qs_bluetooth_off);
+        setIcon(enabled ? R.drawable.ic_qs_bluetooth_not_connected : R.drawable.ic_qs_bluetooth_off);
         setLabel(enabled ? R.string.quick_settings_bluetooth_label
                 : R.string.quick_settings_bluetooth_off_label);
         updateCurrentState(enabled ? State.ENABLED : State.DISABLED);

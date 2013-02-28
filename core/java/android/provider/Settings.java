@@ -3150,6 +3150,80 @@ public final class Settings {
         /**
          * @hide
          */
+        public static final String CUSTOM_TOGGLE_ADVANCED = "custom_toggle_advanced";
+
+        /**
+         * @hide
+         */
+        public static final String CUSTOM_TOGGLE_REVERT = "custom_toggle_revert";
+
+        /**
+         * @hide
+         */
+        public static final String DCLICK_TOGGLE_REVERT = "dclick_toggle_revert";
+
+        /**
+         * @hide
+         */
+        public static final String MATCH_ACTION_ICON = "match_action_icon";
+
+        /**
+         * @hide
+         */
+        public static final String COLLAPSE_SHADE = "collapse_shade";
+
+        /**
+         * @hide
+         */
+        public static final String CUSTOM_TOGGLE_QTY = "custom_toggle_qty";
+
+        /**
+         * @hide
+         */
+        public static final String[] CUSTOM_PRESS_TOGGLE = new String[] {
+            "toggle_custom_app_intent_0",
+            "toggle_custom_app_intent_1",
+            "toggle_custom_app_intent_2",
+            "toggle_custom_app_intent_3",
+            "toggle_custom_app_intent_4",
+        };
+
+        /**
+         * @hide
+         */
+        public static final String[] CUSTOM_LONGPRESS_TOGGLE = new String[] {
+            "toggle_custom_app_longintent_0",
+            "toggle_custom_app_longintent_1",
+            "toggle_custom_app_longintent_2",
+            "toggle_custom_app_longintent_3",
+            "toggle_custom_app_longintent_4",
+        };
+
+        /**
+         * @hide
+         */
+        public static final String[] CUSTOM_TOGGLE_ICONS = new String[] {
+            "custom_toggle_icons_0",
+            "custom_toggle_icons_1",
+            "custom_toggle_icons_2",
+            "custom_toggle_icons_3",
+            "custom_toggle_icons_4",
+        };
+
+        /**
+         * @hide
+         */
+        public static final String[] CUSTOM_TOGGLE_TEXT = new String[] {
+            "custom_toggle_text_0",
+            "custom_toggle_text_1",
+            "custom_toggle_text_2",
+            "custom_toggle_text_3",
+            "custom_toggle_text_4",
+        };
+
+        /**
+         * @hide
+         */
         public static final String MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD = "mute_annoying_notifications_threshold";
 
         /**

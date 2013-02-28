@@ -19,7 +19,6 @@ import android.os.UserManager;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Profile;
-import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.view.WindowManagerGlobal;
@@ -33,11 +32,12 @@ public class UserToggle extends BaseToggle {
 
     private AsyncTask<Void, Void, Pair<String, Drawable>> mUserInfoTask;
 
-    private Drawable mAvatarDrawable = null;
+    private static Drawable sAvatarDrawable = null;
 
     @Override
     protected void init(Context c, int style) {
         super.init(c, style);
+        reloadUserInfo();
         registerBroadcastReceiver(new BroadcastReceiver() {
 
             @Override
@@ -45,7 +45,6 @@ public class UserToggle extends BaseToggle {
                 reloadUserInfo();
             }
         }, new IntentFilter(Intent.ACTION_USER_SWITCHED));
-        reloadUserInfo();
     }
 
     @Override
@@ -58,7 +57,7 @@ public class UserToggle extends BaseToggle {
             try {
                 WindowManagerGlobal.getWindowManagerService().lockNow(null);
             } catch (RemoteException e) {
-                Log.e(TAG, "Couldn't show user switcher", e);
+                log("Couldn't show user switcher", e);
             }
         } else {
             Intent intent = ContactsContract.QuickContact.composeQuickContactsIntent(
@@ -137,9 +136,8 @@ public class UserToggle extends BaseToggle {
             @Override
             protected void onPostExecute(Pair<String, Drawable> result) {
                 super.onPostExecute(result);
-                // mModel.setUserTileInfo(result.first, result.second);
-                mAvatarDrawable = result.second;
                 setLabel(result.first);
+                sAvatarDrawable = result.second;
                 scheduleViewUpdate();
                 mUserInfoTask = null;
             }
@@ -166,8 +164,8 @@ public class UserToggle extends BaseToggle {
 
     @Override
     protected void updateView() {
-        if (mAvatarDrawable != null) {
-            setIcon(mAvatarDrawable);
+        if (sAvatarDrawable != null) {
+            setIcon(sAvatarDrawable);
         }
         super.updateView();
     }

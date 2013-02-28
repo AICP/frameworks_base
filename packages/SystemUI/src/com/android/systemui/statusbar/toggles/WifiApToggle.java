@@ -19,12 +19,7 @@ public class WifiApToggle extends StatefulToggle {
     @Override
     protected void init(Context c, int style) {
         super.init(c, style);
-        setInfo(mContext.getString(R.string.quick_settings_wifi_tether_off_label),
-                R.drawable.ic_qs_wifi_tether_off);
-        updateCurrentState(State.DISABLED);
-
-        wifiManager = (WifiManager) c.getSystemService(Context.WIFI_SERVICE);
-
+        onWifiTetherChanged();
         IntentFilter wifiFilter = new IntentFilter(
                 WifiManager.WIFI_AP_STATE_CHANGED_ACTION);
         wifiFilter.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION);
@@ -73,7 +68,7 @@ public class WifiApToggle extends StatefulToggle {
         int mWifiApState = wifiManager.getWifiApState();
         boolean enabled = mWifiApState == WifiManager.WIFI_AP_STATE_ENABLED
                 || mWifiApState == WifiManager.WIFI_AP_STATE_ENABLING;
-        updateCurrentState(State.ENABLED);
+        setEnabledState(enabled);
         setIcon(enabled
                 ? R.drawable.ic_qs_wifi_tether_on
                 : R.drawable.ic_qs_wifi_tether_off);

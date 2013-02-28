@@ -17,13 +17,13 @@
 <com.android.systemui.statusbar.phone.QuickSettingsTileView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="@dimen/quick_settings_cell_height"
-    android:background="@drawable/qs_tile_background" >
+    android:background="@drawable/qs_tile_background"
+    android:gravity="center" >
 
     <ImageView
         android:id="@id/icon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:gravity="center"
         android:paddingBottom="10dp"
         android:scaleType="centerInside"

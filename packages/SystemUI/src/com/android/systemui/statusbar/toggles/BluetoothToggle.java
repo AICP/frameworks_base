@@ -19,68 +19,57 @@ public class BluetoothToggle extends StatefulToggle {
         if (bt == null) {
             return;
         }
-        boolean enabled = bt.isEnabled();
-        setIcon(enabled ? R.drawable.ic_qs_bluetooth_not_connected : R.drawable.ic_qs_bluetooth_off);
-        setLabel(enabled ? R.string.quick_settings_bluetooth_label
-                : R.string.quick_settings_bluetooth_off_label);
-        updateCurrentState(enabled ? State.ENABLED : State.DISABLED);
-
+        onBluetoothChanged();
         registerBroadcastReceiver(new BroadcastReceiver() {
 
             @Override
             public void onReceive(Context context, Intent intent) {
-                int state = intent.getIntExtra(
-                        BluetoothAdapter.EXTRA_STATE,
-                        BluetoothAdapter.STATE_OFF);
+                onBluetoothChanged();
+            }
+        }, new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED));
+    }
 
-                String label = null;
-                int iconId = 0;
-                State newState = getState();
-                switch (state) {
+    private void onBluetoothChanged() {
+        final BluetoothAdapter bt = (BluetoothAdapter) mContext
+                .getSystemService(Context.BLUETOOTH_SERVICE);
+        String label = null;
+        int iconId = 0;
+        State newState = getState();
+        switch (bt.getState()) {
+            case BluetoothAdapter.STATE_ON:
+                newState = State.ENABLED;
+                switch (bt.getConnectionState()) {
                     case BluetoothAdapter.STATE_CONNECTED:
                         iconId = R.drawable.ic_qs_bluetooth_on;
                         label = mContext.getString(R.string.quick_settings_bluetooth_label);
-                        newState = State.ENABLED;
-                        break;
-                    case BluetoothAdapter.STATE_ON:
-                        iconId = R.drawable.ic_qs_bluetooth_not_connected;
-                        label = mContext.getString(R.string.quick_settings_bluetooth_label);
-                        newState = State.ENABLED;
                         break;
                     case BluetoothAdapter.STATE_CONNECTING:
-                    case BluetoothAdapter.STATE_TURNING_ON:
-                        iconId = R.drawable.ic_qs_bluetooth_not_connected;
-                        label = mContext.getString(R.string.quick_settings_bluetooth_label);
-                        newState = State.ENABLING;
-                        break;
                     case BluetoothAdapter.STATE_DISCONNECTED:
-                        iconId = R.drawable.ic_qs_bluetooth_not_connected;
-                        label = mContext.getString(R.string.quick_settings_bluetooth_label);
-                        newState = State.DISABLED;
-                        break;
                     case BluetoothAdapter.STATE_DISCONNECTING:
                         iconId = R.drawable.ic_qs_bluetooth_not_connected;
                         label = mContext.getString(R.string.quick_settings_bluetooth_label);
-                        newState = State.DISABLING;
-                        break;
-                    case BluetoothAdapter.STATE_OFF:
-                        iconId = R.drawable.ic_qs_bluetooth_off;
-                        label = mContext.getString(R.string.quick_settings_bluetooth_off_label);
-                        newState = State.DISABLED;
-                        break;
-                    case BluetoothAdapter.STATE_TURNING_OFF:
-                        iconId = R.drawable.ic_qs_bluetooth_off;
-                        label = mContext.getString(R.string.quick_settings_bluetooth_off_label);
-                        newState = State.DISABLING;
                         break;
                 }
-                if (label != null && iconId > 0) {
-                    setInfo(label, iconId);
-                    scheduleViewUpdate();
-                    updateCurrentState(newState);
-                }
-            }
-        }, new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED));
+                break;
+            case BluetoothAdapter.STATE_TURNING_ON:
+                iconId = R.drawable.ic_qs_bluetooth_not_connected;
+                label = mContext.getString(R.string.quick_settings_bluetooth_label);
+                newState = State.ENABLING;
+                break;
+            case BluetoothAdapter.STATE_OFF:
+                iconId = R.drawable.ic_qs_bluetooth_off;
+                label = mContext.getString(R.string.quick_settings_bluetooth_off_label);
+                newState = State.DISABLED;
+                break;
+            case BluetoothAdapter.STATE_TURNING_OFF:
+                iconId = R.drawable.ic_qs_bluetooth_off;
+                label = mContext.getString(R.string.quick_settings_bluetooth_off_label);
+                newState = State.DISABLING;
+                break;
+        }
+        setInfo(label, iconId);
+        updateCurrentState(newState);
+        scheduleViewUpdate();
     }
 
     @Override

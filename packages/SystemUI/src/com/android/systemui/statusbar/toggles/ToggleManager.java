@@ -238,6 +238,8 @@ public class ToggleManager {
                 if (networkController != null && toggle instanceof NetworkSignalChangedCallback) {
                     networkController
                             .addNetworkSignalChangedCallback((NetworkSignalChangedCallback) toggle);
+                    networkController
+                            .notifySignalsChangedCallbacks((NetworkSignalChangedCallback) toggle);
                 }
 
                 if (bluetoothController != null && toggle instanceof BluetoothStateChangeCallback) {
@@ -247,6 +249,7 @@ public class ToggleManager {
 
                 if (batteryController != null && toggle instanceof BatteryStateChangeCallback) {
                     batteryController.addStateChangedCallback((BatteryStateChangeCallback) toggle);
+                    batteryController.updateCallback((BatteryStateChangeCallback) toggle);
                 }
 
                 if (locationController != null && toggle instanceof LocationGpsStateChangeCallback) {
@@ -259,7 +262,7 @@ public class ToggleManager {
                             toggle);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                log("error adding toggle", e);
             }
         }
     }

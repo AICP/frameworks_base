@@ -17,14 +17,14 @@
 <com.android.systemui.statusbar.phone.QuickSettingsTileView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/quick_settings_cell_height"
-    android:background="@drawable/qs_tile_background" >
+    android:background="@drawable/qs_tile_background"
+    android:gravity="center" >
 
     <AnalogClock
         android:id="@+id/analog_clock"
-        android:layout_width="26dp"
-        android:layout_height="26dp"
-        android:layout_centerInParent="true"
-        android:paddingBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:dial="@drawable/ic_qs_clock_circle"
         android:hand_hour="@drawable/ic_qs_clock_hour"
         android:hand_minute="@drawable/ic_qs_clock_minute" />
@@ -34,9 +34,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/analog_clock"
-        android:layout_gravity="center_horizontal"
         android:gravity="center"
-        android:layout_marginTop="12dp"
+        android:paddingTop="10dp"
         android:textAppearance="@style/TextAppearance.QuickSettings.TileView" />
 
 </com.android.systemui.statusbar.phone.QuickSettingsTileView>

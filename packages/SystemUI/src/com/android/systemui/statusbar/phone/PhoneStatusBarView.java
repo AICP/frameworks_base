@@ -259,15 +259,15 @@ public class PhoneStatusBarView extends PanelBar {
         if (panel.getAlpha() != alpha) {
             panel.setAlpha(alpha);
         }
-        updateBackgroundAlpha();
+        updateBackgroundAlpha(frac);
         mBar.updateCarrierLabelVisibility(false);
     }
 
-    private void updateBackgroundAlpha() {
-        if(mFadingPanel != null) {
-            mBar.mTransparencyManager.setTempStatusbarState(true);
+    private void updateBackgroundAlpha(float ex) {
+        if(mFadingPanel != null || ex > 0) {
+            mBar.mTransparencyManager.setTempDisableStatusbarState(true);
         } else {
-            mBar.mTransparencyManager.setTempStatusbarState(false);
+            mBar.mTransparencyManager.setTempDisableStatusbarState(false);
         }
         mBar.mTransparencyManager.update();
     }

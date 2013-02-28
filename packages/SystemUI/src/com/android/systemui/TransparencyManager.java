@@ -85,7 +85,7 @@ public class TransparencyManager {
         mStatusbar = s;
     }
 
-    public void setTempStatusbarState(boolean state) {
+    public void setTempDisableStatusbarState(boolean state) {
         mStatusbarInfo.tempDisable = state;
     }
 
@@ -134,20 +134,23 @@ public class TransparencyManager {
     }
 
     private boolean isLauncherShowing() {
-        ActivityManager am = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
-        final List<ActivityManager.RecentTaskInfo> recentTasks = am
-                .getRecentTasksForUser(
-                        1, ActivityManager.RECENT_WITH_EXCLUDED,
-                        UserHandle.CURRENT.getIdentifier());
-        if (recentTasks.size() > 0) {
-            ActivityManager.RecentTaskInfo recentInfo = recentTasks.get(0);
-            Intent intent = new Intent(recentInfo.baseIntent);
-            if (recentInfo.origActivity != null) {
-                intent.setComponent(recentInfo.origActivity);
+        try {
+            ActivityManager am = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
+            final List<ActivityManager.RecentTaskInfo> recentTasks = am
+                    .getRecentTasksForUser(
+                            1, ActivityManager.RECENT_WITH_EXCLUDED,
+                            UserHandle.CURRENT.getIdentifier());
+            if (recentTasks.size() > 0) {
+                ActivityManager.RecentTaskInfo recentInfo = recentTasks.get(0);
+                Intent intent = new Intent(recentInfo.baseIntent);
+                if (recentInfo.origActivity != null) {
+                    intent.setComponent(recentInfo.origActivity);
+                }
+                if (isCurrentHomeActivity(intent.getComponent(), null)) {
+                    return true;
+                }
             }
-            if (isCurrentHomeActivity(intent.getComponent(), null)) {
-                return true;
-            }
+        } catch(Exception ignore) {
         }
         return false;
     }

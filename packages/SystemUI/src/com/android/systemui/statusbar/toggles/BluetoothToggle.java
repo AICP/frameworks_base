@@ -20,13 +20,18 @@ public class BluetoothToggle extends StatefulToggle {
             return;
         }
         onBluetoothChanged();
+
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
+        filter.addAction(BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED);
+
         registerBroadcastReceiver(new BroadcastReceiver() {
 
             @Override
             public void onReceive(Context context, Intent intent) {
                 onBluetoothChanged();
             }
-        }, new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED));
+        }, filter);
     }
 
     private void onBluetoothChanged() {

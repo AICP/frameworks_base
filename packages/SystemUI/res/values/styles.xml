@@ -145,9 +145,8 @@
         <item name="android:paddingRight">6dp</item>
         <item name="android:paddingBottom">2dp</item>
         <item name="android:drawablePadding">12dp</item>
-        <item name="android:textSize">12dp</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">#CCCCCC</item>
+        <item name="android:textColor">@color/toggle_text</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:ellipsize">marquee</item>
         <item name="android:fadingEdge">horizontal</item>

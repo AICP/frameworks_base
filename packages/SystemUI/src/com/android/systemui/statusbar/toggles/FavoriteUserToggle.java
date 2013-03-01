@@ -32,13 +32,14 @@ public class FavoriteUserToggle extends BaseToggle {
 
     private AsyncTask<Void, Void, Pair<String, Drawable>> mFavContactInfoTask;
 
-    private Drawable mAvatarDrawable = null;
+    private static Drawable sAvatarDrawable = null;
 
     private SettingsObserver mObserver = null;
 
     @Override
     protected void init(Context c, int style) {
         super.init(c, style);
+        reloadFavContactInfo();
         mObserver = new SettingsObserver(mHandler);
         mObserver.observe();
         registerBroadcastReceiver(new BroadcastReceiver() {
@@ -48,7 +49,6 @@ public class FavoriteUserToggle extends BaseToggle {
                 reloadFavContactInfo();
             }
         }, new IntentFilter(Intent.ACTION_USER_SWITCHED));
-        reloadFavContactInfo();
     }
 
     @Override
@@ -57,7 +57,11 @@ public class FavoriteUserToggle extends BaseToggle {
             mContext.getContentResolver().unregisterContentObserver(mObserver);
             mObserver = null;
         }
-        mAvatarDrawable = null;
+        if (mFavContactInfoTask != null) {
+            mFavContactInfoTask.cancel(false);
+            mFavContactInfoTask = null;
+        }
+        sAvatarDrawable = null;
         super.cleanup();
     }
 
@@ -98,8 +102,8 @@ public class FavoriteUserToggle extends BaseToggle {
 
     @Override
     protected void updateView() {
-        if (mAvatarDrawable != null) {
-            setIcon(mAvatarDrawable);
+        if (sAvatarDrawable != null) {
+            setIcon(sAvatarDrawable);
         }
         super.updateView();
     }
@@ -154,9 +158,9 @@ public class FavoriteUserToggle extends BaseToggle {
             protected void onPostExecute(Pair<String, Drawable> result) {
                 super.onPostExecute(result);
                 setLabel(result.first);
-                mAvatarDrawable = result.second;
-                mFavContactInfoTask = null;
+                sAvatarDrawable = result.second;
                 scheduleViewUpdate();
+                mFavContactInfoTask = null;
             }
         };
         mFavContactInfoTask.execute();

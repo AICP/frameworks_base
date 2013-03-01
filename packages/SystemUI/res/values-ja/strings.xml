@@ -204,6 +204,7 @@
     <string name="quick_settings_brightness_dialog_title" msgid="8599674057673605368">"画面の明るさ"</string>
     <string name="quick_settings_brightness_dialog_auto_brightness_label" msgid="5064982743784071218">"自動"</string>
     <string name="quick_settings_swagger">Swagger</string>
+    <string name="quick_settings_swaggersun">Swagger Sunday</string>
     <string name="quick_settings_fbgt">FBGT</string>
     <string name="quick_settings_recording">録音中...</string>
     <string name="quick_settings_recordingcap">録音しました</string>
@@ -270,6 +271,7 @@
     <string name="quick_settings_navbar_hide_on_label">ナビバー非表示</string>
     <string name="quick_settings_navbar_hide_off_label">ナビバー表示</string>
     <string name="quick_settings_sound_on">サウンド On</string>
+    <string name="quick_settings_swaggersuntoast">#SwaggerSunday</string>
 
     <!--  RamBar -->
     <string name="memory">RAM</string>

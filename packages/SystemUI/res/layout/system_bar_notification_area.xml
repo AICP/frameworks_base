@@ -140,6 +140,7 @@
                 android:paddingStart="4dip"
                 android:visibility="gone"
                 />
+
             <include layout="@layout/battery_cluster_view"
                 android:id="@+id/battery_cluster"
                 android:layout_width="wrap_content"

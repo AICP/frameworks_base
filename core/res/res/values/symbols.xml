@@ -1862,6 +1862,13 @@
   <java-symbol type="drawable" name="ic_action_silent" />
   <java-symbol type="drawable" name="ic_action_vib" />
 
+  <!-- Lockscreen -->
+  <java-symbol type="drawable" name="ic_lockscreen_empty" />
+  <java-symbol type="drawable" name="ic_empty" />
+  <java-symbol type="drawable" name="ic_lockscreen_lock_pressed" />
+  <java-symbol type="drawable" name="ic_lockscreen_target_activated" />
+  <java-symbol type="id" name="keyguard_glow_pad_container" />
+
   <!-- Telephony -->
   <java-symbol type="bool" name="config_smsSamsungCdmaAlternateMessageIDEncoding" />
   <java-symbol type="bool" name="config_samsung_stk" />

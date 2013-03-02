@@ -306,10 +306,7 @@ public class KeyguardHostView extends KeyguardViewBase {
 
         mExpandChallengeView = (View) findViewById(R.id.expand_challenge_handle);
         if (mExpandChallengeView != null) {
-            if (Settings.System.getBoolean(getContext().getContentResolver(),
-                Settings.System.LOCKSCREEN_LONGPRESS_CHALLENGE, false)) {
-                mExpandChallengeView.setOnLongClickListener(mFastUnlockClickListener);
-            }
+            mExpandChallengeView.setOnLongClickListener(mFastUnlockClickListener);
         }
 
         minimizeChallengeIfNeeded();

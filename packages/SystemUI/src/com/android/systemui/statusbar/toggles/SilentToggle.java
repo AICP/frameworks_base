@@ -43,7 +43,7 @@ public class SilentToggle extends StatefulToggle {
                 break;
             default:
                 updateCurrentState(State.DISABLED);
-                setLabel(R.string.quick_settings_vibrate_off_label);
+                setLabel(R.string.quick_settings_silent_off_label);
                 setIcon(R.drawable.ic_qs_silence_off);
                 break;
         }

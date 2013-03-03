@@ -253,6 +253,8 @@
     <string name="quick_settings_data_off_label">Data vypnuta</string>
     <string name="quick_settings_navbar_hide_on_label">Skrytá NL zapnuta</string>
     <string name="quick_settings_navbar_hide_off_label">Skrytá NL vypnuta</string>
+    <string name="quick_settings_quiet_hours_on_label">Hod. klidu zapnuty</string>
+    <string name="quick_settings_quiet_hours_off_label">Hod. klidu vypnuty</string>
     <string name="quick_settings_sound_on">Hlasitě zapnuto</string>
     <string name="quick_settings_recording">Nahrávání...</string>
     <string name="quick_settings_recordingcap">Nahrávka zaznamenána</string>

@@ -42,4 +42,5 @@
     <string name="toggle_SOUNDSTATE">Zvukový režim</string>
     <string name="toggle_NAVBARHIDE">Skrývání navigační lišty</string>
     <string name="toggle_QUICKRECORD">Rychlé nahrávání</string>
+    <string name="toggle_QUIETHOURS">Hodiny klidu</string>
 </resources>

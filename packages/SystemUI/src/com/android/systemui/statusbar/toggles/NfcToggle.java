@@ -17,7 +17,11 @@ public class NfcToggle extends StatefulToggle {
     @Override
     protected void init(Context c, int style) {
         super.init(c, style);
-
+        mNfcAdapter = NfcAdapter.getDefaultAdapter(mContext);
+        if(mNfcAdapter == null) {
+            return;
+        }
+        setEnabledState(mNfcAdapter.isEnabled());
         registerBroadcastReceiver(new BroadcastReceiver() {
 
             @Override
@@ -62,10 +66,7 @@ public class NfcToggle extends StatefulToggle {
 
     private void toggleNfc(boolean state) {
         if (mNfcAdapter == null) {
-            mNfcAdapter = NfcAdapter.getDefaultAdapter(mContext);
-            if (mNfcAdapter == null) {
                 return;
-            }
         }
 
         if (state) {

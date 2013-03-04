@@ -95,7 +95,7 @@ public class ToggleManager {
 
     Context mContext;
     BroadcastReceiver mBroadcastReceiver;
-    String mUserToggles = null;
+    String mUserToggles = "";
     ArrayList<BaseToggle> mToggles = new ArrayList<BaseToggle>();
 
     private HashMap<String, Class<? extends BaseToggle>> toggleMap;
@@ -270,7 +270,7 @@ public class ToggleManager {
     }
 
     private ArrayList<String> getToggles() {
-        if (mUserToggles == null) {
+        if (mUserToggles.isEmpty()) {
             return getDefaultTiles();
         }
 
@@ -306,6 +306,9 @@ public class ToggleManager {
     public void updateSettings() {
         ContentResolver resolver = mContext.getContentResolver();
         mUserToggles = Settings.System.getString(resolver, Settings.System.QUICK_TOGGLES);
+        if(mUserToggles == null) {
+            mUserToggles = "";
+        }
         int columnCount = Settings.System.getInt(resolver, Settings.System.QUICK_TOGGLES_PER_ROW,
                 mContext.getResources().getInteger(R.integer.quick_settings_num_columns));
 

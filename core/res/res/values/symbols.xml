@@ -1849,6 +1849,19 @@
   <java-symbol type="id" name="navbarback" />
   <java-symbol type="id" name="navbarmenu" />
 
+ <!-- Navigation Ring -->
+  <java-symbol type="drawable" name="ic_navbar_blank" />
+  <java-symbol type="drawable" name="ic_navbar_blank_activated" />
+  <java-symbol type="drawable" name="ic_action_empty" />
+  <java-symbol type="drawable" name="ic_action_ime_switcher" />
+  <java-symbol type="drawable" name="ic_action_killtask" />
+  <java-symbol type="drawable" name="ic_action_power" />
+  <java-symbol type="drawable" name="ic_action_screenshot" />
+  <java-symbol type="drawable" name="ic_action_lastapp" />
+  <java-symbol type="drawable" name="ic_action_ring_vib_silent" />
+  <java-symbol type="drawable" name="ic_action_silent" />
+  <java-symbol type="drawable" name="ic_action_vib" />
+
   <!-- Telephony -->
   <java-symbol type="bool" name="config_smsSamsungCdmaAlternateMessageIDEncoding" />
   <java-symbol type="bool" name="config_samsung_stk" />

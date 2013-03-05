@@ -270,6 +270,8 @@
     <string name="quick_settings_data_off_label">データ通信 Off</string>
     <string name="quick_settings_navbar_hide_on_label">ナビバー非表示</string>
     <string name="quick_settings_navbar_hide_off_label">ナビバー表示</string>
+    <string name="quick_settings_quiet_hours_on_label">サイレントタイム On</string>
+    <string name="quick_settings_quiet_hours_off_label">サイレントタイム Off</string>
     <string name="quick_settings_sound_on">サウンド On</string>
     <string name="quick_settings_swaggersuntoast">#SwaggerSunday</string>
 

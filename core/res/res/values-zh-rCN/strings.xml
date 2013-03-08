@@ -228,6 +228,8 @@
     <string name="permgrouplab_storage" msgid="1971118770546336966">"存储"</string>
     <string name="permgroupdesc_storage" product="nosdcard" msgid="7442318502446874999">"访问 USB 存储设备。"</string>
     <string name="permgroupdesc_storage" product="default" msgid="9203302214915355774">"访问 SD 卡。"</string>
+    <string name="permlab_accessSuperuser">设备所有功能和存储的完整权限</string>
+    <string name="permdesc_accessSuperuser">超级用户拥有设备所有功能和存储的完整控制权限，包括设备的安全性、硬件传感器等。此权限存在潜在危险性。</string>
     <string name="permlab_statusBar" msgid="7417192629601890791">"停用或修改状态栏"</string>
     <string name="permdesc_statusBar" msgid="8434669549504290975">"允许应用停用状态栏或者增删系统图标。"</string>
     <string name="permlab_statusBarService" msgid="7247281911387931485">"状态栏"</string>

@@ -528,6 +528,8 @@
     <string name="quick_settings_quickrecord">Quick Record</string>
     <string name="quick_settings_nofile">Long Press To Record</string>
     <string name="quick_settings_sleep">Sleep</string>
+    <string name="quick_settings_reboot">Reboot</string>
+    <string name="quick_settings_reboot_message">Your device is rebooting</string>
 
     <!-- Title of help text shown when the notification panel is pulled down for the very first time. [CHAR LIMIT=NONE] -->
     <string name="status_bar_help_title">Notifications appear here</string>

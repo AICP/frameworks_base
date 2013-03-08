@@ -46,4 +46,5 @@
     <string name="toggle_SLEEP">Sleep</string>
     <string name="toggle_STATUSBAR">Statusbar</string>
     <string name="toggle_SCREENSHOT">Screenshot</string>
+    <string name="toggle_REBOOT">Reboot</string>
 </resources>

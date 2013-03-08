@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2013 AOKP
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="toggle_USER">当前用户</string>
+    <string name="toggle_BRIGHTNESS">亮度</string>
+    <string name="toggle_SETTINGS">设置</string>
+    <string name="toggle_WIFI">WiFi</string>
+    <string name="toggle_SIGNAL">信号</string>
+    <string name="toggle_ROTATE">旋转</string>
+    <string name="toggle_CLOCK">时钟</string>
+    <string name="toggle_GPS">GPS</string>
+    <string name="toggle_IME">输入法选择器</string>
+    <string name="toggle_BATTERY">电量</string>
+    <string name="toggle_AIRPLANE_MODE">飞行模式</string>
+    <string name="toggle_BLUETOOTH">蓝牙</string>
+    <string name="toggle_SWAGGER">屌爆</string>
+    <string name="toggle_VIBRATE">振动</string>
+    <string name="toggle_SILENT">静音</string>
+    <string name="toggle_FCHARGE">快速充电</string>
+    <string name="toggle_SYNC">同步</string>
+    <string name="toggle_NFC">NFC</string>
+    <string name="toggle_TORCH">灯光</string>
+    <string name="toggle_WIFITETHER">WiFi 热点</string>
+    <string name="toggle_USBTETHER">USB 网络共享</string>
+    <string name="toggle_2G">2G</string>
+    <string name="toggle_LTE">LTE</string>
+    <string name="toggle_FAVCONTACT">收藏的联系人</string>
+    <string name="toggle_SOUNDSTATE">声音状态</string>
+    <string name="toggle_NAVBARHIDE">导航栏自动隐藏</string>
+    <string name="toggle_QUICKRECORD">快捷录音</string>
+    <string name="toggle_QUIETHOURS">静音时段</string>
+</resources>

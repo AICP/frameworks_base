@@ -1799,6 +1799,11 @@
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_modifyNetworkAccounting">Allows the app to modify how network usage is accounted against apps. Not for use by normal apps.</string>
 
+    <!-- Title of an application permission that lets an application view/edit revoked permissions. -->
+    <string name="permlab_revokePermissions">Allows view and edit of revoked permissions. Not for use by normal applications.</string>
+    <!-- Description of an application permission that lets lets an application view/edit revoked permissions. -->
+    <string name="permdesc_revokePermissions">Allows read and write for revoked permissions. Not for use by normal applications.</string>
+
     <!-- Policy administration -->
 
     <!-- Title of policy access to limiting the user's password choices -->
@@ -3015,6 +3020,12 @@
     <string name="aerr_process">Unfortunately, the process <xliff:g id="process">%1$s</xliff:g> has
         stopped.</string>
     <!-- Title of the alert when an application is not responding. -->
+    <string name="aerr_revoked_application">The application <xliff:g id="application">%1$s</xliff:g>
+        (process <xliff:g id="process">%2$s</xliff:g>) has stopped unexpectedly.\nWARNING!\nThis application has one or more of its permissions REVOKED which may cause it to malfunction. Please grant its permissions and try again.</string>
+    <!-- Text of the alert that is displayed when an application has crashed. -->
+    <string name="aerr_revoked_process">The process <xliff:g id="process">%1$s</xliff:g> has
+        stopped unexpectedly.\nWARNING!\nThis process has one or more of its permissions REVOKED which may cause it to malfunction. Please grant its permissions and try again.</string>
+    <!-- Title of the alert when an application is not responding. -->
     <string name="anr_title"></string>
     <!-- Text of the alert that is displayed when an application is not responding. -->
     <string name="anr_activity_application"><xliff:g id="application">%2$s</xliff:g> isn\'t responding.\n\nDo you want to close it?</string>
@@ -3030,6 +3041,8 @@
     <string name="report">Report</string>
     <!-- Button allowing the user to choose to wait for an application that is not responding to become responsive again. -->
     <string name="wait">Wait</string>
+    <!-- Button allowing the user reset the revoked permissions for application which has encountered an error. -->
+    <string name="reset_perms">Reset permissions</string>
     <!-- Text of the alert that is displayed when a web page is not responding. [CHAR-LIMIT=NONE] -->
     <string name="webpage_unresponsive">The page has become unresponsive.\n\nDo you want to close it?</string>
     <!-- [CHAR LIMIT=25] Title of the alert when application launches on top of another. -->

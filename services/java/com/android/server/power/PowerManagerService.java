@@ -305,6 +305,9 @@ public final class PowerManagerService extends IPowerManager.Stub
     // True if dreams should be activated on sleep.
     private boolean mDreamsActivateOnSleepSetting;
 
+    // True if dreams should be activated on wireless charging.
+    private boolean mDreamsActivateOnWirelessCharger;
+
     // True if dreams should be activated on dock.
     private boolean mDreamsActivateOnDockSetting;
 
@@ -547,6 +550,10 @@ public final class PowerManagerService extends IPowerManager.Stub
         mDreamsActivateOnSleepSetting = (Settings.Secure.getIntForUser(resolver,
                 Settings.Secure.SCREENSAVER_ACTIVATE_ON_SLEEP,
                 mDreamsActivatedOnSleepByDefaultConfig ? 1 : 0,
+                UserHandle.USER_CURRENT) != 0);
+        mDreamsActivateOnWirelessCharger = (Settings.Secure.getIntForUser(resolver,
+                Settings.Secure.SCREENSAVER_ACTIVATE_ON_WIRELESS_CHARGE,
+                0, // disabled by default
                 UserHandle.USER_CURRENT) != 0);
         mDreamsActivateOnDockSetting = (Settings.Secure.getIntForUser(resolver,
                 Settings.Secure.SCREENSAVER_ACTIVATE_ON_DOCK,
@@ -1454,9 +1461,12 @@ public final class PowerManagerService extends IPowerManager.Stub
      * activity timeout has expired and it's bedtime.
      */
     private boolean shouldNapAtBedTimeLocked() {
-        return mDreamsActivateOnSleepSetting
+        return (mDreamsActivateOnSleepSetting
+                        && mPlugType != BatteryManager.BATTERY_PLUGGED_WIRELESS)
                 || (mDreamsActivateOnDockSetting
-                        && mDockState != Intent.EXTRA_DOCK_STATE_UNDOCKED);
+                        && mDockState != Intent.EXTRA_DOCK_STATE_UNDOCKED)
+                || (mDreamsActivateOnWirelessCharger
+                        && mPlugType == BatteryManager.BATTERY_PLUGGED_WIRELESS);
     }
 
     /**

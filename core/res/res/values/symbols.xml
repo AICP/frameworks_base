@@ -1854,14 +1854,6 @@
   <java-symbol type="drawable" name="ic_navbar_blank" />
   <java-symbol type="drawable" name="ic_navbar_blank_activated" />
   <java-symbol type="drawable" name="ic_action_empty" />
-  <java-symbol type="drawable" name="ic_action_ime_switcher" />
-  <java-symbol type="drawable" name="ic_action_killtask" />
-  <java-symbol type="drawable" name="ic_action_power" />
-  <java-symbol type="drawable" name="ic_action_screenshot" />
-  <java-symbol type="drawable" name="ic_action_lastapp" />
-  <java-symbol type="drawable" name="ic_action_ring_vib_silent" />
-  <java-symbol type="drawable" name="ic_action_silent" />
-  <java-symbol type="drawable" name="ic_action_vib" />
 
   <!-- Lockscreen -->
   <java-symbol type="drawable" name="ic_lockscreen_empty" />
@@ -1890,4 +1882,31 @@
 
   <!-- Wifi -->
   <java-symbol type="bool" name="config_wifiApFirmwareReload" />
+
+  <!--  Awesome Action -->
+  <java-symbol type="string" name="action_home"/>
+  <java-symbol type="string" name="action_back"/>
+  <java-symbol type="string" name="action_recents"/>
+  <java-symbol type="string" name="action_recents_gb"/>
+  <java-symbol type="string" name="action_search"/>
+  <java-symbol type="string" name="action_screenshot"/>
+  <java-symbol type="string" name="action_menu"/>
+  <java-symbol type="string" name="action_ime"/>
+  <java-symbol type="string" name="action_kill"/>
+  <java-symbol type="string" name="action_lastapp"/>
+  <java-symbol type="string" name="action_power"/>
+  <java-symbol type="string" name="action_notifications"/>
+  <java-symbol type="string" name="action_assist"/>
+  <java-symbol type="string" name="action_clockoptions"/>
+  <java-symbol type="string" name="action_voiceassist"/>
+  <java-symbol type="string" name="action_torch"/>
+  <java-symbol type="string" name="action_silent"/>
+  <java-symbol type="string" name="action_vib"/>
+  <java-symbol type="string" name="action_silent_vib"/>
+  <java-symbol type="string" name="action_event"/>
+  <java-symbol type="string" name="action_today"/>
+  <java-symbol type="string" name="action_alarm"/>
+  <java-symbol type="string" name="action_null"/>
+  <java-symbol type="string" name="action_app"/>
+
 </resources>

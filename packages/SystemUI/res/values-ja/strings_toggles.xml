@@ -42,4 +42,5 @@
     <string name="toggle_SOUNDSTATE">サウンド/バイブ/サイレント</string>
     <string name="toggle_NAVBARHIDE">ナビゲーションバー</string>
     <string name="toggle_QUICKRECORD">クイックレコーダー</string>
+    <string name="toggle_QUIETHOURS">サイレントタイム</string>
 </resources>

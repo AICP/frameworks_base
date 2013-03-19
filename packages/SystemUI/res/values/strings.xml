@@ -582,7 +582,7 @@
     <string name="quick_settings_data_on_label">Data On</string>
     <string name="quick_settings_data_off_label">Data Off</string>
     <string name="quick_settings_navbar_hide_on_label">NavBar Hide On</string>
-    <string name="quick_settings_navbar_hide_off_label">NavBAr Hide Off</string>
+    <string name="quick_settings_navbar_hide_off_label">NavBar Hide Off</string>
     <string name="quick_settings_quiet_hours_on_label">QuietHours On</string>
     <string name="quick_settings_quiet_hours_off_label">QuietHours Off</string>
     <string name="quick_settings_sound_on">Sound on</string>

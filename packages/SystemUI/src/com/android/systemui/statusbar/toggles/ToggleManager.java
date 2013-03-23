@@ -14,12 +14,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 
 import com.android.systemui.R;
@@ -92,8 +95,9 @@ public class ToggleManager {
     public static final int STYLE_TILE = 0;
     public static final int STYLE_SWITCH = 1;
     public static final int STYLE_TRADITIONAL = 2;
+    public static final int STYLE_SCROLLABLE = 3;
 
-    private ViewGroup[] mContainers = new ViewGroup[3];
+    private ViewGroup[] mContainers = new ViewGroup[4];
 
     Context mContext;
     BroadcastReceiver mBroadcastReceiver;
@@ -227,6 +231,40 @@ public class ToggleManager {
         }
     }
 
+    private void setupScrollable() {
+
+        if (mContainers[STYLE_SCROLLABLE] != null) {
+            updateToggleList();
+
+            mContainers[STYLE_SCROLLABLE].removeAllViews();
+            ArrayList<LinearLayout> rows = new ArrayList<LinearLayout>();
+            rows.add(new LinearLayout(mContext)); // add first row
+
+            LinearLayout.LayoutParams params = getScrollableToggleParams(mContext);
+
+            for (int i = 0; i < mToggles.size(); i++) {
+                rows.get(rows.size() - 1)
+                        .addView(mToggles.get(i).createTraditionalView(),
+                                params);
+            }
+            LinearLayout togglesRowLayout;
+            HorizontalScrollView toggleScrollView = new HorizontalScrollView(mContext);
+            togglesRowLayout = rows.get(rows.size() - 1);
+            togglesRowLayout.setGravity(Gravity.CENTER_HORIZONTAL);
+            toggleScrollView.setHorizontalFadingEdgeEnabled(true);
+            toggleScrollView.addView(togglesRowLayout,new LinearLayout.LayoutParams(
+                    LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+            LinearLayout ll = new LinearLayout(mContext);
+            ll.setOrientation(LinearLayout.VERTICAL);
+            ll.setGravity(Gravity.CENTER_HORIZONTAL);
+            ll.addView(toggleScrollView,new LinearLayout.LayoutParams(
+                    LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT));
+            mContainers[STYLE_SCROLLABLE].addView(ll);
+
+            mContainers[STYLE_SCROLLABLE].setVisibility(View.VISIBLE);
+        }
+    }
+
     private void updateToggleList() {
         for (BaseToggle t : mToggles) {
             t.cleanup();
@@ -338,6 +376,9 @@ public class ToggleManager {
                     break;
                 case STYLE_TRADITIONAL:
                     setupTraditional();
+                    break;
+                case STYLE_SCROLLABLE:
+                    setupScrollable();
                     break;
             }
         }
@@ -462,6 +503,12 @@ public class ToggleManager {
                         R.dimen.toggle_row_height), 1f);
     }
 
+    private static LinearLayout.LayoutParams getScrollableToggleParams(Context c) {
+        return new LinearLayout.LayoutParams(
+                c.getResources().getDimensionPixelSize(R.dimen.toggle_traditional_width),
+                c.getResources().getDimensionPixelSize(R.dimen.toggle_traditional_height));
+    }
+
     private static FrameLayout.LayoutParams getTileParams(Context c) {
         return new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.WRAP_CONTENT, c.getResources().getDimensionPixelSize(
@@ -475,6 +522,54 @@ public class ToggleManager {
     public boolean shouldFlipToSettings() {
         if (mContainers[STYLE_TRADITIONAL] != null) {
             final ViewGroup c = mContainers[STYLE_TRADITIONAL];
+            if (c.getVisibility() == View.VISIBLE) {
+                Animation a =
+                        AnimationUtils.makeOutAnimation(mContext, true);
+                a.setDuration(400);
+                a.setAnimationListener(new AnimationListener() {
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        c.setVisibility(View.GONE);
+                        // Settings.System.putInt(mContext.getContentResolver(),
+                        // Settings.System.STATUSBAR_TOGGLES_VISIBILITY, 0);
+                    }
+
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+                    }
+                });
+                c.startAnimation(a);
+            } else {
+                Animation a =
+                        AnimationUtils.makeInAnimation(mContext, true);
+                a.setDuration(400);
+                a.setAnimationListener(new AnimationListener() {
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                    }
+
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+                        c.setVisibility(View.VISIBLE);
+                        // Settings.System.putInt(mContext.getContentResolver(),
+                        // Settings.System.STATUSBAR_TOGGLES_VISIBILITY, 1);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+                    }
+                });
+                c.startAnimation(a);
+            }
+        }
+        if (mContainers[STYLE_SCROLLABLE] != null) {
+            final ViewGroup c = mContainers[STYLE_SCROLLABLE];
             if (c.getVisibility() == View.VISIBLE) {
                 Animation a =
                         AnimationUtils.makeOutAnimation(mContext, true);

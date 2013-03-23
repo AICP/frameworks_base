@@ -3491,6 +3491,10 @@ public final class Settings {
         public static final String STATUS_BAR_ALPHA_CONFIG = "status_bar_alpha_config";
 
         /**
+         * 0 == QuickSettings Tile
+         * 1 == Toggle Switch (Not implemented Yet)
+         * 2 == Traditional
+         * 3 == Traditional (Scrolling)
          * @hide
          */
         public static final String TOGGLES_STYLE = "toggls_style";

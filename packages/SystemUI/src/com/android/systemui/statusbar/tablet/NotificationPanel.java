@@ -34,6 +34,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.RemoteException;
 import android.os.UserHandle;
+import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.Slog;
 import android.view.Gravity;
@@ -86,6 +87,7 @@ public class NotificationPanel extends RelativeLayout implements StatusBarPanel,
     // settings
     ToggleManager mToggleManager;
     boolean mHasSettingsPanel, mHasFlipSettings;
+    int mToggleStyle;
     SettingsPanelView mSettingsPanel;
     View mFlipSettingsView;
     QuickSettingsContainerView mSettingsContainer;
@@ -209,8 +211,15 @@ public class NotificationPanel extends RelativeLayout implements StatusBarPanel,
 
             // wherever you find it, Quick Settings needs a container to survive
             mToggleManager = new ToggleManager(mContext);
-            mToggleManager.setContainer((LinearLayout) findViewById(R.id.quick_toggles),
+            mToggleStyle = Settings.System.getInt(mContext.getContentResolver(), 
+                    Settings.System.TOGGLES_STYLE,ToggleManager.STYLE_TILE);
+            if (mToggleStyle == ToggleManager.STYLE_SCROLLABLE) {
+                mToggleManager.setContainer((LinearLayout) findViewById(R.id.quick_toggles),
+                        ToggleManager.STYLE_SCROLLABLE);
+            } else {
+                mToggleManager.setContainer((LinearLayout) findViewById(R.id.quick_toggles),
                     ToggleManager.STYLE_TRADITIONAL);
+            }
             mSettingsContainer = (QuickSettingsContainerView) findViewById(R.id.quick_settings_container);
             if (mSettingsContainer != null) {
                 mToggleManager.setContainer(mSettingsContainer, ToggleManager.STYLE_TILE);

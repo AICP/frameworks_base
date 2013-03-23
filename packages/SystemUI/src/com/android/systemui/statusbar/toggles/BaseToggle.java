@@ -149,6 +149,19 @@ public abstract class BaseToggle
 
     }
 
+    public View createScrollableView() {
+        View view = View.inflate(mContext, R.layout.toggle_traditional, null);
+        mLabel = (TextView) view.findViewById(R.id.label);
+        mIcon = (ImageView) view.findViewById(R.id.icon);
+        view.setOnClickListener(this);
+        view.setOnLongClickListener(this);
+        view.setPadding(0,0,
+                mContext.getResources().getDimensionPixelSize(R.dimen.toggle_traditional_padding),
+                mContext.getResources().getDimensionPixelSize(R.dimen.quick_settings_cell_gap));
+        return view;
+
+    }
+
     protected final void scheduleViewUpdate() {
         // mHandler.removeCallbacks(mUpdateViewRunnable);
         if (!mHandler.hasCallbacks(mUpdateViewRunnable))
@@ -197,6 +210,15 @@ public abstract class BaseToggle
             }
 
         } else if (mStyle == ToggleManager.STYLE_TRADITIONAL) {
+            if (mIcon != null) {
+                if (mIconDrawable != null) {
+                    mIcon.setImageDrawable(mIconDrawable);
+                    if (mIconLevel != -1) {
+                        mIcon.setImageLevel(mIconLevel);
+                    }
+                }
+            }
+        } else if (mStyle == ToggleManager.STYLE_SCROLLABLE) {
             if (mIcon != null) {
                 if (mIconDrawable != null) {
                     mIcon.setImageDrawable(mIconDrawable);

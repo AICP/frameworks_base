@@ -43,5 +43,6 @@
     <string name="toggle_NAVBARHIDE">Skrývání navigační lišty</string>
     <string name="toggle_QUICKRECORD">Rychlé nahrávání</string>
     <string name="toggle_QUIETHOURS">Hodiny klidu</string>
+    <string name="toggle_SLEEP">Uspat</string>
     <string name="toggle_STATUSBAR">Stavová lišta</string>
 </resources>

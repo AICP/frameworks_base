@@ -90,6 +90,16 @@
             android:layout_marginRight="8dip"
             android:gravity="center_vertical|left"
             />
+        <com.android.systemui.statusbar.policy.ClockCenter
+            android:id="@+id/clock"
+            android:textAppearance="@style/TextAppearance.StatusBar.Clock"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:singleLine="true"
+            android:paddingLeft="6dip"
+            android:layout_marginRight="8dip"
+            android:gravity="center_vertical|left"
+            />
 
         <TextView
             android:id="@+id/network_text"

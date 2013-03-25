@@ -62,7 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/notification_panel_header_height"
             />
-        
+
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:systemui="http://schemas.android.com/apk/res/com.android.systemui"
@@ -70,9 +70,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="gone" 
+            android:visibility="gone"
             />
-        
+
+        <LinearLayout
+            android:id="@+id/ribbon_qs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@*android:dimen/notification_ribbon_padding"
+            android:paddingRight="@*android:dimen/notification_ribbon_padding"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:gravity="center_horizontal"
+            />
+
+        <LinearLayout
+            android:id="@+id/ribbon_notif"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@*android:dimen/notification_ribbon_padding"
+            android:paddingRight="@*android:dimen/notification_ribbon_padding"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            />
+
         <TextView
             android:id="@+id/emergency_calls_only"
             android:textAppearance="@style/TextAppearance.StatusBar.Expanded.Network.EmergencyOnly"

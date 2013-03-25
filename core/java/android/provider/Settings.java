@@ -3131,6 +3131,138 @@ public final class Settings {
         public static final String LOCKSCREEN_USE_WIDGET_CONTAINER_CAROUSEL = "lockscreen_use_widget_container_carousel";
 
         /**
+         * Ribbon Targets
+         *
+         * @hide
+         */
+        public static final String[] RIBBON_TARGETS_SHORT = new String[] {
+            "ribbon_targets_short_lockscreen",
+            "ribbon_targets_short_notification",
+            "ribbon_targets_short_swipe",
+            "ribbon_targets_short_quicksettings",
+        };
+
+        /**
+         * Ribbon Targets
+         *
+         * @hide
+         */
+        public static final String[] RIBBON_TARGETS_LONG = new String[] {
+            "ribbon_targets_long_lockscreen",
+            "ribbon_targets_long_notification",
+            "ribbon_targets_long_swipe",
+            "ribbon_targets_long_quicksettings",
+        };
+
+        /**
+         * Ribbon Targets
+         *
+         * @hide
+         */
+        public static final String[] RIBBON_TARGETS_ICONS = new String[] {
+            "ribbon_targets_icons_lockscreen",
+            "ribbon_targets_icons_notification",
+            "ribbon_targets_icons_swipe",
+            "ribbon_targets_icons_quicksettings",
+        };
+
+        /**
+         * Ribbon Targets
+         *
+         * @hide
+         */
+        public static final String[] ENABLE_RIBBON_TEXT = new String[] {
+            "ribbon_text_lockscreen",
+            "ribbon_text_notification",
+            "ribbon_text_swipe",
+            "ribbon_text_quicksettings",
+        };
+
+        /**
+         * Ribbon Targets
+         *
+         * @hide
+         */
+        public static final String[] RIBBON_TEXT_COLOR = new String[] {
+            "color_text_lockscreen",
+            "color_text_notification",
+            "color_text_swipe",
+            "color_text_quicksettings",
+        };
+
+        /**
+         * Ribbon Targets
+         *
+         * @hide
+         */
+        public static final String[] RIBBON_ICON_SIZE = new String[] {
+            "ribbon_icon_lockscreen",
+            "ribbon_icon_notification",
+            "ribbon_icon_swipe",
+            "ribbon_icon_quicksettings",
+        };
+
+        public static final String[] ENABLE_RIBBON_LOCATION = new String[] {
+            "ribbon_swipe_bottom",
+            "ribbon_swipe_left",
+            "ribbon_swipe_right",
+        };
+
+        /**
+         *
+         * @hide
+         */
+        public static final String RIBBON_HIDE_TIMEOUT = "ribbon_hide_timeout";
+
+        /**
+         *
+         * @hide
+         */
+        public static final String SWIPE_RIBBON_OPACITY = "swipe_ribbon_opacity";
+
+        /**
+         *
+         * @hide
+         */
+        public static final String SWIPE_RIBBON_COLOR = "swipe_ribbon_color";
+
+        /**
+         *
+         * @hide
+         */
+        public static final String RIBBON_DRAG_HANDLE_WEIGHT = "ribbon_drag_handle_weight";
+
+        /**
+         *
+         * @hide
+         */
+        public static final String RIBBON_DRAG_HANDLE_LOCATION = "ribbon_drag_handle_location";
+
+        /**
+         *
+         * @hide
+         */
+        public static final String RIBBON_ICON_LOCATION = "ribbon_icon_location";
+
+        /**
+         *
+         * @hide
+         */
+        public static final String SWIPE_RIBBON_VIBRATE = "swipe_ribbon_vibrate";
+
+        /**
+         *
+         * @hide
+         */
+        public static final String RIBBON_DRAG_HANDLE_HEIGHT = "ribbon_drag_handle_height";
+
+        /**
+         *
+         * @hide
+         */
+        public static final String RIBBON_DRAG_HANDLE_OPACITY = "ribbon_drag_handle_opacity";
+
+        /**
          * enabled and order of quick toggles
          * 
          * @hide

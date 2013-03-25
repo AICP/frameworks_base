@@ -39,9 +39,30 @@
         android:clipToPadding="false"
         android:gravity="center">
 
-        <include layout="@layout/keyguard_message_area"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:id="@+id/keyguard_ribbon_and_battery"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <LinearLayout
+                android:id="@+id/ribbon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@*android:dimen/lockscreen_ribbon_padding"
+                android:paddingRight="@*android:dimen/lockscreen_ribbon_padding"
+                android:orientation="horizontal"
+                android:gravity="top|center_horizontal" >
+            </LinearLayout>
+
+            <include layout="@layout/keyguard_message_area"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_gravity="bottom|center_horizontal" />
+
+        </LinearLayout>
 
         <View
             android:id="@+id/keyguard_selector_view_frame"
@@ -61,4 +82,3 @@
     </FrameLayout>
 
 </com.android.internal.policy.impl.keyguard.KeyguardSelectorView>
-

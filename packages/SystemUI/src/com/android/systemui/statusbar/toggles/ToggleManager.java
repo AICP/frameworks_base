@@ -224,8 +224,20 @@ public class ToggleManager {
                                 params);
             }
 
-            for (LinearLayout row : rows)
+            for (LinearLayout row : rows) {
+                if (row == rows.get(rows.size() - 1)) { // last row - need spacers
+                    if (row.getChildCount() < widgetsPerRow) {
+                        View spacer_front = new View(mContext);
+                        View spacer_end = new View(mContext);
+                        spacer_front.setBackgroundResource(R.drawable.qs_tile_background);
+                        spacer_end.setBackgroundResource(R.drawable.qs_tile_background);
+                        params.weight = 2f; // change weight so spacers grow
+                        row.addView(spacer_front,0, params);
+                        row.addView(spacer_end, params);
+                    }
+                }
                 mContainers[STYLE_TRADITIONAL].addView(row);
+            }
 
             mContainers[STYLE_TRADITIONAL].setVisibility(View.VISIBLE);
         }

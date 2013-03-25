@@ -43,4 +43,6 @@
     <string name="toggle_NAVBARHIDE">ナビゲーションバー</string>
     <string name="toggle_QUICKRECORD">クイックレコーダー</string>
     <string name="toggle_QUIETHOURS">サイレントタイム</string>
+    <string name="toggle_SLEEP">スリープ</string>
+    <string name="toggle_STATUSBAR">ステータスバー</string>
 </resources>

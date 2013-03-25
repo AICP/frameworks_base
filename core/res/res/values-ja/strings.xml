@@ -1499,4 +1499,30 @@
     <!-- Hardware Rotation lock string -->
     <string name="toast_rotation_unlocked">画面の自動回転を有効にしました</string>
     <string name="toast_rotation_locked">画面の向きをロックしました</string>
+
+    <!-- Awesome Action Stuff-->
+    <string name="action_home">ホーム</string>
+    <string name="action_back">戻る</string>
+    <string name="action_recents">アプリ履歴</string>
+    <string name="action_recents_gb">アプリ履歴(GBスタイル)</string>
+    <string name="action_search">検索</string>
+    <string name="action_screenshot">スクリーンショット</string>
+    <string name="action_menu">メニュー</string>
+    <string name="action_ime">IME変更</string>
+    <string name="action_kill">アプリ終了</string>
+    <string name="action_lastapp">直前のアプリ</string>
+    <string name="action_power">電源</string>
+    <string name="action_notifications">通知パネルの開閉</string>
+    <string name="action_assist">Google Now</string>
+    <string name="action_clockoptions">日付と時刻</string>
+    <string name="action_voiceassist">音声検索</string>
+    <string name="action_torch">トーチ</string>
+    <string name="action_silent">サウンド/サイレント</string>
+    <string name="action_vib">サウンド/バイブ</string>
+    <string name="action_silent_vib">サウンド/バイブ/サイレント</string>
+    <string name="action_event">イベント</string>
+    <string name="action_today">カレンダー</string>
+    <string name="action_alarm">アラーム</string>
+    <string name="action_null">設定なし</string>
+    <string name="action_app">アプリ/ショートカット</string>
 </resources>

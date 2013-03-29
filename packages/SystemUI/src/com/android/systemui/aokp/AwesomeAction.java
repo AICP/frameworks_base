@@ -65,6 +65,7 @@ import java.util.List;
 public class AwesomeAction {
 
     public final static String TAG = "AwesomeAction";
+    private final static String SysUIPackage = "com.android.systemui";
 
     private AwesomeAction() {
     }
@@ -287,6 +288,8 @@ public class AwesomeAction {
                 defaultHomePackage = res.activityInfo.packageName;
             }
             String packageName = am.getRunningTasks(1).get(0).topActivity.getPackageName();
+            if (SysUIPackage.equals(packageName))
+                return; // don't kill SystemUI
             if (!defaultHomePackage.equals(packageName)) {
                 am.forceStopPackage(packageName);
                 Toast.makeText(mContext, R.string.app_killed_message, Toast.LENGTH_SHORT).show();

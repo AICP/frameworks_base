@@ -1396,7 +1396,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         }
     }
 
-    public AlertDialog createRebootDialog() {
+    private AlertDialog createRebootDialog() {
         final String[] rebootOptions = mContext.getResources().getStringArray(R.array.reboot_options);
         final String[] rebootReasons = mContext.getResources().getStringArray(R.array.reboot_values);
 
@@ -1434,5 +1434,21 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         }
 
         return d;
+    }
+
+    public void showRebootDialog(boolean keyguardShowing) {
+        mKeyguardShowing = keyguardShowing;
+        AlertDialog rDialog = createRebootDialog();
+        if (mKeyguardShowing) {
+            mShowRebootOnLock = Settings.System.getBoolean(mContext.getContentResolver(),
+                    Settings.System.POWER_DIALOG_SHOW_REBOOT_KEYGUARD, true);
+            if (mShowRebootOnLock) {
+                rDialog.show();
+                rDialog.getWindow().getDecorView().setSystemUiVisibility(
+                        View.STATUS_BAR_DISABLE_EXPAND);
+            }
+        } else {
+            rDialog.show();
+        }
     }
 }

@@ -169,7 +169,7 @@
     <!-- label for item that torches in phone options dialog -->
     <string name="global_action_torch">トーチ</string>
     <!-- label for item that toggles NavBar Hide -->
-    <string name="global_actions_toggle_navbar_hide">ナビゲーションバー</string>
+    <string name="global_actions_toggle_navbar_hide">システムバー</string>
 
     <string name="status_bar_notification_info_overflow" msgid="5301981741705354993">"999+"</string>
     <string name="safeMode" msgid="2788228061547930246">"セーフモード"</string>
@@ -491,6 +491,17 @@
     <string name="permdesc_asec_rename" msgid="1794757588472127675">"内部ストレージ名の変更をアプリに許可します。"</string>
     <string name="permlab_vibrate" msgid="7696427026057705834">"バイブレーションの制御"</string>
     <string name="permdesc_vibrate" msgid="6284989245902300945">"バイブレーションの制御をアプリに許可します。"</string>
+
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_fm_radio_receiver">FMレシーバーの制御</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_fm_radio_receiver">FMレシーバーの制御をアプリに許可します。</string>
+
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_fm_radio_transmitter">FMトランスミッターの制御</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_fm_radio_transmitter">>FMトランスミッターの制御をアプリに許可します。</string>
+
     <string name="permlab_flashlight" msgid="2155920810121984215">"ライトのコントロール"</string>
     <string name="permdesc_flashlight" msgid="6522284794568368310">"ライトの制御をアプリに許可します。"</string>
     <string name="permlab_manageUsb" msgid="1113453430645402723">"USBデバイスの設定と許可の管理"</string>

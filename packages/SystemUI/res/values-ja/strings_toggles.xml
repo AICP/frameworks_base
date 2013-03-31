@@ -28,7 +28,7 @@
     <string name="toggle_AIRPLANE_MODE">機内モード</string>
     <string name="toggle_BLUETOOTH">Bluetooth</string>
     <string name="toggle_SWAGGER">Swagger</string>
-    <string name="toggle_VIBRATE">バイブレート</string>
+    <string name="toggle_VIBRATE">バイブレーション</string>
     <string name="toggle_SILENT">サイレント</string>
     <string name="toggle_FCHARGE">急速充電</string>
     <string name="toggle_SYNC">同期</string>

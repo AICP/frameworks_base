@@ -271,10 +271,9 @@ public class GlowPadView extends View {
         if (a.getValue(R.styleable.GlowPadView_targetDrawables, outValue)) {
             internalSetTargetResources(outValue.resourceId);
         }
+
         if (mTargetDrawables == null || mTargetDrawables.size() == 0) {
             throw new IllegalStateException("Must specify at least one target drawable");
-        } else if (mTargetDrawables.size() > 1) {
-            mMagneticTargets = false;
         }
 
         // Read array of target descriptions
@@ -642,9 +641,6 @@ public class GlowPadView extends View {
     private void internalSetTargetResources(ArrayList<TargetDrawable> drawList) {
         mTargetResourceId = 0;
         mTargetDrawables = drawList;
-        if (mTargetDrawables.size() > 1) {
-            mMagneticTargets = false;
-        }
         updateTargetPositions(mWaveCenterX, mWaveCenterY);
         updatePointCloudPosition(mWaveCenterX, mWaveCenterY);
         hideTargets(false, false);
@@ -662,6 +658,14 @@ public class GlowPadView extends View {
         } else {
             internalSetTargetResources(resourceId);
         }
+    }
+
+    public void setMagneticTargets(boolean active) {
+        mMagneticTargets = active;
+    }
+
+    public void setOffset(float offset) {
+        mFirstItemOffset = (float) Math.toRadians(offset);
     }
 
     public void setTargetResources(ArrayList<TargetDrawable> drawList) {

@@ -71,6 +71,7 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
     private int mTarget;
     private boolean mLongPress = false;
     private boolean mUsesCustomTargets;
+    private int mUnlockPos;
     private String[] targetActivities = new String[8];
     private String[] longActivities = new String[8];
     private String[] customIcons = new String[8];
@@ -133,7 +134,7 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
         };
 
         public void onTrigger(View v, int target) {
-            if (!mUsesCustomTargets) {
+            if ((!mUsesCustomTargets) || (mTargetCounter() == 0 && mUnlockCounter() < 2)) {
                 mCallback.userActivity(0);
                 mCallback.dismiss(false);
             } else {
@@ -280,7 +281,38 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
         // no targets? add just an unlock.
         if (!mUsesCustomTargets) {
             storedDraw.add(LockScreenHelpers.getTargetDrawable(mContext, AwesomeConstant.ACTION_UNLOCK.value()));
+        } else if (mTargetCounter() == 0 && mUnlockCounter() < 2) {
+            float offset = 0.0f;
+            switch (mUnlockPos) {
+            case 0:
+                offset = 0.0f;
+                break;
+            case 1:
+                offset = -45.0f;
+                break;
+            case 2:
+                offset = -90.0f;
+                break;
+            case 3:
+                offset = -135.0f;
+                break;
+            case 4:
+                offset = 180.0f;
+                break;
+            case 5:
+                offset = 135.0f;
+                break;
+            case 6:
+                offset = 90.0f;
+                break;
+            case 7:
+                offset = 45.0f;
+                break;
+            }
+            mGlowPadView.setOffset(offset);
+            storedDraw.add(LockScreenHelpers.getTargetDrawable(mContext, AwesomeConstant.ACTION_UNLOCK.value()));
         } else {
+            mGlowPadView.setMagneticTargets(false);
             // Add The Target actions and Icons
             for (int i = 0; i < 8 ; i++) {
                 if (!TextUtils.isEmpty(customIcons[i])) {
@@ -299,6 +331,22 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
         for (int i = 0; i < 8 ; i++) {
             if (!TextUtils.isEmpty(targetActivities[i])) {
                 if (targetActivities[i].equals(AwesomeConstant.ACTION_UNLOCK.value())) {
+                    mUnlockPos = i;
+                    counter += 1;
+                }
+            }
+        }
+        return counter;
+    }
+
+    private int mTargetCounter() {
+        int counter = 0;
+        for (int i = 0; i < 8 ; i++) {
+            if (!TextUtils.isEmpty(targetActivities[i])) {
+                if (targetActivities[i].equals(AwesomeConstant.ACTION_UNLOCK.value()) ||
+                    targetActivities[i].equals(AwesomeConstant.ACTION_NULL.value())) {
+                // I just couldn't take the negative logic....
+                } else {
                     counter += 1;
                 }
             }

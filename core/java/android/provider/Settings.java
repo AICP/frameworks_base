@@ -2780,9 +2780,15 @@ public final class Settings {
         
         /**
          * Statusbar toggle for quick settings
-         * &hide
+         * @hide
          */
         public static final String STATUSBAR_QUICK_TOGGLE = "statusbar_quick_toggle";
+
+        /**
+         * Screenshot toggle delay
+         * @hide
+         */
+        public static final String SCREENSHOT_TOGGLE_DELAY = "screenshot_toggle_delay";
 
     	  /**
          * Show the NavBar dialog in Power menu

@@ -265,6 +265,10 @@
     <string name="quick_settings_quickrecord">Rychlé nahrávání</string>
     <string name="quick_settings_nofile">Dlouhý stisk pro nahrávání</string>
     <string name="quick_settings_sleep">Uspat</string>
+    <string name="screenshot_toast">Snímek obrazovky za %1$d sekund</string>
+    <string name="quick_settings_screenshot">Snímek obrazovky</string>
+    <string name="quick_settings_reboot">Restartovat</string>
+    <string name="quick_settings_reboot_message">Zařízení se restartuje</string>
     <string name="memory">RAM</string>
     <string name="service_background_processes"><xliff:g id="memory">%1$s</xliff:g> volno</string>
     <string name="service_foreground_processes"><xliff:g id="memory">%1$s</xliff:g> použito</string>
@@ -275,4 +279,7 @@
     <string name="running_processes_item_description_s_p"><xliff:g id="numprocess">%1$d</xliff:g> služby a <xliff:g id="numservices">%2$d</xliff:g> služby</string>
     <string name="running_processes_item_description_p_s"><xliff:g id="numprocess">%1$d</xliff:g> služba a <xliff:g id="numservices">%2$d</xliff:g> služba</string>
     <string name="running_processes_item_description_p_p"><xliff:g id="numprocess">%1$d</xliff:g> služby a <xliff:g id="numservices">%2$d</xliff:g> služby</string>
+    <string name="permdesc_screenshot">Pořídit snímek obrazovky</string>
+    <string name="permlab_screenshot">Umožnit aplikaci pořídit snímek obrazovky. Chráněno SystemUI.</string>
+
 </resources>

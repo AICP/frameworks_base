@@ -1497,4 +1497,8 @@
     <string name="action_alarm">Budík</string>
     <string name="action_null">Prázdné</string>
     <string name="action_app">Vlastní aplikace/zástupce</string>
+    <string name="permlab_fm_radio_receiver">Ovládání FM přijímače</string>
+    <string name="permdesc_fm_radio_receiver">Umožnit aplikaci ovládat FM přijímač.</string>
+    <string name="permlab_fm_radio_transmitter">Ovládání FM vysílače</string>
+    <string name="permdesc_fm_radio_transmitter">Umožnit aplikace ovládat FM vysílač.</string>
 </resources>

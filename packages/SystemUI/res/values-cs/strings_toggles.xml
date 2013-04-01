@@ -45,4 +45,7 @@
     <string name="toggle_QUIETHOURS">Hodiny klidu</string>
     <string name="toggle_SLEEP">Uspat</string>
     <string name="toggle_STATUSBAR">Stavová lišta</string>
+    <string name="toggle_SCREENSHOT">Snímek obrazovky</string>
+    <string name="toggle_REBOOT">Restartovat</string>
+    <string name="toggle_CUSTOM">Vlastní</string>
 </resources>

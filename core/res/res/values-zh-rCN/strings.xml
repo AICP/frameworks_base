@@ -1502,8 +1502,8 @@
     <string name="action_silent">铃声/静音</string>
     <string name="action_vib">铃声/振动</string>
     <string name="action_silent_vib">铃声/振动/静音</string>
-    <string name="action_event">事件</string>
-    <string name="action_today">今天</string>
+    <string name="action_event">新建日程活动</string>
+    <string name="action_today">今天日程活动</string>
     <string name="action_alarm">闹钟</string>
     <string name="action_null">空</string>
     <string name="action_app">自定义程序/快捷方式</string>

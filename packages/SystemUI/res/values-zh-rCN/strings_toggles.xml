@@ -43,9 +43,9 @@
     <string name="toggle_NAVBARHIDE">导航栏自动隐藏</string>
     <string name="toggle_QUICKRECORD">快捷录音</string>
     <string name="toggle_QUIETHOURS">静音时段</string>
-    <string name="toggle_SLEEP">睡眠</string>
+    <string name="toggle_SLEEP">休眠</string>
     <string name="toggle_STATUSBAR">状态栏</string>
     <string name="toggle_SCREENSHOT">屏幕截图</string>
     <string name="toggle_REBOOT">重新启动</string>
-    <string name="toggle_CUSTOM">自定义</string>
+    <string name="toggle_CUSTOM">自定义开关</string>
 </resources>

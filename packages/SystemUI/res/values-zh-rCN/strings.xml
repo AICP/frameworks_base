@@ -213,7 +213,7 @@
     <string name="quick_settings_playing">正在播放……</string>
     <string name="quick_settings_quickrecord">快捷录音</string>
     <string name="quick_settings_nofile">长按开始录音</string>
-    <string name="quick_settings_sleep">睡眠</string>
+    <string name="quick_settings_sleep">休眠</string>
     <string name="quick_settings_reboot">重新启动</string>
     <string name="quick_settings_reboot_message">您的设备正在重新启动</string>
     <string name="status_bar_help_title" msgid="1199237744086469217">"通知会显示在这里"</string>

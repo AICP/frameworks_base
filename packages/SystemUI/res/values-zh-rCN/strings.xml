@@ -20,6 +20,8 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_label" msgid="7164937344850004466">"系统用户界面"</string>
+    <string name="permdesc_screenshot">捕获屏幕截图</string>
+    <string name="permlab_screenshot">允许应用捕获屏幕截图。这是系统用户界面的保护。</string>
     <string name="status_bar_clear_all_button" msgid="7774721344716731603">"清除"</string>
     <string name="status_bar_do_not_disturb_button" msgid="5812628897510997853">"请勿打扰"</string>
     <string name="status_bar_please_disturb_button" msgid="3345398298841572813">"显示通知"</string>
@@ -211,6 +213,9 @@
     <string name="quick_settings_playing">正在播放……</string>
     <string name="quick_settings_quickrecord">快捷录音</string>
     <string name="quick_settings_nofile">长按开始录音</string>
+    <string name="quick_settings_sleep">睡眠</string>
+    <string name="quick_settings_reboot">重新启动</string>
+    <string name="quick_settings_reboot_message">您的设备正在重新启动</string>
     <string name="status_bar_help_title" msgid="1199237744086469217">"通知会显示在这里"</string>
     <string name="status_bar_help_text" msgid="7874607155052076323">"向下滑动可随时查看通知。"\n"再次向下滑动可使用系统控制功能。"</string>
 
@@ -233,12 +238,14 @@
 
     <string name="widgets">小部件</string>
     <string name="toggle_navbar">导航栏 - 开关</string>
+    <string name="toggle_statusbar">状态栏 - 开关</string>
     <string name="toggle_widgets">小部件 - 开关</string>
     <string name="toggle_ring_vib">铃声/振动 - 开关</string>
     <string name="toggle_ring_silent">铃声/静音 - 开关</string>
     <string name="toggle_ring_vib_silent">铃声/振动/静音 - 开关</string>
     <string name="app_killed_message">应用程序已结束</string>
     <string name="recents_kill_all_button_text">全部结束</string>
+    <string name="screenshot_toast">在%1$d秒后截图</string>
 
     <!--  Quick Settings -->
     <string name="quick_settings_vibrate_on_label">振动已打开</string>
@@ -272,7 +279,10 @@
     <string name="quick_settings_quiet_hours_on_label">静音时段已打开</string>
     <string name="quick_settings_quiet_hours_off_label">静音时段已关闭</string>
     <string name="quick_settings_sound_on">声音已打开</string>
+    <string name="quick_settings_statusbar_on_label">状态栏已打开</string>
+    <string name="quick_settings_statusbar_off_label">状态栏已关闭</string>
     <string name="quick_settings_swaggersuntoast">星期天真是屌爆了！</string>
+    <string name="quick_settings_screenshot">屏幕截图</string>
 
     <!--  RamBar -->
     <string name="memory">RAM</string>

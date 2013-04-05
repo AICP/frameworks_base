@@ -1,10 +1,12 @@
 
 package com.android.systemui.statusbar.toggles;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.FileObserver;
+import android.view.View;
 
 import com.android.systemui.R;
 
@@ -113,6 +115,18 @@ public class FastChargeToggle extends StatefulToggle {
                 // ignore
             }
         }
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        Intent intent = new Intent("android.intent.action.MAIN");
+        intent.setComponent(ComponentName
+                .unflattenFromString("com.brewcrewfoo.performance/.activities.MainActivity"));
+        intent.addCategory("android.intent.category.LAUNCHER");
+
+        startActivity(intent);
+
+        return super.onLongClick(v);
     }
 
 }

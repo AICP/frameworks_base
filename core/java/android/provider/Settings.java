@@ -55,6 +55,7 @@ import android.view.WindowOrientationListener;
 import com.android.internal.widget.ILockSettings;
 
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -1182,6 +1183,36 @@ public final class Settings {
          */
         public static boolean putBoolean(ContentResolver cr, String name, boolean value) {
             return putString(cr, name, value ? "1" : "0");
+        }
+
+        /**
+         * @hide
+         * Methods to handle storing and retrieving arraylists
+         *
+         * @param cr The ContentResolver to access.
+         * @param name The name of the setting to modify.
+         * @param value The new value for the setting.
+         * @return true if the value was set, false on database errors
+         */
+        public static boolean putArrayList(ContentResolver cr, String name, ArrayList<String> list) {
+            if (list.size() > 0) {
+                String joined = TextUtils.join("|",list);
+                return putString(cr, name, joined);
+            }
+            return false;
+        }
+
+
+        public static ArrayList<String> getArrayList(ContentResolver cr, String name) {
+            String v = getString(cr, name);
+            ArrayList<String> list = new ArrayList<String>();
+            if (v != null) {
+                String[] split = v.split("\\|");
+                for (String i : split) {
+                    list.add(i);
+                }
+            }
+            return list;
         }
 
         /**

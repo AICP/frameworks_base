@@ -1906,6 +1906,8 @@
   <java-symbol type="string" name="action_event"/>
   <java-symbol type="string" name="action_today"/>
   <java-symbol type="string" name="action_alarm"/>
+  <java-symbol type="string" name="action_unlock"/>
+  <java-symbol type="string" name="action_camera"/>
   <java-symbol type="string" name="action_null"/>
   <java-symbol type="string" name="action_app"/>
 

@@ -125,16 +125,24 @@ public class TransparencyManager {
         }
 
         final float alpha = a;
-
-        final BackgroundAlphaColorDrawable bg = (BackgroundAlphaColorDrawable) v.getBackground();
-        ValueAnimator anim = ValueAnimator.ofObject(new ArgbEvaluator(), info.color, BackgroundAlphaColorDrawable.applyAlphaToColor(info.color, alpha));
-        anim.addUpdateListener(new AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                info.color = (Integer)animation.getAnimatedValue();
-                bg.setColor(info.color);
-            }
-        });
+        ValueAnimator anim = null;
+        if (v.getBackground() instanceof BackgroundAlphaColorDrawable) {
+            final BackgroundAlphaColorDrawable bg = (BackgroundAlphaColorDrawable) v
+                    .getBackground();
+            anim = ValueAnimator.ofObject(new ArgbEvaluator(), info.color,
+                    BackgroundAlphaColorDrawable.applyAlphaToColor(bg.getBgColor(), alpha));
+            anim.addUpdateListener(new AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    info.color = (Integer) animation.getAnimatedValue();
+                    bg.setColor(info.color);
+                }
+            });
+        } else {
+            // custom image is set by the theme, let's just apply the alpha if we can.
+            v.getBackground().setAlpha(BackgroundAlphaColorDrawable.floatAlphaToInt(alpha));
+            return null;
+        }
         anim.addListener(new AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
@@ -159,18 +167,14 @@ public class TransparencyManager {
         mIsKeyguardShowing = isKeyguardShowing();
         mIsHomeShowing = isLauncherShowing();
 
-        int anims = 0;
-
         ValueAnimator navAnim = null, sbAnim = null;
         if (mNavbar != null) {
             navAnim = createAnimation(mNavbarInfo, mNavbar);
-            anims++;
         }
         if (mStatusbar != null) {
             sbAnim = createAnimation(mStatusbarInfo, mStatusbar);
-            anims++;
         }
-        if (anims > 1) {
+        if (navAnim != null && sbAnim != null) {
             AnimatorSet set = new AnimatorSet();
             set.playTogether(navAnim, sbAnim);
             set.start();

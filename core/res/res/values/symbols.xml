@@ -1590,6 +1590,7 @@
   <java-symbol type="integer" name="config_lowBatteryWarningLevel" />
   <java-symbol type="integer" name="config_networkPolicyDefaultWarning" />
   <java-symbol type="integer" name="config_networkTransitionTimeout" />
+  <java-symbol type="integer" name="config_notificationsBatteryAlmostARGB" />
   <java-symbol type="integer" name="config_notificationsBatteryFullARGB" />
   <java-symbol type="integer" name="config_notificationsBatteryLedOff" />
   <java-symbol type="integer" name="config_notificationsBatteryLedOn" />

@@ -4090,6 +4090,8 @@
     <string name="action_event">Event</string>
     <string name="action_today">Today</string>
     <string name="action_alarm">Alarm</string>
+    <string name="action_unlock">Unlock</string>
+    <string name="action_camera">Camera</string>
     <string name="action_null">Blank</string>
     <string name="action_app">Custom App/Shortcut</string>
 </resources>

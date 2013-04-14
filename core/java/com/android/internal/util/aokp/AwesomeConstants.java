@@ -36,6 +36,8 @@ public class AwesomeConstants {
 
     /* Adding Actions here will automatically add them to NavBar actions in ROMControl.
      * **app** must remain the last action.  Add other actions before that final action.
+     * For clarity, **null** should probably also be just before APP.  New actions
+     * should be added prior to **null**
      */
     public static enum AwesomeConstant {
         ACTION_HOME          { @Override public String value() { return "**home**";}},
@@ -59,9 +61,9 @@ public class AwesomeConstants {
         ACTION_EVENT         { @Override public String value() { return "**event**";}},
         ACTION_TODAY         { @Override public String value() { return "**today**";}},
         ACTION_ALARM         { @Override public String value() { return "**alarm**";}},
-        ACTION_NULL          { @Override public String value() { return "**null**";}},
         ACTION_UNLOCK        { @Override public String value() { return "**unlock**";}},
         ACTION_CAMERA        { @Override public String value() { return "**camera**";}},
+        ACTION_NULL          { @Override public String value() { return "**null**";}},
         ACTION_APP           { @Override public String value() { return "**app**";}};
         public String value() { return this.value(); }
     }
@@ -188,6 +190,12 @@ public class AwesomeConstants {
             case ACTION_ALARM:
                 value = res.getString(com.android.internal.R.string.action_alarm);
                 break;
+            case ACTION_UNLOCK:
+                value = res.getString(com.android.internal.R.string.action_unlock);
+                break;
+            case ACTION_CAMERA:
+                value = res.getString(com.android.internal.R.string.action_camera);
+                break;
             case ACTION_APP:
                 value = res.getString(com.android.internal.R.string.action_app);
                 break;
@@ -270,6 +278,12 @@ public class AwesomeConstants {
                 break;
             case ACTION_ALARM:
                 value = getSystemUIDrawable(context, "com.android.systemui:drawable/ic_sysbar_alarm");
+                break;
+            case ACTION_UNLOCK:
+                value = res.getDrawable(com.android.internal.R.drawable.ic_lockscreen_unlock);
+                break;
+            case ACTION_CAMERA:
+                value = res.getDrawable(com.android.internal.R.drawable.ic_lockscreen_camera);
                 break;
             case ACTION_APP: // APP doesn't really have an icon - it should look up
                         //the package icon - we'll return the 'null' on just in case

@@ -1534,6 +1534,8 @@
     <string name="action_event">イベント</string>
     <string name="action_today">カレンダー</string>
     <string name="action_alarm">アラーム</string>
+    <string name="action_unlock">アンロック</string>
+    <string name="action_camera">カメラ</string>
     <string name="action_null">設定なし</string>
     <string name="action_app">アプリ/ショートカット</string>
 </resources>

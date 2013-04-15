@@ -1172,7 +1172,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         } else {
             mStockUIMode = 2; // Phablet Mode
         } // Tablet Mode will be mode ==1 but no devices default to Tablet mode since 4.2
-        
         mUserUIMode = Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.USER_UI_MODE,mStockUIMode);
         switch (mUserUIMode) {
@@ -1183,6 +1182,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 break;
             case 1 :
                 // "tablet" UI with a single combined status & navigation bar
+                mNavBarAutoHide = false; // TabUI, No AutoHide for you!
                 mHasSystemNavBar = true;
                 mNavigationBarCanMove = false;
                 break;
@@ -1365,9 +1365,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 Settings.System.USER_UI_MODE,mStockUIMode)) {
             resetScreenHelper();
         }
-        if (NavHide != mNavBarAutoHide) {
-        	mNavBarAutoHide = NavHide;
-        	resetScreenHelper();
+        if (NavHide != mNavBarAutoHide && mUserUIMode != 1) {
+            mNavBarAutoHide = NavHide;
+            resetScreenHelper();
         }
     }
 

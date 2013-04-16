@@ -10,9 +10,13 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.database.ContentObserver;
+import android.location.LocationManager;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Vibrator;
 import android.provider.Settings;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -25,6 +29,7 @@ import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 
+import com.android.internal.telephony.PhoneConstants;
 import com.android.systemui.R;
 import com.android.systemui.statusbar.phone.QuickSettingsContainerView;
 import com.android.systemui.statusbar.phone.QuickSettingsTileView;
@@ -116,27 +121,41 @@ public class ToggleManager {
             toggleMap.put(BRIGHTNESS_TOGGLE, BrightnessToggle.class);
             toggleMap.put(SETTINGS_TOGGLE, SettingsToggle.class);
             toggleMap.put(WIFI_TOGGLE, WifiToggle.class);
-            toggleMap.put(SIGNAL_TOGGLE, SignalToggle.class);
+            if (deviceSupportsTelephony()) {
+                toggleMap.put(SIGNAL_TOGGLE, SignalToggle.class);
+                toggleMap.put(WIFI_TETHER_TOGGLE, WifiApToggle.class);
+            }
             toggleMap.put(ROTATE_TOGGLE, RotateToggle.class);
             toggleMap.put(CLOCK_TOGGLE, ClockToggle.class);
             toggleMap.put(GPS_TOGGLE, GpsToggle.class);
             toggleMap.put(IME_TOGGLE, ImeToggle.class);
             toggleMap.put(BATTERY_TOGGLE, BatteryToggle.class);
             toggleMap.put(AIRPLANE_TOGGLE, AirplaneModeToggle.class);
-            toggleMap.put(BLUETOOTH_TOGGLE, BluetoothToggle.class);
+            if (deviceSupportsBluetooth()) {
+                toggleMap.put(BLUETOOTH_TOGGLE, BluetoothToggle.class);
+            }
             toggleMap.put(SWAGGER_TOGGLE, SwaggerToggle.class);
-            toggleMap.put(VIBRATE_TOGGLE, VibrateToggle.class);
+            if (((Vibrator)mContext.getSystemService(Context.VIBRATOR_SERVICE)).hasVibrator()) {
+                toggleMap.put(VIBRATE_TOGGLE, VibrateToggle.class);
+                toggleMap.put(SOUND_STATE_TOGGLE, SoundStateToggle.class);
+            }
             toggleMap.put(SILENT_TOGGLE, SilentToggle.class);
             toggleMap.put(FCHARGE_TOGGLE, FastChargeToggle.class);
             toggleMap.put(SYNC_TOGGLE, SyncToggle.class);
-            toggleMap.put(NFC_TOGGLE, NfcToggle.class);
+            if (mContext.getSystemService(Context.NFC_SERVICE) != null) {
+                toggleMap.put(NFC_TOGGLE, NfcToggle.class);
+            }
             toggleMap.put(TORCH_TOGGLE, TorchToggle.class);
-            toggleMap.put(WIFI_TETHER_TOGGLE, WifiApToggle.class);
             toggleMap.put(USB_TETHER_TOGGLE, UsbTetherToggle.class);
-            toggleMap.put(TWOG_TOGGLE, TwoGToggle.class);
-            toggleMap.put(LTE_TOGGLE, LteToggle.class);
+            if (((TelephonyManager)mContext.getSystemService(Context.TELEPHONY_SERVICE))
+                    .getPhoneType() == PhoneConstants.PHONE_TYPE_GSM) {
+                toggleMap.put(TWOG_TOGGLE, TwoGToggle.class);
+            }
+            if (TelephonyManager.getLteOnCdmaModeStatic() == PhoneConstants.LTE_ON_CDMA_TRUE
+                    || TelephonyManager.getLteOnGsmModeStatic() != 0) {
+                toggleMap.put(LTE_TOGGLE, LteToggle.class);
+            }
             toggleMap.put(FAV_CONTACT_TOGGLE, FavoriteUserToggle.class);
-            toggleMap.put(SOUND_STATE_TOGGLE, SoundStateToggle.class);
             toggleMap.put(NAVBAR_HIDE_TOGGLE, NavbarHideToggle.class);
             toggleMap.put(QUICKRECORD_TOGGLE, QuickRecordToggle.class);
             toggleMap.put(QUIETHOURS_TOGGLE, QuietHoursToggle.class);

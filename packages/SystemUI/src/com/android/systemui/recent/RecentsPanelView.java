@@ -299,20 +299,6 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
         mRecentTasksLoader = RecentTasksLoader.getInstance(context);
         a.recycle();
         mSettingsObserver = new SettingsObserver(mHandler);
-        updateSettings();
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        mSettingsObserver.observe();
-        updateSettings();
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        mContext.getContentResolver().unregisterContentObserver(mSettingsObserver);
-        super.onDetachedFromWindow();
     }
 
     public int numItemsInOneScreenful() {
@@ -398,12 +384,20 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
         }
     }
 
+    @Override
     protected void onAttachedToWindow () {
         super.onAttachedToWindow();
         final ViewRootImpl root = getViewRootImpl();
         if (root != null) {
             root.setDrawDuringWindowsAnimating(true);
         }
+        mSettingsObserver.observe(); // observe will call updateSettings()
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        mContext.getContentResolver().unregisterContentObserver(mSettingsObserver);
+        super.onDetachedFromWindow();
     }
 
     public void onUiHidden() {
@@ -508,9 +502,9 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
                 ((BitmapDrawable) mRecentsScrim.getBackground()).setTileModeY(TileMode.REPEAT);
             }
         }
-        updateSettings();
 
-        mHandler.post(updateRamBarTask);
+        mRamUsageBar = (LinearColorBar) findViewById(R.id.ram_usage_bar);
+        });
     }
 
     public void setMinSwipeAlpha(float minAlpha) {
@@ -930,20 +924,8 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
         ramBarEnabled = Settings.System.getBoolean(mContext.getContentResolver(),
                 Settings.System.RAM_USAGE_BAR, false);
 
-        mRamUsageBar = (LinearColorBar) findViewById(R.id.ram_usage_bar);
-        if (ramBarEnabled) {
-            if (mRamUsageBar != null) {
-                mRamUsageBar.setVisibility(View.VISIBLE);
-                mForegroundProcessText = (TextView) findViewById(R.id.foregroundText);
-                mBackgroundProcessText = (TextView) findViewById(R.id.backgroundText);
-            } else {
-                mForegroundProcessText = null;
-                mBackgroundProcessText = null;
-            }
-        } else {
-            if (mRamUsageBar != null) {
-                mRamUsageBar.setVisibility(View.GONE);
-            }
+        if (mRamUsageBar != null) {
+            mRamUsageBar.setVisibility(ramBarEnabled ? View.VISIBLE : View.GONE);
         }
     }
 }

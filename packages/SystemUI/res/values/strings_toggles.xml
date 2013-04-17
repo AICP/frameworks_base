@@ -48,4 +48,5 @@
     <string name="toggle_SCREENSHOT">Screenshot</string>
     <string name="toggle_REBOOT">Reboot</string>
     <string name="toggle_CUSTOM">Custom</string>
+    <string name="toggle_STAYAWAKE">Stay Awake</string>
 </resources>

@@ -502,13 +502,16 @@
     <!-- Default LED off time for notification LED in milliseconds. -->
     <integer name="config_defaultNotificationLedOff">2000</integer>
 
-    <!-- Default value for led color when battery is low on charge -->
+    <!-- Default value for led color when battery is low on charge: <= 14% -->
     <integer name="config_notificationsBatteryLowARGB">0xFFFF0000</integer>
 
-    <!-- Default value for led color when battery is medium charged -->
-    <integer name="config_notificationsBatteryMediumARGB">0xFFFFFF00</integer>
+    <!-- Default value for led color when battery is medium charged: 15-69% -->
+    <integer name="config_notificationsBatteryMediumARGB">0xFFFF7F00</integer>
 
-    <!-- Default value for led color when battery is fully charged -->
+    <!-- Default value for led color when batter is almost charged: 70-99% -->
+    <integer name="config_notificationsBatteryAlmostARGB">0xFFECFF00</integer>
+
+    <!-- Default value for led color when battery is fully charged: 100% -->
     <integer name="config_notificationsBatteryFullARGB">0xFF00FF00</integer>
 
     <!-- Default value for LED on time when the battery is low on charge in miliseconds -->

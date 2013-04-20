@@ -165,6 +165,7 @@ public class SearchPanelView extends FrameLayout implements
     private void startAssistActivity() {
         if (!mBar.isDeviceProvisioned()) return;
 
+        maybeSkipKeyguard();
         // Close Recent Apps if needed
         mBar.animateCollapsePanels(CommandQueue.FLAG_EXCLUDE_SEARCH_PANEL);
         boolean isKeyguardShowing = false;
@@ -187,12 +188,6 @@ public class SearchPanelView extends FrameLayout implements
             Intent intent = ((SearchManager) mContext.getSystemService(Context.SEARCH_SERVICE))
                     .getAssistIntent(mContext, UserHandle.USER_CURRENT);
             if (intent == null) return;
-
-            try {
-                ActivityManagerNative.getDefault().dismissKeyguardOnNextActivity();
-            } catch (RemoteException e) {
-                // too bad, so sad...
-            }
 
             try {
                 ActivityOptions opts = ActivityOptions.makeCustomAnimation(mContext,
@@ -303,12 +298,9 @@ public class SearchPanelView extends FrameLayout implements
     }
 
     private void maybeSkipKeyguard() {
-        try {
-            if (mWm.isKeyguardLocked() && !mWm.isKeyguardSecure()) {
-                ActivityManagerNative.getDefault().dismissKeyguardOnNextActivity();
-            }
-        } catch (RemoteException ignored) {
-        }
+        Intent u = new Intent();
+        u.setAction("com.android.lockscreen.ACTION_UNLOCK_RECEIVER");
+        mContext.sendBroadcastAsUser(u, UserHandle.ALL);
     }
 
     private void setDrawables() {

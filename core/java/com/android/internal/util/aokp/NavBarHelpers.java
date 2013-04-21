@@ -26,12 +26,16 @@ import android.text.TextUtils;
 
 import static com.android.internal.util.aokp.AwesomeConstants.*;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class NavBarHelpers {
 
     // These items will be subtracted from NavBar Actions when RC requests list of
     // Available Actions
-    private final AwesomeConstant[] EXCLUDED_FROM_NAVBAR = {
+    private static final AwesomeConstant[] EXCLUDED_FROM_NAVBAR = {
+            AwesomeConstant.ACTION_UNLOCK,
+            AwesomeConstant.ACTION_CAMERA,
             AwesomeConstant.ACTION_CLOCKOPTIONS,
             AwesomeConstant.ACTION_SILENT,
             AwesomeConstant.ACTION_VIB,
@@ -68,9 +72,29 @@ public class NavBarHelpers {
     }
 
     public static String[] getNavBarActions() {
-        // I need to find a good way to subtract the Excluded array from All actions.
-        // for now, just return all Actions.
-        return AwesomeConstants.AwesomeActions();
+        boolean itemFound;
+        String[] mActions;
+        ArrayList<String> mActionList = new ArrayList<String>();
+        String[] mActionStart = AwesomeConstants.AwesomeActions();
+        int startLength = mActionStart.length;
+        int excludeLength = EXCLUDED_FROM_NAVBAR.length;
+        for (int i = 0; i < startLength; i++) {
+            itemFound = false;
+            for (int j = 0; j < excludeLength; j++) {
+                if (mActionStart[i].equals(EXCLUDED_FROM_NAVBAR[j].value())) {
+                    itemFound = true;
+                }
+            }
+            if (!itemFound) {
+                mActionList.add(mActionStart[i]);
+            }
+        }
+        int actionSize = mActionList.size();
+        mActions = new String[actionSize];
+        for (int i = 0; i < actionSize; i++) {
+            mActions[i] = mActionList.get(i);
+        }
+        return mActions;
     }
 
     public static String getProperSummary(Context mContext, String uri) {

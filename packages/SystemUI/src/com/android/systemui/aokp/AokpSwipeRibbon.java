@@ -65,11 +65,11 @@ public class AokpSwipeRibbon extends LinearLayout {
     private LinearLayout mRibbon;
     private LinearLayout mRibbonMain;
     private Button mBackGround;
-    private boolean mText, hasNavBarByDefault, NavBarEnabled, navAutoHide, mNavBarShowing;
+    private boolean mText, hasNavBarByDefault, NavBarEnabled, navAutoHide, mNavBarShowing, mVib;
     private int mHideTimeOut = 5000;
     private boolean showing = false;
     private boolean animating = false;
-    private int mSize, mColor, mTextColor, mOpacity, animationIn, animationOut, mIconLoc;
+    private int mSize, mColor, mTextColor, mOpacity, animationIn, animationOut, mIconLoc, mVerticalPad, mHorizontalPad;
     private ArrayList<String> shortTargets = new ArrayList<String>();
     private ArrayList<String> longTargets = new ArrayList<String>();
     private ArrayList<String> customIcons = new ArrayList<String>();
@@ -288,12 +288,14 @@ public class AokpSwipeRibbon extends LinearLayout {
         if (mLocation.equals("bottom")) {
             HorizontalScrollView hsv = new HorizontalScrollView(mContext);
             hsv = AokpRibbonHelper.getRibbon(mContext,
-                shortTargets, longTargets, customIcons, mText, mTextColor, mSize);
+                shortTargets, longTargets, customIcons, mText, mTextColor, mSize, mHorizontalPad, mVib);
             hsv.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
                     mHandler.removeCallbacks(delayHide);
-                    mHandler.postDelayed(delayHide, mHideTimeOut);
+                    if (mHideTimeOut > 0) {
+                        mHandler.postDelayed(delayHide, mHideTimeOut);
+                    }
                     return false;
                 }
             });
@@ -301,12 +303,14 @@ public class AokpSwipeRibbon extends LinearLayout {
         } else {
             ScrollView sv = new ScrollView(mContext);
             sv = AokpRibbonHelper.getVerticalRibbon(mContext,
-                shortTargets, longTargets, customIcons, mText, mTextColor, mSize);
+                shortTargets, longTargets, customIcons, mText, mTextColor, mSize, mVerticalPad, mVib);
             sv.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
                     mHandler.removeCallbacks(delayHide);
-                    mHandler.postDelayed(delayHide, mHideTimeOut);
+                    if (mHideTimeOut > 0) {
+                        mHandler.postDelayed(delayHide, mHideTimeOut);
+                    }
                     return false;
                 }
             });
@@ -345,6 +349,12 @@ public class AokpSwipeRibbon extends LinearLayout {
                     Settings.System.RIBBON_TEXT_COLOR[AokpRibbonHelper.SWIPE_RIBBON]), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.RIBBON_ICON_LOCATION), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.RIBBON_ICON_SPACE[AokpRibbonHelper.SWIPE_RIBBON]), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.RIBBON_ICON_SPACE_VERTICAL), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.RIBBON_ICON_VIBRATE[AokpRibbonHelper.SWIPE_RIBBON]), false, this);
             for (int i = 0; i < 3; i++) {
 	            resolver.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.ENABLE_RIBBON_LOCATION[i]), false, this);
@@ -382,6 +392,12 @@ public class AokpSwipeRibbon extends LinearLayout {
                  Settings.System.SWIPE_RIBBON_OPACITY, 255);
         mIconLoc = Settings.System.getInt(cr,
                  Settings.System.RIBBON_ICON_LOCATION, 0);
+        mHorizontalPad = Settings.System.getInt(cr,
+                 Settings.System.RIBBON_ICON_SPACE[AokpRibbonHelper.SWIPE_RIBBON], 5);
+        mVerticalPad = Settings.System.getInt(cr,
+                 Settings.System.RIBBON_ICON_SPACE_VERTICAL, 1);
+        mVib = Settings.System.getBoolean(cr,
+                 Settings.System.RIBBON_ICON_VIBRATE[AokpRibbonHelper.SWIPE_RIBBON], true);
 
         for (int i = 0; i < 3; i++) {
             mEnableSides[i] = Settings.System.getBoolean(cr,
@@ -414,7 +430,6 @@ public class AokpSwipeRibbon extends LinearLayout {
                 }
             } else if (ACTION_SHOW_RIBBON.equals(action)) {
                 if (location.equals(mLocation)) {
-                    mHandler.removeCallbacks(delayHide);
                     if (!showing) {
                         showRibbonView();
                     }

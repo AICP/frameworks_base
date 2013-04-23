@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:id="@id/container"
     android:orientation="vertical"
     android:paddingBottom="1.0dp"
     android:paddingRight="5.0dp"

@@ -218,12 +218,11 @@ public class SearchPanelView extends FrameLayout implements
        final Runnable SetLongPress = new Runnable () {
             public void run() {
                 if (!mSearchPanelLock) {
+                    mSearchPanelLock = true;
                     mLongPress = true;
-                    Log.d(TAG,"LongPress!");
-                    mBar.hideSearchPanel();
                     maybeSkipKeyguard();
                     AwesomeAction.launchAction(mContext, longList.get(mTarget));
-                    mSearchPanelLock = true;
+                    mBar.hideSearchPanel();
                  }
             }
         };

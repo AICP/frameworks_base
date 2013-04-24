@@ -3238,6 +3238,18 @@ public final class Settings {
         };
 
         /**
+         * Ribbon Targets
+         *
+         * @hide
+         */
+        public static final String[] RIBBON_ICON_COLORIZE = new String[] {
+            "ribbon_icon_lockscreen_colorize",
+            "ribbon_icon_notification_colorize",
+            "ribbon_icon_swipe_colorize",
+            "ribbon_icon_quicksettings_colorize",
+        };
+
+        /**
          *
          * @hide
          */

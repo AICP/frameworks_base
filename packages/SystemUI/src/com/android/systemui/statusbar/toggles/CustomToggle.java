@@ -42,7 +42,6 @@ public class CustomToggle extends BaseToggle {
     private int mMatchState = 0;
     private int doubleClickCounter = 0;
     private boolean mActionRevert;
-    private boolean mAdvancedToggle;
     private boolean mMatchAction;
 
     public static final int NO_ACTION = 0;
@@ -97,7 +96,8 @@ public class CustomToggle extends BaseToggle {
         public void run() {
             mCustomState = 0;
             commitState();
-            AwesomeAction.launchAction(mContext, mClickActions[mCustomState]);
+            AwesomeAction.launchAction(mContext, "**null**".equals(mClickActions[mCustomState])
+                    ? mLongActions[mCustomState] : mClickActions[mCustomState]);
             startMagicTricks();
         }
     };
@@ -184,14 +184,12 @@ public class CustomToggle extends BaseToggle {
     }
 
     private void startActions() {
-        if (mAdvancedToggle) {
-            if (mMatchAction) {
-                AwesomeAction.launchAction(mContext, mClickActions[mMatchState]);
-            } else {
-                AwesomeAction.launchAction(mContext, mClickActions[mCustomState]);
-            }
-            shouldCollapse();
+        if (mMatchAction) {
+            AwesomeAction.launchAction(mContext, mClickActions[mMatchState]);
+        } else {
+            AwesomeAction.launchAction(mContext, mClickActions[mCustomState]);
         }
+        shouldCollapse();
         startMagicTricks();
     }
 
@@ -223,7 +221,8 @@ public class CustomToggle extends BaseToggle {
                 myIcon = new BitmapDrawable(mContext.getResources(), f.getAbsolutePath());
             }
         } else {
-            myIcon = NavBarHelpers.getIconImage(mContext, mClickActions[mCustomState]);
+            myIcon = NavBarHelpers.getIconImage(mContext, "**null**".equals(mClickActions[mCustomState])
+                    ? mLongActions[mCustomState] : mClickActions[mCustomState]);
         }
         setLabel(toggleText);
         setIcon(myIcon);
@@ -246,11 +245,7 @@ public class CustomToggle extends BaseToggle {
     }
     @Override
     public boolean onLongClick(View v) {
-        if (mAdvancedToggle) {
-            AwesomeAction.launchAction(mContext, mLongActions[mCustomState]);
-        } else {
-            AwesomeAction.launchAction(mContext, mClickActions[mCustomState]);
-        }
+        AwesomeAction.launchAction(mContext, mLongActions[mCustomState]);
         switch (mCollapseShade) {
             case NO_COLLAPSE:
             case ON_CLICK:
@@ -273,9 +268,6 @@ public class CustomToggle extends BaseToggle {
 
         mActionRevert = Settings.System.getBoolean(resolver,
                 Settings.System.CUSTOM_TOGGLE_REVERT, false);
-
-        mAdvancedToggle = Settings.System.getBoolean(resolver,
-                Settings.System.CUSTOM_TOGGLE_ADVANCED, false);
 
         mMatchAction = Settings.System.getBoolean(resolver,
                 Settings.System.MATCH_ACTION_ICON, false);
@@ -316,6 +308,7 @@ public class CustomToggle extends BaseToggle {
                         Settings.System.CUSTOM_TOGGLE_TEXT[j], mToggleText[j]);
             }
         }
+        startMagicTricks();
     }
 
     class SettingsObserver extends ContentObserver {
@@ -328,10 +321,6 @@ public class CustomToggle extends BaseToggle {
 
             resolver.registerContentObserver(Settings.System
                     .getUriFor(Settings.System.CUSTOM_TOGGLE_REVERT),
-                    false, this);
-
-            resolver.registerContentObserver(Settings.System
-                    .getUriFor(Settings.System.CUSTOM_TOGGLE_ADVANCED),
                     false, this);
 
             resolver.registerContentObserver(Settings.System

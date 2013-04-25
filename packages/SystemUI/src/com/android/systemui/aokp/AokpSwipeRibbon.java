@@ -65,7 +65,7 @@ public class AokpSwipeRibbon extends LinearLayout {
     private LinearLayout mRibbon;
     private LinearLayout mRibbonMain;
     private Button mBackGround;
-    private boolean mText, hasNavBarByDefault, NavBarEnabled, navAutoHide, mNavBarShowing, mVib;
+    private boolean mText, mColorize, hasNavBarByDefault, NavBarEnabled, navAutoHide, mNavBarShowing, mVib;
     private int mHideTimeOut = 5000;
     private boolean showing = false;
     private boolean animating = false;
@@ -288,7 +288,7 @@ public class AokpSwipeRibbon extends LinearLayout {
         if (mLocation.equals("bottom")) {
             HorizontalScrollView hsv = new HorizontalScrollView(mContext);
             hsv = AokpRibbonHelper.getRibbon(mContext,
-                shortTargets, longTargets, customIcons, mText, mTextColor, mSize, mHorizontalPad, mVib);
+                shortTargets, longTargets, customIcons, mText, mTextColor, mSize, mHorizontalPad, mVib, mColorize);
             hsv.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
@@ -303,7 +303,7 @@ public class AokpSwipeRibbon extends LinearLayout {
         } else {
             ScrollView sv = new ScrollView(mContext);
             sv = AokpRibbonHelper.getVerticalRibbon(mContext,
-                shortTargets, longTargets, customIcons, mText, mTextColor, mSize, mVerticalPad, mVib);
+                shortTargets, longTargets, customIcons, mText, mTextColor, mSize, mVerticalPad, mVib, mColorize);
             sv.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
@@ -355,6 +355,8 @@ public class AokpSwipeRibbon extends LinearLayout {
                     Settings.System.RIBBON_ICON_SPACE_VERTICAL), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.RIBBON_ICON_VIBRATE[AokpRibbonHelper.SWIPE_RIBBON]), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.RIBBON_ICON_COLORIZE[AokpRibbonHelper.SWIPE_RIBBON]), false, this);
             for (int i = 0; i < 3; i++) {
 	            resolver.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.ENABLE_RIBBON_LOCATION[i]), false, this);
@@ -398,6 +400,8 @@ public class AokpSwipeRibbon extends LinearLayout {
                  Settings.System.RIBBON_ICON_SPACE_VERTICAL, 1);
         mVib = Settings.System.getBoolean(cr,
                  Settings.System.RIBBON_ICON_VIBRATE[AokpRibbonHelper.SWIPE_RIBBON], true);
+        mColorize = Settings.System.getBoolean(cr,
+                 Settings.System.RIBBON_ICON_COLORIZE[AokpRibbonHelper.SWIPE_RIBBON], false);
 
         for (int i = 0; i < 3; i++) {
             mEnableSides[i] = Settings.System.getBoolean(cr,

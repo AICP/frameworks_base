@@ -33,7 +33,7 @@ public class AokpRibbonHelper {
             LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f);
 
     public static HorizontalScrollView getRibbon(Context mContext, ArrayList<String> shortTargets, ArrayList<String> longTargets,
-            ArrayList<String> customIcons, boolean text, int color, int size, int pad, boolean vib) {
+            ArrayList<String> customIcons, boolean text, int color, int size, int pad, boolean vib, boolean colorize) {
         DisplayMetrics metrics = new DisplayMetrics();
         WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
         wm.getDefaultDisplay().getMetrics(metrics);
@@ -47,7 +47,7 @@ public class AokpRibbonHelper {
             for (int i = 0; i < length; i++) {
                 if (!TextUtils.isEmpty(shortTargets.get(i))) {
                     RibbonTarget newTarget = null;
-                    newTarget = new RibbonTarget(mContext, shortTargets.get(i), longTargets.get(i), customIcons.get(i), text, color, size, vib);
+                    newTarget = new RibbonTarget(mContext, shortTargets.get(i), longTargets.get(i), customIcons.get(i), text, color, size, vib, colorize);
                     if (newTarget != null) {
                         if (i < length -1) {
                             newTarget.setPadding(padding, top);
@@ -68,7 +68,7 @@ public class AokpRibbonHelper {
     }
 
     public static ScrollView getVerticalRibbon(Context mContext, ArrayList<String> shortTargets, ArrayList<String> longTargets,
-            ArrayList<String> customIcons, boolean text, int color, int size, int pad, boolean vib) {
+            ArrayList<String> customIcons, boolean text, int color, int size, int pad, boolean vib, boolean colorize) {
         DisplayMetrics metrics = new DisplayMetrics();
         WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
         wm.getDefaultDisplay().getMetrics(metrics);
@@ -82,7 +82,7 @@ public class AokpRibbonHelper {
             for (int i = 0; i < length; i++) {
                 if (!TextUtils.isEmpty(shortTargets.get(i))) {
                     RibbonTarget newTarget = null;
-                    newTarget = new RibbonTarget(mContext, shortTargets.get(i), longTargets.get(i), customIcons.get(i), text, color, size, vib);
+                    newTarget = new RibbonTarget(mContext, shortTargets.get(i), longTargets.get(i), customIcons.get(i), text, color, size, vib, colorize);
                     if (newTarget != null) {
                         if (i < length -1) {
                             newTarget.setVerticalPadding(padding, sides);

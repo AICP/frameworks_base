@@ -1537,5 +1537,7 @@
     <string name="action_unlock">アンロック</string>
     <string name="action_camera">カメラ</string>
     <string name="action_null">設定なし</string>
+    <string name="action_widgets">ナビゲーションウィジェット</string>
+    <string name="action_ribbon">AOKPリボン</string>
     <string name="action_app">アプリ/ショートカット</string>
 </resources>

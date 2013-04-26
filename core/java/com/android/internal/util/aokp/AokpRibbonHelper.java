@@ -20,8 +20,10 @@ public class AokpRibbonHelper {
     private static final String TARGET_DELIMITER = "|";
     public static final int LOCKSCREEN = 0;
     public static final int NOTIFICATIONS = 1;
-    public static final int SWIPE_RIBBON = 2;
+    public static final int SWIPE_RIBBON_LEFT = 2;
     public static final int QUICK_SETTINGS = 3;
+    public static final int SWIPE_RIBBON_RIGHT = 4;
+    public static final int SWIPE_RIBBON_BOTTOM = 5;
 
     public static final LinearLayout.LayoutParams PARAMS_TARGET = new LinearLayout.LayoutParams(
             LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1f);

@@ -631,6 +631,12 @@
     <string name="permdesc_manageNetworkPolicy" msgid="7537586771559370668">"ネットワークポリシーを管理しアプリ固有のルールを定義することをアプリに許可します。"</string>
     <string name="permlab_modifyNetworkAccounting" msgid="5088217309088729650">"ネットワークの課金の変更"</string>
     <string name="permdesc_modifyNetworkAccounting" msgid="5443412866746198123">"アプリに対するネットワーク利用の計算方法を変更することをアプリに許可します。通常のアプリでは使用しません。"</string>
+
+    <!-- Title of an application permission that lets an application view/edit revoked permissions. -->
+    <string name="permlab_revokePermissions">取り消した権限の表示と編集</string>
+    <!-- Description of an application permission that lets lets an application view/edit revoked permissions. -->
+    <string name="permdesc_revokePermissions">取り消した権限の読み取りと書き込みをアプリに許可します。通常のアプリでは使用しません。</string>
+
     <string name="policylab_limitPassword" msgid="4497420728857585791">"パスワードルールの設定"</string>
     <string name="policydesc_limitPassword" msgid="3252114203919510394">"画面ロック解除パスワードの長さと使用できる文字を制御します。"</string>
     <string name="policylab_watchLogin" msgid="914130646942199503">"画面ロック解除試行の監視"</string>
@@ -1078,6 +1084,10 @@
     <string name="aerr_title" msgid="1905800560317137752"></string>
     <string name="aerr_application" msgid="932628488013092776">"問題が発生したため、<xliff:g id="APPLICATION">%1$s</xliff:g>を終了します。"</string>
     <string name="aerr_process" msgid="4507058997035697579">"問題が発生したため、プロセス「<xliff:g id="PROCESS">%1$s</xliff:g>」を終了します。"</string>
+    <!-- Title of the alert when an application is not responding. -->
+    <string name="aerr_revoked_application"><xliff:g id="application">%1$s</xliff:g> (<xliff:g id="process">%2$s</xliff:g>) が予期せず終了しました。\n警告!\nこのアプリに必要な権限が取り消されているため誤動作しているかもしれません。必要な権限を許可してからもう一度お試しください。</string>
+    <!-- Text of the alert that is displayed when an application has crashed. -->
+    <string name="aerr_revoked_process">プロセス「<xliff:g id="process">%1$s</xliff:g>」が予期せず終了しました。\n警告!\nこのアプリに必要な権限が取り消されているため誤動作しているかもしれません。必要な権限を許可してからもう一度お試しください。</string>
     <string name="anr_title" msgid="4351948481459135709"></string>
     <string name="anr_activity_application" msgid="1904477189057199066">"<xliff:g id="APPLICATION">%2$s</xliff:g>は応答していません。"\n\n"このアプリを終了しますか？"</string>
     <string name="anr_activity_process" msgid="5776209883299089767">"操作「<xliff:g id="ACTIVITY">%1$s</xliff:g>」は応答していません。"\n\n"この操作を終了しますか？"</string>
@@ -1086,6 +1096,8 @@
     <string name="force_close" msgid="8346072094521265605">"OK"</string>
     <string name="report" msgid="4060218260984795706">"レポート"</string>
     <string name="wait" msgid="7147118217226317732">"待機"</string>
+    <!-- Button allowing the user reset the revoked permissions for application which has encountered an error. -->
+    <string name="reset_perms">権限をリセット</string>
     <string name="webpage_unresponsive" msgid="3272758351138122503">"ページが応答しません。"\n\n"ページを閉じますか？"</string>
     <string name="launch_warning_title" msgid="1547997780506713581">"アプリのリダイレクト"</string>
     <string name="launch_warning_replace" msgid="6202498949970281412">"<xliff:g id="APP_NAME">%1$s</xliff:g>が実行中です。"</string>

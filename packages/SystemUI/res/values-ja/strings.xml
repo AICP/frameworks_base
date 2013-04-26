@@ -220,6 +220,8 @@
     <string name="quick_settings_sleep">スリープ</string>
     <string name="quick_settings_reboot">再起動</string>
     <string name="quick_settings_reboot_message">端末再起動中</string>
+    <string name="quick_settings_stayawake_on">常時画面点灯 On</string>
+    <string name="quick_settings_stayawake_off">常時画面点灯 Off</string>
 
     <string name="status_bar_help_title" msgid="1199237744086469217">"ここに通知が表示されます"</string>
     <string name="status_bar_help_text" msgid="7874607155052076323">"下にスワイプすると、いつでも通知を表示できます。"\n"システムを管理するにはもう一度下にスワイプしてください。"</string>

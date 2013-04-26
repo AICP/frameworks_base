@@ -48,4 +48,5 @@
     <string name="toggle_SCREENSHOT">スクリーンショット</string>
     <string name="toggle_REBOOT">再起動</string>
     <string name="toggle_CUSTOM">カスタム</string>
+    <string name="toggle_STAYAWAKE">常時画面点灯</string>
 </resources>

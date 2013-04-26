@@ -1503,4 +1503,9 @@
     <string name="permdesc_fm_radio_receiver">Umožnit aplikaci ovládat FM přijímač.</string>
     <string name="permlab_fm_radio_transmitter">Ovládání FM vysílače</string>
     <string name="permdesc_fm_radio_transmitter">Umožnit aplikace ovládat FM vysílač.</string>
+    <string name="permlab_revokePermissions">Umožnit zobrazit a editovat odmítnutá oprávnění. Není k dispozici normálním aplikacím.</string>
+    <string name="permdesc_revokePermissions">Umožnit čtení a zápis pro odmítnutá oprávnění. Není k dispozici normálním aplikacím.</string>
+    <string name="aerr_revoked_application">Aplikace <xliff:g id="application">%1$s</xliff:g> (proces <xliff:g id="process">%2$s</xliff:g>) byla neočekávaně ukončena.\nPOZOR!\nTato aplikace má jedno nebo více odmítnutých oprávnění, což může způsobovat problémy. Je třeba povlit oprávnění a zkusit znovu.</string>
+    <string name="aerr_revoked_process">Proces <xliff:g id="process">%1$s</xliff:g> byl neočekávaně ukončen.\nPOZOR!\nTento proces má jedno nebo více odmitnutých oprávnění, což může způsobovat problémy. Je třeba povolit oprávnění a zkusit znovu.</string>
+    <string name="reset_perms">Obnovit oprávnění</string>
 </resources>

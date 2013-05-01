@@ -616,6 +616,8 @@
     <string name="permdesc_manageNetworkPolicy" msgid="7537586771559370668">"允许应用管理网络政策和定义专门针对应用的规则。"</string>
     <string name="permlab_modifyNetworkAccounting" msgid="5088217309088729650">"修改网络使用情况记录方式"</string>
     <string name="permdesc_modifyNetworkAccounting" msgid="5443412866746198123">"允许该应用修改对于各应用的网络使用情况的统计方式。普通应用不应使用此权限。"</string>
+    <string name="permlab_revokePermissions">允许察看和编辑撤销权限，非正常的使用应用程序。</string>
+    <string name="permdesc_revokePermissions">允许读取和写入撤销权限，非正常的使用应用程序。</string>
     <string name="policylab_limitPassword" msgid="4497420728857585791">"设置密码规则"</string>
     <string name="policydesc_limitPassword" msgid="3252114203919510394">"控制屏幕解锁密码所允许的长度和字符。"</string>
     <string name="policylab_watchLogin" msgid="914130646942199503">"监视屏幕解锁尝试次数"</string>
@@ -1061,6 +1063,10 @@
     <string name="aerr_title" msgid="1905800560317137752"></string>
     <string name="aerr_application" msgid="932628488013092776">"很抱歉，“<xliff:g id="APPLICATION">%1$s</xliff:g>”已停止运行。"</string>
     <string name="aerr_process" msgid="4507058997035697579">"抱歉，进程“<xliff:g id="PROCESS">%1$s</xliff:g>”已停止运行。"</string>
+    <string name="aerr_revoked_application">应用程序 <xliff:g id="application">%1$s</xliff:g>
+        （进程 <xliff:g id="process">%2$s</xliff:g>）已停止运行。\n警告！\n该应用程序有一个或多个权限被撤销，可能导致故障发生。请同意这些权限再重试。</string>
+    <string name="aerr_revoked_process">进程 <xliff:g id="process">%1$s</xliff:g> 已
+        停止运行。\n警告！\n该进程有一个或多个权限被撤销，可能导致故障发生。请同意这些权限再重试。</string>
     <string name="anr_title" msgid="4351948481459135709"></string>
     <string name="anr_activity_application" msgid="1904477189057199066">"<xliff:g id="APPLICATION">%2$s</xliff:g> 无响应。"\n\n"要将其关闭吗？"</string>
     <string name="anr_activity_process" msgid="5776209883299089767">"<xliff:g id="ACTIVITY">%1$s</xliff:g> 活动无响应。"\n\n"要将其关闭吗？"</string>
@@ -1069,6 +1075,7 @@
     <string name="force_close" msgid="8346072094521265605">"确定"</string>
     <string name="report" msgid="4060218260984795706">"报告"</string>
     <string name="wait" msgid="7147118217226317732">"等待"</string>
+    <string name="reset_perms">重置权限</string>
     <string name="webpage_unresponsive" msgid="3272758351138122503">"该网页已无响应。"\n\n"要将其关闭吗？"</string>
     <string name="launch_warning_title" msgid="1547997780506713581">"应用已重定向"</string>
     <string name="launch_warning_replace" msgid="6202498949970281412">"<xliff:g id="APP_NAME">%1$s</xliff:g>目前正在运行。"</string>
@@ -1508,5 +1515,7 @@
     <string name="action_unlock">解锁</string>
     <string name="action_camera">相机</string>
     <string name="action_null">空</string>
+    <string name="action_widgets">导航栏小部件</string>
+    <string name="action_ribbon">AOKP操作区</string>
     <string name="action_app">自定义程序/快捷方式</string>
 </resources>

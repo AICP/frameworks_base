@@ -216,13 +216,15 @@
     <string name="quick_settings_sleep">休眠</string>
     <string name="quick_settings_reboot">重新启动</string>
     <string name="quick_settings_reboot_message">您的设备正在重新启动</string>
+    <string name="quick_settings_stayawake_on">已保持唤醒</string>
+    <string name="quick_settings_stayawake_off">不保持唤醒</string>
     <string name="status_bar_help_title" msgid="1199237744086469217">"通知会显示在这里"</string>
     <string name="status_bar_help_text" msgid="7874607155052076323">"向下滑动可随时查看通知。"\n"再次向下滑动可使用系统控制功能。"</string>
 
     <!--  AOKP 文本 -->
 
     <!-- Target/Action Strings -->
-    <string name="shortcut_label">AOKP 动作</string>
+    <string name="shortcut_label">AOKP动作</string>
     <string name="action_home">主屏幕</string>
     <string name="action_back">返回</string>
     <string name="action_recents">近期任务</string>

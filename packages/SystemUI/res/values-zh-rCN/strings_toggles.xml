@@ -48,4 +48,5 @@
     <string name="toggle_SCREENSHOT">屏幕截图</string>
     <string name="toggle_REBOOT">重新启动</string>
     <string name="toggle_CUSTOM">自定义开关</string>
+    <string name="toggle_STAYAWAKE">保持唤醒</string>
 </resources>

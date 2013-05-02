@@ -23,6 +23,7 @@ public class BatteryBarController extends LinearLayout {
 
     BatteryBar mainBar;
     BatteryBar alternateStyleBar;
+    SettingsObserver mSettingsObserver;
 
     public static final int STYLE_REGULAR = 0;
     public static final int STYLE_SYMMETRIC = 1;
@@ -83,8 +84,8 @@ public class BatteryBarController extends LinearLayout {
             filter.addAction(Intent.ACTION_BATTERY_CHANGED);
             getContext().registerReceiver(mIntentReceiver, filter);
 
-            SettingsObserver observer = new SettingsObserver(new Handler());
-            observer.observer();
+            mSettingsObserver = new SettingsObserver(new Handler());
+            mSettingsObserver.observer();
             updateSettings();
         }
     }
@@ -107,6 +108,7 @@ public class BatteryBarController extends LinearLayout {
         if (isAttached) {
             isAttached = false;
             removeBars();
+            getContext().getContentResolver().unregisterContentObserver(mSettingsObserver);
         }
         super.onDetachedFromWindow();
     }

@@ -35,11 +35,14 @@ public class CompatModeButton extends ImageView {
     private static final boolean DEBUG = false;
     private static final String TAG = "StatusBar.CompatModeButton";
 
-    boolean mHideExtras = false;
+    private boolean mHideExtras = false;
+    private boolean mAttached = false;
 
     private ContentResolver resolver;
 
     private ActivityManager mAM;
+
+    private SettingsObserver mSettingsObserver;
 
     public CompatModeButton(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
@@ -53,10 +56,30 @@ public class CompatModeButton extends ImageView {
 
         mAM = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
 
-        SettingsObserver observer = new SettingsObserver(new Handler());
-        observer.observe();
         updateSettings();
         refresh();
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+
+        if (!mAttached) {
+            mAttached = true;
+            mSettingsObserver = new SettingsObserver(new Handler());
+            mSettingsObserver.observe();
+            updateSettings();
+        }
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+
+        if (mAttached) {
+            resolver.unregisterContentObserver(mSettingsObserver);
+            mAttached = false;
+        }
     }
 
     public void refresh() {

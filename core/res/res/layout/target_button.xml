@@ -7,13 +7,23 @@
     android:paddingLeft="5.0dp"
     android:layout_height="match_parent"
     android:layout_width="wrap_content"
-    android:layout_gravity="bottom"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:layout_gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
 
+    <FrameLayout
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content" >
+
+    <Button android:id="@+id/background"
+        android:visibility="visible"
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent" />
 
         <LinearLayout
             android:paddingTop="1.0dip"
             android:paddingBottom="1.0dip"
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
 
@@ -27,7 +37,7 @@
                 android:paddingRight="4.0dp" />
 
         </LinearLayout>
-
+        </FrameLayout>
 
         <LinearLayout
             android:paddingTop="1.0dip"

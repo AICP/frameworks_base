@@ -27,6 +27,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Bitmap.Config;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.PorterDuff.Mode;
@@ -45,10 +46,12 @@ import android.provider.Settings;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.IWindowManager;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.widget.ImageButton;
+import android.widget.Button;
 import android.widget.TextView;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -69,10 +72,12 @@ public class RibbonTarget {
     private Context mContext;
     private IWindowManager mWm;
     private ImageButton mIcon;
+    private Button mBackground;
     private TextView mText;
     private Vibrator vib;
     private Intent u;
     private Intent b;
+    private Intent a;
 
 
     /*
@@ -92,6 +97,8 @@ public class RibbonTarget {
         u.setAction("com.android.lockscreen.ACTION_UNLOCK_RECEIVER");
         b = new Intent();
         b.setAction("com.android.systemui.ACTION_HIDE_RIBBON");
+        a = new Intent();
+        a.setAction("com.android.systemui.ACTION_HIDE_APP_WINDOW");
         mWm = IWindowManager.Stub.asInterface(ServiceManager.getService("window"));
 	    DisplayMetrics metrics = new DisplayMetrics();
         WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
@@ -99,6 +106,9 @@ public class RibbonTarget {
         vib = (Vibrator) mContext.getSystemService(mContext.VIBRATOR_SERVICE);
         mView = View.inflate(mContext, R.layout.target_button, null);
         mContainer = (LinearLayout) mView.findViewById(R.id.container);
+        mBackground = (Button) mView.findViewById(R.id.background);
+        mBackground.setBackgroundColor(Color.TRANSPARENT);
+        mBackground.setClickable(false);
         mText = (TextView) mView.findViewById(R.id.label);
         if (!text) {
             mText.setVisibility(View.GONE);
@@ -127,6 +137,22 @@ public class RibbonTarget {
                 }
             });
         }
+        mText.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int action = event.getAction();
+                switch (action) {
+                case  MotionEvent.ACTION_DOWN :
+                    mBackground.setBackgroundColor((color != -1) ? color : Color.CYAN);
+                    break;
+                case MotionEvent.ACTION_CANCEL :
+                case MotionEvent.ACTION_UP:
+                    mBackground.setBackgroundColor(Color.TRANSPARENT);
+                    break;
+                }
+                return false;
+            }
+        });
         mIcon = (ImageButton) mView.findViewById(R.id.icon);
         Drawable newIcon = NavBarHelpers.getIconImage(mContext, "**null**");
         if (!cIcon.equals("**null**")) {
@@ -177,6 +203,22 @@ public class RibbonTarget {
                 }
             });
         }
+        mIcon.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int action = event.getAction();
+                switch (action) {
+                case  MotionEvent.ACTION_DOWN :
+                    mBackground.setBackgroundColor((color != -1) ? color : Color.CYAN);
+                    break;
+                case MotionEvent.ACTION_CANCEL :
+                case MotionEvent.ACTION_UP:
+                    mBackground.setBackgroundColor(Color.TRANSPARENT);
+                    break;
+                }
+                return false;
+            }
+        });
     }
 
     private Drawable resize(Drawable image, int size) {
@@ -193,6 +235,7 @@ public class RibbonTarget {
     }
 
     private void sendIt(String action) {
+        mContext.sendBroadcastAsUser(a, UserHandle.ALL);
         if (shouldUnlock(action)) {
             mContext.sendBroadcastAsUser(u, UserHandle.ALL);
         }

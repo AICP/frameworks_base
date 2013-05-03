@@ -2,6 +2,7 @@ package com.android.systemui.aokp;
 
 import com.android.systemui.R;
 import com.android.systemui.aokp.AokpSwipeRibbon;
+import com.android.systemui.aokp.AppWindow;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -40,6 +41,7 @@ public class RibbonGestureCatcherView extends LinearLayout{
     private float[] mDownPoint = new float[2];
     private boolean mVerticalLayout = true;
     private boolean mRibbonSwipeStarted = false;
+    private boolean mRibbonShortSwiped = false;
     private int mScreenWidth, mScreenHeight;
     private String mAction;
 
@@ -82,6 +84,7 @@ public class RibbonGestureCatcherView extends LinearLayout{
                         mDownPoint[0] = event.getX();
                         mDownPoint[1] = event.getY();
                         mRibbonSwipeStarted = true;
+                        mRibbonShortSwiped = false;
                     }
                     break;
                 case MotionEvent.ACTION_CANCEL :
@@ -100,8 +103,8 @@ public class RibbonGestureCatcherView extends LinearLayout{
                             } else {
                                 distance = mDownPoint[1] - y;
                             }
-                            if (distance > mTriggerThreshhold) {
-                                mRibbonSwipeStarted = false;
+                            if (distance > mTriggerThreshhold && distance < mScreenWidth * 0.75f && !mRibbonShortSwiped) {
+                                mRibbonShortSwiped = true;
                                 Intent showRibbon = new Intent(
                                     AokpSwipeRibbon.RibbonReceiver.ACTION_SHOW_RIBBON);
                                 showRibbon.putExtra("action", mAction);
@@ -109,11 +112,24 @@ public class RibbonGestureCatcherView extends LinearLayout{
                                 mContext.sendBroadcast(showRibbon);
                                 mVibLock = false;
                             }
+                            if (distance > mScreenWidth * 0.75f) {
+                                Intent hideRibbon = new Intent(
+                                    AokpSwipeRibbon.RibbonReceiver.ACTION_HIDE_RIBBON);
+                                mContext.sendBroadcast(hideRibbon);
+                                Intent showAppWindow = new Intent(
+                                    AppWindow.WindowReceiver.ACTION_SHOW_APP_WINDOW);
+                                mContext.sendBroadcast(showAppWindow);
+                                mVibLock = false;
+                                mRibbonSwipeStarted = false;
+                                mRibbonShortSwiped = false;
+                                return true;
+                            }
                         }
                     }
                     break;
                 case MotionEvent.ACTION_UP:
                     mRibbonSwipeStarted = false;
+                    mRibbonShortSwiped = false;
                     mVibLock = false;
                     break;
                 }
@@ -126,10 +142,13 @@ public class RibbonGestureCatcherView extends LinearLayout{
             public boolean onLongClick(View v) {
                 performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
                 Log.d(TAG, "Long pressed sending broadcast");
-                Intent showRibbon = new Intent(
+           /*     Intent showRibbon = new Intent(
                         AokpSwipeRibbon.RibbonReceiver.ACTION_SHOW_RIBBON);
                 showRibbon.putExtra("action", mAction);
-                mContext.sendBroadcast(showRibbon);
+                mContext.sendBroadcast(showRibbon); */
+                                Intent showAppWindow = new Intent(
+                                    AppWindow.WindowReceiver.ACTION_SHOW_APP_WINDOW);
+                                mContext.sendBroadcast(showAppWindow);
                 return true;
                 }
             });

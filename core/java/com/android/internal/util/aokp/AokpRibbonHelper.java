@@ -8,10 +8,12 @@ import android.view.Gravity;
 import android.view.View;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.HorizontalScrollView;
 import android.widget.ScrollView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
+import android.widget.RelativeLayout;
 
 public class AokpRibbonHelper {
 
@@ -33,6 +35,9 @@ public class AokpRibbonHelper {
 
     public static final LinearLayout.LayoutParams PARAMS_TARGET_SCROLL = new LinearLayout.LayoutParams(
             LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f);
+
+    public static final LinearLayout.LayoutParams PARAMS_GRID = new LinearLayout.LayoutParams(
+            0, LayoutParams.WRAP_CONTENT, 1f);
 
     public static HorizontalScrollView getRibbon(Context mContext, ArrayList<String> shortTargets, ArrayList<String> longTargets,
             ArrayList<String> customIcons, boolean text, int color, int size, int pad, boolean vib, boolean colorize) {
@@ -103,5 +108,43 @@ public class AokpRibbonHelper {
             targetScrollView.addView(targetsLayout, PARAMS_TARGET_SCROLL);
         }
         return targetScrollView;
+    }
+
+    public static ScrollView getGridView(Context mContext, ArrayList<String> apps, int color, int columns) {
+        int length = apps.size();
+        ScrollView appGridView = new ScrollView(mContext);
+        ArrayList<RibbonTarget> targets = new ArrayList<RibbonTarget>();
+        for (int i = 0; i < length; i++) {
+            if (!TextUtils.isEmpty(apps.get(i))) {
+                RibbonTarget newApp = null;
+                newApp = new RibbonTarget(mContext, apps.get(i), "**null**", "**null**", true, color, 0, true, false);
+                if (newApp != null) {
+                    targets.add(newApp);
+                }
+            }
+        }
+        LinearLayout table = new LinearLayout(mContext);
+        table.setOrientation(LinearLayout.VERTICAL);
+        length = targets.size();
+        int intDiv = length / columns;
+        for (int i = 0; i < intDiv; i++) {
+            LinearLayout row = new LinearLayout(mContext);
+            row.setOrientation(LinearLayout.HORIZONTAL);
+            for (int j = 0; j < columns; j++) {
+                row.addView(targets.get(0).getView(), PARAMS_GRID);
+                targets.remove(0);
+            }
+            table.addView(row, PARAMS_TARGET);
+        }
+        length = targets.size();
+        LinearLayout newRow = new LinearLayout(mContext);
+        newRow.setOrientation(LinearLayout.HORIZONTAL);
+        for (int i = 0; i < length; i++) {
+            newRow.addView(targets.get(i).getView(), PARAMS_GRID);
+        }
+        newRow.setGravity(Gravity.CENTER);
+        table.addView(newRow, PARAMS_TARGET);
+        appGridView.addView(table, PARAMS_TARGET);
+        return appGridView;
     }
 }

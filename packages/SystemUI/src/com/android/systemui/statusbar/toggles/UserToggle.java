@@ -19,7 +19,9 @@ import android.os.UserManager;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Profile;
+import android.util.DisplayMetrics;
 import android.util.Pair;
+import android.view.WindowManager;
 import android.view.View;
 import android.view.WindowManagerGlobal;
 import android.widget.ImageView;
@@ -33,6 +35,7 @@ public class UserToggle extends BaseToggle {
     private AsyncTask<Void, Void, Pair<String, Drawable>> mUserInfoTask;
 
     private static Drawable sAvatarDrawable = null;
+    private static int sAvatarBaseSize = 125;
 
     @Override
     public void init(Context c, int style) {
@@ -105,6 +108,14 @@ public class UserToggle extends BaseToggle {
                 Drawable avatar = null;
                 Bitmap rawAvatar = um.getUserIcon(userId);
                 if (rawAvatar != null) {
+                    DisplayMetrics dm = new DisplayMetrics();
+                    WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+                    wm.getDefaultDisplay().getMetrics(dm);
+                    int desiredSize = (int) (sAvatarBaseSize * dm.density);
+                    int width = rawAvatar.getWidth();
+                    if (width > desiredSize) {
+                        rawAvatar = Bitmap.createScaledBitmap(rawAvatar, desiredSize, desiredSize, false);
+                    }
                     avatar = new BitmapDrawable(mContext.getResources(), rawAvatar);
                 } else {
                     avatar = mContext.getResources().getDrawable(R.drawable.ic_qs_default_user);

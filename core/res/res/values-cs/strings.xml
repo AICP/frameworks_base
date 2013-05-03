@@ -1467,6 +1467,7 @@
     <string name="vibration_picker_title">Zvolit vibrační vzor</string>
     <string name="vibration_picker_del_title">Smazat vibrační vzor</string>
     <string name="notify_turn_wifi_off_title">Vypnout Wi-Fi</string>
+    <string name="notify_turn_wifi_ap_off_title">Vypnout Wi-Fi HOTSPOT</string>
     <string name="toast_rotation_unlocked">Automatické otáčení obrazovky odemčeno</string>
     <string name="toast_rotation_locked">Automatické otáčení obrazovky zamčeno</string>
     <string name="lockscreen_always_battery">Vybíjení, <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>

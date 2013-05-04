@@ -1519,6 +1519,9 @@
     <!-- In WiFi notification -->
     <string name="notify_turn_wifi_off_title">Wi-Fiをオフにする</string>
 
+    <!-- In WiFi AP notification -->
+    <string name="notify_turn_wifi_ap_off_title">Wi-Fiアクセスポイントをオフにする</string>
+
     <!-- Hardware Rotation lock string -->
     <string name="toast_rotation_unlocked">画面の自動回転を有効にしました</string>
     <string name="toast_rotation_locked">画面の向きをロックしました</string>

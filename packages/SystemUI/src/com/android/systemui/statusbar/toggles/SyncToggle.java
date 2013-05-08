@@ -14,7 +14,7 @@ public class SyncToggle extends StatefulToggle implements SyncStatusObserver {
     Object mHandle;
 
     @Override
-    protected void init(Context c, int style) {
+    public void init(Context c, int style) {
         super.init(c, style);
         mHandle = ContentResolver.addStatusChangeListener(
                 ContentResolver.SYNC_OBSERVER_TYPE_SETTINGS, this);

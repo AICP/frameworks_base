@@ -16,7 +16,7 @@ public class WifiToggle extends StatefulToggle implements NetworkSignalChangedCa
     private WifiManager wifiManager;
 
     @Override
-    protected void init(Context c, int style) {
+    public void init(Context c, int style) {
         super.init(c, style);
         setInfo(mContext.getString(R.string.quick_settings_wifi_off_label),
                 R.drawable.ic_qs_wifi_no_network);

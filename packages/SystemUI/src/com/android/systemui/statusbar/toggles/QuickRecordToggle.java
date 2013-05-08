@@ -30,7 +30,7 @@ public class QuickRecordToggle extends BaseToggle {
     private MediaRecorder mRecorder = null;
 
     @Override
-    protected void init(Context c, int style) {
+    public void init(Context c, int style) {
         super.init(c, style);
         mQuickAudio = Environment.getExternalStorageDirectory().getAbsolutePath();
         mQuickAudio += "/quickrecord.3gp";

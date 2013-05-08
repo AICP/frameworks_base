@@ -17,7 +17,7 @@ public class BatteryToggle extends BaseToggle implements BatteryStateChangeCallb
 
 
     @Override
-    protected void init(Context c, int style) {
+    public void init(Context c, int style) {
         super.init(c, style);
         mBatteryLevels = (LevelListDrawable) c.getResources()
                 .getDrawable(R.drawable.qs_sys_battery);

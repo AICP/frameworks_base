@@ -13,7 +13,7 @@ import com.android.systemui.R;
 public class ImeToggle extends BaseToggle {
 
     @Override
-    protected void init(Context c, int style) {
+    public void init(Context c, int style) {
         super.init(c, style);
         setLabel(R.string.quick_settings_ime_label);
         setIcon(R.drawable.ic_qs_ime);

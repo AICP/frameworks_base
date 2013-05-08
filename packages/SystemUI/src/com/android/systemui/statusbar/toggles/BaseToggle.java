@@ -56,7 +56,7 @@ public abstract class BaseToggle
     public BaseToggle() {
     }
 
-    protected void init(Context c, int style) {
+    public void init(Context c, int style) {
         mContext = c;
         mStyle = style;
         mHandler = new Handler();

@@ -29,6 +29,37 @@
     android:descendantFocusability="afterDescendants">
 
         <LinearLayout
+            android:paddingTop="1.0dip"
+            android:paddingBottom="1.0dip"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/toggles"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="4.0dp"
+                android:paddingRight="4.0dp" />
+
+            <TextView
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/label"
+                android:gravity="center"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:scrollHorizontally="true" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/ribbon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

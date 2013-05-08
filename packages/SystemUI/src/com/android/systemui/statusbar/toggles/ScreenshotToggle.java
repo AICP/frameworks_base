@@ -17,7 +17,7 @@ public class ScreenshotToggle extends BaseToggle {
     private Handler mHandler = new Handler();
 
     @Override
-    protected void init(Context c, int style) {
+    public void init(Context c, int style) {
         super.init(c, style);
         setIcon(R.drawable.ic_qs_screenshot);
         setLabel(R.string.quick_settings_screenshot);

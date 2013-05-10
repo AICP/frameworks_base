@@ -38,7 +38,7 @@ public class CustomToggle extends BaseToggle {
     private int mDoubleClick;
     private int mNumberOfActions;
     private int mCollapseShade;
-    private int mCustomState= 0;
+    private int mCustomState;
     private int mMatchState = 0;
     private int doubleClickCounter = 0;
     private boolean mActionRevert;
@@ -67,7 +67,7 @@ public class CustomToggle extends BaseToggle {
     private SettingsObserver mObserver = null;
 
     @Override
-    protected void init(Context c, int style) {
+    public void init(Context c, int style) {
         super.init(c, style);
         mObserver = new SettingsObserver(mHandler);
         mObserver.observe();
@@ -206,8 +206,9 @@ public class CustomToggle extends BaseToggle {
     }
 
     private void commitState() {
-        SharedPreferences p = mContext.getSharedPreferences(KEY_TOGGLE_STATE, Context.MODE_PRIVATE);
-        p.edit().putInt("state", mCustomState).commit();
+        Settings.System.putInt(mContext.getContentResolver(),
+                Settings.System.CUSTOM_TOGGLE_STATE, mCustomState);
+        updateSettings();
     }
 
     private void startMagicTricks() {
@@ -263,11 +264,11 @@ public class CustomToggle extends BaseToggle {
 
         String mDefaultText = "CUSTOM";
 
-        SharedPreferences p = mContext.getSharedPreferences(KEY_TOGGLE_STATE, Context.MODE_PRIVATE);
-        mCustomState = p.getInt("state", 0);
-
         mActionRevert = Settings.System.getBoolean(resolver,
                 Settings.System.CUSTOM_TOGGLE_REVERT, false);
+
+        mCustomState = Settings.System.getInt(resolver,
+                Settings.System.CUSTOM_TOGGLE_STATE, 0);
 
         mMatchAction = Settings.System.getBoolean(resolver,
                 Settings.System.MATCH_ACTION_ICON, false);
@@ -321,6 +322,10 @@ public class CustomToggle extends BaseToggle {
 
             resolver.registerContentObserver(Settings.System
                     .getUriFor(Settings.System.CUSTOM_TOGGLE_REVERT),
+                    false, this);
+
+            resolver.registerContentObserver(Settings.System
+                    .getUriFor(Settings.System.CUSTOM_TOGGLE_STATE),
                     false, this);
 
             resolver.registerContentObserver(Settings.System

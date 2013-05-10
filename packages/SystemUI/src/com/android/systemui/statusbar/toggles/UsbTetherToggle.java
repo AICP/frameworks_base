@@ -16,7 +16,7 @@ public class UsbTetherToggle extends StatefulToggle {
     ConnectivityManager connManager;
 
     @Override
-    protected void init(Context c, int style) {
+    public void init(Context c, int style) {
         super.init(c, style);
         connManager = (ConnectivityManager) c.getSystemService(Context.CONNECTIVITY_SERVICE);
         registerBroadcastReceiver(new BroadcastReceiver() {

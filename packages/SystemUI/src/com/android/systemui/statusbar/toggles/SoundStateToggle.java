@@ -13,7 +13,7 @@ public class SoundStateToggle extends StatefulToggle {
     private AudioManager mAudioManager;
 
     @Override
-    protected void init(Context c, int style) {
+    public void init(Context c, int style) {
         super.init(c, style);
         scheduleViewUpdate();
     }

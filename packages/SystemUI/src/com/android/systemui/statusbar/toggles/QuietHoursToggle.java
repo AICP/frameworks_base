@@ -15,7 +15,7 @@ import com.android.systemui.R;
 public class QuietHoursToggle extends StatefulToggle {
 
     @Override
-    protected void init(Context c, int style) {
+    public void init(Context c, int style) {
         super.init(c, style);
         scheduleViewUpdate();
     }

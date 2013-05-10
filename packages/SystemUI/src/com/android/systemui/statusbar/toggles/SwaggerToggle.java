@@ -25,7 +25,7 @@ public class SwaggerToggle extends BaseToggle implements OnTouchListener {
     long tacoTime = 0;
 
     @Override
-    protected void init(Context c, int style) {
+    public void init(Context c, int style) {
         super.init(c, style);
         registerBroadcastReceiver(new BroadcastReceiver() {
 

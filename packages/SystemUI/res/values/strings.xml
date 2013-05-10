@@ -543,6 +543,8 @@
     <!--  App window Strings -->
     <string name="close">Close</string>
     <string name="app_window">Applications</string>
+    <string name="toggles">Toggles</string>
+    <string name="ribbon">Ribbon</string>
 
     <!--  Target/Action Strings -->
     <string name="shortcut_label">AOKP Actions</string>

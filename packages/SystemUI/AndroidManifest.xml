@@ -259,7 +259,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.android.systemui.aokp.StatusbarToggle"
+            android:name="com.android.systemui.aokp.StatusbarToggleShortcut"
             android:label="@string/toggle_statusbar"
             android:icon="@drawable/toggle_statusbar"
             android:theme="@android:style/Theme.Holo.Panel"

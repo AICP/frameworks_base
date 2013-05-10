@@ -15,7 +15,7 @@ public class RotateToggle extends StatefulToggle {
     private RotationPolicyListener mListener = null;
 
     @Override
-    protected void init(Context c, int style) {
+    public void init(Context c, int style) {
         super.init(c, style);
         RotationPolicy.registerRotationPolicyListener(mContext,
                 mListener = new RotationPolicyListener() {

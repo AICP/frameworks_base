@@ -37,7 +37,7 @@ public class FavoriteUserToggle extends BaseToggle {
     private SettingsObserver mObserver = null;
 
     @Override
-    protected void init(Context c, int style) {
+    public void init(Context c, int style) {
         super.init(c, style);
         reloadFavContactInfo();
         mObserver = new SettingsObserver(mHandler);

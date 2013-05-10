@@ -24,8 +24,8 @@ import android.provider.Settings;
  * Toggle the StatusBar
  */
 
-public class StatusbarToggle extends Activity  {
-  public StatusbarToggle() {
+public class StatusbarToggleShortcut extends Activity  {
+  public StatusbarToggleShortcut() {
     super();
   }
 

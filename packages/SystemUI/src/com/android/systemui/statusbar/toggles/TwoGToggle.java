@@ -19,7 +19,7 @@ public class TwoGToggle extends StatefulToggle {
     SettingsObserver mObserver;
 
     @Override
-    protected void init(Context c, int style) {
+    public void init(Context c, int style) {
         super.init(c, style);
 
         mObserver = new SettingsObserver(new Handler());

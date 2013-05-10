@@ -11,7 +11,7 @@ import com.android.systemui.statusbar.policy.NetworkController.NetworkSignalChan
 public class AirplaneModeToggle extends StatefulToggle implements NetworkSignalChangedCallback {
 
     @Override
-    protected void init(Context c, int style) {
+    public void init(Context c, int style) {
         super.init(c, style);
 
         boolean enabled = Settings.Global.getInt(c.getContentResolver(),

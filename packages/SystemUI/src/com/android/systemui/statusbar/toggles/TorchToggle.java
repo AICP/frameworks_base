@@ -15,7 +15,7 @@ public class TorchToggle extends StatefulToggle {
     TorchObserver mObserver = null;
 
     @Override
-    protected void init(Context c, int style) {
+    public void init(Context c, int style) {
         super.init(c, style);
         mObserver = new TorchObserver(mHandler);
         mObserver.observe();

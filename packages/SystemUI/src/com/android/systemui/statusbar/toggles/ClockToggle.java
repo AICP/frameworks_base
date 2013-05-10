@@ -13,7 +13,7 @@ import com.android.systemui.statusbar.phone.QuickSettingsTileView;
 public class ClockToggle extends BaseToggle {
 
     @Override
-    protected void init(Context c, int style) {
+    public void init(Context c, int style) {
         super.init(c, style);
     }
     

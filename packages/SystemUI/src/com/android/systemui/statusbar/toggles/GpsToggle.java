@@ -15,7 +15,7 @@ public class GpsToggle extends StatefulToggle implements LocationGpsStateChangeC
     private boolean mGpsFix;
 
     @Override
-    protected void init(Context c, int style) {
+    public void init(Context c, int style) {
         super.init(c, style);
     }
 

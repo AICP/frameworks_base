@@ -18,7 +18,7 @@ public class RebootToggle extends BaseToggle {
     private PowerManager pm;
 
     @Override
-    protected void init(Context c, int style) {
+    public void init(Context c, int style) {
         super.init(c, style);
         setIcon(R.drawable.ic_qs_reboot);
         setLabel(R.string.quick_settings_reboot);

@@ -15,7 +15,7 @@ public class NfcToggle extends StatefulToggle {
     NfcAdapter mNfcAdapter = null;
 
     @Override
-    protected void init(Context c, int style) {
+    public void init(Context c, int style) {
         super.init(c, style);
         mNfcAdapter = NfcAdapter.getDefaultAdapter(c);
         if (mNfcAdapter != null) {

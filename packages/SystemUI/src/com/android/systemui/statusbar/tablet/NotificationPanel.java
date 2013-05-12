@@ -59,6 +59,7 @@ import com.android.systemui.statusbar.phone.QuickSettingsContainerView;
 import com.android.systemui.statusbar.phone.SettingsPanelView;
 import com.android.systemui.statusbar.policy.NotificationRowLayout;
 import com.android.systemui.statusbar.toggles.ToggleManager;
+import com.android.systemui.aokp.AokpSwipeRibbon;
 
 public class NotificationPanel extends RelativeLayout implements StatusBarPanel,
         View.OnClickListener {
@@ -86,6 +87,10 @@ public class NotificationPanel extends RelativeLayout implements StatusBarPanel,
 
     // settings
     ToggleManager mToggleManager;
+
+    private AokpSwipeRibbon mAokpSwipeRibbonLeft;
+    private AokpSwipeRibbon mAokpSwipeRibbonRight;
+    private AokpSwipeRibbon mAokpSwipeRibbonBottom;
     boolean mHasSettingsPanel, mHasFlipSettings;
     int mToggleStyle;
     SettingsPanelView mSettingsPanel;
@@ -122,6 +127,10 @@ public class NotificationPanel extends RelativeLayout implements StatusBarPanel,
             mToggleManager.setControllers(mBar.mBluetoothController,mBar.mNetworkController, mBar.mBatteryController,
                 mBar.mLocationController, null);
             mToggleManager.updateSettings();
+            mAokpSwipeRibbonLeft.setControllers(mBar.mBluetoothController,mBar.mNetworkController, mBar.mBatteryController,
+                mBar.mLocationController, null);
+            mAokpSwipeRibbonRight.setControllers(mBar.mBluetoothController,mBar.mNetworkController, mBar.mBatteryController,
+                mBar.mLocationController, null);
         }
     }
 
@@ -211,6 +220,9 @@ public class NotificationPanel extends RelativeLayout implements StatusBarPanel,
 
             // wherever you find it, Quick Settings needs a container to survive
             mToggleManager = new ToggleManager(mContext);
+            mAokpSwipeRibbonBottom = new AokpSwipeRibbon(mContext,null,"bottom");
+            mAokpSwipeRibbonLeft = new AokpSwipeRibbon(mContext,null,"left");
+            mAokpSwipeRibbonRight = new AokpSwipeRibbon(mContext,null,"right");
             mToggleStyle = Settings.System.getInt(mContext.getContentResolver(), 
                     Settings.System.TOGGLES_STYLE,ToggleManager.STYLE_TILE);
             if (mToggleStyle == ToggleManager.STYLE_SCROLLABLE) {
@@ -725,4 +737,3 @@ public class NotificationPanel extends RelativeLayout implements StatusBarPanel,
         }
     }
 }
-

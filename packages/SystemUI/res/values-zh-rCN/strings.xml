@@ -218,10 +218,17 @@
     <string name="quick_settings_reboot_message">您的设备正在重新启动</string>
     <string name="quick_settings_stayawake_on">已保持唤醒</string>
     <string name="quick_settings_stayawake_off">不保持唤醒</string>
+    <string name="quick_settings_adb_off">关闭无线 ADB</string>
     <string name="status_bar_help_title" msgid="1199237744086469217">"通知会显示在这里"</string>
     <string name="status_bar_help_text" msgid="7874607155052076323">"向下滑动可随时查看通知。"\n"再次向下滑动可使用系统控制功能。"</string>
 
     <!--  AOKP 文本 -->
+
+    <!--  App window Strings -->
+    <string name="close">关闭</string>
+    <string name="app_window">应用程序</string>
+    <string name="toggles">快捷开关</string>
+    <string name="ribbon">操作区</string>
 
     <!-- Target/Action Strings -->
     <string name="shortcut_label">AOKP动作</string>

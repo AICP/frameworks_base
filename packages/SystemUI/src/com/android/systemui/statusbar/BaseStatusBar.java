@@ -394,6 +394,12 @@ public abstract class BaseStatusBar extends SystemUI implements
         };
     }
 
+    public void dismissKeyguard() {
+        Intent u = new Intent();
+        u.setAction("com.android.lockscreen.ACTION_UNLOCK_RECEIVER");
+        mContext.sendBroadcastAsUser(u, UserHandle.ALL);
+    }
+
     public void dismissPopups() {
         if (mNotificationBlamePopup != null) {
             mNotificationBlamePopup.dismiss();

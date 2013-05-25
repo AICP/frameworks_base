@@ -3097,6 +3097,12 @@ public final class Settings {
         };
 
         /**
+         *
+         * @hide
+         */
+        public static final String LOCKSCREEN_GLOW_TORCH = "lockscreen_glow_torch";
+
+        /**
          * Whether to use the custom quick unlock screen control
          * @hide
          */

@@ -1191,7 +1191,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 break;
             case 1 :
                 // "tablet" UI with a single combined status & navigation bar
-                mNavBarAutoHide = false; // TabUI, No AutoHide for you!
+                //mNavBarAutoHide = false; // TabUI, No AutoHide for you!
                 mHasSystemNavBar = true;
                 mNavigationBarCanMove = false;
                 break;
@@ -1376,7 +1376,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 Settings.System.USER_UI_MODE,mStockUIMode)) {
             resetScreenHelper();
         }
-        if (NavHide != mNavBarAutoHide && mUserUIMode != 1) {
+        if (NavHide != mNavBarAutoHide) {
             mNavBarAutoHide = NavHide;
             resetScreenHelper();
         }
@@ -1736,7 +1736,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     }
 
     public int getNonDecorDisplayHeight(int fullWidth, int fullHeight, int rotation) {
-        if (mHasSystemNavBar) {
+        if (mHasSystemNavBar && !mNavBarAutoHide) {
             // For the system navigation bar, we always place it at the bottom.
             return fullHeight - mNavigationBarHeightForRotation[rotation];
         }

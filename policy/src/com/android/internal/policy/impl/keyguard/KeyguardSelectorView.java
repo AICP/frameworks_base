@@ -64,6 +64,8 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
     private final int TORCH_TIMEOUT = ViewConfiguration.getLongPressTimeout(); //longpress glowpad torch
     private final int TORCH_CHECK = 2000; //make sure torch turned off
 
+    private final long KEEP_AWAKE = 120000;
+
     private KeyguardSecurityCallback mCallback;
     private GlowPadView mGlowPadView;
     private LinearLayout mRibbon;
@@ -315,6 +317,7 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
 
     private void fireTorch() {
         mHandler.removeCallbacks(startTorch);
+        mCallback.userActivity(0);
         if (mGlowTorch && mGlowTorchOn) {
             mGlowTorchOn = false;
             vibrate();
@@ -357,6 +360,7 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
             boolean torchActive = Settings.System.getBoolean(mContext.getContentResolver(),
                     Settings.System.TORCH_STATE, false);
             if (!torchActive && !mGlowTorchOn) {
+                mCallback.userActivity(KEEP_AWAKE);
                 mGlowTorchOn = true;
                 vibrate();
                 Intent intent = new Intent("com.aokp.torch.INTENT_TORCH_ON");

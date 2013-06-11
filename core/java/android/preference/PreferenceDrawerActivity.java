@@ -536,28 +536,30 @@ public abstract class PreferenceDrawerActivity extends ListActivity implements
         int initialTitle = getIntent().getIntExtra(EXTRA_SHOW_FRAGMENT_TITLE, 0);
         int initialShortTitle = getIntent().getIntExtra(EXTRA_SHOW_FRAGMENT_SHORT_TITLE, 0);
 
-        loadDrawerDrawables();
-        mDrawerToggle = new ActionBarDrawerToggle(
-                this,
-                mDrawerLayout,
-                mDrawerIconRes,
-                0,
-                0
-                ) {
-            /** Called when a drawer has settled in a completely closed state. */
-            public void onDrawerClosed(View view) {
-            }
-
-            /** Called when a drawer has settled in a completely open state. */
-            public void onDrawerOpened(View drawerView) {
-            }
-        };
-        mDrawerLayout.setDrawerShadow(mDrawerShadowRes, Gravity.START);
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
         mActionBar = getActionBar();
-        if (mActionBar != null) {
-            mActionBar.setDisplayHomeAsUpEnabled(true);
-            mActionBar.setHomeButtonEnabled(true);
+        if (mDrawerLayout != null) {
+            loadDrawerDrawables();
+            mDrawerToggle = new ActionBarDrawerToggle(
+                    this,
+                    mDrawerLayout,
+                    mDrawerIconRes,
+                    0,
+                    0
+                    ) {
+                /** Called when a drawer has settled in a completely closed state. */
+                public void onDrawerClosed(View view) {
+                }
+
+                /** Called when a drawer has settled in a completely open state. */
+                public void onDrawerOpened(View drawerView) {
+                }
+            };
+            mDrawerLayout.setDrawerShadow(mDrawerShadowRes, Gravity.START);
+            mDrawerLayout.setDrawerListener(mDrawerToggle);
+            if (mActionBar != null) {
+                mActionBar.setDisplayHomeAsUpEnabled(true);
+                mActionBar.setHomeButtonEnabled(true);
+            }
         }
 
         if (savedInstanceState != null) {
@@ -585,7 +587,7 @@ public abstract class PreferenceDrawerActivity extends ListActivity implements
                     Header h = onGetInitialHeader();
                     switchToHeader(h);
                     // no initial fragment was specified so show the user the drawer
-                    mDrawerLayout.openDrawer(mDrawer);
+                    if (mDrawerLayout != null) mDrawerLayout.openDrawer(mDrawer);
                 } else {
                     switchToHeader(initialFragment, initialArguments);
                 }
@@ -659,7 +661,7 @@ public abstract class PreferenceDrawerActivity extends ListActivity implements
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         // Sync the toggle state after onRestoreInstanceState has occurred.
-        mDrawerToggle.syncState();
+        if (mDrawerLayout != null) mDrawerToggle.syncState();
     }
 
     @Override
@@ -672,7 +674,7 @@ public abstract class PreferenceDrawerActivity extends ListActivity implements
     public boolean onOptionsItemSelected(MenuItem item) {
         // Pass the event to ActionBarDrawerToggle, if it returns
         // true, then it has handled the app icon touch event
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
+        if (mDrawerLayout != null && mDrawerToggle.onOptionsItemSelected(item)) {
           return true;
         }
         // Handle your other action bar items...
@@ -1002,7 +1004,7 @@ public abstract class PreferenceDrawerActivity extends ListActivity implements
             Object item = mAdapter.getItem(position);
             if (item instanceof Header) {
                 onHeaderClick((Header) item, position);
-                mDrawerLayout.closeDrawer(mDrawer);
+                if (mDrawerLayout != null) mDrawerLayout.closeDrawer(mDrawer);
             }
         }
     }

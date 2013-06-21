@@ -4130,4 +4130,12 @@
     <string name="action_app_window">App Window</string>
     <string name="action_ribbon">AOKP Ribbon</string>
     <string name="action_app">Custom App/Shortcut</string>
+
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_interceptSmsSent">intercept outgoing SMS</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_interceptSmsSent">Allows the app to
+        intercept an outgoing SMS.
+        Malicious apps may use this to prevent outgoing SMS messages.</string>
+
 </resources>

@@ -2004,4 +2004,7 @@
   <java-symbol type="anim" name="recents_fade_in" />
   <java-symbol type="anim" name="recents_fade_out" />
 
+  <!-- Irda Service -->
+  <java-symbol type="bool" name="config_enableIrdaManagerService" />
+
 </resources>

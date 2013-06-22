@@ -1456,4 +1456,87 @@
     <string name="enable_accessibility_canceled" msgid="3833923257966635673">"Byte till tillgänglighetsläge avbrutet."</string>
     <string name="user_switched" msgid="3768006783166984410">"Nuvarande användare: <xliff:g id="NAME">%1$s</xliff:g>."</string>
     <string name="owner_name" msgid="2716755460376028154">"Ägare"</string>
+
+   <!-- AOKP extra -->
+    <!-- Reboot -->
+    <string name="reboot">Omstart</string>
+
+    <!-- Reboot recovery option -->
+    <string name="reboot_recovery">Recovery</string>
+
+    <!-- Reboot recovery option -->
+    <string name="reboot_download">Nerladdning</string>
+
+    <!-- Reboot recovery option -->
+    <string name="reboot_bootloader">Bootloader</string>
+
+    <!-- Rebooting message -->
+    <string name="reboot_progress">Din enhet startar om</string>
+
+    <!-- label for item that torches in phone options dialog -->
+    <string name="global_action_torch">Ficklampa</string>
+
+    <!-- label for item that toggles NavBar Hide -->
+    <string name="global_actions_toggle_navbar_hide">Navigations Bar Kontroll</string>
+
+    <!-- Vibration picker dialog title -->
+    <string name="vibration_picker_title">Välj vibration</string>
+    <string name="vibration_picker_del_title">Ta bort vibration</string>
+
+    <!-- In WiFi notification -->
+    <string name="notify_turn_wifi_off_title">Stäng av Wi-Fi</string>
+
+    <!-- In WiFi AP notification -->
+    <string name="notify_turn_wifi_ap_off_title">Stäng av Wi-Fi AP</string>
+
+    <!-- Hardware Rotation lock string -->
+    <string name="toast_rotation_unlocked">Skärm rotation olåst</string>
+    <string name="toast_rotation_locked">Skärm rotation låst</string>
+
+    <!-- Animation Strings -->
+    <string name="animation_fade">Tona bort</string>
+    <string name="animation_slide_right">Glid in åt höger</string>
+    <string name="animation_slide_left">Glid in åt vänster</string>
+    <string name="animation_slide_right_no_fade">Glid in åt höger (Tona inte bort)</string>
+    <string name="animation_slide_left_no_fade">Glid in åt vänster (Tona inte bort)</string>
+    <string name="animation_slide_up">Glida på botten</string>
+    <string name="animation_slide_down">Glida på toppen</string>
+    <string name="animation_default">Standard</string>
+    <string name="animation_translucent">Translucent</string>
+    <string name="animation_grow_shrink">Växa i (Toppen)</string>
+    <string name="animation_grow_shrink_center">Växa i (Mitten)</string>
+    <string name="animation_grow_shrink_bottom">Växa i (Botten)</string>
+    <string name="animation_grow_shrink_left">Växa åt (Vänster)</string>
+    <string name="animation_grow_shrink_right">Växa åt (Höger)</string>
+
+    <!-- Awesome Action Stuff-->
+    <string name="action_home">Hem</string>
+    <string name="action_back">Tillbacka</string>
+    <string name="action_recents">Senaste</string>
+    <string name="action_recents_gb">Senaste (GB stil)</string>
+    <string name="action_search">Sök</string>
+    <string name="action_screenshot">Skärmdump</string>
+    <string name="action_menu">Meny</string>
+    <string name="action_ime">Öppna IME Växlaren</string>
+    <string name="action_kill">Döda uppgiften</string>
+    <string name="action_lastapp">Senaste app</string>
+    <string name="action_power">Power</string>
+    <string name="action_notifications">Notifikationer</string>
+    <string name="action_assist">Sök (Google Nu)</string>
+    <string name="action_clockoptions">Klock alterntiv</string>
+    <string name="action_voiceassist">Röst sökning</string>
+    <string name="action_torch">Ficklampa</string>
+    <string name="action_silent">Ringa/Tyst</string>
+    <string name="action_vib">Ringa/Vibrera</string>
+    <string name="action_silent_vib">Ringa/Vibrera/Tyst</string>
+    <string name="action_event">Händelse</string>
+    <string name="action_today">Idag</string>
+    <string name="action_alarm">Alarm</string>
+    <string name="action_unlock">Lås upp</string>
+    <string name="action_camera">Kamera</string>
+    <string name="action_null">Blank</string>
+    <string name="action_widgets">Nav Widgets</string>
+    <string name="action_app_window">App Fönster</string>
+    <string name="action_ribbon">AOKP Ribbon</string>
+    <string name="action_app">Anpassad App/Genväg</string>
 </resources>

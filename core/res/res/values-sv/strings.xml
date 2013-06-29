@@ -1511,7 +1511,7 @@
 
     <!-- Awesome Action Stuff-->
     <string name="action_home">Hem</string>
-    <string name="action_back">Tillbacka</string>
+    <string name="action_back">Tillbaka</string>
     <string name="action_recents">Senaste</string>
     <string name="action_recents_gb">Senaste (GB stil)</string>
     <string name="action_search">Sök</string>

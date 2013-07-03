@@ -203,4 +203,91 @@
     <string name="quick_settings_brightness_dialog_auto_brightness_label" msgid="5064982743784071218">"AUTO"</string>
     <string name="status_bar_help_title" msgid="1199237744086469217">"Meddelanden visas här"</string>
     <string name="status_bar_help_text" msgid="7874607155052076323">"Du kommer åt dem när som helst genom att dra nedåt."\n"Dra nedåt igen om du vill visa systemkontroller."</string>
+
+    <!-- AOKP additional -->
+
+    <string name="quick_settings_swagger">Swagger</string>
+    <string name="quick_settings_swaggersun">Swagger Söndag</string>
+    <string name="quick_settings_fbgt">FBGT</string>
+    <string name="quick_settings_recording">Inspelning...</string>
+    <string name="quick_settings_recordingcap">Inspelning Tagen</string>
+    <string name="quick_settings_playing">Spela...</string>
+    <string name="quick_settings_quickrecord">Snabbinspelning</string>
+    <string name="quick_settings_nofile">Långtryck för att spela in</string>
+    <string name="quick_settings_sleep">Sova</string>
+    <string name="quick_settings_reboot">Omstart</string>
+    <string name="quick_settings_reboot_message">Din enhet startar om</string>
+    <string name="quick_settings_stayawake_on">Vara Vaken På</string>
+    <string name="quick_settings_stayawake_off">Vara Vaken Av</string>
+    <string name="quick_settings_adb_off">Trådlös ADB Av</string>
+
+    <!--  App window Strings -->
+    <string name="close">Stäng</string>
+    <string name="app_window">Applikationer</string>
+    <string name="toggles">Snabbval</string>
+    <string name="ribbon">Ribbon</string>
+
+    <!--  Target/Action Strings -->
+    <string name="shortcut_label">AOKP Åtgärder</string>
+    <string name="action_home">Hem</string>
+    <string name="action_back">tillbaka</string>
+    <string name="action_recents">Senaste</string>
+    <string name="action_screenshot">Skärmdump</string>
+    <string name="action_menu">Meny</string>
+    <string name="action_ime">Öppna IME Växlaren</string>
+    <string name="action_kill">Döda uppgift</string>
+    <string name="action_power">Ström</string>
+    <string name="action_search">Sök</string>
+    <string name="action_notifications">Notifikationer</string>
+    <string name="action_lastapp">Senaste applikationen</string>
+    <string name="action_none">Tom</string>
+
+    <string name="widgets">Widgets</string>
+    <string name="toggle_navbar">NavBar - Växla</string>
+    <string name="toggle_statusbar">StatusBar - Växla</string>
+    <string name="toggle_widgets">Widgets - Växla</string>
+    <string name="toggle_ring_vib">Ring/Vib - Växla</string>
+    <string name="toggle_ring_silent">Ring/Tyst - Växla</string>
+    <string name="toggle_ring_vib_silent">Ring/Vib/Tyst - Växla</string>
+    <string name="app_killed_message">App Dödad</string>
+    <string name="recents_kill_all_button_text">Döda alla</string>
+    <string name="screenshot_toast">Skärmdump om %1$d sekunder</string>
+
+    <!--  Quick Settings -->
+    <string name="quick_settings_vibrate_on_label">Vibrera På</string>
+    <string name="quick_settings_vibrate_off_label">Vibrera Av</string>
+    <string name="quick_settings_silent_on_label">Tyst På</string>
+    <string name="quick_settings_silent_off_label">Tyst Av</string>
+    <string name="quick_settings_fcharge_on_label">S-Ladda På</string>
+    <string name="quick_settings_fcharge_off_label">S-Ladda Av</string>
+    <string name="quick_settings_torch_on_label">Ficklampa På</string>
+    <string name="quick_settings_torch_off_label">Ficklampa Av</string>
+    <string name="quick_settings_nfc_on_label">NFC På</string>
+    <string name="quick_settings_nfc_off_label">NFC Av</string>
+    <string name="quick_settings_wifi_tether_on_label">Wifi Tether På</string>
+    <string name="quick_settings_wifi_tether_off_label">Wifi Tether Av</string>
+    <string name="quick_settings_bt_tether_on_label">BT Tether På</string>
+    <string name="quick_settings_bt_tether_off_label">BT Tether Av</string>
+    <string name="quick_settings_usb_tether_on_label">USB Tether På</string>
+    <string name="quick_settings_usb_tether_off_label">USB Tether Av</string>
+    <string name="quick_settings_sync_on_label">Synk På</string>
+    <string name="quick_settings_sync_off_label">Synk Av</string>
+    <string name="quick_settings_twog_on_label">2g På</string>
+    <string name="quick_settings_twog_off_label">2g Av</string>
+    <string name="quick_settings_lte_on_label">LTE På</string>
+    <string name="quick_settings_lte_off_label">LTE Av</string>
+    <string name="quick_settings_gps_on_label">GPS På</string>
+    <string name="quick_settings_gps_off_label">GPS Av</string>
+    <string name="quick_settings_data_on_label">Data På</string>
+    <string name="quick_settings_data_off_label">Data Av</string>
+    <string name="quick_settings_navbar_hide_on_label">NavBar Dölja På</string>
+    <string name="quick_settings_navbar_hide_off_label">NavBar Dölja Av</string>
+    <string name="quick_settings_quiet_hours_on_label">TystaTimmar På</string>
+    <string name="quick_settings_quiet_hours_off_label">TystaTimmar Av</string>
+    <string name="quick_settings_sound_on">Ljud på</string>
+    <string name="quick_settings_statusbar_on_label">StatusBar På</string>
+    <string name="quick_settings_statusbar_off_label">StatusBar Av</string>
+    <string name="quick_settings_swaggersuntoast">#SwaggerSöndag</string>
+    <string name="quick_settings_screenshot">Skärmdump</string>
+
 </resources>

@@ -1935,6 +1935,55 @@ public final class Settings {
         public static final String VIBRATE_INPUT_DEVICES = "vibrate_input_devices";
 
         /**
+          * Whether the blacklisting feature for phone calls is enabled
+          * @hide
+          */
+         public static final String PHONE_BLACKLIST_ENABLED = "phone_blacklist_enabled";
+
+         /**
+          * Whether a notification should be shown when a call/message is blocked
+          * @hide
+          */
+         public static final String PHONE_BLACKLIST_NOTIFY_ENABLED = "phone_blacklist_notify_enabled";
+
+         /**
+          * Whether the blacklisting feature for phone calls from private numbers is enabled
+          * @hide
+          */
+         public static final String PHONE_BLACKLIST_PRIVATE_NUMBER_MODE = "phone_blacklist_private_number_enabled";
+
+         /**
+          * Whether the blacklisting feature for phone calls from private numbers is enabled
+          * @hide
+          */
+         public static final String PHONE_BLACKLIST_UNKNOWN_NUMBER_MODE = "phone_blacklist_private_number_enabled";
+
+         /**
+          * Constants to be used for {@link PHONE_BLACKLIST_PRIVATE_NUMBER_MODE} and
+          * {@link PHONE_BLACKLIST_UNKNOWN_NUMBER_MODE}.
+          * @hide
+          */
+         public static final int BLACKLIST_DO_NOT_BLOCK = 0;
+         /**
+          * @hide
+          */
+         public static final int BLACKLIST_BLOCK = 1;
+         /**
+          * @hide
+          */
+         public static final int BLACKLIST_PHONE_SHIFT = 0;
+         /**
+          * @hide
+          */
+         public static final int BLACKLIST_MESSAGE_SHIFT = 4;
+
+         /**
+          * Whether the regex blacklisting feature for phone calls is enabled
+          * @hide
+          */
+         public static final String PHONE_BLACKLIST_REGEX_ENABLED = "phone_blacklist_regex_enabled";
+
+        /**
          * Ringer volume. This is used internally, changing this value will not
          * change the volume. See AudioManager.
          */

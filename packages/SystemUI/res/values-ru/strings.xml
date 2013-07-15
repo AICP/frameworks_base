@@ -317,4 +317,5 @@
     <string name="quick_settings_adb_off">Wireless ADB выкл</string>
     <string name="toggles">Переключатели</string>
     <string name="ribbon">Лента</string>
+    <string name="accessibility_data_connection_DC">DCHSPAP</string>
 </resources>

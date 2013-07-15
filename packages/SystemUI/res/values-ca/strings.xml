@@ -205,4 +205,93 @@
     <string name="quick_settings_brightness_dialog_auto_brightness_label" msgid="5064982743784071218">"AUTOMÀTICA"</string>
     <string name="status_bar_help_title" msgid="1199237744086469217">"Les notificacions apareixen aquí"</string>
     <string name="status_bar_help_text" msgid="7874607155052076323">"Accedeix-hi en qualsevol moment: només has de fer lliscar el dit cap avall."\n"Torna a fer lliscar el dit cap avall per fer que es mostrin els controls del sistema."</string>
+    <string name="permdesc_screenshot">Captura de pantalla</string>
+    <string name="permlab_screenshot">Permet que l\'app faci una captura de pantalla. Això està protegit per la IU del sistema.</string>
+    <string name="accessibility_data_connection_HP">HSPA+</string>
+    <string name="accessibility_data_connection_DC">DCHSPAP</string>
+    <string name="accessibility_battery_level">Bateria al <xliff:g id="number">%d</xliff:g> per cent.</string>
+    <string name="quick_settings_swagger">Presumeix</string>
+    <string name="quick_settings_swaggersun">Swagger Sunday</string>
+    <string name="quick_settings_fbgt">FBGT</string>
+    <string name="quick_settings_recording">S\'està gravant...</string>
+    <string name="quick_settings_recordingcap">S\'ha aconseguit una gravació</string>
+    <string name="quick_settings_playing">S\'està reproduïnt...</string>
+    <string name="quick_settings_quickrecord">Gravació ràpida</string>
+    <string name="quick_settings_nofile">Pressió llarga per gravar</string>
+    <string name="quick_settings_sleep">Repòs</string>
+    <string name="quick_settings_reboot">Reinicia</string>
+    <string name="quick_settings_reboot_message">El dispositiu s\'està reiniciant</string>
+    <string name="quick_settings_stayawake_on">Mantén-te despert activat</string>
+    <string name="quick_settings_stayawake_off">Mantén-te despert desactivat</string>
+    <string name="quick_settings_adb_on"><xliff:g id="ip" exemple="192.168.1.5">%s</xliff:g></string>
+    <string name="quick_settings_adb_off">ADB sense fils desactivat</string>
+    <string name="close">Tanca</string>
+    <string name="app_window">Aplicacions</string>
+    <string name="toggles">Commutadors</string>
+    <string name="ribbon">Cinta</string>
+    <string name="shortcut_label">Accions de l\'AOKP</string>
+    <string name="action_home">Inici</string>
+    <string name="action_back">Enrere</string>
+    <string name="action_recents">Recents</string>
+    <string name="action_screenshot">Captura de pantalla</string>
+    <string name="action_menu">Menú</string>
+    <string name="action_ime">Obre el commutador IME</string>
+    <string name="action_kill">Mata la tasca</string>
+    <string name="action_power">Encesa</string>
+    <string name="action_search">Cerca</string>
+    <string name="action_notifications">Avisos</string>
+    <string name="action_lastapp">Darrera app</string>
+    <string name="action_none">Buit</string>
+    <string name="widgets">Estris</string>
+    <string name="toggle_navbar">Barra de navegació - Commutador</string>
+    <string name="toggle_statusbar">Barra d\'estat - Commutador</string>
+    <string name="toggle_widgets">Estris - Commutador</string>
+    <string name="toggle_ring_vib">So/Vibr - Commutador</string>
+    <string name="toggle_ring_silent">So/Silenci - Commutador</string>
+    <string name="toggle_ring_vib_silent">So/Vibr/Silenci - Commutador</string>
+    <string name="app_killed_message">S\'ha matat l\'app</string>
+    <string name="recents_kill_all_button_text">Mata-ho tot</string>
+    <string name="screenshot_toast">Captura de pantalla en %1$d segons</string>
+    <string name="quick_settings_vibrate_on_label">Vibració activada</string>
+    <string name="quick_settings_vibrate_off_label">Vibració desactivada</string>
+    <string name="quick_settings_silent_on_label">Silenci activat</string>
+    <string name="quick_settings_silent_off_label">Silenci desactivat</string>
+    <string name="quick_settings_fcharge_on_label">Càrrega ràpida activada</string>
+    <string name="quick_settings_fcharge_off_label">Càrrega ràpida desactivada</string>
+    <string name="quick_settings_torch_on_label">Llanterna activada</string>
+    <string name="quick_settings_torch_off_label">Llanterna desactivaca</string>
+    <string name="quick_settings_nfc_on_label">NFC activat</string>
+    <string name="quick_settings_nfc_off_label">NFC desactivat</string>
+    <string name="quick_settings_wifi_tether_on_label">Ancoratge de xarxa activat</string>
+    <string name="quick_settings_wifi_tether_off_label">Ancoratge de xarxa desactivat</string>
+    <string name="quick_settings_bt_tether_on_label">Ancoratge BT activat</string>
+    <string name="quick_settings_bt_tether_off_label">Ancoratge BT desactivat</string>
+    <string name="quick_settings_usb_tether_on_label">Ancoratge BT activat</string>
+    <string name="quick_settings_usb_tether_off_label">Ancoratge BT desactivat</string>
+    <string name="quick_settings_sync_on_label">Sincronització activada</string>
+    <string name="quick_settings_sync_off_label">Sincronització desactivada</string>
+    <string name="quick_settings_twog_on_label">2g activat</string>
+    <string name="quick_settings_twog_off_label">2g desactivat</string>
+    <string name="quick_settings_lte_on_label">LTE activat</string>
+    <string name="quick_settings_lte_off_label">LTE desactivat</string>
+    <string name="quick_settings_gps_on_label">GPS activat</string>
+    <string name="quick_settings_gps_off_label">GPS desactivat</string>
+    <string name="quick_settings_data_on_label">Dades activades</string>
+    <string name="quick_settings_data_off_label">Dades desactivades</string>
+    <string name="quick_settings_navbar_hide_on_label">Oculta BarNav activat</string>
+    <string name="quick_settings_navbar_hide_off_label">Oculta BarNav desactivat</string>
+    <string name="quick_settings_quiet_hours_on_label">Hores de silenci activat</string>
+    <string name="quick_settings_quiet_hours_off_label">Hores de silenci desactivat</string>
+    <string name="quick_settings_sound_on">So activat</string>
+    <string name="quick_settings_statusbar_on_label">Barra d\'estat activada</string>
+    <string name="quick_settings_statusbar_off_label">Barra d\'estat desactivada</string>
+    <string name="quick_settings_swaggersuntoast">#SwaggerSunday</string>
+    <string name="quick_settings_screenshot">Captura de pantalla</string>
+    <string name="memory">RAM</string>
+    <string name="service_background_processes"><xliff:g id="memory">%1$s</xliff:g> lliure</string>
+    <string name="service_foreground_processes"><xliff:g id="memory">%1$s</xliff:g> utilitzada</string>
+    <string name="service_process_name"><xliff:g id="process">%1$s</xliff:g></string>
+    <string name="service_client_name"><xliff:g id="client_name">%1$s</xliff:g></string>
+    <string name="service_started_by_app">Iniciat per l\'app.</string>
+    <string name="running_process_item_user_label">Usuari: <xliff:g id="user_name">%1$s</xliff:g></string>
 </resources>

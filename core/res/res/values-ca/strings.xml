@@ -1456,4 +1456,76 @@
     <string name="enable_accessibility_canceled" msgid="3833923257966635673">"Accessibilitat cancel·lada."</string>
     <string name="user_switched" msgid="3768006783166984410">"Usuari actual: <xliff:g id="NAME">%1$s</xliff:g>."</string>
     <string name="owner_name" msgid="2716755460376028154">"Propietari"</string>
+    <string name="global_action_screenshot">Captura de pantalla</string>
+    <string name="global_action_torch">Llanterna</string>
+    <string name="global_actions_toggle_navbar_hide">Controls de les barres de navegació i d\'estat</string>
+    <string name="permlab_accessSuperuser">permisos complets per a totes les funcions del dispositiu i l\'emmagatzematge</string>
+    <string name="permdesc_accessSuperuser">El Superuser permet un accés complet a totes les característiques del dispositiu i de l\'emmagatzematge, incloent els elements segurs i sensibles del maquinari del dispositiu. Aquests permisos són potencialment perillosos.</string>
+    <string name="permlab_preventpower">anul·lació de la tecla d\'encesa</string>
+    <string name="permdesc_preventpower">Permet que una aplicació anul·li la tecla d\'encesa</string>
+    <string name="permlab_fm_radio_receiver">control del receptor FM</string>
+    <string name="permlab_fm_radio_transmitter">control del transmissor FM</string>
+    <string name="permlab_revokePermissions">Permet la visualització i l\'edició dels permisos revocats. No és per a ús d\'aplicacions normals.</string>
+    <string name="permdesc_revokePermissions">Permet la lectura i l\'escriptura dels permisos revocats. No és per a ús d\'aplicacions normals.</string>
+    <string name="lockscreen_always_battery">S\'està descarregant, <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
+    <string name="lockscreen_always_low_battery">Connecteu el carregador, <xliff:g id="number">%d</xliff:g><xliff:g id="percent">%%</xliff:g></string>
+    <string name="aerr_revoked_process">El procés <xliff:g id="process">%1$s</xliff:g> s\'ha aturat inesperadament.\nAVÍS!\nAquest procés té un o més dels seus permisos REVOCATS i això pot causar un mal funcionament. Concediu-li els seus permisos i torneu-ho a intentar.</string>
+    <string name="reset_perms">Restabliment de permisos</string>
+    <string name="network_available_sign_in_detailed"><xliff:g id="network_ssid">%1$s</xliff:g></string>
+    <string name="alternate_eri_file">/data/eri.xml</string>
+    <string name="app_killed_message">S\'ha matat l\'aplicació</string>
+    <string name="reboot">Reinicia</string>
+    <string name="reboot_recovery">Mode recuperació</string>
+    <string name="reboot_download">Baixada</string>
+    <string name="reboot_bootloader">Gestor d\'arrencada</string>
+    <string name="reboot_progress">El dispositiu s\'està reiniciant</string>
+    <string name="vibration_picker_title">Selecciona la vibració</string>
+    <string name="vibration_picker_del_title">Suprimeix la vibració</string>
+    <string name="notify_turn_wifi_off_title">Desactiva sense fils</string>
+    <string name="notify_turn_wifi_ap_off_title">Desactiva el punt d\'accés sense fils</string>
+    <string name="toast_rotation_unlocked">Rotació de pantalla desbloquejada</string>
+    <string name="toast_rotation_locked">Rotació de pantalla bloquejada</string>
+    <string name="animation_fade">Esvaïment</string>
+    <string name="animation_slide_right">Lliscament a la dreta</string>
+    <string name="animation_slide_left">Lliscament a l\'esquerra</string>
+    <string name="animation_slide_right_no_fade">Lliscament a la dreta (sense esvaïment)</string>
+    <string name="animation_slide_left_no_fade">Lliscament a l\'esquerra (sense esvaïment)</string>
+    <string name="animation_slide_up">Lliscament cap a sota</string>
+    <string name="animation_slide_down">Lliscament cap a dalt</string>
+    <string name="animation_default">Per defecte</string>
+    <string name="animation_translucent">Translúcid</string>
+    <string name="animation_grow_shrink">Expandeix (superior)</string>
+    <string name="animation_grow_shrink_center">Expandeix (centre)</string>
+    <string name="animation_grow_shrink_bottom">Expandeix (inferior)</string>
+    <string name="animation_grow_shrink_left">Expandeix (esquerra)</string>
+    <string name="animation_grow_shrink_right">Expandeix (dreta)</string>
+    <string name="action_home">Inici</string>
+    <string name="action_back">Enrere</string>
+    <string name="action_recents">Recents</string>
+    <string name="action_recents_gb">Recents (estil GB)</string>
+    <string name="action_search">Cerca</string>
+    <string name="action_screenshot">Captura de pantalla</string>
+    <string name="action_menu">Menú</string>
+    <string name="action_ime">Obre el commutador IME</string>
+    <string name="action_kill">Mata la tasca</string>
+    <string name="action_lastapp">Darrera app</string>
+    <string name="action_power">Encesa</string>
+    <string name="action_notifications">Avisos</string>
+    <string name="action_assist">Cerca (Google Now)</string>
+    <string name="action_clockoptions">Opcions del rellotge</string>
+    <string name="action_voiceassist">Cerca de veu</string>
+    <string name="action_torch">Llanterna</string>
+    <string name="action_silent">So/Silenci</string>
+    <string name="action_vib">So/Vibració</string>
+    <string name="action_silent_vib">So/Vibració/Silenci</string>
+    <string name="action_event">Esdeveniment</string>
+    <string name="action_today">Avui</string>
+    <string name="action_alarm">Alarma</string>
+    <string name="action_unlock">Desbloqueja</string>
+    <string name="action_camera">Càmera</string>
+    <string name="action_null">En blanc</string>
+    <string name="action_widgets">Estris de navegació</string>
+    <string name="action_app_window">Finestra d\'aplicació</string>
+    <string name="action_ribbon">Cinta de l\'AOKP</string>
+    <string name="action_app">App/drecera personalitzada</string>
 </resources>

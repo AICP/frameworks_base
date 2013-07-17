@@ -1572,4 +1572,11 @@
     <string name="action_app_window">アプリウィンドウ</string>
     <string name="action_ribbon">AOKPリボン</string>
     <string name="action_app">アプリ/ショートカット</string>
+
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_interceptSmsSent">SMS送信の遮断</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_interceptSmsSent">SMS送信の遮断をアプリに許可します。
+        悪意のあるアプリはこの権限を使ってSMSメッセージの送信を阻止するかもしれません。
+    </string>
 </resources>

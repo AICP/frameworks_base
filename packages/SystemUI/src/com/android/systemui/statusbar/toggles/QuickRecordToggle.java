@@ -43,6 +43,7 @@ public class QuickRecordToggle extends BaseToggle {
         if (!file.exists()) {
             mRecordingState = STATE_NO_RECORDING;
         }
+        vibrateOnTouch();
         switch (mRecordingState) {
             case STATE_RECORDING:
                 stopRecording();

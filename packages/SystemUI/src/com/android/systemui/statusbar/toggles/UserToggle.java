@@ -53,6 +53,7 @@ public class UserToggle extends BaseToggle {
     @Override
     public void onClick(View v) {
         dismissKeyguard();
+        vibrateOnTouch();
         collapseStatusBar();
         final UserManager um =
                 (UserManager) mContext.getSystemService(Context.USER_SERVICE);

@@ -72,6 +72,7 @@ public class FavoriteUserToggle extends BaseToggle {
 
         if (lookupKey != null && lookupKey.length() > 0) {
             dismissKeyguard();
+            vibrateOnTouch();
             collapseStatusBar();
             Uri lookupUri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_LOOKUP_URI,
                     lookupKey);

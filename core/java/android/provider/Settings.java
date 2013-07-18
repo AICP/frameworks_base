@@ -3649,6 +3649,13 @@ public final class Settings {
         public static final String SHADE_COLLAPSE_ALL = "shade_collapse_all";
 
         /**
+         * enable vibrate on toggle click
+         *
+         * @hid
+         */
+        public static final String QUICK_TOGGLE_VIBRATE = "quick_toggle_vibrate";
+
+        /**
          * enable and disable fast toggle in settings
          *
          * @hide

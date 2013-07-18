@@ -28,6 +28,7 @@ public class RebootToggle extends BaseToggle {
 
     @Override
     public void onClick(View v) {
+        vibrateOnTouch();
         collapseStatusBar();
         dismissKeyguard();
         Intent intent = new Intent(Intent.ACTION_REBOOTMENU);

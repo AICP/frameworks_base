@@ -13,6 +13,7 @@ import android.os.Handler;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.UserHandle;
+import android.os.Vibrator;
 import android.provider.Settings;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -37,6 +38,9 @@ public abstract class BaseToggle
     protected int mStyle;
 
     private boolean mCollapsePref;
+    private boolean mVibratePref;
+    private boolean mTactileFeedbackEnabled;
+    private Vibrator vib;
     private Drawable mIconDrawable = null;
     private int mIconLevel = -1;
     private CharSequence mLabelText = null;
@@ -68,6 +72,7 @@ public abstract class BaseToggle
         mHandler = new Handler();
         mObserver = new SettingsObserver(mHandler);
         mObserver.observe();
+        vib = (Vibrator) mContext.getSystemService(mContext.VIBRATOR_SERVICE);
         setTextSize(ToggleManager.getTextSize(mContext));
         scheduleViewUpdate();
     }
@@ -126,6 +131,12 @@ public abstract class BaseToggle
     protected final void collapseShadePref() {
         if (mCollapsePref) {
             collapseStatusBar();
+        }
+    }
+
+    protected final void vibrateOnTouch() {
+        if (mTactileFeedbackEnabled &&  mVibratePref && vib != null ) {
+            vib.vibrate(10);
         }
     }
 
@@ -282,6 +293,10 @@ public abstract class BaseToggle
 
         mCollapsePref = Settings.System.getBoolean(resolver,
                 Settings.System.SHADE_COLLAPSE_ALL, false);
+        mVibratePref = Settings.System.getBoolean(resolver,
+                Settings.System.QUICK_TOGGLE_VIBRATE, false);
+        mTactileFeedbackEnabled = Settings.System.getIntForUser(resolver,
+                Settings.System.HAPTIC_FEEDBACK_ENABLED, 1, UserHandle.USER_CURRENT) != 0;
     }
 
     class SettingsObserver extends ContentObserver {
@@ -294,6 +309,12 @@ public abstract class BaseToggle
 
             resolver.registerContentObserver(Settings.System
                     .getUriFor(Settings.System.SHADE_COLLAPSE_ALL),
+                    false, this);
+            resolver.registerContentObserver(Settings.System
+                    .getUriFor(Settings.System.QUICK_TOGGLE_VIBRATE),
+                    false, this);
+            resolver.registerContentObserver(Settings.System
+                    .getUriFor(Settings.System.HAPTIC_FEEDBACK_ENABLED),
                     false, this);
 
             updateSettings();

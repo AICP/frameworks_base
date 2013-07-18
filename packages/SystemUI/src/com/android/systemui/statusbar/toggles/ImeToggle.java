@@ -27,6 +27,7 @@ public class ImeToggle extends BaseToggle {
 
     @Override
     public void onClick(View v) {
+        vibrateOnTouch();
         collapseStatusBar();
         Intent intent = new Intent(Settings.ACTION_SHOW_INPUT_METHOD_PICKER);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(mContext, 0, intent, 0);

@@ -21,6 +21,7 @@ public class SleepToggle extends BaseToggle {
 
     @Override
     public void onClick(View v) {
+        vibrateOnTouch();
         PowerManager pm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
         pm.goToSleep(SystemClock.uptimeMillis());
     }

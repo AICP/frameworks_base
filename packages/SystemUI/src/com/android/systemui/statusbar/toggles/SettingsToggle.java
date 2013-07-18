@@ -21,7 +21,7 @@ public class SettingsToggle extends BaseToggle {
     public void onClick(View v) {
         Intent intent = new Intent(android.provider.Settings.ACTION_SETTINGS);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
+        vibrateOnTouch();
         collapseStatusBar();
         dismissKeyguard();
         startActivity(intent);

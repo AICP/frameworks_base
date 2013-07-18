@@ -237,6 +237,7 @@ public class CustomToggle extends BaseToggle {
 
     @Override
     public void onClick(View v) {
+        vibrateOnTouch();
         switch (mDoubleClick) {
             case NO_ACTION:
                 startCounting();

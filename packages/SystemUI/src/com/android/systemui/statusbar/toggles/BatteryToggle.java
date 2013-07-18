@@ -28,6 +28,7 @@ public class BatteryToggle extends BaseToggle implements BatteryStateChangeCallb
 
     @Override
     public void onClick(View v) {
+        vibrateOnTouch();
         startActivity(new Intent(Intent.ACTION_POWER_USAGE_SUMMARY));
     }
 

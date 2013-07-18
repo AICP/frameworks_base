@@ -39,6 +39,7 @@ public class SwaggerToggle extends BaseToggle implements OnTouchListener {
 
     @Override
     public void onClick(View v) {
+        vibrateOnTouch();
     }
 
     @Override

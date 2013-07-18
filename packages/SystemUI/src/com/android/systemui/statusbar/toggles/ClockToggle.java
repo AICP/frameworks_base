@@ -23,6 +23,7 @@ public class ClockToggle extends BaseToggle {
         intent.setComponent(ComponentName
                 .unflattenFromString("com.android.deskclock.AlarmProvider"));
         intent.addCategory("android.intent.category.LAUNCHER");
+        vibrateOnTouch();
         collapseStatusBar();
         dismissKeyguard();
         startActivity(intent);

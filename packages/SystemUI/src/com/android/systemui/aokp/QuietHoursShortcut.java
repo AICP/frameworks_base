@@ -17,6 +17,7 @@
 package com.android.systemui.aokp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 
@@ -25,6 +26,9 @@ import android.provider.Settings;
  */
 
 public class QuietHoursShortcut extends Activity  {
+
+    private static final String SCHEDULE_SERVICE_COMMAND =
+            "com.android.settings.service.SCHEDULE_SERVICE_COMMAND";
 
     public QuietHoursShortcut() {
         super();
@@ -43,6 +47,13 @@ public class QuietHoursShortcut extends Activity  {
                 Settings.System.QUIET_HOURS_ENABLED, 0);
         Settings.System.putInt(getContentResolver(),
                 Settings.System.QUIET_HOURS_ENABLED, (quietHoursEnabled == 0) ? 1 : 0);
+        autoSmsIntentBroadcast();
         this.finish();
+    }
+
+    private void autoSmsIntentBroadcast() {
+        Intent scheduleSms = new Intent();
+        scheduleSms.setAction(SCHEDULE_SERVICE_COMMAND);
+        this.sendBroadcast(scheduleSms);
     }
 }

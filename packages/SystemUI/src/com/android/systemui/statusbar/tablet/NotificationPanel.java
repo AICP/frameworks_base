@@ -703,6 +703,16 @@ public class NotificationPanel extends RelativeLayout implements StatusBarPanel,
         }
     }
 
+    public void refreshLayout(int layoutDirection) {
+        // Force asset reloading
+        mSettingsButton.setImageDrawable(null);
+        mSettingsButton.setImageResource(R.drawable.ic_notify_settings);
+
+        // Force asset reloading
+        mNotificationButton.setImageDrawable(null);
+        mNotificationButton.setImageResource(R.drawable.ic_notifications);
+    }
+
     private static class FastColorDrawable extends Drawable {
         private final int mColor;
 

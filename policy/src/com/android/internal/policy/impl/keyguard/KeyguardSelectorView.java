@@ -108,7 +108,7 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
             mCallback.dismiss(false);
             Intent assistIntent =
                 ((SearchManager) mContext.getSystemService(Context.SEARCH_SERVICE))
-                .getAssistIntent(mContext, UserHandle.USER_CURRENT);
+                .getAssistIntent(mContext, true, UserHandle.USER_CURRENT);
                 if (assistIntent != null) {
                     mActivityLauncher.launchActivity(assistIntent, false, true, null, null);
                 } else {
@@ -450,15 +450,20 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
 
     public void updateResources() {
         // Update the search icon with drawable from the search .apk
-        Intent intent = ((SearchManager) mContext.getSystemService(Context.SEARCH_SERVICE))
-               .getAssistIntent(mContext, UserHandle.USER_CURRENT);
-        if (intent != null) {
-            ComponentName component = intent.getComponent();
-            boolean replaced = mGlowPadView.replaceTargetDrawablesIfPresent(component,
-                    ASSIST_ICON_METADATA_NAME + "_google",
-                    com.android.internal.R.drawable.ic_action_assist_generic);
-            if (!replaced && !mGlowPadView.replaceTargetDrawablesIfPresent(component,
-                        ASSIST_ICON_METADATA_NAME,
+        if (!mSearchDisabled) {
+            Intent intent = ((SearchManager) mContext.getSystemService(Context.SEARCH_SERVICE))
+                    .getAssistIntent(mContext, false, UserHandle.USER_CURRENT);
+            if (intent != null) {
+                // XXX Hack. We need to substitute the icon here but haven't formalized
+                // the public API. The "_google" metadata will be going away, so
+                // DON'T USE IT!
+                ComponentName component = intent.getComponent();
+                boolean replaced = mGlowPadView.replaceTargetDrawablesIfPresent(component,
+                        ASSIST_ICON_METADATA_NAME + "_google",
+                        com.android.internal.R.drawable.ic_action_assist_generic);
+
+                if (!replaced && !mGlowPadView.replaceTargetDrawablesIfPresent(component,
+                            ASSIST_ICON_METADATA_NAME,
                             com.android.internal.R.drawable.ic_action_assist_generic)) {
                 Slog.w(TAG, "Couldn't grab icon from package " + component);
             }

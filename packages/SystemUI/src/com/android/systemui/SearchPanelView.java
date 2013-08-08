@@ -62,6 +62,7 @@ import android.os.Vibrator;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.EventLog;
 import android.util.Slog;
 import android.util.Log;
 import android.view.HapticFeedbackConstants;
@@ -83,6 +84,8 @@ import com.android.internal.widget.LockPatternUtils;
 import com.android.internal.widget.multiwaveview.GlowPadView;
 import com.android.internal.widget.multiwaveview.GlowPadView.OnTriggerListener;
 import com.android.internal.widget.multiwaveview.TargetDrawable;
+
+import com.android.systemui.EventLogTags;
 import com.android.systemui.R;
 import com.android.systemui.recent.StatusBarTouchProxy;
 import com.android.systemui.statusbar.BaseStatusBar;
@@ -102,6 +105,7 @@ public class SearchPanelView extends FrameLayout implements
     private static final int SEARCH_PANEL_HOLD_DURATION = 0;
     static final String TAG = "SearchPanelView";
     static final boolean DEBUG = TabletStatusBar.DEBUG || PhoneStatusBar.DEBUG || false;
+    public static final boolean DEBUG_GESTURES = true;
 
     private final Context mContext;
     private BaseStatusBar mBar;
@@ -198,7 +202,7 @@ public class SearchPanelView extends FrameLayout implements
         } else {
             // Otherwise, keyguard isn't showing so launch it from here.
             Intent intent = ((SearchManager) mContext.getSystemService(Context.SEARCH_SERVICE))
-                    .getAssistIntent(mContext, UserHandle.USER_CURRENT);
+                    .getAssistIntent(mContext, true, UserHandle.USER_CURRENT);
             if (intent == null) return;
 
             try {
@@ -479,7 +483,7 @@ public class SearchPanelView extends FrameLayout implements
 
     private void maybeSwapSearchIcon() {
         Intent intent = ((SearchManager) mContext.getSystemService(Context.SEARCH_SERVICE))
-                .getAssistIntent(mContext, UserHandle.USER_CURRENT);
+                .getAssistIntent(mContext, false, UserHandle.USER_CURRENT);
         if (intent != null) {
             ComponentName component = intent.getComponent();
             if (component == null || !mGlowPadView.replaceTargetDrawablesIfPresent(component,
@@ -615,6 +619,17 @@ public class SearchPanelView extends FrameLayout implements
         }
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (DEBUG_GESTURES) {
+            if (event.getActionMasked() != MotionEvent.ACTION_MOVE) {
+                EventLog.writeEvent(EventLogTags.SYSUI_SEARCHPANEL_TOUCH,
+                        event.getActionMasked(), (int) event.getX(), (int) event.getY());
+            }
+        }
+        return super.onTouchEvent(event);
+    }
+
     private LayoutTransition createLayoutTransitioner() {
         LayoutTransition transitioner = new LayoutTransition();
         transitioner.setDuration(200);
@@ -625,7 +640,7 @@ public class SearchPanelView extends FrameLayout implements
 
     public boolean isAssistantAvailable() {
         return ((SearchManager) mContext.getSystemService(Context.SEARCH_SERVICE))
-                .getAssistIntent(mContext, UserHandle.USER_CURRENT) != null;
+                .getAssistIntent(mContext, false, UserHandle.USER_CURRENT) != null;
     }
 
     public boolean isScreenPortrait() {

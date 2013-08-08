@@ -20,7 +20,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.text.format.DateFormat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewParent;
@@ -28,7 +27,11 @@ import android.widget.TextView;
 
 import com.android.systemui.R;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
+
+import libcore.icu.ICU;
 
 public class DateView extends TextView {
     private static final String TAG = "DateView";
@@ -43,7 +46,8 @@ public class DateView extends TextView {
             final String action = intent.getAction();
             if (Intent.ACTION_TIME_TICK.equals(action)
                     || Intent.ACTION_TIME_CHANGED.equals(action)
-                    || Intent.ACTION_TIMEZONE_CHANGED.equals(action)) {
+                    || Intent.ACTION_TIMEZONE_CHANGED.equals(action)
+                    || Intent.ACTION_LOCALE_CHANGED.equals(action)) {
                 updateClock();
             }
         }
@@ -87,8 +91,11 @@ public class DateView extends TextView {
     }
 
     protected void updateClock() {
-        final String dateFormat = getContext().getString(R.string.abbrev_wday_month_day_no_year);
-        setText(DateFormat.format(dateFormat, new Date()));
+        final String dateFormat = getContext().getString(R.string.system_ui_date_pattern);
+        final Locale l = Locale.getDefault();
+        String fmt = ICU.getBestDateTimePattern(dateFormat, l.toString());
+        SimpleDateFormat sdf = new SimpleDateFormat(fmt, l);
+        setText(sdf.format(new Date()));
     }
 
     private boolean isVisible() {
@@ -116,6 +123,7 @@ public class DateView extends TextView {
                 filter.addAction(Intent.ACTION_TIME_TICK);
                 filter.addAction(Intent.ACTION_TIME_CHANGED);
                 filter.addAction(Intent.ACTION_TIMEZONE_CHANGED);
+                filter.addAction(Intent.ACTION_LOCALE_CHANGED);
                 mContext.registerReceiver(mIntentReceiver, filter, null, null);
                 updateClock();
             } else {

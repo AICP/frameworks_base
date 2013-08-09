@@ -3114,6 +3114,8 @@ status_t ResourceTable::Entry::setItem(const SourcePos& sourcePos,
                         item.sourcePos.file.string(), item.sourcePos.line);
         return UNKNOWN_ERROR;
     }
+#if 0
+    //XXX: this is failing on inverted resources
     if ( (mType != TYPE_UNKNOWN) && (overwrite == false) ) {
         sourcePos.error("Resource entry %s is already defined.\n"
                         "%s:%d: Originally defined here.\n",
@@ -3121,6 +3123,7 @@ status_t ResourceTable::Entry::setItem(const SourcePos& sourcePos,
                         mItem.sourcePos.file.string(), mItem.sourcePos.line);
         return UNKNOWN_ERROR;
     }
+#endif
 
     mType = TYPE_ITEM;
     mItem = item;
@@ -3145,6 +3148,7 @@ status_t ResourceTable::Entry::addToBag(const SourcePos& sourcePos,
     // currently ever have to worry about.
     ssize_t origKey = mBag.indexOfKey(key);
     if (origKey >= 0) {
+#if 0
         if (!replace) {
             const Item& item(mBag.valueAt(origKey));
             sourcePos.error("Resource entry %s already has bag item %s.\n"
@@ -3153,6 +3157,7 @@ status_t ResourceTable::Entry::addToBag(const SourcePos& sourcePos,
                     item.sourcePos.file.string(), item.sourcePos.line);
             return UNKNOWN_ERROR;
         }
+#endif
         //printf("Replacing %s with %s\n",
         //       String8(mBag.valueFor(key).value).string(), String8(value).string());
         mBag.replaceValueFor(key, item);

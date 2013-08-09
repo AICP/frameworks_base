@@ -154,7 +154,7 @@ public class KeyguardWidgetPager extends PagedView implements PagedView.PageSwit
                 String widgetPackage = info.provider.getPackageName();
                 for (String packageName : CLOCK_WIDGET_PACKAGES) {
                     if (packageName.equals(widgetPackage)) {
-                        showingStatusWidget = true;
+                        showingClock = true;
                         break;
                     }
                 }

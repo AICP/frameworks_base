@@ -18,6 +18,7 @@ package com.android.server.wifi;
 
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
@@ -34,6 +35,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.UserHandle;
 import android.provider.Settings;
+
+import com.android.server.wifi.WifiService;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
@@ -282,7 +285,9 @@ final class WifiNotificationController {
     private class NotificationBroadcastReciever extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            setWifiEnabled(false); //XXX: what to do with this?
+            //XXX: probably not right
+            WifiManager mgr = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);
+            mgr.setWifiEnabled(false);
         }
     }
 

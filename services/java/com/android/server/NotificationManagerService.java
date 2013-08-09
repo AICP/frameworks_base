@@ -1251,7 +1251,7 @@ public class NotificationManagerService extends INotificationManager.Stub
             } else if (action.equals(Intent.ACTION_USER_SWITCHED)) {
                 // reload per-user settings
                 mSettingsObserver.update(null);
-                mQhSettingsObserver.update(null);
+                mQhSettingsObserver.update(); //XXX: check this
             }
         }
     };
@@ -2331,12 +2331,12 @@ public class NotificationManagerService extends INotificationManager.Stub
         String notiPackage = null;
         String talk = "com.google.android.gsf";
         String phone = "com.android.phone";
-        if ((ledNotification.pkg).equals(talk)) {
+        if (ledNotification.sbn.getPackageName().equals(talk)) {
             notiPackage = "com.google.android.talk";
-        } else if ((ledNotification.pkg).equals(phone)) {
+        } else if (ledNotification.sbn.getPackageName().equals(phone)) {
             notiPackage = "com.android.contacts";
         } else {
-            notiPackage = ledNotification.pkg;
+            notiPackage = ledNotification.sbn.getPackageName();
         }
         return mCustomLedColors.get(notiPackage);
     }

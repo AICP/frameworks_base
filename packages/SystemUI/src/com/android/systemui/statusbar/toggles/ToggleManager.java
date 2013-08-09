@@ -31,13 +31,13 @@ import android.widget.LinearLayout;
 
 import com.android.internal.telephony.PhoneConstants;
 import com.android.systemui.R;
+import com.android.systemui.settings.BrightnessController;
+import com.android.systemui.settings.BrightnessController.BrightnessStateChangeCallback;
 import com.android.systemui.statusbar.phone.QuickSettingsContainerView;
 import com.android.systemui.statusbar.phone.QuickSettingsTileView;
 import com.android.systemui.statusbar.policy.BatteryController;
 import com.android.systemui.statusbar.policy.BatteryController.BatteryStateChangeCallback;
 import com.android.systemui.statusbar.policy.BluetoothController;
-import com.android.systemui.statusbar.policy.BrightnessController;
-import com.android.systemui.statusbar.policy.BrightnessController.BrightnessStateChangeCallback;
 import com.android.systemui.statusbar.policy.LocationController;
 import com.android.systemui.statusbar.policy.LocationController.LocationGpsStateChangeCallback;
 import com.android.systemui.statusbar.policy.NetworkController;

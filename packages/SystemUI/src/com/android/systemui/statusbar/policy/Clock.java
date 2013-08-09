@@ -190,7 +190,7 @@ public class Clock extends TextView {
 
         SpannableStringBuilder formatted = new SpannableStringBuilder(result);
 
-        if (!b24) {
+        if (!is24) {
             if (mAmPmStyle != AM_PM_STYLE_NORMAL) {
                 String AmPm;
                 if (format.indexOf("a")==0) {

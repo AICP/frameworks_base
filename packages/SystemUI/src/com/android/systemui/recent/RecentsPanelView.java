@@ -301,12 +301,6 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
     }
 
     @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        mSettingsObserver.observe(); // observe will call updateSettings()
-    }
-
-    @Override
     protected void onDetachedFromWindow() {
         mContext.getContentResolver().unregisterContentObserver(mSettingsObserver);
         super.onDetachedFromWindow();
@@ -414,6 +408,7 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
         if (root != null) {
             root.setDrawDuringWindowsAnimating(true);
         }
+        mSettingsObserver.observe(); // observe will call updateSettings()
     }
 
     public void onUiHidden() {

@@ -15,9 +15,9 @@ import android.view.WindowManagerGlobal;
 import android.widget.ImageView;
 
 import com.android.systemui.R;
-import com.android.systemui.statusbar.policy.BrightnessController;
-import com.android.systemui.statusbar.policy.BrightnessController.BrightnessStateChangeCallback;
-import com.android.systemui.statusbar.policy.ToggleSlider;
+import com.android.systemui.settings.BrightnessController;
+import com.android.systemui.settings.BrightnessController.BrightnessStateChangeCallback;
+import com.android.systemui.settings.ToggleSlider;
 
 public class BrightnessToggle extends BaseToggle implements BrightnessStateChangeCallback {
 
@@ -117,7 +117,6 @@ public class BrightnessToggle extends BaseToggle implements BrightnessStateChang
         }
     }
 
-    @Override
     public void onBrightnessLevelChanged() {
         int mode = Settings.System.getIntForUser(mContext.getContentResolver(),
                 Settings.System.SCREEN_BRIGHTNESS_MODE,

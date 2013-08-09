@@ -405,7 +405,7 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
                     Settings.System.SHOW_STATUSBAR_IME_SWITCHER),
                     false, new ContentObserver(mHandler) {
                         public void onChange(boolean selfChange) {
-                            updateFromSettingsLocked();
+                            updateFromSettingsLocked(true); //XXX check this
                         }
                     });
         }

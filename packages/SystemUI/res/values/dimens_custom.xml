@@ -34,4 +34,7 @@
 
     <!-- The fixed height of traditional toggles -->
     <dimen name="toggle_traditional_padding">6dp</dimen>
+
+    <!-- Network stats text size -->
+    <dimen name="network_stats_text_size">8dp</dimen>
 </resources>

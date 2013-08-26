@@ -1477,7 +1477,7 @@
     <!-- Description of an application permission, listed so the user can choose whether they want t o allow the application to do this. -->
     <string name="permdesc_sendMockSms">Allows the app to send mock SMS messages.
         This allows an app send SMS to trusted applications. Malicious apps could send messages.
-    <string>
+    </string>
 
     <string name="permdesc_fm_radio_transmitter">Allows the application to control
         the FM transmitter.</string>
@@ -4245,8 +4245,7 @@
     <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permlab_interceptSmsSent">intercept outgoing SMS</string>
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <string name="permdesc_interceptSmsSent">Allows the app to
-        intercept an outgoing SMS.
+    <string name="permdesc_interceptSmsSent">Allows the app to intercept an outgoing SMS.
         Malicious apps may use this to prevent outgoing SMS messages.</string>
 
 </resources>

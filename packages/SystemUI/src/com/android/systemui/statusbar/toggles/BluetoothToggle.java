@@ -11,12 +11,12 @@ import android.view.View;
 import com.android.systemui.R;
 
 public class BluetoothToggle extends StatefulToggle {
+    private BluetoothAdapter mBluetoothAdapter;
 
     public void init(Context c, int style) {
         super.init(c, style);
-
-        BluetoothAdapter bt = BluetoothAdapter.getDefaultAdapter();
-        if (bt == null) {
+        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (mBluetoothAdapter == null) {
             return;
         }
         onBluetoothChanged();
@@ -24,9 +24,7 @@ public class BluetoothToggle extends StatefulToggle {
         IntentFilter filter = new IntentFilter();
         filter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
         filter.addAction(BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED);
-
         registerBroadcastReceiver(new BroadcastReceiver() {
-
             @Override
             public void onReceive(Context context, Intent intent) {
                 onBluetoothChanged();
@@ -35,15 +33,13 @@ public class BluetoothToggle extends StatefulToggle {
     }
 
     private void onBluetoothChanged() {
-        final BluetoothAdapter bt = (BluetoothAdapter) mContext
-                .getSystemService(Context.BLUETOOTH_SERVICE);
         String label = null;
         int iconId = 0;
         State newState = getState();
-        switch (bt.getState()) {
+        switch (mBluetoothAdapter.getState()) {
             case BluetoothAdapter.STATE_ON:
                 newState = State.ENABLED;
-                switch (bt.getConnectionState()) {
+                switch (mBluetoothAdapter.getConnectionState()) {
                     case BluetoothAdapter.STATE_CONNECTED:
                         iconId = R.drawable.ic_qs_bluetooth_on;
                         label = mContext.getString(R.string.quick_settings_bluetooth_label);
@@ -74,7 +70,6 @@ public class BluetoothToggle extends StatefulToggle {
         }
         setInfo(label, iconId);
         updateCurrentState(newState);
-        scheduleViewUpdate();
     }
 
     @Override
@@ -93,5 +88,4 @@ public class BluetoothToggle extends StatefulToggle {
     protected void doDisable() {
         BluetoothAdapter.getDefaultAdapter().disable();
     }
-
 }

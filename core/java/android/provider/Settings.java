@@ -2791,6 +2791,13 @@ public final class Settings {
         public static final String RECENT_KILL_ALL_BUTTON = "recent_kill_all_button";
 
         /**
+         * whether to show GoogleNow on recent switcher
+         *
+         * @hide
+         */
+        public static final String RECENT_GOOGLE_ASSIST = "recent_google_assist";
+
+        /**
          * whether to enable end app on back longpress functionality
          *
          * @hide

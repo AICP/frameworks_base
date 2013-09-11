@@ -32,7 +32,7 @@ import java.util.List;
 
 public class TransparencyManager {
 
-    public static final float KEYGUARD_ALPHA = 1.0f; // 0.44f;
+    public static final float KEYGUARD_ALPHA = 0.44f;
 
     private static final String TAG = TransparencyManager.class.getSimpleName();
 
@@ -168,9 +168,9 @@ public class TransparencyManager {
         mIsHomeShowing = isLauncherShowing();
 
         ValueAnimator navAnim = null, sbAnim = null;
-        //if (mNavbar != null) {
-        //    navAnim = createAnimation(mNavbarInfo, mNavbar);
-        //}
+        if (mNavbar != null) {
+            navAnim = createAnimation(mNavbarInfo, mNavbar);
+        }
         if (mStatusbar != null) {
             sbAnim = createAnimation(mStatusbarInfo, mStatusbar);
         }

@@ -356,15 +356,15 @@ public class NavigationBarView extends LinearLayout {
                 lightsOut.addView(spacer3);
             }
         }
-        //Drawable bg = mContext.getResources().getDrawable(R.drawable.nav_bar_bg);
-        //if(bg instanceof ColorDrawable) {
-        //    BackgroundAlphaColorDrawable bacd = new BackgroundAlphaColorDrawable(
-        //            mNavigationBarColor > 0 ? mNavigationBarColor : ((ColorDrawable) bg).getColor());
-        //    setBackground(bacd);
-        //}
-        //if(mTransparencyManager != null) {
-        //    mTransparencyManager.update();
-        //}
+        Drawable bg = mContext.getResources().getDrawable(R.drawable.nav_bar_bg);
+        if(bg instanceof ColorDrawable) {
+            BackgroundAlphaColorDrawable bacd = new BackgroundAlphaColorDrawable(
+                    mNavigationBarColor > 0 ? mNavigationBarColor : ((ColorDrawable) bg).getColor());
+            setBackground(bacd);
+        }
+        if(mTransparencyManager != null) {
+            mTransparencyManager.update();
+        }
     }
 
     private void addLightsOutButton(LinearLayout root, View v, boolean landscape, boolean empty) {

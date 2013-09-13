@@ -107,6 +107,6 @@
     <bool name="config_show4GForLTE">true</bool>
 
     <!-- default Navigation Bar transparency. 0-255 -->
-    <integer name="navigation_bar_transparency">255</integer>
+    <integer name="navigation_bar_transparency">204</integer>
 </resources>
 

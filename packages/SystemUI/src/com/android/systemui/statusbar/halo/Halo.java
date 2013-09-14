@@ -563,12 +563,9 @@ public class Halo extends FrameLayout implements Ticker.TickerCallback, TabletTi
         public void onLongPress(MotionEvent event){
             if(statusAnimation) return;
 
-            boolean expanded = Settings.System.getInt(mContext.getContentResolver(),
-                    Settings.System.EXPANDED_DESKTOP_STATE, 0) == 1;
-
             mStatusTextSize = mContext.getResources().getDimensionPixelSize(R.dimen.halo_status_text_size) * mHaloSize;
 
-            if (expanded && mState == State.IDLE) {
+            if (mState == State.IDLE) {
                 mEffect.mHaloStatusText.setTextAlign(Paint.Align.CENTER);
                 statusAnimation = true;
                 mEffect.statusBubblesShow();

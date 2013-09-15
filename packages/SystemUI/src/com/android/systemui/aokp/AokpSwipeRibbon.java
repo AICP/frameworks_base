@@ -272,11 +272,6 @@ public class AokpSwipeRibbon extends LinearLayout {
         mPopupView.removeAllViews();
         mContainerFrame = new FrameLayout(mContext);
         mContainerFrame.removeAllViews();
-        if (mNavBarShowing) {
-            int adjustment = mContext.getResources().getDimensionPixelSize(
-                        com.android.internal.R.dimen.status_bar_height);
-            mPopupView.setPadding(0, adjustment, 0, 0);
-        }
         mBackGround = new Button(mContext);
         mBackGround.setClickable(false);
         mBackGround.setBackgroundColor(mColor);

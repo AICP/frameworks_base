@@ -40,4 +40,9 @@
     <color name="toggle_text">#ffffffff</color>
     <color name="toggle_text_changing_state_color">#ff787878</color>
     <color name="toggle_image_changing_state_overlay">@color/toggle_text_changing_state_color</color>
+
+    <!-- Halo colors -->
+    <color name="halo_ping_color">#ff33b5e5</color>
+    <color name="halo_text_color">#ffffffff</color>
+
 </resources>

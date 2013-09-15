@@ -847,6 +847,19 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         }
     }
 
+    private void interceptScreencastChord() {
+        if (mVolumeUpKeyTriggered && mPowerKeyTriggered && !mVolumeDownKeyTriggered) {
+            final long now = SystemClock.uptimeMillis();
+            if (now <= mVolumeUpKeyTime + ACTION_CHORD_DEBOUNCE_DELAY_MILLIS
+                    && now <= mPowerKeyTime + ACTION_CHORD_DEBOUNCE_DELAY_MILLIS) {
+                mVolumeUpKeyConsumedByChord = true;
+                cancelPendingPowerKeyAction();
+
+                mHandler.postDelayed(mScreencastRunnable, getScreenshotChordLongPressDelay());
+            }
+        }
+    }
+
     private long getScreenshotChordLongPressDelay() {
         if (mKeyguardMediator.isShowing()) {
             // Double the time it takes to take a screenshot from the keyguard
@@ -858,6 +871,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
     private void cancelPendingScreenshotChordAction() {
         mHandler.removeCallbacks(mScreenshotRunnable);
+    }
+
+    private void cancelPendingScreencastChordAction() {
+        mHandler.removeCallbacks(mScreencastRunnable);
     }
 
     private final Runnable mPowerLongPress = new Runnable() {
@@ -899,6 +916,14 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         @Override
         public void run() {
             takeScreenshot();
+        }
+    };
+
+    private final Runnable mScreencastRunnable = new Runnable() {
+        @Override
+        public void run() {
+            Intent screencastIntent = new Intent("com.cyanogenmod.ACTION_START_SCREENCAST");
+            mContext.sendBroadcastAsUser(screencastIntent, UserHandle.CURRENT_OR_SELF);
         }
     };
 
@@ -4438,11 +4463,13 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                             mVolumeDownKeyTime = event.getDownTime();
                             mVolumeDownKeyConsumedByScreenshotChord = false;
                             cancelPendingPowerKeyAction();
+                            cancelPendingScreencastChordAction();
                             interceptScreenshotChord();
                         }
                     } else {
                         mVolumeDownKeyTriggered = false;
                         cancelPendingScreenshotChordAction();
+                        cancelPendingScreencastChordAction();
                     }
                 } else if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
                     if (down) {
@@ -4451,10 +4478,12 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                             mVolumeUpKeyTriggered = true;
                             cancelPendingPowerKeyAction();
                             cancelPendingScreenshotChordAction();
+                            interceptScreencastChord();
                         }
                     } else {
                         mVolumeUpKeyTriggered = false;
                         cancelPendingScreenshotChordAction();
+                        cancelPendingScreencastChordAction();
                     }
                 }
                 if (down) {

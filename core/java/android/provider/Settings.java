@@ -2795,6 +2795,14 @@ public final class Settings {
          */
         public static final String RAM_USAGE_BAR = "ram_usage_bar";
 
+        /**
+         * Goodbye fullscreen keyboard
+         *
+         * @hide
+         */
+
+       public static final String FULLSCREEN_KEYBOARD = "fullscreen_keyboard";
+
        /**
         * Key to store Torch state.
         * @hide 

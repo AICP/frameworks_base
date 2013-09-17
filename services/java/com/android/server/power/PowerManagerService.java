@@ -1834,7 +1834,7 @@ public final class PowerManagerService extends IPowerManager.Stub
         if ((mWakeLockSummary & WAKE_LOCK_SCREEN_BRIGHT) != 0
                 || (mUserActivitySummary & USER_ACTIVITY_SCREEN_BRIGHT) != 0
                 || !mBootCompleted
-+               || dontDimScreen) {
+                || dontDimScreen) {
             return DisplayPowerRequest.SCREEN_STATE_BRIGHT;
         }
 

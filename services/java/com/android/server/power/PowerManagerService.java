@@ -344,6 +344,9 @@ public final class PowerManagerService extends IPowerManager.Stub
     // A bitfield of battery conditions under which to make the screen stay on.
     private int mStayOnWhilePluggedInSetting;
 
+    // dim screen if stay on while charging is enabled?
+    private int mDimScreenWhilePluggedInSetting;
+
     // True if the device should stay on.
     private boolean mStayOn;
 
@@ -527,6 +530,9 @@ public final class PowerManagerService extends IPowerManager.Stub
             resolver.registerContentObserver(Settings.Global.getUriFor(
                     Settings.Global.STAY_ON_WHILE_PLUGGED_IN),
                     false, mSettingsObserver, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.Global.getUriFor(
+                    Settings.Global.DIM_SCREEN_WHILE_PLUGGED_IN),
+                    false, mSettingsObserver, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.SCREEN_BRIGHTNESS),
                     false, mSettingsObserver, UserHandle.USER_ALL);
@@ -598,7 +604,8 @@ public final class PowerManagerService extends IPowerManager.Stub
                 UserHandle.USER_CURRENT);
         mStayOnWhilePluggedInSetting = Settings.Global.getInt(resolver,
                 Settings.Global.STAY_ON_WHILE_PLUGGED_IN, BatteryManager.BATTERY_PLUGGED_AC);
-
+        mDimScreenWhilePluggedInSetting = Settings.Global.getInt(resolver,
+                Settings.Global.DIM_SCREEN_WHILE_PLUGGED_IN, 1);
         // respect default config values
         mElectronBeamOffEnabled = Settings.System.getIntForUser(resolver,
                 Settings.System.SYSTEM_POWER_ENABLE_CRT_OFF,
@@ -1822,9 +1829,12 @@ public final class PowerManagerService extends IPowerManager.Stub
             return DisplayPowerRequest.SCREEN_STATE_OFF;
         }
 
+ 	 boolean dontDimScreen = mStayOn && mDimScreenWhilePluggedInSetting == 0;
+
         if ((mWakeLockSummary & WAKE_LOCK_SCREEN_BRIGHT) != 0
                 || (mUserActivitySummary & USER_ACTIVITY_SCREEN_BRIGHT) != 0
-                || !mBootCompleted) {
+                || !mBootCompleted
++               || dontDimScreen) {
             return DisplayPowerRequest.SCREEN_STATE_BRIGHT;
         }
 
@@ -2400,6 +2410,7 @@ public final class PowerManagerService extends IPowerManager.Stub
                     + mMaximumScreenOffTimeoutFromDeviceAdmin + " (enforced="
                     + isMaximumScreenOffTimeoutFromDeviceAdminEnforcedLocked() + ")");
             pw.println("  mStayOnWhilePluggedInSetting=" + mStayOnWhilePluggedInSetting);
+	    pw.println("  mDimScreenWhilePluggedInSetting=" + mDimScreenWhilePluggedInSetting);
             pw.println("  mScreenBrightnessSetting=" + mScreenBrightnessSetting);
             pw.println("  mScreenAutoBrightnessAdjustmentSetting="
                     + mScreenAutoBrightnessAdjustmentSetting);

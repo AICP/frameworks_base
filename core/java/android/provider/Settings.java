@@ -1540,6 +1540,11 @@ public final class Settings {
         public static final String STAY_ON_WHILE_PLUGGED_IN = Global.STAY_ON_WHILE_PLUGGED_IN;
 
         /**
+         * @hide
+         */        
+        public static final String DIM_SCREEN_WHILE_PLUGGED_IN = "dim_screen_while_plugged_in";
+        
+        /**
          * What happens when the user presses the end call button if they're not
          * on a call.<br/>
          * <b>Values:</b><br/>
@@ -3940,6 +3945,7 @@ public final class Settings {
          */
         public static final String[] SETTINGS_TO_BACKUP = {
             STAY_ON_WHILE_PLUGGED_IN,   // moved to global
+	    DIM_SCREEN_WHILE_PLUGGED_IN,
             WIFI_USE_STATIC_IP,
             WIFI_STATIC_IP,
             WIFI_STATIC_GATEWAY,

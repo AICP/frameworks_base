@@ -22,15 +22,21 @@ import android.content.BroadcastReceiver;
 import android.content.ComponentCallbacks2;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.Region.Op;
 import android.opengl.GLUtils;
+import android.os.Handler;
+import android.os.RemoteException;
+import android.os.ServiceManager;
 import android.os.SystemProperties;
 import android.renderscript.Matrix4f;
 import android.service.wallpaper.WallpaperService;
 import android.util.Log;
+import android.view.IWindowManager;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.WindowManager;
@@ -40,6 +46,7 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.egl.EGLContext;
 import javax.microedition.khronos.egl.EGLDisplay;
 import javax.microedition.khronos.egl.EGLSurface;
+import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -57,6 +64,10 @@ public class ImageWallpaper extends WallpaperService {
     private static final String GL_LOG_TAG = "ImageWallpaperGL";
     private static final boolean DEBUG = false;
     private static final String PROPERTY_KERNEL_QEMU = "ro.kernel.qemu";
+    private static final String WALLPAPER_IMAGE_PATH =
+            "/data/data/com.aokp.romcontrol/files/lockscreen_wallpaper.jpg";
+    private static final String INTENT_LOCKSCREEN_WALLPAPER_CHANGED =
+            "com.aokp.romcontrol.lockscreen_wallpaper_changed";
 
     static final boolean FIXED_SIZED_SURFACE = true;
     static final boolean USE_OPENGL = true;
@@ -66,11 +77,19 @@ public class ImageWallpaper extends WallpaperService {
     DrawableEngine mEngine;
 
     boolean mIsHwAccelerated;
+    boolean isKeyguardShowing = false;
+
+    private IWindowManager mWm;
 
     @Override
     public void onCreate() {
         super.onCreate();
         mWallpaperManager = (WallpaperManager) getSystemService(WALLPAPER_SERVICE);
+        mWm = IWindowManager.Stub.asInterface(ServiceManager.getService("window"));
+
+        try {
+            isKeyguardShowing = mWm.isKeyguardLocked();
+        } catch (RemoteException e) { }
 
         //noinspection PointlessBooleanExpression,ConstantConditions
         if (FIXED_SIZED_SURFACE && USE_OPENGL) {
@@ -106,6 +125,7 @@ public class ImageWallpaper extends WallpaperService {
         private WallpaperObserver mReceiver;
 
         Bitmap mBackground;
+        Bitmap mLockscreenBackground;
         int mLastSurfaceWidth = -1, mLastSurfaceHeight = -1;
         int mLastRotation = -1;
         float mXOffset;
@@ -152,6 +172,18 @@ public class ImageWallpaper extends WallpaperService {
                     Log.d(TAG, "onReceive");
                 }
 
+                String action = intent.getAction();
+                if (action.equals(INTENT_LOCKSCREEN_WALLPAPER_CHANGED)) {
+                    File file = new File(WALLPAPER_IMAGE_PATH);
+
+                    if (file.exists()) {
+                        mLockscreenBackground = BitmapFactory.decodeFile(WALLPAPER_IMAGE_PATH);
+                    }
+                    else {
+                        mLockscreenBackground = null;
+                    }
+                }
+
                 mLastSurfaceWidth = mLastSurfaceHeight = -1;
                 mBackground = null;
                 mRedrawNeeded = true;
@@ -183,12 +215,22 @@ public class ImageWallpaper extends WallpaperService {
             }
 
             super.onCreate(surfaceHolder);
-            
-            // TODO: Don't need this currently because the wallpaper service
-            // will restart the image wallpaper whenever the image changes.
-            //IntentFilter filter = new IntentFilter(Intent.ACTION_WALLPAPER_CHANGED);
-            //mReceiver = new WallpaperObserver();
-            //registerReceiver(mReceiver, filter, null, mHandler);
+
+            Handler mHandler = new Handler();
+
+            IntentFilter filter = new IntentFilter();
+            filter.addAction(Intent.ACTION_SCREEN_ON);
+            filter.addAction(Intent.ACTION_SCREEN_OFF);
+            filter.addAction(INTENT_LOCKSCREEN_WALLPAPER_CHANGED);
+            filter.addAction(Intent.ACTION_USER_PRESENT);
+            mReceiver = new WallpaperObserver();
+            registerReceiver(mReceiver, filter, null, mHandler);
+
+            File file = new File(WALLPAPER_IMAGE_PATH);
+
+            if (file.exists()) {
+               mLockscreenBackground = BitmapFactory.decodeFile(WALLPAPER_IMAGE_PATH);
+            }
 
             updateSurfaceSize(surfaceHolder);
 
@@ -389,7 +431,18 @@ public class ImageWallpaper extends WallpaperService {
             Throwable exception = null;
             try {
                 mBackground = null;
-                mBackground = mWallpaperManager.getBitmap();
+
+                try {
+                    isKeyguardShowing = mWm.isKeyguardLocked();
+
+                } catch (RemoteException e) { }
+
+                if (isKeyguardShowing && mLockscreenBackground != null) {
+                    mBackground = mLockscreenBackground;
+                }
+                else {
+                    mBackground = mWallpaperManager.getBitmap();
+                }
             } catch (RuntimeException e) {
                 exception = e;
             } catch (OutOfMemoryError e) {

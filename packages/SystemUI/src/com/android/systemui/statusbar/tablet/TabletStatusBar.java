@@ -673,6 +673,9 @@ public class TabletStatusBar extends BaseStatusBar implements
         if (mNavBarAutoHide) {
             setupAutoHide();
         }
+
+        addActiveDisplayView();
+
         return sb;
     }
 

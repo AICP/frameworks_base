@@ -671,4 +671,7 @@
     <!-- [CHAR LIMIT=NONE] Label of a running process that represents another user -->
     <string name="running_process_item_user_label">User: <xliff:g id="user_name">%1$s</xliff:g></string>
 
+    <!--  Weather -->
+    <string name="weatherpanel_slash">/</string>
+
 </resources>

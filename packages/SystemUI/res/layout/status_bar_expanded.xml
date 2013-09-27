@@ -50,6 +50,17 @@
         android:layout_gravity="bottom"
         />
 
+    <com.android.systemui.statusbar.policy.WeatherText
+        android:id="@+id/weather"
+        android:textAppearance="@style/TextAppearance.StatusBar.Expanded.Network"
+        android:layout_height="@dimen/carrier_label_height"
+        android:layout_width="match_parent"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="@dimen/weather_text_margin"
+        android:gravity="center"
+        android:visibility="invisible"
+        />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -71,6 +82,11 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:visibility="gone"
+            />
+
+        <include layout="@layout/weatherpanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             />
 
         <LinearLayout

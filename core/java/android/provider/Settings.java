@@ -4228,6 +4228,13 @@ public final class Settings {
         public static final String SHOW_STATUSBAR_IME_SWITCHER = "show_statusbar_ime_switcher";
 
         /**
+         * Swipe to switch from notifications to tiles
+         *
+         * @hide
+         */
+        public static final String SWIPE_TO_SWITCH = "swipe_to_switch";
+
+        /**
          * wake up when plugged or unplugged
          *
          * @hide

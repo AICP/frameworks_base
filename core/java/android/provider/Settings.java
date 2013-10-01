@@ -2482,6 +2482,12 @@ public final class Settings {
         public static final String ACTIVE_DISPLAY_REDISPLAY = "active_display_redisplay";
 
         /**
+         * Time to redisplay notifications on screen from when screen turns off, 0 = never redisplay
+         * @hide
+         */
+        public static final String ACTIVE_DISPLAY_DISPLAYACTIVE = "active_display_displayactive";
+
+        /**
          * Brightness of the display when displaying the active display view
          * @hide
          */

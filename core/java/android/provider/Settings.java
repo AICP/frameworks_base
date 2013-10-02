@@ -1956,6 +1956,14 @@ public final class Settings {
         public static final String VIBRATE_INPUT_DEVICES = "vibrate_input_devices";
 
         /**
+         * Method for catching and setting vibration length
+         * that are less than or equal to 35 milliseconds long.
+         * Allows user to extend minimal vibrate duration.
+         * @hide
+         */
+        public static final String GENERIC_VIBRATE_INTENSITY = "generic_vibrate_intensity";
+
+        /**
          * Ringer volume. This is used internally, changing this value will not
          * change the volume. See AudioManager.
          */

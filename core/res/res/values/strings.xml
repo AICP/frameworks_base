@@ -3995,18 +3995,6 @@
     <!-- Reboot -->
     <string name="reboot">Reboot</string>
 
-    <!-- Reboot recovery option -->
-    <string name="reboot_recovery">Recovery</string>
-
-    <!-- Reboot recovery option -->
-    <string name="reboot_download">Download</string>
-
-    <!-- Reboot recovery option -->
-    <string name="reboot_bootloader">Bootloader</string>
-
-    <!-- Rebooting message -->
-    <string name="reboot_progress">Your device is rebooting</string>
-
     <!-- Content description of a MediaRouteButton for accessibility support -->
     <string name="media_route_button_content_description">Media output</string>
 
@@ -4246,5 +4234,41 @@
     <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_interceptSmsSent">Allows the app to intercept an outgoing SMS.
         Malicious apps may use this to prevent outgoing SMS messages.</string>
+
+    <!-- Button to reboot the phone, within the Phone Options dialog -->
+    <string name="reboot_system">Reboot phone</string>
+
+    <!-- Button to reboot the phone, within the Reboot Options dialog -->
+    <string name="reboot_reboot">Reboot</string>
+    <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
+    <string name="reboot_recovery">Recovery</string>
+    <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
+    <string name="reboot_bootloader">Bootloader</string>
+    <!-- Button to hot reboot the device, within the Reboot Options dialog -->
+    <string name="reboot_hot">Hot Reboot</string>
+    <!-- Button to reboot the phone into bootmenu, within the Reboot Options dialog -->
+    <string name="reboot_bootmenu">Bootmenu</string>
+    <!-- Button to reboot the phone into fastboot, within the Reboot Options dialog -->
+    <string name="reboot_fastboot">Fastboot</string>
+    <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
+    <string name="reboot_download">Download</string>
+
+    <!-- Reboot Progress Dialog. This is shown if the user chooses to reboot the phone. -->
+    <string name="reboot_progress">Rebooting\u2026</string>
+    <!-- Reboot Confirmation Dialog.  When the user chooses to reboot the tablet, there will be a confirmation dialog.  This is the message. -->
+    <string name="reboot_confirm" product="tablet">Your tablet will reboot.</string>
+    <!-- Reboot Confirmation Dialog.  When the user chooses to reboot the phone, there will be a confirmation dialog.  This is the message. -->
+    <string name="reboot_confirm" product="default">Your phone will reboot.</string>
+
+    <!-- Hot Reboot Progress Dialog title. Shown if the user chooses to hot reboot the tablet. -->
+    <string name="hot_reboot_title" product="tablet">Hot reboot tablet</string>
+    <!-- Hot Reboot Progress Dialog title. Shown if the user chooses to hot reboot the phone. -->
+    <string name="hot_reboot_title" product="default">Hot reboot phone</string>
+
+    <!-- Hot Reboot Progress Dialog message. Shown if the user chooses to hot reboot the device. -->
+    <string name="hot_reboot_progress">Restarting android framework\u2026</string>
+
+    <!-- label for item that reboots the phone in phone options dialog -->
+    <string name="global_action_reboot">Reboot</string>
 
 </resources>

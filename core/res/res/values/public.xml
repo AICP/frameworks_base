@@ -2116,4 +2116,18 @@
   <java-symbol type="drawable" name="weather_47" />
   <public type="drawable" name="weather_condition" />
 
+<!-- ==============================================================
+     Resources added by The Evervolv Project v3.x.x
+     =============================================================== -->
+  <eat-comment />
+  <java-symbol type="drawable" name="ic_lock_reboot" />
+  <java-symbol type="string" name="global_action_reboot" />
+  <java-symbol type="string" name="reboot_system" />
+  <java-symbol type="string" name="reboot_progress" />
+  <java-symbol type="string" name="reboot_hot" />
+  <java-symbol type="string" name="hot_reboot_title" />
+  <java-symbol type="string" name="hot_reboot_progress" />
+  <java-symbol type="array" name="shutdown_reboot_options" />
+  <java-symbol type="array" name="shutdown_reboot_actions" />
+
 </resources>

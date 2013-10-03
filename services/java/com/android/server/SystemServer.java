@@ -134,6 +134,7 @@ class ServerThread extends Thread {
         LightsService lights = null;
         PowerManagerService power = null;
         DisplayManagerService display = null;
+        DeviceHandlerService device = null;
         BatteryService battery = null;
         VibratorService vibrator = null;
         AlarmManagerService alarm = null;
@@ -317,7 +318,7 @@ class ServerThread extends Thread {
 
             Slog.i(TAG, "Window Manager");
             wm = WindowManagerService.main(context, power, display, inputManager,
-                    uiHandler, wmHandler,
+                    device, uiHandler, wmHandler,
                     factoryTest != SystemServer.FACTORY_TEST_LOW_LEVEL,
                     !firstBoot, onlyCore);
             ServiceManager.addService(Context.WINDOW_SERVICE, wm);

@@ -38,6 +38,7 @@ import com.android.internal.app.ResolverActivity;
 import com.android.internal.content.NativeLibraryHelper;
 import com.android.internal.content.PackageHelper;
 import com.android.internal.policy.impl.PhoneWindowManager;
+import com.android.internal.os.IDeviceHandler;
 import com.android.internal.util.FastXmlSerializer;
 import com.android.internal.util.XmlUtils;
 import com.android.server.DeviceStorageMonitorService;
@@ -548,7 +549,6 @@ public class PackageManagerService extends IPackageManager.Stub {
     private HashSet<Integer> mDirtyUsers = new HashSet<Integer>();
 
     WindowManager mWindowManager;
-    private final WindowManagerPolicy mPolicy; // to set packageName
 
     final private DefaultContainerConnection mDefContainerConn =
             new DefaultContainerConnection();
@@ -1120,7 +1120,6 @@ public class PackageManagerService extends IPackageManager.Stub {
 
         mWindowManager = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
         Display d = mWindowManager.getDefaultDisplay();
-        mPolicy = new PhoneWindowManager();
         d.getMetrics(mMetrics);
 
         synchronized (mInstallLock) {
@@ -3750,7 +3749,6 @@ public class PackageManagerService extends IPackageManager.Stub {
                         } catch (Exception e) {
                             ai = null;
                         }
-                        mPolicy.setPackageName((String) (ai != null ? mContext.getPackageManager().getApplicationLabel(ai) : p.packageName));
                         ActivityManagerNative.getDefault().showBootMessage(
                                 mContext.getResources().getString(
                                         com.android.internal.R.string.android_upgrading_apk,

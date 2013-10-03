@@ -33,9 +33,9 @@
 #include <unistd.h>
 #include <dirent.h>
 #include <linux/ioctl.h>
+#include <cutils/properties.h>
 #include <utils/Vector.h>
 #include <utils/String8.h>
-#include <cutils/properties.h>
 
 namespace android {
 
@@ -247,16 +247,16 @@ static void android_server_BatteryService_update(JNIEnv* env, jobject obj)
     setIntFieldMax(env, obj, gPaths.batteryCapacityPath, gFieldIds.mBatteryLevel, 100);
     setVoltageField(env, obj, gPaths.batteryVoltagePath, gFieldIds.mBatteryVoltage);
     setIntField(env, obj, gPaths.batteryTemperaturePath, gFieldIds.mBatteryTemperature);
-    
+
     const int SIZE = 128;
     char buf[SIZE];
-    
+
     if (readFromFile(gPaths.batteryStatusPath, buf, SIZE) > 0)
         env->SetIntField(obj, gFieldIds.mBatteryStatus, getBatteryStatus(buf));
     else
         env->SetIntField(obj, gFieldIds.mBatteryStatus,
                          gConstants.statusUnknown);
-    
+
     if (readFromFile(gPaths.batteryHealthPath, buf, SIZE) > 0)
         env->SetIntField(obj, gFieldIds.mBatteryHealth, getBatteryHealth(buf));
 
@@ -352,6 +352,7 @@ int register_android_server_BatteryService(JNIEnv* env)
                 if (access(path, R_OK) == 0)
                     gPaths.batteryPresentPath = path;
                 path.clear();
+
                 /* For some weird, unknown reason Motorola phones provide
                 * capacity information only in 10% steps in the 'capacity'
                 * file. The 'charge_counter' file provides the 1% steps
@@ -363,11 +364,14 @@ int register_android_server_BatteryService(JNIEnv* env)
                 if (property_get("ro.product.use_charge_counter", valueChargeCounter, NULL)
                     && (!strcmp(valueChargeCounter, "1"))) {
                    path.appendFormat("%s/%s/charge_counter", POWER_SUPPLY_PATH, name);
+                   if (access(path, R_OK) == 0)
+                       gPaths.batteryCapacityPath = path;
                 } else {
                     path.appendFormat("%s/%s/capacity", POWER_SUPPLY_PATH, name);
+                    if (access(path, R_OK) == 0)
+                        gPaths.batteryCapacityPath = path;
                 }
-                if (access(path, R_OK) == 0)
-                    gPaths.batteryCapacityPath = path;
+
 
                 path.clear();
                 path.appendFormat("%s/%s/voltage_now", POWER_SUPPLY_PATH, name);

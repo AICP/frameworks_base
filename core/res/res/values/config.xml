@@ -1196,6 +1196,9 @@
          kill the foreground app. -->
     <integer name="config_backKillTimeout">750</integer>
 
+    <!-- Name of that dock battery handler class -->
+    <string name="config_deviceDockBatteryHandlerClass" translatable="false"></string>
+
     <!-- LUN file to be used by legacy USB manager.
          The existence of this file will be used to determine in the
          legacy USB manager should be started. -->
@@ -1203,6 +1206,11 @@
 
     <!-- Path to the library that contains a device specific key handler -->
     <string name="config_deviceKeyHandlerLib" translatable="false"></string>
+
+    <!-- The list absolute paths of jar/apk files containing the device specific handlers,
+         delimited by File.pathSeparator, which defaults to ":" on Android -->
+    <string name="config_deviceHandlersLib" translatable="false"></string>
+
 
     <!-- Name of that key handler class -->
     <string name="config_deviceKeyHandlerClass" translatable="false"></string>
@@ -1217,6 +1225,8 @@
     <!-- The list of components which should be automatically disabled. -->
     <string-array name="config_disabledComponents" translatable="false">
     </string-array>
+     <!-- Asus dock compatibility disabled by default -->
+     <bool name="config_hasDockBattery">false</bool>
 
      <!-- If a dock provides a lid switch, that lid can be removed. This
           setting is used to determine, whether lidOpenRotation has to be

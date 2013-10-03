@@ -155,4 +155,8 @@ public class BatteryManager {
     /** @hide */
     public static final int BATTERY_PLUGGED_ANY =
             BATTERY_PLUGGED_AC | BATTERY_PLUGGED_USB | BATTERY_PLUGGED_WIRELESS;
+
+    public static final String EXTRA_DOCK_PRESENT = "dock_present";
+
+    public static final String EXTRA_DOCK_PLUGGED = "dock_plugged";
 }

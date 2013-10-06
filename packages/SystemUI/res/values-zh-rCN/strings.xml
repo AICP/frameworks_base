@@ -247,6 +247,7 @@
     <string name="action_none">空</string>
 
     <string name="widgets">小部件</string>
+    <string name="toggle_quiethours">静音时段 - 开关</string>
     <string name="toggle_navbar">导航栏 - 开关</string>
     <string name="toggle_statusbar">状态栏 - 开关</string>
     <string name="toggle_widgets">小部件 - 开关</string>

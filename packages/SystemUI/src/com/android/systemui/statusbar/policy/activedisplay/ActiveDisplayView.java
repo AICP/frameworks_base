@@ -676,7 +676,6 @@ public class ActiveDisplayView extends FrameLayout {
     }
 
     private void onScreenTurnedOff() {
-        mWakedByPocketMode = false;
         hideNotificationView();
         cancelTimeoutTimer();
         if (mRedisplayTimeout > 0) updateRedisplayTimer();

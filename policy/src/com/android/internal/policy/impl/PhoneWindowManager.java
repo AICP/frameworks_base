@@ -4725,7 +4725,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             }
 
             final int preferredRotation;
-            if ((mLidState == LID_OPEN && mLidOpenRotation >= 0) {
+            if ((mLidState == LID_OPEN && mLidOpenRotation >= 0) 
                     && !(mHasRemovableLid
                            && mDockMode == Intent.EXTRA_DOCK_STATE_UNDOCKED)) {
                 // Ignore sensor when lid switch is open and rotation is forced.

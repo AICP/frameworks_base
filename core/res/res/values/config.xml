@@ -1210,4 +1210,10 @@
     <!-- The list of components which should be automatically disabled. -->
     <string-array name="config_disabledComponents" translatable="false">
     </string-array>
+
+     <!-- If a dock provides a lid switch, that lid can be removed. This
+          setting is used to determine, whether lidOpenRotation has to be
+          applied. -->
+     <bool name="config_hasRemovableLid">false</bool>
+
 </resources>

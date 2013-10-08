@@ -1914,6 +1914,7 @@
   <java-symbol type="array" name="config_telephony_set_audioparameters" />
   <java-symbol type="string" name="config_legacyUmsLunFile" />
   <java-symbol type="bool" name="config_hasRemovableLid" />
+  <java-symbol type="bool" name="config_hasDockBattery" />
 
   <!-- Power Menu -->
   <java-symbol type="drawable" name="ic_lock_screenshot" />
@@ -2038,5 +2039,10 @@
   <java-symbol type="id" name="busy_dlg_animation" />
   <java-symbol type="id" name="busy_dlg_title" />
   <java-symbol type="layout" name="busy_dlg" />
+
+  <!-- Device specific handlers -->
+  <java-symbol type="string" name="config_deviceHandlersLib" />
+  <java-symbol type="string" name="config_deviceDockBatteryHandlerClass" />
+
 
 </resources>

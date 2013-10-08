@@ -16,10 +16,13 @@ import com.android.systemui.R;
 public class LteToggle extends StatefulToggle {
 
     SettingsObserver mObserver;
+    TelephonyManager tm;
 
     @Override
     public void init(Context c, int style) {
         super.init(c, style);
+
+        tm = (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
 
         mObserver = new SettingsObserver(new Handler());
         mObserver.observe();
@@ -82,24 +85,25 @@ public class LteToggle extends StatefulToggle {
 
     @Override
     protected void doEnable() {
-        final TelephonyManager tm = (TelephonyManager) mContext
-                .getSystemService(Context.TELEPHONY_SERVICE);
         tm.toggleLTE(true);
     }
 
     @Override
     protected void doDisable() {
-        final TelephonyManager tm = (TelephonyManager) mContext
-                .getSystemService(Context.TELEPHONY_SERVICE);
         tm.toggleLTE(false);
     }
 
-    private static boolean validLteMode(int mode) {
-        return mode == PhoneConstants.NT_MODE_GLOBAL
-                || mode == PhoneConstants.NT_MODE_LTE_CDMA_EVDO
+    private boolean validLteMode(int mode) {
+        if (tm.getLteOnCdmaMode()
+                    == PhoneConstants.LTE_ON_CDMA_TRUE) {
+            return mode == PhoneConstants.NT_MODE_LTE_CDMA_EVDO;
+        } else {
+            return mode == PhoneConstants.NT_MODE_GLOBAL
                 || mode == PhoneConstants.NT_MODE_LTE_GSM_WCDMA
                 || mode == PhoneConstants.NT_MODE_LTE_CMDA_EVDO_GSM_WCDMA
                 || mode == PhoneConstants.NT_MODE_LTE_ONLY
                 || mode == PhoneConstants.NT_MODE_LTE_WCDMA;
+        }
     }
 }
+

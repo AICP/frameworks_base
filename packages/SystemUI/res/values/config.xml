@@ -103,9 +103,6 @@
     <!-- Enable the "flip settings" panel -->
     <bool name="config_hasFlipSettingsPanel">true</bool>
 
-    <!-- Should "4G" be shown instead of "LTE" when the network is NETWORK_TYPE_LTE? -->
-    <bool name="config_show4GForLTE">true</bool>
-
     <!-- default Navigation Bar transparency. 0-255 -->
     <integer name="navigation_bar_transparency">204</integer>
 </resources>

@@ -286,7 +286,7 @@ public class PieMenu extends FrameLayout {
         boolean expanded = Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.EXPANDED_DESKTOP_STATE, 0) == 1;
         mUseMenuAlways = Settings.System.getInt(mContext.getContentResolver(), Settings.System.PIE_MENU, 1) == 1;
-        mUseLastApp = Settings.System.getInt(mContext.getContentResolver(), Settings.System.PIE_LAST_APP, 0) == 1;
+         mUseLastApp = Settings.System.getInt(mContext.getContentResolver(), Settings.System.PIE_LAST_APP, 0) == 1;
         mUseKillTask = Settings.System.getInt(mContext.getContentResolver(), Settings.System.PIE_KILL_TASK, 0) == 1;
         mUseAppWindow = Settings.System.getInt(mContext.getContentResolver(), Settings.System.PIE_APP_WINDOW, 0) == 1;
         mUseActNotif = Settings.System.getInt(mContext.getContentResolver(), Settings.System.PIE_ACT_NOTIF, 0) == 1;
@@ -621,7 +621,7 @@ public class PieMenu extends FrameLayout {
         getNotifications();
     }
 
-    public void onPieConfigurationChanged() {
+    public void onConfigurationChanged() {
         if (mStatusPanel != null) mStatusPanel.updatePanelConfiguration();
     }
 
@@ -730,7 +730,7 @@ public class PieMenu extends FrameLayout {
                         y = y - h / 2;
                         x = mCenter.x - (int)(Math.PI/2-x) - w / 2;
                         break;
-                    case Gravity.BOTTOM:
+                    case Gravity.BOTTOM: 
                         y = mCenter.y - y - h / 2;
                         x = mCenter.x - x - w / 2;
                         break;
@@ -1056,14 +1056,14 @@ public class PieMenu extends FrameLayout {
 
                 if (Settings.System.getInt(mContext.getContentResolver(),
                         Settings.System.PIE_NOTIFICATIONS, 0) == 1 && !mIsProtected) {
-                    if (state == PieStatusPanel.QUICK_SETTINGS_PANEL &&
+                    if (state == PieStatusPanel.QUICK_SETTINGS_PANEL && 
                             mStatusPanel.getFlipViewState() != PieStatusPanel.QUICK_SETTINGS_PANEL
                             && mStatusPanel.getCurrentViewState() != PieStatusPanel.QUICK_SETTINGS_PANEL) {
                         mGlowOffsetRight = mPanelOrientation != Gravity.TOP ? 150 : 255;;
                         mGlowOffsetLeft = mPanelOrientation != Gravity.TOP ? 255 : 150;
                         mStatusPanel.setFlipViewState(PieStatusPanel.QUICK_SETTINGS_PANEL);
                         if (mHapticFeedback && !snapActive) mVibrator.vibrate(2);
-                    } else if (state == PieStatusPanel.NOTIFICATIONS_PANEL &&
+                    } else if (state == PieStatusPanel.NOTIFICATIONS_PANEL && 
                             mStatusPanel.getFlipViewState() != PieStatusPanel.NOTIFICATIONS_PANEL
                             && mStatusPanel.getCurrentViewState() != PieStatusPanel.NOTIFICATIONS_PANEL) {
                         mGlowOffsetRight = mPanelOrientation != Gravity.TOP ? 255 : 150;

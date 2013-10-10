@@ -38,6 +38,7 @@ import android.graphics.Rect;
 import android.os.Handler;
 import android.provider.Settings;
 import android.view.animation.DecelerateInterpolator;
+import android.view.animation.Animation;
 import android.view.animation.AlphaAnimation;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -92,10 +93,16 @@ public class PieStatusPanel {
         mNotificationPanel = mPanel.getBar().getNotificationRowLayout();
         mNotificationPanel.setTag(NOTIFICATIONS_PANEL);
         mQS = mPanel.getBar().getQuickSettingsPanel();
-        mQS.setTag(QUICK_SETTINGS_PANEL);
+        if (QUICK_SETTINGS_PANEL == 1) {
+	  	 try {
+		     mQS = mPanel.getBar().getQuickSettingsPanel();
+		     mQS.setTag(QUICK_SETTINGS_PANEL);
+		     mPanelParents[QUICK_SETTINGS_PANEL] = (ViewGroup) mQS.getParent();
+             } catch (NullPointerException npe){
+		     }
+		}
 
         mPanelParents[NOTIFICATIONS_PANEL] = (ViewGroup) mNotificationPanel.getParent();
-        mPanelParents[QUICK_SETTINGS_PANEL] = (ViewGroup) mQS.getParent();
 
         mContentHeader = (View) mPanel.getBar().mContainer.findViewById(R.id.content_header);
 
@@ -174,7 +181,7 @@ public class PieStatusPanel {
                         break;
                 }
                 return false;
-            }
+            }                  
     }
 
     private View.OnClickListener mClearButtonListener = new View.OnClickListener() {

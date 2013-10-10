@@ -209,10 +209,6 @@ public abstract class BaseStatusBar extends SystemUI implements
     public void collapse() {
     }
 
-    protected void onPieConfigurationChanged(Configuration newConfig) {
-        if (mPieControlPanel != null) mPieControlPanel.bumpConfiguration();
-    }
-
     public QuickSettingsContainerView getQuickSettingsPanel() {
         // This method should be overriden
         return null;
@@ -258,6 +254,11 @@ public abstract class BaseStatusBar extends SystemUI implements
                     Settings.System.EXPANDED_DESKTOP_STATE), false, this);
         }
 
+        @Override
+        public void onChange(boolean selfChange) {
+            updatePieControls();
+        }
+
    }
 
 
@@ -269,7 +270,7 @@ public abstract class BaseStatusBar extends SystemUI implements
             if (provisioned != mDeviceProvisioned) {
                 mDeviceProvisioned = provisioned;
                 updateNotificationIcons();
-                updatePieControls();
+                updateSettings();
             }
         }
     };
@@ -455,6 +456,9 @@ public abstract class BaseStatusBar extends SystemUI implements
                 }
             }}, filter);
 
+        attachPie();
+
+
         // Listen for PIE gravity
         mContext.getContentResolver().registerContentObserver(
             Settings.System.getUriFor(Settings.System.PIE_GRAVITY), false, new ContentObserver(new Handler()) {
@@ -466,8 +470,6 @@ public abstract class BaseStatusBar extends SystemUI implements
                     }
                 }
             });
-
-        attachPie();
 
         // Listen for HALO enabled switch
           mContext.getContentResolver().registerContentObserver(
@@ -715,6 +717,7 @@ public abstract class BaseStatusBar extends SystemUI implements
 
     @Override
     protected void onConfigurationChanged(Configuration newConfig) {
+        if (mPieControlPanel != null) mPieControlPanel.bumpConfiguration();
         final Locale newLocale = mContext.getResources().getConfiguration().locale;
         if (! newLocale.equals(mLocale)) {
             mLocale = newLocale;

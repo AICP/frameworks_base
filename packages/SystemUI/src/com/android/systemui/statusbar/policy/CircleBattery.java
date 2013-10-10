@@ -270,8 +270,8 @@ public class CircleBattery extends ImageView {
 
         Paint usePaint = mPaintSystem;
 
-        // turn red at 14% - same level android battery warning appears
-        if (mLevel <= 14) {
+        // turn red at 15% - same level android battery warning appears
+        if (mLevel <= 15) {
             usePaint = mPaintRed;
         }
         usePaint.setAntiAlias(true);
@@ -297,7 +297,7 @@ public class CircleBattery extends ImageView {
         // if chosen by options, draw percentage text in the middle
         // always skip percentage when 100, so layout doesnt break
         if (mLevel < 100 && mPercentage){
-            if (mLevel <= 14) {
+            if (mLevel <= 15) {
                 mPaintFont.setColor(mPaintRed.getColor());
             }else {
                 mPaintFont.setColor(mCircleTextColor);
@@ -374,10 +374,10 @@ public class CircleBattery extends ImageView {
 
         mPaintFont.setTextSize(mCircleSize / 2f);
 
-        float strokeWidth = mCircleSize / 7f;
+        float strokeWidth = mCircleSize / 7.5f;
         mPaintRed.setStrokeWidth(strokeWidth);
         mPaintSystem.setStrokeWidth(strokeWidth);
-        mPaintGray.setStrokeWidth(strokeWidth / 3.5f);
+        mPaintGray.setStrokeWidth(strokeWidth / 3.27f);
         // calculate rectangle for drawArc calls
         int pLeft = getPaddingLeft();
         mCircleRect = new RectF(pLeft + strokeWidth / 2.0f, 0 + strokeWidth / 2.0f, mCircleSize

@@ -3076,6 +3076,12 @@ public final class Settings {
         public static final String PIE_CHEVRON_RIGHT = "pie_chevron_right";
 
         /**
+         * Pie power, should default to 0 (no, show only when needed)
+         * @hide
+         */
+        public static final String PIE_POWER = "pie_power";
+
+        /**
          * Random user selected colors
          * @hide
          */

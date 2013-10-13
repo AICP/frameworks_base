@@ -795,7 +795,7 @@ final class DisplayPowerController {
                                 } else if (mPowerState.prepareElectronBeam(
                                         mElectronBeamFadesConfig ?
                                                 ElectronBeam.MODE_FADE :
-                                                        ElectronBeam.MODE_WARM_UP)) {
+                                                ElectronBeam.MODE_WARM_UP)) {
                                     mElectronBeamOnAnimator.start();
                                 } else {
                                     mElectronBeamOnAnimator.end();
@@ -817,7 +817,8 @@ final class DisplayPowerController {
                         } else if (mPowerState.prepareElectronBeam(
                                 !mElectronBeamOffEnabled ?
                                         ElectronBeam.MODE_FADE :
-                                                ElectronBeam.MODE_COOL_DOWN)
+                                        ElectronBeam.MODE_COOL_DOWN)
+                                && useScreenOffAnimation()
                                 && mPowerState.isScreenOn()) {
                             mElectronBeamOffAnimator.start();
                         } else {
@@ -1474,4 +1475,9 @@ final class DisplayPowerController {
             updatePowerState();
         }
     };
+
+    private boolean useScreenOffAnimation() {
+        return Settings.System.getInt(mContext.getContentResolver(),
+            Settings.System.SYSTEM_POWER_ENABLE_CRT_OFF, 1) == 1;
+   }
 }

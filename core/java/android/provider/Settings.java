@@ -2798,12 +2798,6 @@ public final class Settings {
          */
         public static final String WEATHER_SHOW_LOCATION = "weather_show_location";
 
-	/**
-         * HALO enabled, should default to 1 (yes, HALO is enabled)
-         * @hide
-         */
-        public static final String HALO_ENABLED = "halo_enabled";
-
         /**
          * HALO, should default to 0 (no, do not show)
          * @hide

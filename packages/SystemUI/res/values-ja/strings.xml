@@ -255,6 +255,7 @@
     <string name="action_none">設定なし</string>
 
     <string name="widgets">ウィジェット</string>
+    <string name="toggle_quiethours">サイレントタイム - トグル</string>
     <string name="toggle_navbar">ナビゲーションバー - トグル</string>
     <string name="toggle_statusbar">ステータスバー - トグル</string>
     <string name="toggle_widgets">ウィジェット - トグル</string>
@@ -263,6 +264,7 @@
     <string name="toggle_ring_vib_silent">サウンド/バイブ/サイレント - トグル</string>
     <string name="app_killed_message">アプリを強制終了しました</string>
     <string name="recents_kill_all_button_text">全アプリ終了</string>
+    <string name="recents_google_now_button_text">Google Now</string>
     <string name="screenshot_toast">%1$d秒後にスクリーンショット</string>
 
     <!--  Quick Settings -->

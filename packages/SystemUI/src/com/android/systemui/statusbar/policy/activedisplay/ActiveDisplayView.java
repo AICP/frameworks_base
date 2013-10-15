@@ -629,7 +629,7 @@ public class ActiveDisplayView extends FrameLayout {
     }
 
     private void handleShowNotification(boolean ping) {
-        if (!mDisplayNotifications || inQuietHours()) return;
+        if (!mDisplayNotifications || inQuietHours() || mNotification==null) return;
         showNotificationView();
         setActiveNotification(mNotification, true);
         inflateRemoteView(mNotification);
@@ -654,6 +654,7 @@ public class ActiveDisplayView extends FrameLayout {
                     mNotification.getPackageName(), mNotification.getTag(),
                     mNotification.getId());
         } catch (RemoteException e) {
+        } catch (NullPointerException npe) {
         }
         mNotification = getNextAvailableNotification();
         if (mNotification != null) {
@@ -945,8 +946,10 @@ public class ActiveDisplayView extends FrameLayout {
      * @param sbn The StatusBarNotification to swap with the current
      */
     private void swapNotification(StatusBarNotification sbn) {
-        mNotification = sbn;
-        setActiveNotification(sbn, false);
+        if(sbn!=null) {
+            mNotification = sbn;
+            setActiveNotification(sbn, false);
+        }
     }
 
     /**
@@ -1002,25 +1005,27 @@ public class ActiveDisplayView extends FrameLayout {
      * @param updateOthers Set to true to update the overflow notifications.
      */
     private void setActiveNotification(final StatusBarNotification sbn, final boolean updateOthers) {
-        try {
-            Context pkgContext = mContext.createPackageContext(sbn.getPackageName(), Context.CONTEXT_RESTRICTED);
-            mNotificationDrawable = pkgContext.getResources().getDrawable(sbn.getNotification().icon);
-        } catch (NameNotFoundException nnfe) {
-            mNotificationDrawable = mContext.getResources().getDrawable(R.drawable.ic_ad_unknown_icon);
-        } catch (Resources.NotFoundException nfe) {
-            mNotificationDrawable = mContext.getResources().getDrawable(R.drawable.ic_ad_unknown_icon);
-        }
-        mCurrentNotificationIcon.setImageDrawable(mNotificationDrawable);
-        setHandleText(sbn);
-        mNotification = sbn;
-        mGlowPadView.post(new Runnable() {
-            @Override
-            public void run() {
-                updateResources();
-                mGlowPadView.invalidate();
-                if (updateOthers) updateOtherNotifications();
+        if(sbn!=null) {
+            try {
+                Context pkgContext = mContext.createPackageContext(sbn.getPackageName(), Context.CONTEXT_RESTRICTED);
+                mNotificationDrawable = pkgContext.getResources().getDrawable(sbn.getNotification().icon);
+            } catch (NameNotFoundException nnfe) {
+                mNotificationDrawable = mContext.getResources().getDrawable(R.drawable.ic_ad_unknown_icon);
+            } catch (Resources.NotFoundException nfe) {
+                mNotificationDrawable = mContext.getResources().getDrawable(R.drawable.ic_ad_unknown_icon);
             }
-        });
+            mCurrentNotificationIcon.setImageDrawable(mNotificationDrawable);
+            setHandleText(sbn);
+            mNotification = sbn;
+            mGlowPadView.post(new Runnable() {
+                @Override
+                public void run() {
+                    updateResources();
+                    mGlowPadView.invalidate();
+                    if (updateOthers) updateOtherNotifications();
+                }
+            });
+        }
     }
 
     /**

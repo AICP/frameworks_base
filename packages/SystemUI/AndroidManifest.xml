@@ -127,6 +127,9 @@
             </intent-filter>
         </service>
 
+        <service android:name=".CPUInfoService"
+                android:exported="true" />
+
         <service android:name=".ImageWallpaper"
                 android:permission="android.permission.BIND_WALLPAPER"
                 android:exported="true" />

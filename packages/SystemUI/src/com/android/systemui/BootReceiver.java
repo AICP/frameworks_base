@@ -46,6 +46,12 @@ public class BootReceiver extends BroadcastReceiver {
                 context.startService(screenstate);
             }
 
+            // Start the cpu info overlay, if activated
+            if (Settings.Global.getInt(res, Settings.Global.SHOW_CPU, 0) != 0) {
+                Intent cpuinfo = new Intent(context, com.android.systemui.CPUInfoService.class);
+                context.startService(cpuinfo);
+            }
+
         } catch (Exception e) {
             Slog.e(TAG, "Can't start load average service", e);
         }

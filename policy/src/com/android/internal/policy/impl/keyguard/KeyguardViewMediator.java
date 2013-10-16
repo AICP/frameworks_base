@@ -23,6 +23,8 @@ import android.app.ActivityManagerNative;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.SearchManager;
+import android.app.Profile;
+import android.app.ProfileManager;
 import android.app.StatusBarManager;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
@@ -247,6 +249,7 @@ public class KeyguardViewMediator {
     private int mLockSoundId;
     private int mUnlockSoundId;
     private int mLockSoundStreamId;
+    private ProfileManager mProfileManager;
 
     /**
      * The volume applied to the lock/unlock sounds.
@@ -513,6 +516,8 @@ public class KeyguardViewMediator {
 
         mKeyguardViewManager = new KeyguardViewManager(context, wm, mViewMediatorCallback,
                 mLockPatternUtils);
+
+        mProfileManager = (ProfileManager) context.getSystemService(Context.PROFILE_SERVICE);
 
         mUserPresentIntent = new Intent(Intent.ACTION_USER_PRESENT);
         mUserPresentIntent.addFlags(Intent.FLAG_RECEIVER_REPLACE_PENDING
@@ -906,6 +911,16 @@ public class KeyguardViewMediator {
                 && mLockPatternUtils.isLockScreenDisabled() && !lockedOrMissing) {
             if (DEBUG) Log.d(TAG, "doKeyguard: not showing because lockscreen is off");
             return;
+        }
+
+        // if the current profile has disabled us, don't show
+        Profile profile = mProfileManager.getActiveProfile();
+        if (profile != null) {
+            if (!lockedOrMissing
+                    && profile.getScreenLockModeWithDPM(mContext) == Profile.LockMode.DISABLE) {
+                if (DEBUG) Log.d(TAG, "doKeyguard: not showing because of profile override");
+                return;
+            }
         }
 
         if (DEBUG) Log.d(TAG, "doKeyguard: showing the lock screen");

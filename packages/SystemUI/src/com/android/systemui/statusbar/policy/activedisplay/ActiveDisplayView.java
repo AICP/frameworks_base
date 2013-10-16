@@ -131,6 +131,7 @@ public class ActiveDisplayView extends FrameLayout {
     private Sensor mProximitySensor;
     private boolean mProximityIsFar = true;
     private boolean mIsInBrightLight = false;
+    private boolean mWakedByPocketMode = false;
     private LinearLayout mOverflowNotifications;
     private LayoutParams mRemoteViewLayoutParams;
     private int mIconSize;
@@ -191,6 +192,7 @@ public class ActiveDisplayView extends FrameLayout {
 
         public void onTrigger(final View v, final int target) {
             if (target == UNLOCK_TARGET) {
+                mWakedByPocketMode = false;
                 mNotification = null;
                 hideNotificationView();
                 if (!mKeyguardManager.isKeyguardSecure()) {
@@ -205,6 +207,7 @@ public class ActiveDisplayView extends FrameLayout {
                     }
                 }
             } else if (target == OPEN_APP_TARGET) {
+                mWakedByPocketMode = false;
                 hideNotificationView();
                 if (!mKeyguardManager.isKeyguardSecure()) {
                     try {
@@ -257,7 +260,7 @@ public class ActiveDisplayView extends FrameLayout {
     };
 
     /**
-     * Class used to listen for changes to P.O.R.N. related settings
+     * Class used to listen for changes to active display related settings
      */
     class SettingsObserver extends ContentObserver {
         SettingsObserver(Handler handler) {
@@ -673,6 +676,7 @@ public class ActiveDisplayView extends FrameLayout {
     }
 
     private void onScreenTurnedOff() {
+        mWakedByPocketMode = false;
         hideNotificationView();
         cancelTimeoutTimer();
         if (mRedisplayTimeout > 0) updateRedisplayTimer();
@@ -680,6 +684,7 @@ public class ActiveDisplayView extends FrameLayout {
     }
 
     private void turnScreenOff() {
+        mWakedByPocketMode = false;
         try {
             mPM.goToSleep(SystemClock.uptimeMillis(), 0);
         } catch (RemoteException e) {
@@ -782,12 +787,12 @@ public class ActiveDisplayView extends FrameLayout {
     }
 
     private void registerSensorListener(Sensor sensor) {
-        if (sensor != null)
+        if (sensor != null && mPocketModeEnabled)
             mSensorManager.registerListener(mSensorListener, sensor, SensorManager.SENSOR_DELAY_UI);
     }
 
     private void unregisterSensorListener(Sensor sensor) {
-        if (sensor != null)
+        if (sensor != null && mPocketModeEnabled)
             mSensorManager.unregisterListener(mSensorListener, sensor);
     }
 
@@ -939,7 +944,7 @@ public class ActiveDisplayView extends FrameLayout {
             }
         }
         return false;
-    } 
+    }
 
     /**
      * Swaps the current StatusBarNotification with {@code sbn}
@@ -1091,15 +1096,25 @@ public class ActiveDisplayView extends FrameLayout {
                     mProximityIsFar = isFar;
                     if (isFar) {
                         if (!isScreenOn() && mPocketModeEnabled && !isOnCall() && !isCallIncoming() && !inQuietHours()) {
+                            mWakedByPocketMode = true;
                             if (mNotification == null) {
                                 mNotification = getNextAvailableNotification();
                             }
                             if (mNotification != null) showNotification(mNotification, true);
                         }
+                    } else {
+                        if (isScreenOn() && mPocketModeEnabled && !isOnCall() && !isCallIncoming() && !inQuietHours() && mWakedByPocketMode) {
+                            mWakedByPocketMode = false;
+
+                            restoreBrightness();
+                            cancelTimeoutTimer();
+                            turnScreenOff();
+                        }
                     }
                 }
             } else if (event.sensor.equals(mLightSensor)) {
                 boolean isBright = mIsInBrightLight;
+                mWakedByPocketMode = false;
                 final float max = mLightSensor.getMaximumRange();
                 // we don't want the display switching back and forth so there is a region
                 // between 50% and 80% max that we will not toggle the bright light condition

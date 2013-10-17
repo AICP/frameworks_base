@@ -25,7 +25,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.BatteryManager;
 import android.os.Handler;
 import android.os.Message;
 import android.os.UserHandle;
@@ -87,6 +89,7 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
     private UnlockReceiver mUnlockReceiver;
     private IntentFilter filter;
     private boolean mReceiverRegistered = false;
+    private float mBatteryLevel;
 
     private class H extends Handler {
         public void handleMessage(Message m) {
@@ -219,6 +222,11 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
         @Override
         public void onSimStateChanged(State simState) {
             updateTargets();
+        }
+
+        @Override
+        public void onRefreshBatteryInfo(KeyguardUpdateMonitor.BatteryStatus batStatus) {
+            updateLockscreenBattery(batStatus);
         }
     };
 
@@ -418,6 +426,7 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
         }
         mGlowPadView.setTargetResources(storedDraw);
         updateResources();
+        updateLockscreenBattery(null);
     }
 
     private int mUnlockCounter() {
@@ -548,9 +557,31 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
                 }
             }
             if (mReceiverRegistered) {
-                mContext.unregisterReceiver(mUnlockReceiver);
                 mReceiverRegistered = false;
             }
+        }
+    }
+
+    public void updateLockscreenBattery(KeyguardUpdateMonitor.BatteryStatus status) {
+        if (Settings.System.getIntForUser(
+                mContext.getContentResolver(),
+                Settings.System.BATTERY_AROUND_LOCKSCREEN_RING,
+                0 /*default */,
+                UserHandle.USER_CURRENT) == 1) {
+            if (status != null) mBatteryLevel = status.level;
+            float cappedBattery = mBatteryLevel;
+
+            if (mBatteryLevel < 15) {
+                cappedBattery = 15;
+            }
+            else if (mBatteryLevel > 90) {
+                cappedBattery = 90;
+            }
+
+            final float hue = (cappedBattery - 15) * 1.6f;
+            mGlowPadView.setArc(mBatteryLevel * 3.6f, Color.HSVToColor(0x80, new float[]{ hue, 1.f, 1.f }));
+        } else {
+            mGlowPadView.setArc(0, 0);
         }
     }
 }

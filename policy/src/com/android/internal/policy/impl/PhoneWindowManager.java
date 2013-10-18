@@ -5671,11 +5671,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     }
 
     @Override
-    public boolean hasMenuKeyEnabled() {
-        return mHasMenuKeyEnabled;
-    }
-
-    @Override
     public void setLastInputMethodWindowLw(WindowState ime, WindowState target) {
         mLastInputMethodWindow = ime;
         mLastInputMethodTargetWindow = target;

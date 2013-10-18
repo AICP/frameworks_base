@@ -4318,4 +4318,18 @@
     <!-- The item label for the no profile selection item. -->
     <string name="profile_none">None</string>
     
+    <!-- Privacy Guard -->
+    <string name="permlab_changePrivacyGuardState">enable or disable privacy guard</string>
+    <string name="permdesc_changePrivacyGuardState">Allows the app to change whether another app runs with Privacy Guard. When an app is running with Privacy Guard, it will not have access to personal data such as contacts, call logs, or messages.</string>
+    <string name="privacy_guard_notification">Privacy Guard active</string>
+    <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> will not be able to access personal data</string>
+
+    <!-- Title of policy access to start enforcing SELinux policy [CHAR LIMIT=30]-->
+    <string name="policylab_enforceSelinux">Enforce SELinux</string>
+    <!-- Description of policy access to start enforcing SELinux policy [CHAR LIMIT=110]-->
+    <string name="policydesc_enforceSelinux">Toggle SELinux policy enforcing or permissive mode.</string>
+    <!-- Title of policy access to start enforcing MMAC policy [CHAR LIMIT=30]-->
+    <string name="policylab_enforceMmac">Enforce MMAC</string>
+    <!-- Description of policy access to start enforcing MMAC policy [CHAR LIMIT=110]-->
+    <string name="policydesc_enforceMmac">Toggle MMAC policy enforcing or permissive mode.</string>
 </resources>

@@ -1934,6 +1934,9 @@
   <java-symbol type="drawable" name="ic_lock_torch" />
   <java-symbol type="string" name="global_action_torch" />
 
+  <!-- Hardware Key ReMapping -->
+  <java-symbol type="integer" name="config_deviceHardwareKeys" />
+
   <!-- HW rotation lock -->
   <java-symbol type="string" name="toast_rotation_unlocked" />
   <java-symbol type="string" name="toast_rotation_locked" />

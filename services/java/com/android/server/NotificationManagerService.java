@@ -155,6 +155,7 @@ public class NotificationManagerService extends INotificationManager.Stub
     private StatusBarManagerService mStatusBar;
     private LightsService.Light mNotificationLight;
     private LightsService.Light mAttentionLight;
+    private LightsService.Light mButtonBackLight;
 
     private int mDefaultNotificationColor;
     private int mDefaultNotificationLedOn;
@@ -176,6 +177,7 @@ public class NotificationManagerService extends INotificationManager.Stub
     private boolean mScreenOn = true;
     private boolean mInCall = false;
     private boolean mNotificationPulseEnabled;
+    private boolean mButtonBackLightEnabled;
     private HashMap<String, String> mCustomLedColors;
 
     // used as a mutex for access to all active notifications & listeners
@@ -591,6 +593,8 @@ public class NotificationManagerService extends INotificationManager.Stub
     private boolean mQuietHoursMute = true;
     // Dim LED if hardware supports it.
     private boolean mQuietHoursDim = true;
+    // Don't use Bln.
+    private boolean mQuietHoursBln = true;
 
     private HashMap<String, Long> mAnnoyingNotifications = new HashMap<String, Long>();
     private long mAnnoyingNotificationThreshold = -1;
@@ -1398,6 +1402,8 @@ public class NotificationManagerService extends INotificationManager.Stub
                     Settings.System.NOTIFICATION_LIGHT_COLOR), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.LED_CUSTOM_VALUES), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.NOTIFICATION_USE_BUTTON_BACKLIGHT), false, this);
             update(null);
         }
 
@@ -1419,6 +1425,8 @@ public class NotificationManagerService extends INotificationManager.Stub
             if (uri == null || ENABLED_NOTIFICATION_LISTENERS_URI.equals(uri)) {
                 rebindListenerServices();
             }
+            mButtonBackLightEnabled = Settings.System.getInt(resolver,
+                    Settings.System.NOTIFICATION_USE_BUTTON_BACKLIGHT, 0) != 0;
 
             Resources resources = mContext.getResources();
             mDefaultNotificationColor = Settings.System
@@ -1481,6 +1489,7 @@ public class NotificationManagerService extends INotificationManager.Stub
 
         mNotificationLight = lights.getLight(LightsService.LIGHT_ID_NOTIFICATIONS);
         mAttentionLight = lights.getLight(LightsService.LIGHT_ID_ATTENTION);
+        mButtonBackLight = lights.getLight(LightsService.LIGHT_ID_BUTTONS);
 
         mCustomLedColors = new HashMap<String, String>();
 
@@ -2421,7 +2430,9 @@ public class NotificationManagerService extends INotificationManager.Stub
         // Don't flash while we are in a call or screen is on
         if (mLedNotification == null || mInCall || (mScreenOn && !ledScreenOn)
                 || (inQuietHours() && mQuietHoursDim)) {
-            mNotificationLight.turnOff();
+            if (!mScreenOn) {
+                mButtonBackLight.setBrightness(0);
+            }
         } else {
             int ledARGB;
             int ledOnMS;
@@ -2447,6 +2458,10 @@ public class NotificationManagerService extends INotificationManager.Stub
                 // pulse repeatedly
                 mNotificationLight.setFlashing(ledARGB, LightsService.LIGHT_FLASH_TIMED,
                         ledOnMS, ledOffMS);
+                // turn on button backlights
+                if (mButtonBackLightEnabled && (!(inQuietHours() && mQuietHoursBln))) {
+                    mButtonBackLight.setBrightness(60);
+                }
             }
         }
     }
@@ -2618,6 +2633,8 @@ public class NotificationManagerService extends INotificationManager.Stub
                     Settings.System.QUIET_HOURS_DIM), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.QUIET_HOURS_BLN), false, this);
             update();
         }
 
@@ -2641,6 +2658,8 @@ public class NotificationManagerService extends INotificationManager.Stub
                     Settings.System.QUIET_HOURS_DIM, 0) != 0;
             mAnnoyingNotificationThreshold = Settings.System.getLong(resolver,
                     Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD, 0);
+            mQuietHoursBln = Settings.System.getInt(resolver,
+                    Settings.System.QUIET_HOURS_BLN, 0) != 0;
         }
     }
 }

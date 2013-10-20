@@ -4333,4 +4333,7 @@
     <string name="policylab_enforceMmac">Enforce MMAC</string>
     <!-- Description of policy access to start enforcing MMAC policy [CHAR LIMIT=110]-->
     <string name="policydesc_enforceMmac">Toggle MMAC policy enforcing or permissive mode.</string>
+    <!-- Description of the Random button in a KeyboardView. [CHAR LIMIT=NONE] -->
+    <string name="keyboardview_keycode_random">Reload random buttons</string>
+
 </resources>

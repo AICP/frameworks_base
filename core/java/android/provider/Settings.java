@@ -3482,7 +3482,7 @@ public final class Settings {
         */
         public static final String TOAST_ANIMATION = "toast_animation";
 
-       /**
+        /**
          * Stores values for custom lockscreen targets
          * @hide
          */
@@ -4042,6 +4042,20 @@ public final class Settings {
          * @hide
          */
         public static final String HEADS_UP_BLACKLIST_VALUES = "heads_up_blacklist_values";
+
+       /**
+         * Whether to display the gesture anywhere trigger region or not.
+         * @hide
+         */
+        @ChaosLab(name="Identicons", classification=Classification.NEW_FIELD)
+        public static final String IDENTICONS_ENABLED = "identicons_enabled";
+
+        /**
+         * Identicons style setting.
+         * @hide
+         */
+        @ChaosLab(name="Identicons", classification=Classification.NEW_FIELD)
+        public static final String IDENTICONS_STYLE = "identicons_style";
 
 
         /**         

@@ -2604,7 +2604,6 @@ public final class Settings {
         public static final String GESTURE_ANYWHERE_TRIGGER_TOP = "gesture_anywhere_trigger_top";
 
         /**
-         * Height of the gesture anywhere trigger.
          * @hide
          */
         @ChaosLab(name="GestureAnywhere", classification=Classification.NEW_FIELD)
@@ -3866,6 +3865,18 @@ public final class Settings {
          * @hide
          */
         public static final String LOCKSCREEN_USE_WIDGET_CONTAINER_CAROUSEL = "lockscreen_use_widget_container_carousel";
+
+        /**
+         * Stores value for lock before unlock
+         * @hide
+         */
+        public static final String LOCK_BEFORE_UNLOCK = "lock_before_unlock";
+
+        /**
+          * Stores used unsecure lockscreen for normal mode and unlock before unlock
+          * @hide
+          */
+         public static final String LOCKSCREEN_UNSECURE_USED = "lockscreen_unsecure_used";
 
         /**
          * Ribbon Targets

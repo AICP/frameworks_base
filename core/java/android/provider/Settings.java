@@ -3113,6 +3113,13 @@ public final class Settings {
         public static final String PIE_POWER = "pie_power";
 
         /**
+         * Whether Status bar should be hiidden when there are no
+         * notifications
+         * @hide
+         */
+        public static final String AUTO_HIDE_STATUSBAR = "auto_hide_statusbar";
+
+        /**
          * Random user selected colors
          * @hide
          */

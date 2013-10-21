@@ -182,6 +182,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private static final int KEY_ACTION_LAUNCH_CAMERA = 6;
     private static final int KEY_ACTION_LAST_APP = 7;
     private static final int KEY_ACTION_POWER = 8;
+    private static final int KEY_ACTION_TORCH = 9;
 
     // Masks for checking presence of hardware keys.
     // Must match values in core/res/res/values/config.xml
@@ -997,6 +998,13 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             case KEY_ACTION_POWER:
                 PowerManager pm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
                 pm.goToSleep(SystemClock.uptimeMillis());
+                break;
+            case KEY_ACTION_TORCH:
+                Intent intentTorch = new Intent("android.intent.action.MAIN");
+                intentTorch.setComponent(ComponentName.unflattenFromString("com.aokp.Torch/.TorchActivity"));
+                intentTorch.addCategory("android.intent.category.LAUNCHER");
+                intentTorch.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                mContext.startActivity(intentTorch);
                 break;
             default:
                 break;

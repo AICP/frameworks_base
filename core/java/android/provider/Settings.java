@@ -3119,6 +3119,20 @@ public final class Settings {
          */
         public static final String AUTO_HIDE_STATUSBAR = "auto_hide_statusbar";
 
+         /**
+         * Peek at stausbar when it is hidden by swiping down from top
+         * end of the screen
+         *
+         * @hide
+         */
+        public static final String STATUSBAR_PEEK = "statusbar_peek";
+
+        /**
+         * Allows hidden swipe down statusbar timeout to be configured
+         * @hide
+         */
+        public static final String STATUSBAR_PEEK_TIMEOUT = "statusbar_peek_timeout";
+
         /**
          * Random user selected colors
          * @hide

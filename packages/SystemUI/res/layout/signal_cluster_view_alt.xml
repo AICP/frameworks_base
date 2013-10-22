@@ -59,6 +59,7 @@
         android:layout_width="wrap_content"
         >
         <View
+            android:id="@+id/mobile_combo_spacer"
             android:layout_height="6dp"
             android:layout_width="6dp"
             android:visibility="invisible"

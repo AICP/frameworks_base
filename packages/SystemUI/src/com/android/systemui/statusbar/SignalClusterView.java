@@ -64,7 +64,8 @@ public class SignalClusterView
     ImageView mWifi, mMobile, mWifiActivity, mMobileActivity, mMobileType, mAirplane;
     TextView mMobileText,mWiFiText;
     View mSpacer;
-
+    View mMobileGroupSpacer;
+    
     Handler mHandler;
 
     private SettingsObserver mSettingsObserver;
@@ -101,6 +102,7 @@ public class SignalClusterView
         mMobileText    = (TextView)  findViewById(R.id.signal_text);
         mWiFiText    = (TextView)  findViewById(R.id.wifi_signal_text);
         mSpacer         =             findViewById(R.id.spacer);
+        mMobileGroupSpacer =          findViewById(R.id.mobile_combo_spacer);
         mAirplane       = (ImageView) findViewById(R.id.airplane);
 
         mHandler = new Handler();
@@ -122,6 +124,7 @@ public class SignalClusterView
         mMobileText     = null;
         mWiFiText       = null;
         mSpacer         = null;
+        mMobileGroupSpacer = null;
         mAirplane       = null;
 
         mContext.getContentResolver().unregisterContentObserver(mSettingsObserver);
@@ -257,6 +260,12 @@ public class SignalClusterView
             mSpacer.setVisibility(View.INVISIBLE);
         } else {
             mSpacer.setVisibility(View.GONE);
+        }
+
+        if ((!mMobileVisible && !mWifiVisible) || mIsAirplaneMode) {
+            mMobileGroupSpacer.setVisibility(View.GONE);
+        } else {
+            mMobileGroupSpacer.setVisibility(View.INVISIBLE);
         }
 
         if (DEBUG) Slog.d(TAG,

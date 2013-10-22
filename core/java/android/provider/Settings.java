@@ -3769,6 +3769,13 @@ public final class Settings {
         public static final String STATUSBAR_HIDE_SIGNAL_BARS = "statusbar_hide_signal_bars";
 
         /**
+         * whether to hide the all signal bars (GSM + WIFI)
+         *
+         * @hide
+         */
+        public static final String STATUSBAR_HIDE_ALL_SIGNAL_BARS = "statusbar_hide_all_signal_bars";
+
+        /**
          * Whether to show statusbar WiFi signal text
          *
          * @hide

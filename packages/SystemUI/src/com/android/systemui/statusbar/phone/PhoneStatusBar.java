@@ -212,6 +212,8 @@ public class PhoneStatusBar extends BaseStatusBar {
     IconMerger mNotificationIcons;
     // [+>
     View mMoreIcon;
+    // layout for center date
+    LinearLayout mCenterDateLayout;
 
     // expanded notifications
     NotificationPanelView mNotificationPanel; // the sliding/resizing panel within the notification window
@@ -488,6 +490,7 @@ public class PhoneStatusBar extends BaseStatusBar {
         mNotificationIcons.setOverflowIndicator(mMoreIcon);
         mStatusBarContents = (LinearLayout)mStatusBarView.findViewById(R.id.status_bar_contents);
         mCenterClockLayout = (LinearLayout)mStatusBarView.findViewById(R.id.center_clock_layout);
+        mCenterDateLayout = (LinearLayout)mStatusBarView.findViewById(R.id.center_date_layout);
         mTickerView = mStatusBarView.findViewById(R.id.ticker);
 
         mPile = (NotificationRowLayout)mStatusBarWindow.findViewById(R.id.latestItems);
@@ -2461,9 +2464,11 @@ public class PhoneStatusBar extends BaseStatusBar {
             if (!mHaloActive) {
                 mStatusBarContents.setVisibility(View.GONE);
                 mCenterClockLayout.setVisibility(View.GONE); 
+                mCenterDateLayout.setVisibility(View.GONE);
                 mTickerView.setVisibility(View.VISIBLE);
                 mTickerView.startAnimation(loadAnim(com.android.internal.R.anim.push_up_in, null));
                 mCenterClockLayout.startAnimation(loadAnim(com.android.internal.R.anim.push_up_out, null));
+                mCenterDateLayout.startAnimation(loadAnim(com.android.internal.R.anim.push_up_out, null));
             }
 
         }
@@ -2473,11 +2478,13 @@ public class PhoneStatusBar extends BaseStatusBar {
             if (!mHaloActive) {
                 mStatusBarContents.setVisibility(View.VISIBLE);
                 mCenterClockLayout.setVisibility(View.VISIBLE);
+                mCenterDateLayout.setVisibility(View.VISIBLE);
                 mTickerView.setVisibility(View.GONE);
                 mStatusBarContents.startAnimation(loadAnim(com.android.internal.R.anim.push_down_in, null));
                 mTickerView.startAnimation(loadAnim(com.android.internal.R.anim.push_down_out,
                             mTickingDoneListener));
                 mCenterClockLayout.startAnimation(loadAnim(com.android.internal.R.anim.push_up_out, null));
+                mCenterDateLayout.startAnimation(loadAnim(com.android.internal.R.anim.push_down_in, null));
             }
         }
 
@@ -2485,9 +2492,11 @@ public class PhoneStatusBar extends BaseStatusBar {
             if (!mHaloActive) {
                 mStatusBarContents.setVisibility(View.VISIBLE);
                 mCenterClockLayout.setVisibility(View.VISIBLE);
+                mCenterDateLayout.setVisibility(View.VISIBLE);
                 mTickerView.setVisibility(View.GONE);
                 mStatusBarContents.startAnimation(loadAnim(com.android.internal.R.anim.fade_in, null));
                 mCenterClockLayout.startAnimation(loadAnim(com.android.internal.R.anim.push_up_out, null));
+                mCenterDateLayout.startAnimation(loadAnim(com.android.internal.R.anim.push_down_in, null));
                 // we do not animate the ticker away at this point, just get rid of it (b/6992707)
             }
 

@@ -147,6 +147,25 @@
             android:singleLine="true" />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/center_date_layout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center" >
+
+        <com.android.systemui.statusbar.policy.DateViewCenter
+            android:id="@+id/center_date"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="6dip"
+            android:singleLine="true"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.StatusBar.Date"
+            />
+
+    </LinearLayout>
+
     <LinearLayout android:id="@+id/ticker"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

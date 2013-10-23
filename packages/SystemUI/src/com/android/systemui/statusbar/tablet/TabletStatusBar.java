@@ -596,8 +596,6 @@ public class TabletStatusBar extends BaseStatusBar implements
             mNetworkController.addSignalCluster(signalCluster);
         }
 
-        // The navigation buttons
-        mBackButton = (ImageView)sb.findViewById(R.id.back);
         mNavigationArea = (ViewGroup) sb.findViewById(R.id.navigationArea);
         mNavBarView = (NavigationBarView) sb.findViewById(R.id.navigationBar);
         mNavBarView.setDisabledFlags(mDisabled);

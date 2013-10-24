@@ -805,8 +805,6 @@
     <string name="emergency_calls_only" msgid="6733978304386365407">"Pouze tísňová volání"</string>
     <string name="lockscreen_network_locked_message" msgid="143389224986028501">"Síť je blokována"</string>
     <string name="lockscreen_sim_puk_locked_message" msgid="7441797339976230">"SIM karta je zablokována pomocí kódu PUK."</string>
-    <string name="lockscreen_sim_puk_locked_instructions" msgid="8127916255245181063">"Další informace naleznete v uživatelské příručce; nebo kontaktujte zákaznickou podporu."</string>
-    <string name="lockscreen_sim_locked_message" msgid="8066660129206001039">"SIM karta je zablokována."</string>
     <string name="lockscreen_sim_unlock_progress_dialog_message" msgid="595323214052881264">"Odblokování SIM karty..."</string>
     <string name="lockscreen_too_many_failed_attempts_dialog_message" msgid="6481623830344107222">"Již <xliff:g id="NUMBER_0">%d</xliff:g>krát jste použili nesprávné bezpečnostní gesto. "\n\n"Zkuste to znovu za <xliff:g id="NUMBER_1">%d</xliff:g> s."</string>
     <string name="lockscreen_too_many_failed_password_attempts_dialog_message" msgid="2725973286239344555">"Již <xliff:g id="NUMBER_0">%d</xliff:g>krát jste nesprávně zadali heslo. "\n\n"Zkuste to znovu za <xliff:g id="NUMBER_1">%d</xliff:g> s."</string>
@@ -1566,4 +1564,23 @@
     <string name="aerr_revoked_application">Aplikace <xliff:g id="application">%1$s</xliff:g> (proces <xliff:g id="process">%2$s</xliff:g>) byla neočekávaně ukončena.\nPOZOR!\nTato aplikace má jedno nebo více odmítnutých oprávnění, což může způsobovat problémy. Je třeba povlit oprávnění a zkusit znovu.</string>
     <string name="aerr_revoked_process">Proces <xliff:g id="process">%1$s</xliff:g> byl neočekávaně ukončen.\nPOZOR!\nTento proces má jedno nebo více odmitnutých oprávnění, což může způsobovat problémy. Je třeba povolit oprávnění a zkusit znovu.</string>
     <string name="reset_perms">Obnovit oprávnění</string>
+    <string name="lockscreen_perso_locked_message">SIM/RUIM je blokována</string>
+    <string name="msim_kg_sim_pin_msg_format">SUB:<xliff:g id="number">%d</xliff:g> : <xliff:g id="msg">%s</xliff:g>.</string>
+    <string name="msim_carrier_text_format"><xliff:g id="text_1">%s</xliff:g>, <xliff:g id="text_2">%s</xliff:g></string>
+    <string name="stk_cc_ussd_to_dial">Požadavek USSD upraven na DIAL požadavek.</string>
+    <string name="stk_cc_ussd_to_ss">Požadavek USSD upraven na SS požadavek.</string>
+    <string name="stk_cc_ussd_to_ussd">Požadavek USSD upraven na nový USSD požadavek.</string>
+    <string name="stk_cc_ss_to_dial">Požadavek SS upraven na DIAL požadavek.</string>
+    <string name="stk_cc_ss_to_ussd">Požadavek SS upraven na USSD požadavek.</string>
+    <string name="stk_cc_ss_to_ss">Požadavek SS upraven na nový SS požadavek.</string>
+    <string name="enablePin">Neúspěšné. Zapnout blokaci SIM/RUIM.</string>
+    <string name="keyguard_password_wrong_puk_code">Nesprávný kód PUK!</string>
+    <string name="keyguard_password_pin_failed">Operace s PINem selhala!</string>
+    <string name="keyguard_password_puk_failed">Operace s PUKem selhala!</string>
+    <string name="keyguard_pin_accepted">Kód přijat!</string>
+    <string name="pinpuk_attempts">\nZbývajících pokusů :</string>
+    <string name="lockscreen_sim_puk_locked_instructions">PIN1 zablokován. Vložte PUK1.\nnebo\nDalší informace naleznete v uživatelské příručce; nebo kontaktujte zákaznickou podporu.</string>
+    <string name="lockscreen_sim_locked_message">SIM/RUIM karta zablokována.</string>
+    <string name="lockscreen_sim_error_message_short">Vadná karta.</string>
+    <string name="lockscreen_sim_error_message">SIM karta je vadná.</string>
 </resources>

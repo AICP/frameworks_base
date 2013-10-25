@@ -37,8 +37,15 @@ import android.content.IntentSender;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.UserInfo;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.LightingColorFilter;
+import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.StateListDrawable;
 import android.media.RemoteControlClient;
 import android.os.Looper;
 import android.os.Parcel;
@@ -59,6 +66,7 @@ import android.view.View;
 import android.view.ViewStub;
 import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageButton;
 import android.widget.RemoteViews.OnClickHandler;
 
 
@@ -401,6 +409,8 @@ public class KeyguardHostView extends KeyguardViewBase {
         mKeyguardSelectorView = (KeyguardSelectorView) findViewById(R.id.keyguard_selector_view);
         mViewStateManager.setSecurityViewContainer(mSecurityViewContainer);
 
+        setLockColor();
+
         setBackButtonEnabled(false);
 
         addDefaultWidgets();
@@ -425,6 +435,36 @@ public class KeyguardHostView extends KeyguardViewBase {
         }
 
         minimizeChallengeIfNeeded();
+    }
+
+    private void setLockColor() {
+        int color = Settings.System.getInt(getContext().getContentResolver(),
+                Settings.System.LOCKSCREEN_MISC_COLOR, -1);
+
+        if (color != -1) {
+            ImageButton lock = (ImageButton) findViewById(R.id.expand_challenge_handle);
+            if (lock != null) {
+                StateListDrawable lockStates = new StateListDrawable();
+                Bitmap lockBitmap = BitmapFactory.decodeResource(
+                        getContext().getResources(), R.drawable.kg_security_lock_normal);
+                int height = lockBitmap.getHeight();
+                int width = lockBitmap.getWidth();
+                Bitmap overlayFocused = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+                Bitmap overlayPressed = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+                Canvas canvasFocused = new Canvas(overlayFocused);
+                Canvas canvasPressed = new Canvas(overlayPressed);
+                Paint paint = new Paint();
+                paint.setColorFilter(new LightingColorFilter(color, 1));
+                canvasFocused.drawBitmap(lockBitmap, 0, 0, paint);
+                paint.setAlpha(175);
+                canvasPressed.drawBitmap(lockBitmap, 0, 0, paint);
+                lockStates.addState(new int[] {android.R.attr.state_pressed},
+                        new BitmapDrawable(getResources(), overlayPressed));
+                lockStates.addState(new int[] {-android.R.attr.state_pressed},
+                        new BitmapDrawable(getResources(), overlayFocused));
+                lock.setImageDrawable(lockStates);
+            }
+        }
     }
 
     private void setBackButtonEnabled(boolean enabled) {

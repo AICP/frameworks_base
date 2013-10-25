@@ -3888,6 +3888,12 @@ public final class Settings {
         public static final String LOCKSCREEN_CUSTOM_TEXT_COLOR = "lockscreen_custom_text_color";
 
         /**
+         * miscellaneous lockscreen icons color
+         * @hide
+         */
+        public static final String LOCKSCREEN_MISC_COLOR = "lockscreen_misc_color";
+
+        /**
          * Whether the hints for the left and right widgets are shown when the screen is turned on
          * @hide
          */

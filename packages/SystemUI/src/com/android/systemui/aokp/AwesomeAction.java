@@ -90,7 +90,8 @@ public class AwesomeAction {
             case ACTION_ASSIST:
                 Intent intent = new Intent(Intent.ACTION_ASSIST);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                mContext.startActivity(intent);
+                if (isIntentAvailable(mContext, intent))
+                    mContext.startActivity(intent);
                 break;
             case ACTION_HOME:
                 Intent homeIntent = new Intent(Intent.ACTION_MAIN);
@@ -248,6 +249,13 @@ public class AwesomeAction {
                 break;
             }
             return true;
+    }
+
+    public static boolean isIntentAvailable(Context context, Intent intent) {
+        PackageManager packageManager = context.getPackageManager();
+        List<ResolveInfo> list = packageManager.queryIntentActivities(intent,
+                PackageManager.MATCH_DEFAULT_ONLY);
+        return list.size() > 0;
     }
 
     private static void injectKeyDelayed(int keycode) {

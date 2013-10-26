@@ -337,4 +337,6 @@
     <dimen name="pie_panel_padding">20dp</dimen>
     <!-- PIE PIE PIE PIE PIE PIE PIE PIE PIE PIE PIE PIE PIE PIE -->
 
+    <!-- Network stats text size -->
+    <dimen name="network_stats_text_size">8dp</dimen>
 </resources>

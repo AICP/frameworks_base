@@ -91,7 +91,7 @@ public class AppWindow extends LinearLayout {
     private ArrayList<String> mHiddenApps = new ArrayList<String>();
     private Animation mAnimationIn;
     private Animation mAnimationOut;
-
+    private boolean mNeedsUpdate = true;
 
     private static final LinearLayout.LayoutParams backgroundParams = new LinearLayout.LayoutParams(
             LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
@@ -116,7 +116,7 @@ public class AppWindow extends LinearLayout {
         mHandler = new Handler();
         mSettingsObserver = new SettingsObserver(new Handler());
         mSettingsObserver.observe();
-        updateSettings();
+        mNeedsUpdate = true;
     }
 
 
@@ -130,6 +130,9 @@ public class AppWindow extends LinearLayout {
 
     public void showWindowView() {
         if (!showing) {
+            if (mNeedsUpdate) {
+                updateSettings();
+            }
             WindowManager.LayoutParams params = getParams();
             params.gravity = Gravity.CENTER;
             params.setTitle("AppWindow");
@@ -163,10 +166,14 @@ public class AppWindow extends LinearLayout {
     }
 
     public void createWindowView() {
+        if (mContainerFrame != null) {
+            mContainerFrame.removeAllViews();
+        }
+        if (mPopupView != null) {
+            mPopupView.removeAllViews();
+        }
         mPopupView = new FrameLayout(mContext);
-        mPopupView.removeAllViews();
         mContainerFrame = new FrameLayout(mContext);
-        mContainerFrame.removeAllViews();
         if (mNavBarShowing) {
             int adjustment = mContext.getResources().getDimensionPixelSize(
                         com.android.internal.R.dimen.status_bar_height);
@@ -384,7 +391,7 @@ public class AppWindow extends LinearLayout {
         }
          @Override
         public void onChange(boolean selfChange) {
-            updateSettings();
+            mNeedsUpdate = true;
         }
     }
     protected void updateSettings() {
@@ -414,6 +421,7 @@ public class AppWindow extends LinearLayout {
         mNavBarShowing = (NavBarEnabled || hasNavBarByDefault) && manualNavBarHide && !navHeightZero && !navAutoHide;
         setAnimation();
         createWindowView();
+        mNeedsUpdate = false;
     }
 
     public class WindowReceiver extends BroadcastReceiver {
@@ -436,7 +444,7 @@ public class AppWindow extends LinearLayout {
             } else if (Intent.ACTION_PACKAGE_ADDED.equals(action) || Intent.ACTION_PACKAGE_CHANGED.equals(action) ||
                        Intent.ACTION_PACKAGE_REMOVED.equals(action) || Intent.ACTION_PACKAGE_FULLY_REMOVED.equals(action) ||
                        Intent.ACTION_PACKAGE_REPLACED.equals(action)) {
-                updateSettings();
+                mNeedsUpdate = true;
             }
         }
     }

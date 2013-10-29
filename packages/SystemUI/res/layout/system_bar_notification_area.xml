@@ -57,6 +57,16 @@
 
         <include layout="@layout/network_stats" />
 
+        <com.android.systemui.statusbar.policy.Traffic
+            android:id="@+id/traffic"
+            android:textAppearance="@style/TextAppearance.StatusBar.Traffic"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:singleLine="true"
+            android:layout_marginRight="4dp"
+            android:gravity="left|center_vertical"/>
+
         <com.android.systemui.statusbar.tablet.NotificationIconArea
             android:id="@+id/notificationIcons"
             android:layout_width="wrap_content"

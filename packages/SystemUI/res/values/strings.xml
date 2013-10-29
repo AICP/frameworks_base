@@ -608,6 +608,7 @@
     <string name="screenshot_toast">Screenshot in %1$d seconds</string>
 
     <!--  Quick Settings -->
+    <string name="quick_settings_volume">Volume</string>
     <string name="quick_settings_vibrate_on_label">Vibrate On</string>
     <string name="quick_settings_vibrate_off_label">Vibrate Off</string>
     <string name="quick_settings_silent_on_label">Silent On</string>

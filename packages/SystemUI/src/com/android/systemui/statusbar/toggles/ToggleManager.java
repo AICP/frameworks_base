@@ -65,6 +65,7 @@ public class ToggleManager {
 
     public static final String USER_TOGGLE = "USER";
     public static final String BRIGHTNESS_TOGGLE = "BRIGHTNESS";
+    public static final String VOLUME_TOGGLE = "VOLUME";
     public static final String SETTINGS_TOGGLE = "SETTINGS";
     public static final String WIFI_TOGGLE = "WIFI";
     public static final String SIGNAL_TOGGLE = "SIGNAL";
@@ -123,6 +124,7 @@ public class ToggleManager {
             toggleMap = new HashMap<String, Class<? extends BaseToggle>>();
             toggleMap.put(USER_TOGGLE, UserToggle.class);
             toggleMap.put(BRIGHTNESS_TOGGLE, BrightnessToggle.class);
+            toggleMap.put(VOLUME_TOGGLE, VolumeToggle.class);
             toggleMap.put(SETTINGS_TOGGLE, SettingsToggle.class);
             toggleMap.put(WIFI_TOGGLE, WifiToggle.class);
             if (deviceSupportsTelephony()) {

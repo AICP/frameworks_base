@@ -17,6 +17,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toggle_USER">Aktuální uživatel</string>
     <string name="toggle_BRIGHTNESS">Jas</string>
+    <string name="toggle_VOLUME">Hlasitost</string>
     <string name="toggle_SETTINGS">Nastavení</string>
     <string name="toggle_WIFI">WiFi</string>
     <string name="toggle_SIGNAL">Signál</string>

@@ -55,6 +55,8 @@
             android:contentDescription="@string/accessibility_compatibility_zoom_button"
             />
 
+        <include layout="@layout/network_stats" />
+
         <com.android.systemui.statusbar.tablet.NotificationIconArea
             android:id="@+id/notificationIcons"
             android:layout_width="wrap_content"

@@ -1226,8 +1226,10 @@ public class TabletStatusBar extends BaseStatusBar implements
             if ((state & StatusBarManager.DISABLE_NOTIFICATION_ICONS) != 0) {
                 Slog.i(TAG, "DISABLE_NOTIFICATION_ICONS: yes" + (mNotificationDNDMode?" (DND)":""));
                 mTicker.halt();
+                mBarContents.findViewById(R.id.network_stats).setAlpha(0f);
             } else {
                 Slog.i(TAG, "DISABLE_NOTIFICATION_ICONS: no" + (mNotificationDNDMode?" (DND)":""));
+                mBarContents.findViewById(R.id.network_stats).setAlpha(1f);
             }
 
             // refresh icons to show either notifications or the DND message

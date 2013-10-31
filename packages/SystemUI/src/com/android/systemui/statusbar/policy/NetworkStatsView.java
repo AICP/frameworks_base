@@ -34,6 +34,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.android.systemui.R;
 
+import java.lang.Math;
+
 public class NetworkStatsView extends LinearLayout {
 
     private Handler mHandler;
@@ -216,18 +218,31 @@ public class NetworkStatsView extends LinearLayout {
     }
 
     private void setTextViewSpeed(TextView tv, long speed, float deltaT) {
-        String units = "B";
-        float fSpeed = speed / deltaT;
-        if (fSpeed >= TrafficStats.MB_IN_BYTES) {
-            units = "MB";
-            fSpeed = fSpeed / TrafficStats.MB_IN_BYTES;
-        } else if (fSpeed >= TrafficStats.KB_IN_BYTES) {
-            units = "KB";
-            fSpeed = fSpeed / TrafficStats.KB_IN_BYTES;
-        }
+        long lSpeed = Math.round(speed / deltaT);
 
-        tv.setText(fSpeed == (int) fSpeed ?
-                String.format("%d %s", (int)fSpeed, units) :
-                String.format("%.1f %s", fSpeed, units));
+        tv.setText(formatTraffic(lSpeed));
+    }
+
+    private String formatTraffic(long number) {
+        float result = number;
+        int suffix = com.android.internal.R.string.byteShort;
+        if (result >= 1024) {
+            suffix = com.android.internal.R.string.kilobyteShort;
+            result = result / 1024;
+        }
+        if (result >= 1024) {
+            suffix = com.android.internal.R.string.megabyteShort;
+            result = result / 1024;
+        }
+        String value;
+        // if we just have bytes show no decimal places
+        if (number < 1024) {
+            value = String.format("%.0f", result);
+        } else {
+            value = String.format("%.1f", result);
+        }
+        return mContext.getResources().
+            getString(com.android.internal.R.string.fileSizeSuffix,
+                      value, mContext.getString(suffix));
     }
 }

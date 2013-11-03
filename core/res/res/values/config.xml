@@ -1269,4 +1269,8 @@
 
          The default value is false which represents AOSP behavior. -->
     <bool name="config_smsUseExpectMore">false</bool>
+
+    <!-- Indicates that the device has Single-stage Camera key
+         (without "Focus" state) instead of Dual-stage. -->
+    <bool name="config_singleStageCameraKey">false</bool>
 </resources>

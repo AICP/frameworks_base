@@ -103,11 +103,6 @@ public class ActiveDisplayView extends FrameLayout {
 
     private static final int HIDE_NOTIFICATIONS_BELOW_SCORE = Notification.PRIORITY_LOW;
 
-    // the different pocket mode options
-    private static final int POCKET_MODE_OFF = 0;
-    private static final int POCKET_MODE_NOTIFICATIONS_ONLY = 1;
-    private static final int POCKET_MODE_ALWAYS = 2;
-
     // Targets
     private static final int UNLOCK_TARGET = 0;
     private static final int OPEN_APP_TARGET = 4;
@@ -117,8 +112,7 @@ public class ActiveDisplayView extends FrameLayout {
     private static final int MSG_SHOW_NOTIFICATION_VIEW = 1000;
     private static final int MSG_HIDE_NOTIFICATION_VIEW = 1001;
     private static final int MSG_SHOW_NOTIFICATION      = 1002;
-    private static final int MSG_SHOW_TIME              = 1003;
-    private static final int MSG_DISMISS_NOTIFICATION   = 1004;
+    private static final int MSG_DISMISS_NOTIFICATION   = 1003;
 
     private BaseStatusBar mBar;
     private GlowPadView mGlowPadView;
@@ -157,7 +151,7 @@ public class ActiveDisplayView extends FrameLayout {
     private boolean mDisplayNotificationText = false;
     private boolean mShowAllNotifications = false;
     private boolean mHideLowPriorityNotifications = false;
-    private int mPocketMode = POCKET_MODE_OFF;
+    private boolean mPocketModeEnabled = false;
     private long mRedisplayTimeout = 0;
     private long mDisplayActiveTimeout = 10000L;
     private float mInitialBrightness = 1f;
@@ -339,8 +333,8 @@ public class ActiveDisplayView extends FrameLayout {
                     resolver, Settings.System.ACTIVE_DISPLAY_ALL_NOTIFICATIONS, 0) == 1;
             mHideLowPriorityNotifications = Settings.System.getInt(
                     resolver, Settings.System.ACTIVE_DISPLAY_HIDE_LOW_PRIORITY_NOTIFICATIONS, 0) == 1;
-            mPocketMode = Settings.System.getInt(
-                    resolver, Settings.System.ACTIVE_DISPLAY_POCKET_MODE, POCKET_MODE_OFF);
+            mPocketModeEnabled = Settings.System.getInt(
+                    resolver, Settings.System.ACTIVE_DISPLAY_POCKET_MODE, 0) == 1;
             mRedisplayTimeout = Settings.System.getLong(
                     resolver, Settings.System.ACTIVE_DISPLAY_REDISPLAY, 0L);
             mDisplayActiveTimeout = Settings.System.getLong(
@@ -389,9 +383,6 @@ public class ActiveDisplayView extends FrameLayout {
                     break;
                 case MSG_DISMISS_NOTIFICATION:
                     handleDismissNotification();
-                    break;
-                case MSG_SHOW_TIME:
-                    handleShowTime();
                     break;
                 default:
                     break;
@@ -625,11 +616,6 @@ public class ActiveDisplayView extends FrameLayout {
         mHandler.sendMessage(msg);
     }
 
-    private void showTime() {
-        mHandler.removeMessages(MSG_SHOW_TIME);
-        mHandler.sendEmptyMessage(MSG_SHOW_TIME);
-    }
-
     private void dismissNotification() {
         mHandler.removeMessages(MSG_DISMISS_NOTIFICATION);
         mHandler.sendEmptyMessage(MSG_DISMISS_NOTIFICATION);
@@ -665,12 +651,21 @@ public class ActiveDisplayView extends FrameLayout {
     }
 
     private void handleShowNotification(boolean ping) {
-        if (!mDisplayNotifications || inQuietHours() || mNotification == null) return;
+        if (!mDisplayNotifications || inQuietHours() || mNotification==null) return;
         showNotificationView();
         setActiveNotification(mNotification, true);
         inflateRemoteView(mNotification);
         if (!isScreenOn()) {
-            turnScreenOn();
+            // to avoid flicker and showing any other screen than the ActiveDisplayView
+            // we use a runnable posted with a 250ms delay to turn wake the device
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    setBrightness(mInitialBrightness);
+                    wakeDevice();
+                    doTransition(ActiveDisplayView.this, 1f, 1000);
+                }
+            }, 250);
         }
         if (ping) mGlowPadView.ping();
     }
@@ -694,18 +689,6 @@ public class ActiveDisplayView extends FrameLayout {
         turnScreenOff();
     }
 
-    private void handleShowTime() {
-        mCurrentNotificationIcon.setImageResource(R.drawable.ic_ad_unlock);
-        mGlowPadView.setHandleText("");
-        mNotificationDrawable = null;
-        mRemoteView = null;
-        mOverflowNotifications.removeAllViews();
-        updateTargets();
-        showNotificationView();
-        invalidate();
-        turnScreenOn();
-    }
-
     private void onScreenTurnedOn() {
         cancelRedisplayTimer();
         disableProximitySensor();
@@ -727,19 +710,6 @@ public class ActiveDisplayView extends FrameLayout {
         }
     }
 
-    private void turnScreenOn() {
-        // to avoid flicker and showing any other screen than the ActiveDisplayView
-        // we use a runnable posted with a 250ms delay to turn wake the device
-        mHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                setBrightness(mInitialBrightness);
-                wakeDevice();
-                doTransition(ActiveDisplayView.this, 1f, 1000);
-            }
-        }, 250);
-    }
-
     private boolean isScreenOn() {
         try {
             return mPM.isScreenOn();
@@ -750,14 +720,14 @@ public class ActiveDisplayView extends FrameLayout {
     }
 
     private void enableProximitySensor() {
-        if (mPocketMode != POCKET_MODE_OFF && mDisplayNotifications) {
+        if (mPocketModeEnabled && mDisplayNotifications) {
             mProximityIsFar = true;
             registerSensorListener(mProximitySensor);
         }
     }
 
     private void disableProximitySensor() {
-        if (mPocketMode != POCKET_MODE_OFF && mDisplayNotifications) {
+        if (mPocketModeEnabled && mDisplayNotifications) {
             unregisterSensorListener(mProximitySensor);
         }
     }
@@ -836,12 +806,12 @@ public class ActiveDisplayView extends FrameLayout {
     }
 
     private void registerSensorListener(Sensor sensor) {
-        if (sensor != null && mPocketMode != POCKET_MODE_OFF )
+        if (sensor != null && mPocketModeEnabled)
             mSensorManager.registerListener(mSensorListener, sensor, SensorManager.SENSOR_DELAY_UI);
     }
 
     private void unregisterSensorListener(Sensor sensor) {
-        if (sensor != null && mPocketMode != POCKET_MODE_OFF )
+        if (sensor != null && mPocketModeEnabled)
             mSensorManager.unregisterListener(mSensorListener, sensor);
     }
 
@@ -1145,19 +1115,15 @@ public class ActiveDisplayView extends FrameLayout {
                 if (isFar != mProximityIsFar) {
                     mProximityIsFar = isFar;
                     if (isFar) {
-                        if (!isScreenOn() && mPocketMode != POCKET_MODE_OFF && !isOnCall() && !isCallIncoming() && !inQuietHours()) {
+                        if (!isScreenOn() && mPocketModeEnabled && !isOnCall() && !isCallIncoming() && !inQuietHours()) {
                             mWakedByPocketMode = true;
                             if (mNotification == null) {
                                 mNotification = getNextAvailableNotification();
                             }
-                            if (mNotification != null) {
-                                showNotification(mNotification, true);
-                            } else if (mPocketMode == POCKET_MODE_ALWAYS) {
-                                showTime();
-                            }
+                            if (mNotification != null) showNotification(mNotification, true);
                         }
                     } else {
-                        if (isScreenOn() && mPocketMode != POCKET_MODE_OFF && !isOnCall() && !isCallIncoming() && !inQuietHours() && mWakedByPocketMode) {
+                        if (isScreenOn() && mPocketModeEnabled && !isOnCall() && !isCallIncoming() && !inQuietHours() && mWakedByPocketMode) {
                             mWakedByPocketMode = false;
 
                             restoreBrightness();

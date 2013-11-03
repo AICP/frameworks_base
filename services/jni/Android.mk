@@ -68,4 +68,8 @@ endif
 
 LOCAL_MODULE:= libandroid_servers
 
+ifeq ($(BOARD_HAVE_NEW_QC_GPS),true)
+    LOCAL_CFLAGS += -DNEW_QC_GPS
+endif
+
 include $(BUILD_SHARED_LIBRARY)

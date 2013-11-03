@@ -29,7 +29,7 @@
         <fileset>
             <file>Roboto-Regular.ttf</file>
             <file>Roboto-Bold.ttf</file>
-            <file>Roboto-RegularItalic.ttf</file>
+            <file>Roboto-Italic.ttf</file>
             <file>Roboto-BoldItalic.ttf</file>
         </fileset>
     </family>

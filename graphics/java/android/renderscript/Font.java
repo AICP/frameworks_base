@@ -108,7 +108,7 @@ public class Font extends BaseObj {
         sansFamily.mNames = sSansNames;
         sansFamily.mNormalFileName = "Roboto-Regular.ttf";
         sansFamily.mBoldFileName = "Roboto-Bold.ttf";
-        sansFamily.mItalicFileName = "Roboto-RegularItalic.ttf";
+        sansFamily.mItalicFileName = "Roboto-Italic.ttf";
         sansFamily.mBoldItalicFileName = "Roboto-BoldItalic.ttf";
         addFamilyToMap(sansFamily);
 

@@ -5991,6 +5991,24 @@ public final class Settings {
         private static final Validator QS_SYSTEM_INFO_VALIDATOR =
               new SettingsValidators.InclusiveIntegerRangeValidator(0, 4);
 
+        /**
+         * Control the type of rotation which can be performed using the accelerometer
+         * if ACCELEROMETER_ROTATION is enabled.
+         * Value is a bitwise combination of
+         * 1 = 0 degrees (portrait)
+         * 2 = 90 degrees (left)
+         * 4 = 180 degrees (inverted portrait)
+         * 8 = 270 degrees (right)
+         * Setting to 0 is effectively orientation lock
+         * @hide
+         */
+        public static final String ACCELEROMETER_ROTATION_ANGLES = "accelerometer_rotation_angles";
+
+        /** @hide */
+        private static final Validator ACCELEROMETER_ROTATION_ANGLES_VALIDATOR =
+                NON_NEGATIVE_INTEGER_VALIDATOR;
+
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6207,6 +6225,7 @@ public final class Settings {
             CUSTOM_CARRIER_LABEL,
             STATUS_BAR_QUICK_QS_PULLDOWN,
             QS_SYSTEM_INFO,
+            ACCELEROMETER_ROTATION_ANGLES,
             // AICP Settings end
         };
 
@@ -6477,6 +6496,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(CUSTOM_CARRIER_LABEL);
             PRIVATE_SETTINGS.add(STATUS_BAR_QUICK_QS_PULLDOWN);
             PRIVATE_SETTINGS.add(QS_SYSTEM_INFO);
+            PRIVATE_SETTINGS.add(ACCELEROMETER_ROTATION_ANGLES);
             // AICP Settings end
         }
 
@@ -6734,6 +6754,8 @@ public final class Settings {
             VALIDATORS.put(CUSTOM_CARRIER_LABEL,CUSTOM_CARRIER_LABEL_VALIDATOR);
             VALIDATORS.put(STATUS_BAR_QUICK_QS_PULLDOWN,STATUS_BAR_QUICK_QS_PULLDOWN_VALIDATOR);
             VALIDATORS.put(QS_SYSTEM_INFO, QS_SYSTEM_INFO_VALIDATOR);
+            VALIDATORS.put(ACCELEROMETER_ROTATION_ANGLES,
+                    ACCELEROMETER_ROTATION_ANGLES_VALIDATOR);
             // AICP Settings end
         }
 

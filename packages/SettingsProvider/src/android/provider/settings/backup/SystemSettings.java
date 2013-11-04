@@ -90,5 +90,6 @@ public class SystemSettings {
         Settings.System.ALARM_ALERT,
         Settings.System.NOTIFICATION_LIGHT_PULSE,
         Settings.System.AE_THEME,
+        Settings.System.ACCELEROMETER_ROTATION_ANGLES,
     };
 }

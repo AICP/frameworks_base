@@ -6136,6 +6136,19 @@ public final class Settings {
          */
         public static final String QS_SYSTEM_INFO = "qs_system_info";
 
+        /**
+         * Control the type of rotation which can be performed using the accelerometer
+         * if ACCELEROMETER_ROTATION is enabled.
+         * Value is a bitwise combination of
+         * 1 = 0 degrees (portrait)
+         * 2 = 90 degrees (left)
+         * 4 = 180 degrees (inverted portrait)
+         * 8 = 270 degrees (right)
+         * Setting to 0 is effectively orientation lock
+         * @hide
+         */
+        public static final String ACCELEROMETER_ROTATION_ANGLES = "accelerometer_rotation_angles";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6301,6 +6314,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(AICP_SHOW_BATTERY_IMAGE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(SCREENSHOT_DEFAULT_MODE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(QS_SYSTEM_INFO, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(ACCELEROMETER_ROTATION_ANGLES, ANY_INTEGER_VALIDATOR);
         }
 
         /**

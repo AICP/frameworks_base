@@ -86,5 +86,6 @@ public class SystemSettings {
         Settings.System.NOTIFICATION_LIGHT_PULSE,
         Settings.System.VOLUME_KEY_CURSOR_CONTROL,
         Settings.System.BACK_GESTURE_HAPTIC,
+        Settings.System.ACCELEROMETER_ROTATION_ANGLES,
     };
 }

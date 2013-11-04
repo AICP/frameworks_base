@@ -99,7 +99,8 @@
                 android:layout_width="@dimen/handle_icon_size"
                 android:layout_height="@dimen/handle_icon_size"
                 android:layout_centerInParent="true"
-                android:scaleType="fitCenter" />
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_ad_unlock" />
 
             <View
                 android:id="@+id/anchor"

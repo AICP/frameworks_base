@@ -20,5 +20,23 @@
     <!-- Content description of the data connection type HSPA+ for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_data_connection_HP">HSPA+</string>
 
+
+    <!-- Screenrecord Notification Ticker -->
+    <string name="screenrecord_notif_ticker">Screen is being recorded</string>
+
+    <!-- Screenrecord notification title -->
+    <string name="screenrecord_notif_title">Recording screen</string>
+
+    <!-- Screenrecord notification action: Stop -->
+    <string name="screenrecord_notif_stop">Stop</string>
+
+    <!-- Screenrecord notification action: Toggle pointer -->
+    <string name="screenrecord_notif_pointer">Toggle pointer</string>
+
+    <!-- Screen record notification error title -->
+    <string name="screenrecord_notif_error">Unable to record screen</string>
+
+
+
 </resources>
 

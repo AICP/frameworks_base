@@ -26,7 +26,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.TrafficStats;
 import android.os.Handler;
-import android.os.PowerManager;
 import android.provider.Settings;
 import android.util.AttributeSet;
 import android.view.View;
@@ -70,6 +69,10 @@ public class NetworkStatsView extends LinearLayout {
         mLastTx = TrafficStats.getTotalTxBytes();
         mHandler = new Handler();
         mSettingsObserver = new SettingsObserver(mHandler);
+        mSettingsObserver.observe();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        context.registerReceiver(mConnectivityReceiver, filter);
     }
 
     // runnable to invalidate view via mHandler.postDelayed() call
@@ -89,7 +92,7 @@ public class NetworkStatsView extends LinearLayout {
         }
 
         public void observe() {
-            final ContentResolver resolver = mContext.getContentResolver();
+            ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_NETWORK_STATS), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
@@ -99,25 +102,17 @@ public class NetworkStatsView extends LinearLayout {
             onChange(true);
         }
 
-        public void unobserver() {
-            mContext.getContentResolver().unregisterContentObserver(this);
-        }
-
         @Override
         public void onChange(boolean selfChange) {
             // check for connectivity
             ConnectivityManager cm =
-                    (ConnectivityManager)mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+                    (ConnectivityManager)getContext().getSystemService(
+                            Context.CONNECTIVITY_SERVICE);
 
             NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
             boolean networkAvailable = activeNetwork != null ? activeNetwork.isConnected() : false;
-
-            PowerManager pm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
-            boolean isScreenOn = pm.isScreenOn();
-
             mActivated = (Settings.System.getInt(mContext.getContentResolver(),
-                    Settings.System.STATUS_BAR_NETWORK_STATS, 0)) == 1
-                    && networkAvailable && isScreenOn;
+                    Settings.System.STATUS_BAR_NETWORK_STATS, 0)) == 1 && networkAvailable;
 
             mRefreshInterval = Settings.System.getLong(mContext.getContentResolver(),
                     Settings.System.STATUS_BAR_NETWORK_STATS_UPDATE_INTERVAL, 500);
@@ -140,11 +135,14 @@ public class NetworkStatsView extends LinearLayout {
         }
     }
 
-    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+    private BroadcastReceiver mConnectivityReceiver = new BroadcastReceiver() {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            mSettingsObserver.onChange(true);
+            String action = intent.getAction();
+            if (ConnectivityManager.CONNECTIVITY_ACTION.equals(action)) {
+                mSettingsObserver.onChange(true);
+            }
         }
     };
 
@@ -163,16 +161,6 @@ public class NetworkStatsView extends LinearLayout {
             mNetStatsColor = mTextViewTx.getTextColors().getDefaultColor();
             mHandler.postDelayed(mUpdateRunnable, mRefreshInterval);
         }
-
-        // register the broadcast receiver
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
-        filter.addAction(Intent.ACTION_SCREEN_ON);
-        filter.addAction(Intent.ACTION_SCREEN_OFF);
-        mContext.registerReceiver(mBroadcastReceiver, filter);
-
-        // start observing our settings
-        mSettingsObserver.observe();
     }
 
     @Override
@@ -181,12 +169,6 @@ public class NetworkStatsView extends LinearLayout {
         if (mAttached) {
             mAttached = false;
         }
-
-        // unregister the broadcast receiver
-        mContext.unregisterReceiver(mBroadcastReceiver);
-
-        // stop listening for settings changes
-        mSettingsObserver.unobserver();
     }
 
     private void updateStats() {

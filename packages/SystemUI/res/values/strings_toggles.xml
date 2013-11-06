@@ -17,6 +17,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="toggle_USER">Current user</string>
     <string name="toggle_BRIGHTNESS">Brightness</string>
+    <string name="toggle_VOLUME">Volume</string>
     <string name="toggle_SETTINGS">Settings</string>
     <string name="toggle_WIFI">WiFi</string>
     <string name="toggle_SIGNAL">Signal</string>

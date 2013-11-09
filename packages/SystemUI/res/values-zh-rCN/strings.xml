@@ -259,6 +259,7 @@
     <string name="screenshot_toast">在%1$d秒后截图</string>
 
     <!--  Quick Settings -->
+    <string name="quick_settings_volume">音量</string>
     <string name="quick_settings_vibrate_on_label">振动已打开</string>
     <string name="quick_settings_vibrate_off_label">振动已关闭</string>
     <string name="quick_settings_silent_on_label">静音已打开</string>

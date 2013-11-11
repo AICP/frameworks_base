@@ -817,7 +817,9 @@ final class DisplayPowerController {
                         } else if (mPowerState.prepareElectronBeam(
                                 !mElectronBeamOffEnabled ?
                                         ElectronBeam.MODE_FADE :
-                                        ElectronBeam.MODE_COOL_DOWN)
+                                        (mElectronBeamMode == 3
+                                            ? ElectronBeam.MODE_SCALE_DOWN
+                                            : ElectronBeam.MODE_COOL_DOWN))
                                 && useScreenOffAnimation()
                                 && mPowerState.isScreenOn()) {
                             mElectronBeamOffAnimator.start();

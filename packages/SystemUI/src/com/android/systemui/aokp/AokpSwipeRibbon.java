@@ -426,6 +426,7 @@ public class AokpSwipeRibbon extends LinearLayout {
             toggleMap = new HashMap<String, Class<? extends BaseToggle>>();
             toggleMap.put(USER_TOGGLE, UserToggle.class);
             toggleMap.put(BRIGHTNESS_TOGGLE, BrightnessToggle.class);
+            toggleMap.put(VOLUME_TOGGLE, VolumeToggle.class);
             toggleMap.put(SETTINGS_TOGGLE, SettingsToggle.class);
             toggleMap.put(WIFI_TOGGLE, WifiToggle.class);
             if (deviceSupportsTelephony()) {

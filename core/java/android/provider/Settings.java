@@ -12632,6 +12632,12 @@ public final class Settings {
         public static final String LOW_POWER_MODE = "low_power";
 
         /**
+         * Control whether the process CPU info meter should be shown.
+         * @hide
+         */
+        public static final String SHOW_CPU_OVERLAY = "show_cpu_overlay";
+
+        /**
          * If 1, battery saver ({@link #LOW_POWER_MODE}) will be re-activated after the device
          * is unplugged from a charger or rebooted.
          * @hide

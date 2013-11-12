@@ -1,375 +1,735 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- 
-/**
- * Copyright (c) 2009, The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License"); 
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at 
- *
- *     http://www.apache.org/licenses/LICENSE-2.0 
- *
- * Unless required by applicable law or agreed to in writing, software 
- * distributed under the License is distributed on an "AS IS" BASIS, 
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
- * See the License for the specific language governing permissions and 
- * limitations under the License.
- */
- -->
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2009 The Android Open Source Project
 
-<resources xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="config_statusBarComponent">com.android.systemui.statusbar.phone.PhoneStatusBar</string>
-    <string name="config_systemBarComponent">com.android.systemui.statusbar.tablet.TabletStatusBar</string>
-    <string name="system_ui_date_pattern">MMMMd</string>
-    <string name="system_ui_weekday_pattern">eeee</string>
-    <string name="ad_date_pattern">eeeMMMd</string>
-    <string name="app_label">System UI</string>
-    <string name="permdesc_screenshot">Capture screenshot</string>
-    <string name="permlab_screenshot">Allows the app to cature a screenshot. This is protected by SystemUI.</string>
-    <string name="status_bar_clear_all_button">Clear</string>
-    <string name="status_bar_do_not_disturb_button">Do not disturb</string>
-    <string name="status_bar_please_disturb_button">Show notifications</string>
-    <string name="status_bar_recent_remove_item_title">Remove from list</string>
-    <string name="status_bar_recent_inspect_item_title">App info</string>
-    <string name="status_bar_no_recent_apps">No recent apps</string>
-    <string name="status_bar_accessibility_dismiss_recents">Dismiss recent apps</string>
-    <string name="status_bar_no_notifications_title">No notifications</string>
-    <string name="status_bar_ongoing_events_title">Ongoing</string>
-    <string name="status_bar_latest_events_title">Notifications</string>
-    <string name="battery_low_title">Connect charger</string>
-    <string name="battery_low_subtitle">The battery is getting low.</string>
-    <string name="battery_low_percent_format">%d%% remaining</string>
-    <string name="invalid_charger">"USB charging not supported.
-Use only the supplied charger."</string>
-    <string name="battery_low_why">Battery use</string>
-    <string name="status_bar_settings_settings_button">Settings</string>
-    <string name="status_bar_settings_wifi_button">Wi-Fi</string>
-    <string name="status_bar_settings_airplane">Airplane mode</string>
-    <string name="status_bar_settings_auto_rotation">Auto-rotate screen</string>
-    <string name="status_bar_settings_mute_label">MUTE</string>
-    <string name="status_bar_settings_auto_brightness_label">AUTO</string>
-    <string name="status_bar_settings_notifications">Notifications</string>
-    <string name="status_bar_settings_battery_meter_format">%d%%</string>
-    <string name="status_bar_network_name_separator">|</string>
-    <string name="bluetooth_tethered">Bluetooth tethered</string>
-    <string name="status_bar_input_method_settings_configure_input_methods">Set up input methods</string>
-    <string name="status_bar_use_physical_keyboard">Physical keyboard</string>
-    <string name="usb_device_permission_prompt">Allow the app %1$s to access the USB device?</string>
-    <string name="usb_accessory_permission_prompt">Allow the app %1$s to access the USB accessory?</string>
-    <string name="usb_device_confirm_prompt">Open %1$s when this USB device is connected?</string>
-    <string name="usb_accessory_confirm_prompt">Open %1$s when this USB accessory is connected?</string>
-    <string name="usb_accessory_uri_prompt">No installed apps work with this USB accessory. Learn more about this accessory at %1$s</string>
-    <string name="title_usb_accessory">USB accessory</string>
-    <string name="label_view">View</string>
-    <string name="always_use_device">Use by default for this USB device</string>
-    <string name="always_use_accessory">Use by default for this USB accessory</string>
-    <string name="usb_debugging_title">Allow USB debugging?</string>
-    <string name="usb_debugging_message">"The computer's RSA key fingerprint is:
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+Editor: 
+ArtfulBits Inc. (c) 2005-2009 (http://www.artfulbits.com)
+Android Localizer (aiLocalizer)
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" xmlns:android="http://schemas.android.com/apk/res/android">
+  <!--Original value: com.android.systemui.statusbar.phone.PhoneStatusBar-->
+  <string name="config_statusBarComponent">com.android.systemui.statusbar.phone.PhoneStatusBar</string>
+  <!--Original value: com.android.systemui.statusbar.tablet.TabletStatusBar-->
+  <string name="config_systemBarComponent">com.android.systemui.statusbar.tablet.TabletStatusBar</string>
+  <!--Original value: MMMMd-->
+  <string name="system_ui_date_pattern">MMMMd</string>
+  <!--Original value: eeee-->
+  <string name="system_ui_weekday_pattern">eeee</string>
+  <!--Original value: eeeMMMd-->
+  <string name="ad_date_pattern">eeeMMMd</string>
+  <!--Original value: System UI-->
+  <string name="app_label">IU système</string>
+  <!--Original value: Capture screenshot-->
+  <string name="permdesc_screenshot">"Captures d'écran"</string>
+  <!--Original value: Allows the app to cature a screenshot. This is protected by SystemUI.-->
+  <string name="permlab_screenshot">"Permet à l'application de faire des captures d'écran. Ceci est protégé par SystemUI."</string>
+  <!--Original value: Clear-->
+  <string name="status_bar_clear_all_button">Effacer</string>
+  <!--Original value: Do not disturb-->
+  <string name="status_bar_do_not_disturb_button">Ne pas déranger</string>
+  <!--Original value: Show notifications-->
+  <string name="status_bar_please_disturb_button">Afficher les notifications</string>
+  <!--Original value: Remove from list-->
+  <string name="status_bar_recent_remove_item_title">Supprimer de la liste</string>
+  <!--Original value: App info-->
+  <string name="status_bar_recent_inspect_item_title">App info</string>
+  <!--Original value: No recent apps-->
+  <string name="status_bar_no_recent_apps">Aucune apps récentes</string>
+  <!--Original value: Dismiss recent apps-->
+  <string name="status_bar_accessibility_dismiss_recents">Masquer les apps récentes</string>
+  <!--Original value: No notifications-->
+  <string name="status_bar_no_notifications_title">Aucune notification</string>
+  <!--Original value: Ongoing-->
+  <string name="status_bar_ongoing_events_title">En cours</string>
+  <!--Original value: Notifications-->
+  <string name="status_bar_latest_events_title">Notifications</string>
+  <!--Original value: Connect charger-->
+  <string name="battery_low_title">Brancher le chargeur</string>
+  <!--Original value: The battery is getting low.-->
+  <string name="battery_low_subtitle">Le niveau de la batterie est faible.</string>
+  <!--Original value: %d%% remaining-->
+  <string name="battery_low_percent_format">%d%% restant</string>
+  <!--Original value: "USB charging not supported.
+Use only the supplied charger."-->
+  <string name="invalid_charger">"Chargement USB non disponible.
+Vous devez utiliser le chargeur fourni."</string>
+  <!--Original value: Battery use-->
+  <string name="battery_low_why">Utilisation de la batterie</string>
+  <!--Original value: Settings-->
+  <string name="status_bar_settings_settings_button">Paramètres</string>
+  <!--Original value: Wi-Fi-->
+  <string name="status_bar_settings_wifi_button">Wi-Fi</string>
+  <!--Original value: Airplane mode-->
+  <string name="status_bar_settings_airplane">Mode Avion</string>
+  <!--Original value: Auto-rotate screen-->
+  <string name="status_bar_settings_auto_rotation">"Rotation automatique de l'écran"</string>
+  <!--Original value: MUTE-->
+  <string name="status_bar_settings_mute_label">SILENCE</string>
+  <!--Original value: AUTO-->
+  <string name="status_bar_settings_auto_brightness_label">AUTO</string>
+  <!--Original value: Notifications-->
+  <string name="status_bar_settings_notifications">Notifications</string>
+  <!--Original value: %d%%-->
+  <string name="status_bar_settings_battery_meter_format">%d%%</string>
+  <!--Original value: |-->
+  <string name="status_bar_network_name_separator">|</string>
+  <!--Original value: Bluetooth tethered-->
+  <string name="bluetooth_tethered">Connexion Bluetooth partagée</string>
+  <!--Original value: Set up input methods-->
+  <string name="status_bar_input_method_settings_configure_input_methods">Configurer les modes de saisie</string>
+  <!--Original value: Physical keyboard-->
+  <string name="status_bar_use_physical_keyboard">Clavier physique</string>
+  <!--Original value: Allow the app %1$s to access the USB device?-->
+  <string name="usb_device_permission_prompt">"Autoriser l'application %1$s à accéder au périphérique USB ?"</string>
+  <!--Original value: Allow the app %1$s to access the USB accessory?-->
+  <string name="usb_accessory_permission_prompt">"Autoriser l'application %1$s à accéder à l'accessoire USB ?"</string>
+  <!--Original value: Open %1$s when this USB device is connected?-->
+  <string name="usb_device_confirm_prompt">Ouvrir %1$s lors de la connexion de ce périphérique USB ?</string>
+  <!--Original value: Open %1$s when this USB accessory is connected?-->
+  <string name="usb_accessory_confirm_prompt">Ouvrir %1$s lors de la connexion de cet accessoire USB ?</string>
+  <!--Original value: No installed apps work with this USB accessory. Learn more about this accessory at %1$s-->
+  <string name="usb_accessory_uri_prompt">"Aucune application installée n'est compatible avec accessoire USB. En savoir plus sur %1$s"</string>
+  <!--Original value: USB accessory-->
+  <string name="title_usb_accessory">Accessoire USB</string>
+  <!--Original value: View-->
+  <string name="label_view">Afficher</string>
+  <!--Original value: Use by default for this USB device-->
+  <string name="always_use_device">Utiliser par défaut pour ce périphérique USB</string>
+  <!--Original value: Use by default for this USB accessory-->
+  <string name="always_use_accessory">Utiliser par défaut pour cet accessoire USB</string>
+  <!--Original value: Allow USB debugging?-->
+  <string name="usb_debugging_title">Autoriser le débogage USB ?</string>
+  <!--Original value: "The computer's RSA key fingerprint is:
+%1$s"-->
+  <string name="usb_debugging_message">"Empreinte numérique de la clé RSA de l'ordinateur : 
 %1$s"</string>
-    <string name="usb_debugging_always">Always allow from this computer</string>
-    <string name="compat_mode_on">Zoom to fill screen</string>
-    <string name="compat_mode_off">Stretch to fill screen</string>
-    <string name="compat_mode_help_header">Compatibility zoom</string>
-    <string name="compat_mode_help_body">When an app was designed for a smaller screen, a zoom control will appear by the clock.</string>
-    <string name="screenshot_saving_ticker">Saving screenshot…</string>
-    <string name="screenshot_saving_title">Saving screenshot…</string>
-    <string name="screenshot_saving_text">Screenshot is being saved.</string>
-    <string name="screenshot_saved_title">Screenshot captured.</string>
-    <string name="screenshot_saved_text">Touch to view your screenshot.</string>
-    <string name="screenshot_failed_title">"Couldn't capture screenshot."</string>
-    <string name="screenshot_failed_text">"Couldn't save screenshot. Storage may be in use."</string>
-    <string name="usb_preference_title">USB file transfer options</string>
-    <string name="use_mtp_button_title">Mount as a media player (MTP)</string>
-    <string name="use_ptp_button_title">Mount as a camera (PTP)</string>
-    <string name="installer_cd_button_title">Install Android File Transfer app for Mac</string>
-    <string name="accessibility_back">Back</string>
-    <string name="accessibility_home">Home</string>
-    <string name="accessibility_menu">Menu</string>
-    <string name="accessibility_recent">Recent apps</string>
-    <string name="accessibility_ime_switch_button">Switch input method button.</string>
-    <string name="accessibility_compatibility_zoom_button">Compatibility zoom button.</string>
-    <string name="accessibility_compatibility_zoom_example">Zoom smaller to larger screen.</string>
-    <string name="accessibility_bluetooth_connected">Bluetooth connected.</string>
-    <string name="accessibility_bluetooth_disconnected">Bluetooth disconnected.</string>
-    <string name="accessibility_no_battery">No battery.</string>
-    <string name="accessibility_battery_one_bar">Battery one bar.</string>
-    <string name="accessibility_battery_two_bars">Battery two bars.</string>
-    <string name="accessibility_battery_three_bars">Battery three bars.</string>
-    <string name="accessibility_battery_full">Battery full.</string>
-    <string name="accessibility_no_phone">No phone.</string>
-    <string name="accessibility_phone_one_bar">Phone one bar.</string>
-    <string name="accessibility_phone_two_bars">Phone two bars.</string>
-    <string name="accessibility_phone_three_bars">Phone three bars.</string>
-    <string name="accessibility_phone_signal_full">Phone signal full.</string>
-    <string name="accessibility_no_data">No data.</string>
-    <string name="accessibility_data_one_bar">Data one bar.</string>
-    <string name="accessibility_data_two_bars">Data two bars.</string>
-    <string name="accessibility_data_three_bars">Data three bars.</string>
-    <string name="accessibility_data_signal_full">Data signal full.</string>
-    <string name="accessibility_wifi_off">Wifi off.</string>
-    <string name="accessibility_no_wifi">Wifi disconnected.</string>
-    <string name="accessibility_wifi_one_bar">Wifi one bar.</string>
-    <string name="accessibility_wifi_two_bars">Wifi two bars.</string>
-    <string name="accessibility_wifi_three_bars">Wifi three bars.</string>
-    <string name="accessibility_wifi_signal_full">Wifi signal full.</string>
-    <string name="accessibility_no_wimax">No WiMAX.</string>
-    <string name="accessibility_wimax_one_bar">WiMAX one bar.</string>
-    <string name="accessibility_wimax_two_bars">WiMAX two bars.</string>
-    <string name="accessibility_wimax_three_bars">WiMAX three bars.</string>
-    <string name="accessibility_wimax_signal_full">WiMAX signal full.</string>
-    <string name="accessibility_no_signal">No signal.</string>
-    <string name="accessibility_not_connected">Not connected.</string>
-    <string name="accessibility_zero_bars">Zero bars.</string>
-    <string name="accessibility_one_bar">One bar.</string>
-    <string name="accessibility_two_bars">Two bars.</string>
-    <string name="accessibility_three_bars">Three bars.</string>
-    <string name="accessibility_signal_full">Signal full.</string>
-    <string name="accessibility_desc_on">On.</string>
-    <string name="accessibility_desc_off">Off.</string>
-    <string name="accessibility_desc_connected">Connected.</string>
-    <string name="accessibility_data_connection_gprs">GPRS</string>
-    <string name="accessibility_data_connection_1x">1 X</string>
-    <string name="accessibility_data_connection_hspa">HSPA</string>
-    <string name="accessibility_data_connection_3g">3G</string>
-    <string name="accessibility_data_connection_3.5g">3.5G</string>
-    <string name="accessibility_data_connection_HP">HSPA+</string>
-    <string name="accessibility_data_connection_DC">DCHSPAP</string>
-    <string name="accessibility_data_connection_4g">4G</string>
-    <string name="accessibility_data_connection_lte">LTE</string>
-    <string name="accessibility_data_connection_cdma">CDMA</string>
-    <string name="accessibility_data_connection_roaming">Roaming</string>
-    <string name="accessibility_data_connection_edge">Edge</string>
-    <string name="accessibility_data_connection_wifi">Wi-Fi</string>
-    <string name="accessibility_no_sim">No SIM.</string>
-    <string name="accessibility_bluetooth_tether">Bluetooth tethering.</string>
-    <string name="accessibility_airplane_mode">Airplane mode.</string>
-    <string name="accessibility_battery_level">Battery %d percent.</string>
-    <string name="accessibility_settings_button">System settings.</string>
-    <string name="accessibility_notifications_button">Notifications.</string>
-    <string name="accessibility_remove_notification">Clear notification.</string>
-    <string name="accessibility_gps_enabled">GPS enabled.</string>
-    <string name="accessibility_gps_acquiring">GPS acquiring.</string>
-    <string name="accessibility_tty_enabled">TeleTypewriter enabled.</string>
-    <string name="accessibility_ringer_vibrate">Ringer vibrate.</string>
-    <string name="accessibility_ringer_silent">Ringer silent.</string>
-    <string name="accessibility_recents_item_dismissed">%s dismissed.</string>
-    <string name="accessibility_notification_dismissed">Notification dismissed.</string>
-    <string name="accessibility_desc_notification_shade">Notification shade.</string>
-    <string name="accessibility_desc_quick_settings">Quick settings.</string>
-    <string name="accessibility_desc_recent_apps">Recent apps.</string>
-    <string name="accessibility_quick_settings_user">User %s.</string>
-    <string name="accessibility_quick_settings_wifi">%1$s. %2$s</string>
-    <string name="accessibility_quick_settings_mobile">Mobile %1$s. %2$s. %3$s.</string>
-    <string name="accessibility_quick_settings_battery">Battery %s.</string>
-    <string name="accessibility_quick_settings_airplane">Airplane Mode %s.</string>
-    <string name="accessibility_quick_settings_bluetooth">Bluetooth %s.</string>
-    <string name="accessibility_quick_settings_alarm">Alarm set for %s.</string>
-    <string name="data_usage_disabled_dialog_3g_title">2G-3G data disabled</string>
-    <string name="data_usage_disabled_dialog_4g_title">4G data disabled</string>
-    <string name="data_usage_disabled_dialog_mobile_title">Mobile data disabled</string>
-    <string name="data_usage_disabled_dialog_title">Data disabled</string>
-    <string name="data_usage_disabled_dialog">"You've reached the specified data usage limit.
+  <!--Original value: Always allow from this computer-->
+  <string name="usb_debugging_always">Toujours autoriser sur cet ordinateur</string>
+  <!--Original value: Zoom to fill screen-->
+  <string name="compat_mode_on">"Zoomer pour remplir l'écran"</string>
+  <!--Original value: Stretch to fill screen-->
+  <string name="compat_mode_off">"Étirer pour remplir l'écran"</string>
+  <!--Original value: Compatibility zoom-->
+  <string name="compat_mode_help_header">Zoom de compatibilité</string>
+  <!--Original value: When an app was designed for a smaller screen, a zoom control will appear by the clock.-->
+  <string name="compat_mode_help_body">"Si une application a été conçue pour un écran plus petit, une commande de zoom s'affiche à côté de l'horloge."</string>
+  <!--Original value: Saving screenshot…-->
+  <string name="screenshot_saving_ticker">"Enregistrement capture écran…"</string>
+  <!--Original value: Saving screenshot…-->
+  <string name="screenshot_saving_title">"Enregistrement de la capture d'écran…"</string>
+  <!--Original value: Screenshot is being saved.-->
+  <string name="screenshot_saving_text">"Enregistrement de la capture d'écran en cours…"</string>
+  <!--Original value: Screenshot captured.-->
+  <string name="screenshot_saved_title">"Capture d'écran réussie"</string>
+  <!--Original value: Touch to view your screenshot.-->
+  <string name="screenshot_saved_text">"Appuyez pour afficher votre capture d'écran."</string>
+  <!--Original value: "Couldn't capture screenshot."-->
+  <string name="screenshot_failed_title">"Impossible de réaliser une capture d'écran"</string>
+  <!--Original value: "Couldn't save screenshot. Storage may be in use."-->
+  <string name="screenshot_failed_text">"Impossible d'enregistrer la capture d'écran. Périphérique de stockage peut-être en cours d'utilisation."</string>
+  <!--Original value: USB file transfer options-->
+  <string name="usb_preference_title">Options transfert fichiers USB</string>
+  <!--Original value: Mount as a media player (MTP)-->
+  <string name="use_mtp_button_title">Monter en tant que lecteur multimédia (MTP)</string>
+  <!--Original value: Mount as a camera (PTP)-->
+  <string name="use_ptp_button_title">"Monter en tant qu'appareil photo (PTP)"</string>
+  <!--Original value: Install Android File Transfer app for Mac-->
+  <string name="installer_cd_button_title">"Installer l'application Android File Transfer pour Mac"</string>
+  <!--Original value: Back-->
+  <string name="accessibility_back">Retour</string>
+  <!--Original value: Home-->
+  <string name="accessibility_home">Accueil</string>
+  <!--Original value: Menu-->
+  <string name="accessibility_menu">Menu</string>
+  <!--Original value: Recent apps-->
+  <string name="accessibility_recent">Apps récentes</string>
+  <!--Original value: Switch input method button.-->
+  <string name="accessibility_ime_switch_button">Bouton \"Changer le mode de saisie\"</string>
+  <!--Original value: Compatibility zoom button.-->
+  <string name="accessibility_compatibility_zoom_button">Bouton \"Zoom de compatibilité\"</string>
+  <!--Original value: Zoom smaller to larger screen.-->
+  <string name="accessibility_compatibility_zoom_example">"Zoom de compatibilité avec la taille de l'écran."</string>
+  <!--Original value: Bluetooth connected.-->
+  <string name="accessibility_bluetooth_connected">Bluetooth connecté.</string>
+  <!--Original value: Bluetooth disconnected.-->
+  <string name="accessibility_bluetooth_disconnected">Bluetooth déconnecté.</string>
+  <!--Original value: No battery.-->
+  <string name="accessibility_no_battery">Pas de batterie.</string>
+  <!--Original value: Battery one bar.-->
+  <string name="accessibility_battery_one_bar">Batterie un barre.</string>
+  <!--Original value: Battery two bars.-->
+  <string name="accessibility_battery_two_bars">Batterie deux barres.</string>
+  <!--Original value: Battery three bars.-->
+  <string name="accessibility_battery_three_bars">Batterie trois barres.</string>
+  <!--Original value: Battery full.-->
+  <string name="accessibility_battery_full">Batterie pleine.</string>
+  <!--Original value: No phone.-->
+  <string name="accessibility_no_phone">Pas de téléphone.</string>
+  <!--Original value: Phone one bar.-->
+  <string name="accessibility_phone_one_bar">Téléphone une barre.</string>
+  <!--Original value: Phone two bars.-->
+  <string name="accessibility_phone_two_bars">Téléphone deux barres.</string>
+  <!--Original value: Phone three bars.-->
+  <string name="accessibility_phone_three_bars">Téléphone trois barres.</string>
+  <!--Original value: Phone signal full.-->
+  <string name="accessibility_phone_signal_full">Signal de téléphone excellent.</string>
+  <!--Original value: No data.-->
+  <string name="accessibility_no_data">Aucune donnée.</string>
+  <!--Original value: Data one bar.-->
+  <string name="accessibility_data_one_bar">Données une barre.</string>
+  <!--Original value: Data two bars.-->
+  <string name="accessibility_data_two_bars">Données deux barres.</string>
+  <!--Original value: Data three bars.-->
+  <string name="accessibility_data_three_bars">Données trois barres.</string>
+  <!--Original value: Data signal full.-->
+  <string name="accessibility_data_signal_full">Signal de données excellent.</string>
+  <!--Original value: Wifi off.-->
+  <string name="accessibility_wifi_off">Wi-Fi désactivé.</string>
+  <!--Original value: Wifi disconnected.-->
+  <string name="accessibility_no_wifi">Wi-Fi déconnecté.</string>
+  <!--Original value: Wifi one bar.-->
+  <string name="accessibility_wifi_one_bar">Wi-Fi une barre.</string>
+  <!--Original value: Wifi two bars.-->
+  <string name="accessibility_wifi_two_bars">Wi-Fi deux barres.</string>
+  <!--Original value: Wifi three bars.-->
+  <string name="accessibility_wifi_three_bars">Wi-Fi trois barres.</string>
+  <!--Original value: Wifi signal full.-->
+  <string name="accessibility_wifi_signal_full">Signal Wi-Fi excellent.</string>
+  <!--Original value: No WiMAX.-->
+  <string name="accessibility_no_wimax">Aucun signal WiMAX.</string>
+  <!--Original value: WiMAX one bar.-->
+  <string name="accessibility_wimax_one_bar">WiMAX une barre.</string>
+  <!--Original value: WiMAX two bars.-->
+  <string name="accessibility_wimax_two_bars">WiMAX deux barres.</string>
+  <!--Original value: WiMAX three bars.-->
+  <string name="accessibility_wimax_three_bars">WiMAX trois barres.</string>
+  <!--Original value: WiMAX signal full.-->
+  <string name="accessibility_wimax_signal_full">Signal WiMAX excellent.</string>
+  <!--Original value: No signal.-->
+  <string name="accessibility_no_signal">Aucun signal.</string>
+  <!--Original value: Not connected.-->
+  <string name="accessibility_not_connected">Non connecté.</string>
+  <!--Original value: Zero bars.-->
+  <string name="accessibility_zero_bars">Zéro barre.</string>
+  <!--Original value: One bar.-->
+  <string name="accessibility_one_bar">Une barre.</string>
+  <!--Original value: Two bars.-->
+  <string name="accessibility_two_bars">Deux barres.</string>
+  <!--Original value: Three bars.-->
+  <string name="accessibility_three_bars">Trois barres.</string>
+  <!--Original value: Signal full.-->
+  <string name="accessibility_signal_full">Signal excellent.</string>
+  <!--Original value: On.-->
+  <string name="accessibility_desc_on">Activé.</string>
+  <!--Original value: Off.-->
+  <string name="accessibility_desc_off">Désactivé.</string>
+  <!--Original value: Connected.-->
+  <string name="accessibility_desc_connected">Connecté.</string>
+  <!--Original value: GPRS-->
+  <string name="accessibility_data_connection_gprs">GPRS</string>
+  <!--Original value: 1 X-->
+  <string name="accessibility_data_connection_1x">1x</string>
+  <!--Original value: HSPA-->
+  <string name="accessibility_data_connection_hspa">HSPA</string>
+  <!--Original value: 3G-->
+  <string name="accessibility_data_connection_3g">3G</string>
+  <!--Original value: 3.5G-->
+  <string name="accessibility_data_connection_3.5g">3G+</string>
+  <!--Original value: HSPA+-->
+  <string name="accessibility_data_connection_HP">HSPA+</string>
+  <!--Original value: DCHSPAP-->
+  <string name="accessibility_data_connection_DC">DCHSPAP</string>
+  <!--Original value: 4G-->
+  <string name="accessibility_data_connection_4g">4G</string>
+  <!--Original value: LTE-->
+  <string name="accessibility_data_connection_lte">LTE</string>
+  <!--Original value: CDMA-->
+  <string name="accessibility_data_connection_cdma">CDMA</string>
+  <!--Original value: Roaming-->
+  <string name="accessibility_data_connection_roaming">Itinérance</string>
+  <!--Original value: Edge-->
+  <string name="accessibility_data_connection_edge">Edge</string>
+  <!--Original value: Wi-Fi-->
+  <string name="accessibility_data_connection_wifi">Wi-Fi</string>
+  <!--Original value: No SIM.-->
+  <string name="accessibility_no_sim">Aucune carte SIM.</string>
+  <!--Original value: Bluetooth tethering.-->
+  <string name="accessibility_bluetooth_tether">Partage de connexion Bluetooth</string>
+  <!--Original value: Airplane mode.-->
+  <string name="accessibility_airplane_mode">Mode Avion.</string>
+  <!--Original value: Battery %d percent.-->
+  <string name="accessibility_battery_level">Batterrie <xliff:g id="number">%d</xliff:g> percent.</string>
+  <!--Original value: System settings.-->
+  <string name="accessibility_settings_button">Paramètres système.</string>
+  <!--Original value: Notifications.-->
+  <string name="accessibility_notifications_button">Notifications.</string>
+  <!--Original value: Clear notification.-->
+  <string name="accessibility_remove_notification">Supprimer notification.</string>
+  <!--Original value: GPS enabled.-->
+  <string name="accessibility_gps_enabled">GPS activé.</string>
+  <!--Original value: GPS acquiring.-->
+  <string name="accessibility_gps_acquiring">Acquisition de données GPS.</string>
+  <!--Original value: TeleTypewriter enabled.-->
+  <string name="accessibility_tty_enabled">Téléscripteur activé.</string>
+  <!--Original value: Ringer vibrate.-->
+  <string name="accessibility_ringer_vibrate">Sonnerie en mode vibreur</string>
+  <!--Original value: Ringer silent.-->
+  <string name="accessibility_ringer_silent">Sonnerie en mode silencieux</string>
+  <!--Original value: %s dismissed.-->
+  <string name="accessibility_recents_item_dismissed">Application \"%s\" ignorée.</string>
+  <!--Original value: Notification dismissed.-->
+  <string name="accessibility_notification_dismissed">Notification masquée</string>
+  <!--Original value: Notification shade.-->
+  <string name="accessibility_desc_notification_shade">Volet des notifications</string>
+  <!--Original value: Quick settings.-->
+  <string name="accessibility_desc_quick_settings">Paramètres rapides</string>
+  <!--Original value: Recent apps.-->
+  <string name="accessibility_desc_recent_apps">Applications récentes</string>
+  <!--Original value: User %s.-->
+  <string name="accessibility_quick_settings_user">Utilisateur %s</string>
+  <!--Original value: %1$s. %2$s-->
+  <string name="accessibility_quick_settings_wifi">%1$s, %2$s</string>
+  <!--Original value: Mobile %1$s. %2$s. %3$s.-->
+  <string name="accessibility_quick_settings_mobile">Signal mobile : %1$s, %2$s, %3$s</string>
+  <!--Original value: Battery %s.-->
+  <string name="accessibility_quick_settings_battery">Batterie : %s</string>
+  <!--Original value: Airplane Mode %s.-->
+  <string name="accessibility_quick_settings_airplane">Mode Avion : %s</string>
+  <!--Original value: Bluetooth %s.-->
+  <string name="accessibility_quick_settings_bluetooth">Bluetooth : %s</string>
+  <!--Original value: Alarm set for %s.-->
+  <string name="accessibility_quick_settings_alarm">Alarme réglée sur %s</string>
+  <!--Original value: 2G-3G data disabled-->
+  <string name="data_usage_disabled_dialog_3g_title">Données 2G-3G désactivées</string>
+  <!--Original value: 4G data disabled-->
+  <string name="data_usage_disabled_dialog_4g_title">Données 4G désactivées</string>
+  <!--Original value: Mobile data disabled-->
+  <string name="data_usage_disabled_dialog_mobile_title">Données mobiles désactivées</string>
+  <!--Original value: Data disabled-->
+  <string name="data_usage_disabled_dialog_title">Données désactivées</string>
+  <!--Original value: "You've reached the specified data usage limit.
 
-If you re-enable data, you may be charged by the operator."</string>
-    <string name="data_usage_disabled_dialog_enable">Re-enable data</string>
-    <string name="status_bar_settings_signal_meter_disconnected">No Internet connection</string>
-    <string name="status_bar_settings_signal_meter_wifi_nossid">Wi-Fi connected</string>
-    <string name="gps_notification_searching_text">Searching for GPS</string>
-    <string name="gps_notification_found_text">Location set by GPS</string>
-    <string name="accessibility_halo">Create notification halo.</string>
-    <string name="accessibility_clear_all">Clear all notifications.</string>
-    <string name="status_bar_notification_inspect_item_title">App info</string>
-    <string name="close_universe">Close</string>
-    <string name="notifications_off_title">Notifications off</string>
-    <string name="notifications_off_text">Tap here to turn notifications back on.</string>
-    <string name="accessibility_rotation_lock_off">Screen will rotate automatically.</string>
-    <string name="accessibility_rotation_lock_on_landscape">Screen is locked in landscape orientation.</string>
-    <string name="accessibility_rotation_lock_on_portrait">Screen is locked in portrait orientation.</string>
-    <string name="jelly_bean_dream_name">BeanFlinger</string>
-    <string name="start_dreams">Daydream</string>
-    <string name="ethernet_label">Ethernet</string>
-    <string name="quick_settings_airplane_mode_label">Airplane mode</string>
-    <string name="quick_settings_battery_charging_label">Charging, %d%%</string>
-    <string name="quick_settings_battery_charged_label">Charged</string>
-    <string name="quick_settings_bluetooth_label">Bluetooth</string>
-    <string name="quick_settings_bluetooth_multiple_devices_label">Bluetooth (%d Devices)</string>
-    <string name="quick_settings_bluetooth_off_label">Bluetooth Off</string>
-    <string name="quick_settings_brightness_label">Brightness</string>
-    <string name="quick_settings_rotation_unlocked_label">Auto Rotate</string>
-    <string name="quick_settings_rotation_locked_label">Rotation Locked</string>
-    <string name="quick_settings_ime_label">Input Method</string>
-    <string name="quick_settings_location_label">Location in use</string>
-    <string name="quick_settings_media_device_label">Media device</string>
-    <string name="quick_settings_rssi_label">RSSI</string>
-    <string name="quick_settings_rssi_emergency_only">Emergency Calls Only</string>
-    <string name="quick_settings_settings_label">Settings</string>
-    <string name="quick_settings_time_label">Time</string>
-    <string name="quick_settings_user_label">Me</string>
-    <string name="quick_settings_wifi_label">Wi-Fi</string>
-    <string name="quick_settings_wifi_not_connected">Not Connected</string>
-    <string name="quick_settings_wifi_no_network">No Network</string>
-    <string name="quick_settings_wifi_off_label">Wi-Fi Off</string>
-    <string name="quick_settings_wifi_display_label">Wi-Fi Display</string>
-    <string name="quick_settings_wifi_display_no_connection_label">Wireless Display</string>
-    <string name="quick_settings_brightness_dialog_title">Brightness</string>
-    <string name="quick_settings_brightness_dialog_auto_brightness_label">AUTO</string>
-    <string name="quick_settings_swagger">Swagger</string>
-    <string name="quick_settings_swaggersun">Swagger Sunday</string>
-    <string name="quick_settings_fbgt">FBGT</string>
-    <string name="quick_settings_recording">Recording...</string>
-    <string name="quick_settings_recordingcap">Recording Captured</string>
-    <string name="quick_settings_playing">Playing...</string>
-    <string name="quick_settings_quickrecord">Quick Record</string>
-    <string name="quick_settings_nofile">Long Press To Record</string>
-    <string name="quick_settings_sleep">Sleep</string>
-    <string name="quick_settings_reboot">Reboot</string>
-    <string name="quick_settings_reboot_message">Your device is rebooting</string>
-    <string name="quick_settings_stayawake_on">Stay Awake On</string>
-    <string name="quick_settings_stayawake_off">Stay Awake Off</string>
-    <string name="quick_settings_adb_on">%s</string>
-    <string name="quick_settings_adb_off">Wireless ADB Off</string>
-    <string name="status_bar_help_title">Notifications appear here</string>
-    <string name="status_bar_help_text">"Access them anytime by swiping down.
-Swipe down again for system controls."</string>
-    <string name="halo_dismiss">Dismiss notification</string>
-    <string name="halo_hide">Hide</string>
-    <string name="halo_clear_all">Dismiss all notifications</string>
-    <string name="halo_silence">Hide &amp; silence until woken</string>
-    <string name="halo_tutorial1">This is HALO</string>
-    <string name="halo_tutorial2">Move me: 2x-tap &amp; drag</string>
-    <string name="halo_tutorial3">Browse tasks: Horizontal drag</string>
-    <string name="halo_battery_plugged">CHARGING</string>
-    <string name="halo_battery_unplugged">REMAINING</string>
-    <string name="halo_battery_full">FULL</string>
-    <string name="halo_aeroplane1">AEROPLANE</string>
-    <string name="halo_aeroplane2">MODE</string>
-    <string name="halo_wifi_on">WI-FI ON</string>
-    <string name="halo_wifi_off">WI-FI OFF</string>
-    <string name="halo_signal_bars_4">FULL</string>
-    <string name="halo_signal_bars_3">THREE BARS</string>
-    <string name="halo_signal_bars_2">TWO BARS</string>
-    <string name="halo_signal_bars_1">ONE BAR</string>
-    <string name="halo_signal_bars_none">NO BARS</string>
-    <string name="close">Close</string>
-    <string name="app_window">Applications</string>
-    <string name="toggles">Toggles</string>
-    <string name="ribbon">Ribbon</string>
-    <string name="shortcut_label">AOKP Actions</string>
-    <string name="action_home">Home</string>
-    <string name="action_back">Back</string>
-    <string name="action_recents">Recents</string>
-    <string name="action_screenshot">Screenshot</string>
-    <string name="action_menu">Menu</string>
-    <string name="action_ime">Open IME Switcher</string>
-    <string name="action_kill">Kill task</string>
-    <string name="action_power">Power</string>
-    <string name="action_search">Search</string>
-    <string name="action_notifications">Notifications</string>
-    <string name="action_lastapp">Last App</string>
-    <string name="action_none">Empty</string>
-    <string name="widgets">Widgets</string>
-    <string name="toggle_quiethours">QuietHours - Toggle</string>
-    <string name="toggle_navbar">NavBar - Toggle</string>
-    <string name="toggle_statusbar">StatusBar - Toggle</string>
-    <string name="toggle_widgets">Widgets - Toggle</string>
-    <string name="toggle_ring_vib">Ring/Vib - Toggle</string>
-    <string name="toggle_ring_silent">Ring/Silent - Toggle</string>
-    <string name="toggle_ring_vib_silent">Ring/Vib/Silent - Toggle</string>
-    <string name="app_killed_message">App Killed</string>
-    <string name="recents_kill_all_button_text">Kill all</string>
-    <string name="recents_google_now_button_text">Google Now</string>
-    <string name="screenshot_toast">Screenshot in %1$d seconds</string>
-    <string name="quick_settings_vibrate_on_label">Vibrate On</string>
-    <string name="quick_settings_vibrate_off_label">Vibrate Off</string>
-    <string name="quick_settings_silent_on_label">Silent On</string>
-    <string name="quick_settings_silent_off_label">Silent Off</string>
-    <string name="quick_settings_fcharge_on_label">F-Charge On</string>
-    <string name="quick_settings_fcharge_off_label">F-Charge Off</string>
-    <string name="quick_settings_torch_on_label">Torch On</string>
-    <string name="quick_settings_torch_off_label">Torch Off</string>
-    <string name="quick_settings_nfc_on_label">NFC On</string>
-    <string name="quick_settings_nfc_off_label">NFC Off</string>
-    <string name="quick_settings_wifi_tether_on_label">Wifi Tether On</string>
-    <string name="quick_settings_wifi_tether_off_label">Wifi Tether Off</string>
-    <string name="quick_settings_bt_tether_on_label">BT Tether On</string>
-    <string name="quick_settings_bt_tether_off_label">BT Tether Off</string>
-    <string name="quick_settings_usb_tether_on_label">USB Tether On</string>
-    <string name="quick_settings_usb_tether_off_label">USB Tether Off</string>
-    <string name="quick_settings_sync_on_label">Sync On</string>
-    <string name="quick_settings_sync_off_label">Sync Off</string>
-    <string name="quick_settings_twog_on_label">2g On</string>
-    <string name="quick_settings_twog_off_label">2g Off</string>
-    <string name="quick_settings_lte_on_label">LTE On</string>
-    <string name="quick_settings_lte_off_label">LTE Off</string>
-    <string name="quick_settings_gps_on_label">GPS On</string>
-    <string name="quick_settings_gps_off_label">GPS Off</string>
-    <string name="quick_settings_data_on_label">Data On</string>
-    <string name="quick_settings_data_off_label">Data Off</string>
-    <string name="quick_settings_navbar_hide_on_label">NavBar Hide On</string>
-    <string name="quick_settings_navbar_hide_off_label">NavBar Hide Off</string>
-    <string name="quick_settings_quiet_hours_on_label">QuietHours On</string>
-    <string name="quick_settings_quiet_hours_off_label">QuietHours Off</string>
-    <string name="quick_settings_sound_on">Sound on</string>
-    <string name="quick_settings_statusbar_on_label">StatusBar On</string>
-    <string name="quick_settings_statusbar_off_label">StatusBar Off</string>
-    <string name="quick_settings_swaggersuntoast">\#SwaggerSunday</string>
-    <string name="quick_settings_screenshot">Screenshot</string>
-    <string name="quick_settings_music_play">Play</string>
-    <string name="quick_settings_music_pause">Pause</string>
-    <string name="quick_settings_pie_on_label">Pie On</string>
-    <string name="quick_settings_pie_off_label">Pie Off</string>
-    <string name="memory">RAM</string>
-    <string name="service_background_processes">%1$s free</string>
-    <string name="service_foreground_processes">%1$s used</string>
-    <string name="service_process_name">%1$s</string>
-    <string name="service_client_name">%1$s</string>
-    <string name="service_started_by_app">Started by app.</string>
-    <string name="running_processes_item_description_s_s">%1$d process and %2$d service</string>
-    <string name="running_processes_item_description_s_p">%1$d process and %2$d services</string>
-    <string name="running_processes_item_description_p_s">%1$d processes and %2$d service</string>
-    <string name="running_processes_item_description_p_p">%1$d processes and %2$d services</string>
-    <string name="running_process_item_user_label">User: %1$s</string>
-    <string name="weatherpanel_slash">/</string>
-    <string name="pie_date_format">ccc, dd MMM yyyy</string>
-    <string name="pie_hour_format_12">hh:mm</string>
-    <string name="pie_hour_format_24">HH:mm</string>
-    <string name="pie_am_pm">a</string>
-    <string name="toggle_USER">Current user</string>
-    <string name="toggle_BRIGHTNESS">Brightness</string>
-    <string name="toggle_SETTINGS">Settings</string>
-    <string name="toggle_WIFI">WiFi</string>
-    <string name="toggle_SIGNAL">Signal</string>
-    <string name="toggle_ROTATE">Auto-rotate</string>
-    <string name="toggle_CLOCK">Clock</string>
-    <string name="toggle_GPS">GPS</string>
-    <string name="toggle_IME">IME</string>
-    <string name="toggle_BATTERY">Battery</string>
-    <string name="toggle_AIRPLANE_MODE">Airplane mode</string>
-    <string name="toggle_BLUETOOTH">Bluetooth</string>
-    <string name="toggle_SWAGGER">Swagger</string>
-    <string name="toggle_VIBRATE">Vibrate</string>
-    <string name="toggle_SILENT">Silent</string>
-    <string name="toggle_FCHARGE">Fast charge</string>
-    <string name="toggle_SYNC">Sync</string>
-    <string name="toggle_NFC">NFC</string>
-    <string name="toggle_TORCH">Torch</string>
-    <string name="toggle_WIFITETHER">WiFi tether</string>
-    <string name="toggle_USBTETHER">USB tether</string>
-    <string name="toggle_2G">2G</string>
-    <string name="toggle_LTE">LTE</string>
-    <string name="toggle_FAVCONTACT">Favorite contact</string>
-    <string name="toggle_SOUNDSTATE">Sound state</string>
-    <string name="toggle_NAVBARHIDE">Navbar hide</string>
-    <string name="toggle_QUICKRECORD">Quick record</string>
-    <string name="toggle_QUIETHOURS">Quiet hours</string>
-    <string name="toggle_SLEEP">Sleep</string>
-    <string name="toggle_STATUSBAR">Statusbar</string>
-    <string name="toggle_SCREENSHOT">Screenshot</string>
-    <string name="toggle_REBOOT">Reboot</string>
-    <string name="toggle_CUSTOM">Custom</string>
-    <string name="toggle_STAYAWAKE">Stay awake</string>
-    <string name="toggle_WIRELESSADB">Wireless ADB</string>
-    <string name="toggle_MUSIC">Music</string>
-    <string name="toggle_PIE">Pie</string>
+If you re-enable data, you may be charged by the operator."-->
+  <string name="data_usage_disabled_dialog">"Vous avez atteint le plafond de consommation de données spécifié.
+
+Si vous utilisez des données supplémentaires, celles-ci pourront être facturées par l'opérateur."</string>
+  <!--Original value: Re-enable data-->
+  <string name="data_usage_disabled_dialog_enable">Réactiver connexion données</string>
+  <!--Original value: No Internet connection-->
+  <string name="status_bar_settings_signal_meter_disconnected">Aucune connexion Internet</string>
+  <!--Original value: Wi-Fi connected-->
+  <string name="status_bar_settings_signal_meter_wifi_nossid">Connecté au Wi-Fi</string>
+  <!--Original value: Searching for GPS-->
+  <string name="gps_notification_searching_text">Recherche de GPS...</string>
+  <!--Original value: Location set by GPS-->
+  <string name="gps_notification_found_text">Position définie par GPS</string>
+  <!--Original value: Create notification halo.-->
+  <string name="accessibility_halo">Créer une notification halo.</string>
+  <!--Original value: Clear all notifications.-->
+  <string name="accessibility_clear_all">Supprimer toutes les notifications</string>
+  <!--Original value: App info-->
+  <string name="status_bar_notification_inspect_item_title">"Informations sur l'application"</string>
+  <!--Original value: Close-->
+  <string name="close_universe">Fermer</string>
+  <!--Original value: Notifications off-->
+  <string name="notifications_off_title">Notifications désactivées</string>
+  <!--Original value: Tap here to turn notifications back on.-->
+  <string name="notifications_off_text">Appuyez ici pour réactiver les notifications.</string>
+  <!--Original value: Screen will rotate automatically.-->
+  <string name="accessibility_rotation_lock_off">"L'écran pivote automatiquement."</string>
+  <!--Original value: Screen is locked in landscape orientation.-->
+  <string name="accessibility_rotation_lock_on_landscape">"L'écran est verrouillé en mode paysage."</string>
+  <!--Original value: Screen is locked in portrait orientation.-->
+  <string name="accessibility_rotation_lock_on_portrait">"L'écran est verrouillé en mode portrait."</string>
+  <!--Original value: BeanFlinger-->
+  <string name="jelly_bean_dream_name">BeanFlinger</string>
+  <!--Original value: Daydream-->
+  <string name="start_dreams">Écran de veille interactif</string>
+  <!--Original value: Ethernet-->
+  <string name="ethernet_label">Ethernet</string>
+  <!--Original value: Airplane mode-->
+  <string name="quick_settings_airplane_mode_label">Mode avion</string>
+  <!--Original value: Charging, %d%%-->
+  <string name="quick_settings_battery_charging_label">En charge, %d%%</string>
+  <!--Original value: Charged-->
+  <string name="quick_settings_battery_charged_label">Chargée</string>
+  <!--Original value: Bluetooth-->
+  <string name="quick_settings_bluetooth_label">Bluetooth</string>
+  <!--Original value: Bluetooth (%d Devices)-->
+  <string name="quick_settings_bluetooth_multiple_devices_label">Bluetooth (%d appareils)</string>
+  <!--Original value: Bluetooth Off-->
+  <string name="quick_settings_bluetooth_off_label">Bluetooth désactivé</string>
+  <!--Original value: Brightness-->
+  <string name="quick_settings_brightness_label">Luminosité</string>
+  <!--Original value: Auto Rotate-->
+  <string name="quick_settings_rotation_unlocked_label">Rotation auto</string>
+  <!--Original value: Rotation Locked-->
+  <string name="quick_settings_rotation_locked_label">Rotation bloquée</string>
+  <!--Original value: Input Method-->
+  <string name="quick_settings_ime_label">Méthode de saisie</string>
+  <!--Original value: Location in use-->
+  <string name="quick_settings_location_label">Utilisation des données de localisation</string>
+  <!--Original value: Media device-->
+  <string name="quick_settings_media_device_label">Appareil multimédia</string>
+  <!--Original value: RSSI-->
+  <string name="quick_settings_rssi_label">RSSI</string>
+  <!--Original value: Emergency Calls Only-->
+  <string name="quick_settings_rssi_emergency_only">"Appels d'urgence uniquement"</string>
+  <!--Original value: Settings-->
+  <string name="quick_settings_settings_label">Paramètres</string>
+  <!--Original value: Time-->
+  <string name="quick_settings_time_label">Heure</string>
+  <!--Original value: Me-->
+  <string name="quick_settings_user_label">Moi</string>
+  <!--Original value: Wi-Fi-->
+  <string name="quick_settings_wifi_label">Wi-Fi</string>
+  <!--Original value: Not Connected-->
+  <string name="quick_settings_wifi_not_connected">Non connecté</string>
+  <!--Original value: No Network-->
+  <string name="quick_settings_wifi_no_network">Aucun réseau</string>
+  <!--Original value: Wi-Fi Off-->
+  <string name="quick_settings_wifi_off_label">Wi-Fi désactivé</string>
+  <!--Original value: Wi-Fi Display-->
+  <string name="quick_settings_wifi_display_label">Wi-Fi Display</string>
+  <!--Original value: Wireless Display-->
+  <string name="quick_settings_wifi_display_no_connection_label">Affichage sans fil</string>
+  <!--Original value: Brightness-->
+  <string name="quick_settings_brightness_dialog_title">Luminosité</string>
+  <!--Original value: AUTO-->
+  <string name="quick_settings_brightness_dialog_auto_brightness_label">AUTO</string>
+  <!--Original value: Swagger-->
+  <string name="quick_settings_swagger">Swagger</string>
+  <!--Original value: Swagger Sunday-->
+  <string name="quick_settings_swaggersun">Swagger Sunday</string>
+  <!--Original value: FBGT-->
+  <string name="quick_settings_fbgt">FBGT</string>
+  <!--Original value: Recording...-->
+  <string name="quick_settings_recording">Enregistrement ...</string>
+  <!--Original value: Recording Captured-->
+  <string name="quick_settings_recordingcap">Enregistrement Capturé</string>
+  <!--Original value: Playing...-->
+  <string name="quick_settings_playing">Jouer ...</string>
+  <!--Original value: Quick Record-->
+  <string name="quick_settings_quickrecord">Enregistrement rapide</string>
+  <!--Original value: Long Press To Record-->
+  <string name="quick_settings_nofile">Appui long pour enregistrer</string>
+  <!--Original value: Sleep-->
+  <string name="quick_settings_sleep">Veille</string>
+  <!--Original value: Reboot-->
+  <string name="quick_settings_reboot">Redémarrer</string>
+  <!--Original value: Your device is rebooting-->
+  <string name="quick_settings_reboot_message">Votre appareil redémarre</string>
+  <!--Original value: Stay Awake On-->
+  <string name="quick_settings_stayawake_on">Rester éveillés activé</string>
+  <!--Original value: Stay Awake Off-->
+  <string name="quick_settings_stayawake_off">Rester éveillés désactivé</string>
+  <!--Original value: %s-->
+  <string name="quick_settings_adb_on">%s</string>
+  <!--Original value: Wireless ADB Off-->
+  <string name="quick_settings_adb_off">ADB Wireless activé</string>
+  <!--Original value: Notifications appear here-->
+  <string name="status_bar_help_title">"Les notifications s’affichent ici"</string>
+  <!--Original value: "Access them anytime by swiping down.
+Swipe down again for system controls."-->
+  <string name="status_bar_help_text">"Accédez-y à tout moment en faisant glisser le doigt vers le bas.
+Répétez l'opération pour accéder aux commandes du système."</string>
+  <!--Original value: Dismiss notification-->
+  <string name="halo_dismiss">Rejeter notification</string>
+  <!--Original value: Hide-->
+  <string name="halo_hide">Masquer</string>
+  <!--Original value: Dismiss all notifications-->
+  <string name="halo_clear_all">Rejeter toutes les notifications</string>
+  <!--Original value: Hide & silence until woken-->
+  <string name="halo_silence">"Masquer &amp; silence jusqu'à réveil"</string>
+  <!--Original value: This is HALO-->
+  <string name="halo_tutorial1">Ceci est HALO</string>
+  <!--Original value: Move me: 2x-tap & drag-->
+  <string name="halo_tutorial2">Déplacer-moi : 2x-taper et glisser</string>
+  <!--Original value: Browse tasks: Horizontal drag-->
+  <string name="halo_tutorial3">Parcourir les tâches : Glisser horizontale</string>
+  <!--Original value: CHARGING-->
+  <string name="halo_battery_plugged">EN CHARGE</string>
+  <!--Original value: REMAINING-->
+  <string name="halo_battery_unplugged">RESTANT</string>
+  <!--Original value: FULL-->
+  <string name="halo_battery_full">PLEINE</string>
+  <!--Original value: AEROPLANE-->
+  <string name="halo_aeroplane1">AVION</string>
+  <!--Original value: MODE-->
+  <string name="halo_aeroplane2">MODE</string>
+  <!--Original value: WI-FI ON-->
+  <string name="halo_wifi_on">WI-FI ON</string>
+  <!--Original value: WI-FI OFF-->
+  <string name="halo_wifi_off">WI-FI OFF</string>
+  <!--Original value: FULL-->
+  <string name="halo_signal_bars_4">PLEINE</string>
+  <!--Original value: THREE BARS-->
+  <string name="halo_signal_bars_3">TROIS BARRES</string>
+  <!--Original value: TWO BARS-->
+  <string name="halo_signal_bars_2">DEUX BARRES</string>
+  <!--Original value: ONE BAR-->
+  <string name="halo_signal_bars_1">UNE BARRE</string>
+  <!--Original value: NO BARS-->
+  <string name="halo_signal_bars_none">AUCUNE BARRE</string>
+  <!--Original value: Close-->
+  <string name="close">Fermer</string>
+  <!--Original value: Applications-->
+  <string name="app_window">Applications</string>
+  <!--Original value: Toggles-->
+  <string name="toggles">Paramètres rapides</string>
+  <!--Original value: Ribbon-->
+  <string name="ribbon">Barre latérales</string>
+  <!--Original value: AOKP Actions-->
+  <string name="shortcut_label">AOKP Actions</string>
+  <!--Original value: Home-->
+  <string name="action_home">Accueil</string>
+  <!--Original value: Back-->
+  <string name="action_back">Retour</string>
+  <!--Original value: Recents-->
+  <string name="action_recents">Récents</string>
+  <!--Original value: Screenshot-->
+  <string name="action_screenshot">"Capture d'écran"</string>
+  <!--Original value: Menu-->
+  <string name="action_menu">Menu</string>
+  <!--Original value: Open IME Switcher-->
+  <string name="action_ime">Ouvrir le sélecteur de saisie</string>
+  <!--Original value: Kill task-->
+  <string name="action_kill">Fermer tâche</string>
+  <!--Original value: Power-->
+  <string name="action_power">Alimentation</string>
+  <!--Original value: Search-->
+  <string name="action_search">Recherche</string>
+  <!--Original value: Notifications-->
+  <string name="action_notifications">Notifications</string>
+  <!--Original value: Last App-->
+  <string name="action_lastapp">Dernière App</string>
+  <!--Original value: Empty-->
+  <string name="action_none">Vide</string>
+  <!--Original value: Widgets-->
+  <string name="widgets">Widgets</string>
+  <!--Original value: QuietHours - Toggle-->
+  <string name="toggle_quiethours">HeuresSilen - Tuile</string>
+  <!--Original value: NavBar - Toggle-->
+  <string name="toggle_navbar">BarreNavi - Tuile</string>
+  <!--Original value: StatusBar - Toggle-->
+  <string name="toggle_statusbar">StatusBar - Tuile</string>
+  <!--Original value: Widgets - Toggle-->
+  <string name="toggle_widgets">Widgets - Tuile</string>
+  <!--Original value: Ring/Vib - Toggle-->
+  <string name="toggle_ring_vib">Ring/Vib - Tuile</string>
+  <!--Original value: Ring/Silent - Toggle-->
+  <string name="toggle_ring_silent">Ring/Silent - Tuile</string>
+  <!--Original value: Ring/Vib/Silent - Toggle-->
+  <string name="toggle_ring_vib_silent">Ring/Vib/Silent - Tuile</string>
+  <!--Original value: App Killed-->
+  <string name="app_killed_message">App Fermée</string>
+  <!--Original value: Kill all-->
+  <string name="recents_kill_all_button_text">Fermer tout</string>
+  <!--Original value: Google Now-->
+  <string name="recents_google_now_button_text">Google Now</string>
+  <!--Original value: Screenshot in %1$d seconds-->
+  <string name="screenshot_toast">"Capture d'écran en %1$d secondes"</string>
+  <!--Original value: Volume-->
+  <string name="quick_settings_volume">Volume</string>
+  <!--Original value: Vibrate On-->
+  <string name="quick_settings_vibrate_on_label">Vibration On</string>
+  <!--Original value: Vibrate Off-->
+  <string name="quick_settings_vibrate_off_label">Vibration Off</string>
+  <!--Original value: Silent On-->
+  <string name="quick_settings_silent_on_label">Silence On</string>
+  <!--Original value: Silent Off-->
+  <string name="quick_settings_silent_off_label">Silence Off</string>
+  <!--Original value: F-Charge On-->
+  <string name="quick_settings_fcharge_on_label">F-Charge On</string>
+  <!--Original value: F-Charge Off-->
+  <string name="quick_settings_fcharge_off_label">F-Charge Off</string>
+  <!--Original value: Torch On-->
+  <string name="quick_settings_torch_on_label">Lampe On</string>
+  <!--Original value: Torch Off-->
+  <string name="quick_settings_torch_off_label">Lampe Off</string>
+  <!--Original value: NFC On-->
+  <string name="quick_settings_nfc_on_label">NFC On</string>
+  <!--Original value: NFC Off-->
+  <string name="quick_settings_nfc_off_label">NFC Off</string>
+  <!--Original value: Wifi Tether On-->
+  <string name="quick_settings_wifi_tether_on_label">Wifi Tether On</string>
+  <!--Original value: Wifi Tether Off-->
+  <string name="quick_settings_wifi_tether_off_label">Wifi Tether Off</string>
+  <!--Original value: BT Tether On-->
+  <string name="quick_settings_bt_tether_on_label">BT Tether On</string>
+  <!--Original value: BT Tether Off-->
+  <string name="quick_settings_bt_tether_off_label">BT Tether Off</string>
+  <!--Original value: USB Tether On-->
+  <string name="quick_settings_usb_tether_on_label">USB Tether On</string>
+  <!--Original value: USB Tether Off-->
+  <string name="quick_settings_usb_tether_off_label">USB Tether Off</string>
+  <!--Original value: Sync On-->
+  <string name="quick_settings_sync_on_label">Sync On</string>
+  <!--Original value: Sync Off-->
+  <string name="quick_settings_sync_off_label">Sync Off</string>
+  <!--Original value: 2g On-->
+  <string name="quick_settings_twog_on_label">2g On</string>
+  <!--Original value: 2g Off-->
+  <string name="quick_settings_twog_off_label">2g Off</string>
+  <!--Original value: LTE On-->
+  <string name="quick_settings_lte_on_label">LTE On</string>
+  <!--Original value: LTE Off-->
+  <string name="quick_settings_lte_off_label">LTE Off</string>
+  <!--Original value: GPS On-->
+  <string name="quick_settings_gps_on_label">GPS On</string>
+  <!--Original value: GPS Off-->
+  <string name="quick_settings_gps_off_label">GPS Off</string>
+  <!--Original value: Data On-->
+  <string name="quick_settings_data_on_label">Donnée On</string>
+  <!--Original value: Data Off-->
+  <string name="quick_settings_data_off_label">Donnée Off</string>
+  <!--Original value: NavBar Hide On-->
+  <string name="quick_settings_navbar_hide_on_label">NavBar Hide On</string>
+  <!--Original value: NavBar Hide Off-->
+  <string name="quick_settings_navbar_hide_off_label">NavBar Hide Off</string>
+  <!--Original value: QuietHours On-->
+  <string name="quick_settings_quiet_hours_on_label">QuietHours On</string>
+  <!--Original value: QuietHours Off-->
+  <string name="quick_settings_quiet_hours_off_label">QuietHours Off</string>
+  <!--Original value: Sound on-->
+  <string name="quick_settings_sound_on">Son on</string>
+  <!--Original value: StatusBar On-->
+  <string name="quick_settings_statusbar_on_label">StatusBar On</string>
+  <!--Original value: StatusBar Off-->
+  <string name="quick_settings_statusbar_off_label">StatusBar Off</string>
+  <!--Original value: \#SwaggerSunday-->
+  <string name="quick_settings_swaggersuntoast">\#SwaggerSunday</string>
+  <!--Original value: Screenshot-->
+  <string name="quick_settings_screenshot">"Capture d'écran"</string>
+  <!--Original value: Play-->
+  <string name="quick_settings_music_play">Jouer</string>
+  <!--Original value: Pause-->
+  <string name="quick_settings_music_pause">Pause</string>
+  <!--Original value: Pie On-->
+  <string name="quick_settings_pie_on_label">Contrôle flottant activé</string>
+  <!--Original value: Pie Off-->
+  <string name="quick_settings_pie_off_label">Contrôle flottant désactivé</string>
+  <!--Original value: RAM-->
+  <string name="memory">RAM</string>
+  <!--Original value: %1$s free-->
+  <string name="service_background_processes">%1$s libre</string>
+  <!--Original value: %1$s used-->
+  <string name="service_foreground_processes">%1$s utilisé</string>
+  <!--Original value: %1$s-->
+  <string name="service_process_name">%1$s</string>
+  <!--Original value: %1$s-->
+  <string name="service_client_name">%1$s</string>
+  <!--Original value: Started by app.-->
+  <string name="service_started_by_app">Lancé par app.</string>
+  <!--Original value: %1$d process and %2$d service-->
+  <string name="running_processes_item_description_s_s">%1$d processus et %2$d service</string>
+  <!--Original value: %1$d process and %2$d services-->
+  <string name="running_processes_item_description_s_p">%1$d processus et %2$d services</string>
+  <!--Original value: %1$d processes and %2$d service-->
+  <string name="running_processes_item_description_p_s">%1$d processus et %2$d service</string>
+  <!--Original value: %1$d processes and %2$d services-->
+  <string name="running_processes_item_description_p_p">%1$d processus et %2$d services</string>
+  <!--Original value: User: %1$s-->
+  <string name="running_process_item_user_label">Utilisateur : %1$s</string>
+  <!--Original value: /-->
+  <string name="weatherpanel_slash">/</string>
+  <!--Original value: ccc, dd MMM yyyy-->
+  <string name="pie_date_format">ccc, dd MMM yyyy</string>
+  <!--Original value: hh:mm-->
+  <string name="pie_hour_format_12">hh:mm</string>
+  <!--Original value: HH:mm-->
+  <string name="pie_hour_format_24">HH:mm</string>
+  <!--Original value: a-->
+  <string name="pie_am_pm">a</string>
+  <!--Original value: Lock-->
+  <string name="status_bar_recent_lock_item_title">Verrouiller</string>
+  <!--Original value: Unlock-->
+  <string name="status_bar_recent_unlock_item_title">Déverrouiller</string>
+  <!--Original value: Current user-->
+  <string name="toggle_USER">Utilisateur actuel</string>
+  <!--Original value: Brightness-->
+  <string name="toggle_BRIGHTNESS">Luminosité</string>
+  <!--Original value: Settings-->
+  <string name="toggle_SETTINGS">Réglages</string>
+  <!--Original value: WiFi-->
+  <string name="toggle_WIFI">WiFi</string>
+  <!--Original value: Signal-->
+  <string name="toggle_SIGNAL">Signal</string>
+  <!--Original value: Auto-rotate-->
+  <string name="toggle_ROTATE">Auto-rotation</string>
+  <!--Original value: Clock-->
+  <string name="toggle_CLOCK">Horloge</string>
+  <!--Original value: GPS-->
+  <string name="toggle_GPS">GPS</string>
+  <!--Original value: IME-->
+  <string name="toggle_IME">IME</string>
+  <!--Original value: Battery-->
+  <string name="toggle_BATTERY">Batterie</string>
+  <!--Original value: Airplane mode-->
+  <string name="toggle_AIRPLANE_MODE">Mode avion</string>
+  <!--Original value: Bluetooth-->
+  <string name="toggle_BLUETOOTH">Bluetooth</string>
+  <!--Original value: Swagger-->
+  <string name="toggle_SWAGGER">Swagger</string>
+  <!--Original value: Vibrate-->
+  <string name="toggle_VIBRATE">Vibration</string>
+  <!--Original value: Silent-->
+  <string name="toggle_SILENT">Silence</string>
+  <!--Original value: Fast charge-->
+  <string name="toggle_FCHARGE">Charge rapide</string>
+  <!--Original value: Sync-->
+  <string name="toggle_SYNC">Sync</string>
+  <!--Original value: NFC-->
+  <string name="toggle_NFC">NFC</string>
+  <!--Original value: Torch-->
+  <string name="toggle_TORCH">Lampe</string>
+  <!--Original value: WiFi tether-->
+  <string name="toggle_WIFITETHER">WiFi tether</string>
+  <!--Original value: USB tether-->
+  <string name="toggle_USBTETHER">USB tether</string>
+  <!--Original value: 2G-->
+  <string name="toggle_2G">2G</string>
+  <!--Original value: LTE-->
+  <string name="toggle_LTE">LTE</string>
+  <!--Original value: Favorite contact-->
+  <string name="toggle_FAVCONTACT">Contact favori</string>
+  <!--Original value: Sound state-->
+  <string name="toggle_SOUNDSTATE">État du son</string>
+  <!--Original value: Navbar hide-->
+  <string name="toggle_NAVBARHIDE">Masquer Navbar</string>
+  <!--Original value: Quick record-->
+  <string name="toggle_QUICKRECORD">Enregistrement rapide</string>
+  <!--Original value: Quiet hours-->
+  <string name="toggle_QUIETHOURS">Heures silencieuses</string>
+  <!--Original value: Sleep-->
+  <string name="toggle_SLEEP">Veille</string>
+  <!--Original value: Statusbar-->
+  <string name="toggle_STATUSBAR">"Barre d'état"</string>
+  <!--Original value: Screenshot-->
+  <string name="toggle_SCREENSHOT">"Capture d'écran"</string>
+  <!--Original value: Reboot-->
+  <string name="toggle_REBOOT">Redémarrer</string>
+  <!--Original value: Custom-->
+  <string name="toggle_CUSTOM">Personnalisé</string>
+  <!--Original value: Stay awake-->
+  <string name="toggle_STAYAWAKE">Rester éveillé</string>
+  <!--Original value: Wireless ADB-->
+  <string name="toggle_WIRELESSADB">ADB Wireless</string>
+  <!--Original value: Music-->
+  <string name="toggle_MUSIC">Musique</string>
+  <!--Original value: Pie-->
+  <string name="toggle_PIE">Contrôle flottant</string>
+  <!--Original value: Volume-->
+  <string name="toggle_VOLUME">Volume</string>
 </resources>

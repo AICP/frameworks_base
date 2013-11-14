@@ -5809,6 +5809,15 @@ public final class Settings {
          */
         public static final String OMNI_DOZE_ON_CHARGE_NOW = "doze_on_charge_now";
 
+        /**
+         * Use EdgeGesture Service for system gestures in PhoneWindowManager
+         * @hide
+         */
+        public static final String USE_EDGE_SERVICE_FOR_GESTURES = "edge_service_for_gestures";
+
+        private static final Validator USE_EDGE_SERVICE_FOR_GESTURES_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6037,6 +6046,7 @@ public final class Settings {
             TRANSPARENT_POWER_DIALOG_DIM,
             VOLUME_BUTTON_MUSIC_CONTROL,
             OMNI_DOZE_ON_CHARGE,
+            USE_EDGE_SERVICE_FOR_GESTURES,
             // AICP Settings end
         };
 
@@ -6304,6 +6314,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(BUTTON_BACKLIGHT_ON_TOUCH_ONLY);
             PRIVATE_SETTINGS.add(VOLUME_BUTTON_MUSIC_CONTROL);
             PRIVATE_SETTINGS.add(OMNI_DOZE_ON_CHARGE);
+            PRIVATE_SETTINGS.add(USE_EDGE_SERVICE_FOR_GESTURES);
             // AICP Settings end
         }
 
@@ -6572,6 +6583,7 @@ public final class Settings {
             VALIDATORS.put(TRANSPARENT_POWER_DIALOG_DIM,TRANSPARENT_POWER_DIALOG_DIM_VALIDATOR);
             VALIDATORS.put(VOLUME_BUTTON_MUSIC_CONTROL,VOLUME_BUTTON_MUSIC_CONTROL_VALIDATOR);
             VALIDATORS.put(OMNI_DOZE_ON_CHARGE,OMNI_DOZE_ON_CHARGE_VALIDATOR);
+            VALIDATORS.put(USE_EDGE_SERVICE_FOR_GESTURES,USE_EDGE_SERVICE_FOR_GESTURES_VALIDATOR);
             // AICP Settings end
         }
 

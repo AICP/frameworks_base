@@ -51,6 +51,12 @@
             android:layout_width="wrap_content"
             android:visibility="gone" />
         <TextView
+            android:id="@+id/battery_text_big"
+            style="@style/Battery_Big"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:visibility="gone" />
+        <TextView
             android:id="@+id/battery_text_center"
             style="@style/Battery_Center"
             android:layout_height="wrap_content"

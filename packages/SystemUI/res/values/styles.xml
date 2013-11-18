@@ -193,6 +193,18 @@
       <item name="android:shadowRadius">2.5</item>
     </style>
 
+    <style name="Battery_Big">
+      <item name="android:layout_marginRight">14dp</item>
+      <item name="android:paddingBottom">1dp</item>
+      <item name="android:layout_gravity">left|bottom</item>
+      <item name="android:textSize">12dp</item>
+      <item name="android:textStyle">normal</item>
+      <item name="android:shadowColor">#FF000000</item>
+      <item name="android:shadowDx">0</item>
+      <item name="android:shadowDy">0</item>
+      <item name="android:shadowRadius">2.5</item>
+    </style>
+
     <style name="TextAppearance.QuickSettings.Clock" parent="@style/TextAppearance.QuickSettings.TileView">
         <item name="android:textSize">20dp</item>
         <item name="android:textColor">@android:color/holo_blue_light</item>

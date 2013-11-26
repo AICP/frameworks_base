@@ -767,6 +767,11 @@ public final class Settings {
     public static final String CALL_METHOD_GET_GLOBAL = "GET_global";
 
     /**
+     * @hide - Private call() method on SettingsProvider to read from 'aokp' table.
+     */
+    public static final String CALL_METHOD_GET_AOKP = "GET_aokp";
+
+    /**
      * @hide - User handle argument extra to the fast-path call()-based requests
      */
     public static final String CALL_METHOD_USER_KEY = "_user";
@@ -779,6 +784,9 @@ public final class Settings {
 
     /** @hide - Private call() method to write to 'global' table */
     public static final String CALL_METHOD_PUT_GLOBAL= "PUT_global";
+
+    /** @hide - Private call() method to write to 'aokp' table */
+    public static final String CALL_METHOD_PUT_AOKP = "PUT_aokp";
 
     /**
      * Activity Extra: Limit available options in launched activity based on the given authority.
@@ -6300,6 +6308,332 @@ public final class Settings {
         public static boolean putFloat(ContentResolver cr, String name, float value) {
             return putString(cr, name, Float.toString(value));
         }
+    }
+
+    /**
+     * AOKP settings, containing AOKP specific preferences.  This
+     * table holds simple name/value pairs.  There are convenience
+     * functions for accessing individual settings entries.
+     */
+    public static final class AOKP extends NameValueTable {
+        public static final String SYS_PROP_SETTING_VERSION = "sys.settings_system_version";
+
+        /**
+         * The content:// style URL for this table
+         */
+        public static final Uri CONTENT_URI =
+            Uri.parse("content://" + AUTHORITY + "/aokp");
+
+        private static final NameValueCache sNameValueCache = new NameValueCache(
+                SYS_PROP_SETTING_VERSION,
+                CONTENT_URI,
+                CALL_METHOD_GET_AOKP,
+                CALL_METHOD_PUT_AOKP);
+
+        /**
+         * Look up a name in the database.
+         * @param resolver to access the database with
+         * @param name to look up in the table
+         * @return the corresponding value, or null if not present
+         */
+        public static String getString(ContentResolver resolver, String name) {
+            return getStringForUser(resolver, name, UserHandle.myUserId());
+        }
+
+        /** @hide */
+        public static String getStringForUser(ContentResolver resolver, String name,
+                int userHandle) {
+            return sNameValueCache.getStringForUser(resolver, name, userHandle);
+        }
+
+        /**
+         * Store a name/value pair into the database.
+         * @param resolver to access the database with
+         * @param name to store
+         * @param value to associate with the name
+         * @return true if the value was set, false on database errors
+         */
+        public static boolean putString(ContentResolver resolver, String name, String value) {
+            return putStringForUser(resolver, name, value, UserHandle.myUserId());
+        }
+
+        /** @hide */
+        public static boolean putStringForUser(ContentResolver resolver, String name, String value,
+                int userHandle) {
+            return sNameValueCache.putStringForUser(resolver, name, value, userHandle);
+        }
+
+        /**
+         * Construct the content URI for a particular name/value pair,
+         * useful for monitoring changes with a ContentObserver.
+         * @param name to look up in the table
+         * @return the corresponding content URI, or null if not present
+         */
+        public static Uri getUriFor(String name) {
+            return getUriFor(CONTENT_URI, name);
+        }
+
+        /**
+         * Convenience function for retrieving a single system settings value
+         * as an integer.  Note that internally setting values are always
+         * stored as strings; this function converts the string to an integer
+         * for you.  The default value will be returned if the setting is
+         * not defined or not an integer.
+         *
+         * @param cr The ContentResolver to access.
+         * @param name The name of the setting to retrieve.
+         * @param def Value to return if the setting is not defined.
+         *
+         * @return The setting's current value, or 'def' if it is not defined
+         * or not a valid integer.
+         */
+        public static int getInt(ContentResolver cr, String name, int def) {
+            return getIntForUser(cr, name, def, UserHandle.myUserId());
+        }
+
+        /** @hide */
+        public static int getIntForUser(ContentResolver cr, String name, int def, int userHandle) {
+            String v = getStringForUser(cr, name, userHandle);
+            try {
+                return v != null ? Integer.parseInt(v) : def;
+            } catch (NumberFormatException e) {
+                return def;
+            }
+        }
+
+        /**
+         * Convenience function for retrieving a single system settings value
+         * as an integer.  Note that internally setting values are always
+         * stored as strings; this function converts the string to an integer
+         * for you.
+         * <p>
+         * This version does not take a default value.  If the setting has not
+         * been set, or the string value is not a number,
+         * it throws {@link SettingNotFoundException}.
+         *
+         * @param cr The ContentResolver to access.
+         * @param name The name of the setting to retrieve.
+         *
+         * @throws SettingNotFoundException Thrown if a setting by the given
+         * name can't be found or the setting value is not an integer.
+         *
+         * @return The setting's current value.
+         */
+        public static int getInt(ContentResolver cr, String name)
+                throws SettingNotFoundException {
+            return getIntForUser(cr, name, UserHandle.myUserId());
+        }
+
+        /** @hide */
+        public static int getIntForUser(ContentResolver cr, String name, int userHandle)
+                throws SettingNotFoundException {
+            String v = getStringForUser(cr, name, userHandle);
+            try {
+                return Integer.parseInt(v);
+            } catch (NumberFormatException e) {
+                throw new SettingNotFoundException(name);
+            }
+        }
+
+        /**
+         * Convenience function for updating a single settings value as an
+         * integer. This will either create a new entry in the table if the
+         * given name does not exist, or modify the value of the existing row
+         * with that name.  Note that internally setting values are always
+         * stored as strings, so this function converts the given value to a
+         * string before storing it.
+         *
+         * @param cr The ContentResolver to access.
+         * @param name The name of the setting to modify.
+         * @param value The new value for the setting.
+         * @return true if the value was set, false on database errors
+         */
+        public static boolean putInt(ContentResolver cr, String name, int value) {
+            return putIntForUser(cr, name, value, UserHandle.myUserId());
+        }
+
+        /** @hide */
+        public static boolean putIntForUser(ContentResolver cr, String name, int value,
+                int userHandle) {
+            return putStringForUser(cr, name, Integer.toString(value), userHandle);
+        }
+
+        /**
+         * Convenience function for retrieving a single system settings value
+         * as a {@code long}.  Note that internally setting values are always
+         * stored as strings; this function converts the string to a {@code long}
+         * for you.  The default value will be returned if the setting is
+         * not defined or not a {@code long}.
+         *
+         * @param cr The ContentResolver to access.
+         * @param name The name of the setting to retrieve.
+         * @param def Value to return if the setting is not defined.
+         *
+         * @return The setting's current value, or 'def' if it is not defined
+         * or not a valid {@code long}.
+         */
+        public static long getLong(ContentResolver cr, String name, long def) {
+            return getLongForUser(cr, name, def, UserHandle.myUserId());
+        }
+
+        /** @hide */
+        public static long getLongForUser(ContentResolver cr, String name, long def,
+                int userHandle) {
+            String valString = getStringForUser(cr, name, userHandle);
+            long value;
+            try {
+                value = valString != null ? Long.parseLong(valString) : def;
+            } catch (NumberFormatException e) {
+                value = def;
+            }
+            return value;
+        }
+
+        /**
+         * Convenience function for retrieving a single system settings value
+         * as a {@code long}.  Note that internally setting values are always
+         * stored as strings; this function converts the string to a {@code long}
+         * for you.
+         * <p>
+         * This version does not take a default value.  If the setting has not
+         * been set, or the string value is not a number,
+         * it throws {@link SettingNotFoundException}.
+         *
+         * @param cr The ContentResolver to access.
+         * @param name The name of the setting to retrieve.
+         *
+         * @return The setting's current value.
+         * @throws SettingNotFoundException Thrown if a setting by the given
+         * name can't be found or the setting value is not an integer.
+         */
+        public static long getLong(ContentResolver cr, String name)
+                throws SettingNotFoundException {
+            return getLongForUser(cr, name, UserHandle.myUserId());
+        }
+
+        /** @hide */
+        public static long getLongForUser(ContentResolver cr, String name, int userHandle)
+                throws SettingNotFoundException {
+            String valString = getStringForUser(cr, name, userHandle);
+            try {
+                return Long.parseLong(valString);
+            } catch (NumberFormatException e) {
+                throw new SettingNotFoundException(name);
+            }
+        }
+
+        /**
+         * Convenience function for updating a single settings value as a long
+         * integer. This will either create a new entry in the table if the
+         * given name does not exist, or modify the value of the existing row
+         * with that name.  Note that internally setting values are always
+         * stored as strings, so this function converts the given value to a
+         * string before storing it.
+         *
+         * @param cr The ContentResolver to access.
+         * @param name The name of the setting to modify.
+         * @param value The new value for the setting.
+         * @return true if the value was set, false on database errors
+         */
+        public static boolean putLong(ContentResolver cr, String name, long value) {
+            return putLongForUser(cr, name, value, UserHandle.myUserId());
+        }
+
+        /** @hide */
+        public static boolean putLongForUser(ContentResolver cr, String name, long value,
+                int userHandle) {
+            return putStringForUser(cr, name, Long.toString(value), userHandle);
+        }
+
+        /**
+         * Convenience function for retrieving a single system settings value
+         * as a floating point number.  Note that internally setting values are
+         * always stored as strings; this function converts the string to an
+         * float for you. The default value will be returned if the setting
+         * is not defined or not a valid float.
+         *
+         * @param cr The ContentResolver to access.
+         * @param name The name of the setting to retrieve.
+         * @param def Value to return if the setting is not defined.
+         *
+         * @return The setting's current value, or 'def' if it is not defined
+         * or not a valid float.
+         */
+        public static float getFloat(ContentResolver cr, String name, float def) {
+            return getFloatForUser(cr, name, def, UserHandle.myUserId());
+        }
+
+        /** @hide */
+        public static float getFloatForUser(ContentResolver cr, String name, float def,
+                int userHandle) {
+            String v = getStringForUser(cr, name, userHandle);
+            try {
+                return v != null ? Float.parseFloat(v) : def;
+            } catch (NumberFormatException e) {
+                return def;
+            }
+        }
+
+        /**
+         * Convenience function for retrieving a single system settings value
+         * as a float.  Note that internally setting values are always
+         * stored as strings; this function converts the string to a float
+         * for you.
+         * <p>
+         * This version does not take a default value.  If the setting has not
+         * been set, or the string value is not a number,
+         * it throws {@link SettingNotFoundException}.
+         *
+         * @param cr The ContentResolver to access.
+         * @param name The name of the setting to retrieve.
+         *
+         * @throws SettingNotFoundException Thrown if a setting by the given
+         * name can't be found or the setting value is not a float.
+         *
+         * @return The setting's current value.
+         */
+        public static float getFloat(ContentResolver cr, String name)
+                throws SettingNotFoundException {
+            return getFloatForUser(cr, name, UserHandle.myUserId());
+        }
+
+        /** @hide */
+        public static float getFloatForUser(ContentResolver cr, String name, int userHandle)
+                throws SettingNotFoundException {
+            String v = getStringForUser(cr, name, userHandle);
+            if (v == null) {
+                throw new SettingNotFoundException(name);
+            }
+            try {
+                return Float.parseFloat(v);
+            } catch (NumberFormatException e) {
+                throw new SettingNotFoundException(name);
+            }
+        }
+
+        /**
+         * Convenience function for updating a single settings value as a
+         * floating point number. This will either create a new entry in the
+         * table if the given name does not exist, or modify the value of the
+         * existing row with that name.  Note that internally setting values
+         * are always stored as strings, so this function converts the given
+         * value to a string before storing it.
+         *
+         * @param cr The ContentResolver to access.
+         * @param name The name of the setting to modify.
+         * @param value The new value for the setting.
+         * @return true if the value was set, false on database errors
+         */
+        public static boolean putFloat(ContentResolver cr, String name, float value) {
+            return putFloatForUser(cr, name, value, UserHandle.myUserId());
+        }
+
+        /** @hide */
+        public static boolean putFloatForUser(ContentResolver cr, String name, float value,
+                int userHandle) {
+            return putStringForUser(cr, name, Float.toString(value), userHandle);
+        }
+
     }
 
     /**

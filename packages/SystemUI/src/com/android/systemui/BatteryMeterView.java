@@ -393,7 +393,7 @@ public class BatteryMeterView extends View implements DemoMode {
                         mBoltFrame.top + mBoltPoints[1] * mBoltFrame.height());
             }
             c.drawPath(mBoltPath, mBoltPaint);
-        } else if (level <= EMPTY) {
+        } else if (level <= EMPTY && mBatteryStyle == BATTERY_STYLE_NORMAL) {
             final float x = mWidth * 0.5f;
             final float y = (mHeight + mWarningTextHeight) * 0.48f;
             c.drawText(mWarningString, x, y, mWarningTextPaint);
@@ -507,8 +507,6 @@ public class BatteryMeterView extends View implements DemoMode {
                 }
                 lp = new LinearLayout.LayoutParams((int) width, (int) height);
                 lp.gravity = Gravity.TOP | Gravity.CENTER_HORIZONTAL;
-                lp.setMargins(0, res.getDimensionPixelSize(R.dimen.qs_tile_margin_above_icon),
-                    0, res.getDimensionPixelSize(R.dimen.qs_tile_margin_below_icon));
                 setLayoutParams(lp);
             }
             updateBattery();
@@ -562,7 +560,10 @@ public class BatteryMeterView extends View implements DemoMode {
             }
             mTextPaint.setColor(mBoltPaint.getColor());
         } else {
-            if (mPercentageColor == -2) {
+            if (tracker.level <= 14 && (mBatteryStyle == BATTERY_STYLE_PERCENT
+                    || mBatteryStyle == BATTERY_STYLE_ICON_PERCENT)) {
+                mTextPaint.setColor(Color.RED);
+            } else if (mPercentageColor == -2) {
                 if (mBatteryStyle == BATTERY_STYLE_ICON_PERCENT) {
                     mTextPaint.setColor(mContext.getResources().getColor(
                             R.color.batterymeter_bolt_color));

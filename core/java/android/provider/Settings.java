@@ -5614,6 +5614,12 @@ public final class Settings {
          */
         public static final String NOTIFICATION_SOUND_VIB_SCREEN_ON = "notification_sound_vib_screen_on";
 
+        /**
+         * Whether to mute annoying notifications
+         * @hide
+         */
+        public static final String MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD = "mute_annoying_notifications_threshold";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5695,6 +5701,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(STATUS_BAR_LOGO_STYLE, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(STATUS_BAR_LOGO_COLOR_ACCENT, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(NOTIFICATION_SOUND_VIB_SCREEN_ON, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD, BOOLEAN_VALIDATOR);
         }
 
         /**

@@ -118,5 +118,6 @@ public class SystemSettings {
         Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN,
         Settings.System.THREE_FINGER_GESTURE,
         Settings.System.NOTIFICATION_SOUND_VIB_SCREEN_ON,
+        Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD,
     };
 }

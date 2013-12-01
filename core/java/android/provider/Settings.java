@@ -5424,6 +5424,12 @@ public final class Settings {
          */
         public static final String NOTIFICATION_SOUND_VIB_SCREEN_ON = "notification_sound_vib_screen_on";
 
+        /**
+         * Whether to mute annoying notifications
+         * @hide
+         */
+        public static final String MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD = "mute_annoying_notifications_threshold";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5589,6 +5595,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUS_BAR_QUICK_QS_PULLDOWN);
             PRIVATE_SETTINGS.add(THREE_FINGER_GESTURE);
             PRIVATE_SETTINGS.add(NOTIFICATION_SOUND_VIB_SCREEN_ON);
+            PRIVATE_SETTINGS.add(MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD);
         }
 
         /**

@@ -5373,6 +5373,16 @@ public final class Settings {
         private static final Validator NOTIFICATION_SOUND_VIB_SCREEN_ON_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
+        /**
+         * Whether to mute annoying notifications
+         * @hide
+         */
+        public static final String MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD = "mute_annoying_notifications_threshold";
+
+        /** @hide */
+        private static final Validator MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD_VALIDATOR =
+              new SettingsValidators.InclusiveIntegerRangeValidator(0, 120000);
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5545,6 +5555,7 @@ public final class Settings {
             SLIM_RECENTS_CORNER_RADIUS,
             SLIM_RECENTS_BLACKLIST_VALUES,
             NOTIFICATION_SOUND_VIB_SCREEN_ON,
+            MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD,
             // AICP Settings end
         };
 
@@ -5781,6 +5792,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SLIM_RECENTS_CORNER_RADIUS);
             PRIVATE_SETTINGS.add(SLIM_RECENTS_BLACKLIST_VALUES);
             PRIVATE_SETTINGS.add(NOTIFICATION_SOUND_VIB_SCREEN_ON);
+            PRIVATE_SETTINGS.add(MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD);
             // AICP Settings end
         }
 
@@ -5998,6 +6010,8 @@ public final class Settings {
             VALIDATORS.put(SLIM_RECENTS_BLACKLIST_VALUES, SLIM_RECENTS_BLACKLIST_VALUES_VALIDATOR);
             VALIDATORS.put(NOTIFICATION_SOUND_VIB_SCREEN_ON,
                     NOTIFICATION_SOUND_VIB_SCREEN_ON_VALIDATOR);
+            VALIDATORS.put(MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD,
+                    MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD_VALIDATOR);
             // AICP Settings end
         }
 

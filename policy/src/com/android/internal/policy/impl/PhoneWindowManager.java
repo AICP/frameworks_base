@@ -566,32 +566,32 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.Secure.IMMERSIVE_MODE_CONFIRMATIONS), false, this,
                     UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.KEY_HOME_LONG_PRESS_ACTION), false, this,
+            resolver.registerContentObserver(Settings.AOKP.getUriFor(
+                    Settings.AOKP.KEY_HOME_LONG_PRESS_ACTION), false, this,
                     UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.KEY_HOME_DOUBLE_TAP_ACTION), false, this,
+            resolver.registerContentObserver(Settings.AOKP.getUriFor(
+                    Settings.AOKP.KEY_HOME_DOUBLE_TAP_ACTION), false, this,
                     UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.KEY_MENU_ACTION), false, this,
+            resolver.registerContentObserver(Settings.AOKP.getUriFor(
+                    Settings.AOKP.KEY_MENU_ACTION), false, this,
                     UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.KEY_MENU_LONG_PRESS_ACTION), false, this,
+            resolver.registerContentObserver(Settings.AOKP.getUriFor(
+                    Settings.AOKP.KEY_MENU_LONG_PRESS_ACTION), false, this,
                     UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.KEY_ASSIST_ACTION), false, this,
+            resolver.registerContentObserver(Settings.AOKP.getUriFor(
+                    Settings.AOKP.KEY_ASSIST_ACTION), false, this,
                     UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.KEY_ASSIST_LONG_PRESS_ACTION), false, this,
+            resolver.registerContentObserver(Settings.AOKP.getUriFor(
+                    Settings.AOKP.KEY_ASSIST_LONG_PRESS_ACTION), false, this,
                     UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.KEY_APP_SWITCH_ACTION), false, this,
+            resolver.registerContentObserver(Settings.AOKP.getUriFor(
+                    Settings.AOKP.KEY_APP_SWITCH_ACTION), false, this,
                     UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.KEY_APP_SWITCH_LONG_PRESS_ACTION), false, this,
+            resolver.registerContentObserver(Settings.AOKP.getUriFor(
+                    Settings.AOKP.KEY_APP_SWITCH_LONG_PRESS_ACTION), false, this,
                     UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.HARDWARE_KEY_REBINDING), false, this,
+            resolver.registerContentObserver(Settings.AOKP.getUriFor(
+                    Settings.AOKP.HARDWARE_KEY_REBINDING), false, this,
                     UserHandle.USER_ALL);
 
             updateSettings();
@@ -1140,51 +1140,51 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             mDoubleTapOnHomeBehavior = KEY_ACTION_NOTHING;
         }
 
-        boolean keyRebindingEnabled = Settings.System.getIntForUser(resolver,
-                Settings.System.HARDWARE_KEY_REBINDING, 0, UserHandle.USER_CURRENT) == 1;
+        boolean keyRebindingEnabled = Settings.AOKP.getIntForUser(resolver,
+                Settings.AOKP.HARDWARE_KEY_REBINDING, 0, UserHandle.USER_CURRENT) == 1;
         if (!keyRebindingEnabled) {
             mHasMenuKeyEnabled = hasMenu;
             return;
         }
 
         if (hasHome) {
-            mLongPressOnHomeBehavior = Settings.System.getIntForUser(resolver,
-                    Settings.System.KEY_HOME_LONG_PRESS_ACTION,
+            mLongPressOnHomeBehavior = Settings.AOKP.getIntForUser(resolver,
+                    Settings.AOKP.KEY_HOME_LONG_PRESS_ACTION,
                     hasAppSwitch ? KEY_ACTION_NOTHING : KEY_ACTION_APP_SWITCH,
                     UserHandle.USER_CURRENT);
-            mDoubleTapOnHomeBehavior = Settings.System.getIntForUser(resolver,
-                    Settings.System.KEY_HOME_DOUBLE_TAP_ACTION,
+            mDoubleTapOnHomeBehavior = Settings.AOKP.getIntForUser(resolver,
+                    Settings.AOKP.KEY_HOME_DOUBLE_TAP_ACTION,
                     mDoubleTapOnHomeBehavior, UserHandle.USER_CURRENT);
             mHasMenuKeyEnabled = mLongPressOnHomeBehavior == KEY_ACTION_MENU
                     || mDoubleTapOnHomeBehavior == KEY_ACTION_MENU;
         }
         if (hasMenu) {
-            mPressOnMenuBehavior = Settings.System.getIntForUser(resolver,
-                    Settings.System.KEY_MENU_ACTION,
+            mPressOnMenuBehavior = Settings.AOKP.getIntForUser(resolver,
+                    Settings.AOKP.KEY_MENU_ACTION,
                     KEY_ACTION_MENU, UserHandle.USER_CURRENT);
-            mLongPressOnMenuBehavior = Settings.System.getIntForUser(resolver,
-                    Settings.System.KEY_MENU_LONG_PRESS_ACTION,
+            mLongPressOnMenuBehavior = Settings.AOKP.getIntForUser(resolver,
+                    Settings.AOKP.KEY_MENU_LONG_PRESS_ACTION,
                     hasAssist ? KEY_ACTION_NOTHING : KEY_ACTION_SEARCH,
                     UserHandle.USER_CURRENT);
             mHasMenuKeyEnabled |= mPressOnMenuBehavior == KEY_ACTION_MENU
                     || mLongPressOnMenuBehavior == KEY_ACTION_MENU;
         }
         if (hasAssist) {
-            mPressOnAssistBehavior = Settings.System.getIntForUser(resolver,
-                    Settings.System.KEY_ASSIST_ACTION,
+            mPressOnAssistBehavior = Settings.AOKP.getIntForUser(resolver,
+                    Settings.AOKP.KEY_ASSIST_ACTION,
                     KEY_ACTION_SEARCH, UserHandle.USER_CURRENT);
-            mLongPressOnAssistBehavior = Settings.System.getIntForUser(resolver,
-                    Settings.System.KEY_ASSIST_LONG_PRESS_ACTION,
+            mLongPressOnAssistBehavior = Settings.AOKP.getIntForUser(resolver,
+                    Settings.AOKP.KEY_ASSIST_LONG_PRESS_ACTION,
                     KEY_ACTION_VOICE_SEARCH, UserHandle.USER_CURRENT);
             mHasMenuKeyEnabled |= mPressOnAssistBehavior == KEY_ACTION_MENU
                     || mLongPressOnAssistBehavior == KEY_ACTION_MENU;
         }
         if (hasAppSwitch) {
-            mPressOnAppSwitchBehavior = Settings.System.getIntForUser(resolver,
-                    Settings.System.KEY_APP_SWITCH_ACTION,
+            mPressOnAppSwitchBehavior = Settings.AOKP.getIntForUser(resolver,
+                    Settings.AOKP.KEY_APP_SWITCH_ACTION,
                     KEY_ACTION_APP_SWITCH, UserHandle.USER_CURRENT);
-            mLongPressOnAppSwitchBehavior = Settings.System.getIntForUser(resolver,
-                    Settings.System.KEY_APP_SWITCH_LONG_PRESS_ACTION,
+            mLongPressOnAppSwitchBehavior = Settings.AOKP.getIntForUser(resolver,
+                    Settings.AOKP.KEY_APP_SWITCH_LONG_PRESS_ACTION,
                     KEY_ACTION_NOTHING, UserHandle.USER_CURRENT);
             mHasMenuKeyEnabled |= mPressOnAppSwitchBehavior == KEY_ACTION_MENU
                     || mLongPressOnAppSwitchBehavior == KEY_ACTION_MENU;

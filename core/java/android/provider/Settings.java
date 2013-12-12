@@ -7516,6 +7516,12 @@ public final class Settings {
          *@hide
          */
         public static final String RAM_USAGE_BAR = "ram_usage_bar";
+
+        /**
+         *  Enable statusbar double tap gesture on to put device to sleep
+         * @hide
+         */
+        public static final String DOUBLE_TAP_SLEEP_GESTURE = "double_tap_sleep_gesture";
     }
 
     /**

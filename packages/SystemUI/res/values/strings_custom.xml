@@ -36,7 +36,8 @@
     <!-- Screen record notification error title -->
     <string name="screenrecord_notif_error">Unable to record screen</string>
 
-
+    <!-- Battery percent format -->
+    <string name="battery_percent_format"><xliff:g id="number">%d%%</xliff:g></string>
 
 </resources>
 

@@ -82,9 +82,6 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.File;
-
-import com.android.internal.app.ThemeUtils;
-
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -94,7 +91,6 @@ import java.lang.reflect.Array;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -139,7 +135,6 @@ public class NotificationManagerService extends INotificationManager.Stub
     private static final String ENABLED_NOTIFICATION_LISTENERS_SEPARATOR = ":";
 
     final Context mContext;
-    Context mUiContext;
     final IActivityManager mAm;
     final UserManager mUserManager;
     final IBinder mForegroundToken = new Binder();
@@ -1146,13 +1141,6 @@ public class NotificationManagerService extends INotificationManager.Stub
         }
     };
 
-    private BroadcastReceiver mThemeChangeReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            mUiContext = null;
-        }
-    };
-
     private BroadcastReceiver mIntentReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -1380,7 +1368,6 @@ public class NotificationManagerService extends INotificationManager.Stub
         mSettingsObserver.observe();
         QuietHoursSettingsObserver qhObserver = new QuietHoursSettingsObserver(mHandler);
         qhObserver.observe();
-        ThemeUtils.registerThemeChangeReceiver(mContext, mThemeChangeReceiver);
 
         // spin up NotificationScorers
         String[] notificationScorerNames = resources.getStringArray(
@@ -2328,13 +2315,6 @@ public class NotificationManagerService extends INotificationManager.Stub
         return -1;
     }
 
-    private Context getUiContext() {
-        if (mUiContext == null) {
-            mUiContext = ThemeUtils.createUiContext(mContext);
-        }
-        return mUiContext != null ? mUiContext : mContext;
-    }
-
     private void updateNotificationPulse() {
         synchronized (mNotificationList) {
             updateLightsLocked();
@@ -2378,7 +2358,6 @@ public class NotificationManagerService extends INotificationManager.Stub
                 }
                 pw.println("  ");
             }
-
         }
 
         synchronized (mNotificationList) {

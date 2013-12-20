@@ -490,7 +490,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
 
         mDateTimeView = mNotificationPanelHeader.findViewById(R.id.datetime);
         if (mDateTimeView != null) {
-            mDateTimeView.setOnClickListener(mClockClickListener);
+            mDateTimeView.setOnLongClickListener(mClockClickListener);
             mDateTimeView.setEnabled(true);
         }
 
@@ -2460,10 +2460,12 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
         }
     };
 
-    private View.OnClickListener mClockClickListener = new View.OnClickListener() {
-        public void onClick(View v) {
+    private View.OnLongClickListener mClockClickListener = new View.OnLongClickListener() {
+        @Override
+        public boolean onLongClick(View v) {
             startActivityDismissingKeyguard(
                     new Intent(Intent.ACTION_QUICK_CLOCK), true); // have fun, everyone
+            return true;
         }
     };
 

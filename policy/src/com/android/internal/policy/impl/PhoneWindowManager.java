@@ -95,6 +95,7 @@ import android.view.WindowManagerPolicy;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Toast;
 
 import com.android.internal.R;
 import com.android.internal.policy.PolicyManager;
@@ -466,6 +467,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     // What we do when the user double-taps on home
     private int mDoubleTapOnHomeBehavior;
 
+    private static final long VOLUME_DOUBLETAP_CHORD_DEBOUNCE_DELAY_MILLIS = 600;
     // Screenshot trigger states
     // Time to volume and power must be pressed within this interval of each other.
     private static final long SCREENSHOT_CHORD_DEBOUNCE_DELAY_MILLIS = 150;
@@ -485,6 +487,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private boolean mVolumeUpKeyTriggered;
     private boolean mPowerKeyTriggered;
     private long mPowerKeyTime;
+    private long mVolumeKeysDownTime;
+    private boolean mVolumeKeysDoubleTapEnabled;
 
     /* The number of steps between min and max brightness */
     private static final int BRIGHTNESS_STEPS = 10;
@@ -593,6 +597,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.AOKP.getUriFor(
                     Settings.AOKP.HARDWARE_KEY_REBINDING), false, this,
+                    UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.AOKP.getUriFor(
+                    Settings.AOKP.DOUBLE_TAP_VOLUME_KEYS), false, this,
                     UserHandle.USER_ALL);
 
             updateSettings();
@@ -745,6 +752,22 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         }
     }
 
+    private void interceptVolumeDoubleTapChord() {
+        if (mVolumeKeysDoubleTapEnabled && !mPowerKeyTriggered
+                && mVolumeDownKeyTriggered && mVolumeUpKeyTriggered) {
+            final long now = SystemClock.uptimeMillis();
+            if (now <= mVolumeDownKeyTime + SCREENSHOT_CHORD_DEBOUNCE_DELAY_MILLIS
+                    && now <= mVolumeUpKeyTime + SCREENSHOT_CHORD_DEBOUNCE_DELAY_MILLIS
+                    && now <= mVolumeKeysDownTime + VOLUME_DOUBLETAP_CHORD_DEBOUNCE_DELAY_MILLIS) {
+                // volume down and volume up were triggered fairly recently separately, AND together.
+               mHandler.postDelayed(mDoubleTapRunnable, getScreenshotChordLongPressDelay());
+            }
+            mVolumeDownKeyConsumedByScreenshotChord = true;
+            mVolumeUpKeyConsumedByScreenrecordChord = true;
+            mVolumeKeysDownTime = now;
+        }
+    }
+
     private void interceptScreenshotChord() {
         if (mScreenshotChordEnabled
                 && mVolumeDownKeyTriggered && mPowerKeyTriggered && !mVolumeUpKeyTriggered) {
@@ -830,6 +853,24 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 sendCloseSystemWindows(SYSTEM_DIALOG_REASON_GLOBAL_ACTIONS);
                 mWindowManagerFuncs.shutdown(resolvedBehavior == LONG_PRESS_POWER_SHUT_OFF);
                 break;
+            }
+        }
+    };
+
+    private final Runnable mDoubleTapRunnable = new Runnable() {
+        @Override
+        public void run() {
+            try {
+                if (mWindowManager.isRotationFrozen()) {
+                    mWindowManager.thawRotation();
+                } else {
+                    mWindowManager.freezeRotation(-1);
+                }
+                updateRotation(true);
+                Toast.makeText(mContext, com.android.internal.R.string.rotation_lock_toggled,
+                        Toast.LENGTH_SHORT).show();
+            } catch (RemoteException e) {
+                // oh noooo....
             }
         }
     };
@@ -1335,7 +1376,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 updateRotation = true;
                 updateOrientationListenerLp();
             }
-
+            mVolumeKeysDoubleTapEnabled = Settings.AOKP.getBooleanForUser(resolver,
+                    Settings.AOKP.DOUBLE_TAP_VOLUME_KEYS, true, UserHandle.USER_CURRENT);
             if (mSystemReady) {
                 int pointerLocation = Settings.System.getIntForUser(resolver,
                         Settings.System.POINTER_LOCATION, 0, UserHandle.USER_CURRENT);
@@ -4245,6 +4287,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                             cancelPendingPowerKeyAction();
                             cancelPendingScreenrecordChordAction();
                             interceptScreenshotChord();
+                            interceptVolumeDoubleTapChord();
                         }
                     } else {
                         mVolumeDownKeyTriggered = false;
@@ -4261,6 +4304,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                             cancelPendingPowerKeyAction();
                             cancelPendingScreenshotChordAction();
                             interceptScreenrecordChord();
+                            interceptVolumeDoubleTapChord();
                         }
                     } else {
                         mVolumeUpKeyTriggered = false;

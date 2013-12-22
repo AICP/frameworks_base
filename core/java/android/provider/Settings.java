@@ -6750,6 +6750,12 @@ public final class Settings {
          */
         public static final String WAKEUP_WHEN_PLUGGED_UNPLUGGED = "wakeup_when_plugged_unplugged";
 
+        /**
+         * Whether double tapping the volume keys toggles the rotation lock or not.
+         * Boolean. Default true.
+         * @hide
+         */
+        public static final String DOUBLE_TAP_VOLUME_KEYS = "volume_keys_double_tap_action";
     }
 
     /**

@@ -22,4 +22,5 @@
     <string name="reboot_download">Download</string>
     <string name="reboot_bootloader">Bootloader</string>
     <string name="reboot_progress">Zařízení se restartuje</string>
+    <string name="rotation_lock_toggled">Zámek rotace obrazovky přepnut</string>
 </resources>

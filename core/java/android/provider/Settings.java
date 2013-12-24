@@ -6770,6 +6770,37 @@ public final class Settings {
          */
         public static final String ADB_NOTIFY = "adb_notify";
 
+        /**
+         * Statusbar toggles style
+         * @hide
+         */
+        public static final String TOGGLES_STYLE = "statusbar_toggles_style";
+
+        /**
+         * @hide
+         */
+        public static final String QUICK_TOGGLES_PER_ROW = "statusbar_toggles_number_per_row";
+
+        /**
+         * @hide
+         */
+        public static final String QUICK_TOGGLES = "statusbar_toggles_order";
+
+        /**
+         * @hide
+         */
+        public static final String QUICK_TOGGLE_FAV_CONTACT = "statusbar_toggles_favorite_contact";
+
+        /**
+         * @hide
+         */
+        public static final String SHADE_COLLAPSE_ALL = "status_bar_toggles_shade_collapse_all";
+
+        /**
+         * @hide
+         */
+        public static final String QUICK_TOGGLE_VIBRATE = "statusbar_toggles_vibrate_on_click";
+
     }
 
     /**

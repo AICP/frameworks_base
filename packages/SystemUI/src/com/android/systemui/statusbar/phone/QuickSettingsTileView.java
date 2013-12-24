@@ -22,12 +22,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewParent;
-import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 
 /**
  *
  */
-class QuickSettingsTileView extends FrameLayout {
+public class QuickSettingsTileView extends RelativeLayout {
     private static final String TAG = "QuickSettingsTileView";
 
     private int mContentLayoutId;
@@ -46,11 +46,11 @@ class QuickSettingsTileView extends FrameLayout {
         mColSpan = span;
     }
 
-    int getColumnSpan() {
+    public int getColumnSpan() {
         return mColSpan;
     }
 
-    void setContent(int layoutId, LayoutInflater inflater) {
+    public void setContent(int layoutId, LayoutInflater inflater) {
         mContentLayoutId = layoutId;
         inflater.inflate(layoutId, this);
     }
@@ -62,21 +62,6 @@ class QuickSettingsTileView extends FrameLayout {
         } else {
             Log.e(TAG, "Not reinflating content: No layoutId set");
         }
-    }
-
-    @Override
-    public void setVisibility(int vis) {
-        if (QuickSettings.DEBUG_GONE_TILES) {
-            if (vis == View.GONE) {
-                vis = View.VISIBLE;
-                setAlpha(0.25f);
-                setEnabled(false);
-            } else {
-                setAlpha(1f);
-                setEnabled(true);
-            }
-        }
-        super.setVisibility(vis);
     }
 
     public void setOnPrepareListener(OnPrepareListener listener) {

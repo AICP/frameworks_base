@@ -19,6 +19,7 @@ package com.android.systemui.statusbar.phone;
 import android.animation.LayoutTransition;
 import android.content.Context;
 import android.content.res.Resources;
+import android.provider.Settings;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +30,7 @@ import com.android.systemui.R;
 /**
  *
  */
-class QuickSettingsContainerView extends FrameLayout {
+public class QuickSettingsContainerView extends FrameLayout {
 
     // The number of columns in the QuickSettings grid
     private int mNumColumns;
@@ -54,7 +55,9 @@ class QuickSettingsContainerView extends FrameLayout {
     void updateResources() {
         Resources r = getContext().getResources();
         mCellGap = r.getDimension(R.dimen.quick_settings_cell_gap);
-        mNumColumns = r.getInteger(R.integer.quick_settings_num_columns);
+        mNumColumns = Settings.AOKP.getInt(
+                mContext.getContentResolver(), Settings.AOKP.QUICK_TOGGLES_PER_ROW, 
+                r.getInteger(R.integer.quick_settings_num_columns));
         requestLayout();
     }
 
@@ -149,5 +152,9 @@ class QuickSettingsContainerView extends FrameLayout {
                 }
             }
         }
+    }
+
+    public void setColumnCount(int num) {
+        mNumColumns = num;
     }
 }

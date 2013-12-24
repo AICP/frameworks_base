@@ -20,6 +20,7 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.Resources.NotFoundException;
+import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.EventLog;
 import android.util.Log;
@@ -46,6 +47,7 @@ public class PhoneStatusBarView extends PanelBar {
     PanelView mNotificationPanel, mSettingsPanel;
     private boolean mShouldFade;
     private final PhoneStatusBarTransitions mBarTransitions;
+    private int mToggleStyle;
 
     public PhoneStatusBarView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -60,6 +62,9 @@ public class PhoneStatusBarView extends PanelBar {
         }
         mFullWidthNotifications = mSettingsPanelDragzoneFrac <= 0f;
         mBarTransitions = new PhoneStatusBarTransitions(this);
+     // no need for observer, sysui gets killed when the style is changed.
+        mToggleStyle = Settings.AOKP.getInt(mContext.getContentResolver(),
+                Settings.AOKP.TOGGLES_STYLE, 0);
     }
 
     public BarTransitions getBarTransitions() {
@@ -131,7 +136,9 @@ public class PhoneStatusBarView extends PanelBar {
                     ? null
                     : mNotificationPanel;
         }
-
+        if(mToggleStyle != 0) {
+            return mNotificationPanel;
+        }
         // We split the status bar into thirds: the left 2/3 are for notifications, and the
         // right 1/3 for quick settings. If you pull the status bar down a second time you'll
         // toggle panels no matter where you pull it down.

@@ -24,6 +24,7 @@
     <string name="toggle_ROTATE">Auto-rotate</string>
     <string name="toggle_CLOCK">Clock</string>
     <string name="toggle_GPS">GPS</string>
+    <string name="toggle_LOCATION">Location</string>
     <string name="toggle_IME">IME</string>
     <string name="toggle_BATTERY">Battery</string>
     <string name="toggle_AIRPLANE_MODE">Airplane mode</string>

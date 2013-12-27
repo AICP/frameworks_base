@@ -65,4 +65,9 @@ public class AirplaneModeToggle extends StatefulToggle implements NetworkSignalC
             String mobileSignalContentDescriptionId, int dataTypeIconId, boolean activityIn,
             boolean activityOut, String dataTypeContentDescriptionId, String description) {
     }
+
+    @Override
+    public int getDefaultIconResId() {
+        return R.drawable.ic_qs_airplane_on;
+    }
 }

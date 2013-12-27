@@ -48,4 +48,8 @@ public class QuietHoursToggle extends StatefulToggle {
         super.updateView();
     }
 
+    @Override
+    public int getDefaultIconResId() {
+        return R.drawable.ic_qs_quiet_hours_on;
+    }
 }

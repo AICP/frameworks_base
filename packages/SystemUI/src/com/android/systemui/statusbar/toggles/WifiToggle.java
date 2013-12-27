@@ -98,4 +98,9 @@ public class WifiToggle extends StatefulToggle implements NetworkSignalChangedCa
             String mobileSignalContentDescriptionId, int dataTypeIconId, boolean activityIn,
             boolean activityOut, String dataTypeContentDescriptionId, String description) {        
     }
+
+    @Override
+    public int getDefaultIconResId() {
+        return R.drawable.ic_qs_wifi_full_3;
+    }
 }

@@ -41,4 +41,8 @@ public class VolumeToggle extends BaseToggle {
         return super.onLongClick(v);
     }
 
+    @Override
+    public int getDefaultIconResId() {
+        return R.drawable.ic_qs_volume;
+    }
 }

@@ -52,4 +52,9 @@ public class LocationToggle extends StatefulToggle implements LocationSettingsCh
         setEnabledState(mLocationEnabled = locationEnabled);
         scheduleViewUpdate();
     }
+
+    @Override
+    public int getDefaultIconResId() {
+        return R.drawable.ic_qs_location_on;
+    }
 }

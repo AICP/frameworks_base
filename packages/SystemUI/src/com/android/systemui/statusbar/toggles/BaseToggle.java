@@ -82,6 +82,8 @@ public abstract class BaseToggle
         scheduleViewUpdate();
     }
 
+    public abstract int getDefaultIconResId();
+
     private BluetoothController bluetoothController;
     private NetworkController networkController;
     private BatteryController batteryController;

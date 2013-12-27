@@ -119,4 +119,9 @@ public class SwaggerToggle extends BaseToggle implements OnTouchListener {
         scheduleViewUpdate();
         return true;
     }
+
+    @Override
+    public int getDefaultIconResId() {
+        return R.drawable.ic_qs_swagger;
+    }
 }

@@ -166,4 +166,8 @@ public class SignalToggle extends StatefulToggle implements NetworkSignalChanged
         scheduleViewUpdate();
     }
 
+    @Override
+    public int getDefaultIconResId() {
+        return R.drawable.ic_qs_signal_full_3;
+    }
 }

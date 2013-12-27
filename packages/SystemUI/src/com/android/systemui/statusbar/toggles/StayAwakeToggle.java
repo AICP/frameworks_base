@@ -113,4 +113,9 @@ public class StayAwakeToggle extends StatefulToggle {
             scheduleViewUpdate();
         }
     }
+
+    @Override
+    public int getDefaultIconResId() {
+        return R.drawable.ic_qs_stayawake_on;
+    }
 }

@@ -60,4 +60,9 @@ public class BatteryToggle extends BaseToggle implements BatteryStateChangeCallb
         }
         scheduleViewUpdate();
     }
+
+    @Override
+    public int getDefaultIconResId() {
+        return R.drawable.ic_qs_battery_71;
+    }
 }

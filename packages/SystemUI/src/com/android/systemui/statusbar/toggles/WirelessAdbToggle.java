@@ -133,5 +133,10 @@ public class WirelessAdbToggle extends StatefulToggle {
             }
         }
     }
+
+    @Override
+    public int getDefaultIconResId() {
+        return R.drawable.ic_qs_adb_on;
+    }
 }
 

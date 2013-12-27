@@ -71,7 +71,7 @@ public class ToggleManager {
     public static final String SIGNAL_TOGGLE = "SIGNAL";
     public static final String ROTATE_TOGGLE = "ROTATE";
     public static final String CLOCK_TOGGLE = "CLOCK";
-    public static final String LOCATION_TOGGLE = "GPS";
+    public static final String LOCATION_TOGGLE = "LOCATION";
     public static final String IME_TOGGLE = "IME";
     public static final String BATTERY_TOGGLE = "BATTERY";
     public static final String AIRPLANE_TOGGLE = "AIRPLANE_MODE";
@@ -293,29 +293,28 @@ public class ToggleManager {
             updateToggleList();
 
             mContainers[STYLE_SCROLLABLE].removeAllViews();
-            ArrayList<LinearLayout> rows = new ArrayList<LinearLayout>();
-            rows.add(new LinearLayout(mContext)); // add first row
-
+            LinearLayout row = new LinearLayout(mContext);
+            row.setOrientation(LinearLayout.HORIZONTAL);
             LinearLayout.LayoutParams params = getScrollableToggleParams(mContext);
 
             for (int i = 0; i < mToggles.size(); i++) {
-                rows.get(rows.size() - 1)
-                        .addView(mToggles.get(i).createTraditionalView(),
+              row.addView(mToggles.get(i).createTraditionalView(),
                                 params);
             }
-            LinearLayout togglesRowLayout;
             HorizontalScrollView toggleScrollView = new HorizontalScrollView(mContext);
-            togglesRowLayout = rows.get(rows.size() - 1);
-            togglesRowLayout.setGravity(Gravity.CENTER_HORIZONTAL);
-            toggleScrollView.addView(togglesRowLayout,new LinearLayout.LayoutParams(
+            toggleScrollView.addView(row,new LinearLayout.LayoutParams(
                     LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+
+            // this view will center all of the toggles when there are not enough
+            // to cause the view to scroll horizontally
             LinearLayout ll = new LinearLayout(mContext);
             ll.setOrientation(LinearLayout.VERTICAL);
             ll.setGravity(Gravity.CENTER_HORIZONTAL);
+            ll.setBackgroundResource(R.drawable.qs_tile_background);
+            ll.setMinimumWidth(mContainers[STYLE_SCROLLABLE].getWidth());
             ll.addView(toggleScrollView,new LinearLayout.LayoutParams(
                     LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT));
             mContainers[STYLE_SCROLLABLE].addView(ll);
-
             mContainers[STYLE_SCROLLABLE].setVisibility(View.VISIBLE);
         }
     }
@@ -325,6 +324,8 @@ public class ToggleManager {
             t.cleanup();
         }
         mToggles.clear();
+        mToggles = null;
+        mToggles = new ArrayList<BaseToggle>();
         HashMap<String, Class<? extends BaseToggle>> map = getToggleMap();
         ArrayList<String> toots = getToggles();
         for (String toggleIdent : toots) {
@@ -517,6 +518,12 @@ public class ToggleManager {
     }
 
     private Bundle getAvailableToggles() {
+        /*
+         * Bundle structure
+         * stringArrayList toggles - toggles KEYS, their string is included in the bundle with
+         *       key toggle_<toggle_name_from_this_array>
+         *       Their systemui image id can be extracted
+         */
         Bundle b = new Bundle();
 
         Set<Entry<String, Class<? extends BaseToggle>>> s = getToggleMap().entrySet();
@@ -537,6 +544,15 @@ public class ToggleManager {
             if (resource > 0) {
                 String toggleStringName = mContext.getString(resource);
                 b.putString(toggle, toggleStringName);
+            }
+            try {
+                BaseToggle tempToggle = getToggleMap().get(toggle).newInstance();
+                b.putInt("toggle_" + toggle + "_image", tempToggle.getDefaultIconResId());
+                tempToggle = null; // be free!
+            } catch (InstantiationException e) {
+                // ignore
+            } catch (IllegalAccessException e) {
+                // ignore
             }
         }
         return b;

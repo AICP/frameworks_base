@@ -26,4 +26,8 @@ public class SleepToggle extends BaseToggle {
         pm.goToSleep(SystemClock.uptimeMillis());
     }
 
+    @Override
+    public int getDefaultIconResId() {
+        return R.drawable.ic_qs_sleep;
+    }
 }

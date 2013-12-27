@@ -82,4 +82,9 @@ public class UsbTetherToggle extends StatefulToggle {
             scheduleViewUpdate();
         }
     }
+
+    @Override
+    public int getDefaultIconResId() {
+        return R.drawable.ic_qs_usb_tether_on;
+    }
 }

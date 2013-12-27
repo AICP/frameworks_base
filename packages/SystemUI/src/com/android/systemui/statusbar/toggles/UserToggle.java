@@ -180,4 +180,8 @@ public class UserToggle extends BaseToggle {
         super.updateView();
     }
 
+    @Override
+    public int getDefaultIconResId() {
+        return R.drawable.ic_qs_default_user;
+    }
 }

@@ -81,4 +81,9 @@ public class NfcToggle extends StatefulToggle {
             // swallow
         }
     }
+
+    @Override
+    public int getDefaultIconResId() {
+        return R.drawable.ic_qs_nfc_on;
+    }
 }

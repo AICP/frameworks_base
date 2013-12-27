@@ -181,4 +181,9 @@ public class QuickRecordToggle extends BaseToggle {
         queryRecordingInformation();
         mHandler.postDelayed(delayTileRevert, 2000);
     }
+
+    @Override
+    public int getDefaultIconResId() {
+        return R.drawable.ic_qs_recording;
+    }
 }

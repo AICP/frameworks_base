@@ -37,4 +37,8 @@ public class ImeToggle extends BaseToggle {
         }
     }
 
+    @Override
+    public int getDefaultIconResId() {
+        return R.drawable.ic_qs_ime;
+    }
 }

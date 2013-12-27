@@ -87,4 +87,9 @@ public class WifiApToggle extends StatefulToggle {
     protected void doDisable() {
         changeWifiApState(false);
     }
+
+    @Override
+    public int getDefaultIconResId() {
+        return R.drawable.ic_qs_wifi_tether_on;
+    }
 }

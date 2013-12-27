@@ -88,4 +88,9 @@ public class BrightnessToggle extends BaseToggle {
         super.updateView();
     }
 
+    @Override
+    public int getDefaultIconResId() {
+        return R.drawable.ic_qs_brightness_auto_off;
+    }
+
 }

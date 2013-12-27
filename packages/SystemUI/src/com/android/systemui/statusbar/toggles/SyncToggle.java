@@ -63,4 +63,8 @@ public class SyncToggle extends StatefulToggle implements SyncStatusObserver {
         scheduleViewUpdate();
     }
 
+    @Override
+    public int getDefaultIconResId() {
+        return R.drawable.ic_qs_sync_on;
+    }
 }

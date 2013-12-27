@@ -88,4 +88,9 @@ public class BluetoothToggle extends StatefulToggle {
     protected void doDisable() {
         BluetoothAdapter.getDefaultAdapter().disable();
     }
+
+    @Override
+    public int getDefaultIconResId() {
+        return R.drawable.ic_qs_bluetooth_on;
+    }
 }

@@ -6,6 +6,7 @@ import android.media.AudioManager;
 import android.view.View;
 
 import static com.android.internal.util.aokp.AwesomeConstants.*;
+
 import com.android.systemui.R;
 import com.android.systemui.aokp.AwesomeAction;
 
@@ -52,4 +53,8 @@ public class VibrateToggle extends StatefulToggle {
         super.updateView();
     }
 
+    @Override
+    public int getDefaultIconResId() {
+        return R.drawable.ic_qs_vibrate_on;
+    }
 }

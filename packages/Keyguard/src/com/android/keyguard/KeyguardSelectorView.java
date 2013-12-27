@@ -20,9 +20,11 @@ import android.app.ActivityManager;
 import android.app.PendingIntent;
 import android.app.SearchManager;
 import android.app.admin.DevicePolicyManager;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.PowerManager;
@@ -56,6 +58,9 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
     private LockPatternUtils mLockPatternUtils;
     private SecurityMessageDisplay mSecurityMessageDisplay;
     private Drawable mBouncerFrame;
+
+    private UnlockReceiver mUnlockReceiver;
+    private IntentFilter mUnlockFilter;
 
     OnTriggerListener mOnTriggerListener = new OnTriggerListener() {
 
@@ -107,6 +112,10 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
 
         }
 
+        public void onTargetChange(View v, final int target) {
+
+        }
+
     };
 
     KeyguardUpdateMonitorCallback mUpdateCallback = new KeyguardUpdateMonitorCallback() {
@@ -146,6 +155,11 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
     public KeyguardSelectorView(Context context, AttributeSet attrs) {
         super(context, attrs);
         mLockPatternUtils = new LockPatternUtils(getContext());
+        if (mUnlockFilter == null) {
+            mUnlockFilter = new IntentFilter();
+            mUnlockFilter.addAction(UnlockReceiver.ACTION_UNLOCK_RECEIVER);
+        }
+        if (mUnlockReceiver == null) mUnlockReceiver = new UnlockReceiver();
     }
 
     @Override
@@ -285,5 +299,28 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
         mIsBouncing = false;
         KeyguardSecurityViewHelper.
                 hideBouncer(mSecurityMessageDisplay, mFadeView, mBouncerFrame, duration);
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        mContext.unregisterReceiver(mUnlockReceiver);
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        mContext.registerReceiver(mUnlockReceiver, mUnlockFilter);
+    }
+    public class UnlockReceiver extends BroadcastReceiver {
+        public static final String ACTION_UNLOCK_RECEIVER = "com.android.lockscreen.ACTION_UNLOCK_RECEIVER";
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (action.equals(ACTION_UNLOCK_RECEIVER)) {
+                mCallback.userActivity(0);
+                mCallback.dismiss(false);
+            }
+        }
     }
 }

@@ -6807,6 +6807,12 @@ public final class Settings {
          */
         public static final String LOCKSCREEN_QUICK_UNLOCK_CONTROL = "lockscreen_quick_unlock_control";
 
+        /**
+         * The hostname for this device
+         * @hide
+         */
+        public static final String DEVICE_HOSTNAME = "device_hostname";
+
     }
 
     /**
@@ -7024,3 +7030,4 @@ public final class Settings {
         return "android-" + Long.toHexString(androidId);
     }
 }
+

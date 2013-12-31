@@ -7,8 +7,8 @@ import android.view.View;
 
 import static com.android.internal.util.aokp.AwesomeConstants.*;
 
+import com.android.internal.util.aokp.AwesomeAction;
 import com.android.systemui.R;
-import com.android.systemui.aokp.AwesomeAction;
 
 public class SoundStateToggle extends StatefulToggle {
     private AudioManager mAudioManager;

@@ -16,6 +16,8 @@
 
 package com.android.systemui.aokp;
 
+import com.android.internal.util.aokp.AwesomeAction;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;

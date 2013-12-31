@@ -50,6 +50,8 @@ import android.view.ViewTreeObserver.OnPreDrawListener;
 import android.widget.FrameLayout;
 
 import static com.android.internal.util.aokp.AwesomeConstants.*;
+
+import com.android.internal.util.aokp.AwesomeAction;
 import com.android.internal.util.aokp.NavRingHelpers;
 import com.android.internal.widget.multiwaveview.GlowPadView;
 import com.android.internal.widget.multiwaveview.GlowPadView.OnTriggerListener;
@@ -62,7 +64,6 @@ import com.android.systemui.statusbar.BaseStatusBar;
 import com.android.systemui.statusbar.CommandQueue;
 import com.android.systemui.statusbar.phone.PhoneStatusBar;
 import com.android.systemui.statusbar.StatusBarPanel;
-import com.android.systemui.aokp.AwesomeAction;
 
 import java.util.ArrayList;
 

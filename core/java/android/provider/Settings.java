@@ -6963,6 +6963,11 @@ public final class Settings {
         public static final String VOLUME_WAKE_SCREEN = "volume_wake_screen";
 
         /**
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_BUTTONS = "navigation_bar_buttons";
+
+        /**
          * Whether volume up/down can be long pressed to skip tracks
          * @hide
          */

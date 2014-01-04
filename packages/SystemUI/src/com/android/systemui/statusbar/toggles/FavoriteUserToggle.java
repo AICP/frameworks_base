@@ -40,8 +40,10 @@ public class FavoriteUserToggle extends BaseToggle {
     public void init(Context c, int style) {
         super.init(c, style);
         reloadFavContactInfo();
-        mObserver = new SettingsObserver(mHandler);
-        mObserver.observe();
+        if(mObserver == null) {
+            mObserver = new SettingsObserver(mHandler);
+            mObserver.observe();
+        }
         registerBroadcastReceiver(new BroadcastReceiver() {
 
             @Override
@@ -67,7 +69,7 @@ public class FavoriteUserToggle extends BaseToggle {
 
     @Override
     public void onClick(View v) {
-        String lookupKey = Settings.System.getString(mContext.getContentResolver(),
+        String lookupKey = Settings.AOKP.getString(mContext.getContentResolver(),
                 Settings.AOKP.QUICK_TOGGLE_FAV_CONTACT);
 
         if (lookupKey != null && lookupKey.length() > 0) {
@@ -116,7 +118,7 @@ public class FavoriteUserToggle extends BaseToggle {
                 Drawable avatar = mContext.getResources()
                         .getDrawable(R.drawable.ic_qs_default_user);
                 Bitmap rawAvatar = null;
-                String lookupKey = Settings.System.getString(mContext.getContentResolver(),
+                String lookupKey = Settings.AOKP.getString(mContext.getContentResolver(),
                         Settings.AOKP.QUICK_TOGGLE_FAV_CONTACT);
                 if (lookupKey != null && lookupKey.length() > 0) {
                     Uri lookupUri = Uri.withAppendedPath(
@@ -181,13 +183,18 @@ public class FavoriteUserToggle extends BaseToggle {
 
         void observe() {
             ContentResolver resolver = mContext.getContentResolver();
-            resolver.registerContentObserver(Settings.System
+            resolver.registerContentObserver(Settings.AOKP
                     .getUriFor(Settings.AOKP.QUICK_TOGGLE_FAV_CONTACT),
                     false, this);
         }
 
         @Override
         public void onChange(boolean selfChange) {
+            reloadFavContactInfo();
+        }
+
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
             reloadFavContactInfo();
         }
     }

@@ -151,11 +151,11 @@ public class NavigationBarView extends LinearLayout {
             }
         }
 
-        public void onBackAltCleared() {
+         public void onBackAltCleared() {
             // When dismissing ime during unlock, force the back button to run the same appearance
             // animation as home (if we catch this condition early enough).
-            if (!mBackTransitioning && getBackButton().getVisibility() == VISIBLE
-                    && mHomeAppearing && getHomeButton().getAlpha() == 0) {
+            if (!mBackTransitioning && getBackButton() != null && getBackButton().getVisibility() == VISIBLE
+                    && mHomeAppearing && getHomeButton() != null && getHomeButton().getAlpha() == 0) {
                 getBackButton().setAlpha(0);
                 ValueAnimator a = ObjectAnimator.ofFloat(getBackButton(), "alpha", 0, 1);
                 a.setStartDelay(mStartDelay);

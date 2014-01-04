@@ -86,6 +86,7 @@ public class NavigationBarView extends LinearLayout {
     int mNavigationIconHints = 0;
 
     private float mButtonWidth, mMenuButtonWidth;
+    private int mMenuButtonId;
 
     private ArrayList<AwesomeButtonInfo> mNavButtons = new ArrayList<AwesomeButtonInfo>();
 
@@ -234,9 +235,6 @@ public class NavigationBarView extends LinearLayout {
         mButtonWidth = res.getDimensionPixelSize(R.dimen.navigation_key_width);
         mMenuButtonWidth = res.getDimensionPixelSize(R.dimen.navigation_menu_key_width);
 
-
-//        getIcons(res);
-
         mBarTransitions = new NavigationBarTransitions(this);
 
         mCameraDisabledByDpm = isCameraDisabledByDpm();
@@ -295,22 +293,18 @@ public class NavigationBarView extends LinearLayout {
 
     public View getRecentsButton() {
         return mCurrentView.findViewWithTag(AwesomeConstant.ACTION_RECENTS.value());
-//        return mCurrentView.findViewById(R.id.recent_apps);
     }
 
     public View getMenuButton() {
-        return mCurrentView.findViewWithTag(AwesomeConstant.ACTION_MENU.value());
-//        return mCurrentView.findViewById(R.id.menu);
+        return mCurrentView.findViewById(mMenuButtonId);
     }
 
     public View getBackButton() {
         return mCurrentView.findViewWithTag(AwesomeConstant.ACTION_BACK.value());
-//        return mCurrentView.findViewById(R.id.back);
     }
 
     public View getHomeButton() {
         return mCurrentView.findViewWithTag(AwesomeConstant.ACTION_HOME.value());
-//        return mCurrentView.findViewById(R.id.home);
     }
 
     // for when home is disabled, but search isn't
@@ -325,7 +319,6 @@ public class NavigationBarView extends LinearLayout {
 
     @Override
     public void setLayoutDirection(int layoutDirection) {
-//        getIcons(mContext.getResources());
 
         super.setLayoutDirection(layoutDirection);
     }
@@ -608,13 +601,30 @@ public class NavigationBarView extends LinearLayout {
                 }
             }
 
-            if (tablet) {
-                addSeparator(navButtons, landscape, 0, 1f);
-                addSeparator(lightsOut, landscape, 0, 1f);
-            } else {
-                addSeparator(navButtons, landscape, separatorSize, 0f);
-                addSeparator(lightsOut, landscape, separatorSize, 0f);
+            // legacy menu button
+            AwesomeButtonInfo menuButtonInfo = new AwesomeButtonInfo(AwesomeConstant.ACTION_MENU.value(),
+                    null, null, null);
+            KeyButtonView menuButton = new KeyButtonView(getContext(), null);
+            menuButton.setButtonActions(menuButtonInfo);
+            menuButton.setImageResource(R.drawable.ic_sysbar_menu);
+            menuButton.setLayoutParams(getLayoutParams(landscape, mMenuButtonWidth, 0f));
+            menuButton.setGlowBackground(landscape ? R.drawable.ic_sysbar_highlight_land
+                    : R.drawable.ic_sysbar_highlight);
+            menuButton.setVisibility(mShowMenu ? View.VISIBLE : View.INVISIBLE);
+            if(mMenuButtonId == 0) {
+                // assign the same id for layout and horizontal buttons
+                mMenuButtonId = View.generateViewId();
             }
+            menuButton.setId(mMenuButtonId);
+            addButton(navButtons, menuButton, landscape);
+
+//            if (tablet) {
+//                addSeparator(navButtons, landscape, 0, 1f);
+//                addSeparator(lightsOut, landscape, 0, 1f);
+//            } else {
+//                addSeparator(navButtons, landscape, separatorSize, 0f);
+//                addSeparator(lightsOut, landscape, separatorSize, 0f);
+//            }
         }
         invalidate();
     }
@@ -698,9 +708,14 @@ public class NavigationBarView extends LinearLayout {
         ViewGroup view = (ViewGroup) mCurrentView.findViewById(R.id.nav_buttons);
         int N = view.getChildCount();
         KeyButtonView[] views = new KeyButtonView[mNavButtons.size()];
+
         int workingIdx = 0;
         for (int i = 0; i < N; i++) {
             View child = view.getChildAt(i);
+            if(child.getId() == mMenuButtonId) {
+                // included in container but not in buttons array
+                continue;
+            }
             if (child instanceof KeyButtonView) {
                 views[workingIdx++] = (KeyButtonView) child;
             }

@@ -90,7 +90,6 @@ public class AOKPSearchPanelView extends FrameLayout implements
     private int startPosOffset;
 
     private int mNavRingAmount;
-    private boolean mBoolLongPress;
     private boolean mSearchPanelLock;
     private int mTarget;
     private boolean mLongPress = false;
@@ -210,7 +209,7 @@ public class AOKPSearchPanelView extends FrameLayout implements
                 mHandler.removeCallbacks(SetLongPress);
                 mLongPress = false;
             } else {
-                if (mBoolLongPress && !TextUtils.isEmpty(longList.get(target)) && !longList.get(target).equals(AwesomeConstant.ACTION_NULL.value())) {
+                if (!TextUtils.isEmpty(longList.get(target)) && !longList.get(target).equals(AwesomeConstant.ACTION_NULL.value())) {
                     mTarget = target;
                     mHandler.postDelayed(SetLongPress, ViewConfiguration.getLongPressTimeout());
                 }
@@ -312,7 +311,7 @@ public class AOKPSearchPanelView extends FrameLayout implements
         int endPosOffset = 0;
         int middleBlanks = 0;
 
-        if (isScreenPortrait()) { // NavRing on Bottom
+        if (isScreenPortrait() || NavRingHelpers.isScreenLarge(mResources)) { // NavRing on Bottom
             startPosOffset =  1;
             endPosOffset =  (mNavRingAmount) + 1;
         } else {
@@ -554,8 +553,6 @@ public class AOKPSearchPanelView extends FrameLayout implements
         void observe() {
             mContentResolver.registerContentObserver(Settings.AOKP.getUriFor(
                     Settings.AOKP.SYSTEMUI_NAVRING_AMOUNT), false, this);
-            mContentResolver.registerContentObserver(Settings.AOKP.getUriFor(
-                    Settings.AOKP.SYSTEMUI_NAVRING_LONG_ENABLE), false, this);
 
             for (int i = 0; i < 5; i++) {
 	            mContentResolver.registerContentObserver(
@@ -584,9 +581,6 @@ public class AOKPSearchPanelView extends FrameLayout implements
             customIcons[i] = Settings.AOKP.getString(
                     mContentResolver, Settings.AOKP.SYSTEMUI_NAVRING_ICON[i]);
         }
-
-        mBoolLongPress = (Settings.AOKP.getBoolean(mContentResolver,
-                Settings.AOKP.SYSTEMUI_NAVRING_LONG_ENABLE, false));
 
         mNavRingAmount = Settings.AOKP.getInt(mContentResolver,
                          Settings.AOKP.SYSTEMUI_NAVRING_AMOUNT, 1);

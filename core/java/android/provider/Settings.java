@@ -5851,6 +5851,15 @@ public final class Settings {
         private static final Validator SCREENRECORD_QUALITY_MODE_VALIDATOR =
                new SettingsValidators.InclusiveIntegerRangeValidator(0, 2);
 
+        /**
+         * Force expanded notifications on all apps that support it.
+         * @hide
+         */
+        public static final String FORCE_EXPANDED_NOTIFICATIONS = "force_expanded_notifications";
+
+        private static final Validator FORCE_EXPANDED_NOTIFICATIONS_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6104,7 +6113,8 @@ public final class Settings {
             OMNI_DOZE_ON_CHARGE,
             USE_EDGE_SERVICE_FOR_GESTURES,
             SCREENRECORD_QUALITY_MODE,
-            RECENTS_COMPONENT
+            RECENTS_COMPONENT,
+            FORCE_EXPANDED_NOTIFICATIONS,
             // AICP Settings end
         };
 
@@ -6375,6 +6385,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(USE_EDGE_SERVICE_FOR_GESTURES);
             PRIVATE_SETTINGS.add(SCREENRECORD_QUALITY_MODE);
             PRIVATE_SETTINGS.add(RECENTS_COMPONENT);
+            PRIVATE_SETTINGS.add(FORCE_EXPANDED_NOTIFICATIONS);
             // AICP Settings end
         }
 
@@ -6646,6 +6657,7 @@ public final class Settings {
             VALIDATORS.put(USE_EDGE_SERVICE_FOR_GESTURES,USE_EDGE_SERVICE_FOR_GESTURES_VALIDATOR);
             VALIDATORS.put(SCREENRECORD_QUALITY_MODE,SCREENRECORD_QUALITY_MODE_VALIDATOR);
             VALIDATORS.put(RECENTS_COMPONENT,RECENTS_COMPONENT_VALIDATOR);
+            VALIDATORS.put(FORCE_EXPANDED_NOTIFICATIONS,FORCE_EXPANDED_NOTIFICATIONS_VALIDATOR);
             // AICP Settings end
         }
 

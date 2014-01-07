@@ -477,7 +477,7 @@ public class NavigationBarView extends LinearLayout {
         mShowMenu = show;
 
         if (getMenuButton() != null) {
-            getMenuButton().setVisibility(mShowMenu ? View.VISIBLE : View.INVISIBLE);
+            getMenuButton().setVisibility(mShowMenu ? View.VISIBLE : View.GONE);
         }
     }
 
@@ -580,6 +580,23 @@ public class NavigationBarView extends LinearLayout {
                 addSeparator(lightsOut, landscape, separatorSize, 0f);
             }
 
+            // legacy menu button
+            AwesomeButtonInfo menuButtonInfo = new AwesomeButtonInfo(AwesomeConstant.ACTION_MENU.value(),
+                    null, null, null);
+            KeyButtonView menuButton = new KeyButtonView(getContext(), null);
+            menuButton.setButtonActions(menuButtonInfo);
+            menuButton.setImageResource(R.drawable.ic_sysbar_menu);
+            menuButton.setLayoutParams(getLayoutParams(landscape, mMenuButtonWidth, 0f));
+            menuButton.setGlowBackground(landscape ? R.drawable.ic_sysbar_highlight_land
+                    : R.drawable.ic_sysbar_highlight);
+            menuButton.setVisibility(mShowMenu ? View.VISIBLE : View.GONE);
+            if(mMenuButtonId == 0) {
+                // assign the same id for layout and horizontal buttons
+                mMenuButtonId = View.generateViewId();
+            }
+            menuButton.setId(mMenuButtonId);
+            addButton(navButtons, menuButton, landscape);
+
             for (int j = 0; j < mNavButtons.size(); j++) {
                 // create the button
                 AwesomeButtonInfo info = mNavButtons.get(j);
@@ -601,30 +618,13 @@ public class NavigationBarView extends LinearLayout {
                 }
             }
 
-            // legacy menu button
-            AwesomeButtonInfo menuButtonInfo = new AwesomeButtonInfo(AwesomeConstant.ACTION_MENU.value(),
-                    null, null, null);
-            KeyButtonView menuButton = new KeyButtonView(getContext(), null);
-            menuButton.setButtonActions(menuButtonInfo);
-            menuButton.setImageResource(R.drawable.ic_sysbar_menu);
-            menuButton.setLayoutParams(getLayoutParams(landscape, mMenuButtonWidth, 0f));
-            menuButton.setGlowBackground(landscape ? R.drawable.ic_sysbar_highlight_land
-                    : R.drawable.ic_sysbar_highlight);
-            menuButton.setVisibility(mShowMenu ? View.VISIBLE : View.INVISIBLE);
-            if(mMenuButtonId == 0) {
-                // assign the same id for layout and horizontal buttons
-                mMenuButtonId = View.generateViewId();
+            if (tablet) {
+                addSeparator(navButtons, landscape, 0, 1f);
+                addSeparator(lightsOut, landscape, 0, 1f);
+            } else {
+                addSeparator(navButtons, landscape, separatorSize, 0f);
+                addSeparator(lightsOut, landscape, separatorSize, 0f);
             }
-            menuButton.setId(mMenuButtonId);
-            addButton(navButtons, menuButton, landscape);
-
-//            if (tablet) {
-//                addSeparator(navButtons, landscape, 0, 1f);
-//                addSeparator(lightsOut, landscape, 0, 1f);
-//            } else {
-//                addSeparator(navButtons, landscape, separatorSize, 0f);
-//                addSeparator(lightsOut, landscape, separatorSize, 0f);
-//            }
         }
         invalidate();
     }
@@ -677,10 +677,18 @@ public class NavigationBarView extends LinearLayout {
     }
 
     public void reorient() {
+        final boolean tablet = isTablet(getContext());
         final int rot = mDisplay.getRotation();
         for (int i = 0; i < 4; i++) {
             mRotatedViews[i].setVisibility(View.GONE);
         }
+
+        if (tablet) { // this is either a tablet of Phablet.  Need to stay at Rot_0
+            mCurrentView = mRotatedViews[Surface.ROTATION_0];
+        } else {
+            mCurrentView = mRotatedViews[rot];
+        }
+        mCurrentView.setVisibility(View.VISIBLE);
         mCurrentView = mRotatedViews[rot];
         mCurrentView.setVisibility(View.VISIBLE);
 

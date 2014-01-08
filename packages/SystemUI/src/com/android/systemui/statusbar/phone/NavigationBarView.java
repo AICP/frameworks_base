@@ -88,6 +88,8 @@ public class NavigationBarView extends LinearLayout {
     private float mButtonWidth, mMenuButtonWidth;
     private int mMenuButtonId;
 
+    final boolean mTablet = isTablet(getContext());
+
     private ArrayList<AwesomeButtonInfo> mNavButtons = new ArrayList<AwesomeButtonInfo>();
 
     private ContentObserver mSettingsObserver = new ContentObserver(new Handler()) {
@@ -477,7 +479,7 @@ public class NavigationBarView extends LinearLayout {
         mShowMenu = show;
 
         if (getMenuButton() != null) {
-            getMenuButton().setVisibility(mShowMenu ? View.VISIBLE : View.GONE);
+            getMenuButton().setVisibility(mShowMenu ? View.VISIBLE : View.INVISIBLE);
         }
     }
 
@@ -555,9 +557,8 @@ public class NavigationBarView extends LinearLayout {
 
     private void setupNavigationButtons() {
         readUserConfig();
-        final boolean addOutsideSeparators = mNavButtons.size() == 3;
-        final boolean tablet = isTablet(getContext());
-        int separatorSize = (int) (addOutsideSeparators ? mMenuButtonWidth : (mMenuButtonWidth / 2.0));
+        final boolean stockThreeButtonLayout = mNavButtons.size() == 3;
+        int separatorSize = (int) (stockThreeButtonLayout ? mMenuButtonWidth : (mMenuButtonWidth / 2.0));
 
         for (int i = 0; i <= 1; i++) {
             boolean landscape = (i == 1);
@@ -572,12 +573,59 @@ public class NavigationBarView extends LinearLayout {
             navButtons.removeAllViews();
             lightsOut.removeAllViews();
 
-            if (tablet) {
-                addSeparator(navButtons, landscape, 0, 1f);
-                addSeparator(lightsOut, landscape, 0, 1f);
+            if (mTablet) {
+                // offset menu button
+                addSeparator(navButtons, landscape, (int) mMenuButtonWidth, 0f);
+                addSeparator(lightsOut, landscape, (int) mMenuButtonWidth, 0f);
+
+                // eats up that extra mTablet space
+                addSeparator(navButtons, landscape, 0, stockThreeButtonLayout ? 1f : 0.5f);
+                addSeparator(lightsOut, landscape, 0, stockThreeButtonLayout ? 1f : 0.5f);
             } else {
+                // on phone ui this offsets the right side menu button
                 addSeparator(navButtons, landscape, separatorSize, 0f);
                 addSeparator(lightsOut, landscape, separatorSize, 0f);
+            }
+
+            for (int j = 0; j < mNavButtons.size(); j++) {
+                // create the button
+                AwesomeButtonInfo info = mNavButtons.get(j);
+                KeyButtonView button = new KeyButtonView(getContext(), null);
+                button.setButtonActions(info);
+                if (mTablet) {
+                    if (mNavButtons.size() <= 4) {
+                        // use stock tablet button spacing, even with 4 buttons it seems to work
+                        int padding = getResources().getDimensionPixelSize(landscape
+                                ? R.dimen.navigation_tablet_key_padding_land
+                                : R.dimen.navigation_tablet_key_padding
+                        );
+                        int width = getResources().getDimensionPixelSize(landscape
+                                ? R.dimen.navigation_tablet_key_width_land
+                                : R.dimen.navigation_tablet_key_width
+                        );
+                        button.setLayoutParams(getLayoutParams(landscape, width, 0f));
+                        button.setPaddingRelative(padding, 0, padding, 0);
+                    } else {
+                        // 5 or more buttons don't fit in portrait, so spread them all out equally
+                        button.setLayoutParams(getLayoutParams(landscape, mButtonWidth, 1f));
+                    }
+
+                    button.setGlowBackground(R.drawable.ic_sysbar_highlight);
+                } else {
+                    button.setLayoutParams(getLayoutParams(landscape, mButtonWidth, stockThreeButtonLayout ? 0f : 0.5f));
+                    button.setGlowBackground(landscape ? R.drawable.ic_sysbar_highlight_land
+                            : R.drawable.ic_sysbar_highlight);
+                }
+
+                // add button
+                addButton(navButtons, button, landscape);
+                addLightsOutButton(lightsOut, button, landscape, false);
+
+                if (!mTablet && stockThreeButtonLayout && j != (mNavButtons.size() - 1)) {
+                    // in the case of a 'stock' 3-button layout, the buttons need to be spaced further out apart
+                    addSeparator(navButtons, landscape, separatorSize, 0.5f);
+                    addSeparator(lightsOut, landscape, separatorSize, 0.5f);
+                }
             }
 
             // legacy menu button
@@ -589,41 +637,23 @@ public class NavigationBarView extends LinearLayout {
             menuButton.setLayoutParams(getLayoutParams(landscape, mMenuButtonWidth, 0f));
             menuButton.setGlowBackground(landscape ? R.drawable.ic_sysbar_highlight_land
                     : R.drawable.ic_sysbar_highlight);
-            menuButton.setVisibility(mShowMenu ? View.VISIBLE : View.GONE);
-            if(mMenuButtonId == 0) {
+            menuButton.setVisibility(mShowMenu ? View.VISIBLE : View.INVISIBLE);
+            if (mMenuButtonId == 0) {
                 // assign the same id for layout and horizontal buttons
                 mMenuButtonId = View.generateViewId();
             }
             menuButton.setId(mMenuButtonId);
-            addButton(navButtons, menuButton, landscape);
+            // MENU BUTTON NOT YET ADDED ANYWHERE!
 
-            for (int j = 0; j < mNavButtons.size(); j++) {
-                // create the button
-                AwesomeButtonInfo info = mNavButtons.get(j);
-                KeyButtonView button = new KeyButtonView(getContext(), null);
-                button.setButtonActions(info);
-                button.setLayoutParams(getLayoutParams(landscape, mButtonWidth, addOutsideSeparators ? 0f : 0.5f));
-                button.setGlowBackground(landscape ? R.drawable.ic_sysbar_highlight_land
-                        : R.drawable.ic_sysbar_highlight);
+            if (mTablet) {
+                // om nom
+                addSeparator(navButtons, landscape, 0,  stockThreeButtonLayout ? 1f : 0.5f);
+                addSeparator(lightsOut, landscape, 0,  stockThreeButtonLayout ? 1f : 0.5f);
 
-                // add button
-                addButton(navButtons, button, landscape);
-                addLightsOutButton(lightsOut, button, landscape, false);
-
-                if (addOutsideSeparators && j != (mNavButtons.size() - 1)) {
-                    // if there are no outside separators (spacer on the left, right)
-                    // then each button should have a weight of 1, so this isn't needed
-                    addSeparator(navButtons, landscape, separatorSize, 0.5f);
-                    addSeparator(lightsOut, landscape, separatorSize, 0.5f);
-                }
-            }
-
-            if (tablet) {
-                addSeparator(navButtons, landscape, 0, 1f);
-                addSeparator(lightsOut, landscape, 0, 1f);
+                // add the button last so it hangs on the edge
+                addButton(navButtons, menuButton, landscape);
             } else {
-                addSeparator(navButtons, landscape, separatorSize, 0f);
-                addSeparator(lightsOut, landscape, separatorSize, 0f);
+                addButton(navButtons, menuButton, landscape);
             }
         }
         invalidate();
@@ -677,18 +707,11 @@ public class NavigationBarView extends LinearLayout {
     }
 
     public void reorient() {
-        final boolean tablet = isTablet(getContext());
         final int rot = mDisplay.getRotation();
         for (int i = 0; i < 4; i++) {
             mRotatedViews[i].setVisibility(View.GONE);
         }
 
-        if (tablet) { // this is either a tablet of Phablet.  Need to stay at Rot_0
-            mCurrentView = mRotatedViews[Surface.ROTATION_0];
-        } else {
-            mCurrentView = mRotatedViews[rot];
-        }
-        mCurrentView.setVisibility(View.VISIBLE);
         mCurrentView = mRotatedViews[rot];
         mCurrentView.setVisibility(View.VISIBLE);
 
@@ -720,7 +743,7 @@ public class NavigationBarView extends LinearLayout {
         int workingIdx = 0;
         for (int i = 0; i < N; i++) {
             View child = view.getChildAt(i);
-            if(child.getId() == mMenuButtonId) {
+            if (child.getId() == mMenuButtonId) {
                 // included in container but not in buttons array
                 continue;
             }
@@ -853,15 +876,15 @@ public class NavigationBarView extends LinearLayout {
     private void addSeparator(LinearLayout layout, boolean landscape, int size, float weight) {
         Space separator = new Space(mContext);
         separator.setLayoutParams(getLayoutParams(landscape, size, weight));
-        if (landscape) {
+        if (landscape && !mTablet) {
             layout.addView(separator, 0);
         } else {
             layout.addView(separator);
         }
     }
 
-    private void addButton(LinearLayout root, View v, boolean landscape) {
-        if (landscape)
+    private void addButton(ViewGroup root, View v, boolean landscape) {
+        if (landscape && !mTablet)
             root.addView(v, 0);
         else
             root.addView(v);
@@ -875,17 +898,17 @@ public class NavigationBarView extends LinearLayout {
         addMe.setScaleType(ImageView.ScaleType.CENTER);
         addMe.setVisibility(empty ? View.INVISIBLE : View.VISIBLE);
 
-        if (landscape)
+        if (landscape && !mTablet)
             root.addView(addMe, 0);
         else
             root.addView(addMe);
     }
 
-    public static LinearLayout.LayoutParams getLayoutParams(boolean landscape, float px, float weight) {
+    public LinearLayout.LayoutParams getLayoutParams(boolean landscape, float px, float weight) {
         if (weight != 0) {
             px = 0;
         }
-        return landscape ?
+        return landscape && !mTablet ?
                 new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int) px, weight) :
                 new LinearLayout.LayoutParams((int) px, LinearLayout.LayoutParams.MATCH_PARENT, weight);
     }

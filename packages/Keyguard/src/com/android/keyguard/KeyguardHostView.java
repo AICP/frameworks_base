@@ -398,6 +398,7 @@ public class KeyguardHostView extends KeyguardViewBase {
         showPrimarySecurityScreen(false);
         updateSecurityViews();
         enableUserSelectorIfNecessary();
+        minimizeChallengeIfNeeded();
     }
 
     private void updateAndAddWidgets() {
@@ -1043,7 +1044,17 @@ public class KeyguardHostView extends KeyguardViewBase {
         }
 
         requestFocus();
+        minimizeChallengeIfNeeded();
     }
+
+    private void minimizeChallengeIfNeeded() {
+        if (mSlidingChallengeLayout != null) {
+            if (Settings.AOKP.getBoolean(getContext().getContentResolver(),
+                Settings.AOKP.LOCKSCREEN_MINIMIZE_LOCKSCREEN_CHALLENGE, false)) {
+                mSlidingChallengeLayout.showChallenge(false);
+            }
+        }
+     }
 
     @Override
     public void onScreenTurnedOff() {

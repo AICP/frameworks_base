@@ -17,10 +17,16 @@
  */
 -->
 <resources>
-    <style name="TextApperance.StatusBar.BatteryText" parent="@*android:style/TextAppearance.StatusBar.Icon">
+    <style name="BatteryText" parent="@*android:style/TextAppearance.StatusBar.Icon">
         <!-- Note: must be dp to fit in status bar -->
         <item name="android:textSize">12dp</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textColor">@color/status_bar_battery_text_color</item>
+    </style>
+    <style name="BatteryTextPlugged" parent="@*android:style/TextAppearance.StatusBar.Icon">
+        <!-- Note: must be dp to fit in status bar -->
+        <item name="android:textSize">12dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/status_bar_battery_text_color_plugged</item>
     </style>
 </resources>

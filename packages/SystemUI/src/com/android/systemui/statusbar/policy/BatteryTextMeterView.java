@@ -30,7 +30,9 @@ import com.android.systemui.statusbar.policy.BatteryController.BatteryStateChang
 public class BatteryTextMeterView extends TextView implements BatteryStateChangeCallback {
 
     private boolean mEnabled; // is indicator enabled
+    private boolean mPluggedEnabled; // indicate charging
     private int mLevel;
+    private boolean mPlugged;
 
     private ContentObserver mObserver = new ContentObserver(new Handler()) {
         @Override
@@ -54,6 +56,9 @@ public class BatteryTextMeterView extends TextView implements BatteryStateChange
         getContext().getContentResolver().registerContentObserver(
                 Settings.AOKP.getUriFor(Settings.AOKP.BATTERY_PERCENTAGE_INDICATOR),
                 false, mObserver);
+        getContext().getContentResolver().registerContentObserver(
+                Settings.AOKP.getUriFor(Settings.AOKP.BATTERY_PERCENTAGE_INDICATOR_PLUGGED),
+                false, mObserver);
         updateSettings();
     }
 
@@ -67,6 +72,8 @@ public class BatteryTextMeterView extends TextView implements BatteryStateChange
     private void updateSettings() {
         mEnabled = Settings.AOKP.getBoolean(mContext.getContentResolver(),
                         Settings.AOKP.BATTERY_PERCENTAGE_INDICATOR, false);
+        mPluggedEnabled = Settings.AOKP.getBoolean(mContext.getContentResolver(),
+                        Settings.AOKP.BATTERY_PERCENTAGE_INDICATOR_PLUGGED, false);
         refreshView();
     }
 
@@ -75,6 +82,11 @@ public class BatteryTextMeterView extends TextView implements BatteryStateChange
             setText(String.format(getContext().getString(R.string.battery_percent_format), mLevel));
             if(getVisibility() != View.VISIBLE) {
                 setVisibility(View.VISIBLE);
+            }
+            if(mPluggedEnabled && mPlugged) {
+                setTextAppearance(getContext(), R.style.BatteryTextPlugged);
+            } else {
+                setTextAppearance(getContext(), R.style.BatteryText);
             }
         } else {
             if(getVisibility() != View.GONE) {
@@ -87,6 +99,7 @@ public class BatteryTextMeterView extends TextView implements BatteryStateChange
     @Override
     public void onBatteryLevelChanged(int level, boolean pluggedIn) {
         mLevel = level;
+        mPlugged = pluggedIn;
         refreshView();
     }
 }

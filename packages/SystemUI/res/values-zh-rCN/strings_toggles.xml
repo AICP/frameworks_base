@@ -52,6 +52,7 @@
     <string name="toggle_CUSTOM">自定义开关</string>
     <string name="toggle_STAYAWAKE">保持唤醒</string>
     <string name="toggle_WIRELESSADB">无线 ADB</string>
+    <string name="toggle_IMMERSIVE_MODE">沉浸模式</string>
 
     <string name="quick_settings_swagger">屌爆</string>
     <string name="quick_settings_swaggersun">周日屌爆了</string>
@@ -103,5 +104,6 @@
     <string name="quick_settings_statusbar_off_label">已隐藏状态栏</string>
     <string name="quick_settings_swaggersuntoast">星期天真是屌爆了！</string>
     <string name="quick_settings_screenshot">屏幕截图</string>
-
+    <string name="quick_settings_immersive_mode_on">沉浸模式已打开</string>
+    <string name="quick_settings_immersive_mode_off">沉浸模式已关闭</string>
 </resources>

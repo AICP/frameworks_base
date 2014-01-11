@@ -1359,4 +1359,7 @@
          the GPU to handle. -->
     <integer name="config_wallpaperMaxWidth">-1</integer>
 
+    <!-- Force permanent menu key -->
+       <bool name="config_force_permanent_menu_key">false</bool>
+
 </resources>

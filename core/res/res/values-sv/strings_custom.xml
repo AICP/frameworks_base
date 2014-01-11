@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright (c) 2013, The Android Open Kang Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="reboot">Starta om</string>
+    <string name="reboot_recovery">Recovery</string>
+    <string name="reboot_download">Download</string>
+    <string name="reboot_bootloader">Bootloader</string>
+    <string name="reboot_progress">Enheten startar om</string>
+    <string name="rotation_lock_toggled">Rotationslås aktiverad</string>
+    <string name="immersive_mode">Omslutande läge</string>
+    <string name="immersive_mode_on">Omslutande läge är PÅ</string>
+    <string name="immersive_mode_off">Omslutande läge är AV</string>
+    <string name="action_home">Hem</string>
+    <string name="action_back">Tillbaka</string>
+    <string name="action_recents">Recents</string>
+    <string name="action_recents_gb">Senaste (GB stil)</string>
+    <string name="action_search">Sök</string>
+    <string name="action_screenshot">Skärmdump</string>
+    <string name="action_menu">Meny</string>
+    <string name="action_ime">Öppna IME Växlare</string>
+    <string name="action_kill">Tvångsavsluta</string>
+    <string name="action_lastapp">Senaste app</string>
+    <string name="action_power">Ström</string>
+    <string name="action_notifications">Notifikationer</string>
+    <string name="action_assist">Sök (Google Nu)</string>
+    <string name="action_clockoptions">Klockalternativ</string>
+    <string name="action_voiceassist">Röstsökning</string>
+    <string name="action_torch">Ficklampa</string>
+    <string name="action_silent">Ring/Tyst</string>
+    <string name="action_vib">Ring/Vibrera</string>
+    <string name="action_silent_vib">Ring/Vibrera/Tyst</string>
+    <string name="action_event">Händelse</string>
+    <string name="action_today">Idag</string>
+    <string name="action_alarm">Alarm</string>
+    <string name="action_unlock">Lås upp</string>
+    <string name="action_camera">Kamera</string>
+    <string name="action_null">Blank</string>
+    <string name="action_widgets">Nav Widgets</string>
+    <string name="action_app_window">App Fönster</string>
+    <string name="action_ribbon">AOKP Band</string>
+    <string name="action_app">Anpassad App/Genväg</string>
+    <string name="app_killed_message">App tvångsavslutad</string>
+</resources>

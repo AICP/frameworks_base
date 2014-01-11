@@ -18,4 +18,8 @@
 -->
 <resources>
     <color name="status_bar_battery_text_color">#FFFFFFFF</color>
+    <color name="qs_tile_user_label">#CC000000</color>
+    <color name="toggle_text">#ffffffff</color>
+    <color name="toggle_text_changing_state_color">#ff787878</color>
+    <color name="toggle_image_changing_state_overlay">@color/toggle_text_changing_state_color</color>
 </resources>

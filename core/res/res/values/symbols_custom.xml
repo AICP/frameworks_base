@@ -33,6 +33,9 @@
     <java-symbol type="string" name="immersive_mode_on"/>
     <java-symbol type="string" name="immersive_mode_off"/>
 
+    <!-- AOKP Easter Egg -->
+    <java-symbol type="drawable" name="aokplogo" />
+    <java-symbol type="drawable" name="aokplogo_alt" />
 
      <!--  Awesome Action -->
     <java-symbol type="string" name="action_home"/>

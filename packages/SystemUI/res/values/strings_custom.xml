@@ -38,6 +38,7 @@
 
     <!-- Battery percent format -->
     <string name="battery_percent_format"><xliff:g id="number">%d%%</xliff:g></string>
+    <string name="status_bar_notification_hide_icon_packages">Hide app\'s icons</string>
 
 </resources>
 

@@ -1197,7 +1197,6 @@ public class AppOpsManager {
         finishOp(op, Process.myUid(), mContext.getOpPackageName());
     }
 
-    /** @hide */
     public void resetCounters() {
         try {
             mService.resetCounters();

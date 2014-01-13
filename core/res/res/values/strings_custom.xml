@@ -114,6 +114,8 @@
     <string name="profile_none">None</string>
 
     <string name="global_action_screenshot">Screenshot</string>
+    <!-- label for item that takes screenrecord in the phone options dialog -->
+    <string name="global_action_screenrecord">Screen Record</string>
 
     <!-- Animation Strings -->
     <string name="animation_fade">Fade</string>

@@ -129,7 +129,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
     private int mImmersiveOption = -1;
     private int mRebootOption = -1;
     private int mScreenshotOption = -1;
-
+    private int mScreenrecordOption = -1;
 
     /**
      * @param context everything needs a context :(
@@ -265,6 +265,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         mImmersiveOption = Settings.AOKP.getInt(resolver, Settings.AOKP.IMMERSIVE_MODE_OPTIONS, 0);
         mRebootOption = Settings.AOKP.getInt(resolver, Settings.AOKP.REBOOT_MODE_OPTIONS, 1);
         mScreenshotOption = Settings.AOKP.getInt(resolver, Settings.AOKP.SCREENSHOT_MODE_OPTIONS, 0);
+        mScreenrecordOption = Settings.AOKP.getInt(resolver, Settings.AOKP.SCREENRECORD_MODE_OPTIONS, 0);
 
         mAirplaneModeOn = new ToggleAction(
                 R.drawable.ic_lock_airplane_mode,
@@ -438,6 +439,25 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
             mItems.add(mImmersiveModeOn);
          }
 
+        if (mScreenrecordOption != 0) {
+            // next: screenrecord
+            mItems.add(
+                new SinglePressAction(R.drawable.ic_lock_screen_record, R.string.global_action_screenrecord) {
+                    public void onPress() {
+                        takeScreenrecord();
+                    }
+
+                    public boolean showDuringKeyguard() {
+                        boolean toggle = checkOptionAndKeyguard(mScreenrecordOption);
+                        return toggle;
+                    }
+
+                    public boolean showBeforeProvisioning() {
+                        return true;
+                    }
+             });
+         }
+
         // next: bug report, if enabled
         if (Settings.Global.getInt(mContext.getContentResolver(),
                 Settings.Global.BUGREPORT_IN_POWER_MENU, 0) != 0 && isCurrentUserOwner()) {
@@ -522,6 +542,73 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         dialog.setOnDismissListener(this);
 
         return dialog;
+    }
+
+    /**
+     * functions needed for taking screen record.
+     */
+    final Object mScreenrecordLock = new Object();
+    ServiceConnection mScreenrecordConnection = null;
+
+    final Runnable mScreenrecordTimeout = new Runnable() {
+        @Override public void run() {
+            synchronized (mScreenrecordLock) {
+                if (mScreenrecordConnection != null) {
+                    mContext.unbindService(mScreenrecordConnection);
+                    mScreenrecordConnection = null;
+                }
+            }
+        }
+    };
+
+    // Assume this is called from the Handler thread.
+    private void takeScreenrecord() {
+        synchronized (mScreenrecordLock) {
+            if (mScreenrecordConnection != null) {
+                return;
+            }
+            ComponentName cn = new ComponentName("com.android.systemui",
+                    "com.android.systemui.omni.screenrecord.TakeScreenrecordService");
+            Intent intent = new Intent();
+            intent.setComponent(cn);
+            ServiceConnection conn = new ServiceConnection() {
+                @Override
+                public void onServiceConnected(ComponentName name, IBinder service) {
+                    synchronized (mScreenrecordLock) {
+                        Messenger messenger = new Messenger(service);
+                        Message msg = Message.obtain(null, 1);
+                        final ServiceConnection myConn = this;
+                        Handler h = new Handler(mHandler.getLooper()) {
+                            @Override
+                            public void handleMessage(Message msg) {
+                                synchronized (mScreenrecordLock) {
+                                    if (mScreenrecordConnection == myConn) {
+                                        mContext.unbindService(mScreenrecordConnection);
+                                        mScreenrecordConnection = null;
+                                        mHandler.removeCallbacks(mScreenrecordTimeout);
+                                    }
+                                }
+                            }
+                        };
+                        msg.replyTo = new Messenger(h);
+                        msg.arg1 = msg.arg2 = 0;
+                        try {
+                            messenger.send(msg);
+                        } catch (RemoteException e) {
+                        }
+                    }
+                }
+                @Override
+                public void onServiceDisconnected(ComponentName name) {}
+            };
+            if (mContext.bindServiceAsUser(
+                    intent, conn, Context.BIND_AUTO_CREATE, UserHandle.CURRENT)) {
+                mScreenrecordConnection = conn;
+                // Screenrecord max duration is 30 minutes. Allow 31 minutes before killing
+                // the service.
+                mHandler.postDelayed(mScreenrecordTimeout, 31 * 60 * 1000);
+            }
+        }
     }
 
     private UserInfo getCurrentUser() {

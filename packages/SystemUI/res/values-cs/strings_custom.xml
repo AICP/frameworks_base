@@ -22,4 +22,5 @@
     <string name="screenrecord_notif_stop">Zastavit</string>
     <string name="screenrecord_notif_pointer">Přepnout ukazatel</string>
     <string name="screenrecord_notif_error">Nahrávání obrazovky není možné</string>
+    <string name="status_bar_notification_hide_icon_packages">Skrýt ikonu aplikace</string>
 </resources>

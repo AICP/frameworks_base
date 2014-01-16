@@ -84,6 +84,7 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
     private RecentsScrollView mRecentsContainer;
 
     private boolean mShowing;
+    private boolean mAttached;
     private boolean mWaitingToShow;
     private ViewHolder mItemToAnimateInWhenWindowAnimationIsFinished;
     private boolean mAnimateIconOfFirstTask;
@@ -108,11 +109,24 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
     TextView mForegroundProcessText;
 
     Handler mHandler = new Handler();
-    SettingsObserver mSettingsObserver;
     ActivityManager mAm;
     ActivityManager.MemoryInfo mMemInfo;
 
     MemInfoReader mMemInfoReader = new MemInfoReader();
+
+    private ContentObserver mObserver = new ContentObserver(mHandler) {
+        @Override
+        public void onChange(boolean selfChange) {
+            updateSettings();
+            updateView();
+        }
+
+        @Override
+        public void onChange(boolean selfChange, android.net.Uri uri) {
+            updateSettings();
+            updateView();
+        };
+    };
 
     public static interface OnRecentsPanelVisibilityChangedListener {
         public void onRecentsPanelVisibilityChanged(boolean visible);
@@ -299,7 +313,6 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
         mRecentItemLayoutId = a.getResourceId(R.styleable.RecentsPanelView_recentItemLayout, 0);
         mRecentTasksLoader = RecentTasksLoader.getInstance(context);
         a.recycle();
-        mSettingsObserver = new SettingsObserver(mHandler);
     }
 
     public int numItemsInOneScreenful() {
@@ -388,17 +401,29 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
     @Override
     protected void onAttachedToWindow () {
         super.onAttachedToWindow();
-        final ViewRootImpl root = getViewRootImpl();
-        if (root != null) {
-            root.setDrawDuringWindowsAnimating(true);
+        if (!mAttached) {
+            mAttached = true;
+
+            final ViewRootImpl root = getViewRootImpl();
+            if (root != null) {
+                root.setDrawDuringWindowsAnimating(true);
+            }
+            ContentResolver resolver = mContext.getContentResolver();
+            resolver.registerContentObserver(Settings.AOKP
+                    .getUriFor(Settings.AOKP.RAM_USAGE_BAR),
+                    false, mObserver);
+            updateSettings();
+            updateView();
         }
-        mSettingsObserver.observe(); // observe will call updateSettings()
     }
 
     @Override
     protected void onDetachedFromWindow() {
-        mContext.getContentResolver().unregisterContentObserver(mSettingsObserver);
         super.onDetachedFromWindow();
+        if (mAttached) {
+            mAttached = false;
+            mContext.getContentResolver().unregisterContentObserver(mObserver);
+        }
     }
 
     public void onUiHidden() {
@@ -508,6 +533,7 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
         mForegroundProcessText = (TextView) findViewById(R.id.foregroundText);
         mBackgroundProcessText = (TextView) findViewById(R.id.backgroundText);
         mRamUsageBarShadow = findViewById(R.id.aokp_rambar_shadow);
+        mHandler.post(updateRamBarTask);
     }
 
     public void setMinSwipeAlpha(float minAlpha) {
@@ -905,29 +931,12 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
         }
     };
 
-    class SettingsObserver extends ContentObserver {
-        SettingsObserver(Handler handler) {
-            super(handler);
-        }
-
-        void observe() {
-            ContentResolver resolver = mContext.getContentResolver();
-            resolver.registerContentObserver(Settings.AOKP
-                    .getUriFor(Settings.AOKP.RAM_USAGE_BAR),
-                    false, this);
-            updateSettings();
-        }
-
-        @Override
-        public void onChange(boolean selfChange) {
-            updateSettings();
-        }
-    }
-
     public void updateSettings() {
         ramBarEnabled = Settings.AOKP.getBoolean(mContext.getContentResolver(),
                 Settings.AOKP.RAM_USAGE_BAR, false);
+    }
 
+    private void updateView() {
         if (mRamUsageBar != null) {
             mRamUsageBar.setVisibility(ramBarEnabled ? View.VISIBLE : View.GONE);
         }

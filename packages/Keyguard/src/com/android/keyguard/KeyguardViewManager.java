@@ -17,7 +17,6 @@
 
 package com.android.keyguard;
 
-import android.app.PendingIntent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
@@ -28,17 +27,18 @@ import android.view.*;
 import com.android.internal.policy.IKeyguardShowCallback;
 import com.android.internal.widget.LockPatternUtils;
 
-import android.app.Activity;
 import android.app.ActivityManager;
 import android.appwidget.AppWidgetManager;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.content.ContentResolver;
 import android.database.ContentObserver;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.TransitionDrawable;
 import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
@@ -46,10 +46,15 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.Handler;
 import android.os.Parcelable;
 import android.os.RemoteException;
-import android.os.SystemProperties;
 import android.provider.Settings;
+import android.renderscript.Allocation;
+import android.renderscript.Allocation.MipmapControl;
+import android.renderscript.Element;
+import android.renderscript.RenderScript;
+import android.renderscript.ScriptIntrinsicBlur;
 import android.util.Log;
 import android.util.Slog;
 import android.util.SparseArray;
@@ -91,7 +96,11 @@ public class KeyguardViewManager {
 
     private boolean mScreenOn = false;
     private LockPatternUtils mLockPatternUtils;
-
+    
+    private Drawable mCustomBackground = null;
+    private boolean mBlurEnabled = false;
+    private int mBlurRadius = 12;
+    
     private KeyguardUpdateMonitorCallback mBackgroundChanger = new KeyguardUpdateMonitorCallback() {
         @Override
         public void onSetBackground(Bitmap bmp) {
@@ -114,6 +123,10 @@ public class KeyguardViewManager {
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.AOKP.getUriFor(
                     Settings.AOKP.LOCKSCREEN_SEE_THROUGH), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.LOCKSCREEN_BLUR_BEHIND), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.LOCKSCREEN_BLUR_RADIUS), false, this);
         }
 
         @Override
@@ -123,9 +136,22 @@ public class KeyguardViewManager {
                 maybeCreateKeyguardLocked(shouldEnableScreenRotation(), false, null);
                 hide();
             }
+            setKeyguardParams();
+            updateSettings();
             mViewManager.updateViewLayout(mKeyguardHost, mWindowLayoutParams);
         }
     }
+
+    private void updateSettings() {
+    	mBlurEnabled = Settings.System.getInt(mContext.getContentResolver(),
+    			Settings.System.LOCKSCREEN_BLUR_BEHIND, 0) == 1;
+    	mBlurRadius = Settings.System.getInt(mContext.getContentResolver(),
+    			Settings.System.LOCKSCREEN_BLUR_RADIUS, 12);
+    	if(!mBlurEnabled) {
+    		mCustomBackground = null;
+    	}
+    }
+
 
     /**
      * @param context Used to create views.
@@ -143,6 +169,7 @@ public class KeyguardViewManager {
 
         SettingsObserver observer = new SettingsObserver(new Handler());
         observer.observe();
+        updateSettings();
     }
 
     /**
@@ -212,8 +239,11 @@ public class KeyguardViewManager {
 
     private boolean shouldEnableScreenRotation() {
         Resources res = mContext.getResources();
-        return SystemProperties.getBoolean("lockscreen.rot_override",false)
-                || res.getBoolean(R.bool.config_enableLockScreenRotation);
+        boolean enableLockScreenRotation = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.LOCKSCREEN_ROTATION, 0) != 0;
+        boolean enableAccelerometerRotation = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.ACCELEROMETER_ROTATION, 1) != 0;
+        return enableLockScreenRotation && enableAccelerometerRotation;
     }
 
     private boolean shouldEnableTranslucentDecor() {
@@ -221,6 +251,30 @@ public class KeyguardViewManager {
         return res.getBoolean(R.bool.config_enableLockScreenTranslucentDecor);
     }
 
+    public void setBackgroundBitmap(Bitmap bmp) {
+    	if (mBlurEnabled) {
+    		bmp = blurBitmap(bmp, mBlurRadius);
+    	}
+    	mCustomBackground = new BitmapDrawable(mContext.getResources(), bmp);
+    }
+
+    private Bitmap blurBitmap (Bitmap bmp, int radius) {
+    	Bitmap out = Bitmap.createBitmap(bmp);
+    	RenderScript rs = RenderScript.create(mContext);
+
+    	Allocation input = Allocation.createFromBitmap(rs, bmp, MipmapControl.MIPMAP_NONE, Allocation.USAGE_SCRIPT);
+    	Allocation output = Allocation.createTyped(rs, input.getType());
+
+    	ScriptIntrinsicBlur script = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
+    	script.setInput(input);
+    	script.setRadius (radius);
+    	script.forEach (output);
+
+    	output.copyTo (out);
+
+    	return out;
+}
+    
     class ViewManagerHost extends FrameLayout {
         private static final int BACKGROUND_COLOR = 0x70000000;
 
@@ -285,7 +339,6 @@ public class KeyguardViewManager {
                     old = new ColorDrawable(0);
                     computeCustomBackgroundBounds(old);
                 }
-
                 d.setColorFilter(BACKGROUND_COLOR, PorterDuff.Mode.SRC_OVER);
                 mCustomBackground = d;
                 computeCustomBackgroundBounds(d);
@@ -375,48 +428,23 @@ public class KeyguardViewManager {
             if (DEBUG) Log.d(TAG, "keyguard host is null, creating it...");
 
             mKeyguardHost = new ViewManagerHost(mContext);
-
-            int flags = WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
-                    | WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR
-                    | WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN;
-
-            if (!isSeeThroughEnabled()) {
-                flags |= WindowManager.LayoutParams.FLAG_SHOW_WALLPAPER;
-            }
-
-            if (!mNeedsInput) {
-                flags |= WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM;
-            }
-
-            final int stretch = ViewGroup.LayoutParams.MATCH_PARENT;
-            final int type = WindowManager.LayoutParams.TYPE_KEYGUARD;
-            WindowManager.LayoutParams lp = new WindowManager.LayoutParams(
-                    stretch, stretch, type, flags, PixelFormat.TRANSLUCENT);
-            lp.softInputMode = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE;
-            lp.windowAnimations = R.style.Animation_LockScreen;
-            lp.screenOrientation = enableScreenRotation ?
-                    ActivityInfo.SCREEN_ORIENTATION_USER : ActivityInfo.SCREEN_ORIENTATION_NOSENSOR;
-
-            if (ActivityManager.isHighEndGfx()) {
-                lp.flags |= WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
-                lp.privateFlags |=
-                        WindowManager.LayoutParams.PRIVATE_FLAG_FORCE_HARDWARE_ACCELERATED;
-            }
-            lp.privateFlags |= WindowManager.LayoutParams.PRIVATE_FLAG_SET_NEEDS_MENU_KEY;
-            lp.inputFeatures |= WindowManager.LayoutParams.INPUT_FEATURE_DISABLE_USER_ACTIVITY;
-            lp.setTitle("Keyguard");
-            mWindowLayoutParams = lp;
-            mViewManager.addView(mKeyguardHost, lp);
-
             KeyguardUpdateMonitor.getInstance(mContext).registerCallback(mBackgroundChanger);
-        }
 
+            setKeyguardParams();
+            mViewManager.addView(mKeyguardHost, mWindowLayoutParams);
+        }
+        
         if (force || mKeyguardView == null) {
             mKeyguardHost.setCustomBackground(null);
             mKeyguardHost.removeAllViews();
             inflateKeyguardView(options);
             mKeyguardView.requestFocus();
         }
+        
+        if(mCustomBackground != null) {
+        	mKeyguardHost.setCustomBackground(mCustomBackground);
+        }
+        
         updateUserActivityTimeoutInWindowLayoutParams();
         mViewManager.updateViewLayout(mKeyguardHost, mWindowLayoutParams);
 
@@ -494,15 +522,16 @@ public class KeyguardViewManager {
     }
 
     void updateShowWallpaper(boolean show) {
-        if (isSeeThroughEnabled()) show = false;
-
-        if (show) {
-            mWindowLayoutParams.flags |= WindowManager.LayoutParams.FLAG_SHOW_WALLPAPER;
+        if (isSeeThroughEnabled()) {
+            return;
         } else {
-            mWindowLayoutParams.flags &= ~WindowManager.LayoutParams.FLAG_SHOW_WALLPAPER;
+            if (show) {
+                mWindowLayoutParams.flags |= WindowManager.LayoutParams.FLAG_SHOW_WALLPAPER;
+            } else {
+                mWindowLayoutParams.flags &= ~WindowManager.LayoutParams.FLAG_SHOW_WALLPAPER;
+            }
+            mViewManager.updateViewLayout(mKeyguardHost, mWindowLayoutParams);
         }
-
-        mViewManager.updateViewLayout(mKeyguardHost, mWindowLayoutParams);
     }
 
     public void setNeedsInput(boolean needsInput) {

@@ -51,6 +51,7 @@ import android.util.Log;
 import android.util.Slog;
 import android.util.Spline;
 import android.util.TimeUtils;
+import android.view.DisplayInfo;
 import android.view.SurfaceControl;
 
 import com.android.internal.policy.impl.keyguard.KeyguardServiceWrapper;
@@ -549,18 +550,18 @@ final class DisplayPowerController {
             }
 
             if (changed && !mPendingRequestChangedLocked) {
-                if (request.screenState == DisplayPowerRequest.SCREEN_STATE_OFF && !isKeyguardEnabled() &&
+                if ((mKeyguardService == null || !mKeyguardService.isShowing()) && request.screenState == DisplayPowerRequest.SCREEN_STATE_OFF &&
                         Settings.System.getInt(mContext.getContentResolver(), Settings.System.LOCKSCREEN_BLUR_BEHIND, 0) == 1) {
-                    final Bitmap bmp = SurfaceControl.screenshot(720, 1280);
+                    DisplayInfo di = mDisplayManager.getDisplayInfo(mDisplayManager.getDisplayIds()[0]);
+                    // Up to 22000, the layers seem to be used by apps. Everything above that is systemui or a system alert
+                    // and we don't want these on our screenshot.
+                    final Bitmap bmp = SurfaceControl.screenshot(di.getNaturalWidth(), di.getNaturalHeight(), 0, 22000);
                     if(bmp != null) {
                         mHandler.post(new Runnable() {
                              @Override
                              public void run() {
-                                try {
-                                    mKeyguardService.setBackgroundBitmap(bmp);
-                                } finally {
-                                    bmp.recycle();
-                                }
+                                mKeyguardService.setBackgroundBitmap(bmp);
+                                bmp.recycle();
                             }
                         });
                     }
@@ -586,12 +587,6 @@ final class DisplayPowerController {
             msg.setAsynchronous(true);
             mHandler.sendMessage(msg);
         }
-    }
-
-    private boolean isKeyguardEnabled() {
-        KeyguardManager km = (KeyguardManager)mContext.getSystemService(Context.KEYGUARD_SERVICE);
-        if(km == null) return false;
-        return km.isKeyguardLocked();
     }
 
     private void initialize() {

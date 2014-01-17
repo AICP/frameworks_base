@@ -7142,6 +7142,14 @@ public final class Settings {
          */
         public static final String UI_THEME_AUTO_MODE = "ui_theme_auto_mode";
         /*
+
+        /**
+         * Key to store Torch state.
+         * @hide
+         */
+        public static final String TORCH_STATE = "torch_state";
+
+        /**
          * Whether to show the network status in the status bar
          * @hide
          */

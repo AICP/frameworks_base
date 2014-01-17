@@ -151,7 +151,7 @@ public class ToggleManager {
             if (mContext.getSystemService(Context.NFC_SERVICE) != null) {
                 toggleMap.put(NFC_TOGGLE, NfcToggle.class);
             }
-            // toggleMap.put(TORCH_TOGGLE, TorchToggle.class);
+            toggleMap.put(TORCH_TOGGLE, TorchToggle.class);
             toggleMap.put(USB_TETHER_TOGGLE, UsbTetherToggle.class);
             // if
             // (((TelephonyManager)mContext.getSystemService(Context.TELEPHONY_SERVICE))

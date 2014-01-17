@@ -2343,6 +2343,153 @@ public final class Settings {
         public static final String LOCKSCREEN_DISABLED = "lockscreen.disabled";
 
         /**
+         * Whether to display notifications on screen when screen is off
+         * @hide
+         */
+        public static final String ENABLE_ACTIVE_DISPLAY = "enable_active_display";
+
+        /**
+         * Whether to display notification messages around ring
+         * @hide
+         */
+        public static final String ACTIVE_DISPLAY_TEXT = "active_display_text";
+
+        /**
+         * Time to redisplay notifications on screen from when screen turns off, 0 = never redisplay
+         * @hide
+         */
+        public static final String ACTIVE_DISPLAY_REDISPLAY = "active_display_redisplay";
+
+        /**
+         * Brightness of the display when displaying the active display view
+         * @hide
+         */
+        public static final String ACTIVE_DISPLAY_BRIGHTNESS = "active_display_brightness";
+
+        /**
+         * Whether to include ongoing/non-clearable notifications
+         * @hide
+         */
+        public static final String ACTIVE_DISPLAY_ALL_NOTIFICATIONS = "active_display_all_notifications";
+
+        /**
+         * Whether to display AM/PM after time when in 12h format
+         * @hide
+         */
+        public static final String ACTIVE_DISPLAY_SHOW_AMPM = "active_display_show_ampm";
+
+        /**
+         * Whether to display the date above the time
+         * @hide
+         */
+        public static final String ACTIVE_DISPLAY_SHOW_DATE = "active_display_show_date";
+
+        /**
+         * active notifications
+         *@hide
+         */
+        public static final String ACTIVE_NOTIFICATIONS = "active_notifications";
+
+        /**
+         * Threshold of the proximity sensor to turn on the device.
+         * @hide
+         */
+        public static final String ACTIVE_DISPLAY_THRESHOLD = "active_display_threshold";
+
+        /**
+         * Timeout of the display when there is no user interaction
+         * @hide
+         */
+        public static final String ACTIVE_DISPLAY_TIMEOUT = "active_display_timeout";
+
+        /**
+         * A list of packages to exclude from being displayed in active display.
+         * This should be a string of packages separated by |
+         * @hide
+         */
+        public static final String ACTIVE_DISPLAY_EXCLUDED_APPS = "active_display_excluded_apps";
+
+        /**
+         * Enables/disables lockscreen notifications
+         * @hide
+         */
+        public static final String LOCKSCREEN_NOTIFICATIONS = "lockscreen_notifications";
+
+        /**
+         * A list of packages to exclude from being displayed as lockscreen notifications.
+         * This should be a string of packages separated by |
+         * @hide
+        */
+        public static final String LOCKSCREEN_NOTIFICATIONS_EXCLUDED_APPS = "lockscreen_notifications_excluded_apps";
+
+        /**
+         * Allows lockscreen notifications based on security type present
+         * @hide
+         */
+        public static final String LOCKSCREEN_NOTIFICATIONS_ALLOWED = "lockscreen_notifications_allowed";
+
+        /**
+         * Turn screen on when device is pulled out of pocket
+         * @hide
+         */
+        public static final String ACTIVE_NOTIFICATIONS_POCKET_MODE = "active_notifications_pocket_mode";
+
+        /**
+         * obey quiet hours
+         * @hide
+         */
+        public static final String ACTIVE_NOTIFICATIONS_QUIET_HOURS = "active_notifications_quiet_hours";
+
+        /**
+         * Hide low priority notifications such as google now weather notifications from lockscreen notifications
+         * @hide
+         */
+        public static final String ACTIVE_NOTIFICATIONS_HIDE_LOW_PRIORITY = "lockscreen_notifications_hide_low_priority";
+
+        /**
+         * Hide non clearable notifications from lockscreen notifications
+         * @hide
+         */
+        public static final String LOCKSCREEN_NOTIFICATIONS_HIDE_NON_CLEARABLE = "lockscreen_notifications_hide_non_clearable";
+
+        /**
+         * Allows dismissing even non-clearable notifications from lockscreen notifications.
+         * Of course, this doesn't really dismiss them, they're just not shown on lockscreen anymore.
+         * @hide
+         */
+        public static final String LOCKSCREEN_NOTIFICATIONS_DISMISS_ALL = "lockscreen_notifications_dismiss_all";
+
+        /**
+         * Show lockscreen notifications extended when possible
+         * @hide
+         */
+        public static final String LOCKSCREEN_NOTIFICATIONS_EXPANDED_VIEW = "lockscreen_notifications_expanded_view";
+
+        /**
+         * Show lockscreen notifications extended when possible
+         * @hide
+         */
+        public static final String LOCKSCREEN_NOTIFICATIONS_FORCE_EXPANDED_VIEW = "lockscreen_notifications_force_expanded_view";
+
+        /**
+         * Sets the count of notifications shown at once
+         * @hide
+         */
+        public static final String LOCKSCREEN_NOTIFICATIONS_HEIGHT = "lockscreen_notifications_height";
+
+        /**
+         * Changes the offset of the notifications to the top of the screen
+         * @hide
+         */
+        public static final String LOCKSCREEN_NOTIFICATIONS_OFFSET_TOP = "lockscreen_notifications_offset_top";
+
+        /**
+         * Enables a privacy mode which disables showing notifications.
+         * @hide
+         */
+        public static final String ACTIVE_NOTIFICATIONS_PRIVACY_MODE = "active_notifications_privacy_mode";
+
+        /**
          * @deprecated Use {@link android.provider.Settings.Global#LOW_BATTERY_SOUND}
          * instead
          * @hide

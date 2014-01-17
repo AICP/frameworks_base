@@ -23,4 +23,19 @@
     <string name="screenrecord_notif_pointer">Přepnout ukazatel</string>
     <string name="screenrecord_notif_error">Nahrávání obrazovky není možné</string>
     <string name="status_bar_notification_hide_icon_packages">Skrýt ikonu aplikace</string>
+    <string name="memory">RAM</string>
+    <string name="service_background_processes">Volno: <xliff:g id="memory">%1$s</xliff:g></string>
+    <string name="service_foreground_processes">Využito: <xliff:g id="memory">%1$s</xliff:g></string>
+    <string name="service_process_name"><xliff:g id="process">%1$s</xliff:g></string>
+    <string name="service_client_name"><xliff:g id="client_name">%1$s</xliff:g></string>
+    <string name="service_started_by_app">Started by app.</string>
+    <string name="running_processes_item_description_s_s">Procesy: <xliff:g id="numprocess">%1$d</xliff:g>
+        a služby:  <xliff:g id="numservices">%2$d</xliff:g></string>
+    <string name="running_processes_item_description_s_p">Procesy: <xliff:g id="numprocess">%1$d</xliff:g>
+        a služby: <xliff:g id="numservices">%2$d</xliff:g></string>
+    <string name="running_processes_item_description_p_s">Procesy: <xliff:g id="numprocess">%1$d</xliff:g>
+        a služby: <xliff:g id="numservices">%2$d</xliff:g></string>
+    <string name="running_processes_item_description_p_p">Procesy: <xliff:g id="numprocess">%1$d</xliff:g>
+        a služby: <xliff:g id="numservices">%2$d</xliff:g></string>
+    <string name="running_process_item_user_label">Uživatel: <xliff:g id="user_name">%1$s</xliff:g></string>
 </resources>

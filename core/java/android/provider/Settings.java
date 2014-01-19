@@ -2794,6 +2794,7 @@ public final class Settings {
          * 1 = always horizontal,
          * 2 = always vertical,
          * 3 = dependent on orientation
+         * 4 = scale animation
          * @hide
          */
         public static final String SYSTEM_POWER_CRT_MODE = "system_power_crt_mode";

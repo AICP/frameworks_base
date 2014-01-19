@@ -438,12 +438,6 @@ public class KeyguardHostView extends KeyguardViewBase {
         maybeEnableAddButton();
         checkAppWidgetConsistency();
 
-        // Don't let the user drag the challenge down if widgets are disabled.
-        if (mSlidingChallengeLayout != null) {
-            mSlidingChallengeLayout.setEnableChallengeDragging(
-                    !widgetsDisabled() || mDefaultAppWidgetAttached);
-        }
-
         // Select the appropriate page
         mSwitchPageRunnable.run();
 
@@ -1081,6 +1075,11 @@ public class KeyguardHostView extends KeyguardViewBase {
 
         if (mSlidingChallengeLayout != null) {
             mSlidingChallengeLayout.setChallengeInteractive(!fullScreenEnabled);
+            // Don't let the user drag the challenge down if widgets are disabled
+            // or it is a simpin, simpuk or accountswitcher lockscreen
+            mSlidingChallengeLayout.setEnableChallengeDragging(
+                    !isSimOrAccount(securityMode, false)
+                    && (!widgetsDisabled() || mDefaultAppWidgetAttached));
         }
 
         // Emulate Activity life cycle
@@ -1199,6 +1198,15 @@ public class KeyguardHostView extends KeyguardViewBase {
             mIsVerifyUnlockOnly = true;
             showSecurityScreen(securityMode);
         }
+    }
+
+    private boolean isSimOrAccount(SecurityMode securityMode, boolean isInvalidCheck) {
+        final boolean isSimOrAccount = securityMode == SecurityMode.SimPin
+                || securityMode == SecurityMode.SimPuk
+                || securityMode == SecurityMode.Account;
+        return isInvalidCheck
+                ? isSimOrAccount || securityMode == SecurityMode.Invalid
+                : isSimOrAccount;
     }
 
     private int getSecurityViewIdForMode(SecurityMode securityMode) {

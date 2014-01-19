@@ -102,6 +102,7 @@ public class Clock extends TextView implements
     private Locale mLocale;
     private DateTimePatternGenerator mDateTimePatternGenerator;
     private Configuration oldConfig = new Configuration();
+    private boolean mScreenOn = true;
 
     private static final int AM_PM_STYLE_NORMAL  = 0;
     private static final int AM_PM_STYLE_SMALL   = 1;
@@ -212,6 +213,8 @@ public class Clock extends TextView implements
             filter.addAction(Intent.ACTION_TIME_CHANGED);
             filter.addAction(Intent.ACTION_TIMEZONE_CHANGED);
             filter.addAction(Intent.ACTION_CONFIGURATION_CHANGED);
+            filter.addAction(Intent.ACTION_SCREEN_ON);
+            filter.addAction(Intent.ACTION_SCREEN_OFF);
 
             // NOTE: This receiver could run before this method returns, as it's not dispatching
             // on the main thread and BroadcastDispatcher may not need to register with Context.
@@ -294,7 +297,16 @@ public class Clock extends TextView implements
                     }
                 });
             }
-            handler.post(() -> updateClock());
+
+            if (action.equals(Intent.ACTION_SCREEN_ON)) {
+                mScreenOn = true;
+            } else if (action.equals(Intent.ACTION_SCREEN_OFF)) {
+                mScreenOn = false;
+            }
+
+            if (mScreenOn) {
+                handler.post(() -> updateClock());
+            }
         }
     };
 
@@ -601,4 +613,3 @@ public class Clock extends TextView implements
         }
     };
 }
-

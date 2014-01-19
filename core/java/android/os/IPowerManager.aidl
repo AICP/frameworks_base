@@ -55,4 +55,7 @@ interface IPowerManager
     void setAttentionLight(boolean on, int color);
 
     void cpuBoost(int duration);
+    
+    // blocked wakelock support
+    String getSeenWakeLocks();
 }

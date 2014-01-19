@@ -45,6 +45,7 @@ import android.util.Log;
 import android.view.InputDevice;
 import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
+import android.widget.Toast;
 import com.android.internal.statusbar.IStatusBarService;
 
 import java.net.URISyntaxException;
@@ -328,9 +329,9 @@ public class AwesomeAction {
             if (!defaultHomePackage.equals(packageName)) {
                 // am.forceStopPackage(packageName);
                 am.removeTask(info.id, ActivityManager.REMOVE_TASK_KILL_PROCESS);
-                // Toast.makeText(mContext,
-                // com.android.internal.R.string.app_killed_message,
-                // Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext,
+                com.android.internal.R.string.app_killed_message,
+                Toast.LENGTH_SHORT).show();
             }
         }
     }

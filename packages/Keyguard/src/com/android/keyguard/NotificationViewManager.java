@@ -156,14 +156,13 @@ public class NotificationViewManager {
 
     private class ProximityListener implements SensorEventListener {
         public void onSensorChanged(SensorEvent event) {
-            boolean check = false;
             if (config.pocketMode == 1) {
-                check = true;
+                // continue
             } else {
                 return;
             }
             if (event.sensor.equals(ProximitySensor)) {
-                if (!mIsScreenOn && check) {
+                if (!mIsScreenOn) {
                     if (event.values[0] >= ProximitySensor.getMaximumRange()) {
                         if (mTimeCovered != 0 && (mHostView.getNotificationCount() > 0) &&
                                 System.currentTimeMillis() - mTimeCovered > MIN_TIME_COVERED && !inQuietHours()) {
@@ -175,7 +174,7 @@ public class NotificationViewManager {
                     } else if (mTimeCovered == 0) {
                         mTimeCovered = System.currentTimeMillis();
                     }
-                } else if (check && mWokenByPocketMode &&
+                } else if (mWokenByPocketMode &&
                         mKeyguardViewManager.isShowing() && event.values[0] < 0.2f){
                     mPowerManager.goToSleep(SystemClock.uptimeMillis());
                     mTimeCovered = System.currentTimeMillis();
@@ -236,13 +235,12 @@ public class NotificationViewManager {
     }
 
     private void registerProximityListener() {
-        boolean check = false;
         if (config.pocketMode == 1) {
-            check = true;
+            // continue
         } else {
             return;
         }
-        if (ProximityListener == null && check) {
+        if (ProximityListener == null) {
             SensorManager sensorManager = (SensorManager) mContext.getSystemService(Context.SENSOR_SERVICE);
             ProximityListener = new ProximityListener();
             ProximitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);

@@ -351,6 +351,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             final String action = intent.getAction();
             if (action.equals(Intent.ACTION_SCREENSHOT)) {
                 takeScreenshot();
+            } else if (action.equals(Intent.ACTION_SCREENRECORD)) {
+                takeScreenrecord();
             }
         }
 
@@ -360,6 +362,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
                 IntentFilter filter = new IntentFilter();
                 filter.addAction(Intent.ACTION_SCREENSHOT);
+                filter.addAction(Intent.ACTION_SCREENRECORD);
                 mContext.registerReceiver(mPowerMenuReceiver, filter);
             }
         }
@@ -4265,7 +4268,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     }
 
     // Assume this is called from the Handler thread.
-    private void takeScreenrecord() {
+    public void takeScreenrecord() {
         synchronized (mScreenrecordLock) {
             if (mScreenrecordConnection != null) {
                 return;

@@ -2818,6 +2818,13 @@ public final class Settings {
         public static final String WAKELOCK_BLOCKING_LIST = "wakelock_blocking_list";
 
         /**
+         * Whether to mute annoying notifications
+         * @hide
+         */
+        public static final String MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD =
+                "mute_annoying_notifications_threshold";
+
+        /**
          * Electronic beam animation mode
          * 0 = off,
          * 1 = always horizontal,

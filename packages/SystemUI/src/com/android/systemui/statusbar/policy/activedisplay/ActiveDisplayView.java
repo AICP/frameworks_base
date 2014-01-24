@@ -145,6 +145,7 @@ public class ActiveDisplayView extends FrameLayout {
     private long mPocketTime = 0;
     private LinearLayout.LayoutParams mOverflowLayoutParams;
     private boolean mCallbacksRegistered = false;
+    private boolean mShow = true;
 
     // user customizable settings
     private boolean mDisplayNotifications = false;
@@ -172,12 +173,13 @@ public class ActiveDisplayView extends FrameLayout {
         @Override
         public void onNotificationPosted(final StatusBarNotification sbn) {
             if (inQuietHours() && mQuietTime) return;
-            if (shouldShowNotification() && isValidNotification(sbn)) {
+            if (shouldShowNotification() && isValidNotification(sbn) && mShow) {
                 // need to make sure either the screen is off or the user is currently
                 // viewing the notifications
                 if (ActiveDisplayView.this.getVisibility() == View.VISIBLE
                         || !isScreenOn())
                     showNotification(sbn, true);
+                    mShow = false;
             }
         }
         @Override
@@ -205,6 +207,7 @@ public class ActiveDisplayView extends FrameLayout {
                 mNotification = null;
                 hideNotificationView();
                 unlockKeyguardActivity();
+                mPocketTime = 0;
                 Intent intent = new Intent(mContext, DummyActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 mContext.startActivityAsUser(intent, new UserHandle(UserHandle.USER_CURRENT));
@@ -639,6 +642,7 @@ public class ActiveDisplayView extends FrameLayout {
                     | STATUS_BAR_DISABLE_CLOCK;
         }
         mBar.disable(flags);
+        mShow = true;
     }
 
     private void setSystemUIVisibility(/*boolean visible*/) {
@@ -735,10 +739,15 @@ public class ActiveDisplayView extends FrameLayout {
     }
 
     private void onScreenTurnedOff() {
-        hideNotificationView();
         cancelTimeoutTimer();
         if (mRedisplayTimeout > 0) updateRedisplayTimer();
-        enableProximitySensor();
+        if (mPocketMode == 2) {
+            // delay initial proximity sample here
+            mPocketTime = System.currentTimeMillis();
+            enableProximitySensor();
+        } else {
+            return;
+        }
     }
 
     private void turnScreenOff() {
@@ -775,7 +784,7 @@ public class ActiveDisplayView extends FrameLayout {
         public void run() {
             setBrightness(mInitialBrightness);
             wakeDevice();
-            doTransition(ActiveDisplayView.this, 1f, 2000);
+            doTransition(ActiveDisplayView.this, 1f, 1000);
         }
     };
 
@@ -788,12 +797,6 @@ public class ActiveDisplayView extends FrameLayout {
     }
 
     private void enableProximitySensor() {
-        if (mPocketMode == 2) {
-            // continue
-        } else {
-            return;
-        }
-
         if (mDisplayNotifications) {
             registerSensorListener(mProximitySensor);
         }
@@ -1160,7 +1163,7 @@ public class ActiveDisplayView extends FrameLayout {
     private SensorEventListener mSensorListener = new SensorEventListener() {
         @Override
         public void onSensorChanged(SensorEvent event) {
-            if (mPocketMode == 2 && mDisplayNotifications) {
+            if (mPocketMode == 2) {
                 // continue
             } else {
                 return;
@@ -1173,13 +1176,15 @@ public class ActiveDisplayView extends FrameLayout {
                 if (value >= mProximitySensor.getMaximumRange()) {
                     mDistanceFar = true;
                     if (inQuietHours() && mQuietTime) return;
-                    if (!isScreenOn()) {
-                        if (checkTime >= (mPocketTime + mProximityThreshold)){
-                            if (mNotification == null) {
-                                mNotification = getNextAvailableNotification();
+                    synchronized (this) {
+                        if (!isScreenOn()) {
+                            if (checkTime >= (mPocketTime + mProximityThreshold)){
+                                if (mNotification == null) {
+                                    mNotification = getNextAvailableNotification();
+                                }
+                                showNotification(mNotification, true);
+                                turnScreenOn();
                             }
-                            showNotification(mNotification, true);
-                            turnScreenOn();
                         }
                     }
                 } else if (value <= 1.5) {

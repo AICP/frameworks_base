@@ -22,8 +22,10 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator;
 import android.animation.ValueAnimator.AnimatorUpdateListener;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
@@ -574,6 +576,10 @@ public class GlowPadView extends View {
                 mTargetAnimations.stop();
             }
             hideTargets(false, false);
+
+            Intent intent = new Intent(Intent.ACTION_KEYGUARD_TARGET);
+			mContext.sendBroadcast(intent);
+
         } else {
             // Animate handle back to the center based on current state.
             hideGlow(HIDE_ANIMATION_DURATION, 0, 0.0f, mResetListenerWithPing);

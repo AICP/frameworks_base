@@ -60,6 +60,7 @@ import android.service.notification.StatusBarNotification;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -87,10 +88,6 @@ import java.util.Set;
 public class ActiveDisplayView extends FrameLayout {
     private static final boolean DEBUG = false;
     private static final String TAG = "ActiveDisplayView";
-
-    // the following is used for testing purposes
-    private static final String ACTION_FORCE_DISPLAY
-            = "com.android.systemui.action.FORCE_DISPLAY";
 
     private static final String ACTION_REDISPLAY_NOTIFICATION
             = "com.android.systemui.action.REDISPLAY_NOTIFICATION";
@@ -143,6 +140,7 @@ public class ActiveDisplayView extends FrameLayout {
     private int mIconMargin;
     private int mIconPadding;
     private long mPocketTime = 0;
+    private long mResetTime = 0;
     private LinearLayout.LayoutParams mOverflowLayoutParams;
     private boolean mCallbacksRegistered = false;
     private boolean mShow = true;
@@ -217,6 +215,7 @@ public class ActiveDisplayView extends FrameLayout {
                 unlockKeyguardActivity();
                 launchNotificationPendingIntent();
             } else if (target == DISMISS_TARGET) {
+                enableProximitySensor();
                 dismissNotification();
                 mNotification = getNextAvailableNotification();
                 if (mNotification != null) {
@@ -618,12 +617,6 @@ public class ActiveDisplayView extends FrameLayout {
         mHandler.sendEmptyMessage(MSG_DISMISS_NOTIFICATION);
     }
 
-    private void sendUnlockBroadcast() {
-        Intent u = new Intent();
-        u.setAction("com.android.lockscreen.ACTION_UNLOCK_RECEIVER");
-        mContext.sendBroadcastAsUser(u, UserHandle.ALL);
-    }
-
     private final Runnable runSystemUiVisibilty = new Runnable() {
         public void run() {
             adjustStatusBarLocked(1);
@@ -731,16 +724,21 @@ public class ActiveDisplayView extends FrameLayout {
             }
         }
         // no other notifications to display so turn screen off
+        if (mNotification == null) return;
         turnScreenOff();
     }
 
     private void onScreenTurnedOn() {
         cancelRedisplayTimer();
+        if (mPocketMode == 2) {
+            mResetTime = System.currentTimeMillis();
+        }
     }
 
     private void onScreenTurnedOff() {
         cancelTimeoutTimer();
         if (mRedisplayTimeout > 0) updateRedisplayTimer();
+        hideNotificationView();
         if (mPocketMode == 2) {
             // delay initial proximity sample here
             mPocketTime = System.currentTimeMillis();
@@ -853,8 +851,7 @@ public class ActiveDisplayView extends FrameLayout {
         filter.addAction(ACTION_DISPLAY_TIMEOUT);
         filter.addAction(Intent.ACTION_SCREEN_OFF);
         filter.addAction(Intent.ACTION_SCREEN_ON);
-        /* uncomment the line below for testing */
-        filter.addAction(ACTION_FORCE_DISPLAY);
+        filter.addAction(Intent.ACTION_KEYGUARD_TARGET);
         mContext.registerReceiver(mBroadcastReceiver, filter);
     }
 
@@ -1193,15 +1190,15 @@ public class ActiveDisplayView extends FrameLayout {
                     if (!isKeyguardLocked() || mWaitPeriod) {
                         return;
                     }
-   // this bit of code is giving me problems right now
-  /*                  if (mDisplayTimeout >= mProximityThreshold) {
-                        if (isScreenOn() && (mPocketTime >= mProximityThreshold)) {
+
+                    if (mDisplayTimeout >= mProximityThreshold) {
+                        if (isScreenOn() && (mPocketTime >= (mProximityThreshold + mResetTime))) {
                             restoreBrightness();
                             cancelTimeoutTimer();
                             turnScreenOff();
                         }
                     }
-    */            }
+                }
             }
         }
 
@@ -1234,12 +1231,9 @@ public class ActiveDisplayView extends FrameLayout {
                 onScreenTurnedOff();
             } else if (Intent.ACTION_SCREEN_ON.equals(action)) {
                 onScreenTurnedOn();
-            } else if (ACTION_FORCE_DISPLAY.equals(action)) {
-                if (mNotification == null) {
-                    mNotification = getNextAvailableNotification();
-                }
-                if (mNotification != null) showNotification(mNotification, true);
-                restoreBrightness();
+            } else if (Intent.ACTION_KEYGUARD_TARGET.equals(action)) {
+                Log.i(TAG, "HEY DICKBAG, DISABLING PROXIMITY SENSOR BECAUSE YOU UNLOCKED THE KEYGUARD!!!!!!!!!");
+                disableProximitySensor();
             }
         }
     };

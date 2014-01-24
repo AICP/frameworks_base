@@ -97,4 +97,7 @@
     <java-symbol type="bool" name="config_intrusiveBatteryLed" />
     <java-symbol type="bool" name="config_multiColorNotificationLed" />
 
+    <!-- Gesture Sensor -->
+    <java-symbol type="bool" name="config_enableGestureService" />
+
 </resources>

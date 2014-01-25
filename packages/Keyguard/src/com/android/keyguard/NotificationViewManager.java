@@ -244,7 +244,7 @@ public class NotificationViewManager {
             SensorManager sensorManager = (SensorManager) mContext.getSystemService(Context.SENSOR_SERVICE);
             ProximityListener = new ProximityListener();
             ProximitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
-            sensorManager.registerListener(ProximityListener, ProximitySensor, SensorManager.SENSOR_DELAY_UI);
+            sensorManager.registerListener(ProximityListener, ProximitySensor, SensorManager.SENSOR_DELAY_NORMAL);
         }
     }
 

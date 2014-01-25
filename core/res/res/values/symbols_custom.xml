@@ -33,10 +33,6 @@
     <java-symbol type="string" name="immersive_mode_on"/>
     <java-symbol type="string" name="immersive_mode_off"/>
 
-    <!-- AOKP Easter Egg -->
-    <java-symbol type="drawable" name="aokplogo" />
-    <java-symbol type="drawable" name="aokplogo_alt" />
-
     <!-- UI theme mode -->
     <java-symbol type="integer" name="config_uiThemeMode" />
 

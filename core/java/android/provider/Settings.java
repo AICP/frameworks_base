@@ -2947,6 +2947,13 @@ public final class Settings {
         public static final String INCREASING_RING_INTERVAL = "increasing_ring_interval";
 
         /**
+         * Should call status sounds be player
+         *
+         * @hide
+         */
+        public static final String CALL_END_SOUND = "call_end_sound";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *

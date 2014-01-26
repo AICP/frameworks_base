@@ -108,6 +108,9 @@
                 android:description="@string/permdesc_screenrecord"
                 android:label="@string/permlab_screenrecord" />
 
+    <!--Halo-->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+
     <application
         android:persistent="true"
         android:allowClearUserData="false"

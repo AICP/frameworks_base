@@ -7684,6 +7684,13 @@ public final class Settings {
          * @hide
          */
         public static final String DOUBLE_TAP_SLEEP_GESTURE = "double_tap_sleep_gesture";
+
+        /**
+         * Screenshot toggle delay
+         * @hide
+         */
+        public static final String SCREENSHOT_TOGGLE_DELAY = "screenshot_toggle_delay";
+
     }
 
     /**

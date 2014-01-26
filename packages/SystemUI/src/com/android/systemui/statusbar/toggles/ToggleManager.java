@@ -169,7 +169,7 @@ public class ToggleManager {
             toggleMap.put(QUIETHOURS_TOGGLE, QuietHoursToggle.class);
             toggleMap.put(SLEEP_TOGGLE, SleepToggle.class);
             // toggleMap.put(STATUSBAR_TOGGLE, StatusbarToggle.class);
-            // toggleMap.put(SCREENSHOT_TOGGLE, ScreenshotToggle.class);
+            toggleMap.put(SCREENSHOT_TOGGLE, ScreenshotToggle.class);
             // toggleMap.put(REBOOT_TOGGLE, RebootToggle.class);
             // toggleMap.put(CUSTOM_TOGGLE, CustomToggle.class);
             toggleMap.put(STAYAWAKE_TOGGLE, StayAwakeToggle.class);

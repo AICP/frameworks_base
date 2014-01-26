@@ -565,7 +565,7 @@ public class NavigationBarView extends LinearLayout {
     private void setupNavigationButtons() {
         readUserConfig();
         final boolean stockThreeButtonLayout = mNavButtons.size() == 3;
-        int separatorSize = (int) (stockThreeButtonLayout ? mMenuButtonWidth : (mMenuButtonWidth / 2.0));
+        int separatorSize = (int) mMenuButtonWidth;
 
         for (int i = 0; i <= 1; i++) {
             boolean landscape = (i == 1);

@@ -3015,6 +3015,18 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.AOKP.getUriFor(
                     Settings.AOKP.TOGGLES_STYLE), false, this);
+
+            resolver.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.NOTIFICATION_BACKGROUND),
+                        false, this, UserHandle.USER_ALL);
+
+            resolver.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.NOTIFICATION_BACKGROUND_LANDSCAPE),
+                        false, this, UserHandle.USER_ALL);
+
+            resolver.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.NOTIFICATION_BACKGROUND_ALPHA),
+                        false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -3027,6 +3039,19 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode {
             updateSettings();
             if(uri != null && uri.equals(Settings.AOKP.getUriFor(Settings.AOKP.TOGGLES_STYLE))) {
                 recreateStatusBar();
+            }
+            if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.NOTIFICATION_BACKGROUND))
+                || uri.equals(Settings.System.getUriFor(
+                    Settings.System.NOTIFICATION_BACKGROUND_LANDSCAPE))
+                || uri.equals(Settings.System.getUriFor(
+                    Settings.System.NOTIFICATION_BACKGROUND_ALPHA))) {
+                if (mNotificationPanel != null) {
+                    mNotificationPanel.setBackgroundDrawables();
+                }
+                if (mSettingsPanel != null) {
+                    mSettingsPanel.setBackgroundDrawables();
+                }
             }
         }
     }

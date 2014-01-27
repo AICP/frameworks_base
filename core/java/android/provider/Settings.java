@@ -2679,6 +2679,12 @@ public final class Settings {
          */
         public static final String LOCKSCREEN_NOTIFICATIONS_HEIGHT = "lockscreen_notifications_height";
 
+       /**
+         * Wakes the device when a new notifications is received
+         * @hide
+         */
+        public static final String LOCKSCREEN_NOTIFICATIONS_WAKE_ON_NOTIFICATION = "lockscreen_notifications_wake_on_notification";
+
         /**
          * Changes the offset of the notifications to the top of the screen
          * @hide

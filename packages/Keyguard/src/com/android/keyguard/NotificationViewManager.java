@@ -77,6 +77,7 @@ public class NotificationViewManager {
         public boolean dismissAll = true;
         public boolean expandedView = true;
         public boolean forceExpandedView = false;
+        public boolean wakeOnNotification = false;
         public int notificationsHeight = 4;
         public float offsetTop = 0.3f;
         public boolean privacyMode = false;
@@ -106,6 +107,8 @@ public class NotificationViewManager {
                     Settings.System.LOCKSCREEN_NOTIFICATIONS_EXPANDED_VIEW), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.LOCKSCREEN_NOTIFICATIONS_FORCE_EXPANDED_VIEW), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.LOCKSCREEN_NOTIFICATIONS_WAKE_ON_NOTIFICATION), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.LOCKSCREEN_NOTIFICATIONS_HEIGHT), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
@@ -141,6 +144,8 @@ public class NotificationViewManager {
             forceExpandedView = Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.LOCKSCREEN_NOTIFICATIONS_FORCE_EXPANDED_VIEW, forceExpandedView ? 1 : 0) == 1
                     && !privacyMode;
+            wakeOnNotification = Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.LOCKSCREEN_NOTIFICATIONS_WAKE_ON_NOTIFICATION, wakeOnNotification ? 1 : 0) == 1;
             notificationsHeight = Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.LOCKSCREEN_NOTIFICATIONS_HEIGHT, notificationsHeight);
             offsetTop = Settings.System.getFloat(mContext.getContentResolver(),
@@ -196,8 +201,9 @@ public class NotificationViewManager {
             if (ongoingAndReposted) {
                 return;
             }
-            if (mHostView.addNotification(sbn, (screenOffAndNotCovered || mIsScreenOn),
-                        config.forceExpandedView) && screenOffAndNotCovered) {
+            if (mHostView.addNotification(sbn, screenOffAndNotCovered || mIsScreenOn,
+                        config.forceExpandedView) && config.wakeOnNotification && screenOffAndNotCovered
+                        && (!sbn.isOngoing() || !mHostView.containsNotification(sbn))) {
                 wakeDevice();
             }
         }
@@ -240,7 +246,7 @@ public class NotificationViewManager {
         } else {
             return;
         }
-        if (ProximityListener == null) {
+        if (ProximityListener == null && ((config.pocketMode == 1) || config.wakeOnNotification)) {
             SensorManager sensorManager = (SensorManager) mContext.getSystemService(Context.SENSOR_SERVICE);
             ProximityListener = new ProximityListener();
             ProximitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);

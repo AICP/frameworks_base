@@ -2919,11 +2919,12 @@ public final class Settings {
         public static final String ENABLE_DIALER_REVERSE_LOOKUP = "enable_dialer_reverse_lookup";
 
         /**
-         * Should Flip to Silence be used
+         * Whether flip action during incomming call should mute or dismiss
+         * the call (mute = 0, dismiss = 1, nothing = 2 (default))
          *
          * @hide
          */
-         public static final String FLIP_ACTION_KEY = "flip_action";
+         public static final String CALL_FLIP_ACTION_KEY = "call_flip_action";
 
         /**
          * Allows blurring the lockscreen background

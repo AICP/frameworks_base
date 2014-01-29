@@ -22,4 +22,7 @@
         <item>@drawable/ic_ad_target_unlock</item>
     </array>
 
+    <declare-styleable name="BatteryIcon">
+        <attr name="batteryView" format="string" />
+    </declare-styleable>
 </resources>

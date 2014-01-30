@@ -25,6 +25,8 @@ import com.android.internal.R;
 import android.app.ActivityManagerNative;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.Profile;
+import android.app.ProfileManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -73,6 +75,7 @@ import com.android.internal.app.ThemeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Helper to show the global actions dialog.  Each item is an {@link Action} that
@@ -111,6 +114,9 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
     private boolean mHasVibrator;
     private final boolean mShowSilentToggle;
     private static int rebootIndex = 0;
+    private Profile mChosenProfile;
+
+    private static final String SYSTEM_PROFILES_ENABLED = "system_profiles_enabled";
 
     /**
      * @param context everything needs a context :(
@@ -328,6 +334,28 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                     }
                 });
 
+        // next: profile - only shown if enabled, which is true by default
+        if (Settings.System.getInt(mContext.getContentResolver(), SYSTEM_PROFILES_ENABLED, 1) == 1) {
+            mItems.add(
+                new ProfileChooseAction() {
+                    public void onPress() {
+                        createProfileDialog();
+                    }
+
+                    public boolean onLongPress() {
+                        return true;
+                    }
+
+                    public boolean showDuringKeyguard() {
+                        return false;
+                    }
+
+                    public boolean showBeforeProvisioning() {
+                        return false;
+                    }
+                });
+        }
+
         // next: airplane mode
         mItems.add(mAirplaneModeOn);
         mItems.add(mImmersiveModeOn);
@@ -464,6 +492,51 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                 items.add(switchToUser);
             }
         }
+    }
+
+    private void createProfileDialog(){
+        final ProfileManager profileManager = (ProfileManager)mContext.getSystemService(Context.PROFILE_SERVICE);
+
+        final Profile[] profiles = profileManager.getProfiles();
+        UUID activeProfile = profileManager.getActiveProfile().getUuid();
+        final CharSequence[] names = new CharSequence[profiles.length];
+
+        int i=0;
+        int checkedItem = 0;
+
+        for(Profile profile : profiles) {
+            if(profile.getUuid().equals(activeProfile)) {
+                checkedItem = i;
+                mChosenProfile = profile;
+            }
+            names[i++] = profile.getName();
+        }
+
+        final AlertDialog.Builder ab = new AlertDialog.Builder(mContext);
+
+        AlertDialog dialog = ab
+                .setTitle(R.string.global_action_choose_profile)
+                .setSingleChoiceItems(names, checkedItem, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (which < 0)
+                            return;
+                        mChosenProfile = profiles[which];
+                    }
+                })
+                .setPositiveButton(com.android.internal.R.string.yes,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                profileManager.setActiveProfile(mChosenProfile.getUuid());
+                            }
+                        })
+                .setNegativeButton(com.android.internal.R.string.no,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                }).create();
+        dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_DIALOG);
+        dialog.show();
     }
 
     private void prepareDialog() {
@@ -667,6 +740,46 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                 messageView.setText(mMessage);
             } else {
                 messageView.setText(mMessageResId);
+            }
+
+            return v;
+        }
+    }
+
+    /**
+     * A single press action maintains no state, just responds to a press
+     * and takes an action.
+     */
+    private abstract class ProfileChooseAction implements Action {
+        private ProfileManager mProfileManager;
+
+        protected ProfileChooseAction() {
+            mProfileManager = (ProfileManager)mContext.getSystemService(Context.PROFILE_SERVICE);
+        }
+
+        public boolean isEnabled() {
+            return true;
+        }
+
+        abstract public void onPress();
+
+        public View create(Context context, View convertView, ViewGroup parent, LayoutInflater inflater) {
+            View v = inflater.inflate(R.layout.global_actions_item, parent, false);
+
+            ImageView icon = (ImageView) v.findViewById(R.id.icon);
+            TextView messageView = (TextView) v.findViewById(R.id.message);
+            TextView statusView = (TextView) v.findViewById(R.id.status);
+            if (statusView != null) {
+                statusView.setVisibility(View.VISIBLE);
+                statusView.setText(mProfileManager.getActiveProfile().getName());
+            }
+
+            if (icon != null) {
+                icon.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_lock_profile));
+            }
+
+            if (messageView != null) {
+                messageView.setText(R.string.global_action_choose_profile);
             }
 
             return v;

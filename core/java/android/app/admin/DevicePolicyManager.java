@@ -1683,4 +1683,24 @@ public class DevicePolicyManager {
         }
         return null;
     }
+
+    /*
+     * CM: check if secure keyguard is required
+     * @hide
+     */
+    public boolean requireSecureKeyguard() {
+        return requireSecureKeyguard(UserHandle.myUserId());
+    }
+
+    /** @hide */
+    public boolean requireSecureKeyguard(int userHandle) {
+        if (mService != null) {
+            try {
+                return mService.requireSecureKeyguard(userHandle);
+            } catch (RemoteException re) {
+                Log.w(TAG, "Failed to get secure keyguard requirement");
+            }
+        }
+        return true;
+    }
 }

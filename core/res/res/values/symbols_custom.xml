@@ -142,4 +142,10 @@
     <java-symbol type="anim" name="slide_in_left_no_fade" />
     <java-symbol type="anim" name="slide_out_right_no_fade" />
 
+    <!-- Profiles -->
+    <java-symbol type="xml" name="profile_default" />
+    <java-symbol type="string" name="wildcardProfile" />
+    <java-symbol type="string" name="profile_picker_title" />
+    <java-symbol type="string" name="profile_none" />
+
 </resources>

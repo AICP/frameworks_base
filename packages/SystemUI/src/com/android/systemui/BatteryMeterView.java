@@ -460,6 +460,12 @@ public class BatteryMeterView extends View implements DemoMode {
 
 
     public void updateSettings() {
+        boolean enabled = Settings.AOKP.getBoolean(mContext.getContentResolver(),
+                                Settings.AOKP.HIDE_BATTERY_ICON, false);
+        if (enabled) {
+            setVisibility(View.GONE);
+        } else {
+
         ContentResolver resolver = mContext.getContentResolver();
 
         mBatteryStyle = Settings.System.getIntForUser(resolver,
@@ -473,8 +479,8 @@ public class BatteryMeterView extends View implements DemoMode {
                 UserHandle.USER_CURRENT);
 
         boolean activated = (mBatteryStyle == BATTERY_STYLE_NORMAL ||
-                      mBatteryStyle == BATTERY_STYLE_PERCENT ||
-                      mBatteryStyle == BATTERY_STYLE_ICON_PERCENT);
+                             mBatteryStyle == BATTERY_STYLE_PERCENT ||
+                             mBatteryStyle == BATTERY_STYLE_ICON_PERCENT);
 
         setVisibility(activated ? View.VISIBLE : View.GONE);
 
@@ -507,9 +513,9 @@ public class BatteryMeterView extends View implements DemoMode {
                     0, res.getDimensionPixelSize(R.dimen.qs_tile_margin_below_icon));
                 setLayoutParams(lp);
             }
-
             updateBattery();
         }
+      }
     }
 
     private void updateBattery() {

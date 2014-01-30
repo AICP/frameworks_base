@@ -24,6 +24,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.database.ContentObserver;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -154,6 +155,17 @@ public class BatteryCircleMeterView extends ImageView {
         }
     }
 
+    private ContentObserver mObserver = new ContentObserver(new Handler()) {
+        @Override
+        public void onChange(boolean selfChange) {
+            updateSettings();
+        }
+
+        public void onChange(boolean selfChange, android.net.Uri uri) {
+            updateSettings();
+        };
+    };
+
     /***
      * Start of CircleBattery implementation
      */
@@ -190,6 +202,9 @@ public class BatteryCircleMeterView extends ImageView {
         if (!mAttached) {
             mAttached = true;
             mBatteryReceiver.updateRegistration();
+            getContext().getContentResolver().registerContentObserver(
+                    Settings.AOKP.getUriFor(Settings.AOKP.HIDE_BATTERY_ICON),
+                    false, mObserver);
             updateSettings();
             mHandler.postDelayed(mInvalidate, 250);
         }
@@ -206,6 +221,7 @@ public class BatteryCircleMeterView extends ImageView {
             mCircleSize = 0;    // makes sure, mCircleSize is reread from icons on
                                 // next attach
         }
+        getContext().getContentResolver().unregisterContentObserver(mObserver);
     }
 
     @Override
@@ -279,58 +295,66 @@ public class BatteryCircleMeterView extends ImageView {
     }
 
     public void updateSettings() {
-        Resources res = getResources();
-        ContentResolver resolver = mContext.getContentResolver();
 
-        mBatteryStyle = Settings.System.getIntForUser(resolver,
-                Settings.System.STATUS_BAR_BATTERY, 0, UserHandle.USER_CURRENT);
+        boolean enabled = Settings.AOKP.getBoolean(mContext.getContentResolver(),
+                                Settings.AOKP.HIDE_BATTERY_ICON, false);
 
-        mCircleColor = Settings.System.getIntForUser(resolver,
-                Settings.System.STATUS_BAR_BATTERY_COLOR, -2, UserHandle.USER_CURRENT);
-        mCircleTextColor = Settings.System.getIntForUser(resolver,
-                Settings.System.STATUS_BAR_BATTERY_TEXT_COLOR, -2,
-                UserHandle.USER_CURRENT);
-        mCircleTextChargingColor = Settings.System.getIntForUser(resolver,
-                Settings.System.STATUS_BAR_BATTERY_TEXT_CHARGING_COLOR, -2,
-                UserHandle.USER_CURRENT);
-        mCircleAnimSpeed = Settings.System.getIntForUser(resolver,
-                Settings.System.STATUS_BAR_CIRCLE_BATTERY_ANIMATIONSPEED, 3,
-                UserHandle.USER_CURRENT);
+        if (enabled) {
+            setVisibility(View.GONE);
+        } else {
+            Resources res = getResources();
+            ContentResolver resolver = mContext.getContentResolver();
 
-        int defaultColor = res.getColor(com.android.systemui.R.color.batterymeter_charge_color);
+            mBatteryStyle = Settings.System.getIntForUser(resolver,
+                    Settings.System.STATUS_BAR_BATTERY, 0, UserHandle.USER_CURRENT);
 
-        if (mCircleTextColor == -2) {
-            mCircleTextColor = defaultColor;
-        }
-        if (mCircleTextChargingColor == -2) {
-            mCircleTextChargingColor = defaultColor;
-        }
-        if (mCircleColor == -2) {
-            mCircleColor = defaultColor;
-        }
+            mCircleColor = Settings.System.getIntForUser(resolver,
+                    Settings.System.STATUS_BAR_BATTERY_COLOR, -2, UserHandle.USER_CURRENT);
+            mCircleTextColor = Settings.System.getIntForUser(resolver,
+                    Settings.System.STATUS_BAR_BATTERY_TEXT_COLOR, -2,
+                    UserHandle.USER_CURRENT);
+            mCircleTextChargingColor = Settings.System.getIntForUser(resolver,
+                    Settings.System.STATUS_BAR_BATTERY_TEXT_CHARGING_COLOR, -2,
+                    UserHandle.USER_CURRENT);
+            mCircleAnimSpeed = Settings.System.getIntForUser(resolver,
+                    Settings.System.STATUS_BAR_CIRCLE_BATTERY_ANIMATIONSPEED, 3,
+                    UserHandle.USER_CURRENT);
 
-        /*
-         * initialize vars and force redraw
-         */
-        initializeCircleVars();
-        mRectLeft = null;
-        mCircleSize = 0;
+            int defaultColor = res.getColor(com.android.systemui.R.color.batterymeter_charge_color);
 
-        mActivated = (mBatteryStyle == BatteryMeterView.BATTERY_STYLE_CIRCLE ||
-                      mBatteryStyle == BatteryMeterView.BATTERY_STYLE_CIRCLE_PERCENT ||
-                      mBatteryStyle == BatteryMeterView.BATTERY_STYLE_DOTTED_CIRCLE ||
-                      mBatteryStyle == BatteryMeterView.BATTERY_STYLE_DOTTED_CIRCLE_PERCENT);
-        mPercentage = (mBatteryStyle == BatteryMeterView.BATTERY_STYLE_CIRCLE_PERCENT ||
-                       mBatteryStyle == BatteryMeterView.BATTERY_STYLE_DOTTED_CIRCLE_PERCENT);
+            if (mCircleTextColor == -2) {
+                mCircleTextColor = defaultColor;
+            }
+            if (mCircleTextChargingColor == -2) {
+                mCircleTextChargingColor = defaultColor;
+            }
+            if (mCircleColor == -2) {
+                mCircleColor = defaultColor;
+            }
 
-        setVisibility(mActivated ? View.VISIBLE : View.GONE);
+            /*
+             * initialize vars and force redraw
+             */
+            initializeCircleVars();
+            mRectLeft = null;
+            mCircleSize = 0;
 
-        if (mBatteryReceiver != null) {
-            mBatteryReceiver.updateRegistration();
-        }
+            mActivated = (mBatteryStyle == BatteryMeterView.BATTERY_STYLE_CIRCLE ||
+                          mBatteryStyle == BatteryMeterView.BATTERY_STYLE_CIRCLE_PERCENT ||
+                          mBatteryStyle == BatteryMeterView.BATTERY_STYLE_DOTTED_CIRCLE ||
+                          mBatteryStyle == BatteryMeterView.BATTERY_STYLE_DOTTED_CIRCLE_PERCENT);
+            mPercentage = (mBatteryStyle == BatteryMeterView.BATTERY_STYLE_CIRCLE_PERCENT ||
+                           mBatteryStyle == BatteryMeterView.BATTERY_STYLE_DOTTED_CIRCLE_PERCENT);
 
-        if (mActivated && mAttached) {
-            invalidate();
+            setVisibility(mActivated ? View.VISIBLE : View.GONE);
+
+            if (mBatteryReceiver != null) {
+                mBatteryReceiver.updateRegistration();
+            }
+
+            if (mActivated && mAttached) {
+                invalidate();
+            }
         }
     }
 

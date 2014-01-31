@@ -148,4 +148,8 @@
     <java-symbol type="string" name="profile_picker_title" />
     <java-symbol type="string" name="profile_none" />
 
+    <!-- Screenshot -->
+    <java-symbol type="drawable" name="ic_lock_screenshot" />
+    <java-symbol type="string" name="global_action_screenshot" />
+
 </resources>

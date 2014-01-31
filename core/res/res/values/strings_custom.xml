@@ -70,6 +70,7 @@
     <string name="action_app_window">App Window</string>
     <string name="action_ribbon">AOKP Ribbon</string>
     <string name="action_app">Custom App/Shortcut</string>
+
     <!-- Long-press back kill application -->
     <string name="app_killed_message">Application killed</string>
 

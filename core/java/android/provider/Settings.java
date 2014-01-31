@@ -7923,6 +7923,22 @@ public final class Settings {
          */
         public static final String SCREENSHOT_TOGGLE_DELAY = "screenshot_toggle_delay";
 
+        /**
+         * The following Settings.AOKP fields are for use with power menu
+         * 0 : not shown in power menu
+         * 1 : Always shown including keyguard (secure/insecure)
+         * 2 : Always shown except for insecure lockscreen
+         *
+         */
+        /** Airplane Mode Menu Option */
+        public static final String AIRPLANE_MODE_OPTIONS = "airplane_mode_options";
+        /** Immersive Mode Menu Option */
+        public static final String IMMERSIVE_MODE_OPTIONS = "immersive_mode_options";
+        /** Reboot Menu Options */
+        public static final String REBOOT_MODE_OPTIONS = "reboot_mode_options";
+        /** Screenshot Menu Options */
+        public static final String SCREENSHOT_MODE_OPTIONS = "screenshot_mode_options";
+
     }
 
     /**

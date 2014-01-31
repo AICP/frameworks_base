@@ -15,6 +15,8 @@
  */
 package com.android.keyguard;
 
+import java.util.ArrayList;
+
 import android.animation.ObjectAnimator;
 import android.app.ActivityManager;
 import android.app.PendingIntent;
@@ -41,11 +43,22 @@ import android.telephony.TelephonyManager;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.Slog;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.HorizontalListView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 
 import com.android.internal.telephony.IccCardConstants.State;
+import com.android.internal.util.aokp.AokpRibbonHelper;
+import com.android.internal.util.aokp.AwesomeAction;
+import com.android.internal.util.aokp.RibbonAdapter;
+import com.android.internal.util.aokp.RibbonAdapter.RibbonItem;
 import com.android.internal.widget.LockPatternUtils;
 import com.android.internal.widget.multiwaveview.GlowPadView;
 import com.android.internal.widget.multiwaveview.GlowPadView.OnTriggerListener;
@@ -55,7 +68,7 @@ import java.io.File;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
-public class KeyguardSelectorView extends LinearLayout implements KeyguardSecurityView {
+public class KeyguardSelectorView extends LinearLayout implements KeyguardSecurityView, OnItemClickListener, OnItemLongClickListener {
     private static final boolean DEBUG = KeyguardHostView.DEBUG;
     private static final String TAG = "SecuritySelectorView";
     private static final String ASSIST_ICON_METADATA_NAME =
@@ -78,6 +91,9 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
     private Drawable mBouncerFrame;
     private float mBatteryLevel;
     private int mTaps;
+    private ArrayList<RibbonItem> mItems = new ArrayList<RibbonItem>();
+    private RibbonAdapter mRibbonAdapter;
+    private HorizontalListView mRibbon;
 
     private UnlockReceiver mUnlockReceiver;
     private IntentFilter mUnlockFilter;
@@ -222,6 +238,7 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
 
         mGlowPadView = (GlowPadView) findViewById(R.id.glow_pad_view);
         mGlowPadView.setOnTriggerListener(mOnTriggerListener);
+        mRibbon = (HorizontalListView) findViewById(R.id.ribbon_list);
 
         Drawable lock = null;
 
@@ -242,6 +259,33 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
         mGlowPadView.setColoredIcons(lockColor, dotColor, lock);
 
         updateTargets();
+        mItems.clear();
+        ArrayList<String> list = Settings.AOKP.getArrayList(mContext.getContentResolver(), Settings.AOKP.AOKP_LOCKSCREEN_RIBBON[AokpRibbonHelper.HORIZONTAL_RIBBON_ITEMS]);
+        for (String item : list) {
+            mItems.add(new RibbonItem(item));
+        }
+        mRibbonAdapter = new RibbonAdapter(mContext, mItems);
+        mRibbonAdapter.setOrientation(false);
+        int size = Settings.AOKP.getInt(mContext.getContentResolver(), Settings.AOKP.AOKP_LOCKSCREEN_RIBBON[AokpRibbonHelper.HORIZONTAL_RIBBON_SIZE], 30);
+        int newSize = (int) (((size * 0.01f) * 150) + 150);
+        mRibbonAdapter.setSize(newSize);
+        ViewGroup.LayoutParams params = mRibbon.getLayoutParams();
+        if (params == null) {
+            params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        }
+        params.height = newSize;
+        mRibbon.setLayoutParams(params);
+        //    mRibbon.setMargin(100);
+        mRibbon.setAdapter(mRibbonAdapter);
+        mRibbon.setOnItemClickListener(this);
+        mRibbon.setOnItemLongClickListener(this);
+        mRibbon.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                mCallback.userActivity(0);
+                return false;
+            }
+        });
 
         mSecurityMessageDisplay = new KeyguardMessageArea.Helper(this);
         View bouncerFrameView = findViewById(R.id.keyguard_selector_view_frame);
@@ -473,5 +517,22 @@ public class KeyguardSelectorView extends LinearLayout implements KeyguardSecuri
         } else {
             mGlowPadView.setArc(0, 0);
         }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        String action = ((RibbonItem) mRibbonAdapter.getItem(position)).mShortAction;
+        mCallback.userActivity(0);
+        mCallback.dismiss(false);
+        AwesomeAction.launchAction(mContext, action);
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        String action = ((RibbonItem) mRibbonAdapter.getItem(position)).mLongAction;
+        mCallback.userActivity(0);
+        mCallback.dismiss(false);
+        AwesomeAction.launchAction(mContext, action);
+        return true;
     }
 }

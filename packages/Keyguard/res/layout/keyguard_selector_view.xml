@@ -17,19 +17,19 @@
 */
 -->
 
+
 <!-- This is the selector widget that allows the user to select an action. -->
-<com.android.keyguard.KeyguardSelectorView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.android.keyguard.KeyguardSelectorView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:androidprv="http://schemas.android.com/apk/res/com.android.keyguard"
     android:id="@+id/keyguard_selector_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    androidprv:layout_maxWidth="420dp"
     androidprv:layout_maxHeight="@dimen/keyguard_security_height"
+    androidprv:layout_maxWidth="420dp"
     android:clipChildren="false"
     android:clipToPadding="false"
-    android:orientation="vertical"
-    android:contentDescription="@string/keyguard_accessibility_slide_unlock">
+    android:contentDescription="@string/keyguard_accessibility_slide_unlock"
+    android:orientation="vertical" >
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -37,11 +37,33 @@
         android:layout_gravity="center"
         android:clipChildren="false"
         android:clipToPadding="false"
-        android:gravity="center">
+        android:gravity="center" >
 
-        <include layout="@layout/keyguard_message_area"
+        <LinearLayout
+            android:id="@+id/keyguard_ribbon_and_battery"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:orientation="vertical" >
+
+            <HorizontalListView
+                android:id="@+id/ribbon_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:choiceMode="singleChoice"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="10dp" />
+
+            <include
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="4dp"
+                layout="@layout/keyguard_message_area" />
+        </LinearLayout>
 
         <View
             android:id="@+id/keyguard_selector_view_frame"
@@ -49,16 +71,16 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:background="@drawable/kg_bouncer_bg_white"/>
+            android:background="@drawable/kg_bouncer_bg_white" />
 
         <include layout="@layout/keyguard_glow_pad_container" />
 
-        <include layout="@layout/keyguard_eca"
+        <include
             android:id="@+id/keyguard_selector_fade_container"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_gravity="bottom|center_horizontal" />
+            android:layout_gravity="bottom|center_horizontal"
+            layout="@layout/keyguard_eca" />
     </FrameLayout>
 
 </com.android.keyguard.KeyguardSelectorView>
-

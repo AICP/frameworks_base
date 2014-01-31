@@ -232,4 +232,7 @@
     <dimen name="halo_speech_vpadding_top">3dp</dimen>
     <dimen name="halo_speech_vpadding_bottom">3dp</dimen>
     <dimen name="halo_content_max_width">250dp</dimen>
+
+    <!-- Constant for hidden ribbon drag handle -->
+    <dimen name="ribbon_drag_handle_height">25dp</dimen>
 </resources>

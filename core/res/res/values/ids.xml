@@ -82,4 +82,7 @@
   <item type="id" name="action_bar_spinner" />
   <item type="id" name="current_scene" />
   <item type="id" name="scene_layoutid_cache" />
+  <item type="id" name="ribbon_container" />
+  <item type="id" name="ribbon_label" />
+  <item type="id" name="ribbon_icon" />
 </resources>

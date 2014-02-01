@@ -188,6 +188,7 @@
   <java-symbol type="anim" name="grow_fade_in_from_bottom_ribbon" />
   <java-symbol type="anim" name="translucent_enter_ribbon" />
   <java-symbol type="anim" name="translucent_exit_ribbon" />
+  <java-symbol type="anim" name="translucent_exit_left" />
   <java-symbol type="anim" name="slide_in_down" />
   <java-symbol type="anim" name="slide_out_up" />
   <java-symbol type="anim" name="slide_in_right_ribbon" />
@@ -202,4 +203,5 @@
   <java-symbol type="anim" name="slow_fade_out" />
   <java-symbol type="anim" name="slide_in_up_ribbon" />
   <java-symbol type="anim" name="slide_out_down_ribbon" />
+  <java-symbol type="anim" name="no_animation" />
 </resources>

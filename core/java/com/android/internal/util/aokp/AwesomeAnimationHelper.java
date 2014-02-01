@@ -130,7 +130,7 @@ public class AwesomeAnimationHelper {
         int[] anim = new int[2];
         switch (mAnim) {
             case ANIMATION_FADE:
-                anim[0] = reverseExit ? 0 : com.android.internal.R.anim.slow_fade_out;
+                anim[0] = reverseExit ? com.android.internal.R.anim.no_animation : com.android.internal.R.anim.slow_fade_out;
                 anim[1] = com.android.internal.R.anim.slow_fade_in;
                 break;
             case ANIMATION_SLIDE_RIGHT:
@@ -158,7 +158,7 @@ public class AwesomeAnimationHelper {
                 anim[1] = com.android.internal.R.anim.slide_in_left_no_fade;
                 break;
             case ANIMATION_TRANSLUCENT:
-                anim[0] = reverseExit ? 0 : com.android.internal.R.anim.translucent_exit_ribbon;
+                anim[0] = reverseExit ? com.android.internal.R.anim.translucent_exit_left : com.android.internal.R.anim.translucent_exit_ribbon;
                 anim[1] = com.android.internal.R.anim.translucent_enter_ribbon;
                 break;
             case ANIMATION_GROW_SHRINK:
@@ -166,7 +166,7 @@ public class AwesomeAnimationHelper {
                 anim[1] = com.android.internal.R.anim.grow_fade_in_ribbon;
                 break;
             case ANIMATION_GROW_SHRINK_CENTER:
-                anim[0] = reverseExit ? 0 : com.android.internal.R.anim.shrink_fade_out_center_ribbon;
+                anim[0] = reverseExit ? com.android.internal.R.anim.no_animation : com.android.internal.R.anim.shrink_fade_out_center_ribbon;
                 anim[1] = com.android.internal.R.anim.grow_fade_in_center_ribbon;
                 break;
             case ANIMATION_GROW_SHRINK_LEFT:
@@ -182,7 +182,7 @@ public class AwesomeAnimationHelper {
                 anim[1] = com.android.internal.R.anim.grow_fade_in_from_bottom_ribbon;
                 break;
         }
-        if (enterOnly) anim[0] = 0;
+        if (enterOnly) anim[0] = com.android.internal.R.anim.no_animation;
         return anim;
     }
 

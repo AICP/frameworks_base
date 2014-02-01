@@ -59,4 +59,20 @@
     <string name="action_app">Vlastní aplikace/zástupce</string>
     <!-- Long-press back kill application -->
     <string name="app_killed_message">Aplikace ukončena</string>
+    <string name="global_action_screenshot">Snímek obrazovky</string>
+    <!-- Animation Strings -->
+    <string name="animation_fade">Slábnutí</string>
+    <string name="animation_slide_right">Zasunutí vpravo</string>
+    <string name="animation_slide_left">Zasunutí vlevo</string>
+    <string name="animation_slide_right_no_fade">Zasunutí vpravo (bez slábnutí)</string>
+    <string name="animation_slide_left_no_fade">Zasunutí vlevo (bez slábnutí)</string>
+    <string name="animation_slide_up">Zasunutí dospod</string>
+    <string name="animation_slide_down">Zasunutí navrch</string>
+    <string name="animation_default">Výchozí</string>
+    <string name="animation_translucent">Průhledná</string>
+    <string name="animation_grow_shrink">Růst (navrch)</string>
+    <string name="animation_grow_shrink_center">Růst (na střed)</string>
+    <string name="animation_grow_shrink_bottom">Růst (dospod)</string>
+    <string name="animation_grow_shrink_left">Růst (vlevo)</string>
+    <string name="animation_grow_shrink_right">Růst (vpravo)</string>
 </resources>

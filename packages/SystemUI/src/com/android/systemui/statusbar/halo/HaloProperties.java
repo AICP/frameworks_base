@@ -18,9 +18,11 @@ package com.android.systemui.statusbar.halo;
 
 import android.os.Handler;
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.ContentObserver;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.ColorFilter;
@@ -112,6 +114,13 @@ public class HaloProperties extends FrameLayout {
 
     private boolean mLastContentStateLeft = true;
 
+    private boolean mEnableColor;
+    private int mCircleColor = 0;
+    private int mSpeechColor = 0;
+    private int mSpeechTextColor = 0;
+    private int mNumberTextColor = 0;
+    private int mNumberContainerColor = 0;
+
     CustomObjectAnimator mHaloOverlayAnimator;
 
     public HaloProperties(Context context) {
@@ -160,6 +169,10 @@ public class HaloProperties extends FrameLayout {
         setHaloSize(mFraction);
 
         mHaloOverlayAnimator = new CustomObjectAnimator(this);
+
+        SettingsObserver settingsObserver = new SettingsObserver(new Handler());
+        settingsObserver.observe();
+        updateProperties();
     }
 
     int newPaddingHShort;
@@ -425,5 +438,85 @@ public class HaloProperties extends FrameLayout {
         mHaloNumberView.layout(0, 0, 0, 0);
 
         mLastContentStateLeft = contentLeft;
+    }
+
+    public class SettingsObserver extends ContentObserver {
+        SettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        void observe() {
+            ContentResolver resolver = mContext.getContentResolver();
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.HALO_PROPERTIES_COLOR), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.HALO_CIRCLE_COLOR), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.HALO_BUBBLE_COLOR), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.HALO_BUBBLE_TEXT_COLOR), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.HALO_NUMBER_TEXT_COLOR), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.HALO_NUMBER_CONTAINER_COLOR), false, this);
+            updateProperties();
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            updateProperties();
+        }
+    }
+
+    private void updateProperties() {
+        ContentResolver cr = mContext.getContentResolver();
+        mEnableColor = Settings.System.getInt(cr,
+               Settings.System.HALO_PROPERTIES_COLOR, 0) == 1;
+        mCircleColor = Settings.System.getInt(cr,
+               Settings.System.HALO_CIRCLE_COLOR, -2);
+        mSpeechColor = Settings.System.getInt(cr,
+               Settings.System.HALO_BUBBLE_COLOR, -2);
+        mSpeechTextColor = Settings.System.getInt(cr, 
+               Settings.System.HALO_BUBBLE_TEXT_COLOR, 0);
+        mNumberTextColor = Settings.System.getInt(cr,
+               Settings.System.HALO_NUMBER_TEXT_COLOR, 0);
+        mNumberContainerColor = Settings.System.getInt(cr,
+               Settings.System.HALO_NUMBER_CONTAINER_COLOR, -2);
+
+        if (mEnableColor) {
+           // Ring
+           mHaloBg.setColorFilter(mCircleColor, Mode.SRC_IN);
+
+           // Speech bubbles
+           mHaloSpeechL.setColorFilter(mSpeechColor, Mode.SRC_ATOP);
+           mHaloSpeechR.setColorFilter(mSpeechColor, Mode.SRC_ATOP);
+           mHaloSpeechLD.setColorFilter(mSpeechColor, Mode.SRC_ATOP);
+           mHaloSpeechRD.setColorFilter(mSpeechColor, Mode.SRC_ATOP);
+
+           // Speech text color
+           mHaloTextView.setTextColor(mSpeechTextColor);
+
+           // Notification number container
+           mHaloNumber.setTextColor(mNumberTextColor);
+           mHaloNumberContainer.getBackground().setColorFilter(mNumberContainerColor, Mode.SRC_IN);
+        } else {
+           // Clear that color away! Just in case.
+
+           // Ring
+           mHaloBg.clearColorFilter();
+
+           // Speech bubbles
+           mHaloSpeechL.clearColorFilter();
+           mHaloSpeechR.clearColorFilter();
+           mHaloSpeechLD.clearColorFilter();
+           mHaloSpeechRD.clearColorFilter();
+
+           // Return back to default color
+           mHaloTextView.setTextColor(getResources().getColor(R.color.halo_text_color));
+
+           // Notification number container
+           mHaloNumber.setTextColor(getResources().getColor(R.color.halo_number_text_color));
+           mHaloNumberContainer.getBackground().clearColorFilter();
+        }
     }
 }

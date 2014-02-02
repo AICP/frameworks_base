@@ -23,4 +23,11 @@
     <color name="toggle_text">#ffffffff</color>
     <color name="toggle_text_changing_state_color">#ff787878</color>
     <color name="toggle_image_changing_state_overlay">@color/toggle_text_changing_state_color</color>
+
+    <!-- Halo -->
+    <color name="halo_circle_color">#801d1d1d</color>
+    <color name="halo_bubble_color">#ff1f1f1f</color>
+    <color name="halo_text_color">#ffcccccc</color>
+    <color name="halo_number_text_color">#ffcccccc</color>
+    <color name="halo_number_container_color">#ffff0000</color>
 </resources>

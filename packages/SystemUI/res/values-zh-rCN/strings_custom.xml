@@ -46,5 +46,16 @@
     <string name="running_processes_item_description_p_s"><xliff:g id="numprocess">%1$d</xliff:g> 进程和 <xliff:g id="numservices">%2$d</xliff:g> 服务</string>
     <string name="running_processes_item_description_p_p"><xliff:g id="numprocess">%1$d</xliff:g> 进程和 <xliff:g id="numservices">%2$d</xliff:g> 服务</string>
     <string name="running_process_item_user_label">用户： <xliff:g id="user_name">%1$s</xliff:g></string>
+
+    <string name="permdesc_screenshot">捕获屏幕截图</string>
+    <string name="permlab_screenshot">允许应用捕获屏幕并保存为图片。依赖于系统用户界面。</string>
+    <string name="screenshot_toast">在%1$d秒后截图</string>
+
+    <string name="permdesc_screenrecord">捕获屏幕录像</string>
+    <string name="permlab_screenrecord">允许应用捕获屏幕并保存为录像。依赖于系统用户界面。</string>
+
+    <!-- App Window -->
+    <string name="app_window">应用程序</string>
+    <string name="close">关闭</string>
 </resources>
 

@@ -70,7 +70,26 @@
     <string name="action_app_window">应用窗口</string>
     <string name="action_ribbon">AOKP操作区</string>
     <string name="action_app">自定义程序/快捷方式</string>
+
     <!-- Long-press back kill application -->
     <string name="app_killed_message">应用程序已结束</string>
+
+    <string name="global_action_screenshot">屏幕截图</string>
+
+    <!-- Animation Strings -->
+    <string name="animation_fade">淡入淡出</string>
+    <string name="animation_slide_right">右侧滑动</string>
+    <string name="animation_slide_left">左侧滑动</string>
+    <string name="animation_slide_right_no_fade">右侧滑动（无淡入淡出）</string>
+    <string name="animation_slide_left_no_fade">左侧滑动（无淡入淡出）</string>
+    <string name="animation_slide_up">底部滑动</string>
+    <string name="animation_slide_down">顶部滑动</string>
+    <string name="animation_default">默认</string>
+    <string name="animation_translucent">透明</string>
+    <string name="animation_grow_shrink">缩放（顶部）</string>
+    <string name="animation_grow_shrink_center">缩放（中间）</string>
+    <string name="animation_grow_shrink_bottom">缩放（底部）</string>
+    <string name="animation_grow_shrink_left">缩放（左侧）</string>
+    <string name="animation_grow_shrink_right">缩放（右侧）</string>
 
 </resources>

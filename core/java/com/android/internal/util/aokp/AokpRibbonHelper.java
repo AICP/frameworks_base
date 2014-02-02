@@ -44,6 +44,7 @@ public class AokpRibbonHelper {
     public static final int RIBBON_ANIMATION_TYPE = 12;
     public static final int RIBBON_ANIMATION_DURATION = 13;
     public static final int RIBBON_MARGIN = 14;
+    public static final int RIBBON_ICON_GRAVITY = 15;
 
     public static final LinearLayout.LayoutParams PARAMS_TARGET = new LinearLayout.LayoutParams(
             LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1f);

@@ -64,7 +64,7 @@ public class AokpSwipeRibbon extends LinearLayout implements OnItemClickListener
     private LinearLayout mContainerFrame;
     private Animation mAnimationIn;
     private Animation mAnimationOut;
-    private int mHideTimeOut, animationIn, animationOut, mAnim, visible, mDisabledFlags, mRibbonColor, mWidth, mMargin;
+    private int mHideTimeOut, animationIn, animationOut, mAnim, visible, mDisabledFlags, mRibbonColor, mWidth, mMargin, mGravity;
     private Handler mHandler;
     private String[] SETTINGS_AOKP;
     private float mAnimDur;
@@ -158,6 +158,36 @@ public class AokpSwipeRibbon extends LinearLayout implements OnItemClickListener
         return gravity;
     }
 
+    private int getItemGravity() {
+        int gravity = 0;
+        if (mLocation.equals("left")) {
+            switch (mGravity) {
+                case 0:
+                    gravity = Gravity.CENTER_VERTICAL | Gravity.LEFT;
+                    break;
+                case 1:
+                    gravity = Gravity.TOP | Gravity.LEFT;
+                    break;
+                case 2:
+                    gravity = Gravity.BOTTOM | Gravity.LEFT;
+                    break;
+            }
+        } else {
+            switch (mGravity) {
+                case 0:
+                    gravity = Gravity.CENTER_VERTICAL | Gravity.RIGHT;
+                    break;
+                case 1:
+                    gravity = Gravity.TOP | Gravity.RIGHT;
+                    break;
+                case 2:
+                    gravity = Gravity.BOTTOM | Gravity.RIGHT;
+                    break;
+            }
+        }
+        return gravity;
+    }
+
     private void setAnimation() {
         if (mLocation.equals("bottom")) {
             animationIn = com.android.internal.R.anim.slide_in_up_ribbon;
@@ -196,7 +226,10 @@ public class AokpSwipeRibbon extends LinearLayout implements OnItemClickListener
         setAnimation();
         mAnimationIn = PlayInAnim();
         mAnimationOut = PlayOutAnim();
-        mPopupView.addView(mContainerFrame, getNewLayoutParams());
+        mContainerFrame.setBackgroundColor(mRibbonColor);
+        mContainerFrame.setGravity(getItemGravity());
+        LinearLayout.LayoutParams params = getNewLayoutParams();
+        mPopupView.addView(mContainerFrame, params);
         mPopupView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -264,7 +297,6 @@ public class AokpSwipeRibbon extends LinearLayout implements OnItemClickListener
             mRibbon.setAdapter(mRibbonAdapter);
             mRibbon.setOnItemClickListener(this);
             mRibbon.setOnItemLongClickListener(this);
-            mRibbon.setBackgroundColor(mRibbonColor);
             mRibbon.setDividerHeight(mMargin);
         }
     }
@@ -315,6 +347,7 @@ public class AokpSwipeRibbon extends LinearLayout implements OnItemClickListener
             resolver.registerContentObserver(Settings.AOKP.getUriFor(SETTINGS_AOKP[AokpRibbonHelper.RIBBON_ANIMATION_TYPE]), false, this);
             resolver.registerContentObserver(Settings.AOKP.getUriFor(SETTINGS_AOKP[AokpRibbonHelper.RIBBON_MARGIN]), false, this);
             resolver.registerContentObserver(Settings.AOKP.getUriFor(SETTINGS_AOKP[AokpRibbonHelper.RIBBON_SIZE]), false, this);
+            resolver.registerContentObserver(Settings.AOKP.getUriFor(SETTINGS_AOKP[AokpRibbonHelper.RIBBON_ICON_GRAVITY]), false, this);
         }
          @Override
         public void onChange(boolean selfChange) {
@@ -330,12 +363,13 @@ public class AokpSwipeRibbon extends LinearLayout implements OnItemClickListener
         for (String item : list) {
             mItems.add(new RibbonItem(item));
         }
+        mGravity = Settings.AOKP.getInt(cr, SETTINGS_AOKP[AokpRibbonHelper.RIBBON_ICON_GRAVITY], 0);
         mHideTimeOut = Settings.AOKP.getInt(cr, SETTINGS_AOKP[AokpRibbonHelper.AUTO_HIDE_DURATION], 0);
         mRibbonColor = Settings.AOKP.getInt(cr, SETTINGS_AOKP[AokpRibbonHelper.RIBBON_COLOR], Color.BLACK);
         mAnim = Settings.AOKP.getInt(cr, SETTINGS_AOKP[AokpRibbonHelper.RIBBON_ANIMATION_TYPE], 0);
         mAnimDur = Settings.AOKP.getInt(cr, SETTINGS_AOKP[AokpRibbonHelper.RIBBON_ANIMATION_DURATION], 50);
         int size = Settings.AOKP.getInt(mContext.getContentResolver(), SETTINGS_AOKP[AokpRibbonHelper.RIBBON_SIZE], 30);
-        mWidth = (int) (((size * 0.01f) * 150) + 150);
+        mWidth = (int) (((size * 0.01f) * 150) + 125);
         int margin = Settings.AOKP.getInt(mContext.getContentResolver(), SETTINGS_AOKP[AokpRibbonHelper.RIBBON_MARGIN], 5);
         mMargin = (int) ((margin * 0.01f) * 200);
         // -------------------------

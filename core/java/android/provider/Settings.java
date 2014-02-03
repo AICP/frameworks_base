@@ -3153,6 +3153,13 @@ public final class Settings {
         public static final String SYSTEM_PROFILES_ENABLED = "system_profiles_enabled";
 
         /**
+         * Whether pressing the volume keys toggles the ringer mode or not.
+         * Boolean. Default false.
+         * @hide
+         */
+        public static final String VOLUME_KEYS_RINGER_MODE = "volume_keys_ringer_mode";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *

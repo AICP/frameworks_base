@@ -48,6 +48,7 @@ import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.hardware.input.InputManager;
 import android.media.AudioManager;
+import android.media.AudioService;
 import android.media.AudioSystem;
 import android.media.IAudioService;
 import android.media.Ringtone;
@@ -94,6 +95,7 @@ import android.view.MotionEvent;
 import android.view.Surface;
 import android.view.View;
 import android.view.ViewConfiguration;
+import android.view.VolumePanel;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.WindowManagerGlobal;
@@ -106,6 +108,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.internal.R;
+import com.android.internal.app.ThemeUtils;
 import com.android.internal.os.DeviceKeyHandler;
 import com.android.internal.policy.PolicyManager;
 import com.android.internal.policy.impl.keyguard.KeyguardServiceDelegate;
@@ -524,6 +527,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     // What we do when the user double-taps on home
     private int mDoubleTapOnHomeBehavior;
 
+    private static final long ACTION_CHORD_DEBOUNCE_DELAY_MILLIS = 150;
     private static final long VOLUME_DOUBLETAP_CHORD_DEBOUNCE_DELAY_MILLIS = 600;
     // Screenshot trigger states
     // Time to volume and power must be pressed within this interval of each other.
@@ -538,14 +542,16 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private boolean mScreenrecordChordEnabled;
     private boolean mVolumeDownKeyTriggered;
     private long mVolumeDownKeyTime;
-    private boolean mVolumeDownKeyConsumedByScreenshotChord;
+    private boolean mVolumeDownKeyConsumedByChord;
     private long mVolumeUpKeyTime;
+    private boolean mVolumeUpKeyConsumedByChord;
     private boolean mVolumeUpKeyConsumedByScreenrecordChord;
     private boolean mVolumeUpKeyTriggered;
     private boolean mPowerKeyTriggered;
     private long mPowerKeyTime;
     private long mVolumeKeysDownTime;
     private boolean mVolumeKeysDoubleTapEnabled;
+    private boolean mUseVolumeKeyRingerToggle;
 
     /* The number of steps between min and max brightness */
     private static final int BRIGHTNESS_STEPS = 10;
@@ -667,6 +673,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.AOKP.getUriFor(
                     Settings.AOKP.HARDWARE_KEY_REBINDING), false, this,
+                    UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.VOLUME_KEYS_RINGER_MODE), false, this,
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.AOKP.getUriFor(
                     Settings.AOKP.VOLUME_WAKE_SCREEN), false, this,
@@ -840,7 +849,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 // volume down and volume up were triggered fairly recently separately, AND together.
                mHandler.postDelayed(mDoubleTapRunnable, getScreenshotChordLongPressDelay());
             }
-            mVolumeDownKeyConsumedByScreenshotChord = true;
+            mVolumeDownKeyConsumedByChord = true;
             mVolumeUpKeyConsumedByScreenrecordChord = true;
             mVolumeKeysDownTime = now;
         }
@@ -850,9 +859,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         if (mScreenshotChordEnabled
                 && mVolumeDownKeyTriggered && mPowerKeyTriggered && !mVolumeUpKeyTriggered) {
             final long now = SystemClock.uptimeMillis();
-            if (now <= mVolumeDownKeyTime + SCREENSHOT_CHORD_DEBOUNCE_DELAY_MILLIS
-                    && now <= mPowerKeyTime + SCREENSHOT_CHORD_DEBOUNCE_DELAY_MILLIS) {
-                mVolumeDownKeyConsumedByScreenshotChord = true;
+            if (now <= mVolumeDownKeyTime + ACTION_CHORD_DEBOUNCE_DELAY_MILLIS
+                    && now <= mPowerKeyTime + ACTION_CHORD_DEBOUNCE_DELAY_MILLIS) {
+                mVolumeDownKeyConsumedByChord = true;
                 cancelPendingPowerKeyAction();
 
                 mHandler.postDelayed(mScreenshotRunnable, getScreenshotChordLongPressDelay());
@@ -898,6 +907,24 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
     private void cancelPendingScreenrecordChordAction() {
         mHandler.removeCallbacks(mScreenrecordRunnable);
+    }
+
+    private void interceptRingerChord() {	
+        if (mVolumeDownKeyTriggered && !mPowerKeyTriggered && mVolumeUpKeyTriggered) {
+            final long now = SystemClock.uptimeMillis();	
+            if (now <= mVolumeDownKeyTime + ACTION_CHORD_DEBOUNCE_DELAY_MILLIS	
+                    && now <= mVolumeUpKeyTime + ACTION_CHORD_DEBOUNCE_DELAY_MILLIS) {	
+                mVolumeDownKeyConsumedByChord = true;
+                mVolumeUpKeyConsumedByChord = true;	
+
+                mHandler.postDelayed(mRingerChordLongPress,	
+                        ViewConfiguration.getGlobalActionKeyTimeout());	
+            }	
+        }	
+    }	
+
+    private void cancelPendingRingerChordAction() {	
+        mHandler.removeCallbacks(mRingerChordLongPress);
     }
 
     private final Runnable mPowerLongPress = new Runnable() {
@@ -1519,6 +1546,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             }
             mVolumeKeysDoubleTapEnabled = Settings.AOKP.getBooleanForUser(resolver,
                     Settings.AOKP.DOUBLE_TAP_VOLUME_KEYS, true, UserHandle.USER_CURRENT);
+            mUseVolumeKeyRingerToggle = Settings.AOKP.getBooleanForUser(resolver,
+                    Settings.System.VOLUME_KEYS_RINGER_MODE, true, UserHandle.USER_CURRENT);
 
             mVolumeWakeScreen = Settings.AOKP.getBoolean(resolver,
                     Settings.AOKP.VOLUME_WAKE_SCREEN, false);
@@ -2335,21 +2364,36 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     + " canceled=" + canceled);
         }
 
-        // If we think we might have a volume down & power key chord on the way
+        // If we think we might have a volume down & power/wolume up key chord on the way
         // but we're not sure, then tell the dispatcher to wait a little while and
         // try again later before dispatching.
         if (mScreenshotChordEnabled && (flags & KeyEvent.FLAG_FALLBACK) == 0) {
-            if (mVolumeDownKeyTriggered && !mPowerKeyTriggered) {
+            if (mVolumeDownKeyTriggered && !mPowerKeyTriggered && !mVolumeUpKeyTriggered) {
                 final long now = SystemClock.uptimeMillis();
-                final long timeoutTime = mVolumeDownKeyTime + SCREENSHOT_CHORD_DEBOUNCE_DELAY_MILLIS;
+                final long timeoutTime = mVolumeDownKeyTime + ACTION_CHORD_DEBOUNCE_DELAY_MILLIS;
+
+                if (now < timeoutTime) {	
+                    return timeoutTime - now;
+                }	
+            } else if (mVolumeUpKeyTriggered && !mVolumeDownKeyTriggered) {	
+                final long now = SystemClock.uptimeMillis();	
+                final long timeoutTime = mVolumeUpKeyTime + ACTION_CHORD_DEBOUNCE_DELAY_MILLIS;
+
                 if (now < timeoutTime) {
                     return timeoutTime - now;
                 }
             }
+
             if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN
-                    && mVolumeDownKeyConsumedByScreenshotChord) {
+                    && mVolumeDownKeyConsumedByChord) {
                 if (!down) {
-                    mVolumeDownKeyConsumedByScreenshotChord = false;
+                    mVolumeDownKeyConsumedByChord = false;
+                }	
+                return -1;	
+            } else if (keyCode == KeyEvent.KEYCODE_VOLUME_UP	
+                    && mVolumeUpKeyConsumedByChord) {	
+                if (!down) {	
+                    mVolumeUpKeyConsumedByChord = false;
                 }
                 return -1;
             }
@@ -4403,6 +4447,24 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         }
     }
 
+    private final Runnable mRingerChordLongPress = new Runnable() {	
+        public void run() {	
+            // Do the switch 	
+            
+            if (mUseVolumeKeyRingerToggle) {
+            final AudioManager am = (AudioManager)mContext.getSystemService(Context.AUDIO_SERVICE);	
+            final int ringerMode = am.getRingerMode();	
+            final VolumePanel volumePanel = new VolumePanel(ThemeUtils.createUiContext(mContext),	
+                                                              (AudioService) getAudioService());	
+            if (ringerMode == AudioManager.RINGER_MODE_NORMAL) {	
+                am.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);	
+            } else if (ringerMode == AudioManager.RINGER_MODE_VIBRATE) {	
+                am.setRingerMode(AudioManager.RINGER_MODE_SILENT);	
+            } else am.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+            }
+        }
+    };
+
     /** {@inheritDoc} */
     @Override
     public int interceptKeyBeforeQueueing(KeyEvent event, int policyFlags, boolean isScreenOn) {
@@ -4527,16 +4589,18 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                                 && (event.getFlags() & KeyEvent.FLAG_FALLBACK) == 0) {
                             mVolumeDownKeyTriggered = true;
                             mVolumeDownKeyTime = event.getDownTime();
-                            mVolumeDownKeyConsumedByScreenshotChord = false;
+                            mVolumeDownKeyConsumedByChord = false;
                             cancelPendingPowerKeyAction();
                             cancelPendingScreenrecordChordAction();
                             interceptScreenshotChord();
                             interceptVolumeDoubleTapChord();
+                            interceptRingerChord();
                         }
                     } else {
                         mVolumeDownKeyTriggered = false;
                         cancelPendingScreenshotChordAction();
                         cancelPendingScreenrecordChordAction();
+                        cancelPendingRingerChordAction();
                     }
                 } else if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
                     if (down) {
@@ -4544,9 +4608,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                                 && (event.getFlags() & KeyEvent.FLAG_FALLBACK) == 0) {
                             mVolumeUpKeyTriggered = true;
                             mVolumeUpKeyTime = event.getDownTime();
-                            mVolumeUpKeyConsumedByScreenrecordChord = false;
+                            mVolumeUpKeyConsumedByChord = false;
                             cancelPendingPowerKeyAction();
                             cancelPendingScreenshotChordAction();
+                            interceptRingerChord();
                             interceptScreenrecordChord();
                             interceptVolumeDoubleTapChord();
                         }
@@ -4554,6 +4619,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                         mVolumeUpKeyTriggered = false;
                         cancelPendingScreenshotChordAction();
                         cancelPendingScreenrecordChordAction();
+                        cancelPendingRingerChordAction();
                     }
                 }
                 if (down) {

@@ -551,7 +551,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private long mPowerKeyTime;
     private long mVolumeKeysDownTime;
     private boolean mVolumeKeysDoubleTapEnabled;
-    private boolean mUseVolumeKeyRingerToggle;
+    private int mUseVolumeKeyRingerToggle;
 
     /* The number of steps between min and max brightness */
     private static final int BRIGHTNESS_STEPS = 10;
@@ -1546,8 +1546,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             }
             mVolumeKeysDoubleTapEnabled = Settings.AOKP.getBooleanForUser(resolver,
                     Settings.AOKP.DOUBLE_TAP_VOLUME_KEYS, true, UserHandle.USER_CURRENT);
-            mUseVolumeKeyRingerToggle = Settings.AOKP.getBooleanForUser(resolver,
-                    Settings.System.VOLUME_KEYS_RINGER_MODE, true, UserHandle.USER_CURRENT);
+            mUseVolumeKeyRingerToggle = Settings.System.getIntForUser(resolver,
+                    Settings.System.VOLUME_KEYS_RINGER_MODE, 1, UserHandle.USER_CURRENT);
 
             mVolumeWakeScreen = Settings.AOKP.getBoolean(resolver,
                     Settings.AOKP.VOLUME_WAKE_SCREEN, false);
@@ -4451,7 +4451,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         public void run() {	
             // Do the switch 	
             
-            if (mUseVolumeKeyRingerToggle) {
+            if (mUseVolumeKeyRingerToggle == 1) {
             final AudioManager am = (AudioManager)mContext.getSystemService(Context.AUDIO_SERVICE);	
             final int ringerMode = am.getRingerMode();	
             final VolumePanel volumePanel = new VolumePanel(ThemeUtils.createUiContext(mContext),	

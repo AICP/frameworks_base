@@ -438,7 +438,9 @@ public class NavigationBarView extends LinearLayout {
                 && mLockUtils.getCameraEnabled();
         final boolean showNotifs = showSearch &&
             Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.LOCKSCREEN_NOTIFICATIONS, 1) == 1
+                    Settings.System.LOCKSCREEN_NOTIFICATIONS, 1) == 1
+            && Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.ACTIVE_NOTIFICATIONS, 1) == 1
             && Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.ACTIVE_NOTIFICATIONS_PRIVACY_MODE, 0) == 0;
         setVisibleOrGone(getSearchLight(), showSearch);

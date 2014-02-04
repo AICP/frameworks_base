@@ -3160,6 +3160,64 @@ public final class Settings {
         public static final String VOLUME_KEYS_RINGER_MODE = "volume_keys_ringer_mode";
 
         /**
+         * Random user selected colors
+         * @hide
+         */
+        public static final String RANDOM_COLOR_ONE = "random_color_one";
+
+        /**
+         * @hide
+         */
+        public static final String RANDOM_COLOR_TWO = "random_color_two";
+
+        /**
+         * @hide
+         */
+        public static final String RANDOM_COLOR_THREE = "random_color_three";
+
+        /**
+         * @hide
+         */
+        public static final String RANDOM_COLOR_FOUR = "random_color_four";
+
+        /**
+         * @hide
+         */
+        public static final String RANDOM_COLOR_FIVE = "random_color_five";
+
+        /**
+         * @hide
+         */
+        public static final String RANDOM_COLOR_SIX = "random_color_six";
+
+        /**
+         * User configurable background for qs tiles
+         * 0 = random colors
+         * 1 = colorpicker preference
+         * 2 = default background
+         * @hide
+         */
+        public static final String QUICK_SETTINGS_BACKGROUND_STYLE = "quick_settings_background_style";
+
+        /**
+         * User color for tile background
+         * @hide
+         */
+        public static final String QUICK_SETTINGS_BACKGROUND_COLOR = "quick_settings_background_color";
+
+        /**
+         * User color for text background
+         * @hide
+         */
+        public static final String QUICK_SETTINGS_TEXT_COLOR = "quick_settings_text_color";
+
+        /**
+         * User color for tile background pressed
+         * @hide
+         */
+        public static final String QUICK_SETTINGS_BACKGROUND_PRESSED_COLOR = "quick_settings_background_pressed_color";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *

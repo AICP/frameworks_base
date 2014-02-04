@@ -32,6 +32,7 @@ import com.android.systemui.statusbar.policy.LocationController;
 import com.android.systemui.statusbar.policy.NetworkController;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public abstract class BaseToggle
         implements OnClickListener, OnLongClickListener {
@@ -56,6 +57,8 @@ public abstract class BaseToggle
     protected ImageView mIcon = null;
     private int mIconId = -1;
 
+    int mTextColor;
+
     private SettingsObserver mObserver = null;
 
     protected ArrayList<BroadcastReceiver> mRegisteredReceivers = new ArrayList<BroadcastReceiver>();
@@ -79,7 +82,12 @@ public abstract class BaseToggle
         mObserver.observe();
         vib = (Vibrator) mContext.getSystemService(mContext.VIBRATOR_SERVICE);
         setTextSize(ToggleManager.getTextSize(mContext));
+        setTextColor(mTextColor);
         scheduleViewUpdate();
+    }
+
+    protected final void setTextColor(int cl) {
+        mTextColor = cl;
     }
 
     public abstract int getDefaultIconResId();
@@ -264,6 +272,7 @@ public abstract class BaseToggle
 
             if (mLabel != null) {
                 mLabel.setText(mLabelText);
+                mLabel.setTextColor(mTextColor);
                 mLabel.setVisibility(View.VISIBLE);
                 // if (mIconDrawable != null) {
                 // mLabel.setCompoundDrawablesWithIntrinsicBounds(null,
@@ -331,32 +340,22 @@ public abstract class BaseToggle
         ToggleManager.log(msg, e);
     }
 
-    private void updateSettings() {
-        ContentResolver resolver = mContext.getContentResolver();
-
-        mCollapsePref = Settings.AOKP.getBoolean(resolver,
-                Settings.AOKP.SHADE_COLLAPSE_ALL, false);
-        mVibratePref = Settings.AOKP.getBoolean(resolver,
-                Settings.AOKP.QUICK_TOGGLE_VIBRATE, false);
-        mTactileFeedbackEnabled = Settings.System.getIntForUser(resolver,
-                Settings.System.HAPTIC_FEEDBACK_ENABLED, 1, UserHandle.USER_CURRENT) != 0;
-    }
-
     class SettingsObserver extends ContentObserver {
         SettingsObserver(Handler handler) {
             super(handler);
         }
 
         void observe() {
-            ContentResolver resolver = mContext.getContentResolver();
+            ContentResolver cr = mContext.getContentResolver();
 
-            resolver.registerContentObserver(Settings.AOKP
-                    .getUriFor(Settings.AOKP.SHADE_COLLAPSE_ALL),
-                    false, this);
-            resolver.registerContentObserver(Settings.AOKP
+            cr.registerContentObserver(Settings.AOKP.getUriFor(
+                    Settings.AOKP.SHADE_COLLAPSE_ALL), false, this);
+            cr.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.QUICK_SETTINGS_TEXT_COLOR), false, this);
+            cr.registerContentObserver(Settings.AOKP
                     .getUriFor(Settings.AOKP.QUICK_TOGGLE_VIBRATE),
                     false, this);
-            resolver.registerContentObserver(Settings.System
+            cr.registerContentObserver(Settings.System
                     .getUriFor(Settings.System.HAPTIC_FEEDBACK_ENABLED),
                     false, this);
 
@@ -367,5 +366,18 @@ public abstract class BaseToggle
         public void onChange(boolean selfChange) {
             updateSettings();
         }
+    }
+
+    private void updateSettings() {
+        ContentResolver resolver = mContext.getContentResolver();
+
+        mCollapsePref = Settings.AOKP.getBoolean(resolver,
+                Settings.AOKP.SHADE_COLLAPSE_ALL, false);
+        mTextColor = Settings.System.getInt(resolver,
+                Settings.System.QUICK_SETTINGS_TEXT_COLOR, 0xFFFFFFFF);
+        mVibratePref = Settings.AOKP.getBoolean(resolver,
+                Settings.AOKP.QUICK_TOGGLE_VIBRATE, false);
+        mTactileFeedbackEnabled = Settings.System.getIntForUser(resolver,
+                Settings.System.HAPTIC_FEEDBACK_ENABLED, 1, UserHandle.USER_CURRENT) != 0;
     }
 }

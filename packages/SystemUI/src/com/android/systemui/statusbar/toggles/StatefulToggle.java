@@ -60,13 +60,12 @@ public abstract class StatefulToggle extends BaseToggle {
     protected void updateView() {
         super.updateView();
         Resources r = mContext.getResources();
+        int mChangingColor = R.color.toggle_text_changing_state_color;
 
         boolean tweenState = mState == State.DISABLING || mState == State.ENABLING;
         if (mLabel != null) {
             mLabel.setEnabled(!tweenState);
-            mLabel.setTextColor(r.getColor(tweenState
-                    ? R.color.toggle_text_changing_state_color
-                    : R.color.toggle_text));
+            mLabel.setTextColor((tweenState ? mChangingColor : mTextColor));
         }
         if (mIcon != null) {
             mIcon.setColorFilter(null);

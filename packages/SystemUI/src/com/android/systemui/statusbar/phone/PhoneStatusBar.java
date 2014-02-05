@@ -2322,7 +2322,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 mStatusBarContents.startAnimation(loadAnim(com.android.internal.R.anim.push_down_in, null));
                 mTickerView.startAnimation(loadAnim(com.android.internal.R.anim.push_down_out,
                             mTickingDoneListener));
-                mCenterClockLayout.startAnimation(loadAnim(com.android.internal.R.anim.push_down_in, null));
             }
         }
 

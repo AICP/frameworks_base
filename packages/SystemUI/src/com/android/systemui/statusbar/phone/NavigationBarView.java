@@ -108,6 +108,8 @@ public class NavigationBarView extends LinearLayout {
         }
     };
 
+    boolean mWasNotifsButtonVisible = false;
+
     private DelegateViewHelper mDelegateHelper;
     private DeadZone mDeadZone;
     private final NavigationBarTransitions mBarTransitions;
@@ -380,7 +382,8 @@ public class NavigationBarView extends LinearLayout {
         mHandler.post(new Runnable() {
             public void run() {
                 if (iconId == 1) iv.setImageResource(R.drawable.search_light_land);
-                setVisibleOrGone(getNotifsButton(), iconId != 0);
+                mWasNotifsButtonVisible = iconId != 0 && ((mDisabledFlags & View.STATUS_BAR_DISABLE_HOME) != 0);
+                setVisibleOrGone(getNotifsButton(), mWasNotifsButtonVisible);
             }
         });
     }
@@ -456,9 +459,7 @@ public class NavigationBarView extends LinearLayout {
 
         setVisibleOrGone(getSearchLight(), showSearch);
         setVisibleOrGone(getCameraButton(), showCamera);
-        // Just hide view if neccessary - don't show it because that interferes with Keyguard
-        // which uses setButtonDrawable to decide whether it should be shown
-        if (!showNotifs) setVisibleOrGone(getNotifsButton(), showNotifs);
+        setVisibleOrGone(getNotifsButton(), showNotifs && mWasNotifsButtonVisible);
 
         mBarTransitions.applyBackButtonQuiescentAlpha(mBarTransitions.getMode(), true /*animate*/);
     }

@@ -3,9 +3,12 @@ package com.android.systemui.statusbar.toggles;
 
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.ComponentName;
+import android.content.Intent;
 import android.database.ContentObserver;
 import android.os.Handler;
 import android.provider.Settings;
+import android.view.View;
 
 import static com.android.internal.util.aokp.AwesomeConstants.*;
 import com.android.systemui.R;
@@ -39,6 +42,20 @@ public class TorchToggle extends StatefulToggle {
     protected void doDisable() {
         AwesomeAction.launchAction(mContext, AwesomeConstant.ACTION_TORCH.value());
     }
+
+    @Override
+    public boolean onLongClick(View v) {
+        vibrateOnTouch();
+        Intent intentTorch = new Intent("android.intent.action.MAIN");
+        intentTorch.setComponent(ComponentName
+                .unflattenFromString("com.aokp.Torch/.TorchActivity"));
+        intentTorch.addCategory("android.intent.category.LAUNCHER");
+        intentTorch.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intentTorch.putExtra("whitescreen", true);
+        startActivity(intentTorch);
+        return super.onLongClick(v);
+    }
+
 
     @Override
     public int getDefaultIconResId() {

@@ -65,7 +65,6 @@
                 android:id="@+id/show_notifs"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical|left"
-                android:src="@drawable/search_light_land"
                 android:scaleType="center"
                 android:visibility="gone"/>
 
@@ -138,13 +137,12 @@
         </LinearLayout>
 
         <com.android.systemui.statusbar.policy.KeyButtonView
-            android:layout_width="80dp"
-            android:id="@+id/show_notifs"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical|left"
-            android:src="@drawable/search_light_land"
-            android:scaleType="center"
-            android:visibility="gone"/>
+                android:layout_width="80dp"
+                android:id="@+id/show_notifs"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical|left"
+                android:scaleType="center"
+                android:visibility="gone"/>
 
         <com.android.systemui.statusbar.policy.KeyButtonView
                 android:id="@+id/search_light"

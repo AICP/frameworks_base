@@ -2340,7 +2340,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 mCenterClockLayout.setVisibility(View.VISIBLE);
                 mTickerView.setVisibility(View.GONE);
                 mStatusBarContents.startAnimation(loadAnim(com.android.internal.R.anim.fade_in, null));
-                mCenterClockLayout.startAnimation(loadAnim(com.android.internal.R.anim.push_down_in, null));
+                mCenterClockLayout.startAnimation(loadAnim(com.android.internal.R.anim.fade_in, null));
                 // we do not animate the ticker away at this point, just get rid of it (b/6992707)
             }
         }

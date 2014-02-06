@@ -90,7 +90,9 @@
     <uses-permission android:name="android.permission.SYSTEM_NOTIFICATION_LISTENER" />
 
     <!-- Screen recording -->
-    <uses-permission  android:name="android.permission.ACCESS_SURFACE_FLINGER" />
+    <uses-permission android:name="android.permission.ACCESS_SURFACE_FLINGER" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.CAPTURE_AUDIO_OUTPUT" />
 
     <!-- Secure Screenshot -->
     <protected-broadcast android:name="android.permission.SCREENSHOT" />

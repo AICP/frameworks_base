@@ -81,6 +81,7 @@ public class TakeScreenrecordService extends Service {
             try {
                 int currentStatus = Settings.System.getInt(getContentResolver(), Settings.System.SHOW_TOUCHES);
                 Settings.System.putInt(getContentResolver(), Settings.System.SHOW_TOUCHES, 1 - currentStatus);
+                Settings.System.putInt(getContentResolver(), Settings.System.SREC_ENABLE_TOUCHES, 1 - currentStatus);
             } catch (SettingNotFoundException ignore) {
                 // ignored
             }

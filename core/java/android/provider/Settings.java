@@ -3223,6 +3223,18 @@ public final class Settings {
         public static final String NFC_POLLING_MODE = "nfc_polling";
 
         /**
+         * Enable touches in screen recording
+         * @hide
+         */
+        public static final String SREC_ENABLE_TOUCHES = "srec_enable_touches";
+
+        /**
+         * Enable microphone as audio input in screen recording
+         * @hide
+         */
+        public static final String SREC_ENABLE_MIC = "srec_enable_mic";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *

@@ -116,6 +116,9 @@ import com.android.internal.policy.impl.keyguard.KeyguardServiceDelegate;
 import com.android.internal.statusbar.IStatusBarService;
 import com.android.internal.telephony.ITelephony;
 import com.android.internal.widget.PointerLocationView;
+import com.android.internal.util.aokp.AwesomeAction;
+
+import static com.android.internal.util.aokp.AwesomeConstants.*;
 
 import dalvik.system.DexClassLoader;
 
@@ -4460,15 +4463,20 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             // Do the switch 	
             
             if (mUseVolumeKeyRingerToggle == 1) {
-            final AudioManager am = (AudioManager)mContext.getSystemService(Context.AUDIO_SERVICE);	
-            final int ringerMode = am.getRingerMode();	
-            final VolumePanel volumePanel = new VolumePanel(ThemeUtils.createUiContext(mContext),	
-                                                              (AudioService) getAudioService());	
-            if (ringerMode == AudioManager.RINGER_MODE_NORMAL) {	
-                am.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);	
-            } else if (ringerMode == AudioManager.RINGER_MODE_VIBRATE) {	
-                am.setRingerMode(AudioManager.RINGER_MODE_SILENT);	
-            } else am.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+                if (Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.VOLUME_ADJUST_SOUNDS_ENABLED, 0) == 1) {
+                    AwesomeAction.launchAction(mContext, AwesomeConstant.ACTION_SILENT_VIB.value());
+                } else {
+                  final AudioManager am = (AudioManager)mContext.getSystemService(Context.AUDIO_SERVICE);
+                  final int ringerMode = am.getRingerMode();
+                  final VolumePanel volumePanel = new VolumePanel(ThemeUtils.createUiContext(mContext),
+                                                         (AudioService) getAudioService());
+                  if (ringerMode == AudioManager.RINGER_MODE_NORMAL) {
+                       am.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
+                  } else if (ringerMode == AudioManager.RINGER_MODE_VIBRATE) {
+                       am.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+                  } else am.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+               }
             }
         }
     };

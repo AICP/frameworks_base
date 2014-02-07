@@ -3041,13 +3041,6 @@ public final class Settings {
          public static final String VOLUME_KEY_CURSOR_CONTROL = "volume_key_cursor_control";
 
         /**
-         * Volume Adjust Sounds Enable, This is the noise made when using volume hard buttons
-         * Defaults to 1 - sounds enabled
-         * @hide
-         */
-        public static final String VOLUME_ADJUST_SOUNDS_ENABLED = "volume_adjust_sounds_enabled";
-
-        /**
          * Whether the phone ringtone should be played in an increasing manner
          * @hide
          */
@@ -8146,6 +8139,13 @@ public final class Settings {
         public static final String REBOOT_MODE_OPTIONS = "reboot_mode_options";
         /** Screenshot Menu Options */
         public static final String SCREENSHOT_MODE_OPTIONS = "screenshot_mode_options";
+
+        /**
+         * Volume Adjust Sounds Enable, This is the noise made when using volume hard buttons
+         * Defaults to 1 - sounds enabled
+         * @hide
+         */
+        public static final String VOLUME_ADJUST_SOUNDS_ENABLED = "volume_adjust_sounds_enabled";
 
     }
 

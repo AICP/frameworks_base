@@ -4463,8 +4463,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             // Do the switch 	
             
             if (mUseVolumeKeyRingerToggle == 1) {
-                if (Settings.System.getInt(mContext.getContentResolver(),
-                    Settings.System.VOLUME_ADJUST_SOUNDS_ENABLED, 0) == 1) {
+                if (Settings.AOKP.getInt(mContext.getContentResolver(),
+                    Settings.AOKP.VOLUME_ADJUST_SOUNDS_ENABLED, 0) == 1) {
                     AwesomeAction.launchAction(mContext, AwesomeConstant.ACTION_SILENT_VIB.value());
                 } else {
                   final AudioManager am = (AudioManager)mContext.getSystemService(Context.AUDIO_SERVICE);

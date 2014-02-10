@@ -560,7 +560,6 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
         mRamUsageBar = (LinearColorBar) findViewById(R.id.ram_usage_bar);
         mForegroundProcessText = (TextView) findViewById(R.id.foregroundText);
         mBackgroundProcessText = (TextView) findViewById(R.id.backgroundText);
-        mRamUsageBarShadow = findViewById(R.id.aokp_rambar_shadow);
         mHandler.post(updateRamBarTask);
     }
 

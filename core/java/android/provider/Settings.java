@@ -2955,20 +2955,6 @@ public final class Settings {
         public static final String NOTIFICATION_CUSTOM_CARRIER_LABEL = "notification_custom_carrier_label";
 
         /**
-         * Should Dialer suggest nearby phone numbers
-         *
-         * @hide
-         */
-        public static final String ENABLE_DIALER_SUGGESTIONS = "enable_dialer_suggestions";
-
-        /**
-         * Should Dialer reverse look up names for unknown phone numbers
-         *
-         * @hide
-         */
-        public static final String ENABLE_DIALER_REVERSE_LOOKUP = "enable_dialer_reverse_lookup";
-
-        /**
          * Whether flip action during incomming call should mute or dismiss
          * the call (mute = 0, dismiss = 1, nothing = 2 (default))
          *

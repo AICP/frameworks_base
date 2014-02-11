@@ -3159,6 +3159,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_CIRCLE_BATTERY_ANIMATIONSPEED),
                     false, this, UserHandle.USER_ALL);
+
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.NAVBAR_LEFT_IN_LANDSCAPE),
+                    false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -3196,6 +3200,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         if(mToggleManager != null) {
             mToggleManager.updateSettings();
             updateBatteryIcons();
+        } else if (mNavigationBarView != null) {
+            boolean navLeftInLandscape = Settings.System.getInt(cr,
+                    Settings.System.NAVBAR_LEFT_IN_LANDSCAPE, 0) == 1;
+            mNavigationBarView.setLeftInLandscape(navLeftInLandscape);
         }
     }
 

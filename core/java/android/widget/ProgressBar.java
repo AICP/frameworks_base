@@ -53,6 +53,7 @@ import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.Transformation;
 import android.widget.RemoteViews.RemoteView;
+import android.widget.SmoothProgressDrawable.Builder;
 
 import java.util.ArrayList;
 
@@ -296,6 +297,16 @@ public class ProgressBar extends View {
             drawable = tileifyIndeterminate(drawable);
             setIndeterminateDrawable(drawable);
         }
+
+        if (String.valueOf(drawable).contains("android.graphics.drawable.AnimationDrawabl")) {
+          Builder abc = new SmoothProgressDrawable.Builder(context);
+                drawable = (abc
+                .colors(getResources().getIntArray(R.array.pgcolors))
+                .speed((float)0.2)
+                .sectionsCount(6)
+                .mirrorMode(true)
+                .build());
+ 	}
 
         mOnlyIndeterminate = a.getBoolean(
                 R.styleable.ProgressBar_indeterminateOnly, mOnlyIndeterminate);

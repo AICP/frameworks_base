@@ -1571,6 +1571,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             mNavigationBarLeftInLandscape = Settings.System.getInt(resolver,
                     Settings.System.NAVBAR_LEFT_IN_LANDSCAPE, 0) == 1;
 
+            updateKeyAssignments();
+
             // Configure rotation lock.
             int userRotation = Settings.System.getIntForUser(resolver,
                     Settings.System.USER_ROTATION, Surface.ROTATION_0,

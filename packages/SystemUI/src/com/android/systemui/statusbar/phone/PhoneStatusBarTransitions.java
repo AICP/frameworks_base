@@ -33,7 +33,7 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
     private final float mIconAlphaWhenOpaque;
 
     private View mLeftSide, mStatusIcons, mSignalCluster, mBattery, mBatteryText, mClock, mCenterClock,
-                mStatsUp, mStatsDown;
+                mStatsUp, mStatsUpArrow, mStatsDown, mStatsDownArrow;
     private Animator mCurrentAnimation;
 
     public PhoneStatusBarTransitions(PhoneStatusBarView view) {
@@ -52,7 +52,9 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
         mClock = mView.findViewById(R.id.clock);
         mCenterClock = mView.findViewById(R.id.center_clock);
         mStatsUp = mView.findViewById(R.id.bytes_tx);
+        mStatsUpArrow = mView.findViewById(R.id.bytes_tx_arrow);
         mStatsDown = mView.findViewById(R.id.bytes_rx);
+        mStatsDownArrow = mView.findViewById(R.id.bytes_rx_arrow);
         applyModeBackground(-1, getMode(), false /*animate*/);
         applyMode(getMode(), false /*animate*/);
     }
@@ -99,8 +101,10 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
                     animateTransitionTo(mBatteryText, newAlphaBC),
                     animateTransitionTo(mClock, newAlphaBC),
                     animateTransitionTo(mCenterClock, newAlphaBC),
-                    animateTransitionTo(mStatsUp, newAlphaBC),
-                    animateTransitionTo(mStatsDown, newAlphaBC)
+                    animateTransitionTo(mStatsUp, newAlpha),
+                    animateTransitionTo(mStatsUpArrow, newAlpha),
+                    animateTransitionTo(mStatsDown, newAlpha),
+                    animateTransitionTo(mStatsDownArrow, newAlpha)
                     );
             if (mode == MODE_LIGHTS_OUT) {
                 anims.setDuration(LIGHTS_OUT_DURATION);
@@ -115,6 +119,10 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
             mBatteryText.setAlpha(newAlphaBC);
             mClock.setAlpha(newAlphaBC);
             mCenterClock.setAlpha(newAlphaBC);
+            mStatsUp.setAlpha(newAlpha);
+            mStatsDown.setAlpha(newAlpha);
+            mStatsUpArrow.setAlpha(newAlpha);
+            mStatsDownArrow.setAlpha(newAlpha);
         }
     }
 }

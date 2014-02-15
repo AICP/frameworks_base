@@ -710,11 +710,12 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.NAVBAR_LEFT_IN_LANDSCAPE), false, this,
                     UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.AOKP.ENABLE_NAVIGATION_BAR), false, this,
+                    UserHandle.USER_ALL);
 
             updateSettings();
         }
-                    Settings.AOKP.ENABLE_NAVIGATION_BAR), false, this,
-                    UserHandle.USER_ALL);
 
         @Override
         public void onChange(boolean selfChange) {

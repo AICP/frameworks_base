@@ -61,8 +61,6 @@ public class UsbTetherToggle extends StatefulToggle {
             for (String regex : mUsbRegexs) {
                 if (s.matches(regex)) {
                     return true;
-                } else {
-                    return false;
                 }
             }
         }

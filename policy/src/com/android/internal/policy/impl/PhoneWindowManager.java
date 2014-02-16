@@ -716,9 +716,18 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     Settings.AOKP.ENABLE_NAVIGATION_BAR), false, this,
                     UserHandle.USER_ALL);
 
-        @Override public void onChange(boolean selfChange) {
+        @Override
+        public void onChange(boolean selfChange) {
             updateSettings();
             updateRotation(false);
+            updateKeyAssignments();
+        }
+
+        @Override
+        public void onChange(boolean onChange, android.net.Uri uri) {
+            updateSettings();
+            updateRotation(false);
+            updateKeyAssignments();
         }
     }
 
@@ -1606,6 +1615,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     Settings.AOKP.DOUBLE_TAP_VOLUME_KEYS, true, UserHandle.USER_CURRENT);
             mUseVolumeKeyRingerToggle = Settings.System.getIntForUser(resolver,
                     Settings.System.VOLUME_KEYS_RINGER_MODE, 1, UserHandle.USER_CURRENT);
+
 
             mVolumeWakeScreen = Settings.AOKP.getBoolean(resolver,
                     Settings.AOKP.VOLUME_WAKE_SCREEN, false);

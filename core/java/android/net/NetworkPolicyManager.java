@@ -284,11 +284,25 @@ public class NetworkPolicyManager {
         if (Time.compare(cycle, now) >= 0) {
             // cycle boundary is beyond now, use last cycle boundary; start by
             // pushing ourselves squarely into last month.
-            final Time lastMonth = new Time(now);
-            lastMonth.hour = lastMonth.minute = lastMonth.second = 0;
-            lastMonth.monthDay = 1;
-            lastMonth.month -= 1;
-            lastMonth.normalize(true);
+            Time lastMonth = null;
+            long millis = 0;
+            for (int i = 1; i < 3; i++) {
+                lastMonth = new Time(now);
+                lastMonth.hour = lastMonth.minute = lastMonth.second = 0;
+                lastMonth.monthDay = i;
+                lastMonth.month -= 1;
+                millis = lastMonth.normalize(true);
+
+                if (millis != -1) {
+                    // get correct normalized time and quit the loop
+                    break;
+                }
+            }
+
+            if (millis == -1) {
+                // normalized failed 2 times, return -1 directly
+                return -1;
+            }
 
             cycle.set(lastMonth);
             snapToCycleDay(cycle, policy.cycleDay);

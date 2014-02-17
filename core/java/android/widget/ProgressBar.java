@@ -294,13 +294,8 @@ public class ProgressBar extends View {
                 a.getInt(R.styleable.ProgressBar_secondaryProgress, mSecondaryProgress));
 
         drawable = a.getDrawable(R.styleable.ProgressBar_indeterminateDrawable);
-        if (drawable != null) {
-            drawable = tileifyIndeterminate(drawable);
-            setIndeterminateDrawable(drawable);
-        }
-
         if (String.valueOf(drawable).contains("android.graphics.drawable.AnimationDrawabl")) {
-          boolean IsMirrorMode = Settings.System.getInt(mContext.getContentResolver(),
+         boolean IsMirrorMode = Settings.System.getInt(mContext.getContentResolver(),
                  Settings.System.PROGRESSBAR_MIRROR, 1) == 1;
 	 boolean IsReversed = Settings.System.getInt(mContext.getContentResolver(),
 		 Settings.System.PROGRESSBAR_REVERSE, 1) == 1;
@@ -322,7 +317,7 @@ public class ProgressBar extends View {
          int Color4 = Settings.System.getInt(mContext.getContentResolver(),
                  Settings.System.PROGRESSBAR_COLOR_4, -1);
 
-	int Colors[] = { Color1, Color2, Color3, Color4 };
+	 int Colors[] = { Color1, Color2, Color3, Color4 };
           Builder abc = new SmoothProgressDrawable.Builder(context);
                 drawable = (abc
                 .colors(Colors)
@@ -334,6 +329,10 @@ public class ProgressBar extends View {
                 .mirrorMode(IsMirrorMode)
                 .build());
  	}
+        if (drawable != null) {
+            drawable = tileifyIndeterminate(drawable);
+            setIndeterminateDrawable(drawable);
+        }
 
         mOnlyIndeterminate = a.getBoolean(
                 R.styleable.ProgressBar_indeterminateOnly, mOnlyIndeterminate);

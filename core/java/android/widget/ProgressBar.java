@@ -296,9 +296,9 @@ public class ProgressBar extends View {
         drawable = a.getDrawable(R.styleable.ProgressBar_indeterminateDrawable);
         if (String.valueOf(drawable).contains("android.graphics.drawable.AnimationDrawabl")) {
          boolean IsMirrorMode = Settings.System.getInt(mContext.getContentResolver(),
-                 Settings.System.PROGRESSBAR_MIRROR, 1) == 1;
+                 Settings.System.PROGRESSBAR_MIRROR, 0) == 1;
 	 boolean IsReversed = Settings.System.getInt(mContext.getContentResolver(),
-		 Settings.System.PROGRESSBAR_REVERSE, 1) == 1;
+		 Settings.System.PROGRESSBAR_REVERSE, 0) == 1;
 	 int tmpSpeed = Settings.System.getInt(mContext.getContentResolver(),
 		 Settings.System.PROGRESSBAR_SPEED, 0);
 	 float Speed = ((float) tmpSpeed+1 ) / 10;

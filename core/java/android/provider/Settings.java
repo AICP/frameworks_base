@@ -8206,12 +8206,6 @@ public final class Settings {
         public static final String VOLUME_WAKE_SCREEN = "volume_wake_screen";
 
         /**
-         * Whether to enable the navbar for hw key devices
-         * @hide
-         */
-        public static final String ENABLE_NAVIGATION_BAR = "enable_navigation_bar";
-
-        /**
          * @hide
          */
         public static final String NAVIGATION_BAR_BUTTONS = "navigation_bar_buttons";

@@ -3230,13 +3230,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     Settings.System.NAVBAR_LEFT_IN_LANDSCAPE, 0) == 1;
             mNavigationBarView.setLeftInLandscape(navLeftInLandscape);
         }
-    }
-
-    private void updateBatteryIcons() {
-        if (mBattery != null && mCircleBattery != null) {
-            mBattery.updateSettings();
-            mCircleBattery.updateSettings();
-        }
         //Default to mWindowManagerService.hasNavigationBar()
         boolean hasNav = true; // If below fails then better show the navbar
         try {
@@ -3261,6 +3254,13 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             if (DEBUG) Log.d(TAG, "Disabling navigation bar now");
             mWindowManager.removeView(mNavigationBarView);
             mNavigationBarView = null;
+        }
+    }
+
+    private void updateBatteryIcons() {
+        if (mBattery != null && mCircleBattery != null) {
+            mBattery.updateSettings();
+            mCircleBattery.updateSettings();
         }
     }
 

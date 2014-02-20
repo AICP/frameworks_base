@@ -80,6 +80,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.view.ViewPropertyAnimator;
 import android.view.ViewStub;
 import android.view.WindowManager;
+import android.view.WindowManagerGlobal;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -168,6 +169,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                                                     // faster than mSelfCollapseVelocityPx)
 
     PhoneStatusBarPolicy mIconPolicy;
+
+    private boolean mWantsNavigationBar = false;
 
     // These are no longer handled by the policy, because we need custom strategies for them
     BluetoothController mBluetoothController;
@@ -475,7 +478,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         updateShowSearchHoldoff();
 
         try {
-            boolean showNav = mWindowManagerService.hasNavigationBar();
+            boolean showNav = mWindowManagerService.hasNavigationBar()
+                              || mWindowManagerService.wantsNavigationBar();
             if (DEBUG) Log.v(TAG, "hasNavigationBar=" + showNav);
             if (showNav && !mRecreating) {
                 mNavigationBarView =
@@ -3140,6 +3144,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.AOKP.getUriFor(
                     Settings.AOKP.TOGGLES_STYLE), false, this);
 
+            resolver.registerContentObserver(Settings.AOKP.getUriFor(
+                    Settings.AOKP.ENABLE_NAVIGATION_BAR), false, this);
+
             resolver.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.NOTIFICATION_BACKGROUND),
                         false, this, UserHandle.USER_ALL);
@@ -3184,11 +3191,13 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         @Override
         public void onChange(boolean selfChange) {
             updateSettings();
+            toggleNavigationBar(mWantsNavigationBar);
         }
 
         @Override
         public void onChange(boolean selfChange, Uri uri) {
             updateSettings();
+            toggleNavigationBar(mWantsNavigationBar);
             if(uri != null && uri.equals(Settings.AOKP.getUriFor(Settings.AOKP.TOGGLES_STYLE))) {
                 recreateStatusBar();
             } else if (uri.equals(Settings.System.getUriFor(
@@ -3227,6 +3236,31 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         if (mBattery != null && mCircleBattery != null) {
             mBattery.updateSettings();
             mCircleBattery.updateSettings();
+        }
+        //Default to mWindowManagerService.hasNavigationBar()
+        boolean hasNav = true; // If below fails then better show the navbar
+        try {
+            hasNav = mWindowManagerService.hasNavigationBar();
+        }
+        catch (RemoteException ex) {
+            //OH NO!
+        }
+        mWantsNavigationBar = Settings.AOKP.getBoolean(cr, Settings.AOKP.ENABLE_NAVIGATION_BAR, hasNav);
+    }
+
+    private void toggleNavigationBar(boolean show) {
+        if (show) {
+            if (mNavigationBarView != null || mRecreating) return;
+            if (DEBUG) Log.d(TAG, "Enabling navigation bar now");
+            mNavigationBarView = (NavigationBarView) View.inflate(mContext, R.layout.navigation_bar, null);
+            mNavigationBarView.setDisabledFlags(mDisabled);
+            mNavigationBarView.setBar(this);
+            addNavigationBar();
+        } else {
+            if (mNavigationBarView == null) return;
+            if (DEBUG) Log.d(TAG, "Disabling navigation bar now");
+            mWindowManager.removeView(mNavigationBarView);
+            mNavigationBarView = null;
         }
     }
 

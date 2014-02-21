@@ -1168,6 +1168,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             mPile.removeView(remove);
         }
 
+        setNotificationAlpha();
         for (int i=0; i<toShow.size(); i++) {
             View v = toShow.get(i);
             if (v.getParent() == null) {

@@ -215,12 +215,20 @@ public class NotificationPanelView extends PanelView {
                       mTrackingSwipe = isFullyExpanded();
                     }
                     mOkToFlip = getExpandedHeight() == 0;
+                    int smartPulldownMode = Settings.System.getInt(getContext().getContentResolver(),
+                            Settings.System.QS_SMART_PULLDOWN, 2);
+
                     if (mToggleStyle != 0) {
                         // don't allow settings panel with non-tile toggles
                         mOkToFlip = false;
                         break;
                     }
-                    if (mFastTogglePos == 1) {
+
+                    if (smartPulldownMode == 1 && !mStatusBar.hasClearableNotifications()) {
+                        shouldFlip = true;
+                    } else if (smartPulldownMode == 2 && !mStatusBar.hasVisibleNotifications()) {
+                        shouldFlip = true;
+                    } else if (mFastTogglePos == 1) {
                         if ((event.getX(0) > getWidth()
                                 * (1.0f - STATUS_BAR_SETTINGS_FLIP_PERCENTAGE_RIGHT)
                                 && mFastToggleEnabled)

@@ -34,6 +34,17 @@
         <item name="android:wallpaperIntraOpenExitAnimation">@anim/wallpaper_recents_launch_from_launcher_exit</item>
     </style>
 
+    <style name="RecentsAppsLabel">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/status_bar_recents_app_label_color</item>
+    </style>
+
+    <style name="RecentsNoApps">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textSize">17dp</item>
+        <item name="android:textColor">@color/status_bar_recents_app_label_color</item>
+    </style>
+
     <style name="TextAppearance.StatusBar.HeadsUp"
         parent="@*android:style/TextAppearance.StatusBar">
     </style>

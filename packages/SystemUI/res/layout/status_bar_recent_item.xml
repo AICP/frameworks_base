@@ -46,7 +46,7 @@
             android:layout_marginStart="@dimen/status_bar_recents_app_label_left_margin"
             android:singleLine="true"
             android:ellipsize="marquee"
-            android:textColor="@color/status_bar_recents_app_label_color"
+            android:textAppearance="@style/RecentsAppsLabel"
             android:importantForAccessibility="no"
             android:textAlignment="viewStart"
         />

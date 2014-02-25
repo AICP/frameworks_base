@@ -45,7 +45,7 @@
     <!-- Padding for text descriptions -->
     <dimen name="status_bar_recents_text_description_padding">8dp</dimen>
     <!-- Width of application label text -->
-    <dimen name="status_bar_recents_app_label_width">88dip</dimen>
+    <dimen name="status_bar_recents_app_label_width">89dip</dimen>
     <!-- Left margin of application label text -->
     <dimen name="status_bar_recents_app_label_left_margin">0dip</dimen>
     <!-- Padding between recents items -->

@@ -5590,28 +5590,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
     PacBusyDialog mBootMsgDialog = null;
 
-    /**
-     * name of package currently being dex optimized
-     * as shown through this.showBootMessage(msg, always);
-     */
-    static String currentPackageName;
-
-    /** {@inheritDoc} */
-    public void setPackageName(String pkgName) {
-        if (pkgName == null) {
-            pkgName = "stop.looking.at.me.swan";
-        }
-        this.currentPackageName = pkgName;
-    }
-    
-    // debugging 'Android is upgrading...' ProgressDialog
-    final boolean DEBUG_BOOTMSG = false;
-
-    // this method is called to create, if needed, and update boot ProgressDialog
-    // see @link frameworks/base/services/java/com/android/server/pm/
-    //              PackageManagerService.performBootDexOpt()
-
-
     /** {@inheritDoc} */
     public void showBootMessage(final CharSequence msg, final boolean always) {
         if (mHeadless) return;
@@ -5635,7 +5613,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 		if (!mBootMsgDialog.isShowing())
                      mBootMsgDialog.show();
                 mBootMsgDialog.setMessage(msg);
-              
             }
         });
     }

@@ -23,6 +23,7 @@ import android.app.KeyguardManager;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.PendingIntent.CanceledException;
+import android.app.StatusBarManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.ContentResolver;
@@ -130,6 +131,7 @@ public class ActiveDisplayView extends FrameLayout {
     private static IPowerManager mPM;
     private INotificationManager mNM;
     private INotificationListenerWrapper mNotificationListener;
+    private StatusBarManager mStatusBarManager;
     private StatusBarNotification mNotification;
     private SensorManager mSensorManager;
     private Sensor mProximitySensor;
@@ -614,23 +616,27 @@ public class ActiveDisplayView extends FrameLayout {
 
     private final Runnable runSystemUiVisibilty = new Runnable() {
         public void run() {
-            adjustStatusBarLocked(1);
+            adjustStatusBarLocked(true);
         }
     };
 
-    private void adjustStatusBarLocked(int show) {
-        int flags = 0x00000000;
-        if (show == 1) {
-            flags = getSystemUiVisibility() | STATUS_BAR_DISABLE_BACK
-                    | STATUS_BAR_DISABLE_HOME | STATUS_BAR_DISABLE_RECENT
-                    | STATUS_BAR_DISABLE_SEARCH | STATUS_BAR_DISABLE_CLOCK;
-        } else if (show == 2) {
-            flags = getSystemUiVisibility() | STATUS_BAR_DISABLE_BACK
-                    | STATUS_BAR_DISABLE_HOME | STATUS_BAR_DISABLE_RECENT
-                    | STATUS_BAR_DISABLE_CLOCK;
+    private void adjustStatusBarLocked(boolean hiding) {
+        if (mStatusBarManager == null) {
+			mStatusBarManager = (StatusBarManager)
+			mContext.getSystemService(Context.STATUS_BAR_SERVICE);
         }
-        mBar.disable(flags);
-        mShow = true;
+        if (mStatusBarManager == null) {
+			Log.w(TAG, "Could not get status bar manager");
+        } else {
+			// Disable aspects of the system/status/navigation bars that must not be re-enabled by 
+			// windows that appear on top, ever
+			int flags = StatusBarManager.DISABLE_NONE;
+			if (hiding) {
+                flags |= StatusBarManager.DISABLE_BACK | StatusBarManager.DISABLE_HOME
+                | StatusBarManager.DISABLE_RECENT | StatusBarManager.DISABLE_SEARCH;
+			}
+			mStatusBarManager.disable(flags);
+        }
     }
 
     private void setSystemUIVisibility(/*boolean visible*/) {
@@ -639,7 +645,7 @@ public class ActiveDisplayView extends FrameLayout {
                     | SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                     | SYSTEM_UI_FLAG_LAYOUT_STABLE //;
    //     if (!visible) {
-    /*    int newVis |=*/| SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+    /*    int newVis |=| SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                 //   | SYSTEM_UI_FLAG_FULLSCREEN
                    /*| SYSTEM_UI_FLAG_HIDE_NAVIGATION        */;
    //     }
@@ -671,11 +677,7 @@ public class ActiveDisplayView extends FrameLayout {
         setVisibility(View.GONE);
         restoreBrightness();
         cancelTimeoutTimer();
-        if (isLockScreenDisabled()) {
-            adjustStatusBarLocked(0);
-        } else {
-            adjustStatusBarLocked(2);
-        }
+        adjustStatusBarLocked(false);
     }
 
     private void handleForceHideNotificationView() {
@@ -683,7 +685,7 @@ public class ActiveDisplayView extends FrameLayout {
         setVisibility(View.GONE);
         restoreBrightness();
         cancelTimeoutTimer();
-        adjustStatusBarLocked(0);
+        adjustStatusBarLocked(false);
     }
 
     private void handleShowNotification(boolean ping) {

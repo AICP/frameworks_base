@@ -375,6 +375,8 @@ public class AOKPSearchPanelView extends FrameLayout implements
         }
 
         mGlowPadView.setTargetResources(storedDraw);
+        mGlowPadView.setTargetDescriptionsResourceId(0);
+        mGlowPadView.setDirectionDescriptionsResourceId(0);
     }
 
     private void maybeSwapSearchIcon() {

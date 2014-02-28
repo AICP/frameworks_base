@@ -27,6 +27,7 @@ import com.android.systemui.R;
 import com.android.systemui.statusbar.phone.QuickSettingsTileView;
 
 import java.io.InputStream;
+import java.io.IOException;
 
 public class FavoriteUserToggle extends BaseToggle {
 
@@ -117,7 +118,6 @@ public class FavoriteUserToggle extends BaseToggle {
                 String name = "";
                 Drawable avatar = mContext.getResources()
                         .getDrawable(R.drawable.ic_qs_default_user);
-                Bitmap rawAvatar = null;
                 String lookupKey = Settings.AOKP.getString(mContext.getContentResolver(),
                         Settings.AOKP.QUICK_TOGGLE_FAV_CONTACT);
                 if (lookupKey != null && lookupKey.length() > 0) {
@@ -125,32 +125,45 @@ public class FavoriteUserToggle extends BaseToggle {
                             ContactsContract.Contacts.CONTENT_LOOKUP_URI, lookupKey);
                     Uri res = ContactsContract.Contacts.lookupContact(
                             mContext.getContentResolver(), lookupUri);
-                    String[] projection = new String[] {
-                            ContactsContract.Contacts.DISPLAY_NAME,
-                            ContactsContract.Contacts.PHOTO_URI,
-                            ContactsContract.Contacts.LOOKUP_KEY
-                    };
 
-                    final Cursor cursor = mContext.getContentResolver().query(res, projection,
-                            null, null, null);
-                    if (cursor != null) {
-                        try {
-                            if (cursor.moveToFirst()) {
-                                name = cursor.getString(cursor
-                                        .getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+                    if (res != null ) {
+                        String[] projection = new String[] {
+                                ContactsContract.Contacts.DISPLAY_NAME,
+                                ContactsContract.Contacts.PHOTO_URI,
+                                ContactsContract.Contacts.LOOKUP_KEY
+                        };
+
+                        final Cursor cursor = mContext.getContentResolver().query(res, projection,
+                                null, null, null);
+                        if (cursor != null) {
+                            try {
+                                if (cursor.moveToFirst()) {
+                                    name = cursor.getString(cursor
+                                            .getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+                                }
+                            } finally {
+                                cursor.close();
                             }
-                        } finally {
-                            cursor.close();
                         }
-                    }
-                    InputStream input = ContactsContract.Contacts.
-                            openContactPhotoInputStream(mContext.getContentResolver(), res, true);
-                    if (input != null) {
-                        rawAvatar = BitmapFactory.decodeStream(input);
-                    }
+                        InputStream input = null;
 
-                    if (rawAvatar != null) {
-                        avatar = new BitmapDrawable(mContext.getResources(), rawAvatar);
+                        try {
+                            input = ContactsContract.Contacts.
+                                    openContactPhotoInputStream(mContext.getContentResolver(),
+                                    res, true);
+                            if (input != null) {
+                                avatar = new BitmapDrawable(mContext.getResources(), input);
+                            }
+                        } catch (Exception e) {
+                            //fail silently
+                        } finally {
+                            if (input != null) {
+                                try {
+                                    input.close();
+                                } catch (IOException ignored) {
+                                }
+                            }
+                        }
                     }
                 }
                 return new Pair<String, Drawable>(name, avatar);

@@ -18,8 +18,8 @@
 -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <gradient name="status_bar_recents_background"
-        android:startColor="#E0FFFFFF"
-        android:endColor="#99FFFFFF"
+        android:startColor="#E0000000"
+        android:endColor="#70000000"
         android:angle="@integer/status_bar_recents_bg_gradient_degrees"
         />
 </shape>

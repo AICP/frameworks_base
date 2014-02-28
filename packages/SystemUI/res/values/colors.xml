@@ -24,10 +24,10 @@
     <color name="system_bar_background_semi_transparent">#66000000</color> <!-- 40% black -->
     <color name="notification_panel_solid_background">#ff000000</color>
     <drawable name="status_bar_recents_app_thumbnail_background">#880d0d0d</drawable>
-    <color name="status_bar_recents_app_label_color">#ff737373</color>
+    <color name="status_bar_recents_app_label_color">#ffffffff</color>
     <drawable name="status_bar_notification_row_background_color">#ff090909</drawable>
     <color name="notification_list_shadow_top">#80000000</color>
-    <drawable name="recents_callout_line">#99737373</drawable>
+    <drawable name="recents_callout_line">#99ffffff</drawable>
     <drawable name="notification_item_background_legacy_color">#ffaaaaaa</drawable>
     <drawable name="heads_up_notification_bg_pressed">#ff33B5E5</drawable>
     <drawable name="notification_header_bg">#FF000000</drawable>

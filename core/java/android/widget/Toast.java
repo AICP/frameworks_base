@@ -432,6 +432,12 @@ public class Toast {
                 case 13:
                 mParams.windowAnimations = com.android.internal.R.style.Animation_Toast_Translucent;
                 break;
+                case 14:
+                mParams.windowAnimations = com.android.internal.R.style.Animation_Toast_SlideLeftRight;
+                break;
+                case 15:
+                mParams.windowAnimations = com.android.internal.R.style.Animation_Toast_SlideRightLeft;
+                break;
                 }
                 mParams.gravity = gravity;
                 if ((gravity & Gravity.HORIZONTAL_GRAVITY_MASK) == Gravity.FILL_HORIZONTAL) {

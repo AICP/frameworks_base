@@ -158,6 +158,16 @@ please see styles_device_defaults.xml.
         <item name="windowExitAnimation">@anim/fade_out</item>
     </style>
 
+    <style name="Animation.Toast.SlideRightLeft">
+        <item name="windowEnterAnimation">@anim/slide_in_right</item>
+        <item name="windowExitAnimation">@anim/slide_out_left</item>
+    </style>
+
+    <style name="Animation.Toast.SlideLeftRight">
+        <item name="windowEnterAnimation">@anim/slide_in_left</item>
+        <item name="windowExitAnimation">@anim/slide_out_right</item>
+    </style>
+
     <style name="Animation.Toast.SlideRight">
 	<item name="windowEnterAnimation">@anim/slide_in_right</item>
 	<item name="windowExitAnimation">@anim/slide_out_right</item>

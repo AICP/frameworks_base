@@ -3495,6 +3495,12 @@ public final class Settings {
         public static final String ANIMATION_IME_INTERPOLATOR = "animation_ime_interpolator";
 
         /**
+         * Bold Clock
+         * @hide
+         */
+        public static final String STATUS_BAR_BOLD_CLOCK = "status_bar_bold_clock";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *

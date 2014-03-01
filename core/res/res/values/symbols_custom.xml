@@ -209,6 +209,7 @@
   <java-symbol type="anim" name="slide_in_up_ribbon" />
   <java-symbol type="anim" name="slide_out_down_ribbon" />
   <java-symbol type="anim" name="no_animation" />
+  <java-symbol type="array" name="anim_controls_entries" />
 
   <!-- Progress Bar -->
   <java-symbol type="dimen" name="spb_default_stroke_width" />

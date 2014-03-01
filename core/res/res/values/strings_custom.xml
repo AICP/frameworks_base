@@ -133,4 +133,7 @@
     <string name="animation_grow_shrink_left">Grow in (Left)</string>
     <string name="animation_grow_shrink_right">Grow in (Right)</string>
 
+    <!-- In WiFi notification -->
+    <string name="notify_turn_wifi_off_title">Turn Wi-Fi off</string>
+
 </resources>

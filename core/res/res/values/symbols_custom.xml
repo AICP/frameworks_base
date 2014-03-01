@@ -255,5 +255,6 @@
   <!-- AOKP symbols for service -->
   <java-symbol type="string" name="notify_turn_wifi_off_title" />
   <java-symbol type="drawable" name="ic_stat_turn_wifi_off" />
+  <java-symbol type="string" name="notify_turn_wifi_ap_off_title" />
 
 </resources>

@@ -73,7 +73,14 @@ public class Clock extends TextView implements DemoMode {
     public static final int STYLE_CLOCK_RIGHT    = 1;
     public static final int STYLE_CLOCK_CENTER   = 2;
 
+    public static final int FONT_BOLD = 0;
+    public static final int FONT_CONDENSED = 1;
+    public static final int FONT_LIGHT = 2;
+    public static final int FONT_LIGHT_ITALIC = 3;
+    public static final int FONT_NORMAL = 4;
+
     protected int mClockStyle = STYLE_CLOCK_RIGHT;
+    protected int mClockFontStyle = FONT_NORMAL;
 
     private ContentObserver mSettingsObserver = new ContentObserver(new Handler()) {
         @Override
@@ -130,6 +137,9 @@ public class Clock extends TextView implements DemoMode {
             resolver.registerContentObserver(Settings.AOKP
                     .getUriFor(Settings.AOKP.STATUSBAR_CLOCK_WEEKDAY),
                     false, mSettingsObserver);
+            resolver.registerContentObserver(Settings.System
+                    .getUriFor(Settings.System.STATUSBAR_CLOCK_FONT_STYLE),
+                    false, mSettingsObserver);
         }
 
         // NOTE: It's safe to do these after registering the receiver since the receiver always runs
@@ -176,12 +186,6 @@ public class Clock extends TextView implements DemoMode {
         if (mDemoMode) return;
         mCalendar.setTimeInMillis(System.currentTimeMillis());
         setText(getSmallTime());
-        if (Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.STATUS_BAR_BOLD_CLOCK, 0) == 1) {
-            setTypeface(null, Typeface.BOLD);
-        } else {
-            setTypeface(null, Typeface.NORMAL);
-        }
     }
 
     private final CharSequence getSmallTime() {
@@ -266,10 +270,13 @@ public class Clock extends TextView implements DemoMode {
             // flag to reset the color
             mClockColor = defaultColor;
         }
+        mClockFontStyle = Settings.System.getInt(resolver,
+                Settings.System.STATUSBAR_CLOCK_FONT_STYLE, FONT_NORMAL);
     }
 
     protected void updateView() {
         setTextColor(mClockColor);
+        getFontStyle(mClockFontStyle);
         updateClockVisibility();
         updateClock();
     }
@@ -280,6 +287,27 @@ public class Clock extends TextView implements DemoMode {
         else
             setVisibility(View.GONE);
     }
+
+    public void getFontStyle(int font) {
+        switch (font) {
+            case FONT_BOLD:
+                setTypeface(Typeface.create("sans-serif", Typeface.BOLD));
+                break;
+            case FONT_CONDENSED:
+                setTypeface(Typeface.create("sans-serif-condensed", Typeface.NORMAL));
+                break;
+            case FONT_LIGHT:
+                setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
+                break;
+            case FONT_LIGHT_ITALIC:
+                setTypeface(Typeface.create("sans-serif-light", Typeface.ITALIC));
+                break;
+            case FONT_NORMAL:
+            default:
+                setTypeface(Typeface.create("sans-serif", Typeface.NORMAL));
+                break;
+        }
+     }
 
     private boolean mDemoMode;
 

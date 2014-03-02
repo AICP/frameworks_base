@@ -2613,11 +2613,11 @@ public class NotificationManagerService extends INotificationManager.Stub
         // in quiet hours with light dimmed
         // (unless Notification has EXTRA_FORCE_SHOW_LGHTS)
         final boolean enableLed;
-        if (mLedNotification == null || !mNotificationPulseEnabled) {
+        if (mLedNotification == null) {
             enableLed = false;
         } else if (isLedNotificationForcedOn(mLedNotification)) {
             enableLed = true;
-        } else if (mInCall || (mScreenOn && (!ScreenOnNotificationLed))) {
+        } else if (mInCall || (mScreenOn && (!ScreenOnNotificationLed)) || !mNotificationPulseEnabled) {
             enableLed = false;
         } else if (inQuietHours() && mQuietHoursDim) {
             enableLed = false;

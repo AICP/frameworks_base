@@ -5376,6 +5376,16 @@ public final class Settings {
         private static final Validator AICP_LOCKSCREEN_WEATHER_STYLE_VALIDATOR =
                new SettingsValidators.InclusiveIntegerRangeValidator(0, 1);;
 
+        /**
+        * Toast animations
+        *
+        * @hide
+        */
+        public static final String TOAST_ANIMATION = "toast_animation";
+
+        /** @hide */
+        private static final Validator TOAST_ANIMATION_VALIDATOR =
+              new SettingsValidators.InclusiveIntegerRangeValidator(0, 15);
 
         /***************************
          * AICP System Settings end
@@ -5534,6 +5544,7 @@ public final class Settings {
             OMNIJAWS_WEATHER_ICON_PACK,
             OMNI_LOCKSCREEN_WEATHER_ENABLED,
             AICP_LOCKSCREEN_WEATHER_STYLE,
+            TOAST_ANIMATION,
             // AICP Settings end
         };
 
@@ -5739,6 +5750,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(OMNIJAWS_WEATHER_ICON_PACK);
             PRIVATE_SETTINGS.add(OMNI_LOCKSCREEN_WEATHER_ENABLED);
             PRIVATE_SETTINGS.add(AICP_LOCKSCREEN_WEATHER_STYLE);
+            PRIVATE_SETTINGS.add(TOAST_ANIMATION);
             // AICP Settings end
         }
 
@@ -5934,6 +5946,7 @@ public final class Settings {
             VALIDATORS.put(OMNIJAWS_WEATHER_ICON_PACK,OMNIJAWS_WEATHER_ICON_PACK_VALIDATOR);
             VALIDATORS.put(OMNI_LOCKSCREEN_WEATHER_ENABLED,OMNI_LOCKSCREEN_WEATHER_ENABLED_VALIDATOR);
             VALIDATORS.put(AICP_LOCKSCREEN_WEATHER_STYLE,AICP_LOCKSCREEN_WEATHER_STYLE_VALIDATOR);
+            VALIDATORS.put(TOAST_ANIMATION,TOAST_ANIMATION_VALIDATOR);
             // AICP Settings end
         }
 

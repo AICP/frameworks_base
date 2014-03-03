@@ -5919,6 +5919,13 @@ public final class Settings {
         */
         public static final String AICP_LOCKSCREEN_WEATHER_STYLE = "lockscreen_weather_style";
 
+        /**
+        * Toast animations
+        *
+        * @hide
+        */
+        public static final String TOAST_ANIMATION = "toast_animation";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6050,6 +6057,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(OMNIJAWS_WEATHER_ICON_PACK, ANY_STRING_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(OMNI_LOCKSCREEN_WEATHER_ENABLED, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(AICP_LOCKSCREEN_WEATHER_STYLE, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(TOAST_ANIMATION, ANY_INTEGER_VALIDATOR);
         }
 
         /**

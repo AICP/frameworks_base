@@ -5693,6 +5693,13 @@ public final class Settings {
          */
         public static final String HEADS_UP_NOTIFICATIONS_THRESHOLD = "heads_up_notifications_threshold";
 
+        /**
+        * Toast animations
+        *
+        * @hide
+        */
+        public static final String TOAST_ANIMATION = "toast_animation";
+
         /***************************
          * AICP System Settings end
          ***************************/

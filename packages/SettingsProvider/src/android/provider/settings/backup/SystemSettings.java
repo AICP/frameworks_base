@@ -109,5 +109,6 @@ public class SystemSettings {
         Settings.System.VOLUME_KEY_CURSOR_CONTROL,
         Settings.System.BACK_GESTURE_HAPTIC,
         Settings.System.HEADS_UP_NOTIFICATIONS_THRESHOLD,
+        Settings.System.TOAST_ANIMATION,
     };
 }

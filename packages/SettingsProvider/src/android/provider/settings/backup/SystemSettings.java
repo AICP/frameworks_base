@@ -190,5 +190,6 @@ public class SystemSettings {
         Settings.System.APP_SWITCH_WAKE_SCREEN,
         Settings.System.CAMERA_WAKE_SCREEN,
         Settings.System.POCKET_JUDGE,
+        Settings.System.TOAST_ANIMATION,
     };
 }

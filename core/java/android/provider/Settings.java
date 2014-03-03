@@ -5888,6 +5888,13 @@ public final class Settings {
          */
         public static final String POCKET_JUDGE = "pocket_judge";
 
+        /**
+        * Toast animations
+        *
+        * @hide
+        */
+        public static final String TOAST_ANIMATION = "toast_animation";
+
         /***************************
          * AICP System Settings end
          ***************************/

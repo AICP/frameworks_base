@@ -727,30 +727,12 @@ public class GlowPadView extends View {
     }
 
     private void internalSetTargetResources(ArrayList<TargetDrawable> targets) {
-        if (targets == null || targets.size() == 0) {
-            throw new IllegalStateException("Must specify at least one target drawable");
-        }
-        mTargetResourceId = 0;
-        mTargetDrawables = targets;
-
-        int maxWidth = mHandleDrawable.getWidth();
-        int maxHeight = mHandleDrawable.getHeight();
-        final int count = targets.size();
-        for (int i = 0; i < count; i++) {
-            TargetDrawable target = targets.get(i);
-            maxWidth = Math.max(maxWidth, target.getWidth());
-            maxHeight = Math.max(maxHeight, target.getHeight());
-        }
-        if (mMaxTargetWidth != maxWidth || mMaxTargetHeight != maxHeight) {
-            mMaxTargetWidth = maxWidth;
-            mMaxTargetHeight = maxHeight;
-            requestLayout(); // required to resize layout and call updateTargetPositions()
-        } else {
-            updateTargetPositions(mWaveCenterX, mWaveCenterY);
-            updatePointCloudPosition(mWaveCenterX, mWaveCenterY);
-            hideTargets(false, false);
-        }
-    }
+         mTargetResourceId = 0;
+         mTargetDrawables = targets;
+         updateTargetPositions(mWaveCenterX, mWaveCenterY);
+         updatePointCloudPosition(mWaveCenterX, mWaveCenterY);
+         hideTargets(false, false);
+     }
 
     /**
      * Loads an array of drawables from the given resourceId.
@@ -766,12 +748,12 @@ public class GlowPadView extends View {
         }
     }
 
-    public void setTargetResources(ArrayList<TargetDrawable> drawList) {
+    public void setTargetResources(ArrayList<TargetDrawable> targets) {
         if (mAnimatingTargets) {
             // postpone this change until we return to the initial state
-            mNewTargetDrawables = drawList;
+            mNewTargetDrawables = targets;
         } else {
-            internalSetTargetResources(drawList);
+            internalSetTargetResources(targets);
         }
     }
 

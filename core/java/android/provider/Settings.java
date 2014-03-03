@@ -5934,6 +5934,13 @@ public final class Settings {
          */
         public static final String CAMERA_WAKE_SCREEN = "assist_wake_screen";
 
+        /**
+        * Toast animations
+        *
+        * @hide
+        */
+        public static final String TOAST_ANIMATION = "toast_animation";
+
         /***************************
          * AICP System Settings end
          ***************************/

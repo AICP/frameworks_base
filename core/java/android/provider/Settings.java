@@ -3246,6 +3246,13 @@ public final class Settings {
         public static final String RECENTS_USE_OMNISWITCH = "recents_use_omniswitch";
 
         /**
+         * Custom Recent Control
+         *
+         * @hide
+         */
+        public static final String CUSTOM_RECENT = "custom_recent";
+
+        /**
          * location of the clear all rectents button
          * @hide
          */

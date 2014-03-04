@@ -86,6 +86,7 @@ import com.android.internal.util.omni.OmniSwitchConstants;
 import com.android.internal.widget.SizeAdaptiveLayout;
 import com.android.systemui.R;
 import com.android.systemui.AOKPSearchPanelView;
+import com.android.systemui.RecentsComponent;
 import com.android.systemui.SystemUI;
 import com.android.systemui.aokp.AppWindow;
 import com.android.systemui.slimrecent.RecentController;
@@ -149,6 +150,10 @@ public abstract class BaseStatusBar extends SystemUI implements
 
     protected int mCurrentUserId = 0;
 
+    private RecentController cRecents;
+
+    private RecentsComponent mRecents;
+
     protected int mLayoutDirection = -1; // invalid
     private Locale mLocale;
     protected boolean mUseHeadsUp = false;
@@ -181,7 +186,7 @@ public abstract class BaseStatusBar extends SystemUI implements
 
     private boolean mDeviceProvisioned = false;
 
-    private RecentController mRecents;
+    private boolean mCustomRecent = false;
 
     protected ActiveDisplayView mActiveDisplayView;
 
@@ -288,7 +293,14 @@ public abstract class BaseStatusBar extends SystemUI implements
         mBarService = IStatusBarService.Stub.asInterface(
                 ServiceManager.getService(Context.STATUS_BAR_SERVICE));
 
-        mRecents = new RecentController(mContext);
+        mCustomRecent = Settings.AOKP.getBoolean(
+                        mContext.getContentResolver(), Settings.System.CUSTOM_RECENT, false);
+
+        if(mCustomRecent){
+            cRecents = new RecentController(mContext);
+        }else{
+            mRecents = getComponent(RecentsComponent.class);
+        }
 
         mLocale = mContext.getResources().getConfiguration().locale;
         mLayoutDirection = TextUtils.getLayoutDirectionFromLocale(mLocale);
@@ -716,23 +728,38 @@ public abstract class BaseStatusBar extends SystemUI implements
             Intent showIntent = new Intent(OmniSwitchConstants.ACTION_TOGGLE_OVERLAY);
             mContext.sendBroadcastAsUser(showIntent, UserHandle.CURRENT);
         } else {
-            if (mRecents != null) {
+            if (mRecents != null || cRecents != null) {
+            mCustomRecent = Settings.AOKP.getBoolean(mContext.getContentResolver(),
+                            Settings.System.CUSTOM_RECENT, false);
+            if(mCustomRecent)
+                cRecents.toggleRecents(mDisplay, mLayoutDirection, getStatusBarView());
+            else
                 mRecents.toggleRecents(mDisplay, mLayoutDirection, getStatusBarView());
             }
         }
     }
 
     protected void preloadRecentTasksList() {
-        if (!isOmniSwitchEnabled()){
-            if (mRecents != null) {
+        if (!isOmniSwitchEnabled()) {
+            if (mRecents != null || cRecents != null) {
+            mCustomRecent = Settings.AOKP.getBoolean(mContext.getContentResolver(),
+                            Settings.System.CUSTOM_RECENT, false);
+            if(mCustomRecent)
+                cRecents.preloadRecentTasksList();
+            else
                 mRecents.preloadRecentTasksList();
             }
         }
     }
 
     protected void cancelPreloadingRecentTasksList() {
-        if (!isOmniSwitchEnabled()){
-            if (mRecents != null) {
+        if (!isOmniSwitchEnabled()) {
+            if (mRecents != null || cRecents != null) {
+            mCustomRecent = Settings.AOKP.getBoolean(mContext.getContentResolver(),
+                            Settings.System.CUSTOM_RECENT, false);
+            if(mCustomRecent)
+                cRecents.cancelPreloadingRecentTasksList();
+            else
                 mRecents.cancelPreloadingRecentTasksList();
             }
         }
@@ -743,16 +770,22 @@ public abstract class BaseStatusBar extends SystemUI implements
             Intent hideIntent = new Intent(OmniSwitchConstants.ACTION_HIDE_OVERLAY);
             mContext.sendBroadcastAsUser(hideIntent, UserHandle.CURRENT);
         } else {
-            if (mRecents != null) {
+            if (mRecents != null || cRecents != null) {
+            mCustomRecent = Settings.AOKP.getBoolean(mContext.getContentResolver(),
+                            Settings.System.CUSTOM_RECENT, false);
+            if(mCustomRecent)
+                cRecents.closeRecents();
+            else
                 mRecents.closeRecents();
             }
         }
     }
 
     protected void rebuildRecentsScreen() {
-        if (mRecents != null) {
-            mRecents.rebuildRecentsScreen();
-        }
+        mCustomRecent = Settings.AOKP.getBoolean(mContext.getContentResolver(),
+                        Settings.System.CUSTOM_RECENT, false);
+        if (cRecents != null && mCustomRecent)
+                cRecents.rebuildRecentsScreen();
     }
 
     public abstract void resetHeadsUpDecayTimer();

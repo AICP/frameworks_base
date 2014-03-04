@@ -951,15 +951,16 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
     private void prepareNavigationBarView() {
         mNavigationBarView.reorient();
-
+        final boolean mCustomRecent = Settings.AOKP.getBoolean(mContext.getContentResolver(), 
+                        Settings.System.CUSTOM_RECENT, false);
         if (mNavigationBarView.getRecentsButton() != null) {
             mNavigationBarView.getRecentsButton().setOnClickListener(mRecentsClickListener);
-            mNavigationBarView.getRecentsButton().setOnTouchListener(mRecentsPreloadOnTouchListener);
+            if(!mCustomRecent) mNavigationBarView.getRecentsButton().setOnTouchListener(mRecentsPreloadOnTouchListener);
         }
         if (mNavigationBarView.getHomeButton() != null) {
             mNavigationBarView.getHomeButton().setOnTouchListener(mHomeSearchActionListener);
         }
-        if (mNavigationBarView.getSearchLight() != null) {
+        if (mNavigationBarView.getSearchLight() != null || mCustomRecent) {
             mNavigationBarView.getSearchLight().setOnTouchListener(mHomeSearchActionListener);
         }
         updateSearchPanel();
@@ -2978,8 +2979,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         makeStatusBarView();
         repositionNavigationBar();
-
-        rebuildRecentsScreen();
+        rebuildRecentsScreen(); //it follow toggle settings
 
         // recreate StatusBarIconViews.
         for (int i = 0; i < nIcons; i++) {
@@ -3312,6 +3312,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.REMINDER_ALERT_ENABLED),
+                    false, this, UserHandle.USER_ALL);
+
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.CUSTOM_RECENT),
                     false, this, UserHandle.USER_ALL);
         }
 

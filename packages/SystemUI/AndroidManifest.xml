@@ -178,6 +178,12 @@
             </intent-filter>
         </receiver>
 
+        <receiver android:name=".ReminderReceiver">
+            <intent-filter>
+                <action android:name="com.android.systemui.POST_REMINDER_NOTIFY"/>
+            </intent-filter>
+        </receiver>
+
         <receiver android:name=".screenshot.TrashScreenshot"
                 android:exported="true" />
 

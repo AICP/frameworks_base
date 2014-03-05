@@ -3536,6 +3536,12 @@ public final class Settings {
         public static final String REMINDER_ALERT_RINGER = "reminder_alert_ringer";
 
         /**
+         * Reminder alert flip interval
+         * @hide
+         */
+        public static final String REMINDER_ALERT_INTERVAL = "reminder_alert_interval";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *

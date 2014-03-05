@@ -2749,10 +2749,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                         mAppSwitchLongPressed = true;
                     }
                 }
-                if (virtualKey && down) {
-                    preloadRecentApps();
-                    return -1;
-                }
             } else {
                 if (mAppSwitchLongPressed) {
                     mAppSwitchLongPressed = false;
@@ -2764,6 +2760,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                         performKeyAction(mPressOnAppSwitchBehavior);
                     }
                 }
+            }
+            if (virtualKey && down) {
+                preloadRecentApps();
+                return -1;
             }
             return -1;
         } else if (keyCode == KeyEvent.KEYCODE_ASSIST) {

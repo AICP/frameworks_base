@@ -53,7 +53,22 @@
     <string name="action_null">Blank</string>
     <string name="action_widgets">Nav Widgets</string>
     <string name="action_app_window">App Fönster</string>
-    <string name="action_ribbon">AOKP Band</string>
+    <string name="action_ribbon">AOKP Ribbon</string>
     <string name="action_app">Anpassad App/Genväg</string>
     <string name="app_killed_message">App tvångsavslutad</string>
+    <string name="global_action_screenshot">Skärmdump</string>
+    <string name="animation_fade">Tona bort</string>
+    <string name="animation_slide_right">Glida åt höger</string>
+    <string name="animation_slide_left">Glida åt vänster</string>
+    <string name="animation_slide_right_no_fade">Glida åt höger (Inte tona bort)</string>
+    <string name="animation_slide_left_no_fade">Glida åt vänster (Inte tona bort)</string>
+    <string name="animation_slide_up">Glida i botten</string>
+    <string name="animation_slide_down">Glida i toppen</string>
+    <string name="animation_default">Standard</string>
+    <string name="animation_translucent">Translucent</string>
+    <string name="animation_grow_shrink">Växa i (Toppen)</string>
+    <string name="animation_grow_shrink_center">Växa i (Mitten)</string>
+    <string name="animation_grow_shrink_bottom">Växa i (Botten)</string>
+    <string name="animation_grow_shrink_left">Växa åt (Vänster)</string>
+    <string name="animation_grow_shrink_right">växa åt (Höger)</string>
 </resources>

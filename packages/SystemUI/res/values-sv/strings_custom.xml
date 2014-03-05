@@ -22,5 +22,15 @@
     <string name="screenrecord_notif_stop">Stopp</string>
     <string name="screenrecord_notif_pointer">Växla till pekare</string>
     <string name="screenrecord_notif_error">Det går inte att spela in skärmen</string>
+    <string name="status_bar_notification_hide_icon_packages">Dölj app\'s ikonerna</string>
+    <string name="service_started_by_app">Startad av app.</string>
+    <string name="running_process_item_user_label">Användare: <xliff:g id="user_name">%1$s</xliff:g></string>
+    <string name="permdesc_screenshot">Fånga skärmdump</string>
+    <string name="permlab_screenshot">Tillåter att appen får ta en skärmdump. Detta är skyddad av SystemUI.</string>
+    <string name="screenshot_toast">Skärmdump om %1$d sekunder</string>
+    <string name="permdesc_screenrecord">Fånga skärminspelning</string>
+    <string name="permlab_screenrecord">Tillåter att appen får fånga en skärm inspelning. Detta är skyddad av SystemUI.</string>
+    <string name="app_window">Applikations Fönster</string>
+    <string name="close">Stäng</string>
 </resources>
 

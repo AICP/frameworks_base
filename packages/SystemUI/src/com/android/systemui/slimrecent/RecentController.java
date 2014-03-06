@@ -223,7 +223,6 @@ public class RecentController implements RecentPanelView.OnExitListener,
         if (mAnimationState == ANIMATION_STATE_NONE) {
             if (!isShowing()) {
                 mIsToggled = true;
-                preloadRecentTasksList(); // I want it to work always (AICP source)
                 if (mRecentPanelView.isTasksLoaded()) {
                     if (DEBUG) Log.d(TAG, "tasks loaded - showRecents()");
                     showRecents();

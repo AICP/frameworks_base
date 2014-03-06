@@ -955,7 +955,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                         Settings.System.CUSTOM_RECENT, false);
         if (mNavigationBarView.getRecentsButton() != null) {
             mNavigationBarView.getRecentsButton().setOnClickListener(mRecentsClickListener);
-            if(!mCustomRecent) mNavigationBarView.getRecentsButton().setOnTouchListener(mRecentsPreloadOnTouchListener);
+            mNavigationBarView.getRecentsButton().setOnTouchListener(mRecentsPreloadOnTouchListener);
         }
         if (mNavigationBarView.getHomeButton() != null) {
             mNavigationBarView.getHomeButton().setOnTouchListener(mHomeSearchActionListener);

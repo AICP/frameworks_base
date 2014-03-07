@@ -225,7 +225,6 @@ public abstract class BaseToggle
         view.setOnClickListener(this);
         view.setOnLongClickListener(this);
         return view;
-
     }
 
     public View createScrollableView() {

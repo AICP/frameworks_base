@@ -3059,6 +3059,13 @@ public final class Settings {
         public static final String STATUS_BAR_BATTERY_COLOR = "status_bar_battery_color";
 
         /**
+         * Enable looking up of phone numbers of people
+         *
+         * @hide
+         */
+        public static final String ENABLE_PEOPLE_LOOKUP = "enable_people_lookup";
+
+        /**
          * Battery icon text color
          * in statusbar
          * @hide
@@ -3072,6 +3079,13 @@ public final class Settings {
          */
         public static final String STATUS_BAR_BATTERY_TEXT_CHARGING_COLOR =
                 "status_bar_battery_text_charging_color";
+
+        /**
+         * The people lookup provider
+         *
+         * @hide
+         */
+        public static final String PEOPLE_LOOKUP_PROVIDER = "people_lookup_provider";
 
         /**
          * Circle battery animation speed during charge

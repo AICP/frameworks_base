@@ -129,37 +129,40 @@ public class NotificationViewManager {
         }
 
         private void updateSettings() {
-            activeD = Settings.System.getInt(mContext.getContentResolver(),
+            ContentResolver resolver = mContext.getContentResolver();
+
+            activeD = Settings.System.getInt(resolver,
                     Settings.System.ENABLE_ACTIVE_DISPLAY, 0) == 1;
-            pocketMode = Settings.System.getInt(mContext.getContentResolver(),
+            pocketMode = Settings.System.getInt(resolver,
                     Settings.System.ACTIVE_NOTIFICATIONS_POCKET_MODE, 2);
-            hideLowPriority = Settings.System.getInt(mContext.getContentResolver(),
+            hideLowPriority = Settings.System.getInt(resolver,
                     Settings.System.ACTIVE_NOTIFICATIONS_HIDE_LOW_PRIORITY, hideLowPriority ? 1 : 0) == 1;
-            hideNonClearable = Settings.System.getInt(mContext.getContentResolver(),
+            hideNonClearable = Settings.System.getInt(resolver,
                     Settings.System.LOCKSCREEN_NOTIFICATIONS_HIDE_NON_CLEARABLE, hideNonClearable ? 1 : 0) == 1;
-            dismissAll = Settings.System.getInt(mContext.getContentResolver(),
+            dismissAll = Settings.System.getInt(resolver,
                     Settings.System.LOCKSCREEN_NOTIFICATIONS_DISMISS_ALL, dismissAll ? 1 : 0) == 1;
-            privacyMode = Settings.System.getInt(mContext.getContentResolver(),
+            privacyMode = Settings.System.getInt(resolver,
                     Settings.System.ACTIVE_NOTIFICATIONS_PRIVACY_MODE, privacyMode ? 1 : 0) == 1;
-            expandedView = Settings.System.getInt(mContext.getContentResolver(),
+            expandedView = Settings.System.getInt(resolver,
                     Settings.System.LOCKSCREEN_NOTIFICATIONS_EXPANDED_VIEW, expandedView ? 1 : 0) == 1
                     && !privacyMode;
-            wakeOnNotification = Settings.System.getInt(mContext.getContentResolver(),
+            wakeOnNotification = Settings.System.getInt(resolver,
                     Settings.System.LOCKSCREEN_NOTIFICATIONS_WAKE_ON_NOTIFICATION, wakeOnNotification ? 1 : 0) == 1;
-            forceExpandedView = Settings.System.getInt(mContext.getContentResolver(),
+            forceExpandedView = Settings.System.getInt(resolver,
                     Settings.System.LOCKSCREEN_NOTIFICATIONS_FORCE_EXPANDED_VIEW, forceExpandedView ? 1 : 0) == 1
                     && !privacyMode;
-            notificationsHeight = Settings.System.getInt(mContext.getContentResolver(),
+            notificationsHeight = Settings.System.getInt(resolver,
                     Settings.System.LOCKSCREEN_NOTIFICATIONS_HEIGHT, notificationsHeight);
-            offsetTop = Settings.System.getFloat(mContext.getContentResolver(),
+            offsetTop = Settings.System.getFloat(resolver,
                     Settings.System.LOCKSCREEN_NOTIFICATIONS_OFFSET_TOP, offsetTop);
-            mQuietTime = Settings.System.getInt(mContext.getContentResolver(),
+            mQuietTime = Settings.System.getInt(resolver,
                     Settings.System.ACTIVE_NOTIFICATIONS_QUIET_HOURS, 0) == 1;
-            String excludedApps = Settings.System.getString(mContext.getContentResolver(),
+            String excludedApps = Settings.System.getString(resolver,
 			        Settings.System.LOCKSCREEN_NOTIFICATIONS_EXCLUDED_APPS);
-            notificationColor = Settings.System.getInt(mContext.getContentResolver(),
+            notificationColor = Settings.System.getInt(resolver,
                     Settings.System.LOCKSCREEN_NOTIFICATIONS_COLOR, notificationColor);
 
+            if (activeD) wakeOnNotification = false;
 			createExcludedAppsSet(excludedApps);
         }
     }
@@ -333,13 +336,15 @@ public class NotificationViewManager {
      */
     private boolean inQuietHours() {
         if (!mQuietTime) {
-            boolean quietHoursEnabled = Settings.AOKP.getIntForUser(mContext.getContentResolver(),
+            ContentResolver resolver = mContext.getContentResolver();
+
+            boolean quietHoursEnabled = Settings.System.getIntForUser(resolver,
                     Settings.AOKP.QUIET_HOURS_ENABLED, 0, UserHandle.USER_CURRENT_OR_SELF) != 0;
-            int quietHoursStart = Settings.AOKP.getIntForUser(mContext.getContentResolver(),
+            int quietHoursStart = Settings.AOKP.getIntForUser(resolver,
                     Settings.AOKP.QUIET_HOURS_START, 0, UserHandle.USER_CURRENT_OR_SELF);
-            int quietHoursEnd = Settings.AOKP.getIntForUser(mContext.getContentResolver(),
+            int quietHoursEnd = Settings.AOKP.getIntForUser(resolver,
                     Settings.AOKP.QUIET_HOURS_END, 0, UserHandle.USER_CURRENT_OR_SELF);
-            boolean quietHoursDim = Settings.AOKP.getIntForUser(mContext.getContentResolver(),
+            boolean quietHoursDim = Settings.AOKP.getIntForUser(resolver,
                         Settings.AOKP.QUIET_HOURS_DIM, 0, UserHandle.USER_CURRENT_OR_SELF) != 0;
 
             if (quietHoursEnabled && quietHoursDim && (quietHoursStart != quietHoursEnd)) {

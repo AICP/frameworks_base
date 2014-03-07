@@ -536,7 +536,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         if (mRecreating) {
         } else {
-            addActiveDisplayView();
+            updateActiveDisplayViewState();
         }
 
         // figure out which pixel-format to use for the status bar.
@@ -3259,21 +3259,25 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.AOKP.getUriFor(
                     Settings.AOKP.ENABLE_NAVIGATION_BAR), false, this);
 
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.ENABLE_ACTIVE_DISPLAY),
+                    false, this, UserHandle.USER_ALL);
+
             resolver.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.NOTIFICATION_BACKGROUND),
-                        false, this, UserHandle.USER_ALL);
+                    false, this, UserHandle.USER_ALL);
 
             resolver.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.NOTIFICATION_BACKGROUND_LANDSCAPE),
-                        false, this, UserHandle.USER_ALL);
+                    false, this, UserHandle.USER_ALL);
 
             resolver.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.NOTIFICATION_BACKGROUND_ALPHA),
-                        false, this, UserHandle.USER_ALL);
+                    false, this, UserHandle.USER_ALL);
 
             resolver.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.NOTIFICATION_ALPHA),
-                        false, this, UserHandle.USER_ALL);
+                    false, this, UserHandle.USER_ALL);
 
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_BATTERY),
@@ -3339,7 +3343,23 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             } else if (uri.equals(Settings.System.getUriFor(
                    Settings.System.NOTIFICATION_ALPHA))) {
                 setNotificationAlpha();
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.ENABLE_ACTIVE_DISPLAY))) {
+                updateActiveDisplayViewState();
             }
+        }
+    }
+
+    private void updateActiveDisplayViewState() {
+        final ContentResolver resolver = mContext.getContentResolver();
+
+        boolean enabled = Settings.System.getInt(
+                    resolver, Settings.System.ENABLE_ACTIVE_DISPLAY, 0) == 1;
+
+        if (enabled) {
+            addActiveDisplayView();
+        } else {
+            removeActiveDisplayView();
         }
     }
 

@@ -637,6 +637,7 @@ public class ActiveDisplayView extends FrameLayout {
 			}
 			mStatusBarManager.disable(flags);
         }
+         mShow = true;
     }
 
     private void setSystemUIVisibility(/*boolean visible*/) {
@@ -882,6 +883,7 @@ public class ActiveDisplayView extends FrameLayout {
     }
 
     private void unregisterCallbacks() {
+        if (mPocketMode == 2) disableProximitySensor();
         if (mCallbacksRegistered) {
             unregisterBroadcastReceiver();
             unregisterNotificationListener();

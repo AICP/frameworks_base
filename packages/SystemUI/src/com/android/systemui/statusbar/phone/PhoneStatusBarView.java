@@ -181,7 +181,6 @@ public class PhoneStatusBarView extends PanelBar {
     public void onPanelPeeked() {
         super.onPanelPeeked();
         mBar.makeExpandedVisible();
-        mBar.setTakenSpace();
     }
 
     @Override

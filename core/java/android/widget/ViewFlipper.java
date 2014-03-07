@@ -51,7 +51,6 @@ public class ViewFlipper extends ViewAnimator {
     private boolean mStarted = false;
     private boolean mVisible = false;
     private boolean mUserPresent = true;
-    private boolean mSelfMaintained = false;
 
     public ViewFlipper(Context context) {
         super(context);
@@ -87,13 +86,11 @@ public class ViewFlipper extends ViewAnimator {
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
 
-        if (!mSelfMaintained) {
-            // Listen for broadcasts related to user-presence
-            final IntentFilter filter = new IntentFilter();
-            filter.addAction(Intent.ACTION_SCREEN_OFF);
-            filter.addAction(Intent.ACTION_USER_PRESENT);
-            getContext().registerReceiver(mReceiver, filter, null, mHandler);
-        }
+        // Listen for broadcasts related to user-presence
+        final IntentFilter filter = new IntentFilter();
+        filter.addAction(Intent.ACTION_SCREEN_OFF);
+        filter.addAction(Intent.ACTION_USER_PRESENT);
+        getContext().registerReceiver(mReceiver, filter, null, mHandler);
 
         if (mAutoStart) {
             // Automatically start when requested
@@ -106,9 +103,7 @@ public class ViewFlipper extends ViewAnimator {
         super.onDetachedFromWindow();
         mVisible = false;
 
-        if (!mSelfMaintained) {
-            getContext().unregisterReceiver(mReceiver);
-        }
+        getContext().unregisterReceiver(mReceiver);
         updateRunning();
     }
 
@@ -190,13 +185,6 @@ public class ViewFlipper extends ViewAnimator {
             Log.d(TAG, "updateRunning() mVisible=" + mVisible + ", mStarted=" + mStarted
                     + ", mUserPresent=" + mUserPresent + ", mRunning=" + mRunning);
         }
-    }
-
-    /**
-     * Allow self-maintenance of start/stop and ignore intent (screen off/user active)
-     */
-    public void setSelfMaintained(boolean maintain) {
-        mSelfMaintained = maintain;
     }
 
     /**

@@ -34,12 +34,9 @@ package com.android.systemui.omni.screenrecord;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.media.MediaActionSound;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Environment;
@@ -68,13 +65,12 @@ class GlobalScreenrecord {
     private static final int MSG_TASK_ENDED = 1;
     private static final int MSG_TASK_ERROR = 2;
 
-    private static final String TMP_PATH = "/sdcard/__tmp_screenrecord.mp4";
+    private static final String TMP_PATH = Environment.getExternalStorageDirectory()
+            + File.separator + "__tmp_screenrecord.mp4";
 
     private Context mContext;
     private Handler mHandler;
     private NotificationManager mNotificationManager;
-
-    private MediaActionSound mCameraSound;
 
     private CaptureThread mCaptureThread;
 
@@ -124,7 +120,7 @@ class GlobalScreenrecord {
                 Log.e(TAG, "Error while starting the screenrecord process", e);
             }
         }
-    };
+    }
 
 
     /**
@@ -224,28 +220,32 @@ class GlobalScreenrecord {
         mHandler.postDelayed(new Runnable() { public void run() {
             mCaptureThread = null;
 
-            String fileName = "SCR_" + new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()) + ".mp4";
-            File pictures = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-            File screenshots = new File(pictures, "Screenshots");
+            final String fileName = "SCR_"
+                    + new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()) + ".mp4";
+            final File pictures = Environment.getExternalStoragePublicDirectory(
+                    Environment.DIRECTORY_PICTURES);
+            final File screenshots = new File(pictures, "Screenrecords");
 
             if (!screenshots.exists()) {
                 if (!screenshots.mkdir()) {
-                    Log.e(TAG, "Cannot create screenshots directory");
+                    Log.e(TAG, "Cannot create screenrecords directory");
                     return;
                 }
             }
 
-            File input = new File(TMP_PATH);
+            final File input = new File(TMP_PATH);
             final File output = new File(screenshots, fileName);
 
             Log.d(TAG, "Copying file to " + output.getAbsolutePath());
 
             try {
                 copyFileUsingStream(input, output);
-                input.delete();
+                if (!input.delete()) {
+                    Log.i(TAG, "Couldn't delete temporary screenrecord");
+                }
             } catch (IOException e) {
                 Log.e(TAG, "Unable to copy output file", e);
-                Message msg = Message.obtain(mHandler, MSG_TASK_ERROR);
+                final Message msg = Message.obtain(mHandler, MSG_TASK_ERROR);
                 mHandler.sendMessage(msg);
             }
 
@@ -273,8 +273,12 @@ class GlobalScreenrecord {
                 os.write(buffer, 0, length);
             }
         } finally {
-            is.close();
-            os.close();
+            if (is != null) {
+                is.close();
+            }
+            if (os != null) {
+                os.close();
+            }
         }
     }
 }

@@ -8554,6 +8554,12 @@ public final class Settings {
          * @hide
          */
         public static final String STATUSBAR_SIGNAL_SHOW_4G_FOR_LTE = "statusbar_signal_show_4g_for_lte";
+
+        /**
+         * Enable / disable navring
+         * @hide
+         */
+        public static final String ENABLE_NAVRING = "enable_navring";
     }
 
     /**

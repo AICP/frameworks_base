@@ -550,24 +550,46 @@ public class AudioManager {
                  * Adjust the volume in on key down since it is more
                  * responsive to the user.
                  */
+                boolean mSwapVolButtons = Settings.System.getInt(mContext.getContentResolver(),
+                        Settings.System.SWAP_VOLUME_BUTTONS, 0) != 0;
                 int direction;
                 int rotation = mWindowManager.getDefaultDisplay().getRotation();
-                if (rotation == Surface.ROTATION_90
-                        || rotation == Surface.ROTATION_180) {
-                    direction = keyCode == KeyEvent.KEYCODE_VOLUME_UP
-                            ? ADJUST_LOWER
-                            : ADJUST_RAISE;
-                } else {
-                    direction = keyCode == KeyEvent.KEYCODE_VOLUME_UP
-                            ? ADJUST_RAISE
-                            : ADJUST_LOWER;
-                }
-                int flags = FLAG_SHOW_UI | FLAG_VIBRATE;
 
-                if (mUseMasterVolume) {
-                    adjustMasterVolume(direction, flags);
+                if (mSwapVolButtons) {
+                    if (rotation == Surface.ROTATION_90
+                            || rotation == Surface.ROTATION_180) {
+                        direction = keyCode == KeyEvent.KEYCODE_VOLUME_UP
+                                ? ADJUST_LOWER
+                                : ADJUST_RAISE;
+                    } else {
+                        direction = keyCode == KeyEvent.KEYCODE_VOLUME_UP
+                                ? ADJUST_RAISE
+                                : ADJUST_LOWER;
+                    }
+                    int flags = FLAG_SHOW_UI | FLAG_VIBRATE;
+
+                    if (mUseMasterVolume) {
+                        adjustMasterVolume(direction, flags);
+                    } else {
+                        adjustSuggestedStreamVolume(direction, stream, flags);
+                    }
                 } else {
-                    adjustSuggestedStreamVolume(direction, stream, flags);
+                    int flags = FLAG_SHOW_UI | FLAG_VIBRATE;
+
+                    if (mUseMasterVolume) {
+                        adjustMasterVolume(
+                                keyCode == KeyEvent.KEYCODE_VOLUME_UP
+                                        ? ADJUST_RAISE
+                                        : ADJUST_LOWER,
+                                flags);
+                    } else {
+                        adjustSuggestedStreamVolume(
+                                keyCode == KeyEvent.KEYCODE_VOLUME_UP
+                                        ? ADJUST_RAISE
+                                        : ADJUST_LOWER,
+                                stream,
+                                flags);
+                    }
                 }
                 break;
             case KeyEvent.KEYCODE_VOLUME_MUTE:

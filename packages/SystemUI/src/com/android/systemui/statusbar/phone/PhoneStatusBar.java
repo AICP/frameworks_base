@@ -3371,6 +3371,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         @Override
         public void onChange(boolean selfChange, Uri uri) {
+            ContentResolver cr = mContext.getContentResolver();
             updateSettings();
             toggleNavigationBarOrNavRing(mWantsNavigationBar, mEnableNavring);
             if(uri != null && uri.equals(Settings.AOKP.getUriFor(Settings.AOKP.TOGGLES_STYLE))) {
@@ -3393,6 +3394,13 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.ENABLE_ACTIVE_DISPLAY))) {
                 updateActiveDisplayViewState();
+            }
+
+            int sidebarPosition = Settings.System.getInt(
+                    cr, Settings.System.APP_SIDEBAR_POSITION, AppSidebar.SIDEBAR_POSITION_LEFT);
+            if (sidebarPosition != mSidebarPosition) {
+                mSidebarPosition = sidebarPosition;
+                mWindowManager.updateViewLayout(mAppSidebar, getAppSidebarLayoutParams(sidebarPosition));
             }
         }
     }
@@ -3453,13 +3461,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mWantsNavigationBar = Settings.AOKP.getBoolean(cr, Settings.AOKP.ENABLE_NAVIGATION_BAR, hasNav);
         mEnableNavring = Settings.AOKP.getBoolean(mContext.getContentResolver(),
                 Settings.AOKP.ENABLE_NAVRING, true);
-
-        int sidebarPosition = Settings.System.getInt(
-                cr, Settings.System.APP_SIDEBAR_POSITION, AppSidebar.SIDEBAR_POSITION_LEFT);
-        if (sidebarPosition != mSidebarPosition) {
-            mSidebarPosition = sidebarPosition;
-            mWindowManager.updateViewLayout(mAppSidebar, getAppSidebarLayoutParams(sidebarPosition));
-        }
 
     }
 

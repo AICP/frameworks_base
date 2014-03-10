@@ -2509,7 +2509,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
             // If we have released the home key, and didn't do anything else
             // while it was pressed, then it is time to go home!
-            if (!down) {
+            if (!down && mHomePressed) {
 
                 mHomePressed = false;
                 if (mHomeConsumed) {
@@ -2587,7 +2587,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             if (repeatCount == 0) {
                 mHomePressed = true;
                 if (mHomeDoubleTapPending) {
-                    cancelPreloadRecentApps();
                     mHomeDoubleTapPending = false;
                     mHandler.removeCallbacks(mHomeDoubleTapTimeoutRunnable);
                     performKeyAction(mDoubleTapOnHomeBehavior);

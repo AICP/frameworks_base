@@ -67,7 +67,7 @@ public class RecentController implements RecentPanelView.OnExitListener,
         RecentPanelView.OnTasksLoadedListener {
 
     private static final String TAG = "SlimRecentsController";
-    private static final boolean DEBUG = false;
+    private static final boolean DEBUG = true;
 
     // Animation control values.
     private static final int ANIMATION_STATE_NONE = 0;

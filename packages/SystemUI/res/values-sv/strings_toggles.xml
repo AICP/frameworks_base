@@ -53,6 +53,7 @@
     <string name="toggle_STAYAWAKE">Vara vaken</string>
     <string name="toggle_WIRELESSADB">Trådlös ADB</string>
     <string name="toggle_IMMERSIVE_MODE">Omslutande läge</string>
+    <string name="toggle_SCREENRECORD">Skärminspelning</string>
     <string name="quick_settings_swagger">Swagger</string>
     <string name="quick_settings_swaggersun">Swagger Söndag</string>
     <string name="quick_settings_fbgt">FBGT</string>
@@ -103,6 +104,8 @@
     <string name="quick_settings_statusbar_off_label">StatusBar Av</string>
     <string name="quick_settings_swaggersuntoast">#SwaggerSöndag</string>
     <string name="quick_settings_screenshot">Skärmdump</string>
+    <string name="quick_settings_screenrecord">SKärminspelning</string>
     <string name="quick_settings_immersive_mode_on">Omslutande Läge På</string>
     <string name="quick_settings_immersive_mode_off">Omslutande Läge Av</string>
+    <string name="quick_settings_clock_alarm_off">Alarm Av</string>
 </resources>

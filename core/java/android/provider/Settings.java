@@ -8594,6 +8594,15 @@ public final class Settings {
         public static final String TORCH_STATE = "torch_state";
 
         /**
+         * Network toggle modes
+         * 1 - toggles LTE - 3G - 2G | LTE-3G-2G-LTE order
+         * 2 - toggles LTE - 2G
+         * 3 - toggles LTE - 3G
+         * 4 - toggles 3G - 2G
+         */
+        public static final String NETWORK_MODES_TOGGLE = "network_modes_toggle";
+
+        /**
          * Whether to show the network status in the status bar
          * @hide
          */

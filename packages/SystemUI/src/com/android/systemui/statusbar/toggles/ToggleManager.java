@@ -88,6 +88,7 @@ public class ToggleManager {
     public static final String USB_TETHER_TOGGLE = "USBTETHER";
     public static final String TWOG_TOGGLE = "2G";
     public static final String LTE_TOGGLE = "LTE";
+    public static final String NETWORKSTATE_TOGGLE = "NETWORKSTATE";
     public static final String FAV_CONTACT_TOGGLE = "FAVCONTACT";
     public static final String SOUND_STATE_TOGGLE = "SOUNDSTATE";
     public static final String NAVBAR_HIDE_TOGGLE = "NAVBARHIDE";
@@ -154,16 +155,15 @@ public class ToggleManager {
             }
             toggleMap.put(TORCH_TOGGLE, TorchToggle.class);
             toggleMap.put(USB_TETHER_TOGGLE, UsbTetherToggle.class);
-            // if
-            // (((TelephonyManager)mContext.getSystemService(Context.TELEPHONY_SERVICE))
-            // .getPhoneType() == PhoneConstants.PHONE_TYPE_GSM) {
-            // toggleMap.put(TWOG_TOGGLE, TwoGToggle.class);
-            // }
-            // if (TelephonyManager.getLteOnCdmaModeStatic() ==
-            // PhoneConstants.LTE_ON_CDMA_TRUE
-            // || TelephonyManager.getLteOnGsmModeStatic() != 0) {
-            // toggleMap.put(LTE_TOGGLE, LteToggle.class);
-            // }
+            if (((TelephonyManager)mContext.getSystemService(Context.TELEPHONY_SERVICE))
+                    .getPhoneType() == PhoneConstants.PHONE_TYPE_GSM) {
+                toggleMap.put(TWOG_TOGGLE, TwoGToggle.class);
+            }
+            if (TelephonyManager.getLteOnCdmaModeStatic() == PhoneConstants.LTE_ON_CDMA_TRUE
+                    || TelephonyManager.getLteOnGsmModeStatic() != 0) {
+                toggleMap.put(LTE_TOGGLE, LteToggle.class);
+                toggleMap.put(NETWORKSTATE_TOGGLE, NetworkStateToggle.class);
+            }
             toggleMap.put(FAV_CONTACT_TOGGLE, FavoriteUserToggle.class);
             // toggleMap.put(NAVBAR_HIDE_TOGGLE, NavbarHideToggle.class);
             toggleMap.put(QUICKRECORD_TOGGLE, QuickRecordToggle.class);

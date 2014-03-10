@@ -75,4 +75,6 @@
     <string name="animation_grow_shrink_bottom">Růst (dospod)</string>
     <string name="animation_grow_shrink_left">Růst (vlevo)</string>
     <string name="animation_grow_shrink_right">Růst (vpravo)</string>
+    <string name="notify_turn_wifi_off_title">Vypnout Wi-Fi</string>
+    <string name="notify_turn_tethering_off_title">Vypnout Tethering</string>
 </resources>

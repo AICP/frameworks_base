@@ -133,6 +133,9 @@
     <string name="animation_grow_shrink_left">Grow in (Left)</string>
     <string name="animation_grow_shrink_right">Grow in (Right)</string>
 
+    <!-- WiFi turn off notification -->
+    <string name="notify_turn_wifi_off_title">Turn Wi-Fi off</string>
+
     <!-- In WiFi AP notification -->
     <string name="notify_turn_wifi_ap_off_title">Turn Wi-Fi AP off</string>
 

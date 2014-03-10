@@ -263,4 +263,7 @@
   <java-symbol type="anim" name="recent_screen_enter" />
   <java-symbol type="anim" name="recent_screen_fade_out" />
 
+  <!-- WiFi turn off notification -->
+  <java-symbol type="string" name="notify_turn_wifi_off_title" />
+
 </resources>

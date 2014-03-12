@@ -8540,6 +8540,21 @@ public final class Settings {
         public static final String VOLUME_WAKE_SCREEN = "volume_wake_screen";
 
         /**
+         * Location mode toggle
+         * 1 - LOCATION_MODE_OFF / LOCATION_MODE_SENSORS_ONLY / LOCATION_MODE_BATTERY_SAVING / LOCATION_MODE_HIGH_ACCURACY
+         * 2 - LOCATION_MODE_HIGH_ACCURACY / LOCATION_MODE_BATTERY_SAVING / LOCATION_MODE_SENSORS_ONLY
+         * 3 - LOCATION_MODE_HIGH_ACCURACY / LOCATION_MODE_BATTERY_SAVING
+         * 4 - LOCATION_MODE_HIGH_ACCURACY / LOCATION_MODE_SENSORS_ONLY
+         * 5 - LOCATION_MODE_HIGH_ACCURACY / LOCATION_MODE_OFF
+         * 6 - LOCATION_MODE_BATTERY_SAVING / LOCATION_MODE_SENSORS_ONLY / LOCATION_MODE_OFF
+         * 7 - LOCATION_MODE_BATTERY_SAVING / LOCATION_MODE_SENSORS_ONLY
+         * 8 - LOCATION_MODE_BATTERY_SAVING / LOCATION_MODE_OFF
+         * 9 - LOCATION_MODE_SENSORS_ONLY / LOCATION_MODE_OFF
+         * @hide
+         */
+        public static final String LOCATION_MODES_TOGGLE = "location_modes_toggle";
+
+        /**
          * Whether to enable the navbar for hw key devices
          * @hide
          */

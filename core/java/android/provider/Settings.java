@@ -4812,6 +4812,18 @@ public final class Settings {
         public static final String LOCKSCREEN_FRAME_COLOR = "lockscreen_frame_color";
 
         /**
+         * Lockscreen widget add, glowpad ring, text colors
+         * @hide
+         */
+        public static final String LOCKSCREEN_MISC_COLOR = "lockscreen_misc_color";
+
+        /**
+         * Lockscreen widget add, glowpad ring, text colors
+         * @hide
+         */
+        public static final String LOCKSCREEN_TARGETS_COLOR = "lockscreen_targets_color";
+
+        /**
          * The Logging ID (a unique 64-bit value) as a hex string.
          * Used as a pseudonymous identifier for logging.
          * @deprecated This identifier is poorly initialized and has

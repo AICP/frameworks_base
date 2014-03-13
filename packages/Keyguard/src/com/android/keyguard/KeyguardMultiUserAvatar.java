@@ -27,6 +27,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.UserManager;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -92,7 +94,18 @@ class KeyguardMultiUserAvatar extends FrameLayout {
         super(context, attrs, defStyle);
 
         Resources res = mContext.getResources();
-        mTextColor = res.getColor(R.color.keyguard_avatar_nick_color);
+
+        int textColor = Settings.Secure.getIntForUser(
+                context.getContentResolver(),
+                Settings.Secure.LOCKSCREEN_MISC_COLOR, -2,
+                UserHandle.USER_CURRENT);
+
+        if (textColor == -2) {
+            mTextColor = res.getColor(R.color.keyguard_avatar_nick_color);
+        } else {
+            mTextColor = textColor;
+        }
+
         mIconSize = res.getDimension(R.dimen.keyguard_avatar_size);
         mStroke = res.getDimension(R.dimen.keyguard_avatar_frame_stroke_width);
         mShadowRadius = res.getDimension(R.dimen.keyguard_avatar_frame_shadow_radius);

@@ -1351,8 +1351,12 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                 handleShow();
                 break;
             case MESSAGE_REFRESH_AIRPLANEMODE:
+            if (mAirplaneModeOn != null) {
                 mAirplaneModeOn.updateState(mAirplaneState);
+            }
+            if (mAdapter != null) {
                 mAdapter.notifyDataSetChanged();
+            }
                 break;
             }
         }
@@ -1516,7 +1520,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         }
     }
 
-    private AlertDialog createRebootDialog() {
+    public AlertDialog createRebootDialog() {
         final String[] rebootOptions = mContext.getResources().getStringArray(R.array.reboot_options);
         final String[] rebootReasons = mContext.getResources().getStringArray(R.array.reboot_values);
 

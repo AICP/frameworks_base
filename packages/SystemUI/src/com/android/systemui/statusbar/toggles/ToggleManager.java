@@ -172,7 +172,7 @@ public class ToggleManager {
             // toggleMap.put(STATUSBAR_TOGGLE, StatusbarToggle.class);
             toggleMap.put(SCREENSHOT_TOGGLE, ScreenshotToggle.class);
             toggleMap.put(SCREENRECORD_TOGGLE, ScreenrecordToggle.class);
-            // toggleMap.put(REBOOT_TOGGLE, RebootToggle.class);
+            toggleMap.put(REBOOT_TOGGLE, RebootToggle.class);
             // toggleMap.put(CUSTOM_TOGGLE, CustomToggle.class);
             toggleMap.put(STAYAWAKE_TOGGLE, StayAwakeToggle.class);
             // wireless adb not yet integrated
@@ -199,6 +199,7 @@ public class ToggleManager {
             }
         };
         mContext.registerReceiver(mBroadcastReceiver, new IntentFilter(ACTION_REQUEST_TOGGLES));
+
     }
 
     public void cleanup() {

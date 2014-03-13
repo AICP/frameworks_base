@@ -368,6 +368,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 takeScreenshot();
             } else if (action.equals(Intent.ACTION_SCREENRECORD)) {
                 takeScreenrecord();
+            } else if (action.equals(Intent.ACTION_REBOOTMENU)) {
+                showRebootDialog();
             }
         }
 
@@ -378,6 +380,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 IntentFilter filter = new IntentFilter();
                 filter.addAction(Intent.ACTION_SCREENSHOT);
                 filter.addAction(Intent.ACTION_SCREENRECORD);
+                filter.addAction(Intent.ACTION_REBOOTMENU);
                 mContext.registerReceiver(mPowerMenuReceiver, filter);
             }
         }
@@ -1066,6 +1069,19 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         }
         final boolean keyguardShowing = keyguardIsShowingTq();
         mGlobalActions.showDialog(keyguardShowing, isDeviceProvisioned());
+        if (keyguardShowing) {
+            // since it took two seconds of long press to bring this up,
+            // poke the wake lock so they have some time to see the dialog.
+            mPowerManager.userActivity(SystemClock.uptimeMillis(), false);
+        }
+    }
+
+    public void showRebootDialog() {
+        if (mGlobalActions == null) {
+            mGlobalActions = new GlobalActions(mContext, mWindowManagerFuncs);
+        }
+        final boolean keyguardShowing = keyguardIsShowingTq();
+        mGlobalActions.createRebootDialog().show();
         if (keyguardShowing) {
             // since it took two seconds of long press to bring this up,
             // poke the wake lock so they have some time to see the dialog.

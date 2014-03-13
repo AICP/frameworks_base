@@ -12,8 +12,13 @@ import static com.android.server.wm.WindowManagerService.LayoutFields.SET_FORCE_
 import static com.android.server.wm.WindowManagerService.LayoutFields.SET_ORIENTATION_CHANGE_COMPLETE;
 import static com.android.server.wm.WindowManagerService.LayoutFields.SET_WALLPAPER_ACTION_PENDING;
 
+import android.content.ContentResolver;
 import android.content.Context;
+import android.database.ContentObserver;
+import android.net.Uri;
 import android.os.Debug;
+import android.os.Handler;
+import android.os.RemoteException;
 import android.os.SystemClock;
 import android.provider.Settings;
 import android.util.Log;
@@ -41,6 +46,8 @@ public class WindowAnimator {
     final WindowManagerService mService;
     final Context mContext;
     final WindowManagerPolicy mPolicy;
+
+    private static TransparencyBlurObserver beergoggles;
 
     boolean mAnimating;
 
@@ -91,6 +98,9 @@ public class WindowAnimator {
         mService = service;
         mContext = service.mContext;
         mPolicy = service.mPolicy;
+
+        if (beergoggles == null)
+            beergoggles = new TransparencyBlurObserver(mContext.getContentResolver());
 
         mAnimationRunnable = new Runnable() {
             @Override
@@ -200,11 +210,7 @@ public class WindowAnimator {
         ArrayList<WindowStateAnimator> unForceHiding = null;
         boolean wallpaperInUnForceHiding = false;
         mForceHiding = KEYGUARD_NOT_SHOWN;
-        boolean seeThrough = Settings.AOKP.getInt(mContext.getContentResolver(),
-                                Settings.AOKP.LOCKSCREEN_SEE_THROUGH, 0) == 1;
-        boolean blurEnabled = Settings.System.getInt(mContext.getContentResolver(),
-                                        Settings.System.LOCKSCREEN_BLUR_BEHIND, 0) == 1;
-        boolean shouldAnimate = (!seeThrough && !blurEnabled);
+        boolean shouldAnimate = !(beergoggles.getTransparent() || beergoggles.getBlurry());
 
         for (int i = windows.size() - 1; i >= 0; i--) {
             WindowState win = windows.get(i);
@@ -696,5 +702,40 @@ public class WindowAnimator {
 
     private class DisplayContentsAnimator {
         ScreenRotationAnimation mScreenRotationAnimation = null;
+    }
+
+    private class TransparencyBlurObserver extends ContentObserver {
+
+        private final ContentResolver mResolver;
+        private final Uri mTransUri, mBlurUri;
+        private boolean mTransparent, mBlurry;
+
+        public boolean getTransparent() { return mTransparent; }
+        public boolean getBlurry() { return mBlurry; }
+
+        public TransparencyBlurObserver(ContentResolver resolver) {
+            super(new Handler());
+            mResolver = resolver;
+            mTransUri = Settings.System.getUriFor(Settings.AOKP.LOCKSCREEN_SEE_THROUGH);
+            mBlurUri = Settings.System.getUriFor(Settings.System.LOCKSCREEN_BLUR_BEHIND);
+            mResolver.registerContentObserver(mBlurUri, false, this);
+            mResolver.registerContentObserver(mTransUri, false, this);
+
+            mTransparent = Settings.System.getInt(mResolver,
+                Settings.AOKP.LOCKSCREEN_SEE_THROUGH, 0) == 1;
+            mBlurry = Settings.System.getInt(mResolver,
+                Settings.System.LOCKSCREEN_BLUR_BEHIND, 0) == 1;
+        }
+
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
+            if (uri.equals(mTransUri)) {
+                mTransparent = Settings.System.getInt(mResolver,
+                    Settings.AOKP.LOCKSCREEN_SEE_THROUGH, 0) == 1;
+            } else {
+                mBlurry = Settings.System.getInt(mResolver,
+                    Settings.System.LOCKSCREEN_BLUR_BEHIND, 0) == 1;
+            }
+        }
     }
 }

@@ -162,7 +162,7 @@ public class KeyguardViewManager {
 
         void observe() {
             ContentResolver resolver = mContext.getContentResolver();
-            resolver.registerContentObserver(Settings.AOKP.getUriFor(
+            resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.AOKP.LOCKSCREEN_SEE_THROUGH), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.ACTIVE_NOTIFICATIONS), false, this);

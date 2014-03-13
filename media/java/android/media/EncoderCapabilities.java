@@ -48,17 +48,13 @@ public class EncoderCapabilities
         public final int mMinFrameRate, mMaxFrameRate;           // min and max frame rate (fps)
         public final int mMinFrameWidth, mMaxFrameWidth;         // min and max frame width (pixel)
         public final int mMinFrameHeight, mMaxFrameHeight;       // minn and max frame height (pixel)
-        public final int mMaxHFRFrameWidth, mMaxHFRFrameHeight;  // max HFR size (pixel)
-        public final int mMaxHFRMode;                            // max HFR mode
 
         // Private constructor called by JNI
         private VideoEncoderCap(int codec,
                                 int minBitRate, int maxBitRate,
                                 int minFrameRate, int maxFrameRate,
                                 int minFrameWidth, int maxFrameWidth,
-                                int minFrameHeight, int maxFrameHeight,
-                                int maxHFRFrameWidth, int maxHFRFrameHeight,
-                                int maxHFRMode) {
+                                int minFrameHeight, int maxFrameHeight) {
             mCodec = codec;
             mMinBitRate = minBitRate;
             mMaxBitRate = maxBitRate;
@@ -68,9 +64,6 @@ public class EncoderCapabilities
             mMaxFrameWidth = maxFrameWidth;
             mMinFrameHeight = minFrameHeight;
             mMaxFrameHeight = maxFrameHeight;
-            mMaxHFRFrameWidth = maxHFRFrameWidth;
-            mMaxHFRFrameHeight = maxHFRFrameHeight;
-            mMaxHFRMode = maxHFRMode;
         }
     };
 

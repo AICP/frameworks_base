@@ -166,6 +166,7 @@ public class NavigationBarView extends LinearLayout {
             // animation as home (if we catch this condition early enough).
             if (!mBackTransitioning && getBackButton() != null && getBackButton().getVisibility() == VISIBLE
                     && mHomeAppearing && getHomeButton() != null && getHomeButton().getAlpha() == 0) {
+                ((KeyButtonView) getBackButton()).resetImage();
                 getBackButton().setAlpha(0);
                 ValueAnimator a = ObjectAnimator.ofFloat(getBackButton(), "alpha", 0, 1);
                 a.setStartDelay(mStartDelay);

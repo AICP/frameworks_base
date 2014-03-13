@@ -370,6 +370,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 takeScreenrecord();
             } else if (action.equals(Intent.ACTION_REBOOTMENU)) {
                 showRebootDialog();
+            } else if (action.equals(Intent.ACTION_POWERMENU)) {
+                showGlobalActionsDialog();
             }
         }
 
@@ -381,6 +383,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 filter.addAction(Intent.ACTION_SCREENSHOT);
                 filter.addAction(Intent.ACTION_SCREENRECORD);
                 filter.addAction(Intent.ACTION_REBOOTMENU);
+                filter.addAction(Intent.ACTION_POWERMENU);
                 mContext.registerReceiver(mPowerMenuReceiver, filter);
             }
         }

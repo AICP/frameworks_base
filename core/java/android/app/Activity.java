@@ -2376,7 +2376,7 @@ public class Activity extends ContextThemeWrapper
      */
     public void onWindowFocusChanged(boolean hasFocus) {
         if (hasFocus) {
-            updateImmersiveMode(false);
+            updateImmesiveMode(false);
         }
     }
     
@@ -5557,11 +5557,11 @@ public class Activity extends ContextThemeWrapper
         }
          @Override
         public void onChange(boolean selfChange) {
-            updateImmersiveMode(true);
+            updateImmesiveMode(true);
         }
     }
 
-    void updateImmersiveMode(boolean force) {
+    void updateImmesiveMode(boolean force) {
         if (Settings.AOKP.getBoolean(getContentResolver(), Settings.AOKP.IMMERSIVE_MODE, false)) {
             /*
              *  SYSTEM_UI_FLAG_IMMERSIVE_STICKY does not allow the action bar to be shown on the swipe

@@ -115,6 +115,15 @@ public class KeyButtonView extends ImageView {
 
         setTag(mActions.singleAction); // should be OK even if it's null
 
+        resetImage();
+
+        mHasSingleAction = mActions != null && (mActions.singleAction != null);
+        mHasLongAction = mActions != null && mActions.longPressAction != null;
+        mHasDoubleAction = mActions != null && mActions.doubleTapAction != null;
+        setLongClickable(mHasLongAction);
+    }
+
+    public void resetImage() {
         // set image
         if (mActions.iconUri != null && mActions.iconUri.length() > 0) {
             // custom icon from the URI here
@@ -127,12 +136,6 @@ public class KeyButtonView extends ImageView {
         } else {
             setImageResource(R.drawable.ic_sysbar_null);
         }
-
-        mHasSingleAction = mActions != null && (mActions.singleAction != null);
-        mHasLongAction = mActions != null && mActions.longPressAction != null;
-        mHasDoubleAction = mActions != null && mActions.doubleTapAction != null;
-        setLongClickable(mHasLongAction);
-        Log.e("ROMAN", "hasLongAction: " + mHasLongAction);
     }
 
     @Override

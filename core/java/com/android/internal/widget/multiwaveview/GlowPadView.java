@@ -287,7 +287,8 @@ public class GlowPadView extends View {
         mHandleDrawable.setState(TargetDrawable.STATE_INACTIVE);
         mCenterDrawable = new TargetDrawable(res, 0);
         mCenterDrawable.setState(TargetDrawable.STATE_INACTIVE);
-        mRingDrawable = (GradientDrawable) a.getDrawable(R.styleable.GlowPadView_outerRingDrawable).mutate();
+        mRingDrawable = (GradientDrawable) a.getDrawable(
+                R.styleable.GlowPadView_outerRingDrawable).mutate();
         mOuterRing = new TargetDrawable(res,
                 getResourceId(a, R.styleable.GlowPadView_outerRingDrawable));
 

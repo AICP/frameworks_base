@@ -1313,7 +1313,8 @@ public class KeyguardHostView extends KeyguardViewBase {
                     mContext.getContentResolver(),
                     Settings.Secure.LOCKSCREEN_MISC_COLOR, -2,
                     UserHandle.USER_CURRENT);
-            ImageView addWidgetButton = (ImageView) addWidget.findViewById(R.id.keyguard_add_widget_view);
+            ImageView addWidgetButton = (ImageView)
+                    addWidget.findViewById(R.id.keyguard_add_widget_view);
             if (color != -2) {
                 Bitmap addWidgetBitmap = BitmapFactory.decodeResource(
                         getContext().getResources(), R.drawable.kg_add_widget);

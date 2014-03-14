@@ -150,6 +150,7 @@ if (mStoredTargets == null) {
             }
             } else {
                 if (target == mTargetOffset) {
+                    mCallback.userActivity(0);
                     mCallback.dismiss(false);
                 } else {
                     int realTarget = target - mTargetOffset - 1;
@@ -157,6 +158,7 @@ if (mStoredTargets == null) {
                             ? mStoredTargets[realTarget] : null;
 
                     if (LockscreenTargetUtils.EMPTY_TARGET.equals(targetUri)) {
+                        mCallback.userActivity(0);
                         mCallback.dismiss(false);
                     } else {
                         try {
@@ -479,14 +481,17 @@ if (mStoredTargets == null) {
             Drawable unlockBack = res.getDrawable(R.drawable.ic_lockscreen_unlock_activated);;
 
             if (frontColor != -2) {
-                unlockFront = new BitmapDrawable(res, ImageHelper.getColoredBitmap(unlockFront, frontColor));
+                unlockFront = new BitmapDrawable(
+                        res, ImageHelper.getColoredBitmap(unlockFront, frontColor));
             }
 
             if (backColor != -2) {
-                unlockBack = new BitmapDrawable(res, ImageHelper.getColoredBitmap(unlockBack, backColor));
+                unlockBack = new BitmapDrawable(
+                        res, ImageHelper.getColoredBitmap(unlockBack, backColor));
             }
 
-            int insetType = LockscreenTargetUtils.getInsetForIconType(mContext, GlowPadView.ICON_RESOURCE);
+            int insetType = LockscreenTargetUtils.getInsetForIconType(
+                    mContext, GlowPadView.ICON_RESOURCE);
             Drawable unlock = LockscreenTargetUtils.getLayeredDrawable(mContext,
                     unlockBack, unlockFront, insetType, true);
             TargetDrawable unlockTarget = new TargetDrawable(res, unlock);
@@ -557,14 +562,17 @@ if (mStoredTargets == null) {
                     int inset = LockscreenTargetUtils.getInsetForIconType(mContext, type);
 
                     if (frontColor != -2) {
-                        front = new BitmapDrawable(res, ImageHelper.getColoredBitmap(front, frontColor));
+                        front = new BitmapDrawable(
+                                res, ImageHelper.getColoredBitmap(front, frontColor));
                     }
 
                     if (backColor != -2) {
                         if ((back instanceof InsetDrawable)) {
-                            back = new BitmapDrawable(res, ImageHelper.getColoredBitmap(blankActiveDrawable, backColor));
+                            back = new BitmapDrawable(res, ImageHelper.getColoredBitmap(
+                                    blankActiveDrawable, backColor));
                         } else {
-                            back = new BitmapDrawable(res, ImageHelper.getColoredBitmap(back, backColor));
+                            back = new BitmapDrawable(res, ImageHelper.getColoredBitmap(
+                                    back, backColor));
                         }
                     }
 

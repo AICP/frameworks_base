@@ -24,7 +24,7 @@ import com.android.systemui.R;
 
 public class ImmersiveModeToggle extends StatefulToggle {
 
-    private boolean mImmersiveModeEnabled;
+    private boolean enabled;
 
     @Override
     public void init(Context c, int style) {
@@ -32,29 +32,47 @@ public class ImmersiveModeToggle extends StatefulToggle {
         scheduleViewUpdate();
     }
 
-    @Override
-    public void updateView() {
-        boolean enabled;
-        mImmersiveModeEnabled = Settings.AOKP.getBoolean(mContext.getContentResolver(),
-                Settings.AOKP.IMMERSIVE_MODE, false);
-        enabled = mImmersiveModeEnabled;
-        setEnabledState(enabled);
-        setIcon(enabled ? R.drawable.ic_navbar_hide_on : R.drawable.ic_navbar_hide_off);
-        setLabel(enabled ? R.string.quick_settings_immersive_mode_on
-                : R.string.quick_settings_immersive_mode_off);
-        super.updateView();
-    }
 
     @Override
     protected void doEnable() {
-        Settings.AOKP.putBoolean(mContext.getContentResolver(),
-                Settings.AOKP.IMMERSIVE_MODE, true);
+        toggleExpandedDesktop(true);
     }
 
     @Override
     protected void doDisable() {
-        Settings.AOKP.putBoolean(mContext.getContentResolver(),
-                Settings.AOKP.IMMERSIVE_MODE, false);
+        toggleExpandedDesktop(false);
+    }
+
+    @Override
+    public void updateView() {
+        int mExpandedDesktop = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.EXPANDED_DESKTOP_STATE, 0);
+
+        if (mExpandedDesktop == 1) {
+            enabled = true;
+        } else {
+            enabled = false;
+        }
+        setEnabledState(enabled);
+        setLabel(enabled ? R.string.quick_settings_immersive_mode_on
+                : R.string.quick_settings_immersive_mode_off);
+        setIcon(enabled ? R.drawable.ic_navbar_hide_on : R.drawable.ic_navbar_hide_off);
+        super.updateView();
+    }
+
+    protected void toggleExpandedDesktop(boolean state) {
+        if (state) {
+            Settings.System.putInt(mContext.getContentResolver(),
+                    Settings.System.EXPANDED_DESKTOP_STATE, 1);
+            Settings.System.putInt(mContext.getContentResolver(),
+                    Settings.System.EXPANDED_DESKTOP_STYLE, 2);
+        } else {
+            Settings.System.putInt(mContext.getContentResolver(),
+                    Settings.System.EXPANDED_DESKTOP_STATE, 0);
+            Settings.System.putInt(mContext.getContentResolver(),
+                    Settings.System.EXPANDED_DESKTOP_STYLE, 0);
+
+        }
     }
 
     @Override

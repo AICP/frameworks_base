@@ -24,9 +24,6 @@
   <string name="reboot_bootloader">Bootloader</string>
   <string name="reboot_progress">Zařízení se restartuje</string>
   <string name="rotation_lock_toggled">Zámek rotace obrazovky přepnut</string>
-  <string name="immersive_mode">Skryté lišty</string>
-  <string name="immersive_mode_on">Lišty skryty</string>
-  <string name="immersive_mode_off">Lišty zobrazeny</string>
   <string name="action_home">Domů</string>
   <string name="action_back">Zpět</string>
   <string name="action_recents">Přepínač aplikací</string>

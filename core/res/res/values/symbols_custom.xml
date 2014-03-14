@@ -27,16 +27,11 @@
     <java-symbol type="drawable" name="ic_action_empty" />
     <java-symbol type="drawable" name="ic_navbar_blank" />
     <java-symbol type="drawable" name="ic_navbar_blank_activated" />
-    <java-symbol type="drawable" name="ic_navbar_hide_on" />
-    <java-symbol type="drawable" name="ic_navbar_hide_off" />
-    <java-symbol type="string" name="immersive_mode"/>
-    <java-symbol type="string" name="immersive_mode_on"/>
-    <java-symbol type="string" name="immersive_mode_off"/>
 
     <!-- UI theme mode -->
     <java-symbol type="integer" name="config_uiThemeMode" />
 
-     <!--  Awesome Action -->
+    <!--  Awesome Action -->
     <java-symbol type="string" name="action_home"/>
     <java-symbol type="string" name="action_back"/>
     <java-symbol type="string" name="action_recents"/>

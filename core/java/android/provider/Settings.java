@@ -8184,12 +8184,6 @@ public final class Settings {
         public static final String QUIET_HOURS_DIM = "quiet_hours_dim";
 
         /**
-         * Immersive Mode
-         * @hide
-         */
-        public static final String IMMERSIVE_MODE = "immersive_mode";
-
-        /**
          * Whether to enable custom rebindings of the actions performed on
          * certain key press events.
          * @hide

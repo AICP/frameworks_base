@@ -106,7 +106,6 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
     private Action mSilentModeAction;
     private ToggleAction mAirplaneModeOn;
-    private ToggleAction mImmersiveModeOn;
 
     private MyAdapter mAdapter;
 
@@ -115,7 +114,6 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
     private boolean mDeviceProvisioned = false;
     private ToggleAction.State mAirplaneState = ToggleAction.State.Off;
-    private ToggleAction.State mImmersiveState = ToggleAction.State.Off;
     private boolean mIsWaitingForEcmExit = false;
     private boolean mHasTelephony;
     private boolean mHasVibrator;
@@ -126,7 +124,6 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
     private static final String SYSTEM_PROFILES_ENABLED = "system_profiles_enabled";
 
     private int mAirplaneOption = -1;
-    private int mImmersiveOption = -1;
     private int mRebootOption = -1;
     private int mScreenshotOption = -1;
     private int mScreenrecordOption = -1;
@@ -160,9 +157,6 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         mContext.getContentResolver().registerContentObserver(
                 Settings.Global.getUriFor(Settings.Global.AIRPLANE_MODE_ON), true,
                 mAirplaneModeObserver);
-        mContext.getContentResolver().registerContentObserver(
-                Settings.Global.getUriFor(Settings.AOKP.IMMERSIVE_MODE), true,
-                mImmersiveModeObserver);
         Vibrator vibrator = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
         mHasVibrator = vibrator != null && vibrator.hasVibrator();
 
@@ -262,7 +256,6 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         // Power menu customization
         ContentResolver resolver = mContext.getContentResolver();
         mAirplaneOption = Settings.AOKP.getInt(resolver, Settings.AOKP.AIRPLANE_MODE_OPTIONS, 1);
-        mImmersiveOption = Settings.AOKP.getInt(resolver, Settings.AOKP.IMMERSIVE_MODE_OPTIONS, 0);
         mRebootOption = Settings.AOKP.getInt(resolver, Settings.AOKP.REBOOT_MODE_OPTIONS, 1);
         mScreenshotOption = Settings.AOKP.getInt(resolver, Settings.AOKP.SCREENSHOT_MODE_OPTIONS, 0);
         mScreenrecordOption = Settings.AOKP.getInt(resolver, Settings.AOKP.SCREENRECORD_MODE_OPTIONS, 0);
@@ -311,33 +304,6 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         };
         onAirplaneModeChanged();
 
-        mImmersiveModeOn = new ToggleAction(
-                R.drawable.ic_navbar_hide_on,
-                R.drawable.ic_navbar_hide_off,
-                com.android.internal.R.string.immersive_mode,
-                com.android.internal.R.string.immersive_mode_on,
-                com.android.internal.R.string.immersive_mode_off) {
-
-            void onToggle(boolean on) {
-                Settings.AOKP.putBoolean(mContext.getContentResolver(), Settings.AOKP.IMMERSIVE_MODE, on);
-            }
-
-            @Override
-            protected void changeStateFromPress(boolean buttonOn) {
-                mState = buttonOn ? State.On : State.Off;
-                mImmersiveState = mState;
-            }
-
-            public boolean showDuringKeyguard() {
-                boolean toggle = checkOptionAndKeyguard(mImmersiveOption);
-                return toggle;
-            }
-
-            public boolean showBeforeProvisioning() {
-                return false;
-            }
-        };
-        onImmersiveModeChanged();
         mItems = new ArrayList<Action>();
 
         // first: power off
@@ -434,9 +400,6 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
             // next: airplane mode
          if (mAirplaneOption != 0) {
             mItems.add(mAirplaneModeOn);
-         }
-         if (mImmersiveOption != 0) {
-            mItems.add(mImmersiveModeOn);
          }
 
         if (mScreenrecordOption != 0) {
@@ -1316,18 +1279,6 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         };
     };
 
-    private ContentObserver mImmersiveModeObserver = new ContentObserver(new Handler()) {
-        @Override
-        public void onChange(boolean selfChange) {
-            onImmersiveModeChanged();
-        }
-
-        @Override
-        public void onChange(boolean selfChange, android.net.Uri uri) {
-            onImmersiveModeChanged();
-        };
-    };
-
     private static final int MESSAGE_DISMISS = 0;
     private static final int MESSAGE_REFRESH = 1;
     private static final int MESSAGE_SHOW = 2;
@@ -1374,16 +1325,6 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
         mAirplaneState = getUpdatedAirplaneToggleState();
         mAirplaneModeOn.updateState(mAirplaneState);
-    }
-
-    private void onImmersiveModeChanged() {
-        // Let the service state callbacks handle the state.
-
-        boolean immersiveModeOn = Settings.AOKP.getBoolean(
-                mContext.getContentResolver(),
-                Settings.AOKP.IMMERSIVE_MODE, false);
-        mImmersiveState = immersiveModeOn ? ToggleAction.State.On : ToggleAction.State.Off;
-        mImmersiveModeOn.updateState(mImmersiveState);
     }
 
     /**

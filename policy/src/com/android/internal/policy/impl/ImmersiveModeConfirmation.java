@@ -123,7 +123,7 @@ public class ImmersiveModeConfirmation {
         mHandler.removeMessages(H.SHOW);
         if (isImmersiveMode) {
             mLastPackage = pkg;
-            if (DEBUG_SHOW_EVERY_TIME || mConfirmedPackages.size() < 1) {
+            if (DEBUG_SHOW_EVERY_TIME || !mConfirmedPackages.contains(pkg)) {
                 mHandler.sendMessageDelayed(mHandler.obtainMessage(H.SHOW, pkg), mShowDelayMs);
             }
         } else {

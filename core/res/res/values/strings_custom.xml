@@ -35,11 +35,6 @@
     <!-- Rotation lock message -->
     <string name="rotation_lock_toggled">Rotation lock toggled</string>
 
-    <!-- Immersive Mode -->
-    <string name="immersive_mode">Immersive mode</string>
-    <string name="immersive_mode_on">Immersive mode is ON</string>
-    <string name="immersive_mode_off">Immersive mode is OFF</string>
-
     <!-- Awesome Action Stuff-->
     <string name="action_home">Home</string>
     <string name="action_back">Back</string>

@@ -179,8 +179,8 @@ public class AOKPSearchPanelView extends FrameLayout implements
 
     class GlowPadTriggerListener implements GlowPadView.OnTriggerListener {
         boolean mWaitingForLaunch;
-
-       final Runnable SetLongPress = new Runnable () {
+        int mLastTargetChange;
+        final Runnable SetLongPress = new Runnable () {
             public void run() {
                 if (!mLongPress) {
                     vibrate();
@@ -209,6 +209,10 @@ public class AOKPSearchPanelView extends FrameLayout implements
                 mHandler.removeCallbacks(SetLongPress);
                 mLongPress = false;
             } else {
+                if(mLastTargetChange != target) {
+                    vibrate();
+                    mLastTargetChange = target;
+                }
                 if (!TextUtils.isEmpty(longList.get(target)) && !longList.get(target).equals(AwesomeConstant.ACTION_NULL.value())) {
                     mTarget = target;
                     mHandler.postDelayed(SetLongPress, ViewConfiguration.getLongPressTimeout());
@@ -227,6 +231,8 @@ public class AOKPSearchPanelView extends FrameLayout implements
         public void onTrigger(View v, final int target) {
             mTarget = target;
             if (!mLongPress) {
+                vibrate();
+
                 if (AwesomeConstant.ACTION_ASSIST.equals(intentList.get(target))) {
                     startAssistActivity();
                 } else {

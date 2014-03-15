@@ -430,6 +430,35 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
             mItems.add(mExpandDesktopModeOn);
         }
 
+        // next: On-The-Go, if enabled
+        boolean showOnTheGo =
+                Settings.System.getIntForUser(mContext.getContentResolver(),
+                        Settings.System.POWER_MENU_ONTHEGO_ENABLED,
+                        0, UserHandle.USER_CURRENT) != 0;
+        if (showOnTheGo) {
+            mItems.add(
+                new SinglePressAction(com.android.internal.R.drawable.ic_lock_onthego,
+                        R.string.global_action_onthego) {
+
+                        public void onPress() {
+                            startOnTheGo();
+                        }
+
+                        public boolean onLongPress() {
+                            return false;
+                        }
+
+                        public boolean showDuringKeyguard() {
+                            return true;
+                        }
+
+                        public boolean showBeforeProvisioning() {
+                            return true;
+                        }
+                    }
+            );
+        }
+
         // next: airplane mode
         if (mAirplaneOption != 0) {
            mItems.add(mAirplaneModeOn);
@@ -451,8 +480,8 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                     public boolean showBeforeProvisioning() {
                         return true;
                     }
-             });
-         }
+                });
+        }
 
         // next: bug report, if enabled
         if (Settings.Global.getInt(mContext.getContentResolver(),
@@ -800,6 +829,15 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
             ((ToggleAction)mSilentModeAction).updateState(
                     silentModeOn ? ToggleAction.State.On : ToggleAction.State.Off);
         }
+    }
+
+    private void startOnTheGo() {
+        final ComponentName cn = new ComponentName("com.android.systemui",
+                "com.android.systemui.nameless.onthego.OnTheGoService");
+        final Intent startIntent = new Intent();
+        startIntent.setComponent(cn);
+        startIntent.setAction("start");
+        mContext.startService(startIntent);
     }
 
     /** {@inheritDoc} */

@@ -142,4 +142,7 @@
     <string name="global_actions_expanded_desktop_mode_off_status">Disabled</string>
     <string name="immersive_mode_confirmation_bottom">Swipe up from the bottom to exit full screen.</string>
 
+    <!-- label for item that takes On-The-Go in the phone options dialog -->
+    <string name="global_action_onthego">On-The-Go Mode</string>
+
 </resources>

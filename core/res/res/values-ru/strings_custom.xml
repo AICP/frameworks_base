@@ -37,7 +37,7 @@
   <string name="action_ime">Выбор способа ввода</string>
   <string name="action_kill">Завершить задачу</string>
   <string name="action_lastapp">Последнее приложение</string>
-  <string name="action_power">Питание</string>
+  <string name="action_power">Выключение</string>
   <string name="action_notifications">Уведомления</string>
   <string name="action_assist">Поиск (Google Now)</string>
   <string name="action_clockoptions">Опции часов</string>

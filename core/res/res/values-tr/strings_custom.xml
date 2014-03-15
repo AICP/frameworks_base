@@ -18,7 +18,7 @@
  */
 -->
 <resources>
-  <string name="reboot">Yeniden başlat</string>
+  <string name="reboot">Yeniden Başlat</string>
   <string name="reboot_recovery">Kurtarma</string>
   <string name="reboot_download">İndir</string>
   <string name="reboot_bootloader">Ön yükleyici</string>

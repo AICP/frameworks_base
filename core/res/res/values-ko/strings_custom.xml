@@ -51,12 +51,12 @@
   <string name="action_alarm">알람</string>
   <string name="action_unlock">잠금 해제</string>
   <string name="action_camera">카메라</string>
-  <string name="action_null">공백</string>
+  <string name="action_null">없음</string>
   <string name="action_widgets">네비게이션 바 위젯</string>
   <string name="action_app_window">애플리케이션 창</string>
   <string name="action_ribbon">AOKP 리본</string>
   <string name="action_app">사용자 정의 앱/바로가기</string>
-  <string name="app_killed_message">어플리케이션이 종료됨</string>
+  <string name="app_killed_message">애플리케이션 종료됨</string>
   <string name="global_action_screenshot">스크린샷</string>
   <string name="animation_fade">페이드</string>
   <string name="animation_slide_right">오른쪽에서 슬라이드</string>
@@ -72,6 +72,6 @@
   <string name="animation_grow_shrink_bottom">커지기(아래)</string>
   <string name="animation_grow_shrink_left">커지기(왼쪽)</string>
   <string name="animation_grow_shrink_right">커지기(오른쪽)</string>
-  <string name="notify_turn_wifi_off_title">Wi-Fi 끄기</string>
-  <string name="notify_turn_tethering_off_title">테더링 끄기</string>
+  <string name="notify_turn_wifi_off_title">Wi-Fi OFF</string>
+  <string name="notify_turn_tethering_off_title">테더링 OFF</string>
 </resources>

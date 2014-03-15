@@ -24,13 +24,13 @@
   <string name="screenrecord_notif_stop">Stopp</string>
   <string name="screenrecord_notif_pointer">Växla till pekare</string>
   <string name="screenrecord_notif_error">Det går inte att spela in skärmen</string>
-  <string name="battery_percent_format"><xliff:g id="nummer"> %d %% </xliff:g></string>
-  <string name="status_bar_notification_hide_icon_packages">Dölj app\'s ikonerna</string>
+  <string name="battery_percent_format"><xliff:g id="number">%d%%</xliff:g></string>
+  <string name="status_bar_notification_hide_icon_packages">Dölj app ikonerna</string>
   <string name="memory">RAM</string>
-  <string name="service_background_processes"><xliff:g id="minne"> %1$s</xliff:g> gratis</string>
-  <string name="service_foreground_processes"><xliff:g id="minne"> %1$s</xliff:g> användt</string>
+  <string name="service_background_processes"><xliff:g id="memory">%1$s</xliff:g> ledig</string>
+  <string name="service_foreground_processes"><xliff:g id="memory">%1$s</xliff:g> använt</string>
   <string name="service_process_name"><xliff:g id="process"> %1$s</xliff:g></string>
-  <string name="service_client_name"><xliff:g id="klient_namn"> %1$s</xliff:g></string>
+  <string name="service_client_name"><xliff:g id="client_name">%1$s</xliff:g></string>
   <string name="service_started_by_app">Startad av app.</string>
   <string name="running_processes_item_description_s_s"><xliff:g id="numprocess">%1$d</xliff:g> processer och<xliff:g id="numservices">%2$d</xliff:g>tjänster</string>
   <string name="running_processes_item_description_s_p"><xliff:g id="numprocess">%1$d</xliff:g>process och<xliff:g id="numservices">%2$d</xliff:g>tjänster</string>

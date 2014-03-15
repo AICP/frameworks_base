@@ -24,12 +24,15 @@
   <string name="screenrecord_notif_stop">Zatrzymaj</string>
   <string name="screenrecord_notif_pointer">Przełącz wskaźnik</string>
   <string name="screenrecord_notif_error">Nie można nagrać ekranu</string>
+  <string name="battery_percent_format"><xliff:g id="number">%d%%</xliff:g></string>
   <string name="status_bar_notification_hide_icon_packages">Ukryj ikony aplikacji</string>
   <string name="memory">RAM</string>
-  <string name="service_background_processes"><xliff:g id="MEMORY">%1$s</xliff:g> wolne</string>
-  <string name="service_foreground_processes"><xliff:g id="MEMORY">%1$s</xliff:g> w użyciu</string>
+  <string name="service_background_processes"><xliff:g id="memory">%1$s</xliff:g> wolne</string>
+  <string name="service_foreground_processes"><xliff:g id="memory">%1$s</xliff:g> w użyciu</string>
+  <string name="service_process_name"><xliff:g id="process">%1$s</xliff:g></string>
+  <string name="service_client_name"><xliff:g id="client_name">%1$s</xliff:g></string>
   <string name="service_started_by_app">Uruchomiona przez aplikację.</string>
-  <string name="running_processes_item_description_s_s"><xliff:g id="NUMPROCESS">%1$d</xliff:g> proces, <xliff:g id="NUMSERVICES">%2$d</xliff:g> usługa</string>
+  <string name="running_processes_item_description_s_s"><xliff:g id="numprocess">%1$d</xliff:g> proces, <xliff:g id="numservices">%2$d</xliff:g> usługa</string>
   <string name="running_processes_item_description_s_p"><xliff:g id="NUMPROCESS">%1$d</xliff:g> proces, <xliff:g id="NUMSERVICES">%2$d</xliff:g> usługi</string>
   <string name="running_processes_item_description_p_s"><xliff:g id="NUMPROCESS">%1$d</xliff:g> procesy, <xliff:g id="NUMSERVICES">%2$d</xliff:g> usługa</string>
   <string name="running_processes_item_description_p_p"><xliff:g id="NUMPROCESS">%1$d</xliff:g> procesy, <xliff:g id="NUMSERVICES">%2$d</xliff:g> usługi</string>
@@ -37,6 +40,7 @@
   <string name="permdesc_screenshot">Zrób zrzut ekranu</string>
   <string name="permlab_screenshot">Umożliwia aplikacji przechwytywanie ekranu. To jest chronione przez SystemUI.</string>
   <string name="screenshot_toast">Zrzut ekranu w %1$d sekund</string>
+  <string name="permdesc_screenrecord">Przechwytuj nagrywanie ekranu</string>
   <string name="permlab_screenrecord">Umożliwia aplikacji do przechwytywania ekranu zapisu. To jest chronione przez SystemUI.</string>
   <string name="app_window">Okno aplikacji</string>
   <string name="close">Zamknij</string>

@@ -25,4 +25,19 @@
   <string name="delete_in_progress">Usuwanie...</string>
   <string name="ok">Ok</string>
   <string name="cancel">Anuluj</string>
+  <plurals name="files_copied">
+    <item quantity="one">Plik został umieszczony w schowku</item>
+    <item quantity="few">Plik został zapisany w schowku</item>
+    <item quantity="other">%d plików zostało umieszczonych w schowku</item>
+  </plurals>
+  <plurals name="files_pasted">
+    <item quantity="one">Plik został wklejony. Jego przesłanie może kończyć się w tle.</item>
+    <item quantity="few">%d pliki zostały wklejone. Ich przesłanie może kończyć się w tle.</item>
+    <item quantity="other">%d plików zostało wklejonych. Ich przesłanie może kończyć się w tle.</item>
+  </plurals>
+  <plurals name="dialog_delete_confirm_message">
+    <item quantity="one">Ten plik zostanie trwale usunięty!</item>
+    <item quantity="few">%d pliki zostaną trwale usunięte!</item>
+    <item quantity="other">%d plików zostanie trwale usuniętych!</item>
+  </plurals>
 </resources>

@@ -27,14 +27,14 @@
   <string name="cancel">Annulla</string>
   <plurals name="files_copied">
     <item quantity="one">Il file è stato copiato negli appunti</item>
-    <item quantity="other">Il file è stato copiato negli appunti</item>
+    <item quantity="other">%d file sono stati copiati negli appunti</item>
   </plurals>
   <plurals name="files_pasted">
-    <item quantity="one">Il file è stato incollato. L\'upload potrebbe terminare in background.</item>
-    <item quantity="other">%d file sono stati incollati. L\'upload potrebbe terminare in background.</item>
+    <item quantity="one">Il file è stato incollato. L\'upload potrebbe completarsi in background.</item>
+    <item quantity="other">%d file sono stati incollati. L\'upload potrebbe completarsi in background.</item>
   </plurals>
   <plurals name="dialog_delete_confirm_message">
-    <item quantity="one">Questo file sarà cancellato definitivamente!</item>
+    <item quantity="one">Questo file verrà eliminato definitivamente!</item>
     <item quantity="other">Questo cancellerà definitivamente i %d file selezionati!</item>
   </plurals>
 </resources>

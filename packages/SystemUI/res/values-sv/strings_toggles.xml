@@ -38,7 +38,7 @@
   <string name="toggle_NFC">NFC</string>
   <string name="toggle_TORCH">Ficklampa</string>
   <string name="toggle_WIFITETHER">WiFi tether</string>
-  <string name="toggle_USBTETHER">USB Tether</string>
+  <string name="toggle_USBTETHER">USB tether</string>
   <string name="toggle_2G">2G</string>
   <string name="toggle_LTE">LTE</string>
   <string name="toggle_FAVCONTACT">Favoritkontakt</string>

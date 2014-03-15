@@ -25,10 +25,10 @@
   <string name="screenrecord_notif_error">Incapaz de grabar la pantalla</string>
   <string name="status_bar_notification_hide_icon_packages">Ocultar iconos de las aplicaciones</string>
   <string name="memory">RAM</string>
-  <string name="service_background_processes"><xliff:g id="MEMORY">%1$s</xliff:g> libre</string>
-  <string name="service_foreground_processes"><xliff:g id="MEMORY">%1$s</xliff:g> usada</string>
+  <string name="service_background_processes"><xliff:g id="memory">%1$s</xliff:g> libre</string>
+  <string name="service_foreground_processes"><xliff:g id="memory">%1$s</xliff:g> usada</string>
   <string name="service_started_by_app">Iniciado por la aplicación.</string>
-  <string name="running_processes_item_description_s_s"><xliff:g id="NUMPROCESS">%1$d</xliff:g> proceso y <xliff:g id="NUMSERVICES">%2$d</xliff:g> servicio</string>
+  <string name="running_processes_item_description_s_s"><xliff:g id="numprocess">%1$d</xliff:g> proceso y <xliff:g id="numservices">%2$d</xliff:g> servicio</string>
   <string name="running_processes_item_description_s_p"><xliff:g id="NUMPROCESS">%1$d</xliff:g> proceso y <xliff:g id="NUMSERVICES">%2$d</xliff:g> servicios</string>
   <string name="running_processes_item_description_p_s"><xliff:g id="NUMPROCESS">%1$d</xliff:g> procesos y <xliff:g id="NUMSERVICES">%2$d</xliff:g> servicio</string>
   <string name="running_processes_item_description_p_p"><xliff:g id="NUMPROCESS">%1$d</xliff:g> procesos y <xliff:g id="NUMSERVICES">%2$d</xliff:g> servicios</string>

@@ -24,15 +24,15 @@
   <string name="screenrecord_notif_stop">Durdur</string>
   <string name="screenrecord_notif_pointer">Geçiş göstergesi</string>
   <string name="screenrecord_notif_error">Ekran kaydedilemiyor</string>
-  <string name="battery_percent_format"><xliff:g id="number"> %d %% </xliff:g></string>
+  <string name="battery_percent_format"><xliff:g id="number">%d%%</xliff:g></string>
   <string name="status_bar_notification_hide_icon_packages">Uygulama simgelerini gizle</string>
   <string name="memory">RAM</string>
-  <string name="service_background_processes"><xliff:g id="MEMORY">%1$s</xliff:g> boş</string>
-  <string name="service_foreground_processes"><xliff:g id="MEMORY">%1$s</xliff:g> kullanılıyor</string>
-  <string name="service_process_name"><xliff:g id="process"> %1$ s </xliff:g></string>
-  <string name="service_client_name"><xliff:g id="client_name"> %1$ s </xliff:g></string>
+  <string name="service_background_processes"><xliff:g id="memory">%1$s</xliff:g> boş</string>
+  <string name="service_foreground_processes"><xliff:g id="memory">%1$s</xliff:g> kullanılıyor</string>
+  <string name="service_process_name"><xliff:g id="process">%1$s</xliff:g></string>
+  <string name="service_client_name"><xliff:g id="client_name">%1$s</xliff:g></string>
   <string name="service_started_by_app">Uygulama tarafından başlatıldı.</string>
-  <string name="running_processes_item_description_s_s"><xliff:g id="NUMPROCESS">%1$d</xliff:g> işlem ve <xliff:g id="NUMSERVICES">%2$d</xliff:g> hizmet</string>
+  <string name="running_processes_item_description_s_s"><xliff:g id="numprocess">%1$d</xliff:g> işlem ve <xliff:g id="numservices">%2$d</xliff:g> hizmet</string>
   <string name="running_processes_item_description_s_p"><xliff:g id="NUMPROCESS">%1$d</xliff:g> işlem ve <xliff:g id="NUMSERVICES">%2$d</xliff:g> hizmetler</string>
   <string name="running_processes_item_description_p_s"><xliff:g id="NUMPROCESS">%1$d</xliff:g> işlemler ve<xliff:g id="NUMSERVICES">%2$d</xliff:g> hizmet</string>
   <string name="running_processes_item_description_p_p"><xliff:g id="NUMPROCESS">%1$d</xliff:g> işlemler ve <xliff:g id="NUMSERVICES">%2$d</xliff:g> hizmetler</string>

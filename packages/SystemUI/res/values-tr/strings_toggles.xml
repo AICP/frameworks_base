@@ -15,4 +15,40 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"/>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="toggle_USER">Şu anki kullanıcı</string>
+  <string name="toggle_BRIGHTNESS">Parlaklık</string>
+  <string name="toggle_VOLUME">Ses</string>
+  <string name="toggle_SETTINGS">Ayarlar</string>
+  <string name="toggle_WIFI">WiFi</string>
+  <string name="toggle_SIGNAL">Sinyal</string>
+  <string name="toggle_ROTATE">Otomatik Döndür</string>
+  <string name="toggle_CLOCK">Saat</string>
+  <string name="toggle_GPS">GPS</string>
+  <string name="toggle_LOCATION">Konum</string>
+  <string name="toggle_BATTERY">Batarya</string>
+  <string name="toggle_AIRPLANE_MODE">Uçak Modu</string>
+  <string name="toggle_BLUETOOTH">Bluetooth</string>
+  <string name="toggle_VIBRATE">Titreşim</string>
+  <string name="toggle_SILENT">Sessiz</string>
+  <string name="toggle_FCHARGE">Hızlı Şarj</string>
+  <string name="toggle_SYNC">Senkronizasyon</string>
+  <string name="toggle_NFC">NFC</string>
+  <string name="toggle_TORCH">Fener</string>
+  <string name="toggle_2G">2G</string>
+  <string name="toggle_LTE">LTE</string>
+  <string name="toggle_SLEEP">Uyku</string>
+  <string name="toggle_STATUSBAR">Durum Çubuğu</string>
+  <string name="toggle_SCREENSHOT">Ekran Görüntüsü</string>
+  <string name="toggle_REBOOT">Yeniden Başlat</string>
+  <string name="toggle_CUSTOM">Özel</string>
+  <string name="toggle_WIRELESSADB">Kablosuz ADB</string>
+  <string name="toggle_IMMERSIVE_MODE">Tam Ekran Modu</string>
+  <string name="quick_settings_recording">Kayıt Ediliyor...</string>
+  <string name="quick_settings_recordingcap">Kayıt Edildi</string>
+  <string name="quick_settings_sleep">Uyku</string>
+  <string name="quick_settings_reboot">Yeniden Başlat</string>
+  <string name="quick_settings_reboot_message">Cihazınız yeniden başlatılıyor</string>
+  <string name="quick_settings_screenshot">Ekran Görüntüsü</string>
+  <string name="quick_settings_screenrecord">Ekran Kaydı</string>
+</resources>

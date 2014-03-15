@@ -23,10 +23,10 @@
   <string name="reboot_download">Scarica</string>
   <string name="reboot_bootloader">Bootloader</string>
   <string name="reboot_progress">Il tuo dispositivo si sta riavviando</string>
-  <string name="rotation_lock_toggled">Blocco rotazione attivato</string>
+  <string name="rotation_lock_toggled">Blocco rotazione selezionato</string>
   <string name="immersive_mode">Modalità immersiva</string>
-  <string name="immersive_mode_on">Modalità immersiva attiva</string>
-  <string name="immersive_mode_off">Modalità immersiva disattiva</string>
+  <string name="immersive_mode_on">La modalità immersiva è attiva</string>
+  <string name="immersive_mode_off">La modalità immersiva è disattiva</string>
   <string name="action_home">Home</string>
   <string name="action_back">Indietro</string>
   <string name="action_recents">Recenti</string>
@@ -68,10 +68,10 @@
   <string name="animation_default">Predefinito</string>
   <string name="animation_translucent">Traslucido</string>
   <string name="animation_grow_shrink">Cresci (verso l\'alto)</string>
-  <string name="animation_grow_shrink_center">Espande (dal centro)</string>
-  <string name="animation_grow_shrink_bottom">Espande (dal basso)</string>
-  <string name="animation_grow_shrink_left">Espande (da sinistra)</string>
-  <string name="animation_grow_shrink_right">Espande (da destra)</string>
-  <string name="notify_turn_wifi_off_title">Spegnere il Wi-Fi</string>
-  <string name="notify_turn_tethering_off_title">Disattivare il Tethering</string>
+  <string name="animation_grow_shrink_center">Cresci (dal centro)</string>
+  <string name="animation_grow_shrink_bottom">Cresci (dal basso)</string>
+  <string name="animation_grow_shrink_left">Cresci (da sinistra)</string>
+  <string name="animation_grow_shrink_right">Cresci (da destra)</string>
+  <string name="notify_turn_wifi_off_title">Spegni il Wi-Fi</string>
+  <string name="notify_turn_tethering_off_title">Disattiva il Tethering</string>
 </resources>

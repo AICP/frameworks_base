@@ -68,7 +68,7 @@
   <string name="quick_settings_reboot_message">L\'appareil redémarre</string>
   <string name="quick_settings_stayawake_on">Rester évéillé Activée</string>
   <string name="quick_settings_stayawake_off">Rester éveillé Désactivée</string>
-  <string name="quick_settings_adb_on"><xliff:g id="ip" exemple="192.168.1.5">%s</xliff:g></string>
+  <string name="quick_settings_adb_on"><xliff:g id="ip" example="192.168.1.5">%s</xliff:g></string>
   <string name="quick_settings_adb_off">ADB sans fil Désactivée</string>
   <string name="quick_settings_volume">Volume</string>
   <string name="quick_settings_vibrate_on_label">Vibreur Activé</string>

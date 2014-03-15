@@ -23,4 +23,8 @@
   <string name="reboot_download">Restart do trybu Download</string>
   <string name="reboot_bootloader">Restart do bootloadera</string>
   <string name="reboot_progress">Twoje urządzenie restartuje się</string>
+  <string name="rotation_lock_toggled">Blokada obrotu ekranu przełączona</string>
+  <string name="immersive_mode">Tryb Imersywny</string>
+  <string name="immersive_mode_on">Tryb Imersywny jest włączony</string>
+  <string name="immersive_mode_off">Tryb Imersywny jest wyłączony</string>
 </resources>

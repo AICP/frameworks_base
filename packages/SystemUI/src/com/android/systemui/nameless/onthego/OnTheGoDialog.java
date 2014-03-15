@@ -97,17 +97,17 @@ public class OnTheGoDialog extends Dialog {
         });
 
         final Switch mCamSwitch = (Switch) findViewById(R.id.onthego_camera_toggle);
-        final boolean useFrontCam = (Settings.Nameless.getInt(resolver,
-                Settings.Nameless.ON_THE_GO_CAMERA,
+        final boolean useFrontCam = (Settings.System.getInt(resolver,
+                Settings.System.ON_THE_GO_CAMERA,
                 0) == 1);
         mCamSwitch.setChecked(useFrontCam);
         mCamSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                Settings.Nameless.putInt(resolver,
-                        Settings.Nameless.ON_THE_GO_CAMERA,
+                Settings.System.putInt(resolver,
+                        Settings.System.ON_THE_GO_CAMERA,
                         (b ? 1 : 0));
-                dismissOnTheGoDialog(mOnTheGoDialogShortTimeout);
+                mHandler.post(mDismissDialogRunnable);
             }
         });
     }

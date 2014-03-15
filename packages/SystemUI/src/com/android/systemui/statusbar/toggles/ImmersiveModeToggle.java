@@ -61,17 +61,33 @@ public class ImmersiveModeToggle extends StatefulToggle {
     }
 
     protected void toggleExpandedDesktop(boolean state) {
-        if (state) {
-            Settings.System.putInt(mContext.getContentResolver(),
-                    Settings.System.EXPANDED_DESKTOP_STATE, 1);
-            Settings.System.putInt(mContext.getContentResolver(),
-                    Settings.System.EXPANDED_DESKTOP_STYLE, 2);
-        } else {
-            Settings.System.putInt(mContext.getContentResolver(),
-                    Settings.System.EXPANDED_DESKTOP_STATE, 0);
-            Settings.System.putInt(mContext.getContentResolver(),
-                    Settings.System.EXPANDED_DESKTOP_STYLE, 0);
+        int mChecker = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.EXPANDED_DESKTOP_STYLE_TEMP, 0);
 
+        if (mChecker == 1) {
+            if (state) {
+                Settings.System.putInt(mContext.getContentResolver(),
+                        Settings.System.EXPANDED_DESKTOP_STATE, 1);
+                Settings.System.putInt(mContext.getContentResolver(),
+                        Settings.System.EXPANDED_DESKTOP_STYLE, 1);
+            } else {
+                Settings.System.putInt(mContext.getContentResolver(),
+                        Settings.System.EXPANDED_DESKTOP_STATE, 0);
+                Settings.System.putInt(mContext.getContentResolver(),
+                        Settings.System.EXPANDED_DESKTOP_STYLE, 0);
+            }
+        } else if (mChecker == 2  || mChecker == 0) {
+            if (state) {
+                Settings.System.putInt(mContext.getContentResolver(),
+                        Settings.System.EXPANDED_DESKTOP_STATE, 1);
+                Settings.System.putInt(mContext.getContentResolver(),
+                        Settings.System.EXPANDED_DESKTOP_STYLE, 2);
+            } else {
+                Settings.System.putInt(mContext.getContentResolver(),
+                        Settings.System.EXPANDED_DESKTOP_STATE, 0);
+                Settings.System.putInt(mContext.getContentResolver(),
+                        Settings.System.EXPANDED_DESKTOP_STYLE, 0);
+            }
         }
     }
 

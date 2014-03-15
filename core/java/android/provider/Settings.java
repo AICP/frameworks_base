@@ -3702,6 +3702,12 @@ public final class Settings {
         public static final String EXPANDED_DESKTOP_STYLE = "expanded_desktop_style";
 
         /**
+         * Expanded desktop style temp variable for toggle check
+         * @hide
+         */
+        public static final String EXPANDED_DESKTOP_STYLE_TEMP = "expanded_desktop_style_temp";
+
+        /**
          * Whether power menu expanded desktop is enabled
          * @hide
          */

@@ -89,7 +89,7 @@ public class PowerUI extends SystemUI {
         final PowerManager pm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
         mScreenOffTime = pm.isScreenOn() ? -1 : SystemClock.elapsedRealtime();
 
-	// Register settings observer and set initial preferences
+        // Register settings observer and set initial preferences
         SettingsObserver settingsObserver = new SettingsObserver(new Handler());
         settingsObserver.observe();
         setPreferences();
@@ -246,9 +246,8 @@ public class PowerUI extends SystemUI {
                         && (bucket < oldBucket || oldPlugged)
                         && mBatteryStatus != BatteryManager.BATTERY_STATUS_UNKNOWN
                         && bucket < 0) {
-                    showLowBatteryWarning();
 
-		    if(mShowLowBatteryDialogWarning) {
+                    if(mShowLowBatteryDialogWarning) {
                         showLowBatteryWarning();
                     }
                     if(mShowLowBatteryNotificationWarning) {
@@ -476,4 +475,3 @@ public class PowerUI extends SystemUI {
         pw.println(Integer.toString(findBatteryLevelBucket(mBatteryLevel)));
     }
 }
-

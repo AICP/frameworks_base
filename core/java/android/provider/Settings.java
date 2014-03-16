@@ -3714,6 +3714,12 @@ public final class Settings {
         public static final String POWER_MENU_EXPANDED_DESKTOP_ENABLED = "power_menu_expanded_desktop_enabled";
 
         /**
+         * Whether navbar will be shown on swipe up
+         * @hide
+         */
+        public static final String DONT_SHOW_NAVBAR_ON_SWIPE_EXPANDED_DESKTOP_ENABLED = "dont_show_navbar_on_swipe_expanded_desktop_enabled";
+
+        /**
          * If On-The-Go should be displayed at the power menu.
          *
          * @hide

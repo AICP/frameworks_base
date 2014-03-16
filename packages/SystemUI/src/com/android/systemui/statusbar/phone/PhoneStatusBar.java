@@ -2240,12 +2240,17 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 cancelAutohide();
             }
 
+            int mDontShowNavbar = Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.DONT_SHOW_NAVBAR_ON_SWIPE_EXPANDED_DESKTOP_ENABLED, 0);
+
             // ready to unhide
             if ((vis & View.STATUS_BAR_UNHIDE) != 0) {
                 mSystemUiVisibility &= ~View.STATUS_BAR_UNHIDE;
             }
-            if ((vis & View.NAVIGATION_BAR_UNHIDE) != 0) {
-                mSystemUiVisibility &= ~View.NAVIGATION_BAR_UNHIDE;
+            if (mDontShowNavbar == 0) {
+                if ((vis & View.NAVIGATION_BAR_UNHIDE) != 0) {
+                    mSystemUiVisibility &= ~View.NAVIGATION_BAR_UNHIDE;
+                }
             }
 
             // send updated sysui visibility to window manager
@@ -3385,6 +3390,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.APP_SIDEBAR_POSITION),
                     false, this, UserHandle.USER_ALL);
+
         }
 
         @Override

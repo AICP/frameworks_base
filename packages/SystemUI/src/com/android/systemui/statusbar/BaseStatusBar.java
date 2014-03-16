@@ -215,6 +215,8 @@ public abstract class BaseStatusBar extends SystemUI implements
     @ChaosLab(name="GestureAnywhere", classification=Classification.NEW_FIELD)
     protected GestureAnywhereView mGestureAnywhereView;
 
+    private int mExpandedDesktopStyle = 0;
+
     public IStatusBarService getStatusBarService() {
         return mBarService;
     }
@@ -752,7 +754,8 @@ public abstract class BaseStatusBar extends SystemUI implements
             if(mCustomRecent)
                 cRecents.toggleRecents(mDisplay, mLayoutDirection, getStatusBarView());
             else
-                mRecents.toggleRecents(mDisplay, mLayoutDirection, getStatusBarView());
+                mRecents.toggleRecents(mDisplay, mLayoutDirection, getStatusBarView(),
+                    mExpandedDesktopStyle);
             }
         }
     }
@@ -1546,6 +1549,10 @@ public abstract class BaseStatusBar extends SystemUI implements
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.APP_SIDEBAR_POSITION), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.EXPANDED_DESKTOP_STATE), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.EXPANDED_DESKTOP_STYLE), false, this);
             update();
         }
 

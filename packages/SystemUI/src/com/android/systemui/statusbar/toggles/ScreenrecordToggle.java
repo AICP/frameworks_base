@@ -16,7 +16,7 @@ public class ScreenrecordToggle extends BaseToggle {
     @Override
     public void init(Context c, int style) {
         super.init(c, style);
-        setIcon(R.drawable.ic_sysbar_camera);
+        setIcon(R.drawable.ic_sysbar_record);
         setLabel(R.string.quick_settings_screenrecord);
     }
 

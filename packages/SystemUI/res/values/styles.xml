@@ -184,10 +184,4 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <style name="RecentBaseStyle"  parent="@*android:style/Theme.Holo.Light">
-        <item name="android:popupMenuStyle">@style/RecentPopupMenu</item>
-    </style>
-
-    <style name="RecentPopupMenu" parent="@*android:style/Widget.Holo.Light.ListPopupWindow" />
-
 </resources>

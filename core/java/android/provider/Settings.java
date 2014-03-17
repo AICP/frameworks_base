@@ -8579,10 +8579,16 @@ public final class Settings {
         public static final String SWIPE_TO_SWITCH = "swipe_to_switch";
 
         /**
-         * Should the non-intrsive incall ui be used
+         * Should the non-intrusive incall ui be used
          * @hide
          */
         public static final String NON_INTRUSIVE_INCALL = "non_intrusive_incall";
+
+        /**
+         *
+         * @hide
+         */
+        public static final String SMART_PHONE_CALLER = "smart_phone_caller";
 
         /**
          * Whether the volume keys wake the screen.

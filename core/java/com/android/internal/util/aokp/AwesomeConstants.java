@@ -67,7 +67,8 @@ public class AwesomeConstants {
         ACTION_UNLOCK        { @Override public String value() { return "**unlock**";}},
         ACTION_CAMERA        { @Override public String value() { return "**camera**";}},
         ACTION_NULL          { @Override public String value() { return "**null**";}},
-        ACTION_APP           { @Override public String value() { return "**app**";}};
+        ACTION_APP           { @Override public String value() { return "**app**";}},
+        ACTION_REBOOTMENU    { @Override public String value() { return "**rebootmenu**";}};
         public String value() { return this.value(); }
     }
 
@@ -213,6 +214,9 @@ public class AwesomeConstants {
             case ACTION_APP:
                 value = res.getString(com.android.internal.R.string.action_app);
                 break;
+            case ACTION_REBOOTMENU:
+                value = res.getString(com.android.internal.R.string.action_rebootmenu);
+                break;
             case ACTION_NULL:
             default:
                 value = res.getString(com.android.internal.R.string.action_null);
@@ -307,6 +311,9 @@ public class AwesomeConstants {
                 break;
             case ACTION_APP: // APP doesn't really have an icon - it should look up
                         //the package icon - we'll return the 'null' on just in case
+            case ACTION_REBOOTMENU:
+                value = getSystemUIDrawable(context, "com.android.systemui:drawable/ic_sysbar_rebootmenu");
+                break;
             case ACTION_NULL:
             default:
                 value = getSystemUIDrawable(context, "com.android.systemui:drawable/ic_sysbar_null");

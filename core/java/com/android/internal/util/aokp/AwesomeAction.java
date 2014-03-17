@@ -250,6 +250,10 @@ public class AwesomeAction {
                         camera.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         mContext.startActivity(camera);
                         break;
+                    case ACTION_REBOOTMENU:
+                        Intent rebootmenu = new Intent(Intent.ACTION_REBOOTMENU);
+                        mContext.sendBroadcast(rebootmenu);
+                        break;
                 }
 
             }

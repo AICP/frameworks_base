@@ -66,6 +66,7 @@
     <java-symbol type="string" name="action_widgets"/>
     <java-symbol type="string" name="action_app_window"/>
     <java-symbol type="string" name="app_killed_message"/>
+    <java-symbol type="string" name="action_rebootmenu"/>
 
     <!-- ## Slim  Force permanent menu key -->
     <java-symbol type="bool" name="config_force_permanent_menu_key" />

@@ -95,13 +95,7 @@ public class CarrierText extends TextView {
     }
 
     protected void updateCarrierText(State simState, CharSequence plmn, CharSequence spn) {
-        String customLabel = Settings.System.getString(mContext.getContentResolver(),
-                Settings.System.NOTIFICATION_CUSTOM_CARRIER_LABEL);
-        if (customLabel != null && customLabel.length() > 0) {
-            setText(customLabel);
-        } else {
-            setText(getCarrierTextForSimState(simState, plmn, spn));
-        }
+        setText(getCarrierTextForSimState(simState, plmn, spn));
     }
 
     @Override

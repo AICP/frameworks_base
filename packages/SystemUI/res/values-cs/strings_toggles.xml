@@ -97,6 +97,9 @@
   <string name="quick_settings_lte_off_label">LTE vypnuto</string>
   <string name="quick_settings_gps_on_label">GPS zapnuta</string>
   <string name="quick_settings_gps_off_label">GPS vypnuta</string>
+  <string name="quick_settings_location_high_accuracy_label">Vysoká přesnost</string>
+  <string name="quick_settings_location_battery_saving_label">Úspora baterie</string>
+  <string name="quick_settings_location_device_only_label">Pouze zařízení</string>
   <string name="quick_settings_data_on_label">Data zapnuta</string>
   <string name="quick_settings_data_off_label">Data vypnuta</string>
   <string name="quick_settings_navbar_hide_on_label">Skrytá NL zapnuta</string>

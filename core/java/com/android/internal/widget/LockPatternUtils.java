@@ -1400,8 +1400,9 @@ public class LockPatternUtils {
                 || mode == DevicePolicyManager.PASSWORD_QUALITY_COMPLEX;
         final boolean hasPattern = isPattern && isLockPatternEnabled() && savedPatternExists();
         final boolean hasPassword = isPassword && savedPasswordExists();
+        final boolean hasGesture = isGesture && isLockGestureEnabled() && savedGestureExists();
 
-        return (hasPattern || hasPassword) &&
+        return (hasPattern || hasPassword || hasGesture) &&
                 getActiveProfileLockMode() == Profile.LockMode.DEFAULT;
     }
 

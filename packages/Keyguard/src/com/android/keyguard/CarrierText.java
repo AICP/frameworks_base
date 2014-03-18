@@ -20,6 +20,7 @@ import android.content.Context;
 import android.os.UserHandle;
 import android.provider.Settings;
 import android.text.method.SingleLineTransformationMethod;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
@@ -95,7 +96,13 @@ public class CarrierText extends TextView {
     }
 
     protected void updateCarrierText(State simState, CharSequence plmn, CharSequence spn) {
-        setText(getCarrierTextForSimState(simState, plmn, spn));
+        String customLabel = Settings.System.getString(getContext().getContentResolver(),
+                Settings.System.CUSTOM_CARRIER_LABEL);
+        if (customLabel == null || customLabel.length() == 0) {
+            setText(getCarrierTextForSimState(simState, plmn, spn));
+        } else {
+            setText(customLabel);
+        }
     }
 
     @Override

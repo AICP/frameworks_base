@@ -3775,6 +3775,16 @@ public final class Settings {
         public static final String NOTIFICATION_SHORTCUTS_HIDE_CARRIER = "notification_shortcuts_hide_carrier";
 
         /**
+         * @hide
+         */
+        public static final String NAVIGATION_MENU = "navigation_menu";
+
+        /**
+         * @hide
+         */
+        public static final String NAVIGATION_MENU_FORCE = "navigation_menu_force";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *

@@ -59,6 +59,7 @@ import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.TransitionDrawable;
 import android.inputmethodservice.InputMethodService;
 import android.net.Uri;
 import android.os.Bundle;
@@ -114,6 +115,7 @@ import com.android.systemui.R;
 import com.android.systemui.ReminderMessageView;
 import com.android.systemui.aokp.AokpSwipeRibbon;
 import com.android.systemui.aokp.SearchPanelSwipeView;
+import com.android.systemui.omni.StatusHeaderMachine;
 import com.android.systemui.statusbar.BaseStatusBar;
 import com.android.systemui.statusbar.CommandQueue;
 import com.android.systemui.statusbar.GestureRecorder;
@@ -324,6 +326,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     // to some other configuration change).
     CustomTheme mCurrentTheme;
     private boolean mRecreating = false;
+
+    // Contextual header
+    private StatusHeaderMachine mStatusHeaderMachine;
+    private Runnable mStatusHeaderUpdater;
 
     // for disabling the status bar
     int mDisabled = 0;
@@ -563,6 +569,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mExpandedContents = mPile; // was: expanded.findViewById(R.id.notificationLinearLayout);
 
         mNotificationPanelHeader = mStatusBarWindow.findViewById(R.id.header);
+
+        mStatusHeaderMachine = new StatusHeaderMachine(mContext);
+        updateCustomHeaderStatus();
 
         mReminderHeader = mStatusBarWindow.findViewById(R.id.reminder_header);
         mReminderHeader.setOnClickListener(mReminderButtonListener);
@@ -853,6 +862,57 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         updateBatteryIcons();
 
         return mStatusBarView;
+    }
+
+    private void updateCustomHeaderStatus() {
+        ContentResolver resolver = mContext.getContentResolver();
+        boolean customHeader = Settings.System.getInt(
+                resolver, Settings.System.STATUS_BAR_CUSTOM_HEADER, 0) == 1;
+
+        if (mNotificationPanelHeader == null) return;
+
+        // Setup the updating notification bar header image
+        if (customHeader) {
+            if (mStatusHeaderUpdater == null) {
+                mStatusHeaderUpdater = new Runnable() {
+                    private Drawable mPrevious = mNotificationPanelHeader.getBackground();
+
+                    public void run() {
+                        Drawable next = mStatusHeaderMachine.getCurrent();
+                        if (next != mPrevious) {
+                            Log.i(TAG, "Updating status bar header background");
+
+                            setNotificationPanelHeaderBackground(next);
+                            mPrevious = next;
+                        }
+
+                        // Check every hour. As postDelayed isn't holding a wakelock, it will basically
+                        // only check when the CPU is on. Thus, not consuming battery overnight.
+                        mHandler.postDelayed(this, 1000 * 3600);
+                    }
+                };
+            }
+
+            // Cancel any eventual ongoing statusHeaderUpdater, and start a clean one
+            mHandler.removeCallbacks(mStatusHeaderUpdater);
+            mHandler.post(mStatusHeaderUpdater);
+        } else {
+            if (mStatusHeaderUpdater != null) {
+                mHandler.removeCallbacks(mStatusHeaderUpdater);
+            }
+            setNotificationPanelHeaderBackground(mStatusHeaderMachine.getDefault());
+        }
+    }
+
+    private void setNotificationPanelHeaderBackground(final Drawable dw) {
+        Drawable[] arrayDrawable = new Drawable[2];
+        arrayDrawable[0] = mNotificationPanelHeader.getBackground();
+        arrayDrawable[1] = dw;
+
+        TransitionDrawable transitionDrawable = new TransitionDrawable(arrayDrawable);
+        transitionDrawable.setCrossFadeEnabled(true);
+        mNotificationPanelHeader.setBackgroundDrawable(transitionDrawable);
+        transitionDrawable.startTransition(1000);
     }
 
     @Override
@@ -3391,6 +3451,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     Settings.System.NOTIFICATION_SHORTCUTS_HIDE_CARRIER),
                     false, this, UserHandle.USER_ALL);
 
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_CUSTOM_HEADER),
+                    false, this, UserHandle.USER_ALL);
+
         }
 
         @Override
@@ -3441,7 +3505,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     }
 
     private void updateSettings() {
-        ContentResolver cr = mContext.getContentResolver();
+        final ContentResolver cr = mContext.getContentResolver();
         mToggleStyle = Settings.System.getInt(cr, Settings.AOKP.TOGGLES_STYLE,ToggleManager.STYLE_TILE);
         if(mToggleManager != null) {
             mToggleManager.updateSettings();
@@ -3489,6 +3553,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         if (mCarrierLabel != null) {
             toggleCarrierAndWifiLabelVisibility();
         }
+
+        updateCustomHeaderStatus();
 
     }
 

@@ -72,12 +72,24 @@
         <item name="android:textStyle">normal</item>
         <item name="android:textColor">@color/status_bar_carrier_color</item>
     </style>
-    
+
     <!-- Pixel home dot style -->
     <style name="DotStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_centerHorizontal">true</item>
         <item name="android:layout_centerVertical">true</item>
+    </style>
+
+    <!-- App circle side bar holo style -->
+    <style name="ListTheme" parent="@*android:style/Theme.Holo">
+        <item name="android:windowBackground">@*android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:listSelector">@*android:color/transparent</item>
+        <item name="android:scrollbars">none</item>
+        <item name="android:clipChildren">false</item>
+        <item name="android:overScrollMode">never</item>
+        <item name="android:divider">@null</item>
     </style>
 </resources>

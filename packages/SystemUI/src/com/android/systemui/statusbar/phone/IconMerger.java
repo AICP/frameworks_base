@@ -52,6 +52,8 @@ public class IconMerger extends LinearLayout {
         mIconSize = context.getResources().getDimensionPixelSize(
                 R.dimen.status_bar_icon_size);
 
+        mTotalWidth = mContext.getResources().getDisplayMetrics().widthPixels;
+
         mIconHPadding = mContext.getResources().getDimensionPixelSize(
                 R.dimen.status_bar_icon_padding);
         if (DEBUG) {
@@ -145,7 +147,7 @@ public class IconMerger extends LinearLayout {
         void observe() {
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.System
-                    .getUriFor(Settings.System.STATUSBAR_CLOCK_STYLE), false,
+                    .getUriFor(Settings.AOKP.STATUSBAR_CLOCK_STYLE), false,
                     this);
             updateSettings();
         }
@@ -160,7 +162,7 @@ public class IconMerger extends LinearLayout {
         ContentResolver resolver = mContext.getContentResolver();
 
         mShowCenterClock = Settings.System.getInt(resolver,
-                Settings.System.STATUSBAR_CLOCK_STYLE, Clock.STYLE_CLOCK_RIGHT) == Clock.STYLE_CLOCK_CENTER;
+                Settings.AOKP.STATUSBAR_CLOCK_STYLE, Clock.STYLE_CLOCK_RIGHT) == Clock.STYLE_CLOCK_CENTER;
 
         mIconHPadding = mContext.getResources().getDimensionPixelSize(
                 R.dimen.status_bar_icon_padding);

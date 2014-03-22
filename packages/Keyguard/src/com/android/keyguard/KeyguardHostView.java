@@ -421,13 +421,14 @@ public class KeyguardHostView extends KeyguardViewBase {
         showPrimarySecurityScreen(false);
         updateSecurityViews();
         enableUserSelectorIfNecessary();
+        minimizeChallengeIfNeeded();
 
         mExpandChallengeView = (View) findViewById(R.id.expand_challenge_handle);
         if (mExpandChallengeView != null) {
             mExpandChallengeView.setOnLongClickListener(mFastUnlockClickListener);
+            mExpandChallengeView.bringToFront();
         }
 
-        minimizeChallengeIfNeeded();
     }
 
     private void updateAndAddWidgets() {
@@ -818,12 +819,8 @@ public class KeyguardHostView extends KeyguardViewBase {
                 mContext.getContentResolver(),
                 Settings.Secure.LOCK_BEFORE_UNLOCK, 0,
                 UserHandle.USER_CURRENT) == 1;
-        final boolean isSimOrAccount = mCurrentSecuritySelection == SecurityMode.SimPin
-                || mCurrentSecuritySelection == SecurityMode.SimPuk
-                || mCurrentSecuritySelection == SecurityMode.Account
-                || mCurrentSecuritySelection == SecurityMode.Invalid;
 
-        if (lockBeforeUnlock && !isSimOrAccount) {
+        if (lockBeforeUnlock && !isSimOrAccount(mCurrentSecuritySelection, true)) {
             showSecurityScreen(SecurityMode.None);
         } else {
             SecurityMode securityMode = mSecurityModel.getSecurityMode();
@@ -1074,14 +1071,11 @@ public class KeyguardHostView extends KeyguardViewBase {
 
         // Enter full screen mode if we're in SIM or Account screen
         boolean fullScreenEnabled = getResources().getBoolean(R.bool.kg_sim_puk_account_full_screen);
-        boolean isSimOrAccount = securityMode == SecurityMode.SimPin
-                || securityMode == SecurityMode.SimPuk
-                || securityMode == SecurityMode.Account;
         mAppWidgetContainer.setVisibility(
-                isSimOrAccount && fullScreenEnabled ? View.GONE : View.VISIBLE);
+                isSimOrAccount(securityMode, false) && fullScreenEnabled ? View.GONE : View.VISIBLE);
 
         // Don't show camera or search in navbar when SIM or Account screen is showing
-        setSystemUiVisibility(isSimOrAccount ?
+        setSystemUiVisibility(isSimOrAccount(securityMode, false) ?
                 (getSystemUiVisibility() | View.STATUS_BAR_DISABLE_SEARCH)
                 : (getSystemUiVisibility() & ~View.STATUS_BAR_DISABLE_SEARCH));
 
@@ -1144,7 +1138,8 @@ public class KeyguardHostView extends KeyguardViewBase {
     }
 
     private void minimizeChallengeIfNeeded() {
-        if (mSlidingChallengeLayout != null) {
+        if (mSlidingChallengeLayout != null
+                || isSimOrAccount(mCurrentSecuritySelection, true)) {
             if (Settings.AOKP.getBoolean(getContext().getContentResolver(),
                 Settings.AOKP.LOCKSCREEN_MINIMIZE_LOCKSCREEN_CHALLENGE, false)) {
                 mSlidingChallengeLayout.showChallenge(false);

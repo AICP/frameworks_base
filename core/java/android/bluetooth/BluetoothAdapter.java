@@ -1570,6 +1570,7 @@ public final class BluetoothAdapter {
      */
     public void stopLeScan(LeScanCallback callback) {
         if (DBG) Log.d(TAG, "stopLeScan()");
+        if (getState() != STATE_ON) return;
         GattCallbackWrapper wrapper;
         synchronized(mLeScanClients) {
             wrapper = mLeScanClients.remove(callback);

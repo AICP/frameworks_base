@@ -640,18 +640,10 @@ public class ActiveDisplayView extends FrameLayout {
          mShow = true;
     }
 
-    private void setSystemUIVisibility(/*boolean visible*/) {
-        //  FRRT INSERT DIARRHEA STAIN UGHHHHH FRRRRRT TOO MANY TACOS FRRRT
+    private void setSystemUIVisibility() {
         int newVis = SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                     | SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    | SYSTEM_UI_FLAG_LAYOUT_STABLE //;
-   //     if (!visible) {
-    /*    int newVis |=| SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                //   | SYSTEM_UI_FLAG_FULLSCREEN
-                   /*| SYSTEM_UI_FLAG_HIDE_NAVIGATION        */;
-   //     }
-
-        // kitkat or bust.
+                    | SYSTEM_UI_FLAG_LAYOUT_STABLE;
         setSystemUiVisibility(newVis);
     }
 
@@ -659,9 +651,6 @@ public class ActiveDisplayView extends FrameLayout {
         try {
             ActivityManagerNative.getDefault().dismissKeyguardOnNextActivity();
             ActivityManagerNative.getDefault().resumeAppSwitches();
-            if(!isScreenOn()) {
-                turnScreenOn();
-            }
         } catch (RemoteException e) {
         }
         handleForceHideNotificationView();
@@ -669,7 +658,7 @@ public class ActiveDisplayView extends FrameLayout {
 
     private void handleShowNotificationView() {
         setVisibility(View.VISIBLE);
-        setSystemUIVisibility(/*false*/);
+        setSystemUIVisibility();
         mHandler.postDelayed(runSystemUiVisibilty, 100);
     }
 
@@ -759,7 +748,7 @@ public class ActiveDisplayView extends FrameLayout {
         // to avoid flicker and showing any other screen than the ActiveDisplayView
         // we use a runnable posted with a 250ms delay to turn wake the device
         mHandler.removeCallbacks(runWakeDevice);
-        mHandler.postDelayed(runWakeDevice, 400);
+        mHandler.postDelayed(runWakeDevice, 300);
     }
 
     private final Runnable runWakeDevice = new Runnable() {
@@ -1172,9 +1161,6 @@ public class ActiveDisplayView extends FrameLayout {
                 } else if (value <= 1.5) {
                     mDistanceFar = false;
                     mPocketTime = System.currentTimeMillis();
-                    if (!isKeyguardLocked()) {
-                        return;
-                    }
                 }
             }
         }
@@ -1198,6 +1184,7 @@ public class ActiveDisplayView extends FrameLayout {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             if (ACTION_REDISPLAY_NOTIFICATION.equals(action)) {
+                if (inQuietHours() && mQuietTime) return;
                 if (mNotification == null) {
                     mNotification = getNextAvailableNotification();
                 }

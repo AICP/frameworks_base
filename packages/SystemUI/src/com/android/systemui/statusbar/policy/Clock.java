@@ -26,6 +26,7 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.UserHandle;
 import android.provider.Settings;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
@@ -81,6 +82,9 @@ public class Clock extends TextView implements DemoMode {
 
     protected int mClockStyle = STYLE_CLOCK_RIGHT;
     protected int mClockFontStyle = FONT_NORMAL;
+
+    private boolean mCustomColor;
+    private int systemColor;
 
     private ContentObserver mSettingsObserver = new ContentObserver(new Handler()) {
         @Override
@@ -139,6 +143,12 @@ public class Clock extends TextView implements DemoMode {
                     false, mSettingsObserver);
             resolver.registerContentObserver(Settings.System
                     .getUriFor(Settings.System.STATUSBAR_CLOCK_FONT_STYLE),
+                    false, mSettingsObserver);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.CUSTOM_SYSTEM_ICON_COLOR),
+                    false, mSettingsObserver);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.SYSTEM_ICON_COLOR),
                     false, mSettingsObserver);
         }
 
@@ -272,10 +282,22 @@ public class Clock extends TextView implements DemoMode {
         }
         mClockFontStyle = Settings.System.getInt(resolver,
                 Settings.System.STATUSBAR_CLOCK_FONT_STYLE, FONT_NORMAL);
+
+        mCustomColor = Settings.System.getIntForUser(resolver,
+                Settings.System.CUSTOM_SYSTEM_ICON_COLOR, 0,
+                UserHandle.USER_CURRENT) == 1;
+
+        int systemColor = Settings.System.getIntForUser(resolver,
+                Settings.System.SYSTEM_ICON_COLOR, defaultColor,
+                UserHandle.USER_CURRENT);
     }
 
     protected void updateView() {
-        setTextColor(mClockColor);
+        if (mCustomColor) {
+                setTextColor(systemColor);
+            } else {
+                setTextColor(mClockColor);
+            }
         getFontStyle(mClockFontStyle);
         updateClockVisibility();
         updateClock();

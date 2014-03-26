@@ -22,7 +22,7 @@
   <string name="reboot_recovery">Recovery </string>
   <string name="reboot_download">Download</string>
   <string name="reboot_bootloader">Bootloader</string>
-  <string name="reboot_progress">Uw apparaat opnieuw wordt opgestart</string>
+  <string name="reboot_progress">Uw apparaat wordt opnieuw opgestart</string>
   <string name="rotation_lock_toggled">Rotatie vergrendeling vast gezet</string>
   <string name="immersive_mode">Immersive modus</string>
   <string name="immersive_mode_on">Immersive modus is aan</string>
@@ -66,4 +66,5 @@
   <string name="animation_slide_down">Van boven inschuiven</string>
   <string name="animation_default">Standaard</string>
   <string name="animation_translucent">Doorschijnend</string>
+  <string name="notify_turn_wifi_off_title">Zet Wi-Fi uit</string>
 </resources>

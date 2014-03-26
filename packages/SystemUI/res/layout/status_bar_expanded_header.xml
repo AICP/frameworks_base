@@ -62,7 +62,6 @@
                 android:textAppearance="@style/TextAppearance.StatusBar.Expanded.Clock"
                 android:background="@drawable/ic_notify_button_bg"
                 android:layout_centerVertical="true"
-                android:clickable="true"
                 />
 
             <com.android.systemui.statusbar.policy.DateView

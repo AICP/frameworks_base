@@ -92,4 +92,10 @@
     <string name="animation_grow_shrink_left">缩放（左侧）</string>
     <string name="animation_grow_shrink_right">缩放（右侧）</string>
 
+    <!-- WiFi turn off notification -->
+    <string name="notify_turn_wifi_off_title">关闭Wi-Fi</string>
+
+    <!-- In WiFi AP notification -->
+    <string name="notify_turn_tethering_off_title">关闭无线网络共享</string>
+
 </resources>

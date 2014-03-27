@@ -18,7 +18,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingTop="3dp">
+    android:paddingTop="18dp">
     <view class="com.android.systemui.recent.LinearColorBar"
             android:id="@+id/ram_usage_bar"
             android:layout_width="match_parent"

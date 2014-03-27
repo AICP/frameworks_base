@@ -37,7 +37,7 @@
   <string name="action_ime">Eingabemethode wählen</string>
   <string name="action_kill">Prozess beenden</string>
   <string name="action_lastapp">Vorherige App</string>
-  <string name="action_power">Energie</string>
+  <string name="action_power">Power</string>
   <string name="action_notifications">Benachrichtigungen</string>
   <string name="action_assist">Suche (Google Now)</string>
   <string name="action_clockoptions">Uhreinstellungen</string>
@@ -54,7 +54,7 @@
   <string name="action_null">Leer</string>
   <string name="action_widgets">Navigations-Widgets</string>
   <string name="action_app_window">Anwendungsfenster</string>
-  <string name="action_ribbon">AOKP Ribbon</string>
+  <string name="action_ribbon">AOKP-Ribbon</string>
   <string name="action_app">Benutzerdefinierte Anwendung/Verknüpfung</string>
   <string name="app_killed_message">Anwendung beendet</string>
   <string name="global_action_screenshot">Bildschirmfoto</string>

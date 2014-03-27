@@ -39,9 +39,9 @@
   <string name="running_process_item_user_label">Kullanıcı: <xliff:g id="user_name"> %1$ s </xliff:g></string>
   <string name="permdesc_screenshot">Ekran görüntüsü yakala</string>
   <string name="permlab_screenshot">Uygulama tarafından ekran görüntüsü yakalamayı sağlar. Bu SystemUI tarafından korunmaktadır.</string>
-  <string name="screenshot_toast">Ekran görüntüsü %1$d saniye</string>
-  <string name="permdesc_screenrecord">Ekran kaydedici yakalama</string>
+  <string name="screenshot_toast">Ekran görüntüsü %1$d saniye içinde alınacak</string>
+  <string name="permdesc_screenrecord">Ekranı kaydet</string>
   <string name="permlab_screenrecord">Uygulama tarafından ekran kayıt etmeyi sağlar. Bu SystemUI tarafından korunmaktadır.</string>
-  <string name="app_window">Uygulama penceresi</string>
+  <string name="app_window">Uygulama Penceresi</string>
   <string name="close">Kapat</string>
 </resources>

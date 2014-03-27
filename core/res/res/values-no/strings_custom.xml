@@ -17,4 +17,39 @@
  * limitations under the License.
  */
 -->
-<resources/>
+<resources>
+  <string name="reboot">Omstart</string>
+  <string name="reboot_recovery">Recovery</string>
+  <string name="reboot_download">Last ned</string>
+  <string name="reboot_bootloader">Bootloader</string>
+  <string name="reboot_progress">Restarter systemet</string>
+  <string name="rotation_lock_toggled">Låst rotasjon</string>
+  <string name="action_home">Hjem</string>
+  <string name="action_back">Tilbake</string>
+  <string name="action_recents">Nylige</string>
+  <string name="action_search">Søk</string>
+  <string name="action_screenshot">Skjermbilde</string>
+  <string name="action_menu">Meny</string>
+  <string name="action_ime">Åpne IME-velger</string>
+  <string name="action_kill">Avslutt oppgave</string>
+  <string name="action_lastapp">Siste program</string>
+  <string name="action_power">Strøm</string>
+  <string name="action_notifications">Varsler</string>
+  <string name="action_assist">Søk (Google Now)</string>
+  <string name="action_clockoptions">Klokkealternativer</string>
+  <string name="action_voiceassist">Talesøk</string>
+  <string name="action_torch">Lommelykt</string>
+  <string name="action_silent">Lyd/Lydløs</string>
+  <string name="action_vib">Lyd/Vibrering</string>
+  <string name="action_silent_vib">Lyd/Lydløs/Vibrering</string>
+  <string name="action_today">Idag</string>
+  <string name="action_alarm">Alarm</string>
+  <string name="action_unlock">Lås opp</string>
+  <string name="action_camera">Kamera</string>
+  <string name="action_null">Tom</string>
+  <string name="action_widgets">Nav Widgets</string>
+  <string name="action_app_window">Appvindu</string>
+  <string name="action_ribbon">AOKP Bånd</string>
+  <string name="action_app">Egendefinert App/Snarvei</string>
+  <string name="app_killed_message">Program avsluttet</string>
+</resources>

@@ -14,4 +14,11 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources/>
+<resources>
+  <string name="title_standalone">檔案</string>
+  <string name="toast_success_delete">檔案已刪除</string>
+  <string name="dialog_delete_confirm_title">確認刪除</string>
+  <string name="menu_copy">複製</string>
+  <string name="menu_cut">剪下</string>
+  <string name="menu_paste">貼上 </string>
+</resources>

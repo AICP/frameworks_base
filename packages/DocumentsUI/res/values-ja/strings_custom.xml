@@ -17,21 +17,21 @@
 <resources>
   <string name="title_standalone">ファイル</string>
   <string name="toast_success_delete">ファイルは削除されました</string>
-  <string name="dialog_delete_confirm_title">ファイルを削除しますか？</string>
+  <string name="dialog_delete_confirm_title">ファイルを削除しますか?</string>
   <string name="menu_copy">コピー</string>
   <string name="menu_cut">切り取り</string>
   <string name="menu_paste">貼り付け</string>
-  <string name="copy_in_progress">コピーしています…</string>
+  <string name="copy_in_progress">コピーしています...</string>
   <string name="delete_in_progress">削除しています...</string>
   <string name="ok">OK</string>
   <string name="cancel">キャンセル</string>
   <plurals name="files_copied">
-    <item quantity="other">クリップボードに %d 個のファイルが置かれています</item>
+    <item quantity="other">クリップボードに%d個のファイルが置かれています</item>
   </plurals>
   <plurals name="files_pasted">
-    <item quantity="other">%d 個のファイルを貼り付けています。アップロードはバック グラウンドで完了します。</item>
+    <item quantity="other">ファイルを貼り付けています。アップロードはバックグラウンドで完了します</item>
   </plurals>
   <plurals name="dialog_delete_confirm_message">
-    <item quantity="other">選択した %d 個のファイルが永久に削除されました！</item>
+    <item quantity="other">ファイルは削除されました</item>
   </plurals>
 </resources>

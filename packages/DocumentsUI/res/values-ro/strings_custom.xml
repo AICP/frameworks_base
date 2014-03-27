@@ -15,10 +15,13 @@
      limitations under the License.
 -->
 <resources>
-  <string name="title_standalone">Fisiere</string>
+  <string name="title_standalone">Fişiere</string>
   <string name="toast_success_delete">Fisiere sterse</string>
-  <string name="dialog_delete_confirm_title">Sterge fisiere?</string>
-  <string name="menu_copy">Copiaza</string>
+  <string name="dialog_delete_confirm_title">Şterge fisierele?</string>
+  <string name="menu_copy">Copiază</string>
+  <string name="menu_paste">Inserează</string>
+  <string name="copy_in_progress">Se copiază...</string>
+  <string name="delete_in_progress">Se şterge...</string>
   <string name="ok">OK</string>
-  <string name="cancel">Anuleaza</string>
+  <string name="cancel">Anulează</string>
 </resources>

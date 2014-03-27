@@ -26,12 +26,12 @@
   <string name="ok">හරි</string>
   <string name="cancel">අවලංගු කරන්න</string>
   <plurals name="files_copied">
-    <item quantity="one">ලේඛනය ඇමුණුම් පුවරුවට දමා ඇත</item>
-    <item quantity="other">ලේඛන %d ඇමුණුම් පුවරුවට දමා ඇත</item>
+    <item quantity="one">ලේඛනය පසුරු පුවරුවට දමා ඇත</item>
+    <item quantity="other">ලේඛන %d පසුරු පුවරුවට දමා ඇත</item>
   </plurals>
   <plurals name="files_pasted">
-    <item quantity="one">ලේඛණය අලවා ඇත. ඉහලට දැමීම පසුබිමින් සිදු වනු ඇත.</item>
-    <item quantity="other">ලේඛණ %d අලවා ඇත. ඉහලට දැමීම පසුබිමින් සිදු වනු ඇත.</item>
+    <item quantity="one">ලේඛණය අලවා ඇත. උඩුගත කිරීම පසුබිමින් සිදු වනු ඇත.</item>
+    <item quantity="other">ලේඛණ %d අලවා ඇත. උඩුගත කිරීම පසුබිමින් සිදු වනු ඇත.</item>
   </plurals>
   <plurals name="dialog_delete_confirm_message">
     <item quantity="one">මෙම ලේඛනය ස්ථිරවම මකාදැමේ!</item>

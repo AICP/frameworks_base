@@ -18,7 +18,7 @@
  */
 -->
 <resources>
-  <string name="reboot">Opnieuw opstarten</string>
+  <string name="reboot">Herstarten</string>
   <string name="reboot_recovery">Recovery </string>
   <string name="reboot_download">Download</string>
   <string name="reboot_bootloader">Bootloader</string>
@@ -52,6 +52,7 @@
   <string name="action_unlock">Ontgrendelen</string>
   <string name="action_camera">Camera</string>
   <string name="action_null">Leeg</string>
+  <string name="action_widgets">Nav Widgets</string>
   <string name="action_app_window">App window</string>
   <string name="action_ribbon">AOKP Ribbon</string>
   <string name="action_app">Aangepaste App/Snelkoppeling</string>
@@ -66,5 +67,11 @@
   <string name="animation_slide_down">Van boven inschuiven</string>
   <string name="animation_default">Standaard</string>
   <string name="animation_translucent">Doorschijnend</string>
-  <string name="notify_turn_wifi_off_title">Zet Wi-Fi uit</string>
+  <string name="animation_grow_shrink">Ingroeien (Boven)</string>
+  <string name="animation_grow_shrink_center">Ingroeien (Midden)</string>
+  <string name="animation_grow_shrink_bottom">Ingroeien (Onder)</string>
+  <string name="animation_grow_shrink_left">Ingroeien (Links)</string>
+  <string name="animation_grow_shrink_right">Ingroeien (Rechts)</string>
+  <string name="notify_turn_wifi_off_title">Wi-Fi uitschakelen</string>
+  <string name="notify_turn_tethering_off_title">Tethering uitschakelen</string>
 </resources>

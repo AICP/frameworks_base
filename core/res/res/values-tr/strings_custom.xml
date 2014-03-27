@@ -23,6 +23,7 @@
   <string name="reboot_download">İndir</string>
   <string name="reboot_bootloader">Ön yükleyici</string>
   <string name="reboot_progress">Cihazınız yeniden başlatılıyor</string>
+  <string name="rotation_lock_toggled">Dönme kilidi</string>
   <string name="immersive_mode">Tam ekran modu</string>
   <string name="immersive_mode_on">Tam ekran modu açık</string>
   <string name="immersive_mode_off">Tam ekran modu kapalı</string>
@@ -33,6 +34,7 @@
   <string name="action_search">Arama</string>
   <string name="action_screenshot">Ekran görüntüsü</string>
   <string name="action_menu">Menü</string>
+  <string name="action_ime">Klavye Değiştiriciyi Aç</string>
   <string name="action_kill">Görevi sonlandır</string>
   <string name="action_lastapp">Son uygulama</string>
   <string name="action_power">Güç</string>
@@ -50,6 +52,7 @@
   <string name="action_unlock">Kilit Aç</string>
   <string name="action_camera">Kamera</string>
   <string name="action_null">Boş</string>
+  <string name="action_widgets">Gezinme bölmesi araçları</string>
   <string name="action_app_window">Uygulama penceresi</string>
   <string name="action_ribbon">AOKP şerit</string>
   <string name="action_app">Özel uygulama/kısayol</string>
@@ -58,10 +61,17 @@
   <string name="animation_fade">Karart</string>
   <string name="animation_slide_right">Sağa Kaydır</string>
   <string name="animation_slide_left">Sola kaydır</string>
+  <string name="animation_slide_right_no_fade">Sağa kaydır (Solma yok)</string>
+  <string name="animation_slide_left_no_fade">Sola kaydır (Solma yok)</string>
   <string name="animation_slide_up">Yukarıdan aşağıya doğru kaydırın</string>
   <string name="animation_slide_down">Aşağıdan yukarıya doğru kaydırın</string>
   <string name="animation_default">Varsayılan</string>
   <string name="animation_translucent">Yarı saydam</string>
+  <string name="animation_grow_shrink">Büyüt (Üst)</string>
+  <string name="animation_grow_shrink_center">Büyüt (Orta)</string>
+  <string name="animation_grow_shrink_bottom">Büyüt (Alt)</string>
+  <string name="animation_grow_shrink_left">Büyüt (Sol)</string>
+  <string name="animation_grow_shrink_right">Büyüt (Sağ)</string>
   <string name="notify_turn_wifi_off_title">Kablosuz bağlantıyı kapat</string>
   <string name="notify_turn_tethering_off_title">İnternet paylaşımını kapat</string>
 </resources>

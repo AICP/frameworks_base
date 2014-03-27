@@ -17,4 +17,31 @@
  * limitations under the License.
  */
 -->
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"/>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="accessibility_data_connection_HP">HSPA+</string>
+  <string name="screenrecord_notif_ticker">画面を記録中です</string>
+  <string name="screenrecord_notif_title">画面を記録</string>
+  <string name="screenrecord_notif_stop">停止</string>
+  <string name="screenrecord_notif_pointer">トグルポインター</string>
+  <string name="screenrecord_notif_error">画面を録画することができません</string>
+  <string name="battery_percent_format">%d%%</string>
+  <string name="status_bar_notification_hide_icon_packages">アプリのアイコンを非表示</string>
+  <string name="memory">RAM使用量</string>
+  <string name="service_background_processes">%1$s 空き</string>
+  <string name="service_foreground_processes">%1$s 使用中</string>
+  <string name="service_process_name">%1$s</string>
+  <string name="service_client_name">%1$s</string>
+  <string name="service_started_by_app">アプリによって開始されました。</string>
+  <string name="running_processes_item_description_s_s">%1$d個のプロセスと%2$d個のサービス</string>
+  <string name="running_processes_item_description_s_p">%1$d個のプロセスと%2$d個のサービス</string>
+  <string name="running_processes_item_description_p_s">%1$d個のプロセスと%2$d個のサービス</string>
+  <string name="running_processes_item_description_p_p">%1$d個のプロセスと%2$d個のサービス</string>
+  <string name="running_process_item_user_label">ユーザー: %1$s</string>
+  <string name="permdesc_screenshot">スクリーンショットを撮影</string>
+  <string name="permlab_screenshot">アプリのスクリーンショットをキャプチャすることができます。これはSystemUIで保護されています。</string>
+  <string name="screenshot_toast">%1$d秒後に撮影します。</string>
+  <string name="permdesc_screenrecord">画面の録画</string>
+  <string name="permlab_screenrecord">アプリの録画をキャプチャすることができます。これはSystemUIで保護されています。</string>
+  <string name="app_window">アプリウィンドウ</string>
+  <string name="close">閉じる</string>
+</resources>

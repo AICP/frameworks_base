@@ -14,4 +14,19 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources/>
+<resources>
+  <string name="title_standalone">קבצים</string>
+  <string name="toast_success_delete">קבצים שנמחקו</string>
+  <string name="dialog_delete_confirm_title">למחוק קבצים?</string>
+  <string name="menu_copy">העתק</string>
+  <string name="menu_cut">גזור</string>
+  <string name="menu_paste">הדבק</string>
+  <string name="copy_in_progress">מעתיק...</string>
+  <string name="delete_in_progress">מוחק...</string>
+  <string name="ok">אישור</string>
+  <string name="cancel">ביטול</string>
+  <plurals name="dialog_delete_confirm_message">
+    <item quantity="one">קובץ זה ימחק סופית!</item>
+    <item quantity="other">קובץ זה ימחק סופית!</item>
+  </plurals>
+</resources>

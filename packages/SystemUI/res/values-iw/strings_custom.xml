@@ -17,4 +17,17 @@
  * limitations under the License.
  */
 -->
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"/>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="accessibility_data_connection_HP">HSPA+</string>
+  <string name="screenrecord_notif_ticker">מסך במצב מוקלט</string>
+  <string name="screenrecord_notif_title">מקליט מסך</string>
+  <string name="screenrecord_notif_stop">הפסק</string>
+  <string name="screenrecord_notif_pointer">מצביע דו-מצבי</string>
+  <string name="screenrecord_notif_error">אין אפשרות להקליט מסך</string>
+  <string name="status_bar_notification_hide_icon_packages">הסתרת סמלי יישום</string>
+  <string name="memory">RAM</string>
+  <string name="service_started_by_app">הופעל ע\"י אפליקציה</string>
+  <string name="permdesc_screenshot">לכידת צילום מסך</string>
+  <string name="app_window">חלון היישום</string>
+  <string name="close">סגור</string>
+</resources>

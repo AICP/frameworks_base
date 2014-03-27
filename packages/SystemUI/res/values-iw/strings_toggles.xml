@@ -15,4 +15,49 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"/>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+  <string name="toggle_USER">משתמש נוכחי</string>
+  <string name="toggle_BRIGHTNESS">בהירות</string>
+  <string name="toggle_VOLUME">עוצמת שמע</string>
+  <string name="toggle_SETTINGS">הגדרות</string>
+  <string name="toggle_WIFI">WiFi</string>
+  <string name="toggle_SIGNAL">אות</string>
+  <string name="toggle_ROTATE">סיבוב אוטומטי</string>
+  <string name="toggle_CLOCK">שעון</string>
+  <string name="toggle_GPS">GPS</string>
+  <string name="toggle_LOCATION">מיקום</string>
+  <string name="toggle_IME">IME</string>
+  <string name="toggle_BATTERY">סוללה</string>
+  <string name="toggle_AIRPLANE_MODE">מצב טיסה</string>
+  <string name="toggle_BLUETOOTH">Bluetooth</string>
+  <string name="toggle_SWAGGER">Swagger</string>
+  <string name="toggle_VIBRATE">רטט</string>
+  <string name="toggle_SILENT">שקט</string>
+  <string name="toggle_FCHARGE">טעינה מהירה</string>
+  <string name="toggle_SYNC">סנכרון</string>
+  <string name="toggle_NFC">NFC</string>
+  <string name="toggle_TORCH">Torch</string>
+  <string name="toggle_2G">2G</string>
+  <string name="toggle_LTE">LTE</string>
+  <string name="toggle_FAVCONTACT">אנשי קשר מועדפים</string>
+  <string name="toggle_SOUNDSTATE">מצב צליל</string>
+  <string name="toggle_NAVBARHIDE">הסתר שורת ניווט</string>
+  <string name="toggle_QUICKRECORD">הקלטה מהירה</string>
+  <string name="toggle_QUIETHOURS">שעות שקטות</string>
+  <string name="toggle_SLEEP">שינה</string>
+  <string name="toggle_STATUSBAR">שורת מצב</string>
+  <string name="toggle_SCREENSHOT">צילום מסך</string>
+  <string name="toggle_REBOOT">אתחול</string>
+  <string name="toggle_CUSTOM">התאמה אישית</string>
+  <string name="toggle_STAYAWAKE">הישאר ער</string>
+  <string name="toggle_WIRELESSADB">ADB אלחוטי</string>
+  <string name="quick_settings_swagger">Swagger</string>
+  <string name="quick_settings_fbgt">FBGT</string>
+  <string name="quick_settings_recording">הקלטה...</string>
+  <string name="quick_settings_playing">מנגן...</string>
+  <string name="quick_settings_quickrecord">הקלטה מהירה</string>
+  <string name="quick_settings_nofile">לחיצה ממושכת בכדי להקליט</string>
+  <string name="quick_settings_sleep">שינה</string>
+  <string name="quick_settings_reboot">אתחול</string>
+  <string name="quick_settings_reboot_message">המכשיר שלך מאתחל</string>
+</resources>

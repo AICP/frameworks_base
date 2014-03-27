@@ -14,4 +14,23 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources/>
+<resources>
+  <string name="title_standalone">Bestanden</string>
+  <string name="toast_success_delete">Bestanden verwijderd</string>
+  <string name="dialog_delete_confirm_title">Bestanden verwijderen?</string>
+  <string name="menu_copy">Kopiëren</string>
+  <string name="menu_cut">Knippen</string>
+  <string name="menu_paste">Plakken</string>
+  <string name="copy_in_progress">Kopiëren...</string>
+  <string name="delete_in_progress">Verwijderen...</string>
+  <string name="ok">OK</string>
+  <string name="cancel">Annuleer</string>
+  <plurals name="files_copied">
+    <item quantity="one">Het bestand is in het klembord geplaatst</item>
+    <item quantity="other">%d bestanden zijn in het klembord geplaatst</item>
+  </plurals>
+  <plurals name="dialog_delete_confirm_message">
+    <item quantity="one">Dit bestand zal permanent worden verwijderd!</item>
+    <item quantity="other">Dit zal de %d bestanden geselecteerd definitief verwijderen!</item>
+  </plurals>
+</resources>

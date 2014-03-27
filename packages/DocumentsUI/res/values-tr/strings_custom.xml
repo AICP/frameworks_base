@@ -29,7 +29,7 @@
     <item quantity="other">Dosya panoya yerleştirildi</item>
   </plurals>
   <plurals name="files_pasted">
-    <item quantity="other">Dosya yapıştırıldı. Yükleme arka planda bitiyor olabilir.</item>
+    <item quantity="other">%d dosyaları yapıştırıldı. Yükleme arka planda devam ediyor olabilir.</item>
   </plurals>
   <plurals name="dialog_delete_confirm_message">
     <item quantity="other">Bu dosya kalıcı olarak silinecek!</item>

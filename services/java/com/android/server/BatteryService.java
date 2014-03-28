@@ -18,6 +18,7 @@ package com.android.server;
 
 import android.os.BatteryStats;
 import com.android.internal.app.IBatteryStats;
+import com.android.internal.util.cm.QuietHoursUtils;
 import com.android.server.am.BatteryStatsService;
 
 import android.app.ActivityManagerNative;
@@ -51,7 +52,6 @@ import java.io.FileDescriptor;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Calendar;
 
 
 /**
@@ -144,6 +144,12 @@ public final class BatteryService extends Binder {
     private boolean mMultiColorLed;
 
     private boolean mSentLowBatteryBroadcast = false;
+
+    // Quiet hours support
+
+    private boolean mQuietHoursEnabled = false;
+    private int mQuietHoursStart = 0;
+    private int mQuietHoursEnd = 0;
 
     private BatteryListener mBatteryPropertiesListener;
     private IBatteryPropertiesRegistrar mBatteryPropertiesRegistrar;
@@ -745,11 +751,10 @@ public final class BatteryService extends Binder {
 
             final int level = mBatteryProps.batteryLevel;
             final int status = mBatteryProps.batteryStatus;
-            final boolean inQuietHours = inQuietHours();
             if (!mLightEnabled) {
                 // No lights if explicitly disabled
                 mBatteryLight.turnOff();
-            } else if (inQuietHours) {
+            } else if (QuietHoursUtils.inQuietHours(mContext, Settings.AOKP.QUIET_HOURS_DIM)) {
                 if (mLedPulseEnabled && level < mLowBatteryWarningLevel &&
                         status != BatteryManager.BATTERY_STATUS_CHARGING) {
                     // The battery is low, the device is not charging and the low battery pulse
@@ -834,6 +839,16 @@ public final class BatteryService extends Binder {
                     UserHandle.USER_ALL);
             }
 
+            // Quiet Hours
+            resolver.registerContentObserver(Settings.AOKP.getUriFor(
+                    Settings.AOKP.QUIET_HOURS_ENABLED), false, this);
+            resolver.registerContentObserver(Settings.AOKP.getUriFor(
+                    Settings.AOKP.QUIET_HOURS_START), false, this);
+            resolver.registerContentObserver(Settings.AOKP.getUriFor(
+                    Settings.AOKP.QUIET_HOURS_END), false, this);
+            resolver.registerContentObserver(Settings.AOKP.getUriFor(
+                    Settings.AOKP.QUIET_HOURS_DIM), false, this);
+
             update();
         }
 
@@ -876,30 +891,5 @@ public final class BatteryService extends Binder {
 
             updateLedPulse();
         }
-    }
-
-    /**
-     * Check if device is in Quiet Hours in the moment.
-     */
-    private boolean inQuietHours() {
-        boolean quietHoursEnabled = Settings.AOKP.getIntForUser(mContext.getContentResolver(),
-                Settings.AOKP.QUIET_HOURS_ENABLED, 0, UserHandle.USER_CURRENT_OR_SELF) != 0;
-        int quietHoursStart = Settings.AOKP.getIntForUser(mContext.getContentResolver(),
-                Settings.AOKP.QUIET_HOURS_START, 0, UserHandle.USER_CURRENT_OR_SELF);
-        int quietHoursEnd = Settings.AOKP.getIntForUser(mContext.getContentResolver(),
-                Settings.AOKP.QUIET_HOURS_END, 0, UserHandle.USER_CURRENT_OR_SELF);
-        boolean quietHoursDim = Settings.AOKP.getIntForUser(mContext.getContentResolver(),
-                Settings.AOKP.QUIET_HOURS_DIM, 0, UserHandle.USER_CURRENT_OR_SELF) != 0;
-
-        if (quietHoursEnabled && quietHoursDim && (quietHoursStart != quietHoursEnd)) {
-            Calendar calendar = Calendar.getInstance();
-            int minutes = calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE);
-            if (quietHoursEnd < quietHoursStart) {
-                return (minutes > quietHoursStart) || (minutes < quietHoursEnd);
-            } else {
-                return (minutes > quietHoursStart) && (minutes < quietHoursEnd);
-            }
-        }
-        return false;
     }
 }

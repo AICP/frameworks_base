@@ -32,6 +32,7 @@ import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import com.android.internal.util.cm.QuietHoursUtils;
 import com.android.systemui.service.ReminderService;
 
 public class ReminderReceiver extends BroadcastReceiver {
@@ -47,9 +48,6 @@ public class ReminderReceiver extends BroadcastReceiver {
             context.getSystemService(Context.NOTIFICATION_SERVICE);
         SharedPreferences shared = context.getSharedPreferences(
                     KEY_REMINDER_ACTION, Context.MODE_PRIVATE);
-
-        boolean mQuietHoursEnabled = Settings.AOKP.getInt(context.getContentResolver(),
-                Settings.AOKP.QUIET_HOURS_ENABLED, 0) != 0;
 
         if (intent.getBooleanExtra("clear", false)) {
             manager.cancel(NOTI_ID);
@@ -89,7 +87,9 @@ public class ReminderReceiver extends BroadcastReceiver {
                             0, UserHandle.USER_CURRENT);
                 PendingIntent result = null;
                 Intent serviceIntent = new Intent(context, ReminderService.class);
-                if (alertMode != 0 && mQuietHoursEnabled) {
+                if (alertMode != 0 
+                        && !QuietHoursUtils.inQuietHours(
+                        context, Settings.AOKP.QUIET_HOURS_NOTIFICATIONS)) {
                     context.startService(serviceIntent);
                 }
 

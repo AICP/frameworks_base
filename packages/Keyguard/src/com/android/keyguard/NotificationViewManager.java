@@ -338,7 +338,7 @@ public class NotificationViewManager {
         if (!mQuietTime) {
             ContentResolver resolver = mContext.getContentResolver();
 
-            boolean quietHoursEnabled = Settings.System.getIntForUser(resolver,
+            boolean quietHoursEnabled = Settings.AOKP.getIntForUser(resolver,
                     Settings.AOKP.QUIET_HOURS_ENABLED, 0, UserHandle.USER_CURRENT_OR_SELF) != 0;
             int quietHoursStart = Settings.AOKP.getIntForUser(resolver,
                     Settings.AOKP.QUIET_HOURS_START, 0, UserHandle.USER_CURRENT_OR_SELF);

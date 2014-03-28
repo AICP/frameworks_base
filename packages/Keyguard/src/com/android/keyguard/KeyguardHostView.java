@@ -1829,6 +1829,21 @@ public class KeyguardHostView extends KeyguardViewBase {
         return false;
     }
 
+    public boolean handleHomeKey() {
+        // The following enables the HOME key to work for testing automation
+        if (shouldEnableHomeKey()) {
+            showNextSecurityScreenOrFinish(false);
+            return true;
+        }
+        return false;
+    }
+
+    private boolean shouldEnableHomeKey() {
+        final boolean homeOverride = Settings.System.getInt(getContext().getContentResolver(),
+                Settings.System.HOME_UNLOCK_SCREEN, 0) == 1;
+        return homeOverride;
+    }
+
     /**
      *  Dismisses the keyguard by going to the next screen or making it gone.
      */

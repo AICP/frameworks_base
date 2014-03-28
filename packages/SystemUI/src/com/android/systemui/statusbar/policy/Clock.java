@@ -196,9 +196,9 @@ public class Clock extends TextView implements DemoMode, OnClickListener, OnLong
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         if (mAttached) {
-            mAttached = false;
             getContext().unregisterReceiver(mIntentReceiver);
             getContext().getContentResolver().unregisterContentObserver(mSettingsObserver);
+            mAttached = false;
         }
     }
 
@@ -365,14 +365,17 @@ public class Clock extends TextView implements DemoMode, OnClickListener, OnLong
         mClockDateStyle = Settings.System.getIntForUser(resolver,
                 Settings.System.STATUSBAR_CLOCK_DATE_STYLE, CLOCK_DATE_STYLE_UPPERCASE,
                 UserHandle.USER_CURRENT);
-    }
 
-    protected void updateView() {
-        if (mCustomColor) {
+        if (mAttached) {
+            if (mCustomColor) {
                 setTextColor(systemColor);
             } else {
                 setTextColor(mClockColor);
             }
+        }
+    }
+
+    protected void updateView() {
         getFontStyle(mClockFontStyle);
         updateClockVisibility();
         updateClock();

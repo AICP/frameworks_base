@@ -1,4 +1,5 @@
 /*
+ * Copyright (C) 2014 VanirASOP && the Android Open Source Project
  * Copyright (C) 2013 The ChameleonOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -128,7 +129,7 @@ public class ActiveDisplayView extends FrameLayout {
     private Drawable mNotificationDrawable;
     private int mCreationOrientation;
     private SettingsObserver mSettingsObserver;
-    private static IPowerManager mPM;
+    private IPowerManager mPM;
     private INotificationManager mNM;
     private INotificationListenerWrapper mNotificationListener;
     private StatusBarManager mStatusBarManager;
@@ -146,6 +147,7 @@ public class ActiveDisplayView extends FrameLayout {
     private LinearLayout.LayoutParams mOverflowLayoutParams;
     private boolean mCallbacksRegistered = false;
     private boolean mShow = true;
+    private boolean mScreenOnState = false;
 
     // user customizable settings
     private boolean mDisplayNotifications = false;
@@ -176,7 +178,7 @@ public class ActiveDisplayView extends FrameLayout {
                 // need to make sure either the screen is off or the user is currently
                 // viewing the notifications
                 if (ActiveDisplayView.this.getVisibility() == View.VISIBLE
-                        || !isScreenOn())
+                        || !mScreenOnState)
                     showNotification(sbn, true);
                     mShow = false;
             }
@@ -434,7 +436,7 @@ public class ActiveDisplayView extends FrameLayout {
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         mSettingsObserver.observe();
-        if (mRedisplayTimeout > 0 && !isScreenOn()) updateRedisplayTimer();
+        if (mRedisplayTimeout > 0 && !mScreenOnState) updateRedisplayTimer();
     }
 
     @Override
@@ -683,7 +685,7 @@ public class ActiveDisplayView extends FrameLayout {
         handleShowNotificationView();
         setActiveNotification(mNotification, true);
         inflateRemoteView(mNotification);
-        if (!isScreenOn()) {
+        if (!mScreenOnState) {
             turnScreenOn();
         }
         if (ping) mGlowPadView.ping();
@@ -758,14 +760,6 @@ public class ActiveDisplayView extends FrameLayout {
             doTransition(ActiveDisplayView.this, 1f, 1000);
         }
     };
-
-    private boolean isScreenOn() {
-        try {
-            return mPM.isScreenOn();
-        } catch (RemoteException e) {
-        }
-        return false;
-    }
 
     private void enableProximitySensor() {
         if (mDisplayNotifications) {
@@ -1148,7 +1142,7 @@ public class ActiveDisplayView extends FrameLayout {
                     mDistanceFar = true;
                     if (inQuietHours() && mQuietTime) return;
                     synchronized (this) {
-                        if (!isScreenOn()) {
+                        if (!mScreenOnState) {
                             if (checkTime >= (mPocketTime + mProximityThreshold)){
                                 if (mNotification == null) {
                                     mNotification = getNextAvailableNotification();
@@ -1192,8 +1186,10 @@ public class ActiveDisplayView extends FrameLayout {
             } else if (ACTION_DISPLAY_TIMEOUT.equals(action)) {
                 turnScreenOff();
             } else if (Intent.ACTION_SCREEN_OFF.equals(action)) {
+                mScreenOnState = false;
                 onScreenTurnedOff();
             } else if (Intent.ACTION_SCREEN_ON.equals(action)) {
+                mScreenOnState = true;
                 onScreenTurnedOn();
             } else if (Intent.ACTION_KEYGUARD_TARGET.equals(action)) {
                 Log.i(TAG, "HEY DICKBAG, DISABLING PROXIMITY SENSOR BECAUSE YOU UNLOCKED THE KEYGUARD!!!!!!!!!");

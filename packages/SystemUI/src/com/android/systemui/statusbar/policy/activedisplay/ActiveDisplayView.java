@@ -999,9 +999,12 @@ public class ActiveDisplayView extends FrameLayout {
      * @return True if it should be used, false otherwise.
      */
     private boolean isValidNotification(StatusBarNotification sbn) {
-        return (!mExcludedApps.contains(sbn.getPackageName()) && !isOnCall()
-                && sbn.getNotification().icon != 0 && (sbn.isClearable() || !hideNonClearable)
-                && !(mHideLowPriorityNotifications && sbn.getNotification().priority < HIDE_NOTIFICATIONS_BELOW_SCORE));
+        if (isOnCall() || mExcludedApps.contains(sbn.getPackageName())) return false;
+
+        return ((sbn.isClearable() || !hideNonClearable)
+                && !(mHideLowPriorityNotifications
+                && sbn.getNotification().priority < HIDE_NOTIFICATIONS_BELOW_SCORE)
+                && sbn.getNotification().icon != 0);
     }
 
     /**
@@ -1168,15 +1171,6 @@ public class ActiveDisplayView extends FrameLayout {
         }
     };
 
-    private boolean isKeyguardLocked() {
-        boolean isKeyguardShowing = true;
-        try {
-            isKeyguardShowing = mKeyguardManager.isKeyguardLocked();
-        } catch (Exception e) {
-        }
-        return isKeyguardShowing;
-    }
-
     private final BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -1278,12 +1272,6 @@ public class ActiveDisplayView extends FrameLayout {
             return;
         String[] appsToExclude = excludedApps.split("\\|");
         mExcludedApps = new HashSet<String>(Arrays.asList(appsToExclude));
-    }
-
-    private boolean isLockScreenDisabled() {
-        LockPatternUtils utils = new LockPatternUtils(mContext);
-        utils.setCurrentUser(UserHandle.USER_OWNER);
-        return utils.isLockScreenDisabled();
     }
 
     /**

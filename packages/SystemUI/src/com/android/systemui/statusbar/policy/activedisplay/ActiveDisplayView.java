@@ -156,7 +156,7 @@ public class ActiveDisplayView extends FrameLayout {
     private boolean mHideLowPriorityNotifications = false;
     private int mPocketMode = POCKET_MODE_OFF;
     private boolean privacyMode = false;
-    private boolean mQuietTime;
+    private boolean mQuietTime = false;
     private long mRedisplayTimeout = 0;
     private float mInitialBrightness = 1f;
     private int mBrightnessMode = -1;
@@ -173,7 +173,9 @@ public class ActiveDisplayView extends FrameLayout {
     private class INotificationListenerWrapper extends INotificationListener.Stub {
         @Override
         public void onNotificationPosted(final StatusBarNotification sbn) {
-            if (inQuietHours() && mQuietTime) return;
+            if (mQuietTime) {
+                if (inQuietHours()) return;
+            }
             if (shouldShowNotification() && isValidNotification(sbn) && mShow) {
                 // need to make sure either the screen is off or the user is currently
                 // viewing the notifications
@@ -1140,7 +1142,9 @@ public class ActiveDisplayView extends FrameLayout {
             if (event.sensor.equals(mProximitySensor)) {
                 if (value >= mProximitySensor.getMaximumRange()) {
                     mDistanceFar = true;
-                    if (inQuietHours() && mQuietTime) return;
+                    if (mQuietTime) {
+                        if (inQuietHours()) return;
+                    }
                     synchronized (this) {
                         if (!mScreenOnState) {
                             if (checkTime >= (mPocketTime + mProximityThreshold)){
@@ -1178,7 +1182,9 @@ public class ActiveDisplayView extends FrameLayout {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             if (ACTION_REDISPLAY_NOTIFICATION.equals(action)) {
-                if (inQuietHours() && mQuietTime) return;
+                if (mQuietTime) {
+                    if (inQuietHours()) return;
+                }
                 if (mNotification == null) {
                     mNotification = getNextAvailableNotification();
                 }
@@ -1286,20 +1292,22 @@ public class ActiveDisplayView extends FrameLayout {
     private boolean inQuietHours() {
         boolean quietHoursEnabled = Settings.AOKP.getIntForUser(mContext.getContentResolver(),
                 Settings.AOKP.QUIET_HOURS_ENABLED, 0, UserHandle.USER_CURRENT_OR_SELF) != 0;
-        int quietHoursStart = Settings.AOKP.getIntForUser(mContext.getContentResolver(),
-                Settings.AOKP.QUIET_HOURS_START, 0, UserHandle.USER_CURRENT_OR_SELF);
-        int quietHoursEnd = Settings.AOKP.getIntForUser(mContext.getContentResolver(),
-                Settings.AOKP.QUIET_HOURS_END, 0, UserHandle.USER_CURRENT_OR_SELF);
-        boolean quietHoursDim = Settings.AOKP.getIntForUser(mContext.getContentResolver(),
-                Settings.AOKP.QUIET_HOURS_DIM, 0, UserHandle.USER_CURRENT_OR_SELF) != 0;
+        if (quietHoursEnabled) {
+            int quietHoursStart = Settings.AOKP.getIntForUser(mContext.getContentResolver(),
+                    Settings.AOKP.QUIET_HOURS_START, 0, UserHandle.USER_CURRENT_OR_SELF);
+            int quietHoursEnd = Settings.AOKP.getIntForUser(mContext.getContentResolver(),
+                    Settings.AOKP.QUIET_HOURS_END, 0, UserHandle.USER_CURRENT_OR_SELF);
+            boolean quietHoursDim = Settings.AOKP.getIntForUser(mContext.getContentResolver(),
+                    Settings.AOKP.QUIET_HOURS_DIM, 0, UserHandle.USER_CURRENT_OR_SELF) != 0;
 
-        if (quietHoursEnabled && quietHoursDim && (quietHoursStart != quietHoursEnd)) {
-            Calendar calendar = Calendar.getInstance();
-            int minutes = calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE);
-            if (quietHoursEnd < quietHoursStart) {
-                return (minutes > quietHoursStart) || (minutes < quietHoursEnd);
-            } else {
-                return (minutes > quietHoursStart) && (minutes < quietHoursEnd);
+            if (quietHoursDim && (quietHoursStart != quietHoursEnd)) {
+                Calendar calendar = Calendar.getInstance();
+                int minutes = calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE);
+                if (quietHoursEnd < quietHoursStart) {
+                    return (minutes > quietHoursStart) || (minutes < quietHoursEnd);
+                } else {
+                    return (minutes > quietHoursStart) && (minutes < quietHoursEnd);
+                }
             }
         }
         return false;

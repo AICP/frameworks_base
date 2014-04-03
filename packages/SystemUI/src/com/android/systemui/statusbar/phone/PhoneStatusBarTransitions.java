@@ -32,8 +32,8 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
     private final PhoneStatusBarView mView;
     private final float mIconAlphaWhenOpaque;
 
-    private View mLeftSide, mStatusIcons, mSignalCluster, mBattery, mBatteryText, mClock, mCenterClock,
-                mStatsUp, mStatsUpArrow, mStatsDown, mStatsDownArrow;
+    private View mLeftSide, mStatusIcons, mSignalCluster, mBattery, mCircleBattery, mBatteryText,
+                mClock, mCenterClock, mStatsUp, mStatsUpArrow, mStatsDown, mStatsDownArrow;
     private Animator mCurrentAnimation;
 
     public PhoneStatusBarTransitions(PhoneStatusBarView view) {
@@ -48,6 +48,7 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
         mStatusIcons = mView.findViewById(R.id.statusIcons);
         mSignalCluster = mView.findViewById(R.id.signal_cluster);
         mBattery = mView.findViewById(R.id.battery);
+        mCircleBattery = mView.findViewById(R.id.circle_battery);
         mBatteryText = mView.findViewById(R.id.battery_text);
         mClock = mView.findViewById(R.id.clock);
         mCenterClock = mView.findViewById(R.id.center_clock);
@@ -98,6 +99,7 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
                     animateTransitionTo(mStatusIcons, newAlpha),
                     animateTransitionTo(mSignalCluster, newAlpha),
                     animateTransitionTo(mBattery, newAlphaBC),
+                    animateTransitionTo(mCircleBattery, newAlphaBC),
                     animateTransitionTo(mBatteryText, newAlphaBC),
                     animateTransitionTo(mClock, newAlphaBC),
                     animateTransitionTo(mCenterClock, newAlphaBC),
@@ -116,6 +118,7 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
             mStatusIcons.setAlpha(newAlpha);
             mSignalCluster.setAlpha(newAlpha);
             mBattery.setAlpha(newAlphaBC);
+            mCircleBattery.setAlpha(newAlphaBC);
             mBatteryText.setAlpha(newAlphaBC);
             mClock.setAlpha(newAlphaBC);
             mCenterClock.setAlpha(newAlphaBC);

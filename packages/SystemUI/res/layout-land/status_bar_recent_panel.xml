@@ -25,8 +25,8 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:foreground="@drawable/bg_protect"
-    systemui:recentItemLayout="@layout/status_bar_recent_item"
-    >
+    systemui:recentItemLayout="@layout/status_bar_recent_item">
+
     <FrameLayout
         android:id="@+id/recents_bg_protect"
         android:background="@drawable/status_bar_recents_background"
@@ -34,7 +34,8 @@
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
         android:clipToPadding="false"
-        android:clipChildren="false">
+        android:clipChildren="false"
+        android:fitsSystemWindows="true">
 
         <com.android.systemui.recent.RecentsHorizontalScrollView android:id="@+id/recents_container"
             android:layout_width="wrap_content"
@@ -55,15 +56,24 @@
 
         </com.android.systemui.recent.RecentsHorizontalScrollView>
 
+        <com.android.systemui.recent.CircleMemoryMeter
+            android:id="@+id/circle_meter"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_gravity="top|left" />
+
         <ImageButton
             android:id="@+id/recents_clear"
             android:clickable="true"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:scaleType="center"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="2dp"
             android:layout_gravity="bottom|right"
-            android:layout_marginBottom="15dp"
-            android:layout_marginRight="15dp"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
             android:background="@android:color/transparent"
             android:src="@drawable/ic_notify_clear" />
 

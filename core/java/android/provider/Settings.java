@@ -3888,6 +3888,13 @@ public final class Settings {
          public static final String MEDIA_SCANNER_ON_BOOT = "media_scanner_on_boot";
 
         /**
+         * Recents RAM circle
+         * 0 - off, 1 - top left, 2 - top right, 3 - bottom left, 4 - bottom right
+         * @hide
+         */
+        public static final String RAM_CIRCLE = "ram_circle";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *

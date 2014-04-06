@@ -52,7 +52,6 @@ import android.os.UserHandle;
 import android.provider.Settings;
 import android.text.format.Formatter;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -116,6 +115,8 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
     private boolean mHighEndGfx;
     private ImageView mClearRecents;
     boolean ramBarEnabled;
+    private CircleMemoryMeter mRamCircle;;
+    private boolean mUpdateMemoryIndicator;
 
     TextView mBackgroundProcessText;
     TextView mForegroundProcessText;
@@ -416,42 +417,6 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
                     && (mRecentTaskDescriptions.size() == 0);
             mRecentsNoApps.setAlpha(1f);
             mRecentsNoApps.setVisibility(noApps ? View.VISIBLE : View.INVISIBLE);
-            // Set margins programicaly if there is no HW buttons
-            if (!noApps && !hasHWbuttons()) {
-                final Configuration config = getResources().getConfiguration();
-                ViewGroup.MarginLayoutParams imgViewParams = (ViewGroup.MarginLayoutParams) mClearRecents.getLayoutParams();
-                int navbarHeight = Settings.AOKP.getInt(mContext.getContentResolver(),
-                                Settings.AOKP.NAVIGATION_BAR_HEIGHT, 0);
-                int navbarHeightT = Settings.AOKP.getInt(mContext.getContentResolver(),
-                                Settings.AOKP.NAVIGATION_BAR_HEIGHT_LANDSCAPE, 0);
-                int navbarWidth = Settings.AOKP.getInt(mContext.getContentResolver(),
-                                Settings.AOKP.NAVIGATION_BAR_WIDTH, 0);
-                int margin = dpToPixels(15, mContext);
-                navbarHeight = (navbarHeight > 0) ?
-                        dpToPixels(navbarHeight, mContext) :
-                        mContext.getResources().getDimensionPixelSize(
-                                com.android.internal.R.dimen.navigation_bar_height);
-                navbarHeightT = (navbarHeightT > 0) ?
-                        dpToPixels(navbarHeightT, mContext) :
-                        mContext.getResources().getDimensionPixelSize(
-                                com.android.internal.R.dimen.navigation_bar_height_landscape);
-                navbarWidth = (navbarWidth > 0) ?
-                        dpToPixels(navbarWidth, mContext) :
-                        mContext.getResources().getDimensionPixelSize(
-                                com.android.internal.R.dimen.navigation_bar_width);
-                if (config.orientation == Configuration.ORIENTATION_PORTRAIT) {
-                    imgViewParams.setMargins(margin, 0, 0, navbarHeight + margin);
-                } else {
-                    // phablet or tablet
-                    if (isTablet(mContext)) {
-                        imgViewParams.setMargins(0, 0, margin, navbarHeightT + margin);
-                    // phone
-                    } else {
-                        imgViewParams.setMargins(0, 0, navbarWidth + margin, margin);
-                    }
-                }
-                mClearRecents.setLayoutParams(imgViewParams);
-            }
             mRJingles.setVisibility(noApps ? View.VISIBLE : View.INVISIBLE);
             mClearRecents.setColorFilter(getResources().getColor(R.color.status_bar_recents_app_label_color), Mode.SRC_ATOP);
             int clearAllButtonLocation = Settings.System.getInt(mContext.getContentResolver(), Settings.System.CLEAR_RECENTS_BUTTON_LOCATION, Constants.CLEAR_ALL_BUTTON_BOTTOM_LEFT);
@@ -479,6 +444,10 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
                 mClearRecents.setVisibility(View.GONE);
             }
 
+            updateRamCircle();
+            if (mUpdateMemoryIndicator) {
+                mRamCircle.updateMemoryInfo();
+            }
             onAnimationEnd(null);
             setFocusable(true);
             setFocusableInTouchMode(true);
@@ -490,6 +459,40 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
             if (mPopup != null) {
                 mPopup.dismiss();
             }
+        }
+    }
+
+    private void updateRamCircle() {
+
+        int ramCircleStatus = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.RAM_CIRCLE, Constants.RAM_CIRCLE_OFF);
+
+        if (ramCircleStatus != Constants.RAM_CIRCLE_OFF) {
+
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams)
+                    mRamCircle.getLayoutParams();
+
+            switch (ramCircleStatus) {
+                case Constants.CLEAR_ALL_BUTTON_TOP_LEFT:
+                    layoutParams.gravity = Gravity.TOP | Gravity.LEFT;
+                    break;
+                case Constants.CLEAR_ALL_BUTTON_TOP_RIGHT:
+                    layoutParams.gravity = Gravity.TOP | Gravity.RIGHT;
+                    break;
+                case Constants.CLEAR_ALL_BUTTON_BOTTOM_LEFT:
+                    layoutParams.gravity = Gravity.BOTTOM | Gravity.LEFT;
+                    break;
+                case Constants.CLEAR_ALL_BUTTON_BOTTOM_RIGHT:
+                default:
+                    layoutParams.gravity = Gravity.BOTTOM | Gravity.RIGHT;
+                    break;
+            }
+            mRamCircle.setLayoutParams(layoutParams);
+            mRamCircle.setVisibility(View.VISIBLE);
+            mUpdateMemoryIndicator = true;
+        } else {
+            mRamCircle.setVisibility(View.GONE);
+            mUpdateMemoryIndicator = false;
         }
     }
 
@@ -625,6 +628,14 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
                 }
             });
         }
+
+        mRamCircle = (CircleMemoryMeter) findViewById(R.id.circle_meter);
+        int ramCircleStatus = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.RAM_CIRCLE, Constants.RAM_CIRCLE_OFF);
+
+        if (ramCircleStatus != Constants.RAM_CIRCLE_OFF) {
+            mRamCircle.setVisibility(View.VISIBLE);
+        } else mRamCircle.setVisibility(View.GONE);
 
         if (mRecentsScrim != null) {
             mHighEndGfx = ActivityManager.isHighEndGfx();
@@ -964,6 +975,10 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
         sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_SELECTED);
         setContentDescription(null);
 
+        if (mUpdateMemoryIndicator) {
+            mRamCircle.updateMemoryInfo();
+        }
+
         mHandler.post(updateRamBarTask);
     }
 
@@ -1104,21 +1119,15 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
         return (hardwareKeyMask != 0);
     }
 
-    private int dpToPixels(int dp, Context context) {
+    private int pxToDp(int px, Context context) {
         float d = context.getResources().getDisplayMetrics().density;
-        return (int)(dp * d);
+        return (int)(px * d);
     }
 
-    private boolean isTablet(Context context) {
-        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
-        int widthPixels = displayMetrics.widthPixels;
-        int heightPixels = displayMetrics.heightPixels;
-        float density = displayMetrics.density;
-        if (widthPixels < heightPixels) {
-            return ((widthPixels / density) >= 600);
-        } else {
-            return ((heightPixels / density) >= 600);
-        }
+    private static boolean isTablet(Context context) {
+        boolean xlarge = ((context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == 4);
+        boolean large = ((context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_LARGE);
+        return (xlarge || large);
     }
 
     class FakeClearUserDataObserver extends IPackageDataObserver.Stub {

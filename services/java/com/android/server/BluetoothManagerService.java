@@ -34,7 +34,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
-import android.app.AppOpsManager;
 import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
@@ -414,7 +413,7 @@ class BluetoothManagerService extends IBluetoothManager.Stub {
         return true;
 
     }
-    public boolean enable(String callingPackage) {
+    public boolean enable() {
         if ((Binder.getCallingUid() != Process.SYSTEM_UID) &&
             (!checkIfCallerIsForegroundUser())) {
             Log.w(TAG,"enable(): not allowed for non-active and non system user");
@@ -426,13 +425,6 @@ class BluetoothManagerService extends IBluetoothManager.Stub {
         if (DBG) {
             Log.d(TAG,"enable():  mBluetooth =" + mBluetooth +
                     " mBinding = " + mBinding);
-        }
-
-        AppOpsManager appOps = (AppOpsManager)mContext.getSystemService(Context.APP_OPS_SERVICE);
-        int callingUid = Binder.getCallingUid();
-        if (appOps.noteOp(AppOpsManager.OP_BLUETOOTH_CHANGE, callingUid, callingPackage) !=
-                AppOpsManager.MODE_ALLOWED) {
-            return false;
         }
 
         synchronized(mReceiver) {

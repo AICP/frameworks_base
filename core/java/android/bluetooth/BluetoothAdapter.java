@@ -20,7 +20,6 @@ package android.bluetooth;
 
 import android.annotation.SdkConstant;
 import android.annotation.SdkConstant.SdkConstantType;
-import android.app.ActivityThread;
 import android.content.Context;
 import android.os.Binder;
 import android.os.IBinder;
@@ -519,7 +518,7 @@ public final class BluetoothAdapter {
             return true;
         }
         try {
-            return mManagerService.enable(ActivityThread.currentPackageName());
+            return mManagerService.enable();
         } catch (RemoteException e) {Log.e(TAG, "", e);}
         return false;
     }

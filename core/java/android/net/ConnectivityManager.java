@@ -20,7 +20,6 @@ import static com.android.internal.util.Preconditions.checkNotNull;
 
 import android.annotation.SdkConstant;
 import android.annotation.SdkConstant.SdkConstantType;
-import android.app.ActivityThread;
 import android.content.Context;
 import android.os.Binder;
 import android.os.Build.VERSION_CODES;
@@ -891,7 +890,7 @@ public class ConnectivityManager {
      */
     public void setMobileDataEnabled(boolean enabled) {
         try {
-            mService.setMobileDataEnabled(ActivityThread.currentPackageName(), enabled);
+            mService.setMobileDataEnabled(enabled);
         } catch (RemoteException e) {
         }
     }

@@ -592,14 +592,12 @@ public class AppOpsService extends IAppOpsService.Stub {
                 if (DEBUG) Log.d(TAG, "noteOperation: reject #" + op.mode + " for code "
                         + switchCode + " (" + code + ") uid " + uid + " package " + packageName);
                 op.rejectTime = System.currentTimeMillis();
-                op.ignoredCount++;
                 return switchOp.mode;
             }
             if (DEBUG) Log.d(TAG, "noteOperation: allowing code " + code + " uid " + uid
                     + " package " + packageName);
             op.time = System.currentTimeMillis();
             op.rejectTime = 0;
-            op.allowedCount++;
             return AppOpsManager.MODE_ALLOWED;
         }
     }
@@ -623,7 +621,6 @@ public class AppOpsService extends IAppOpsService.Stub {
                 if (DEBUG) Log.d(TAG, "startOperation: reject #" + op.mode + " for code "
                         + switchCode + " (" + code + ") uid " + uid + " package " + packageName);
                 op.rejectTime = System.currentTimeMillis();
-                op.ignoredCount++;
                 return switchOp.mode;
             }
             if (DEBUG) Log.d(TAG, "startOperation: allowing code " + code + " uid " + uid
@@ -631,7 +628,6 @@ public class AppOpsService extends IAppOpsService.Stub {
             if (op.nesting == 0) {
                 op.time = System.currentTimeMillis();
                 op.rejectTime = 0;
-                op.allowedCount++;
                 op.duration = -1;
             }
             op.nesting++;

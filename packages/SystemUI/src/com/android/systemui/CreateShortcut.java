@@ -56,6 +56,9 @@ public class CreateShortcut extends LauncherActivity {
     private static final int SECURE_LONG = 3;
     private static final int SYSTEM_FLOAT = 4;
     private static final int SECURE_FLOAT = 5;
+    private static final int GLOBAL_INT = 6;
+    private static final int GLOBAL_LONG = 7;
+    private static final int GLOBAL_FLOAT = 8;
 
     private int mSettingType = 0;
 
@@ -161,42 +164,61 @@ public class CreateShortcut extends LauncherActivity {
                         float testFloat = 0;
                         // Necessary ugly code.  Do it here so we don't have to again.
                         try {
-                            test = Settings.System.getIntForUser(
-                                    getContentResolver(),
-                                    value, UserHandle.USER_CURRENT);
-                            mSettingType = SYSTEM_INT;
-                        } catch (Settings.SettingNotFoundException a) {
+                            Settings.Global.getInt(
+                                    getContentResolver(), value);
+                            mSettingType = GLOBAL_INT;
+                        } catch (SettingNotFoundException p) {
                             try {
-                                test = Settings.Secure.getIntForUser(
-                                        getContentResolver(),
-                                        value, UserHandle.USER_CURRENT);
-                                mSettingType = SECURE_INT;
-                            } catch (Settings.SettingNotFoundException b) {
+                                Settings.Global.getLong(
+                                        getContentResolver(), value);
+                                mSettingType = GLOBAL_LONG;
+                            } catch (SettingNotFoundException q) {
                                 try {
-                                    testLong = Settings.System.getLongForUser(
-                                            getContentResolver(),
-                                            value, UserHandle.USER_CURRENT);
-                                    mSettingType = SYSTEM_LONG;
-                                } catch (Settings.SettingNotFoundException c) {
+                                    Settings.Global.getFloat(
+                                            getContentResolver(), value);
+                                    mSettingType = GLOBAL_FLOAT;
+                                } catch (SettingNotFoundException r) {
                                     try {
-                                        testLong = Settings.Secure.getLongForUser(
+                                        Settings.System.getIntForUser(
                                                 getContentResolver(),
                                                 value, UserHandle.USER_CURRENT);
-                                        mSettingType = SECURE_LONG;
-                                    } catch (Settings.SettingNotFoundException d) {
+                                        mSettingType = SYSTEM_INT;
+                                    } catch (SettingNotFoundException a) {
                                         try {
-                                            testFloat = Settings.System.getFloatForUser(
+                                            Settings.Secure.getIntForUser(
                                                     getContentResolver(),
                                                     value, UserHandle.USER_CURRENT);
-                                            mSettingType = SYSTEM_FLOAT;
-                                        } catch (Settings.SettingNotFoundException e) {
+                                            mSettingType = SECURE_INT;
+                                        } catch (SettingNotFoundException b) {
                                             try {
-                                                testFloat = Settings.Secure.getFloatForUser(
+                                                Settings.System.getLongForUser(
                                                         getContentResolver(),
                                                         value, UserHandle.USER_CURRENT);
-                                                mSettingType = SECURE_FLOAT;
-                                            } catch (Settings.SettingNotFoundException f) {
-                                                resultOk = false;
+                                                mSettingType = SYSTEM_LONG;
+                                            } catch (SettingNotFoundException c) {
+                                                try {
+                                                    Settings.Secure.getLongForUser(
+                                                            getContentResolver(),
+                                                            value, UserHandle.USER_CURRENT);
+                                                    mSettingType = SECURE_LONG;
+                                                } catch (SettingNotFoundException d) {
+                                                    try {
+                                                        Settings.System.getFloatForUser(
+                                                                getContentResolver(),
+                                                                value, UserHandle.USER_CURRENT);
+                                                        mSettingType = SYSTEM_FLOAT;
+                                                    } catch (SettingNotFoundException e) {
+                                                        try {
+                                                            Settings.Secure.getFloatForUser(
+                                                                    getContentResolver(),
+                                                                    value,
+                                                                    UserHandle.USER_CURRENT);
+                                                            mSettingType = SECURE_FLOAT;
+                                                        } catch (SettingNotFoundException f) {
+                                                            resultOk = false;
+                                                        }
+                                                    }
+                                                }
                                             }
                                         }
                                     }
@@ -261,6 +283,7 @@ public class CreateShortcut extends LauncherActivity {
                         switch (mSettingType) {
                             case SYSTEM_INT:
                             case SECURE_INT:
+                            case GLOBAL_INT:
                                 int[] intArray = new int[strArray.length];
                                 for (int i = 0; i < strArray.length; i++) {
                                     try {
@@ -276,6 +299,7 @@ public class CreateShortcut extends LauncherActivity {
                                 break;
                             case SYSTEM_LONG:
                             case SECURE_LONG:
+                            case GLOBAL_LONG:
                                 long[] longArray = new long[strArray.length];
                                 for (int i = 0; i < strArray.length; i++) {
                                     try {
@@ -287,6 +311,7 @@ public class CreateShortcut extends LauncherActivity {
                                 break;
                             case SYSTEM_FLOAT:
                             case SECURE_FLOAT:
+                            case GLOBAL_FLOAT:
                                 float[] floatArray = new float[strArray.length];
                                 for (int i = 0; i < strArray.length; i++) {
                                     try {

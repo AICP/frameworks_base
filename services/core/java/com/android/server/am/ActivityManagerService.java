@@ -8984,6 +8984,23 @@ public final class ActivityManagerService extends ActivityManagerNative
         }
     }
 
+    public IBinder getActivityForTask(int task, boolean onlyRoot) {
+        final ActivityStack mainStack = mStackSupervisor.getFocusedStack();
+        synchronized(this) {
+            ArrayList<ActivityStack> stacks = mStackSupervisor.getStacks();
+            for (ActivityStack stack : stacks) {
+                TaskRecord r = stack.taskForIdLocked(task);
+
+                if (r != null && r.getTopActivity() != null) {
+                    return r.getTopActivity().appToken;
+                } else {
+                    return null;
+                }
+            }
+        }
+        return null;
+    }
+    
     private boolean isLockTaskAuthorized(String pkg) {
         final DevicePolicyManager dpm = (DevicePolicyManager)
                 mContext.getSystemService(Context.DEVICE_POLICY_SERVICE);

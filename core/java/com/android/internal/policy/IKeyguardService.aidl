@@ -21,7 +21,6 @@ import android.view.MotionEvent;
 import com.android.internal.policy.IKeyguardShowCallback;
 import com.android.internal.policy.IKeyguardExitCallback;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
 
 interface IKeyguardService {
@@ -48,5 +47,4 @@ interface IKeyguardService {
     oneway void dispatchButtonClick(int buttonId);
     oneway void launchCamera();
     oneway void onBootCompleted();
-    oneway void setBackgroundBitmap(in Bitmap bmp);
 }

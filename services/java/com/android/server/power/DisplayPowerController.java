@@ -16,8 +16,6 @@
 
 package com.android.server.power;
 
-import java.io.PrintWriter;
-
 import com.android.server.LightsService;
 import com.android.server.TwilightService;
 import com.android.server.TwilightService.TwilightState;
@@ -39,23 +37,17 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Handler;
-import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
 import android.os.PowerManager;
 import android.os.SystemClock;
-import android.os.UserHandle;
-import android.provider.Settings;
 import android.text.format.DateUtils;
 import android.util.FloatMath;
-import android.util.Log;
 import android.util.Slog;
 import android.util.Spline;
 import android.util.TimeUtils;
-import android.view.SurfaceControl;
 
-import com.android.internal.policy.impl.keyguard.KeyguardServiceWrapper;
-import com.android.internal.policy.IKeyguardService;
+import java.io.PrintWriter;
 
 /**
  * Controls the power state of the display.
@@ -191,9 +183,6 @@ final class DisplayPowerController {
 
     // The display blanker.
     private final DisplayBlanker mDisplayBlanker;
-
-    // Our context
-    private final Context mContext;
 
     // Our handler.
     private final DisplayControllerHandler mHandler;
@@ -375,24 +364,6 @@ final class DisplayPowerController {
     private boolean mTwilightChanged;
     private boolean mAutoBrightnessSettingsChanged;
 
-    private KeyguardServiceWrapper mKeyguardService;
-    
-    private final ServiceConnection mKeyguardConnection = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            if (DEBUG) Log.v(TAG, "*** Keyguard connected (yay!)");
-            mKeyguardService = new KeyguardServiceWrapper(
-                    IKeyguardService.Stub.asInterface(service));
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            if (DEBUG) Log.v(TAG, "*** Keyguard disconnected (boo!)");
-            mKeyguardService = null;
-        }
-
-    };
-    
     /**
      * Creates the display power controller.
      */
@@ -475,16 +446,6 @@ final class DisplayPowerController {
 
         if (mUseSoftwareAutoBrightnessConfig && USE_TWILIGHT_ADJUSTMENT) {
             mTwilight.registerListener(mTwilightListener, mHandler);
-        }
-        
-
-        Intent intent = new Intent();
-        intent.setClassName("com.android.keyguard", "com.android.keyguard.KeyguardService");
-        if (!context.bindServiceAsUser(intent, mKeyguardConnection,
-                Context.BIND_AUTO_CREATE, UserHandle.OWNER)) {
-            Log.e(TAG, "*** Keyguard: can't bind to keyguard");
-        } else {
-            Log.e(TAG, "*** Keyguard started");
         }
     }
 
@@ -633,15 +594,6 @@ final class DisplayPowerController {
             }
 
             if (changed && !mPendingRequestChangedLocked) {
-            	if (Settings.System.getInt(mContext.getContentResolver(), 
-            			Settings.System.LOCKSCREEN_BLUR_BEHIND, 0) == 1 && 
-            			request.screenState == DisplayPowerRequest.SCREEN_STATE_OFF) {
-                    Bitmap bmp = SurfaceControl.screenshot(768, 1280);
-                    if(bmp != null) {
-                        mKeyguardService.setBackgroundBitmap(bmp);
-                        bmp.recycle();
-                    }
-            	}
                 mPendingRequestChangedLocked = true;
                 sendUpdatePowerStateLocked();
             }

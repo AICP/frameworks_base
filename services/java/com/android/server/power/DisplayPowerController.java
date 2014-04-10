@@ -25,7 +25,6 @@ import com.android.server.display.DisplayManagerService;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
-import android.app.KeyguardManager;
 import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -636,15 +635,11 @@ final class DisplayPowerController {
             if (changed && !mPendingRequestChangedLocked) {
             	if (Settings.System.getInt(mContext.getContentResolver(), 
             			Settings.System.LOCKSCREEN_BLUR_BEHIND, 0) == 1 && 
-            			request.screenState == DisplayPowerRequest.SCREEN_STATE_OFF &&
-                        !isKeyguardEnabled()) {
-                    final Bitmap bmp = SurfaceControl.screenshot(768, 1280);
+            			request.screenState == DisplayPowerRequest.SCREEN_STATE_OFF) {
+                    Bitmap bmp = SurfaceControl.screenshot(768, 1280);
                     if(bmp != null) {
-                        try {
-                            mKeyguardService.setBackgroundBitmap(bmp);
-                        } finally {
-                            bmp.recycle();
-                        }
+                        mKeyguardService.setBackgroundBitmap(bmp);
+                        bmp.recycle();
                     }
             	}
                 mPendingRequestChangedLocked = true;
@@ -668,12 +663,6 @@ final class DisplayPowerController {
             msg.setAsynchronous(true);
             mHandler.sendMessage(msg);
         }
-    }
-
-    private boolean isKeyguardEnabled() {
-        KeyguardManager km = (KeyguardManager)mContext.getSystemService(Context.KEYGUARD_SERVICE);
-        if(km == null) return false;
-        return km.isKeyguardLocked();
     }
 
     private void initialize() {

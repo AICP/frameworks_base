@@ -634,8 +634,10 @@ final class DisplayPowerController {
             }
 
             if (changed && !mPendingRequestChangedLocked) {
-                if (request.screenState == DisplayPowerRequest.SCREEN_STATE_OFF && !isKeyguardEnabled() &&
-                        Settings.System.getInt(mContext.getContentResolver(), Settings.System.LOCKSCREEN_BLUR_BEHIND, 0) == 1) {
+            	if (Settings.System.getInt(mContext.getContentResolver(), 
+            			Settings.System.LOCKSCREEN_BLUR_BEHIND, 0) == 1 && 
+            			request.screenState == DisplayPowerRequest.SCREEN_STATE_OFF &&
+                        !isKeyguardEnabled()) {
                     final Bitmap bmp = SurfaceControl.screenshot(768, 1280);
                     if(bmp != null) {
                         try {
@@ -644,7 +646,7 @@ final class DisplayPowerController {
                             bmp.recycle();
                         }
                     }
-                }
+            	}
                 mPendingRequestChangedLocked = true;
                 sendUpdatePowerStateLocked();
             }

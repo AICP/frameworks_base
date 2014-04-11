@@ -16,6 +16,8 @@
 
 package com.android.server.power;
 
+import java.io.PrintWriter;
+
 import com.android.server.LightsService;
 import com.android.server.TwilightService;
 import com.android.server.TwilightService.TwilightState;
@@ -37,17 +39,22 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
 import android.os.PowerManager;
 import android.os.SystemClock;
 import android.text.format.DateUtils;
 import android.util.FloatMath;
+import android.util.Log;
 import android.util.Slog;
 import android.util.Spline;
 import android.util.TimeUtils;
+import android.view.DisplayInfo;
+import android.view.SurfaceControl;
 
-import java.io.PrintWriter;
+import com.android.internal.policy.impl.keyguard.KeyguardServiceWrapper;
+import com.android.internal.policy.IKeyguardService;
 
 /**
  * Controls the power state of the display.
@@ -364,6 +371,22 @@ final class DisplayPowerController {
     private boolean mTwilightChanged;
     private boolean mAutoBrightnessSettingsChanged;
 
+    private KeyguardServiceWrapper mKeyguardService;
+
+    private final ServiceConnection mKeyguardConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            mKeyguardService = new KeyguardServiceWrapper(
+                    IKeyguardService.Stub.asInterface(service));
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            mKeyguardService = null;
+        }
+
+    };
+
     /**
      * Creates the display power controller.
      */
@@ -447,6 +470,11 @@ final class DisplayPowerController {
         if (mUseSoftwareAutoBrightnessConfig && USE_TWILIGHT_ADJUSTMENT) {
             mTwilight.registerListener(mTwilightListener, mHandler);
         }
+
+        Intent intent = new Intent();
+        intent.setClassName("com.android.keyguard", "com.android.keyguard.KeyguardService");
+        context.bindServiceAsUser(intent, mKeyguardConnection,
+                Context.BIND_AUTO_CREATE, UserHandle.OWNER);
     }
 
     private void updateAutomaticBrightnessSettings() {
@@ -567,6 +595,10 @@ final class DisplayPowerController {
      */
     public boolean requestPowerState(DisplayPowerRequest request,
             boolean waitForNegativeProximity) {
+
+        final int MAX_BLUR_WIDTH = 900;
+        final int MAX_BLUR_HEIGHT = 1600;
+
         if (DEBUG) {
             Slog.d(TAG, "requestPowerState: "
                     + request + ", waitForNegativeProximity=" + waitForNegativeProximity);
@@ -593,7 +625,31 @@ final class DisplayPowerController {
                 mDisplayReadyLocked = false;
             }
 
+            boolean seeThrough = Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.LOCKSCREEN_SEE_THROUGH, 0) == 1;
             if (changed && !mPendingRequestChangedLocked) {
+                if ((mKeyguardService == null || !mKeyguardService.isShowing()) &&
+                            request.screenState == DisplayPowerRequest.SCREEN_STATE_OFF &&
+                            seeThrough) {
+                    DisplayInfo di = mDisplayManager
+                            .getDisplayInfo(mDisplayManager.getDisplayIds() [0]);
+                    /* Limit max screenshot capture layer to 22000.
+                       Prevents status bar and navigation bar from being captured.*/
+                    Bitmap bmp = SurfaceControl
+                            .screenshot(di.getNaturalWidth(),di.getNaturalHeight(), 0, 22000);
+                    if (bmp != null) {
+                        Bitmap tmpBmp = bmp;
+
+                        // scale image if its too large
+                        if (bmp.getWidth() > MAX_BLUR_WIDTH) {
+                                tmpBmp = bmp.createScaledBitmap(bmp, MAX_BLUR_WIDTH, MAX_BLUR_HEIGHT, true);
+                        }
+
+                        mKeyguardService.setBackgroundBitmap(tmpBmp);
+                        bmp.recycle();
+                        tmpBmp.recycle();
+                    }
+                } else if (!seeThrough) mKeyguardService.setBackgroundBitmap(null);
                 mPendingRequestChangedLocked = true;
                 sendUpdatePowerStateLocked();
             }

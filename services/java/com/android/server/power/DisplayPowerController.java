@@ -44,6 +44,8 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.PowerManager;
 import android.os.SystemClock;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.text.format.DateUtils;
 import android.util.FloatMath;
 import android.util.Log;
@@ -190,6 +192,9 @@ final class DisplayPowerController {
 
     // The display blanker.
     private final DisplayBlanker mDisplayBlanker;
+
+    // Our context
+    private final Context mContext;
 
     // Our handler.
     private final DisplayControllerHandler mHandler;

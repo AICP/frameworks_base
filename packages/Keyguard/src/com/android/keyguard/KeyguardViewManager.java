@@ -158,7 +158,6 @@ public class KeyguardViewManager {
 
         @Override
         public void onChange(boolean selfChange) {
-            setKeyguardParams();
             updateSettings();
             if (mKeyguardHost == null) {
                 maybeCreateKeyguardLocked(shouldEnableScreenRotation(), false, null);

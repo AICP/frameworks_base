@@ -48,8 +48,6 @@ public class WindowAnimator {
     final Context mContext;
     final WindowManagerPolicy mPolicy;
 
-    private static TransparencyBlurObserver beergoggles;
-
     boolean mAnimating;
 
     final Runnable mAnimationRunnable;
@@ -103,9 +101,6 @@ public class WindowAnimator {
         mPolicy = service.mPolicy;
 
         mAudioManager = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
-
-        if (beergoggles == null)
-            beergoggles = new TransparencyBlurObserver(mContext.getContentResolver());
 
         mAnimationRunnable = new Runnable() {
             @Override
@@ -215,7 +210,6 @@ public class WindowAnimator {
         ArrayList<WindowStateAnimator> unForceHiding = null;
         boolean wallpaperInUnForceHiding = false;
         mForceHiding = KEYGUARD_NOT_SHOWN;
-        boolean shouldAnimate = !(beergoggles.getTransparent() || beergoggles.getBlurry());
 
         for (int i = windows.size() - 1; i >= 0; i--) {
             WindowState win = windows.get(i);
@@ -709,40 +703,5 @@ public class WindowAnimator {
 
     private class DisplayContentsAnimator {
         ScreenRotationAnimation mScreenRotationAnimation = null;
-    }
-
-    private class TransparencyBlurObserver extends ContentObserver {
-
-        private final ContentResolver mResolver;
-        private final Uri mTransUri, mBlurUri;
-        private boolean mTransparent, mBlurry;
-
-        public boolean getTransparent() { return mTransparent; }
-        public boolean getBlurry() { return mBlurry; }
-
-        public TransparencyBlurObserver(ContentResolver resolver) {
-            super(new Handler());
-            mResolver = resolver;
-            mTransUri = Settings.System.getUriFor(Settings.AOKP.LOCKSCREEN_SEE_THROUGH);
-            mBlurUri = Settings.System.getUriFor(Settings.System.LOCKSCREEN_BLUR_BEHIND);
-            mResolver.registerContentObserver(mBlurUri, false, this);
-            mResolver.registerContentObserver(mTransUri, false, this);
-
-            mTransparent = Settings.System.getInt(mResolver,
-                Settings.AOKP.LOCKSCREEN_SEE_THROUGH, 0) == 1;
-            mBlurry = Settings.System.getInt(mResolver,
-                Settings.System.LOCKSCREEN_BLUR_BEHIND, 0) == 1;
-        }
-
-        @Override
-        public void onChange(boolean selfChange, Uri uri) {
-            if (uri.equals(mTransUri)) {
-                mTransparent = Settings.System.getInt(mResolver,
-                    Settings.AOKP.LOCKSCREEN_SEE_THROUGH, 0) == 1;
-            } else {
-                mBlurry = Settings.System.getInt(mResolver,
-                    Settings.System.LOCKSCREEN_BLUR_BEHIND, 0) == 1;
-            }
-        }
     }
 }

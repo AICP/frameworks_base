@@ -15,6 +15,7 @@ import static com.android.server.wm.WindowManagerService.LayoutFields.SET_WALLPA
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.ContentObserver;
+import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Debug;
 import android.os.Handler;
@@ -84,6 +85,8 @@ public class WindowAnimator {
     static final int KEYGUARD_ANIMATING_OUT = 3;
     int mForceHiding = KEYGUARD_NOT_SHOWN;
 
+    private AudioManager mAudioManager;
+
     private String forceHidingToString() {
         switch (mForceHiding) {
             case KEYGUARD_NOT_SHOWN:    return "KEYGUARD_NOT_SHOWN";
@@ -98,6 +101,8 @@ public class WindowAnimator {
         mService = service;
         mContext = service.mContext;
         mPolicy = service.mPolicy;
+
+        mAudioManager = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
 
         if (beergoggles == null)
             beergoggles = new TransparencyBlurObserver(mContext.getContentResolver());
@@ -251,7 +256,8 @@ public class WindowAnimator {
                         mService.mFocusMayChange = true;
                     }
                     if (win.isReadyForDisplay()) {
-                        if (Settings.System.getInt(mContext.getContentResolver(),
+                        if (mAudioManager.isMusicActive() || Settings.System.getInt(
+                                mContext.getContentResolver(),
                                 Settings.System.LOCKSCREEN_SEE_THROUGH, 0) == 0) {
                             if (nowAnimating) {
                                 if (winAnimator.mAnimationIsEntrance) {
@@ -260,10 +266,10 @@ public class WindowAnimator {
                                     mForceHiding = KEYGUARD_ANIMATING_OUT;
                                 }
                             } else {
-                                mForceHiding = KEYGUARD_NOT_SHOWN;
+                                mForceHiding = KEYGUARD_SHOWN;
                             }
                         } else {
-                            mForceHiding = win.isDrawnLw() ? KEYGUARD_SHOWN : KEYGUARD_NOT_SHOWN;
+                            mForceHiding = KEYGUARD_NOT_SHOWN;
                         }
                     }
                     if (WindowManagerService.DEBUG_VISIBILITY) Slog.v(TAG,

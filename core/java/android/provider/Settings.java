@@ -3899,6 +3899,14 @@ public final class Settings {
         public static final String LOCKSCREEN_ROTATION = "lockscreen_rotation";
 
         /**
+         * Recent panel expanded mode (auto = 0, always = 1, never = 2).
+         * default = 0.
+         *
+         * @hide
+         */
+        public static final String RECENT_PANEL_EXPANDED_MODE = "recent_panel_expanded_mode";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *

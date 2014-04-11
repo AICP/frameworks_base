@@ -17,9 +17,15 @@
 
 package com.android.keyguard;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.TransitionDrawable;
 import android.os.*;
 import android.provider.Settings;
 import android.view.*;
+import com.android.internal.policy.IKeyguardShowCallback;
+import com.android.internal.widget.LockPatternUtils;
 
 import android.app.ActivityManager;
 import android.appwidget.AppWidgetManager;
@@ -33,16 +39,14 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.ContentResolver;
 import android.database.ContentObserver;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
 import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -75,10 +79,8 @@ import android.view.ViewManager;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 
-import com.android.internal.policy.IKeyguardShowCallback;
-import com.android.internal.widget.LockPatternUtils;
-
 import java.io.File;
+//import com.android.internal.util.cm.TorchConstants;
 
 /**
  * Manages creating, showing, hiding and resetting the keyguard.  Calls back
@@ -374,7 +376,19 @@ public class KeyguardViewManager {
         private final Drawable mBackgroundDrawable = new Drawable() {
             @Override
             public void draw(Canvas canvas) {
-                drawToCanvas(canvas, mCustomBackground);
+                if (mCustomBackground != null) {
+                    final Rect bounds = mCustomBackground.getBounds();
+                    final int vWidth = getWidth();
+                    final int vHeight = getHeight();
+
+                    final int restore = canvas.save();
+                    canvas.translate(-(bounds.width() - vWidth) / 2,
+                            -(bounds.height() - vHeight) / 2);
+                    mCustomBackground.draw(canvas);
+                    canvas.restoreToCount(restore);
+                } else {
+                    canvas.drawColor(BACKGROUND_COLOR, PorterDuff.Mode.SRC);
+                }
             }
 
             @Override
@@ -399,63 +413,45 @@ public class KeyguardViewManager {
             mLastConfiguration = new Configuration(context.getResources().getConfiguration());
         }
 
-        public void drawToCanvas(Canvas canvas, Drawable drawable) {
-            if (drawable != null) {
-                final Rect bounds = drawable.getBounds();
-                final int vWidth = getWidth();
-                final int vHeight = getHeight();
-
-                final int restore = canvas.save();
-                canvas.translate(-(bounds.width() - vWidth) / 2,
-                        -(bounds.height() - vHeight) / 2);
-                drawable.draw(canvas);
-                canvas.restoreToCount(restore);
-            } else {
-                canvas.drawColor(BACKGROUND_COLOR, PorterDuff.Mode.SRC);
-            }
-        }
-
         public void setCustomBackground(Drawable d) {
-            if (!ActivityManager.isHighEndGfx() || !mScreenOn) {
+            if (!ActivityManager.isHighEndGfx()) {
                 mCustomBackground = d;
                 if (d != null) {
                     d.setColorFilter(BACKGROUND_COLOR, PorterDuff.Mode.SRC_OVER);
                 }
                 computeCustomBackgroundBounds(mCustomBackground);
-                setBackground(mBackgroundDrawable);
+                invalidate();
             } else {
-                Drawable old = mCustomBackground;
                 if (getWidth() == 0 || getHeight() == 0) {
                     d = null;
                 }
-                if (old == null && d == null) {
+                if (d == null) {
+                    mCustomBackground = null;
+                    setBackground(mBackgroundDrawable);
                     return;
                 }
-                boolean newIsNull = false;
+                Drawable old = mCustomBackground;
                 if (old == null) {
-                    old = new ColorDrawable(BACKGROUND_COLOR);
+                    old = new ColorDrawable(0);
+                    computeCustomBackgroundBounds(old);
                 }
-                if (d == null) {
-                    d = new ColorDrawable(BACKGROUND_COLOR);
-                    newIsNull = true;
-                } else {
-                    d.setColorFilter(BACKGROUND_COLOR, PorterDuff.Mode.SRC_OVER);
-                }
+                d.setColorFilter(BACKGROUND_COLOR, PorterDuff.Mode.SRC_OVER);
+                mCustomBackground = d;
                 computeCustomBackgroundBounds(d);
                 Bitmap b = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
                 Canvas c = new Canvas(b);
-                drawToCanvas(c, d);
+                mBackgroundDrawable.draw(c);
 
-                Drawable dd = new BitmapDrawable(mContext.getResources(), b);
+                Drawable dd = new BitmapDrawable(b);
 
-                mTransitionBackground = new TransitionDrawable(new Drawable[] {old, dd});
+                mTransitionBackground = new TransitionDrawable(new Drawable[]{old, dd});
                 mTransitionBackground.setCrossFadeEnabled(true);
                 setBackground(mTransitionBackground);
 
                 mTransitionBackground.startTransition(200);
 
-                mCustomBackground = newIsNull ? null : dd;
-
+                mCustomBackground = dd;
+                invalidate();
             }
         }
 

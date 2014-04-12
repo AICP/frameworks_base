@@ -12,9 +12,10 @@
         android:icon="@drawable/ic_filemanager"
         android:supportsRtl="true">
 
-        <!-- TODO: allow rotation when state saving is in better shape -->
+        <!-- TODO: allow rotation when state saving is in better shape. -->
         <activity
             android:name=".DocumentsActivity"
+            android:configChanges="orientation|screenSize"
             android:theme="@style/Theme"
             android:icon="@drawable/ic_filemanager">
             <intent-filter>

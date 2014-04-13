@@ -466,7 +466,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mNetworkController = new NetworkController(mContext);
         mLocationController = new LocationController(mContext);
         mBatteryController = new BatteryController(mContext);
-        mDockBatteryController = new DockBatteryController(mContext);
         mBluetoothController = new BluetoothController(mContext);
 
         super.start(); // calls createAndAddWindows()

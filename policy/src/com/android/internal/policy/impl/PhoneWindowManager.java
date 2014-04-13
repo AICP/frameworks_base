@@ -109,7 +109,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.internal.R;
-import com.android.internal.app.ThemeUtils;
 import com.android.internal.os.DeviceKeyHandler;
 import com.android.internal.policy.PolicyManager;
 import com.android.internal.policy.impl.keyguard.KeyguardServiceDelegate;
@@ -2130,7 +2129,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     + ": nonLocalizedLabel=" + nonLocalizedLabel + " theme="
                     + Integer.toHexString(theme));
             if (theme != context.getThemeResId() || labelRes != 0) {
-               try {
+                try {
                     context = context.createPackageContext(packageName, 0);
                     context.setTheme(theme);
                 } catch (PackageManager.NameNotFoundException e) {
@@ -4678,7 +4677,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 } else {
                   final AudioManager am = (AudioManager)mContext.getSystemService(Context.AUDIO_SERVICE);
                   final int ringerMode = am.getRingerMode();
-                  final VolumePanel volumePanel = new VolumePanel(ThemeUtils.createUiContext(mContext),
+                  final VolumePanel volumePanel = new VolumePanel(mContext,
                                                          (AudioService) getAudioService());
                   if (ringerMode == AudioManager.RINGER_MODE_NORMAL) {
                        am.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);

@@ -3209,6 +3209,11 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 }
             }
         }
+
+        if (mNavigationBarView != null)  {
+            mNavigationBarView.updateResources();
+            updateSearchPanel();
+        }
     }
 
     protected void loadDimens() {

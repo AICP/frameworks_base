@@ -61,7 +61,14 @@ import android.graphics.Point;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+<<<<<<< HEAD
+=======
+import android.os.Environment;
+import android.os.Parcel;
+>>>>>>> 35e4471... Allow open files instead of URIs
 import android.os.Parcelable;
+import android.os.storage.StorageManager;
+import android.os.storage.StorageVolume;
 import android.provider.DocumentsContract;
 import android.provider.DocumentsContract.Root;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -139,10 +146,25 @@ public class DocumentsActivity extends BaseActivity {
     /* true if copy, false if cut */
     private boolean mClipboardIsCopy;
 
+    private StorageManager mStorageManager;
+
+    private final Object mRootsLock = new Object();
+    private HashMap<String, File> mIdToPath;
+
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
+<<<<<<< HEAD
+=======
+        mRoots = DocumentsApplication.getRootsCache(this);
+
+        mStorageManager = (StorageManager) getSystemService(Context.STORAGE_SERVICE);
+
+        mIdToPath = Maps.newHashMap();
+        updateVolumes();
+
+>>>>>>> 35e4471... Allow open files instead of URIs
         setResult(Activity.RESULT_CANCELED);
         setContentView(R.layout.activity);
 
@@ -260,8 +282,48 @@ public class DocumentsActivity extends BaseActivity {
         }
     }
 
+<<<<<<< HEAD
     private State buildDefaultState() {
         State state = new State();
+=======
+    public void updateVolumes() {
+        synchronized (mRootsLock) {
+            updateVolumesLocked();
+        }
+    }
+
+    private void updateVolumesLocked() {
+        mIdToPath.clear();
+
+        final StorageVolume[] volumes = mStorageManager.getVolumeList();
+        for (StorageVolume volume : volumes) {
+            final boolean mounted = Environment.MEDIA_MOUNTED.equals(volume.getState())
+                    || Environment.MEDIA_MOUNTED_READ_ONLY.equals(volume.getState());
+            if (!mounted) continue;
+
+            final String rootId;
+            if (volume.isPrimary() && volume.isEmulated()) {
+                rootId = "primary";
+            } else if (volume.getUuid() != null) {
+                rootId = volume.getUuid();
+            } else {
+                continue;
+            }
+
+            if (mIdToPath.containsKey(rootId)) {
+                continue;
+            }
+
+            final File path = volume.getPathFile();
+            mIdToPath.put(rootId, path);
+            Log.d(TAG, "Found volume path: " + rootId + ":" + path);
+        }
+
+    }
+
+    private void buildDefaultState() {
+        mState = new State();
+>>>>>>> 35e4471... Allow open files instead of URIs
 
         final Intent intent = getIntent();
         final String action = intent.getAction();
@@ -844,8 +906,28 @@ public class DocumentsActivity extends BaseActivity {
             } catch (ActivityNotFoundException ex) {
 =======
             } catch (ActivityNotFoundException ex2) {
+<<<<<<< HEAD
 >>>>>>> 9fc07eb... Add a standalone File Manager
                 Toast.makeText(this, R.string.toast_no_application, Toast.LENGTH_SHORT).show();
+=======
+                File file = null;
+                String id = doc.documentId.substring(0, doc.documentId.indexOf(":"));
+                File volume = mIdToPath.get(id);
+                if (volume != null) {
+                    String fileName = doc.documentId.substring(doc.documentId.indexOf(":") + 1);
+                    file = new File(volume, fileName);
+                }
+                if (file != null) {
+                    view.setDataAndType(Uri.fromFile(file), doc.mimeType);
+                    try {
+                        startActivity(view);
+                    } catch (ActivityNotFoundException ex3) {
+                        Toast.makeText(this, R.string.toast_no_application, Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(this, R.string.toast_no_application, Toast.LENGTH_SHORT).show();
+                }
+>>>>>>> 35e4471... Allow open files instead of URIs
             }
         }
     }

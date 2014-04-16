@@ -5260,7 +5260,7 @@ public class Activity extends ContextThemeWrapper
             mWindow.setCloseOnTouchOutsideIfNotSet(true);
             mWindow.setGravity(Gravity.CENTER);
 
-            if (android.os.Process.myUid() == android.os.Process.SYSTEM_UID) {
+            if (this instanceof LayerActivity || android.os.Process.myUid() == android.os.Process.SYSTEM_UID) {
                 mWindow.setFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND,
                         WindowManager.LayoutParams.FLAG_DIM_BEHIND);
                 WindowManager.LayoutParams params = mWindow.getAttributes();

@@ -174,4 +174,10 @@
         This allows an app send SMS to trusted applications. Malicious apps could send messages
         continuously, blocking the device notification system and disrupting the user.</string>
 
+    <!-- Floating Window -->
+    <string name="floating_window_snap_top">Snap top</string>
+    <string name="floating_window_snap_bottom">Snap bottom</string>
+    <string name="floating_window_snap_left">Snap left</string>
+    <string name="floating_window_snap_right">Snap right</string>
+
 </resources>

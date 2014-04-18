@@ -55,6 +55,7 @@
     <string name="toggle_WIRELESSADB">Wireless ADB</string>
     <string name="toggle_IMMERSIVE_MODE">Expanded desktop</string>
     <string name="toggle_SCREENRECORD">Screenrecord</string>
+    <string name="toggle_MUSIC">Music</string>
 
     <string name="quick_settings_swagger">Swagger</string>
     <string name="quick_settings_swaggersun">Swagger Sunday</string>
@@ -115,4 +116,6 @@
     <string name="quick_settings_immersive_mode_on">Expanded desktop On</string>
     <string name="quick_settings_immersive_mode_off">Expanded desktop Off</string>
     <string name="quick_settings_clock_alarm_off">Alarm Off</string>
+    <string name="quick_settings_music_play">Play</string>
+    <string name="quick_settings_music_pause">Pause</string>
 </resources>

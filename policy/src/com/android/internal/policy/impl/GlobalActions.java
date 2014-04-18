@@ -18,6 +18,7 @@ package com.android.internal.policy.impl;
 
 import com.android.internal.app.AlertController;
 import com.android.internal.app.AlertController.AlertParams;
+import com.android.internal.app.ThemeUtils;
 import com.android.internal.telephony.TelephonyIntents;
 import com.android.internal.telephony.TelephonyProperties;
 import com.android.internal.widget.LockPatternUtils;
@@ -37,9 +38,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
-import android.content.pm.ThemeUtils;
 import android.content.pm.UserInfo;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.ServiceConnection;
 import android.database.ContentObserver;
 import android.graphics.drawable.Drawable;

@@ -40,13 +40,13 @@ import android.content.res.AssetManager;
 import android.content.res.CompatibilityInfo;
 import android.content.res.Configuration;
 import android.content.res.CustomTheme;
+import android.content.res.PackageRedirectionMap;
 import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDebug;
 import android.database.sqlite.SQLiteDebug.DbStats;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Typeface;
 import android.hardware.display.DisplayManagerGlobal;
 import android.net.IConnectivityManager;
 import android.net.Proxy;
@@ -1538,11 +1538,11 @@ public final class ActivityThread {
     /**
      * Creates the top level resources for the given package.
      */
-    Resources getTopLevelResources(String resDir, String[] overlayDirs,
+    Resources getTopLevelResources(String resDir,
             int displayId, Configuration overrideConfiguration,
-            LoadedApk pkgInfo, Context context) {
-        return mResourcesManager.getTopLevelResources(resDir, overlayDirs, displayId, pkgInfo.mPackageName,
-                overrideConfiguration, pkgInfo.getCompatibilityInfo(), null, context);
+            LoadedApk pkgInfo) {
+        return mResourcesManager.getTopLevelResources(resDir, displayId, overrideConfiguration,
+                pkgInfo.getCompatibilityInfo(), null);
     }
 
     final Handler getHandler() {
@@ -3973,10 +3973,8 @@ public final class ActivityThread {
         if (configDiff != 0) {
             // Ask text layout engine to free its caches if there is a locale change
             boolean hasLocaleConfigChange = ((configDiff & ActivityInfo.CONFIG_LOCALE) != 0);
-            boolean hasThemeConfigChange = ((configDiff & ActivityInfo.CONFIG_THEME_RESOURCE) != 0);
-            if (hasLocaleConfigChange || hasThemeConfigChange) {
+            if (hasLocaleConfigChange) {
                 Canvas.freeTextLayoutCaches();
-                Typeface.recreateDefaults();
                 if (DEBUG_CONFIGURATION) Slog.v(TAG, "Cleared TextLayout Caches");
             }
         }

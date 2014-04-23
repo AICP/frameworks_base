@@ -3530,6 +3530,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         @Override
         public void onChange(boolean selfChange, Uri uri) {
             ContentResolver cr = mContext.getContentResolver();
+            updateSettings();
 
             toggleNavigationBarOrNavRing(mWantsNavigationBar, mEnableNavring);
             if(uri != null && uri.equals(Settings.AOKP.getUriFor(Settings.AOKP.TOGGLES_STYLE))) {
@@ -3553,7 +3554,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     Settings.System.ENABLE_ACTIVE_DISPLAY))) {
                 updateActiveDisplayViewState();
             }
-            updateSettings();
         }
     }
 

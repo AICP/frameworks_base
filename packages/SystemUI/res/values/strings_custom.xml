@@ -133,6 +133,7 @@
     <string name="toast_items_saved">Appbar items have been saved.</string>
     <string name="content_setup_instructions">Add items to the Appbar by long pressing any item on the right and drag it over to the Appbar.\n\nCombine items into folders by droping an item onto any existing item in the Appbar.\n\nTo remove an item simply drag it out of the \@appbar.</string>
     <string name="content_setup_dismiss">Continue</string>
+    <string name="toast_not_installed">App is not installed</string>
 
     <!-- Content description of the data connection type DC-HSPA+ for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_data_connection_DC">DC-HSPA+</string>

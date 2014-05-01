@@ -177,6 +177,7 @@ public class RecentsActivity extends Activity {
                     mRecentsPanel.simulateClick(recentTasks.get(1).persistentId)) {
                 finish();
                 // recents panel will take care of calling show(false) through simulateClick
+                finish();
                 return;
             }
             mRecentsPanel.show(false);

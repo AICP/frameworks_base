@@ -184,7 +184,7 @@ public class DirectoryLoader extends AsyncTaskLoader<DirectoryResult> {
 
             result.client = client;
             result.cursor = cursor;
-        } catch (Exception e) {
+        } catch (RemoteException e) {
             Log.w(TAG, "Failed to query", e);
             result.exception = e;
             ContentProviderClient.releaseQuietly(client);

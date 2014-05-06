@@ -3928,7 +3928,14 @@ public final class Settings {
         public static final String PEEK_STATE = "peek_state";
 
         /**
-         * Settings to backup. This is here so that it's in the same place as the settings
+         * In call dialpad state.
+         * 0 = hidden
+         * 1 = showing
+         * @hide
+         */
+        public static final String DIALPAD_STATE = "dialpad_state";
+
+        /**         * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
          * NOTE: Settings are backed up and restored in the order they appear

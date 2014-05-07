@@ -346,11 +346,9 @@ public class RecentPanelView {
                             | Intent.FLAG_FLOATING_WINDOW
                             | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
                     mContext.startActivity(transparent);
-                    Intent intent = new Intent(Intent.ACTION_MAIN);
+                    Intent intent = td.intent;
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                            | Intent.FLAG_ACTIVITY_CLEAR_TASK
                             | Intent.FLAG_FLOATING_WINDOW);
-                    intent.setComponent(td.intent.getComponent());
                     mContext.startActivity(intent);
                     exit();
                 } else if (item.getItemId() == MENU_APP_STOP_ID) {

@@ -442,16 +442,23 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
              });
          }
 
-        // next: expanded desktop toggle
-        // only shown if enabled and expanded desktop is enabled, disabled by default
-        boolean showExpandedDesktop =
-                Settings.System.getIntForUser(mContext.getContentResolver(),
-                        Settings.System.EXPANDED_DESKTOP_STYLE, 0, UserHandle.USER_CURRENT) != 0
-                && Settings.System.getIntForUser(mContext.getContentResolver(),
-                        Settings.System.POWER_MENU_EXPANDED_DESKTOP_ENABLED, 0, UserHandle.USER_CURRENT) == 1;
+        if (mScreenrecordOption != 0) {
+            // next: screenrecord
+            mItems.add(
+                new SinglePressAction(R.drawable.ic_lock_screen_record, R.string.global_action_screenrecord) {
+                    public void onPress() {
+                        takeScreenrecord();
+                    }
 
-        if (showExpandedDesktop) {
-            mItems.add(mExpandDesktopModeOn);
+                    public boolean showDuringKeyguard() {
+                        boolean toggle = checkOptionAndKeyguard(mScreenrecordOption);
+                        return toggle;
+                    }
+
+                    public boolean showBeforeProvisioning() {
+                        return true;
+                    }
+                });
         }
 
         // next: On-The-Go, if enabled
@@ -483,28 +490,21 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
             );
         }
 
+        // next: expanded desktop toggle
+        // only shown if enabled and expanded desktop is enabled, disabled by default
+        boolean showExpandedDesktop =
+                Settings.System.getIntForUser(mContext.getContentResolver(),
+                        Settings.System.EXPANDED_DESKTOP_STYLE, 0, UserHandle.USER_CURRENT) != 0
+                && Settings.System.getIntForUser(mContext.getContentResolver(),
+                        Settings.System.POWER_MENU_EXPANDED_DESKTOP_ENABLED, 0, UserHandle.USER_CURRENT) == 1;
+
+        if (showExpandedDesktop) {
+            mItems.add(mExpandDesktopModeOn);
+        }
+
         // next: airplane mode
         if (mAirplaneOption != 0) {
            mItems.add(mAirplaneModeOn);
-        }
-
-        if (mScreenrecordOption != 0) {
-            // next: screenrecord
-            mItems.add(
-                new SinglePressAction(R.drawable.ic_lock_screen_record, R.string.global_action_screenrecord) {
-                    public void onPress() {
-                        takeScreenrecord();
-                    }
-
-                    public boolean showDuringKeyguard() {
-                        boolean toggle = checkOptionAndKeyguard(mScreenrecordOption);
-                        return toggle;
-                    }
-
-                    public boolean showBeforeProvisioning() {
-                        return true;
-                    }
-                });
         }
 
         // next: bug report, if enabled

@@ -2036,7 +2036,7 @@ public class ActivityManager {
             case DisplayMetrics.DENSITY_XHIGH:
                 return DisplayMetrics.DENSITY_XXHIGH;
             case DisplayMetrics.DENSITY_XXHIGH:
-                return DisplayMetrics.DENSITY_XHIGH * 2;
+                return DisplayMetrics.DENSITY_XXXHIGH;
             default:
                 // The density is some abnormal value.  Return some other
                 // abnormal value that is a reasonable scaling of it.

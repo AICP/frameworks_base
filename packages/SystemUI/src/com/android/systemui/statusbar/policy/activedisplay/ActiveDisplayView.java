@@ -1,5 +1,4 @@
 /*
- * Copyright (C) 2014 VanirASOP && the Android Open Source Project
  * Copyright (C) 2013 The ChameleonOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -129,7 +128,7 @@ public class ActiveDisplayView extends FrameLayout {
     private Drawable mNotificationDrawable;
     private int mCreationOrientation;
     private SettingsObserver mSettingsObserver;
-    private IPowerManager mPM;
+    private static IPowerManager mPM;
     private INotificationManager mNM;
     private INotificationListenerWrapper mNotificationListener;
     private StatusBarManager mStatusBarManager;
@@ -147,7 +146,6 @@ public class ActiveDisplayView extends FrameLayout {
     private LinearLayout.LayoutParams mOverflowLayoutParams;
     private boolean mCallbacksRegistered = false;
     private boolean mShow = true;
-    private boolean mScreenOnState = false;
 
     // user customizable settings
     private boolean mDisplayNotifications = false;
@@ -158,9 +156,6 @@ public class ActiveDisplayView extends FrameLayout {
     private boolean privacyMode = false;
     private boolean mQuietTime = false;
     private long mRedisplayTimeout = 0;
-    private float mInitialBrightness = 1f;
-    private int mBrightnessMode = -1;
-    private int mUserBrightnessLevel = -1;
     private Set<String> mExcludedApps = new HashSet<String>();
     private long mDisplayTimeout = 8000L;
     private long mProximityThreshold = 5000L;
@@ -180,7 +175,7 @@ public class ActiveDisplayView extends FrameLayout {
                 // need to make sure either the screen is off or the user is currently
                 // viewing the notifications
                 if (ActiveDisplayView.this.getVisibility() == View.VISIBLE
-                        || !mScreenOnState)
+                        || !isScreenOn())
                     showNotification(sbn, true);
                     mShow = false;
             }
@@ -248,7 +243,6 @@ public class ActiveDisplayView extends FrameLayout {
         public void onGrabbed(final View v, final int handle) {
             // prevent the ActiveDisplayView from turning off while user is interacting with it
             cancelTimeoutTimer();
-            restoreBrightness();
             doTransition(mOverflowNotifications, 0.0f, 0);
             if (!privacyMode) {
                 if (mRemoteView != null) {
@@ -298,11 +292,7 @@ public class ActiveDisplayView extends FrameLayout {
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.ACTIVE_DISPLAY_REDISPLAY), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.ACTIVE_DISPLAY_BRIGHTNESS), false, this);
-            resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.ACTIVE_DISPLAY_EXCLUDED_APPS), false, this);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.SCREEN_BRIGHTNESS_MODE), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.ACTIVE_DISPLAY_TIMEOUT), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
@@ -342,8 +332,6 @@ public class ActiveDisplayView extends FrameLayout {
                     resolver, Settings.System.ACTIVE_NOTIFICATIONS_POCKET_MODE, POCKET_MODE_ACTIVE_DISPLAY);
             mRedisplayTimeout = Settings.System.getLong(
                     resolver, Settings.System.ACTIVE_DISPLAY_REDISPLAY, 0L);
-            mInitialBrightness = Settings.System.getInt(
-                    resolver, Settings.System.ACTIVE_DISPLAY_BRIGHTNESS, 100) / 100f;
             String excludedApps = Settings.System.getString(resolver,
                     Settings.System.ACTIVE_DISPLAY_EXCLUDED_APPS);
             mDisplayTimeout = Settings.System.getLong(
@@ -357,17 +345,9 @@ public class ActiveDisplayView extends FrameLayout {
 
                 createExcludedAppsSet(excludedApps);
 
-                int brightnessMode = Settings.System.getInt(
-                        resolver, Settings.System.SCREEN_BRIGHTNESS_MODE, -1);
-                if (mBrightnessMode != brightnessMode) {
-                    mBrightnessMode = brightnessMode;
-                    mUserBrightnessLevel = -1;
-                }
-
                 if (!mDisplayNotifications || mRedisplayTimeout <= 0) {
                     cancelRedisplayTimer();
                 }
-
 
                 registerCallbacks();
             }
@@ -438,7 +418,7 @@ public class ActiveDisplayView extends FrameLayout {
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         mSettingsObserver.observe();
-        if (mRedisplayTimeout > 0 && !mScreenOnState) updateRedisplayTimer();
+        if (mRedisplayTimeout > 0 && !isScreenOn()) updateRedisplayTimer();
     }
 
     @Override
@@ -669,7 +649,6 @@ public class ActiveDisplayView extends FrameLayout {
     private void handleHideNotificationView() {
         mHandler.removeCallbacks(runSystemUiVisibilty);
         setVisibility(View.GONE);
-        restoreBrightness();
         cancelTimeoutTimer();
         adjustStatusBarLocked(false);
     }
@@ -677,7 +656,6 @@ public class ActiveDisplayView extends FrameLayout {
     private void handleForceHideNotificationView() {
         mHandler.removeCallbacks(runSystemUiVisibilty);
         setVisibility(View.GONE);
-        restoreBrightness();
         cancelTimeoutTimer();
         adjustStatusBarLocked(false);
     }
@@ -687,7 +665,7 @@ public class ActiveDisplayView extends FrameLayout {
         handleShowNotificationView();
         setActiveNotification(mNotification, true);
         inflateRemoteView(mNotification);
-        if (!mScreenOnState) {
+        if (!isScreenOn()) {
             turnScreenOn();
         }
         if (ping) mGlowPadView.ping();
@@ -757,11 +735,18 @@ public class ActiveDisplayView extends FrameLayout {
 
     private final Runnable runWakeDevice = new Runnable() {
         public void run() {
-            setBrightness(mInitialBrightness);
             wakeDevice();
             doTransition(ActiveDisplayView.this, 1f, 1000);
         }
     };
+
+    private boolean isScreenOn() {
+        try {
+            return mPM.isScreenOn();
+        } catch (RemoteException e) {
+        }
+        return false;
+    }
 
     private void enableProximitySensor() {
         if (mDisplayNotifications) {
@@ -775,43 +760,7 @@ public class ActiveDisplayView extends FrameLayout {
         }
     }
 
-    private void setBrightness(float brightness) {
-        final ContentResolver resolver = mContext.getContentResolver();
-        mBrightnessMode = Settings.System.getInt(resolver, Settings.System.SCREEN_BRIGHTNESS_MODE,
-                Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC);
-        if (mBrightnessMode != Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC) {
-            mUserBrightnessLevel = Settings.System.getInt(resolver, Settings.System.SCREEN_BRIGHTNESS,
-                    android.os.PowerManager.BRIGHTNESS_ON);
-            final int dim = getResources().getInteger(
-                    com.android.internal.R.integer.config_screenBrightnessDim);
-            int level = (int)((android.os.PowerManager.BRIGHTNESS_ON - dim) * brightness) + dim;
-            Settings.System.putInt(resolver,
-                    Settings.System.SCREEN_BRIGHTNESS_MODE,
-                    Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
-            try {
-                mPM.setTemporaryScreenBrightnessSettingOverride(level);
-            } catch (RemoteException e) {
-            }
-        }
-    }
-
-    private void restoreBrightness() {
-        if (mUserBrightnessLevel < 0 || mBrightnessMode < 0
-                || mBrightnessMode == Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC) {
-            return;
-        }
-        final ContentResolver resolver = mContext.getContentResolver();
-        try {
-            mPM.setTemporaryScreenBrightnessSettingOverride(mUserBrightnessLevel);
-        } catch (RemoteException e) {
-        }
-        Settings.System.putInt(resolver,
-                Settings.System.SCREEN_BRIGHTNESS_MODE,
-                mBrightnessMode);
-    }
-
     private void isUserActivity() {
-        restoreBrightness();
         updateTimeoutTimer();
     }
 
@@ -1149,7 +1098,7 @@ public class ActiveDisplayView extends FrameLayout {
                         if (inQuietHours()) return;
                     }
                     synchronized (this) {
-                        if (!mScreenOnState) {
+                        if (!isScreenOn()) {
                             if (checkTime >= (mPocketTime + mProximityThreshold)){
                                 if (mNotification == null) {
                                     mNotification = getNextAvailableNotification();
@@ -1186,10 +1135,8 @@ public class ActiveDisplayView extends FrameLayout {
             } else if (ACTION_DISPLAY_TIMEOUT.equals(action)) {
                 turnScreenOff();
             } else if (Intent.ACTION_SCREEN_OFF.equals(action)) {
-                mScreenOnState = false;
                 onScreenTurnedOff();
             } else if (Intent.ACTION_SCREEN_ON.equals(action)) {
-                mScreenOnState = true;
                 onScreenTurnedOn();
             } else if (Intent.ACTION_KEYGUARD_TARGET.equals(action)) {
                 Log.i(TAG, "HEY DICKBAG, DISABLING PROXIMITY SENSOR BECAUSE YOU UNLOCKED THE KEYGUARD!!!!!!!!!");

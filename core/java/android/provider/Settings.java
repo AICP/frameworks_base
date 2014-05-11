@@ -2596,12 +2596,6 @@ public final class Settings {
         public static final String ACTIVE_DISPLAY_REDISPLAY = "active_display_redisplay";
 
         /**
-         * Brightness of the display when displaying the active display view
-         * @hide
-         */
-        public static final String ACTIVE_DISPLAY_BRIGHTNESS = "active_display_brightness";
-
-        /**
          * Whether to include ongoing/non-clearable notifications
          * @hide
          */

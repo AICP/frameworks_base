@@ -171,6 +171,7 @@ public class ActiveDisplayView extends FrameLayout {
             if (mQuietTime) {
                 if (inQuietHours()) return;
             }
+            if (isOnCall()) return;
             synchronized (this) {
                 if (!isScreenOn()) {
                     if (shouldShowNotification() && isValidNotification(sbn) && mShow) {
@@ -942,7 +943,7 @@ public class ActiveDisplayView extends FrameLayout {
      * @return True if it should be used, false otherwise.
      */
     private boolean isValidNotification(StatusBarNotification sbn) {
-        if (isOnCall() || mExcludedApps.contains(sbn.getPackageName())) return false;
+        if (mExcludedApps.contains(sbn.getPackageName())) return false;
 
         return ((sbn.isClearable() || !hideNonClearable)
                 && !(mHideLowPriorityNotifications

@@ -128,7 +128,7 @@ public class ActiveDisplayView extends FrameLayout {
     private Drawable mNotificationDrawable;
     private int mCreationOrientation;
     private SettingsObserver mSettingsObserver;
-    private static IPowerManager mPM;
+    private final IPowerManager mPM;
     private INotificationManager mNM;
     private INotificationListenerWrapper mNotificationListener;
     private StatusBarManager mStatusBarManager;
@@ -148,7 +148,7 @@ public class ActiveDisplayView extends FrameLayout {
     private boolean mShow = true;
 
     // user customizable settings
-    private boolean mDisplayNotifications = false;
+    private boolean mNotOverridden;
     private boolean mDisplayNotificationText = false;
     private boolean hideNonClearable = true;
     private boolean mHideLowPriorityNotifications = false;
@@ -171,13 +171,19 @@ public class ActiveDisplayView extends FrameLayout {
             if (mQuietTime) {
                 if (inQuietHours()) return;
             }
-            if (shouldShowNotification() && isValidNotification(sbn) && mShow) {
-                // need to make sure either the screen is off or the user is currently
-                // viewing the notifications
-                if (ActiveDisplayView.this.getVisibility() == View.VISIBLE
-                        || !isScreenOn())
-                    showNotification(sbn, true);
-                    mShow = false;
+            synchronized (this) {
+                if (!isScreenOn()) {
+                    if (shouldShowNotification() && isValidNotification(sbn) && mShow) {
+                        // need to make sure either the screen is off or the user is currently
+                        // viewing the notifications
+                        if (ActiveDisplayView.this.getVisibility() == View.VISIBLE
+                                || !isScreenOn()) {
+                            showNotification(sbn, true);
+                            mShow = false;
+                            turnScreenOn();
+                        }
+                    }
+                }
             }
         }
         @Override
@@ -274,8 +280,6 @@ public class ActiveDisplayView extends FrameLayout {
             ContentResolver resolver =
                     ActiveDisplayView.this.mContext.getContentResolver();
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.ENABLE_ACTIVE_DISPLAY), false, this);
-            resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.ACTIVE_NOTIFICATIONS), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.ACTIVE_NOTIFICATIONS_PRIVACY_MODE), false, this);
@@ -312,12 +316,9 @@ public class ActiveDisplayView extends FrameLayout {
 
         public void update() {
             ContentResolver resolver = mContext.getContentResolver();
-            boolean mNotOverridden;
 
             mNotOverridden = Settings.System.getInt(
                     resolver, Settings.System.ACTIVE_NOTIFICATIONS, 0) == 1;
-            mDisplayNotifications = Settings.System.getInt(
-                    resolver, Settings.System.ENABLE_ACTIVE_DISPLAY, 0) == 1;
             mQuietTime = Settings.System.getInt(
                     resolver, Settings.System.ACTIVE_NOTIFICATIONS_QUIET_HOURS, 0) == 1;
             privacyMode = Settings.System.getInt(mContext.getContentResolver(),
@@ -339,19 +340,15 @@ public class ActiveDisplayView extends FrameLayout {
             mProximityThreshold = Settings.System.getLong(
                     resolver, Settings.System.ACTIVE_DISPLAY_THRESHOLD, 8000L);
 
-            if (!mNotOverridden) {
-                mDisplayNotifications = false;
-            } else {
+            createExcludedAppsSet(excludedApps);
 
-                createExcludedAppsSet(excludedApps);
-
-                if (!mDisplayNotifications || mRedisplayTimeout <= 0) {
-                    cancelRedisplayTimer();
-                }
-
-                registerCallbacks();
+            if (mRedisplayTimeout <= 0) {
+                cancelRedisplayTimer();
             }
-            if (!mDisplayNotifications || !mNotOverridden) {
+
+            registerCallbacks();
+
+            if (!mNotOverridden) {
                 unregisterCallbacks();
             }
         }
@@ -661,13 +658,10 @@ public class ActiveDisplayView extends FrameLayout {
     }
 
     private void handleShowNotification(boolean ping) {
-        if (!mDisplayNotifications) return;
+        if (!mNotOverridden) return;
         handleShowNotificationView();
         setActiveNotification(mNotification, true);
         inflateRemoteView(mNotification);
-        if (!isScreenOn()) {
-            turnScreenOn();
-        }
         if (ping) mGlowPadView.ping();
     }
 
@@ -749,7 +743,7 @@ public class ActiveDisplayView extends FrameLayout {
     }
 
     private void enableProximitySensor() {
-        if (mDisplayNotifications) {
+        if (mNotOverridden) {
             registerSensorListener(mProximitySensor);
         }
     }
@@ -1128,10 +1122,15 @@ public class ActiveDisplayView extends FrameLayout {
                 if (mQuietTime) {
                     if (inQuietHours()) return;
                 }
-                if (mNotification == null) {
-                    mNotification = getNextAvailableNotification();
+                synchronized (this) {
+                    if (!isScreenOn()) {
+                        if (mNotification == null) {
+                            mNotification = getNextAvailableNotification();
+                        }
+                        if (mNotification != null) showNotification(mNotification, true);
+                        turnScreenOn();
+                    }
                 }
-                if (mNotification != null) showNotification(mNotification, true);
             } else if (ACTION_DISPLAY_TIMEOUT.equals(action)) {
                 turnScreenOff();
             } else if (Intent.ACTION_SCREEN_OFF.equals(action)) {

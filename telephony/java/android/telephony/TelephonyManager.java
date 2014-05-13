@@ -1418,6 +1418,10 @@ public class TelephonyManager {
      * @hide pending API review
      */
     public boolean isSmsCapable() {
+        if (!SystemProperties.getBoolean(TelephonyProperties.PROPERTY_SMS_RECEIVE, true)
+                && !SystemProperties.getBoolean(TelephonyProperties.PROPERTY_SMS_SEND, true)) {
+            return false;
+        }
         if (mContext == null) return true;
         return mContext.getResources().getBoolean(
                 com.android.internal.R.bool.config_sms_capable);

@@ -35,7 +35,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
         <item name="android:textSize">@dimen/network_stats_text_size</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">@color/status_bar_network_stats_color</item>
     </style>
 
     <!-- Active Notifications -->

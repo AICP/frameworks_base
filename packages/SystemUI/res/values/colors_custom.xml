@@ -19,6 +19,7 @@
 <resources>
     <color name="status_bar_battery_text_color">#FFFFFFFF</color>
     <color name="status_bar_battery_text_color_plugged">#FF00FF00</color>
+    <color name="status_bar_network_stats_color">#FFFFFFFF</color>
     <color name="qs_tile_user_label">#CC000000</color>
     <color name="toggle_text">#ffffffff</color>
     <color name="toggle_text_changing_state_color">#ff787878</color>

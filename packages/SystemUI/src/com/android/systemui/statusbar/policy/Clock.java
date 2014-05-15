@@ -47,10 +47,13 @@ import com.android.systemui.DemoMode;
 import com.android.systemui.R;
 
 import java.text.SimpleDateFormat;
+import java.util.GregorianCalendar;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import libcore.icu.LocaleData;
 
@@ -117,6 +120,9 @@ public class Clock extends TextView implements DemoMode, OnClickListener, OnLong
         }
     };
     private int mClockColor;
+
+    private final Handler handler = new Handler();
+    TimerTask second;
 
     public Clock(Context context) {
         this(context, null);
@@ -250,6 +256,12 @@ public class Clock extends TextView implements DemoMode, OnClickListener, OnLong
         CharSequence dateString = null;
         String result = sdf.format(mCalendar.getTime());
 
+        if (Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.CLOCK_USE_SECOND, 0) == 1) {
+            String temp = result;
+            result = String.format("%s:%02d", temp, new GregorianCalendar().get(Calendar.SECOND));
+        }
+
         if (mWeekdayStyle != WEEKDAY_STYLE_GONE) {
             todayIs = (new SimpleDateFormat("E")).format(mCalendar.getTime()) + " ";
             result = todayIs + result;
@@ -365,6 +377,24 @@ public class Clock extends TextView implements DemoMode, OnClickListener, OnLong
         mClockDateStyle = Settings.System.getIntForUser(resolver,
                 Settings.System.STATUSBAR_CLOCK_DATE_STYLE, CLOCK_DATE_STYLE_UPPERCASE,
                 UserHandle.USER_CURRENT);
+
+        second = new TimerTask()
+        {
+            @Override
+            public void run()
+             {
+                Runnable updater = new Runnable()
+                  {
+                   public void run()
+                   {
+                       updateClock();
+                   }
+                  };
+                handler.post(updater);
+             }
+        };
+        Timer timer = new Timer();
+        timer.schedule(second, 0, 1001);
 
         if (mAttached) {
             if (mCustomColor) {

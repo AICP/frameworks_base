@@ -1045,6 +1045,7 @@ class ServerThread {
         final PrintManagerService printManagerF = printManager;
         final MediaRouterService mediaRouterF = mediaRouter;
         final IPackageManager pmf = pm;
+        final ThemeService themeServiceF = themeService;
 
         // We now tell the activity manager it is okay to run third party
         // code.  It will call back into us once it has gotten to the state
@@ -1200,6 +1201,8 @@ class ServerThread {
                 }
 
                 try {
+                    // now that the system is up, apply default theme if applicable
+                    if (themeServiceF != null) themeServiceF.systemRunning();
                     CustomTheme customTheme = CustomTheme.getBootTheme(contextF.getContentResolver());
                     String iconPkg = customTheme.getIconPackPkgName();
                     pmf.updateIconMapping(iconPkg);

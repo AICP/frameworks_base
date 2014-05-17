@@ -186,4 +186,8 @@
 
     <!-- Default for Settings.Global.TETHER_DUN_REQUIRED -->
     <integer name="def_tether_dun_required">0</integer>
+
+    <!-- Default theme -->
+    <string name="def_theme_package"></string>
+    <string name="def_theme_components"></string>
 </resources>

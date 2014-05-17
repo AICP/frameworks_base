@@ -24,6 +24,7 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.IPackageManager;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.Configuration;
 import android.content.res.XmlResourceParser;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -2091,6 +2092,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             if (stmt != null) stmt.close();
         }
     }
+    
+    private void loadDefaultThemeSettings(SQLiteStatement stmt) {
+        loadStringSetting(stmt, Settings.Secure.DEFAULT_THEME_PACKAGE, R.string.def_theme_package);
+        loadStringSetting(stmt, Settings.Secure.DEFAULT_THEME_COMPONENTS,
+                R.string.def_theme_components);
+    }
 
     private void loadSecureSettings(SQLiteDatabase db) {
         SQLiteStatement stmt = null;
@@ -2176,6 +2183,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             loadBooleanSetting(stmt, Settings.Secure.USER_SETUP_COMPLETE,
                     R.bool.def_user_setup_complete);
+
+            loadDefaultThemeSettings(stmt);
         } finally {
             if (stmt != null) stmt.close();
         }

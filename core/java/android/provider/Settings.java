@@ -8753,6 +8753,12 @@ public final class Settings {
 
         public static final String ANIMATION_CONTROLS_NO_OVERRIDE = "animation_controls_no_override";
 
+        /**
+         * Whether to flip the network status positions in the status bar
+         * @hide
+         */
+        public static final String STATUS_BAR_NETWORK_STATS_FLIP = "status_bar_network_stats_flip";
+
         public static final String ANIMATION_CONTROLS_EXIT_ONLY = "animation_controls_exit_only";
 
         public static final String ANIMATION_CONTROLS_REVERSE_EXIT = "animation_controls_reverse_exit";

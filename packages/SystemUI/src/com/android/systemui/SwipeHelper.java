@@ -368,6 +368,8 @@ public class SwipeHelper implements Gefingerpoken {
         final int action = ev.getAction();
         switch (action) {
             case MotionEvent.ACTION_OUTSIDE:
+                // don't do anything if we tap outside, ignore
+                break;
             case MotionEvent.ACTION_MOVE:
                 if (mCurrView != null) {
                     float delta = getPos(ev) - mInitialTouchPos;

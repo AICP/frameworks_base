@@ -62,6 +62,7 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -120,6 +121,7 @@ public class ActiveDisplayView extends FrameLayout {
     private KeyguardManager mKeyguardManager;
     
     private GlowPadView mGlowPadView;
+    private GestureDetector mDoubleTapGesture;
     private View mRemoteView;
     private View mClock;
     private FrameLayout mRemoteViewLayout;
@@ -152,6 +154,7 @@ public class ActiveDisplayView extends FrameLayout {
     private boolean mDisplayNotificationText = false;
     private boolean hideNonClearable = true;
     private boolean mHideLowPriorityNotifications = false;
+    private boolean mEnableDoubleTap = false;
     private int mPocketMode = POCKET_MODE_OFF;
     private boolean privacyMode = false;
     private boolean mQuietTime = false;
@@ -302,6 +305,8 @@ public class ActiveDisplayView extends FrameLayout {
                     Settings.System.ACTIVE_DISPLAY_TIMEOUT), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.ACTIVE_DISPLAY_THRESHOLD), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.ACTIVE_DISPLAY_DOUBLE_TAP), false, this);
             update();
         }
 
@@ -340,6 +345,8 @@ public class ActiveDisplayView extends FrameLayout {
                     resolver, Settings.System.ACTIVE_DISPLAY_TIMEOUT, 8000L);
             mProximityThreshold = Settings.System.getLong(
                     resolver, Settings.System.ACTIVE_DISPLAY_THRESHOLD, 8000L);
+            mEnableDoubleTap = Settings.System.getInt(
+                    resolver, Settings.System.ACTIVE_DISPLAY_DOUBLE_TAP, 0) == 1;
 
             createExcludedAppsSet(excludedApps);
 
@@ -399,6 +406,15 @@ public class ActiveDisplayView extends FrameLayout {
 
         mSettingsObserver = new SettingsObserver(new Handler());
         mCreationOrientation = Resources.getSystem().getConfiguration().orientation;
+
+        mDoubleTapGesture = new GestureDetector(mContext,
+                new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public boolean onDoubleTap(MotionEvent e) {
+                turnScreenOff();
+                return true;
+            }
+        });
     }
 
     public void setStatusBar(BaseStatusBar bar) {
@@ -428,6 +444,14 @@ public class ActiveDisplayView extends FrameLayout {
     @Override
     protected void onConfigurationChanged(Configuration newConfig) {
         makeActiveDisplayView(newConfig.orientation, true);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (mEnableDoubleTap) {
+            mDoubleTapGesture.onTouchEvent(event);
+        }
+        return super.onTouchEvent(event);
     }
 
     private void makeActiveDisplayView(int orientation, boolean recreate) {
@@ -924,7 +948,20 @@ public class ActiveDisplayView extends FrameLayout {
                     break;
             }
             isUserActivity();
+            if (mEnableDoubleTap) {
+                mDoubleTapGesture.onTouchEvent(event);
+            }
             return true;
+        }
+    };
+
+    private OnTouchListener mGlowPadTouchListener = new OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            if (mEnableDoubleTap) {
+                return mDoubleTapGesture.onTouchEvent(event);
+            }
+            return v.onTouchEvent(event);
         }
     };
 

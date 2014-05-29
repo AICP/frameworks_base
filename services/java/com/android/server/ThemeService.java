@@ -77,6 +77,9 @@ import java.util.List;
 public class ThemeService extends IThemeService.Stub {
     private static final String TAG = ThemeService.class.getName();
 
+    private static final String GOOGLE_SETUPWIZARD_PACKAGE = "com.google.android.setupwizard";
+    private static final String CM_SETUPWIZARD_PACKAGE = "com.cyanogenmod.account";
+
     private HandlerThread mWorker;
     private ThemeWorkerHandler mHandler;
     private Context mContext;
@@ -566,7 +569,8 @@ public class ThemeService extends IThemeService.Stub {
 
         List<ResolveInfo> infos = pm.queryIntentActivities(homeIntent, 0);
         for(ResolveInfo info : infos) {
-            if (info.activityInfo != null && info.activityInfo.applicationInfo != null) {
+            if (info.activityInfo != null && info.activityInfo.applicationInfo != null &&
+                    !isSetupActivity(info)) {
                 String pkgToStop = info.activityInfo.applicationInfo.packageName;
                 Log.d(TAG, "Force stopping " +  pkgToStop + " for theme change");
                 try {
@@ -584,6 +588,11 @@ public class ThemeService extends IThemeService.Stub {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    private boolean isSetupActivity(ResolveInfo info) {
+        return GOOGLE_SETUPWIZARD_PACKAGE.equals(info.activityInfo.packageName) ||
+               CM_SETUPWIZARD_PACKAGE.equals(info.activityInfo.packageName);
     }
 
     private void postProgress(String pkgName) {

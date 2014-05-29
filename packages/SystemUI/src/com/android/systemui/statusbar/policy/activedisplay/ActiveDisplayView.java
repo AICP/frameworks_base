@@ -210,20 +210,73 @@ public class ActiveDisplayView extends FrameLayout {
     private OnTriggerListener mOnTriggerListener = new OnTriggerListener() {
 
         public void onTrigger(final View v, final int target) {
+
             if (target == UNLOCK_TARGET) {
                 disableProximitySensor();
                 mNotification = null;
-                hideNotificationView();
-                unlockKeyguardActivity();
+
+                // hide the notification view
+                mHandler.removeMessages(MSG_HIDE_NOTIFICATION_VIEW);
+                mHandler.sendEmptyMessage(MSG_HIDE_NOTIFICATION_VIEW);
+
+                try {
+                    ActivityManagerNative.getDefault().dismissKeyguardOnNextActivity();
+                    ActivityManagerNative.getDefault().resumeAppSwitches();
+                } catch (RemoteException e) {
+                }
+
                 mPocketTime = 0;
                 Intent intent = new Intent(mContext, DummyActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 mContext.startActivityAsUser(intent, new UserHandle(UserHandle.USER_CURRENT));
+
             } else if (target == OPEN_APP_TARGET) {
                 disableProximitySensor();
-                hideNotificationView();
-                unlockKeyguardActivity();
-                launchNotificationPendingIntent();
+
+                // hide the notification view
+                mHandler.removeMessages(MSG_HIDE_NOTIFICATION_VIEW);
+                mHandler.sendEmptyMessage(MSG_HIDE_NOTIFICATION_VIEW);
+
+                try {
+                    ActivityManagerNative.getDefault().dismissKeyguardOnNextActivity();
+                    ActivityManagerNative.getDefault().resumeAppSwitches();
+                } catch (RemoteException e) {
+                }
+
+                if (mNotification != null) {
+                    PendingIntent i = mNotification.getNotification().contentIntent;
+                    if (i != null) {
+                        try {
+                            Intent intent = i.getIntent();
+                            intent.setFlags(
+                                intent.getFlags()
+                                | Intent.FLAG_ACTIVITY_NEW_TASK
+                                | Intent.FLAG_ACTIVITY_SINGLE_TOP
+                                | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            if (i.isActivity()) ActivityManagerNative.getDefault().dismissKeyguardOnNextActivity();
+                            i.send();
+                            KeyguardTouchDelegate.getInstance(mContext).dismiss();
+                        } catch (CanceledException ex) {
+                        } catch (RemoteException ex) {
+                        }
+                    }
+                    if (mNotification.isClearable()) {
+                        try {
+                            mNM.cancelNotificationFromSystemListener(mNotificationListener,
+                                    mNotification.getPackageName(), mNotification.getTag(),
+                                    mNotification.getId());
+                        } catch (RemoteException e) {
+                        } catch (NullPointerException npe) {
+                        }
+                    }
+                    mNotification = null;
+                }
+
+                mHandler.removeCallbacks(runSystemUiVisibilty);
+                setVisibility(View.GONE);
+                cancelTimeoutTimer();
+                adjustStatusBarLocked(false);
+
             } else if (target == DISMISS_TARGET) {
                 enableProximitySensor();
                 dismissNotification();
@@ -561,49 +614,9 @@ public class ActiveDisplayView extends FrameLayout {
         mAnim.start();
     }
 
-    /**
-     * Launches the pending intent for the currently selected notification
-     */
-    private void launchNotificationPendingIntent() {
-        if (mNotification != null) {
-            PendingIntent i = mNotification.getNotification().contentIntent;
-            if (i != null) {
-                try {
-                    Intent intent = i.getIntent();
-                    intent.setFlags(
-                        intent.getFlags()
-                        | Intent.FLAG_ACTIVITY_NEW_TASK
-                        | Intent.FLAG_ACTIVITY_SINGLE_TOP
-                        | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    if (i.isActivity()) ActivityManagerNative.getDefault().dismissKeyguardOnNextActivity();
-                    i.send();
-                    KeyguardTouchDelegate.getInstance(mContext).dismiss();
-                } catch (CanceledException ex) {
-                } catch (RemoteException ex) {
-                }
-            }
-            if (mNotification.isClearable()) {
-                try {
-                     mNM.cancelNotificationFromSystemListener(mNotificationListener,
-                             mNotification.getPackageName(), mNotification.getTag(),
-                             mNotification.getId());
-                } catch (RemoteException e) {
-                } catch (NullPointerException npe) {
-                }
-            }
-            mNotification = null;
-        }
-        handleForceHideNotificationView();
-    }
-
     private void showNotificationView() {
         mHandler.removeMessages(MSG_SHOW_NOTIFICATION_VIEW);
         mHandler.sendEmptyMessage(MSG_SHOW_NOTIFICATION_VIEW);
-    }
-
-    private void hideNotificationView() {
-        mHandler.removeMessages(MSG_HIDE_NOTIFICATION_VIEW);
-        mHandler.sendEmptyMessage(MSG_HIDE_NOTIFICATION_VIEW);
     }
 
     private void showNotification(StatusBarNotification sbn, boolean ping) {
@@ -653,15 +666,6 @@ public class ActiveDisplayView extends FrameLayout {
         setSystemUiVisibility(newVis);
     }
 
-    private void unlockKeyguardActivity() {
-        try {
-            ActivityManagerNative.getDefault().dismissKeyguardOnNextActivity();
-            ActivityManagerNative.getDefault().resumeAppSwitches();
-        } catch (RemoteException e) {
-        }
-        handleForceHideNotificationView();
-    }
-
     private void handleShowNotificationView() {
         setVisibility(View.VISIBLE);
         setSystemUIVisibility();
@@ -669,13 +673,6 @@ public class ActiveDisplayView extends FrameLayout {
     }
 
     private void handleHideNotificationView() {
-        mHandler.removeCallbacks(runSystemUiVisibilty);
-        setVisibility(View.GONE);
-        cancelTimeoutTimer();
-        adjustStatusBarLocked(false);
-    }
-
-    private void handleForceHideNotificationView() {
         mHandler.removeCallbacks(runSystemUiVisibilty);
         setVisibility(View.GONE);
         cancelTimeoutTimer();
@@ -726,7 +723,11 @@ public class ActiveDisplayView extends FrameLayout {
     private void onScreenTurnedOff() {
         cancelTimeoutTimer();
         if (mRedisplayTimeout > 0) updateRedisplayTimer();
-        hideNotificationView();
+
+        // hide the notification view
+        mHandler.removeMessages(MSG_HIDE_NOTIFICATION_VIEW);
+        mHandler.sendEmptyMessage(MSG_HIDE_NOTIFICATION_VIEW);
+
         if (mPocketMode == 2) {
             // delay initial proximity sample here
             mPocketTime = System.currentTimeMillis();

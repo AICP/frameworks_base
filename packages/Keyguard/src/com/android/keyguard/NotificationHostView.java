@@ -513,7 +513,7 @@ public class NotificationHostView extends FrameLayout {
     }
 
     private void dismiss(StatusBarNotification sbn) {
-        if (sbn.isClearable()) {
+        if (sbn != null && sbn.isClearable()) {
             INotificationManager nm = INotificationManager.Stub.asInterface(
                     ServiceManager.getService(Context.NOTIFICATION_SERVICE));
             try {

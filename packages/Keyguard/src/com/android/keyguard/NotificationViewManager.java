@@ -163,7 +163,7 @@ public class NotificationViewManager {
                     Settings.System.LOCKSCREEN_NOTIFICATIONS_COLOR, notificationColor);
 
             if (activeD) wakeOnNotification = false;
-			createExcludedAppsSet(excludedApps);
+            if (!TextUtils.isEmpty(excludedApps)) createExcludedAppsSet(excludedApps);
         }
     }
 
@@ -337,23 +337,25 @@ public class NotificationViewManager {
     private boolean inQuietHours() {
         if (!mQuietTime) {
             ContentResolver resolver = mContext.getContentResolver();
-
             boolean quietHoursEnabled = Settings.AOKP.getIntForUser(resolver,
                     Settings.AOKP.QUIET_HOURS_ENABLED, 0, UserHandle.USER_CURRENT_OR_SELF) != 0;
-            int quietHoursStart = Settings.AOKP.getIntForUser(resolver,
-                    Settings.AOKP.QUIET_HOURS_START, 0, UserHandle.USER_CURRENT_OR_SELF);
-            int quietHoursEnd = Settings.AOKP.getIntForUser(resolver,
-                    Settings.AOKP.QUIET_HOURS_END, 0, UserHandle.USER_CURRENT_OR_SELF);
-            boolean quietHoursDim = Settings.AOKP.getIntForUser(resolver,
-                        Settings.AOKP.QUIET_HOURS_DIM, 0, UserHandle.USER_CURRENT_OR_SELF) != 0;
+            if (quietHoursEnabled) {
+                int quietHoursStart = Settings.AOKP.getIntForUser(resolver,
+                        Settings.AOKP.QUIET_HOURS_START, 0, UserHandle.USER_CURRENT_OR_SELF);
+                int quietHoursEnd = Settings.AOKP.getIntForUser(resolver,
+                        Settings.AOKP.QUIET_HOURS_END, 0, UserHandle.USER_CURRENT_OR_SELF);
+                boolean quietHoursDim = Settings.AOKP.getIntForUser(resolver,
+                            Settings.AOKP.QUIET_HOURS_DIM, 0, UserHandle.USER_CURRENT_OR_SELF) != 0;
 
-            if (quietHoursEnabled && quietHoursDim && (quietHoursStart != quietHoursEnd)) {
-                Calendar calendar = Calendar.getInstance();
-                int minutes = calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE);
-                if (quietHoursEnd < quietHoursStart) {
-                    return (minutes > quietHoursStart) || (minutes < quietHoursEnd);
-                } else {
-                    return (minutes > quietHoursStart) && (minutes < quietHoursEnd);
+                    if (quietHoursEnabled && quietHoursDim && (quietHoursStart != quietHoursEnd)) {
+                        Calendar calendar = Calendar.getInstance();
+                        int minutes = calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE);
+                        if (quietHoursEnd < quietHoursStart) {
+                            return (minutes > quietHoursStart) || (minutes < quietHoursEnd);
+                        } else {
+                            return (minutes > quietHoursStart) && (minutes < quietHoursEnd);
+                        }
+                    }
                 }
             }
         }
@@ -365,7 +367,6 @@ public class NotificationViewManager {
     * @param excludedApps
     */
     private void createExcludedAppsSet(String excludedApps) {
-			if (TextUtils.isEmpty(excludedApps)) return;
         String[] appsToExclude = excludedApps.split("\\|");
         mExcludedApps = new HashSet<String>(Arrays.asList(appsToExclude));
     }

@@ -347,14 +347,13 @@ public class NotificationViewManager {
                 boolean quietHoursDim = Settings.AOKP.getIntForUser(resolver,
                             Settings.AOKP.QUIET_HOURS_DIM, 0, UserHandle.USER_CURRENT_OR_SELF) != 0;
 
-                    if (quietHoursEnabled && quietHoursDim && (quietHoursStart != quietHoursEnd)) {
-                        Calendar calendar = Calendar.getInstance();
-                        int minutes = calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE);
-                        if (quietHoursEnd < quietHoursStart) {
-                            return (minutes > quietHoursStart) || (minutes < quietHoursEnd);
-                        } else {
-                            return (minutes > quietHoursStart) && (minutes < quietHoursEnd);
-                        }
+                if (quietHoursEnabled && quietHoursDim && (quietHoursStart != quietHoursEnd)) {
+                    Calendar calendar = Calendar.getInstance();
+                    int minutes = calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE);
+                    if (quietHoursEnd < quietHoursStart) {
+                        return (minutes > quietHoursStart) || (minutes < quietHoursEnd);
+                    } else {
+                        return (minutes > quietHoursStart) && (minutes < quietHoursEnd);
                     }
                 }
             }

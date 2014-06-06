@@ -39,6 +39,7 @@ import android.content.ServiceConnection;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.pm.ThemeUtils;
 import android.content.res.CompatibilityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -245,6 +246,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private final Object mQuickBootLock = new Object();
 
     Context mContext;
+    Context mUiContext;
     IWindowManager mWindowManager;
     WindowManagerFuncs mWindowManagerFuncs;
     PowerManager mPowerManager;
@@ -1221,6 +1223,15 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     public void init(Context context, IWindowManager windowManager,
             WindowManagerFuncs windowManagerFuncs) {
         mContext = context;
+        mUiContext = ThemeUtils.createUiContext(context);
+        ThemeUtils.registerThemeChangeReceiver(context, new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                mUiContext = ThemeUtils.createUiContext(mContext);
+            }
+        });
+
+
         mWindowManager = windowManager;
         mWindowManagerFuncs = windowManagerFuncs;
         mHeadless = "1".equals(SystemProperties.get("ro.config.headless", "0"));
@@ -4689,7 +4700,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 } else {
                   final AudioManager am = (AudioManager)mContext.getSystemService(Context.AUDIO_SERVICE);
                   final int ringerMode = am.getRingerMode();
-                  final VolumePanel volumePanel = new VolumePanel(mContext,
+                  final VolumePanel volumePanel = new VolumePanel(mUiContext,
                                                          (AudioService) getAudioService());
                   if (ringerMode == AudioManager.RINGER_MODE_NORMAL) {
                        am.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);

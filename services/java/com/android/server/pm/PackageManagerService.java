@@ -139,6 +139,8 @@ import android.view.WindowManager;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
@@ -148,6 +150,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -5389,7 +5392,7 @@ public class PackageManagerService extends IPackageManager.Stub {
 
             //Icon Packs need aapt too
             //TODO: No need to run aapt on icons for every startup...
-            if (pkg.hasIconPack) {
+            if (isIconCompileNeeded(pkg)) {
                 try {
                     ThemeUtils.createCacheDirIfNotExists();
                     ThemeUtils.createIconDirIfNotExists(pkg.packageName);
@@ -5403,6 +5406,29 @@ public class PackageManagerService extends IPackageManager.Stub {
         }
 
         return pkg;
+    }
+
+
+    private boolean isIconCompileNeeded(Package pkg) {
+        if (!pkg.hasIconPack) return false;
+        // Read in the stored hash value and compare to the pkgs computed hash value
+        FileInputStream in = null;
+        DataInputStream dataInput = null;
+        try {
+            String hashFile = ThemeUtils.getIconHashFile(pkg.packageName);
+            in = new FileInputStream(hashFile);
+            dataInput = new DataInputStream(in);
+            int storedHashCode = dataInput.readInt();
+            int actualHashCode = getPackageHashCode(pkg);
+            return storedHashCode != actualHashCode;
+        } catch(IOException e) {
+            Log.e(TAG, "Could not read hash for " + pkg + "not compiling icon pack", e);
+        } finally {
+            IoUtils.closeQuietly(in);
+            IoUtils.closeQuietly(dataInput);
+        }
+
+        return true;
     }
 
     private void compileResourcesAndIdmapIfNeeded(PackageParser.Package targetPkg,
@@ -5461,10 +5487,19 @@ public class PackageManagerService extends IPackageManager.Stub {
 
     private void compileIconPack(Package pkg) throws Exception {
         if (DEBUG_PACKAGE_SCANNING) Log.d(TAG, "  Compile resource table for " + pkg.packageName);
+        OutputStream out = null;
+        DataOutputStream dataOut = null;
         try {
             createTempManifest(pkg.packageName);
+            int code = getPackageHashCode(pkg);
+            String hashFile = ThemeUtils.getIconHashFile(pkg.packageName);
+            out = new FileOutputStream(hashFile);
+            dataOut = new DataOutputStream(out);
+            dataOut.writeInt(code);
             compileIconsWithAapt(pkg);
         } finally {
+            IoUtils.closeQuietly(out);
+            IoUtils.closeQuietly(dataOut);
             cleanupTempManifest();
         }
     }

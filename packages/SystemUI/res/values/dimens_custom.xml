@@ -106,4 +106,8 @@
     <dimen name="clock_padding">10dp</dimen>
     <dimen name="clock_size">15dp</dimen>
 
+    <!-- Hover dimens -->
+    <dimen name="hover_height">64dp</dimen>
+    <dimen name="hover_cling_width">-1px</dimen>
+
 </resources>

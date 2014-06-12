@@ -3955,6 +3955,14 @@ public final class Settings {
          */
         public static final String DIALPAD_STATE = "dialpad_state";
 
+        /**
+         * Hover, default is 0 (off).
+         * 0 = disabled
+         * 1 = enabled
+         * @hide
+         */
+        public static final String HOVER_STATE = "hover_state";
+
         /**         
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
@@ -4419,6 +4427,9 @@ public final class Settings {
         public static void getMovedKeys(HashSet<String> outKeySet) {
             outKeySet.addAll(MOVED_TO_GLOBAL);
         }
+
+        /** @hide */
+        public static final String HOVER_FIRST_TIME = "hover_first_time";
 
         /**
          * Look up a name in the database.

@@ -25,4 +25,8 @@
     <declare-styleable name="BatteryIcon">
         <attr name="batteryView" format="string" />
     </declare-styleable>
+
+    <array name="hover_blacklisted_packages">
+        <item>com.google.android.googlequicksearchbox</item>
+    </array>
 </resources>

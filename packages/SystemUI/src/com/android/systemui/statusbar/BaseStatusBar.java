@@ -816,8 +816,14 @@ public abstract class BaseStatusBar extends SystemUI implements
                                 // System is dead
                             }
                             if (allowed) {
-                                launchFloating(contentIntent);
-                                animateCollapsePanels(CommandQueue.FLAG_EXCLUDE_NONE);
+                                if (contentIntent == null) {
+                                    String text = mContext.getResources().getString(R.string.status_bar_floating_no_interface);
+                                    int duration = Toast.LENGTH_SHORT;
+                                    animateCollapsePanels(CommandQueue.FLAG_EXCLUDE_NONE);
+                                    Toast.makeText(mContext, text, duration).show();
+                                } else {
+                                    launchFloating(contentIntent);
+                                }
                             } else {
                                 String text = mContext.getResources().getString(R.string.floating_mode_blacklisted_app);
                                 int duration = Toast.LENGTH_LONG;

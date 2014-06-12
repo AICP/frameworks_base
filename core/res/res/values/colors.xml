@@ -239,4 +239,8 @@
     <color name="holo_yellow_dark">#ff8800</color>
     <color name="holo_purple_dark">#9933cc</color>
 
+    <!-- TRDS colors -->
+    <color name="trds_background">#ffffffff</color>
+    <color name="trds_text">#ff000000</color>
+
 </resources>

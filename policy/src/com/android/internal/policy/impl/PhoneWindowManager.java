@@ -4700,7 +4700,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 } else {
                   final AudioManager am = (AudioManager)mContext.getSystemService(Context.AUDIO_SERVICE);
                   final int ringerMode = am.getRingerMode();
-                  final VolumePanel volumePanel = new VolumePanel(mUiContext,
+                  final VolumePanel volumePanel = new VolumePanel(getUiContext(),
                                                          (AudioService) getAudioService());
                   if (ringerMode == AudioManager.RINGER_MODE_NORMAL) {
                        am.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
@@ -4711,6 +4711,13 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             }
         }
     };
+
+    private Context getUiContext() {
+        if (mUiContext == null) {
+            mUiContext = ThemeUtils.createUiContext(mContext);
+        }
+        return mUiContext != null ? mUiContext : mContext;
+    }
 
     private final Runnable mQuickBootPowerLongPress = new Runnable() {
 

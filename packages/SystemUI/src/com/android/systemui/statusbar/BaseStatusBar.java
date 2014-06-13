@@ -823,6 +823,7 @@ public abstract class BaseStatusBar extends SystemUI implements
                                     Toast.makeText(mContext, text, duration).show();
                                 } else {
                                     launchFloating(contentIntent);
+                                    animateCollapsePanels(CommandQueue.FLAG_EXCLUDE_NONE);
                                 }
                             } else {
                                 String text = mContext.getResources().getString(R.string.floating_mode_blacklisted_app);

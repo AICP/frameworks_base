@@ -120,7 +120,7 @@ public class LocationToggle extends StatefulToggle implements LocationSettingsCh
         } else if (locationMode == Settings.Secure.LOCATION_MODE_SENSORS_ONLY) {
             if (modes == 1 || modes == 7) {
                 setLocationMode(Settings.Secure.LOCATION_MODE_BATTERY_SAVING);
-            } else if (modes == 6 || modes == 7) {
+            } else if (modes == 6 || modes == 7 || modes == 9) {
                 setLocationMode(Settings.Secure.LOCATION_MODE_OFF);
             } else {
                 setLocationMode(Settings.Secure.LOCATION_MODE_HIGH_ACCURACY);

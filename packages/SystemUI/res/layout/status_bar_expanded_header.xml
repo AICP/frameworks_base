@@ -107,15 +107,6 @@
             android:contentDescription="@string/accessibility_clear_all"
             />
 
-        <ImageView android:id="@+id/hover_button"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:scaleType="center"
-            android:src="@drawable/ic_notify_hover_normal"
-            android:background="@drawable/ic_notify_button_bg"
-            android:contentDescription="@string/accessibility_clear_all"
-        />
-
         <FrameLayout android:id="@+id/settings_button_holder"
             android:layout_width="50dp"
             android:layout_height="50dp"

@@ -3963,6 +3963,14 @@ public final class Settings {
          */
         public static final String HOVER_STATE = "hover_state";
 
+        /**
+         * Time to show hover notification
+         * 5000ms = default
+         * @hide
+         */
+        public static final String SHOW_HOVER_TIME = "show_hover_time";
+
+
         /**         
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.

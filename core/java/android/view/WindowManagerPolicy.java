@@ -430,6 +430,7 @@ public interface WindowManagerPolicy {
         public void shutdown(boolean confirm);
         public void reboot(String reason);
         public void rebootSafeMode(boolean confirm);
+        public boolean isShutdownSequenceStarted();
 
         /**
          * Return the window manager lock needed to correctly call "Lw" methods.

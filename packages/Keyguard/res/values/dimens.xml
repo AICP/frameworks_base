@@ -19,13 +19,13 @@
 -->
 <resources>
     <!-- Size of lockscreen outerring on unsecure unlock LockScreen -->
-    <dimen name="keyguard_lockscreen_outerring_diameter">270dp</dimen>
+    <dimen name="keyguard_lockscreen_outerring_diameter">300dp</dimen>
 
     <!-- The bottom margin for the GlowPadView container -->
-    <dimen name="glowpadcontainer_bottom_margin">-80dp</dimen>
+    <dimen name="glowpadcontainer_bottom_margin">-100dp</dimen>
 
     <!-- Default target placement radius for GlowPadView. Should be 1/2 of outerring diameter. -->
-    <dimen name="glowpadview_target_placement_radius">135dip</dimen>
+    <dimen name="glowpadview_target_placement_radius">150dip</dimen>
 
     <!-- Default glow radius for GlowPadView -->
     <dimen name="glowpadview_glow_radius">75dip</dimen>

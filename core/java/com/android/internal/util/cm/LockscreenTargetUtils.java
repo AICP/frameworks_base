@@ -74,7 +74,7 @@ public final class LockscreenTargetUtils {
      * Number of customizable lockscreen targets for phones
      * @hide
      */
-    public final static int MAX_PHONE_TARGETS = 4;
+    public final static int MAX_PHONE_TARGETS = 7;
 
     /**
      * Empty target used to reference unused lockscreen targets

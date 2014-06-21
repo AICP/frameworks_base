@@ -4010,6 +4010,18 @@ public final class Settings {
          */
         public static final String DIALKEY_PADDING = "dialkey_padding";
 
+        /**
+         * Swipe recents for floating windows option
+         * @hide
+         */
+        public static final String RECENTS_SWIPE_FLOATING = "recents_swipe_floating";
+
+        /**
+         * Swipe notification for floating window option
+         * @hide
+         */
+        public static final String STATUS_BAR_NOTIFICATION_SWIPE_FLOATING = "status_bar_notification_swipe_floating";
+
 
         /**         
          * Settings to backup. This is here so that it's in the same place as the settings
@@ -4088,7 +4100,9 @@ public final class Settings {
             TELO_RADIO_2G_WIFI,
             TELO_RADIO_LTE,
             TELO_RADIO_2G_SCREENOFF,
-            TELO_RADIO_GO3G_UNLOCK
+            TELO_RADIO_GO3G_UNLOCK,
+            RECENTS_SWIPE_FLOATING,
+            STATUS_BAR_NOTIFICATION_SWIPE_FLOATING
         };
 
         // Settings moved to Settings.Secure

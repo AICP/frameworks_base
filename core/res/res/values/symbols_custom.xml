@@ -299,4 +299,7 @@
   <java-symbol type="string" name="setting_confirmation_yes" />
   <java-symbol type="string" name="setting_confirmation_no" />
 
+  <!-- Download Icon -->
+  <java-symbol type="drawable" name="stat_sys_downloadicon" />
+
 </resources>

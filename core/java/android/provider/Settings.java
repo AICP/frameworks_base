@@ -3978,6 +3978,34 @@ public final class Settings {
         public static final String SHOW_HOVER_TIME = "show_hover_time";
 
         /**
+         * Hover: Only show up if StatusBar is hidden, default is 1 (on).
+         *
+         * @hide
+         */
+        public static final String HOVER_REQUIRE_FULLSCREEN_MODE = "hover_require_fullscreen_mode";
+
+        /**
+         * Hover: Exclude non-clearable notifications, default is 0 (off).
+         *
+         * @hide
+         */
+        public static final String HOVER_EXCLUDE_NON_CLEARABLE = "hover_exclude_non_clearable";
+
+        /**
+         * Hover: Exclude low priority notifications, default is 0 (off).
+         *
+         * @hide
+         */
+        public static final String HOVER_EXCLUDE_LOW_PRIORITY = "hover_exclude_low_priority";
+
+        /**
+         * Hover: Option to exclude topmost app, default is 1 (on).
+         *
+         * @hide
+         */
+        public static final String HOVER_EXCLUDE_TOPMOST = "hover_exclude_topmost";
+
+        /**
          * Padding above and below dialpad keys in dialer.
          */
         public static final String DIALKEY_PADDING = "dialkey_padding";

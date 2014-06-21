@@ -4100,7 +4100,15 @@ public final class Settings {
             TELO_RADIO_2G_WIFI,
             TELO_RADIO_LTE,
             TELO_RADIO_2G_SCREENOFF,
-            TELO_RADIO_GO3G_UNLOCK,
+            TELO_RADIO_GO3G_UNLOCK
+        };
+
+        /**
+         * Settings to reset on user choice. They will fall back to their default value (0).
+         *
+         * @hide
+         */
+        public static final String[] SETTINGS_TO_RESET = {
             RECENTS_SWIPE_FLOATING,
             STATUS_BAR_NOTIFICATION_SWIPE_FLOATING
         };

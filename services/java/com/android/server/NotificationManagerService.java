@@ -119,6 +119,8 @@ public class NotificationManagerService extends INotificationManager.Stub
 
     private static final int MAX_PACKAGE_NOTIFICATIONS = 50;
 
+    private static final int DEFAULT_RESULT = 0;
+
     // message codes
     private static final int MESSAGE_TIMEOUT = 2;
 
@@ -227,6 +229,7 @@ public class NotificationManagerService extends INotificationManager.Stub
     private static final String TAG_BLOCKED_PKGS = "blocked-packages";
     private static final String TAG_PACKAGE = "package";
     private static final String ATTR_NAME = "name";
+    private static final String NOTIFICATION_POLICY = "notification_policy.xml";
 
     private static final String PEEK_POLICY = "peek_policy.xml";
     private static final String FLOATING_MODE_POLICY = "floating_mode_policy.xml";
@@ -457,7 +460,7 @@ public class NotificationManagerService extends INotificationManager.Stub
     private void loadBlockDb() {
         synchronized(mBlockedPackages) {
             if (mPolicyFile == null) {
-                mPolicyFile = new AtomicFile(new File(SYSTEM_FOLDER, "notification_policy.xml"));
+                mPolicyFile = new AtomicFile(new File(SYSTEM_FOLDER, NOTIFICATION_POLICY));
                 mBlockedPackages.clear();
                 readPolicy(mPolicyFile, TAG_BLOCKED_PKGS, mBlockedPackages);
             }

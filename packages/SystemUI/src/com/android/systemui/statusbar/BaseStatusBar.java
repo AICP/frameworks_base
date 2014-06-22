@@ -381,8 +381,6 @@ public abstract class BaseStatusBar extends SystemUI implements
             mRecents = getComponent(RecentsComponent.class);
         }
 
-        mStatusBarContainer = new FrameLayout(mContext);
-
         mPeek = new Peek(this, mContext);
         mHover = new Hover(this, mContext);
         mHoverCling = new HoverCling(mContext);
@@ -390,6 +388,8 @@ public abstract class BaseStatusBar extends SystemUI implements
 
         mPeek.setNotificationHelper(mNotificationHelper);
         mHover.setNotificationHelper(mNotificationHelper);
+
+        mStatusBarContainer = new FrameLayout(mContext);
 
         // Connect in to the status bar manager service
         StatusBarIconList iconList = new StatusBarIconList();
@@ -469,9 +469,6 @@ public abstract class BaseStatusBar extends SystemUI implements
 
         updateIconColor();
 
-        SettingsObserver settingsObserver = new SettingsObserver(new Handler());
-        settingsObserver.observe();
-
         // Listen for HALO state
         mContext.getContentResolver().registerContentObserver(
                 Settings.System.getUriFor(Settings.System.HALO_ACTIVE), false, new ContentObserver(new Handler()) {
@@ -490,8 +487,7 @@ public abstract class BaseStatusBar extends SystemUI implements
         updateHalo();
 
         mContext.getContentResolver().registerContentObserver(
-                Settings.System.getUriFor(Settings.System.HOVER_STATE),
-                        false, new ContentObserver(new Handler()) {
+                Settings.System.getUriFor(Settings.System.HOVER_STATE), false, new ContentObserver(new Handler()) {
             @Override
             public void onChange(boolean selfChange) {
                 updateHoverState();

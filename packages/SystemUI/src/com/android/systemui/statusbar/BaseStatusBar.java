@@ -698,9 +698,9 @@ public abstract class BaseStatusBar extends SystemUI implements
         }
     }
 
-    private void launchFloating(PendingIntent pIntent) {
+    private void launchFloating(PendingIntent pIntent, boolean allowed) {
         Intent overlay = new Intent();
-        overlay.addFlags(Intent.FLAG_FLOATING_WINDOW | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        if (allowed) overlay.addFlags(Intent.FLAG_FLOATING_WINDOW | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         try {
             ActivityManagerNative.getDefault().resumeAppSwitches();
             ActivityManagerNative.getDefault().dismissKeyguardOnNextActivity();
@@ -813,7 +813,7 @@ public abstract class BaseStatusBar extends SystemUI implements
                                     animateCollapsePanels(CommandQueue.FLAG_EXCLUDE_NONE);
                                     Toast.makeText(mContext, text, duration).show();
                                 } else {
-                                    launchFloating(contentIntent);
+                                    launchFloating(contentIntent, true);
                                     animateCollapsePanels(CommandQueue.FLAG_EXCLUDE_NONE);
                                 }
                             } else {
@@ -1253,7 +1253,7 @@ public abstract class BaseStatusBar extends SystemUI implements
 
             if (mPile.launchNextNotificationFloating()) {
                 if (mPendingIntent != null) {
-                    launchFloating(mPendingIntent);
+                    launchFloating(mPendingIntent, allowed);
                 }
             } else if (mPendingIntent != null) {
                 int[] pos = new int[2];

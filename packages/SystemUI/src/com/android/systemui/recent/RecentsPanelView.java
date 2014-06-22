@@ -363,6 +363,8 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
         mRecentTasksLoader = RecentTasksLoader.getInstance(context);
         mRecentsActivity = (RecentsActivity) context;
         a.recycle();
+        mNotificationManager = INotificationManager.Stub.asInterface(
+            ServiceManager.getService(Context.NOTIFICATION_SERVICE));
 
         mHighEndGfx = ActivityManager.isHighEndGfx();
     }
@@ -1043,16 +1045,33 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
             final TaskDescription ad = viewHolder.taskDescription;
             if (ad == null) {
                 Log.v(TAG, "Not able to find activity description for floating task; view=" + view +
-                        " tag=" + view.getTag());
+                      " tag=" + view.getTag());
                 return;
             }
-            dismissAndGoBack();
+
+            String currentViewPackage = ad.packageName;
+            boolean allowed = true; // default on
+            try {
+                // preloaded apps are added to the blacklist array when is recreated, handled in the notification manager
+                allowed = mNotificationManager.isPackageAllowedForFloatingMode(currentViewPackage);
+            } catch (android.os.RemoteException ex) {
+                // System is dead
+            }
+            if (!allowed) {
+                dismissAndGoBack();
+                String text = mContext.getResources().getString(R.string.floating_mode_blacklisted_app);
+                int duration = Toast.LENGTH_LONG;
+                Toast.makeText(mContext, text, duration).show();
+                return;
+            } else {
+                dismissAndGoBack();
+            }
             view.post(new Runnable() {
                 @Override
                 public void run() {
                     Intent intent = ad.intent;
                     intent.setFlags(Intent.FLAG_FLOATING_WINDOW
-                            | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    | Intent.FLAG_ACTIVITY_NEW_TASK);
                     mContext.startActivity(intent);
                 }
             });
@@ -1082,11 +1101,6 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
         thumbnailView.setSelected(true);
         final PopupMenu popup =
             new PopupMenu(mContext, anchorView == null ? selectedView : anchorView);
-        // initialize if null
-        if (mNotificationManager == null) {
-            mNotificationManager = INotificationManager.Stub.asInterface(
-                    ServiceManager.getService(Context.NOTIFICATION_SERVICE));
-        }
         mPopup = popup;
         final ViewHolder viewHolder = (ViewHolder) selectedView.getTag();
         popup.getMenuInflater().inflate(R.menu.recent_popup_menu, popup.getMenu());
@@ -1151,32 +1165,6 @@ public class RecentsPanelView extends FrameLayout implements OnItemClickListener
                     ViewHolder viewHolder = (ViewHolder) selectedView.getTag();
                     if (viewHolder != null) {
                         final TaskDescription ad = viewHolder.taskDescription;
-                        String currentViewPackage = ad.packageName;
-                        boolean allowed = true; // default on
-                        try {
-                            // preloaded apps are added to the blacklist array when is recreated, handled in the notification manager
-                            allowed = mNotificationManager.isPackageAllowedForFloatingMode(currentViewPackage);
-                        } catch (android.os.RemoteException ex) {
-                            // System is dead
-                        }
-                        if (!allowed) {
-                            dismissAndGoBack();
-                            String text = mContext.getResources().getString(R.string.floating_mode_blacklisted_app);
-                            int duration = Toast.LENGTH_LONG;
-                            Toast.makeText(mContext, text, duration).show();
-                            return true;
-                        } else {
-                            dismissAndGoBack();
-                        }
-                        selectedView.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                Intent intent = ad.intent;
-                                intent.setFlags(Intent.FLAG_FLOATING_WINDOW
-                                        | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                mContext.startActivity(intent);
-                            }
-                        });
                         ActivityManager am = (ActivityManager)mContext.getSystemService(
                                 Context.ACTIVITY_SERVICE);
                         am.forceStopPackage(ad.packageName);

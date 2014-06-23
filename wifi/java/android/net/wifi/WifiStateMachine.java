@@ -3775,6 +3775,12 @@ public class WifiStateMachine extends StateMachine {
                     NetworkUpdateResult result = mWifiConfigStore.saveNetwork(config);
                     if (mWifiInfo.getNetworkId() == result.getNetworkId()) {
                         if (result.hasIpChanged()) {
+                            try {
+                                log("clear IP address on connection");
+                                mNwService.clearInterfaceAddresses(mInterfaceName);
+                            } catch (Exception e) {
+                                loge("Failed to clear addresses" + e);
+                            }
                             log("Reconfiguring IP on connection");
                             transitionTo(mObtainingIpState);
                         }

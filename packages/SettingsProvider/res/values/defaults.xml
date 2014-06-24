@@ -191,6 +191,9 @@
     <string name="def_theme_package"></string>
     <string name="def_theme_components"></string>
 
-    <!-- Default values of Settings.System.HEADS_UP_NOTIFICATION -->
-    <string name="def_heads_up_notification_values"></string>
+    <!-- Default DnD values of Settings.System.HEADS_UP_NOTIFICATION -->
+    <string name="def_heads_up_notification_dnd_values"></string>
+
+    <!-- Default Blacklist values of Settings.System.HEADS_UP_NOTIFICATION -->
+    <string name="def_heads_up_notification_blacklist_values"></string>
 </resources>

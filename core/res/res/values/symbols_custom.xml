@@ -34,6 +34,7 @@
 
     <!-- UI theme mode -->
     <java-symbol type="integer" name="config_uiThemeMode" />
+    <java-symbol type="drawable" name="dialog_full_holo_dark" />
 
     <!--  Awesome Action -->
     <java-symbol type="string" name="action_home"/>

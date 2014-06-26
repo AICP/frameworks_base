@@ -271,7 +271,7 @@ public abstract class BaseStatusBar extends SystemUI implements
         return mOnClickHandler;
     }
 
-    private ContentObserver mSettingsObserver = new ContentObserver(mHandler) {
+    private ContentObserver mProvisioningObserver = new ContentObserver(mHandler) {
         @Override
         public void onChange(boolean selfChange) {
             final boolean provisioned = 0 != Settings.Global.getInt(
@@ -280,42 +280,6 @@ public abstract class BaseStatusBar extends SystemUI implements
                 mDeviceProvisioned = provisioned;
                 updateNotificationIcons();
             }
-        }
-    };
-
-    private class SettingsObserver extends ContentObserver {
-        public SettingsObserver(Handler handler) {
-            super(handler);
-        }
-
-        public void observe() {
-            ContentResolver resolver = mContext.getContentResolver();
-            resolver.registerContentObserver(
-                    Settings.System.getUriFor(Settings.System.HEADS_UP_CUSTOM_VALUES),
-                    false, this);
-            resolver.registerContentObserver(
-                    Settings.System.getUriFor(Settings.System.HEADS_UP_BLACKLIST_VALUES),
-                    false, this);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.EXPANDED_DESKTOP_STATE), false, this);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.EXPANDED_DESKTOP_STYLE), false, this);
-            update();
-        }
-
-        @Override
-        public void onChange(boolean selfChange) {
-            update();
-        }
-
-        private void update() {
-            ContentResolver resolver = mContext.getContentResolver();
-            final String dndString = Settings.System.getString(resolver,
-                    Settings.System.HEADS_UP_CUSTOM_VALUES);
-            final String blackString = Settings.System.getString(resolver,
-                    Settings.System.HEADS_UP_BLACKLIST_VALUES);
-            splitAndAddToArrayList(mDndList, dndString, "\\|");
-            splitAndAddToArrayList(mBlacklist, blackString, "\\|");
         }
     };
 
@@ -357,6 +321,44 @@ public abstract class BaseStatusBar extends SystemUI implements
         }
     };
 
+    private class SettingsObserver extends ContentObserver {
+        public SettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        public void observe() {
+            ContentResolver resolver = mContext.getContentResolver();
+            resolver.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.HEADS_UP_CUSTOM_VALUES),
+                    false, this);
+            resolver.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.HEADS_UP_BLACKLIST_VALUES),
+                    false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.EXPANDED_DESKTOP_STATE), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.EXPANDED_DESKTOP_STYLE), false, this);
+            update();
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            update();
+        }
+
+        private void update() {
+            ContentResolver resolver = mContext.getContentResolver();
+            final String dndString = Settings.System.getString(resolver,
+                    Settings.System.HEADS_UP_CUSTOM_VALUES);
+            final String blackString = Settings.System.getString(resolver,
+                    Settings.System.HEADS_UP_BLACKLIST_VALUES);
+            splitAndAddToArrayList(mDndList, dndString, "\\|");
+            splitAndAddToArrayList(mBlacklist, blackString, "\\|");
+        }
+    };
+
+    private SettingsObserver mSettingsObserver = new SettingsObserver(mHandler);
+
     private final BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -384,10 +386,12 @@ public abstract class BaseStatusBar extends SystemUI implements
         mDndList = new ArrayList<String>();
         mBlacklist = new ArrayList<String>();
 
-        mSettingsObserver.onChange(false); // set up
+        mProvisioningObserver.onChange(false); // set up
         mContext.getContentResolver().registerContentObserver(
                 Settings.Global.getUriFor(Settings.Global.DEVICE_PROVISIONED), true,
-                mSettingsObserver);
+                mProvisioningObserver);
+
+        mSettingsObserver.observe();
 
         mBarService = IStatusBarService.Stub.asInterface(
                 ServiceManager.getService(Context.STATUS_BAR_SERVICE));
@@ -1753,7 +1757,6 @@ public abstract class BaseStatusBar extends SystemUI implements
             mHandler.sendEmptyMessage(MSG_ESCALATE_HEADS_UP);
         }
     }
-
     protected boolean shouldInterrupt(StatusBarNotification sbn) {
         Notification notification = sbn.getNotification();
 

@@ -480,10 +480,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             mContext.getContentResolver().registerContentObserver(
                     Settings.System.getUriFor(Settings.System.HEADS_UP_NOTIFICATION), true,
                     mHeadsUpObserver, mCurrentUserId);
+        }
             mSettingsObserver = new SettingsObserver(new Handler());
             mSettingsObserver.observe();
             updateSettings();
-        }
     }
 
     private void toggleCarrierAndWifiLabelVisibility() {

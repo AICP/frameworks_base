@@ -56,6 +56,7 @@
     <string name="toggle_IMMERSIVE_MODE">Expanded desktop</string>
     <string name="toggle_SCREENRECORD">Screenrecord</string>
     <string name="toggle_MUSIC">Music</string>
+    <string name="toggle_HEADSUP">Heads Up</string>
 
     <string name="quick_settings_swagger">Swagger</string>
     <string name="quick_settings_swaggersun">Swagger Sunday</string>
@@ -118,4 +119,6 @@
     <string name="quick_settings_clock_alarm_off">Alarm Off</string>
     <string name="quick_settings_music_play">Play</string>
     <string name="quick_settings_music_pause">Pause</string>
+    <string name="quick_settings_heads_up_on">Heads up enabled</string>
+    <string name="quick_settings_heads_up_off">No interruptions</string>
 </resources>

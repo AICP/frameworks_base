@@ -2005,6 +2005,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 .getString(R.string.def_heads_up_notification_blacklist_values);
         if (!TextUtils.isEmpty(dndValues)) {
             loadSetting(stmt, Settings.System.HEADS_UP_NOTIFICATION, "0");
+            loadSetting(stmt, Settings.System.HEADS_UP_FLOATING_WINDOW, "1");
             loadSetting(stmt, Settings.System.HEADS_UP_CUSTOM_VALUES, dndValues);
             loadSetting(stmt, Settings.System.HEADS_UP_BLACKLIST_VALUES, blackListValues);
         }

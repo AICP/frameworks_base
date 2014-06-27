@@ -38,6 +38,7 @@ import android.graphics.LightingColorFilter;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.service.notification.StatusBarNotification;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
@@ -52,6 +53,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.internal.widget.SizeAdaptiveLayout;
+
 import com.android.systemui.R;
 import com.android.systemui.statusbar.BaseStatusBar;
 import com.android.systemui.statusbar.BaseStatusBar.NotificationClicker;
@@ -181,7 +183,7 @@ public class NotificationHelper {
 
         SizeAdaptiveLayout sal = hoverNotification.getLayout();
         sal.setTag(mHover.getContentDescription(entry.notification));
-        sal.setOnClickListener(getNotificationClickListener(entry, true));
+        sal.setOnClickListener(getNotificationClickListener(entry, true, true));
         sal.setVisibility(View.GONE);
         sal.setEnabled(false);
 
@@ -198,7 +200,7 @@ public class NotificationHelper {
         // This is safe to do as content has only one children.
         entry.content.setOnClickListener(null);
         SizeAdaptiveLayout sal = hoverNotification.getLayout();
-        sal.setOnClickListener(getNotificationClickListener(entry, false));
+        sal.setOnClickListener(getNotificationClickListener(entry, false, true));
 
         applyStyle(sal, DEFAULT_STYLE);
 
@@ -206,18 +208,30 @@ public class NotificationHelper {
         hoverNotification.reparentToStatusBar();
     }
 
-    public NotificationClicker getNotificationClickListener(Entry entry, boolean floating) {
+    public NotificationClicker getNotificationClickListener(Entry entry, boolean floating, boolean isFromHover) {
         NotificationClicker intent = null;
+        boolean makeFloating;
         final PendingIntent contentIntent = entry.notification.getNotification().contentIntent;
         if (contentIntent != null) {
-            intent = mHover.getStatusBar().makeClicker(contentIntent,
-                    entry.notification.getPackageName(), entry.notification.getTag(),
-                    entry.notification.getId());
-            boolean makeFloating = floating
-                    && !isNotificationBlacklisted(entry.notification.getPackageName())
-                    // if the notification is from the foreground app, don't open in floating mode
-                    && !entry.notification.getPackageName().equals(getForegroundPackageName());
-
+            if (isFromHover) {
+                intent = mHover.getStatusBar().makeClicker(contentIntent,
+                        entry.notification.getPackageName(), entry.notification.getTag(),
+                        entry.notification.getId());
+                makeFloating = floating
+                        && !isNotificationBlacklisted(entry.notification.getPackageName())
+                        // if the notification is from the foreground app, don't open in floating mode
+                        && !entry.notification.getPackageName().equals(getForegroundPackageName());
+            }
+            else {
+                intent = mStatusBar.makeClicker(contentIntent,
+                        entry.notification.getPackageName(), entry.notification.getTag(),
+                        entry.notification.getId());
+                makeFloating = floating
+                        // if the notification is from the foreground app, don't open in floating mode
+                        && !entry.notification.getPackageName().equals(getForegroundPackageName())
+                        && (Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.HEADS_UP_FLOATING_WINDOW, 1) == 1);
+            }
             intent.makeFloating(makeFloating);
         }
         return intent;

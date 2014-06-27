@@ -743,7 +743,7 @@ public class Hover {
                     if (child != null) {
                         child.setTag(getContentDescription(entry.notification));
                         child.setOnClickListener(null); // remove current
-                        child.setOnClickListener(mNotificationHelper.getNotificationClickListener(entry, true));
+                        child.setOnClickListener(mNotificationHelper.getNotificationClickListener(entry, true, true));
                     }
                 }
             } else {

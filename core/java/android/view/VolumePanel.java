@@ -734,8 +734,10 @@ public class VolumePanel extends Handler implements OnSeekBarChangeListener, Vie
             }
         }
 
-        boolean playsound = Settings.AOKP.getInt(mContext.getContentResolver(),
-            Settings.AOKP.VOLUME_ADJUST_SOUNDS_ENABLED, 1) == 1;
+        boolean playsound = ((Settings.AOKP.getInt(mContext.getContentResolver(),
+                Settings.AOKP.QUIET_HOURS_ENABLED, 0) == 0) &&
+                (Settings.AOKP.getInt(mContext.getContentResolver(),
+                Settings.AOKP.VOLUME_ADJUST_SOUNDS_ENABLED, 1) == 1));
 
         if ((flags & AudioManager.FLAG_PLAY_SOUND) != 0 && ! mRingIsSilent && playsound) {
             removeMessages(MSG_PLAY_SOUND);

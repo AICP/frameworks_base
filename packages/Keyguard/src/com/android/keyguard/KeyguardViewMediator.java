@@ -1278,7 +1278,8 @@ public class KeyguardViewMediator {
         }
 
         final ContentResolver cr = mContext.getContentResolver();
-        if (Settings.System.getInt(cr, Settings.System.LOCKSCREEN_SOUNDS_ENABLED, 1) == 1) {
+        if ((Settings.AOKP.getInt(cr, Settings.AOKP.QUIET_HOURS_ENABLED, 0) == 0) &&
+                (Settings.System.getInt(cr, Settings.System.LOCKSCREEN_SOUNDS_ENABLED, 1) == 1)) {
             final int whichSound = locked
                 ? mLockSoundId
                 : mUnlockSoundId;

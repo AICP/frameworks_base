@@ -1892,7 +1892,14 @@ public class AudioManager {
      * Settings has an in memory cache, so this is fast.
      */
     private boolean querySoundEffectsEnabled() {
-        return Settings.System.getInt(mContext.getContentResolver(), Settings.System.SOUND_EFFECTS_ENABLED, 0) != 0;
+    boolean mQuietHoursEnabled = Settings.AOKP.getInt(mContext.getContentResolver(),
+                Settings.AOKP.QUIET_HOURS_ENABLED, 0) != 0;
+        if (mQuietHoursEnabled) {
+            return false;
+        } else {
+            return Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.SOUND_EFFECTS_ENABLED, 0) != 0;
+        }
     }
 
 

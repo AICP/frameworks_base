@@ -3139,22 +3139,22 @@ public final class Settings {
          */
         public static final String CALL_END_SOUND = "call_end_sound";
 
-       /**
-        * Sets the portrait background of notification drawer
-        * @hide
-        */
+        /**
+         * Sets the portrait background of notification drawer
+         * @hide
+         */
         public static final String NOTIFICATION_BACKGROUND = "notification_background";
 
-       /**
-        * Sets the landscape background of notification drawer
-        * @hide
-        */
+        /**
+         * Sets the landscape background of notification drawer
+         * @hide
+         */
         public static final String NOTIFICATION_BACKGROUND_LANDSCAPE = "notification_background_landscape";
 
-       /**
-        * Sets the alpha (transparency) of notification wallpaper
-        * @hide
-        */
+        /**
+         * Sets the alpha (transparency) of notification wallpaper
+         * @hide
+         */
         public static final String NOTIFICATION_BACKGROUND_ALPHA = "notification_background_alpha";
 
         /**
@@ -4057,6 +4057,11 @@ public final class Settings {
         @ChaosLab(name="Identicons", classification=Classification.NEW_FIELD)
         public static final String IDENTICONS_STYLE = "identicons_style";
 
+        /**
+         * multiuser pref
+         * @hide
+         */
+        public static final String ALLOW_MULTIUSER = "allow_multiuser";
 
         /**         
          * Settings to backup. This is here so that it's in the same place as the settings

@@ -395,9 +395,12 @@ public class NavigationBarView extends LinearLayout {
         mNavigationIconHints = hints;
 
         if (getBackButton() != null) {
-            ((ImageView) getBackButton()).setImageResource(backAlt
-                    ? R.drawable.ic_sysbar_back_ime
-                    : R.drawable.ic_sysbar_back);
+            if (backAlt) {
+                ((ImageView) getBackButton()).setImageResource(R.drawable.ic_sysbar_back_ime);
+            } else {
+                ((KeyButtonView) getBackButton()).resetImage();
+            }
+
         }
 
         setDisabledFlags(mDisabledFlags, true);

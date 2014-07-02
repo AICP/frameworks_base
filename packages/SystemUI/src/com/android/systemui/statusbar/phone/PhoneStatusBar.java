@@ -23,7 +23,7 @@ import static android.app.StatusBarManager.windowStateToString;
 import static com.android.systemui.statusbar.phone.BarTransitions.MODE_LIGHTS_OUT;
 import static com.android.systemui.statusbar.phone.BarTransitions.MODE_OPAQUE;
 import static com.android.systemui.statusbar.phone.BarTransitions.MODE_SEMI_TRANSPARENT;
-
+import static com.android.systemui.statusbar.phone.BarTransitions.MODE_TRANSLUCENT;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
@@ -100,6 +100,7 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.HorizontalScrollView;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TabHost;
@@ -453,7 +454,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 .getDefaultDisplay();
         updateDisplaySize();
 
-        ThemeConfig currentTheme = mContext.getResources().getConfiguration().customTheme;
+        ThemeConfig currentTheme = mContext.getResources().getConfiguration().themeConfig;
         if (currentTheme != null) {
             mCurrentTheme = (ThemeConfig)currentTheme.clone();
         }

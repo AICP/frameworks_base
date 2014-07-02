@@ -20,6 +20,7 @@ package com.android.systemui.slimrecent;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ActivityOptions;
+import android.app.INotificationManager;
 import android.app.TaskStackBuilder;
 import android.app.admin.DevicePolicyManager;
 import android.content.ActivityNotFoundException;
@@ -37,6 +38,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Process;
+import android.os.ServiceManager;
 import android.os.UserHandle;
 import android.provider.Settings;
 import android.util.Log;
@@ -48,6 +50,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import com.android.cards.internal.Card;
 import com.android.cards.internal.CardArrayAdapter;
@@ -104,6 +107,7 @@ public class RecentPanelView {
     private final ImageView mEmptyRecentView;
 
     private final RecentController mController;
+    private INotificationManager mNotificationManager;
 
     // Our array adapter holding all cards
     private CardArrayAdapter mCardArrayAdapter;
@@ -295,6 +299,12 @@ public class RecentPanelView {
         final PopupMenu popup = new PopupMenu(layoutContext, selectedView, Gravity.RIGHT);
         mPopup = popup;
 
+        // initialize if null
+        if (mNotificationManager == null) {
+            mNotificationManager = INotificationManager.Stub.asInterface(
+                    ServiceManager.getService(Context.NOTIFICATION_SERVICE));
+        }
+
         // If recent panel is drawn on the right edge we allow the menu
         // if needed to draw over the left container edge.
         popup.setAllowLeftOverdraw(mMainGravity == Gravity.RIGHT);
@@ -328,6 +338,10 @@ public class RecentPanelView {
             }
         }
 
+        // Add floating mode menu entry
+        popup.getMenu().add(0, MENU_APP_FLOATING_ID, 0,
+                mContext.getResources().getString(R.string.status_bar_recent_floating_item_title));
+
         // Add playstore or amazon entry if it is provided by the application.
         if (checkAppInstaller(td.packageName, PLAYSTORE_REFERENCE)) {
             popup.getMenu().add(0, MENU_APP_PLAYSTORE_ID, 0,
@@ -343,11 +357,6 @@ public class RecentPanelView {
                 if (item.getItemId() == MENU_APP_DETAILS_ID) {
                     startApplicationDetailsActivity(td.packageName, null, null);
                 } else if (item.getItemId() == MENU_APP_FLOATING_ID) {
-                    Intent transparent = new Intent(mContext, com.android.systemui.Transparent.class);
-                    transparent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                            | Intent.FLAG_FLOATING_WINDOW
-                            | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-                    mContext.startActivity(transparent);
                     selectedView.post(new Runnable() {
                         @Override
                         public void run() {
@@ -355,8 +364,8 @@ public class RecentPanelView {
                             intent.setFlags(Intent.FLAG_FLOATING_WINDOW
                                     | Intent.FLAG_ACTIVITY_NEW_TASK);
                             mContext.startActivity(intent);
-                            }
-                        });
+                        }
+                    });
                     exit();
                 } else if (item.getItemId() == MENU_APP_STOP_ID) {
                     ActivityManager am = (ActivityManager)mContext.getSystemService(
@@ -421,19 +430,6 @@ public class RecentPanelView {
     }
 
     /**
-     * Get application launcher label of installed references.
-     */
-    private String getApplicationLabel(String packageName) {
-        final PackageManager pm = mContext.getPackageManager();
-        final Intent intent = pm.getLaunchIntentForPackage(packageName);
-        final ResolveInfo resolveInfo = pm.resolveActivity(intent, 0);
-        if (resolveInfo != null) {
-            return resolveInfo.activityInfo.loadLabel(pm).toString();
-        }
-        return null;
-    }
-
-    /**
      * Remove requested application.
      */
     private void removeApplication(TaskDescription td) {
@@ -463,6 +459,19 @@ public class RecentPanelView {
             setVisibility();
             exit();
         }
+    }
+
+    /**
+     * Get application launcher label of installed references.
+     */
+    private String getApplicationLabel(String packageName) {
+        final PackageManager pm = mContext.getPackageManager();
+        final Intent intent = pm.getLaunchIntentForPackage(packageName);
+        final ResolveInfo resolveInfo = pm.resolveActivity(intent, 0);
+        if (resolveInfo != null) {
+            return resolveInfo.activityInfo.loadLabel(pm).toString();
+        }
+        return null;
     }
 
     /**

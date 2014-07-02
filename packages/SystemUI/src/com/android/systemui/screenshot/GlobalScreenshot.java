@@ -243,16 +243,24 @@ class SaveImageInBackgroundTask extends AsyncTask<SaveImageInBackgroundData, Voi
                         PendingIntent.FLAG_CANCEL_CURRENT));
 
             outStream = resolver.openOutputStream(uri);
-            image.compress(Bitmap.CompressFormat.PNG, 100, outStream);
+            boolean success = image.compress(Bitmap.CompressFormat.PNG, 100, outStream);
 
-            // update file size in the database
-            values.clear();
-            values.put(MediaStore.Images.ImageColumns.SIZE, new File(mImageFilePath).length());
-            resolver.update(uri, values, null, null);
+            if (!success) {
+                resolver.delete(uri, null, null);
+                File file = new File(mImageFilePath);
+                file.delete();
+                params[0].clearImage();
+                params[0].result = 1;
+            } else {
+                // update file size in the database
+                values.clear();
+                values.put(MediaStore.Images.ImageColumns.SIZE, new File(mImageFilePath).length());
+                resolver.update(uri, values, null, null);
 
-            params[0].imageUri = uri;
-            params[0].image = null;
-            params[0].result = 0;
+                params[0].imageUri = uri;
+                params[0].image = null;
+                params[0].result = 0;
+            }
         } catch (IOException e) {
             // may be thrown if external storage is not mounted
             params[0].result = 1;

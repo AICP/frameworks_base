@@ -303,4 +303,7 @@
   <!-- Download Icon -->
   <java-symbol type="drawable" name="stat_sys_downloadicon" />
 
+  <!-- Wifi tethering-->
+  <java-symbol type="plurals" name="tethered_clients_connected" />
+
 </resources>

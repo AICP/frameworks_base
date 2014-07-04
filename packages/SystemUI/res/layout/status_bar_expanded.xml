@@ -73,6 +73,11 @@
              android:visibility="gone"
              />
 
+        <include layout="@layout/weather_header"
+            android:layout_width="match_parent"
+            android:layout_height="28dp"
+            />
+
         <include layout="@layout/notification_reminder"
             android:layout_width="match_parent"
             android:layout_height="32dp"

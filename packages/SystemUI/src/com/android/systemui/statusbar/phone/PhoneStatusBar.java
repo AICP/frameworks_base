@@ -280,6 +280,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private boolean mNotificationShortcutsHideCarrier;
     FrameLayout.LayoutParams lpCarrierLabel;
 
+    private View mWeatherHeader;
+    private boolean mWeatherEnabled;
+
     // Notification reminder
     private View mReminderHeader;
     private ImageView mSpacer;
@@ -479,9 +482,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     Settings.System.getUriFor(Settings.System.HEADS_UP_NOTIFICATION), true,
                     mHeadsUpObserver, mCurrentUserId);
         }
-            mSettingsObserver = new SettingsObserver(new Handler());
-            mSettingsObserver.observe();
-            updateSettings();
+        mSettingsObserver = new SettingsObserver(new Handler());
+        mSettingsObserver.observe();
+        updateSettings();
     }
 
     private void toggleCarrierAndWifiLabelVisibility() {
@@ -603,6 +606,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mHeaderOverlay = res.getDrawable(R.drawable.bg_custom_header_overlay);
         updateCustomHeaderStatus();
 
+        mWeatherHeader = mStatusBarWindow.findViewById(R.id.weather_text);
+
         mReminderHeader = mStatusBarWindow.findViewById(R.id.reminder_header);
         mReminderHeader.setOnClickListener(mReminderButtonListener);
         mReminderHeader.setOnLongClickListener(mReminderLongButtonListener);
@@ -621,6 +626,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         mReminderEnabled = Settings.System.getIntForUser(mContext.getContentResolver(),
                     Settings.System.REMINDER_ALERT_ENABLED, 0, UserHandle.USER_CURRENT) != 0;
+
+        mWeatherEnabled = Settings.AOKP.getBoolean(mContext.getContentResolver(),
+                    Settings.System.SYSTEMUI_WEATHER_HEADER_VIEW, false);
 
         View view = View.inflate(mContext, R.layout.reminder_entry, null);
         mTextHolder = (TextView) view.findViewById(R.id.message_content);
@@ -3643,7 +3651,14 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     Settings.System.SYSTEM_ICON_COLOR),
                     false, this, UserHandle.USER_ALL);
 
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.SYSTEMUI_WEATHER_HEADER_VIEW), false, this);
+
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.SYSTEMUI_WEATHER_NOTIFICATION), false, this);
+
             updateSettings();
+
         }
 
         @Override
@@ -3655,6 +3670,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         public void onChange(boolean selfChange, Uri uri) {
             ContentResolver cr = mContext.getContentResolver();
             updateSettings();
+            updateBatteryIcons();
 
             toggleNavigationBarOrNavRing(mWantsNavigationBar, mEnableNavring);
             if(uri != null && uri.equals(Settings.AOKP.getUriFor(Settings.AOKP.TOGGLES_STYLE))) {
@@ -3678,7 +3694,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     Settings.System.ENABLE_ACTIVE_DISPLAY))) {
                 updateActiveDisplayViewState();
             }
-            updateSettings();
         }
     }
 
@@ -3715,10 +3730,14 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             //OH NO!
         }
 
+        mWantsNavigationBar = Settings.AOKP.getBoolean(cr, Settings.AOKP.ENABLE_NAVIGATION_BAR, hasNav);
+        mEnableNavring = Settings.AOKP.getBoolean(mContext.getContentResolver(),
+                Settings.AOKP.ENABLE_NAVRING, true);
+
         mFlipInterval = Settings.System.getIntForUser(mContext.getContentResolver(),
                         Settings.System.REMINDER_ALERT_INTERVAL, 1500, UserHandle.USER_CURRENT);
 
-        boolean reminderHolder = Settings.System.getIntForUser(mContext.getContentResolver(),
+        boolean reminderHolder = Settings.System.getIntForUser(cr,
                     Settings.System.REMINDER_ALERT_ENABLED, 0, UserHandle.USER_CURRENT) != 0;
         if (reminderHolder != mReminderEnabled) {
             mReminderEnabled = reminderHolder;
@@ -3735,9 +3754,12 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             enableOrDisableReminder();
         }
 
-        mWantsNavigationBar = Settings.AOKP.getBoolean(cr, Settings.AOKP.ENABLE_NAVIGATION_BAR, hasNav);
-        mEnableNavring = Settings.AOKP.getBoolean(mContext.getContentResolver(),
-                Settings.AOKP.ENABLE_NAVRING, true);
+        boolean weatherHolder = Settings.AOKP.getBoolean(cr,
+                Settings.System.SYSTEMUI_WEATHER_HEADER_VIEW, false);
+        if (weatherHolder != mWeatherEnabled) {
+            mWeatherEnabled = weatherHolder;
+            enableOrDisableWeather();
+        }
 
         mNotificationShortcutsHideCarrier = Settings.System.getIntForUser(cr,
                 Settings.System.NOTIFICATION_SHORTCUTS_HIDE_CARRIER, 0, UserHandle.USER_CURRENT) != 0;
@@ -3752,6 +3774,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         updateBatteryIcons();
         updateCustomHeaderStatus();
+        enableOrDisableWeather();
 
     }
 
@@ -3876,6 +3899,16 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             mReminderPortraitWidth = mReminderLandscapeWidth;
         }
         enableOrDisableReminder();
+    }
+
+    private void enableOrDisableWeather() {
+        if (mWeatherEnabled) {
+            mWeatherHeader.setVisibility(View.VISIBLE);
+            mWeatherHeader.setEnabled(true);
+        } else {
+            mWeatherHeader.setVisibility(View.GONE);
+            mWeatherHeader.setEnabled(false);
+        }
     }
 
     private ArrayList<String>splitString(String message, int maxWidth) {

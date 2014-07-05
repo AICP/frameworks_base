@@ -178,8 +178,14 @@
          >0 is milliseconds of screen-off time after which battery sounds will not play -->
     <integer name="def_low_battery_sound_timeout">0</integer>
 
-    <!-- Default for Settings.System.UI_FORCE_OVERFLOW_BUTTON. -->
+    <!-- Default for Settings.AOKP.UI_FORCE_OVERFLOW_BUTTON. -->
     <integer name="def_force_overflow_button">0</integer>
+
+    <!-- Default for Settings.AOKP.SCREENSHOT_MODE_OPTIONS. -->
+    <integer name="def_screenshot_mode_options">1</integer>
+
+    <!-- Default for Settings.AOKP.IMMERSIVE_MODE_OPTIONS. -->
+    <integer name="def_immersive_mode_options">2</integer>
 
     <!-- Default for Settings.Global.WIFI_SCAN_ALWAYS_AVAILABLE -->
     <integer name="def_wifi_scan_always_available">0</integer>

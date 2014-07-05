@@ -58,6 +58,7 @@ import android.view.WindowManager;
 import android.view.WindowManagerPolicy;
 
 import com.android.internal.telephony.IccCardConstants;
+import com.android.internal.util.cm.QuietHoursUtils;
 import com.android.internal.widget.LockPatternUtils;
 
 
@@ -1277,9 +1278,12 @@ public class KeyguardViewMediator {
             return;
         }
 
+        if (QuietHoursUtils.inQuietHours(mContext, Settings.AOKP.QUIET_HOURS_SYSTEM)) {
+            return;
+        }
+
         final ContentResolver cr = mContext.getContentResolver();
-        if ((Settings.AOKP.getInt(cr, Settings.AOKP.QUIET_HOURS_ENABLED, 0) == 0) &&
-                (Settings.System.getInt(cr, Settings.System.LOCKSCREEN_SOUNDS_ENABLED, 1) == 1)) {
+        if (Settings.System.getInt(cr, Settings.System.LOCKSCREEN_SOUNDS_ENABLED, 1) == 1) {
             final int whichSound = locked
                 ? mLockSoundId
                 : mUnlockSoundId;

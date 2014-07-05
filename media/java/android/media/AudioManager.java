@@ -48,6 +48,8 @@ import android.view.WindowManager;
 
 import java.util.HashMap;
 
+import com.android.internal.util.cm.QuietHoursUtils;
+
 /**
  * AudioManager provides access to volume and ringer mode control.
  * <p>
@@ -1844,6 +1846,10 @@ public class AudioManager {
             return;
         }
 
+        if (QuietHoursUtils.inQuietHours(mContext, Settings.AOKP.QUIET_HOURS_SYSTEM)) {
+            return;
+        }
+
         if (!querySoundEffectsEnabled()) {
             return;
         }
@@ -1892,14 +1898,7 @@ public class AudioManager {
      * Settings has an in memory cache, so this is fast.
      */
     private boolean querySoundEffectsEnabled() {
-    boolean mQuietHoursEnabled = Settings.AOKP.getInt(mContext.getContentResolver(),
-                Settings.AOKP.QUIET_HOURS_ENABLED, 0) != 0;
-        if (mQuietHoursEnabled) {
-            return false;
-        } else {
-            return Settings.System.getInt(mContext.getContentResolver(),
-                    Settings.System.SOUND_EFFECTS_ENABLED, 0) != 0;
-        }
+    return Settings.System.getInt(mContext.getContentResolver(), Settings.System.SOUND_EFFECTS_ENABLED, 0) != 0;
     }
 
 

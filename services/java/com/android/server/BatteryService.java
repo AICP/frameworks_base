@@ -846,8 +846,6 @@ public final class BatteryService extends Binder {
                     Settings.AOKP.QUIET_HOURS_START), false, this);
             resolver.registerContentObserver(Settings.AOKP.getUriFor(
                     Settings.AOKP.QUIET_HOURS_END), false, this);
-            resolver.registerContentObserver(Settings.AOKP.getUriFor(
-                    Settings.AOKP.QUIET_HOURS_DIM), false, this);
 
             update();
         }

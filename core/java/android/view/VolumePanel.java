@@ -53,6 +53,8 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 
+import com.android.internal.util.cm.QuietHoursUtils;
+
 import java.util.HashMap;
 
 /**
@@ -734,10 +736,8 @@ public class VolumePanel extends Handler implements OnSeekBarChangeListener, Vie
             }
         }
 
-        boolean playsound = ((Settings.AOKP.getInt(mContext.getContentResolver(),
-                Settings.AOKP.QUIET_HOURS_ENABLED, 0) == 0) &&
-                (Settings.AOKP.getInt(mContext.getContentResolver(),
-                Settings.AOKP.VOLUME_ADJUST_SOUNDS_ENABLED, 1) == 1));
+        boolean playsound = Settings.AOKP.getInt(mContext.getContentResolver(),
+            Settings.AOKP.VOLUME_ADJUST_SOUNDS_ENABLED, 1) == 1;
 
         if ((flags & AudioManager.FLAG_PLAY_SOUND) != 0 && ! mRingIsSilent && playsound) {
             removeMessages(MSG_PLAY_SOUND);
@@ -898,11 +898,13 @@ public class VolumePanel extends Handler implements OnSeekBarChangeListener, Vie
             onStopSounds();
         }
 
-        synchronized (this) {
-            ToneGenerator toneGen = getOrCreateToneGenerator(streamType);
-            if (toneGen != null) {
-                toneGen.startTone(ToneGenerator.TONE_PROP_BEEP);
-                sendMessageDelayed(obtainMessage(MSG_STOP_SOUNDS), BEEP_DURATION);
+        if (!QuietHoursUtils.inQuietHours(mContext, Settings.AOKP.QUIET_HOURS_SYSTEM)) {
+            synchronized (this) {
+                ToneGenerator toneGen = getOrCreateToneGenerator(streamType);
+                if (toneGen != null) {
+                    toneGen.startTone(ToneGenerator.TONE_PROP_BEEP);
+                    sendMessageDelayed(obtainMessage(MSG_STOP_SOUNDS), BEEP_DURATION);
+                }
             }
         }
     }

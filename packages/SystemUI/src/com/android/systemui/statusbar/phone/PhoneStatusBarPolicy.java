@@ -212,6 +212,15 @@ public class PhoneStatusBarPolicy {
             iconId = R.drawable.stat_sys_ringer_vibrate;
             contentDescription = mContext.getString(R.string.accessibility_ringer_vibrate);
         } else {
+            if (ringerMode == AudioManager.RINGER_MODE_SILENT) {
+                if (quietHoursAuto == 1 || quietHoursAuto == 2) {
+                    updateQuietHours(1);
+                }
+            } else {
+                if (quietHoursAuto != 0) {
+                    updateQuietHours(0);
+                }
+            }
             iconId =  R.drawable.stat_sys_ringer_silent;
             contentDescription = mContext.getString(R.string.accessibility_ringer_silent);
         }

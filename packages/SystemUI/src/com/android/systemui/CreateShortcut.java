@@ -1,17 +1,17 @@
 /*
- * Copyright (C) 2010 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+* Copyright (C) 2010 The Android Open Source Project
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
 
 package com.android.systemui;
 
@@ -43,12 +43,15 @@ import java.lang.Character;
 import java.lang.CharSequence;
 import java.lang.IllegalArgumentException;
 import java.lang.NumberFormatException;
+import java.lang.StringBuilder;
 
 public class CreateShortcut extends LauncherActivity {
 
     private static final int DLG_SECRET = 0;
     private static final int DLG_SECRET_CHK = 1;
     private static final int DLG_SECRET_INT = 2;
+    private static final int DLG_SECRET_NAME = 3;
+    private static final int DLG_TOGGLE = 4;
 
     private static final int SYSTEM_INT = 0;
     private static final int SECURE_INT = 1;
@@ -64,6 +67,8 @@ public class CreateShortcut extends LauncherActivity {
 
     private Intent mShortcutIntent;
     private Intent mIntent;
+
+    private CharSequence mName = null;
 
     @Override
     protected Intent getTargetIntent() {
@@ -91,19 +96,34 @@ public class CreateShortcut extends LauncherActivity {
         mShortcutIntent.setClassName(this, intentClass);
         mShortcutIntent.setAction(intentAction);
 
+        mName = itemForPosition(position).label;
+
         mIntent = new Intent();
         mIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON,
                 BitmapFactory.decodeResource(getResources(), returnIconResId(className)));
-        mIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, itemForPosition(position).label);
+        mIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, mName);
         if (className.equals("ChamberOfSecrets")) {
             showDialogSetting(DLG_SECRET);
+        } else if (className.equals("QuietHours")
+                || className.equals("Rotation")) {
+            showDialogSetting(DLG_TOGGLE);
         } else {
             finalizeIntent();
         }
     }
 
     private int returnIconResId(String c) {
-        if (c.equals("ChamberOfSecrets")) {
+        if (c.equals ("QuietHours")) {
+            return R.drawable.ic_qs_quiet_hours_on;
+        } else if (c.equals("Rotation")) {
+            return R.drawable.ic_qs_auto_rotate;
+        } else if (c.equals("Reboot")) {
+            return R.drawable.ic_qs_reboot;
+        } else if (c.equals("Recovery")) {
+            return R.drawable.ic_qs_reboot_recovery;
+        } else if (c.equals("VolumePanel")) {
+            return R.drawable.ic_qs_volume;
+        } else if (c.equals("ChamberOfSecrets")) {
             return R.drawable.ic_qs_reboot_recovery;
         } else {
             // Oh-Noes, you found a wild derp.
@@ -127,7 +147,7 @@ public class CreateShortcut extends LauncherActivity {
         if (isCheck) {
             String check = "0,1";
             mShortcutIntent.putExtra("array", check);
-            finalizeIntent();
+            showDialogSetting(DLG_SECRET_NAME);
         } else {
             showDialogSetting(DLG_SECRET_INT);
         }
@@ -135,6 +155,17 @@ public class CreateShortcut extends LauncherActivity {
 
     private void setSettingArray(String array) {
         mShortcutIntent.putExtra("array", array);
+        showDialogSetting(DLG_SECRET_NAME);
+    }
+
+    private void checkIntentName(String name) {
+        if (name != null && name.length() > 0) {
+            mIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, name);
+        } else {
+            Toast.makeText(CreateShortcut.this,
+                    R.string.chamber_name_toast,
+                    Toast.LENGTH_LONG).show();
+        }
         finalizeIntent();
     }
 
@@ -162,7 +193,7 @@ public class CreateShortcut extends LauncherActivity {
                         int test = 0;
                         long testLong = 0;
                         float testFloat = 0;
-                        // Necessary ugly code.  Do it here so we don't have to again.
+                        // Necessary ugly code. Do it here so we don't have to again.
                         try {
                             Settings.Global.getInt(
                                     getContentResolver(), value);
@@ -279,52 +310,64 @@ public class CreateShortcut extends LauncherActivity {
                         str = str.replaceAll("\\s+", "");
                         String[] strArray = str.split(",");
                         boolean resultOk = true;
-
-                        switch (mSettingType) {
-                            case SYSTEM_INT:
-                            case SECURE_INT:
-                            case GLOBAL_INT:
-                                int[] intArray = new int[strArray.length];
-                                for (int i = 0; i < strArray.length; i++) {
-                                    try {
-                                        intArray[i] = Integer.parseInt(strArray[i]);
-                                    } catch (NumberFormatException e) {
+                        if (strArray.length >= 1 && str.length() > 0) {
+                            switch (mSettingType) {
+                                case SYSTEM_INT:
+                                case SECURE_INT:
+                                case GLOBAL_INT:
+                                    int[] intArray = new int[strArray.length];
+                                    for (int i = 0; i < strArray.length; i++) {
                                         try {
-                                            intArray[i] = Color.parseColor(strArray[i]);
-                                        } catch (IllegalArgumentException ex) {
+                                            intArray[i] = Integer.parseInt(strArray[i]);
+                                        } catch (NumberFormatException e) {
+                                            try {
+                                                intArray[i] = Color.parseColor(strArray[i]);
+                                                // Let's avoid color parsing a seond time.
+                                                strArray[i] = Integer.toString(
+                                                        Color.parseColor(strArray[i]));
+                                            } catch (IllegalArgumentException ex) {
+                                                resultOk = false;
+                                            }
+                                        }
+                                    }
+                                    break;
+                                case SYSTEM_LONG:
+                                case SECURE_LONG:
+                                case GLOBAL_LONG:
+                                    long[] longArray = new long[strArray.length];
+                                    for (int i = 0; i < strArray.length; i++) {
+                                        try {
+                                            longArray[i] = Long.parseLong(strArray[i]);
+                                        } catch (NumberFormatException e) {
                                             resultOk = false;
                                         }
                                     }
-                                }
-                                break;
-                            case SYSTEM_LONG:
-                            case SECURE_LONG:
-                            case GLOBAL_LONG:
-                                long[] longArray = new long[strArray.length];
-                                for (int i = 0; i < strArray.length; i++) {
-                                    try {
-                                        longArray[i] = Long.parseLong(strArray[i]);
-                                    } catch (NumberFormatException e) {
-                                        resultOk = false;
+                                    break;
+                                case SYSTEM_FLOAT:
+                                case SECURE_FLOAT:
+                                case GLOBAL_FLOAT:
+                                    float[] floatArray = new float[strArray.length];
+                                    for (int i = 0; i < strArray.length; i++) {
+                                        try {
+                                            floatArray[i] = Float.parseFloat(strArray[i]);
+                                        } catch (NumberFormatException ex) {
+                                            resultOk = false;
+                                        }
                                     }
-                                }
-                                break;
-                            case SYSTEM_FLOAT:
-                            case SECURE_FLOAT:
-                            case GLOBAL_FLOAT:
-                                float[] floatArray = new float[strArray.length];
-                                for (int i = 0; i < strArray.length; i++) {
-                                    try {
-                                        floatArray[i] = Float.parseFloat(strArray[i]);
-                                    } catch (NumberFormatException ex) {
-                                        resultOk = false;
-                                    }
-                                }
-                                break;
+                                    break;
+                            }
+                        } else {
+                            resultOk = false;
                         }
 
                         if (resultOk) {
-                            // Set to string.  Launcher doesn't persist array
+                            // Rebuild string with ints needed if color values are used.
+                            StringBuilder builder = new StringBuilder();
+                            for(String st : strArray) {
+                                builder.append(st + ",");
+                            }
+                            str = builder.toString();
+                            // Set to string. Launcher doesn't persist array
                             // extras after a reboot.
                             setSettingArray(str);
                         } else {
@@ -336,6 +379,52 @@ public class CreateShortcut extends LauncherActivity {
                     }
                 });
                 alertInt.show();
+                break;
+            case DLG_SECRET_NAME:
+                final EditText inputName = new EditText(this);
+
+                AlertDialog.Builder alertName = new AlertDialog.Builder(this);
+                alertName.setTitle(R.string.chamber_name_title)
+                .setMessage(R.string.chamber_name_message)
+                .setView(inputName)
+                .setNegativeButton(R.string.cancel,
+                    new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        checkIntentName(null);
+                    }
+                })
+                .setPositiveButton(R.string.dlg_ok,
+                    new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        String name = inputName.getText().toString();
+                        checkIntentName(name);
+                    }
+                });
+                alertName.show();
+                break;
+            case DLG_TOGGLE:
+                final CharSequence[] items = {
+                    getResources().getString(R.string.off),
+                    getResources().getString(R.string.on),
+                    getResources().getString(R.string.toggle),
+                };
+                AlertDialog.Builder alertToggle = new AlertDialog.Builder(this);
+                alertToggle.setTitle(R.string.shortcut_toggle_title)
+                .setNegativeButton(R.string.cancel,
+                    new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+                .setItems(items, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, final int item) {
+                        mShortcutIntent.putExtra("value", item);
+                        mIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME,
+                                mName + " " + items[item]);
+                        finalizeIntent();
+                    }
+                });
+                alertToggle.show();
                 break;
         }
     }

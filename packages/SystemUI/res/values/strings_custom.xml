@@ -139,7 +139,6 @@
     <string name="accessibility_data_connection_DC">DC-HSPA+</string>
 
     <!-- Chamber of secrets -->
-    <string name="shortcut_picker">Chamber Shortcuts</string>
     <string name="shortcut_chamber">Chamber of Secrets</string>
     <string name="chamber_disabled">Chamber of secrets is closed</string>
     <string name="chamber_title">Input Settings string</string>
@@ -150,6 +149,9 @@
     <string name="chamber_chk_message">Is this setting a checkbox setting?</string>
     <string name="chamber_int">Input values</string>
     <string name="chamber_int_message">Input the values you\'d like the setting to toggle between. Separate each value with a comma. Color settings accept hex-values such as #FF00aacc or basic color values like red, green, and yellow.</string>
+    <string name="chamber_name_title">Shortcut name</string>
+    <string name="chamber_name_message">Give the shortcut a name to display with the icon.</string>
+    <string name="chamber_name_toast">Using default name</string>
 
     <!-- App circle sidebar -->
     <string name="app_float_maximize_item_title">Maximize</string>
@@ -179,5 +181,19 @@
     <string name="status_bar_notification_swipe_floating_title">Swipe notification to float</string>
     <string name="status_bar_notification_swipe_floating_message">Would you like to swipe left to open apps in floating window?</string>
     <string name="status_bar_notification_swipe_floating" translatable="false">@string/status_bar_notification_swipe_floating_title</string>
+
+    <!-- Slim Shortcut Actions -->
+    <string name="shortcut_toggle_title">Action to perform</string>
+    <string name="shortcut_picker">Slim Shortcuts</string>
+    <string name="shortcut_quiethours">Quiethours Toggle</string>
+    <string name="shortcut_rotation">Rotation Lock Toggle</string>
+    <string name="shortcut_reboot">Reboot</string>
+    <string name="shortcut_recovery">Recovery</string>
+    <string name="shortcut_volume">Volume</string>
+
+    <!-- Off/On/Toggle -->
+    <string name="off">Off</string>
+    <string name="on">On</string>
+    <string name="toggle">Toggle</string>
 
 </resources>

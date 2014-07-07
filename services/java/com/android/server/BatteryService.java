@@ -145,12 +145,6 @@ public final class BatteryService extends Binder {
 
     private boolean mSentLowBatteryBroadcast = false;
 
-    // Quiet hours support
-
-    private boolean mQuietHoursEnabled = false;
-    private int mQuietHoursStart = 0;
-    private int mQuietHoursEnd = 0;
-
     private BatteryListener mBatteryPropertiesListener;
     private IBatteryPropertiesRegistrar mBatteryPropertiesRegistrar;
 
@@ -846,6 +840,9 @@ public final class BatteryService extends Binder {
                     Settings.AOKP.QUIET_HOURS_START), false, this);
             resolver.registerContentObserver(Settings.AOKP.getUriFor(
                     Settings.AOKP.QUIET_HOURS_END), false, this);
+            resolver.registerContentObserver(Settings.AOKP.getUriFor(
+                    Settings.AOKP.QUIET_HOURS_DIM), false, this);
+
 
             update();
         }

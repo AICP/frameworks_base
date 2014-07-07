@@ -35,7 +35,7 @@ public class QuietHoursUtils {
                 option, 0) != 0;
 
         if (option != null) {
-            mode = Settings.System.getIntForUser(context.getContentResolver(),
+            mode = Settings.AOKP.getIntForUser(context.getContentResolver(),
                     option, 0,
                     UserHandle.USER_CURRENT_OR_SELF) != 0;
         }

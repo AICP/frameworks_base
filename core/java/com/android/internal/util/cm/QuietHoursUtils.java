@@ -50,9 +50,9 @@ public class QuietHoursUtils {
             int minutes = calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE);
             if (quietHoursEnd < quietHoursStart) {
                 // Starts at night, ends in the morning.
-                return (minutes > quietHoursStart) || (minutes < quietHoursEnd);
+                return (minutes >= quietHoursStart) || (minutes < quietHoursEnd);
             } else {
-                return (minutes > quietHoursStart) && (minutes < quietHoursEnd);
+                return (minutes >= quietHoursStart) && (minutes < quietHoursEnd);
             }
         }
         return false;

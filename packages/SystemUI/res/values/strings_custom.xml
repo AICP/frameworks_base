@@ -197,4 +197,5 @@
     <string name="on">On</string>
     <string name="toggle">Toggle</string>
 
+    <string name="status_bar_notification_spam_item_title">Block messages like these</string>
 </resources>

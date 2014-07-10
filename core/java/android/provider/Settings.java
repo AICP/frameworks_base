@@ -3812,16 +3812,6 @@ public final class Settings {
         public static final String NOTIFICATION_SHORTCUTS_HIDE_CARRIER = "notification_shortcuts_hide_carrier";
 
         /**
-         * @hide
-         */
-        public static final String NAVIGATION_MENU = "navigation_menu";
-
-        /**
-         * @hide
-         */
-        public static final String NAVIGATION_MENU_FORCE = "navigation_menu_force";
-
-        /**
          * Whether to use the custom status bar header or not
          * @hide
          */

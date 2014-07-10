@@ -9273,6 +9273,13 @@ public final class Settings {
          * @hide
          */
         public static final String ENABLE_NAVRING = "enable_navring";
+
+        /**
+         * Show arrow buttons as left and right dpad keys
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_DPAD_KEYS = "navigation_bar_dpad_keys";
+
     }
 
     /**

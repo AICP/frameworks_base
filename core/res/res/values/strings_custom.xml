@@ -65,6 +65,8 @@
     <string name="action_app_window">App Window</string>
     <string name="action_ribbon">AOKP Ribbon</string>
     <string name="action_app">Custom App/Shortcut</string>
+    <string name="action_dpad_left">Arrow left </string>
+    <string name="action_dpad_right">Arrow right</string>
     <string name="action_rebootmenu">Reboot menu</string>
 
     <!-- Long-press back kill application -->

@@ -66,6 +66,8 @@ public class AwesomeConstants {
         ACTION_ALARM         { @Override public String value() { return "**alarm**";}},
         ACTION_UNLOCK        { @Override public String value() { return "**unlock**";}},
         ACTION_CAMERA        { @Override public String value() { return "**camera**";}},
+        ACTION_DPAD_LEFT     { @Override public String value() { return "**dpad_left**";}},
+        ACTION_DPAD_RIGHT    { @Override public String value() { return "**dpad_right**";}},
         ACTION_NULL          { @Override public String value() { return "**null**";}},
         ACTION_APP           { @Override public String value() { return "**app**";}},
         ACTION_REBOOTMENU    { @Override public String value() { return "**rebootmenu**";}};
@@ -211,6 +213,12 @@ public class AwesomeConstants {
             case ACTION_CAMERA:
                 value = res.getString(com.android.internal.R.string.action_camera);
                 break;
+            case ACTION_DPAD_LEFT:
+                value = res.getString(com.android.internal.R.string.action_dpad_left);
+                break;
+            case ACTION_DPAD_RIGHT:
+                value = res.getString(com.android.internal.R.string.action_dpad_right);
+                break;
             case ACTION_APP:
                 value = res.getString(com.android.internal.R.string.action_app);
                 break;
@@ -308,6 +316,12 @@ public class AwesomeConstants {
                 break;
             case ACTION_CAMERA:
                 value = getSystemUIDrawable(context, "com.android.systemui:drawable/ic_lockscreen_camera");
+                break;
+            case ACTION_DPAD_LEFT:
+                value = getSystemUIDrawable(context, "com.android.systemui:drawable/ic_sysbar_ime_left");
+                break;
+            case ACTION_DPAD_RIGHT:
+                value = getSystemUIDrawable(context, "com.android.systemui:drawable/ic_sysbar_ime_right");
                 break;
             case ACTION_APP: // APP doesn't really have an icon - it should look up
                         //the package icon - we'll return the 'null' on just in case

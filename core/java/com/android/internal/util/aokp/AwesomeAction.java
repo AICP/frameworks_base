@@ -254,6 +254,12 @@ public class AwesomeAction {
                         Intent rebootmenu = new Intent(Intent.ACTION_REBOOTMENU);
                         mContext.sendBroadcast(rebootmenu);
                         break;
+                    case ACTION_DPAD_LEFT:
+                        injectKeyDelayed(KeyEvent.KEYCODE_DPAD_LEFT);
+                        break;
+                    case ACTION_DPAD_RIGHT:
+                        injectKeyDelayed(KeyEvent.KEYCODE_DPAD_RIGHT);
+                        break;
                 }
 
             }
@@ -289,8 +295,8 @@ public class AwesomeAction {
             final KeyEvent ev = new KeyEvent(SystemClock.uptimeMillis(),
                     SystemClock.uptimeMillis(),
                     KeyEvent.ACTION_DOWN, mInjectKeyCode, 0, 0, KeyCharacterMap.VIRTUAL_KEYBOARD,
-                    0,
-                    KeyEvent.FLAG_FROM_SYSTEM, InputDevice.SOURCE_KEYBOARD);
+                    0, KeyEvent.FLAG_FROM_SYSTEM | KeyEvent.FLAG_KEEP_TOUCH_MODE,
+                    InputDevice.SOURCE_KEYBOARD);
             InputManager.getInstance().injectInputEvent(ev,
                     InputManager.INJECT_INPUT_EVENT_MODE_ASYNC);
         }
@@ -306,8 +312,9 @@ public class AwesomeAction {
         public void run() {
             final KeyEvent ev = new KeyEvent(SystemClock.uptimeMillis(),
                     SystemClock.uptimeMillis(),
-                    KeyEvent.ACTION_UP, mInjectKeyCode, 0, 0, KeyCharacterMap.VIRTUAL_KEYBOARD, 0,
-                    KeyEvent.FLAG_FROM_SYSTEM, InputDevice.SOURCE_KEYBOARD);
+                    KeyEvent.ACTION_UP, mInjectKeyCode, 0, 0, KeyCharacterMap.VIRTUAL_KEYBOARD,
+                    0, KeyEvent.FLAG_FROM_SYSTEM | KeyEvent.FLAG_KEEP_TOUCH_MODE,
+                    InputDevice.SOURCE_KEYBOARD);
             InputManager.getInstance().injectInputEvent(ev,
                     InputManager.INJECT_INPUT_EVENT_MODE_ASYNC);
         }

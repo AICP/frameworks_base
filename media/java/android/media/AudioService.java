@@ -480,6 +480,8 @@ public class AudioService extends IAudioService.Stub {
     // If absolute volume is supported in AVRCP device
     private boolean mAvrcpAbsVolSupported = false;
 
+    private boolean mVolumeKeysControlRingStream;
+
     ///////////////////////////////////////////////////////////////////////////
     // Construction
     ///////////////////////////////////////////////////////////////////////////
@@ -823,6 +825,9 @@ public class AudioService extends IAudioService.Stub {
             updateRingerModeAffectedStreams();
             readDockAudioSettings(cr);
             updateManualSafeMediaVolume();
+
+            mVolumeKeysControlRingStream = Settings.System.getIntForUser(cr,
+                    Settings.System.VOLUME_KEYS_CONTROL_RING_STREAM, 1, UserHandle.USER_CURRENT) == 1;
         }
 
         mMuteAffectedStreams = System.getIntForUser(cr,
@@ -2964,9 +2969,15 @@ public class AudioService extends IAudioService.Stub {
                             Log.v(TAG, "getActiveStreamType: Forcing STREAM_REMOTE_MUSIC");
                         return STREAM_REMOTE_MUSIC;
                     } else {
-                        if (DEBUG_VOL)
-                            Log.v(TAG, "getActiveStreamType: Forcing STREAM_RING b/c default");
-                        return AudioSystem.STREAM_RING;
+                        if (mVolumeKeysControlRingStream) {
+                            if (DEBUG_VOL)
+                                Log.v(TAG, "getActiveStreamType: Forcing STREAM_RING b/c default");
+                            return AudioSystem.STREAM_RING;
+                        } else {
+                            if (DEBUG_VOL)
+                                Log.v(TAG, "getActiveStreamType: Forcing STREAM_MUSIC b/c default setting");
+                            return AudioSystem.STREAM_MUSIC;
+                        }
                 }
             } else if (isAfMusicActiveRecently(0)) {
                 if (DEBUG_VOL)
@@ -4033,6 +4044,8 @@ public class AudioService extends IAudioService.Stub {
                     UserHandle.USER_ALL);
             mContentResolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.CUSTOM_SOUND_EFFECTS_PATH), false, this);
+            mContentResolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.VOLUME_KEYS_CONTROL_RING_STREAM), false, this);
         }
 
         @Override
@@ -4064,6 +4077,10 @@ public class AudioService extends IAudioService.Stub {
                         mStreamVolumeAlias[AudioSystem.STREAM_NOTIFICATION] =
                             AudioSystem.STREAM_NOTIFICATION;
                     }
+                } else if (uri.equals(Settings.System.getUriFor(
+                            Settings.System.VOLUME_KEYS_CONTROL_RING_STREAM))) {
+                            mVolumeKeysControlRingStream = Settings.System.getIntForUser(mContentResolver,
+                            Settings.System.VOLUME_KEYS_CONTROL_RING_STREAM, 1, UserHandle.USER_CURRENT) == 1;
                 }
 
                 reloadTouchSoundAssets();

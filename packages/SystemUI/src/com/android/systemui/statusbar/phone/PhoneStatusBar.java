@@ -282,7 +282,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     FrameLayout.LayoutParams lpCarrierLabel;
 
     private View mWeatherHeader;
-    private boolean mWeatherEnabled;
+    private boolean mWeatherEnabled = false;
 
     // Notification reminder
     private View mReminderHeader;
@@ -3671,6 +3671,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.SYSTEMUI_WEATHER_NOTIFICATION), false, this);
+
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.SYSTEMUI_WEATHER_ICON), false, this);
 
             updateSettings();
 

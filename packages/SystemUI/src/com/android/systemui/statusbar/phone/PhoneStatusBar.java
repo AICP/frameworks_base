@@ -24,6 +24,7 @@ import static com.android.systemui.statusbar.phone.BarTransitions.MODE_LIGHTS_OU
 import static com.android.systemui.statusbar.phone.BarTransitions.MODE_OPAQUE;
 import static com.android.systemui.statusbar.phone.BarTransitions.MODE_SEMI_TRANSPARENT;
 import static com.android.systemui.statusbar.phone.BarTransitions.MODE_TRANSLUCENT;
+import static com.android.systemui.statusbar.phone.BarTransitions.MODE_TRANSPARENT;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
@@ -348,6 +349,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     int mSystemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE;
 
     DisplayMetrics mDisplayMetrics = new DisplayMetrics();
+    boolean mTransparentNav = false;
 
     private BatteryMeterView mBattery;
     private BatteryCircleMeterView mCircleBattery;

@@ -29,12 +29,17 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ActivityInfo;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.ContentObserver;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.RemoteException;
@@ -1164,5 +1169,19 @@ public class NavigationBarView extends LinearLayout {
         boolean xlarge = ((context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == 4);
         boolean large = ((context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_LARGE);
         return (xlarge || large);
+    }
+
+    private static Bundle getApplicationMetadata(Context context, String pkg) {
+        if (pkg != null) {
+            try {
+                ApplicationInfo ai = context.getPackageManager().
+                    getApplicationInfo(pkg, PackageManager.GET_META_DATA);
+                return ai.metaData;
+            } catch (NameNotFoundException e) {
+                return null;
+            }
+        }
+
+        return null;
     }
 }

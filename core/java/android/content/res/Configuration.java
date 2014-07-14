@@ -22,6 +22,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
 import android.view.View;
+import android.util.Log;
+import android.os.SystemProperties;
+import android.text.TextUtils;
 
 import java.util.Locale;
 
@@ -76,7 +79,7 @@ public final class Configuration implements Parcelable, Comparable<Configuration
     /**
      * @hide
      */
-    public ThemeConfig themeConfig;
+    public CustomTheme customTheme;
 
     /**
      * Locale should persist on setting.  This is hidden because it is really
@@ -413,40 +416,28 @@ public final class Configuration implements Parcelable, Comparable<Configuration
 
     /**
      * @hide
-     * @deprecated
+     */
+    public static final int THEME_UNDEFINED = 0;
+
+    /**
+     * @hide
      */
     public static final String THEME_PACKAGE_NAME_PERSISTENCE_PROPERTY = "persist.sys.themePackageName";
 
     /**
      * @hide
-     * @deprecated
+     */
+    public static final String THEME_SYSTEMUI_PACKAGE_NAME_PERSISTENCE_PROPERTY = "persist.sys.themeSysUiPkgName";
+
+    /**
+     * @hide
      */
     public static final String THEME_ICONPACK_PACKAGE_NAME_PERSISTENCE_PROPERTY = "themeIconPackPkgName";
 
     /**
      * @hide
-     * @deprecated
      */
     public static final String THEME_FONT_PACKAGE_NAME_PERSISTENCE_PROPERTY = "themeFontPackPkgName";
-
-    /**
-     * @hide
-     * Serialized json structure mapping app pkgnames to their set theme.
-     *
-     * {
-     *  "default":{
-     *"     stylePkgName":"com.jasonevil.theme.miuiv5dark",
-     *      "iconPkgName":"com.cyngn.hexo",
-     *      "fontPkgName":"com.cyngn.hexo"
-     *   }
-     * }
-
-     * If an app does not have a specific theme set then it will use the 'default' theme+
-     * example: 'default' -> overlayPkgName: 'org.blue.theme'
-     *          'com.android.phone' -> 'com.red.theme'
-     *          'com.google.vending' -> 'com.white.theme'
-     */
-    public static final String THEME_PKG_CONFIGURATION_PERSISTENCE_PROPERTY = "themeConfig";
 
     /**
      * Overall orientation of the screen.  May be one of
@@ -704,8 +695,8 @@ public final class Configuration implements Parcelable, Comparable<Configuration
         compatScreenHeightDp = o.compatScreenHeightDp;
         compatSmallestScreenWidthDp = o.compatSmallestScreenWidthDp;
         seq = o.seq;
-        if (o.themeConfig != null) {
-            themeConfig = (ThemeConfig) o.themeConfig.clone();
+        if (o.customTheme != null) {
+            customTheme = (CustomTheme) o.customTheme.clone();
         }
     }
 
@@ -851,7 +842,7 @@ public final class Configuration implements Parcelable, Comparable<Configuration
             sb.append(seq);
         }
         sb.append(" themeResource=");
-        sb.append(themeConfig);
+        sb.append(customTheme);
         sb.append('}');
         return sb.toString();
     }
@@ -879,7 +870,7 @@ public final class Configuration implements Parcelable, Comparable<Configuration
         smallestScreenWidthDp = compatSmallestScreenWidthDp = SMALLEST_SCREEN_WIDTH_DP_UNDEFINED;
         densityDpi = DENSITY_DPI_UNDEFINED;
         seq = 0;
-        themeConfig = null;
+        customTheme = null;
     }
 
     /** {@hide} */
@@ -1028,10 +1019,10 @@ public final class Configuration implements Parcelable, Comparable<Configuration
             seq = delta.seq;
         }
 
-        if (delta.themeConfig != null
-                && (themeConfig == null || !themeConfig.equals(delta.themeConfig))) {
+        if (delta.customTheme != null
+                && (customTheme == null || !customTheme.equals(delta.customTheme))) {
             changed |= ActivityInfo.CONFIG_THEME_RESOURCE;
-            themeConfig = (ThemeConfig)delta.themeConfig.clone();
+            customTheme = (CustomTheme)delta.customTheme.clone();
         }
 
         return changed;
@@ -1147,8 +1138,8 @@ public final class Configuration implements Parcelable, Comparable<Configuration
                 && densityDpi != delta.densityDpi) {
             changed |= ActivityInfo.CONFIG_DENSITY;
         }
-        if (delta.themeConfig != null &&
-                (themeConfig == null || !themeConfig.equals(delta.themeConfig))) {
+        if (delta.customTheme != null &&
+                (customTheme == null || !customTheme.equals(delta.customTheme))) {
             changed |= ActivityInfo.CONFIG_THEME_RESOURCE;
         }
         return changed;
@@ -1242,7 +1233,7 @@ public final class Configuration implements Parcelable, Comparable<Configuration
         dest.writeInt(compatScreenHeightDp);
         dest.writeInt(compatSmallestScreenWidthDp);
         dest.writeInt(seq);
-        dest.writeParcelable(themeConfig, flags);
+        dest.writeParcelable(customTheme, flags);
     }
 
     public void readFromParcel(Parcel source) {
@@ -1272,7 +1263,7 @@ public final class Configuration implements Parcelable, Comparable<Configuration
         compatScreenHeightDp = source.readInt();
         compatSmallestScreenWidthDp = source.readInt();
         seq = source.readInt();
-        themeConfig = source.readParcelable(ThemeConfig.class.getClassLoader());
+        customTheme = source.readParcelable(CustomTheme.class.getClassLoader());
     }
     
     public static final Parcelable.Creator<Configuration> CREATOR
@@ -1343,10 +1334,10 @@ public final class Configuration implements Parcelable, Comparable<Configuration
         if (n != 0) return n;
         n = this.densityDpi - that.densityDpi;
         if (n != 0) return n;
-        if (this.themeConfig == null) {
-            if (that.themeConfig != null) return 1;
+        if (this.customTheme == null) {
+            if (that.customTheme != null) return 1;
         } else {
-            n = this.themeConfig.compareTo(that.themeConfig);
+            n = this.customTheme.compareTo(that.customTheme);
         }
         return n;
     }
@@ -1385,8 +1376,8 @@ public final class Configuration implements Parcelable, Comparable<Configuration
         result = 31 * result + screenHeightDp;
         result = 31 * result + smallestScreenWidthDp;
         result = 31 * result + densityDpi;
-        result = 31 * result + (this.themeConfig != null ?
-                                  this.themeConfig.hashCode() : 0);
+        result = 31 * result + (this.customTheme != null ?
+                                  this.customTheme.hashCode() : 0);
         return result;
     }
 

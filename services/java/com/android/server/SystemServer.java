@@ -30,13 +30,14 @@ import android.content.pm.IPackageManager;
 import android.content.pm.PackageManager;
 import android.content.pm.ThemeUtils;
 import android.content.res.Configuration;
-import android.content.res.ThemeConfig;
+import android.content.res.CustomTheme;
 import android.database.ContentObserver;
 import android.media.AudioService;
 import android.net.wifi.p2p.WifiP2pService;
 import android.os.Environment;
 import android.net.INetworkPolicyManager;
 import android.net.INetworkStatsService;
+import android.os.IBinder;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
@@ -1207,9 +1208,8 @@ class ServerThread {
                 try {
                     // now that the system is up, apply default theme if applicable
                     if (themeServiceF != null) themeServiceF.systemRunning();
-                    ThemeConfig themeConfig =
-                            ThemeConfig.getBootTheme(contextF.getContentResolver());
-                    String iconPkg = themeConfig.getIconPackPkgName();
+                    CustomTheme customTheme = CustomTheme.getBootTheme(contextF.getContentResolver());
+                    String iconPkg = customTheme.getIconPackPkgName();
                     pmf.updateIconMapping(iconPkg);
                 } catch (Throwable e) {
                     reportWtf("Icon Mapping failed", e);

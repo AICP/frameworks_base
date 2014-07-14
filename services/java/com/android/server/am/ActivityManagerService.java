@@ -31,7 +31,6 @@ import static com.android.server.am.ActivityStackSupervisor.HOME_STACK_ID;
 import android.app.AppOpsManager;
 import android.appwidget.AppWidgetManager;
 import android.content.pm.ThemeUtils;
-import android.content.res.ThemeConfig;
 import android.util.ArrayMap;
 import com.android.internal.R;
 import com.android.internal.annotations.GuardedBy;
@@ -127,7 +126,9 @@ import android.content.pm.ResolveInfo;
 import android.content.pm.ServiceInfo;
 import android.content.res.CompatibilityInfo;
 import android.content.res.Configuration;
+import android.content.res.CustomTheme;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.net.Proxy;
 import android.net.ProxyProperties;
 import android.net.Uri;
@@ -202,6 +203,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicLong;
+import dalvik.system.Zygote;
 
 public final class ActivityManagerService extends ActivityManagerNative
         implements Watchdog.Monitor, BatteryStatsImpl.BatteryCallback {
@@ -14085,8 +14087,8 @@ public final class ActivityManagerService extends ActivityManagerNative
         Configuration ci;
         synchronized(this) {
             ci = new Configuration(mConfiguration);
-            if (ci.themeConfig == null) {
-                ci.themeConfig = ThemeConfig.getBootTheme(mContext.getContentResolver());
+            if (ci.customTheme == null) {
+                ci.customTheme = CustomTheme.getBootTheme(mContext.getContentResolver());
             }
         }
         return ci;
@@ -14162,9 +14164,9 @@ public final class ActivityManagerService extends ActivityManagerNative
                                      values.userSetLocale);
                 }
 
-                if (values.themeConfig != null) {
-                    saveThemeResourceLocked(values.themeConfig,
-                            !values.themeConfig.equals(mConfiguration.themeConfig));
+                if (values.customTheme != null) {
+                    saveThemeResourceLocked(values.customTheme,
+                            !values.customTheme.equals(mConfiguration.customTheme));
                 }
 
                 mConfigurationSeq++;
@@ -14316,10 +14318,12 @@ public final class ActivityManagerService extends ActivityManagerNative
         return srec.launchedFromPackage;
     }
 
-    private void saveThemeResourceLocked(ThemeConfig t, boolean isDiff){
+    private void saveThemeResourceLocked(CustomTheme t, boolean isDiff){
         if(isDiff) {
-            Settings.Secure.putString(mContext.getContentResolver(),
-                    Configuration.THEME_PKG_CONFIGURATION_PERSISTENCE_PROPERTY, t.toJson());
+            Settings.Secure.putString(mContext.getContentResolver(), Configuration.THEME_PACKAGE_NAME_PERSISTENCE_PROPERTY, t.getThemePackageName());
+            Settings.Secure.putString(mContext.getContentResolver(), Configuration.THEME_SYSTEMUI_PACKAGE_NAME_PERSISTENCE_PROPERTY, t.getSystemUiPackageName());
+            Settings.Secure.putString(mContext.getContentResolver(), Configuration.THEME_ICONPACK_PACKAGE_NAME_PERSISTENCE_PROPERTY, t.getIconPackPkgName());
+            Settings.Secure.putString(mContext.getContentResolver(), Configuration.THEME_FONT_PACKAGE_NAME_PERSISTENCE_PROPERTY, t.getFontPackPkgName());
         }
     }
 

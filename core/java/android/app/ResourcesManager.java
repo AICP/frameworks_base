@@ -29,7 +29,7 @@ import android.content.pm.ThemeUtils;
 import android.content.res.AssetManager;
 import android.content.res.CompatibilityInfo;
 import android.content.res.Configuration;
-import android.content.res.ThemeConfig;
+import android.content.res.CustomTheme;
 import android.content.res.Resources;
 import android.content.res.ResourcesKey;
 import android.hardware.display.DisplayManagerGlobal;
@@ -219,19 +219,19 @@ public class ResourcesManager {
         boolean iconsAttached = false;
         /* Attach theme information to the resulting AssetManager when appropriate. */
         if (compatInfo.isThemeable && config != null && !context.getPackageManager().isSafeMode()) {
-            if (config.themeConfig == null) {
+            if (config.customTheme == null) {
                 try {
-                    config.themeConfig = ThemeConfig.getBootTheme(context.getContentResolver());
+                    config.customTheme = CustomTheme.getBootTheme(context.getContentResolver());
                 } catch (Exception e) {
-                    Slog.d(TAG, "ThemeConfig.getBootTheme failed, falling back to system theme", e);
-                    config.themeConfig = ThemeConfig.getSystemTheme();
+                    Slog.d(TAG, "CustomTheme.getBootTheme failed, falling back to system theme", e);
+                    config.customTheme = CustomTheme.getSystemTheme();
                 }
             }
 
-            if (config.themeConfig != null) {
-                attachThemeAssets(assets, config.themeConfig);
-                attachCommonAssets(assets, config.themeConfig);
-                iconsAttached = attachIconAssets(assets, config.themeConfig);
+            if (config.customTheme != null) {
+                attachThemeAssets(assets, config.customTheme);
+                attachCommonAssets(assets, config.customTheme);
+                iconsAttached = attachIconAssets(assets, config.customTheme);
             }
         }
 
@@ -294,15 +294,11 @@ public class ResourcesManager {
         }
 
         /* Attach theme information to the resulting AssetManager when appropriate. */
-        ThemeConfig.Builder builder = new ThemeConfig.Builder();
-        builder.defaultOverlay(themePackageName);
-        builder.defaultIcon(themePackageName);
-        builder.defaultFont(themePackageName);
-
-        ThemeConfig themeConfig = builder.build();
-        attachThemeAssets(assets, themeConfig);
-        attachCommonAssets(assets, themeConfig);
-        attachIconAssets(assets, themeConfig);
+        CustomTheme customTheme =
+                new CustomTheme(themePackageName, themePackageName, themePackageName);
+        attachThemeAssets(assets, customTheme);
+        attachCommonAssets(assets, customTheme);
+        attachIconAssets(assets, customTheme);
 
         r = new Resources(assets, dm, config, compatInfo, token);
         setActivityIcons(r);
@@ -333,9 +329,9 @@ public class ResourcesManager {
             return;
         }
 
-        final ThemeConfig themeConfig = r.getConfiguration().themeConfig;
-        if (pkgName != null && themeConfig != null &&
-                pkgName.equals(themeConfig.getIconPackPkgName())) {
+        final CustomTheme customTheme = r.getConfiguration().customTheme;
+        if (pkgName != null && customTheme != null &&
+                pkgName.equals(customTheme.getIconPackPkgName())) {
             return;
         }
 
@@ -422,10 +418,10 @@ ActivityInfo.CONFIG_UI_THEME_MODE) != 0;
                         r.setIconResources(null);
                         r.setComposedIconInfo(null);
                         detachThemeAssets(am);
-                        if (config.themeConfig != null) {
-                            attachThemeAssets(am, config.themeConfig);
-                            attachCommonAssets(am, config.themeConfig);
-                            if (attachIconAssets(am, config.themeConfig)) {
+                        if (config.customTheme != null) {
+                            attachThemeAssets(am, config.customTheme);
+                            attachCommonAssets(am, config.customTheme);
+                            if (attachIconAssets(am, config.customTheme)) {
                                 setActivityIcons(r);
                             }
                         }
@@ -482,7 +478,7 @@ ActivityInfo.CONFIG_UI_THEME_MODE) != 0;
      *         removed and the theme manager has yet to revert formally back to
      *         the framework default.
      */
-    private boolean attachThemeAssets(AssetManager assets, ThemeConfig theme) {
+    private boolean attachThemeAssets(AssetManager assets, CustomTheme theme) {
         PackageInfo piTheme = null;
         PackageInfo piTarget = null;
         PackageInfo piAndroid = null;
@@ -505,7 +501,7 @@ ActivityInfo.CONFIG_UI_THEME_MODE) != 0;
 
         try {
             piTheme = getPackageManager().getPackageInfo(
-                    theme.getOverlayPkgNameForApp(basePackageName), 0,
+                    theme.getThemePackageNameForApp(basePackageName), 0,
                     UserHandle.getCallingUserId());
             piTarget = getPackageManager().getPackageInfo(
                     basePackageName, 0, UserHandle.getCallingUserId());
@@ -574,7 +570,7 @@ ActivityInfo.CONFIG_UI_THEME_MODE) != 0;
      * @param theme
      * @return true if succes, false otherwise
      */
-    private boolean attachIconAssets(AssetManager assets, ThemeConfig theme) {
+    private boolean attachIconAssets(AssetManager assets, CustomTheme theme) {
         PackageInfo piIcon = null;
         try {
             piIcon = getPackageManager().getPackageInfo(theme.getIconPackPkgName(), 0,
@@ -620,10 +616,10 @@ ActivityInfo.CONFIG_UI_THEME_MODE) != 0;
      * @param theme
      * @return true if succes, false otherwise
      */
-    private boolean attachCommonAssets(AssetManager assets, ThemeConfig theme) {
+    private boolean attachCommonAssets(AssetManager assets, CustomTheme theme) {
         PackageInfo piTheme = null;
         try {
-            piTheme = getPackageManager().getPackageInfo(theme.getOverlayPkgName(), 0,
+            piTheme = getPackageManager().getPackageInfo(theme.getThemePackageName(), 0,
                     UserHandle.getCallingUserId());
         } catch (RemoteException e) {
         }

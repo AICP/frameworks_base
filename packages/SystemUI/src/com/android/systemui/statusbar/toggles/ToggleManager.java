@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.content.pm.ThemeUtils;
 import android.database.ContentObserver;
 import android.location.LocationManager;
 import android.net.wifi.WifiManager;
@@ -197,13 +198,17 @@ public class ToggleManager {
         mBroadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                Intent broadcast = new Intent(ACTION_BROADCAST_TOGGLES);
-                broadcast.putExtra("toggle_bundle", ToggleManager.this.getAvailableToggles());
-                context.sendBroadcast(broadcast);
+                if (ACTION_REQUEST_TOGGLES.equals(intent.getAction())) {
+                    Intent broadcast = new Intent(ACTION_BROADCAST_TOGGLES);
+                    broadcast.putExtra("toggle_bundle", ToggleManager.this.getAvailableToggles());
+                    context.sendBroadcast(broadcast);
+                } else if (ThemeUtils.ACTION_THEME_CHANGED.equals(intent.getAction())) {
+                    updateSettings();
+                }
             }
         };
         mContext.registerReceiver(mBroadcastReceiver, new IntentFilter(ACTION_REQUEST_TOGGLES));
-
+        mContext.registerReceiver(mBroadcastReceiver, new IntentFilter(ThemeUtils.ACTION_THEME_CHANGED));
     }
 
     public void cleanup() {

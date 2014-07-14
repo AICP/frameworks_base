@@ -116,4 +116,6 @@
     <dimen name="default_notification_row_min_height">70dp</dimen>
     <dimen name="default_notification_row_max_height">260dp</dimen>
 
+    <dimen name="wifi_combo_margin_end">-6dp</dimen>
+
 </resources>

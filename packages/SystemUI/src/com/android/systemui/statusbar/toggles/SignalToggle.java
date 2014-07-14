@@ -74,6 +74,8 @@ public class SignalToggle extends StatefulToggle implements NetworkSignalChanged
         mLabel = (TextView) root.findViewById(R.id.rssi_textview);
         rssiImage = (ImageView) root.findViewById(R.id.rssi_image);
         rssiOverlayImage = (ImageView) root.findViewById(R.id.rssi_overlay_image);
+        mActivityIn = (ImageView) root.findViewById(R.id.activity_in);
+        mActivityOut = (ImageView) root.findViewById(R.id.activity_out);
         setIcon(null);
         return root;
     }
@@ -85,6 +87,8 @@ public class SignalToggle extends StatefulToggle implements NetworkSignalChanged
         root.setOnLongClickListener(this);
         rssiImage = (ImageView) root.findViewById(R.id.rssi_image);
         rssiOverlayImage = (ImageView) root.findViewById(R.id.rssi_overlay_image);
+        mActivityIn = (ImageView) root.findViewById(R.id.activity_in);
+        mActivityOut = (ImageView) root.findViewById(R.id.activity_out);
         mLabel = null;
         mIcon = null;
         return root;
@@ -163,6 +167,7 @@ public class SignalToggle extends StatefulToggle implements NetworkSignalChanged
                 ? removeTrailingPeriod(description)
                 : r.getString(R.string.quick_settings_rssi_emergency_only);
         setEnabledState(dataTypeIconId > 0 ? true : false);
+        networkActivity(enabled && activityIn, enabled && activityOut);
         scheduleViewUpdate();
     }
 

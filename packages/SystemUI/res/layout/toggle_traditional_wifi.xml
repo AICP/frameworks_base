@@ -20,13 +20,7 @@
     android:background="@drawable/qs_tile_background" >
 
     <ImageView
-        android:id="@+id/rssi_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true" />
-
-    <ImageView
-        android:id="@+id/rssi_overlay_image"
+        android:id="@id/icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true" />
@@ -35,16 +29,16 @@
         android:id="@+id/activity_in"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_qs_signal_in"
-        android:layout_toRightOf="@id/rssi_image"
-        android:layout_alignBottom="@id/rssi_image" />
+        android:src="@drawable/ic_qs_wifi_in"
+        android:layout_toRightOf="@id/icon"
+        android:layout_alignBottom="@id/icon" />
 
     <ImageView
         android:id="@+id/activity_out"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_qs_signal_out"
-        android:layout_toRightOf="@id/rssi_image"
-        android:layout_alignBottom="@id/rssi_image" />
+        android:src="@drawable/ic_qs_wifi_out"
+        android:layout_toRightOf="@id/icon"
+        android:layout_alignBottom="@id/icon" />
 
 </RelativeLayout>

@@ -1,6 +1,7 @@
 
 package com.android.systemui.statusbar.toggles;
 
+import android.animation.ValueAnimator;
 import android.app.ActivityManagerNative;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
@@ -55,6 +56,8 @@ public abstract class BaseToggle
     protected CompoundButton mToggleButton = null;
     protected TextView mLabel = null;
     protected ImageView mIcon = null;
+    protected ImageView mActivityIn = null;
+    protected ImageView mActivityOut = null;
     private int mIconId = -1;
 
     int mTextColor;
@@ -238,6 +241,24 @@ public abstract class BaseToggle
                 mContext.getResources().getDimensionPixelSize(R.dimen.quick_settings_cell_gap));
         return view;
 
+    }
+
+    public void networkActivity(boolean acIn, boolean acOut) {
+        long defaultDuration = new ValueAnimator().getDuration();
+        networkActivitySetVisibility(mActivityIn, acIn, defaultDuration);
+        networkActivitySetVisibility(mActivityOut, acOut, defaultDuration);
+    }
+
+    private void networkActivitySetVisibility(View view, boolean visible, long defaultDuration) {
+        long shortDuration = defaultDuration / 3;
+
+        final float newAlpha = visible ? 1 : 0;
+        if (view.getAlpha() != newAlpha) {
+            view.animate()
+                .setDuration(visible ? shortDuration : defaultDuration)
+                .alpha(newAlpha)
+                .start();
+        }
     }
 
     protected final void scheduleViewUpdate() {

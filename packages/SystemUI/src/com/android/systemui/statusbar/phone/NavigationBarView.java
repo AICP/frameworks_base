@@ -953,6 +953,7 @@ public class NavigationBarView extends LinearLayout {
 
     public void setLeftInLandscape(boolean leftInLandscape) {
         mLeftInLandscape = leftInLandscape;
+        mBarTransitions.setLeftIfVertical(leftInLandscape);
         mDeadZone.setStartFromRight(leftInLandscape);
     }
 

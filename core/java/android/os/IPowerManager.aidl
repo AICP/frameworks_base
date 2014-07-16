@@ -60,4 +60,6 @@ interface IPowerManager
     String getSeenWakeLocks();
 
     void setKeyboardVisibility(boolean visible);
+
+    void wakeUpFromKeyEvent(long time);
 }

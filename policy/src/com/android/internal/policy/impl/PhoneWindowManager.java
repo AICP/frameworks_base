@@ -527,6 +527,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private int mPressOnAppSwitchBehavior = -1;
     private int mLongPressOnAppSwitchBehavior = -1;
 
+    boolean mCallInBackground;
+
     // support for activating the lock screen while the screen is on
     boolean mAllowLockscreenWhenOn;
     int mLockScreenTimeout;
@@ -747,8 +749,11 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.NAVBAR_LEFT_IN_LANDSCAPE), false, this,
                     UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
+            resolver.registerContentObserver(Settings.AOKP.getUriFor(
                     Settings.AOKP.ENABLE_NAVIGATION_BAR), false, this,
+                    UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.AOKP.getUriFor(
+                    Settings.AOKP.NON_INTRUSIVE_INCALL), false, this,
                     UserHandle.USER_ALL);
 
             updateSettings();
@@ -1673,6 +1678,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             }
 
             updateKeyAssignments();
+
+            // Call in background is no multiuser setting.
+            mCallInBackground = Settings.AOKP.getInt(resolver,
+                    Settings.AOKP.NON_INTRUSIVE_INCALL, 1) == 1;
 
             mWantsNavigationBar = Settings.AOKP.getBoolean(resolver,
                     Settings.AOKP.ENABLE_NAVIGATION_BAR, mHasNavigationBar);
@@ -2612,10 +2621,14 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
                 // If an incoming call is ringing, HOME is totally disabled.
                 // (The user is already on the InCallScreen at this point,
-                // and his ONLY options are to answer or reject the call.)
+                // and his ONLY options are to answer or reject the call as long
+                // it is not a call in background)
+                final boolean isCallInBackground = mCallInBackground
+                        && isScreenOnFully() && !keyguardIsShowingTq();
                 try {
                     ITelephony telephonyService = getTelephonyService();
-                    if (telephonyService != null && telephonyService.isRinging()) {
+                    if (telephonyService != null && telephonyService.isRinging()
+                            && !isCallInBackground) {
                         if ((mRingHomeBehavior
                                 & Settings.Secure.RING_HOME_BUTTON_BEHAVIOR_ANSWER) != 0) {
                             Log.i(TAG, "Answering with HOME button.");

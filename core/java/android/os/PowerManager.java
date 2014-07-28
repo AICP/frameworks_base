@@ -521,13 +521,14 @@ public final class PowerManager {
     }
 
     /**
-     * Forces the device to wake up from sleep from a key event.
+     * Forces the device to wake up from sleep only if
+     * nothing is blocking the proximity sensor
      * @see #wakeUp
      * @hide
      */
-    public void wakeUpFromKeyEvent(long time) {
+    public void wakeUpWithProximityCheck(long time) {
         try {
-            mService.wakeUpFromKeyEvent(time);
+            mService.wakeUpWithProximityCheck(time);
         } catch (RemoteException e) {
         }
     }

@@ -145,6 +145,7 @@
                 android:singleLine="true"
                 android:paddingStart="6dip"
                 android:gravity="center_vertical|start"
+                android:visibility="gone"
                 />
         </LinearLayout>
     </LinearLayout>
@@ -163,7 +164,9 @@
             android:paddingLeft="6dip"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:visibility="gone"
+            />
     </LinearLayout>
 
     <LinearLayout android:id="@+id/ticker"

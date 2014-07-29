@@ -165,7 +165,20 @@ public class PhoneStateListener {
      */
     public static final int LISTEN_CELL_INFO = 0x00000400;
 
+    /**
+     * Subscription used to listen to the phone state changes
+     * @hide
+     */
+    protected int mSubscription = 0;
+
     public PhoneStateListener() {
+    }
+
+    /**
+     * @hide
+     */
+    public PhoneStateListener(int subscription) {
+        mSubscription = subscription;
     }
 
     /**

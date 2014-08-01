@@ -133,10 +133,8 @@ public class ToggleManager {
             toggleMap.put(VOLUME_TOGGLE, VolumeToggle.class);
             toggleMap.put(SETTINGS_TOGGLE, SettingsToggle.class);
             toggleMap.put(WIFI_TOGGLE, WifiToggle.class);
-            if (deviceSupportsTelephony()) {
-                toggleMap.put(SIGNAL_TOGGLE, SignalToggle.class);
-                toggleMap.put(WIFI_TETHER_TOGGLE, WifiApToggle.class);
-            }
+            toggleMap.put(SIGNAL_TOGGLE, SignalToggle.class);
+            toggleMap.put(WIFI_TETHER_TOGGLE, WifiApToggle.class);
             toggleMap.put(ROTATE_TOGGLE, RotateToggle.class);
             toggleMap.put(CLOCK_TOGGLE, ClockToggle.class);
             toggleMap.put(LOCATION_TOGGLE, LocationToggle.class);

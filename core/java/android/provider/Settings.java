@@ -6150,6 +6150,12 @@ public final class Settings {
          */
         public static final String POCKET_JUDGE = "pocket_judge";
 
+        /**
+         * Whether to scramble a pin unlock layout
+         * @hide
+         */
+        public static final String LOCKSCREEN_PIN_SCRAMBLE_LAYOUT = "lockscreen_scramble_pin_layout";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6352,6 +6358,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(TOAST_ICON);
             PRIVATE_SETTINGS.add(FINGERPRINT_WAKE_UNLOCK);
             PRIVATE_SETTINGS.add(POCKET_JUDGE);
+            PRIVATE_SETTINGS.add(LOCKSCREEN_PIN_SCRAMBLE_LAYOUT);
         }
 
         /**

@@ -6454,6 +6454,12 @@ public final class Settings {
          */
         public static final String AICP_ASPECT_RATIO_APPS_ENABLED = "aspect_ratio_apps_enabled";
 
+        /**
+         * Whether to scramble a pin unlock layout
+         * @hide
+         */
+        public static final String LOCKSCREEN_PIN_SCRAMBLE_LAYOUT = "lockscreen_scramble_pin_layout";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6697,6 +6703,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(VOLUME_ANSWER_CALL);
             PRIVATE_SETTINGS.add(AICP_ASPECT_RATIO_APPS_LIST);
             PRIVATE_SETTINGS.add(AICP_ASPECT_RATIO_APPS_ENABLED);
+            PRIVATE_SETTINGS.add(LOCKSCREEN_PIN_SCRAMBLE_LAYOUT);
         }
 
         /**

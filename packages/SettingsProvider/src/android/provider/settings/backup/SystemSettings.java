@@ -191,5 +191,6 @@ public class SystemSettings {
         Settings.System.SCREENSHOT_SHUTTER_SOUND,
         Settings.System.AICP_ASPECT_RATIO_APPS_LIST,
         Settings.System.AICP_ASPECT_RATIO_APPS_ENABLED,
+        Settings.System.LOCKSCREEN_PIN_SCRAMBLE_LAYOUT,
     };
 }

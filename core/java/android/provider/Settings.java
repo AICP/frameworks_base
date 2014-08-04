@@ -5626,6 +5626,12 @@ public final class Settings {
          */
         public static final String LOCKSCREEN_BATTERY_INFO = "lockscreen_battery_info";
 
+        /**
+         * Whether to scramble a pin unlock layout
+         * @hide
+         */
+        public static final String LOCKSCREEN_PIN_SCRAMBLE_LAYOUT = "lockscreen_scramble_pin_layout";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5709,6 +5715,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(NOTIFICATION_SOUND_VIB_SCREEN_ON, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(LOCKSCREEN_BATTERY_INFO, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(LOCKSCREEN_PIN_SCRAMBLE_LAYOUT, BOOLEAN_VALIDATOR);
         }
 
         /**

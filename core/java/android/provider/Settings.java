@@ -5648,6 +5648,15 @@ public final class Settings {
         */
         public static final String  RECENTS_CLEAR_ALL_LOCATION = "recents_clear_all_location";
 
+        /**
+        * Whether to scramble a pin unlock layout
+        * @hide
+        */
+        public static final String LOCKSCREEN_PIN_SCRAMBLE_LAYOUT = "lockscreen_scramble_pin_layout";
+
+        /** @hide */
+        private static final Validator LOCKSCREEN_PIN_SCRAMBLE_LAYOUT_VALIDATOR = BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5843,6 +5852,7 @@ public final class Settings {
             NETWORK_TRAFFIC_EXPANDED_STATUS_BAR_STATE,
             PULSE_APPS_BLACKLIST,
             SHOW_CLEAR_ALL_RECENTS,
+            LOCKSCREEN_PIN_SCRAMBLE_LAYOUT,
             // AICP Settings end
         };
 
@@ -6102,6 +6112,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_EXPANDED_STATUS_BAR_STATE);
             PRIVATE_SETTINGS.add(PULSE_APPS_BLACKLIST);
             PRIVATE_SETTINGS.add(SHOW_CLEAR_ALL_RECENTS);
+            PRIVATE_SETTINGS.add(LOCKSCREEN_PIN_SCRAMBLE_LAYOUT);
             // AICP Settings end
         }
 
@@ -6351,6 +6362,7 @@ public final class Settings {
             VALIDATORS.put(NETWORK_TRAFFIC_EXPANDED_STATUS_BAR_STATE, NETWORK_TRAFFIC_EXPANDED_STATUS_BAR_STATE_VALIDATOR);
             VALIDATORS.put(PULSE_APPS_BLACKLIST,PULSE_APPS_BLACKLIST_VALIDATOR);
             VALIDATORS.put(SHOW_CLEAR_ALL_RECENTS,SHOW_CLEAR_ALL_RECENTS_VALIDATOR);
+            VALIDATORS.put(LOCKSCREEN_PIN_SCRAMBLE_LAYOUT,LOCKSCREEN_PIN_SCRAMBLE_LAYOUT_VALIDATOR);
             // AICP Settings end
         }
 

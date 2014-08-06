@@ -22,17 +22,24 @@ public class DocumentUtils {
         return (url != null && !url.startsWith("http://") && !url.startsWith("http://"));
     }
 
+    public static String getContentFromUri(Uri uri) {
+        String[] split = uri.toString().split("/");
+        return split[2];
+    }
+
     // Override of RootInfo.isExternalStorage accepting a URI
-    public boolean isExternalStorageDocument(Uri uri) {
-        return "com.android.externalstorage.documents".equals(uri);
+    public static boolean isExternalStorageDocument(Uri uri) {
+        return getContentFromUri(uri).equals("com.android.externalstorage.documents");
     }
 
     // Override of RootInfo.isDownloads accepting a URI
     public boolean isDownloadsDocument(Uri uri) {
-        return "com.android.providers.downloads.documents".equals(uri);
+        return getContentFromUri(uri).equals("com.android.providers.downloads.documents");
     }
 
-    public boolean isMediaDocument(Uri uri) { return "com.android.providers.media.documents".equals(uri); }
+    public boolean isMediaDocument(Uri uri) {
+        return getContentFromUri(uri).equals("com.android.providers.media.documents");
+    }
 
     public static String getPath(final Context context, final Uri uri) {
         final String docId = DocumentsContract.getDocumentId(uri);

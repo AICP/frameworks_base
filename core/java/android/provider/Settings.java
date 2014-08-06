@@ -4103,6 +4103,13 @@ public final class Settings {
          */
         public static final String HEADS_UP_NOTIFCATION_DECAY = "heads_up_notifcation_decay";
 
+        /**
+         * Heads up: Option to exclude from lockscreen, default is 0 (off).
+         *
+         * @hide
+         */
+        public static final String HEADS_UP_EXCLUDE_FROM_LOCK_SCREEN = "heads_up_exclude_from_lock_screen";
+
        /**
          * Whether to display the gesture anywhere trigger region or not.
          * @hide

@@ -25,7 +25,9 @@ import android.os.Parcelable;
 import android.provider.DocumentsContract;
 import android.provider.DocumentsContract.Document;
 import android.provider.DocumentsProvider;
+import android.util.Log;
 
+import com.android.documentsui.DocumentUtils;
 import com.android.documentsui.DocumentsApplication;
 import com.android.documentsui.RootCursorWrapper;
 
@@ -216,6 +218,10 @@ public class DocumentInfo implements Durable, Parcelable {
 
     public boolean isDirectory() {
         return Document.MIME_TYPE_DIR.equals(mimeType);
+    }
+
+    public boolean isApplication(Uri apk) {
+        return DocumentUtils.getExtension(apk.toString()).equalsIgnoreCase("apk");
     }
 
     public boolean isGridPreferred() {

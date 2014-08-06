@@ -54,6 +54,7 @@ import android.content.ClipData;
 import android.content.ComponentName;
 import android.content.ContentProviderClient;
 import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -103,19 +104,16 @@ import com.android.documentsui.model.DocumentInfo;
 import com.android.documentsui.model.DocumentStack;
 import com.android.documentsui.model.DurableUtils;
 import com.android.documentsui.model.RootInfo;
-import com.google.common.collect.Maps;
 
+import com.google.android.collect.Maps;
 import libcore.io.IoUtils;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Arrays;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -1080,32 +1078,41 @@ public class DocumentsActivity extends Activity {
                 }
             }
         } else if (mState.action == ACTION_STANDALONE) {
-            final Intent view = new Intent(Intent.ACTION_VIEW);
-            view.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            view.setData(doc.derivedUri);
-
-            try {
-                startActivity(view);
-            } catch (ActivityNotFoundException ex2) {
-                File file = null;
-                int idx = doc.documentId.indexOf(":");
-                if (idx >= 0) {
-                    String id = doc.documentId.substring(0, idx);
-                    File volume = mIdToPath.get(id);
-                    if (volume != null) {
-                        String fileName = doc.documentId.substring(idx + 1);
-                        file = new File(volume, fileName);
-                    }
-                }
-                if (file != null) {
-                    view.setDataAndType(Uri.fromFile(file), doc.mimeType);
-                    try {
-                        startActivity(view);
-                    } catch (ActivityNotFoundException ex3) {
-                        Toast.makeText(this, R.string.toast_no_application, Toast.LENGTH_SHORT).show();
-                    }
+            if (doc.isApplication(doc.derivedUri)) {
+                // File picked is an apk, attempt to install
+                // for now limited to internal storage
+                if (DocumentUtils.getPath(this, doc.derivedUri) != null) {
+                    DocumentUtils.installApplication(this, doc);
                 } else {
                     Toast.makeText(this, R.string.toast_no_application, Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                    final Intent view = new Intent(Intent.ACTION_VIEW);
+                    view.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    view.setData(doc.derivedUri);
+                try {
+                    startActivity(view);
+                } catch (ActivityNotFoundException ex2) {
+                    File file = null;
+                    int idx = doc.documentId.indexOf(":");
+                    if (idx >= 0) {
+                        String id = doc.documentId.substring(0, idx);
+                        File volume = mIdToPath.get(id);
+                        if (volume != null) {
+                            String fileName = doc.documentId.substring(idx + 1);
+                            file = new File(volume, fileName);
+                        }
+                    }
+                    if (file != null) {
+                        view.setDataAndType(Uri.fromFile(file), doc.mimeType);
+                        try {
+                            startActivity(view);
+                        } catch (ActivityNotFoundException ex3) {
+                            Toast.makeText(this, R.string.toast_no_application, Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(this, R.string.toast_no_application, Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         }

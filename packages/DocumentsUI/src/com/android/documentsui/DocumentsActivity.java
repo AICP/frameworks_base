@@ -1082,7 +1082,7 @@ public class DocumentsActivity extends Activity {
                 // File picked is an apk, attempt to install
                 // for now limited to internal storage
                 if (DocumentUtils.isExternalStorageDocument(doc.derivedUri)
-                        && DocumentUtils.getPath(this, doc.derivedUri) != null) {
+                        && DocumentUtils.getPath(doc.derivedUri) != null) {
                     DocumentUtils.installApplication(this, doc);
                 } else {
                     Toast.makeText(this, R.string.toast_no_application, Toast.LENGTH_SHORT).show();

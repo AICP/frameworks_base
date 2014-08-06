@@ -41,7 +41,7 @@ public class DocumentUtils {
         return getContentFromUri(uri).equals("com.android.providers.media.documents");
     }
 
-    public static String getPath(final Context context, final Uri uri) {
+    public static String getPath(final Uri uri) {
         final String docId = DocumentsContract.getDocumentId(uri);
         final String[] split = docId.split(":");
         final String type = split[0];
@@ -83,7 +83,7 @@ public class DocumentUtils {
     public static void installApplication(Context context, DocumentInfo doc) {
         Uri uri = doc.derivedUri;
         String mimeType = doc.mimeType;
-        String path = getPath(context, uri);
+        String path = getPath(uri);
         File apk = new File(path);
         Intent intent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
         intent.setDataAndType(Uri.fromFile(apk), doc.mimeType);

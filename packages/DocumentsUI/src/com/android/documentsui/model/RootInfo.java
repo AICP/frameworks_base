@@ -158,7 +158,9 @@ public class RootInfo implements Durable, Parcelable {
         derivedMimeTypes = (mimeTypes != null) ? mimeTypes.split("\n") : null;
 
         // TODO: remove these special case icons
-        if (isExternalStorage()) {
+        if (isUsbStorage()) {
+            derivedIcon = R.drawable.ic_root_usb;
+        } else if (isExternalStorage()) {
             derivedIcon = R.drawable.ic_root_sdcard;
         } else if (isDownloads()) {
             derivedIcon = R.drawable.ic_root_download;
@@ -177,6 +179,10 @@ public class RootInfo implements Durable, Parcelable {
 
     public boolean isExternalStorage() {
         return "com.android.externalstorage.documents".equals(authority);
+    }
+
+    public boolean isUsbStorage() {
+        return (isExternalStorage() && !rootId.equals("primary") && rootId.contains("-"));
     }
 
     public boolean isDownloads() {

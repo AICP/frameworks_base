@@ -48,12 +48,14 @@ public class DocumentInfo implements Durable, Parcelable {
     public String authority;
     public String documentId;
     public String mimeType;
-    public String displayName;
+    public static String displayName;
     public long lastModified;
     public int flags;
     public String summary;
     public long size;
     public int icon;
+
+    public static String mTopDirectory;
 
     /** Derived fields that aren't persisted */
     public Uri derivedUri;

@@ -531,7 +531,6 @@ public class Hover {
             public void onAnimationEnd(Animator animation) {
                 mLastNotification = nextNotification; // backup current notification object
                 setAnimatingVisibility(false);
-                setTouchOutside(false);
                 // check if there are other notif to override with
                 processOverridingQueue(isExpanded());
             }
@@ -581,7 +580,7 @@ public class Hover {
                             }
 
                             mHiding = false;
-                            setTouchOutside(false);
+                            setTouchOutside(false); // reset
 
                             // check if there are other notif to show
                             if (!quit) {
@@ -877,7 +876,8 @@ public class Hover {
     public void clearForegroundAppNotifications() {
         for (int i = 0; i < mNotificationList.size(); i++) {
             if (mNotificationList.get(i).getContent().getPackageName()
-                    .equals(mNotificationHelper.getForegroundPackageName())) {
+                    .equals(mNotificationHelper.getForegroundPackageName())
+                            && i > 0) {
                 mNotificationList.remove(i);
             }
         }

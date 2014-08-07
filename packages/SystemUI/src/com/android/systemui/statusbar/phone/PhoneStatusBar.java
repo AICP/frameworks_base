@@ -3221,10 +3221,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mHeadsUpNotificationView.setY(offset);
     }
 
-    public void onHeadsUpDismissed() {
+    public void onHeadsUpDismissed(boolean direction) {
         if (mInterruptingNotificationEntry == null) return;
         mHandler.sendEmptyMessage(MSG_HIDE_HEADS_UP);
-        if (mHeadsUpNotificationView.isClearable()) {
+        if (mHeadsUpNotificationView.isClearable() && !direction) {
             try {
                 mBarService.onNotificationClear(
                         mInterruptingNotificationEntry.notification.getPackageName(),

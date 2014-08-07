@@ -200,7 +200,7 @@ public class HoverLayout extends RelativeLayout implements ExpandHelper.Callback
         }
 
         @Override
-        public void onChildDismissed(View v) {
+        public void onChildDismissed(View v, boolean direction) {
             mHover.clearHandlerCallbacks();
             mHover.setAnimatingVisibility(false);
             mHover.setLocked(false);
@@ -208,7 +208,11 @@ public class HoverLayout extends RelativeLayout implements ExpandHelper.Callback
             // better to store the current notification from Hover class in another object
             // so it can't be null if something happens when we get it from the array
             StatusBarNotification n = mHover.getCurrentNotification().getContent();
-            if (n.isClearable()) { // remove only removable on dismiss
+            // Check boolean direction to determine
+            // if the notification will be removed
+            // from status bar and notification
+            // drawer as well
+            if (n.isClearable() && !direction) { // remove only removable on dismiss
                 final String pkg = n.getPackageName();
                 final String tag = n.getTag();
                 final int id = n.getId();

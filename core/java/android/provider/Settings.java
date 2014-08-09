@@ -4659,6 +4659,8 @@ public final class Settings {
 
         /**
          * Pie trigger sensitivity
+         * Highest = 10, default = 5 and lowest = 1. Check your EdgeServiceConstants in
+         * com/android/internal/util/gesture/EdgeServiceConstants.java for the proper values.
          * @hide
          */
         public static final String PIE_TRIGGER_SENSITIVITY = "pie_trigger_sensitivity";

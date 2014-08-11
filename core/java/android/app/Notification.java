@@ -586,6 +586,24 @@ public class Notification implements Parcelable
     public static final int HEADS_UP_REQUESTED = 2;
 
     /**
+     * Not used.
+     * @hide
+     */
+    public static final String EXTRA_HEADS_UP_EXPANDED = "headsupExpanded";
+
+    /**
+     * Value for {@link #EXTRA_HEADS_UP_EXPANDED}.
+     * @hide
+     */
+    public static final int HEADS_UP_EXPANDED = 0;
+
+    /**
+     * Default value for {@link #EXTRA_HEADS_UP_EXPANDED}.
+     * @hide
+     */
+    public static final int HEADS_UP_NOT_EXPANDED = 1;
+
+    /**
      * Structure to encapsulate a named action that can be shown as part of this notification.
      * It must include an icon, a label, and a {@link PendingIntent} to be fired when the action is
      * selected by the user.

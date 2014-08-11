@@ -316,6 +316,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private HeadsUpNotificationView mHeadsUpNotificationView;
     private int mHeadsUpNotificationDecay;
     private boolean mHeadsUpNotificationViewAttached;
+    private boolean mHeadsUpExpandedByDefault;
 
     // on-screen navigation buttons
     private NavigationBarView mNavigationBarView = null;
@@ -571,6 +572,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     Settings.System.HEADS_UP_NOTIFCATION_DECAY,
                     res.getInteger(R.integer.heads_up_notification_decay),
                     UserHandle.USER_CURRENT);
+            mHeadsUpExpandedByDefault = Settings.System.getIntForUser(
+                    mContext.getContentResolver(),
+                    Settings.System.HEADS_UP_EXPANDED, 0,
+                    UserHandle.USER_CURRENT) == 1;
         }
         if (MULTIUSER_DEBUG) {
             mNotificationPanelDebugText = (TextView) mNotificationPanel.findViewById(R.id.header_debug_info);
@@ -1313,8 +1318,15 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 mInterruptingNotificationEntry = interruptionCandidate;
                 shadeEntry.setInterruption();
 
+                // Either the user want to see every heads up expanded....or the app which
+                // requests the heads up force it to show as expanded.
+                final boolean isExpanded = notification.getNotification().extras.getInt(
+                        Notification.EXTRA_HEADS_UP_EXPANDED,
+                        Notification.HEADS_UP_NOT_EXPANDED) == Notification.HEADS_UP_EXPANDED
+                        || mHeadsUpExpandedByDefault;
+
                 // 1. Populate mHeadsUpNotificationView
-                mHeadsUpNotificationView.setNotification(mInterruptingNotificationEntry);
+                mHeadsUpNotificationView.setNotification(mInterruptingNotificationEntry, isExpanded);
 
                 // 2. Animate mHeadsUpNotificationView in
                 mHandler.sendEmptyMessage(MSG_SHOW_HEADS_UP);
@@ -3698,6 +3710,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     false, this, UserHandle.USER_ALL);
 
             resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.HEADS_UP_EXPANDED),
+                    false, this, UserHandle.USER_ALL);
+
+            resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_CARRIER), false, this);
 
             updateSettings();
@@ -3744,6 +3760,12 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                         mContext.getResources().getInteger(
                         R.integer.heads_up_notification_decay),
                         UserHandle.USER_CURRENT);
+            } else if (uri.equals(Settings.System.getUriFor(
+                Settings.System.HEADS_UP_EXPANDED))) {
+                mHeadsUpExpandedByDefault = Settings.System.getIntForUser(
+                        mContext.getContentResolver(),
+                        Settings.System.HEADS_UP_EXPANDED, 0,
+                        UserHandle.USER_CURRENT) == 1;
             }
         }
     }

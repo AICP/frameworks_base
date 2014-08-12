@@ -471,10 +471,16 @@ public class ThemeService extends IThemeService.Stub {
                 null, selection,
                 selectionArgs, null);
         c.moveToFirst();
-
+        WallpaperManager wm = WallpaperManager.getInstance(mContext);
         if (HOLO_DEFAULT.equals(pkgName)) {
             try {
-                WallpaperManager.getInstance(mContext).clear();
+                wm.clear();
+            } catch (IOException e) {
+                return false;
+            }
+        } else if (TextUtils.isEmpty(pkgName)) {
+            try {
+                wm.clear(false);
             } catch (IOException e) {
                 return false;
             }
@@ -508,13 +514,12 @@ public class ThemeService extends IThemeService.Stub {
                         in = ThemeUtils.getInputStreamFromAsset(themeCtx, "file:///android_asset/"
                                 + wpPath);
                     }
-                    WallpaperManager.getInstance(mContext).setStream(in);
+                    wm.setStream(in);
                 } else {
                     PackageManager pm = mContext.getPackageManager();
                     PackageInfo pi = pm.getPackageInfo(pkgName, 0);
                     if (pi.legacyThemeInfos != null && pi.legacyThemeInfos.length > 0) {
-                        WallpaperManager.getInstance(themeContext)
-                                .setResource(pi.legacyThemeInfos[0].wallpaperResourceId);
+                        wm.setResource(pi.legacyThemeInfos[0].wallpaperResourceId);
                     } else {
                         return false;
                     }

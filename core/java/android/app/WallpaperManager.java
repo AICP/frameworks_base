@@ -1027,6 +1027,17 @@ public class WallpaperManager {
      * wallpaper.
      */
     public void clear() throws IOException {
-        setResource(com.android.internal.R.drawable.default_wallpaper);
+        clear(true);
+    }
+
+    /** @hide */
+    public void clear(boolean setToDefault) throws IOException {
+        if (setToDefault) {
+            setResource(com.android.internal.R.drawable.default_wallpaper);
+        } else {
+            Bitmap blackBmp = Bitmap.createBitmap(1, 1, Bitmap.Config.RGB_565);
+            blackBmp.setPixel(0, 0, mContext.getResources().getColor(android.R.color.black));
+            setBitmap(blackBmp);
+        }
     }
 }

@@ -20,6 +20,7 @@ import android.app.ActivityManager;
 import android.app.ActivityManagerNative;
 import android.app.IActivityManager;
 import android.app.WallpaperManager;
+import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -103,6 +104,7 @@ public class ThemeService extends IThemeService.Stub {
     private class ThemeWorkerHandler extends Handler {
         private static final int MESSAGE_CHANGE_THEME = 1;
         private static final int MESSAGE_APPLY_DEFAULT_THEME = 2;
+        private static final int MESSAGE_BUILD_ICON_CACHE = 3;
 
         public ThemeWorkerHandler(Looper looper) {
             super(looper);
@@ -117,6 +119,9 @@ public class ThemeService extends IThemeService.Stub {
                     break;
                 case MESSAGE_APPLY_DEFAULT_THEME:
                     doApplyDefaultTheme();
+                    break;
+                case MESSAGE_BUILD_ICON_CACHE:
+                    doBuildIconCache();
                     break;
                 default:
                     Log.w(TAG, "Unknown message " + msg.what);
@@ -260,6 +265,7 @@ public class ThemeService extends IThemeService.Stub {
             pm.updateIconMaps(null);
         } else {
             pm.updateIconMaps(pkgName);
+            mHandler.sendEmptyMessage(ThemeWorkerHandler.MESSAGE_BUILD_ICON_CACHE);
         }
     }
 
@@ -818,4 +824,20 @@ public class ThemeService extends IThemeService.Stub {
             return (int) (lhs.lastModified() - rhs.lastModified());
         }
     };
+
+    private void doBuildIconCache() {
+        PackageManager pm = mContext.getPackageManager();
+        Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
+        mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+
+        List<ResolveInfo> infos = pm.queryIntentActivities(mainIntent, 0);
+        for(ResolveInfo info : infos) {
+            try {
+                pm.getActivityIcon(new ComponentName(info.activityInfo.packageName,
+                        info.activityInfo.name));
+            } catch (Exception e) {
+                Log.w(TAG, "Unable to fetch icon for " + info, e);
+            }
+        }
+    }
 }

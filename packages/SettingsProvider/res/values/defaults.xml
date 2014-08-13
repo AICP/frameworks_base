@@ -181,6 +181,9 @@
     <!-- Default for Settings.AOKP.UI_FORCE_OVERFLOW_BUTTON. -->
     <integer name="def_force_overflow_button">0</integer>
 
+    <!-- Default for Settings.Global.SEND_ACTION_APP_ERROR -->
+    <integer name="def_send_action_app_error">0</integer>
+
     <!-- Default for Settings.AOKP.SCREENSHOT_MODE_OPTIONS. -->
     <integer name="def_screenshot_mode_options">1</integer>
 

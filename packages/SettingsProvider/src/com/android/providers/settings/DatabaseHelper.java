@@ -2373,6 +2373,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             loadIntegerSetting(stmt, Settings.Global.WIFI_SCAN_ALWAYS_AVAILABLE,
                     R.integer.def_wifi_scan_always_available);
 
+            loadIntegerSetting(stmt, Settings.Global.SEND_ACTION_APP_ERROR,
+                    R.integer.def_send_action_app_error);
+
             // --- New global settings start here
             loadIntegerSetting(stmt, Settings.Global.TETHER_DUN_REQUIRED,
                     R.integer.def_tether_dun_required);

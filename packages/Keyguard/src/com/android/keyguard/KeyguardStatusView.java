@@ -30,6 +30,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.graphics.Typeface;
 import android.os.UserHandle;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.provider.Settings;
@@ -409,10 +410,20 @@ public class KeyguardStatusView extends GridLayout implements
                     : R.string.abbrev_wday_month_day_no_year);
             final String clockView12Skel = res.getString(R.string.clock_12hr_format);
             final String clockView24Skel = res.getString(R.string.clock_24hr_format);
-            final String key = locale.toString() + dateViewSkel + clockView12Skel + clockView24Skel;
-            if (key.equals(cacheKey)) return;
 
-            dateView = DateFormat.getBestDateTimePattern(locale, dateViewSkel);
+            if (res.getBoolean(com.android.internal.R.bool.def_custom_dateformat)) {
+                final String dateformat = Settings.System.getString(context.getContentResolver(),
+                        Settings.System.DATE_FORMAT);
+                dateView = dateformat.equals(dateView) ? dateView : dateformat;
+            } else {
+                final String key = locale.toString() + dateViewSkel + clockView12Skel
+                        + clockView24Skel;
+                if (key.equals(cacheKey)) {
+                    return;
+                }
+                dateView = DateFormat.getBestDateTimePattern(locale, dateViewSkel);
+                cacheKey = key;
+            }
 
             clockView12 = DateFormat.getBestDateTimePattern(locale, clockView12Skel);
             // CLDR insists on adding an AM/PM indicator even though it wasn't in the skeleton
@@ -427,7 +438,6 @@ public class KeyguardStatusView extends GridLayout implements
             clockView24 = clockView24.replace(':', '\uee01');
             clockView12 = clockView12.replace(':', '\uee01');
 
-            cacheKey = key;
         }
     }
 }

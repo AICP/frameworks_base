@@ -4209,6 +4209,25 @@ public final class Settings {
          */
         public static final String STATUS_BAR_CARRIER = "status_bar_carrier";
 
+        /**
+         * OverScroll Glow Color
+         * @hide
+         */
+        public static final String OVERSCROLL_GLOW_COLOR = "overscroll_glow_color";
+
+        /**
+         *
+         * OverScroll effects configuration
+         * @hide
+         */
+        public static final String OVERSCROLL_EFFECT = "overscroll_effect";
+
+        /**
+         * Sets the overscroller weight (edge bounce effect on lists)
+         * @hide
+         */
+        public static final String OVERSCROLL_WEIGHT = "overscroll_weight";
+
         /**         
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.

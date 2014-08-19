@@ -4228,6 +4228,12 @@ public final class Settings {
          */
         public static final String OVERSCROLL_WEIGHT = "overscroll_weight";
 
+        /**
+         * Toggle for 6 bar signal bars
+         * @hide
+         */
+        public static final String STATUSBAR_6BAR_SIGNAL = "statusbar_6bar_signal";
+
         /**         
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.

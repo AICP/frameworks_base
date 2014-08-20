@@ -5898,13 +5898,13 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     mBootMsgDialog.setCancelable(false);
                     mBootMsgDialog.show();
                 }
-		if (!mBootMsgDialog.isShowing())
+                if (!mBootMsgDialog.isShowing())
                      mBootMsgDialog.show();
                 mBootMsgDialog.setMessage(msg);
                 if (DEBUG_BOOTMSG) Log.d(TAG, "********** showBootMessage(" + msg +", " + always + ") updated ***********");
                 if (currentPackageName != null) {
                     mBootMsgDialog.setTitle(msg);
-                    mBootMsgDialog.setMessage(currentPackageName);
+                    mBootMsgDialog.setMessage(msg + "\n" + currentPackageName);
                     if (DEBUG_BOOTMSG) Log.d(TAG, "setTitle: " + msg + " setMessage: " + currentPackageName);
                 } else {
                     if (DEBUG_BOOTMSG) Log.d(TAG, "failed; CURRENT_PACKAGE_NAME == null");

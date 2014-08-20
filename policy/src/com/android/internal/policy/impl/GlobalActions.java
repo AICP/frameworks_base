@@ -26,6 +26,7 @@ import com.android.internal.R;
 import android.app.ActivityManagerNative;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.KeyguardManager;
 import android.app.Profile;
 import android.app.ProfileManager;
 import android.content.ActivityNotFoundException;
@@ -38,6 +39,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.pm.ResolveInfo;
 import android.content.pm.ThemeUtils;
 import android.content.pm.UserInfo;
 import android.content.ServiceConnection;
@@ -57,6 +59,7 @@ import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.os.UserManager;
 import android.os.Vibrator;
+import android.provider.MediaStore;
 import android.provider.Settings;
 import android.service.dreams.DreamService;
 import android.service.dreams.IDreamManager;
@@ -69,6 +72,7 @@ import android.view.InputDevice;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
+import android.view.Surface;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
@@ -133,6 +137,10 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
     private int mScreenshotOption = -1;
     private int mScreenrecordOption = -1;
 
+    // Quick Camera
+    private boolean mQuickCam;
+    private KeyguardManager KM;
+
     /**
      * @param context everything needs a context :(
      */
@@ -180,14 +188,20 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
      * @param keyguardShowing True if keyguard is showing
      */
     public void showDialog(boolean keyguardShowing, boolean isDeviceProvisioned) {
+
         mKeyguardShowing = keyguardShowing;
         mDeviceProvisioned = isDeviceProvisioned;
-        if (mDialog != null && mUiContext == null) {
+        if (mDialog != null) {
+            if (mUiContext != null) {
+                mUiContext = null;
+        }
             mDialog.dismiss();
             mDialog = null;
-            // Show delayed, so that the dismiss of the previous dialog completes
-            mHandler.sendEmptyMessage(MESSAGE_SHOW);
+            if (mQuickCam && !isKeyguardEnabled()) {
+                launchCameraAssistant();
+            }
         } else {
+            mDialog = createDialog();
             handleShow();
         }
     }
@@ -204,9 +218,32 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         }
     }
 
+    private void launchCameraAssistant() {
+        Intent i = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        try {
+            PackageManager pm = mContext.getPackageManager();
+
+            final ResolveInfo mInfo = pm.resolveActivity(i, 0);
+
+            Intent intent = new Intent();
+            intent.setComponent(new ComponentName(mInfo.activityInfo.packageName, mInfo.activityInfo.name));
+            intent.setAction(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_LAUNCHER);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+            mContext.startActivity(intent); 
+        } catch (Exception e){ Log.i(TAG, "Unable to launch camera: " + e);
+        }
+    }
+
+    private boolean isKeyguardEnabled() {
+        KM = (KeyguardManager)mContext.getSystemService(Context.KEYGUARD_SERVICE);
+        if(KM == null) return false;
+        return KM.isKeyguardLocked();
+    }
+
     private void handleShow() {
         awakenIfNecessary();
-        mDialog = createDialog();
         prepareDialog();
 
         WindowManager.LayoutParams attrs = mDialog.getWindow().getAttributes();
@@ -265,6 +302,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         mRebootOption = Settings.AOKP.getInt(resolver, Settings.AOKP.REBOOT_MODE_OPTIONS, 1);
         mScreenshotOption = Settings.AOKP.getInt(resolver, Settings.AOKP.SCREENSHOT_MODE_OPTIONS, 0);
         mScreenrecordOption = Settings.AOKP.getInt(resolver, Settings.AOKP.SCREENRECORD_MODE_OPTIONS, 0);
+        mQuickCam = Settings.System.getInt(resolver, Settings.System.POWER_MENU_QUICKCAM, 1) == 1;
         mExpandDesktopModeOn = new ToggleAction(
                 R.drawable.ic_lock_expanded_desktop,
                 R.drawable.ic_lock_expanded_desktop_off,
@@ -875,6 +913,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                 Log.w(TAG, ie);
             }
         }
+        mDialog = null;
     }
 
     /** {@inheritDoc} */

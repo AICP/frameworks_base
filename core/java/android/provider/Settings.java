@@ -4240,6 +4240,13 @@ public final class Settings {
          */
         public static final String POWER_MENU_QUICKCAM = "power_menu_quickcam";
 
+        /**
+         * Volume panel background color
+         *
+         * @hide
+         */
+        public static final String VOLUME_PANEL_BG_COLOR = "volume_panel_bg_color";
+
         /**         
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.

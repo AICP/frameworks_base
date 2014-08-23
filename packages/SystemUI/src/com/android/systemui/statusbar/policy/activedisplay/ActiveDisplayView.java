@@ -746,8 +746,8 @@ public class ActiveDisplayView extends FrameLayout {
         // to avoid flicker and showing any other screen than the ActiveDisplayView
         // we use a runnable posted with a 250ms delay to turn wake the device
         mHandler.removeCallbacks(runWakeDevice);
-        if (mPocketMode == POCKET_MODE_ACTIVE_DISPLAY && !mDistanceFar) return;
-        mHandler.postDelayed(runWakeDevice, 300);
+        if (mPocketMode == POCKET_MODE_ACTIVE_DISPLAY && mDistanceFar)
+            mHandler.postDelayed(runWakeDevice, 300);
     }
 
     private final Runnable runWakeDevice = new Runnable() {

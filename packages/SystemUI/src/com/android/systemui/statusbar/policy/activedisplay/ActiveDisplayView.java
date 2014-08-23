@@ -204,7 +204,7 @@ public class ActiveDisplayView extends FrameLayout {
                     mNotification = getNextAvailableNotification();
                     if (mNotification != null) {
                         setActiveNotification(mNotification, true);
-                        isUserActivity();
+                        updateTimeoutTimer();
                         return;
                     }
                 } else {
@@ -287,7 +287,7 @@ public class ActiveDisplayView extends FrameLayout {
                     setActiveNotification(mNotification, true);
                     invalidate();
                     mGlowPadView.ping();
-                    isUserActivity();
+                    updateTimeoutTimer();
                     return;
                 }
             }
@@ -392,7 +392,7 @@ public class ActiveDisplayView extends FrameLayout {
             mHideLowPriorityNotifications = Settings.System.getInt(
                     resolver, Settings.System.ACTIVE_NOTIFICATIONS_HIDE_LOW_PRIORITY, 1) == 1;
             mPocketMode = Settings.System.getInt(
-                    resolver, Settings.System.ACTIVE_NOTIFICATIONS_POCKET_MODE, POCKET_MODE_ACTIVE_DISPLAY);
+                    resolver, Settings.System.ACTIVE_NOTIFICATIONS_POCKET_MODE, POCKET_MODE_OFF);
             mRedisplayTimeout = Settings.System.getLong(
                     resolver, Settings.System.ACTIVE_DISPLAY_REDISPLAY, 0L);
             String excludedApps = Settings.System.getString(resolver,
@@ -404,7 +404,11 @@ public class ActiveDisplayView extends FrameLayout {
             mEnableDoubleTap = Settings.System.getInt(
                     resolver, Settings.System.ACTIVE_DISPLAY_DOUBLE_TAP, 0) == 1;
 
-            createExcludedAppsSet(excludedApps);
+
+            if (!TextUtils.isEmpty(excludedApps)) {
+                String[] appsToExclude = excludedApps.split("\\|");
+                mExcludedApps = new HashSet<String>(Arrays.asList(appsToExclude));
+            }
 
             if (mRedisplayTimeout <= 0) {
                 cancelRedisplayTimer();
@@ -527,7 +531,7 @@ public class ActiveDisplayView extends FrameLayout {
 
         mRemoteViewLayoutParams = getRemoteViewLayoutParams(orientation);
         mOverflowLayoutParams = getOverflowLayoutParams();
-        updateTargets();
+        updateResources();
         if (recreate) {
             updateTimeoutTimer();
             if (mNotification == null) {
@@ -574,10 +578,6 @@ public class ActiveDisplayView extends FrameLayout {
         states.addState(TargetDrawable.STATE_ACTIVE, activeLayerDrawable);
         states.addState(TargetDrawable.STATE_FOCUSED, activeLayerDrawable);
         return states;
-    }
-
-    private void updateTargets() {
-        updateResources();
     }
 
     public void updateResources() {
@@ -705,7 +705,7 @@ public class ActiveDisplayView extends FrameLayout {
                 inflateRemoteView(mNotification);
                 invalidate();
                 mGlowPadView.ping();
-                isUserActivity();
+                updateTimeoutTimer();
                 return;
             }
         }
@@ -716,7 +716,7 @@ public class ActiveDisplayView extends FrameLayout {
 
     private void onScreenTurnedOn() {
         cancelRedisplayTimer();
-        if (mPocketMode == 2) {
+        if (mPocketMode == POCKET_MODE_ACTIVE_DISPLAY) {
             mResetTime = System.currentTimeMillis();
         }
     }
@@ -729,12 +729,10 @@ public class ActiveDisplayView extends FrameLayout {
         mHandler.removeMessages(MSG_HIDE_NOTIFICATION_VIEW);
         mHandler.sendEmptyMessage(MSG_HIDE_NOTIFICATION_VIEW);
 
-        if (mPocketMode == 2) {
+        if (mPocketMode == POCKET_MODE_ACTIVE_DISPLAY) {
             // delay initial proximity sample here
             mPocketTime = System.currentTimeMillis();
             enableProximitySensor();
-        } else {
-            return;
         }
     }
 
@@ -745,16 +743,19 @@ public class ActiveDisplayView extends FrameLayout {
     }
 
     private void turnScreenOn() {
-        if (mPocketMode == 2 && !mDistanceFar) return;
         // to avoid flicker and showing any other screen than the ActiveDisplayView
         // we use a runnable posted with a 250ms delay to turn wake the device
         mHandler.removeCallbacks(runWakeDevice);
+        if (mPocketMode == POCKET_MODE_ACTIVE_DISPLAY && !mDistanceFar) return;
         mHandler.postDelayed(runWakeDevice, 300);
     }
 
     private final Runnable runWakeDevice = new Runnable() {
         public void run() {
-            wakeDevice();
+            if (!mDistanceFar) return;
+            final PowerManager pm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
+            pm.wakeUp(SystemClock.uptimeMillis());
+            updateTimeoutTimer();
             doTransition(ActiveDisplayView.this, 1f, 1000);
         }
     };
@@ -769,10 +770,6 @@ public class ActiveDisplayView extends FrameLayout {
         if (mProximitySensor != null) {
             unregisterSensorListener(mProximitySensor);
         }
-    }
-
-    private void isUserActivity() {
-        updateTimeoutTimer();
     }
 
     private void setUserActivity() {
@@ -833,7 +830,7 @@ public class ActiveDisplayView extends FrameLayout {
     }
 
     private void unregisterCallbacks() {
-        if (mPocketMode == 2) disableProximitySensor();
+        if (mPocketMode == POCKET_MODE_ACTIVE_DISPLAY) disableProximitySensor();
         if (mCallbacksRegistered) {
             unregisterBroadcastReceiver();
             unregisterNotificationListener();
@@ -944,7 +941,7 @@ public class ActiveDisplayView extends FrameLayout {
                     inflateRemoteView(mNotification);
                     break;
             }
-            isUserActivity();
+            updateTimeoutTimer();
             if (mEnableDoubleTap) {
                 mDoubleTapGesture.onTouchEvent(event);
             }
@@ -995,21 +992,10 @@ public class ActiveDisplayView extends FrameLayout {
      * @return True if we should show this view.
      */
     private boolean shouldShowNotification() {
-        if (mPocketMode != 2) return true;
-
-        if (mDistanceFar) {
+        if (mDistanceFar && mPocketMode != POCKET_MODE_OFF) {
             return true;
         }
         return false;
-    }
-
-    /**
-     * Wakes the device up and turns the screen on.
-     */
-    private void wakeDevice() {
-        final PowerManager pm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
-        pm.wakeUp(SystemClock.uptimeMillis());
-        updateTimeoutTimer();
     }
 
     /**
@@ -1038,7 +1024,9 @@ public class ActiveDisplayView extends FrameLayout {
         post(new Runnable() {
             @Override
             public void run() {
-                TargetDrawable centerDrawable = new TargetDrawable(getResources(),createCenterDrawable(mNotificationDrawable));
+                StateListDrawable stateListDrawable = new StateListDrawable();
+                stateListDrawable.addState(TargetDrawable.STATE_INACTIVE, mNotificationDrawable);
+                TargetDrawable centerDrawable = new TargetDrawable(getResources(),stateListDrawable);
                 centerDrawable.setScaleX(0.9f);
                 centerDrawable.setScaleY(0.9f);
                 mGlowPadView.setCenterDrawable(centerDrawable);
@@ -1114,9 +1102,7 @@ public class ActiveDisplayView extends FrameLayout {
     private SensorEventListener mSensorListener = new SensorEventListener() {
         @Override
         public void onSensorChanged(SensorEvent event) {
-            if (mPocketMode == 2) {
-                // continue
-            } else {
+            if (mPocketMode == POCKET_MODE_OFF) {
                 return;
             }
             if (isOnCall()) return;
@@ -1240,24 +1226,6 @@ public class ActiveDisplayView extends FrameLayout {
             am.cancel(pi);
         } catch (Exception e) {
         }
-    }
-
-    private Drawable createCenterDrawable(Drawable handle) {
-        StateListDrawable stateListDrawable = new StateListDrawable();
-        stateListDrawable.addState(TargetDrawable.STATE_INACTIVE, handle);
-        
-        return stateListDrawable;
-    }
-
-    /**
-     * Create the set of excluded apps given a string of packages delimited with '|'.
-     * @param excludedApps
-     */
-    private void createExcludedAppsSet(String excludedApps) {
-        if (TextUtils.isEmpty(excludedApps))
-            return;
-        String[] appsToExclude = excludedApps.split("\\|");
-        mExcludedApps = new HashSet<String>(Arrays.asList(appsToExclude));
     }
 
     /**

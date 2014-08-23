@@ -117,7 +117,7 @@ public class NotificationViewManager {
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.ACTIVE_NOTIFICATIONS_PRIVACY_MODE), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
-			        Settings.System.LOCKSCREEN_NOTIFICATIONS_EXCLUDED_APPS), false, this);
+                    Settings.System.LOCKSCREEN_NOTIFICATIONS_EXCLUDED_APPS), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.LOCKSCREEN_NOTIFICATIONS_COLOR), false, this);
             updateSettings();
@@ -158,7 +158,7 @@ public class NotificationViewManager {
             mQuietTime = Settings.System.getInt(resolver,
                     Settings.System.ACTIVE_NOTIFICATIONS_QUIET_HOURS, 0) == 1;
             String excludedApps = Settings.System.getString(resolver,
-			        Settings.System.LOCKSCREEN_NOTIFICATIONS_EXCLUDED_APPS);
+                    Settings.System.LOCKSCREEN_NOTIFICATIONS_EXCLUDED_APPS);
             notificationColor = Settings.System.getInt(resolver,
                     Settings.System.LOCKSCREEN_NOTIFICATIONS_COLOR, notificationColor);
 
@@ -219,7 +219,7 @@ public class NotificationViewManager {
         }
 
         public boolean isValidNotification(final StatusBarNotification sbn) {
-			return (!mExcludedApps.contains(sbn.getPackageName()));
+            return (!mExcludedApps.contains(sbn.getPackageName()));
         }
     }
 

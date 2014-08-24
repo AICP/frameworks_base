@@ -106,6 +106,7 @@ public class ToggleManager {
     public static final String SCREENRECORD_TOGGLE = "SCREENRECORD";
     public static final String MUSIC_TOGGLE = "MUSIC";
     public static final String HEADS_UP_TOGGLE = "HEADSUP";
+    public static final String PIE_TOGGLE = "PIE";
 
     private int mStyle;
 
@@ -183,6 +184,7 @@ public class ToggleManager {
             toggleMap.put(IMMERSIVE_MODE_TOGGLE, ImmersiveModeToggle.class);
             toggleMap.put(MUSIC_TOGGLE, MusicToggle.class);
             toggleMap.put(HEADS_UP_TOGGLE, HeadsUpToggle.class);
+            toggleMap.put(PIE_TOGGLE, PieToggle.class);
         }
         return toggleMap;
     }

@@ -28,4 +28,8 @@
 
     <!-- Top margin for overflow notifications shown in the P.O.R.N. view -->
     <dimen name="glowpad_overflow_notifications_margin_top">48dp</dimen>
+
+    <!-- PIE -->
+    <!-- Height of the bottom navigation / system bar. -->
+    <dimen name="navigation_bar_at_zero">0dp</dimen>
 </resources>

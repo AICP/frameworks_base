@@ -202,7 +202,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     BluetoothController mBluetoothController;
     BatteryController mBatteryController;
     LocationController mLocationController;
-    NetworkController mNetworkController;
+    public NetworkController mNetworkController;
 
     BatteryTextMeterView mBatteryTextView;
 
@@ -260,7 +260,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     boolean mHasSettingsPanel, mHasFlipSettings;
     SettingsPanelView mSettingsPanel;
     View mFlipSettingsView;
-    QuickSettingsContainerView mSettingsContainer;
+    public QuickSettingsContainerView mSettingsContainer; // PIE
     int mSettingsPanelGravity;
 
     // top bar
@@ -2582,6 +2582,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
     @Override
     public void topAppWindowChanged(boolean showMenu) {
+        if (mPieControlPanel != null)
+            mPieControlPanel.setMenu(showMenu);
+        
         if (DEBUG) {
             Log.d(TAG, (showMenu?"showing":"hiding") + " the MENU button");
         }

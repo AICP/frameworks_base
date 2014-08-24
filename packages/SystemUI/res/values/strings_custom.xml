@@ -198,4 +198,10 @@
     <string name="toggle">Toggle</string>
 
     <string name="status_bar_notification_spam_item_title">Ignore messages like this</string>
+
+    <!-- PIE -->
+    <string name="pie_date_format">ccc, dd MMM yyyy</string>
+    <string name="pie_hour_format_12">hh:mm</string>
+    <string name="pie_hour_format_24">HH:mm</string>
+    <string name="pie_am_pm">a</string>
 </resources>

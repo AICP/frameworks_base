@@ -40,6 +40,11 @@ public class PieControl implements OnClickListener {
     public static final String MENU_BUTTON = "##menu##";
     public static final String SEARCH_BUTTON = "##search##";
     public static final String RECENT_BUTTON = "##recent##";
+    public static final String LAST_APP_BUTTON = "##lastapp##";
+    public static final String KILL_TASK_BUTTON = "##killtask##";
+    public static final String APP_WINDOW_BUTTON = "##appwindow##";
+    public static final String ACT_NOTIF_BUTTON = "##actnotif##";
+    public static final String POWER_BUTTON = "##power##";
 
     protected Context mContext;
     protected PieMenu mPie;
@@ -50,6 +55,11 @@ public class PieControl implements OnClickListener {
     private PieItem mMenu;
     private PieItem mRecent;
     private PieItem mSearch;
+    private PieItem mLastApp;
+    private PieItem mKillTask;
+    private PieItem mAppWindow;
+    private PieItem mActNotif;
+    private PieItem mPower;
     private OnNavButtonPressedListener mListener;
     private PieControlPanel mPanel;
 
@@ -109,10 +119,15 @@ public class PieControl implements OnClickListener {
         mHome = makeItem(R.drawable.ic_sysbar_home, 1, HOME_BUTTON, false);
         mRecent = makeItem(R.drawable.ic_sysbar_recent, 1, RECENT_BUTTON, false);
         mMenu = makeItem(R.drawable.ic_sysbar_menu, 1, MENU_BUTTON, true);
+        mLastApp = makeItem(R.drawable.ic_sysbar_lastapp_side, 1, LAST_APP_BUTTON, true);
+        mKillTask = makeItem(R.drawable.ic_sysbar_killtask_pie, 1, KILL_TASK_BUTTON, true);
+        mAppWindow = makeItem(R.drawable.ic_sysbar_appwindow_pie, 1, APP_WINDOW_BUTTON, true);
+        mActNotif = makeItem(R.drawable.ic_sysbar_notifications_pie, 1, ACT_NOTIF_BUTTON, true);
+        mPower = makeItem(R.drawable.ic_sysbar_power, 1, POWER_BUTTON, true);
         mPie.addItem(mMenu);
 
         if (mIsAssistantAvailable) {
-            mSearch = makeItem(R.drawable.ic_sysbar_highlight, 1, SEARCH_BUTTON, true); // TODO:
+            mSearch = makeItem(R.drawable.ic_sysbar_search_side, 1, SEARCH_BUTTON, true); // TODO:
                                                                                         // Replace
                                                                                         // with
                                                                                         // camera
@@ -124,6 +139,11 @@ public class PieControl implements OnClickListener {
         mPie.addItem(mRecent);
         mPie.addItem(mHome);
         mPie.addItem(mBack);
+        mPie.addItem(mKillTask);
+        mPie.addItem(mLastApp);
+        mPie.addItem(mAppWindow);
+        mPie.addItem(mActNotif);
+        mPie.addItem(mPower);
     }
 
     @Override

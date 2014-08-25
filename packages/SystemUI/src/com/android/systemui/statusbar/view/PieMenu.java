@@ -199,6 +199,11 @@ public class PieMenu extends FrameLayout {
     private boolean mEnableColor;
     private boolean mUseMenuAlways;
     private boolean mUseSearch;
+    private boolean mUseLastApp;
+    private boolean mUseKillTask;
+    private boolean mUseAppWindow;
+    private boolean mUseActNotif;
+    private boolean mUsePower;
     private boolean mHapticFeedback;
 
     // Animations
@@ -248,6 +253,16 @@ public class PieMenu extends FrameLayout {
                 Settings.System.PIE_MENU, 1) == 1;
         mUseSearch = Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.PIE_SEARCH, 1) == 1;
+        mUseLastApp = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.PIE_LAST_APP, 0) == 1;
+        mUseKillTask = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.PIE_KILL_TASK, 0) == 1;
+        mUseAppWindow = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.PIE_APP_WINDOW, 0) == 1;
+        mUseActNotif = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.PIE_ACT_NOTIF, 0) == 1;
+        mUsePower = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.PIE_POWER, 0) == 1;
         mStatusMode = Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.PIE_MODE, 2);
         mPieSize = Settings.System.getFloat(mContext.getContentResolver(),
@@ -664,9 +679,14 @@ public class PieMenu extends FrameLayout {
     }
 
     private boolean canItemDisplay(PieItem item) {
-        return !(item.getName().equals(PieControl.MENU_BUTTON) && !mPanel.currentAppUsesMenu() && !mUseMenuAlways)
-                &&
-                !(item.getName().equals(PieControl.SEARCH_BUTTON) && !mUseSearch);
+        return !(item.getName().equals(PieControl.MENU_BUTTON) && !mPanel.currentAppUsesMenu()
+                        && !mUseMenuAlways) &&
+               !(item.getName().equals(PieControl.SEARCH_BUTTON) && !mUseSearch) &&
+               !(item.getName().equals(PieControl.ACT_NOTIF_BUTTON) && !mUseActNotif) &&
+               !(item.getName().equals(PieControl.APP_WINDOW_BUTTON) && !mUseAppWindow) &&
+               !(item.getName().equals(PieControl.KILL_TASK_BUTTON) && !mUseKillTask) &&
+               !(item.getName().equals(PieControl.LAST_APP_BUTTON) && !mUseLastApp) &&
+               !(item.getName().equals(PieControl.POWER_BUTTON) && !mUsePower);
     }
 
     private void layoutPie() {
@@ -678,6 +698,16 @@ public class PieMenu extends FrameLayout {
         if (!mPanel.currentAppUsesMenu() && !mUseMenuAlways)
             itemCount--;
         if (!mUseSearch)
+            itemCount--;
+        if (!mUseActNotif)
+            itemCount--;
+        if (!mUseLastApp)
+            itemCount--;
+        if (!mUseAppWindow)
+            itemCount--;
+        if (!mUseKillTask)
+            itemCount--;
+        if (!mUsePower)
             itemCount--;
 
         int lesserSweepCount = 0;

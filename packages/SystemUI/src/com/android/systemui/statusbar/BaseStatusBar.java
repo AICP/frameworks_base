@@ -2157,7 +2157,7 @@ public abstract class BaseStatusBar extends SystemUI implements
         mPieEnabled = Settings.System.getInt(resolver, Settings.System.PIE_CONTROLS, 0) != 0;
         mPieGravity = Settings.System.getInt(resolver, Settings.System.PIE_GRAVITY, 3);
         mPieTriggerSize = Settings.System.getFloat(resolver, Settings.System.PIE_TRIGGER, 1f);
-        mPieStick = Settings.System.getInt(resolver, Settings.System.PIE_STICK, 1) != 0;
+        mPieStick = Settings.System.getInt(resolver, Settings.System.PIE_STICK, 0) != 0;
         mPieCenter = Settings.System.getInt(resolver, Settings.System.PIE_CENTER, 1) != 0;
 
         pieRemove();

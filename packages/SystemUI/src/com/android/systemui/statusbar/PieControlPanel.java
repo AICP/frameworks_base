@@ -16,17 +16,22 @@
 
 package com.android.systemui.statusbar;
 
+import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.ActivityOptions;
 import android.app.KeyguardManager;
 import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ResolveInfo;
 import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.Rect;
 import android.hardware.input.InputManager;
 import android.os.Handler;
+import android.os.RemoteException;
+import android.os.ServiceManager;
 import android.os.SystemClock;
 import android.os.UserHandle;
 import android.provider.Settings;
@@ -40,9 +45,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
+import static com.android.internal.util.aokp.AwesomeConstants.*;
+
+import com.android.internal.statusbar.IStatusBarService;
+import com.android.internal.util.aokp.AwesomeAction;
 import com.android.systemui.R;
 import com.android.systemui.statusbar.PieControl.OnNavButtonPressedListener;
+
+import java.util.List;
 
 public class PieControlPanel extends FrameLayout implements StatusBarPanel,
         OnNavButtonPressedListener {
@@ -66,6 +78,8 @@ public class PieControlPanel extends FrameLayout implements StatusBarPanel,
     Rect mContentArea = new Rect();
 
     private BaseStatusBar mStatusBar;
+
+    private final static String SysUIPackage = "com.android.systemui";
 
     public PieControlPanel(Context context) {
         this(context, null);
@@ -146,7 +160,7 @@ public class PieControlPanel extends FrameLayout implements StatusBarPanel,
 
     public void bumpConfiguration() {
         if (Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.PIE_STICK, 1) != 0) {
+                Settings.System.PIE_STICK, 0) != 0) {
 
             // Get original offset
             int gravityIndex = findGravityOffset(convertPieGravitytoGravity(mStatusBar.mPieGravity));
@@ -302,6 +316,25 @@ public class PieControlPanel extends FrameLayout implements StatusBarPanel,
             mStatusBar.toggleRecentApps();
         } else if (buttonName.equals(PieControl.SEARCH_BUTTON)) {
             launchAssistAction();
+        } else if (buttonName.equals(PieControl.LAST_APP_BUTTON)) {
+            toggleLastApp();
+        } else if (buttonName.equals(PieControl.KILL_TASK_BUTTON)) {
+            KillTask mKillTask = new KillTask(mContext);
+            mHandler.post(mKillTask);
+        } else if (buttonName.equals(PieControl.POWER_BUTTON)) {
+            injectKeyDelayed(KeyEvent.KEYCODE_POWER);
+        } else if (buttonName.equals(PieControl.APP_WINDOW_BUTTON)) {
+            Intent appWindow = new Intent();
+            appWindow.setAction("com.android.systemui.ACTION_SHOW_APP_WINDOW");
+            mContext.sendBroadcast(appWindow);
+        } else if (buttonName.equals(PieControl.ACT_NOTIF_BUTTON)) {
+            try {
+                IStatusBarService.Stub.asInterface(
+                ServiceManager.getService(mContext.STATUS_BAR_SERVICE)).expandNotificationsPanel();
+            } catch (RemoteException e) {
+                // A RemoteException is like a cold
+                // Let's hope we don't catch one!
+            }
         }
     }
 
@@ -324,6 +357,59 @@ public class PieControlPanel extends FrameLayout implements StatusBarPanel,
             }
         }
     }
+
+    private void toggleLastApp() {
+        int lastAppId = 0;
+        int looper = 1;
+        String packageName;
+        final Intent intent = new Intent(Intent.ACTION_MAIN);
+        final ActivityManager am = (ActivityManager) mContext
+                .getSystemService(Activity.ACTIVITY_SERVICE);
+        String defaultHomePackage = "com.android.launcher";
+        intent.addCategory(Intent.CATEGORY_HOME);
+        final ResolveInfo res = mContext.getPackageManager().resolveActivity(intent, 0);
+        if (res.activityInfo != null && !res.activityInfo.packageName.equals("android")) {
+            defaultHomePackage = res.activityInfo.packageName;
+        }
+        List <ActivityManager.RunningTaskInfo> tasks = am.getRunningTasks(5);
+        // lets get enough tasks to find something to switch to
+        // Note, we'll only get as many as the system currently has - up to 5
+        while ((lastAppId == 0) && (looper < tasks.size())) {
+            packageName = tasks.get(looper).topActivity.getPackageName();
+            if (!packageName.equals(defaultHomePackage) && !packageName.equals("com.android.systemui")) {
+                lastAppId = tasks.get(looper).id;
+            }
+            looper++;
+        }
+        if (lastAppId != 0) {
+            am.moveTaskToFront(lastAppId, am.MOVE_TASK_NO_USER_ACTION);
+        }
+    }
+
+    public static class KillTask implements Runnable {
+         private Context mContext;
+         public KillTask(Context context) {
+             this.mContext = context;
+         }
+         public void run() {
+            final Intent intent = new Intent(Intent.ACTION_MAIN);
+            final ActivityManager am = (ActivityManager) mContext
+                    .getSystemService(Activity.ACTIVITY_SERVICE);
+            String defaultHomePackage = "com.android.launcher";
+            intent.addCategory(Intent.CATEGORY_HOME);
+            final ResolveInfo res = mContext.getPackageManager().resolveActivity(intent, 0);
+            if (res.activityInfo != null && !res.activityInfo.packageName.equals("android")) {
+                defaultHomePackage = res.activityInfo.packageName;
+            }
+            String packageName = am.getRunningTasks(1).get(0).topActivity.getPackageName();
+            if (SysUIPackage.equals(packageName))
+                return; // don't kill SystemUI
+            if (!defaultHomePackage.equals(packageName)) {
+                am.forceStopPackage(packageName);
+                Toast.makeText(mContext, com.android.internal.R.string.app_killed_message, Toast.LENGTH_SHORT).show();
+            }
+        }
+     }
 
     public void injectKeyDelayed(int keycode) {
         mInjectKeycode = keycode;

@@ -114,6 +114,7 @@ public class Tethering extends INetworkManagementEventObserver.Stub {
     // TODO - remove both of these - should be part of interface inspection/selection stuff
     private String[] mTetherableUsbRegexs;
     private String[] mTetherableWifiRegexs;
+    private String[] mTetherableP2pRegexs;
     private String[] mTetherableBluetoothRegexs;
     private Collection<Integer> mUpstreamIfaceTypes;
 
@@ -147,11 +148,13 @@ public class Tethering extends INetworkManagementEventObserver.Stub {
     // with 255.255.255.0
 
     private String[] mDhcpRange;
+    private static final int TETHER_RETRY_UPSTREAM_LIMIT = 5;
+    // P2p GO is 192.168.49.1 and 255.255.255.0
     private static final String[] DHCP_DEFAULT_RANGE = {
         "192.168.42.2", "192.168.42.254", "192.168.43.2", "192.168.43.254",
         "192.168.44.2", "192.168.44.254", "192.168.45.2", "192.168.45.254",
         "192.168.46.2", "192.168.46.254", "192.168.47.2", "192.168.47.254",
-        "192.168.48.2", "192.168.48.254",
+        "192.168.48.2", "192.168.48.254", "192.168.49.2", "192.168.49.254"
     };
 
     private String[] mDefaultDnsServers;
@@ -227,6 +230,8 @@ public class Tethering extends INetworkManagementEventObserver.Stub {
                 com.android.internal.R.array.config_tether_usb_regexs);
         String[] tetherableWifiRegexs = mContext.getResources().getStringArray(
                 com.android.internal.R.array.config_tether_wifi_regexs);
+        String[] tetherableP2pRegexs = mContext.getResources().getStringArray(
+                com.android.internal.R.array.config_tether_p2p_regexs);
         String[] tetherableBluetoothRegexs = mContext.getResources().getStringArray(
                 com.android.internal.R.array.config_tether_bluetooth_regexs);
 
@@ -265,6 +270,7 @@ public class Tethering extends INetworkManagementEventObserver.Stub {
         synchronized (mPublicSync) {
             mTetherableUsbRegexs = tetherableUsbRegexs;
             mTetherableWifiRegexs = tetherableWifiRegexs;
+            mTetherableP2pRegexs = tetherableP2pRegexs;
             mTetherableBluetoothRegexs = tetherableBluetoothRegexs;
             mUpstreamIfaceTypes = upstreamIfaceTypes;
         }
@@ -279,6 +285,8 @@ public class Tethering extends INetworkManagementEventObserver.Stub {
         boolean usb = false;
         synchronized (mPublicSync) {
             if (isWifi(iface)) {
+                found = true;
+            } else if (isP2p(iface)) {
                 found = true;
             } else if (isUsb(iface)) {
                 found = true;
@@ -331,6 +339,15 @@ public class Tethering extends INetworkManagementEventObserver.Stub {
         }
     }
 
+    public boolean isP2p(String iface) {
+        synchronized (mPublicSync) {
+            for (String regex : mTetherableP2pRegexs) {
+                if (iface.matches(regex)) return true;
+            }
+            return false;
+        }
+    }
+
     public boolean isBluetooth(String iface) {
         synchronized (mPublicSync) {
             for (String regex : mTetherableBluetoothRegexs) {
@@ -346,6 +363,9 @@ public class Tethering extends INetworkManagementEventObserver.Stub {
         boolean usb = false;
         synchronized (mPublicSync) {
             if (isWifi(iface)) {
+                found = true;
+            }
+            if (isP2p(iface)) {
                 found = true;
             }
             if (isUsb(iface)) {
@@ -457,6 +477,7 @@ public class Tethering extends INetworkManagementEventObserver.Stub {
         ArrayList<String> erroredList = new ArrayList<String>();
 
         boolean wifiTethered = false;
+        boolean p2pTethered = false;
         boolean usbTethered = false;
         boolean bluetoothTethered = false;
 
@@ -474,7 +495,9 @@ public class Tethering extends INetworkManagementEventObserver.Stub {
                             usbTethered = true;
                         } else if (isWifi((String)iface)) {
                             wifiTethered = true;
-                      } else if (isBluetooth((String)iface)) {
+                        } else if (isP2p((String)iface)) {
+                            p2pTethered = true;
+                        } else if (isBluetooth((String)iface)) {
                             bluetoothTethered = true;
                         }
                         activeList.add((String)iface);
@@ -700,6 +723,10 @@ public class Tethering extends INetworkManagementEventObserver.Stub {
 
     public String[] getTetherableWifiRegexs() {
         return mTetherableWifiRegexs;
+    }
+
+    public String[] getTetherableP2pRegexs() {
+        return mTetherableP2pRegexs;
     }
 
     public String[] getTetherableBluetoothRegexs() {
@@ -1152,7 +1179,9 @@ public class Tethering extends INetworkManagementEventObserver.Stub {
                         String newUpstreamIfaceName = (String)(message.obj);
                         if ((mMyUpstreamIfaceName == null && newUpstreamIfaceName == null) ||
                                 (mMyUpstreamIfaceName != null &&
-                                mMyUpstreamIfaceName.equals(newUpstreamIfaceName))) {
+                                mMyUpstreamIfaceName.equals(newUpstreamIfaceName)) ||
+                                (newUpstreamIfaceName != null &&
+                                newUpstreamIfaceName.equals(mIfaceName))) {
                             if (VDBG) Log.d(TAG, "Connection changed noop - dropping");
                             break;
                         }
@@ -1305,6 +1334,8 @@ public class Tethering extends INetworkManagementEventObserver.Stub {
         private int mMobileApnReserved = ConnectivityManager.TYPE_NONE;
 
         private String mUpstreamIfaceName = null;
+
+        protected int mRetryCount;
 
         private static final int UPSTREAM_SETTLE_TIME_MS     = 10000;
         private static final int CELL_CONNECTION_RENEW_MS    = 40000;
@@ -1556,6 +1587,10 @@ public class Tethering extends INetworkManagementEventObserver.Stub {
                             + mPreferredUpstreamMobileApn + ", got type=" + upType);
                 }
 
+                if (upType != ConnectivityManager.TYPE_NONE) {
+                    mRetryCount = 0;
+                }
+
                 // if we're on DUN, put our own grab on it
                 if (upType == ConnectivityManager.TYPE_MOBILE_DUN ||
                         upType == ConnectivityManager.TYPE_MOBILE_HIPRI) {
@@ -1571,14 +1606,29 @@ public class Tethering extends INetworkManagementEventObserver.Stub {
                 }
 
                 if (upType == ConnectivityManager.TYPE_NONE) {
-                    boolean tryAgainLater = true;
-                    if ((tryCell == TRY_TO_SETUP_MOBILE_CONNECTION) &&
-                            (turnOnUpstreamMobileConnection(mPreferredUpstreamMobileApn) == true)) {
-                        // we think mobile should be coming up - don't set a retry
-                        tryAgainLater = false;
-                    }
-                    if (tryAgainLater) {
-                        sendMessageDelayed(CMD_RETRY_UPSTREAM, UPSTREAM_SETTLE_TIME_MS);
+                    try {
+                        if (cm.getMobileDataEnabled()) {
+                            boolean tryAgainLater = true;
+                            if (mRetryCount < TETHER_RETRY_UPSTREAM_LIMIT) {
+                                if ((tryCell == TRY_TO_SETUP_MOBILE_CONNECTION) &&
+                                         (turnOnUpstreamMobileConnection
+                                                (mPreferredUpstreamMobileApn) == true)) {
+                                    // we think mobile should be coming up - don't set a retry
+                                    tryAgainLater = false;
+                                    mRetryCount++;
+                                }
+                                if (tryAgainLater) {
+                                    sendMessageDelayed(CMD_RETRY_UPSTREAM, UPSTREAM_SETTLE_TIME_MS);
+                                }
+                            } else {
+                               turnOffUpstreamMobileConnection();
+                               Log.d(TAG, "chooseUpstreamType: Reached MAX, NO RETRIES");
+                            }
+                        } else {
+                            Log.d(TAG, "Data is Disabled");
+                        }
+                    } catch (RemoteException e) {
+                        Log.d(TAG, "Exception in getMobileDataEnabled()");
                     }
                 } else {
                     LinkProperties linkProperties = null;
@@ -1675,6 +1725,7 @@ public class Tethering extends INetworkManagementEventObserver.Stub {
 
                 mTryCell = !WAIT_FOR_NETWORK_TO_SETTLE; // better try something first pass
                                                         // or crazy tests cases will fail
+                mRetryCount = 0;
                 chooseUpstreamType(mTryCell);
                 mTryCell = !mTryCell;
             }
@@ -1721,16 +1772,14 @@ public class Tethering extends INetworkManagementEventObserver.Stub {
                         NetworkInfo info = (NetworkInfo) message.obj;
                         mTryCell = !WAIT_FOR_NETWORK_TO_SETTLE;
                         chooseUpstreamType(mTryCell);
-                        if (info != null) {
-                            if (!info.isConnected()) {
-                                IBinder b = ServiceManager.getService(Context.CONNECTIVITY_SERVICE);
-                                IConnectivityManager cm = IConnectivityManager.Stub.asInterface(b);
-                                try {
-                                    LinkProperties props = cm.getLinkProperties(info.getType());
-                                    removeUpstreamV6Interface(props.getInterfaceName());
-                                } catch(Exception e) {
-                                    Log.e(TAG, "Exception querying ConnectivityManager", e);
-                                }
+                        if ((info != null) && (!info.isConnected())) {
+                            IBinder b = ServiceManager.getService(Context.CONNECTIVITY_SERVICE);
+                            IConnectivityManager cm = IConnectivityManager.Stub.asInterface(b);
+                            try {
+                                LinkProperties props = cm.getLinkProperties(info.getType());
+                                removeUpstreamV6Interface(props.getInterfaceName());
+                            } catch(RemoteException e) {
+                                Log.e(TAG, "Exception querying ConnectivityManager", e);
                             }
                         }
                         mTryCell = !mTryCell;

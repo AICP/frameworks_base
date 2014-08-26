@@ -335,6 +335,11 @@ public class PieControlPanel extends FrameLayout implements StatusBarPanel,
                 // A RemoteException is like a cold
                 // Let's hope we don't catch one!
             }
+        } else if (buttonName.equals(PieControl.TORCH_BUTTON)) {
+            AwesomeAction.launchAction(mContext, AwesomeConstant.ACTION_TORCH.value());
+        } else if (buttonName.equals(PieControl.SCREENSHOT_BUTTON)) {
+            Intent intent = new Intent(Intent.ACTION_SCREENSHOT);
+            mContext.sendBroadcast(intent);
         }
     }
 

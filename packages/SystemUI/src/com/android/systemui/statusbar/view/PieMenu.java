@@ -204,6 +204,8 @@ public class PieMenu extends FrameLayout {
     private boolean mUseAppWindow;
     private boolean mUseActNotif;
     private boolean mUsePower;
+    private boolean mUseScreenshot;
+    private boolean mUseTorch;
     private boolean mHapticFeedback;
 
     // Animations
@@ -271,6 +273,10 @@ public class PieMenu extends FrameLayout {
                 Settings.System.PIE_ANGLE, 12);
         mPieGap = Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.PIE_GAP, 2);
+        mUseTorch = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.PIE_TORCH, 0) == 1;
+        mUseScreenshot = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.PIE_SCREENSHOT, 0) == 1;
         mHapticFeedback = Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.HAPTIC_FEEDBACK_ENABLED, 1) != 0;
 
@@ -686,7 +692,9 @@ public class PieMenu extends FrameLayout {
                !(item.getName().equals(PieControl.APP_WINDOW_BUTTON) && !mUseAppWindow) &&
                !(item.getName().equals(PieControl.KILL_TASK_BUTTON) && !mUseKillTask) &&
                !(item.getName().equals(PieControl.LAST_APP_BUTTON) && !mUseLastApp) &&
-               !(item.getName().equals(PieControl.POWER_BUTTON) && !mUsePower);
+               !(item.getName().equals(PieControl.POWER_BUTTON) && !mUsePower) &&
+               !(item.getName().equals(PieControl.TORCH_BUTTON) && !mUseTorch) &&
+               !(item.getName().equals(PieControl.SCREENSHOT_BUTTON) && !mUseScreenshot);
     }
 
     private void layoutPie() {
@@ -708,6 +716,10 @@ public class PieMenu extends FrameLayout {
         if (!mUseKillTask)
             itemCount--;
         if (!mUsePower)
+            itemCount--;
+        if (!mUseTorch)
+            itemCount--;
+        if (!mUseScreenshot)
             itemCount--;
 
         int lesserSweepCount = 0;

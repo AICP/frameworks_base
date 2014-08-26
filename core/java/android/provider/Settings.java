@@ -4416,6 +4416,18 @@ public final class Settings {
          */
         public static final String PIE_POWER = "pie_power";
 
+        /**
+         * Pie screenshot
+         * @hide
+         */
+        public static final String PIE_SCREENSHOT = "pie_screenshot";
+
+        /**
+         * Pie toggles torch
+         * @hide
+         */
+        public static final String PIE_TORCH = "pie_torch";
+
         /**         
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.

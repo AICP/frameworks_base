@@ -45,6 +45,8 @@ public class PieControl implements OnClickListener {
     public static final String APP_WINDOW_BUTTON = "##appwindow##";
     public static final String ACT_NOTIF_BUTTON = "##actnotif##";
     public static final String POWER_BUTTON = "##power##";
+    public static final String TORCH_BUTTON = "##torch##";
+    public static final String SCREENSHOT_BUTTON = "##screenshot##";
 
     protected Context mContext;
     protected PieMenu mPie;
@@ -60,6 +62,8 @@ public class PieControl implements OnClickListener {
     private PieItem mAppWindow;
     private PieItem mActNotif;
     private PieItem mPower;
+    private PieItem mTorch;
+    private PieItem mScreenshot;
     private OnNavButtonPressedListener mListener;
     private PieControlPanel mPanel;
 
@@ -124,6 +128,8 @@ public class PieControl implements OnClickListener {
         mAppWindow = makeItem(R.drawable.ic_sysbar_appwindow_pie, 1, APP_WINDOW_BUTTON, true);
         mActNotif = makeItem(R.drawable.ic_sysbar_notifications_pie, 1, ACT_NOTIF_BUTTON, true);
         mPower = makeItem(R.drawable.ic_sysbar_power, 1, POWER_BUTTON, true);
+        mTorch = makeItem(R.drawable.ic_sysbar_torch, 1, TORCH_BUTTON, true);
+        mScreenshot = makeItem(R.drawable.ic_qs_screenshot, 1, SCREENSHOT_BUTTON, true);
         mPie.addItem(mMenu);
 
         if (mIsAssistantAvailable) {
@@ -144,6 +150,8 @@ public class PieControl implements OnClickListener {
         mPie.addItem(mAppWindow);
         mPie.addItem(mActNotif);
         mPie.addItem(mPower);
+        mPie.addItem(mTorch);
+        mPie.addItem(mScreenshot);
     }
 
     @Override

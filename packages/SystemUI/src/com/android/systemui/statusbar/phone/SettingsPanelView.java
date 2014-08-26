@@ -86,10 +86,10 @@ public class SettingsPanelView extends PanelView {
     public void fling(float vel, boolean always) {
         if (DEBUG_GESTURES) {
             GestureRecorder gr = ((PhoneStatusBarView) mBar).mBar.getGestureRecorder();
-            if (gr != null ) {
+            if (gr != null) {
                 gr.tag(
                     "fling " + ((vel > 0) ? "open" : "closed"),
-                    "notifications,v=" + vel);
+                    "settings,v=" + vel);
             }
         }
         super.fling(vel, always);
@@ -188,5 +188,4 @@ public class SettingsPanelView extends PanelView {
             mBackground.setImageDrawable(mBackgroundDrawable);
         }
     }
-
 }

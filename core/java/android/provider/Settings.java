@@ -4434,6 +4434,12 @@ public final class Settings {
          */
         public static final String NOTIFICATION_BRIGHTNESS_SLIDER = "notification_brightness_slider";
 
+        /**
+         * Show WiFi in Power Menu
+         * @hide
+         */
+        public static final String POWER_MENU_WIFI_ENABLED = "power_menu_wifi_enabled";
+
         /**         
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.

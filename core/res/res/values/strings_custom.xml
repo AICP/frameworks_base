@@ -211,4 +211,11 @@
     <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> will not be able to access personal data</string>
     <string name="privacy_guard_custom_notification_detail"><xliff:g id="app">%1$s</xliff:g> will not be able to access custom permissions</string>
 
+    <!-- label for item that toggle wifi -->
+    <string name="global_actions_toggle_wifi">WiFi</string>
+    <!-- status message in phone options dialog for when wifi is on -->
+    <string name="global_actions_wifi_on_status">WiFi is ON</string>
+    <!-- status message in phone options dialog for when wifi is off -->
+    <string name="global_actions_wifi_off_status">WiFi is OFF</string>
+
 </resources>

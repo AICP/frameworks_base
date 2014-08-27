@@ -47,6 +47,7 @@ import android.database.ContentObserver;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.net.ConnectivityManager;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -115,6 +116,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
     private Action mSilentModeAction;
     private ToggleAction mAirplaneModeOn;
     private ToggleAction mExpandDesktopModeOn;
+    private ToggleAction mWifiOn;
 
     private MyAdapter mAdapter;
 
@@ -128,6 +130,8 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
     private boolean mHasVibrator;
     private final boolean mShowSilentToggle;
     private static int rebootIndex = 0;
+    private WifiManager mWifiManager;
+
     private Profile mChosenProfile;
 
     private static final String SYSTEM_PROFILES_ENABLED = "system_profiles_enabled";
@@ -163,6 +167,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         ConnectivityManager cm = (ConnectivityManager)
                 context.getSystemService(Context.CONNECTIVITY_SERVICE);
         mHasTelephony = cm.isNetworkSupported(ConnectivityManager.TYPE_MOBILE);
+        mWifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
 
         // get notified of phone state changes
         TelephonyManager telephonyManager =
@@ -368,6 +373,30 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         };
         onAirplaneModeChanged();
 
+        mWifiOn = new ToggleAction(
+                R.drawable.ic_lock_wifi,
+                R.drawable.ic_lock_wifi_off,
+                R.string.global_actions_toggle_wifi,
+                R.string.global_actions_wifi_on_status,
+                R.string.global_actions_wifi_off_status) {
+
+            void onToggle(boolean on) {
+                mWifiManager.setWifiEnabled(!mWifiManager.isWifiEnabled());
+            }
+
+            @Override
+            protected void changeStateFromPress(boolean buttonOn) {
+            }
+
+            public boolean showDuringKeyguard() {
+                return true;
+            }
+
+            public boolean showBeforeProvisioning() {
+                return false;
+            }
+        };
+
         mItems = new ArrayList<Action>();
 
         // first: power off
@@ -460,6 +489,12 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                         return false;
                     }
                 });
+        }
+
+        // next: wifi
+        if (Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.POWER_MENU_WIFI_ENABLED, 0, UserHandle.USER_CURRENT) == 1) {
+            mItems.add(mWifiOn);
         }
 
         if (mScreenshotOption != 0) {
@@ -877,6 +912,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
     private void prepareDialog() {
         refreshSilentMode();
         mAirplaneModeOn.updateState(mAirplaneState);
+        mWifiOn.updateState(mWifiManager.isWifiEnabled() ? ToggleAction.State.On : ToggleAction.State.Off);
         mAdapter.notifyDataSetChanged();
         mDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
         if (mShowSilentToggle) {

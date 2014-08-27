@@ -5904,7 +5904,11 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 if (DEBUG_BOOTMSG) Log.d(TAG, "********** showBootMessage(" + msg +", " + always + ") updated ***********");
                 if (currentPackageName != null) {
                     mBootMsgDialog.setTitle(msg);
-                    mBootMsgDialog.setMessage(msg + "\n" + currentPackageName);
+                    // Only display the current package name if the main message says "Optimizing app N of M".
+                    // We don't want to do this when the message says "Starting apps" or "Finishing boot", etc.
+                    if ((msg.length() >= 10) && (msg.subSequence(0, 10).toString().equalsIgnoreCase("Optimizing"))) {
+                        mBootMsgDialog.setMessage(msg + "\n" + currentPackageName);
+                    }
                     if (DEBUG_BOOTMSG) Log.d(TAG, "setTitle: " + msg + " setMessage: " + currentPackageName);
                 } else {
                     if (DEBUG_BOOTMSG) Log.d(TAG, "failed; CURRENT_PACKAGE_NAME == null");

@@ -381,10 +381,10 @@ final class WiredAccessoryManager implements WiredAccessoryCallbacks {
         public void onUEvent(UEventObserver.UEvent event) {
             if (LOG) Slog.v(TAG, "Headset UEVENT: " + event.toString());
 
+            int state = validateSwitchState(Integer.parseInt(event.get("SWITCH_STATE")));
             try {
                 String devPath = event.get("DEVPATH");
                 String name = event.get("SWITCH_NAME");
-                int state = validateSwitchState(Integer.parseInt(event.get("SWITCH_STATE")));
                 synchronized (mLock) {
                     updateStateLocked(devPath, name, state);
                 }

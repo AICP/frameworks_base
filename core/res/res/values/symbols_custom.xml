@@ -332,4 +332,6 @@
   <!-- USB OTG Notification -->
   <java-symbol type="string" name="usb_storage_notification_manage_message" />
 
+  <java-symbol type="bool" name="config_batterySdCardAccessibility" />
+
 </resources>

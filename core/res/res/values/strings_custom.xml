@@ -218,4 +218,7 @@
     <!-- status message in phone options dialog for when wifi is off -->
     <string name="global_actions_wifi_off_status">WiFi is OFF</string>
 
+    <!-- USB OTG notification message -->
+    <string name="usb_storage_notification_manage_message">Tap to manage</string>
+
 </resources>

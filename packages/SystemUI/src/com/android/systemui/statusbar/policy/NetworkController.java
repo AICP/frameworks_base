@@ -144,6 +144,7 @@ public class NetworkController extends BroadcastReceiver implements DemoMode {
 
     private boolean mHideSignal;
     private boolean mShow4gForLte;
+    private boolean sixBarEnabled;
 
     //ethernet
     private boolean mEthernetConnected = false;
@@ -152,7 +153,6 @@ public class NetworkController extends BroadcastReceiver implements DemoMode {
 
     // our ui
     Context mContext;
-    ContentResolver mCr;
     ArrayList<ImageView> mPhoneSignalIconViews = new ArrayList<ImageView>();
     ArrayList<ImageView> mDataDirectionIconViews = new ArrayList<ImageView>();
     ArrayList<ImageView> mDataDirectionOverlayIconViews = new ArrayList<ImageView>();
@@ -178,7 +178,6 @@ public class NetworkController extends BroadcastReceiver implements DemoMode {
 
     private boolean mHasMobileDataFeature;
     private boolean mUseSixBar;
-    private DirtyObserver mObserver = null;
 
     boolean mDataAndWifiStacked = false;
 
@@ -209,7 +208,6 @@ public class NetworkController extends BroadcastReceiver implements DemoMode {
      */
     public NetworkController(Context context) {
         mContext = context;
-        mCr = context.getContentResolver();
         final Resources res = context.getResources();
 
         ConnectivityManager cm = (ConnectivityManager)mContext.getSystemService(
@@ -273,11 +271,6 @@ public class NetworkController extends BroadcastReceiver implements DemoMode {
 
         // AIRPLANE_MODE_CHANGED is sent at boot; we've probably already missed it
         updateAirplaneMode();
-
-        // 6-bar data icons
-        updateSixBar();
-        mObserver = new DirtyObserver(new Handler());
-        mObserver.observe();
 
         mLastLocale = mContext.getResources().getConfiguration().locale;
 
@@ -596,25 +589,25 @@ public class NetworkController extends BroadcastReceiver implements DemoMode {
         if (!hasService()) {
             if (CHATTY) Log.d(TAG, "updateTelephonySignalStrength: !hasService()");
             if (mUseSixBar) {
-                mPhoneSignalIconId = R.drawable.stat_sys_signal_null_6bar;
+                mPhoneSignalIconId = (mHideSignal ? 0 : R.drawable.stat_sys_signal_null_6bar);
                 mQSPhoneSignalIconId = R.drawable.ic_qs_signal_no_signal_6bar;
-                mDataSignalIconId = R.drawable.stat_sys_signal_null_6bar;
+                mDataSignalIconId = (mHideSignal ? 0 : R.drawable.stat_sys_signal_null_6bar);
             } else {
-                mPhoneSignalIconId = R.drawable.stat_sys_signal_null;
+                mPhoneSignalIconId = (mHideSignal ? 0 : R.drawable.stat_sys_signal_null);
                 mQSPhoneSignalIconId = R.drawable.ic_qs_signal_no_signal;
-                mDataSignalIconId = R.drawable.stat_sys_signal_null;
+                mDataSignalIconId = (mHideSignal ? 0 : R.drawable.stat_sys_signal_null);
             }
         } else {
             if (mSignalStrength == null) {
                 if (CHATTY) Log.d(TAG, "updateTelephonySignalStrength: mSignalStrength == null");
                 if (mUseSixBar) {
-                    mPhoneSignalIconId = R.drawable.stat_sys_signal_null_6bar;
+                    mPhoneSignalIconId = (mHideSignal ? 0 : R.drawable.stat_sys_signal_null_6bar);
                     mQSPhoneSignalIconId = R.drawable.ic_qs_signal_no_signal_6bar;
-                    mDataSignalIconId = R.drawable.stat_sys_signal_null_6bar;
+                    mDataSignalIconId = (mHideSignal ? 0 : R.drawable.stat_sys_signal_null_6bar);
                 } else {
-                    mPhoneSignalIconId = R.drawable.stat_sys_signal_null;
+                    mPhoneSignalIconId = (mHideSignal ? 0 : R.drawable.stat_sys_signal_null);
                     mQSPhoneSignalIconId = R.drawable.ic_qs_signal_no_signal;
-                    mDataSignalIconId = R.drawable.stat_sys_signal_null;
+                    mDataSignalIconId = (mHideSignal ? 0 : R.drawable.stat_sys_signal_null);
                 }
 
                 mContentDescriptionPhoneSignal = mContext.getString(
@@ -654,11 +647,11 @@ public class NetworkController extends BroadcastReceiver implements DemoMode {
                             iconList = TelephonyIcons.TELEPHONY_SIGNAL_STRENGTH[mInetCondition];
                         }
                     }
-                    mDataSignalIconId = TelephonyIcons.DATA_SIGNAL_STRENGTH[mInetCondition][iconLevel];
+                    mDataSignalIconId = (mHideSignal ? 0 : TelephonyIcons.DATA_SIGNAL_STRENGTH[mInetCondition][iconLevel]);
                     mQSPhoneSignalIconId =
                             TelephonyIcons.QS_TELEPHONY_SIGNAL_STRENGTH[mInetCondition][iconLevel];
                 }
-                mPhoneSignalIconId = iconList[iconLevel];
+                mPhoneSignalIconId = (mHideSignal ? 0 : iconList[iconLevel]);
 
                 mContentDescriptionPhoneSignal = mContext.getString(
                         AccessibilityContentDescriptions.PHONE_SIGNAL_STRENGTH[iconLevel]);
@@ -1774,11 +1767,16 @@ public class NetworkController extends BroadcastReceiver implements DemoMode {
                     Settings.AOKP.getUriFor(Settings.AOKP.STATUSBAR_SIGNAL_SHOW_4G_FOR_LTE),
                     mContext.getResources().getBoolean(R.bool.config_show4GForLTE),
                     this);
+            resolver.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.STATUSBAR_6BAR_SIGNAL), false,
+                    this);
             updateSettings();
         }
 
         @Override
         public void onChange(boolean selfChange) {
+            updateTelephonySignalStrength();
+            refreshViews();
             updateSettings();
         }
     }
@@ -1789,6 +1787,9 @@ public class NetworkController extends BroadcastReceiver implements DemoMode {
         mShow4gForLte = (Settings.AOKP.getBoolean(mContext.getContentResolver(),
                 Settings.AOKP.STATUSBAR_SIGNAL_SHOW_4G_FOR_LTE,
                 mContext.getResources().getBoolean(R.bool.config_show4GForLTE)));
+        sixBarEnabled = (Settings.System.getInt(mContext.getContentResolver(),
+            Settings.System.STATUSBAR_6BAR_SIGNAL, 0) == 1);
+        mUseSixBar = sixBarEnabled;
         updateTelephonySignalStrength();
     }
 
@@ -1802,29 +1803,4 @@ public class NetworkController extends BroadcastReceiver implements DemoMode {
     public void setListener(UpdateUIListener listener) {
         mUpdateUIListener = listener;
     }
-
-    private class DirtyObserver extends ContentObserver {
-        public DirtyObserver(Handler handler) {
-            super(handler);
-        }
-
-        public void observe() {
-            mCr.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.STATUSBAR_6BAR_SIGNAL), false, this);
-        }
-
-        @Override
-        public void onChange(boolean selfChange) {
-            updateSixBar();
-            updateTelephonySignalStrength();
-            refreshViews();
-        }
-    }
-
-    private void updateSixBar() {
-        boolean sixBarEnabled = (Settings.System.getInt(mCr,
-            Settings.System.STATUSBAR_6BAR_SIGNAL, 0) == 1);
-        mUseSixBar = sixBarEnabled;
-    }
-
 }

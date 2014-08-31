@@ -530,7 +530,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     public void onClick(View view) {
                         Intent intent = new Intent();
                         intent.setClassName("com.android.settings",
-                                "com.android.settings.liquid.AutoBrightnessSetup");
+                                "com.android.settings.cm.AutoBrightnessSetup");
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
                                 | Intent.FLAG_ACTIVITY_SINGLE_TOP
                                 | Intent.FLAG_ACTIVITY_CLEAR_TOP

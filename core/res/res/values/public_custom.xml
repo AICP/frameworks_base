@@ -72,8 +72,11 @@
   <public type="drawable" name="launcher_calendar_num30" id="0x010800d6" />
   <public type="drawable" name="launcher_calendar_num31" id="0x010800d7" />
 
-  <public type="string" name="storage_internal" id="0x01040018" />
-  <public type="string" name="storage_sd_card" id="0x01040019" />
-  <public type="string" name="storage_usb" id="0x0104001a" />
+    <!-- @hide -->
+    <public type="string" name="storage_internal" id="0x01040018" />
+    <!-- @hide -->
+    <public type="string" name="storage_sd_card" id="0x01040019" />
+    <!-- @hide -->
+    <public type="string" name="storage_usb" id="0x0104001a" />
 
 </resources>

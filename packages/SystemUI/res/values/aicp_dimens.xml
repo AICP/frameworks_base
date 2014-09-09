@@ -60,4 +60,7 @@
     <dimen name="pie_tab_title_height">24dp</dimen>
     <dimen name="pie_panel_padding">20dp</dimen>
 
+    <!-- The task item height in task list. -->
+    <dimen name="task_manager_item_height">40dip</dimen>
+
 </resources>

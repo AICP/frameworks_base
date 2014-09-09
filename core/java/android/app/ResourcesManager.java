@@ -487,9 +487,9 @@ ActivityInfo.CONFIG_UI_THEME_MODE) != 0;
         PackageInfo piTarget = null;
         PackageInfo piAndroid = null;
 
-        // Some apps run in process of another app (eg keyguard/systemUI) so we must get the package name
-        // from the res tables. The 0th base package name will be the android group. The
-        // 1st base package name will be the app group if one is attached. Check if it is there
+        // Some apps run in process of another app (eg keyguard/systemUI) so we must get the
+        // package name from the res tables. The 0th base package name will be the android group.
+        // The 1st base package name will be the app group if one is attached. Check if it is there
         // first or else the system will crash!
         String basePackageName = null;
         String resourcePackageName = null;
@@ -621,9 +621,24 @@ ActivityInfo.CONFIG_UI_THEME_MODE) != 0;
      * @return true if succes, false otherwise
      */
     private boolean attachCommonAssets(AssetManager assets, ThemeConfig theme) {
+        // Some apps run in process of another app (eg keyguard/systemUI) so we must get the
+        // package name from the res tables. The 0th base package name will be the android group.
+        // The 1st base package name will be the app group if one is attached. Check if it is there
+        // first or else the system will crash!
+        String basePackageName;
+        int count = assets.getBasePackageCount();
+        if (count > 1) {
+            basePackageName  = assets.getBasePackageName(1);
+        } else if (count == 1) {
+            basePackageName  = assets.getBasePackageName(0);
+        } else {
+            return false;
+        }
+
         PackageInfo piTheme = null;
         try {
-            piTheme = getPackageManager().getPackageInfo(theme.getOverlayPkgName(), 0,
+            piTheme = getPackageManager().getPackageInfo(
+                    theme.getOverlayPkgNameForApp(basePackageName), 0,
                     UserHandle.getCallingUserId());
         } catch (RemoteException e) {
         }

@@ -50,11 +50,13 @@
   <string name="toggle_STATUSBAR">Barra di stato</string>
   <string name="toggle_SCREENSHOT">Screenshot</string>
   <string name="toggle_REBOOT">Riavvia</string>
+  <string name="toggle_POWERMENU">Power menu</string>
   <string name="toggle_CUSTOM">Personalizzato</string>
   <string name="toggle_STAYAWAKE">Resta attivo</string>
   <string name="toggle_WIRELESSADB">ADB Wireless</string>
   <string name="toggle_IMMERSIVE_MODE">Modalità Immersiva</string>
   <string name="toggle_SCREENRECORD">Registra schermo</string>
+
   <string name="quick_settings_swagger">Swagger</string>
   <string name="quick_settings_swaggersun">Swagger Domenica</string>
   <string name="quick_settings_fbgt">FBGT</string>
@@ -64,6 +66,7 @@
   <string name="quick_settings_quickrecord">Registrazione veloce</string>
   <string name="quick_settings_nofile">Premere a lungo per registrare</string>
   <string name="quick_settings_sleep">A letto</string>
+  <string name="quick_settings_powermenu">Power Menu</string>
   <string name="quick_settings_reboot">Riavvia</string>
   <string name="quick_settings_reboot_message">Il tuo dispositivo si sta riavviando</string>
   <string name="quick_settings_stayawake_on">Resta attivo: ON</string>

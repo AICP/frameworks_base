@@ -99,6 +99,7 @@ public class ToggleManager {
     public static final String STATUSBAR_TOGGLE = "STATUSBAR";
     public static final String SCREENSHOT_TOGGLE = "SCREENSHOT";
     public static final String REBOOT_TOGGLE = "REBOOT";
+    public static final String POWERMENU_TOGGLE = "POWERMENU";
     public static final String CUSTOM_TOGGLE = "CUSTOM";
     public static final String STAYAWAKE_TOGGLE = "STAYAWAKE";
     public static final String WIRELESS_ADB_TOGGLE = "WIRELESSADB";
@@ -175,6 +176,7 @@ public class ToggleManager {
             toggleMap.put(SCREENSHOT_TOGGLE, ScreenshotToggle.class);
             toggleMap.put(SCREENRECORD_TOGGLE, ScreenrecordToggle.class);
             toggleMap.put(REBOOT_TOGGLE, RebootToggle.class);
+            toggleMap.put(POWERMENU_TOGGLE, PowerMenuToggle.class);
             // toggleMap.put(CUSTOM_TOGGLE, CustomToggle.class);
             toggleMap.put(STAYAWAKE_TOGGLE, StayAwakeToggle.class);
             // wireless adb not yet integrated

@@ -254,6 +254,10 @@ public class AwesomeAction {
                         Intent rebootmenu = new Intent(Intent.ACTION_REBOOTMENU);
                         mContext.sendBroadcast(rebootmenu);
                         break;
+                    case ACTION_POWERMENU:
+                        Intent powermenu = new Intent(Intent.ACTION_POWERMENU);
+                        mContext.sendBroadcast(powermenu);
+                        break;
                     case ACTION_DPAD_LEFT:
                         injectKeyDelayed(KeyEvent.KEYCODE_DPAD_LEFT);
                         break;

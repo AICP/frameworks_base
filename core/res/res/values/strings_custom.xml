@@ -68,6 +68,7 @@
     <string name="action_dpad_left">Arrow left </string>
     <string name="action_dpad_right">Arrow right</string>
     <string name="action_rebootmenu">Reboot menu</string>
+    <string name="action_powermenu">Power menu</string>
 
     <!-- Long-press back kill application -->
     <string name="app_killed_message">Application killed</string>

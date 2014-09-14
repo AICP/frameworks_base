@@ -70,7 +70,8 @@ public class AwesomeConstants {
         ACTION_DPAD_RIGHT    { @Override public String value() { return "**dpad_right**";}},
         ACTION_NULL          { @Override public String value() { return "**null**";}},
         ACTION_APP           { @Override public String value() { return "**app**";}},
-        ACTION_REBOOTMENU    { @Override public String value() { return "**rebootmenu**";}};
+        ACTION_REBOOTMENU    { @Override public String value() { return "**rebootmenu**";}},
+        ACTION_POWERMENU     { @Override public String value() { return "**powermenu**";}};
         public String value() { return this.value(); }
     }
 
@@ -225,6 +226,9 @@ public class AwesomeConstants {
             case ACTION_REBOOTMENU:
                 value = res.getString(com.android.internal.R.string.action_rebootmenu);
                 break;
+            case ACTION_POWERMENU:
+                value = res.getString(com.android.internal.R.string.action_powermenu);
+                break;
             case ACTION_NULL:
             default:
                 value = res.getString(com.android.internal.R.string.action_null);
@@ -327,6 +331,9 @@ public class AwesomeConstants {
                         //the package icon - we'll return the 'null' on just in case
             case ACTION_REBOOTMENU:
                 value = getSystemUIDrawable(context, "com.android.systemui:drawable/ic_sysbar_rebootmenu");
+                break;
+            case ACTION_POWERMENU:
+                value = getSystemUIDrawable(context, "com.android.systemui:drawable/ic_sysbar_power_menu");
                 break;
             case ACTION_NULL:
             default:

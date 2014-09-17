@@ -19,6 +19,7 @@
 -->
 <resources>
   <string name="reboot">Restartovat</string>
+  <string name="reboot_soft">Lehký restart</string>
   <string name="reboot_recovery">Recovery</string>
   <string name="reboot_download">Download</string>
   <string name="reboot_bootloader">Bootloader</string>

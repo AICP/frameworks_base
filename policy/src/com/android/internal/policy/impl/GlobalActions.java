@@ -23,9 +23,11 @@ import com.android.internal.telephony.TelephonyProperties;
 import com.android.internal.widget.LockPatternUtils;
 import com.android.internal.R;
 
+import android.app.ActivityManager;
 import android.app.ActivityManagerNative;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.IActivityManager;
 import android.app.KeyguardManager;
 import android.app.Profile;
 import android.app.ProfileManager;
@@ -99,6 +101,8 @@ import java.util.UUID;
 class GlobalActions implements DialogInterface.OnDismissListener, DialogInterface.OnClickListener  {
 
     private static final String TAG = "GlobalActions";
+
+    private static final String SOFT_REBOOT = "soft_reboot";
 
     private static final boolean SHOW_SILENT_TOGGLE = true;
 
@@ -1684,7 +1688,19 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        mWindowManagerFuncs.reboot(rebootReasons[rebootIndex]);
+                        if (rebootReasons[rebootIndex].equals(SOFT_REBOOT)) {
+                            try {
+                                final IActivityManager am = ActivityManagerNative.asInterface(
+                                        ServiceManager.checkService("activity"));
+                                if (am != null) {
+                                    am.restart();
+                                }
+                            } catch (RemoteException e) {
+                                Log.e(TAG, "failure trying to perform soft reboot", e);
+                            }
+                        } else {
+                            mWindowManagerFuncs.reboot(rebootReasons[rebootIndex]);
+                        }
                     }
                 })
                 .setCancelable(false)

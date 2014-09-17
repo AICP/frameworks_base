@@ -18,8 +18,9 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- reboot options -->
-    <string-array name="reboot_options">
+    <string-array name="reboot_options" translatable="false">
         <item>@string/reboot</item>
+        <item>@string/reboot_soft</item>
         <item>@string/reboot_recovery</item>
         <item>@string/reboot_bootloader</item>
     </string-array>
@@ -27,6 +28,7 @@
     <!-- reboot values -->
     <string-array name="reboot_values">
         <item></item>
+        <item>soft_reboot</item>
         <item>recovery</item>
         <item>bootloader</item>
     </string-array>

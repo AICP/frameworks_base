@@ -19,6 +19,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Reboot -->
     <string name="reboot">Reboot</string>
+    <string name="reboot_soft">Soft reboot</string>
 
     <!-- Reboot recovery option -->
     <string name="reboot_recovery">Recovery</string>

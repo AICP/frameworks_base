@@ -376,9 +376,10 @@ public class NotificationHostView extends FrameLayout {
     };
     private void handleAddNotification(final boolean showNotification, boolean forceBigContentView) {
         final NotificationView nv = mNotificationsToAdd.poll();
-        Log.d(TAG, "Add: " + describeNotification(nv.statusBarNotification));
         final StatusBarNotification sbn = nv.statusBarNotification;
-        mDismissedNotifications.remove(describeNotification(sbn));
+        final String sbndesc = describeNotification(sbn);
+        Log.d(TAG, "Add: " + sbndesc);
+        mDismissedNotifications.remove(sbndesc);
 
         if (sbn.getNotification().contentView == null) {
             if (sbn.getNotification().bigContentView == null) {
@@ -386,7 +387,7 @@ public class NotificationHostView extends FrameLayout {
             }
             forceBigContentView = true;
         }
-        final NotificationView oldView = mNotifications.get(describeNotification(sbn));
+        final NotificationView oldView = mNotifications.get(sbndesc);
         final boolean reposted = oldView != null;
         if (reposted && oldView.bigContentView) forceBigContentView = true;
         boolean bigContentView = (reposted && oldView.bigContentView) ||
@@ -438,7 +439,7 @@ public class NotificationHostView extends FrameLayout {
         nv.setPadding(0, 0, 0, mNotificationMinRowHeight - mNotificationMinHeight);
 
         mNotifView.addView(nv);
-        mNotifications.put(describeNotification(sbn), nv);
+        mNotifications.put(sbndesc, nv);
         mNotifView.bringToFront();
         if(showNotification) {
             // showNotification uses v.getWidth but until the layout is done, this just returns 0.
@@ -474,8 +475,9 @@ public class NotificationHostView extends FrameLayout {
     private void handleRemoveNotification(final boolean dismiss) {
         final NotificationView v = mNotificationsToRemove.poll();
         final StatusBarNotification sbn = v.statusBarNotification;
-        if (mNotifications.containsKey(describeNotification(sbn)) && sbn != null) {
-            Log.d(TAG, "Remove: " + describeNotification(v.statusBarNotification));
+        final String sbndesc = describeNotification(sbn);
+        if (mNotifications.containsKey(sbndesc) && sbn != null) {
+            Log.d(TAG, "Remove: " + sbndesc);
             if (v.shown) {
                 if (mShownNotifications > 0) mShownNotifications--;
                 if (mShownNotifications == 0) {
@@ -483,11 +485,11 @@ public class NotificationHostView extends FrameLayout {
                 }
             }
             if (!sbn.isClearable()) {
-                mDismissedNotifications.put(describeNotification(sbn), sbn);
+                mDismissedNotifications.put(sbndesc, sbn);
             }
             int duration = getDurationFromDistance(v.getChildAt(0), v.shown ? -mDisplayWidth : mDisplayWidth, 0);
             v.animateChild().setDuration(duration).alpha(0).start();
-            mNotifications.remove(describeNotification(sbn));
+            mNotifications.remove(sbndesc);
             v.onAnimationEnd = new Runnable() {
                 public void run() {
                     if (dismiss) {

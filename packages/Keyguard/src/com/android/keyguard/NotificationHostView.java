@@ -464,7 +464,7 @@ public class NotificationHostView extends FrameLayout {
         NotificationView vn = mNotifications.get(describeNotification(sbn));
         if (vn == null)
             return;
-        mNotificationsToRemove.add();
+        mNotificationsToRemove.add(vn);
         Message msg = new Message();
         msg.what = MSG_NOTIFICATION_REMOVE;
         msg.arg1 = dismiss ? 1 : 0;
@@ -633,8 +633,12 @@ public class NotificationHostView extends FrameLayout {
         return mNotifications.size();
     }
 
+    public boolean containsNotification(StatusBarNotification sbn) {
+        return mNotifications.containsKey(describeNotification(sbn));
+    }
+
     public Notification getNotification(StatusBarNotification sbn) {
-        if (mNotifications.containsKey(describeNotification(sbn)))
+        if (containsNotification(sbn))
             return mNotifications.get(describeNotification(sbn)).statusBarNotification.getNotification();
         else
             return null;

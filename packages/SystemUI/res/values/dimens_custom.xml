@@ -152,4 +152,7 @@
     <dimen name="pie_item_size">40dp</dimen>
     <dimen name="pie_panel_padding">20dp</dimen>
 
+    <!-- Statusbar Carrier Logo -->
+    <dimen name="statusbar_carrier_logo_size">20sp</dimen>
+
 </resources>

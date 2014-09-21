@@ -4028,7 +4028,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 Settings.System.SYSTEM_ICON_COLOR, -2, UserHandle.USER_CURRENT);
 
         mShowStatusBarCarrier = Settings.System.getInt(
-            cr, Settings.System.STATUS_BAR_CARRIER, 0) != 1;
+            cr, Settings.System.STATUS_BAR_CARRIER, 1) == 1;
         showStatusBarCarrierLabel(mShowStatusBarCarrier);
 
         updateBatteryIcons();

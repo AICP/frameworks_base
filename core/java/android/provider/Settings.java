@@ -4162,6 +4162,13 @@ public final class Settings {
         public static final String HEADS_UP_EXCLUDE_FROM_LOCK_SCREEN = "heads_up_exclude_from_lock_screen";
 
        /**
+        * Show heads up on bottom
+        *
+        * @hide
+        */
+       public static final String SHOW_HEADS_UP_BOTTOM = "show_heads_up_bottom";
+
+       /**
          * Whether to display the gesture anywhere trigger region or not.
          * @hide
          */

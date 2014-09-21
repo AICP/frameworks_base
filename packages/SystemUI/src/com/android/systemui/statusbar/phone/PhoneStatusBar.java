@@ -1311,9 +1311,18 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         lp.gravity = Gravity.TOP;
         lp.y = getStatusBarHeight();
-        lp.setTitle("Heads Up");
+        lp.setTitle("Heads Up On Top");
         lp.packageName = mContext.getPackageName();
         lp.windowAnimations = R.style.Animation_StatusBar_HeadsUp;
+
+        if (Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.SHOW_HEADS_UP_BOTTOM, 0) == 1) {
+            lp.gravity = Gravity.BOTTOM | Gravity.START;
+            lp.y = getStatusBarHeight();
+            lp.setTitle("Heads Up On Bottom");
+            lp.packageName = mContext.getPackageName();
+            lp.windowAnimations = R.style.Animation_StatusBar_HeadsUp;
+        }
 
         mWindowManager.addView(mHeadsUpNotificationView, lp);
     }

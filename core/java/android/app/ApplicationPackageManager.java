@@ -1415,4 +1415,18 @@ final class ApplicationPackageManager extends PackageManager {
             Log.e(TAG, "Failed to update icon maps", re);
         }
     }
+
+    /**
+     * @hide
+     */
+    @Override
+    public int processThemeResources(String themePkgName) {
+        try {
+            return mPM.processThemeResources(themePkgName);
+        } catch (RemoteException e) {
+            Log.e(TAG, "Unable to process theme resources for " + themePkgName, e);
+        }
+
+        return 0;
+    }
 }

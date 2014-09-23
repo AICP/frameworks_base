@@ -4256,12 +4256,6 @@ public final class Settings {
         public static final int INCOMING_CALL_STYLE_FULLSCREEN_PHOTO = 1;
 
         /**
-         * Carrier Logo toggle
-         * @hide
-         */
-        public static final String TOGGLE_CARRIER_LOGO = "toggle_carrier_logo";
-
-        /**
          * Carrier Label Custom Color
          * @hide
          */

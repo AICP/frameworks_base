@@ -357,7 +357,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private Runnable mStatusHeaderUpdater;
     private ImageView mStatusHeaderImage;
     private Drawable mHeaderOverlay;
-    private ImageView mCarrierLogo;
 
     // for disabling the status bar
     int mDisabled = 0;
@@ -671,7 +670,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mCenterClockLayout = (LinearLayout)mStatusBarView.findViewById(R.id.center_clock_layout);
         mClockCenter = (ClockCenter)mStatusBarView.findViewById(R.id.center_clock);
         mNotificationIcons = (IconMerger)mStatusBarView.findViewById(R.id.notificationIcons);
-        mCarrierLogo = (ImageView) mStatusBarView.findViewById(R.id.carrierLogo);
         mMoreIcon = mStatusBarView.findViewById(R.id.moreIcon);
         mNotificationIcons.setOverflowIndicator(mMoreIcon);
         mNotificationIcons.setClockCenter(mClockCenter);
@@ -806,9 +804,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mBatteryController.addStateChangedCallback((BatteryStateChangeCallback) mBatteryTextView);
 
         mNetworkController.addSignalCluster(signalCluster);
-        mNetworkController.addCarrierCluster(signalCluster);
         signalCluster.setNetworkController(mNetworkController);
-        signalCluster.setStatusBar(this);
 
         final boolean isAPhone = mNetworkController.hasVoiceCallingFeature();
         if (isAPhone) {
@@ -3289,14 +3285,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             }
         }
     };
-
-    public void setCarrierVisibility(int vis) {
-        mCarrierLogo.setVisibility(vis);
-    }
-
-    public void setCarrierImageResource(int res) {
-        mCarrierLogo.setImageResource(res);
-    }
 
     // SystemUIService notifies SystemBars of configuration changes, which then calls down here
     @Override

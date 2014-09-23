@@ -1202,7 +1202,7 @@ public class NetworkController extends BroadcastReceiver implements DemoMode {
                 mMobileActivityIconId = 0;
             }
             if (!TextUtils.isEmpty(carrierNumber)) {
-                mCarrierIconId = mContext.getResources().getIdentifier("l" + carrierNumber, "drawable", mContext.getPackageName());
+                mCarrierIconId = context.getResources().getIdentifier("l" + carrierNumber, "drawable", context.getPackageName());
             }
         }
 

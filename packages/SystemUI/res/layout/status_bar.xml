@@ -62,7 +62,6 @@
                 android:id="@+id/carrierLogo"
                 android:layout_height="match_parent"
                 android:layout_width="@dimen/statusbar_carrier_logo_size"
-                android:visibility="gone"
                 />
 
             <com.android.systemui.statusbar.phone.CarrierLabel

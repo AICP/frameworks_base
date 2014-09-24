@@ -211,9 +211,9 @@ public class PieControlPanel extends FrameLayout implements StatusBarPanel,
             case 1:
                 return Gravity.TOP;
             case 2:
-                return Gravity.RIGHT;
-            default:
                 return Gravity.BOTTOM;
+            default:
+                return Gravity.RIGHT;
         }
     }
 

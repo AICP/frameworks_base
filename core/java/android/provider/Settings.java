@@ -4169,6 +4169,18 @@ public final class Settings {
        public static final String SHOW_HEADS_UP_BOTTOM = "show_heads_up_bottom";
 
        /**
+         * Heads Up background color
+         * @hide
+         */
+        public static final String HEADS_UP_BG_COLOR = "heads_up_bg_color";
+
+        /**
+         * Heads Up text color
+         * @hide
+         */
+        public static final String HEADS_UP_TEXT_COLOR = "heads_up_text_color";
+
+       /**
          * Whether to display the gesture anywhere trigger region or not.
          * @hide
          */

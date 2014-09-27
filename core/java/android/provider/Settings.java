@@ -3012,12 +3012,6 @@ public final class Settings {
          public static final String CALL_FLIP_ACTION_KEY = "call_flip_action";
 
         /**
-         * Network stats hide if there's no traffic
-         * @hide
-         */
-        public static final String STATUS_BAR_NETWORK_HIDE = "status_bar_network_hide";
-
-        /**
          * Whether or not to show circle battery around the lockscreen ring
          * @hide
          */
@@ -4515,6 +4509,34 @@ public final class Settings {
          * @hide
          */
         public static final String POWER_MENU_WIFI_ENABLED = "power_menu_wifi_enabled";
+
+        /**
+         * Network stats Color style
+         * @hide
+         */
+        public static final String NETWORK_TRAFFIC_COLOR = "network_traffic_color";
+
+        /**
+         * Whether or not to hide the network traffic indicator when there is no activity
+         * @hide
+         */
+        public static final String NETWORK_TRAFFIC_AUTOHIDE = "network_traffic_autohide";
+
+        /**
+         * Network traffic inactivity threshold (default is 10 kBs)
+         * @hide
+         */
+        public static final String NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD = "network_traffic_autohide_threshold";
+
+        /**
+         * Network traffic indicator, goes from least to greatest significant bitwise
+         * 0 = Display up-stream traffic if set
+         * 1 = Display down-stream traffic if set
+         * 2 = Show as Byte/s if set
+         * 16-31 = Refresh interval(ms)  min: 250  max: 32750  default: 1000
+         * @hide
+         */
+        public static final String NETWORK_TRAFFIC_STATE = "network_traffic_state";
 
         /**         
          * Settings to backup. This is here so that it's in the same place as the settings
@@ -9376,12 +9398,6 @@ public final class Settings {
 
         public static final String ANIMATION_CONTROLS_NO_OVERRIDE = "animation_controls_no_override";
 
-        /**
-         * Whether to flip the network status positions in the status bar
-         * @hide
-         */
-        public static final String STATUS_BAR_NETWORK_STATS_FLIP = "status_bar_network_stats_flip";
-
         public static final String ANIMATION_CONTROLS_EXIT_ONLY = "animation_controls_exit_only";
 
         public static final String ANIMATION_CONTROLS_REVERSE_EXIT = "animation_controls_reverse_exit";
@@ -9628,25 +9644,6 @@ public final class Settings {
          * @hide
          */
         public static final String NETWORK_MODES_TOGGLE = "network_modes_toggle";
-
-        /**
-         * Whether to show the network status in the status bar
-         * @hide
-         */
-        public static final String STATUS_BAR_NETWORK_STATS = "status_bar_network_stats";
-
-        /**
-         * Frequency at which stats are updated, in milliseconds
-         * @hide
-         */
-        public static final String STATUS_BAR_NETWORK_STATS_UPDATE_INTERVAL = "status_bar_network_stats_update_frequency";
-
-        /**
-         * statusbar network stats text color
-         *
-         * @hide
-         */
-        public static final String STATUS_BAR_NETWORK_STATS_TEXT_COLOR = "status_bar_network_stats_text_color";
 
         /**
          * whether to hide the Ram Usage Bar on recent switcher

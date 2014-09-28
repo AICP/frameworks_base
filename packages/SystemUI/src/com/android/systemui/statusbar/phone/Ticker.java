@@ -48,6 +48,7 @@ public abstract class Ticker {
     private TextSwitcher mTextSwitcher;
     private float mIconScale;
     private TickerCallback mEvent;
+    private PhoneStatusBar mStatusBar;
 
     public interface TickerCallback {
         public void updateTicker(StatusBarNotification notification, String text);
@@ -242,6 +243,8 @@ public abstract class Ticker {
             tickerStarting();
             scheduleAdvance();
         }
+        mStatusBar.setColorToAllTextSwitcherChildren(mTextSwitcher);
+        mStatusBar.setColorToAllImageSwitcherChildren(mIconSwitcher);
     }
 
     private static boolean charSequencesEqual(CharSequence a, CharSequence b) {
@@ -313,7 +316,13 @@ public abstract class Ticker {
     private void scheduleAdvance() {
         mHandler.postDelayed(mAdvanceTicker, TICKER_SEGMENT_DELAY);
     }
-
+    
+    public void setStatusBar(PhoneStatusBar mStatusBar) {
+    	this.mStatusBar = mStatusBar;
+        mStatusBar.setColorToAllTextSwitcherChildren(mTextSwitcher);
+        mStatusBar.setColorToAllImageSwitcherChildren(mIconSwitcher);
+    }
+	
     public abstract void tickerStarting();
     public abstract void tickerDone();
     public abstract void tickerHalting();

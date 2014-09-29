@@ -72,20 +72,14 @@ public class ContextThemeWrapper extends ContextWrapper {
     @Override
     public Resources getResources() {
         if (mResources != null) {
-            mResources.mColor = Resources.getChameleonColor(this);
-       	    mResources.mPackageName = getPackageName();
             return mResources;
         }
         if (mOverrideConfiguration == null) {
             mResources = super.getResources();
-            mResources.mColor = Resources.getChameleonColor(this);
-            mResources.mPackageName = getPackageName();
             return mResources;
         } else {
             Context resc = createConfigurationContext(mOverrideConfiguration);
-            mResources = resc.getResources();	
-            mResources.mColor = Resources.getChameleonColor(this);
-            mResources.mPackageName = getPackageName();
+            mResources = resc.getResources();
             return mResources;
         }
     }

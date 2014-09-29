@@ -111,17 +111,13 @@ public class SignalClusterView
         mColorSettingsObserver.observe();
     }
 
-    public void setStatusBarCarrier(PhoneStatusBar phoneStatusBar) {
+    public void setStatusBar(PhoneStatusBar phoneStatusBar) {
         mStatusBar = phoneStatusBar;
     }
 
     public void setNetworkController(NetworkController nc) {
         if (DEBUG) Log.d(TAG, "NetworkController=" + nc);
         mNC = nc;
-    }
-   
-    public void setStatusBar(PhoneStatusBar mStatusBar) {
-        this.mStatusBar = mStatusBar;
     }
 
     @Override
@@ -145,13 +141,6 @@ public class SignalClusterView
         mEthernet       = (ImageView) findViewById(R.id.ethernet);
 
         apply();
-        
-        mStatusBar.addIcon(mWifi);
-        mStatusBar.addIcon(mMobile);
-        mStatusBar.addIcon(mWifiActivity);
-        mStatusBar.addIcon(mMobileActivity); 
-        mStatusBar.addIcon(mMobileType); 
-        mStatusBar.addIcon(mAirplane);
     }
 
     @Override

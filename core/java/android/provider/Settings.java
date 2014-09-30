@@ -4538,6 +4538,14 @@ public final class Settings {
          */
         public static final String NETWORK_TRAFFIC_STATE = "network_traffic_state";
 
+        /**
+         * Show or hide clock on lockscreen
+         * 0 - hide (default)
+         * 1 - show
+         * @hide
+         */
+        public static final String STATUS_BAR_CLOCK_LOCKSCREEN = "status_bar_clock_lockscreen";
+
         /**         
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.

@@ -978,6 +978,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         addText((TextView) mStatusBarView.findViewById(R.id.center_clock));
         addText((TextView) mStatusBarView.findViewById(R.id.clock));
         addText((TextView) mStatusBarView.findViewById(R.id.networkTraffic));
+        addText((TextView) mStatusBarView.findViewById(R.id.status_bar_carrier_label));
 
         PowerManager pm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
         mBroadcastReceiver.onReceive(mContext,

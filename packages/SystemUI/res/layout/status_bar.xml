@@ -61,7 +61,7 @@
             <ImageView
                 android:id="@+id/carrierLogo"
                 android:layout_height="match_parent"
-                android:layout_width="@dimen/statusbar_carrier_logo_size"
+                android:layout_width="@dimen/status_bar_carrier_logo_size"
                 />
 
             <com.android.systemui.statusbar.phone.CarrierLabel

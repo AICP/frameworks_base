@@ -38,7 +38,6 @@ import com.android.systemui.R;
 import com.android.systemui.statusbar.phone.PhoneStatusBar;
 import com.android.systemui.statusbar.policy.NetworkController;
 import com.android.systemui.statusbar.policy.SignalText;
-import com.android.systemui.statusbar.phone.PhoneStatusBar;
 
 // Intimately tied to the design of res/layout/signal_cluster_view.xml
 public class SignalClusterView
@@ -56,7 +55,7 @@ public class SignalClusterView
     private int mMobileStrengthId = 0, mMobileActivityId = 0, mMobileTypeId = 0;
     private boolean mIsAirplaneMode = false;
     private int mAirplaneIconId = 0;
-    private int mCarrierIconId = 0;
+    private int mCarrierIconId = -1;
     private String mWifiDescription, mMobileDescription, mMobileTypeDescription,
             mEthernetDescription;
     private boolean mEthernetVisible = false;
@@ -112,7 +111,7 @@ public class SignalClusterView
         mColorSettingsObserver.observe();
     }
 
-    public void setStatusBar(PhoneStatusBar phoneStatusBar) {
+    public void setStatusBarCarrier(PhoneStatusBar phoneStatusBar) {
         mStatusBar = phoneStatusBar;
     }
 
@@ -148,11 +147,11 @@ public class SignalClusterView
         apply();
         
         mStatusBar.addIcon(mWifi);
-		mStatusBar.addIcon(mMobile);
-		mStatusBar.addIcon(mWifiActivity);
-		mStatusBar.addIcon(mMobileActivity); 
-		mStatusBar.addIcon(mMobileType); 
-		mStatusBar.addIcon(mAirplane);
+        mStatusBar.addIcon(mMobile);
+        mStatusBar.addIcon(mWifiActivity);
+        mStatusBar.addIcon(mMobileActivity); 
+        mStatusBar.addIcon(mMobileType); 
+        mStatusBar.addIcon(mAirplane);
     }
 
     @Override
@@ -316,12 +315,9 @@ public class SignalClusterView
                 mMobile.setVisibility(View.VISIBLE);
                 mMobileText.setVisibility(View.GONE);
             }
-            if (mCarrierIconId != -1) {
+            if (mCarrierIconId > 0) {
                 mStatusBar.setCarrierImageResource(mCarrierIconId);
-            }
-            if (Settings.System.getInt(mContext.getContentResolver(),
-                     Settings.System.TOGGLE_CARRIER_LOGO, 0) != 1) {
-                     mStatusBar.setCarrierVisibility(View.VISIBLE);
+                mStatusBar.setCarrierVisibility(View.VISIBLE);
             } else {
                 mStatusBar.setCarrierVisibility(View.GONE);
             }

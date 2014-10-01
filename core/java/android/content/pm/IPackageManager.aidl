@@ -426,4 +426,7 @@ interface IPackageManager {
     void updateIconMapping(String pkgName);
     ComposedIconInfo getComposedIconInfo();
     int processThemeResources(String themePkgName);
+
+    void addPreLaunchCheckPackage(String packageName);
+    void removePreLaunchCheckPackage(String packageName);
 }

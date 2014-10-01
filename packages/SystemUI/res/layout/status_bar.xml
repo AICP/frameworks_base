@@ -58,6 +58,12 @@
             android:orientation="horizontal"
             >
 
+            <ImageView
+                android:id="@+id/carrierLogo"
+                android:layout_height="match_parent"
+                android:layout_width="@dimen/statusbar_carrier_logo_size"
+                />
+
             <com.android.systemui.statusbar.phone.CarrierLabel
                 android:id="@+id/status_bar_carrier_label"
                 android:layout_width="wrap_content"

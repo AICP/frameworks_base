@@ -4454,7 +4454,7 @@ public final class ViewRootImpl implements ViewParent,
         /* TODO: These constants should eventually be moved to ViewConfiguration. */
 
         // The nominal distance traveled to move by one unit.
-        private static final int TICK_DISTANCE_MILLIMETERS = 12;
+        private static final int TICK_DISTANCE_MILLIMETERS = 16;
 
         // Minimum and maximum fling velocity in ticks per second.
         // The minimum velocity should be set such that we perform enough ticks per
@@ -4463,14 +4463,14 @@ public final class ViewRootImpl implements ViewParent,
         // to last and last ticks which is noticeably discrete and jerky.  This value should
         // probably not be set to anything less than about 4.
         // If fling accuracy is a problem then consider tuning the tick distance instead.
-        private static final float MIN_FLING_VELOCITY_TICKS_PER_SECOND = 6f;
-        private static final float MAX_FLING_VELOCITY_TICKS_PER_SECOND = 20f;
+        private static final float MIN_FLING_VELOCITY_TICKS_PER_SECOND = 8f;
+        private static final float MAX_FLING_VELOCITY_TICKS_PER_SECOND = 24f;
 
         // Fling velocity decay factor applied after each new key is emitted.
         // This parameter controls the deceleration and overall duration of the fling.
         // The fling stops automatically when its velocity drops below the minimum
         // fling velocity defined above.
-        private static final float FLING_TICK_DECAY = 0.8f;
+        private static final float FLING_TICK_DECAY = 0.6f;
 
         /* The input device that we are tracking. */
 
@@ -4800,7 +4800,7 @@ public final class ViewRootImpl implements ViewParent,
             // traveled one tick distance unit given the current fling velocity.
             // This effect creates continuity of motion.
             if (mFlingVelocity >= mConfigMinFlingVelocity) {
-                long delay = (long)(mConfigTickDistance / mFlingVelocity * 1000);
+                long delay = (long)(mConfigTickDistance / mFlingVelocity * 1200);
                 postAtTime(mFlingRunnable, time + delay);
                 if (LOCAL_DEBUG) {
                     Log.d(LOCAL_TAG, "Posted fling: velocity="

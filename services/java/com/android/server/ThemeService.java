@@ -207,6 +207,7 @@ public class ThemeService extends IThemeService.Stub {
     }
 
     public void systemRunning() {
+        mPM = mContext.getPackageManager();
         processInstalledThemes();
     }
 

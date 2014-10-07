@@ -155,9 +155,4 @@
     <!-- Statusbar Carrier Logo -->
     <dimen name="status_bar_carrier_logo_size">20sp</dimen>
 
-    <!-- Notification Shortcuts -->
-    <dimen name="notification_shortcuts_close_handle_height">26dp</dimen>
-    <dimen name="notification_shortcuts_spacing_height">88dp</dimen>
-    <dimen name="notification_shortcuts_drawer_margin">88dp</dimen>
-
 </resources>

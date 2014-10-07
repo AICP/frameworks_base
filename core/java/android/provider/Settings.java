@@ -311,20 +311,6 @@ public final class Settings {
             "android.settings.DISPLAY_SETTINGS";
 
     /**
-     * Activity Action: Show settings to allow configuration of display.
-     * <p>
-     * In some cases, a matching Activity may not exist, so ensure you
-     * safeguard against this.
-     * <p>
-     * Input: Nothing.
-     * <p>
-     * Output: Nothing.
-     */
-    @SdkConstant(SdkConstantType.ACTIVITY_INTENT_ACTION)
-    public static final String ACTION_NOTIFICATION_SHORTCUTS_SETTINGS =
-            "android.settings.slim.notificationshortcuts.NOTIFICATION_SHORTCUTS";
-
-    /**
      * Activity Action: Show settings to allow configuration of locale.
      * <p>
      * In some cases, a matching Activity may not exist, so ensure you
@@ -4114,37 +4100,6 @@ public final class Settings {
         public static final String DIALKEY_PADDING = "dialkey_padding";
 
         /**
-         * Whether to enable notification shortcuts (toggle)
-         *
-         * @hide
-         */
-        public static final String NOTIFICATION_SHORTCUTS_TOGGLE = "pref_notification_shortcuts_toggle";
-
-        /**
-         * Stores the number of notification shortcuts to display settings for
-         * @hide
-         */
-        public static final String NOTIFICATION_SHORTCUTS_QUANTITY = "pref_notification_shortcuts_quantity";
-
-        /**
-         * Stores values for notification shortcut targets
-         * @hide
-         */
-        public static final String NOTIFICATION_SHORTCUTS_TARGETS = "notification_shortcuts_targets";
-
-        /**
-         * Stores the value for notification shortcuts icon color
-         * @hide
-         */
-        public static final String NOTIFICATION_SHORTCUTS_COLOR = "notification_shortcuts_color";
-
-        /**
-         * Whether to colorize the default application icons
-         * @hide
-         */
-        public static final String NOTIFICATION_SHORTCUTS_COLORIZE_TOGGLE = "notification_shortcuts_colorize_toggle";
-
-        /**
          * Swipe recents for floating windows option
          * @hide
          */
@@ -5702,7 +5657,7 @@ public final class Settings {
          * @hide
          */
          public static final String LOCK_GESTURE_VISIBLE = "lock_gesture_visible_pattern";
-
+  
         /**
          * This preference allows the device to be locked given time after screen goes off,
          * subject to current DeviceAdmin policy limits.
@@ -6822,7 +6777,7 @@ public final class Settings {
         /**
          * Whether the Wimax should be on.  Only the WiMAX service should touch this.
          * @hide
-         */
+         */	
          public static final String WIMAX_ON = "wimax_on";
 
         /**
@@ -7235,8 +7190,8 @@ public final class Settings {
 
         /**
          * @hide
-         */
-         public static final String DIM_SCREEN_WHILE_PLUGGED_IN = "dim_screen_while_plugged_in";
+         */        
+         public static final String DIM_SCREEN_WHILE_PLUGGED_IN = "dim_screen_while_plugged_in"; 
 
         /**
          * When the user has enable the option to have a "bug report" command

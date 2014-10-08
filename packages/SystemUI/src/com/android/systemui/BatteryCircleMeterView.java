@@ -99,6 +99,7 @@ public class BatteryCircleMeterView extends ImageView {
     private boolean mCustomColor;
     private int systemColor;
     private int mTintEnabled;
+    private int mTintStatusbar;
 
     // runnable to invalidate view via mHandler.postDelayed() call
     private final Runnable mInvalidate = new Runnable() {
@@ -334,12 +335,14 @@ public class BatteryCircleMeterView extends ImageView {
 
             mTintEnabled = Settings.System.getIntForUser(resolver,
                     Settings.System.STATUS_BAR_TINTED_COLOR, 0, UserHandle.USER_CURRENT_OR_SELF);
+            mTintStatusbar = Settings.System.getIntForUser(resolver,
+                    Settings.System.STATUS_BAR_TINTED_OPTION, 0, UserHandle.USER_CURRENT_OR_SELF);
 
             int defaultColor = res.getColor(com.android.systemui.R.color.batterymeter_charge_color);
             int nowColor = !mCustomColor ? (mCurrentColor != -3 ? mCurrentColor : defaultColor) : systemColor;
 
 
-            if (mTintEnabled != 0) {
+            if (mTintEnabled != 0 || mTintStatusbar != 1) {
                 if (!mCustomColor) {
                     mCircleTextColor = nowColor;
                 }

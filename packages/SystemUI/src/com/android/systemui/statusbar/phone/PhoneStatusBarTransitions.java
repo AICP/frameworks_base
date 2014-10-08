@@ -22,6 +22,7 @@ import android.animation.ObjectAnimator;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,6 +31,7 @@ import com.android.systemui.R;
 import com.android.internal.util.omni.ColorUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public final class PhoneStatusBarTransitions extends BarTransitions {
     private static final float ICON_ALPHA_WHEN_NOT_OPAQUE = 1;
@@ -39,10 +41,10 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
     private final PhoneStatusBarView mView;
     private final float mIconAlphaWhenOpaque;
 
-    private ArrayList<ImageView> mIcons = new ArrayList<ImageView>();
-    private ArrayList<ImageView> mIconsReverse = new ArrayList<ImageView>();
-    private ArrayList<ImageView> mNotificationIcons = new ArrayList<ImageView>();
-    private ArrayList<TextView> mNotificationTexts = new ArrayList<TextView>();
+    private List<ImageView> mIcons = new ArrayList<ImageView>();
+    private List<ImageView> mIconsReverse = new ArrayList<ImageView>();
+    private List<ImageView> mNotificationIcons = new ArrayList<ImageView>();
+    private List<TextView> mNotificationTexts = new ArrayList<TextView>();
 
     private View mLeftSide, mStatusIcons, mSignalCluster, mBattery, mCircleBattery,
                 mClock, mCenterClock, mNetworkTraffic;
@@ -50,6 +52,8 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
     private Animator mCurrentAnimation;
     private int mCurrentColor = -3;
     private int mCurrentBg;
+    private String mFullColor = "fullcolor";
+    private String mNonFullColor = "nonfullcolor";
 
     public PhoneStatusBarTransitions(PhoneStatusBarView view) {
         super(view, R.drawable.status_background, R.color.status_bar_background_opaque,
@@ -99,6 +103,12 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
         }
     }
 
+    public void removeIcon(ImageView iv) {
+        if (mIcons.contains(iv)) {
+            mIcons.remove(iv);
+        }
+    }
+
     public void addIconReverse(ImageView iv) {
         if (!mIconsReverse.contains(iv)) {
             mIconsReverse.add(iv);
@@ -107,7 +117,19 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
 
     public void addNotificationIcon(ImageView iv) {
         if (!mNotificationIcons.contains(iv)) {
+            boolean isNotFullColor = ColorUtils.getIconWhiteBlackTransparent(iv.getDrawable());
+            if (isNotFullColor) {
+                iv.setTag(mNonFullColor);
+            } else {
+                iv.setTag(mFullColor);
+            }
             mNotificationIcons.add(iv);
+        }
+    }
+
+    public void removeNotificationIcon(ImageView iv) {
+        if (mNotificationIcons.contains(iv)) {
+            mNotificationIcons.remove(iv);
         }
     }
 
@@ -115,6 +137,19 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
         if (!mNotificationTexts.contains(tv)) {
             mNotificationTexts.add(tv);
         }
+    }
+
+    public void removeNotificationText(TextView tv) {
+        if (mNotificationTexts.contains(tv)) {
+            mNotificationTexts.remove(tv);
+        }
+    }
+
+    @Override
+    public void finishAnimations() {
+        setColorChangeIcon(-3);
+        setColorChangeNotificationIcon(-3);
+        super.finishAnimations();
     }
 
     @Override
@@ -175,7 +210,12 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
                  if (ic_color == -3) {
                      notifiv.clearColorFilter();
                  } else {
-                     notifiv.setColorFilter(ic_color, PorterDuff.Mode.MULTIPLY);
+                     String colors = (String) notifiv.getTag();
+                     if (TextUtils.equals(colors, mNonFullColor)) {
+                         notifiv.setColorFilter(ic_color, PorterDuff.Mode.MULTIPLY);
+                     } else {
+                         notifiv.clearColorFilter();
+                     }
                  }
              } else {
                  mNotificationIcons.remove(notifiv);

@@ -190,8 +190,8 @@ public abstract class Ticker {
 
     public void setStatusBar(PhoneStatusBar phoneStatusBar) {
         mStatusBar = phoneStatusBar;
-        mStatusBar.setColorToAllTextSwitcherChildren(mTextSwitcher);
-        mStatusBar.setColorToAllImageSwitcherChildren(mIconSwitcher);
+        mStatusBar.addColorToAllTextSwitcherChildren(mTextSwitcher);
+        mStatusBar.addColorToAllImageSwitcherChildren(mIconSwitcher);
         mStatusBar.updateNotificationIconColor();
     }
 
@@ -249,8 +249,8 @@ public abstract class Ticker {
             tickerStarting();
             scheduleAdvance();
         }
-        mStatusBar.setColorToAllTextSwitcherChildren(mTextSwitcher);
-        mStatusBar.setColorToAllImageSwitcherChildren(mIconSwitcher);
+        mStatusBar.addColorToAllTextSwitcherChildren(mTextSwitcher);
+        mStatusBar.addColorToAllImageSwitcherChildren(mIconSwitcher);
         mStatusBar.updateNotificationIconColor();
     }
 
@@ -279,6 +279,8 @@ public abstract class Ticker {
 
     public void halt() {
         mHandler.removeCallbacks(mAdvanceTicker);
+        mStatusBar.removeColorToAllTextSwitcherChildren(mTextSwitcher);
+        mStatusBar.removeColorToAllImageSwitcherChildren(mIconSwitcher);
         mSegments.clear();
         tickerHalting();
     }

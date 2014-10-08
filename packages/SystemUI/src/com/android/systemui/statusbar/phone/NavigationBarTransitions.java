@@ -188,7 +188,7 @@ public final class NavigationBarTransitions extends BarTransitions {
 
     @Override
     public void finishAnimations() {
-        setColorButtonNavigationBar(-3);
+//        setColorButtonNavigationBar(-3);
         super.finishAnimations();
     }
 

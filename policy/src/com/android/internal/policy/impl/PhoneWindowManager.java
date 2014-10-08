@@ -585,6 +585,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private long mVolumeKeysDownTime;
     private boolean mVolumeKeysDoubleTapEnabled;
     private int mUseVolumeKeyRingerToggle;
+    private boolean mCurrentColorProgress;
 
     /* The number of steps between min and max brightness */
     private static final int BRIGHTNESS_STEPS = 10;
@@ -755,7 +756,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             resolver.registerContentObserver(Settings.AOKP.getUriFor(
                     Settings.AOKP.NON_INTRUSIVE_INCALL), false, this,
                     UserHandle.USER_ALL);
-
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_TINTED_COLOR), false, this,
+                    UserHandle.USER_ALL);
             updateSettings();
         }
 
@@ -1361,6 +1364,14 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                         }
                     }
                     @Override
+                    public void onTouchDown() {
+                        sendAppColorBroadcast(20);
+                    }
+                    @Override
+                    public void onTouchUpCancel() {
+                        sendAppColorBroadcast(300);
+                    }
+                    @Override
                     public void onDebug() {
                         // no-op
                     }
@@ -1739,6 +1750,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             if (mImmersiveModeConfirmation != null) {
                 mImmersiveModeConfirmation.loadSetting();
             }
+
+            mCurrentColorProgress = Settings.System.getIntForUser(
+                    resolver, Settings.System.STATUS_BAR_TINTED_COLOR, 0
+                    , UserHandle.USER_CURRENT) != 0;
         }
         if (updateRotation) {
             updateRotation(true);
@@ -4437,6 +4452,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
         // update since mAllowLockscreenWhenOn might have changed
         updateLockScreenTimeout();
+
+        // update tinted color after layout changes
+        sendAppColorBroadcast(500);
         return changes;
     }
 
@@ -6419,6 +6437,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
         vis = mNavigationBarController.updateVisibilityLw(transientNavBarAllowed, oldVis, vis);
 
+        boolean notChangingColor = immersiveSticky
+                                     && hideStatusBarSysui
+                                       && hideNavBarSysui;
+        sendAppImmersiveMode(notChangingColor ? 1 : 0);
         return vis;
     }
 
@@ -6441,6 +6463,62 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private int dpToPixels(int dp, Context context) {
         float d = context.getResources().getDisplayMetrics().density;
         return (int)(dp * d);
+    }
+
+    public int getStatusbarDisplayHeight() {
+        return mStatusBarHeight;
+    }
+
+    public int getNavigationbarDisplayHeight(int rotation) {
+        if (mHasNavigationBar) {
+            return mNavigationBarHeightForRotation[rotation];
+        }
+        return mStatusBarHeight;
+    }
+
+    public void sendAppColorBroadcast(int duration) {
+        if (!mCurrentColorProgress) {
+            return;
+        }
+        try {
+             IStatusBarService statusbar = getStatusBarService();
+             if (statusbar != null) {
+                 statusbar.sendAppColorBroadcast(duration);
+             }
+        } catch (RemoteException e) {
+                 // re-acquire status bar service next time it is needed.
+             mStatusBarService = null;
+        }
+    }
+
+    public void sendActionColorBroadcast(int st_color, int ic_color) {
+        if (!mCurrentColorProgress) {
+            return;
+        }
+        try {
+             IStatusBarService statusbar = getStatusBarService();
+             if (statusbar != null) {
+                 statusbar.sendActionColorBroadcast(st_color, ic_color);
+             }
+        } catch (RemoteException e) {
+                 // re-acquire status bar service next time it is needed.
+             mStatusBarService = null;
+        }
+    }
+
+    private void sendAppImmersiveMode(int whats) {
+        if (!mCurrentColorProgress) {
+            return;
+        }
+        try {
+             IStatusBarService statusbar = getStatusBarService();
+             if (statusbar != null) {
+                 statusbar.sendAppImmersiveMode(whats);
+             }
+        } catch (RemoteException e) {
+                 // re-acquire status bar service next time it is needed.
+             mStatusBarService = null;
+        }
     }
 
     /**

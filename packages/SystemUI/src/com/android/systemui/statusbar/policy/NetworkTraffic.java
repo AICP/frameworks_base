@@ -9,14 +9,17 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.database.ContentObserver;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.graphics.PorterDuff;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.TrafficStats;
 import android.net.Uri;
 import android.os.Handler;
-import android.os.UserHandle;
 import android.os.Message;
 import android.os.SystemClock;
+import android.os.UserHandle;
 import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -58,6 +61,7 @@ public class NetworkTraffic extends TextView {
     private int GB = MB * KB;
     private boolean mAutoHide;
     private int mAutoHideThreshold;
+    private int mCurrentColor = Color.WHITE;
 
     private Handler mTrafficHandler = new Handler() {
         @Override
@@ -259,7 +263,7 @@ public class NetworkTraffic extends TextView {
         return network != null && network.isConnected();
     }
 
-    private void updateSettings() {
+    public void updateSettings() {
         ContentResolver resolver = mContext.getContentResolver();
 
         mAutoHide = Settings.System.getIntForUser(resolver,
@@ -272,7 +276,7 @@ public class NetworkTraffic extends TextView {
 
         mState = Settings.System.getInt(resolver, Settings.System.NETWORK_TRAFFIC_STATE, 0);
 
-	    int defaultColor = Settings.System.getInt(resolver,
+            int defaultColor = Settings.System.getInt(resolver,
                 Settings.System.NETWORK_TRAFFIC_COLOR, 0xFFFFFFFF);
 
 	    int mNetworkTrafficColor = Settings.System.getInt(resolver,
@@ -325,9 +329,19 @@ public class NetworkTraffic extends TextView {
         mTrafficHandler.removeMessages(1);
     }
 
+    public void updateSettings(int defaultColor) {
+        if (mCurrentColor != defaultColor) {
+            mCurrentColor = defaultColor;
+            updateSettings();
+            setTextColor(defaultColor);
+            updateTrafficDrawable();
+        }
+    }
+
     private void updateTrafficDrawable() {
         int intTrafficDrawable;
-        if (isSet(mState, MASK_UP + MASK_DOWN)) {
+        boolean showAll = isSet(mState, MASK_UP + MASK_DOWN);
+        if (showAll) {
             intTrafficDrawable = R.drawable.stat_sys_network_traffic_updown;
         } else if (isSet(mState, MASK_UP)) {
             intTrafficDrawable = R.drawable.stat_sys_network_traffic_up;
@@ -336,6 +350,14 @@ public class NetworkTraffic extends TextView {
         } else {
             intTrafficDrawable = 0;
         }
-        setCompoundDrawablesWithIntrinsicBounds(0, 0, intTrafficDrawable, 0);
+        Drawable drw = null;
+        if (intTrafficDrawable != 0) {
+            final Resources resources = getContext().getResources();
+            drw = resources.getDrawable(intTrafficDrawable);
+            if (showAll) {
+                drw.setColorFilter(mCurrentColor, PorterDuff.Mode.SRC_ATOP);
+            }
+        }
+        setCompoundDrawablesWithIntrinsicBounds(null, null, drw, null);
     }
 }

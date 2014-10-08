@@ -40,4 +40,7 @@ oneway interface IStatusBar
     void cancelPreloadRecentApps();
     void setWindowState(int window, int state);
     void setButtonDrawable(int buttonId, int iconId);
+    void sendActionColorBroadcast(int st_color, int ic_color);
+    void sendAppColorBroadcast(int duration);
+    void sendAppImmersiveMode(int whats);
 }

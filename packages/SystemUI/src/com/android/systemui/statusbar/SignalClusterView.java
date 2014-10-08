@@ -140,6 +140,12 @@ public class SignalClusterView
         mAirplane       = (ImageView) findViewById(R.id.airplane);
         mEthernet       = (ImageView) findViewById(R.id.ethernet);
 
+        mStatusBar.addIconToColor(mWifi);
+        mStatusBar.addIconToColor(mMobile);
+        mStatusBar.addIconToColor(mMobileType);
+        mStatusBar.addIconToColor(mAirplane);
+        mStatusBar.addIconToReverseColor(mWifiActivity);
+        mStatusBar.addIconToReverseColor(mMobileActivity);
         apply();
     }
 

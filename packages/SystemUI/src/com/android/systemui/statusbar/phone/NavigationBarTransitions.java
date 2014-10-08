@@ -19,6 +19,8 @@ package com.android.systemui.statusbar.phone;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.ServiceManager;
 import android.view.MotionEvent;
 import android.view.View;
@@ -28,6 +30,7 @@ import com.android.internal.statusbar.IStatusBarService;
 import com.android.internal.util.aokp.AwesomeConstants.AwesomeConstant;
 import com.android.systemui.R;
 import com.android.systemui.statusbar.policy.KeyButtonView;
+import com.android.internal.util.omni.ColorUtils;
 
 public final class NavigationBarTransitions extends BarTransitions {
 
@@ -42,6 +45,8 @@ public final class NavigationBarTransitions extends BarTransitions {
     private boolean mLeftIfVertical;
     private int mRequestedMode;
     private boolean mStickyTransparent;
+    private int mCurrentColor;
+    private int mCurrentBg;
 
     public NavigationBarTransitions(NavigationBarView view) {
         super(view, R.drawable.nav_background, R.color.navigation_bar_background_opaque,
@@ -58,6 +63,7 @@ public final class NavigationBarTransitions extends BarTransitions {
     }
 
     public void setVertical(boolean isVertical) {
+        setIsVertical(isVertical);
         if (mVertical != isVertical) {
             mVertical = isVertical;
             updateBackgroundResource();
@@ -177,6 +183,51 @@ public final class NavigationBarTransitions extends BarTransitions {
     private void setKeyButtonViewQuiescentAlpha(View button, float alpha, boolean animate) {
         if (button instanceof KeyButtonView) {
             ((KeyButtonView) button).setQuiescentAlpha(alpha, animate);
+        }
+    }
+
+    @Override
+    public void changeColorIconBackground(int bg_color, int ic_color) {
+        if (mCurrentBg == bg_color) {
+            return;
+        }
+        mCurrentBg = bg_color;
+        if (ColorUtils.isBrightColor(bg_color)) {
+            ic_color = Color.BLACK;
+        }
+        mCurrentColor = ic_color;
+        setColorButtonNavigationBar(ic_color);
+        super.changeColorIconBackground(bg_color, ic_color);
+    }
+
+    public int getCurrentIconColor() {
+        return mCurrentColor;
+    }
+
+    private void setColorButtonNavigationBar(int ic_color) {
+        setKeyButtonViewColor(AwesomeConstant.ACTION_HOME, ic_color);
+        setKeyButtonViewColor(AwesomeConstant.ACTION_RECENTS, ic_color);
+        setKeyButtonViewColor(AwesomeConstant.ACTION_MENU, ic_color);
+        setKeyButtonViewColor(AwesomeConstant.ACTION_SEARCH, ic_color);
+        setKeyButtonViewColor(AwesomeConstant.ACTION_BACK, ic_color);
+        setKeyButtonViewButtonColor(mView.getSearchLight(), ic_color);
+        setKeyButtonViewButtonColor(mView.getCameraButton(), ic_color);
+    }
+
+    private void setKeyButtonViewColor(ButtonInfo info, int ic_color) {
+        View button = mView.findViewWithTag(info);
+        if (button != null) {
+            setKeyButtonViewButtonColor(button, ic_color);
+        }
+    }
+
+    private void setKeyButtonViewButtonColor(View button, int ic_color) {
+        if (button instanceof KeyButtonView) {
+            if (ic_color == -3) {
+                ((KeyButtonView) button).clearColorFilterBg();
+            } else {
+                ((KeyButtonView) button).setColorFilterBg(ic_color, PorterDuff.Mode.SRC_ATOP);
+            }
         }
     }
 

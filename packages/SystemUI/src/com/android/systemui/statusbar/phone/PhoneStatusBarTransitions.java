@@ -20,9 +20,16 @@ import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.android.systemui.R;
+import com.android.internal.util.omni.ColorUtils;
+
+import java.util.ArrayList;
 
 public final class PhoneStatusBarTransitions extends BarTransitions {
     private static final float ICON_ALPHA_WHEN_NOT_OPAQUE = 1;
@@ -32,10 +39,17 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
     private final PhoneStatusBarView mView;
     private final float mIconAlphaWhenOpaque;
 
+    private ArrayList<ImageView> mIcons = new ArrayList<ImageView>();
+    private ArrayList<ImageView> mIconsReverse = new ArrayList<ImageView>();
+    private ArrayList<ImageView> mNotificationIcons = new ArrayList<ImageView>();
+    private ArrayList<TextView> mNotificationTexts = new ArrayList<TextView>();
+
     private View mLeftSide, mStatusIcons, mSignalCluster, mBattery, mCircleBattery,
                 mClock, mCenterClock, mNetworkTraffic;
 
     private Animator mCurrentAnimation;
+    private int mCurrentColor = -3;
+    private int mCurrentBg;
 
     public PhoneStatusBarTransitions(PhoneStatusBarView view) {
         super(view, R.drawable.status_background, R.color.status_bar_background_opaque,
@@ -73,14 +87,111 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
                 : getNonBatteryClockAlphaFor(mode);
     }
 
-    private boolean isOpaque(int mode) {
-        return !(mode == MODE_SEMI_TRANSPARENT || mode == MODE_TRANSLUCENT);
-    }
-
     @Override
     protected void onTransition(int oldMode, int newMode, boolean animate) {
         super.onTransition(oldMode, newMode, animate);
         applyMode(newMode, animate);
+    }
+
+    public void addIcon(ImageView iv) {
+        if (!mIcons.contains(iv)) {
+            mIcons.add(iv);
+        }
+    }
+
+    public void addIconReverse(ImageView iv) {
+        if (!mIconsReverse.contains(iv)) {
+            mIconsReverse.add(iv);
+        }
+    }
+
+    public void addNotificationIcon(ImageView iv) {
+        if (!mNotificationIcons.contains(iv)) {
+            mNotificationIcons.add(iv);
+        }
+    }
+
+    public void addNotificationText(TextView tv) {
+        if (!mNotificationTexts.contains(tv)) {
+            mNotificationTexts.add(tv);
+        }
+    }
+
+    @Override
+    public void changeColorIconBackground(int bg_color, int ic_color) {
+        if (mCurrentBg == bg_color) {
+            return;
+        }
+        mCurrentBg = bg_color;
+        if (ColorUtils.isBrightColor(bg_color)) {
+            ic_color = Color.BLACK;
+        }
+        mCurrentColor = ic_color;
+        setColorChangeIcon(ic_color);
+        setColorChangeNotificationIcon(ic_color);
+        super.changeColorIconBackground(bg_color, ic_color);
+    }
+
+    public int getCurrentIconColor() {
+        return mCurrentColor;
+    }
+
+    public void updateNotificationIconColor() {
+        setColorChangeNotificationIcon(mCurrentColor);
+    }
+
+    private void setColorChangeIcon(int ic_color) {
+        for (ImageView iv : mIcons) {
+             if (iv != null) {
+                 if (ic_color == -3) {
+                     iv.clearColorFilter();
+                 } else {
+                     iv.setColorFilter(ic_color, PorterDuff.Mode.SRC_ATOP);
+                 }
+             } else {
+                 mIcons.remove(iv);
+             }
+        }
+        for (ImageView ivr : mIconsReverse) {
+             if (ivr != null) {
+                 if (ic_color == -3) {
+                     ivr.clearColorFilter();
+                 } else {
+                     if (ColorUtils.isBrightColor(ic_color)) {
+                         ivr.setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_ATOP);
+                     } else {
+                         ivr.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
+                     }
+                 }
+             } else {
+                 mIconsReverse.remove(ivr);
+             }
+        }
+    }
+
+    private void setColorChangeNotificationIcon(int ic_color) {
+        for (ImageView notifiv : mNotificationIcons) {
+             if (notifiv != null) {
+                 if (ic_color == -3) {
+                     notifiv.clearColorFilter();
+                 } else {
+                     notifiv.setColorFilter(ic_color, PorterDuff.Mode.MULTIPLY);
+                 }
+             } else {
+                 mNotificationIcons.remove(notifiv);
+             }
+        }
+        for (TextView notiftv : mNotificationTexts) {
+             if (notiftv != null) {
+                 if (ic_color == -3) {
+                     notiftv.setTextColor(Color.WHITE);
+                 } else {
+                     notiftv.setTextColor(ic_color);
+                 }
+             } else {
+                 mNotificationTexts.remove(notiftv);
+             }
+        }
     }
 
     private void applyMode(int mode, boolean animate) {

@@ -53,4 +53,7 @@ interface IStatusBarService
     void preloadRecentApps();
     void cancelPreloadRecentApps();
     void setWindowState(int window, int state);
+    void sendActionColorBroadcast(int st_color, int ic_color);
+    void sendAppColorBroadcast(int duration);
+    void sendAppImmersiveMode(int whats);
 }

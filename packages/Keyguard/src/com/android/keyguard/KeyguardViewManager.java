@@ -30,6 +30,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import com.android.internal.policy.IKeyguardShowCallback;
 import com.android.internal.widget.LockPatternUtils;
+import com.android.internal.util.omni.ColorUtils;
 
 import android.app.ActivityManager;
 import android.appwidget.AppWidgetManager;
@@ -76,11 +77,6 @@ import android.renderscript.ScriptIntrinsicBlur;
 
 import android.os.SystemProperties;
 import android.provider.Settings;
-import android.renderscript.Allocation;
-import android.renderscript.Allocation.MipmapControl;
-import android.renderscript.Element;
-import android.renderscript.RenderScript;
-import android.renderscript.ScriptIntrinsicBlur;
 import android.util.Log;
 import android.util.Slog;
 import android.util.SparseArray;

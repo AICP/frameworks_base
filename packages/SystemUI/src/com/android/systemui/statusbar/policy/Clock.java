@@ -105,6 +105,7 @@ public class Clock extends TextView implements DemoMode, OnClickListener, OnLong
 
     private boolean mCustomColor;
     private int systemColor;
+    private int mCurrentColor = -3;
 
     private ContentObserver mSettingsObserver = new ContentObserver(new Handler()) {
         @Override
@@ -344,6 +345,13 @@ public class Clock extends TextView implements DemoMode, OnClickListener, OnLong
         return formatted;
     }
 
+    public void updateSettings(int defaultColor) {
+        if (mCurrentColor != defaultColor) {
+            mCurrentColor = defaultColor;
+            updateSettings();
+        }
+    }
+
     protected void updateSettings() {
         ContentResolver resolver = mContext.getContentResolver();
         int defaultColor = getResources().getColor(R.color.status_bar_clock_color);
@@ -396,11 +404,13 @@ public class Clock extends TextView implements DemoMode, OnClickListener, OnLong
         Timer timer = new Timer();
         timer.schedule(second, 0, 1001);
 
+        int nowColor = mCurrentColor != -3 ? mCurrentColor : mClockColor;
+
         if (mAttached) {
             if (mCustomColor) {
                 setTextColor(systemColor);
             } else {
-                setTextColor(mClockColor);
+                setTextColor(nowColor);
             }
         }
     }

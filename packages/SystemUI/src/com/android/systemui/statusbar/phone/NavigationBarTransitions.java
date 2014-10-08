@@ -196,7 +196,7 @@ public final class NavigationBarTransitions extends BarTransitions {
             ic_color = Color.BLACK;
         }
         mCurrentColor = ic_color;
-        setColorButtonNavigationBar(ic_color);
+//        setColorButtonNavigationBar(ic_color);
         super.changeColorIconBackground(bg_color, ic_color);
     }
 
@@ -204,7 +204,7 @@ public final class NavigationBarTransitions extends BarTransitions {
         return mCurrentColor;
     }
 
-    private void setColorButtonNavigationBar(int ic_color) {
+/*    private void setColorButtonNavigationBar(int ic_color) {
         setKeyButtonViewColor(AwesomeConstant.ACTION_HOME, ic_color);
         setKeyButtonViewColor(AwesomeConstant.ACTION_RECENTS, ic_color);
         setKeyButtonViewColor(AwesomeConstant.ACTION_MENU, ic_color);
@@ -229,7 +229,7 @@ public final class NavigationBarTransitions extends BarTransitions {
                 ((KeyButtonView) button).setColorFilterBg(ic_color, PorterDuff.Mode.SRC_ATOP);
             }
         }
-    }
+    } */
 
     private void applyLightsOut(boolean lightsOut, boolean animate, boolean force) {
         if (!force && lightsOut == mLightsOut) return;

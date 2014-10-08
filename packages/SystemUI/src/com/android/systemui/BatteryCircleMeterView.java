@@ -98,6 +98,7 @@ public class BatteryCircleMeterView extends ImageView {
 
     private boolean mCustomColor;
     private int systemColor;
+    private int mTintEnabled;
 
     // runnable to invalidate view via mHandler.postDelayed() call
     private final Runnable mInvalidate = new Runnable() {
@@ -331,23 +332,39 @@ public class BatteryCircleMeterView extends ImageView {
             systemColor = Settings.System.getIntForUser(resolver,
                     Settings.System.SYSTEM_ICON_COLOR, -2, UserHandle.USER_CURRENT);
 
+            mTintEnabled = Settings.System.getIntForUser(resolver,
+                    Settings.System.STATUS_BAR_TINTED_COLOR, 0, UserHandle.USER_CURRENT_OR_SELF);
+
             int defaultColor = res.getColor(com.android.systemui.R.color.batterymeter_charge_color);
             int nowColor = !mCustomColor ? (mCurrentColor != -3 ? mCurrentColor : defaultColor) : systemColor;
 
-            if (!mCustomColor) {
-                mCircleTextColor = nowColor;
-            }
-            if (!mCustomColor) {
-                mCircleTextChargingColor = nowColor;
-            }
-            if (!mCustomColor) {
-                mCircleColor = nowColor;
-            }
 
-            if (mCustomColor) {
-                mPaintSystem.setColor(systemColor);
+            if (mTintEnabled != 0) {
+                if (!mCustomColor) {
+                    mCircleTextColor = nowColor;
+                }
+                if (!mCustomColor) {
+                    mCircleTextChargingColor = nowColor;
+                }
+                if (!mCustomColor) {
+                    mCircleColor = nowColor;
+                }
+
+                if (mCustomColor) {
+                    mPaintSystem.setColor(systemColor);
+                } else {
+                    mPaintSystem.setColor(nowColor);
+                }
             } else {
-                mPaintSystem.setColor(nowColor);
+                if (mCircleTextColor == -2) {
+                    mCircleTextColor = defaultColor;
+                }
+                if (mCircleTextChargingColor == -2) {
+                    mCircleTextChargingColor = defaultColor;
+                }
+                if (mCircleColor == -2) {
+                    mCircleColor = defaultColor;
+                }
             }
 
             mRectLeft = null;

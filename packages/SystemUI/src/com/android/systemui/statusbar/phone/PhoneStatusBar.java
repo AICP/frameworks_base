@@ -3512,6 +3512,12 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         if (mMiuiCarrier != null) {
             mMiuiCarrier.updateSettings(color);
         }
+        if (mBattery != null) {
+            mBattery.updateSettings();
+        }
+        if (mCircleBattery != null) {
+            mCircleBattery.updateSettings();
+        }
     }
 
     private void resetSystemUIBackgroundColor() {
@@ -3629,6 +3635,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mTintedStatusbarObserver.update();
         mNetworkTraffic.updateSettings();
         mMiuiCarrier.updateColor();
+        mBattery.updateBattery();
+        mCircleBattery.updateSettings();
 
     }
 

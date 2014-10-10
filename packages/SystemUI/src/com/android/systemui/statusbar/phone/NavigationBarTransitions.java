@@ -63,7 +63,6 @@ public final class NavigationBarTransitions extends BarTransitions {
     }
 
     public void setVertical(boolean isVertical) {
-        setIsVertical(isVertical);
         if (mVertical != isVertical) {
             mVertical = isVertical;
             updateBackgroundResource();
@@ -188,7 +187,7 @@ public final class NavigationBarTransitions extends BarTransitions {
 
     @Override
     public void finishAnimations() {
-//        setColorButtonNavigationBar(-3);
+        setColorButtonNavigationBar(-3);
         super.finishAnimations();
     }
 
@@ -201,8 +200,10 @@ public final class NavigationBarTransitions extends BarTransitions {
         if (ColorUtils.isBrightColor(bg_color)) {
             ic_color = Color.BLACK;
         }
-        mCurrentColor = ic_color;
-//        setColorButtonNavigationBar(ic_color);
+        if (mCurrentColor != ic_color) {
+            mCurrentColor = ic_color;
+            setColorButtonNavigationBar(ic_color);
+        }
         super.changeColorIconBackground(bg_color, ic_color);
     }
 
@@ -210,21 +211,15 @@ public final class NavigationBarTransitions extends BarTransitions {
         return mCurrentColor;
     }
 
-/*    private void setColorButtonNavigationBar(int ic_color) {
-        setKeyButtonViewColor(AwesomeConstant.ACTION_HOME, ic_color);
-        setKeyButtonViewColor(AwesomeConstant.ACTION_RECENTS, ic_color);
-        setKeyButtonViewColor(AwesomeConstant.ACTION_MENU, ic_color);
-        setKeyButtonViewColor(AwesomeConstant.ACTION_SEARCH, ic_color);
-        setKeyButtonViewColor(AwesomeConstant.ACTION_BACK, ic_color);
+    private void setColorButtonNavigationBar(int ic_color) {
+        View[] views = mView.getAllButtons();
+
+        for(View v : views) {
+            setKeyButtonViewButtonColor(v, ic_color);
+        }
         setKeyButtonViewButtonColor(mView.getSearchLight(), ic_color);
         setKeyButtonViewButtonColor(mView.getCameraButton(), ic_color);
-    }
-
-    private void setKeyButtonViewColor(ButtonInfo info, int ic_color) {
-        View button = mView.findViewWithTag(info);
-        if (button != null) {
-            setKeyButtonViewButtonColor(button, ic_color);
-        }
+        setKeyButtonViewButtonColor(mView.getNotifsButton(), ic_color);
     }
 
     private void setKeyButtonViewButtonColor(View button, int ic_color) {
@@ -232,10 +227,10 @@ public final class NavigationBarTransitions extends BarTransitions {
             if (ic_color == -3) {
                 ((KeyButtonView) button).clearColorFilterBg();
             } else {
-                ((KeyButtonView) button).setColorFilterBg(ic_color, PorterDuff.Mode.SRC_ATOP);
+                ((KeyButtonView) button).setColorFilterBg(ic_color, PorterDuff.Mode.MULTIPLY);
             }
         }
-    } */
+    }
 
     private void applyLightsOut(boolean lightsOut, boolean animate, boolean force) {
         if (!force && lightsOut == mLightsOut) return;

@@ -82,4 +82,8 @@
     <color name="battery_background">#ffffff</color>
     <color name="status">#ffffff</color>
 
+    <color name="status_bar_expanded_clock_color">#ffffff</color>
+    <color name="status_bar_expanded_date_color">#cccccc</color>
+    <color name="status_bar_expanded_carrier_color">#999999</color>
+
 </resources>

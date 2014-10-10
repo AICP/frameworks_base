@@ -3520,6 +3520,12 @@ public final class Settings {
         public static final String STATUS_BAR_TINTED_NAVBAR_TRANSPARENT = "status_bar_tinted_navbar_transparent";
 
         /**
+         * option for full tinted system ui
+         * @hide
+         */
+        public static final String STATUS_BAR_TINTED_FULL_MODE = "status_bar_tinted_full_mode";
+
+        /**
          *
          * SMOOTH PROGRESS BAR Color_2
          * @hide

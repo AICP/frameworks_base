@@ -374,10 +374,6 @@
   <!-- Panel auto brightness -->
   <java-symbol type="integer" name="config_panelAutoBrightnessValue" />
 
-  <!-- Theme install failure notification -->
-  <java-symbol type="string" name="theme_install_error_title" />
-  <java-symbol type="string" name="theme_install_error_message" />
-
   <!-- for wifi auto connection -->
   <java-symbol type="bool" name="wifi_autocon" />
 </resources>

@@ -16,7 +16,6 @@
 package android.content.res;
 
 import android.content.res.IThemeChangeListener;
-import android.content.res.IThemeProcessingListener;
 import android.graphics.Bitmap;
 
 import java.util.Map;
@@ -32,9 +31,4 @@ interface IThemeService {
     int getProgress();
 
     boolean cacheComposedIcon(in Bitmap icon, String path);
-
-    boolean processThemeResources(String themePkgName);
-    boolean isThemeBeingProcessed(String themePkgName);
-    void registerThemeProcessingListener(in IThemeProcessingListener listener);
-    void unregisterThemeProcessingListener(in IThemeProcessingListener listener);
 }

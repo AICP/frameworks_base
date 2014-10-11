@@ -1899,55 +1899,75 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     }
 
     public void addIconToColor(ImageView iv) {
-        mStatusBarView.getPhoneStatusBarTransitions().addIcon(iv);
+        if (mStatusBarView != null) {
+            mStatusBarView.getPhoneStatusBarTransitions().addIcon(iv);
+        }
     }
 
     public void removeIconToColor(ImageView iv) {
-        mStatusBarView.getPhoneStatusBarTransitions().removeIcon(iv);
+        if (mStatusBarView != null) {
+            mStatusBarView.getPhoneStatusBarTransitions().removeIcon(iv);
+        }
     }
 
     public void addIconToReverseColor(ImageView iv) {
-        mStatusBarView.getPhoneStatusBarTransitions().addIconReverse(iv);
+        if (mStatusBarView != null) {
+            mStatusBarView.getPhoneStatusBarTransitions().addIconReverse(iv);
+        }
     }
 
     private void addNotificationIconToColor(ImageView iv) {
-        mStatusBarView.getPhoneStatusBarTransitions().addNotificationIcon(iv);
+        if (mStatusBarView != null) {
+            mStatusBarView.getPhoneStatusBarTransitions().addNotificationIcon(iv);
+        }
     }
 
     private void removeNotificationIconToColor(ImageView iv) {
-        mStatusBarView.getPhoneStatusBarTransitions().removeNotificationIcon(iv);
+        if (mStatusBarView != null) {
+            mStatusBarView.getPhoneStatusBarTransitions().removeNotificationIcon(iv);
+        }
     }
 
     public void addColorToAllTextSwitcherChildren(TextSwitcher switcher) {
         for (int i = 0; i < switcher.getChildCount(); i++) {
-             TextView view = (TextView) switcher.getChildAt(i);
-             mStatusBarView.getPhoneStatusBarTransitions().addNotificationText(view);
+            TextView view = (TextView) switcher.getChildAt(i);
+            if (mStatusBarView != null) {
+                mStatusBarView.getPhoneStatusBarTransitions().addNotificationText(view);
+            }
         }
     }
 
     public void removeColorToAllTextSwitcherChildren(TextSwitcher switcher) {
         for (int i = 0; i < switcher.getChildCount(); i++) {
-             TextView view = (TextView) switcher.getChildAt(i);
-             mStatusBarView.getPhoneStatusBarTransitions().removeNotificationText(view);
+            TextView view = (TextView) switcher.getChildAt(i);
+            if (mStatusBarView != null) {
+                mStatusBarView.getPhoneStatusBarTransitions().removeNotificationText(view);
+            }
         }
     }
 
     public void addColorToAllImageSwitcherChildren(ImageSwitcher switcher) {
         for (int i = 0; i < switcher.getChildCount(); i++) {
-             ImageView view = (ImageView) switcher.getChildAt(i);
-             mStatusBarView.getPhoneStatusBarTransitions().addNotificationIcon(view);
+            ImageView view = (ImageView) switcher.getChildAt(i);
+            if (mStatusBarView != null) {
+                mStatusBarView.getPhoneStatusBarTransitions().addNotificationIcon(view);
+            }
         }
     }
 
     public void removeColorToAllImageSwitcherChildren(ImageSwitcher switcher) {
         for (int i = 0; i < switcher.getChildCount(); i++) {
-             ImageView view = (ImageView) switcher.getChildAt(i);
-             mStatusBarView.getPhoneStatusBarTransitions().removeNotificationIcon(view);
+            ImageView view = (ImageView) switcher.getChildAt(i);
+            if (mStatusBarView != null) {
+                mStatusBarView.getPhoneStatusBarTransitions().removeNotificationIcon(view);
+            }
         }
     }
 
     public void updateNotificationIconColor() {
-        mStatusBarView.getPhoneStatusBarTransitions().updateNotificationIconColor();
+        if (mStatusBarView != null) {
+            mStatusBarView.getPhoneStatusBarTransitions().updateNotificationIconColor();
+        }
     }
 
     /**
@@ -2841,7 +2861,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     }
 
     private void finishBarAnimations() {
-        mStatusBarView.getBarTransitions().finishAnimations();
+        if (mStatusBarView != null) {
+            mStatusBarView.getBarTransitions().finishAnimations();
+        }
         if (mNavigationBarView != null) {
             mNavigationBarView.getBarTransitions().finishAnimations();
         }
@@ -3611,7 +3633,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             onUiColorChange(-3);
         }
         if (!force) {
-            mStatusBarView.getBarTransitions().changeColorIconBackground(-3, -3);
+            if (mStatusBarView != null) {
+                mStatusBarView.getBarTransitions().changeColorIconBackground(-3, -3);
+            }
             onBatteryColorChange(-3);
             onTextColorChange(-3);
         }
@@ -3759,18 +3783,22 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 if (mStatusbarTransparent < 100) {
                     mPackageSt = ColorUtils.changeColorTransparency(mPackageSt, mStatusbarTransparent);
                 }
-                mStatusBarView.getBarTransitions().changeColorIconBackground(mPackageSt, mPackageIcSt);
+                if (mStatusBarView != null) {
+                    mStatusBarView.getBarTransitions().changeColorIconBackground(mPackageSt, mPackageIcSt);
+                }
                 if ((mNotificationPanelHeader != null) && !mCustomHeader && mColorFullMode) {
                     mStatusHeaderImage.setImageDrawable(new ColorDrawable(mPackageSt));
                 }
-                int currentIconColor = mStatusBarView.getPhoneStatusBarTransitions().getCurrentIconColor();
-                if (mCurrentUiTextColor != currentIconColor) {
-                    mCurrentUiTextColor = currentIconColor;
-                    if (mColorFullMode) {
-                        onUiColorChange(currentIconColor);
+                if (mStatusBarView != null) {
+                    int currentIconColor = mStatusBarView.getPhoneStatusBarTransitions().getCurrentIconColor();
+                    if (mCurrentUiTextColor != currentIconColor) {
+                        mCurrentUiTextColor = currentIconColor;
+                        if (mColorFullMode) {
+                            onUiColorChange(currentIconColor);
+                        }
+                        onBatteryColorChange(currentIconColor);
+                        onTextColorChange(currentIconColor);
                     }
-                    onBatteryColorChange(currentIconColor);
-                    onTextColorChange(currentIconColor);
                 }
             } else {
                 if (shouldChanges) {

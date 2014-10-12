@@ -4636,6 +4636,12 @@ public final class Settings {
         public static final String CALL_RECORDING_FORMAT = "call_recording_format";
 
         /**
+         * Displays a notification when wifi network has changed
+         * @hide
+         */
+        public static final String WIFI_NETWORK_NOTIFICATIONS = "network_notifications";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *

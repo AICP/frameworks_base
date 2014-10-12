@@ -16,6 +16,9 @@
 
 package com.android.systemui.statusbar.policy;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -23,8 +26,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.database.ContentObserver;
+import android.media.RingtoneManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -44,6 +49,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.internal.telephony.IccCardConstants;
 import com.android.internal.telephony.TelephonyIntents;
@@ -55,6 +61,7 @@ import com.android.systemui.R;
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
@@ -112,6 +119,11 @@ public class NetworkController extends BroadcastReceiver implements DemoMode {
     int mQSWifiIconId = 0;
     int mWifiActivityIconId = 0; // overlay arrows for wifi direction
     int mWifiActivity = WifiManager.DATA_ACTIVITY_NONE;
+    String oldWifiSsid = "";
+    private int mWifiNotifications = 0;
+    boolean mConnectionAtBoot = true;
+    private int mStoredSSIDs;
+    LinkedList mConnectionsList = new LinkedList();
 
     // bluetooth
     private boolean mBluetoothTethered = false;
@@ -250,11 +262,13 @@ public class NetworkController extends BroadcastReceiver implements DemoMode {
         if (wifiMessenger != null) {
             mWifiChannel.connect(mContext, handler, wifiMessenger);
         }
+        mStoredSSIDs = res.getInteger(R.integer.wifi_notifications_remembered_connections);
 
         // broadcasts
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_CUSTOM_CARRIER_LABEL_CHANGED);
-        filter.addAction("com.android.settings.LABEL_CHANGED");
+        filter.addAction("com.vanir.UPDATE_NETWORK_PREFERENCES");
+        filter.addAction(Intent.ACTION_BOOT_COMPLETED);
         filter.addAction(WifiManager.RSSI_CHANGED_ACTION);
         filter.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION);
         filter.addAction(WifiManager.NETWORK_STATE_CHANGED_ACTION);
@@ -277,6 +291,9 @@ public class NetworkController extends BroadcastReceiver implements DemoMode {
         updateAirplaneMode();
 
         mLastLocale = mContext.getResources().getConfiguration().locale;
+
+        mWifiNotifications = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.WIFI_NETWORK_NOTIFICATIONS, 0);
 
         SettingsObserver settingsObserver = new SettingsObserver(new Handler());
         settingsObserver.observe();
@@ -459,7 +476,16 @@ public class NetworkController extends BroadcastReceiver implements DemoMode {
                  action.equals(ConnectivityManager.INET_CONDITION_ACTION)) {
             updateConnectivity(intent);
             refreshViews();
-        } else if (action.equals("com.android.settings.LABEL_CHANGED")) {
+        } else if (action.equals(Intent.ACTION_BOOT_COMPLETED)) {
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    // Delay wifi connection notifications by at least 30 seconds after boot
+                    mConnectionAtBoot = false;
+            }}, 30000);
+        } else if (action.equals("com.vanir.UPDATE_NETWORK_PREFERENCES")) {
+            mWifiNotifications = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.WIFI_NETWORK_NOTIFICATIONS, 0);
             refreshViews();
         } else if (action.equals(Intent.ACTION_CUSTOM_CARRIER_LABEL_CHANGED)) {
             refreshViews();
@@ -982,6 +1008,57 @@ public class NetworkController extends BroadcastReceiver implements DemoMode {
                 }
                 if (info != null) {
                     mWifiSsid = huntForSsid(info);
+                    if (mWifiNotifications > 0) {
+                        boolean restoredConnection = mConnectionsList.contains(mWifiSsid);
+
+                        if (!mConnectionAtBoot && (mWifiSsid != oldWifiSsid)) {
+                            String contentText = mContext.getString(R.string.wifi_status_changed);
+                            if (restoredConnection) {
+                                contentText = mContext.getString(R.string.wifi_restored);
+                            }
+
+                            switch (mWifiNotifications) {
+                                case 0:
+                                    break;
+                                case 1:
+                                    final String cheese = (contentText + ": " + mWifiSsid);
+                                    Toast.makeText(mContext, cheese, Toast.LENGTH_SHORT).show();
+                                    break;
+                                case 2:
+                                case 3:
+                                    Intent i = new Intent();
+                                    i.setClassName("com.android.settings", "com.android.settings.Settings$WifiSettingsActivity");
+                                    PendingIntent contentIntent = PendingIntent.getActivity(mContext, 0, i,
+                                    PendingIntent.FLAG_ONE_SHOT);
+
+                                    NotificationManager nm = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
+                                    Notification.Builder network = new Notification.Builder(mContext)
+                                            .setSmallIcon(R.drawable.wifi_notify)
+                                            .setWhen(System.currentTimeMillis())
+                                            .setTicker(mContext.getString(R.string.wifi_changed_ticker) + " " + mWifiSsid)
+                                            .setContentTitle(contentText)
+                                            .setContentText(mContext.getString(R.string.wifi_address_changed) + " " + mWifiSsid)
+                                            .setContentIntent(contentIntent)
+                                            .setAutoCancel(true);
+
+                                    if (mWifiNotifications == 3) {
+                                        Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                                        network.setSound(soundUri);
+                                    }
+
+                                    nm.cancel(R.string.wifi_address_changed);
+                                    nm.notify(R.string.wifi_address_changed, network.build());
+                                    break;
+                            }
+                        }
+                        oldWifiSsid = mWifiSsid;
+                        // Stored previous connections to update connection description
+                        if (mConnectionsList.size() == mStoredSSIDs) {
+                            mConnectionsList.remove(0);
+                        }
+                        if (!restoredConnection) mConnectionsList.add(mWifiSsid);
+                    }
+                    mConnectionAtBoot = false;
                 } else {
                     mWifiSsid = null;
                 }
@@ -1153,16 +1230,16 @@ public class NetworkController extends BroadcastReceiver implements DemoMode {
             // We want to show the carrier name if in service and either:
             //   - We are connected to mobile data, or
             //   - We are not connected to mobile data, as long as the *reason* packets are not
-            //     being routed over that link is that we have better connectivity via wifi.
+            //     being routed over that link is that we have better connectivity via wifi
+            //     or wimax.
             // If data is disconnected for some other reason but wifi (or ethernet/bluetooth)
             // is connected, we show nothing.
             // Otherwise (nothing connected) we show "No internet connection".
 
             if (mDataConnected) {
-                mobileLabel = carrierName = mNetworkName;
-                carrierNumber = mPhone.getNetworkOperator();
+                mobileLabel = mNetworkName;
             } else if (mConnected || emergencyOnly) {
-                if (hasService() || emergencyOnly) {
+                if (hasService() || mWimaxConnected || emergencyOnly) {
                     // The isEmergencyOnly test covers the case of a phone with no SIM
                     mobileLabel = carrierName = mNetworkName;
                     carrierNumber = mPhone.getNetworkOperator();

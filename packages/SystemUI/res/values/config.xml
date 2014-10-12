@@ -117,5 +117,8 @@
     <!-- configurable width dimension for the app sidebar trigger area -->
     <dimen name="config_app_sidebar_trigger_width">8dip</dimen>
 
+    <!-- number of saved networks | can be increased with an overlay for wifi only devices -->
+    <integer name="wifi_notifications_remembered_connections">8</integer>
+
 </resources>
 

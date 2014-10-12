@@ -6054,8 +6054,6 @@ public class Activity extends ContextThemeWrapper
                 scaleFloatingWindow();
             }
 
-            mWindow.setFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND,
-                    WindowManager.LayoutParams.FLAG_DIM_BEHIND);
             WindowManager.LayoutParams params = mWindow.getAttributes();
             params.privateFlags |= WindowManager.LayoutParams.PRIVATE_FLAG_NO_MOVE_ANIMATION;
             if (android.os.Process.myUid() == android.os.Process.SYSTEM_UID) {
@@ -6065,7 +6063,6 @@ public class Activity extends ContextThemeWrapper
                 params.dimAmount = 0.25f;
             }
             mWindow.setAttributes(params);
-
             refreshAppLayoutSize();
             return true;
         } else {
@@ -6258,6 +6255,14 @@ public class Activity extends ContextThemeWrapper
             mStopped = true;
         }
         mResumed = false;
+
+        // Floatingwindows activities should be kept volatile to prevent new activities taking
+        // up front in a minimized space. Every stop call, for instance when pressing home,
+        // will terminate the activity. If the activity is already finishing we might just
+        // as well let it go.
+        if (!mChangingConfigurations && mWindow != null && mWindow.mIsFloatingWindow && !isFinishing()) {
+            finish();
+        }
     }
 
     final void performDestroy() {

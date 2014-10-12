@@ -3619,6 +3619,14 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
     }
 
+    @Override
+    public boolean updateNotificationViewsColor(NotificationData.Entry entry) {
+        if (mColorFullMode) {
+            return super.updateNotificationViewsColor(entry);
+        }
+        return false;
+    }
+
     private void resetStatusbarColorChanges(boolean force) {
         if (mColorFullMode || force) {
             if (mNotificationPanel != null) {
@@ -3769,8 +3777,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             boolean shouldChanges = (mCurrentUiBgColor != mPackageSt);
             if (mPackageSt != Color.TRANSPARENT && shouldChanges) {
                 mCurrentUiBgColor = mPackageSt;
+                int colorBg = -3;
                 if (mColorFullMode) {
-                    int colorBg = ColorUtils.changeColorTransparency(mPackageSt, 90);
+                    colorBg = ColorUtils.changeColorTransparency(mPackageSt, 90);
                     if (colorBg != -3) {
                         if (mNotificationPanel != null) {
                             mNotificationPanel.setBackground(new ColorDrawable(colorBg));
@@ -3789,16 +3798,21 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 if ((mNotificationPanelHeader != null) && !mCustomHeader && mColorFullMode) {
                     mStatusHeaderImage.setImageDrawable(new ColorDrawable(mPackageSt));
                 }
-                if (mStatusBarView != null) {
-                    int currentIconColor = mStatusBarView.getPhoneStatusBarTransitions().getCurrentIconColor();
-                    if (mCurrentUiTextColor != currentIconColor) {
-                        mCurrentUiTextColor = currentIconColor;
-                        if (mColorFullMode) {
-                            onUiColorChange(currentIconColor);
-                        }
-                        onBatteryColorChange(currentIconColor);
-                        onTextColorChange(currentIconColor);
+                int currentIconColor = mStatusBarView.getPhoneStatusBarTransitions().getCurrentIconColor();
+                if (mColorFullMode) {
+                    if (currentIconColor != -3) {
+                        updateNotificationViewColor(colorBg, currentIconColor);
+                    } else {
+                        updateNotificationViewColor(colorBg, Color.WHITE);
                     }
+                }
+                if (mCurrentUiTextColor != currentIconColor) {
+                    mCurrentUiTextColor = currentIconColor;
+                    if (mColorFullMode) {
+                        onUiColorChange(currentIconColor);
+                    }
+                    onBatteryColorChange(currentIconColor);
+                    onTextColorChange(currentIconColor);
                 }
             } else {
                 if (shouldChanges) {

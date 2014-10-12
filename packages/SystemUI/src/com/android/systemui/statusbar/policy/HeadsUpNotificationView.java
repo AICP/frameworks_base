@@ -95,6 +95,7 @@ public class HeadsUpNotificationView extends FrameLayout implements SwipeHelper.
     public boolean setNotification(
         NotificationData.Entry headsUp, boolean isExpanded, int background) {
         mBackground = background;
+        boolean isFullMode = mBar.updateNotificationViewsColor(headsUp);
         mHeadsUp = headsUp;
         mHeadsUp.content.setOnClickListener(mNotificationHelper.getNotificationClickListener(headsUp, true, false));
         mHeadsUpIsExpanded = isExpanded;
@@ -104,11 +105,22 @@ public class HeadsUpNotificationView extends FrameLayout implements SwipeHelper.
             return false;
         }
 
+        mContentHolder.setBackgroundResource(0);
+        if (!isFullMode) {
+            mContentHolder.setBackgroundResource(R.drawable.heads_up_window_bg);
+        }
+
         // set background
-        if (mBackground != 0x00ffffff) {
+        if (mBackground != 0x00ffffff && isFullMode) {
             setHeadsUpCustomBg();
         } else {
-            setHeadsUpDefaultBg();
+            mContentHolder.setBackgroundResource(0);
+            if (!isFullMode) {
+                mContentHolder.setBackgroundResource(R.drawable.heads_up_window_bg);
+            }
+            if (isFullMode) {
+                setHeadsUpDefaultBg();
+            }
         }
 
         mContentHolder.setX(0);

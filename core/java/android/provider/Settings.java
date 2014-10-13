@@ -2793,6 +2793,12 @@ public final class Settings {
         public static final String SCREEN_ON_NOTIFICATION_LED = "screen_on_notification_led";
 
         /**
+         * Whether lid wakes the device
+         * @hide
+         */
+        public static final String LOCKSCREEN_LID_WAKE = "lockscreen_lid_wake";
+
+        /**
          * @deprecated Use {@link android.provider.Settings.Global#LOW_BATTERY_SOUND}
          * instead
          * @hide

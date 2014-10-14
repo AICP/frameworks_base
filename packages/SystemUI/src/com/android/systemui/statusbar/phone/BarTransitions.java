@@ -80,6 +80,7 @@ public class BarTransitions {
         mView = view;
         mBarBackground = new BarBackgroundDrawable(mView.getContext(), gradientResourceId,
                 opaqueColorResourceId, semiTransparentColorResourceId);
+        mBarBackground.setBar(this);
         if (HIGH_END) {
             mView.setBackground(mBarBackground);
         }
@@ -94,15 +95,23 @@ public class BarTransitions {
         mBarBackground.updateResources(res);
     }
 
-    public String getCurrentTag() {
+    protected String getCurrentTag() {
         return mTag;
     }
 
-    public int getMode() {
+    protected int getMode() {
         return mMode;
     }
 
-    public boolean isOpaque(int mode) {
+    public int getCurrentIconColor() {
+        return -3;
+    }
+
+    public boolean isOpaque() {
+        return mMode == MODE_OPAQUE;
+    }
+
+    protected boolean isOpaque(int mode) {
         return !(mode == MODE_SEMI_TRANSPARENT || mode == MODE_TRANSLUCENT);
     }
 
@@ -148,10 +157,8 @@ public class BarTransitions {
         }
     }
 
-    public void changeGradientAlphaDynamic(boolean force) {
-        if (HIGH_END) {
-            mBarBackground.setGradientAlphaDynamic(force);
-        }
+    public void setBackgroundColorEnabled(boolean force) {
+        // for subclasses
     }
 
     public void finishAnimations() {
@@ -161,6 +168,10 @@ public class BarTransitions {
     }
 
     public void setContentVisible(boolean visible) {
+        // for subclasses
+    }
+
+    protected void resetColorWhenTransient(boolean resets) {
         // for subclasses
     }
 
@@ -183,13 +194,16 @@ public class BarTransitions {
         private long mStartTime;
         private long mEndTime;
 
-        private int mGradientAlpha;
+        private int mGradientAlpha = 0;
         private int mColor;
 
         private int mGradientAlphaStart;
         private int mColorStart;
         private int mCurrentColor;
         private int mLastColor;
+        private int mLastBgColor;
+
+        private BarTransitions mBarTransitions;
 
         public BarBackgroundDrawable(Context context, int gradientResourceId,
                 int opaqueColorResourceId, int semiTransparentColorResourceId) {
@@ -216,6 +230,10 @@ public class BarTransitions {
             mGradientResourceId = gradientResourceId;
             mOpaqueColorResourceId = opaqueColorResourceId;
             mSemiTransparentColorResourceId = semiTransparentColorResourceId;
+        }
+
+        public void setBar(BarTransitions barTransitions) {
+            mBarTransitions = barTransitions;
         }
 
         public void setGradientResourceId(Resources res, int gradientResourceId) {
@@ -265,6 +283,7 @@ public class BarTransitions {
             if (mIsVertical) {
                 return;
             }
+            mLastBgColor = bg_color;
             if (bg_color != -3) {
                 mLastColor = bg_color;
             } else {
@@ -296,14 +315,6 @@ public class BarTransitions {
             if (mAnimating) {
                 mAnimating = false;
                 invalidateSelf();
-            }
-        }
-
-        public void setGradientAlphaDynamic(boolean force) {
-            if (force) {
-                mGradientAlpha = 0xff;
-            } else {
-                mGradientAlpha = 0;
             }
         }
 
@@ -342,12 +353,16 @@ public class BarTransitions {
         @Override
         public void draw(Canvas canvas) {
             int targetGradientAlpha = 0, targetColor = 0;
+            boolean resets = (mLastBgColor != -3);
             if (mMode == MODE_TRANSLUCENT) {
                 targetGradientAlpha = 0xff;
+                mBarTransitions.resetColorWhenTransient(resets);
             } else if (mMode == MODE_SEMI_TRANSPARENT) {
                 targetColor = mSemiTransparent;
+                mBarTransitions.resetColorWhenTransient(resets);
             } else if (mMode == MODE_TRANSPARENT) {
                 targetGradientAlpha = 0;
+                mBarTransitions.resetColorWhenTransient(resets);
             } else {
                 targetGradientAlpha = getGradientAlphaFromColor();
                 targetColor = mLastColor;

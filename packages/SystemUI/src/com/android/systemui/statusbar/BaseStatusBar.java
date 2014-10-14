@@ -51,6 +51,9 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.GradientDrawable.Orientation;
+import android.graphics.drawable.StateListDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
@@ -1626,10 +1629,28 @@ public abstract class BaseStatusBar extends SystemUI implements
     private int mCurrentTextColor = -3;
     private int mCurrentBgColor = -3;
 
-    protected void updateNotificationViewColor(int bg_color, int ic_color) {
-        if (mCurrentBgColor == bg_color) {
-            return;
+    private Drawable getGradientDrawable(boolean isNav, int color) {
+        if (isNav) {
+            color = ColorUtils.opposeColor(color);
         }
+        GradientDrawable drawable = new GradientDrawable(Orientation.TOP_BOTTOM,
+                                     new int[]{color, color});
+        drawable.setDither(true);
+        color = ColorUtils.changeColorTransparency(color, 100);
+        drawable.setStroke(5, color);
+        return drawable;
+    }
+
+    private StateListDrawable getStateListDrawable(int color) {
+        Drawable drawableNr = getGradientDrawable(false, color);
+        Drawable drawablePs = getGradientDrawable(true, color);
+        StateListDrawable stateListDrawable = new StateListDrawable();
+        stateListDrawable.addState(new int[] { android.R.attr.state_pressed }, drawablePs);
+        stateListDrawable.addState(new int[0], drawableNr);
+        return stateListDrawable;
+    }
+
+    protected void updateNotificationViewColor(int bg_color, int ic_color) {
         mCurrentBgColor = bg_color;
         mCurrentTextColor = ic_color;
         int titleColor = mContext.getResources().getColor(R.color.status_bar_expanded_clock_color);
@@ -1666,44 +1687,58 @@ public abstract class BaseStatusBar extends SystemUI implements
         if (notification.isOngoing()) {
             return false;
         }
-        final RemoteViews contentView = n.contentView;
-        final RemoteViews bigContentView = n.bigContentView;
-        if (contentView != null) {
-            contentView.setTextColor(com.android.internal.R.id.title, titleColor);
-            contentView.setTextColor(com.android.internal.R.id.text, textColor);
-            contentView.setTextColor(com.android.internal.R.id.big_text, textColor);
-            contentView.setTextColor(com.android.internal.R.id.time, textColor);
-            contentView.setTextColor(com.android.internal.R.id.text2, textColor);
-            contentView.setTextColor(com.android.internal.R.id.info, textColor);
-        }
-        if (bigContentView != null) {
-            bigContentView.setTextColor(com.android.internal.R.id.title, titleColor);
-            bigContentView.setTextColor(com.android.internal.R.id.text, textColor);
-            bigContentView.setTextColor(com.android.internal.R.id.big_text, textColor);
-            bigContentView.setTextColor(com.android.internal.R.id.time, textColor);
-            bigContentView.setTextColor(com.android.internal.R.id.text2, textColor);
-            bigContentView.setTextColor(com.android.internal.R.id.info, textColor);
-        }
-
-        final View expanded = entry.expanded;
-        final View expandedBig = entry.getBigContentView();
         try {
-             if (expanded != null) {
+             final RemoteViews contentView = n.contentView;
+             final RemoteViews bigContentView = n.bigContentView;
+             final View expanded = entry.expanded;
+             final View expandedBig = entry.getBigContentView();
+             if (contentView != null && expanded != null) {
+                 contentView.setTextColor(com.android.internal.R.id.title, titleColor);
+                 contentView.setTextColor(com.android.internal.R.id.text, textColor);
+                 contentView.setTextColor(com.android.internal.R.id.big_text, textColor);
+                 contentView.setTextColor(com.android.internal.R.id.time, textColor);
+                 contentView.setTextColor(com.android.internal.R.id.text2, textColor);
+                 contentView.setTextColor(com.android.internal.R.id.info, textColor);
+
                  if (bg_color != -3) {
-                     expanded.setBackgroundColor(bg_color);
+                     expanded.setBackground(getStateListDrawable(bg_color));
                  } else {
                      expanded.setBackgroundResource(com.android.internal.R.drawable.notification_bg);
                  }
-             }
-             if (contentView != null) {
+
                  contentView.reapply(mContext, expanded, mOnClickHandler);
              }
              if (bigContentView != null && expandedBig != null) {
+                 bigContentView.setTextColor(com.android.internal.R.id.title, titleColor);
+                 bigContentView.setTextColor(com.android.internal.R.id.text, textColor);
+                 bigContentView.setTextColor(com.android.internal.R.id.big_text, textColor);
+                 bigContentView.setTextColor(com.android.internal.R.id.time, textColor);
+                 bigContentView.setTextColor(com.android.internal.R.id.text2, textColor);
+                 bigContentView.setTextColor(com.android.internal.R.id.info, textColor);
+
+                 int[] rowIds = {com.android.internal.R.id.inbox_text0, com.android.internal.R.id.inbox_text1,
+                    com.android.internal.R.id.inbox_text2, com.android.internal.R.id.inbox_text3,
+                    com.android.internal.R.id.inbox_text4, com.android.internal.R.id.inbox_text5,
+                    com.android.internal.R.id.inbox_text6};
+
+                 for (int rowId : rowIds) {
+                      bigContentView.setTextColor(rowId, textColor);
+                 }
+
+                 bigContentView.setTextColor(com.android.internal.R.id.inbox_more, textColor);
+
+                 if (n.actions != null) {
+                     for (int i = 0; i < n.actions.length; i++) {
+                          bigContentView.setTextColor(com.android.internal.R.id.action0, textColor);
+                     }
+                 }
+
                  if (bg_color != -3) {
-                     expandedBig.setBackgroundColor(bg_color);
+                     expandedBig.setBackground(getStateListDrawable(bg_color));
                  } else {
                      expandedBig.setBackgroundResource(com.android.internal.R.drawable.notification_bg);
                  }
+
                  bigContentView.reapply(mContext, expandedBig, mOnClickHandler);
              }
         } catch (RuntimeException e) {

@@ -1169,7 +1169,7 @@ public class Activity extends ContextThemeWrapper
         }
 
         if (!mWindow.mIsFloatingWindow) {
-            reloadAppColor(reload);
+            setupColorActionBar(reload);
             return;
         }
 
@@ -1192,12 +1192,13 @@ public class Activity extends ContextThemeWrapper
             mFloatingWindowView = (FloatingWindowView) decorFloatingView.getTag(android.R.id.extractArea);
             decorFloatingView.bringChildToFront(mFloatingWindowView);
         }
-        reloadAppColor(reload);
+        setupColorActionBar(reload);
     }
 
-    private void reloadAppColor(boolean reload) {
+    private void setupColorActionBar(boolean reload) {
         if (getAppColorEnabled()) {
             if (mActionBar != null) {
+                mActionBar.setEnabledAppColor(getActionbarColorEnabled());
                 if (reload && mActionBar.isShowing()) {
                     mActionBar.changeColorFromActionBar(null);
                 }
@@ -1214,6 +1215,13 @@ public class Activity extends ContextThemeWrapper
                     getContentResolver(), Settings.System.STATUS_BAR_TINTED_COLOR, 0
                     , UserHandle.USER_CURRENT_OR_SELF);
         return (enabled != 0);
+    }
+
+    private boolean getActionbarColorEnabled() {
+        int enabled = Settings.System.getIntForUser(
+                    getContentResolver(), Settings.System.STATUS_BAR_TINTED_COLOR, 0
+                    , UserHandle.USER_CURRENT_OR_SELF);
+        return (enabled == 1);
     }
 
     /**

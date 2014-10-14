@@ -23,6 +23,11 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Resources;
 import android.database.ContentObserver;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.GradientDrawable.Orientation;
+import android.graphics.drawable.StateListDrawable;
 import android.graphics.Point;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -46,6 +51,7 @@ import android.widget.TextView;
 
 import com.android.systemui.R;
 import com.android.systemui.settings.BrightnessController.BrightnessStateChangeCallback;
+import com.android.internal.util.omni.ColorUtils;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
@@ -369,6 +375,31 @@ public class PanelView extends FrameLayout {
         updateUseSlider();
         mSettingsObserver = new SettingsObserver(mHandler);
         mSettingsObserver.startObserving();
+    }
+
+    private Drawable getGradientDrawable(boolean isNav, int color) {
+        int color2, color3, color4;
+        if (ColorUtils.isBrightColor(color)) {
+            color2 = Color.BLACK;
+        } else {
+            color2 = Color.WHITE;
+        }
+        color3 = isNav ? color : color2;
+        color4 = isNav ? color2 : color;
+        GradientDrawable drawable = new GradientDrawable(Orientation.BOTTOM_TOP,
+                                     new int[]{color4, color3, color4});
+        drawable.setDither(true);
+        drawable.setStroke(30, color4);
+        return drawable;
+    }
+
+    protected StateListDrawable getStateListDrawable(int color) {
+        Drawable drawableNr = getGradientDrawable(false, color);
+        Drawable drawablePs = getGradientDrawable(true, color);
+        StateListDrawable stateListDrawable = new StateListDrawable();
+        stateListDrawable.addState(new int[] { android.R.attr.state_pressed }, drawablePs);
+        stateListDrawable.addState(new int[0], drawableNr);
+        return stateListDrawable;
     }
 
     private void loadDimens() {

@@ -51,9 +51,9 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
 
     private Animator mCurrentAnimation;
     private int mCurrentColor = -3;
-    private int mCurrentBg;
     private String mFullColor = "fullcolor";
     private String mNonFullColor = "nonfullcolor";
+    private boolean mColorEnabled = false;
 
     public PhoneStatusBarTransitions(PhoneStatusBarView view) {
         super(view, R.drawable.status_background, R.color.status_bar_background_opaque,
@@ -146,18 +146,22 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
     }
 
     @Override
+    public void setBackgroundColorEnabled(boolean force) {
+        mColorEnabled = force;
+    }
+
+    @Override
     public void finishAnimations() {
-        setColorChangeIcon(-3);
-        setColorChangeNotificationIcon(-3);
+        if (mColorEnabled) {
+            mCurrentColor = -3;
+            setColorChangeIcon(-3);
+            setColorChangeNotificationIcon(-3);
+        }
         super.finishAnimations();
     }
 
     @Override
     public void changeColorIconBackground(int bg_color, int ic_color) {
-        if (mCurrentBg == bg_color) {
-            return;
-        }
-        mCurrentBg = bg_color;
         if (ColorUtils.isBrightColor(bg_color)) {
             ic_color = Color.BLACK;
         }
@@ -169,8 +173,18 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
         super.changeColorIconBackground(bg_color, ic_color);
     }
 
+    @Override
     public int getCurrentIconColor() {
         return mCurrentColor;
+    }
+
+    @Override
+    protected void resetColorWhenTransient(boolean resets) {
+        if (mColorEnabled && resets) {
+            mCurrentColor = -3;
+            setColorChangeIcon(-3);
+            setColorChangeNotificationIcon(-3);
+        }
     }
 
     public void updateNotificationIconColor() {

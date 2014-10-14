@@ -297,6 +297,8 @@ public class NetworkTraffic extends TextView {
         MB = KB * KB;
         GB = MB * KB;
 
+        updateTextColor();
+
         if (isSet(mState, MASK_UP) || isSet(mState, MASK_DOWN)) {
             if (getConnectAvailable()) {
                 if (mAttached) {
@@ -330,12 +332,16 @@ public class NetworkTraffic extends TextView {
     }
 
     public void updateSettings(int defaultColor) {
-        if (mCurrentColor != defaultColor) {
-            mCurrentColor = defaultColor;
-            updateSettings();
-            setTextColor(defaultColor);
-            updateTrafficDrawable();
-        }
+        mCurrentColor = defaultColor;
+        updateSettings();
+        updateTextColor();
+        updateTrafficDrawable();
+    }
+
+    private void updateTextColor() {
+        int clockColor = getResources().getColor(R.color.status_bar_clock_color);
+        int nowColor = mCurrentColor != -3 ? mCurrentColor : clockColor;
+        setTextColor(nowColor);
     }
 
     private void updateTrafficDrawable() {

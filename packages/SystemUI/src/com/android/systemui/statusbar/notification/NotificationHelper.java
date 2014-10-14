@@ -184,6 +184,7 @@ public class NotificationHelper {
         SizeAdaptiveLayout sal = hoverNotification.getLayout();
         sal.setTag(mHover.getContentDescription(entry.notification));
         sal.setOnClickListener(getNotificationClickListener(entry, true, true));
+        sal.setOnLongClickListener(getNotificationClickListener(entry, false, false));
         sal.setVisibility(View.GONE);
         sal.setEnabled(false);
 
@@ -201,6 +202,7 @@ public class NotificationHelper {
         entry.content.setOnClickListener(null);
         SizeAdaptiveLayout sal = hoverNotification.getLayout();
         sal.setOnClickListener(getNotificationClickListener(entry, false, true));
+        sal.setOnLongClickListener(null);
 
         applyStyle(sal, DEFAULT_STYLE);
 

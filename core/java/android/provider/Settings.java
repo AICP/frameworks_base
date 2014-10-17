@@ -2048,6 +2048,13 @@ public final class Settings {
         public static final String STATUS_BAR_BRIGHTNESS_CONTROL = "status_bar_brightness_control";
 
         /**
+         * Whether to enable ticker animation in statusbar
+         *
+         * @hide
+         */
+        public static final String STATUS_BAR_TICKER_ENABLED = "status_bar_ticker_enabled";
+
+        /**
          * The keyboard brightness to be used while the screen is on.
          * Valid value range is between 0 and {@link PowerManager#getMaximumKeyboardBrightness()}
          * @hide

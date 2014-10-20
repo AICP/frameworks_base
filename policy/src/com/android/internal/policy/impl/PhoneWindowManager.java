@@ -338,7 +338,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     boolean mDeskDockEnablesAccelerometer;
     int mLidKeyboardAccessibility;
     int mLidNavigationAccessibility;
-    boolean mLidControlsSleep = false;
+    boolean mLidControlsSleep;
     int mLongPressOnPowerBehavior = -1;
     boolean mScreenOnEarly = false;
     boolean mScreenOnFully = false;
@@ -4498,11 +4498,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         updateRotation(true);
 
         if (lidOpen) {
-            if (shouldLidControlSleep()) {
-                mPowerManager.wakeUp(SystemClock.uptimeMillis());
-            } else if (!shouldLidControlSleep()) {
-                mPowerManager.userActivity(SystemClock.uptimeMillis(), false);
-            }
+            mPowerManager.wakeUp(SystemClock.uptimeMillis());
+        } else if (!mLidControlsSleep) {
+            mPowerManager.userActivity(SystemClock.uptimeMillis(), false);
         }
     }
 
@@ -6036,15 +6034,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         updateRotation(true);
     }
 
-	private boolean shouldLidControlSleep() {
-		return mLidControlsSleep == true
-			&& Settings.System.getInt(mContext.getContentResolver(),
-			Settings.System.LOCKSCREEN_LID_WAKE, 1) !=0;
-	}
-
     private void applyLidSwitchState() {
         mPowerManager.setKeyboardVisibility(isBuiltInKeyboardVisible());
-        if (mLidState == LID_CLOSED && shouldLidControlSleep()) {
+        if (mLidState == LID_CLOSED && mLidControlsSleep) {
             if (mFocusedWindow != null && (mFocusedWindow.getAttrs().flags
                     & WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON) != 0) {
                 // if an application requests that the screen be turned on
@@ -6059,10 +6051,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
-        }
-
-        if (mLidState == LID_CLOSED && !shouldLidControlSleep()) {
-            mPowerManager.goToSleep(SystemClock.uptimeMillis());
         }
     }
 

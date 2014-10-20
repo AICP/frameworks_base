@@ -69,7 +69,6 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.WindowManagerPolicy;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RemoteViews.OnClickHandler;
@@ -339,21 +338,7 @@ public class KeyguardHostView extends KeyguardViewBase {
                 }
             }
         }
-        @Override
-        public void onLidStateChanged(int newState){
-            //when lid goes open and no security is set -> unlock device
-            if(newState == WindowManagerPolicy.WindowManagerFuncs.LID_OPEN
-                && mCurrentSecuritySelection == SecurityMode.None
-                && lidControlsSleep()) {
-                dismiss();
-            }
-        }
     };
-
-	private boolean lidControlsSleep() {
-		return Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.LOCKSCREEN_LID_WAKE, 0) != 0;
-    }
 
     private static final boolean isMusicPlaying(int playbackState) {
         // This should agree with the list in AudioService.isPlaystateActive()

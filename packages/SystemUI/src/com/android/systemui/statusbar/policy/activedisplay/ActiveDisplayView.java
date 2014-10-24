@@ -109,64 +109,57 @@ public class ActiveDisplayView extends FrameLayout {
     private static final int POCKET_MODE_NOTIFICATIONS_ONLY = 1;
     private static final int POCKET_MODE_ACTIVE_DISPLAY = 2;
 
-    // Targets
-    private static final int UNLOCK_TARGET = 0;
-    private static final int OPEN_APP_TARGET = 4;
-    private static final int DISMISS_TARGET = 6;
-
     // messages sent to the handler for processing
     private static final int MSG_SHOW_NOTIFICATION_VIEW = 1000;
     private static final int MSG_HIDE_NOTIFICATION_VIEW = 1001;
     private static final int MSG_SHOW_NOTIFICATION      = 1002;
     private static final int MSG_DISMISS_NOTIFICATION   = 1004;
 
-    private BaseStatusBar mBar;
-    private KeyguardManager mKeyguardManager;
-    
-    private GlowPadView mGlowPadView;
+    INotificationManager mNM;
+    INotificationListenerWrapper mNotificationListener;
+    StatusBarNotification mNotification;
+    PowerManager mPM;
+
+    private TelephonyManager mTM;
+    private StatusBarManager mStatusBarManager;
+    private SensorManager mSensorManager;
+    Sensor mProximitySensor;
+    long mPocketTime = 0;
+
     private GestureDetector mDoubleTapGesture;
-    private View mRemoteView;
-    private View mClock;
+    GlowPadView mGlowPadView;
+    View mRemoteView;
+    View mClock;
     private FrameLayout mRemoteViewLayout;
     private FrameLayout mContents;
     private ObjectAnimator mAnim;
     private Drawable mNotificationDrawable;
     private int mCreationOrientation;
-    private SettingsObserver mSettingsObserver;
-    private boolean mScreenOnState = true;
-    private INotificationManager mNM;
-    private INotificationListenerWrapper mNotificationListener;
-    private PowerManager mPM;
-    private TelephonyManager mTM;
-    private StatusBarManager mStatusBarManager;
-    private StatusBarNotification mNotification;
-    private SensorManager mSensorManager;
-    private Sensor mProximitySensor;
-    private boolean mProximityIsFar = true;
-    private LinearLayout mOverflowNotifications;
+    volatile boolean mScreenOnState = true;
+    LinearLayout mOverflowNotifications;
     private LayoutParams mRemoteViewLayoutParams;
     private int mIconSize;
     private int mIconMargin;
     private int mIconPadding;
-    private long mPocketTime = 0;
     private LinearLayout.LayoutParams mOverflowLayoutParams;
     private boolean mCallbacksRegistered = false;
+    private boolean mAttached;
 
     // user customizable settings
-    private boolean mNotOverridden;
-    private boolean mDisplayNotificationText = false;
-    private boolean hideNonClearable = true;
-    private boolean mHideLowPriorityNotifications = false;
-    private boolean mEnableDoubleTap = false;
-    private int mPocketMode = POCKET_MODE_OFF;
-    private boolean privacyMode = false;
-    private boolean mQuietTime = false;
-    private long mRedisplayTimeout = 0;
-    private Set<String> mExcludedApps = new HashSet<String>();
-    private long mDisplayTimeout = 8000L;
-    private long mProximityThreshold = 5000L;
-    private boolean mDistanceFar = true;
-    private boolean mAttached;
+    private SettingsObserver mSettingsObserver;
+    boolean mNotOverridden;
+    boolean mDisplayNotificationText = false;
+    boolean hideNonClearable = true;
+    boolean mHideLowPriorityNotifications = false;
+    int mPocketMode = POCKET_MODE_OFF;
+    boolean privacyMode = false;
+    boolean mQuietTime = false;
+    long mRedisplayTimeout = 0;
+    Set<String> mExcludedApps = new HashSet<String>();
+    long mDisplayTimeout = 8000L;
+    long mProximityThreshold = 5000L;
+    boolean mDistanceFar = true;
+    boolean mEnableDoubleTap = false;
 
     private static final String[] AUTO_BANNED_PACKAGES = new String[] {
         "android",
@@ -216,6 +209,11 @@ public class ActiveDisplayView extends FrameLayout {
     }
 
     private OnTriggerListener mOnTriggerListener = new OnTriggerListener() {
+
+        // Targets
+        private static final int UNLOCK_TARGET = 0;
+        private static final int OPEN_APP_TARGET = 4;
+        private static final int DISMISS_TARGET = 6;
 
         public void onTrigger(final View v, final int target) {
 
@@ -447,6 +445,53 @@ public class ActiveDisplayView extends FrameLayout {
                     break;
             }
         }
+
+        private void handleShowNotificationView() {
+            setVisibility(View.VISIBLE);
+            setSystemUIVisibility();
+            mHandler.postDelayed(runSystemUiVisibilty, 100);
+        }
+
+        private void handleHideNotificationView() {
+            mHandler.removeCallbacks(runSystemUiVisibilty);
+            setVisibility(View.GONE);
+            cancelTimeoutTimer();
+            adjustStatusBarLocked(false);
+        }
+
+        private void handleShowNotification(boolean ping) {
+            if (!mNotOverridden) return;
+            handleShowNotificationView();
+            setActiveNotification(mNotification, true);
+            inflateRemoteView(mNotification);
+            if (ping) mGlowPadView.ping();
+        }
+
+        private void handleDismissNotification() {
+            if (mNotification != null && mNotification.isClearable()) {
+                try {
+                    mNM.cancelNotificationFromSystemListener(mNotificationListener,
+                            mNotification.getPackageName(), mNotification.getTag(),
+                            mNotification.getId());
+                } catch (RemoteException e) {
+                } catch (NullPointerException npe) {
+                } finally {
+                    if (mRemoteView != null) mRemoteViewLayout.removeView(mRemoteView);
+                }
+                mNotification = getNextAvailableNotification();
+                if (mNotification != null) {
+                    setActiveNotification(mNotification, true);
+                    inflateRemoteView(mNotification);
+                    invalidate();
+                    mGlowPadView.ping();
+                    updateTimeoutTimer();
+                    return;
+                }
+            }
+            // no other notifications to display so turn screen off
+            if (mNotification == null) return;
+            turnScreenOff();
+        }
     };
 
     public ActiveDisplayView(Context context) {
@@ -456,14 +501,13 @@ public class ActiveDisplayView extends FrameLayout {
     public ActiveDisplayView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
+        mNM = INotificationManager.Stub.asInterface(
+                    ServiceManager.getService(Context.NOTIFICATION_SERVICE));
+        mNotificationListener = new INotificationListenerWrapper();
         mSensorManager = (SensorManager) mContext.getSystemService(Context.SENSOR_SERVICE);
         mProximitySensor = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
         mPM = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
         mTM = (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
-
-        mNM = INotificationManager.Stub.asInterface(
-                    ServiceManager.getService(Context.NOTIFICATION_SERVICE));
-        mNotificationListener = new INotificationListenerWrapper();
 
         mIconSize = getResources().getDimensionPixelSize(R.dimen.overflow_icon_size);
         mIconMargin = getResources().getDimensionPixelSize(R.dimen.ad_notification_margin);
@@ -480,10 +524,6 @@ public class ActiveDisplayView extends FrameLayout {
                 return true;
             }
         });
-    }
-
-    public void setStatusBar(BaseStatusBar bar) {
-        mBar = bar;
     }
 
     @Override
@@ -625,12 +665,12 @@ public class ActiveDisplayView extends FrameLayout {
         mAnim.start();
     }
 
-    private void showNotificationView() {
+    protected void showNotificationView() {
         mHandler.removeMessages(MSG_SHOW_NOTIFICATION_VIEW);
         mHandler.sendEmptyMessage(MSG_SHOW_NOTIFICATION_VIEW);
     }
 
-    private void showNotification(StatusBarNotification sbn, boolean ping) {
+    protected void showNotification(StatusBarNotification sbn, boolean ping) {
         mNotification = sbn;
         Message msg = new Message();
         msg.what = MSG_SHOW_NOTIFICATION;
@@ -664,61 +704,14 @@ public class ActiveDisplayView extends FrameLayout {
         }
     }
 
-    private void setSystemUIVisibility() {
+    protected void setSystemUIVisibility() {
         int newVis = SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                     | SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                     | SYSTEM_UI_FLAG_LAYOUT_STABLE;
         setSystemUiVisibility(newVis);
     }
 
-    private void handleShowNotificationView() {
-        setVisibility(View.VISIBLE);
-        setSystemUIVisibility();
-        mHandler.postDelayed(runSystemUiVisibilty, 100);
-    }
-
-    private void handleHideNotificationView() {
-        mHandler.removeCallbacks(runSystemUiVisibilty);
-        setVisibility(View.GONE);
-        cancelTimeoutTimer();
-        adjustStatusBarLocked(false);
-    }
-
-    private void handleShowNotification(boolean ping) {
-        if (!mNotOverridden) return;
-        handleShowNotificationView();
-        setActiveNotification(mNotification, true);
-        inflateRemoteView(mNotification);
-        if (ping) mGlowPadView.ping();
-    }
-
-    private void handleDismissNotification() {
-        if (mNotification != null && mNotification.isClearable()) {
-            try {
-                mNM.cancelNotificationFromSystemListener(mNotificationListener,
-                        mNotification.getPackageName(), mNotification.getTag(),
-                        mNotification.getId());
-            } catch (RemoteException e) {
-            } catch (NullPointerException npe) {
-            } finally {
-                if (mRemoteView != null) mRemoteViewLayout.removeView(mRemoteView);
-            }
-            mNotification = getNextAvailableNotification();
-            if (mNotification != null) {
-                setActiveNotification(mNotification, true);
-                inflateRemoteView(mNotification);
-                invalidate();
-                mGlowPadView.ping();
-                updateTimeoutTimer();
-                return;
-            }
-        }
-        // no other notifications to display so turn screen off
-        if (mNotification == null) return;
-        turnScreenOff();
-    }
-
-    private void onScreenTurnedOff() {
+    protected void onScreenTurnedOff() {
         cancelTimeoutTimer();
         if (mRedisplayTimeout > 0) updateRedisplayTimer();
 
@@ -733,21 +726,21 @@ public class ActiveDisplayView extends FrameLayout {
         }
     }
 
-    private void turnScreenOff() {
+    protected void turnScreenOff() {
         mHandler.removeCallbacks(runWakeDevice);
         if (mPM == null)
                 mPM = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
         mPM.goToSleep(SystemClock.uptimeMillis());
     }
 
-    private void turnScreenOn() {
+    protected void turnScreenOn() {
         // to avoid flicker and showing any other screen than the ActiveDisplayView
         // we use a runnable posted with a 250ms delay to turn wake the device
         mHandler.removeCallbacks(runWakeDevice);
-        mHandler.postDelayed(runWakeDevice, 300);
+        mHandler.postDelayed(runWakeDevice, 250);
     }
 
-    private final Runnable runWakeDevice = new Runnable() {
+    final Runnable runWakeDevice = new Runnable() {
         public void run() {
             if (!mDistanceFar) return;
             if (mPM == null)
@@ -758,29 +751,21 @@ public class ActiveDisplayView extends FrameLayout {
         }
     };
 
-    private void enableProximitySensor() {
+    protected void enableProximitySensor() {
         if (mNotOverridden) {
-            registerSensorListener(mProximitySensor);
+            if (mProximitySensor != null && !mAttached) {
+                mSensorManager.registerListener(mSensorListener, mProximitySensor, SensorManager.SENSOR_DELAY_UI);
+                mAttached = true;
+            }
         }
     }
 
-    private void disableProximitySensor() {
+    protected void disableProximitySensor() {
         if (mProximitySensor != null) {
-            unregisterSensorListener(mProximitySensor);
-        }
-    }
-
-    private void registerSensorListener(Sensor sensor) {
-        if (sensor != null && !mAttached) {
-            mSensorManager.registerListener(mSensorListener, sensor, SensorManager.SENSOR_DELAY_UI);
-            mAttached = true;
-        }
-    }
-
-    private void unregisterSensorListener(Sensor sensor) {
-        if (sensor != null) {
-            mSensorManager.unregisterListener(mSensorListener, sensor);
-            mAttached = false;
+            if (mProximitySensor != null) {
+                mSensorManager.unregisterListener(mSensorListener, mProximitySensor);
+                mAttached = false;
+            }
         }
     }
 
@@ -817,7 +802,7 @@ public class ActiveDisplayView extends FrameLayout {
         }
     }
 
-    private StatusBarNotification getNextAvailableNotification() {
+    protected StatusBarNotification getNextAvailableNotification() {
         try {
             // check if other notifications exist and if so display the next one
             StatusBarNotification[] sbns = mNM
@@ -835,7 +820,7 @@ public class ActiveDisplayView extends FrameLayout {
         return null;
     }
 
-    private void updateOtherNotifications() {
+    protected void updateOtherNotifications() {
         mOverflowNotifications.post(new Runnable() {
             @Override
             public void run() {
@@ -906,7 +891,9 @@ public class ActiveDisplayView extends FrameLayout {
                             if (hitRect.contains((int)x, (int)y)) {
                                 mLastChildPosition = i;
                                 if (sbn != null) {
-                                    swapNotification(sbn);
+                                    // swap the notification
+                                    mNotification = sbn;
+                                    setActiveNotification(sbn, false);
                                     iv.setBackgroundResource(R.drawable.ad_active_notification_background);
                                 }
                             } else {
@@ -939,20 +926,11 @@ public class ActiveDisplayView extends FrameLayout {
     };
 
     /**
-     * Swaps the current StatusBarNotification with {@code sbn}
-     * @param sbn The StatusBarNotification to swap with the current
-     */
-    private void swapNotification(StatusBarNotification sbn) {
-        mNotification = sbn;
-        setActiveNotification(sbn, false);
-    }
-
-    /**
      * Determine if a given notification should be used.
      * @param sbn StatusBarNotification to check.
      * @return True if it should be used, false otherwise.
      */
-    private boolean isValidNotification(StatusBarNotification sbn) {
+    protected boolean isValidNotification(StatusBarNotification sbn) {
         if (isOnCall() || mExcludedApps.contains(sbn.getPackageName())) return false;
         for (String packageName : AUTO_BANNED_PACKAGES) {
             if (packageName.equals(sbn.getPackageName())) {
@@ -970,7 +948,7 @@ public class ActiveDisplayView extends FrameLayout {
      * Determine if we should show notifications or not.
      * @return True if we should show this view.
      */
-    private boolean shouldShowNotificationForPocketMode() {
+    protected boolean shouldShowNotificationForPocketMode() {
         if (mPocketMode != POCKET_MODE_OFF) {
             if (mDistanceFar) {
                 return true;
@@ -985,7 +963,7 @@ public class ActiveDisplayView extends FrameLayout {
      * Determine i a call is currently in progress.
      * @return True if a call is in progress.
      */
-    private boolean isOnCall() {
+    protected boolean isOnCall() {
         if (mTM == null)
             mTM = (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
         return mTM.getCallState() != TelephonyManager.CALL_STATE_IDLE;
@@ -996,7 +974,7 @@ public class ActiveDisplayView extends FrameLayout {
      * @param sbn StatusBarNotification to be placed as the current one.
      * @param updateOthers Set to true to update the overflow notifications.
      */
-    private void setActiveNotification(final StatusBarNotification sbn, final boolean updateOthers) {
+    protected void setActiveNotification(final StatusBarNotification sbn, final boolean updateOthers) {
         try {
             Context pkgContext = mContext.createPackageContext(sbn.getPackageName(), Context.CONTEXT_RESTRICTED);
             mNotificationDrawable = pkgContext.getResources().getDrawable(sbn.getNotification().icon);
@@ -1028,7 +1006,7 @@ public class ActiveDisplayView extends FrameLayout {
      * used otherwise the standard contentView will be inflated.
      * @param sbn The StatusBarNotification to inflate content from.
      */
-    private void inflateRemoteView(StatusBarNotification sbn) {
+    protected void inflateRemoteView(StatusBarNotification sbn) {
         final Notification notification = sbn.getNotification();
         boolean useBigContent = notification.bigContentView != null;
         RemoteViews rv = useBigContent ? notification.bigContentView : notification.contentView;
@@ -1177,7 +1155,7 @@ public class ActiveDisplayView extends FrameLayout {
     /**
      * Cancels the timer for re-displaying notifications.
      */
-    private void cancelRedisplayTimer() {
+    protected void cancelRedisplayTimer() {
         AlarmManager am = (AlarmManager)mContext.getSystemService(Context.ALARM_SERVICE);
         Intent i = new Intent(ACTION_REDISPLAY_NOTIFICATION);
         PendingIntent pi = PendingIntent.getBroadcast(mContext, 0, i, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -1190,7 +1168,7 @@ public class ActiveDisplayView extends FrameLayout {
     /**
      * Restarts the timeout timer used to turn the screen off.
      */
-    private void updateTimeoutTimer() {
+    protected void updateTimeoutTimer() {
         AlarmManager am = (AlarmManager)mContext.getSystemService(Context.ALARM_SERVICE);
         Intent i = new Intent(ACTION_DISPLAY_TIMEOUT);
         PendingIntent pi = PendingIntent.getBroadcast(mContext, 0, i, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -1206,7 +1184,7 @@ public class ActiveDisplayView extends FrameLayout {
     /**
      * Cancels the timeout timer used to turn the screen off.
      */
-    private void cancelTimeoutTimer() {
+    protected void cancelTimeoutTimer() {
         AlarmManager am = (AlarmManager)mContext.getSystemService(Context.ALARM_SERVICE);
         Intent i = new Intent(ACTION_DISPLAY_TIMEOUT);
         PendingIntent pi = PendingIntent.getBroadcast(mContext, 0, i, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -1219,7 +1197,7 @@ public class ActiveDisplayView extends FrameLayout {
     /**
      * Check if device is in Quiet Hours in the moment.
      */
-    private boolean inQuietHours() {
+    protected boolean inQuietHours() {
         boolean quietHoursEnabled = Settings.AOKP.getIntForUser(mContext.getContentResolver(),
                 Settings.AOKP.QUIET_HOURS_ENABLED, 0, UserHandle.USER_CURRENT_OR_SELF) != 0;
         if (quietHoursEnabled) {

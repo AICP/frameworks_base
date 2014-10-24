@@ -747,7 +747,6 @@ public class ActiveDisplayView extends FrameLayout {
 
     final Runnable runWakeDevice = new Runnable() {
         public void run() {
-            if (!mDistanceFar) return;
             if (mPM == null)
                     mPM = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
             mPM.wakeUp(SystemClock.uptimeMillis());

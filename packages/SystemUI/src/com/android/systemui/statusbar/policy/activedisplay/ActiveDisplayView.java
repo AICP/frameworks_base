@@ -279,7 +279,6 @@ public class ActiveDisplayView extends FrameLayout {
                 adjustStatusBarLocked(false);
 
             } else if (target == DISMISS_TARGET) {
-                enableProximitySensor();
                 mHandler.removeMessages(MSG_DISMISS_NOTIFICATION);
                 mHandler.sendEmptyMessage(MSG_DISMISS_NOTIFICATION);
                 mNotification = getNextAvailableNotification();

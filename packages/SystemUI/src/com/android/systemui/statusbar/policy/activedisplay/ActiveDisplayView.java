@@ -175,10 +175,8 @@ public class ActiveDisplayView extends FrameLayout {
     private class INotificationListenerWrapper extends INotificationListener.Stub {
         @Override
         public void onNotificationPosted(final StatusBarNotification sbn) {
-            if (mQuietTime) {
-                if (inQuietHours()) return;
-            }
             synchronized (this) {
+                if (isOnCall() || (mQuietTime && inQuietHours())) return;
                 if (shouldShowNotificationForPocketMode() && isValidNotification(sbn)) {
                     // need to make sure either the screen is off or the user is currently
                     // viewing the notifications
@@ -937,7 +935,7 @@ public class ActiveDisplayView extends FrameLayout {
      * @return True if it should be used, false otherwise.
      */
     protected boolean isValidNotification(StatusBarNotification sbn) {
-        if (isOnCall() || mExcludedPackages.contains(sbn.getPackageName())) return false;
+        if (mExcludedPackages.contains(sbn.getPackageName())) return false;
 
         return ((sbn.isClearable() || !hideNonClearable)
                 && (!mHideLowPriorityNotifications || sbn.getNotification().priority > HIDE_NOTIFICATIONS_BELOW_SCORE)
@@ -1075,10 +1073,8 @@ public class ActiveDisplayView extends FrameLayout {
             if (event.sensor.equals(mProximitySensor)) {
                 if (value >= mProximitySensor.getMaximumRange()) {
                     mDistanceFar = true;
-                    if (mQuietTime) {
-                        if (inQuietHours()) return;
-                    }
                     synchronized (this) {
+                        if (mQuietTime && inQuietHours()) return;
                         if (!mScreenOnState) {
                             if (checkTime >= (mPocketTime + mProximityThreshold)){
                                 if (mNotification == null) {
@@ -1108,10 +1104,8 @@ public class ActiveDisplayView extends FrameLayout {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             if (ACTION_REDISPLAY_NOTIFICATION.equals(action)) {
-                if (mQuietTime) {
-                    if (inQuietHours()) return;
-                }
                 synchronized (this) {
+                    if (isOnCall() || (mQuietTime && inQuietHours())) return;
                     if (!mScreenOnState) {
                         if (mNotification == null) {
                             mNotification = getNextAvailableNotification();

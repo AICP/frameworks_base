@@ -155,13 +155,13 @@ public class ActiveDisplayView extends FrameLayout {
     boolean privacyMode = false;
     boolean mQuietTime = false;
     long mRedisplayTimeout = 0;
-    Set<String> mExcludedApps = new HashSet<String>();
+    Set<String> mExcludedPackages = new HashSet<String>();
     long mDisplayTimeout = 8000L;
     long mProximityThreshold = 5000L;
     boolean mDistanceFar = true;
     boolean mEnableDoubleTap = false;
 
-    private static final String[] AUTO_BANNED_PACKAGES = new String[] {
+    static final String[] AUTO_BANNED_PACKAGES = new String[] {
         "android",
         "com.android.music",
         "com.andrew.apollo",
@@ -406,11 +406,16 @@ public class ActiveDisplayView extends FrameLayout {
             mEnableDoubleTap = Settings.System.getInt(
                     resolver, Settings.System.ACTIVE_DISPLAY_DOUBLE_TAP, 0) == 1;
 
-
+            mExcludedPackages.clear();
             if (!TextUtils.isEmpty(excludedApps)) {
-                String[] appsToExclude = excludedApps.split("\\|");
-                mExcludedApps = new HashSet<String>(Arrays.asList(appsToExclude));
+                for (String bannedPackage : excludedApps.split("\\|")) {
+                    mExcludedPackages.add(bannedPackage);
+                }
             }
+            for (String bannedPackage : AUTO_BANNED_PACKAGES) {
+                mExcludedPackages.add(bannedPackage);
+            }
+
 
             if (mRedisplayTimeout <= 0) {
                 cancelRedisplayTimer();
@@ -931,13 +936,7 @@ public class ActiveDisplayView extends FrameLayout {
      * @return True if it should be used, false otherwise.
      */
     protected boolean isValidNotification(StatusBarNotification sbn) {
-        if (isOnCall() || mExcludedApps.contains(sbn.getPackageName())) return false;
-        for (String packageName : AUTO_BANNED_PACKAGES) {
-            if (packageName.equals(sbn.getPackageName())) {
-                 Log.i(TAG, "Package name: " + sbn.getPackageName() + " is banned. Not a valid notification.");
-                return false;
-            }
-        }
+        if (isOnCall() || mExcludedPackages.contains(sbn.getPackageName())) return false;
 
         return ((sbn.isClearable() || !hideNonClearable)
                 && (!mHideLowPriorityNotifications || sbn.getNotification().priority > HIDE_NOTIFICATIONS_BELOW_SCORE)

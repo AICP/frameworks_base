@@ -191,6 +191,7 @@
     <string name="shortcut_reboot">Reboot</string>
     <string name="shortcut_recovery">Recovery</string>
     <string name="shortcut_volume">Volume</string>
+    <string name="shortcut_screensleep">Sleep Screen</string>
 
     <!-- Off/On/Toggle -->
     <string name="off">Off</string>

@@ -4648,6 +4648,12 @@ public final class Settings {
         */
         public static final String TICKER_DISABLED = "ticker_disabled";
 
+       /**
+         * Navigation glow time
+         * @hide
+         */
+        public static final String NAVIGATION_BUTTON_GLOW_TIME = "navigation_button_glow_time";
+
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.

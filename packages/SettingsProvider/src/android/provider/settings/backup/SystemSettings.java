@@ -98,5 +98,6 @@ public class SystemSettings {
         Settings.System.BRIGHTNESS_SLIDER_POSITION,
         Settings.System.TORCH_LONG_PRESS_POWER_GESTURE,
         Settings.System.TORCH_LONG_PRESS_POWER_TIMEOUT,
+        Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN,
     };
 }

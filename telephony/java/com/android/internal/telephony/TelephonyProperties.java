@@ -93,7 +93,7 @@ public interface TelephonyProperties
     //****** SIM Card
     /**
      * One of <code>"UNKNOWN"</code> <code>"ABSENT"</code> <code>"PIN_REQUIRED"</code>
-     * <code>"PUK_REQUIRED"</code> <code>"NETWORK_LOCKED"</code> or <code>"READY"</code>
+     * <code>"PUK_REQUIRED"</code> <code>"PERSO_LOCKED"</code> or <code>"READY"</code>
      */
     static String PROPERTY_SIM_STATE = "gsm.sim.state";
 
@@ -102,6 +102,18 @@ public interface TelephonyProperties
      *  Availability: SIM state must be "READY"
      */
     static String PROPERTY_ICC_OPERATOR_NUMERIC = "gsm.sim.operator.numeric";
+
+    /** The MCC+MNC (mobile country code+mobile network code) of the
+     *  provider of the SIM to be used for APNs lookup. 5 or 6 decimal digits.
+     *  Availability: SIM state must be "READY"
+     */
+    static String PROPERTY_APN_SIM_OPERATOR_NUMERIC = "gsm.apn.sim.operator.numeric";
+
+    /** The MCC+MNC (mobile country code+mobile network code) of the
+     *  provider of the CDMA RUIM/CSIM to be used for APNs lookup. 5 or 6 decimal digits.
+     *  Availability: RUIM state must be "READY"
+     */
+    static String PROPERTY_APN_RUIM_OPERATOR_NUMERIC = "net.cdma.ruim.operator.numeric";
 
     /** PROPERTY_ICC_OPERATOR_ALPHA is also known as the SPN, or Service Provider Name.
      *  Availability: SIM state must be "READY"
@@ -130,6 +142,11 @@ public interface TelephonyProperties
      * Defines the schema for the carrier specified OTASP number
      */
     static final String PROPERTY_OTASP_NUM_SCHEMA = "ro.cdma.otaspnumschema";
+
+    /**
+     * Defines it is an OMH card or not.
+     */
+    static final String PROPERTY_RUIM_OMH_CARD = "ril.cdma.omhcard";
 
     /**
      * Disable all calls including Emergency call when it set to true.
@@ -188,7 +205,7 @@ public interface TelephonyProperties
      */
     static final String PROPERTY_IGNORE_NITZ = "telephony.test.ignore.nitz";
 
-     /**
+    /**
      * Property to set multi sim feature.
      * Type:  String(dsds, dsda)
      */
@@ -209,4 +226,21 @@ public interface TelephonyProperties
      * Set to the sim count.
      */
     static final String PROPERTY_SIM_COUNT = "ro.telephony.sim.count";
+
+    /**
+     * Enable VoLTE/VT over IMS: debug option
+     * If 1: use IMS if provisioned/registered etc (i.e. standard operation)
+     * If 0: use CS.
+     * If missing: use 0
+     */
+    static final String PROPERTY_DBG_IMS_VOLTE_ENABLE = "persist.dbg.ims_volte_enable";
+
+    static final String EXTRAS_IS_CONFERENCE_URI = "isConferenceUri";
+
+    static final String EXTRA_DIAL_CONFERENCE_URI =
+            "org.codeaurora.extra.DIAL_CONFERENCE_URI";
+    static final String ADD_PARTICIPANT_KEY = "add_participant";
+
+    static final String EXTRA_SKIP_SCHEMA_PARSING =
+            "org.codeaurora.extra.SKIP_SCHEMA_PARSING";
 }

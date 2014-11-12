@@ -221,6 +221,11 @@ public class MediaRecorder
          */
         public static final int REMOTE_SUBMIX = 8;
 
+        /** @hide */
+        public static final int FM_RX = 10;
+
+        /** @hide */
+        public static final int FM_RX_A2DP = 11;
         /**
          * Audio source for preemptible, low-priority software hotword detection
          * It presents the same gain and pre processing tuning as {@link #VOICE_RECOGNITION}.
@@ -307,6 +312,13 @@ public class MediaRecorder
 
         /** VP8/VORBIS data in a WEBM container */
         public static final int WEBM = 9;
+
+        /** @hide QCP file format */
+        public static final int QCP = 20;
+
+        /** @hide WAVE media file format*/
+        public static final int WAVE = 21;
+
     };
 
     /**
@@ -331,6 +343,12 @@ public class MediaRecorder
         public static final int AAC_ELD = 5;
         /** Ogg Vorbis audio codec */
         public static final int VORBIS = 6;
+        /** @hide EVRC audio codec */
+        public static final int EVRC = 10;
+        /** @hide QCELP audio codec */
+        public static final int QCELP = 11;
+        /** @hide Linear PCM audio codec */
+        public static final int LPCM = 12;
     }
 
     /**
@@ -347,6 +365,8 @@ public class MediaRecorder
         public static final int H264 = 2;
         public static final int MPEG_4_SP = 3;
         public static final int VP8 = 4;
+        /** @hide */
+        public static final int H265 = 5;
     }
 
     /**
@@ -367,7 +387,7 @@ public class MediaRecorder
      * @see android.media.MediaRecorder.AudioSource
      */
     public static final int getAudioSourceMax() {
-        return AudioSource.REMOTE_SUBMIX;
+        return AudioSource.FM_RX_A2DP;
     }
 
     /**
@@ -402,7 +422,7 @@ public class MediaRecorder
              profile.quality <= CamcorderProfile.QUALITY_TIME_LAPSE_QVGA) {
             // Nothing needs to be done. Call to setCaptureRate() enables
             // time lapse video recording.
-        } else {
+        } else if (profile.audioCodec >= 0) {
             setAudioEncodingBitRate(profile.audioBitRate);
             setAudioChannels(profile.audioChannels);
             setAudioSamplingRate(profile.audioSampleRate);
@@ -756,6 +776,10 @@ public class MediaRecorder
      * prepare().
      */
     public native void start() throws IllegalStateException;
+
+    /** @hide
+    */
+    public native void pause() throws IllegalStateException;
 
     /**
      * Stops recording. Call this after start(). Once recording is stopped,

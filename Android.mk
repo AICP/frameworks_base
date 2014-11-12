@@ -94,11 +94,15 @@ LOCAL_SRC_FILES += \
 	core/java/android/app/backup/IRestoreObserver.aidl \
 	core/java/android/app/backup/IRestoreSession.aidl \
 	core/java/android/app/usage/IUsageStatsManager.aidl \
+	core/java/android/wipower/IWipower.aidl \
+	core/java/android/wipower/IWipowerManagerCallback.aidl \
 	core/java/android/bluetooth/IBluetooth.aidl \
+	core/java/android/bluetooth/IQBluetooth.aidl \
 	core/java/android/bluetooth/IBluetoothA2dp.aidl \
 	core/java/android/bluetooth/IBluetoothA2dpSink.aidl \
 	core/java/android/bluetooth/IBluetoothAvrcpController.aidl \
 	core/java/android/bluetooth/IBluetoothCallback.aidl \
+	core/java/android/bluetooth/IQBluetoothAdapterCallback.aidl \
 	core/java/android/bluetooth/IBluetoothHeadset.aidl \
 	core/java/android/bluetooth/IBluetoothHeadsetPhone.aidl \
 	core/java/android/bluetooth/IBluetoothHealth.aidl \
@@ -107,13 +111,18 @@ LOCAL_SRC_FILES += \
 	core/java/android/bluetooth/IBluetoothPan.aidl \
 	core/java/android/bluetooth/IBluetoothManager.aidl \
 	core/java/android/bluetooth/IBluetoothManagerCallback.aidl \
+	core/java/android/bluetooth/IQBluetoothManagerCallback.aidl \
 	core/java/android/bluetooth/IBluetoothPbap.aidl \
 	core/java/android/bluetooth/IBluetoothMap.aidl \
 	core/java/android/bluetooth/IBluetoothStateChangeCallback.aidl \
 	core/java/android/bluetooth/IBluetoothHeadsetClient.aidl \
+	core/java/android/bluetooth/IBluetoothHidDevice.aidl \
+	core/java/android/bluetooth/IBluetoothHidDeviceCallback.aidl \
 	core/java/android/bluetooth/IBluetoothGatt.aidl \
 	core/java/android/bluetooth/IBluetoothGattCallback.aidl \
 	core/java/android/bluetooth/IBluetoothGattServerCallback.aidl \
+	core/java/android/bluetooth/IBluetoothDun.aidl \
+	core/java/android/bluetooth/IBluetoothSap.aidl \
 	core/java/android/content/IClipboard.aidl \
 	core/java/android/content/IContentService.aidl \
 	core/java/android/content/IIntentReceiver.aidl \
@@ -300,6 +309,8 @@ LOCAL_SRC_FILES += \
 	location/java/android/location/IGeofenceProvider.aidl \
 	location/java/android/location/IGpsMeasurementsListener.aidl \
 	location/java/android/location/IGpsNavigationMessageListener.aidl \
+        location/java/android/location/IGeoFencer.aidl \
+        location/java/android/location/IGeoFenceListener.aidl \
 	location/java/android/location/IGpsStatusListener.aidl \
 	location/java/android/location/IGpsStatusProvider.aidl \
 	location/java/android/location/ILocationListener.aidl \
@@ -411,6 +422,27 @@ framework_module := $(LOCAL_INSTALLED_MODULE)
 framework_res_R_stamp := \
 	$(call intermediates-dir-for,APPS,framework-res,,COMMON)/src/R.stamp
 $(full_classes_compiled_jar): $(framework_res_R_stamp)
+
+# Build part 2 of the framework library.
+# ============================================================
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := framework2
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_NO_STANDARD_LIBRARIES := true
+LOCAL_STATIC_JAVA_LIBRARIES := framework-base
+LOCAL_DX_FLAGS := --core-library
+
+
+# List of packages to include along with their descendants.
+LOCAL_JAR_PACKAGES := \
+    android.hardware \
+    com \
+    javax \
+    org
+
+include $(BUILD_JAVA_LIBRARY)
+framework2_module := $(LOCAL_INSTALLED_MODULE)
 
 $(framework_module): | $(dir $(framework_module))framework-res.apk
 

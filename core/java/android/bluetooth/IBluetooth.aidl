@@ -20,6 +20,7 @@ import android.bluetooth.IBluetoothCallback;
 import android.bluetooth.IBluetoothStateChangeCallback;
 import android.bluetooth.BluetoothActivityEnergyInfo;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothRemoteDiRecord;
 import android.os.ParcelUuid;
 import android.os.ParcelFileDescriptor;
 
@@ -65,6 +66,8 @@ interface IBluetooth
     int getRemoteType(in BluetoothDevice device);
     String getRemoteAlias(in BluetoothDevice device);
     boolean setRemoteAlias(in BluetoothDevice device, in String name);
+    boolean setRemoteTrust(in BluetoothDevice device, in boolean value);
+    boolean getRemoteTrust(in BluetoothDevice device);
     int getRemoteClass(in BluetoothDevice device);
     ParcelUuid[] getRemoteUuids(in BluetoothDevice device);
     boolean fetchRemoteUuids(in BluetoothDevice device);
@@ -97,4 +100,8 @@ interface IBluetooth
     boolean isActivityAndEnergyReportingSupported();
     void getActivityEnergyInfoFromController();
     BluetoothActivityEnergyInfo reportActivityInfo();
+
+    int setSocketOpt(int type, int port, int optionName, in byte [] optionVal, int optionLen);
+    int getSocketOpt(int type, int port, int optionName, out byte [] optionVal);
+    BluetoothRemoteDiRecord getRemoteDiRecord(in BluetoothDevice device);
 }

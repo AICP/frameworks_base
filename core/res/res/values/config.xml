@@ -1,6 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!--
-/*
+/* Copyright (c) 2013, The Linux Foundation. All rights reserved.
+** Not a Contribution.
+**
 ** Copyright 2009, The Android Open Source Project
 **
 ** Licensed under the Apache License, Version 2.0 (the "License");
@@ -191,6 +193,7 @@
         <item>"mobile,0,0,0,-1,true"</item>
         <item>"mobile_mms,2,0,2,60000,true"</item>
         <item>"mobile_supl,3,0,2,60000,true"</item>
+        <item>"mobile_dun,4,0,2,60000,true"</item>
         <item>"mobile_hipri,5,0,3,60000,true"</item>
         <item>"mobile_fota,10,0,2,60000,true"</item>
         <item>"mobile_ims,11,0,2,60000,true"</item>
@@ -308,6 +311,7 @@
     <integer-array translatable="false" name="config_tether_upstream_types">
         <item>0</item>
         <item>1</item>
+        <item>4</item>
         <item>5</item>
         <item>7</item>
         <item>9</item>
@@ -382,6 +386,9 @@
 
     <!-- Integer indicating wpa_supplicant scan interval when p2p is connected in milliseconds -->
     <integer translatable="false" name="config_wifi_scan_interval_p2p_connected">60000</integer>
+
+    <!-- Integer indicating wpa_supplicant scan intervel when WFD session established in milliseconds  -->
+    <integer translatable="false" name="config_wifi_scan_interval_wfd_connected">300000</integer>
 
     <!-- Integer indicating the framework scan interval in milliseconds. This is used in the scenario
          where the chipset does not support background scanning (config_wifi_background_scan_suport
@@ -964,6 +971,12 @@
         -->
     </string-array>
 
+    <!-- Component name of the geofence services provider. -->
+    <string name="config_geofenceServicesProvider" translatable="false">com.qualcomm.location</string>
+
+    <!-- Component name of the combo network location provider. -->
+    <string name="config_comboNetworkLocationProvider" translatable="false">com.qualcomm.location</string>
+
     <!-- Boolean indicating if current platform supports bluetooth SCO for off call
     use cases -->
     <bool name="config_bluetooth_sco_off_call">true</bool>
@@ -1427,6 +1440,10 @@
     <!-- Set to true to add links to Cell Broadcast app from Settings and MMS app. -->
     <bool name="config_cellBroadcastAppLinks">false</bool>
 
+    <!-- Boolean indicating if RADIO POWER OFF should be skipped on receiving SIM REFRESH with RESET-->
+    <!-- This will be handled by modem if it is true-->
+    <bool translatable="false" name="skip_radio_power_off_on_sim_refresh_reset">true</bool>
+
     <!-- The default value if the SyncStorageEngine should sync automatically or not -->
     <bool name="config_syncstorageengine_masterSyncAutomatically">true</bool>
 
@@ -1478,6 +1495,9 @@
     <!-- Configure wifi tcp buffersizes in the form:
          rmem_min,rmem_def,rmem_max,wmem_min,wmem_def,wmem_max -->
     <string name="config_wifi_tcp_buffers" translatable="false">524288,1048576,2097152,262144,524288,1048576</string>
+    <!-- Configuration to send sms on 1x when UE is attached to eHRPD and there is an active
+         1xRTT voice call, irrespective of IMS registration state  -->
+    <bool name="config_send_sms1x_on_voice_call">true</bool>
 
     <!-- Whether WiFi display is supported by this device.
          There are many prerequisites for this feature to work correctly.
@@ -1853,4 +1873,162 @@
     <bool name="config_switch_phone_on_voice_reg_state_change">true</bool>
 
     <bool name="config_sms_force_7bit_encoding">false</bool>
+    <!-- Configuartion to support 7bit Ascii encoding and decoding
+         for long messages. -->
+    <bool name="config_ascii_7bit_support_for_long_message">false</bool>
+
+    <!-- Configuration to set delete any partial segments expire age -->
+    <!-- 30 days by default (60 * 60 * 1000) * 24 * 30 , no long so use string-->
+    <string name="config_partial_segment_expire_age">2592000000</string>
+
+    <!-- Is the device LTE capable -->
+    <bool name="config_lte_capable">true</bool>
+
+    <!-- set this value to true to set network mode as global during boot up -->
+    <bool name="config_global_phone_enabled">false</bool>
+
+    <!-- Configuartion to support SIM refresh in STK command for dual mode card.-->
+    <bool name="config_sim_refresh_for_dual_mode_card">true</bool>
+
+    <string-array name="origin_carrier_names">
+        <item>CHINA\u0020\u0020MOBILE</item>
+        <item>CMCC</item>
+        <item>CHN-UNICOM</item>
+        <item>China Mobile</item>
+        <item>China Unicom</item>
+        <item>China Telecom</item>
+        <item>中国移动</item>
+        <item>中国联通</item>
+        <item>中国电信</item>
+        <item>中國移動</item>
+        <item>中國聯通</item>
+        <item>中國電信</item>
+        <item>Searching for Service</item>
+    </string-array>
+
+    <string-array name="locale_carrier_names">
+        <item>China_Mobile</item>
+        <item>China_Mobile</item>
+        <item>China_Unicom</item>
+        <item>China_Mobile</item>
+        <item>China_Unicom</item>
+        <item>China_Telecom</item>
+        <item>China_Mobile</item>
+        <item>China_Unicom</item>
+        <item>China_Telecom</item>
+        <item>China_Mobile</item>
+        <item>China_Unicom</item>
+        <item>China_Telecom</item>
+        <item>roamingTextSearching</item>
+    </string-array>
+
+    <!-- monitor locale change -->
+    <bool name="config_monitor_locale_change">false</bool>
+
+    <!-- display for radio tech -->
+    <bool name="config_display_rat">false</bool>
+
+    <!-- spn display control -->
+    <bool name="config_spn_display_control">false</bool>
+
+    <!-- config 2G/3G/4G RAT strings for carriers -->
+    <string name="config_rat_2g" translatable="false">2G</string>
+    <string name="config_rat_3g" translatable="false">3G</string>
+    <string name="config_rat_4g" translatable="false">4G</string>
+
+    <!-- Configuration that determines if ACTIVATE_REJECT_GGSN is to be treated as
+         a permanent error -->
+    <bool name="config_reject_ggsn_perm_failure">true</bool>
+    <!-- Configuration that determines if PROTOCOL_ERRORS is to be treated as a
+         permanent error -->
+    <bool name="config_protocol_errors_perm_failure">true</bool>
+
+    <!-- Configuration to restart radio upon PDP_DEACTIVATE with
+         error cause as Regular deactivation(36). -->
+    <bool name="config_radio_reset_on_regular_deactivation">true</bool>
+
+    <!-- bool value to for enabling motion accelerometer -->
+    <bool name="use_motion_accel">false</bool>
+
+    <!-- Configuration to sending and receiving Mms when mobile data is disable.-->
+    <bool name="config_enable_mms_with_mobile_data_off">false</bool>
+
+    <!-- User display names for app ops codes -->
+    <string-array name="app_ops_labels">
+        <item>Trying to access location</item>
+        <item>Trying to access location</item>
+        <item>Trying to access location</item>
+        <item>Trying to use vibrate</item>
+        <item>Trying to read contacts</item>
+        <item>Trying to write contacts</item>
+        <item>Trying to read call log</item>
+        <item>Trying to write call log</item>
+        <item>Trying to read calendar</item>
+        <item>Trying to modify calendar</item>
+        <item>Trying to access location</item>
+        <item>Trying to post notification</item>
+        <item>Trying to access location</item>
+        <item>Trying to make phone call</item>
+        <item>Trying to read SMS</item>
+        <item>Trying to write SMS</item>
+        <item>Trying to receive SMS</item>
+        <item>Trying to receive emergency SMS</item>
+        <item>Trying to receive MMS</item>
+        <item>Trying to receive WAP push</item>
+        <item>Trying to send SMS</item>
+        <item>Trying to read ICC SMS</item>
+        <item>Trying to write ICC SMS</item>
+        <item>Trying to modify settings</item>
+        <item>Trying to draw on top</item>
+        <item>Trying to access notifications</item>
+        <item>Trying to access Camera</item>
+        <item>Trying to record audio</item>
+        <item>Trying to play audio</item>
+        <item>Trying to read clipboard</item>
+        <item>Trying to modify clipboard</item>
+        <item>Trying to use media buttons</item>
+        <item>Trying to use audio focus</item>
+        <item>Trying to use master volume</item>
+        <item>Trying to use voice volume</item>
+        <item>Trying to use ring volume</item>
+        <item>Trying to use media volume</item>
+        <item>Trying to use alarm volume</item>
+        <item>Trying to use notification volume</item>
+        <item>Trying to use bluetooth volume</item>
+        <item>Trying to Keep device awake</item>
+        <item>Trying to access location</item>
+        <item>Trying to access location</item>
+        <item>Trying to get usage stats</item>
+        <item>Trying to mute microphone</item>
+        <item>Trying to toast window</item>
+        <item>Trying to project media</item>
+        <item>Trying to activate vpn</item>
+        <item>Trying to turn on/off Wifi</item>
+        <item>Trying to trun on/off bluetooth</item>
+        <item>Trying to send MMS</item>
+        <item>Trying to read MMS</item>
+        <item>Trying to write MMS</item>
+        <item>Trying to start at bootup</item>
+        <item>Trying to turn on/off NFC</item>
+        <item>Trying to delete SMS</item>
+        <item>Trying to delete MMS</item>
+        <item>Trying to delete contacts</item>
+        <item>Trying to delete call log</item>
+        <item>Trying to turn on mobile data</item>
+    </string-array>
+
+    <!-- Configuartion to support ESN Tracker -->
+    <bool name="config_telephony_ESN_Tracker_enabled">false</bool>
+
+    <!-- Whether cpu boost is enabled for overscroller fling. -->
+    <bool name="config_enableCpuBoostForOverScrollerFling">false</bool>
+
+    <!-- Whether cpu boost is enabled for horizontal scroll. -->
+    <bool name="config_enableCpuBoostForScroller">false</bool>
+
+    <!-- Configuration to enable non-default PDP during IWLAN -->
+    <bool name="config_feature_iwlan_enabled">false</bool>
+    <!-- set to false if we dont need to consider data
+         service state to display signal strength bars -->
+    <bool name="config_combined_signal">true</bool>
 </resources>

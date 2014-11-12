@@ -62,6 +62,10 @@ public class BootReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(final Context context, Intent intent) {
+
+        boolean fromQuickBoot = intent.getBooleanExtra("from_quickboot", false);
+        if (fromQuickBoot) return;
+
         // Log boot events in the background to avoid blocking the main thread with I/O
         new Thread() {
             @Override
@@ -194,6 +198,7 @@ public class BootReceiver extends BroadcastReceiver {
         if (db == null || !db.isTagEnabled(tag)) return;  // Logging disabled
 
         File file = new File(filename);
+        if (file.isDirectory()) return;  // Skip subdirectories (likely vendor-specific)
         long fileTime = file.lastModified();
         if (fileTime <= 0) return;  // File does not exist
 

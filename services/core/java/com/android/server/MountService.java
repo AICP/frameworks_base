@@ -947,19 +947,21 @@ class MountService extends IMountService.Stub
             }
 
             if (code == VoldResponseCode.VolumeDiskInserted) {
-                new Thread("MountService#VolumeDiskInserted") {
-                    @Override
-                    public void run() {
-                        try {
-                            int rc;
-                            if ((rc = doMountVolume(path)) != StorageResultCode.OperationSucceeded) {
-                                Slog.w(TAG, String.format("Insertion mount failed (%d)", rc));
+                if(!(isUsbMassStorageConnected() && volume.allowMassStorage()))
+                    new Thread("MountService#VolumeDiskInserted") {
+                        @Override
+                        public void run() {
+                            try {
+                                int rc;
+                                if ((rc = doMountVolume(path)) !=
+                                        StorageResultCode.OperationSucceeded) {
+                                    Slog.w(TAG, String.format("Insertion mount failed (%d)", rc));
+                                }
+                            } catch (Exception ex) {
+                                Slog.w(TAG, "Failed to mount media on insertion", ex);
                             }
-                        } catch (Exception ex) {
-                            Slog.w(TAG, "Failed to mount media on insertion", ex);
                         }
-                    }
-                }.start();
+                    }.start();
             } else if (code == VoldResponseCode.VolumeDiskRemoved) {
                 /*
                  * This event gets trumped if we're already in BAD_REMOVAL state
@@ -1033,6 +1035,8 @@ class MountService extends IMountService.Stub
                 updatePublicVolumeState(volume, Environment.MEDIA_UNMOUNTED);
                 action = Intent.ACTION_MEDIA_UNMOUNTED;
             }
+            if(isUsbMassStorageConnected() && volume.allowMassStorage())
+                doShareUnshareVolume(path, "ums", true);
         } else if (newState == VolumeState.Pending) {
         } else if (newState == VolumeState.Checking) {
             if (DEBUG_EVENTS) Slog.i(TAG, "updating volume state checking");
@@ -3004,10 +3008,11 @@ class MountService extends IMountService.Stub
         if (path.startsWith(obbPath)) {
             path = path.substring(obbPath.length() + 1);
 
+            final UserEnvironment ownerEnv = new UserEnvironment(UserHandle.USER_OWNER);
             if (forVold) {
-                return new File(Environment.getEmulatedStorageObbSource(), path).getAbsolutePath();
+                return new File(ownerEnv.buildExternalStorageAndroidObbDirsForVold()[0], path)
+                        .getAbsolutePath();
             } else {
-                final UserEnvironment ownerEnv = new UserEnvironment(UserHandle.USER_OWNER);
                 return new File(ownerEnv.buildExternalStorageAndroidObbDirs()[0], path)
                         .getAbsolutePath();
             }

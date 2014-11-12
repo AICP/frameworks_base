@@ -1,4 +1,7 @@
 /*
+ * Copyright (c) 2014, The Linux Foundation. All rights reserved.
+ * Not a Contribution.
+ *
  * Copyright (C) 2008 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,6 +22,7 @@ package android.telephony;
 import android.annotation.SystemApi;
 import android.annotation.SdkConstant;
 import android.annotation.SdkConstant.SdkConstantType;
+import android.app.AppOpsManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -876,12 +880,22 @@ public class TelephonyManager {
         case RILConstants.NETWORK_MODE_GSM_UMTS:
         case RILConstants.NETWORK_MODE_LTE_GSM_WCDMA:
         case RILConstants.NETWORK_MODE_LTE_WCDMA:
-        case RILConstants.NETWORK_MODE_LTE_CDMA_EVDO_GSM_WCDMA:
+        case RILConstants.NETWORK_MODE_TD_SCDMA_ONLY:
+        case RILConstants.NETWORK_MODE_TD_SCDMA_WCDMA:
+        case RILConstants.NETWORK_MODE_TD_SCDMA_LTE:
+        case RILConstants.NETWORK_MODE_TD_SCDMA_GSM:
+        case RILConstants.NETWORK_MODE_TD_SCDMA_GSM_LTE:
+        case RILConstants.NETWORK_MODE_TD_SCDMA_GSM_WCDMA:
+        case RILConstants.NETWORK_MODE_TD_SCDMA_WCDMA_LTE:
+        case RILConstants.NETWORK_MODE_TD_SCDMA_GSM_WCDMA_LTE:
             return PhoneConstants.PHONE_TYPE_GSM;
 
         // Use CDMA Phone for the global mode including CDMA
         case RILConstants.NETWORK_MODE_GLOBAL:
         case RILConstants.NETWORK_MODE_LTE_CDMA_EVDO:
+        case RILConstants.NETWORK_MODE_LTE_CDMA_EVDO_GSM_WCDMA:
+        case RILConstants.NETWORK_MODE_TD_SCDMA_CDMA_EVDO_GSM_WCDMA:
+        case RILConstants.NETWORK_MODE_TD_SCDMA_LTE_CDMA_EVDO_GSM_WCDMA:
             return PhoneConstants.PHONE_TYPE_CDMA;
 
         case RILConstants.NETWORK_MODE_LTE_ONLY:
@@ -934,6 +948,11 @@ public class TelephonyManager {
     private static final String sLteOnCdmaProductType =
         SystemProperties.get(TelephonyProperties.PROPERTY_LTE_ON_CDMA_PRODUCT_TYPE, "");
 
+    /** @hide */
+     public static int getLteOnCdmaModeStatic() {
+        return getLteOnCdmaModeStatic(getDefaultSim());
+    }
+
     /**
      * Return if the current radio is LTE on CDMA. This
      * is a tri-state return value as for a period of time
@@ -944,12 +963,12 @@ public class TelephonyManager {
      *
      * @hide
      */
-    public static int getLteOnCdmaModeStatic() {
+    public static int getLteOnCdmaModeStatic(int slotId) {
         int retVal;
         int curVal;
         String productType = "";
 
-        curVal = SystemProperties.getInt(TelephonyProperties.PROPERTY_LTE_ON_CDMA_DEVICE,
+        curVal = getTelephonyProperty(TelephonyProperties.PROPERTY_LTE_ON_CDMA_DEVICE, slotId,
                     PhoneConstants.LTE_ON_CDMA_UNKNOWN);
         retVal = curVal;
         if (retVal == PhoneConstants.LTE_ON_CDMA_UNKNOWN) {
@@ -1119,6 +1138,42 @@ public class TelephonyManager {
     public static final int NETWORK_TYPE_HSPAP = 15;
     /** Current network is GSM {@hide} */
     public static final int NETWORK_TYPE_GSM = 16;
+    /** Current network is TD_SCDMA {@hide} */
+    public static final int NETWORK_TYPE_TD_SCDMA = 17;
+    /** Current network is IWLAN {@hide} */
+    public static final int NETWORK_TYPE_IWLAN = 18;
+
+    /**
+     * Convert network type to String
+     *
+     * @param networkType
+     * @return String representation of the networkClass
+     * @hide
+     */
+    public String networkTypeToString(int networkType) {
+        String ratClassName = "";
+        int networkClass = getNetworkClass(networkType);
+        Rlog.d(TAG, "networkType = " + networkType + " networkClass = " + networkClass);
+        if (mContext == null) return null;
+        switch (networkClass) {
+            case TelephonyManager.NETWORK_CLASS_2_G:
+                ratClassName = mContext.getResources().getString(
+                        com.android.internal.R.string.config_rat_2g);
+                break;
+            case TelephonyManager.NETWORK_CLASS_3_G:
+                ratClassName = mContext.getResources().getString(
+                        com.android.internal.R.string.config_rat_3g);
+                break;
+            case TelephonyManager.NETWORK_CLASS_4_G:
+                ratClassName = mContext.getResources().getString(
+                        com.android.internal.R.string.config_rat_4g);
+                break;
+            default:
+                ratClassName = "";
+                break;
+        }
+        return ratClassName;
+    }
 
     /**
      * @return the NETWORK_TYPE_xxxx for current data connection.
@@ -1150,6 +1205,9 @@ public class TelephonyManager {
      * @see #NETWORK_TYPE_LTE
      * @see #NETWORK_TYPE_EHRPD
      * @see #NETWORK_TYPE_HSPAP
+     * @see #NETWORK_TYPE_TD_SCDMA
+     *
+     * @hide
      */
     /** {@hide} */
    public int getNetworkType(long subId) {
@@ -1195,7 +1253,7 @@ public class TelephonyManager {
      * @hide
      */
     public int getDataNetworkType() {
-        return getDataNetworkType(getDefaultSubscription());
+        return getDataNetworkType(SubscriptionManager.getDefaultDataSubId());
     }
 
     /**
@@ -1256,6 +1314,21 @@ public class TelephonyManager {
         }
     }
 
+    /**
+     * Returns the icc operator numeric for a given subId
+     *
+     */
+    /** {@hide} */
+    public String getIccOperatorNumeric(long subId) {
+       try{
+            return getITelephony().getIccOperatorNumeric(subId);
+       } catch (RemoteException ex) {
+           return null;
+       } catch (NullPointerException ex) {
+           return null;
+       }
+    }
+
     /** Unknown network class. {@hide} */
     public static final int NETWORK_CLASS_UNKNOWN = 0;
     /** Class of broadly defined "2G" networks. {@hide} */
@@ -1289,8 +1362,10 @@ public class TelephonyManager {
             case NETWORK_TYPE_EVDO_B:
             case NETWORK_TYPE_EHRPD:
             case NETWORK_TYPE_HSPAP:
+            case NETWORK_TYPE_TD_SCDMA:
                 return NETWORK_CLASS_3_G;
             case NETWORK_TYPE_LTE:
+            case NETWORK_TYPE_IWLAN:
                 return NETWORK_CLASS_4_G;
             default:
                 return NETWORK_CLASS_UNKNOWN;
@@ -1350,6 +1425,10 @@ public class TelephonyManager {
                 return "HSPA+";
             case NETWORK_TYPE_GSM:
                 return "GSM";
+            case NETWORK_TYPE_TD_SCDMA:
+                return "TD-SCDMA";
+            case NETWORK_TYPE_IWLAN:
+                return "IWLAN";
             default:
                 return "UNKNOWN";
         }
@@ -1395,7 +1474,7 @@ public class TelephonyManager {
      */
     /** {@hide} */
     // FIXME Input argument slotId should be of type int
-    public boolean hasIccCard(long slotId) {
+    public boolean hasIccCard(int slotId) {
 
         try {
             return getITelephony().hasIccCardUsingSlotId(slotId);
@@ -1457,7 +1536,7 @@ public class TelephonyManager {
         else if ("PUK_REQUIRED".equals(prop)) {
             return SIM_STATE_PUK_REQUIRED;
         }
-        else if ("NETWORK_LOCKED".equals(prop)) {
+        else if ("PERSO_LOCKED".equals(prop)) {
             return SIM_STATE_NETWORK_LOCKED;
         }
         else if ("READY".equals(prop)) {
@@ -2328,8 +2407,13 @@ public class TelephonyManager {
      * <p>Requires Permission: {@link android.Manifest.permission#ACCESS_COARSE_LOCATION}
      */
     public List<CellInfo> getAllCellInfo() {
+        return getAllCellInfo(getDefaultSubscription());
+    }
+
+    /** {@hide} */
+    public List<CellInfo> getAllCellInfo(long subId) {
         try {
-            return getITelephony().getAllCellInfo();
+            return getITelephony().getAllCellInfoUsingSubId(subId);
         } catch (RemoteException ex) {
             return null;
         } catch (NullPointerException ex) {
@@ -2629,7 +2713,7 @@ public class TelephonyManager {
     }
 
     /** {@hide} */
-    public int getDefaultSim() {
+    public static int getDefaultSim() {
         //TODO Need to get it from Telephony Devcontroller
         return 0;
     }
@@ -2780,14 +2864,26 @@ public class TelephonyManager {
         return propVal == null ? defaultVal : propVal;
     }
 
+    /**
+     * Gets the telephony property.
+     *
+     * @hide
+     */
+    public static int getTelephonyProperty(String property, int slotId, int defaultVal) {
+        String propVal = null;
+        String prop = SystemProperties.get(property);
+        if ((prop != null) && (prop.length() > 0)) {
+            String values[] = prop.split(",");
+            if ((slotId >= 0) && (slotId < values.length) && (values[slotId] != null)) {
+                propVal = values[slotId];
+            }
+        }
+        return propVal == null ? defaultVal : Integer.parseInt(propVal);
+    }
+
     /** @hide */
     public int getSimCount() {
-        if(isMultiSimEnabled()) {
-        //TODO Need to get it from Telephony Devcontroller
-            return 2;
-        } else {
-           return 1;
-        }
+        return getPhoneCount();
     }
 
     /**
@@ -3352,10 +3448,23 @@ public class TelephonyManager {
     /** @hide */
     @SystemApi
     public void setDataEnabled(boolean enable) {
+        setDataEnabledUsingSubId(getDefaultSubscription(), enable);
+    }
+
+    /** @hide */
+    @SystemApi
+    public void setDataEnabledUsingSubId(long subId, boolean enable) {
         try {
-            getITelephony().setDataEnabled(enable);
+            AppOpsManager appOps = (AppOpsManager)mContext.getSystemService(Context.APP_OPS_SERVICE);
+            if (enable) {
+                if (appOps.noteOp(AppOpsManager.OP_DATA_CONNECT_CHANGE) != AppOpsManager.MODE_ALLOWED) {
+                    Log.w(TAG, "Permission denied by user.");
+                    return;
+                }
+            }
+            getITelephony().setDataEnabledUsingSubId(subId, enable);
         } catch (RemoteException e) {
-            Log.e(TAG, "Error calling ITelephony#setDataEnabled", e);
+            Log.e(TAG, "Error calling setDataEnabled", e);
         }
     }
 

@@ -1,4 +1,7 @@
 /*
+ * Copyright (c) 2014, The Linux Foundation. All rights reserved.
+ * Not a Contribution.
+ *
  * Copyright (C) 2008 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,6 +24,8 @@ import java.nio.ByteBuffer;
 import java.util.Iterator;
 
 import android.os.Binder;
+import android.app.ActivityThread;
+import android.app.AppOpsManager;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
@@ -392,6 +397,12 @@ public class AudioRecord
             break;
         case AudioFormat.ENCODING_PCM_16BIT:
         case AudioFormat.ENCODING_PCM_8BIT:
+        case AudioFormat.ENCODING_AMRNB:
+        case AudioFormat.ENCODING_AMRWB:
+        case AudioFormat.ENCODING_EVRC:
+        case AudioFormat.ENCODING_EVRCB:
+        case AudioFormat.ENCODING_EVRCWB:
+        case AudioFormat.ENCODING_EVRCNW:
             mAudioFormat = audioFormat;
             break;
         default:
@@ -412,6 +423,11 @@ public class AudioRecord
         // To update when supporting compressed formats
         int frameSizeInBytes = mChannelCount
             * (AudioFormat.getBytesPerSample(mAudioFormat));
+        //overwrite frameSizeInBytes for compress voip
+        if ((mRecordSource == MediaRecorder.AudioSource.VOICE_COMMUNICATION) &&
+            (mAudioFormat != AudioFormat.ENCODING_PCM_16BIT)) {
+            frameSizeInBytes = mChannelCount * 1;
+        }
         if ((audioBufferSize % frameSizeInBytes != 0) || (audioBufferSize < 1)) {
             throw new IllegalArgumentException("Invalid audio buffer size.");
         }
@@ -557,6 +573,9 @@ public class AudioRecord
         case (AudioFormat.CHANNEL_IN_FRONT | AudioFormat.CHANNEL_IN_BACK):
             channelCount = 2;
             break;
+        case AudioFormat.CHANNEL_IN_5POINT1:
+            channelCount = 6;
+            break;
         case AudioFormat.CHANNEL_INVALID:
         default:
             loge("getMinBufferSize(): Invalid channel configuration.");
@@ -564,7 +583,13 @@ public class AudioRecord
         }
 
         // PCM_8BIT is not supported at the moment
-        if (audioFormat != AudioFormat.ENCODING_PCM_16BIT) {
+        if (audioFormat != AudioFormat.ENCODING_PCM_16BIT
+            && audioFormat != AudioFormat.ENCODING_AMRNB
+            && audioFormat != AudioFormat.ENCODING_AMRWB
+            && audioFormat != AudioFormat.ENCODING_EVRC
+            && audioFormat != AudioFormat.ENCODING_EVRCB
+            && audioFormat != AudioFormat.ENCODING_EVRCWB
+            && audioFormat != AudioFormat.ENCODING_EVRCNW) {
             loge("getMinBufferSize(): Invalid audio format.");
             return ERROR_BAD_VALUE;
         }
@@ -590,6 +615,10 @@ public class AudioRecord
         return mSessionId;
     }
 
+    private boolean isAudioRecordAllowed() {
+        String packageName = ActivityThread.currentPackageName();
+        return native_check_permission(packageName) == AppOpsManager.MODE_ALLOWED;
+    }
     //---------------------------------------------------------
     // Transport control methods
     //--------------------
@@ -599,6 +628,10 @@ public class AudioRecord
      */
     public void startRecording()
     throws IllegalStateException {
+        if (!isAudioRecordAllowed()) {
+            Log.e(TAG, "User permission denied!");
+            return;
+        }
         if (mState != STATE_INITIALIZED) {
             throw new IllegalStateException("startRecording() called on an "
                     + "uninitialized AudioRecord.");
@@ -622,6 +655,10 @@ public class AudioRecord
      */
     public void startRecording(MediaSyncEvent syncEvent)
     throws IllegalStateException {
+        if (!isAudioRecordAllowed()) {
+            Log.e(TAG, "User permission denied!");
+            return;
+        }
         if (mState != STATE_INITIALIZED) {
             throw new IllegalStateException("startRecording() called on an "
                     + "uninitialized AudioRecord.");
@@ -942,6 +979,8 @@ public class AudioRecord
 
     static private native final int native_get_min_buff_size(
             int sampleRateInHz, int channelCount, int audioFormat);
+
+    private native final int native_check_permission(String packageName);
 
 
     //---------------------------------------------------------

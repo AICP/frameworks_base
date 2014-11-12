@@ -96,6 +96,16 @@ public final class PhoneCapabilities {
             | ADD_CALL | RESPOND_VIA_TEXT | MUTE | MANAGE_CONFERENCE | SEPARATE_FROM_CONFERENCE
             | DISCONNECT_FROM_CONFERENCE;
 
+    /* Add participant in an active or conference call option*/
+    /** {@hide} */
+    public static final int ADD_PARTICIPANT = 0x00004000;
+
+    /**
+     * Call is using voice privacy.
+     * @hide
+     */
+    public static final int VOICE_PRIVACY = 0x00008000;
+
     public static String toString(int capabilities) {
         StringBuilder builder = new StringBuilder();
         builder.append("[Capabilities:");
@@ -135,6 +145,10 @@ public final class PhoneCapabilities {
         if ((capabilities & VoWIFI) != 0) {
             builder.append(" VoWIFI");
         }
+        if ((capabilities & VOICE_PRIVACY) != 0) {
+            builder.append(" VOICE_PRIVACY");
+        }
+
         builder.append("]");
         return builder.toString();
     }

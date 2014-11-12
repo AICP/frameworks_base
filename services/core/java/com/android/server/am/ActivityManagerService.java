@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2006-2008 The Android Open Source Project
- *
+ * Copyright (c) 2010-2014, The Linux Foundation. All rights reserved.
+ * Not a Contribution.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -67,6 +68,7 @@ import com.android.internal.os.BatteryStatsImpl;
 import com.android.internal.os.ProcessCpuTracker;
 import com.android.internal.os.TransferPipe;
 import com.android.internal.os.Zygote;
+import com.android.internal.telephony.cat.AppInterface;
 import com.android.internal.util.FastPrintWriter;
 import com.android.internal.util.FastXmlSerializer;
 import com.android.internal.util.MemInfoReader;
@@ -200,6 +202,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import dalvik.system.VMRuntime;
+import android.view.WindowManagerPolicy;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -2679,11 +2682,15 @@ public final class ActivityManagerService extends ActivityManagerNative
         final boolean hasActivity = app.activities.size() > 0 || app.hasClientActivities
                 || app.treatLikeActivity;
         final boolean hasService = false; // not impl yet. app.services.size() > 0;
-        if (!activityChange && hasActivity) {
+        if (!activityChange && hasActivity && !(app.persistent && !mLruProcesses.contains(app))) {
             // The process has activities, so we are only allowing activity-based adjustments
             // to move it.  It should be kept in the front of the list with other
             // processes that have activities, and we don't want those to change their
             // order except due to activity operations.
+            // Also, do not return if the app is persistent and not found in mLruProcesses.
+            // For persistent apps, service records are not cleaned up and if we return
+            // here it will not be added to mLruProcesses and on its restart it might lead to
+            // securityException if app is not present in mLruProcesses.
             return;
         }
 
@@ -5244,6 +5251,18 @@ public final class ActivityManagerService extends ActivityManagerNative
                     annotation != null ? "ANR " + annotation : "ANR",
                     info.toString());
 
+            String tracesPath = SystemProperties.get("dalvik.vm.stack-trace-file", null);
+            if (tracesPath != null && tracesPath.length() != 0) {
+                File traceRenameFile = new File(tracesPath);
+                String newTracesPath;
+                int lpos = tracesPath.lastIndexOf (".");
+                if (-1 != lpos)
+                    newTracesPath = tracesPath.substring (0, lpos) + "_" + app.processName + tracesPath.substring (lpos);
+                else
+                    newTracesPath = tracesPath + "_" + app.processName;
+                traceRenameFile.renameTo(new File(newTracesPath));
+            }
+
             // Bring up the infamous App Not Responding dialog
             Message msg = Message.obtain();
             HashMap<String, Object> map = new HashMap<String, Object>();
@@ -6380,8 +6399,8 @@ public final class ActivityManagerService extends ActivityManagerNative
                                 },
                                 0, null, null,
                                 android.Manifest.permission.RECEIVE_BOOT_COMPLETED,
-                                AppOpsManager.OP_NONE, true, false, MY_PID, Process.SYSTEM_UID,
-                                userId);
+                                AppOpsManager.OP_BOOT_COMPLETED, true, false,
+                                MY_PID, Process.SYSTEM_UID, userId);
                     }
                 }
                 scheduleStartProfilesLocked();
@@ -11279,6 +11298,8 @@ public final class ActivityManagerService extends ActivityManagerNative
         Slog.i(TAG, "System now ready");
         EventLog.writeEvent(EventLogTags.BOOT_PROGRESS_AMS_READY,
             SystemClock.uptimeMillis());
+        IntentFilter bootFilter = new IntentFilter(AppInterface.CHECK_SCREEN_IDLE_ACTION);
+        mContext.registerReceiver(new ScreenStatusReceiver(), bootFilter);
 
         synchronized(this) {
             // Make sure we have no pre-ready processes sitting around.
@@ -11395,6 +11416,26 @@ public final class ActivityManagerService extends ActivityManagerNative
             }
             mStackSupervisor.resumeTopActivitiesLocked();
             sendUserSwitchBroadcastsLocked(-1, mCurrentUserId);
+        }
+    }
+
+    class ScreenStatusReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent == null || intent.getAction() == null) {
+                return;
+            }
+            if (intent.getAction().equals(AppInterface.CHECK_SCREEN_IDLE_ACTION)) {
+                Slog.i(TAG, "ICC has requested idle screen status");
+                Intent idleScreenIntent = new Intent(AppInterface.CAT_IDLE_SCREEN_ACTION);
+                idleScreenIntent.addFlags(Intent.FLAG_RECEIVER_FOREGROUND);
+                boolean isIdle = getFocusedStack().isHomeStack();
+                idleScreenIntent.putExtra("SCREEN_IDLE", isIdle);
+                Slog.i(TAG, "Broadcasting Home idle screen Intent"
+                        + " SCREEN_IDLE is " + isIdle);
+                mContext.sendBroadcast(idleScreenIntent);
+            }
         }
     }
 
@@ -18694,8 +18735,9 @@ public final class ActivityManagerService extends ActivityManagerNative
                 intent.addFlags(Intent.FLAG_RECEIVER_NO_ABORT);
                 broadcastIntentLocked(null, null, intent,
                         null, null, 0, null, null,
-                        android.Manifest.permission.RECEIVE_BOOT_COMPLETED, AppOpsManager.OP_NONE,
-                        true, false, MY_PID, Process.SYSTEM_UID, userId);
+                        android.Manifest.permission.RECEIVE_BOOT_COMPLETED,
+                        AppOpsManager.OP_BOOT_COMPLETED, true, false, MY_PID,
+                        Process.SYSTEM_UID, userId);
             }
         }
     }

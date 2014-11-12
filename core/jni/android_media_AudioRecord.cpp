@@ -1,4 +1,7 @@
 /*
+ * Copyright (c) 2014, The Linux Foundation. All rights reserved.
+ * Not a Contribution.
+ *
  * Copyright (C) 2008 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,6 +20,9 @@
 //#define LOG_NDEBUG 0
 
 #define LOG_TAG "AudioRecord-JNI"
+
+#include <binder/AppOpsManager.h>
+#include <binder/IPCThreadState.h>
 
 #include <inttypes.h>
 #include <jni.h>
@@ -177,8 +183,6 @@ android_media_AudioRecord_setup(JNIEnv *env, jobject thiz, jobject weak_this,
          ALOGE("Error creating AudioRecord: frameCount is 0.");
         return (jint) AUDIORECORD_ERROR_SETUP_ZEROFRAMECOUNT;
     }
-    size_t frameSize = channelCount * bytesPerSample;
-    size_t frameCount = buffSizeInBytes / frameSize;
 
     jclass clazz = env->GetObjectClass(thiz);
     if (clazz == NULL) {
@@ -214,12 +218,23 @@ android_media_AudioRecord_setup(JNIEnv *env, jobject thiz, jobject weak_this,
     env->ReleaseStringUTFChars(jtags, tags);
     paa->source = (audio_source_t) env->GetIntField(jaa, javaAudioAttrFields.fieldRecSource);
     paa->flags = (audio_flags_mask_t)env->GetIntField(jaa, javaAudioAttrFields.fieldFlags);
+
+    //overwrite bytesPerSample for compress VOIP use cases
+    if ((paa->source == AUDIO_SOURCE_VOICE_COMMUNICATION) &&
+        (format != AUDIO_FORMAT_PCM_16_BIT)) {
+        bytesPerSample = sizeof(uint8_t);
+    }
+
+    size_t frameSize = channelCount * bytesPerSample;
+    size_t frameCount = buffSizeInBytes / frameSize;
+
     ALOGV("AudioRecord_setup for source=%d tags=%s flags=%08x", paa->source, paa->tags, paa->flags);
 
     audio_input_flags_t flags = AUDIO_INPUT_FLAG_NONE;
     if (paa->flags & AUDIO_FLAG_HW_HOTWORD) {
         flags = AUDIO_INPUT_FLAG_HW_HOTWORD;
     }
+
     // create the callback information:
     // this data will be passed with every AudioRecord callback
     audiorecord_callback_cookie *lpCallbackData = new audiorecord_callback_cookie;
@@ -564,6 +579,23 @@ static jint android_media_AudioRecord_get_min_buff_size(JNIEnv *env,  jobject th
     return frameCount * channelCount * audio_bytes_per_sample(format);
 }
 
+// ----------------------------------------------------------------------------
+// returns the AppOps Permission of package
+static jint android_media_AudioRecord_check_permission(JNIEnv *env,  jobject thiz,
+    jstring packageName) {
+
+    // Convert client name jstring to String16
+    const char16_t *rawClientName = env->GetStringChars(packageName, NULL);
+    jsize rawClientNameLen = env->GetStringLength(packageName);
+    String16 clientName(rawClientName, rawClientNameLen);
+    env->ReleaseStringChars(packageName, rawClientName);
+
+    AppOpsManager appOpsManager;
+
+    // Get UID here for permission checking
+    uid_t clientUid = IPCThreadState::self()->getCallingUid();
+    return appOpsManager.noteOp(AppOpsManager::OP_RECORD_AUDIO, clientUid, clientName);
+}
 
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
@@ -589,6 +621,8 @@ static JNINativeMethod gMethods[] = {
                              "()I",    (void *)android_media_AudioRecord_get_pos_update_period},
     {"native_get_min_buff_size",
                              "(III)I",   (void *)android_media_AudioRecord_get_min_buff_size},
+    {"native_check_permission",
+                             "(Ljava/lang/String;)I", (void *)android_media_AudioRecord_check_permission},
 };
 
 // field names found in android/media/AudioRecord.java

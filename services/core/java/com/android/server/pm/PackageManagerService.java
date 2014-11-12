@@ -1,4 +1,7 @@
 /*
+ * Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
+ * Not a Contribution.
+ *
  * Copyright (C) 2006 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -155,6 +158,7 @@ import android.os.SystemClock;
 import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.os.UserManager;
+import android.provider.Settings.Secure;
 import android.security.KeyStore;
 import android.security.SystemKeyStore;
 import android.system.ErrnoException;
@@ -216,6 +220,8 @@ import dalvik.system.VMRuntime;
 import libcore.io.IoUtils;
 import libcore.util.EmptyArray;
 
+import com.android.services.SecurityBridge.api.PackageManagerMonitor;
+
 /**
  * Keep track of all those .apks everywhere.
  * 
@@ -270,6 +276,9 @@ public class PackageManagerService extends IPackageManager.Stub {
     static final int SCAN_REPLACING = 1<<11;
 
     static final int REMOVE_CHATTY = 1<<16;
+
+    private static final String SECURITY_BRIDGE_NAME = "com.android.services.SecurityBridge.core.PackageManagerSB";
+    private PackageManagerMonitor mSecurityBridge;
 
     /**
      * Timeout (in milliseconds) after which the watchdog should declare that
@@ -1273,6 +1282,21 @@ public class PackageManagerService extends IPackageManager.Stub {
 
         if (mSdkVersion <= 0) {
             Slog.w(TAG, "**** ro.build.version.sdk not set!");
+        }
+
+        Object bridgeObject;
+
+        try {
+
+            /*
+             * load and create the security bridge
+             */
+            bridgeObject = getClass().getClassLoader().loadClass(SECURITY_BRIDGE_NAME).newInstance();
+            mSecurityBridge = (PackageManagerMonitor)bridgeObject;
+
+        } catch (Exception e){
+            Slog.w(TAG, "No security bridge jar found, using default");
+            mSecurityBridge = new PackageManagerMonitor();
         }
 
         mContext = context;
@@ -10343,6 +10367,13 @@ public class PackageManagerService extends IPackageManager.Stub {
         res.returnCode = PackageManager.INSTALL_SUCCEEDED;
 
         if (DEBUG_INSTALL) Slog.d(TAG, "installPackageLI: path=" + tmpPackageFile);
+        if (true != mSecurityBridge.approveAppInstallRequest(
+                        args.getResourcePath(),
+                        Uri.fromFile(args.origin.file).toSafeString())) {
+            res.returnCode = PackageManager.INSTALL_FAILED_VERIFICATION_FAILURE;
+            return;
+        }
+
         // Retrieve PackageSettings and parse package
         final int parseFlags = mDefParseFlags | PackageParser.PARSE_CHATTY
                 | (forwardLocked ? PackageParser.PARSE_FORWARD_LOCK : 0)
@@ -10368,6 +10399,14 @@ public class PackageManagerService extends IPackageManager.Stub {
                 res.setError(INSTALL_FAILED_TEST_ONLY, "installPackageLI");
                 return;
             }
+        }
+
+        if (android.app.AppOpsManager.isStrictEnable()
+                && ((installFlags & PackageManager.INSTALL_FROM_ADB) != 0)
+                && Secure.getInt(mContext.getContentResolver(),
+                        Secure.INSTALL_NON_MARKET_APPS, 0) <= 0) {
+            res.returnCode = PackageManager.INSTALL_FAILED_UNKNOWN_SOURCES;
+            return;
         }
 
         try {

@@ -151,4 +151,22 @@ interface ISub {
     void clearDefaultsForInactiveSubIds();
 
     long[] getActiveSubIdList();
+
+    boolean isSMSPromptEnabled();
+
+    void setSMSPromptEnabled(boolean enabled);
+
+    boolean isVoicePromptEnabled();
+
+    void setVoicePromptEnabled(boolean enabled);
+
+    void activateSubId(long subId);
+
+    void deactivateSubId(long subId);
+
+    int setSubState(long subId, int subStatus);
+
+    int getSubState(long subId);
+
+    long getOnDemandDataSubId();
 }

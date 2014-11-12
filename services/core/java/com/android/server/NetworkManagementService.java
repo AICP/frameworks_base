@@ -16,6 +16,7 @@
 
 package com.android.server;
 
+import static android.Manifest.permission.ACCESS_NETWORK_STATE;
 import static android.Manifest.permission.CONNECTIVITY_INTERNAL;
 import static android.Manifest.permission.DUMP;
 import static android.Manifest.permission.SHUTDOWN;
@@ -63,6 +64,7 @@ import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemClock;
 import android.os.SystemProperties;
+import android.provider.Settings;
 import android.telephony.DataConnectionRealTimeInfo;
 import android.telephony.PhoneStateListener;
 import android.telephony.SubscriptionManager;
@@ -70,6 +72,7 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.util.Slog;
 import android.util.SparseBooleanArray;
+import java.util.List;
 
 import com.android.internal.app.IBatteryStats;
 import com.android.internal.net.NetworkStatsFactory;
@@ -138,6 +141,7 @@ public class NetworkManagementService extends INetworkManagementService.Stub
         public static final int TetheringStatsResult      = 221;
         public static final int DnsProxyQueryResult       = 222;
         public static final int ClatdStatusResult         = 223;
+        public static final int V6RtrAdvResult            = 227;
 
         public static final int InterfaceChange           = 600;
         public static final int BandwidthControl          = 601;
@@ -145,6 +149,7 @@ public class NetworkManagementService extends INetworkManagementService.Stub
         public static final int InterfaceAddressChange    = 614;
         public static final int InterfaceDnsServerInfo    = 615;
         public static final int RouteChange               = 616;
+        public static final int InterfaceMessage          = 617;
     }
 
     static final int DAEMON_MSG_MOBILE_CONN_REAL_TIME_INFO = 1;
@@ -466,6 +471,21 @@ public class NetworkManagementService extends INetworkManagementService.Stub
     }
 
     /**
+     * Notify our observers of a change in the data activity state of the interface
+     */
+    private void notifyInterfaceMessage(String message) {
+        final int length = mObservers.beginBroadcast();
+        for (int i = 0; i < length; i++) {
+            try {
+                mObservers.getBroadcastItem(i).interfaceMessageRecevied(message);
+            } catch (RemoteException e) {
+            } catch (RuntimeException e) {
+            }
+        }
+        mObservers.finishBroadcast();
+    }
+
+    /**
      * Prepare native daemon once connected, enabling modules and pushing any
      * existing in-memory rules.
      */
@@ -680,6 +700,22 @@ public class NetworkManagementService extends INetworkManagementService.Stub
                     }
                     throw new IllegalStateException(errorMessage);
                     // break;
+            case NetdResponseCode.InterfaceMessage:
+                    /*
+                     * An message arrived in network interface.
+                     * Format: "NNN IfaceMessage <3>AP-STA-CONNECTED 00:08:22:64:9d:84
+                     */
+                    if (cooked.length < 3 || !cooked[1].equals("IfaceMessage")) {
+                        throw new IllegalStateException(errorMessage);
+                    }
+                    Slog.d(TAG, "onEvent: "+ raw);
+                    if(cooked[4] != null) {
+                        notifyInterfaceMessage(cooked[3] + " " + cooked[4]);
+                    } else {
+                        notifyInterfaceMessage(cooked[3]);
+                    }
+                    return true;
+                    // break;
             case NetdResponseCode.InterfaceClassActivity:
                     /*
                      * An network interface class state changed (active/idle)
@@ -811,6 +847,36 @@ public class NetworkManagementService extends INetworkManagementService.Stub
                     mConnector.executeForList("interface", "list"), InterfaceListResult);
         } catch (NativeDaemonConnectorException e) {
             throw e.rethrowAsParcelableException();
+        }
+    }
+
+    @Override
+    public void addUpstreamV6Interface(String iface) throws RemoteException {
+        mContext.enforceCallingOrSelfPermission(
+                android.Manifest.permission.ACCESS_NETWORK_STATE, "NetworkManagementService");
+
+        Slog.d(TAG, "addUpstreamInterface("+ iface + ")");
+        try {
+            final Command cmd = new Command("tether", "interface", "add_upstream");
+            cmd.appendArg(iface);
+            mConnector.execute(cmd);
+        } catch (NativeDaemonConnectorException e) {
+            throw new RemoteException("Cannot add upstream interface");
+        }
+    }
+
+    @Override
+    public void removeUpstreamV6Interface(String iface) throws RemoteException {
+        mContext.enforceCallingOrSelfPermission(
+                android.Manifest.permission.ACCESS_NETWORK_STATE, "NetworkManagementService");
+
+        Slog.d(TAG, "removeUpstreamInterface(" + iface + ")");
+        try {
+            final Command cmd = new Command("tether", "interface", "remove_upstream");
+            cmd.appendArg(iface);
+            mConnector.execute(cmd);
+        } catch (NativeDaemonConnectorException e) {
+            throw new RemoteException("Cannot remove upstream interface");
         }
     }
 

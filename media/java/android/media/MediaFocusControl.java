@@ -321,6 +321,9 @@ public class MediaFocusControl implements OnFinished {
     private static final int MSG_RCDISPLAY_INIT_INFO = 9;
     private static final int MSG_REEVALUATE_RCD = 10;
     private static final int MSG_UNREGISTER_MEDIABUTTONINTENT = 11;
+    private static final int MSG_RCC_SET_BROWSED_PLAYER = 12;
+    private static final int MSG_RCC_SET_PLAY_ITEM = 13;
+    private static final int MSG_RCC_GET_NOW_PLAYING_ENTRIES = 14;
 
     // sendMsg() flags
     /** If the msg is already queued, replace it with this one. */
@@ -366,6 +369,22 @@ public class MediaFocusControl implements OnFinished {
                 case MSG_RCC_NEW_VOLUME_OBS:
                     onRegisterVolumeObserverForRcc(msg.arg1 /* rccId */,
                             (IRemoteVolumeObserver)msg.obj /* rvo */);
+                    break;
+
+                case MSG_RCC_SET_PLAY_ITEM:
+                    Log.d(TAG, "MSG_RCC_SET_PLAY_ITEM: "+ ((Long)msg.obj).longValue());
+                    onSetRemoteControlClientPlayItem(msg.arg2 /* scope */,
+                                    ((Long)msg.obj).longValue() /* uid */);
+                    break;
+
+                case MSG_RCC_GET_NOW_PLAYING_ENTRIES:
+                    Log.d(TAG, "MSG_RCC_GET_NOW_PLAYING_ENTRIES: ");
+                    onGetRemoteControlClientNowPlayingEntries();
+                    break;
+
+                case MSG_RCC_SET_BROWSED_PLAYER:
+                    Log.d(TAG, "MSG_RCC_SET_BROWSED_PLAYER: ");
+                    onSetRemoteControlClientBrowsedPlayer();
                     break;
 
                 case MSG_RCDISPLAY_INIT_INFO:
@@ -436,7 +455,7 @@ public class MediaFocusControl implements OnFinished {
     private void notifyTopOfAudioFocusStack() {
         // notify the top of the stack it gained focus
         if (!mFocusStack.empty()) {
-            if (canReassignAudioFocus()) {
+            if (canReassignAudioFocus(mFocusStack.peek().getClientId())) {
                 mFocusStack.peek().handleFocusGain(AudioManager.AUDIOFOCUS_GAIN);
             }
         }
@@ -535,14 +554,37 @@ public class MediaFocusControl implements OnFinished {
         }
     }
 
+    /* Constant to identify focus stack entry clientid for QCHAT client */
+    private static final String CLIENT_ID_QCHAT = "QCHAT";
+
     /**
      * Helper function:
      * Returns true if the system is in a state where the focus can be reevaluated, false otherwise.
      */
-    private boolean canReassignAudioFocus() {
+    private boolean canReassignAudioFocus(String clientId) {
         // focus requests are rejected during a phone call or when the phone is ringing
         // this is equivalent to IN_VOICE_COMM_FOCUS_ID having the focus
+        // Also focus request is granted to QCHAT client even when voice call is active. QCHAT
+        // client will first check if any voice calls are in CALL_INACTIVE/CALL_HOLD state
         if (!mFocusStack.isEmpty() && mFocusStack.peek().hasSameClient(IN_VOICE_COMM_FOCUS_ID)) {
+            if (clientId.contains(CLIENT_ID_QCHAT))
+                return true;
+            else
+                return false;
+        }
+        return true;
+    }
+
+     /**
+     * Helper function:
+     * Returns true if the system is in a state where the focus can be reevaluated , false otherwise.
+     */
+    private boolean canReassignAudioFocusFromQchat(int streamType, String clientId) {
+        // Focus request is rejected for Music Player and for QChat client if the focus is already
+        // acquired by a QChat client
+        if (!mFocusStack.isEmpty() &&
+            mFocusStack.peek().getClientId().contains(CLIENT_ID_QCHAT) &&
+            (clientId.contains(CLIENT_ID_QCHAT) || (streamType == AudioManager.STREAM_MUSIC))) {
             return false;
         }
         return true;
@@ -597,7 +639,11 @@ public class MediaFocusControl implements OnFinished {
         }
 
         synchronized(mAudioFocusLock) {
-            if (!canReassignAudioFocus()) {
+            if (!canReassignAudioFocus(clientId)) {
+                return AudioManager.AUDIOFOCUS_REQUEST_FAILED;
+            }
+
+            if (!canReassignAudioFocusFromQchat(mainStreamType, clientId)) {
                 return AudioManager.AUDIOFOCUS_REQUEST_FAILED;
             }
 
@@ -1846,6 +1892,66 @@ public class MediaFocusControl implements OnFinished {
                         Log.e(TAG, "Error setting position sync flag for RCD on RCC: ", e);
                     }
                 }
+            }
+        }
+    }
+
+    public void setRemoteControlClientPlayItem(long uid, int scope) {
+        sendMsg(mEventHandler, MSG_RCC_SET_PLAY_ITEM, SENDMSG_REPLACE, 0 /* arg1 */,
+                scope /* arg2*/, new Long(uid) /* obj */, 0 /* delay */);
+    }
+
+    private void onSetRemoteControlClientPlayItem(int scope, Long uid) {
+        Log.d(TAG, "onSetRemoteControlClientPlayItem: "+ uid);
+        synchronized(mCurrentRcLock) {
+            if (mCurrentRcClient != null) {
+                try {
+                    mCurrentRcClient.setPlayItem(scope, uid);
+                } catch (RemoteException e) {
+                    Log.e(TAG, "Current valid remote client is dead: "+e);
+                    mCurrentRcClient = null;
+                }
+            }
+        }
+    }
+
+    public void getRemoteControlClientNowPlayingEntries() {
+        sendMsg(mEventHandler, MSG_RCC_GET_NOW_PLAYING_ENTRIES, SENDMSG_REPLACE,
+                0 /* arg1 */, 0 /* arg2 ignored*/, 0 /* obj */, 0 /* delay */);
+    }
+
+    private void onGetRemoteControlClientNowPlayingEntries() {
+        Log.d(TAG, "onGetRemoteControlClientNowPlayingEntries: ");
+        synchronized(mCurrentRcLock) {
+            if (mCurrentRcClient != null) {
+                try {
+                    mCurrentRcClient.getNowPlayingEntries();
+                } catch (RemoteException e) {
+                    Log.e(TAG, "Current valid remote client is dead: "+e);
+                    mCurrentRcClient = null;
+                }
+            }
+        }
+    }
+
+    public void setRemoteControlClientBrowsedPlayer() {
+        Log.d(TAG, "setRemoteControlClientBrowsedPlayer: ");
+        sendMsg(mEventHandler, MSG_RCC_SET_BROWSED_PLAYER, SENDMSG_REPLACE, 0/* arg1 */,
+                0 /* arg2 ignored*/, 0 /* obj */, 0 /* delay */);
+    }
+
+    private void onSetRemoteControlClientBrowsedPlayer() {
+        Log.d(TAG, "onSetRemoteControlClientBrowsedPlayer: ");
+        PlayerRecord prse = mPRStack.peek();
+        if (prse.getRcc() == null) {
+            Log.d(TAG, "can not proceed with setBrowsedPlayer");
+        } else {
+            Log.d(TAG, "proceed with setBrowsedPlayer");
+            try {
+                Log.d(TAG, "Calling setBrowsedPlayer");
+                prse.getRcc().setBrowsedPlayer();
+            } catch (RemoteException e) {
+                Log.e(TAG, "Current valid remote client is dead: "+ e);
             }
         }
     }

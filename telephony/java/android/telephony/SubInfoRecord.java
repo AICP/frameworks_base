@@ -75,6 +75,8 @@ public class SubInfoRecord implements Parcelable {
      * Mobile Network Code
      */
     public int mnc;
+    public int mStatus;
+    public int mNwMode;
 
     public SubInfoRecord() {
         this.subId = SubscriptionManager.INVALID_SUB_ID;
@@ -89,11 +91,13 @@ public class SubInfoRecord implements Parcelable {
         this.simIconRes = new int[2];
         this.mcc = 0;
         this.mnc = 0;
+        this.mStatus = SubscriptionManager.ACTIVE;
+        this.mNwMode = SubscriptionManager.DEFAULT_NW_MODE;
     }
 
     public SubInfoRecord(long subId, String iccId, int slotId, String displayName, int nameSource,
             int color, String number, int displayFormat, int roaming, int[] iconRes,
-            int mcc, int mnc) {
+            int mcc, int mnc, int status, int nwMode) {
         this.subId = subId;
         this.iccId = iccId;
         this.slotId = slotId;
@@ -106,6 +110,8 @@ public class SubInfoRecord implements Parcelable {
         this.simIconRes = iconRes;
         this.mcc = mcc;
         this.mnc = mnc;
+        this.mStatus = status;
+        this.mNwMode = nwMode;
     }
 
     public static final Parcelable.Creator<SubInfoRecord> CREATOR = new Parcelable.Creator<SubInfoRecord>() {
@@ -124,9 +130,11 @@ public class SubInfoRecord implements Parcelable {
             source.readIntArray(iconRes);
             int mcc = source.readInt();
             int mnc = source.readInt();
+           int status = source.readInt();
+           int nwMode = source.readInt();
 
             return new SubInfoRecord(subId, iccId, slotId, displayName, nameSource, color, number,
-                displayNumberFormat, dataRoaming, iconRes, mcc, mnc);
+                displayNumberFormat, dataRoaming, iconRes, mcc, mnc, status, nwMode);
         }
 
         @Override
@@ -149,6 +157,8 @@ public class SubInfoRecord implements Parcelable {
         dest.writeIntArray(simIconRes);
         dest.writeInt(mcc);
         dest.writeInt(mnc);
+        dest.writeInt(mStatus);
+        dest.writeInt(mNwMode);
     }
 
     @Override
@@ -162,6 +172,7 @@ public class SubInfoRecord implements Parcelable {
                 + " mDisplayName=" + displayName + " mNameSource=" + nameSource
                 + " mColor=" + color + " mNumber=" + number
                 + " mDisplayNumberFormat=" + displayNumberFormat + " mDataRoaming=" + dataRoaming
-                + " mSimIconRes=" + simIconRes + " mMcc " + mcc + " mMnc " + mnc + "}";
+                + " mSimIconRes=" + simIconRes + " mMcc " + mcc + " mMnc " + mnc
+                + " mSubStatus=" + mStatus + " mNwMode=" + mNwMode + "}";
     }
 }

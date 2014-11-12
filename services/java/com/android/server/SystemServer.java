@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2006 The Android Open Source Project
+ * Copyright (c) 2014, The Linux Foundation. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -99,10 +100,15 @@ import com.android.server.webkit.WebViewUpdateService;
 import com.android.server.wm.WindowManagerService;
 
 import dalvik.system.VMRuntime;
+import dalvik.system.PathClassLoader;
+import java.lang.reflect.Constructor;
 
 import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import dalvik.system.PathClassLoader;
+import java.lang.reflect.Constructor;
 
 public final class SystemServer {
     private static final String TAG = "SystemServer";
@@ -149,6 +155,7 @@ public final class SystemServer {
     // TODO: remove all of these references by improving dependency resolution and boot phases
     private Installer mInstaller;
     private PowerManagerService mPowerManagerService;
+    private AlarmManagerService mAlarmManagerService;
     private ActivityManagerService mActivityManagerService;
     private DisplayManagerService mDisplayManagerService;
     private PackageManagerService mPackageManagerService;
@@ -417,6 +424,7 @@ public final class SystemServer {
         boolean disableNonCoreServices = SystemProperties.getBoolean("config.disable_noncore", false);
         boolean disableNetwork = SystemProperties.getBoolean("config.disable_network", false);
         boolean isEmulator = SystemProperties.get("ro.kernel.qemu").equals("1");
+        boolean disableAtlas = SystemProperties.getBoolean("config.disable_atlas", false);
 
         try {
             Slog.i(TAG, "Reading configuration...");
@@ -459,7 +467,7 @@ public final class SystemServer {
             consumerIr = new ConsumerIrService(context);
             ServiceManager.addService(Context.CONSUMER_IR_SERVICE, consumerIr);
 
-            mSystemServiceManager.startService(AlarmManagerService.class);
+            mAlarmManagerService = mSystemServiceManager.startService(AlarmManagerService.class);
             alarm = IAlarmManager.Stub.asInterface(
                     ServiceManager.getService(Context.ALARM_SERVICE));
 
@@ -692,6 +700,12 @@ public final class SystemServer {
                 } catch (Throwable e) {
                     reportWtf("starting Service Discovery Service", e);
                 }
+                try {
+                    Slog.i(TAG, "DPM Service");
+                    startDpmService(context);
+                } catch (Throwable e) {
+                    reportWtf("starting DpmService", e);
+                }
             }
 
             if (!disableNonCoreServices) {
@@ -896,7 +910,7 @@ public final class SystemServer {
                 mSystemServiceManager.startService(DreamManagerService.class);
             }
 
-            if (!disableNonCoreServices) {
+            if (!disableNonCoreServices && !disableAtlas) {
                 try {
                     Slog.i(TAG, "Assets Atlas Service");
                     atlas = new AssetAtlasService(context);
@@ -945,6 +959,28 @@ public final class SystemServer {
             }
 
             mSystemServiceManager.startService(LauncherAppsService.class);
+
+            boolean isWipowerEnabled = SystemProperties.getBoolean("ro.bluetooth.wipower", false);
+
+            if (isWipowerEnabled) {
+                try {
+                    final String WBC_SERVICE_NAME = "wbc_service";
+                    Slog.i(TAG, "WipowerBatteryControl Service");
+
+                    PathClassLoader wbcClassLoader =
+                        new PathClassLoader("/system/framework/com.quicinc.wbc.jar:/system/framework/com.quicinc.wbcservice.jar",
+                                            ClassLoader.getSystemClassLoader());
+                    Class wbcClass = wbcClassLoader.loadClass("com.quicinc.wbcservice.WbcService");
+                    Constructor<Class> ctor = wbcClass.getConstructor(Context.class);
+                    Object wbcObject = ctor.newInstance(context);
+                    Slog.d(TAG, "Successfully loaded WbcService class");
+                    ServiceManager.addService(WBC_SERVICE_NAME, (IBinder) wbcObject);
+                } catch (Throwable e) {
+                    reportWtf("starting WipowerBatteryControl Service", e);
+                }
+            } else {
+                Slog.d(TAG, "Wipower not supported");
+            }
         }
 
         if (!disableNonCoreServices) {
@@ -1191,5 +1227,33 @@ public final class SystemServer {
                     "com.android.systemui.SystemUIService"));
         //Slog.d(TAG, "Starting service: " + intent);
         context.startServiceAsUser(intent, UserHandle.OWNER);
+    }
+
+    private static final void startDpmService(Context context) {
+        try {
+            Object dpmObj = null;
+            int dpmFeature = SystemProperties.getInt("persist.dpm.feature", 0);
+            Slog.i(TAG, "DPM configuration set to " + dpmFeature);
+
+            if (dpmFeature > 0 && dpmFeature < 8) {
+                PathClassLoader dpmClassLoader =
+                    new PathClassLoader("/system/framework/com.qti.dpmframework.jar",
+                            ClassLoader.getSystemClassLoader());
+                Class dpmClass = dpmClassLoader.loadClass("com.qti.dpm.DpmService");
+                Constructor dpmConstructor = dpmClass.getConstructor(
+                        new Class[] {Context.class});
+                dpmObj = dpmConstructor.newInstance(context);
+                try {
+                    if(dpmObj != null && (dpmObj instanceof IBinder)) {
+                        ServiceManager.addService("dpmservice", (IBinder)dpmObj);
+                        Slog.i(TAG, "Created DPM Service");
+                    }
+                } catch (Exception e) {
+                    Slog.i(TAG, "starting DPM Service", e);
+                }
+            }
+        } catch (Throwable e) {
+            Slog.i(TAG, "starting DPM Service", e);
+        }
     }
 }

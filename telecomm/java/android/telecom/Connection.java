@@ -74,6 +74,7 @@ public abstract class Connection {
                 Connection c, String callerDisplayName, int presentation) {}
         public void onVideoStateChanged(Connection c, int videoState) {}
         public void onDisconnected(Connection c, DisconnectCause disconnectCause) {}
+        public void onSsNotificationData(int type, int code) {}
         public void onPostDialWait(Connection c, String remaining) {}
         public void onRingbackRequested(Connection c, boolean ringback) {}
         public void onDestroyed(Connection c) {}
@@ -85,6 +86,7 @@ public abstract class Connection {
         public void onConferenceableConnectionsChanged(
                 Connection c, List<Connection> conferenceableConnections) {}
         public void onConferenceChanged(Connection c, Conference conference) {}
+        public void onPhoneAccountChanged(Connection c, PhoneAccountHandle pHandle) {}
     }
 
     /** @hide */
@@ -139,6 +141,11 @@ public abstract class Connection {
          * Session modify request ignored due to invalid parameters.
          */
         public static final int SESSION_MODIFY_REQUEST_INVALID = 3;
+
+        /**
+         * Session modify request ignored due to invalid parameters.
+         */
+        public static final int SESSION_MODIFY_REQUEST_TIMED_OUT = 4;
 
         private static final int MSG_SET_VIDEO_CALLBACK = 1;
         private static final int MSG_SET_CAMERA = 2;
@@ -225,7 +232,8 @@ public abstract class Connection {
             }
 
             public void setDeviceOrientation(int rotation) {
-                mMessageHandler.obtainMessage(MSG_SET_DEVICE_ORIENTATION, rotation).sendToTarget();
+                mMessageHandler.obtainMessage(
+                        MSG_SET_DEVICE_ORIENTATION, rotation, 0).sendToTarget();
             }
 
             public void setZoom(float value) {
@@ -441,6 +449,20 @@ public abstract class Connection {
                 }
             }
         }
+
+        /**
+         * Invokes callback method defined in In-Call UI.
+         *
+         * @param videoQuality The updated video quality.
+         */
+        public void changeVideoQuality(int videoQuality) {
+            if (mVideoCallback != null) {
+                try {
+                    mVideoCallback.changeVideoQuality(videoQuality);
+                } catch (RemoteException ignored) {
+                }
+            }
+        }
     }
 
     private final Listener mConnectionDeathListener = new Listener() {
@@ -478,6 +500,7 @@ public abstract class Connection {
     private DisconnectCause mDisconnectCause;
     private Conference mConference;
     private ConnectionService mConnectionService;
+    private PhoneAccountHandle mPhoneAccountHandle = null;
 
     /**
      * Create a new Connection.
@@ -780,6 +803,14 @@ public abstract class Connection {
         }
     }
 
+    /** @hide */
+    public final void setSsNotificationData(int type, int code) {
+        Log.d(this, "setSsNotificationData = "+ type +" "+ code);
+        for (Listener l : mListeners) {
+            l.onSsNotificationData(type, code);
+        }
+    }
+
     /**
      * TODO: Needs documentation.
      */
@@ -877,6 +908,23 @@ public abstract class Connection {
     }
 
     /**
+     * @hide.
+     */
+    public final void setPhoneAccountHandle(PhoneAccountHandle pHandle) {
+        mPhoneAccountHandle = pHandle;
+        for (Listener l : mListeners) {
+            l.onPhoneAccountChanged(this, pHandle);
+        }
+    }
+
+    /**
+     * @hide.
+     */
+    public final PhoneAccountHandle getPhoneAccountHandle() {
+        return mPhoneAccountHandle;
+    }
+
+    /*
      * @hide
      */
     public final void setConnectionService(ConnectionService connectionService) {
@@ -967,6 +1015,18 @@ public abstract class Connection {
     public void onStopDtmfTone() {}
 
     /**
+     * Notifies this to set local call hold.
+     * {@hide}
+     */
+    public void setLocalCallHold(int lchState) {}
+
+    /**
+     * Notifies this to set active subscription.
+     * {@hide}
+     */
+    public void setActiveSubscription() {}
+
+    /**
      * Notifies this Connection of a request to disconnect.
      */
     public void onDisconnect() {}
@@ -1010,6 +1070,13 @@ public abstract class Connection {
 
     /**
      * Notifies this Connection, which is in {@link #STATE_RINGING}, of
+     * a request to deflect.
+     */
+    /** @hide */
+    public void onDeflect(String number) {}
+
+    /**
+     * Notifies this Connection, which is in {@link State#RINGING}, of
      * a request to reject.
      */
     public void onReject() {}

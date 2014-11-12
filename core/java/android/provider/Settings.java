@@ -2197,6 +2197,14 @@ public final class Settings {
         public static final String APPEND_FOR_LAST_AUDIBLE = "_last_audible";
 
         /**
+         * Persistent store for the static default system ringtone URI.
+         * This setting is initialized within media scanner and read only afterwards.
+         * It provides the persistent URI of default system ringtone.
+         * @hide
+         */
+        public static final String DEFAULT_RINGTONE = "ringtone_default";
+
+        /**
          * Persistent store for the system-wide default ringtone URI.
          * <p>
          * If you need to play the default ringtone at any given time, it is recommended
@@ -2208,6 +2216,30 @@ public final class Settings {
         public static final String RINGTONE = "ringtone";
 
         /**
+         * Persistent store for the SIM-2 ringtone URI.
+         * <p>
+         * If you need to play SIM-2 ringtone at any given time, it is recommended
+         * you give {@link #DEFAULT_RINGTONE_URI_2} to the media player.  It will resolve
+         * to the set default ringtone at the time of playing.
+         *
+         * @see #DEFAULT_RINGTONE_URI_2
+         * @hide
+         */
+        public static final String RINGTONE_2 = "ringtone_2";
+
+        /**
+         * Persistent store for the SIM-3 ringtone URI.
+         * <p>
+         * If you need to play SIM-3 ringtone at any given time, it is recommended
+         * you give {@link #DEFAULT_RINGTONE_URI_3} to the media player.  It will resolve
+         * to the set default ringtone at the time of playing.
+         *
+         * @see #DEFAULT_RINGTONE_URI_3
+         * @hide
+         */
+        public static final String RINGTONE_3 = "ringtone_3";
+
+        /**
          * A {@link Uri} that will point to the current default ringtone at any
          * given time.
          * <p>
@@ -2216,6 +2248,39 @@ public final class Settings {
          * FileNotFoundException.
          */
         public static final Uri DEFAULT_RINGTONE_URI = getUriFor(RINGTONE);
+
+        /**
+         * A {@link Uri} that will point to the current SIM-2 ringtone at any
+         * given time.
+         * <p>
+         * If the current default ringtone is in the DRM provider and the caller
+         * does not have permission, the exception will be a
+         * FileNotFoundException.
+         *
+         * @hide
+         */
+        public static final Uri DEFAULT_RINGTONE_URI_2 = getUriFor(RINGTONE_2);
+
+        /**
+         * A {@link Uri} that will point to the current SIM-3 ringtone at any
+         * given time.
+         * <p>
+         * If the current default ringtone is in the DRM provider and the caller
+         * does not have permission, the exception will be a
+         * FileNotFoundException.
+         *
+         * @hide
+         */
+        public static final Uri DEFAULT_RINGTONE_URI_3 = getUriFor(RINGTONE_3);
+
+        /**
+         * Maximum number of ringtones supported.
+         * <p>
+         * Maximum number of ringtones supported by settings. Increment this
+         * if a new URI needs to be added for ringtone.
+         * @hide
+         */
+        public static final int MAX_NUM_RINGTONES = 3;
 
         /**
          * Persistent store for the system-wide default notification sound.
@@ -3060,6 +3125,7 @@ public final class Settings {
             MOVED_TO_GLOBAL.add(Settings.Global.WIFI_P2P_DEVICE_NAME);
             MOVED_TO_GLOBAL.add(Settings.Global.WIFI_SAVED_STATE);
             MOVED_TO_GLOBAL.add(Settings.Global.WIFI_SUPPLICANT_SCAN_INTERVAL_MS);
+            MOVED_TO_GLOBAL.add(Settings.Global.WIFI_SUPPLICANT_SCAN_INTERVAL_WFD_CONNECTED_MS);
             MOVED_TO_GLOBAL.add(Settings.Global.WIFI_SUSPEND_OPTIMIZATIONS_ENABLED);
             MOVED_TO_GLOBAL.add(Settings.Global.WIFI_ENHANCED_AUTO_JOIN);
             MOVED_TO_GLOBAL.add(Settings.Global.WIFI_NETWORK_SHOW_RSSI);
@@ -5807,6 +5873,13 @@ public final class Settings {
                 "wifi_scan_always_enabled";
 
        /**
+        * Setting to allow enable or disable rssi threshold.
+        * @hide
+        */
+       public static final String WIFI_RSSI_THRESHOLD =
+                "wifi_rssi_threshold";
+
+       /**
         * Used to save the Wifi_ON state prior to tethering.
         * This state will be checked to restore Wifi after
         * the user turns off tethering.
@@ -5842,6 +5915,13 @@ public final class Settings {
         */
        public static final String WIFI_SCAN_INTERVAL_WHEN_P2P_CONNECTED_MS =
                "wifi_scan_interval_p2p_connected_ms";
+
+       /**
+        * The intervel in milliseconds to scan at supplicant when wfd session
+        * @hide
+        */
+       public static final String WIFI_SUPPLICANT_SCAN_INTERVAL_WFD_CONNECTED_MS =
+               "wifi_scan_intervel_wfd_connected_ms";
 
        /**
         * Whether the Wi-Fi watchdog is enabled.
@@ -6254,6 +6334,9 @@ public final class Settings {
                 BLUETOOTH_A2DP_SINK_PRIORITY_PREFIX = "bluetooth_a2dp_sink_priority_";
         /** {@hide} */
         public static final String
+                BLUETOOTH_A2DP_SRC_PRIORITY_PREFIX = "bluetooth_a2dp_src_priority_";
+        /** {@hide} */
+        public static final String
                 BLUETOOTH_INPUT_DEVICE_PRIORITY_PREFIX = "bluetooth_input_device_priority_";
         /** {@hide} */
         public static final String
@@ -6273,6 +6356,14 @@ public final class Settings {
          */
         public static final String getBluetoothA2dpSinkPriorityKey(String address) {
             return BLUETOOTH_A2DP_SINK_PRIORITY_PREFIX + address.toUpperCase(Locale.ROOT);
+        }
+
+        /**
+         * Get the key that retrieves a bluetooth a2dp src's priority.
+         * @hide
+         */
+        public static final String getBluetoothA2dpSrcPriorityKey(String address) {
+            return BLUETOOTH_A2DP_SRC_PRIORITY_PREFIX + address.toUpperCase(Locale.ROOT);
         }
 
         /**
@@ -6939,6 +7030,19 @@ public final class Settings {
          */
         public static final String[] MULTI_SIM_USER_PREFERRED_SUBS = {"user_preferred_sub1",
                 "user_preferred_sub2","user_preferred_sub3"};
+        /**
+          * Subscription to be used decide priority sub on a multi sim device. The supported values
+          * are 0 = SUB1, 1 = SUB2, 2 = SUB3.
+          * @hide
+          */
+        public static final String MULTI_SIM_PRIORITY_SUBSCRIPTION = "multi_sim_priority";
+
+        /**
+          * To know the status of tune away. The supported values
+          * are false = disable, true = enable.
+          * @hide
+          */
+        public static final String TUNE_AWAY_STATUS = "tune_away";
     }
 
     /**

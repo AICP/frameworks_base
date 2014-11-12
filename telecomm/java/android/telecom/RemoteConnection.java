@@ -64,6 +64,10 @@ public final class RemoteConnection {
                 RemoteConnection connection,
                 DisconnectCause disconnectCause) {}
 
+        /** @hide */
+        public void setDisconnectedWithSsNotification(RemoteConnection connection,
+                int disconnectCause, String disconnectMessage, int type, int code) {}
+
         /**
          * Invoked when this {@code RemoteConnection} is requesting ringback. See
          * {@link #isRingbackRequested()}.
@@ -187,6 +191,11 @@ public final class RemoteConnection {
         public void onConferenceChanged(
                 RemoteConnection connection,
                 RemoteConference conference) {}
+
+        /** @hide */
+        public void setPhoneAccountHandle(
+                RemoteConnection connection,
+                PhoneAccountHandle pHandle) {}
     }
 
     /** {@hide} */
@@ -212,6 +221,8 @@ public final class RemoteConnection {
             public void onCameraCapabilitiesChanged(
                     VideoProvider videoProvider,
                     CameraCapabilities cameraCapabilities) {}
+
+            public void onVideoQualityChanged(VideoProvider videoProvider, int videoQuality) {}
         }
 
         private final IVideoCallback mVideoCallbackDelegate = new IVideoCallback() {
@@ -259,6 +270,13 @@ public final class RemoteConnection {
             public void changeCameraCapabilities(CameraCapabilities cameraCapabilities) {
                 for (Listener l : mListeners) {
                     l.onCameraCapabilitiesChanged(VideoProvider.this, cameraCapabilities);
+                }
+            }
+
+            @Override
+            public void changeVideoQuality(int videoQuality) {
+                for (Listener l : mListeners) {
+                    l.onVideoQualityChanged(VideoProvider.this, videoQuality);
                 }
             }
 
@@ -762,6 +780,15 @@ public final class RemoteConnection {
         }
     }
 
+    /** @hide */
+   public void setDisconnectedWithSsNotification(int disconnectCause,
+                String disconnectMessage, int type, int code) {
+        for (Callback c : mCallbacks) {
+            c.setDisconnectedWithSsNotification(this, disconnectCause,
+                    disconnectMessage, type, code);
+        }
+    }
+
     /**
      * @hide
      */
@@ -883,6 +910,13 @@ public final class RemoteConnection {
             for (Callback c : mCallbacks) {
                 c.onConferenceChanged(this, conference);
             }
+        }
+    }
+
+    /** @hide */
+    void setPhoneAccountHandle(PhoneAccountHandle pHandle) {
+        for (Callback c : mCallbacks) {
+            c.setPhoneAccountHandle(this, pHandle);
         }
     }
 

@@ -40,6 +40,7 @@ import android.os.UserHandle;
 import android.provider.Settings;
 import android.provider.Settings.Global;
 import android.provider.Settings.Secure;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -80,6 +81,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_SYSTEM = "system";
     private static final String TABLE_SECURE = "secure";
     private static final String TABLE_GLOBAL = "global";
+
+    //Maximum number of phones
+    private static final int MAX_PHONE_COUNT = 3;
 
     static {
         mValidTables.add(TABLE_SYSTEM);
@@ -2226,7 +2230,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         try {
             stmt = db.compileStatement("INSERT OR IGNORE INTO system(name,value)"
                     + " VALUES(?,?);");
-            loadSetting(stmt, Settings.System.VIBRATE_WHEN_RINGING, vibrateWhenRinging ? 1 : 0);
+            if (mContext.getResources().getBoolean(R.bool.def_vibrate_when_ringing_enabled)) {
+                loadSetting(stmt, Settings.System.VIBRATE_WHEN_RINGING, 1);
+            } else {
+                loadSetting(stmt, Settings.System.VIBRATE_WHEN_RINGING, vibrateWhenRinging ? 1 : 0);
+            }
         } finally {
             if (stmt != null) stmt.close();
         }
@@ -2507,6 +2515,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                             SystemProperties.get("ro.com.android.mobiledata",
                                     "true")) ? 1 : 0);
 
+            // SUB specific flags for Multisim devices
+            for (int phoneId = 0; phoneId < MAX_PHONE_COUNT; phoneId++) {
+                // Mobile Data default, based on build
+                loadSetting(stmt, Settings.Global.MOBILE_DATA + phoneId,
+                        "true".equalsIgnoreCase(
+                        SystemProperties.get("ro.com.android.mobiledata", "true")) ? 1 : 0);
+
+                // Data roaming default, based on build
+                loadSetting(stmt, Settings.Global.DATA_ROAMING + phoneId,
+                        "true".equalsIgnoreCase(
+                        SystemProperties.get("ro.com.android.dataroaming", "true")) ? 1 : 0);
+            }
+
             loadBooleanSetting(stmt, Settings.Global.NETSTATS_ENABLED,
                     R.bool.def_netstats_enabled);
 
@@ -2558,9 +2579,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             // Set the preferred network mode to target desired value or Default
             // value defined in RILConstants
             int type;
+            int phoneCount = TelephonyManager.getDefault().getPhoneCount();
             type = SystemProperties.getInt("ro.telephony.default_network",
                         RILConstants.PREFERRED_NETWORK_MODE);
-            loadSetting(stmt, Settings.Global.PREFERRED_NETWORK_MODE, type);
+            String val = Integer.toString(type);
+            for (int phoneId = 1; phoneId < phoneCount; phoneId++) {
+                val = val + "," + type;
+            }
+
+            loadSetting(stmt, Settings.Global.PREFERRED_NETWORK_MODE, val);
 
             // Set the preferred cdma subscription source to target desired value or default
             // value defined in CdmaSubscriptionSourceManager

@@ -187,5 +187,13 @@ public class SystemSettings {
         Settings.System.BUTTON_BACKLIGHT_ONLY_WHEN_PRESSED,
         Settings.System.NAVIGATION_BAR_SHOW,
         Settings.System.NAVIGATION_BAR_MODE_OVERLAY,
+        Settings.System.KEY_HOME_LONG_PRESS_ACTION,
+        Settings.System.KEY_HOME_DOUBLE_TAP_ACTION,
+        Settings.System.KEY_MENU_ACTION,
+        Settings.System.KEY_MENU_LONG_PRESS_ACTION,
+        Settings.System.KEY_ASSIST_ACTION,
+        Settings.System.KEY_ASSIST_LONG_PRESS_ACTION,
+        Settings.System.KEY_APP_SWITCH_ACTION,
+        Settings.System.KEY_APP_SWITCH_LONG_PRESS_ACTION,
     };
 }

@@ -55,7 +55,7 @@ import java.lang.ref.WeakReference;
 public class KeyguardHostView extends KeyguardViewBase {
     private static final String TAG = "KeyguardHostView";
     public static boolean DEBUG = KeyguardConstants.DEBUG;
-    public static boolean DEBUGXPORT = true; // debug music transport control
+    public static boolean DEBUGXPORT = false; // debug music transport control
 
     // Transport control states.
     static final int TRANSPORT_GONE = 0;

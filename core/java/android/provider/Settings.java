@@ -5219,12 +5219,6 @@ public final class Settings {
         public static final String PROTECTED_COMPONENTS = "protected_components";
 
         /**
-         * Whether to include options in power menu for rebooting into recovery or bootloader
-         * @hide
-         */
-        public static final String ADVANCED_REBOOT = "advanced_reboot";
-
-        /**
          * Whether newly installed apps should run with privacy guard by default
          * @hide
          */
@@ -5280,7 +5274,6 @@ public final class Settings {
             MOUNT_UMS_PROMPT,
             MOUNT_UMS_NOTIFY_ENABLED,
             UI_NIGHT_MODE,
-            ADVANCED_REBOOT,
             SLEEP_TIMEOUT,
             PRIVACY_GUARD_DEFAULT
         };

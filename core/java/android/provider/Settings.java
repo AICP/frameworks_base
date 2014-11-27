@@ -4509,18 +4509,6 @@ public final class Settings {
             }
         };
 
-        /**
-         * Setting to determine whether or not to show the battery percentage in the status bar.
-         *    0 - Don't show percentage
-         *    1 - Show percentage
-         * @hide
-         */
-        public static final String SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
-
-        /** @hide */
-        private static final Validator SHOW_BATTERY_PERCENT_VALIDATOR = BOOLEAN_VALIDATOR;
-
-
         /*****************************
          * AICP System Settings start
          *****************************/
@@ -6165,6 +6153,19 @@ public final class Settings {
         /** @hide */
         private static final Validator AICP_SHOW_BATTERY_IMAGE_VALIDATOR =
                 BOOLEAN_VALIDATOR;
+
+        /**
+        * Setting to determine whether or not to show the battery percentage in the status bar.
+        *    0 - Don't show percentage
+        *    1 - Show percentage outside the battery icon
+        *    2 - Show percentage inside the battery icon
+        * @hide
+        */
+        public static final String SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
+
+        /** @hide */
+        private static final Validator SHOW_BATTERY_PERCENT_VALIDATOR =
+               new SettingsValidators.InclusiveIntegerRangeValidator(0, 2);
 
         /***************************
          * AICP System Settings end
@@ -11403,6 +11404,22 @@ public final class Settings {
           */
          public static final String QS_TILES_VIBRATE = "qs_vibrate";
 
+        /**
+         * Display style of the status bar battery information
+         * 0: Display the battery an icon in portrait mode
+         * 1: Display the battery an icon in landscape mode
+         * 2: Display the battery as a circle
+         * 3: Display the battery as a dotted circle
+         * 5: Display the battery as text
+         * default: 0
+         * @hide
+         */
+        public static final String STATUS_BAR_BATTERY_STYLE = "status_bar_battery_style";
+
+        /** @hide */
+        private static final Validator STATUS_BAR_BATTERY_STYLE_VALIDATOR =
+               new SettingsValidators.InclusiveIntegerRangeValidator(0, 5);
+
         /*****************************
          * AICP Secure Settings end
          *****************************/
@@ -11566,6 +11583,7 @@ public final class Settings {
             STATUSBAR_CLOCK_DATE_STYLE,
             STATUSBAR_CLOCK_DATE_FORMAT,
             FP_SWIPE_TO_DISMISS_NOTIFICATIONS,
+            STATUS_BAR_BATTERY_STYLE,
         };
 
         /**
@@ -11778,6 +11796,7 @@ public final class Settings {
             VALIDATORS.put(STATUSBAR_CLOCK_DATE_DISPLAY, STATUSBAR_CLOCK_DATE_DISPLAY_VALIDATOR);
             VALIDATORS.put(STATUSBAR_CLOCK_POSITION, STATUSBAR_CLOCK_POSITION_VALIDATOR);
             VALIDATORS.put(FP_SWIPE_TO_DISMISS_NOTIFICATIONS, FP_SWIPE_TO_DISMISS_NOTIFICATIONS_VALIDATOR);
+            VALIDATORS.put(STATUS_BAR_BATTERY_STYLE, STATUS_BAR_BATTERY_STYLE_VALIDATOR);
         }
 
         /**

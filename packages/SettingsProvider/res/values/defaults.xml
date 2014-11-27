@@ -261,4 +261,8 @@
 
     <!-- Defaults for Settings.System.Secure.ADVANCED_MODE. -->
     <bool name="def_advanced_mode">true</bool>
+
+    <!-- Default for Settings.Global.TETHER_DUN_REQUIRED -->
+    <integer name="def_tether_dun_required">0</integer>
+
 </resources>

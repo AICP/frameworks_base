@@ -75,4 +75,9 @@
     <!-- StatusBar burn-in protection -->
     <dimen name="horizontal_max_shift">3.0dp</dimen>
     <dimen name="vertical_max_shift">2.0dp</dimen>
+
+    <!-- Height of tbhe big battery circle icon in the status bar. -->
+    <dimen name="status_bar_battery_bigcircle_icon_height">20.5dp</dimen>
+     <!-- Width of the big battery circle icon in the status bar. -->
+    <dimen name="status_bar_battery_bigcircle_icon_width">20.5dp</dimen>
 </resources>

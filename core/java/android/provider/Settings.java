@@ -4764,14 +4764,6 @@ public final class Settings {
         public static final String EGG_MODE = "egg_mode";
 
         /**
-         * Setting to determine whether or not to show the battery percentage in the status bar.
-         *    0 - Don't show percentage
-         *    1 - Show percentage
-         * @hide
-         */
-        public static final String SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
-
-        /**
          * Whether or not to enable multiple audio focus.
          * When enabled, requires more management by user over application playback activity,
          * for instance pausing media apps when another starts.
@@ -4903,7 +4895,6 @@ public final class Settings {
             PRIVATE_SETTINGS.add(POINTER_SPEED);
             PRIVATE_SETTINGS.add(LOCK_TO_APP_ENABLED);
             PRIVATE_SETTINGS.add(EGG_MODE);
-            PRIVATE_SETTINGS.add(SHOW_BATTERY_PERCENT);
             PRIVATE_SETTINGS.add(DISPLAY_COLOR_MODE);
         }
 
@@ -6124,6 +6115,15 @@ public final class Settings {
          */
         public static final String AICP_SHOW_BATTERY_IMAGE = "status_bar_show_battery_image";
 
+        /**
+        * Setting to determine whether or not to show the battery percentage in the status bar.
+        *    0 - Don't show percentage
+        *    1 - Show percentage outside the battery icon
+        *    2 - Show percentage inside the battery icon
+        * @hide
+        */
+        public static final String SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6287,6 +6287,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(CUSTOM_CARRIER_LABEL, ANY_STRING_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(STATUS_BAR_QUICK_QS_PULLDOWN, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(AICP_SHOW_BATTERY_IMAGE, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(SHOW_BATTERY_PERCENT, ANY_INTEGER_VALIDATOR);
         }
 
         /**
@@ -10192,6 +10193,18 @@ public final class Settings {
          * @hide
          */
         public static final String STATUSBAR_CLOCK_DATE_POSITION = "statusbar_clock_date_position";
+
+        /**
+         * Display style of the status bar battery information
+         * 0: Display the battery an icon in portrait mode
+         * 1: Display the battery an icon in landscape mode
+         * 2: Display the battery as a circle
+         * 3: Display the battery as a dotted circle
+         * 5: Display the battery as text
+         * default: 0
+         * @hide
+         */
+        public static final String STATUS_BAR_BATTERY_STYLE = "status_bar_battery_style";
 
         /*****************************
          * AICP Secure Settings end

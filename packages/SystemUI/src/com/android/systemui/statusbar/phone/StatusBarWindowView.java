@@ -809,16 +809,20 @@ public class StatusBarWindowView extends FrameLayout {
         }
     };
 
-    public void updateDoubleTapSettings() {
+    public void setStatusBarWindowViewOptions() {
         boolean doubleTapToSleepEnabled = Settings.System.getIntForUser(
                 mContext.getContentResolver(), Settings.System.AICP_DOUBLE_TAP_SLEEP_GESTURE, 0,
                 UserHandle.USER_CURRENT) == 1;
         boolean isDoubleTapEnabled = Settings.System.getIntForUser(
                 mContext.getContentResolver(), Settings.System.AICP_DOUBLE_TAP_SLEEP_LOCKSCREEN, 0,
                 UserHandle.USER_CURRENT) == 1;
+        int qsSmartPullDown = Settings.System.getIntForUser(
+                mContext.getContentResolver(), Settings.System.QS_SMART_PULLDOWN, 0,
+                UserHandle.USER_CURRENT);
         if (mNotificationPanel != null) {
             mNotificationPanel.updateDoubleTapToSleep(doubleTapToSleepEnabled);
             mNotificationPanel.setLockscreenDoubleTapToSleep(isDoubleTapEnabled);
+            mNotificationPanel.setQsSmartPulldown(qsSmartPullDown);
         }
         if (mDragDownHelper != null) {
             mDragDownHelper.updateDoubleTapToSleep(doubleTapToSleepEnabled);

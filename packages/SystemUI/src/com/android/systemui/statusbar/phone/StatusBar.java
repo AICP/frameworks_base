@@ -708,6 +708,8 @@ public class StatusBar extends SystemUI implements DemoMode,
         mDevicePolicyManager = (DevicePolicyManager) mContext.getSystemService(
                 Context.DEVICE_POLICY_SERVICE);
 
+        mNotificationData = new NotificationData(this);
+
         mAccessibilityManager = (AccessibilityManager)
                 mContext.getSystemService(Context.ACCESSIBILITY_SERVICE);
 
@@ -1613,6 +1615,18 @@ public class StatusBar extends SystemUI implements DemoMode,
 
     public void requestNotificationUpdate() {
         mEntryManager.updateNotifications();
+    }
+
+    protected boolean hasActiveVisibleNotifications() {
+        return mNotificationData.hasActiveVisibleNotifications();
+    }
+
+    protected boolean hasActiveOngoingNotifications() {
+        return mNotificationData.hasActiveOngoingNotifications();
+    }
+
+    protected boolean hasActiveClearableNotificationsQS() {
+        return hasActiveClearableNotifications();
     }
 
     protected void setAreThereNotifications() {
@@ -5243,6 +5257,7 @@ public class StatusBar extends SystemUI implements DemoMode,
     protected IStatusBarService mBarService;
 
     // all notifications
+    protected NotificationData mNotificationData;
     protected NotificationStackScrollLayout mStackScroller;
 
     protected NotificationGroupManager mGroupManager;
@@ -5360,6 +5375,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.LOCKSCREEN_MEDIA_METADATA),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.QS_SMART_PULLDOWN),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
         @Override
@@ -5382,8 +5400,9 @@ public class StatusBar extends SystemUI implements DemoMode,
                     uri.equals(Settings.System.getUriFor(Settings.System.AICP_QS_QUICKBAR_COLUMNS))) {
                 updateTileLayouts();
             } else if (uri.equals(Settings.System.getUriFor(Settings.System.AICP_DOUBLE_TAP_SLEEP_GESTURE)) ||
-                    uri.equals(Settings.System.getUriFor(Settings.System.AICP_DOUBLE_TAP_SLEEP_LOCKSCREEN))) {
-                updateDoubleTapSettings();
+                    uri.equals(Settings.System.getUriFor(Settings.System.AICP_DOUBLE_TAP_SLEEP_LOCKSCREEN)) ||
+                    uri.equals(Settings.System.getUriFor(Settings.System.QS_SMART_PULLDOWN))) {
+                setStatusBarWindowViewOptions();
             } else if (uri.equals(Settings.System.getUriFor(Settings.System.LOCKSCREEN_MEDIA_METADATA))) {
                 setLockscreenMediaMetadata();
             }
@@ -5394,7 +5413,7 @@ public class StatusBar extends SystemUI implements DemoMode,
             updateTickerAnimation();
             updateTickerTickDuration();
             updateTileLayouts();
-            updateDoubleTapSettings();
+            setStatusBarWindowViewOptions();
             setLockscreenMediaMetadata();
         }
     }
@@ -5426,12 +5445,6 @@ public class StatusBar extends SystemUI implements DemoMode,
             }
             updateTiles();
         }
-    }
-
-    private void updateDoubleTapSettings(){
-       if (mStatusBarWindow != null) {
-           mStatusBarWindow.updateDoubleTapSettings();
-       }
     }
 
     private final BroadcastReceiver mBannerActionBroadcastReceiver = new BroadcastReceiver() {
@@ -6082,5 +6095,11 @@ public class StatusBar extends SystemUI implements DemoMode,
     private void setLockscreenMediaMetadata() {
         mLockscreenMediaMetadata = Settings.System.getIntForUser(mContext.getContentResolver(),
                 Settings.System.LOCKSCREEN_MEDIA_METADATA, 0, UserHandle.USER_CURRENT) == 1;
+    }
+
+    private void setStatusBarWindowViewOptions() {
+        if (mStatusBarWindow != null) {
+            mStatusBarWindow.setStatusBarWindowViewOptions();
+        }
     }
 }

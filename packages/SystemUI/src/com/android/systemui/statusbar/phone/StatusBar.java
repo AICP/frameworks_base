@@ -2317,6 +2317,18 @@ public class StatusBar extends SystemUI implements DemoMode,
         updateNotifications();
     }
 
+    protected boolean hasActiveVisibleNotifications() {
+        return mNotificationData.hasActiveVisibleNotifications();
+    }
+
+    protected boolean hasActiveOngoingNotifications() {
+        return mNotificationData.hasActiveOngoingNotifications();
+    }
+
+    protected boolean hasActiveClearableNotificationsQS() {
+        return hasActiveClearableNotifications();
+    }
+
     protected void setAreThereNotifications() {
 
         if (SPEW) {
@@ -6117,6 +6129,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_SHOW_TICKER),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.QS_SMART_PULLDOWN),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -6163,6 +6178,9 @@ public class StatusBar extends SystemUI implements DemoMode,
                     Settings.System.STATUS_BAR_SHOW_TICKER))) {
                 updateTickerSettings();
                 initTickerView();
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.QS_SMART_PULLDOWN))) {
+                setStatusBarWindowViewOptions();
             }
         }
 

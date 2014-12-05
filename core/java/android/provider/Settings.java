@@ -5454,6 +5454,12 @@ public final class Settings {
          */
         public static final String STATUSBAR_COLORED_ICONS = "statusbar_colored_icons";
 
+        /**
+         * Show the pending notification counts as overlays on the status bar
+         * @hide
+         */
+        public static final String STATUSBAR_NOTIF_COUNT = "statusbar_notif_count";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5624,6 +5630,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(QS_SMART_PULLDOWN);
             PRIVATE_SETTINGS.add(LESS_BORING_HEADS_UP);
             PRIVATE_SETTINGS.add(STATUSBAR_COLORED_ICONS);
+            PRIVATE_SETTINGS.add(STATUSBAR_NOTIF_COUNT);
         }
 
         /**

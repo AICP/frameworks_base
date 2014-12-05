@@ -6779,6 +6779,12 @@ public final class Settings {
          */
         public static final String NAVBAR_STYLE = "navbar_style";
 
+        /**
+         * Show the pending notification counts as overlays on the status bar
+         * @hide
+         */
+        public static final String STATUS_BAR_NOTIF_COUNT = "status_bar_notif_count";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7014,6 +7020,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(OFF_GESTURE_HAPTIC_ENABLE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(QS_PANEL_BG_ALPHA, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(NAVBAR_STYLE, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(STATUS_BAR_NOTIF_COUNT, BOOLEAN_VALIDATOR);
         }
 
         /**

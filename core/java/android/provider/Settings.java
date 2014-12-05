@@ -6773,6 +6773,12 @@ public final class Settings {
          */
         public static final String QS_PANEL_BG_ALPHA = "qs_panel_bg_alpha";
 
+        /**
+         * Show the pending notification counts as overlays on the status bar
+         * @hide
+         */
+        public static final String STATUS_BAR_NOTIF_COUNT = "status_bar_notif_count";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7007,6 +7013,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(CAMERA_LAUNCH, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(OFF_GESTURE_HAPTIC_ENABLE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(QS_PANEL_BG_ALPHA, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(STATUS_BAR_NOTIF_COUNT, BOOLEAN_VALIDATOR);
         }
 
         /**

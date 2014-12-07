@@ -423,6 +423,11 @@ interface IWindowManager
     int getNavBarPosition(int displayId);
 
     /**
+     * Simulate a hardware menu key
+     */
+    boolean hasPermanentMenuKey();
+
+    /**
      * Lock the device immediately with the specified options (can be null).
      */
     @UnsupportedAppUsage

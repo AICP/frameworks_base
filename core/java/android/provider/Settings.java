@@ -5514,12 +5514,6 @@ public final class Settings {
                 = "status_bar_locked_on_secure_keyguard";
 
         /**
-         * Whether to use the custom quick unlock screen control
-         * @hide
-         */
-        public static final String LOCKSCREEN_QUICK_UNLOCK_CONTROL = "lockscreen_quick_unlock_control";
-
-        /**
          * Whether to include options in power menu for rebooting into recovery and bootloader
          * @hide
          */
@@ -5693,8 +5687,7 @@ public final class Settings {
             PRIVACY_GUARD_DEFAULT,
             ADVANCED_REBOOT,
             DEVELOPMENT_SHORTCUT,
-            STATUS_BAR_LOCKED_ON_SECURE_KEYGUARD,
-            LOCKSCREEN_QUICK_UNLOCK_CONTROL
+            STATUS_BAR_LOCKED_ON_SECURE_KEYGUARD
         };
 
         /**

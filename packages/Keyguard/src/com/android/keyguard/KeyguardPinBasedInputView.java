@@ -207,9 +207,7 @@ public abstract class KeyguardPinBasedInputView extends KeyguardAbsKeyInputView
                 randomButton.setOnHoverListener(new LiftToActivateListener(getContext()));
             }
         } else {
-            if (randomButton != null) {
-                randomButton.setVisibility(View.INVISIBLE);
-            }
+            randomButton.setVisibility(View.INVISIBLE);
         }
 
         mPasswordEntry.requestFocus();

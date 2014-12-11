@@ -2078,10 +2078,6 @@
 
     <!-- Timeout in MS for how long you have to long-press the back key to
          kill the foreground app. -->
-    <integer name="config_backKillTimeout">2000</integer>
-
-    <!-- Boolean to enable adb by default on a per-device basis -->
-    <bool name="config_enableAdbByDefault">false</bool>
-
+    <integer name="config_backKillTimeout">700</integer>
 
 </resources>

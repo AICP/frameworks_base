@@ -178,7 +178,7 @@
             android:paddingEnd="16dp"
             android:gravity="right"
             android:textColor="#ffffff"
-            android:textSize="@dimen/battery_level_text_size"
+            android:textSize="@dimen/weather_text_size"
             android:importantForAccessibility="noHideDescendants"/>
     <TextView
             android:id="@+id/weather_line_2"
@@ -187,7 +187,7 @@
             android:paddingEnd="16dp"
             android:gravity="right"
             android:textColor="#ffffff"
-            android:textSize="@dimen/battery_level_text_size"
+            android:textSize="@dimen/weather_text_size"
             android:importantForAccessibility="noHideDescendants"/>
     </LinearLayout>
 

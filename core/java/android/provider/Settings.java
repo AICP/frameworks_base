@@ -3001,6 +3001,13 @@ public final class Settings {
         public static final String SCREENSHOT_SOUND = "screenshot_sound";
 
         /**
+         * Volume Adjust Sounds Enable, This is the noise made when using volume hard buttons
+         * Defaults to 1 - sounds enabled
+         * @hide
+         */
+        public static final String VOLUME_ADJUST_SOUND = "volume_adjust_sound";
+
+        /**
          * Whether lock-to-app will be triggered by long-press on recents.
          * @hide
          */

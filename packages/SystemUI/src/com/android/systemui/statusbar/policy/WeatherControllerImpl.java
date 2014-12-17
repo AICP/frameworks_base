@@ -18,11 +18,15 @@ package com.android.systemui.statusbar.policy;
 
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.ContentObserver;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Handler;
+import android.provider.Settings;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -53,6 +57,7 @@ public class WeatherControllerImpl implements WeatherController {
 
     private WeatherInfo mCachedInfo = new WeatherInfo();
 
+    private WeatherObserver mWeatherObserver = new WeatherObserver(new Handler());
 
     public WeatherControllerImpl(Context context) {
         mContext = context;
@@ -114,10 +119,12 @@ public class WeatherControllerImpl implements WeatherController {
                 final IntentFilter filter = new IntentFilter();
                 filter.addAction(ACTION_UPDATE_FINISHED);
                 mContext.registerReceiver(this, filter);
+                mWeatherObserver.observe();
                 mRegistered = true;
             } else if (!listening && mRegistered) {
                 if (DEBUG) Log.d(TAG, "Unregistering receiver");
                 mContext.unregisterReceiver(this);
+                mWeatherObserver.unobserve();
                 mRegistered = false;
             }
         }
@@ -131,6 +138,37 @@ public class WeatherControllerImpl implements WeatherController {
                     return;
                 }
             }
+            queryWeather();
+            fireCallback();
+        }
+    }
+
+    class WeatherObserver extends ContentObserver {
+        WeatherObserver(Handler handler) {
+            super(handler);
+        }
+
+        void observe() {
+            ContentResolver resolver = mContext.getContentResolver();
+            resolver.registerContentObserver(CURRENT_WEATHER_URI, false, this);
+        }
+
+        void unobserve() {
+            ContentResolver resolver = mContext.getContentResolver();
+            resolver.unregisterContentObserver(this);
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            update();
+        }
+
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
+            update();
+        }
+
+        public void update() {
             queryWeather();
             fireCallback();
         }

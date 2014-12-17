@@ -57,19 +57,19 @@ public class WeatherControllerImpl implements WeatherController {
 
     private WeatherInfo mCachedInfo = new WeatherInfo();
 
-    private WeatherObserver mWeatherObserver = new WeatherObserver(new Handler());
-
     public WeatherControllerImpl(Context context) {
         mContext = context;
                 mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
         queryWeather();
+        final IntentFilter filter = new IntentFilter();
+        filter.addAction(ACTION_UPDATE_FINISHED);
+        mContext.registerReceiver(mReceiver, filter);
     }
 
     public void addCallback(Callback callback) {
         if (callback == null || mCallbacks.contains(callback)) return;
         if (DEBUG) Log.d(TAG, "addCallback " + callback);
         mCallbacks.add(callback);
-        mReceiver.setListening(!mCallbacks.isEmpty());
         callback.onWeatherChanged(mCachedInfo); // immediately update with current values
     }
 
@@ -77,7 +77,6 @@ public class WeatherControllerImpl implements WeatherController {
         if (callback == null) return;
         if (DEBUG) Log.d(TAG, "removeCallback " + callback);
         mCallbacks.remove(callback);
-        mReceiver.setListening(!mCallbacks.isEmpty());
     }
 
     @Override
@@ -109,26 +108,7 @@ public class WeatherControllerImpl implements WeatherController {
         }
     }
 
-
     private final class Receiver extends BroadcastReceiver {
-        private boolean mRegistered;
-
-        public void setListening(boolean listening) {
-            if (listening && !mRegistered) {
-                if (DEBUG) Log.d(TAG, "Registering receiver");
-                final IntentFilter filter = new IntentFilter();
-                filter.addAction(ACTION_UPDATE_FINISHED);
-                mContext.registerReceiver(this, filter);
-                mWeatherObserver.observe();
-                mRegistered = true;
-            } else if (!listening && mRegistered) {
-                if (DEBUG) Log.d(TAG, "Unregistering receiver");
-                mContext.unregisterReceiver(this);
-                mWeatherObserver.unobserve();
-                mRegistered = false;
-            }
-        }
-
         @Override
         public void onReceive(Context context, Intent intent) {
             if (DEBUG) Log.d(TAG, "onReceive " + intent.getAction());
@@ -138,37 +118,6 @@ public class WeatherControllerImpl implements WeatherController {
                     return;
                 }
             }
-            queryWeather();
-            fireCallback();
-        }
-    }
-
-    class WeatherObserver extends ContentObserver {
-        WeatherObserver(Handler handler) {
-            super(handler);
-        }
-
-        void observe() {
-            ContentResolver resolver = mContext.getContentResolver();
-            resolver.registerContentObserver(CURRENT_WEATHER_URI, false, this);
-        }
-
-        void unobserve() {
-            ContentResolver resolver = mContext.getContentResolver();
-            resolver.unregisterContentObserver(this);
-        }
-
-        @Override
-        public void onChange(boolean selfChange) {
-            update();
-        }
-
-        @Override
-        public void onChange(boolean selfChange, Uri uri) {
-            update();
-        }
-
-        public void update() {
             queryWeather();
             fireCallback();
         }

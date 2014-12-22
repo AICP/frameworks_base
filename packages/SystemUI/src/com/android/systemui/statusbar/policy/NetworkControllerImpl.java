@@ -1210,7 +1210,6 @@ public class NetworkControllerImpl extends BroadcastReceiver
                         }
                         if (!restoredConnection) mConnectionsList.add(mWifiSsid);
                     }
-                    mConnectionAtBoot = false;
                 } else {
                     mWifiSsid = null;
                 }

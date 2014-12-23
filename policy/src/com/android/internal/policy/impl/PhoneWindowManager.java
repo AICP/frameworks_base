@@ -1632,6 +1632,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     Settings.System.HOME_WAKE_SCREEN, 1, UserHandle.USER_CURRENT) == 1);
             mBackWakeScreen = (Settings.System.getIntForUser(resolver,
                     Settings.System.BACK_WAKE_SCREEN, 0, UserHandle.USER_CURRENT) == 1);
+            mVolumeWakeScreen = (Settings.System.getIntForUser(resolver,
+                    Settings.System.VOLUME_WAKE_SCREEN, 0, UserHandle.USER_CURRENT) == 1);
             mMenuWakeScreen = (Settings.System.getIntForUser(resolver,
                     Settings.System.MENU_WAKE_SCREEN, 0, UserHandle.USER_CURRENT) == 1);
 

@@ -2117,4 +2117,6 @@
     <string-array name="config_auto_perf_activities" translatable="false">
     </string-array>
 
+    <!-- Boolean to enable adb by default on a per-device basis -->
+    <bool name="config_enableAdbByDefault">false</bool>
 </resources>

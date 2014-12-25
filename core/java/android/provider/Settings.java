@@ -3766,6 +3766,12 @@ public final class Settings {
         public static final String APP_CIRCLE_BAR_SHOW_TRIGGER = "app_circle_bar_show_trigger";
 
         /**
+         * Hidden shit
+         * @hide
+         */
+        public static final String HIDDEN_SHIT = "hidden_shit";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *

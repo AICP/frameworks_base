@@ -5657,6 +5657,16 @@ public final class Settings {
         /** @hide */
         private static final Validator LOCKSCREEN_PIN_SCRAMBLE_LAYOUT_VALIDATOR = BOOLEAN_VALIDATOR;
 
+        /**
+        * Whether to use the custom quick unlock screen control
+        * @hide
+        */
+        public static final String LOCKSCREEN_QUICK_UNLOCK_CONTROL =
+               "lockscreen_quick_unlock_control";
+
+        /** @hide */
+        private static final Validator LOCKSCREEN_QUICK_UNLOCK_CONTROL_VALIDATOR = BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5853,6 +5863,7 @@ public final class Settings {
             PULSE_APPS_BLACKLIST,
             SHOW_CLEAR_ALL_RECENTS,
             LOCKSCREEN_PIN_SCRAMBLE_LAYOUT,
+            LOCKSCREEN_QUICK_UNLOCK_CONTROL,
             // AICP Settings end
         };
 
@@ -6113,6 +6124,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(PULSE_APPS_BLACKLIST);
             PRIVATE_SETTINGS.add(SHOW_CLEAR_ALL_RECENTS);
             PRIVATE_SETTINGS.add(LOCKSCREEN_PIN_SCRAMBLE_LAYOUT);
+            PRIVATE_SETTINGS.add(LOCKSCREEN_QUICK_UNLOCK_CONTROL);
             // AICP Settings end
         }
 
@@ -6363,6 +6375,7 @@ public final class Settings {
             VALIDATORS.put(PULSE_APPS_BLACKLIST,PULSE_APPS_BLACKLIST_VALIDATOR);
             VALIDATORS.put(SHOW_CLEAR_ALL_RECENTS,SHOW_CLEAR_ALL_RECENTS_VALIDATOR);
             VALIDATORS.put(LOCKSCREEN_PIN_SCRAMBLE_LAYOUT,LOCKSCREEN_PIN_SCRAMBLE_LAYOUT_VALIDATOR);
+            VALIDATORS.put(LOCKSCREEN_QUICK_UNLOCK_CONTROL,LOCKSCREEN_QUICK_UNLOCK_CONTROL_VALIDATOR);
             // AICP Settings end
         }
 

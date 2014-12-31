@@ -17,6 +17,7 @@
 package com.android.keyguard;
 
 import android.content.Context;
+import android.os.UserHandle;
 import android.provider.Settings;
 import android.util.AttributeSet;
 import android.view.View;
@@ -31,6 +32,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import com.android.internal.widget.LockPatternUtils.RequestThrottledException;
+import com.android.keyguard.PasswordTextView.QuickUnlockListener;
 
 /**
  * Displays a PIN pad for unlocking.
@@ -51,6 +55,7 @@ public class KeyguardPINView extends KeyguardPinBasedInputView {
     private final KeyguardUpdateMonitor mKeyguardUpdateMonitor;
 
     private static List<Integer> sNumbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 0);
+    private final int userId = KeyguardUpdateMonitor.getCurrentUser();
 
     public KeyguardPINView(Context context) {
         this(context, null);
@@ -124,8 +129,8 @@ public class KeyguardPINView extends KeyguardPinBasedInputView {
             });
         }
 
-        boolean scramblePin = (Settings.System.getInt(getContext().getContentResolver(),
-                Settings.System.LOCKSCREEN_PIN_SCRAMBLE_LAYOUT, 0) == 1);
+        boolean scramblePin = (Settings.System.getIntForUser(getContext().getContentResolver(),
+                Settings.System.LOCKSCREEN_PIN_SCRAMBLE_LAYOUT, 0, UserHandle.USER_CURRENT) == 1);
 
         if (scramblePin) {
             Collections.shuffle(sNumbers);
@@ -149,6 +154,19 @@ public class KeyguardPINView extends KeyguardPinBasedInputView {
                 NumPadKey view = views.get(i);
                 view.setDigit(sNumbers.get(i));
             }
+        }
+
+        boolean quickUnlock = (Settings.System.getIntForUser(getContext().getContentResolver(),
+                Settings.System.LOCKSCREEN_QUICK_UNLOCK_CONTROL, 0, UserHandle.USER_CURRENT) == 1);
+
+        if (quickUnlock) {
+            mPasswordEntry.setQuickUnlockListener(new QuickUnlockListener() {
+                public void onValidateQuickUnlock(String password) {
+                    validateQuickUnlock(password);
+                }
+            });
+        } else {
+            mPasswordEntry.setQuickUnlockListener(null);
         }
     }
 
@@ -212,5 +230,24 @@ public class KeyguardPINView extends KeyguardPinBasedInputView {
     @Override
     public boolean hasOverlappingRendering() {
         return false;
+    }
+
+    private void validateQuickUnlock(String password) {
+        if (password != null) {
+            if (password.length() > MINIMUM_PASSWORD_LENGTH_BEFORE_REPORT
+                    && kpvCheckPassword(password)) {
+                mCallback.reportUnlockAttempt(userId, true, 0);
+                mCallback.dismiss(true, userId);
+                resetPasswordText(true, true);
+            }
+        }
+    }
+
+    private boolean kpvCheckPassword(String password) {
+        try {
+            return mLockPatternUtils.checkPassword(password, userId);
+        } catch (RequestThrottledException ex) {
+            return false;
+        }
     }
 }

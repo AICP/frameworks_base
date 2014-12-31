@@ -5845,6 +5845,13 @@ public final class Settings {
          */
         public static final String LOCK_HIDE_STATUS_BAR = "lockscreen_hide_status_bar";
 
+        /**
+         * Whether to use the custom quick unlock screen control
+         * @hide
+         */
+        public static final String LOCKSCREEN_QUICK_UNLOCK_CONTROL =
+                "lockscreen_quick_unlock_control";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5964,6 +5971,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(OMNI_DOZE_ON_CHARGE_NOW, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(STATUS_BAR_BRIGHTNESS_CONTROL, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(LOCK_HIDE_STATUS_BAR, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(LOCKSCREEN_QUICK_UNLOCK_CONTROL, BOOLEAN_VALIDATOR);
         }
 
         /**

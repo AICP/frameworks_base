@@ -38,6 +38,9 @@ import android.metrics.LogMaker;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
+import android.provider.Settings;
 import android.text.format.DateUtils;
 import android.util.ArraySet;
 import android.util.Log;
@@ -56,6 +59,7 @@ import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.UiEventLogger;
 import com.android.settingslib.RestrictedLockUtils;
 import com.android.settingslib.RestrictedLockUtilsInternal;
+import com.android.systemui.Dependency;
 import com.android.systemui.Dumpable;
 import com.android.systemui.animation.ActivityLaunchAnimator;
 import com.android.systemui.plugins.ActivityStarter;
@@ -69,6 +73,7 @@ import com.android.systemui.qs.QSEvent;
 import com.android.systemui.qs.QSHost;
 import com.android.systemui.qs.SideLabelTileLayout;
 import com.android.systemui.qs.logging.QSLogger;
+import com.android.systemui.tuner.TunerService;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
@@ -83,7 +88,7 @@ import java.util.ArrayList;
  *
  * @param <TState> see above
  */
-public abstract class QSTileImpl<TState extends State> implements QSTile, LifecycleOwner, Dumpable {
+public abstract class QSTileImpl<TState extends State> implements QSTile, LifecycleOwner, Dumpable, TunerService.Tunable {
     protected final String TAG = "Tile." + getClass().getSimpleName();
     protected static final boolean DEBUG = Log.isLoggable("Tile", Log.DEBUG);
 
@@ -119,6 +124,12 @@ public abstract class QSTileImpl<TState extends State> implements QSTile, Lifecy
     private EnforcedAdmin mEnforcedAdmin;
     private boolean mShowingDetail;
     private int mIsFullQs;
+
+    protected Vibrator mVibrator;
+    private boolean mVibrationEnabled;
+
+    private static final String QS_TILES_VIBRATE =
+            Settings.Secure.QS_TILES_VIBRATE;
 
     private final LifecycleRegistry mLifecycle = new LifecycleRegistry(this);
 
@@ -191,8 +202,23 @@ public abstract class QSTileImpl<TState extends State> implements QSTile, Lifecy
         mStatusBarStateController = statusBarStateController;
         mActivityStarter = activityStarter;
 
+        mVibrator = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
+        Dependency.get(TunerService.class).addTunable(this, QS_TILES_VIBRATE);
+
         resetStates();
         mUiHandler.post(() -> mLifecycle.setCurrentState(CREATED));
+    }
+
+    @Override
+    public void onTuningChanged(String key, String newValue) {
+        switch (key) {
+            case QS_TILES_VIBRATE:
+                mVibrationEnabled =
+                        TunerService.parseIntegerSwitch(newValue, false);
+                break;
+            default:
+                break;
+        }
     }
 
     protected final void resetStates() {
@@ -271,6 +297,13 @@ public abstract class QSTileImpl<TState extends State> implements QSTile, Lifecy
         return true;
     }
 
+    public void vibrateTile(int duration) {
+        if (mVibrationEnabled && mVibrator != null && mVibrator.hasVibrator()) {
+            mVibrator.vibrate(VibrationEffect.createOneShot(duration,
+                    VibrationEffect.DEFAULT_AMPLITUDE));
+        }
+    }
+
     // safe to call from any thread
 
     public void addCallback(Callback callback) {
@@ -294,6 +327,7 @@ public abstract class QSTileImpl<TState extends State> implements QSTile, Lifecy
         mQSLogger.logTileClick(mTileSpec, mStatusBarStateController.getState(), mState.state);
         if (!mFalsingManager.isFalseTap(FalsingManager.LOW_PENALTY)) {
             mHandler.obtainMessage(H.CLICK, view).sendToTarget();
+            vibrateTile(100);
         }
     }
 
@@ -306,6 +340,7 @@ public abstract class QSTileImpl<TState extends State> implements QSTile, Lifecy
         mQSLogger.logTileSecondaryClick(mTileSpec, mStatusBarStateController.getState(),
                 mState.state);
         mHandler.obtainMessage(H.SECONDARY_CLICK, view).sendToTarget();
+        vibrateTile(100);
     }
 
     @Override
@@ -317,6 +352,7 @@ public abstract class QSTileImpl<TState extends State> implements QSTile, Lifecy
                 getInstanceId());
         mQSLogger.logTileLongClick(mTileSpec, mStatusBarStateController.getState(), mState.state);
         mHandler.obtainMessage(H.LONG_CLICK, view).sendToTarget();
+        vibrateTile(100);
     }
 
     public LogMaker populate(LogMaker logMaker) {
@@ -546,12 +582,14 @@ public abstract class QSTileImpl<TState extends State> implements QSTile, Lifecy
 
     protected void handleDestroy() {
         mQSLogger.logTileDestroyed(mTileSpec, "Handle destroy");
+        Dependency.get(TunerService.class).removeTunable(this);
         if (mListeners.size() != 0) {
             handleSetListening(false);
             mListeners.clear();
         }
         mCallbacks.clear();
         mHandler.removeCallbacksAndMessages(null);
+
         // This will force it to be removed from all controllers that may have it registered.
         mUiHandler.post(() -> {
             mLifecycle.setCurrentState(DESTROYED);

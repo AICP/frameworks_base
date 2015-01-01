@@ -199,5 +199,6 @@ public class SecureSettings {
         Settings.Secure.QS_FOOTER_SHOW_EDIT,
         Settings.Secure.QS_FOOTER_SHOW_USER,
         Settings.Secure.QS_FOOTER_SHOW_POWER_MENU,
+        Settings.Secure.QS_TILES_VIBRATE,
     };
 }

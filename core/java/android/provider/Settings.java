@@ -10408,6 +10408,12 @@ public final class Settings {
          */
         public static final String NAV_BAR_INVERSE = "sysui_nav_bar_inverse";
 
+        /** Whether to vibrate when quick settings tile is pressed.
+          *
+          * @hide
+          */
+         public static final String QS_TILES_VIBRATE = "qs_vibrate";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

@@ -319,5 +319,6 @@ public class SecureSettingsValidators {
         });
         VALIDATORS.put(Secure.VOLUME_LINK_NOTIFICATION, BOOLEAN_VALIDATOR);
         VALIDATORS.put(Secure.NAV_BAR_INVERSE, BOOLEAN_VALIDATOR);
+        VALIDATORS.put(Secure.QS_TILES_VIBRATE, BOOLEAN_VALIDATOR);
     }
 }

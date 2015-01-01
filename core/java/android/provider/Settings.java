@@ -11361,6 +11361,12 @@ public final class Settings {
         private static final Validator FP_SWIPE_TO_DISMISS_NOTIFICATIONS_VALIDATOR =
                  BOOLEAN_VALIDATOR;
 
+        /** Whether to vibrate when quick settings tile is pressed.
+          *
+          * @hide
+          */
+         public static final String QS_TILES_VIBRATE = "qs_vibrate";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

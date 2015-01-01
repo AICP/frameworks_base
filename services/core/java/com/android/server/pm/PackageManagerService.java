@@ -183,6 +183,7 @@ import android.util.SparseBooleanArray;
 import android.view.Display;
 import android.view.WindowManager;
 import android.view.WindowManagerPolicy;
+import android.graphics.drawable.Drawable;
 
 
 import java.io.BufferedInputStream;
@@ -4783,6 +4784,8 @@ public class PackageManagerService extends IPackageManager.Stub {
                     ai = null;
                 }
                 mPolicy.setPackageName((String) (ai != null ? mContext.getPackageManager().getApplicationLabel(ai) : pkg.packageName));
+                if (ai != null &&  mContext.getPackageManager().getApplicationIcon(ai) != null)
+                  mPolicy.setPackageIcon((Drawable) mContext.getPackageManager().getApplicationIcon(ai) );
 
                 ActivityManagerNative.getDefault().showBootMessage(
                         mContext.getResources().getString(R.string.android_upgrading_apk,

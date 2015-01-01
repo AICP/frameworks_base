@@ -23,6 +23,7 @@ import android.content.res.CompatibilityInfo;
 import android.content.res.Configuration;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.Looper;
@@ -1116,6 +1117,11 @@ public interface WindowManagerPolicy {
      * name of package being worked on during boot time message
      */
     public void setPackageName(String pkgName);
+
+    /**
+     * icon of package being worked on during boot time message
+     */
+    public void setPackageIcon(Drawable pkgIcon);
 
     /**
      * Show boot time message to the user.

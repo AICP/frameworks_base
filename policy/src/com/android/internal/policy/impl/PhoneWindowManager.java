@@ -43,7 +43,6 @@ import android.content.res.TypedArray;
 import android.database.ContentObserver;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
 import android.hardware.input.InputManager;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
@@ -6200,17 +6199,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         this.currentPackageName = pkgName;
     }
 
-    /**
-     * icon of package currently being dex optimized
-     * as shown through this.showBootMessage(msg, always);
-     */
-    static Drawable currentPackageIcon;
-    public void setPackageIcon(Drawable pkgIcon) {
-        this.currentPackageIcon = pkgIcon;
-    }
-
-
-
     /** {@inheritDoc} */
     @Override
     public void showBootMessage(final CharSequence msg, final boolean always) {
@@ -6270,9 +6258,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 // Only display the current package name if the main message says "Optimizing app N of M".
                 // We don't want to do this when the message says "Starting apps" or "Finishing boot", etc.
                 if (always && (currentPackageName != null)) {
-
-                    // Set package icon
-                    mBootMsgDialog.setIcon(currentPackageIcon);
 
                     // Calculate random text color
                     Random rand = new Random();

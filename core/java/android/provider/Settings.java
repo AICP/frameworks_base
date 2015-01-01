@@ -5359,6 +5359,12 @@ public final class Settings {
          */
         public static final String ENABLE_SUGGESTIONS = "enable_suggestions";
 
+        /** Whether to vibrate when quick settings tile is pressed.
+          *
+          * @hide
+          */
+         public static final String QS_TILES_VIBRATE = "qs_vibrate";
+
         /***************************
          * AICP System Settings end
          ***************************/

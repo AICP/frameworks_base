@@ -960,21 +960,4 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
             requestCaptureValues();
         }
     }
-
-    @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        getContext().getContentResolver().registerContentObserver(Settings.System.getUriFor(
-                "status_bar_show_battery_percent"), false, mObserver);
-    }
-
-    @Override
-    public void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-
-        if (mBatteryController != null) {
-            mBatteryController.removeStateChangedCallback(this);
-        }
-    }
-
 }

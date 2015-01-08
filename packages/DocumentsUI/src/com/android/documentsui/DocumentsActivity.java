@@ -356,7 +356,6 @@ public class DocumentsActivity extends BaseActivity {
             } else if (mState.action == ACTION_STANDALONE) {
                 mState.allowMultiple = true;
             }
-        }
 
         if (state.action == ACTION_MANAGE || state.action == ACTION_BROWSE) {
             state.acceptMimes = new String[] { "*/*" };
@@ -538,8 +537,12 @@ public class DocumentsActivity extends BaseActivity {
             } else if (mState.action == ACTION_CREATE) {
                 mRootsToolbar.setTitle(R.string.title_save);
             } else if (mState.action == ACTION_STANDALONE) {
+<<<<<<< HEAD
                 actionBar.setTitle(R.string.title_standalone);
 >>>>>>> 9fc07eb... Add a standalone File Manager
+=======
+                mRootsToolbar.setTitle(R.string.title_standalone);
+>>>>>>> 8614742... Fix build and API changes for lollipop
             }
         }
 

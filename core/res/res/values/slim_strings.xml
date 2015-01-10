@@ -53,4 +53,7 @@
 
     <string name="default_string">Default</string>
 
+    <!-- screenshot in the power menu -->
+    <string name="powermenu_screenshot">Screenshot</string>
+
 </resources>

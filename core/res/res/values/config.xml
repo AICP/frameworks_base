@@ -1807,6 +1807,7 @@
          "power" = Power off
          "reboot" = Reboot
          "screenshot" = Take screenshot
+         "screenrecord" = Take screen recording
          "settings" = An action to launch settings
          "airplane" = Airplane mode toggle
          "bugreport" = Take bug report, if available
@@ -1817,6 +1818,7 @@
         <item>power</item>
         <item>reboot</item>
         <item>screenshot</item>
+        <item>screenrecord</item>
         <item>airplane</item>
         <item>settings</item>
         <item>bugreport</item>

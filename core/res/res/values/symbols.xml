@@ -2246,5 +2246,7 @@
   <java-symbol type="drawable" name="ic_lock_power_screenshot" />
   <java-symbol type="string" name="powermenu_screenshot" />
   <java-symbol type="drawable" name="ic_settings_powermenu" />
+  <java-symbol type="drawable" name="ic_lock_power_screenrecord" />
+  <java-symbol type="string" name="powermenu_screenrecord" />
 
 </resources>

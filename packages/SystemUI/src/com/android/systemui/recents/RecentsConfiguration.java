@@ -77,7 +77,9 @@ public class RecentsConfiguration {
 
     /** Search bar */
     int searchBarAppWidgetId = -1;
+    boolean searchBarAppEnabled;
     public int searchBarSpaceHeightPx;
+    private Context mContext;
 
     /** Task stack */
     public int taskStackScrollDuration;
@@ -147,6 +149,8 @@ public class RecentsConfiguration {
         // Properties that don't have to be reloaded with each configuration change can be loaded
         // here.
 
+        mContext = context;
+
         // Interpolators
         fastOutSlowInInterpolator = AnimationUtils.loadInterpolator(context,
                 com.android.internal.R.interpolator.fast_out_slow_in);
@@ -179,6 +183,7 @@ public class RecentsConfiguration {
 
     /** Updates the state, given the specified context */
     void update(Context context) {
+        mContext = context;
         SharedPreferences settings = context.getSharedPreferences(context.getPackageName(), 0);
         Resources res = context.getResources();
         DisplayMetrics dm = res.getDisplayMetrics();
@@ -294,6 +299,7 @@ public class RecentsConfiguration {
 
     /** Updates the search bar app widget */
     public void updateSearchBarAppWidgetId(Context context, int appWidgetId) {
+        mContext = context;
         searchBarAppWidgetId = appWidgetId;
         SharedPreferences settings = context.getSharedPreferences(context.getPackageName(), 0);
         settings.edit().putInt(Constants.Values.App.Key_SearchAppWidgetId,
@@ -302,6 +308,7 @@ public class RecentsConfiguration {
 
     /** Updates the states that need to be re-read whenever we re-initialize. */
     void updateOnReinitialize(Context context, SystemServicesProxy ssp) {
+        mContext = context;
         // Check if the developer options are enabled
         developerOptionsEnabled = ssp.getGlobalSetting(context,
                 Settings.Global.DEVELOPMENT_SETTINGS_ENABLED) != 0;
@@ -372,8 +379,13 @@ public class RecentsConfiguration {
      */
     public void getSearchBarBounds(int windowWidth, int windowHeight, int topInset,
                                    Rect searchBarSpaceBounds) {
-        // Return empty rects if search is not enabled
+        // Return empty rects if search is not enabled and Search bar is disabled
+        searchBarAppEnabled = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.RECENTS_SHOW_HIDE_SEARCH_BAR, 0) == 1;
         int searchBarSize = searchBarSpaceHeightPx;
+        if (!searchBarAppEnabled) {
+            searchBarSize = 0;
+        }
         if (!Constants.DebugFlags.App.EnableSearchLayout || !hasSearchBarAppWidget()) {
             searchBarSize = 0;
         }

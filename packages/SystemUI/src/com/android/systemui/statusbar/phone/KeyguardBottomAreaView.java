@@ -32,6 +32,7 @@ import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.UserHandle;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.telecom.TelecomManager;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -234,7 +235,11 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
                 mLockPatternUtils.getCurrentUser());
         boolean visible = !isCameraDisabledByDpm() && resolved != null
                 && getResources().getBoolean(R.bool.config_keyguardShowCameraAffordance);
-        mCameraImageView.setVisibility(visible ? View.VISIBLE : View.GONE);
+
+        boolean hideCamera = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.CAMERA_WIDGET_HIDE, 0, UserHandle.USER_CURRENT) == 1;
+
+        mCameraImageView.setVisibility((visible && !hideCamera) ? View.VISIBLE : View.GONE);
     }
 
     private void updatePhoneVisibility() {

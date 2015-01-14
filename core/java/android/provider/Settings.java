@@ -6064,7 +6064,7 @@ public final class Settings {
             UI_NIGHT_MODE,
             SLEEP_TIMEOUT,
             PRIVACY_GUARD_DEFAULT,
-            ADVANCED_REBOOT
+            ADVANCED_REBOOT,
             DEVELOPMENT_SHORTCUT,
             STATUS_BAR_LOCKED_ON_SECURE_KEYGUARD,
             LOCKSCREEN_QUICK_UNLOCK_CONTROL

@@ -3613,6 +3613,14 @@ public final class Settings {
          */
         public static final String CAMERA_WIDGET_HIDE = "camera_widget_hide";
 
+       /**
+         * Allows to disable Dialer widget in locskcreen
+         * 0 = use system default (show)
+         * 1 = hide Dialer
+         * @hide
+         */
+        public static final String DIALER_WIDGET_HIDE = "dialer_widget_hide";
+
         /**
          * Whether navigation bar is placed on the left side in landscape mode
          * @hide

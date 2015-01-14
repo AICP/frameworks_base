@@ -6084,6 +6084,12 @@ public final class Settings {
         public static final String SMS_DEFAULT_APPLICATION = "sms_default_application";
 
         /**
+         * Whether privacy guard notification should show.
+         * @hide
+         */
+        public static final String PRIVACY_GUARD_NOTIFICATION = "privacy_guard_notification";
+
+        /**
          * Whether user is allowed to pull down quick settings on secure keyguard.
          * @hide
          */

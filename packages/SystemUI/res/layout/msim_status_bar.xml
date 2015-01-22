@@ -85,6 +85,13 @@
             android:orientation="horizontal"
             >
 
+            <com.android.systemui.statusbar.policy.NetworkTraffic
+                android:id="@+id/networkTraffic"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:singleLine="false"
+                android:gravity="right|center_vertical"/>
+
             <include layout="@layout/msim_system_icons" />
 
             <com.android.systemui.BatteryLevelTextView android:id="@+id/battery_level_text"
@@ -107,6 +114,26 @@
         </com.android.keyguard.AlphaOptimizedLinearLayout>
     </LinearLayout>
 
+
+    <com.android.keyguard.AlphaOptimizedLinearLayout
+        android:id="@+id/center_clock_layout"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <com.android.systemui.statusbar.policy.ClockCenter
+            android:id="@+id/center_clock"
+            android:textAppearance="@style/TextAppearance.StatusBar.Clock"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:singleLine="true"
+            />
+    </com.android.keyguard.AlphaOptimizedLinearLayout>
+
     <ViewStub
         android:id="@+id/ticker_stub"
         android:inflatedId="@+id/ticker"
@@ -114,5 +141,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
+
+    <com.android.systemui.statusbar.policy.BatteryBarController
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        systemui:viewLocation="1" />
 
 </com.android.systemui.statusbar.phone.PhoneStatusBarView>

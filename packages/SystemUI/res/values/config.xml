@@ -105,7 +105,7 @@
 
     <!-- The default tiles to display in QuickSettings -->
     <string name="quick_settings_tiles_stock" translatable="false">
-        wifi,cell,battery,dnd,flashlight,rotation,bt,airplane,nfc,location,hotspot,inversion,saver,performance,work,cast,night,screenshot,adb_network,sync,expanded_desktop,reboot,usb_tether,music,ime,caffeine,navigation_bar,screenrecord,heads_up,pulse,locale,aicp_extras,pie,sound,ambient_display,app_picker,weather,magiskmanager,compass,live_display,volume_panel
+        wifi,cell,battery,dnd,flashlight,rotation,bt,airplane,nfc,location,hotspot,inversion,saver,performance,work,cast,night,screenshot,adb_network,sync,expanded_desktop,reboot,usb_tether,music,ime,caffeine,navigation_bar,screenrecord,heads_up,pulse,locale,aicp_extras,pie,sound,ambient_display,app_picker,weather,magiskmanager,compass,live_display,volume_panel,profiles
     </string>
 
     <!-- The tiles to display in QuickSettings -->

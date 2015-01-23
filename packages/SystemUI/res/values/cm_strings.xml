@@ -102,4 +102,7 @@
     <string name="tasklist_memory_usage">"Free/Total Memory: [<xliff:g id="number">%s</xliff:g>] / [<xliff:g id="name">%s</xliff:g>]"</string>
     <string name="message_keep_one_launcher">Should keep at lease one home activity!</string>
 
+    <string name="quick_settings_network_adb_enabled_label">Enabled</string>
+    <string name="quick_settings_network_adb_disabled_label">Disabled</string>
+
 </resources>

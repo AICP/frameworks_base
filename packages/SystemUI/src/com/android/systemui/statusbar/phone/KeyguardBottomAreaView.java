@@ -168,6 +168,7 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
         mLockIcon = (KeyguardAffordanceView) findViewById(R.id.lock_icon);
         mIndicationText = (TextView) findViewById(R.id.keyguard_indication_text);
         mEmergencyButton = (EmergencyButton) findViewById(R.id.emergency_call_button);
+        mShortcutHelper = new LockscreenShortcutsHelper(mContext, this);
         watchForCameraPolicyChanges();
         updateCameraVisibility();
         updatePhoneVisibility();
@@ -185,7 +186,6 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
         mCameraImageView.setOnClickListener(this);
         mPhoneImageView.setOnClickListener(this);
         initAccessibility();
-        mShortcutHelper = new LockscreenShortcutsHelper(mContext, this);
         updateCustomShortcuts();
     }
 

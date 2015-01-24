@@ -2209,12 +2209,6 @@ public final class Settings {
          */
         public static final String STATUS_BAR_QUICK_QS_PULLDOWN = "status_bar_quick_qs_pulldown";
 
- 	/**
-        * Custom Screen Timeout
-        * @hide
-        */
-        public static final String QS_EXPANDED_SCREENTIMEOUT_MODE = "qs_expanded_screentimeout_mode";
-
         /**
          * Quick Settings Smart Pulldown
          *

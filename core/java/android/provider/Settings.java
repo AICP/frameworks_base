@@ -3547,12 +3547,6 @@ public final class Settings {
 	public static final String HFM_DISABLE_ADS = "hfm_disable_ads";
 
         /**
-         * Height of navigation bar buttons
-         * @hide
-         */
-        public static final String NAVIGATION_BAR_HEIGHT = "navigation_bar_height";
-
-        /**
          * Whether to enable voice wakeup.  The value is boolean (1 or 0).
          * @hide
          */

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--  Copyright (C) 2014-2016 The Dirty Unicorns Project
+<!--  Copyright (C) 2017 AICP Project
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -20,9 +20,7 @@
     <!-- Quick Settings tiles -->
     <string name="quick_settings_screenshot_label">Screenshot</string>
     <string name="quick_settings_region_screenshot_label">Partial screenshot</string>
-    <string name="quick_settings_adb_network">ADB network</string>
-    <string name="quick_settings_network_adb_enabled_label">Enabled</string>
-    <string name="quick_settings_network_adb_disabled_label">Disabled</string>
+    <string name="quick_settings_network_adb_label">ADB over network</string>
     <string name="quick_settings_sync_label">Sync</string>
     <string name="accessibility_quick_settings_sync_off">Sync off</string>
     <string name="accessibility_quick_settings_sync_on">Sync on</string>
@@ -83,9 +81,7 @@
     <!-- Navigation bar Tile -->
     <string name="quick_settings_navigation_bar">Navigation bar</string>
     <string name="quick_settings_smartbar">SmartBar</string>
-    <string name="quick_settings_smartbar_off">SmartBar off</string>
     <string name="quick_settings_fling">Fling</string>
-    <string name="quick_settings_fling_off">Fling off</string>
 
     <!-- Heads up snooze toast -->
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Heads up notification are snoozing for 1 minute.</string>

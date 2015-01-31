@@ -95,6 +95,8 @@ public class AnimationDrawable extends DrawableContainer implements Runnable, An
 
     private boolean mMutated;
 
+    private OnAnimationFinishedListener mOnAnimationFinishedListener;
+
     public AnimationDrawable() {
         this(null, null);
     }
@@ -247,6 +249,9 @@ public class AnimationDrawable extends DrawableContainer implements Runnable, An
         int next = mCurFrame+1;
         final int N = mAnimationState.getChildCount();
         if (next >= N) {
+            if (mOnAnimationFinishedListener != null) {
+                mOnAnimationFinishedListener.onAnimationFinished();
+            }
             next = 0;
         }
 
@@ -424,6 +429,17 @@ public class AnimationDrawable extends DrawableContainer implements Runnable, An
         if (state != null) {
             setFrame(0, true, false);
         }
+    }
+
+    // @hide
+    public interface OnAnimationFinishedListener
+    {
+        public void onAnimationFinished();
+    }
+
+    // @hide
+    public void setOnAnimationFinishedListener(OnAnimationFinishedListener l) {
+        mOnAnimationFinishedListener = l;
     }
 }
 

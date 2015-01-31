@@ -126,6 +126,7 @@ android_library {
         "AicpGear-util",
     ],
     manifest: "AndroidManifest.xml",
+    additional_manifests: ["AndroidManifest-Aicp.xml"],
 
     kotlincflags: ["-Xjvm-default=enable"],
 

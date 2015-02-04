@@ -20,10 +20,12 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.UiModeManager;
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
+import android.database.ContentObserver;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -34,11 +36,14 @@ import android.media.AudioAttributes;
 import android.os.Handler;
 import android.os.PowerManager;
 import android.os.SystemClock;
+import android.os.UserHandle;
 import android.os.Vibrator;
+import android.provider.Settings;
 import android.service.dreams.DreamService;
 import android.util.Log;
 import android.view.Display;
 
+import com.android.systemui.R;
 import com.android.systemui.SystemUIApplication;
 import com.android.systemui.statusbar.phone.DozeParameters;
 import com.android.systemui.statusbar.phone.DozeParameters.PulseSchedule;
@@ -429,16 +434,24 @@ public class DozeService extends DreamService {
         private boolean mRegistered;
         private boolean mDisabled;
 
+        private boolean mDozeTriggerMotion;
+
         public TriggerSensor(int type, boolean configured, boolean debugVibrate) {
             mSensor = mSensors.getDefaultSensor(type);
             mConfigured = configured;
             mDebugVibrate = debugVibrate;
+
+            // Settings observer
+            SettingsObserver observer = new SettingsObserver(mHandler);
+            observer.observe();
         }
 
         public void setListening(boolean listen) {
-            if (mRequested == listen) return;
-            mRequested = listen;
-            updateListener();
+            if (mDozeTriggerMotion) {
+                if (mRequested == listen) return;
+                mRequested = listen;
+                updateListener();
+            }
         }
 
         public void setDisabled(boolean disabled) {
@@ -501,6 +514,41 @@ public class DozeService extends DreamService {
                 }
             } finally {
                 mWakeLock.release();
+            }
+        }
+
+        /**
+         * Settingsobserver to take care of the user settings.
+         */
+        private class SettingsObserver extends ContentObserver {
+            SettingsObserver(Handler handler) {
+                super(handler);
+            }
+
+            void observe() {
+                ContentResolver resolver = mContext.getContentResolver();
+                resolver.registerContentObserver(Settings.System.getUriFor(
+                        Settings.System.DOZE_TRIGGER_MOTION),
+                        false, this, UserHandle.USER_ALL);
+                update();
+            }
+
+            @Override
+            public void onChange(boolean selfChange) {
+                super.onChange(selfChange);
+                update();
+            }
+
+            public void update() {
+                ContentResolver resolver = mContext.getContentResolver();
+
+                // Get doze triggers
+                mDozeTriggerMotion = (Settings.System.getIntForUser(resolver,
+                        Settings.System.DOZE_TRIGGER_MOTION,
+                        mContext.getResources().getBoolean(R.bool.doze_pulse_on_pick_up)
+                        || mContext.getResources().getBoolean(
+                        R.bool.doze_pulse_on_significant_motion) ? 1 : 0,
+                        UserHandle.USER_CURRENT) == 1);
             }
         }
     }

@@ -3718,14 +3718,6 @@ public final class Settings {
         public static final String CAMERA_WIDGET_HIDE = "camera_widget_hide";
 
        /**
-         * Allows to disable Dialer widget in locskcreen
-         * 0 = use system default (show)
-         * 1 = hide Dialer
-         * @hide
-         */
-        public static final String DIALER_WIDGET_HIDE = "dialer_widget_hide";
-
-       /**
          * Allows to disable weather in locskcreen
          * 1 = use system default (show)
          * 0 = hide Weather
@@ -4847,6 +4839,14 @@ public final class Settings {
          * <p>0 = do not allow use of the package installer
          */
         public static final String INSTALL_NON_MARKET_APPS = "install_non_market_apps";
+
+       /**
+         * Allows to disable Dialer widget in locskcreen
+         * 0 = use system default (show)
+         * 1 = hide Dialer
+         * @hide
+         */
+        public static final String DIALER_WIDGET_HIDE = "dialer_widget_hide";
 
         /**
          * Launch actions for left/right lockscreen targets

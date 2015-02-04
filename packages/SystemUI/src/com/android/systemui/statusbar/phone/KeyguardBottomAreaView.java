@@ -270,10 +270,23 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
         boolean hideCamera = Settings.System.getIntForUser(mContext.getContentResolver(),
                 Settings.System.CAMERA_WIDGET_HIDE, 0, UserHandle.USER_CURRENT) == 1;
 
-        visible = ((visible || mShortcutHelper.isTargetCustom(
+        visible = ((updateVisibilityCheck(visible,
                 LockscreenShortcutsHelper.Shortcuts.RIGHT_SHORTCUT)) && !hideCamera);
-
         mCameraImageView.setVisibility(visible ? View.VISIBLE : View.GONE);
+    }
+
+    private boolean updateVisibilityCheck(boolean visible, LockscreenShortcutsHelper.Shortcuts
+            shortcut) {
+        boolean customTarget = mShortcutHelper.isTargetCustom(shortcut);
+        if (customTarget) {
+            boolean isEmpty = mShortcutHelper.isTargetEmpty(shortcut);
+            if (visible && isEmpty) {
+                visible = false;
+            } else {
+                visible = true;
+            }
+        }
+        return visible;
     }
 
     private void updatePhoneVisibility() {
@@ -282,9 +295,8 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
         boolean hidePhone = Settings.Secure.getIntForUser(mContext.getContentResolver(),
                 Settings.Secure.DIALER_WIDGET_HIDE, 0, UserHandle.USER_CURRENT) == 1;
 
-        visible = ((visible || mShortcutHelper.isTargetCustom(
+        visible = ((updateVisibilityCheck(visible,
                 LockscreenShortcutsHelper.Shortcuts.LEFT_SHORTCUT)) && !hidePhone);
-
         mPhoneImageView.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 

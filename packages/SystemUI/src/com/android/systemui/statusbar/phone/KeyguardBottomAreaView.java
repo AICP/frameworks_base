@@ -35,7 +35,6 @@ import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.UserHandle;
 import android.provider.MediaStore;
-import android.provider.Settings;
 import android.telecom.TelecomManager;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -266,12 +265,8 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
                 mLockPatternUtils.getCurrentUser());
         boolean visible = !isCameraDisabledByDpm() && resolved != null
                 && getResources().getBoolean(R.bool.config_keyguardShowCameraAffordance);
-
-        boolean hideCamera = Settings.System.getIntForUser(mContext.getContentResolver(),
-                Settings.System.CAMERA_WIDGET_HIDE, 0, UserHandle.USER_CURRENT) == 1;
-
-        visible = ((updateVisibilityCheck(visible,
-                LockscreenShortcutsHelper.Shortcuts.RIGHT_SHORTCUT)) && !hideCamera);
+        visible = updateVisibilityCheck(visible,
+                LockscreenShortcutsHelper.Shortcuts.RIGHT_SHORTCUT);
         mCameraImageView.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 
@@ -291,12 +286,8 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
 
     private void updatePhoneVisibility() {
         boolean visible = isPhoneVisible();
-
-        boolean hidePhone = Settings.Secure.getIntForUser(mContext.getContentResolver(),
-                Settings.Secure.DIALER_WIDGET_HIDE, 0, UserHandle.USER_CURRENT) == 1;
-
-        visible = ((updateVisibilityCheck(visible,
-                LockscreenShortcutsHelper.Shortcuts.LEFT_SHORTCUT)) && !hidePhone);
+        visible = updateVisibilityCheck(visible,
+                LockscreenShortcutsHelper.Shortcuts.LEFT_SHORTCUT);
         mPhoneImageView.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 
@@ -434,9 +425,6 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
         if (changedView == this && visibility == VISIBLE) {
             updateLockIcon();
             updateCameraVisibility();
-            if (isPhoneVisible()) {
-                updatePhoneVisibility();
-            }
         }
     }
 
@@ -483,11 +471,11 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
             int resId = 0;
             switch (shortcut) {
                 case LEFT_SHORTCUT:
-                        resId = R.string.left_shortcut_hint;
-                        break;
-                    case RIGHT_SHORTCUT:
-                        resId = R.string.right_shortcut_hint;
-                        break;
+                    resId = R.string.left_shortcut_hint;
+                    break;
+                case RIGHT_SHORTCUT:
+                    resId = R.string.right_shortcut_hint;
+                    break;
             }
             return mContext.getString(resId, label);
         } else {

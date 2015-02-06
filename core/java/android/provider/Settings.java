@@ -3944,7 +3944,7 @@ public final class Settings {
          * Hide notification instead of remove when swiping headsup
          * @hide
          */
-        public static final String HEADS_UP_DISMISS_ON_REMOVE = "heads_up_swipe_action";
+        public static final String HEADS_UP_DISMISS_ON_REMOVE = "heads_up_dismiss_on_remove";
 
         /**
          * Hide notification 1 second after touching outside

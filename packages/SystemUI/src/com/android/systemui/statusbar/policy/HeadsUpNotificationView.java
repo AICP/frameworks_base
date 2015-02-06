@@ -120,7 +120,7 @@ public class HeadsUpNotificationView extends FrameLayout implements SwipeHelper.
 
         mHeadsUp = headsUp;
 
-        if (mBar.isExpandedVisible()) {
+        if (mBar.isExpandedVisible() || mBar.isImeShowing()) {
             releaseAndClose();
             return false; // There is really no need, right?
         }

@@ -956,7 +956,6 @@ public class VolumePanel extends Handler {
 
     private void updateTimeoutDelay() {
         mTimeoutDelay = sSafetyWarning != null ? TIMEOUT_DELAY_SAFETY_WARNING
-                : mActiveStreamType == AudioManager.STREAM_MUSIC ? TIMEOUT_DELAY_SHORT
                 : mZenPanelExpanded ? TIMEOUT_DELAY_EXPANDED
                 : isZenPanelVisible() ? TIMEOUT_DELAY_COLLAPSED
                 : TIMEOUT_DELAY;

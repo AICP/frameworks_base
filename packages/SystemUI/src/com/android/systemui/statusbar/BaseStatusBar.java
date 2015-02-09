@@ -201,6 +201,7 @@ public abstract class BaseStatusBar extends SystemUI implements
     private int mHeadsUpSnoozeTime;
     private long mHeadsUpSnoozeStartTime;
     protected String mHeadsUpPackageName;
+    private boolean mHeadsUpSwitch;
 
     protected DevicePolicyManager mDevicePolicyManager;
     protected IDreamManager mDreamManager;
@@ -303,6 +304,9 @@ public abstract class BaseStatusBar extends SystemUI implements
             resolver.registerContentObserver(
                     Settings.Secure.getUriFor(Settings.Secure.SEARCH_PANEL_ENABLED),
                     false, this);
+            resolver.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.HEADS_UP_SWITCH),
+                    false, this);
             update();
         }
 
@@ -315,6 +319,8 @@ public abstract class BaseStatusBar extends SystemUI implements
             ContentResolver resolver = mContext.getContentResolver();
             mSearchPanelViewEnabled = Settings.Secure.getInt(
                     resolver, Settings.Secure.SEARCH_PANEL_ENABLED, 1) == 1;
+            mHeadsUpSwitch = Settings.System.getInt(
+                    resolver, Settings.System.HEADS_UP_SWITCH, 1) == 1;
         }
     };
 
@@ -1992,7 +1998,7 @@ public abstract class BaseStatusBar extends SystemUI implements
                 && !TextUtils.equals(n.tickerText,
                 oldEntry.notification.getNotification().tickerText);
 
-        final boolean shouldInterrupt = shouldInterrupt(notification);
+        final boolean shouldInterrupt = shouldInterrupt(notification) && mHeadsUpSwitch;
         final boolean alertAgain = alertAgain(oldEntry, n);
         boolean updateSuccessful = false;
         if (contentsUnchanged && bigContentsUnchanged && headsUpContentsUnchanged

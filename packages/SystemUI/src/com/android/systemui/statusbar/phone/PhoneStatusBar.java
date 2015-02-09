@@ -290,7 +290,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private DozeServiceHost mDozeServiceHost;
     private boolean mScreenOnComingFromTouch;
     private boolean mHeadsUpViewAttached;
-    private boolean mHeadsUpSwitch = false;
 
     int mPixelFormat;
     Object mQueueLock = new Object();
@@ -439,9 +438,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     Settings.System.HEADS_UP_SNOOZE_TIME),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.HEADS_UP_SWITCH),
-                    false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.BATTERY_SAVER_MODE_COLOR),
                     false, this, UserHandle.USER_ALL);
             update();
@@ -471,7 +467,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                             UserHandle.USER_CURRENT);
                     resetHeadsUpDecayTimer();
             } else if (uri.equals(Settings.System.getUriFor(
-                    Settings.System.STATUS_BAR_TICKER_ENABLED))) {
+                    Settings.System.HEADS_UP_NOTIFCATION_DECAY))) {
                     mTickerEnabled = Settings.System.getIntForUser(
                             mContext.getContentResolver(),
                             Settings.System.STATUS_BAR_TICKER_ENABLED,
@@ -3720,11 +3716,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         EventLog.writeEvent(EventLogTags.SYSUI_HEADS_UP_STATUS,
                 vis ? mHeadsUpNotificationView.getKey() : "",
                 vis ? 1 : 0);
-        mHeadsUpSwitch = Settings.System.getIntForUser(
-                mContext.getContentResolver(),
-                Settings.System.HEADS_UP_SWITCH,
-                1, UserHandle.USER_CURRENT) == 1;
-        vis = vis && mHeadsUpSwitch;
         mHeadsUpNotificationView.setVisibility(vis ? View.VISIBLE : View.GONE);
         if (!vis) {
             mHeadsUpPackageName = null;

@@ -2212,13 +2212,6 @@ public final class Settings {
         public static final String HEADS_UP_NOTIFCATION_DECAY = "heads_up_notification_decay";
 
         /**
-         * Enable/disable Heads up
-         *
-         * @hide
-         */
-        public static final String HEADS_UP_SWITCH = "heads_up_switch";
-
-        /**
          * Defines the status and navigation bar color is battery safe mode is enabled.
          *
          * @hide

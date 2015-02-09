@@ -38,6 +38,8 @@
     <string name="heads_up_disabled">Heads up notifications are disabled</string>
 
     <!-- Quick settings -->
+    <string name="quick_settings_battery_saver">Battery saver</string>
+    <string name="quick_settings_battery_saver_off">Battery saver off</string>
     <string name="quick_settings_brightness">Brightness</string>
     <string name="quick_settings_screenshot">Screenshot</string>
     <string name="quick_settings_screenrecord">Screenrecord</string>

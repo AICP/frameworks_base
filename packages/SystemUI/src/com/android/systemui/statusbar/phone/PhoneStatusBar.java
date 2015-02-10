@@ -3726,6 +3726,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 mContext.getContentResolver(),
                 Settings.System.HEADS_UP_SWITCH,
                 1, UserHandle.USER_CURRENT) == 1;
+        vis = vis && mHeadsUpSwitch;
         mHeadsUpNotificationView.setVisibility(vis ? View.VISIBLE : View.GONE);
         if (!vis) {
             mHeadsUpPackageName = null;

@@ -3746,6 +3746,12 @@ public final class Settings {
         public static final String TOAST_ANIMATION = "toast_animation";
 
         /**
+         * volume answer.
+         * @hide
+         */
+        public static final String ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER = "call_volume_answer";
+
+        /**
          * ListView Animations
          * 0 == None
          * 1 == Wave (Left)

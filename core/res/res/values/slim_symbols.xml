@@ -23,8 +23,6 @@
   <!-- Package Manager -->
   <java-symbol type="array" name="config_disabledComponents" />
 
-  <java-symbol type="bool" name="config_doze_enabled_by_default" />
-
   <!-- In WiFi AP notification -->
   <java-symbol type="string" name="notify_turn_wifi_ap_off_title" />
 

@@ -85,7 +85,7 @@ public class DozeParameters {
 
     public boolean getTimeMode() {
         final int values = Settings.System.getIntForUser(mContext.getContentResolver(),
-               Settings.System.DOZE_TIME_MODE, 1,
+               Settings.System.DOZE_TIME_MODE, 0,
                     UserHandle.USER_CURRENT);
         return values != 0;
     }

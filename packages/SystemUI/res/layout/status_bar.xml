@@ -55,6 +55,7 @@
             android:layout_weight="1"
             android:orientation="horizontal"
             >
+
             <!-- The alpha of this area is both controlled from PhoneStatusBarTransitions and
                  PhoneStatusBar (DISABLE_NOTIFICATION_ICONS), so we need two views here. -->
             <com.android.keyguard.AlphaOptimizedLinearLayout
@@ -62,6 +63,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 >
+
+                <com.android.keyguard.AlphaOptimizedLinearLayout
+                    android:id="@+id/left_clock_layout"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    >
+
+                    <com.android.systemui.statusbar.policy.ClockLeft
+                        android:id="@+id/left_clock"
+                        android:textAppearance="@style/TextAppearance.StatusBar.Clock"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:paddingEnd="4dip"
+                        android:visibility="gone"
+                        android:singleLine="true"
+                    />
+
+                </com.android.keyguard.AlphaOptimizedLinearLayout>
+
                 <com.android.systemui.statusbar.StatusBarIconView android:id="@+id/moreIcon"
                     android:layout_width="@dimen/status_bar_icon_size"
                     android:layout_height="match_parent"

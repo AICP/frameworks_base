@@ -6446,6 +6446,15 @@ public final class Settings {
         };
 
         /**
+         * The global recents long press activity chosen by the user.
+         * This setting is stored as a flattened component name as
+         * per {@link ComponentName#flattenToString()}.
+         *
+         * @hide
+         */
+        public static final String RECENTS_LONG_PRESS_ACTIVITY = "recents_long_press_activity";
+
+        /**
          * Whether search panel is enabled.
          * @hide
          */

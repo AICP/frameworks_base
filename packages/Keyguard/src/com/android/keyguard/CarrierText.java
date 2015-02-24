@@ -149,10 +149,27 @@ public class CarrierText extends TextView {
                         subs.get(0).getCarrierName());
             } else {
                 // We don't have a SubscriptionInfo to get the emergency calls only from.
-                // Lets just make it ourselves.
+                // Grab it from the old sticky broadcast if possible instead. We can use it
+                // here because no subscriptions are active, so we don't have
+                // to worry about MSIM clashing.
+                CharSequence text =
+                        getContext().getText(com.android.internal.R.string.emergency_calls_only);
+                Intent i = getContext().registerReceiver(null,
+                        new IntentFilter(TelephonyIntents.SPN_STRINGS_UPDATED_ACTION));
+                if (i != null) {
+                    String spn = "";
+                    String plmn = "";
+                    if (i.getBooleanExtra(TelephonyIntents.EXTRA_SHOW_SPN, false)) {
+                        spn = i.getStringExtra(TelephonyIntents.EXTRA_SPN);
+                    }
+                    if (i.getBooleanExtra(TelephonyIntents.EXTRA_SHOW_PLMN, false)) {
+                        plmn = i.getStringExtra(TelephonyIntents.EXTRA_PLMN);
+                    }
+                    if (DEBUG) Log.d(TAG, "Getting plmn/spn sticky brdcst " + plmn + "/" + spn);
+                    text = concatenate(plmn, spn);
+                }
                 displayText =  makeCarrierStringOnEmergencyCapable(
-                        getContext().getText(R.string.keyguard_missing_sim_message_short),
-                        getContext().getText(com.android.internal.R.string.emergency_calls_only));
+                        getContext().getText(R.string.keyguard_missing_sim_message_short), text);
             }
         }
         if (Settings.System.getInt(mContext.getContentResolver(),

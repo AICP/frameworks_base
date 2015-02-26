@@ -4000,6 +4000,11 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     resolver, Settings.System.STATUS_BAR_CARRIER, 0) == 1;
             showStatusBarCarrierLabel(mShowStatusBarCarrier);
 
+            // detect aicp logo state when theme change.
+            mAicpLogo = Settings.System.getInt(
+                    resolver, Settings.System.STATUS_BAR_AICP_LOGO, 0) == 1;
+            showAicpLogo(mAicpLogo);
+
         } else {
             loadDimens();
         }

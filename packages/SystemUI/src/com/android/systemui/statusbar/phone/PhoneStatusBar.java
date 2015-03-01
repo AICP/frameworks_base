@@ -93,6 +93,7 @@ import android.service.notification.NotificationListenerService;
 import android.service.notification.NotificationListenerService.RankingMap;
 import android.service.notification.StatusBarNotification;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 import android.util.ArraySet;
 import android.util.DisplayMetrics;
 import android.util.EventLog;
@@ -321,6 +322,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     // the icons themselves
     IconMerger mNotificationIcons;
     View mNotificationIconArea;
+    TextView mAicpLabel;
 
     // [+>
     View mMoreIcon;
@@ -337,6 +339,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     View mFlipSettingsView;
     private QSPanel mQSPanel;
     private DevForceNavbarObserver mDevForceNavbarObserver;
+    String mGreeting = "";
 
     // top bar
     StatusBarHeaderView mHeader;
@@ -360,6 +363,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private int mStatusBarHeaderHeight;
 
     private boolean mShowCarrierInPanel = false;
+    private boolean mShowLabel;
 
     // Status bar carrier
     private boolean mShowStatusBarCarrier;
@@ -473,6 +477,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_AICP_LOGO),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_GREETING),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -547,6 +554,13 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             mAicpLogo = Settings.System.getIntForUser(resolver,
                     Settings.System.STATUS_BAR_AICP_LOGO, 0, mCurrentUserId) == 1;
             showAicpLogo(mAicpLogo);
+
+            mGreeting = Settings.System.getStringForUser(resolver,
+                    Settings.System.STATUS_BAR_GREETING,
+                    UserHandle.USER_CURRENT);
+            if (mGreeting != null && !TextUtils.isEmpty(mGreeting)) {
+                mAicpLabel.setText(mGreeting);
+            }
         }
     }
 
@@ -975,6 +989,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mNotificationIconArea = mStatusBarView.findViewById(R.id.notification_icon_area_inner);
         mNotificationIcons = (IconMerger)mStatusBarView.findViewById(R.id.notificationIcons);
         mMoreIcon = mStatusBarView.findViewById(R.id.moreIcon);
+        mAicpLabel = (TextView)mStatusBarView.findViewById(R.id.aicp_custom_label);
         mNotificationIcons.setOverflowIndicator(mMoreIcon);
         mStatusBarContents = (LinearLayout)mStatusBarView.findViewById(R.id.status_bar_contents);
         mCenterClockLayout = (LinearLayout)mStatusBarView.findViewById(R.id.center_clock_layout);
@@ -2394,7 +2409,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     /**
      * State is one or more of the DISABLE constants from StatusBarManager.
      */
-    public void disable(int state, boolean animate) {
+    public void disable(int state, final boolean animate) {
         mDisabledUnmodified = state;
         state = adjustDisableFlags(state);
         final int old = mDisabled;
@@ -2483,7 +2498,28 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 }
                 animateStatusBarHide(mNotificationIconArea, animate);
             } else {
-                animateStatusBarShow(mNotificationIconArea, animate);
+                if (mGreeting != null && !TextUtils.isEmpty(mGreeting) && mShowLabel) {
+                    if (animate) {
+                        mAicpLabel.setVisibility(View.VISIBLE);
+                        mAicpLabel.animate().cancel();
+                        mAicpLabel.animate()
+                                .alpha(1f)
+                                .setDuration(400)
+                                .setInterpolator(ALPHA_IN)
+                                .setStartDelay(50)
+                                .withEndAction(new Runnable() {
+                            @Override
+                            public void run() {
+                                labelAnimatorFadeOut(animate);
+                            }
+                        });
+                    } else {
+                        labelAnimatorFadeOut(animate);
+                    }
+                    mShowLabel = false;
+                } else {
+                    animateStatusBarShow(mNotificationIconArea, animate);
+                }
             }
         }
 
@@ -2560,6 +2596,22 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     .setStartDelay(mKeyguardFadingAwayDelay)
                     .start();
         }
+    }
+
+    protected void labelAnimatorFadeOut(final boolean animate) {
+        mAicpLabel.animate().cancel();
+        mAicpLabel.animate()
+                .alpha(0f)
+                .setDuration(200)
+                .setStartDelay(1200)
+                .setInterpolator(ALPHA_OUT)
+                .withEndAction(new Runnable() {
+            @Override
+            public void run() {
+                mAicpLabel.setVisibility(View.GONE);
+                animateStatusBarShow(mNotificationIconArea, animate);
+            }
+        });
     }
 
     @Override
@@ -3687,6 +3739,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             }
             else if (Intent.ACTION_SCREEN_OFF.equals(action)) {
                 mScreenOn = false;
+                mShowLabel = true;
                 notifyNavigationBarScreenOn(false);
                 notifyHeadsUpScreenOn(false);
                 finishBarAnimations();

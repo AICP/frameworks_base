@@ -3436,6 +3436,12 @@ public final class Settings {
         public static final String EGG_MODE = "egg_mode";
 
         /**
+         * Status bar greeting
+         * @hide
+         */
+        public static final String STATUS_BAR_GREETING = "status_bar_greeting";
+
+        /**
          * Disable FC Notifications
          * @hide
          */

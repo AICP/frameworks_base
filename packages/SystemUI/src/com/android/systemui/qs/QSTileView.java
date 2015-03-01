@@ -212,7 +212,7 @@ public class QSTileView extends ViewGroup {
         return changed;
     }
 
-    private void updateColors() {
+    protected void updateColors() {
         final ContentResolver resolver = mContext.getContentResolver();
         mLabelColor = Settings.System.getInt(resolver,
                 Settings.System.QS_TEXT_COLOR, 0xffffffff);
@@ -238,6 +238,10 @@ public class QSTileView extends ViewGroup {
         }
     }
 
+    protected int getIconColor() {
+		return mIconColor;
+	}
+    
     private void setRipple(RippleDrawable tileBackground) {
         mRipple = tileBackground;
         if (getWidth() != 0) {

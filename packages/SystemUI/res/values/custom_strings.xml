@@ -40,6 +40,8 @@
     <!-- Quick settings -->
     <string name="quick_settings_battery_saver">Battery saver</string>
     <string name="quick_settings_battery_saver_off">Battery saver off</string>
+    <string name="quick_settings_doze">Doze enabled</string>
+    <string name="quick_settings_doze_off">Doze disabled</string>
     <string name="quick_settings_brightness">Brightness</string>
     <string name="quick_settings_expanded_desktop">Expanded</string>
     <string name="quick_settings_expanded_desktop_off">Normal</string>

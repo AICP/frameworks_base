@@ -38,6 +38,7 @@ import android.provider.Settings;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.InputDevice;
+import android.view.IWindowManager;
 import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
 import android.view.WindowManagerGlobal;
@@ -125,6 +126,15 @@ public class Action {
                 context.sendBroadcastAsUser(
                         new Intent("android.settings.SHOW_INPUT_METHOD_PICKER"),
                         new UserHandle(UserHandle.USER_CURRENT));
+                return;
+            } else if (action.equals(ActionConstants.ACTION_RECENTS)) {
+                if (isKeyguardShowing) {
+                    return;
+                }
+                try {
+                    barService.toggleRecentApps();
+                } catch (RemoteException e) {
+                }
                 return;
             } else if (action.equals(ActionConstants.ACTION_KILL)) {
                 if (isKeyguardShowing) {
@@ -282,8 +292,8 @@ public class Action {
     }
 
     public static boolean isNavBarEnabled(Context context) {
-        return Settings.System.getIntForUser(context.getContentResolver(),
-                Settings.System.NAVIGATION_BAR_SHOW,
+        return Settings.Secure.getIntForUser(context.getContentResolver(),
+                Settings.Secure.DEV_FORCE_SHOW_NAVBAR,
                 isNavBarDefault(context) ? 1 : 0, UserHandle.USER_CURRENT) == 1;
     }
 

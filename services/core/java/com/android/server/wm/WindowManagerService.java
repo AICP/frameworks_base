@@ -5683,6 +5683,11 @@ public class WindowManagerService extends IWindowManager.Stub
         ShutdownThread.reboot(mContext, null, true);
     }
 
+    @Override
+    public void toggleGlobalMenu() {
+        mPolicy.toggleGlobalMenu();
+    }
+
     // Called by window manager policy.  Not exposed externally.
     @Override
     public void rebootSafeMode(boolean confirm) {

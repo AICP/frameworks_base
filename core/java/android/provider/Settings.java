@@ -3671,6 +3671,13 @@ public final class Settings {
         * @hide
         */
        public static final String NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD = "network_traffic_autohide_threshold";
+	   
+	   /**
+         * Config for advanced power menu
+         *
+         * @hide
+         */
+        public static final String QUICK_TILE_CONFIG = "quick_tile_config";
 
         /**
          * Base: Implement ad blocker [2/3]

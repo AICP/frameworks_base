@@ -64,6 +64,31 @@ public class ActionHelper {
                     Settings.System.LOCKSCREEN_SHORTCUTS, config);
     }
 
+    public static ArrayList<ActionConfig> getQuickTileConfigWithDescription(
+            Context context, String values, String entries) {
+        String config = Settings.System.getStringForUser(
+                    context.getContentResolver(),
+                    Settings.System.QUICK_TILE_CONFIG,
+                    UserHandle.USER_CURRENT);
+        if (config == null) {
+            config = ActionConstants.QUICK_TILE_CONFIG_DEFAULT;
+        }
+        return ConfigSplitHelper.getActionConfigValues(context, config, values, entries, true);
+    }
+
+    public static void setQuickTileConfig(Context context,
+            ArrayList<ActionConfig> actionConfig, boolean reset) {
+        String config;
+        if (reset) {
+            config = ActionConstants.QUICK_TILE_CONFIG_DEFAULT;
+        } else {
+            config = ConfigSplitHelper.setActionConfig(actionConfig, true);
+        }
+        Settings.System.putString(context.getContentResolver(),
+                    Settings.System.QUICK_TILE_CONFIG,
+                    config);
+    }
+
     // General methods to retrieve the correct icon for the respective action.
     public static Drawable getActionIconImage(Context context,
             String clickAction, String customIcon) {
@@ -133,6 +158,32 @@ public class ActionHelper {
         }
         return d;
     }
+	
+	public static int getActionIconUri(Context context,
+            String clickAction, String customIcon) {
+        int resId = -1;
+        PackageManager pm = context.getPackageManager();
+        if (pm == null) {
+            return resId;
+        }
+
+        Resources systemUiResources;
+        try {
+            systemUiResources = pm.getResourcesForApplication(SYSTEMUI_METADATA_NAME);
+        } catch (Exception e) {
+            Log.e("ButtonsHelper:", "can't access systemui resources",e);
+            return resId;
+        }
+
+        if (customIcon != null && customIcon.startsWith(ActionConstants.SYSTEM_ICON_IDENTIFIER)) {
+            resId = systemUiResources.getIdentifier(customIcon.substring(
+                        ActionConstants.SYSTEM_ICON_IDENTIFIER.length()), "drawable", "android");
+        } else if (clickAction.startsWith("**")) {
+            resId = getActionSystemIcon(systemUiResources, clickAction);
+        }
+
+        return resId;
+    }
 
     private static int getActionSystemIcon(Resources systemUiResources, String clickAction) {
         int resId = -1;
@@ -178,6 +229,9 @@ public class ActionHelper {
         } else if (clickAction.equals(ActionConstants.ACTION_VIB_SILENT)) {
             resId = systemUiResources.getIdentifier(
                         SYSTEMUI_METADATA_NAME + ":drawable/ic_sysbar_ring_vib_silent", null, null);
+        } else if (clickAction.equals(ActionConstants.ACTION_SCREENSHOT)) {
+            resId = systemUiResources.getIdentifier(
+                        SYSTEMUI_METADATA_NAME + ":drawable/ic_sysbar_screenshot", null, null);
         } else {
             resId = systemUiResources.getIdentifier(
                         SYSTEMUI_METADATA_NAME + ":drawable/ic_sysbar_null", null, null);

@@ -141,7 +141,6 @@ import com.android.systemui.DemoMode;
 import com.android.systemui.EventLogTags;
 import com.android.systemui.FontSizeUtils;
 import com.android.systemui.R;
-import com.android.systemui.cm.UserContentObserver;
 import com.android.systemui.doze.DozeHost;
 import com.android.systemui.doze.DozeLog;
 import com.android.systemui.keyguard.KeyguardViewMediator;
@@ -445,25 +444,19 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     // - The custom Recents Long Press, if selected.  When null, use default (switch last app).
     private ComponentName mCustomRecentsLongPressHandler = null;
 
-    class SettingsObserver extends UserContentObserver {
+    class SettingsObserver extends ContentObserver {
         SettingsObserver(Handler handler) {
             super(handler);
         }
 
-        @Override
-        protected void observe() {
-            super.observe();
-
+        void observe() {
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL),
-                    false, this, UserHandle.USER_ALL);
+                    Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.SCREEN_BRIGHTNESS_MODE),
-                    false, this, UserHandle.USER_ALL);
+                    Settings.System.STATUS_BAR_CARRIER), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.STATUS_BAR_CARRIER),
-                    false, this, UserHandle.USER_ALL);
+                    Settings.System.SCREEN_BRIGHTNESS_MODE), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_TICKER_ENABLED),
                     false, this, UserHandle.USER_ALL);
@@ -539,13 +532,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             update();
         }
 
-        protected void unobserve() {
-            super.unobserve();
-            ContentResolver resolver = mContext.getContentResolver();
-            resolver.unregisterContentObserver(this);
-        }
-
-        @Override
         public void update() {
             ContentResolver resolver = mContext.getContentResolver();
             int mode = Settings.System.getIntForUser(mContext.getContentResolver(),
@@ -553,12 +539,12 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                             Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL,
                             UserHandle.USER_CURRENT);
             mAutomaticBrightness = mode != Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL;
-            mBrightnessControl = Settings.System.getIntForUser(
-                    resolver, Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL, 0, UserHandle.USER_CURRENT) == 1;
+            mBrightnessControl = Settings.System.getInt(
+                    resolver, Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL, 0) == 1;
 
             if (mNavigationBarView != null) {
-                boolean navLeftInLandscape = Settings.System.getIntForUser(resolver,
-                        Settings.System.NAVBAR_LEFT_IN_LANDSCAPE, 0, UserHandle.USER_CURRENT) == 1;
+                boolean navLeftInLandscape = Settings.System.getInt(resolver,
+                        Settings.System.NAVBAR_LEFT_IN_LANDSCAPE, 0) == 1;
                 mNavigationBarView.setLeftInLandscape(navLeftInLandscape);
             }
 
@@ -585,39 +571,26 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
     }
 
-    private static boolean isClockLocationOutsideSystemIconArea(int clockLocation) {
-        return clockLocation == Clock.STYLE_CLOCK_CENTER
-                || clockLocation == Clock.STYLE_CLOCK_LEFT;
-    }
-
-    class DevForceNavbarObserver extends UserContentObserver {
+    class DevForceNavbarObserver extends ContentObserver {
         DevForceNavbarObserver(Handler handler) {
             super(handler);
         }
 
-        @Override
-        protected void observe() {
-            super.observe();
+        void observe() {
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.Secure.getUriFor(
-                    Settings.Secure.DEV_FORCE_SHOW_NAVBAR), false, this, UserHandle.USER_ALL);
+                    Settings.Secure.DEV_FORCE_SHOW_NAVBAR), false, this);
         }
 
         @Override
-        public void update() {
+        public void onChange(boolean selfChange) {
             boolean visible = Settings.Secure.getIntForUser(mContext.getContentResolver(),
                     Settings.Secure.DEV_FORCE_SHOW_NAVBAR, 0, UserHandle.USER_CURRENT) == 1;
-
             if (visible) {
                 forceAddNavigationBar();
             } else {
                 removeNavigationBar();
             }
-
-            // Send a broadcast to Settings to update Key disabling when user changes
-            Intent intent = new Intent("com.cyanogenmod.action.UserChanged");
-            intent.setPackage("com.android.settings");
-            mContext.sendBroadcastAsUser(intent, new UserHandle(UserHandle.USER_CURRENT));
         }
     }
 

@@ -1985,6 +1985,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             upgradeVersion = 122;
         }
 
+        if (upgradeVersion < 123) {
+            upgradeVersion = 123;
+        }
+
         // *** Remember to update DATABASE_VERSION above!
 
         if (upgradeVersion != currentVersion) {

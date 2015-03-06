@@ -40,7 +40,6 @@ import android.widget.TextView;
 import com.android.systemui.DemoMode;
 import com.android.systemui.R;
 import com.android.systemui.statusbar.phone.PhoneStatusBar;
-import com.android.systemui.cm.UserContentObserver;
 
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
@@ -101,15 +100,12 @@ public class Clock extends TextView implements DemoMode {
     private SettingsObserver mSettingsObserver;
     private PhoneStatusBar mStatusBar;
 
-    class SettingsObserver extends UserContentObserver {
+    protected class SettingsObserver extends ContentObserver {
         SettingsObserver(Handler handler) {
             super(handler);
         }
 
-        @Override
-        protected void observe() {
-            super.observe();
-
+        void observe() {
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.System
                     .getUriFor(Settings.System.STATUS_BAR_CLOCK),
@@ -142,14 +138,7 @@ public class Clock extends TextView implements DemoMode {
         }
 
         @Override
-        protected void unobserve() {
-            super.unobserve();
-
-            mContext.getContentResolver().unregisterContentObserver(this);
-        }
-
-        @Override
-        public void update() {
+        public void onChange(boolean selfChange) {
             updateSettings();
         }
     }
@@ -460,7 +449,7 @@ public class Clock extends TextView implements DemoMode {
                 setTypeface(Typeface.create("sans-serif", Typeface.NORMAL));
                 break;
         }
-    }
+     }
 
     private boolean mDemoMode;
 

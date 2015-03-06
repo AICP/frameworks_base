@@ -99,4 +99,10 @@ public class ActionConstants {
         + ACTION_NULL          + ACTION_DELIMITER
         + ICON_EMPTY;
 
+    public static final String QUICK_TILE_CONFIG_DEFAULT =
+          ACTION_SCREENSHOT + ACTION_DELIMITER
+        + ICON_EMPTY        + ACTION_DELIMITER
+        + ACTION_POWER_MENU + ACTION_DELIMITER
+        + ICON_EMPTY;
+
 }

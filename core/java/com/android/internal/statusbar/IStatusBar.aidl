@@ -50,5 +50,6 @@ oneway interface IStatusBar
     void scheduleHeadsUpClose();
     void toggleLastApp();
     void toggleKillApp();
+    void toggleScreenshot();
 }
 

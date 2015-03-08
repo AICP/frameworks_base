@@ -2157,7 +2157,7 @@ public class NotificationPanelView extends PanelView implements
                     || uri.equals(Settings.System.getUriFor(
                         Settings.System.QS_TRANSPARENT_SHADE))) {
                     mQSBackgroundColor = Settings.System.getInt(
-                            resolver, Settings.System.QS_BACKGROUND_COLOR, 0xff263238);
+                            resolver, Settings.System.QS_BACKGROUND_COLOR, 0xee263238);
                     mQSShadeTransparency = Settings.System.getInt(
                             resolver, Settings.System.QS_TRANSPARENT_SHADE, 0) == 1;
                     setQSBackgroundColor();
@@ -2187,7 +2187,7 @@ public class NotificationPanelView extends PanelView implements
             mQSCSwitch = Settings.System.getInt(
                     resolver, Settings.System.QS_COLOR_SWITCH, 0) == 1;
             mQSBackgroundColor = Settings.System.getInt(
-                    resolver, Settings.System.QS_BACKGROUND_COLOR, 0xff263238);
+                    resolver, Settings.System.QS_BACKGROUND_COLOR, 0xee263238);
             mQSShadeTransparency = Settings.System.getInt(
                     resolver, Settings.System.QS_TRANSPARENT_SHADE, 0) == 1;
             if (mQSCSwitch) {
@@ -2200,7 +2200,7 @@ public class NotificationPanelView extends PanelView implements
     private void setQSBackgroundColor() {
         ContentResolver resolver = mContext.getContentResolver();
         mQSBackgroundColor = Settings.System.getInt(
-                resolver, Settings.System.QS_BACKGROUND_COLOR, 0xff263238);
+                resolver, Settings.System.QS_BACKGROUND_COLOR, 0xee263238);
         mQSShadeTransparency = Settings.System.getInt(mContext.getContentResolver(),
             Settings.System.QS_TRANSPARENT_SHADE, 0) == 1;
         if (mQsContainer != null) {

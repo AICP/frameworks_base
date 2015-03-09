@@ -807,8 +807,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.ACCELEROMETER_ROTATION_ANGLES), false, this,
                     UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.Secure.getUriFor(
-                    Settings.Secure.DEV_FORCE_SHOW_NAVBAR), false, this,
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.DEV_FORCE_SHOW_NAVBAR), false, this,
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.HOME_WAKE_SCREEN), false, this,
@@ -1804,8 +1804,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 updateEdgeGestureListenerState();
             }
 
-            boolean devForceNavbar = Settings.Secure.getIntForUser(resolver,
-                    Settings.Secure.DEV_FORCE_SHOW_NAVBAR, 0, UserHandle.USER_CURRENT) == 1;
+            boolean devForceNavbar = Settings.System.getIntForUser(resolver,
+                    Settings.System.DEV_FORCE_SHOW_NAVBAR, 0, UserHandle.USER_CURRENT) == 1;
             if (devForceNavbar != mDevForceNavbar) {
                 mDevForceNavbar = devForceNavbar;
             }

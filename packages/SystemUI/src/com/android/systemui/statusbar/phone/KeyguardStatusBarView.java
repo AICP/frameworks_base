@@ -196,4 +196,5 @@ public class KeyguardStatusBarView extends RelativeLayout {
     public boolean hasOverlappingRendering() {
         return false;
     }
+
 }

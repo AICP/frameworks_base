@@ -301,6 +301,7 @@
   <java-symbol type="anim" name="grow_fade_in_from_bottom_ribbon" />
   <java-symbol type="anim" name="translucent_enter_ribbon" />
   <java-symbol type="anim" name="translucent_exit_ribbon" />
+  <java-symbol type="anim" name="translucent_exit_left" />
   <java-symbol type="anim" name="slide_in_down" />
   <java-symbol type="anim" name="slide_out_up" />
   <java-symbol type="anim" name="slide_in_right_ribbon" />
@@ -315,6 +316,7 @@
   <java-symbol type="anim" name="slide_out_left_no_fade" />
   <java-symbol type="anim" name="slide_in_left_no_fade" />
   <java-symbol type="anim" name="slide_out_right_no_fade" />
+  <java-symbol type="anim" name="no_animation" />
 
   <java-symbol type="bool" name="config_dozeUseAccelerometer" />
 

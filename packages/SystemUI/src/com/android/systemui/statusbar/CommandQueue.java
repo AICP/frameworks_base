@@ -59,7 +59,7 @@ public class CommandQueue extends IStatusBar.Stub {
     private static final int MSG_NOTIFICATION_LIGHT_PULSE           = 17 << MSG_SHIFT;
     private static final int MSG_HIDE_HEADS_UP                      = 18 << MSG_SHIFT;
     private static final int MSG_SET_AUTOROTATE_STATUS              = 19 << MSG_SHIFT;
-    private static final int MSG_START_CUSTOM_INTENT_AFTER_KEYGUARD = 20 << MSG_SHIFT
+    private static final int MSG_START_CUSTOM_INTENT_AFTER_KEYGUARD = 20 << MSG_SHIFT;
     private static final int MSG_TOGGLE_LAST_APP                    = 21 << MSG_SHIFT;
     private static final int MSG_TOGGLE_KILL_APP                    = 22 << MSG_SHIFT;
     private static final int MSG_TOGGLE_SCREENSHOT                  = 23 << MSG_SHIFT;

@@ -19,12 +19,6 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <!-- Heads up -->
-    <string name="heads_up_snooze_message">Heads up is disabled for <xliff:g id="number">%d</xliff:g> minutes.</string>
-    <string name="heads_up_snooze_button_title">Snooze heads up</string>
-    <string name="notification_inspect_heads_up_title_enabled">Enable heads up for this application</string>
-    <string name="notification_inspect_heads_up_title_disabled">Disable heads up for this application</string>
-
     <!-- App circle sidebar -->
     <string name="app_float_maximize_item_title">Maximize</string>
     <string name="app_float_item_title">Float view</string>

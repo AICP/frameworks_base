@@ -2193,27 +2193,6 @@ public final class Settings {
                 "lockscreen_shortcuts_longpress";
 
         /**
-         * Defines global heads up snooze time if user want to snooze it.
-         *
-         * @hide
-         */
-        public static final String HEADS_UP_SNOOZE_TIME = "heads_up_snooze_time";
-
-        /**
-         * Defines the global heads up notification decay
-         *
-         * @hide
-         */
-        public static final String HEADS_UP_NOTIFCATION_DECAY = "heads_up_notification_decay";
-
-        /**
-         * Enable/disable Heads up
-         *
-         * @hide
-         */
-        public static final String HEADS_UP_SWITCH = "heads_up_switch";
-
-        /**
          * Defines the status and navigation bar color is battery safe mode is enabled.
          *
          * @hide

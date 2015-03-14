@@ -3892,9 +3892,9 @@ public final class Settings {
 
 
         /**
-        * Hide notification instead of remove when swiping headsup
-        * @hide
-        */
+         * Hide notification instead of remove when swiping headsup
+         * @hide
+         */
         public static final String HEADS_UP_DISMISS_ON_REMOVE = "heads_up_swipe_action";
 
         /**

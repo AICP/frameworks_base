@@ -1063,7 +1063,6 @@ public class AppTransition implements Dump {
 
     void overridePendingAppTransition(String packageName, int enterAnim, int exitAnim,
                                              IRemoteCallback startedCallback) {
-        if (mNoOverrides) return;
         if (isTransitionSet()) {
             mNextAppTransitionType = NEXT_TRANSIT_TYPE_CUSTOM;
             mNextAppTransitionPackage = packageName;

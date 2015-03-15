@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright (c) 2014 SlimRoms Project
+ * Copyright (c) 2015 AICP Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- App circle sidebar -->
+    <string name="app_float_maximize_item_title">Μεγιστοποιήστε</string>
+    <string name="app_float_item_title">Προβολή αιώρησης</string>
+    <string name="app_stop_item_title">Διακοπή εφαρμογής</string>
+
+    <!-- Greeting -->
+    <string name="aicp_label">Καλωσήλθατε στην AICP</string>
+
+    <!-- Off/On/Toggle -->
+    <string name="off">Εκτός</string>
+    <string name="on">Ενεργό</string>
+    <string name="toggle">Εναλλαγή</string>
+
+    <!-- Dialog Cancel/OK -->
+    <string name="cancel">Ακύρωση</string>
+    <string name="dlg_ok">Ok</string>
+    <string name="yes">Ναι</string>
+    <string name="no">Όχι</string>
+
+    <!-- Slim Shortcut Actions -->
+    <string name="shortcut_picker">Slim συντομέυσεις</string>
+    <string name="shortcut_rotation">Περιστροφή</string>
+    <string name="shortcut_reboot">Επανεκκίνηση</string>
+    <string name="shortcut_recovery">Επαναφορά</string>
+    <string name="shortcut_toggle_title">Εκτέλεση δράσης</string>
+
+    <!-- Kill app toast -->
+    <string name="app_killed_message">Διακοπή εφαρμογής</string>
+    
+    <!-- Quick settings -->
+    <string name="quick_settings_screenrecord">Καταγραφή οθόνης</string>
+
+</resources>

@@ -2863,9 +2863,11 @@ public class PackageManagerService extends IPackageManager.Stub
             }
 
             // Disable components marked for disabling at build-time
+            mDisabledComponentsList = new ArrayList<ComponentName>();
             for (String name : mContext.getResources().getStringArray(
                     com.android.internal.R.array.config_disabledComponents)) {
                 ComponentName cn = ComponentName.unflattenFromString(name);
+                mDisabledComponentsList.add(cn);
                 Slog.v(TAG, "Disabling " + name);
                 String className = cn.getClassName();
                 PackageSetting pkgSetting = mSettings.mPackages.get(cn.getPackageName());
@@ -2875,6 +2877,21 @@ public class PackageManagerService extends IPackageManager.Stub
                     continue;
                 }
                 pkgSetting.disableComponentLPw(className, UserHandle.USER_OWNER);
+            }
+
+            // Enable components marked for forced-enable at build-time
+            for (String name : mContext.getResources().getStringArray(
+                    com.android.internal.R.array.config_forceEnabledComponents)) {
+                ComponentName cn = ComponentName.unflattenFromString(name);
+                Slog.v(TAG, "Enabling " + name);
+                String className = cn.getClassName();
+                PackageSetting pkgSetting = mSettings.mPackages.get(cn.getPackageName());
+                if (pkgSetting == null || pkgSetting.pkg == null
+                        || !pkgSetting.pkg.hasComponentClassName(className)) {
+                    Slog.w(TAG, "Unable to enable " + name);
+                    continue;
+                }
+                pkgSetting.enableComponentLPw(className, UserHandle.USER_OWNER);
             }
 
             // Prepare storage for system user really early during boot,

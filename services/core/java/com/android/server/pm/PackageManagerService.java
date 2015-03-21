@@ -1653,7 +1653,9 @@ public class PackageManagerService extends IPackageManager.Stub {
                 }
             }
 
-            mBootThemeConfig = ThemeUtils.getBootThemeDirty();
+            if (!mOnlyCore) {
+                mBootThemeConfig = ThemeUtils.getBootThemeDirty();
+            }
 
             // Collect vendor overlay packages.
             // (Do this before scanning any apps.)

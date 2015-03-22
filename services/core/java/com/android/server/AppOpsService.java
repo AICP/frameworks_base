@@ -37,7 +37,6 @@ import android.app.ActivityThread;
 import android.app.AppOpsManager;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.IPackageManager;
 import android.content.pm.PackageManager;
@@ -235,13 +234,6 @@ public class AppOpsService extends IAppOpsService.Stub {
                     finishOperationLocked(mStartedOps.get(i));
                 }
                 mClients.remove(mAppToken);
-            }
-
-            // We cannot broadcast on the synchronized block above because the broadcast might
-            // trigger another appop call that eventually arrives here from a different thread,
-            // causing a deadlock.
-            for (int i=mStartedOps.size()-1; i>=0; i--) {
-                broadcastOpIfNeeded(mStartedOps.get(i).op);
             }
         }
     }
@@ -775,7 +767,6 @@ public class AppOpsService extends IAppOpsService.Stub {
                 op.time = System.currentTimeMillis();
                 op.rejectTime = 0;
                 op.allowedCount++;
-                broadcastOpIfNeeded(code);
                 return AppOpsManager.MODE_ALLOWED;
             } else {
                 if (Looper.myLooper() == mLooper) {
@@ -792,10 +783,7 @@ public class AppOpsService extends IAppOpsService.Stub {
                 req = askOperationLocked(code, uid, packageName, switchOp);
             }
         }
-
-        int result = req.get();
-        broadcastOpIfNeeded(code);
-        return result;
+        return req.get();
     }
 
     @Override
@@ -843,7 +831,6 @@ public class AppOpsService extends IAppOpsService.Stub {
                 if (client.mStartedOps != null) {
                     client.mStartedOps.add(op);
                 }
-                broadcastOpIfNeeded(code);
                 return AppOpsManager.MODE_ALLOWED;
             } else {
                 if (Looper.myLooper() == mLooper) {
@@ -862,9 +849,7 @@ public class AppOpsService extends IAppOpsService.Stub {
                 req = askOperationLocked(code, uid, packageName, switchOp);
             }
         }
-        int result = req.get();
-        broadcastOpIfNeeded(code);
-        return result;
+        return req.get();
     }
 
     @Override
@@ -885,7 +870,6 @@ public class AppOpsService extends IAppOpsService.Stub {
             }
             finishOperationLocked(op);
         }
-        broadcastOpIfNeeded(code);
     }
 
     void finishOperationLocked(Op op) {
@@ -1644,16 +1628,6 @@ public class AppOpsService extends IAppOpsService.Stub {
                 } catch (RemoteException e) {
                 }
             }
-        }
-    }
-
-    private void broadcastOpIfNeeded(int op) {
-        switch (op) {
-            case AppOpsManager.OP_SU:
-                mHandler.post(mSuSessionChangedRunner);
-                break;
-            default:
-                break;
         }
     }
 

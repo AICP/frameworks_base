@@ -59,8 +59,6 @@
     <java-symbol type="string" name="stk_cc_ussd_to_ss" />
     <java-symbol type="string" name="stk_cc_ussd_to_ussd" />
 
-    <java-symbol type="drawable" name="cm_platlogo" />
-
     <java-symbol type="layout" name="permission_confirmation_dialog" />
 
     <!-- From android.policy -->

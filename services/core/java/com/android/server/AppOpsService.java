@@ -115,14 +115,6 @@ public class AppOpsService extends IAppOpsService.Stub {
         }
     };
 
-    private Runnable mSuSessionChangedRunner = new Runnable() {
-        @Override
-        public void run() {
-            mContext.sendBroadcastAsUser(new Intent(AppOpsManager.ACTION_SU_SESSION_CHANGED),
-                    UserHandle.ALL);
-        }
-    };
-
     final SparseArray<HashMap<String, Ops>> mUidOps
             = new SparseArray<HashMap<String, Ops>>();
 

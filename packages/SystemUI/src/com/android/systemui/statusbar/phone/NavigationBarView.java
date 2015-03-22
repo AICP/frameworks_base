@@ -54,7 +54,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.android.systemui.R;
-import com.android.systemui.cm.UserContentObserver;
 import com.android.systemui.statusbar.BaseStatusBar;
 import com.android.systemui.statusbar.DelegateViewHelper;
 import com.android.systemui.statusbar.policy.DeadZone;
@@ -870,34 +869,30 @@ public class NavigationBarView extends LinearLayout {
         setMenuVisibility(mShowMenu, true);
     }
 
-    private class SettingsObserver extends UserContentObserver {
+    private class SettingsObserver extends ContentObserver {
 
         SettingsObserver(Handler handler) {
             super(handler);
         }
 
-        @Override
-        protected void observe() {
-            super.observe();
+        void observe() {
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.NAVIGATION_BAR_MENU_ARROW_KEYS),
-                    false, this, UserHandle.USER_ALL);
+                    false, this);
 
             // intialize mModlockDisabled
             onChange(false);
         }
 
-        @Override
-        protected void unobserve() {
-            super.unobserve();
+        void unobserve() {
             mContext.getContentResolver().unregisterContentObserver(this);
         }
 
         @Override
-        protected void update() {
-            mShowDpadArrowKeys = Settings.System.getIntForUser(mContext.getContentResolver(),
-                    Settings.System.NAVIGATION_BAR_MENU_ARROW_KEYS, 0, UserHandle.USER_CURRENT) != 0;
+        public void onChange(boolean selfChange) {
+            mShowDpadArrowKeys = Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.NAVIGATION_BAR_MENU_ARROW_KEYS, 0) != 0;
             mSlotOneVisibility = -1;
             mSlotSixVisibility = -1;
             setNavigationIconHints(mNavigationIconHints, true);

@@ -20,14 +20,14 @@ import android.app.ActivityManager;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.database.ContentObserver;
+import android.net.Uri;
 import android.os.Handler;
-import android.os.UserHandle;
 import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.View;
 import android.widget.TextView;
-
-import com.android.systemui.cm.UserContentObserver;
 import com.android.systemui.statusbar.policy.BatteryController;
 
 public class BatteryLevelTextView extends TextView implements
@@ -43,32 +43,8 @@ public class BatteryLevelTextView extends TextView implements
     private boolean mAttached;
     private int mRequestedVisibility;
 
-    private SettingsObserver mObserver = new SettingsObserver(new Handler());
-
-    private class SettingsObserver extends UserContentObserver {
-        public SettingsObserver(Handler handler) {
-            super(handler);
-        }
-
-        @Override
-        protected void observe() {
-            super.observe();
-
-            getContext().getContentResolver().registerContentObserver(Settings.System.getUriFor(
-                    STATUS_BAR_BATTERY_STYLE), false, this, UserHandle.USER_ALL);
-            getContext().getContentResolver().registerContentObserver(Settings.System.getUriFor(
-                    STATUS_BAR_SHOW_BATTERY_PERCENT), false, this, UserHandle.USER_ALL);
-        }
-
-        @Override
-        protected void unobserve() {
-            super.unobserve();
-
-            getContext().getContentResolver().unregisterContentObserver(this);
-        }
-
-        @Override
-        public void update() {
+    private ContentObserver mObserver = new ContentObserver(new Handler()) {
+        public void onChange(boolean selfChange, Uri uri) {
             loadShowBatteryTextSetting();
         }
     };
@@ -128,8 +104,10 @@ public class BatteryLevelTextView extends TextView implements
         if (mBatteryController != null) {
             mBatteryController.addStateChangedCallback(this);
         }
-        mObserver.observe();
-
+        getContext().getContentResolver().registerContentObserver(Settings.System.getUriFor(
+                STATUS_BAR_BATTERY_STYLE), false, mObserver);
+        getContext().getContentResolver().registerContentObserver(Settings.System.getUriFor(
+                STATUS_BAR_SHOW_BATTERY_PERCENT), false, mObserver);
         mAttached = true;
     }
 
@@ -137,7 +115,7 @@ public class BatteryLevelTextView extends TextView implements
     public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         mAttached = false;
-        mObserver.unobserve();
+        getContext().getContentResolver().unregisterContentObserver(mObserver);
 
         if (mBatteryController != null) {
             mBatteryController.removeStateChangedCallback(this);

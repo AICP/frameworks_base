@@ -50,7 +50,6 @@ import android.widget.ImageView;
 import com.android.systemui.cm.ActionTarget;
 import com.android.systemui.cm.NavigationRingHelpers;
 import com.android.systemui.cm.ShortcutPickHelper;
-import com.android.systemui.cm.UserContentObserver;
 import com.android.systemui.statusbar.BaseStatusBar;
 import com.android.systemui.statusbar.CommandQueue;
 import com.android.systemui.statusbar.StatusBarPanel;
@@ -97,7 +96,6 @@ public class SearchPanelView extends FrameLayout implements StatusBarPanel,
     private ImageView mLogoRight, mLogoLeft;
     private final ActionTarget mActionTarget;
     private ShortcutPickHelper mPicker;
-    private SettingsObserver mSettingsObserver;
 
     public SearchPanelView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
@@ -113,8 +111,8 @@ public class SearchPanelView extends FrameLayout implements StatusBarPanel,
         // Instantiate receiver/observer
         IntentFilter filter = new IntentFilter();
         filter.addAction(BROADCAST);
-        mContext.registerReceiverAsUser(mReceiver, UserHandle.ALL, filter, null, null);
-        mSettingsObserver = new SettingsObserver(new Handler());
+        mContext.registerReceiver(mReceiver, filter);
+        new SettingsObserver(new Handler());
     }
 
     private void startAssistActivity() {
@@ -423,30 +421,28 @@ public class SearchPanelView extends FrameLayout implements StatusBarPanel,
     public void shortcutPicked(String uri) {
         if (uri != null) {
             int index = mTargetViews.indexOf(mSelectedView);
-            Settings.Secure.putStringForUser(mContext.getContentResolver(),
-                    Settings.Secure.NAVIGATION_RING_TARGETS[index], uri, UserHandle.USER_CURRENT);
+            Settings.Secure.putString(mContext.getContentResolver(),
+                    Settings.Secure.NAVIGATION_RING_TARGETS[index], uri);
         }
     }
 
-    private class SettingsObserver extends UserContentObserver {
+    private class SettingsObserver extends ContentObserver {
         SettingsObserver(Handler handler) {
             super(handler);
+            observe();
         }
 
-        @Override
-        protected void observe() {
-            super.observe();
-
+        void observe() {
             ContentResolver resolver = mContext.getContentResolver();
             for (int i = 0; i < NavigationRingHelpers.MAX_ACTIONS; i++) {
                 resolver.registerContentObserver(
                         Settings.Secure.getUriFor(Settings.Secure.NAVIGATION_RING_TARGETS[i]),
-                        false, this, UserHandle.USER_ALL);
+                        false, this);
             }
         }
 
         @Override
-        public void update() {
+        public void onChange(boolean selfChange) {
             updateDrawables();
         }
     }
@@ -535,12 +531,6 @@ public class SearchPanelView extends FrameLayout implements StatusBarPanel,
                         }
                     });
         }
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        mSettingsObserver.observe();
     }
 
     @Override

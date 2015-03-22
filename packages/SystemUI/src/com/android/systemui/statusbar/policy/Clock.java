@@ -36,7 +36,6 @@ import android.widget.TextView;
 
 import com.android.systemui.DemoMode;
 import com.android.systemui.R;
-import com.android.systemui.cm.UserContentObserver;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -74,30 +73,24 @@ public class Clock implements DemoMode {
     private boolean mDemoMode;
     private boolean mAttached;
 
-    class SettingsObserver extends UserContentObserver {
+    class SettingsObserver extends ContentObserver {
         SettingsObserver(Handler handler) {
             super(handler);
         }
 
-        @Override
-        protected void observe() {
-            super.observe();
-
+        void observe() {
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.STATUS_BAR_AM_PM), false, this, UserHandle.USER_ALL);
+                    Settings.System.STATUS_BAR_AM_PM), false, this);
             updateSettings();
         }
 
-        @Override
-        protected void unobserve() {
-            super.unobserve();
-
+        void unobserve() {
             mContext.getContentResolver().unregisterContentObserver(this);
         }
 
         @Override
-        public void update() {
+        public void onChange(boolean selfChange) {
             updateSettings();
         }
     }
@@ -278,8 +271,8 @@ public class Clock implements DemoMode {
 
     void updateSettings() {
         ContentResolver resolver = mContext.getContentResolver();
-        mAmPmStyle = (Settings.System.getIntForUser(resolver,
-                Settings.System.STATUS_BAR_AM_PM, 2, UserHandle.USER_CURRENT));
+        mAmPmStyle = (Settings.System.getInt(resolver,
+                Settings.System.STATUS_BAR_AM_PM, 2));
         mClockFormatString = "";
 
         updateClock();

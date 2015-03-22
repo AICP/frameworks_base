@@ -704,6 +704,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 case MSG_DISPATCH_MEDIA_KEY_REPEAT_WITH_WAKE_LOCK:
                     dispatchMediaKeyRepeatWithWakeLock((KeyEvent)msg.obj);
                     break;
+                case MSG_DISPATCH_VOLKEY_WITH_WAKE_LOCK:
+                    dispatchMediaKeyWithWakeLockToAudioService((KeyEvent)msg.obj);
+                    dispatchMediaKeyWithWakeLockToAudioService(KeyEvent.changeAction((KeyEvent)msg.obj, KeyEvent.ACTION_UP));
+                    break;
                 case MSG_DISPATCH_SHOW_RECENTS:
                     showRecentApps(false);
                     break;
@@ -735,14 +739,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 case MSG_POWER_LONG_PRESS:
                     powerLongPress();
                     break;
-                case MSG_DISPATCH_VOLKEY_WITH_WAKE_LOCK: {
-                    KeyEvent event = (KeyEvent) msg.obj;
-                    mIsLongPress = true;
-                    dispatchMediaKeyWithWakeLockToAudioService(event);
-                    dispatchMediaKeyWithWakeLockToAudioService(
-                            KeyEvent.changeAction(event, KeyEvent.ACTION_UP));
-                    break;
-                }
             }
         }
     }
@@ -5377,52 +5373,36 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     }
                 }
 
-                // Disable music and volume control when used as wake key
-                if ((result & ACTION_PASS_TO_USER) == 0 && !mVolumeWakeScreen) {
-                    boolean mayChangeVolume = false;
-
-                    if (isMusicActive()) {
-                        if (mVolBtnMusicControls && (keyCode != KeyEvent.KEYCODE_VOLUME_MUTE)) {
-                            // Detect long key presses.
-                            if (down) {
-                                mIsLongPress = false;
-                                // TODO: Long press of MUTE could be mapped to KEYCODE_MEDIA_PLAY_PAUSE
-                                int newKeyCode = event.getKeyCode() == KeyEvent.KEYCODE_VOLUME_UP ?
-                                        KeyEvent.KEYCODE_MEDIA_NEXT : KeyEvent.KEYCODE_MEDIA_PREVIOUS;
-                                scheduleLongPressKeyEvent(event, newKeyCode);
-                                // Consume key down events of all presses.
+                if (isMusicActive() && (result & ACTION_PASS_TO_USER) == 0) {
+                    if (mVolBtnMusicControls && down && (keyCode != KeyEvent.KEYCODE_VOLUME_MUTE)) {
+                        mIsLongPress = false;
+                        int newKeyCode = event.getKeyCode() == KeyEvent.KEYCODE_VOLUME_UP ?
+                                KeyEvent.KEYCODE_MEDIA_NEXT : KeyEvent.KEYCODE_MEDIA_PREVIOUS;
+                        Message msg = mHandler.obtainMessage(MSG_DISPATCH_VOLKEY_WITH_WAKE_LOCK,
+                                new KeyEvent(event.getDownTime(), event.getEventTime(), event.getAction(), newKeyCode, 0));
+                        msg.setAsynchronous(true);
+                        mHandler.sendMessageDelayed(msg, ViewConfiguration.getLongPressTimeout());
+                        break;
+                    } else {
+                        if (mVolBtnMusicControls && !down) {
+                            mHandler.removeMessages(MSG_DISPATCH_VOLKEY_WITH_WAKE_LOCK);
+                            if (mIsLongPress) {
                                 break;
-                            } else {
-                                mHandler.removeMessages(MSG_DISPATCH_VOLKEY_WITH_WAKE_LOCK);
-                                // Consume key up events of long presses only.
-                                if (mIsLongPress) {
-                                    break;
-                                }
-                                // Change volume only on key up events of short presses.
-                                mayChangeVolume = true;
                             }
-                        } else {
-                            // Long key press detection not applicable, change volume only
-                            // on key down events
-                            mayChangeVolume = down;
                         }
                     }
+                }
 
-                    if (mayChangeVolume) {
-                        // If we aren't passing to the user and no one else
-                        // handled it send it to the session manager to figure
-                        // out.
-
-                        // Rewrite the event to use key-down as sendVolumeKeyEvent will
-                        // only change the volume on key down.
-                        KeyEvent newEvent = new KeyEvent(KeyEvent.ACTION_DOWN, keyCode);
-                        MediaSessionLegacyHelper.getHelper(mContext)
-                                .sendVolumeKeyEvent(newEvent, true);
-                    }
+                if ((result & ACTION_PASS_TO_USER) == 0) {
+                    // If we aren't passing to the user and no one else
+                    // handled it send it to the session manager to figure
+                    // out.
+                    MediaSessionLegacyHelper.getHelper(mContext)
+                            .sendVolumeKeyEvent(event, true);
                     break;
                 }
+                }
                 break;
-            }
 
             case KeyEvent.KEYCODE_HOME:
                 if (down && !interactive && mHomeWakeScreen) {
@@ -5574,14 +5554,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         }
 
         return result;
-    }
-
-    private void scheduleLongPressKeyEvent(KeyEvent origEvent, int keyCode) {
-        KeyEvent event = new KeyEvent(origEvent.getDownTime(), origEvent.getEventTime(),
-                origEvent.getAction(), keyCode, 0);
-        Message msg = mHandler.obtainMessage(MSG_DISPATCH_VOLKEY_WITH_WAKE_LOCK, event);
-        msg.setAsynchronous(true);
-        mHandler.sendMessageDelayed(msg, ViewConfiguration.getLongPressTimeout());
     }
 
     /**

@@ -2442,10 +2442,16 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             mSystemIconArea.animate().cancel();
             mClockView.animate().cancel();
             if ((state & StatusBarManager.DISABLE_SYSTEM_INFO) != 0) {
-                animateStatusBarHide(mClockView, animate);
+                if (mClockLocation == Clock.STYLE_CLOCK_CENTER
+                        || mClockLocation == Clock.STYLE_CLOCK_LEFT) {
+                    animateStatusBarHide(mClockView, animate);
+                }
                 animateStatusBarHide(mSystemIconArea, animate);
             } else {
-                animateStatusBarShow(mClockView, animate);
+                if (mClockLocation == Clock.STYLE_CLOCK_CENTER
+                        || mClockLocation == Clock.STYLE_CLOCK_LEFT) {
+                    animateStatusBarShow(mClockView, animate);
+                }
                 animateStatusBarShow(mSystemIconArea, animate);
             }
         }

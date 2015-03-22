@@ -953,6 +953,8 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
                 mStatusBar = statusBar;
                 statusBar.setIconVisibility("ime", false);
                 updateImeWindowStatusLocked();
+                mShowOngoingImeSwitcherForPhones = mRes.getBoolean(
+                        com.android.internal.R.bool.show_ongoing_ime_switcher);
                 if (mShowOngoingImeSwitcherForPhones) {
                     mWindowManagerService.setOnHardKeyboardStatusChangeListener(
                             mHardKeyboardListener);

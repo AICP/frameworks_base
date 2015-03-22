@@ -373,10 +373,6 @@ public class RecentsView extends FrameLayout implements TaskStackView.TaskStackV
         mClearRecents = ((View)getParent()).findViewById(R.id.clear_recents);
         mClearRecents.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (mClearRecents.getAlpha() != 1f) {
-                    return;
-                }
-
                 // Hide clear recents button before dismiss all tasks
                 startHideClearRecentsButtonAnimation();
 

@@ -447,9 +447,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     WindowState mFocusedWindow;
     IApplicationToken mFocusedApp;
 
-    // Volume wake control flag
-    boolean mVolumeWakeScreen;
-
     PointerLocationView mPointerLocationView;
 
     // The current size of the screen; really; extends into the overscan area of
@@ -683,9 +680,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private static final int MSG_DISPATCH_VOLKEY_WITH_WAKE_LOCK = 13;
     boolean mWifiDisplayConnected = false;
     int     mWifiDisplayCustomRotation = -1;
-    private static final int MSG_POWER_DELAYED_PRESS = 13;
-    private static final int MSG_POWER_LONG_PRESS = 14;
-    private static final int MSG_DISPATCH_VOLKEY_WITH_WAKE_LOCK = 15;
+    private static final int MSG_POWER_DELAYED_PRESS = 14;
+    private static final int MSG_POWER_LONG_PRESS = 15;
     private boolean mHasPermanentMenuKey;
     private boolean mClearedBecauseOfForceShow;
     private boolean mTopWindowIsKeyguard;

@@ -3550,6 +3550,12 @@ public final class Settings {
         public static final String VOLUME_KEYS_CONTROL_MEDIA_STREAM = "volume_keys_control_media_stream";
 
         /**
+         * Volume music controls
+         * @hide
+         */
+        public static final String VOLUME_MUSIC_CONTROLS = "volume_music_controls
+
+        /**
          *  Enable statusbar double tap gesture on to put device to sleep
          * @hide
          */

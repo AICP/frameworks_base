@@ -30,6 +30,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.os.UserHandle;
+import android.provider.Settings;
 import android.util.Pair;
 import android.view.KeyEvent;
 import android.view.View;
@@ -250,10 +251,20 @@ public class RecentsActivity extends Activity implements RecentsView.RecentsView
             }
             findViewById(R.id.clear_recents).setVisibility(View.VISIBLE);
             if (mRecentsView.hasSearchBar()) {
-                mRecentsView.setSearchBarVisibility(View.VISIBLE);
+
+                if (Settings.System.getInt(getContentResolver(),
+                    Settings.System.RECENTS_SHOW_HIDE_SEARCH_BAR, 0) == 1) {
+                    mRecentsView.setSearchBarVisibility(View.VISIBLE);
+                } else {
+                    mRecentsView.setSearchBarVisibility(View.GONE);
+                   }
+                } else {
+                if (Settings.System.getInt(getContentResolver(),
+                    Settings.System.RECENTS_SHOW_HIDE_SEARCH_BAR, 0) == 1) {
+                    addSearchBarAppWidgetView();
             } else {
-                addSearchBarAppWidgetView();
-            }
+               }
+                }
         }
 
         // Animate the SystemUI scrims into view

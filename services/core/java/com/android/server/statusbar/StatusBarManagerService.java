@@ -495,6 +495,15 @@ public class StatusBarManagerService extends IStatusBarService.Stub {
             } catch (RemoteException ex) {}
         }
     }
+	
+	@Override
+    public void toggleScreenshot() {
+        if (mBar != null) {
+            try {
+                mBar.toggleScreenshot();
+            } catch (RemoteException ex) {}
+        }
+    }
 
     private void enforceStatusBar() {
         mContext.enforceCallingOrSelfPermission(android.Manifest.permission.STATUS_BAR,

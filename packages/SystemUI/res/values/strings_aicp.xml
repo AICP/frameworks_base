@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright (c) 2015 AICP
+ * Copyright (c) 2015 AICP Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,5 +25,8 @@
 
     <!-- Power Button for Navbar -->
     <string name="navbar_power_button">Power button</string>
+
+    <!-- Greeting -->
+    <string name="aicp_label">Welcome to AICP</string>
 
 </resources>

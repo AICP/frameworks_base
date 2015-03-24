@@ -2331,4 +2331,8 @@
     <integer name="config_dayColorTemperature">6500</integer>
     <integer name="config_nightColorTemperature">4500</integer>
     <integer name="config_outdoorAmbientLux">9000</integer>
+
+    <!-- If this is true, key chords can be used to take a screen record on the device. -->
+    <bool name="config_enableScreenrecordChord">true</bool>
+
 </resources>

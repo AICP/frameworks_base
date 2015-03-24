@@ -4087,16 +4087,16 @@ public final class Settings {
         public static final String LOCK_SCREEN_WEATHER_COLORIZE_ALL_ICONS = "lock_screen_weather_colorize_all_icons";
 
         /**
-         * Color of the weather text on the lock screen
+         * Color of the text on the lock screen
          * @hide
          */
-        public static final String LOCK_SCREEN_WEATHER_TEXT_COLOR = "lock_screen_weather_text_color";
+        public static final String LOCK_SCREEN_TEXT_COLOR = "lock_screen_text_color";
 
         /**
-         * Color of the weather condition icons on the lock screen
+         * Color of the icons on the lock screen
          * @hide
          */
-        public static final String LOCK_SCREEN_WEATHER_ICON_COLOR = "lock_screen_weather_icon_color";		
+        public static final String LOCK_SCREEN_ICON_COLOR = "lock_screen_icon_color";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings

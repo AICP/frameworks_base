@@ -184,6 +184,7 @@ public abstract class BaseStatusBar extends SystemUI implements
 
     // Search panel
     protected SearchPanelView mSearchPanelView;
+    private boolean mSearchPanelViewEnabled;
 
     protected int mCurrentUserId = 0;
     final protected SparseArray<UserInfo> mCurrentProfiles = new SparseArray<UserInfo>();
@@ -302,6 +303,31 @@ public abstract class BaseStatusBar extends SystemUI implements
             mUsersAllowingPrivateNotifications.clear();
             // ... and refresh all the notifications
             updateNotifications();
+        }
+    };
+
+    private class SettingsObserver extends ContentObserver {
+        public SettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        public void observe() {
+            ContentResolver resolver = mContext.getContentResolver();
+            resolver.registerContentObserver(
+                    Settings.Secure.getUriFor(Settings.Secure.SEARCH_PANEL_ENABLED),
+                    false, this);
+            update();
+        }
+
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
+            update();
+        }
+
+        private void update() {
+            ContentResolver resolver = mContext.getContentResolver();
+            mSearchPanelViewEnabled = Settings.Secure.getInt(
+                    resolver, Settings.Secure.SEARCH_PANEL_ENABLED, 1) == 1;
         }
     };
 
@@ -542,6 +568,9 @@ public abstract class BaseStatusBar extends SystemUI implements
         mDreamManager = IDreamManager.Stub.asInterface(
                 ServiceManager.checkService(DreamService.DREAM_SERVICE));
         mPowerManager = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
+
+        SettingsObserver observer = new SettingsObserver(mHandler);
+                observer.observe();
 
         mSettingsObserver.onChange(false); // set up
         mContext.getContentResolver().registerContentObserver(
@@ -1079,7 +1108,7 @@ public abstract class BaseStatusBar extends SystemUI implements
 
     @Override
     public void showSearchPanel() {
-        if (mSearchPanelView != null) {
+        if (mSearchPanelView != null && mSearchPanelViewEnabled) {
             mSearchPanelView.show(true, true);
         }
     }

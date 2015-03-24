@@ -1133,7 +1133,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         // Other icons
         mLocationController = new LocationControllerImpl(mContext); // will post a notification
-        mBatteryController = new BatteryController(mContext);
+        mBatteryController = new BatteryController(mContext, mHandler);
         mBatteryController.addStateChangedCallback(new BatteryStateChangeCallback() {
             @Override
             public void onPowerSaveChanged() {
@@ -1144,6 +1144,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             }
             @Override
             public void onBatteryLevelChanged(int level, boolean pluggedIn, boolean charging) {
+                // noop
+            }
+            @Override
+            public void onBatteryStyleChanged(int style, int percentMode) {
                 // noop
             }
         });
@@ -3973,6 +3977,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
         if (mMSimNetworkController != null) {
             mMSimNetworkController.setUserId(mCurrentUserId);
+        }
+        if (mBatteryController != null) {
+            mBatteryController.setUserId(mCurrentUserId);
         }
     }
 

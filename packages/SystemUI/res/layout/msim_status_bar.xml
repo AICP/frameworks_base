@@ -64,18 +64,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 >
-
-                <TextView
-                    android:id="@+id/left_clock"
-                    android:textAppearance="@style/TextAppearance.StatusBar.Clock"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:singleLine="true"
-                    android:paddingEnd="6dip"
-                    android:gravity="center"
-                    android:visibility="gone"
-                    />
-
                 <com.android.systemui.statusbar.StatusBarIconView android:id="@+id/moreIcon"
                     android:layout_width="@dimen/status_bar_icon_size"
                     android:layout_height="match_parent"
@@ -97,6 +85,13 @@
             android:orientation="horizontal"
             >
 
+            <com.android.systemui.statusbar.policy.NetworkTraffic
+                android:id="@+id/networkTraffic"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:singleLine="false"
+                android:gravity="right|center_vertical"/>
+
             <include layout="@layout/msim_system_icons" />
 
             <com.android.systemui.BatteryLevelTextView android:id="@+id/battery_level_text"
@@ -107,7 +102,7 @@
                 android:textColor="#ffffff"
                 android:textSize="@dimen/battery_level_text_size" />
 
-            <TextView
+            <com.android.systemui.statusbar.policy.Clock
                 android:id="@+id/clock"
                 android:textAppearance="@style/TextAppearance.StatusBar.Clock"
                 android:layout_width="wrap_content"
@@ -119,6 +114,7 @@
         </com.android.keyguard.AlphaOptimizedLinearLayout>
     </LinearLayout>
 
+
     <com.android.keyguard.AlphaOptimizedLinearLayout
         android:id="@+id/center_clock_layout"
         android:gravity="center"
@@ -127,14 +123,14 @@
         android:layout_height="match_parent"
         >
 
-        <TextView
+        <com.android.systemui.statusbar.policy.ClockCenter
             android:id="@+id/center_clock"
             android:textAppearance="@style/TextAppearance.StatusBar.Clock"
+            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:singleLine="true"
-            android:gravity="center"
             android:visibility="gone"
+            android:singleLine="true"
             />
     </com.android.keyguard.AlphaOptimizedLinearLayout>
 
@@ -145,5 +141,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
+
+    <com.android.systemui.statusbar.policy.BatteryBarController
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        systemui:viewLocation="1" />
 
 </com.android.systemui.statusbar.phone.PhoneStatusBarView>

@@ -4941,26 +4941,14 @@ public class PackageManagerService extends IPackageManager.Stub {
         if (DEBUG_DEXOPT) {
             Log.i(TAG, "Optimizing app " + curr + " of " + total + ": " + pkg.packageName);
         }
-
-        final int messageRes = isFirstBoot() ?
-                R.string.android_installing_apk : R.string.android_upgrading_apk;
-
-        try {
-            // give the packagename to the PhoneWindowManager
-            ApplicationInfo ai;
+        if (!isFirstBoot()) {
             try {
-                ai = mContext.getPackageManager().getApplicationInfo(pkg.packageName, 0);
-            } catch (Exception e) {
-                ai = null;
+                ActivityManagerNative.getDefault().showBootMessage(
+                        mContext.getResources().getString(R.string.android_upgrading_apk,
+                                curr, total), true);
+            } catch (RemoteException e) {
             }
-            mPolicy.setPackageName((String) (ai != null ? mContext.getPackageManager().getApplicationLabel(ai) : pkg.packageName));
-
-            ActivityManagerNative.getDefault().showBootMessage(
-                    mContext.getResources().getString(messageRes,
-                            curr, total), true);
-        } catch (RemoteException e) {
         }
-
         PackageParser.Package p = pkg;
         synchronized (mInstallLock) {
             performDexOptLI(p, null /* instruction sets */, false /* force dex */,

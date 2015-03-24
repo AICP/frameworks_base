@@ -17,7 +17,6 @@
 package com.android.systemui.qs.tiles;
 
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.provider.Settings;
@@ -35,8 +34,8 @@ public class HotspotTile extends QSTile<QSTile.BooleanState> {
     private final AnimationIcon mDisable =
             new AnimationIcon(R.drawable.ic_hotspot_disable_animation);
 
-    private static final Intent TETHER_SETTINGS = new Intent().setComponent(new ComponentName(
-            "com.android.settings", "com.android.settings.TetherSettings"));
+    private static final Intent WIRELESS_SETTINGS = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
+
     private final HotspotController mController;
     private final Callback mCallback = new Callback();
     private final UsageTracker mUsageTracker;

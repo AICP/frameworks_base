@@ -53,9 +53,6 @@ import java.util.Map;
 public class VisualizerTile extends QSTile<QSTile.State>
         implements MediaSessionManager.OnActiveSessionsChangedListener, KeyguardMonitor.Callback {
 
-    private static final Intent AUDIO_EFFECTS =
-            new Intent(AudioEffect.ACTION_DISPLAY_AUDIO_EFFECT_CONTROL_PANEL);
-
     private Map<MediaSession.Token, CallbackInfo> mCallbacks = new HashMap<>();
     private MediaSessionManager mMediaSessionManager;
     private KeyguardMonitor mKeyguardMonitor;
@@ -166,12 +163,8 @@ public class VisualizerTile extends QSTile<QSTile.State>
 
     @Override
     protected void handleClick() {
-        mHost.startSettingsActivity(AUDIO_EFFECTS);
-    }
-
-    @Override
-    protected void handleLongClick() {
-        mHost.startSettingsActivity(AUDIO_EFFECTS);
+        mHost.startSettingsActivity(new Intent(
+                AudioEffect.ACTION_DISPLAY_AUDIO_EFFECT_CONTROL_PANEL));
     }
 
     @Override

@@ -39,8 +39,7 @@ public class RotationLockTile extends QSTile<QSTile.BooleanState> {
     private final AnimationIcon mAutoToLandscape
             = new AnimationIcon(R.drawable.ic_landscape_from_auto_rotate_animation);
 
-    private static final Intent DISPLAY_SETTINGS = new Intent(Settings.ACTION_DISPLAY_SETTINGS);
-
+    Intent intent = new Intent(Intent.ACTION_MAIN);
     private final RotationLockController mController;
 
     public RotationLockTile(Host host) {
@@ -71,8 +70,17 @@ public class RotationLockTile extends QSTile<QSTile.BooleanState> {
     }
 
     @Override
+    protected void handleSecondaryClick() {
+        intent.setClassName("com.android.settings",
+            "com.android.settings.Settings$DisplayRotationSettingsActivity");
+        mHost.startSettingsActivity(intent);
+    }
+
+    @Override
     protected void handleLongClick() {
-        mHost.startSettingsActivity(DISPLAY_SETTINGS);
+        intent.setClassName("com.android.settings",
+            "com.android.settings.Settings$DisplayRotationSettingsActivity");
+        mHost.startSettingsActivity(intent);
     }
 
     @Override

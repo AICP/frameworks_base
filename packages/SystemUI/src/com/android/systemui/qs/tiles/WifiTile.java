@@ -89,6 +89,7 @@ public class WifiTile extends QSTile<QSTile.SignalState> {
             } else {
                 mState.copyTo(mStateBeforeClick);
                 mController.setWifiEnabled(!mState.enabled);
+                qsCollapsePanel();
             }
         }
     }

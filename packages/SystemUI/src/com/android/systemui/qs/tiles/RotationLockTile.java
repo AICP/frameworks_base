@@ -67,6 +67,7 @@ public class RotationLockTile extends QSTile<QSTile.BooleanState> {
         final boolean newState = !mState.value;
         mController.setRotationLocked(newState);
         refreshState(newState ? UserBoolean.USER_TRUE : UserBoolean.USER_FALSE);
+        qsCollapsePanel();
     }
 
     @Override

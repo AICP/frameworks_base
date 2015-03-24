@@ -45,6 +45,7 @@ public class QSConstants {
     public static final String TILE_LTE = "lte";
     public static final String TILE_VISUALIZER = "visualizer";
     public static final String TILE_SCREEN_TIMEOUT = "screen_timeout";
+    public static final String TILE_SCREENSHOT = "screenshot";
     public static final String TILE_LIVE_DISPLAY = "live_display";
 
     // Order matters
@@ -81,6 +82,7 @@ public class QSConstants {
         TILES_AVAILABLE.add(TILE_LTE);
         TILES_AVAILABLE.add(TILE_VISUALIZER);
         TILES_AVAILABLE.add(TILE_SCREEN_TIMEOUT);
+        TILES_AVAILABLE.add(TILE_SCREENSHOT);
         TILES_AVAILABLE.add(TILE_LIVE_DISPLAY);
     }
 }

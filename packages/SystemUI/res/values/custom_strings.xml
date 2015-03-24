@@ -32,4 +32,11 @@
 
     <!-- Screen record notification error title -->
     <string name="screenrecord_notif_error">Unable to record screen</string>
+
+    <!-- Heads up toast -->
+    <string name="heads_up_enabled">Heads up notifications are enabled</string>
+    <string name="heads_up_disabled">Heads up notifications are disabled</string>
+
+    <!-- Quick settings -->
+    <string name="quick_settings_screenshot">Screenshot</string>
 </resources>

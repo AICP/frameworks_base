@@ -373,6 +373,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     // Status bar carrier
     private boolean mShowStatusBarCarrier;
 
+    // Aicp logo
+    private boolean mAicpLogo;
+    private ImageView aicpLogo;
+
     // position
     int[] mPositionTmp = new int[2];
     boolean mExpandedVisible;
@@ -463,6 +467,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     Settings.System.NAVBAR_LEFT_IN_LANDSCAPE), false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.Secure.getUriFor(
                     Settings.Secure.RECENTS_LONG_PRESS_ACTIVITY), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_AICP_LOGO),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -493,6 +500,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             mShowStatusBarCarrier = Settings.System.getIntForUser(resolver,
                     Settings.System.STATUS_BAR_CARRIER, 0, mCurrentUserId) == 1;
             showStatusBarCarrierLabel(mShowStatusBarCarrier);
+
+            mAicpLogo = Settings.System.getIntForUser(resolver,
+                    Settings.System.STATUS_BAR_AICP_LOGO, 0, mCurrentUserId) == 1;
+            showAicpLogo(mAicpLogo);
         }
     }
 
@@ -3687,6 +3698,15 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             }
         }
     };
+
+    public void showAicpLogo(boolean show) {
+        if (mStatusBarView == null) return;
+        ContentResolver resolver = mContext.getContentResolver();
+        aicpLogo = (ImageView) mStatusBarView.findViewById(R.id.aicp_logo);
+        if (aicpLogo != null) {
+            aicpLogo.setVisibility(show ? (mAicpLogo ? View.VISIBLE : View.GONE) : View.GONE);
+        }
+    }
 
     public void showStatusBarCarrierLabel(boolean show) {
         if (mStatusBarView == null) return;

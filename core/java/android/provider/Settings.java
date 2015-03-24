@@ -3967,6 +3967,12 @@ public final class Settings {
         public static final String DOZE_TIME_MODE = "doze_time_mode";
 
         /**
+         * Statusbar AICP logo
+         * @hide
+         */
+        public static final String STATUS_BAR_AICP_LOGO = "status_bar_aicp_logo";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *

@@ -65,6 +65,16 @@
                 android:layout_height="match_parent"
                 >
 
+                <ImageView
+                    android:id="@+id/aicp_logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="1dip"
+                    android:src="@drawable/ic_status_bar_aicp_logo"
+                    android:scaleType="center"
+                    android:visibility="gone"
+                    />
+
                 <com.android.keyguard.AlphaOptimizedLinearLayout
                     android:id="@+id/left_clock_layout"
                     android:gravity="center"

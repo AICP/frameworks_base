@@ -94,6 +94,7 @@ public class LocationTile extends QSTile<QSTile.BooleanState> {
             showDetail(true);
         } else {
             mController.setLocationEnabled(!mController.isLocationEnabled());
+            qsCollapsePanel();
         }
         mEnable.setAllowAnimation(true);
         mDisable.setAllowAnimation(true);

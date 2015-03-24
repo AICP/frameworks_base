@@ -42,15 +42,21 @@ public class LteTile extends QSTile<QSTile.BooleanState> {
     }
 
     @Override
+    protected void handleClick() {
+        toggleLteState();
+        refreshState();
+        qsCollapsePanel();
+    }
+
+    @Override
     protected void handleLongClick() {
         super.handleLongClick();
         mHost.startSettingsActivity(new Intent(Settings.ACTION_DATA_ROAMING_SETTINGS));
     }
 
     @Override
-    protected void handleClick() {
-        toggleLteState();
-        refreshState();
+    protected void handleSecondaryClick() {
+        mHost.startSettingsActivity(new Intent(Settings.ACTION_DATA_ROAMING_SETTINGS));
     }
 
     @Override

@@ -75,6 +75,7 @@ public class HotspotTile extends QSTile<QSTile.BooleanState> {
         mController.setHotspotEnabled(!isEnabled);
         mEnable.setAllowAnimation(true);
         mDisable.setAllowAnimation(true);
+        qsCollapsePanel();
     }
 
     @Override

@@ -45,6 +45,12 @@ public class AdbOverNetworkTile extends QSTile<QSTile.BooleanState> {
         Settings.Secure.putIntForUser(mContext.getContentResolver(),
                 Settings.Secure.ADB_PORT, getState().value ? -1 : 5555,
                 UserHandle.USER_CURRENT);
+        qsCollapsePanel();
+    }
+
+    @Override
+    protected void handleSecondaryClick() {
+        mHost.startSettingsActivity(SETTINGS_DEVELOPMENT);
     }
 
     @Override

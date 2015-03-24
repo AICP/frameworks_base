@@ -16,12 +16,15 @@
 
 package com.android.systemui.qs;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
+import android.graphics.PorterDuff.Mode;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -55,6 +58,10 @@ public class QSDetailItems extends FrameLayout {
     private TextView mEmptyText;
     private ImageView mEmptyIcon;
     private int mMaxItems;
+
+    private int mTextColor;
+    private int mEmptyTextColor;
+    private int mIconColor;
 
     public QSDetailItems(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -106,8 +113,11 @@ public class QSDetailItems extends FrameLayout {
     }
 
     public void setEmptyState(int icon, int text) {
+        updateColors();
         mEmptyIcon.setImageResource(icon);
         mEmptyText.setText(text);
+        mEmptyIcon.setColorFilter(mIconColor, Mode.MULTIPLY);
+        mEmptyText.setTextColor(mEmptyTextColor);
     }
 
     /**
@@ -186,8 +196,10 @@ public class QSDetailItems extends FrameLayout {
                     item.overlay.getIntrinsicHeight());
             iv.getOverlay().add(item.overlay);
         }
+        iv.setColorFilter(mIconColor, Mode.MULTIPLY);
         final TextView title = (TextView) view.findViewById(android.R.id.title);
         title.setText(item.line1);
+        title.setTextColor(mTextColor);
         final TextView summary = (TextView) view.findViewById(android.R.id.summary);
         final boolean twoLines = !TextUtils.isEmpty(item.line2);
         title.setMaxLines(twoLines ? 1 : 2);
@@ -205,6 +217,7 @@ public class QSDetailItems extends FrameLayout {
         });
         final ImageView disconnect = (ImageView) view.findViewById(android.R.id.icon2);
         disconnect.setVisibility(item.canDisconnect ? VISIBLE : GONE);
+        disconnect.setColorFilter(mIconColor, Mode.MULTIPLY);
         disconnect.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -213,6 +226,15 @@ public class QSDetailItems extends FrameLayout {
                 }
             }
         });
+    }
+
+    private void updateColors() {
+        final ContentResolver resolver = mContext.getContentResolver();
+        mTextColor = Settings.System.getInt(resolver,
+                Settings.System.QS_TEXT_COLOR, 0xffffffff);
+        mEmptyTextColor = (153 << 24) | (mTextColor & 0x00ffffff); // Text color with a transparency of 60%
+        mIconColor = Settings.System.getInt(resolver,
+                Settings.System.QS_ICON_COLOR, 0xffffffff);
     }
 
     private class H extends Handler {

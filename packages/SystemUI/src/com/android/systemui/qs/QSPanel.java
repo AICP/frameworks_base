@@ -27,6 +27,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Point;
 import android.net.Uri;
+import android.graphics.PorterDuff.Mode;
 import android.os.Handler;
 import android.os.Message;
 import android.os.UserHandle;
@@ -165,8 +166,12 @@ public class QSPanel extends ViewGroup {
     }
 
     private void updateDetailText() {
+        int textColor = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.QS_TEXT_COLOR, 0xffffffff);
         mDetailDoneButton.setText(R.string.quick_settings_done);
         mDetailSettingsButton.setText(R.string.quick_settings_more_settings);
+        mDetailDoneButton.setTextColor(textColor);
+        mDetailSettingsButton.setTextColor(textColor);
     }
 
     public void setBrightnessMirror(BrightnessMirrorController c) {
@@ -273,6 +278,8 @@ public class QSPanel extends ViewGroup {
         for (int i = 0; i < mRecords.size(); i++) {
             TileRecord r = mRecords.get(i);
             r.tileView.setDual(mUseMainTiles && i < 2);
+            r.tileView.setLabelColor();
+            r.tileView.setIconColor();
             r.tile.refreshState();
         }
         mFooter.refreshState();
@@ -606,6 +613,17 @@ public class QSPanel extends ViewGroup {
         if (!isShowingDetail()) {
             mTranslationTop = translationY;
         }
+    }
+
+    public void setDetailBackgroundColor(int color) {
+        if (mDetail != null) {
+            mDetail.getBackground().setColorFilter(
+                    color, Mode.MULTIPLY);
+        }
+    }
+
+    public void setColors() {
+        refreshAllTiles();
     }
 
     private class H extends Handler {

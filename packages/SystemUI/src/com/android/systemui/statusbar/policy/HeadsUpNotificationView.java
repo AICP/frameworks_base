@@ -351,7 +351,6 @@ public class HeadsUpNotificationView extends FrameLayout implements SwipeHelper.
                 mBar.resetHeadsUpDecayTimer();
                 return mEdgeSwipeHelper.onTouchEvent(ev)
                         || mSwipeHelper.onTouchEvent(ev)
-                        || mExpandHelper.onTouchEvent(ev)
                         || super.onTouchEvent(ev);
         }
     }

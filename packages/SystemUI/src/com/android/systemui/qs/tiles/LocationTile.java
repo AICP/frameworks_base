@@ -102,7 +102,7 @@ public class LocationTile extends QSTile<QSTile.BooleanState> {
 
     @Override
     protected void handleSecondaryClick() {
-        mHost.startSettingsActivity(LOCATION_SETTINGS);
+        mHost.startSettingsActivity(LOCATION_SETTINGS_INTENT);
     }
 
     @Override

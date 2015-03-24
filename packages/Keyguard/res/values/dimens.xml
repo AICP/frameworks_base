@@ -182,6 +182,9 @@
     <!-- The padding around the SIM card name -->
     <dimen name="sim_card_name_padding">4dip</dimen>
 
+    <!-- The seperater between the shorcuts. -->
+    <dimen name="shortcut_seperater_width">8dp</dimen>
+
     <!-- Top margin for shortcuts. -->
     <dimen name="shortcut_margin_top">25dp</dimen>
 

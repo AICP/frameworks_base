@@ -59,8 +59,10 @@ public class KeyguardStatusView extends GridLayout implements
     private TextClock mDateView;
     private TextClock mClockView;
     private TextView mOwnerInfo;
+    private View mWeatherView;
     private TextView mTemperatureText;
     private TextView mWeatherCity;
+    private boolean mShowWeather;
 
     private WeatherController mWeatherController;
 
@@ -135,6 +137,7 @@ public class KeyguardStatusView extends GridLayout implements
         mDateView.setShowCurrentUserTime(true);
         mClockView.setShowCurrentUserTime(true);
         mOwnerInfo = (TextView) findViewById(R.id.owner_info);
+        mWeatherView = findViewById(R.id.keyguard_weather_view);
         mWeatherIcon = (ImageView) findViewById(R.id.weather_image);
         mWeatherCity = (TextView) findViewById(R.id.city);
         mTemperatureText = (TextView) findViewById(R.id.temperature);
@@ -174,6 +177,7 @@ public class KeyguardStatusView extends GridLayout implements
 
         refreshTime();
         refreshAlarmStatus(nextAlarm);
+        updateWeatherSettings();
     }
 
     void refreshAlarmStatus(AlarmManager.AlarmClockInfo nextAlarm) {
@@ -215,6 +219,7 @@ public class KeyguardStatusView extends GridLayout implements
         super.onAttachedToWindow();
         KeyguardUpdateMonitor.getInstance(mContext).registerCallback(mInfoCallback);
         mWeatherController.addCallback(this);
+        updateWeatherSettings();
     }
 
     @Override
@@ -245,15 +250,30 @@ public class KeyguardStatusView extends GridLayout implements
 
     @Override
     public void onWeatherChanged(WeatherController.WeatherInfo info) {
+        updateWeatherSettings();
         if (info.temp == null || info.condition == null) {
             mTemperatureText.setText(null);
             mWeatherCity.setText("--");
             mWeatherIcon.setImageDrawable(null);
+            mWeatherView.setVisibility(View.GONE);
         } else {
+            mWeatherView.setVisibility(mShowWeather ? View.VISIBLE : View.GONE);
             mTemperatureText.setText(info.temp);
             mWeatherCity.setText(info.city);
             mWeatherIcon.setImageDrawable(info.conditionDrawable);
         }
+    }
+
+    private void updateWeatherSettings() {
+        final ContentResolver resolver = getContext().getContentResolver();
+
+        mShowWeather = Settings.System.getInt(resolver,
+                Settings.System.LOCK_SCREEN_SHOW_WEATHER, 0) == 1;
+        boolean showLocation = Settings.System.getInt(resolver,
+                Settings.System.LOCK_SCREEN_SHOW_WEATHER_LOCATION, 1) == 1;
+
+        mWeatherView.setVisibility(mShowWeather ? View.VISIBLE : View.GONE);
+        mWeatherCity.setVisibility(showLocation ? View.VISIBLE : View.GONE);
     }
 
     // DateFormat.getBestDateTimePattern is extremely expensive, and refresh is called often.

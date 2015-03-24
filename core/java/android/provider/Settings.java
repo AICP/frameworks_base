@@ -2636,7 +2636,6 @@ public final class Settings {
         */
         public static final String DEV_FORCE_SHOW_NAVBAR = "dev_force_show_navbar";
 
-
         /**
          * Date format string
          *   mm/dd/yyyy
@@ -3814,6 +3813,12 @@ public final class Settings {
          * @hide
          */
         public static final String NAVIGATION_BAR_WIDTH = "navigation_bar_width";
+
+        /**
+         * Navigation bar button color
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_TINT = "navigation_bar_tint";
 
         /**
          * Settings for clock font style

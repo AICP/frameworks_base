@@ -78,6 +78,7 @@ import android.media.session.MediaController;
 import android.media.session.MediaSession;
 import android.media.session.MediaSessionManager;
 import android.media.session.PlaybackState;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -382,6 +383,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private boolean mAicpLogo;
     private ImageView aicpLogo;
 
+    private boolean mQSCSwitch;
+
     // position
     int[] mPositionTmp = new int[2];
     boolean mExpandedVisible;
@@ -481,11 +484,26 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_GREETING_TIMEOUT),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.QS_COLOR_SWITCH),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
         @Override
-        public void onChange(boolean selfChange) {
+        public void onChange(boolean selfChange, Uri uri) {
+            if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.QS_COLOR_SWITCH))) {
+                    mQSCSwitch = Settings.System.getIntForUser(
+                            mContext.getContentResolver(),
+                            Settings.System.QS_COLOR_SWITCH,
+                            0, UserHandle.USER_CURRENT) == 1;
+                    recreateStatusBar();
+                    updateRowStates();
+                    updateSpeedbump();
+                    updateClearAll();
+                    updateEmptyShadeView();
+            }
             update();
         }
 
@@ -525,6 +543,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
             mShowLabelTimeout = Settings.System.getIntForUser(resolver,
                     Settings.System.STATUS_BAR_GREETING_TIMEOUT, 400, mCurrentUserId);
+
+            mQSCSwitch = Settings.System.getIntForUser(resolver,
+                    Settings.System.QS_COLOR_SWITCH, 0, mCurrentUserId) == 1;
         }
     }
 
@@ -3999,6 +4020,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
      * meantime, just update the things that we know change.
      */
     void updateResources(Configuration newConfig) {
+        final Context context = mContext;
         SettingsObserver observer = new SettingsObserver(mHandler);
 
         // detect theme change.

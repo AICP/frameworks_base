@@ -20,8 +20,17 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 public class Prefs {
+    private static final String SHARED_PREFS_NAME = "status_bar";
 
     public static final String LAST_BATTERY_LEVEL = "last_battery_level";
+
+    public static SharedPreferences read(Context context) {
+        return context.getSharedPreferences(Prefs.SHARED_PREFS_NAME, Context.MODE_PRIVATE);
+    }
+
+    public static SharedPreferences.Editor edit(Context context) {
+        return context.getSharedPreferences(Prefs.SHARED_PREFS_NAME, Context.MODE_PRIVATE).edit();
+    }
 
     public static void setLastBatteryLevel(Context context, int level) {
         edit(context).putInt(LAST_BATTERY_LEVEL, level).commit();

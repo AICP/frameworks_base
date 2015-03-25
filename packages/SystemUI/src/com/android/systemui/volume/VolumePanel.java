@@ -1370,15 +1370,15 @@ public class VolumePanel extends Handler implements DemoMode {
             mAudioManager.forceVolumeControlStream(stream);
             if (mDialog != null) {
                 mDialog.show();
+                if (stream != STREAM_MASTER) {
+                    mAudioManager.forceVolumeControlStream(stream);
+                }
                 Runnable r = new Runnable() {
                     public void run() {
                         mView.setY(-mView.getHeight());
                         mView.animate().y(0).setDuration(ANIMATION_DURATION)
                             .withEndAction(new Runnable() {
                                 public void run() {
-                                    if (stream != STREAM_MASTER) {
-                                        mAudioManager.forceVolumeControlStream(stream);
-                                    }
                                     if (mCallback != null) {
                                         mCallback.onVisible(true);
                                     }

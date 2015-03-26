@@ -108,7 +108,7 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
                     animateTransitionTo(mBattery, newAlphaBC),
                     animateTransitionTo(mClock, newAlphaBC),
                     animateTransitionTo(mCenterClock, newAlphaBC),
-                    animateTransitionTo(mLeftClock, newAlphaBC)
+                    animateTransitionTo(mLeftClock, newAlphaBC),
                     animateTransitionTo(mAicpLogo, newAlphaBC)
                     );
             if (mode == MODE_LIGHTS_OUT) {

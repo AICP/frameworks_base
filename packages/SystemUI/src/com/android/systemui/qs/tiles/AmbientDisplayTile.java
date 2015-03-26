@@ -66,10 +66,10 @@ public class AmbientDisplayTile extends QSTile<QSTile.BooleanState> {
         state.visible = true;
         state.value = isAmbientDisplayEnabled();
         if (state.value) {
-            state.iconId = R.drawable.ic_qs_doze;
+            state.icon = R.drawable.ic_qs_doze;
             state.label = mContext.getString(R.string.quick_settings_doze);
         } else {
-            state.iconId = R.drawable.ic_qs_doze_off;
+            state.icon = R.drawable.ic_qs_doze_off;
 	    state.label = mContext.getString(R.string.quick_settings_doze_off);
         }
     }

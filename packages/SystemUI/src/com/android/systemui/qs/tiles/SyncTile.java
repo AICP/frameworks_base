@@ -83,10 +83,10 @@ public class SyncTile extends QSTile<QSTile.BooleanState> {
     protected void handleUpdateState(BooleanState state, Object arg) {
         state.visible = true;
         if (isSyncEnabled()) {
-            state.iconId = R.drawable.ic_qs_sync_on;
+            state.icon = R.drawable.ic_qs_sync_on;
             state.label = mContext.getString(R.string.quick_settings_sync);
         } else {
-            state.iconId = R.drawable.ic_qs_sync_off;
+            state.icon = R.drawable.ic_qs_sync_off;
             state.label = mContext.getString(R.string.quick_settings_sync_off);
         }
     }

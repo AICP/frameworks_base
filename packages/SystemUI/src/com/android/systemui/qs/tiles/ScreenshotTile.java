@@ -86,7 +86,7 @@ public class ScreenshotTile extends QSTile<QSTile.BooleanState> {
     protected void handleUpdateState(BooleanState state, Object arg) {
         state.visible = true;
         state.label = mContext.getString(R.string.quick_settings_screenshot);
-        state.iconId = R.drawable.ic_qs_screenshot;
+        state.icon = R.drawable.ic_qs_screenshot;
     }
 
     final Runnable mScreenshotTimeout = new Runnable() {

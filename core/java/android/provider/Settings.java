@@ -3421,6 +3421,7 @@ public final class Settings {
          * 0 - Hide Clock
          * 1 - Right Clock
          * 2 - Center Clock
+         * 3 - Left Clock
          * @hide
          */
         public static final String STATUSBAR_CLOCK_STYLE = "statusbar_clock_style";

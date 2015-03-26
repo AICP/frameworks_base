@@ -66,6 +66,6 @@ public class PowerMenuTile extends QSTile<QSTile.BooleanState> {
     protected void handleUpdateState(BooleanState state, Object arg) {
         state.visible = true;
         state.label = mContext.getString(R.string.quick_settings_powermenu_label);
-        state.icon = R.drawable.ic_qs_powermenu;
+        state.icon = ResourceIcon.get(R.drawable.ic_qs_powermenu);
     }
 }

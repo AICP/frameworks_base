@@ -59,10 +59,10 @@ public class RebootTile extends QSTile<QSTile.BooleanState> {
         state.visible = true;
         if (mRebootToRecovery) {
             state.label = mContext.getString(R.string.quick_settings_reboot_recovery_label);
-            state.iconId = R.drawable.ic_qs_reboot_recovery;
+            state.icon = ResourceIcon.get(R.drawable.ic_qs_reboot_recovery);
         } else {
             state.label = mContext.getString(R.string.quick_settings_reboot_label);
-            state.iconId = R.drawable.ic_qs_reboot;
+            state.icon = ResourceIcon.get(R.drawable.ic_qs_reboot);
         }
     }
 

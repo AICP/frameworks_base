@@ -58,6 +58,7 @@ import static com.android.internal.app.IntentForwarderActivity.FORWARD_INTENT_TO
 import static com.android.internal.app.IntentForwarderActivity.FORWARD_INTENT_TO_USER_OWNER;
 import static com.android.internal.content.NativeLibraryHelper.LIB64_DIR_NAME;
 import static com.android.internal.content.NativeLibraryHelper.LIB_DIR_NAME;
+import com.android.internal.policy.impl.PhoneWindowManager;
 import static com.android.internal.util.ArrayUtils.appendInt;
 import static com.android.internal.util.ArrayUtils.removeInt;
 
@@ -199,6 +200,8 @@ import android.util.Slog;
 import android.util.SparseArray;
 import android.util.SparseBooleanArray;
 import android.view.Display;
+import android.view.WindowManager;
+import android.view.WindowManagerPolicy;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -662,6 +665,9 @@ public class PackageManagerService extends IPackageManager.Stub {
 
     // Stores a list of users whose package restrictions file needs to be updated
     private ArraySet<Integer> mDirtyUsers = new ArraySet<Integer>();
+
+    WindowManager mWindowManager;
+    private final WindowManagerPolicy mPolicy; // to set packageName
 
     final private DefaultContainerConnection mDefContainerConn =
             new DefaultContainerConnection();
@@ -1455,8 +1461,12 @@ public class PackageManagerService extends IPackageManager.Stub {
             mSeparateProcesses = null;
         }
 
-        mInstaller = installer;
+        mWindowManager = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
+        Display d = mWindowManager.getDefaultDisplay();
+        mPolicy = new PhoneWindowManager();
+        d.getMetrics(mMetrics);
 
+        mInstaller = installer;
         getDefaultDisplayMetrics(context, mMetrics);
 
         removeLegacyResourceCache();
@@ -4943,14 +4953,26 @@ public class PackageManagerService extends IPackageManager.Stub {
         if (DEBUG_DEXOPT) {
             Log.i(TAG, "Optimizing app " + curr + " of " + total + ": " + pkg.packageName);
         }
-        if (!isFirstBoot()) {
+
+        final int messageRes = isFirstBoot() ?
+                R.string.android_installing_apk : R.string.android_upgrading_apk;
+
+        try {
+            // give the packagename to the PhoneWindowManager
+            ApplicationInfo ai;
             try {
-                ActivityManagerNative.getDefault().showBootMessage(
-                        mContext.getResources().getString(R.string.android_upgrading_apk,
-                                curr, total), true);
-            } catch (RemoteException e) {
+                ai = mContext.getPackageManager().getApplicationInfo(pkg.packageName, 0);
+            } catch (Exception e) {
+                ai = null;
             }
+            mPolicy.setPackageName((String) (ai != null ? mContext.getPackageManager().getApplicationLabel(ai) : pkg.packageName));
+
+            ActivityManagerNative.getDefault().showBootMessage(
+                    mContext.getResources().getString(messageRes,
+                            curr, total), true);
+        } catch (RemoteException e) {
         }
+
         PackageParser.Package p = pkg;
         synchronized (mInstallLock) {
             performDexOptLI(p, null /* instruction sets */, false /* force dex */,

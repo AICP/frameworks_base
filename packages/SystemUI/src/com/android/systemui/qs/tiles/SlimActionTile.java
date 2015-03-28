@@ -95,8 +95,8 @@ public class SlimActionTile extends QSTile<QSTile.BooleanState> {
             return;
         }
         state.label = mCurrentActionConfig.getClickActionDescription();
-        state.icon = ResourceIcon.get(ActionHelper.getActionIconUri(mContext,
-                mCurrentActionConfig.getClickAction(), mCurrentActionConfig.getIcon()));
+        state.iconId = ActionHelper.getActionIconUri(mContext, 
+                mCurrentActionConfig.getClickAction(), mCurrentActionConfig.getIcon());
     }
 
     @Override

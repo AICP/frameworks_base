@@ -155,7 +155,7 @@ public final class WebViewFactory {
             if (sProviderInstance != null) return sProviderInstance;
 
             final int uid = android.os.Process.myUid();
-            if (uid == android.os.Process.ROOT_UID || uid == android.os.Process.SYSTEM_UID) {
+            if (uid == android.os.Process.ROOT_UID) {
                 throw new UnsupportedOperationException(
                         "For security reasons, WebView is not allowed in privileged processes");
             }

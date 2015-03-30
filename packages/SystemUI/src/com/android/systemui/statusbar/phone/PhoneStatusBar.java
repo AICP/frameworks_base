@@ -69,6 +69,7 @@ import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.PorterDuff;
+import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
@@ -387,6 +388,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
     // Aicp logo
     private boolean mAicpLogo;
+    private int mAicpLogoColor;
     private ImageView aicpLogo;
 
     private boolean mQSCSwitch;
@@ -485,6 +487,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     Settings.System.STATUS_BAR_AICP_LOGO),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_AICP_LOGO_COLOR),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_GREETING),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
@@ -577,7 +582,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
             mAicpLogo = Settings.System.getIntForUser(resolver,
                     Settings.System.STATUS_BAR_AICP_LOGO, 0, mCurrentUserId) == 1;
-            showAicpLogo(mAicpLogo);
+            mAicpLogoColor = Settings.System.getIntForUser(resolver,
+                    Settings.System.STATUS_BAR_AICP_LOGO_COLOR, 0xFFFFFFFF, mCurrentUserId);
+            showAicpLogo(mAicpLogo, mAicpLogoColor);
 
             mGreeting = Settings.System.getStringForUser(resolver,
                     Settings.System.STATUS_BAR_GREETING,
@@ -3929,10 +3936,11 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
     };
 
-    public void showAicpLogo(boolean show) {
+    public void showAicpLogo(boolean show, int color) {
         if (mStatusBarView == null) return;
         ContentResolver resolver = mContext.getContentResolver();
         aicpLogo = (ImageView) mStatusBarView.findViewById(R.id.aicp_logo);
+        aicpLogo.setColorFilter(color, Mode.SRC_IN);
         if (aicpLogo != null) {
             aicpLogo.setVisibility(show ? (mAicpLogo ? View.VISIBLE : View.GONE) : View.GONE);
         }

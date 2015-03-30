@@ -4023,6 +4023,12 @@ public final class Settings {
         public static final String STATUS_BAR_AICP_LOGO = "status_bar_aicp_logo";
 
         /**
+         * Statusbar AICP logo color setting
+         * @hide
+         */
+        public static final String STATUS_BAR_AICP_LOGO_COLOR = "status_bar_aicp_logo_color";
+
+        /**
          * Show when WiFi or data mobile is sending/receiving data
          * @hide
          */

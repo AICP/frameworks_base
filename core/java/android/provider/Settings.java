@@ -2227,6 +2227,12 @@ public final class Settings {
          */
         public static final String QS_COLOR_SWITCH = "qs_color_switch";
 
+        /** Whether to vibrate when quick settings tile is pressed.
+         *
+         * @hide
+         */
+        public static final String QUICK_SETTINGS_TILES_VIBRATE = "quick_settings_vibrate";
+
         /**
          * Control whether the process CPU usage meter should be shown.
          *

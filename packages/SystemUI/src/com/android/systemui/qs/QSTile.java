@@ -23,6 +23,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.os.UserHandle;
 import android.provider.Settings;
 import android.util.Log;
 import android.util.SparseArray;
@@ -106,8 +107,9 @@ public abstract class QSTile<TState extends State> implements Listenable {
     }
 
     public boolean isQsCollapsePanelEnabled() {
-        return (Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.QUICK_SETTINGS_COLLAPSE_PANEL, 1) == 1);
+        return (Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.QUICK_SETTINGS_COLLAPSE_PANEL, 0,
+                UserHandle.USER_CURRENT) != 0);
     }
 
     public void qsCollapsePanel() {
@@ -235,13 +237,13 @@ public abstract class QSTile<TState extends State> implements Listenable {
         private static final int SET_CALLBACK = 1;
         private static final int CLICK = 2;
         private static final int SECONDARY_CLICK = 3;
-        private static final int LONG_CLICK = 4;
-        private static final int REFRESH_STATE = 5;
-        private static final int SHOW_DETAIL = 6;
-        private static final int USER_SWITCH = 7;
-        private static final int TOGGLE_STATE_CHANGED = 8;
-        private static final int SCAN_STATE_CHANGED = 9;
-        private static final int DESTROY = 10;
+        private static final int REFRESH_STATE = 4;
+        private static final int SHOW_DETAIL = 5;
+        private static final int USER_SWITCH = 6;
+        private static final int TOGGLE_STATE_CHANGED = 7;
+        private static final int SCAN_STATE_CHANGED = 8;
+        private static final int DESTROY = 9;
+        private static final int LONG_CLICK = 10;
 
         private H(Looper looper) {
             super(looper);
@@ -261,9 +263,6 @@ public abstract class QSTile<TState extends State> implements Listenable {
                 } else if (msg.what == SECONDARY_CLICK) {
                     name = "handleSecondaryClick";
                     handleSecondaryClick();
-                } else if (msg.what == LONG_CLICK) {
-                    name = "handleLongClick";
-                    handleLongClick();
                 } else if (msg.what == REFRESH_STATE) {
                     name = "handleRefreshState";
                     handleRefreshState(msg.obj);

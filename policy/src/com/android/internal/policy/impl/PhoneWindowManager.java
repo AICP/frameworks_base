@@ -130,9 +130,12 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+
+import java.lang.reflect.Constructor;
+
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.lang.reflect.Constructor;
 import java.util.Random;
 
 import static android.view.WindowManager.LayoutParams.*;
@@ -6743,6 +6746,12 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     } else {
                         theme = 0;
                     }
+                   int AicpDexOptIndex = 0 +  (int)(Math.random()*(4));
+                   ArrayList<Integer> AicpDexOpt = new ArrayList<Integer>();
+                   AicpDexOpt.add(com.android.internal.R.drawable.aicpdexopt1);
+                   AicpDexOpt.add(com.android.internal.R.drawable.aicpdexopt2);
+                   AicpDexOpt.add(com.android.internal.R.drawable.aicpdexopt3);
+                   AicpDexOpt.add(com.android.internal.R.drawable.aicpdexopt4);
 
                     mBootMsgDialog = new ProgressDialog(mContext, theme) {
                         // This dialog will consume all events coming in to
@@ -6769,7 +6778,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     };
                     mBootMsgDialog.setTitle(titleRes);
                     mBootMsgDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                    mBootMsgDialog.setIcon(com.android.internal.R.drawable.boot_logo);
+                    mBootMsgDialog.setIcon(AicpDexOpt.get(AicpDexOptIndex));
                     mBootMsgDialog.setIndeterminate(true);
                     mBootMsgDialog.getWindow().setType(
                             WindowManager.LayoutParams.TYPE_BOOT_PROGRESS);
@@ -6794,10 +6803,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     mBootMsgDialog.setMessage(Html.fromHtml(msg +
                                                             "<br><b><font color=\"#" + randomColor + "\">" +
                                                             currentPackageName +
-                                                            "</font></b>"));
+                                                            "</font><br><br>Powered by AICP</b>"));
                 }
                 else {
-                    mBootMsgDialog.setMessage(msg);
+                    mBootMsgDialog.setMessage(Html.fromHtml(msg + "<br><br><b>Powered by AICP</b>"));
                 }
             }
         });

@@ -109,4 +109,6 @@
 
   <java-symbol type="bool" name="config_dozeUseAccelerometer" />
 
+  <java-symbol type="drawable" name="boot_logo" />
+
 </resources>

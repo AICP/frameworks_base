@@ -174,7 +174,7 @@ public enum NetworkTrafficMonitor {
         long updateDelay = lastUpdateTime-mLastUpdateTime;
         // Save last update time
         mLastUpdateTime = lastUpdateTime;
-        Log.d(NetworkTrafficMonitor.LOG_TAG, "Delay: "+updateDelay+"ms");
+        //Log.d(NetworkTrafficMonitor.LOG_TAG, "Delay: "+updateDelay+"ms");
         if (updateDelay<=250) {
             return;
         }
@@ -198,7 +198,7 @@ public enum NetworkTrafficMonitor {
             }
             inNetworkLevel++;
         }
-        Log.d(NetworkTrafficMonitor.LOG_TAG, "Speed: "+(inSpeed/1024)+" kb/s (level+"+inNetworkLevel+")");
+        //Log.d(NetworkTrafficMonitor.LOG_TAG, "Speed: "+(inSpeed/1024)+" kb/s (level+"+inNetworkLevel+")");
         // Compute out network level
         int outNetworkLevel = 0;
         for (int i = 0, n = OUT_NETWORK_LEVELS.length; i<n; i++) {
@@ -213,7 +213,7 @@ public enum NetworkTrafficMonitor {
         mObservable.setChanged();
         // Notify observers
         mObservable.notifyObservers(values);
-        Log.d(NetworkTrafficMonitor.LOG_TAG, "Debug: Notify "+mObservable.countObservers()+" observers");
+        //Log.d(NetworkTrafficMonitor.LOG_TAG, "Debug: Notify "+mObservable.countObservers()+" observers");
     }
 
     /**
@@ -228,7 +228,7 @@ public enum NetworkTrafficMonitor {
             }
             // Mark traffic as monitored
             mTrafficMonitored = true;
-            Log.d(NetworkTrafficMonitor.LOG_TAG, "Start traffic monitor");
+            //Log.d(NetworkTrafficMonitor.LOG_TAG, "Start traffic monitor");
             // Start the updater
             mTrafficUpdater.run();
         }
@@ -248,7 +248,7 @@ public enum NetworkTrafficMonitor {
             mTrafficHandler.removeCallbacks(mTrafficUpdater);
             // Mark traffic as not monitored
             mTrafficMonitored = false;
-            Log.d(NetworkTrafficMonitor.LOG_TAG, "Stop traffic monitor");
+            //Log.d(NetworkTrafficMonitor.LOG_TAG, "Stop traffic monitor");
         }
     }
 

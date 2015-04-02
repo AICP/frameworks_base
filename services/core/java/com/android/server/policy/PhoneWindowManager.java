@@ -575,6 +575,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     boolean mIsFocusPressed;
     boolean mIsLongPress;
 
+    boolean mVolumeAnswerCall;
+
     // Click volume down + power for partial screenshot
     boolean mClickPartialScreenshot;
 
@@ -885,6 +887,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 resolver.registerContentObserver(Settings.Secure.getUriFor(
                     Settings.Secure.SWAP_CAPACITIVE_KEYS), false, this,
                     UserHandle.USER_ALL);
+            }
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.CLICK_PARTIAL_SCREENSHOT), false, this,
                     UserHandle.USER_ALL);
@@ -951,7 +954,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.VOLUME_ROCKER_WAKE), false, this,
                     UserHandle.USER_ALL);
-            }
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.VOLUME_ANSWER_CALL), false, this,
+                    UserHandle.USER_ALL);
+
             updateSettings();
         }
 
@@ -2916,6 +2922,11 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             mVolumeRockerWake = Settings.System.getIntForUser(resolver,
                     Settings.System.VOLUME_ROCKER_WAKE, 0, UserHandle.USER_CURRENT) != 0;
 
+            // volume answer call
+            mVolumeAnswerCall = (Settings.System.getIntForUser(resolver,
+                    Settings.System.VOLUME_ANSWER_CALL, 0, UserHandle.USER_CURRENT) == 1)
+                    && ((mDeviceHardwareWakeKeys & KEY_MASK_VOLUME) != 0);
+
             // Configure wake gesture.
             boolean wakeGestureEnabledSetting = Settings.Secure.getIntForUser(resolver,
                     Settings.Secure.WAKE_GESTURE_ENABLED, 0,
@@ -4468,6 +4479,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                         // When {@link #mHandleVolumeKeysInWM} is set, volume key events
                         // should be dispatched to WM.
                         if (telecomManager.isRinging()) {
+                            if (mVolumeAnswerCall) {
+                                telecomManager.acceptRingingCall();
+                            }
+
                             // If an incoming call is ringing, either VOLUME key means
                             // "silence ringer".  We handle these keys here, rather than
                             // in the InCallScreen, to make sure we'll respond to them

@@ -96,6 +96,8 @@ import static com.android.server.policy.HardkeyActionHandler.KEY_MASK_MENU;
 import static com.android.server.policy.HardkeyActionHandler.KEY_MASK_ASSIST;
 import static com.android.server.policy.HardkeyActionHandler.KEY_MASK_APP_SWITCH;
 import static com.android.server.policy.HardkeyActionHandler.KEY_MASK_CAMERA;
+import static com.android.server.policy.HardkeyActionHandler.KEY_MASK_VOLUME;
+
 
 import android.Manifest;
 import android.annotation.Nullable;
@@ -540,6 +542,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private HardkeyActionHandler mKeyHandler;
 
     int mDeviceHardwareKeys;
+
+    boolean mVolumeAnswerCall;
 
     // Camera button control flags and actions
     boolean mCameraLaunch;
@@ -1029,6 +1033,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.CAMERA_LAUNCH), false, this,
+                    UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.VOLUME_ANSWER_CALL), false, this,
                     UserHandle.USER_ALL);
             updateSettings();
         }
@@ -2635,6 +2642,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             // volume rocker wake
             mVolumeRockerWake = Settings.System.getIntForUser(resolver,
                     Settings.System.VOLUME_ROCKER_WAKE, 0, UserHandle.USER_CURRENT) != 0;
+
+            mVolumeAnswerCall = (Settings.System.getIntForUser(resolver,
+                    Settings.System.VOLUME_ANSWER_CALL, 0, UserHandle.USER_CURRENT) == 1)
+                    && ((mDeviceHardwareWakeKeys & KEY_MASK_VOLUME) != 0);
 
             mVolumeMusicControl = Settings.System.getIntForUser(resolver,
                     Settings.System.VOLUME_BUTTON_MUSIC_CONTROL, 0,
@@ -4796,6 +4807,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                         // When {@link #mHandleVolumeKeysInWM} is set, volume key events
                         // should be dispatched to WM.
                         if (telecomManager.isRinging()) {
+                            if (mVolumeAnswerCall) {
+                                telecomManager.acceptRingingCall();
+                            }
+
                             // If an incoming call is ringing, either VOLUME key means
                             // "silence ringer".  We handle these keys here, rather than
                             // in the InCallScreen, to make sure we'll respond to them

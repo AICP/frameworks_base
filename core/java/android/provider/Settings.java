@@ -6498,6 +6498,13 @@ public final class Settings {
         public static final String VOLUME_KEYS_CONTROL_RING_TONE =
                 "volume_keys_control_ring_tone";
 
+        /**
+         * Whether to answer the call with the volume keys, the value is boolean.
+         * 0 = 0ff, 1 = on
+         */
+        @SuppressLint("NoSettingsProvider")
+        public static final String VOLUME_ANSWER_CALL = "volume_answer_call";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6748,6 +6755,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SWAP_VOLUME_BUTTONS);
             PRIVATE_SETTINGS.add(VOLUME_ROCKER_WAKE);
             PRIVATE_SETTINGS.add(VOLUME_KEYS_CONTROL_RING_TONE);
+            PRIVATE_SETTINGS.add(VOLUME_ANSWER_CALL);
         }
 
         /**

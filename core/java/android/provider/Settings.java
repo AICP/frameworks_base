@@ -6679,6 +6679,13 @@ public final class Settings {
          */
         public static final String GAMING_MODE_DISABLE_ADB = "gaming_mode_disable_adb";
 
+        /**
+         * Whether to answer the call with the volume keys, the value is boolean.
+         * 0 = 0ff, 1 = on
+         * @hide
+         */
+        public static final String VOLUME_ANSWER_CALL = "volume_answer_call";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7019,6 +7026,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(GAMING_MODE_APP_LIST);
             PRIVATE_SETTINGS.add(GAMING_MODE_DISABLE_NOTIFICATION_ALERT);
             PRIVATE_SETTINGS.add(GAMING_MODE_DISABLE_ADB);
+            PRIVATE_SETTINGS.add(VOLUME_ANSWER_CALL);
         }
 
         /**

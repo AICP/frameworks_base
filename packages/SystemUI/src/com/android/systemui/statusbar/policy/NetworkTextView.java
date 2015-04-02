@@ -10,8 +10,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
+import android.database.ContentObserver;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
+import android.os.Handler;
 import android.os.UserHandle;
 import android.provider.Settings;
 import android.util.AttributeSet;
@@ -75,18 +78,9 @@ public class NetworkTextView extends TextView implements Observer {
         final Resources resources = getResources();
         txtSizeSingle = resources.getDimensionPixelSize(R.dimen.net_traffic_single_text_size);
         txtSizeMulti = resources.getDimensionPixelSize(R.dimen.net_traffic_multi_text_size);
-        NetworkTrafficSettings.Observer settingsObserver = new NetworkTrafficSettings.Observer(mContext,
-                Sets.newHashSet(Settings.System.NETWORK_TRAFFIC_VECTOR_STATE,
-                Settings.System.NETWORK_TRAFFIC_VECTOR_AUTOHIDE,
-                Settings.System.NETWORK_TRAFFIC_VECTOR_AUTOHIDE_THRESHOLD),
-                new NetworkTrafficSettings.ChangeCallback() {
-                    @Override
-                    public void onSettingChanged() {
-                        // Update enable status
-                        updateSettings();
-                    }
-                });
-        settingsObserver.register();
+        Handler mHandler = new Handler();
+        SettingsObserver settingsObserver = new SettingsObserver(mHandler);
+        settingsObserver.observe();
         updateSettings();
     }
 
@@ -145,6 +139,36 @@ public class NetworkTextView extends TextView implements Observer {
         }
     }
 
+    class SettingsObserver extends ContentObserver {
+        SettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        void observe() {
+            ContentResolver resolver = mContext.getContentResolver();
+            Uri uri = Settings.System.getUriFor(Settings.System.NETWORK_TRAFFIC_VECTOR_STATE);
+            resolver.registerContentObserver(uri, false,
+                    this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System
+                    .getUriFor(Settings.System.NETWORK_TRAFFIC_VECTOR_AUTOHIDE), false,
+                    this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System
+                    .getUriFor(Settings.System.NETWORK_TRAFFIC_VECTOR_AUTOHIDE_THRESHOLD), false,
+                    this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System
+                    .getUriFor(Settings.System.NETWORK_TRAFFIC_VECTOR_COLOR), false,
+                    this, UserHandle.USER_ALL);
+        }
+
+        /*
+         *  @hide
+         */
+        @Override
+        public void onChange(boolean selfChange) {
+            updateSettings();
+        }
+    }
+
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
@@ -193,6 +217,19 @@ public class NetworkTextView extends TextView implements Observer {
                 10, UserHandle.USER_CURRENT);
 
         mState = Settings.System.getInt(resolver, Settings.System.NETWORK_TRAFFIC_VECTOR_STATE, 0);
+
+        int defaultColor = Settings.System.getInt(resolver,
+                Settings.System.NETWORK_TRAFFIC_VECTOR_COLOR, 0xFFFFFFFF);
+
+        int mNetworkTrafficColor = Settings.System.getInt(resolver,
+                Settings.System.NETWORK_TRAFFIC_VECTOR_COLOR, -2);
+
+        if (mNetworkTrafficColor == Integer.MIN_VALUE
+                || mNetworkTrafficColor == -2) {
+                mNetworkTrafficColor = defaultColor;
+        }
+
+        setTextColor(mNetworkTrafficColor);
 
         if (NetworkTrafficSettings.hasMask(mState, NetworkTrafficSettings.UNIT_SWITCH_MASK)) {
             KB = KILOBYTE;

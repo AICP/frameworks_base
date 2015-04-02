@@ -2234,6 +2234,18 @@ public final class Settings {
         public static final String QUICK_SETTINGS_TILES_VIBRATE = "quick_settings_vibrate";
 
         /**
+         * Enable blocking wakelock
+         * @hide
+         */
+        public static final String WAKELOCK_BLOCKING_ENABLED = "wakelock_blocking_enabled";
+
+        /**
+         * List of wakelock blocks selected
+         * @hide
+         */
+        public static final String WAKELOCK_BLOCKING_LIST = "wakelock_blocking_list";
+
+        /**
          * Control whether the process CPU usage meter should be shown.
          *
          * @deprecated Use {@link Global#SHOW_PROCESSES} instead
@@ -8945,44 +8957,42 @@ public final class Settings {
         }
 
 
-        /**
+         /**
           * Subscription to be used for voice call on a multi sim device. The supported values
           * are 0 = SUB1, 1 = SUB2 and etc.
           * @hide
           */
         public static final String MULTI_SIM_VOICE_CALL_SUBSCRIPTION = "multi_sim_voice_call";
 
-        /**
+         /**
           * Used to provide option to user to select subscription during dial.
           * The supported values are 0 = disable or 1 = enable prompt.
           * @hide
           */
         public static final String MULTI_SIM_VOICE_PROMPT = "multi_sim_voice_prompt";
 
-        /**
+         /**
           * Subscription to be used for data call on a multi sim device. The supported values
           * are 0 = SUB1, 1 = SUB2 and etc.
           * @hide
           */
         public static final String MULTI_SIM_DATA_CALL_SUBSCRIPTION = "multi_sim_data_call";
 
-        /**
+         /**
           * Subscription to be used for SMS on a multi sim device. The supported values
           * are 0 = SUB1, 1 = SUB2 and etc.
           * @hide
           */
         public static final String MULTI_SIM_SMS_SUBSCRIPTION = "multi_sim_sms";
 
-       /**
+         /**
           * Used to provide option to user to select subscription during send SMS.
           * The value 1 - enable, 0 - disable
           * @hide
           */
         public static final String MULTI_SIM_SMS_PROMPT = "multi_sim_sms_prompt";
 
-
-
-        /** User preferred subscriptions setting.
+         /** User preferred subscriptions setting.
           * This holds the details of the user selected subscription from the card and
           * the activation status. Each settings string have the coma separated values
           * iccId,appType,appId,activationStatus,3gppIndex,3gpp2Index

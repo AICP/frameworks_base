@@ -28,4 +28,6 @@
 
     <dimen name="status_bar_expanded_header_elevation">4dp</dimen>
 
+    <dimen name="ribbon_drag_handle_height">25dp</dimen>
+
 </resources>

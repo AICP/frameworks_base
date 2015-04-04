@@ -17,7 +17,6 @@ package com.android.systemui.statusbar.phone;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
-import android.annotation.NonNull;
 import android.app.ActivityManager;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
@@ -73,11 +72,6 @@ public class BackButtonDrawable extends Drawable {
     }
 
     @Override
-    protected void onBoundsChange(Rect bounds) {
-        mWrappedDrawable.setBounds(bounds);
-    }
-
-    @Override
     public void setAlpha(int alpha) {
         mWrappedDrawable.setAlpha(alpha);
         if (mCurrentAnimator != null) {
@@ -97,16 +91,6 @@ public class BackButtonDrawable extends Drawable {
     @Override
     public int getOpacity() {
         return mWrappedDrawable.getOpacity();
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        return mWrappedDrawable.getIntrinsicWidth();
-    }
-
-    @Override
-    public int getIntrinsicHeight() {
-        return mWrappedDrawable.getIntrinsicHeight();
     }
 
     public void setRotation(float rotation) {

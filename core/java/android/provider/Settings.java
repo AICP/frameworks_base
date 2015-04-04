@@ -4132,6 +4132,12 @@ public final class Settings {
         /** @hide */
         private static final Validator ENABLE_FORWARD_LOOKUP_VALIDATOR = BOOLEAN_VALIDATOR;
 
+	/**
+         * show the membar in recents
+         *  @hide
+         */
+        public static final String SYSTEMUI_RECENTS_MEM_DISPLAY = "systemui_recents_mem_display";
+
         /**
         * Enable looking up of phone numbers of people
         *

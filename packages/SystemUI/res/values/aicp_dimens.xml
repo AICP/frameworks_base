@@ -87,4 +87,7 @@
 
     <!-- Screenrecord -->
     <dimen name="screenrecord_hint_size">48dp</dimen>
+
+    <!-- Membar spacing -->
+    <dimen name="recents_membar_spacing">12dp</dimen>
 </resources>

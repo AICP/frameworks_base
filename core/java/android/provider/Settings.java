@@ -4174,6 +4174,13 @@ public final class Settings {
         public static final String STORAGE_MOUNT_NOTIFICATION = "storage_mount_notification";
 
         /**
+         * Whether "None" mode will act as "Silent"
+         * Effectively allowing alarms to always use the alarm stream volume when true.
+         * @hide
+         */
+        public static final String NONE_IS_SILENT = "none_is_silent";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *

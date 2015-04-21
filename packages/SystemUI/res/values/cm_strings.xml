@@ -26,4 +26,12 @@
     <string name="accessibility_lock_task">Prevent <xliff:g id="task">%1$s</xliff:g> from being dismissed</string>
     <!-- Content description for Accessibility on locked tasks in recents -->
     <string name="accessibility_unlock_task">Allow <xliff:g id="task">%1$s</xliff:g> to be dismissed</string>
+
+    <!-- Heads up QS tile -->
+    <string name="quick_settings_heads_up_label">Heads up</string>
+    <string name="accessibility_quick_settings_heads_up_off">Heads up off.</string>
+    <string name="accessibility_quick_settings_heads_up_on">Heads up on.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">Heads up turned off.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">Heads up turned on.</string>
+
 </resources>

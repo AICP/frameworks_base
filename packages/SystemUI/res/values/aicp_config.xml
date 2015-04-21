@@ -6,7 +6,7 @@
 <resources>
     <!-- The extra quick settings tiles to display in QuickSettings -->
     <string name="quick_settings_tiles_extra" translatable="false">
-      aicp_extras,livedisplay,reading_mode,anti_flicker,refresh_rate,caffeine
+      aicp_extras,livedisplay,reading_mode,anti_flicker,refresh_rate,caffeine,heads_up
     </string>
 
     <!-- Color of the UDFPS pressed view -->

@@ -39,6 +39,7 @@ import com.android.systemui.qs.tiles.CPUInfoTile;
 import com.android.systemui.qs.tiles.DataSaverTile;
 import com.android.systemui.qs.tiles.DndTile;
 import com.android.systemui.qs.tiles.FlashlightTile;
+import com.android.systemui.qs.tiles.HeadsUpTile;
 import com.android.systemui.qs.tiles.HotspotTile;
 import com.android.systemui.qs.tiles.LocationTile;
 import com.android.systemui.qs.tiles.MusicTile;
@@ -94,6 +95,7 @@ public class QSFactoryImpl implements QSFactory {
     private final Provider<CaffeineTile> mCaffeineTileProvider;
     private final Provider<CPUInfoTile> mCPUInfoTileProvider;
     private final Provider<AicpExtrasTile> mAicpExtrasTileProvider;
+    private final Provider<HeadsUpTile> mHeadsUpTileProvider;
 
     private final Lazy<QSHost> mQsHostLazy;
 
@@ -126,7 +128,8 @@ public class QSFactoryImpl implements QSFactory {
             Provider<UsbTetherTile> usbtetherTileProvider,
             Provider<CaffeineTile> caffeineTileProvider,
             Provider<CPUInfoTile> cpuInfoTileProvider,
-            Provider<AicpExtrasTile> aicpExtrasTileProvider) {
+            Provider<AicpExtrasTile> aicpExtrasTileProvider,
+            Provider<HeadsUpTile> headsUpTileProvider) {
         mQsHostLazy = qsHostLazy;
         mWifiTileProvider = wifiTileProvider;
         mBluetoothTileProvider = bluetoothTileProvider;
@@ -156,6 +159,7 @@ public class QSFactoryImpl implements QSFactory {
         mCaffeineTileProvider = caffeineTileProvider;
         mCPUInfoTileProvider = cpuInfoTileProvider;
         mAicpExtrasTileProvider = aicpExtrasTileProvider;
+        mHeadsUpTileProvider = headsUpTileProvider;
     }
 
     public QSTile createTile(String tileSpec) {
@@ -224,6 +228,8 @@ public class QSFactoryImpl implements QSFactory {
             // Aicp tiles
             case "aicp_extras":
                 return mAicpExtrasTileProvider.get();
+            case "heads_up":
+                return mHeadsUpTileProvider.get();
         }
 
         // Custom tiles

@@ -26,6 +26,7 @@ import com.android.systemui.qs.tiles.AODTile;
 import com.android.systemui.qs.tiles.CaffeineTile;
 import com.android.systemui.qs.tiles.DataSwitchTile;
 import com.android.systemui.qs.tiles.ScreenshotTile;
+import com.android.systemui.qs.tiles.HeadsUpTile;
 
 import com.android.systemui.qs.tileimpl.QSTileImpl;
 
@@ -63,6 +64,12 @@ public interface AicpModule {
     @IntoMap
     @StringKey(ScreenshotTile.TILE_SPEC)
     public abstract QSTileImpl<?> bindScreenshotTile(ScreenshotTile screenshotTile);
+
+    /** Inject HeadsUpTile into tileMap in QSModule */
+    @Binds
+    @IntoMap
+    @StringKey(HeadsUpTile.TILE_SPEC)
+    public abstract QSTileImpl<?> bindHeadsUpTile(HeadsUpTile headsUpTile);
 
     /** */
     @Binds

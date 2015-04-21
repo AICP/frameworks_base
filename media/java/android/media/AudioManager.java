@@ -815,14 +815,16 @@ public class AudioManager {
                  * Play a sound. This is done on key up since we don't want the
                  * sound to play when a user holds down volume down to mute.
                  */
-                if (mUseMasterVolume) {
-                    adjustMasterVolume(ADJUST_SAME, FLAG_PLAY_SOUND);
-                } else {
-                    int flags = FLAG_PLAY_SOUND;
-                    adjustSuggestedStreamVolume(
-                            ADJUST_SAME,
-                            stream,
-                            flags);
+                if (mUseVolumeKeySounds) {
+                    if (mUseMasterVolume) {
+                        adjustMasterVolume(ADJUST_SAME, FLAG_PLAY_SOUND);
+                    } else {
+                        int flags = FLAG_PLAY_SOUND;
+                        adjustSuggestedStreamVolume(
+                                ADJUST_SAME,
+                                stream,
+                                flags);
+                    }
                 }
                 mVolumeKeyUpTime = SystemClock.uptimeMillis();
                 break;

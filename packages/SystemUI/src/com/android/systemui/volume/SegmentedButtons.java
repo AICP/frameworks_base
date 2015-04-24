@@ -66,12 +66,7 @@ public class SegmentedButtons extends LinearLayout {
         fireOnSelected();
     }
 
-    public void addButton(int labelResId, int iconResId, Object value, int index) {
-        View viewAtIndex = getChildAt(index);
-        if (viewAtIndex != null) {
-            removeView(viewAtIndex);
-        }
-
+    public void addButton(int labelResId, int iconResId, Object value) {
         final Button b = (Button) mInflater.inflate(R.layout.segmented_button, this, false);
         b.setTag(LABEL_RES_KEY, labelResId);
         b.setText(labelResId);
@@ -81,11 +76,7 @@ public class SegmentedButtons extends LinearLayout {
             lp.leftMargin = lp.rightMargin = 0; // first button has no margin
         }
         b.setLayoutParams(lp);
-        if (index < 0) {
-            addView(b);
-        } else {
-            addView(b, index);
-        }
+        addView(b);
         b.setTag(value);
         b.setOnClickListener(mClick);
         Interaction.register(b, new Interaction.Callback() {
@@ -94,10 +85,6 @@ public class SegmentedButtons extends LinearLayout {
                 fireInteraction();
             }
         });
-    }
-
-    public void addButton(int labelResId, int iconResId, Object value) {
-        addButton(labelResId, iconResId, value, -1);
     }
 
     public void updateLocale() {

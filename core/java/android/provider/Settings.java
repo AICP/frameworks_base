@@ -4270,7 +4270,6 @@ public final class Settings {
             DISPLAY_TEMPERATURE_MODE,
             DISPLAY_AUTO_OUTDOOR_MODE,
             LIVE_DISPLAY_HINTED,
-            NONE_IS_SILENT,
             ALLOW_LIGHTS
         };
 

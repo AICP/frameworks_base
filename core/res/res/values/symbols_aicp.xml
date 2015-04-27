@@ -114,4 +114,8 @@
   <java-symbol type="drawable" name="aicpdexopt3" />
   <java-symbol type="drawable" name="aicpdexopt4" />
 
+  <!-- Global actions -->
+  <java-symbol type="id" name="option4" />
+  <java-symbol type="id" name="option5" />
+
 </resources>

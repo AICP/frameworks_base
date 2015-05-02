@@ -18,29 +18,20 @@ package com.android.systemui.qs.tiles;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.ContentObserver;
+import android.net.Uri;
+import android.os.UserHandle;
 import android.provider.Settings;
-import android.provider.Settings.Global;
-
-import com.android.systemui.qs.GlobalSetting;
-import com.android.systemui.qs.QSTile;
 import com.android.systemui.R;
+import com.android.systemui.qs.QSTile;
 
-/** Quick settings tile: Heads up **/
+/** Quick settings tile: Heads Up **/
 public class HeadsUpTile extends QSTile<QSTile.BooleanState> {
 
-    private static final Intent NOTIFICATION_SETTINGS = new Intent("android.settings.NOTIFICATION_MANAGER");
-
-    private final GlobalSetting mSetting;
+    private static final Intent HEADS_UP_SETTINGS = new Intent("android.settings.HEADS_UP_SETTINGS");
 
     public HeadsUpTile(Host host) {
         super(host);
-
-        mSetting = new GlobalSetting(mContext, mHandler, Global.HEADS_UP_NOTIFICATIONS_ENABLED) {
-            @Override
-            protected void handleValueChanged(int value) {
-                handleRefreshState(value);
-            }
-        };
     }
 
     @Override
@@ -50,50 +41,65 @@ public class HeadsUpTile extends QSTile<QSTile.BooleanState> {
 
     @Override
     protected void handleClick() {
-        setEnabled(!mState.value);
+        toggleState();
         refreshState();
+        qsCollapsePanel();
+    }
+
+    @Override
+    protected void handleSecondaryClick() {
+        mHost.startSettingsActivity(HEADS_UP_SETTINGS);
     }
 
     @Override
     protected void handleLongClick() {
-        mHost.startSettingsActivity(NOTIFICATION_SETTINGS);
-    }
-
-    private void setEnabled(boolean enabled) {
-        Settings.Global.putInt(mContext.getContentResolver(),
-                Settings.Global.HEADS_UP_NOTIFICATIONS_ENABLED,
-                enabled ? 1 : 0);
+        mHost.startSettingsActivity(HEADS_UP_SETTINGS);
     }
 
     @Override
     protected void handleUpdateState(BooleanState state, Object arg) {
-        final int value = arg instanceof Integer ? (Integer)arg : mSetting.getValue();
-        final boolean headsUp = value != 0;
-        state.value = headsUp;
         state.visible = true;
-        state.label = mContext.getString(R.string.quick_settings_heads_up_label);
-        if (headsUp) {
+        state.value = isHeadsUpEnabled();
+        if (state.value) {
             state.icon = ResourceIcon.get(R.drawable.ic_qs_heads_up_on);
-            state.contentDescription =  mContext.getString(
-                    R.string.accessibility_quick_settings_heads_up_on);
+            state.label = mContext.getString(R.string.accessibility_quick_settings_heads_up_on);
         } else {
             state.icon = ResourceIcon.get(R.drawable.ic_qs_heads_up_off);
-            state.contentDescription =  mContext.getString(
-                    R.string.accessibility_quick_settings_heads_up_off);
+	    state.label = mContext.getString(R.string.accessibility_quick_settings_heads_up_off);
         }
     }
 
-    @Override
-    protected String composeChangeAnnouncement() {
-        if (mState.value) {
-            return mContext.getString(R.string.accessibility_quick_settings_heads_up_changed_on);
-        } else {
-            return mContext.getString(R.string.accessibility_quick_settings_heads_up_changed_off);
+    protected void toggleState() {
+        Settings.System.putInt(mContext.getContentResolver(),
+            Settings.System.HEADS_UP_NOTIFICATION, isHeadsUpEnabled() ? 0 : 1);
+    }
+
+    private boolean isHeadsUpEnabled() {
+        return Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.HEADS_UP_NOTIFICATION, 1) == 1;
+    }
+
+    private ContentObserver mObserver = new ContentObserver(mHandler) {
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
+            refreshState();
         }
+    };
+
+    @Override
+    public void destroy() {
+        mContext.getContentResolver().unregisterContentObserver(mObserver);
     }
 
     @Override
     public void setListening(boolean listening) {
-        // Do nothing
+        if (listening) {
+            mContext.getContentResolver().registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.HEADS_UP_NOTIFICATION),
+                    false, mObserver);
+        } else {
+            mContext.getContentResolver().unregisterContentObserver(mObserver);
+        }
     }
+
 }

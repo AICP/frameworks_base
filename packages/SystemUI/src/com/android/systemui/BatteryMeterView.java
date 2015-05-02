@@ -746,7 +746,7 @@ public class BatteryMeterView extends View implements DemoMode,
 
         private static final int FULL = 96;
 
-        public static final float STROKE_WITH = 6.5f;
+        public static final float STROKE_WITH = 6f;
 
         private boolean mDisposed;
 

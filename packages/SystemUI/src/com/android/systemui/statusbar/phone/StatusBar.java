@@ -2131,6 +2131,11 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
 
     @Override
     public boolean shouldPeek(Entry entry, StatusBarNotification sbn) {
+        // check if package is blacklisted first
+        if (isPackageBlacklisted(sbn.getPackageName())) {
+            return false;
+        }
+
         if (mIsOccluded && !isDozing()) {
             boolean devicePublic = mLockscreenUserManager.
                     isLockscreenPublicMode(mLockscreenUserManager.getCurrentUserId());
@@ -5626,6 +5631,8 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
         return mDeviceInteractive;
     }
 
+    private ArrayList<String> mBlacklist = new ArrayList<String>();
+
     @Override  // NotificationData.Environment
     public boolean isDeviceProvisioned() {
         return mDeviceProvisionedController.isDeviceProvisioned();
@@ -5715,6 +5722,9 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.PULSE_APPS_BLACKLIST),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.HEADS_UP_BLACKLIST_VALUES),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
         @Override
@@ -5756,6 +5766,9 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
                 setFpToDismissNotifications();
             } else if (uri.equals(Settings.System.getUriFor(Settings.System.PULSE_APPS_BLACKLIST))) {
                 setPulseBlacklist();
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.HEADS_UP_BLACKLIST_VALUES))) {
+                updateHeadsUpBlackList();
             }
 
         }
@@ -5770,6 +5783,7 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
             setForceAmbient();
             setFpToDismissNotifications();
             setPulseBlacklist();
+            updateHeadsUpBlackList();
         }
     }
 
@@ -5777,6 +5791,13 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
         String blacklist = Settings.System.getStringForUser(mContext.getContentResolver(),
                 Settings.System.PULSE_APPS_BLACKLIST, UserHandle.USER_CURRENT);
         getMediaManager().setPulseBlacklist(blacklist);
+    }
+
+    private void updateHeadsUpBlackList() {
+            final String blackString = Settings.System.getString(mContext.getContentResolver(),
+                    Settings.System.HEADS_UP_BLACKLIST_VALUES);
+            if (DEBUG) Log.v(TAG, "blackString: " + blackString);
+            splitAndAddToArrayList(mBlacklist, blackString, "\\|");
     }
 
     private void setForceAmbient() {
@@ -6492,6 +6513,22 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
     private void rebuildRecentsScreen() {
         if (mSlimRecents != null) {
             mSlimRecents.rebuildRecentsScreen();
+        }
+    }
+
+    private boolean isPackageBlacklisted(String packageName) {
+        return mBlacklist.contains(packageName);
+    }
+
+    private void splitAndAddToArrayList(ArrayList<String> arrayList,
+            String baseString, String separator) {
+        // clear first
+        arrayList.clear();
+        if (baseString != null) {
+            final String[] array = TextUtils.split(baseString, separator);
+            for (String item : array) {
+                arrayList.add(item.trim());
+            }
         }
     }
 }

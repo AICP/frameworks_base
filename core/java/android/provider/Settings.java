@@ -5763,6 +5763,13 @@ public final class Settings {
         */
         public static final String CHOOSER_ACTIVITY_BLACKLIST = "chooser_activity_blacklist";
 
+        /**
+         * Which applications to disable heads up notifications for
+         *
+         * @hide
+         */
+        public static final String HEADS_UP_BLACKLIST_VALUES = "heads_up_blacklist_values";
+
         /***************************
          * AICP System Settings end
          ***************************/

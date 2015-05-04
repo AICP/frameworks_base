@@ -60,11 +60,9 @@ public class NotificationsTile extends QSTile<NotificationsTile.NotificationsSta
         AudioManager.RINGER_MODE_NORMAL,
         AudioManager.RINGER_MODE_VIBRATE,
         AudioManager.RINGER_MODE_SILENT,
-        AudioManager.RINGER_MODE_NORMAL,
         AudioManager.RINGER_MODE_SILENT
     };
     private static final int[] ZENS = new int[] {
-        Global.ZEN_MODE_OFF,
         Global.ZEN_MODE_OFF,
         Global.ZEN_MODE_OFF,
         Global.ZEN_MODE_IMPORTANT_INTERRUPTIONS,

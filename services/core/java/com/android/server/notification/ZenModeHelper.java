@@ -271,7 +271,7 @@ public class ZenModeHelper implements AudioManagerInternal.RingerModeDelegate {
 
     public void readLightsAllowedModeFromSetting() {
         mAllowLights = System.getIntForUser(mContext.getContentResolver(),
-                System.ALLOW_LIGHTS, 1, UserHandle.USER_CURRENT) == 1;
+                System.ALLOW_LIGHTS, 0, UserHandle.USER_CURRENT) == 1;
     }
 
     private void applyRestrictions() {

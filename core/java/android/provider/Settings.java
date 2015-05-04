@@ -4187,6 +4187,13 @@ public final class Settings {
         public static final String STORAGE_MOUNT_NOTIFICATION = "storage_mount_notification";
 
         /**
+         * Whether "None" mode will act as "Silent"
+         * Effectively allowing alarms to always use the alarm stream volume when true.
+         * @hide
+         */
+        public static final String NONE_IS_SILENT = "none_is_silent";
+
+        /**
          * Height of the gesture anywhere trigger.
          * Force expanded notifications on all apps that support it.
          * @hide
@@ -4283,6 +4290,7 @@ public final class Settings {
             DISPLAY_TEMPERATURE_MODE,
             DISPLAY_AUTO_OUTDOOR_MODE,
             LIVE_DISPLAY_HINTED,
+            NONE_IS_SILENT,
             ALLOW_LIGHTS
         };
 

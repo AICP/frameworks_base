@@ -96,7 +96,6 @@ import android.os.SystemProperties;
 import android.os.Trace;
 import android.os.UserHandle;
 import android.os.WorkSource;
-import android.os.SystemService;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.util.EventLog;
@@ -6596,10 +6595,6 @@ public class WindowManagerService extends IWindowManager.Stub
             // Rotation updates have been paused temporarily.  Defer the update until
             // updates have been resumed.
             if (DEBUG_ORIENTATION) Slog.v(TAG, "Deferring rotation, rotation is paused.");
-            return false;
-        }
-
-        if(SystemService.isRunning("bootanim")) {
             return false;
         }
 

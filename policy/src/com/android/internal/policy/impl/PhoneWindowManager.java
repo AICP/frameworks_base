@@ -7195,10 +7195,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         }
         Ringtone ringTone = RingtoneManager.getRingtone(mContext,
                 Settings.System.DEFAULT_NOTIFICATION_URI);
-        if (ringTone != null) {
-            ringTone.setStreamType(AudioManager.STREAM_MUSIC);
-            ringTone.play();
-        }
+        ringTone.setStreamType(AudioManager.STREAM_MUSIC);
+        ringTone.play();
     }
 
     private boolean isTheaterModeEnabled() {

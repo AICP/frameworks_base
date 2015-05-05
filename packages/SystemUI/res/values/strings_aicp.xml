@@ -62,4 +62,6 @@
     <!-- Power menu on navring targets -->
     <string name="navring_action_power_menu">Power Menu</string>
 
+    <string name="gestures_message">Draw your gesture here</string>
+
 </resources>

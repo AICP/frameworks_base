@@ -93,4 +93,20 @@
     <string name="content_setup_dismiss">Continue</string>
     <string name="toast_not_installed">App is not installed</string>
 
+    <!-- PA Pie controls -->
+    <string name="pie_date_format" translatable="false">ccc, dd MMM yyyy</string>
+    <string name="pie_hour_format_12">hh:mm</string>
+    <string name="pie_hour_format_24">HH:mm</string>
+    <string name="pie_am_pm">a</string>
+
+    <!-- PA Pie Tile -->
+    <string name="quick_settings_pie">Pie</string>
+    <string name="accessibility_quick_settings_pie_off">Pie off</string>
+    <string name="accessibility_quick_settings_pie_on">Pie on</string>
+    <string name="accessibility_quick_settings_pie_changed_off">Pie turned off</string>
+    <string name="accessibility_quick_settings_pie_changed_on">Pie turned on</string>
+
+    <!-- Kill app toast -->
+    <string name="app_killed_message">App Killed</string>
+
 </resources>

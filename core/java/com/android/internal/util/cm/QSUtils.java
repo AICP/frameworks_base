@@ -107,14 +107,13 @@ public class QSUtils {
             }
             if (removeTile) {
                 iterator.remove();
-                tiles.remove(tileKey);
             }
         }
     }
 
     private static void filterTiles(Context context) {
         if (!sAvailableTilesFiltered) {
-            filterTiles(context, QSConstants.TILES_DEFAULT);
+            filterTiles(context, QSConstants.TILES_AVAILABLE);
             sAvailableTilesFiltered = true;
         }
     }

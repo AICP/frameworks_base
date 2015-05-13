@@ -15161,7 +15161,7 @@ public final class ActivityManagerService extends ActivityManagerNative
             ContentProviderRecord cpr = app.pubProviders.valueAt(i);
             final boolean always = app.bad || !allowRestart;
             boolean inLaunching = removeDyingProviderLocked(app, cpr, always);
-            if ((inLaunching || always) && !cpr.connections.isEmpty()) {
+            if ((inLaunching || always) && cpr.hasConnectionOrHandle()) {
                 // We left the provider in the launching list, need to
                 // restart it.
                 restart = true;
@@ -15305,7 +15305,7 @@ public final class ActivityManagerService extends ActivityManagerNative
         for (int i = mLaunchingProviders.size() - 1; i >= 0; i--) {
             ContentProviderRecord cpr = mLaunchingProviders.get(i);
             if (cpr.launchingApp == app) {
-                if (!alwaysBad && !app.bad && !cpr.connections.isEmpty()) {
+                if (!alwaysBad && !app.bad && cpr.hasConnectionOrHandle()) {
                     restart = true;
                 } else {
                     removeDyingProviderLocked(app, cpr, true);

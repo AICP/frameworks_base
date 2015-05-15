@@ -33,7 +33,6 @@ import android.widget.ListView;
 import com.android.systemui.R;
 import com.android.systemui.qs.QSDetailItemsList;
 import com.android.systemui.qs.QSTile;
-import cyanogenmod.app.StatusBarPanelCustomTile;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -95,7 +94,7 @@ public class ScreenTimeoutTile extends QSTile<ScreenTimeoutTile.TimeoutState> {
 
     @Override
     public DetailAdapter getDetailAdapter() {
-        return new ScreenTimeoutDetailAdapter();
+        return new LocationDetailAdapter();
     }
 
     private ContentObserver mObserver = new ContentObserver(mHandler) {
@@ -267,8 +266,7 @@ public class ScreenTimeoutTile extends QSTile<ScreenTimeoutTile.TimeoutState> {
         }
 
     }
-    private class ScreenTimeoutDetailAdapter implements DetailAdapter,
-            AdapterView.OnItemClickListener {
+    private class LocationDetailAdapter implements DetailAdapter, AdapterView.OnItemClickListener {
         private QSDetailItemsList mItems;
 
         @Override
@@ -284,11 +282,6 @@ public class ScreenTimeoutTile extends QSTile<ScreenTimeoutTile.TimeoutState> {
         @Override
         public Intent getSettingsIntent() {
             return SETTINGS_INTENT;
-        }
-
-        @Override
-        public StatusBarPanelCustomTile getCustomTile() {
-            return null;
         }
 
         @Override

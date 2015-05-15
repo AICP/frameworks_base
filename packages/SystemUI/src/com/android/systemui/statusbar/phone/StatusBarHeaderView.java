@@ -145,6 +145,7 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
     private boolean mShowBatteryTextExpanded;
 
     protected Vibrator mVibrator;
+    private boolean mVibrationEnabled;
 
     private boolean mQSCSwitch = false;
 
@@ -551,8 +552,13 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
     }
 
     public void vibrate (int duration) {
+        if (!mVibrationEnabled) {
+            return;
+        }
         if (mVibrator != null) {
-            if (mVibrator.hasVibrator()) { mVibrator.vibrate(duration); }
+            if (mVibrator.hasVibrator()) {
+                mVibrator.vibrate(duration);
+            }
         }
     }
 
@@ -970,6 +976,9 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.QS_COLOR_SWITCH), false, this,
                     UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.HAPTIC_FEEDBACK_ENABLED),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -1011,6 +1020,9 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
 
             mQSCSwitch = Settings.System.getInt(
                     resolver, Settings.System.QS_COLOR_SWITCH, 0) == 1;
+
+            mVibrationEnabled = Settings.System.getIntForUser(mContext.getContentResolver(),
+                    Settings.System.HAPTIC_FEEDBACK_ENABLED, 1, UserHandle.USER_CURRENT) == 1;
 
             updateVisibilities();
             requestCaptureValues();

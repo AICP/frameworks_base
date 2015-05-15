@@ -174,9 +174,13 @@ public class QSPanel extends ViewGroup {
     }
 
     public void vibrateTile(int duration) {
-        if (!mVibrationEnabled) { return; }
+        if (!mVibrationEnabled) {
+            return;
+        }
         if (mVibrator != null) {
-            if (mVibrator.hasVibrator()) { mVibrator.vibrate(duration); }
+            if (mVibrator.hasVibrator()) {
+                mVibrator.vibrate(duration);
+            }
         }
     }
 
@@ -763,6 +767,9 @@ public class QSPanel extends ViewGroup {
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.QUICK_SETTINGS_TILES_VIBRATE),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.HAPTIC_FEEDBACK_ENABLED),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -796,9 +803,11 @@ public class QSPanel extends ViewGroup {
             mQSCSwitch = Settings.System.getInt(
             mContext.getContentResolver(), Settings.System.QS_COLOR_SWITCH,
                 0) == 1;
-            mVibrationEnabled = Settings.System.getIntForUser(
+            mVibrationEnabled = ((Settings.System.getIntForUser(
             mContext.getContentResolver(), Settings.System.QUICK_SETTINGS_TILES_VIBRATE,
-                0, UserHandle.USER_CURRENT) == 1;
+                0, UserHandle.USER_CURRENT) == 1) &&
+                (Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.HAPTIC_FEEDBACK_ENABLED, 1, UserHandle.USER_CURRENT) == 1));
         }
     }
 }

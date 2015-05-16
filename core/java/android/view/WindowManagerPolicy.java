@@ -417,6 +417,7 @@ public interface WindowManagerPolicy {
         public void rebootSafeMode(boolean confirm);
 
         public void rebootTile();
+        public void reboot();
 
         /**
          * Return the window manager lock needed to correctly call "Lw" methods.

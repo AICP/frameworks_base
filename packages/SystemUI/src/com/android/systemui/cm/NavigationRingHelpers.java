@@ -118,6 +118,10 @@ public class NavigationRingHelpers {
             resourceId = R.drawable.ic_navigation_ring_search;
         } else if (action.equals(ACTION_POWER_MENU)) {
             resourceId = R.drawable.ic_navigation_ring_standby;
+        } else if (action.equals(ACTION_LAST_APP)) {
+            resourceId = R.drawable.ic_navigation_ring_last_app;
+        } else if (action.equals(ACTION_EXPANDED_DESKTOP)) {
+            resourceId = R.drawable.ic_navigation_ring_expanded_desktop;
         }
 
         if (resourceId < 0) {

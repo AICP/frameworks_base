@@ -517,6 +517,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.BATTERY_SAVER_MODE_COLOR),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.NOTIFICATION_DRAWER_CLEAR_ALL_ICON_COLOR),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -562,6 +565,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                         mBatterySaverWarningColor = mContext.getResources()
                                 .getColor(com.android.internal.R.color.battery_saver_mode_color);
                     }
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.NOTIFICATION_DRAWER_CLEAR_ALL_ICON_COLOR))) {
+                    UpdateNotifDrawerClearAllIconColor();
             }
             update();
         }
@@ -1390,6 +1396,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         startGlyphRasterizeHack();
         setKeyguardTextAndIconColors();
+        UpdateNotifDrawerClearAllIconColor();
         return mStatusBarView;
     }
 
@@ -2545,6 +2552,15 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
         mClockLocation = mode;
         mShowClock = enabled;
+    }
+
+    private void UpdateNotifDrawerClearAllIconColor() {
+        int color = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.NOTIFICATION_DRAWER_CLEAR_ALL_ICON_COLOR,
+                0xffffffff, mCurrentUserId);
+        if (mDismissView != null) {
+            mDismissView.updateIconColor(color);
+        }
     }
 
     private int adjustDisableFlags(int state) {

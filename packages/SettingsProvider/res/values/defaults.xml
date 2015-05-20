@@ -265,4 +265,6 @@
     <!-- Default for Settings.Global.TETHER_DUN_REQUIRED -->
     <integer name="def_tether_dun_required">0</integer>
 
+   <!-- Defaults for Settings.Secure.SPELL_CHECKER_ENABLED. -->
+    <bool name="def_spell_checker">true</bool>
 </resources>

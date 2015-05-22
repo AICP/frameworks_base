@@ -660,7 +660,8 @@ public final class SystemServer {
                 }
             }
 
-            if (!disableNonCoreServices) {
+            if (!disableNonCoreServices &&
+                    mPackageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) {
                 try {
                     Slog.i(TAG, "TorchService");
                     ServiceManager.addService(Context.TORCH_SERVICE, new TorchService(context));

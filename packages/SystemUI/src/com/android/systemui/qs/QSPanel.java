@@ -805,7 +805,7 @@ public class QSPanel extends ViewGroup {
                 0) == 1;
             mVibrationEnabled = ((Settings.System.getIntForUser(
             mContext.getContentResolver(), Settings.System.QUICK_SETTINGS_TILES_VIBRATE,
-                0, UserHandle.USER_CURRENT) == 1) &&
+                0, UserHandle.USER_CURRENT) == 1) ||
                 (Settings.System.getIntForUser(mContext.getContentResolver(),
                 Settings.System.HAPTIC_FEEDBACK_ENABLED, 1, UserHandle.USER_CURRENT) == 1));
         }

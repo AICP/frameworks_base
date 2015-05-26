@@ -21,17 +21,14 @@ package com.android.systemui.statusbar.policy;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import com.android.systemui.R;
 
 class TelephonyIcons {
-
-    private static Context mContext;
-
     //***** Signal strength icons
+
     //GSM/UMTS
     static final int[][] TELEPHONY_SIGNAL_STRENGTH = {
         { R.drawable.stat_sys_signal_0,
@@ -477,8 +474,7 @@ class TelephonyIcons {
                     mSelectedSignalStreagthIndex[sub] = SIGNAL_STRENGTH_TYPE_3G;
                 break;
             case TelephonyManager.NETWORK_TYPE_LTE:
-                if (Settings.System.getInt(mContext.getContentResolver(),
-                        Settings.System.SHOW_FOURG, 0) == 1) {
+                if (show4GforLte) {
                     mSelectedDataActivityIndex[sub] = DATA_TYPE_4G;
                     mSelectedDataTypeIcon[sub] = mRes.getIdentifier(
                             mDataTypeGenerationArray[1], null, NS);

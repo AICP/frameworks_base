@@ -299,6 +299,8 @@ public class KeyguardStatusView extends GridLayout implements
     private void updateWeatherSettings(boolean forceHide) {
         final ContentResolver resolver = getContext().getContentResolver();
         final Resources res = getContext().getResources();
+        View weatherPanel = findViewById(R.id.weather_panel);
+        TextView noWeatherInfo = (TextView) findViewById(R.id.no_weather_info_text);
 
         mShowWeather = Settings.System.getInt(resolver,
                 Settings.System.LOCK_SCREEN_SHOW_WEATHER, 0) == 1;
@@ -325,17 +327,24 @@ public class KeyguardStatusView extends GridLayout implements
         int iconColor = Settings.System.getInt(resolver,
                 Settings.System.LOCK_SCREEN_ICON_COLOR, defaultIconColor);
 
+        mWeatherView.setVisibility(mShowWeather ? View.VISIBLE : View.GONE);
         if (forceHide) {
-            mWeatherView.setVisibility(View.GONE);
+            noWeatherInfo.setVisibility(View.VISIBLE);
+            weatherPanel.setVisibility(View.GONE);
+            mWeatherConditionText.setVisibility(View.GONE);
+            mWeatherTimestamp.setVisibility(View.GONE);
         } else {
-            mWeatherView.setVisibility(mShowWeather ? View.VISIBLE : View.GONE);
+            noWeatherInfo.setVisibility(View.GONE);
+            weatherPanel.setVisibility(View.VISIBLE);
+            mWeatherConditionText.setVisibility(View.VISIBLE);
+            mWeatherCity.setVisibility(showLocation ? View.VISIBLE : View.INVISIBLE);
+            mWeatherTimestamp.setVisibility(showTimestamp ? View.VISIBLE : View.GONE);
         }
-        mWeatherCity.setVisibility(showLocation ? View.VISIBLE : View.INVISIBLE);
-        mWeatherTimestamp.setVisibility(showTimestamp ? View.VISIBLE : View.GONE);
 
         mAlarmStatusView.setTextColor(alarmTextAndIconColor);
         mDateView.setTextColor(primaryTextColor);
         mClockView.setTextColor(primaryTextColor);
+        noWeatherInfo.setTextColor(primaryTextColor);
         mWeatherCity.setTextColor(primaryTextColor);
         mWeatherConditionText.setTextColor(primaryTextColor);
         mWeatherCurrentTemp.setTextColor(primaryTextColor);

@@ -65,6 +65,7 @@ interface IStatusBarService
     void cancelPreloadRecentApps();
     void setAutoRotate(boolean enabled);
     void showCustomIntentAfterKeyguard(inout Intent intent);
+    void setPieTriggerMask(int newMask, boolean lock);
     void toggleLastApp();
     void toggleKillApp();
     void toggleScreenshot();

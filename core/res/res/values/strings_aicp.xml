@@ -42,11 +42,29 @@
     <string name="action_null">Blank</string>
 
     <!-- [CHAR LIMIT=NONE] Message shown in dialog on first boot after clean install for each .apk that is optimized. -->
-   <string name="android_installing_apk">Installing app
-   <xliff:g id="number" example="123">%1$d</xliff:g> of
-   <xliff:g id="number" example="123">%2$d</xliff:g>.</string>
+    <string name="android_installing_apk">Installing app
+    <xliff:g id="number" example="123">%1$d</xliff:g> of
+    <xliff:g id="number" example="123">%2$d</xliff:g>.</string>
 
    <!-- [CHAR LIMIT=40] Title of dialog that is shown when performing a system install. -->
    <string name="android_installing_title">AICP is installing\u2026</string>
+
+    <!-- status message in phone options dialog for when pie is on -->
+    <string name="global_actions_pie_mode_on_status">SlimPie is ON</string>
+
+    <!-- status message in phone options dialog for when pie is off -->
+    <string name="global_actions_pie_mode_off_status">SlimPie is OFF</string>
+
+    <!-- Error message if user want to try to disable all navigation options -->
+    <string name="disable_pie_navigation_error">You cannot disable pie controls. No other navigation is enabled. Enable first the navigation bar to turn off pie controls.</string>
+
+    <!-- status message in phone options dialog for when navigation bar is on -->
+    <string name="global_actions_nav_bar_mode_on_status">Navigation bar is ON</string>
+
+    <!-- status message in phone options dialog for when navigation bar is off -->
+    <string name="global_actions_nav_bar_mode_off_status">Navigation bar is OFF</string>
+
+    <!-- Error message if user want to try to disable all navigation options -->
+    <string name="disable_navigation_pie_error">You cannot disable the navigation bar. No other navigation is enabled. Enable first pie controls to turn off the navigation bar.</string>
 
 </resources>

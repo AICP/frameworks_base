@@ -28,6 +28,7 @@ public class ActionConstants {
     public static final String ACTION_MENU_BIG             = "**menu_big**";
     public static final String ACTION_POWER                = "**power**";
     public static final String ACTION_NOTIFICATIONS        = "**notifications**";
+    public static final String ACTION_SETTINGS_PANEL       = "**settings_panel**";
     public static final String ACTION_RECENTS              = "**recents**";
     public static final String ACTION_SCREENSHOT           = "**screenshot**";
     public static final String ACTION_IME                  = "**ime**";

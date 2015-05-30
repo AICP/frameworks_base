@@ -4281,6 +4281,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         removeHeadsUpView();
 
+        attachPieContainer(!isPieEnabled());
+
         mStatusBarWindow.removeContent(mStatusBarWindowContent);
         mStatusBarWindow.clearDisappearingChildren();
 
@@ -4314,6 +4316,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         makeStatusBarView();
         repositionNavigationBar();
         addHeadsUpView();
+        attachPieContainer(isPieEnabled());
         if (mNavigationBarView != null) {
             mNavigationBarView.updateResources(getNavbarThemedResources());
         }

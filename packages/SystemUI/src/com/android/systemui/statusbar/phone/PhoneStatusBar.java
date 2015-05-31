@@ -276,6 +276,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     /** Allow some time inbetween the long press for back and recents. */
     private static final int LOCK_TO_APP_GESTURE_TOLERENCE = 200;
 
+    private final int HEADSUP_DEFAULT_BACKGROUNDCOLOR = 0x00ffffff;
+
     PhoneStatusBarPolicy mIconPolicy;
 
     // These are no longer handled by the policy, because we need custom strategies for them
@@ -400,6 +402,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private ImageView aicpLogo;
 
     private boolean mQSCSwitch;
+
+    // Heads Up Custom Colors
+    private int mHeadsUpCustomBg;
+    private int mHeadsUpCustomText;
 
     // position
     int[] mPositionTmp = new int[2];
@@ -533,6 +539,12 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.PIE_CONTROLS),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.HEADS_UP_BG_COLOR),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.HEADS_UP_TEXT_COLOR),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -592,6 +604,18 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.PIE_CONTROLS))) {
                     attachPieContainer(isPieEnabled());
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.HEADS_UP_BG_COLOR))) {
+                    mHeadsUpCustomBg = Settings.System.getIntForUser(
+                        mContext.getContentResolver(),
+                        Settings.System.HEADS_UP_BG_COLOR, HEADSUP_DEFAULT_BACKGROUNDCOLOR,
+                        UserHandle.USER_CURRENT);
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.HEADS_UP_TEXT_COLOR))) {
+                    mHeadsUpCustomText = Settings.System.getIntForUser(
+                        mContext.getContentResolver(),
+                        Settings.System.HEADS_UP_TEXT_COLOR, 0x00000000,
+                        UserHandle.USER_CURRENT);
             }
             update();
         }
@@ -1044,12 +1068,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             mNotificationPanel.setBackground(new FastColorDrawable(context.getResources().getColor(
                     R.color.notification_panel_solid_background)));
         }
+
         if (ENABLE_HEADS_UP) {
             mHeadsUpNotificationView =
                     (HeadsUpNotificationView) View.inflate(context, R.layout.heads_up, null);
-            mHeadsUpNotificationView.setVisibility(View.GONE);
-            mHeadsUpNotificationView.setBar(this);
-
             mHeadsUpNotificationView.setVisibility(View.GONE);
             mHeadsUpNotificationView.setBar(this);
             mHeadsUpNotificationDecay = Settings.System.getIntForUser(
@@ -1058,6 +1080,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     res.getInteger(R.integer.heads_up_notification_decay),
                     UserHandle.USER_CURRENT);
         }
+
         if (MULTIUSER_DEBUG) {
             mNotificationPanelDebugText = (TextView) mNotificationPanel.findViewById(
                     R.id.header_debug_info);
@@ -1882,9 +1905,22 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             if (DEBUG) Log.d(TAG, "launching notification in heads up mode");
             Entry interruptionCandidate = new Entry(notification, null);
             ViewGroup holder = mHeadsUpNotificationView.getHolder();
-            if (inflateViewsForHeadsUp(interruptionCandidate, holder)) {
+
+            // get text color value
+            int mHeadsUpCustomTextColor = Settings.System.getIntForUser(
+                mContext.getContentResolver(), Settings.System.HEADS_UP_TEXT_COLOR,
+                0x00000000, UserHandle.USER_CURRENT);
+
+            if (inflateViews(interruptionCandidate, holder, true, mHeadsUpCustomTextColor)) {
+
+                // get background value
+                int mHeadsUpCustomBg = Settings.System.getIntForUser(
+                    mContext.getContentResolver(), Settings.System.HEADS_UP_BG_COLOR,
+                    HEADSUP_DEFAULT_BACKGROUNDCOLOR, UserHandle.USER_CURRENT);
+
                 // 1. Populate mHeadsUpNotificationView
-                mHeadsUpNotificationView.showNotification(interruptionCandidate);
+                mHeadsUpNotificationView.showNotification(interruptionCandidate,
+                    mHeadsUpCustomBg);
 
                 // do not show the notification in the shade, yet.
                 return;

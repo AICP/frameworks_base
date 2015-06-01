@@ -1271,7 +1271,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             mHotspotController = new HotspotControllerImpl(mContext);
         }
         if (mBluetoothController == null) {
-            mBluetoothController = new BluetoothControllerImpl(mContext);
+            mBluetoothController = new BluetoothControllerImpl(mContext, mHandlerThread.getLooper());
         }
         if (mSecurityController == null) {
             mSecurityController = new SecurityControllerImpl(mContext);

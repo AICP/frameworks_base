@@ -4317,7 +4317,7 @@ public final class ActivityThread {
                     + DisplayMetrics.DENSITY_DEVICE + " to "
                     + mCurDefaultDisplayDpi);
             DisplayMetrics.DENSITY_DEVICE = mCurDefaultDisplayDpi;
-            Bitmap.setDefaultDensity(DisplayMetrics.DENSITY_DEVICE);
+            Bitmap.setDefaultDensity(DisplayMetrics.DENSITY_DEFAULT);
         }
     }
 

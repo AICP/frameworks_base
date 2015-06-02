@@ -20,6 +20,7 @@ import android.app.ActivityManager;
 import android.app.ActivityManagerNative;
 import android.app.AppOpsManager;
 import android.app.IUiModeManager;
+import android.app.KeyguardManager;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.app.StatusBarManager;
@@ -719,6 +720,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private boolean mClearedBecauseOfForceShow;
     private boolean mTopWindowIsKeyguard;
 
+    boolean mPowerMenuOnLockscreen;
+
     // QS Power menu tile
     PowerMenuReceiver mPowerMenuReceiver;
     class PowerMenuReceiver extends BroadcastReceiver {
@@ -928,6 +931,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     Settings.System.ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER), false, this);
             resolver.registerContentObserver(Settings.Secure.getUriFor(
                     Settings.Secure.KILL_APP_LONGPRESS_TIMEOUT), false, this,
+                    UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.LOCKSCREEN_ENABLE_POWER_MENU), false, this,
                     UserHandle.USER_ALL);
 
             updateSettings();
@@ -1331,7 +1337,12 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     }
 
     private void powerLongPress() {
-        final int behavior = getResolvedLongPressOnPowerBehavior();
+        int behavior = getResolvedLongPressOnPowerBehavior();
+        if (mShowingLockscreen && !mPowerMenuOnLockscreen) {
+            mIncallPowerBehavior = LONG_PRESS_POWER_NOTHING;
+            cancelPendingPowerKeyAction();
+            return;
+        }
         switch (behavior) {
         case LONG_PRESS_POWER_NOTHING:
             break;
@@ -1441,7 +1452,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         @Override
         public void run() {
             sendCloseSystemWindows(SYSTEM_DIALOG_REASON_GLOBAL_ACTIONS);
-            showGlobalActionsInternal(false);
+            showGlobalActionsInternal();
         }
     };
 
@@ -2084,6 +2095,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     ((mDeviceHardwareWakeKeys & KEY_MASK_VOLUME) != 0);
             mVolumeAnswer = (Settings.System.getIntForUser(resolver,
                     Settings.System.ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER, 0, UserHandle.USER_CURRENT) == 1);
+            mPowerMenuOnLockscreen = Settings.System.getIntForUser(resolver,
+                    Settings.System.LOCKSCREEN_ENABLE_POWER_MENU,
+                    1, UserHandle.USER_CURRENT) != 0;
 
 
             // Configure wake gesture.

@@ -112,9 +112,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:textAppearance="@style/TextAppearance.StatusBar.Clock"
-                    android:singleLine="true"
                     android:visibility="gone"
-                    android:ellipsize="end"/>
+                    android:singleLine="true"
+                />
 
                 <com.android.systemui.statusbar.StatusBarIconView android:id="@+id/moreIcon"
                     android:layout_width="@dimen/status_bar_icon_size"

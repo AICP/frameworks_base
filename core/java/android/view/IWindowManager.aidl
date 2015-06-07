@@ -286,4 +286,11 @@ interface IWindowManager
      * @hide
      */
     void toggleGlobalMenu();
+
+    /**
+     * Get current system ui visibility mode.
+     *
+     * @hide
+     */
+    int getSystemUIVisibility();
 }

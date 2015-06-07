@@ -5963,6 +5963,33 @@ public final class Settings {
         /** @hide */
         private static final Validator ONE_HAND_MODE_ENABLED_VALIDATOR = BOOLEAN_VALIDATOR;
 
+        /**
+         * Whether to wake the screen with the camera key half-press.
+         * @hide
+         */
+        public static final String CAMERA_WAKE_SCREEN = "camera_wake_screen";
+
+        /** @hide */
+        private static final Validator CAMERA_WAKE_SCREEN_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
+         * Whether or not to send device back to sleep if Camera button is released ("Peek")
+         * @hide
+         */
+        public static final String CAMERA_SLEEP_ON_RELEASE = "camera_sleep_on_release";
+
+        /** @hide */
+        private static final Validator CAMERA_SLEEP_ON_RELEASE_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
+         * Whether to launch secure camera app when key is longpressed
+         * @hide
+         */
+        public static final String CAMERA_LAUNCH = "camera_launch";
+
+        /** @hide */
+        private static final Validator CAMERA_LAUNCH_VALIDATOR = BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6193,6 +6220,9 @@ public final class Settings {
             SLIM_RECENT_ENTER_EXIT_ANIMATION,
             PROXIMITY_ON_WAKE,
             ONE_HAND_MODE_ENABLED,
+            CAMERA_WAKE_SCREEN,
+            CAMERA_SLEEP_ON_RELEASE,
+            CAMERA_LAUNCH,
             // AICP Settings end
         };
 
@@ -6471,6 +6501,9 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SLIM_RECENT_ENTER_EXIT_ANIMATION);
             PRIVATE_SETTINGS.add(PROXIMITY_ON_WAKE);
             PRIVATE_SETTINGS.add(ONE_HAND_MODE_ENABLED);
+            PRIVATE_SETTINGS.add(CAMERA_WAKE_SCREEN);
+            PRIVATE_SETTINGS.add(CAMERA_SLEEP_ON_RELEASE);
+            PRIVATE_SETTINGS.add(CAMERA_LAUNCH);
             // AICP Settings end
         }
 
@@ -6750,6 +6783,9 @@ public final class Settings {
             VALIDATORS.put(SLIM_RECENT_ENTER_EXIT_ANIMATION, SLIM_RECENT_ENTER_EXIT_ANIMATION_VALIDATOR);
             VALIDATORS.put(PROXIMITY_ON_WAKE,PROXIMITY_ON_WAKE_VALIDATOR);
             VALIDATORS.put(ONE_HAND_MODE_ENABLED,ONE_HAND_MODE_ENABLED_VALIDATOR);
+            VALIDATORS.put(CAMERA_WAKE_SCREEN, CAMERA_WAKE_SCREEN_VALIDATOR);
+            VALIDATORS.put(CAMERA_SLEEP_ON_RELEASE, CAMERA_SLEEP_ON_RELEASE_VALIDATOR);
+            VALIDATORS.put(CAMERA_LAUNCH, CAMERA_LAUNCH_VALIDATOR);
             // AICP Settings end
         }
 

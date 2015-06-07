@@ -243,5 +243,7 @@ public class SystemSettings {
         Settings.System.BATTERY_LIGHT_BLEND_REVERSE,
         Settings.System.VIBRATE_ON_NOTIFICATIONS,
         Settings.System.HEADSET_CONNECT_PLAYER,
+        Settings.System.CAMERA_SLEEP_ON_RELEASE,
+        Settings.System.CAMERA_LAUNCH,
     };
 }

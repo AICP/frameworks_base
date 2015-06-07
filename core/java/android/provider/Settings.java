@@ -6223,6 +6223,18 @@ public final class Settings {
          */
         public static final String HEADSET_CONNECT_PLAYER = "headset_connect_player";
 
+        /**
+         * Whether to wake the screen with the camera key, the value is boolean.
+         * @hide
+         */
+        public static final String CAMERA_SLEEP_ON_RELEASE = "camera_sleep_on_release";
+
+        /**
+         * Whether to wake the screen with the camera key, the value is boolean.
+         * @hide
+         */
+        public static final String CAMERA_LAUNCH = "camera_launch";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6501,6 +6513,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(BATTERY_LIGHT_BLEND_REVERSE);
             PRIVATE_SETTINGS.add(VIBRATE_ON_NOTIFICATIONS);
             PRIVATE_SETTINGS.add(HEADSET_CONNECT_PLAYER);
+            PRIVATE_SETTINGS.add(CAMERA_SLEEP_ON_RELEASE);
+            PRIVATE_SETTINGS.add(CAMERA_LAUNCH);
         }
 
         /**

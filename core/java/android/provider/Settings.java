@@ -6631,6 +6631,18 @@ public final class Settings {
          */
         public static final String HEADSET_CONNECT_PLAYER = "headset_connect_player";
 
+        /**
+         * Whether to wake the screen with the camera key, the value is boolean.
+         * @hide
+         */
+        public static final String CAMERA_SLEEP_ON_RELEASE = "camera_sleep_on_release";
+
+        /**
+         * Whether to wake the screen with the camera key, the value is boolean.
+         * @hide
+         */
+        public static final String CAMERA_LAUNCH = "camera_launch";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6862,6 +6874,8 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(FLASHLIGHT_ON_CALL_IGNORE_DND, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(FLASHLIGHT_ON_CALL_RATE, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(HEADSET_CONNECT_PLAYER, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(CAMERA_SLEEP_ON_RELEASE, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(CAMERA_LAUNCH, BOOLEAN_VALIDATOR);
         }
 
         /**

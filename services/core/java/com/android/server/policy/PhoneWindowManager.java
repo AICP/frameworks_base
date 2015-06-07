@@ -94,6 +94,7 @@ import static com.android.server.policy.HardkeyActionHandler.KEY_MASK_BACK;
 import static com.android.server.policy.HardkeyActionHandler.KEY_MASK_MENU;
 import static com.android.server.policy.HardkeyActionHandler.KEY_MASK_ASSIST;
 import static com.android.server.policy.HardkeyActionHandler.KEY_MASK_APP_SWITCH;
+import static com.android.server.policy.HardkeyActionHandler.KEY_MASK_CAMERA;
 
 import android.Manifest;
 import android.annotation.Nullable;
@@ -531,9 +532,17 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     boolean mWakeOnDpadKeyPress;
     boolean mWakeOnAssistKeyPress;
     boolean mWakeOnBackKeyPress;
+    boolean mWakeOnCameraKeyPress;
     private HardkeyActionHandler mKeyHandler;
 
     int mDeviceHardwareKeys;
+
+    // Camera button control flags and actions
+    boolean mCameraLaunch;
+    boolean mCameraSleepOnRelease;
+    boolean mFocusReleasedGoToSleep;
+    boolean mIsFocusPressed;
+    boolean mIsLongPress;
 
     boolean mNavBarEnabled = false;
 
@@ -725,6 +734,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private static final int MSG_RINGER_TOGGLE_CHORD = 26;
     private static final int MSG_TOGGLE_TORCH = 27;
     private static final int MSG_DISPATCH_VOLKEY_WITH_WAKE_LOCK = 28;
+    private static final int MSG_CAMERA_LONG_PRESS = 29;
 
     // omni additions start
     private boolean mOmniSwitchRecents;
@@ -751,6 +761,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     boolean mHomeWakeScreen;
     boolean mBackWakeScreen;
     boolean mMenuWakeScreen;
+    boolean mCameraWakeScreen;
     boolean mAssistWakeScreen;
     boolean mAppSwitchWakeScreen;
     boolean mVolumeRockerWake;
@@ -764,6 +775,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private class PolicyHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
+            KeyEvent event;
             switch (msg.what) {
                 case MSG_DISPATCH_MEDIA_KEY_WITH_WAKE_LOCK:
                     dispatchMediaKeyWithWakeLock((KeyEvent)msg.obj);
@@ -842,6 +854,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 case MSG_HANDLE_ALL_APPS:
                     launchAllAppsAction();
                     break;
+                case MSG_CAMERA_LONG_PRESS:
+                    event = (KeyEvent) msg.obj;
+                    mIsLongPress = true;
+                    break;
                 case MSG_RINGER_TOGGLE_CHORD:
                     handleRingerChordGesture();
                     break;
@@ -857,7 +873,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, false, "Hardkey Long-Press");
                     break;
                 case MSG_DISPATCH_VOLKEY_WITH_WAKE_LOCK: {
-                    KeyEvent event = (KeyEvent) msg.obj;
+                    event = (KeyEvent) msg.obj;
                     dispatchMediaKeyWithWakeLockToAudioService(event);
                     dispatchMediaKeyWithWakeLockToAudioService(
                             KeyEvent.changeAction(event, KeyEvent.ACTION_UP));
@@ -996,6 +1012,15 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.KEY_CAMERA_DOUBLE_TAP_ACTION), false, this,
+                    UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.CAMERA_WAKE_SCREEN), false, this,
+                    UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.CAMERA_SLEEP_ON_RELEASE), false, this,
+                    UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.CAMERA_LAUNCH), false, this,
                     UserHandle.USER_ALL);
             updateSettings();
         }
@@ -2564,6 +2589,18 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     Settings.System.APP_SWITCH_WAKE_SCREEN, 0,
                     UserHandle.USER_CURRENT) == 1) &&
                     ((mDeviceHardwareWakeKeys & KEY_MASK_APP_SWITCH) != 0);
+
+            // camera button wake screen
+            mCameraWakeScreen = (Settings.System.getIntForUser(resolver,
+                    Settings.System.CAMERA_WAKE_SCREEN, 0, UserHandle.USER_CURRENT) == 1)
+                    && ((mDeviceHardwareWakeKeys & KEY_MASK_CAMERA) != 0);
+            mCameraSleepOnRelease = mCameraWakeScreen &&
+                    Settings.System.getIntForUser(resolver,
+                            Settings.System.CAMERA_SLEEP_ON_RELEASE, 0,
+                            UserHandle.USER_CURRENT) == 1;
+            mCameraLaunch = Settings.System.getIntForUser(resolver,
+                    Settings.System.CAMERA_LAUNCH, 0,
+                    UserHandle.USER_CURRENT) == 1;
 
             // volume rocker wake
             mVolumeRockerWake = Settings.System.getIntForUser(resolver,
@@ -4792,6 +4829,50 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 }
                 break;
 
+            case KeyEvent.KEYCODE_FOCUS:
+                if (down && !interactive && mCameraSleepOnRelease) {
+                    mIsFocusPressed = true;
+                } else if (!down) {
+                    // Check if screen is fully on before letting the device go to sleep
+                    if (mDefaultDisplayPolicy.isScreenOnFully() && mIsFocusPressed) {
+                        mPowerManager.goToSleep(SystemClock.uptimeMillis());
+                    } else if (mCameraSleepOnRelease) {
+                        mFocusReleasedGoToSleep = true;
+                    }
+                    mIsFocusPressed = false;
+                }
+                break;
+
+            case KeyEvent.KEYCODE_CAMERA:
+                if (down && mIsFocusPressed) {
+                    mIsFocusPressed = false;
+                }
+                if (down) {
+                    mIsLongPress = false;
+
+                    KeyEvent newEvent = new KeyEvent(event.getDownTime(), event.getEventTime(),
+                            event.getAction(), keyCode, 0);
+                    Message msg = mHandler.obtainMessage(MSG_CAMERA_LONG_PRESS, newEvent);
+                    msg.setAsynchronous(true);
+                    mHandler.sendMessageDelayed(msg, ViewConfiguration.getLongPressTimeout());
+                    // Consume key down events of all presses.
+                    break;
+                } else {
+                    mHandler.removeMessages(MSG_CAMERA_LONG_PRESS);
+                    // Consume key up events of long presses only.
+                    if (mIsLongPress && mCameraLaunch) {
+                        Intent intent;
+                        if (keyguardActive) {
+                            intent = new Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA_SECURE);
+                        } else {
+                            intent = new Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
+                        }
+                        isWakeKey = true;
+                        startActivityAsUser(intent, UserHandle.CURRENT_OR_SELF);
+                    }
+                }
+                break;
+
             case KeyEvent.KEYCODE_ENDCALL: {
                 result &= ~ACTION_PASS_TO_USER;
                 if (down) {
@@ -5121,6 +5202,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 return mAssistWakeScreen;
             case KeyEvent.KEYCODE_APP_SWITCH:
                 return mAppSwitchWakeScreen;
+            case KeyEvent.KEYCODE_CAMERA:
+            case KeyEvent.KEYCODE_FOCUS:
+                return mCameraWakeScreen;
         }
         return true;
     }
@@ -5175,6 +5259,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 return mAssistWakeScreen;
             case KeyEvent.KEYCODE_APP_SWITCH:
                 return mAppSwitchWakeScreen;
+            case KeyEvent.KEYCODE_CAMERA:
+            case KeyEvent.KEYCODE_FOCUS:
+                return mCameraWakeScreen;
         }
 
         return true;
@@ -5688,6 +5775,11 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 mWindowManager.enableScreenIfNeeded();
             } catch (RemoteException unhandled) {
             }
+        }
+
+        if (mFocusReleasedGoToSleep) {
+            mFocusReleasedGoToSleep = false;
+            mPowerManager.goToSleep(SystemClock.uptimeMillis());
         }
     }
 

@@ -199,5 +199,8 @@ public class SystemSettings {
         Settings.System.MENU_WAKE_SCREEN,
         Settings.System.ASSIST_WAKE_SCREEN,
         Settings.System.APP_SWITCH_WAKE_SCREEN,
+        Settings.System.CAMERA_WAKE_SCREEN,
+        Settings.System.CAMERA_SLEEP_ON_RELEASE,
+        Settings.System.CAMERA_LAUNCH,
     };
 }

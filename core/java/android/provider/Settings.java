@@ -5817,9 +5817,27 @@ public final class Settings {
          * Whether to wake the screen with the camera key, the value is boolean.
          * @hide
          */
-        public static final String CAMERA_WAKE_SCREEN = "assist_wake_screen";
+        public static final String CAMERA_WAKE_SCREEN = "camera_wake_screen";
         /** @hide */
         private static final Validator CAMERA_WAKE_SCREEN_VALIDATOR =
+               BOOLEAN_VALIDATOR;
+
+        /**
+         * Whether to wake the screen with the camera key, the value is boolean.
+         * @hide
+         */
+        public static final String CAMERA_SLEEP_ON_RELEASE = "camera_sleep_on_release";
+        /** @hide */
+        private static final Validator CAMERA_SLEEP_ON_RELEASE_VALIDATOR =
+               BOOLEAN_VALIDATOR;
+
+        /**
+         * Whether to wake the screen with the camera key, the value is boolean.
+         * @hide
+         */
+        public static final String CAMERA_LAUNCH = "camera_launch";
+        /** @hide */
+        private static final Validator CAMERA_LAUNCH_VALIDATOR =
                BOOLEAN_VALIDATOR;
 
         /**
@@ -6499,6 +6517,8 @@ public final class Settings {
             ASSIST_WAKE_SCREEN,
             APP_SWITCH_WAKE_SCREEN,
             CAMERA_WAKE_SCREEN,
+            CAMERA_SLEEP_ON_RELEASE,
+            CAMERA_LAUNCH,
             THEMING_SETTINGS_DASHBOARD_ICONS,
             POCKET_JUDGE,
             STATUS_BAR_BRIGHTNESS_CONTROL,
@@ -6795,6 +6815,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(ASSIST_WAKE_SCREEN);
             PRIVATE_SETTINGS.add(APP_SWITCH_WAKE_SCREEN);
             PRIVATE_SETTINGS.add(CAMERA_WAKE_SCREEN);
+            PRIVATE_SETTINGS.add(CAMERA_SLEEP_ON_RELEASE);
+            PRIVATE_SETTINGS.add(CAMERA_LAUNCH);
             PRIVATE_SETTINGS.add(THEMING_SETTINGS_DASHBOARD_ICONS);
             PRIVATE_SETTINGS.add(POCKET_JUDGE);
             PRIVATE_SETTINGS.add(STATUS_BAR_BRIGHTNESS_CONTROL);
@@ -7078,6 +7100,8 @@ public final class Settings {
             VALIDATORS.put(ASSIST_WAKE_SCREEN, ASSIST_WAKE_SCREEN_VALIDATOR);
             VALIDATORS.put(APP_SWITCH_WAKE_SCREEN, APP_SWITCH_WAKE_SCREEN_VALIDATOR);
             VALIDATORS.put(CAMERA_WAKE_SCREEN, CAMERA_WAKE_SCREEN_VALIDATOR);
+            VALIDATORS.put(CAMERA_SLEEP_ON_RELEASE, CAMERA_SLEEP_ON_RELEASE_VALIDATOR);
+            VALIDATORS.put(CAMERA_LAUNCH, CAMERA_LAUNCH_VALIDATOR);
             VALIDATORS.put(THEMING_SETTINGS_DASHBOARD_ICONS, THEMING_SETTINGS_DASHBOARD_ICONS_VALIDATOR);
             VALIDATORS.put(POCKET_JUDGE, POCKET_JUDGE_VALIDATOR);
             VALIDATORS.put(STATUS_BAR_BRIGHTNESS_CONTROL, STATUS_BAR_BRIGHTNESS_CONTROL_VALIDATOR);

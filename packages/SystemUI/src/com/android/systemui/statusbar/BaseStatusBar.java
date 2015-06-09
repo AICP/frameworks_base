@@ -1328,6 +1328,8 @@ public abstract class BaseStatusBar extends SystemUI implements
         } else {
             if (mRecents != null) {
                 mRecents.hideRecents(triggeredFromAltTab, triggeredFromHomeKey);
+            } else if (mSlimRecents != null) {
+                mSlimRecents.hideRecents(triggeredFromHomeKey);
             }
         }
     }
@@ -1399,6 +1401,7 @@ public abstract class BaseStatusBar extends SystemUI implements
                 Settings.System.USE_SLIM_RECENTS, 0, UserHandle.USER_CURRENT) == 1;
         if (slimRecents) {
             mSlimRecents = new RecentController(mContext, mLayoutDirection);
+            mSlimRecents.setCallback(this);
             mRecents = null;
         } else {
             mRecents = getComponent(RecentsComponent.class);

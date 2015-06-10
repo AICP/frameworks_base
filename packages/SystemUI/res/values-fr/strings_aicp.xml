@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright (c) 2015 AICP Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- App circle sidebar -->
+    <string name="app_float_maximize_item_title">Maximiser</string>
+    <string name="app_float_item_title">Fenêtre flottante</string>
+    <string name="app_stop_item_title">Fermeture forcée de l\'application</string>
+
+    <!-- Power Button for Navbar -->
+    <string name="navbar_power_button">Bouton de mise en veille</string>
+
+    <!-- Greeting -->
+    <string name="aicp_label">Bienvenue sur AICP</string>
+
+    <!-- Off/On/Toggle -->
+    <string name="off">Désactivé</string>
+    <string name="on">Activé</string>
+    <string name="toggle">Basculer</string>
+
+    <!-- Dialog Cancel/OK -->
+    <string name="cancel">Annuler</string>
+    <string name="dlg_ok">Ok</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+
+    <!-- Slim Shortcut Actions -->
+    <string name="shortcut_picker">Raccourcis Slim</string>
+    <string name="shortcut_rotation">Rotation</string>
+    <string name="shortcut_reboot">Redémarrer</string>
+    <string name="shortcut_recovery">Recovery</string>
+    <string name="shortcut_toggle_title">Action à effectuer</string>
+
+    <!-- Kill app toast -->
+    <string name="app_killed_message">Application tuée</string>
+
+    <!-- mount notifications -->
+    <string name="ext_media_mounted_notification_title">monté</string>
+    <string name="ext_media_unmounted_notification_title">démonté</string>
+    <string name="ext_media_unmounted_notification_message">Vous pouvez enlever le stockage en toute sécurité.</string>
+    <string name="ext_media_unmount_action">Démonter</string>
+    <string name="ext_media_mount_action">Monter</string>
+    <string name="ext_media_unmounting_notification_title">démontage\u2026</string>
+    <string name="ext_media_mounting_notification_title">montage\u2026</string>
+
+    <!-- Additional navring targets -->
+    <string name="navring_action_power_menu">Menu d\'alimentation</string>
+    <string name="navring_action_last_app">Dernière application</string>
+    <string name="navring_action_expand_desktop">Bureau élargi</string>
+
+    <string name="gestures_message">Dessiner votre geste ici</string>
+
+    <!-- Battery status in pie controls -->
+    <string name="pie_battery_status_charging">En charge (<xliff:g id="percent">%d</xliff:g>%%)</string>
+    <string name="pie_battery_status_full">Chargée</string>
+    <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% restants</string>
+
+    <!-- Phone status in pie controls -->
+    <string name="pie_phone_status_no_service">Pas de réseau</string>
+    <string name="pie_phone_status_airplane_mode">Mode Avion activé</string>
+    <string name="pie_phone_status_emergency_only">Appels d\'urgence uniquement</string>
+
+</resources>

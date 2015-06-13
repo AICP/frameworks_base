@@ -100,7 +100,7 @@ public class RotationLockTile extends QSTile<QSTile.BooleanState> {
                     : R.drawable.ic_qs_rotation_landscape);
         } else {
             state.label = mContext.getString(R.string.quick_settings_rotation_unlocked_label);
-            state.icon = ResourceIcon.get(R.drawable.ic_qs_rotation_01);
+            state.icon = ResourceIcon.get(R.drawable.ic_qs_rotation_portrait);
         }
         state.contentDescription = getAccessibilityString(rotationLocked,
                 R.string.accessibility_rotation_lock_on_portrait,

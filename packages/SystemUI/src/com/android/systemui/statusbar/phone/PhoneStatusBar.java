@@ -159,7 +159,6 @@ import com.android.systemui.qs.QSPanel;
 import com.android.systemui.recent.ScreenPinningRequest;
 import com.android.systemui.settings.BrightnessController;
 import com.android.systemui.statusbar.ActivatableNotificationView;
-import com.android.systemui.statusbar.AppSidebar;
 import com.android.systemui.statusbar.BackDropView;
 import com.android.systemui.statusbar.BaseStatusBar;
 import com.android.systemui.statusbar.CommandQueue;
@@ -547,9 +546,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.ENABLE_TASK_MANAGER),
                     false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.APP_SIDEBAR_POSITION),
-                    false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -647,14 +643,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
             mHeadsUpTouchOutside = Settings.System.getInt(
                     resolver, Settings.System.HEADS_UP_TOUCH_OUTSIDE, 0) == 1;
-
-            int sidebarPosition = Settings.System.getInt(
-                    resolver, Settings.System.APP_SIDEBAR_POSITION, AppSidebar.SIDEBAR_POSITION_LEFT);
-            if (sidebarPosition != mSidebarPosition) {
-                mSidebarPosition = sidebarPosition;
-                removeSidebarView();
-                addSidebarView();
-            }
 
             if (mNavigationBarView != null) {
                 boolean navLeftInLandscape = Settings.System.getInt(resolver,
@@ -1105,13 +1093,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         updateShowSearchHoldoff();
 
-        if (mRecreating) {
-            removeSidebarView();
-        } else {
-            addAppCircleSidebar();
-            addSidebarView();
-            addGestureAnywhereView();
-        }
+        addGestureAnywhereView();
+        addAppCircleSidebar();
 
         try {
             boolean showNav = mWindowManagerService.hasNavigationBar();
@@ -4097,24 +4080,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 notifyHeadsUpScreenOn(false);
                 finishBarAnimations();
                 resetUserExpandedStates();
-            }
-            else if (Intent.ACTION_CONFIGURATION_CHANGED.equals(action)) {
-                Configuration config = mContext.getResources().getConfiguration();
-                try {
-                    // position app sidebar on left if in landscape orientation and device has a navbar
-                    if (mWindowManagerService.hasNavigationBar() &&
-                            config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                        mWindowManager.updateViewLayout(mAppSidebar,
-                                getAppSidebarLayoutParams(AppSidebar.SIDEBAR_POSITION_LEFT));
-                        mHandler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                mAppSidebar.setPosition(AppSidebar.SIDEBAR_POSITION_LEFT);
-                            }
-                        }, 500);
-                    }
-                } catch (RemoteException e) {
-                }
             }
             else if (Intent.ACTION_SCREEN_ON.equals(action)) {
                 mScreenOn = true;

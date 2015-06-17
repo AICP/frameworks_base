@@ -437,6 +437,14 @@ public class LockPatternUtils {
         }
     }
 
+    public boolean shouldPassToSecurityView(int userId) {
+        return getBoolean(Settings.Secure.LOCK_PASS_TO_SECURITY_VIEW, false, userId);
+    }
+
+    public void setPassToSecurityView(boolean enabled, int userId) {
+        setBoolean(Settings.Secure.LOCK_PASS_TO_SECURITY_VIEW, enabled, userId);
+    }
+
     /**
      * Check if the credential of a managed profile with unified challenge matches. In this context,
      * The credential should be the parent user's lockscreen password. If credential matches,

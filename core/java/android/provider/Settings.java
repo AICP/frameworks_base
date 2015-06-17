@@ -8697,10 +8697,11 @@ public final class Settings {
          */
         public static final String LOCK_SHOW_ERROR_PATH = "lock_pattern_show_error_path";
 
-         /**
-         * @hide.
+        /**
+         * Should directly show unlock screen
+         * @hide
          */
-        public static final String LOCK_PASS_TO_SECURITY_VIEW = "lock_screen_pass_to_security_view";
+        public static final String LOCK_PASS_TO_SECURITY_VIEW = "lock_pass_to_security_view";
 
         /**
          * This preference allows the device to be locked given time after screen goes off,

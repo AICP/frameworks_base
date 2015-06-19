@@ -61,10 +61,10 @@ public class HeadsUpTile extends QSTile<QSTile.BooleanState> {
         state.visible = true;
         state.value = isHeadsUpEnabled();
         if (state.value) {
-            state.icon = ResourceIcon.get(R.drawable.ic_qs_heads_up_on);
+            state.icon = ResourceIcon.get(R.drawable.ic_headsup_toggle_on);
             state.label = mContext.getString(R.string.accessibility_quick_settings_heads_up_on);
         } else {
-            state.icon = ResourceIcon.get(R.drawable.ic_qs_heads_up_off);
+            state.icon = ResourceIcon.get(R.drawable.ic_headsup_toggle_off);
 	    state.label = mContext.getString(R.string.accessibility_quick_settings_heads_up_off);
         }
     }

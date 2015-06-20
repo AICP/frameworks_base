@@ -135,6 +135,7 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
     protected int mDrawable;
     private View mHeadsUpButton;
     private boolean mShowHeadsUpButton;
+    private boolean mHeadsUpState;
 
     /**
      * In collapsed QS, the clock and avatar are scaled down a bit post-layout to allow for a nice
@@ -1173,6 +1174,9 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.HEADS_UP_SHOW_STATUS_BUTTON), false, this,
                     UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.HEADS_UP_NOTIFICATION), false, this,
+                    UserHandle.USER_ALL);
             update();
         }
 
@@ -1225,6 +1229,10 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
                     resolver, Settings.System.HEADS_UP_SHOW_STATUS_BUTTON,
                     0, UserHandle.USER_CURRENT) == 1;
 
+             mHeadsUpState = Settings.System.getIntForUser(
+                    resolver, Settings.System.HEADS_UP_NOTIFICATION,
+                    1, UserHandle.USER_CURRENT) == 1;
+
             updateVisibilities();
             requestCaptureValues();
             updateHeadsUpButton();
@@ -1251,9 +1259,7 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
     }
 
     private boolean getUserHeadsUpState() {
-         return Settings.System.getIntForUser(mContext.getContentResolver(),
-                Settings.System.HEADS_UP_NOTIFICATION, 1,
-                UserHandle.USER_CURRENT) != 0;
+         return mHeadsUpState;
     }
 
     private void updateHeadsUpButton() {

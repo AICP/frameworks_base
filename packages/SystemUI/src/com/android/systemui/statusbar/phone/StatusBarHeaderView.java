@@ -787,10 +787,10 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         String disabled = mContext.getString(R.string.heads_up_disabled);
         int duration = Toast.LENGTH_SHORT;
         if (getUserHeadsUpState()) {
-            Toast toast = Toast.makeText(mContext, enabled, duration);
+            Toast toast = Toast.makeText(mContext, disabled, duration);
             toast.show();
         } else {
-            Toast toast = Toast.makeText(mContext, disabled, duration);
+            Toast toast = Toast.makeText(mContext, enabled, duration);
             toast.show();
         }
     }

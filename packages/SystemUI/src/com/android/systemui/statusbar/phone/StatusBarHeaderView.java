@@ -868,7 +868,12 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         if (mHeadsUpButton != null) {
             target.headsUpTranslation = mExpanded
                     ? 0
-                    : mTaskManagerButton.getLeft() - mHeadsUpButton.getLeft();
+                    : mSettingsButton.getLeft() - mHeadsUpButton.getLeft();
+        }
+        if (mStatusBarPowerMenu != null) {
+            target.statusBarPowerMenuY = mExpanded
+                    ? 0
+                    : mSettingsButton.getLeft() - mStatusBarPowerMenu.getLeft();
         }
         target.signalClusterAlpha = mSignalClusterDetached ? 0f : 1f;
         target.settingsRotation = !mExpanded ? 90f : 0f;
@@ -930,17 +935,17 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         mSettingsButton.setRotation(values.settingsRotation);
         if (mTaskManagerButton != null) {
             mTaskManagerButton.setTranslationY(mSystemIconsSuperContainer.getTranslationY());
-            mTaskManagerButton.setTranslationX(values.settingsTranslation);
+            mTaskManagerButton.setTranslationX(values.settingsTranslation+values.taskManagerTranslation);
             mTaskManagerButton.setRotation(values.settingsRotation);
         }
         if (mStatusBarPowerMenuStyle != STATUS_BAR_POWER_MENU_OFF) {
             mStatusBarPowerMenu.setTranslationY(mSystemIconsSuperContainer.getTranslationY());
-            mStatusBarPowerMenu.setTranslationX(values.settingsTranslation);
+            mStatusBarPowerMenu.setTranslationX(values.settingsTranslation+values.statusBarPowerMenuY);
             mStatusBarPowerMenu.setRotation(values.settingsRotation);
         }
         if (mHeadsUpButton != null) {
             mHeadsUpButton.setTranslationY(mSystemIconsSuperContainer.getTranslationY());
-            mHeadsUpButton.setTranslationX(values.headsUpTranslation);
+            mHeadsUpButton.setTranslationX(values.settingsTranslation+values.headsUpTranslation);
             mHeadsUpButton.setRotation(values.settingsRotation);
         }
         applyAlpha(mEmergencyCallsOnly, values.emergencyCallsOnlyAlpha);

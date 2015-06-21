@@ -1852,7 +1852,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         lp.packageName = mContext.getPackageName();
         lp.windowAnimations = R.style.Animation_StatusBar_HeadsUp;
 
-        mWindowManager.addView(mHeadsUpNotificationView, lp);
+        if(mHeadsUpNotificationView.getWindowToken() == null) {
+            mWindowManager.addView(mHeadsUpNotificationView, lp);
+        }
     }
 
     private void removeHeadsUpView() {

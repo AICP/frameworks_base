@@ -147,6 +147,9 @@
     <!-- AppSidebar -->
     <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
 
+    <!-- Quick Settings Tile Listener -->
+    <uses-permission android:name="cyanogenmod.permission.BIND_CUSTOM_TILE_LISTENER_SERVICE"/>
+
     <application
         android:name=".SystemUIApplication"
         android:persistent="true"

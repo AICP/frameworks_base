@@ -11,7 +11,8 @@ LOCAL_STATIC_JAVA_LIBRARIES := Keyguard \
     android-support-v4 \
     android-visualizer \
     guava \
-    android-opt-cards
+    android-opt-cards \
+    org.cyanogenmod.platform.sdk
 
 LOCAL_JAVA_LIBRARIES := telephony-common
 

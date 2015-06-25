@@ -17,9 +17,6 @@
 package com.android.internal.util.aicp;
 
 import android.content.Context;
-import android.content.res.Resources;
-
-import java.util.Locale;
 
 public class AicpUtils {
 
@@ -29,11 +26,6 @@ public class AicpUtils {
 
     public static int pxToDp(Context context, int px) {
         return (int) ((px / context.getResources().getDisplayMetrics().density) + 0.5);
-    }
-
-    public static boolean isChineseLanguage() {
-       return Resources.getSystem().getConfiguration().locale.getLanguage().startsWith(
-               Locale.CHINESE.getLanguage());
     }
 
 }

@@ -231,6 +231,8 @@
     <java-symbol type="dimen" name="global_actions_avatar_size" />
     <java-symbol type="drawable" name="ic_lock_screenrecord" />
     <java-symbol type="string" name="global_action_screenrecord" />
+    <java-symbol type="drawable" name="ic_lock_torch" />
+    <java-symbol type="string" name="global_action_torch" />
 
     <!-- First boot install dialog -->
     <java-symbol type="string" name="android_installing_apk" />

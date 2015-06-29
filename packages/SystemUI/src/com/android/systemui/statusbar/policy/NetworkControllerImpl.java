@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2010 The Android Open Source Project
+ * Copyright (C) 2015 The MoKee OpenSource Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,6 +40,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.SystemProperties;
+import android.os.UserHandle;
 import android.provider.Settings;
 import android.telephony.PhoneStateListener;
 import android.telephony.ServiceState;
@@ -122,7 +124,7 @@ public class NetworkControllerImpl extends BroadcastReceiver
     private final BitSet mValidatedTransports = new BitSet();
 
     // States that don't belong to a subcontroller.
-    private boolean mAirplaneMode = false;
+    private static boolean mAirplaneMode = false;
     private boolean mHasNoSims;
     private Locale mLocale = null;
     // This list holds our ordering.
@@ -210,6 +212,7 @@ public class NetworkControllerImpl extends BroadcastReceiver
         filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION_IMMEDIATE);
         filter.addAction(ConnectivityManager.INET_CONDITION_ACTION);
         filter.addAction(Intent.ACTION_CONFIGURATION_CHANGED);
+        filter.addAction(Intent.ACTION_CUSTOM_CARRIER_LABEL_CHANGED);
         filter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
         mContext.registerReceiver(this, filter);
         mListening = true;
@@ -398,7 +401,7 @@ public class NetworkControllerImpl extends BroadcastReceiver
             for (MobileSignalController controller : mMobileSignalControllers.values()) {
                 controller.handleBroadcast(intent);
             }
-        } else if (action.equals(TelephonyIntents.ACTION_SIM_STATE_CHANGED)) {
+        } else if (action.equals(TelephonyIntents.ACTION_SIM_STATE_CHANGED) || action.equals(Intent.ACTION_CUSTOM_CARRIER_LABEL_CHANGED)) {
             // Might have different subscriptions now.
             updateMobileControllers();
         } else {
@@ -1305,7 +1308,9 @@ public class NetworkControllerImpl extends BroadcastReceiver
         }
 
         void updateSubscriptionInfo(SubscriptionInfo info) {
-            CharSequence carrierName = info.getCarrierName();
+            String mCustomCarrierLabel = Settings.System.getStringForUser(mContext.getContentResolver(),
+                        Settings.System.CUSTOM_CARRIER_LABEL, UserHandle.USER_CURRENT);
+            CharSequence carrierName = !TextUtils.isEmpty(mCustomCarrierLabel) && !mAirplaneMode ? mCustomCarrierLabel : info.getCarrierName();
             mCurrentState.networkName = carrierName != null ? carrierName.toString() : null;
             notifyListenersIfNecessary();
         }

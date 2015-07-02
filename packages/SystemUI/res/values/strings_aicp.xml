@@ -85,9 +85,6 @@
     <string name="content_setup_dismiss">Continue</string>
     <string name="toast_not_installed">App is not installed</string>
 
-    <!-- Title shown in recents popup for showing app in floating mode -->
-    <string name="status_bar_recent_floating_item_title">Floating mode</string>
-
     <!-- Slim Action floats tile -->
     <string name="quick_settings_slim_floats_on">Slim Floats Enabled</string>
     <string name="quick_settings_slim_floats_off">Slim Floats Disabled</string>

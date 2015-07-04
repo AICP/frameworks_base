@@ -154,6 +154,9 @@
     <!-- Wallpaper -->
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
 
+    <!-- LiveDisplay -->
+    <uses-permission android:name="android.permission.HARDWARE_ABSTRACTION_ACCESS" />
+
     <application
         android:name=".SystemUIApplication"
         android:persistent="true"

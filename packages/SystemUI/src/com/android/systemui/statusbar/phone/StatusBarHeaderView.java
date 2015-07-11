@@ -34,6 +34,8 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Outline;
 import android.graphics.Rect;
+import android.graphics.Color;
+import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -240,6 +242,7 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         updateStatusBarPowerMenuVisibility();
         updateVisibilities();
         updateClockScale();
+        updateBackgroundColor();
         updateAvatarScale();
         updateHeadsUpButton();
         addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
@@ -312,6 +315,17 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
                 FontSizeUtils.LARGE_TEXT_SCALE) - 1f) / (FontSizeUtils.LARGE_TEXT_SCALE - 1f);
         mClockMarginBottomCollapsed = Math.round((1 - largeFactor) * padding + largeFactor * largePadding);
         requestLayout();
+    }
+
+    private void updateBackgroundColor() {
+        ContentResolver resolver = mContext.getContentResolver();
+        int backgroundColor = Settings.System.getInt(resolver,
+                Settings.System.STATUS_BAR_EXPANDED_HEADER_BG_COLOR, 0xee263238);
+        if (mQSCSwitch) {
+            getBackground().setColorFilter(backgroundColor, Mode.SRC_OVER);
+        } else {
+            getBackground().setColorFilter(0xee263238, Mode.SRC_OVER);
+        }
     }
 
     private void requestCaptureValues() {
@@ -419,6 +433,7 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         updateAvatarScale();
         updateClockLp();
         requestCaptureValues();
+        updateBackgroundColor();
     }
 
     private void updateHeights() {
@@ -1222,6 +1237,10 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
 
         @Override
         public void onChange(boolean selfChange, Uri uri) {
+            if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_EXPANDED_HEADER_BG_COLOR))) {
+                updateBackgroundColor();
+            }
             update();
         }
 
@@ -1255,7 +1274,7 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
             mShowTaskManager = Settings.System.getIntForUser(resolver,
                     Settings.System.ENABLE_TASK_MANAGER, 0, currentUserId) == 1;
 
-             mShowHeadsUpButton = Settings.System.getIntForUser(
+            mShowHeadsUpButton = Settings.System.getIntForUser(
                     resolver, Settings.System.HEADS_UP_SHOW_STATUS_BUTTON,
                     0, UserHandle.USER_CURRENT) == 1;
 

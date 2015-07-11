@@ -11,6 +11,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.database.ContentObserver;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuff.Mode;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -55,6 +59,7 @@ public class NetworkTextView extends TextView implements Observer {
     private int GB = MB*KB;
     private boolean mAutoHide;
     private int mAutoHideThreshold;
+    private int mNetworkTrafficColor;
 
     /**
      * @hide
@@ -210,6 +215,9 @@ public class NetworkTextView extends TextView implements Observer {
     private void updateSettings() {
         ContentResolver resolver = mContext.getContentResolver();
 
+        int defaultColor = Settings.System.getInt(resolver,
+                Settings.System.NETWORK_TRAFFIC_VECTOR_COLOR, 0xFFFFFFFF);
+
         mAutoHide = Settings.System.getIntForUser(resolver, Settings.System.NETWORK_TRAFFIC_VECTOR_AUTOHIDE, 0,
                 UserHandle.USER_CURRENT)==1;
 
@@ -218,10 +226,7 @@ public class NetworkTextView extends TextView implements Observer {
 
         mState = Settings.System.getInt(resolver, Settings.System.NETWORK_TRAFFIC_VECTOR_STATE, 0);
 
-        int defaultColor = Settings.System.getInt(resolver,
-                Settings.System.NETWORK_TRAFFIC_VECTOR_COLOR, 0xFFFFFFFF);
-
-        int mNetworkTrafficColor = Settings.System.getInt(resolver,
+        mNetworkTrafficColor = Settings.System.getInt(resolver,
                 Settings.System.NETWORK_TRAFFIC_VECTOR_COLOR, -2);
 
         if (mNetworkTrafficColor == Integer.MIN_VALUE
@@ -270,6 +275,7 @@ public class NetworkTextView extends TextView implements Observer {
         boolean downTraffic = NetworkTrafficSettings.isDownTrafficDisplayed(mState);
         // Compute drawable
         final int intTrafficDrawable;
+        Drawable drw = null;
         if (upTraffic&&downTraffic) {
             intTrafficDrawable = R.drawable.stat_sys_network_traffic_updown;
         } else if (upTraffic) {
@@ -280,7 +286,11 @@ public class NetworkTextView extends TextView implements Observer {
             intTrafficDrawable = 0;
         }
         // Apply drawable
-        setCompoundDrawablesWithIntrinsicBounds(0, 0, intTrafficDrawable, 0);
+        if (intTrafficDrawable != 0) {
+            drw = getContext().getResources().getDrawable(intTrafficDrawable);
+            drw.setColorFilter(mNetworkTrafficColor, PorterDuff.Mode.SRC_ATOP);
+        }
+        setCompoundDrawablesWithIntrinsicBounds(null, null, drw, null);
     }
 
     private boolean shouldHide(long inSpeed, long outSpeed, boolean upTraffic, boolean downTraffic) {

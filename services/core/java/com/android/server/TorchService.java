@@ -41,6 +41,7 @@ import android.os.IBinder;
 import android.os.PowerManager;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
+import android.os.UserHandle;
 import android.provider.Settings;
 import android.util.Log;
 import android.util.Size;
@@ -304,8 +305,8 @@ public class TorchService extends ITorchService.Stub {
      * Delay to disable torch when screen turns off.
      */
     private int disableOnScreenOffDelay() {
-        return Settings.System.getInt(mContext.getContentResolver(),
-           Settings.System.DISABLE_TORCH_ON_SCREEN_OFF_DELAY, 10);
+        return Settings.System.getIntForUser(mContext.getContentResolver(),
+           Settings.System.DISABLE_TORCH_ON_SCREEN_OFF_DELAY, 10, UserHandle.USER_CURRENT);
     }
 
     /**

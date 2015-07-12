@@ -62,6 +62,7 @@ public class QSConstants {
     public static final String TILE_HEADS_UP = "heads_up";
     public static final String TILE_SYSTEMUI_RESTART = "reboot_systemui";
     public static final String TILE_SLIM_FLOATS = "slim_floats";
+    public static final String TILE_SLIMPIE = "toggleSlimPie";
 
     public static final String DYNAMIC_TILE_NEXT_ALARM = "next_alarm";
     public static final String DYNAMIC_TILE_IME_SELECTOR = "ime_selector";
@@ -114,6 +115,7 @@ public class QSConstants {
         STATIC_TILES_AVAILABLE.add(TILE_HEADS_UP);
         STATIC_TILES_AVAILABLE.add(TILE_SYSTEMUI_RESTART);
         STATIC_TILES_AVAILABLE.add(TILE_SLIM_FLOATS);
+        STATIC_TILES_AVAILABLE.add(TILE_SLIMPIE);
 
         DYNAMIC_TILES_AVAILABLE.add(DYNAMIC_TILE_NEXT_ALARM);
         DYNAMIC_TILES_AVAILABLE.add(DYNAMIC_TILE_IME_SELECTOR);

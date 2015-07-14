@@ -41,6 +41,7 @@ public class SystemUIRestartTile extends QSTile<QSTile.BooleanState> {
 
     @Override
     protected void handleClick() {
+        mHost.collapsePanels();
         Helpers.restartSystemUI();
     }
 

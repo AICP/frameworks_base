@@ -111,6 +111,8 @@ public final class BatteryService extends SystemService {
 
     private static final int BATTERY_SCALE = 100;    // battery capacity is a percentage
 
+    private static final int LIGHT_BRIGHTNESS_MAXIMUM = 255; // notification light maximum brightness value to use
+
     // Used locally for determining when to make a last ditch effort to log
     // discharge stats before the device dies.
     private int mCriticalBatteryLevel;
@@ -150,6 +152,11 @@ public final class BatteryService extends SystemService {
 
     private int mInvalidCharger;
     private int mLastInvalidCharger;
+
+    private int mBrightnessNotificationLed;
+
+    private boolean mMultipleLedsEnabled = false;
+    private boolean mMultipleLedsEnabledDefault = false;
 
     private int mLowBatteryWarningLevel;
     private int mLowBatteryCloseWarningLevel;
@@ -925,6 +932,10 @@ public final class BatteryService extends SystemService {
         public Led(Context context, LightsManager lights) {
             mBatteryLight = lights.getLight(LightsManager.LIGHT_ID_BATTERY);
 
+            // Does the Device have multiple LEDs ?
+            mMultipleLedsEnabledDefault = context.getResources().getBoolean(
+                    com.android.internal.R.bool.config_multipleNotificationLeds);
+
             // Does the Device support changing battery LED colors?
             mMultiColorLed = context.getResources().getBoolean(
                     com.android.internal.R.bool.config_multiColorBatteryLed);
@@ -951,6 +962,8 @@ public final class BatteryService extends SystemService {
                 // No lights if explicitly disabled
                 mBatteryLight.turnOff();
             } else if (level < mLowBatteryWarningLevel) {
+                mBatteryLight.setModes(mBrightnessNotificationLed,
+                                       mMultipleLedsEnabled ? 1 : 0);
                 if (status == BatteryManager.BATTERY_STATUS_CHARGING) {
                     // Battery is charging and low
                     mBatteryLight.setColor(mBatteryLowARGB);
@@ -964,6 +977,8 @@ public final class BatteryService extends SystemService {
                 }
             } else if (status == BatteryManager.BATTERY_STATUS_CHARGING
                     || status == BatteryManager.BATTERY_STATUS_FULL) {
+                mBatteryLight.setModes(mBrightnessNotificationLed,
+                                       mMultipleLedsEnabled ? 1 : 0);
                 if (status == BatteryManager.BATTERY_STATUS_FULL || level >= 90) {
                     if (level == 100) {
                         // Battery is really full
@@ -1097,6 +1112,16 @@ public final class BatteryService extends SystemService {
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.BATTERY_LIGHT_PULSE), false, this, UserHandle.USER_ALL);
 
+            // Notification LED brightness
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.NOTIFICATION_LIGHT_BRIGHTNESS_LEVEL),
+                    false, this, UserHandle.USER_ALL);
+
+            // Multiple LEDs enabled
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.NOTIFICATION_LIGHT_MULTIPLE_LEDS_ENABLE),
+                    false, this, UserHandle.USER_ALL);
+
             // Light colors
             if (mMultiColorLed) {
                 // Register observer if we have a multi color led
@@ -1124,6 +1149,16 @@ public final class BatteryService extends SystemService {
         public void update() {
             ContentResolver resolver = mContext.getContentResolver();
             Resources res = mContext.getResources();
+
+            // Notification LED brightness
+            mBrightnessNotificationLed = Settings.System.getInt(resolver,
+                    Settings.System.NOTIFICATION_LIGHT_BRIGHTNESS_LEVEL,
+                    LIGHT_BRIGHTNESS_MAXIMUM);
+
+            // Multiple LEDs enabled
+            mMultipleLedsEnabled = Settings.System.getInt(resolver,
+                    Settings.System.NOTIFICATION_LIGHT_MULTIPLE_LEDS_ENABLE,
+                    mMultipleLedsEnabledDefault ? 1 : 0) != 0;
 
             // Battery light enabled
             mLightEnabled = Settings.System.getInt(resolver,

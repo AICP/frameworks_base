@@ -222,7 +222,7 @@
     <dimen name="recents_task_view_application_icon_size">48dp</dimen>
 
     <!-- The radius of the rounded corners on a task view. -->
-    <dimen name="recents_task_view_rounded_corners_radius">2dp</dimen>
+    <dimen name="recents_task_view_rounded_corners_radius">8dp</dimen>
 
     <!-- The min translation in the Z index for the last task. -->
     <dimen name="recents_task_view_z_min">20dp</dimen>
@@ -317,7 +317,7 @@
     <dimen name="swipe_helper_falsing_threshold">70dp</dimen>
 
     <dimen name="notifications_top_padding">8dp</dimen>
-    
+
     <!-- Minimum distance the user has to drag down to go to the full shade. -->
     <dimen name="keyguard_drag_down_min_distance">100dp</dimen>
 
@@ -527,7 +527,7 @@
 
     <!-- The maximum width of the navigation bar ripples. -->
     <dimen name="key_button_ripple_max_width">95dp</dimen>
-    
+
     <!-- Inset shadow for FakeShadowDrawable. It is used to avoid gaps between the card
          and the shadow. -->
     <dimen name="fake_shadow_inset">1dp</dimen>

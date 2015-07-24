@@ -120,6 +120,7 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
     private boolean mDimNavButtonsAnimate;
     private int mDimNavButtonsAnimateDuration;
     private boolean mDimNavButtonsTouchAnywhere;
+    private boolean mDoubleTapToSleep;
 
     private NavigationBarViewTaskSwitchHelper mTaskSwitchHelper;
     private DelegateViewHelper mDelegateHelper;
@@ -213,6 +214,9 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
     private final OnTouchListener mNavButtonsTouchListener = new OnTouchListener() {
         @Override
         public boolean onTouch(View v, MotionEvent event) {
+                if (mDoubleTapToSleep) {
+                     mDoubleTapGesture.onTouchEvent(event);
+                }
                 onNavButtonTouched();
             return true;
         }
@@ -342,6 +346,9 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
         if (mDimNavButtonsTouchAnywhere) {
             onNavButtonTouched();
         }
+        if (mDoubleTapToSleep) {
+            mDoubleTapGesture.onTouchEvent(event);
+        }
         if (!mDelegateIntercepted && mTaskSwitchHelper.onTouchEvent(event)) {
             return true;
         }
@@ -352,9 +359,6 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
             boolean ret = mDelegateHelper.onInterceptTouchEvent(event);
             if (ret) return true;
         }
-        if (Settings.System.getInt(mContext.getContentResolver(),
-                    Settings.System.DOUBLE_TAP_SLEEP_NAVBAR, 0) == 1)
-            mDoubleTapGesture.onTouchEvent(event);
 
         return super.onTouchEvent(event);
     }
@@ -1025,6 +1029,8 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
                     Settings.System.DIM_NAV_BUTTONS_ANIMATE_DURATION), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.DIM_NAV_BUTTONS_TOUCH_ANYWHERE), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.DOUBLE_TAP_SLEEP_NAVBAR), false, this);
 
             // intialize mModlockDisabled
             onChange(false);
@@ -1056,6 +1062,9 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
                     UserHandle.USER_CURRENT);
             mDimNavButtonsTouchAnywhere = (Settings.System.getIntForUser(resolver,
                     Settings.System.DIM_NAV_BUTTONS_TOUCH_ANYWHERE, 0,
+                    UserHandle.USER_CURRENT) == 1);
+            mDoubleTapToSleep = (Settings.System.getIntForUser(resolver,
+                    Settings.System.DOUBLE_TAP_SLEEP_NAVBAR, 0,
                     UserHandle.USER_CURRENT) == 1);
             // reset saved side button visibilities
             for (int i = 0; i < mSideButtonVisibilities.length; i++) {

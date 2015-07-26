@@ -4750,6 +4750,12 @@ public final class Settings {
         public static final String GESTURE_ANYWHERE_FLOATING = "gesture_anywhere_floating";
 
         /**
+         * Switch for headset icon
+         * @hide
+         */
+        public static final String SHOW_HEADSET_ICON = "show_headset_icon";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *

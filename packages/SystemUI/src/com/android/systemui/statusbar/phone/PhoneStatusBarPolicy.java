@@ -344,24 +344,28 @@ public class PhoneStatusBarPolicy {
         String volumeDescription = null;
 
         if (mZen == Global.ZEN_MODE_NO_INTERRUPTIONS) {
-            zenVisible = true;
+            zenVisible = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.SHOW_VOLUME_ICON, 1) == 1;
             zenModeNoInterruptions = true;
             zenIconId = R.drawable.stat_sys_zen_none;
             zenDescription = mContext.getString(R.string.zen_no_interruptions);
         } else if (mZen == Global.ZEN_MODE_IMPORTANT_INTERRUPTIONS) {
-            zenVisible = true;
+            zenVisible = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.SHOW_VOLUME_ICON, 1) == 1;
             zenIconId = R.drawable.stat_sys_zen_important;
             zenDescription = mContext.getString(R.string.zen_important_interruptions);
         }
 
         if (audioManager.getRingerMode() == AudioManager.RINGER_MODE_VIBRATE) {
-            volumeVisible = true;
+            volumeVisible = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.SHOW_VOLUME_ICON, 1) == 1;
             volumeIconId = R.drawable.stat_sys_ringer_vibrate;
             volumeDescription = mContext.getString(R.string.accessibility_ringer_vibrate);
         }
 
         if (audioManager.getRingerMode() == AudioManager.RINGER_MODE_SILENT) {
-            volumeVisible = true;
+            volumeVisible = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.SHOW_VOLUME_ICON, 1) == 1;
             volumeIconId = R.drawable.stat_sys_ringer_silent;
             volumeDescription = mContext.getString(R.string.accessibility_ringer_silent);
         }

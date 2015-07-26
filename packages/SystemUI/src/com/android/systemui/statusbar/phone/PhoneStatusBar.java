@@ -351,6 +351,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     // Weather temperature
     TextView mWeatherTempView;
     private int mWeatherTempState;
+    private int mWeatherTempStyle;
 
     // the icons themselves
     IconMerger mNotificationIcons;
@@ -570,6 +571,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_SHOW_WEATHER_TEMP), 
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_WEATHER_TEMP_STYLE),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -648,6 +652,13 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     updateSpeedbump();
                     updateClearAll();
                     updateEmptyShadeView();
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_WEATHER_TEMP_STYLE))) {
+                    recreateStatusBar();
+                    updateRowStates();
+                    updateSpeedbump();
+                    updateClearAll();
+                    updateEmptyShadeView();
             }
             update();
         }
@@ -714,6 +725,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
             mQSCSwitch = Settings.System.getIntForUser(resolver,
                     Settings.System.QS_COLOR_SWITCH, 0, mCurrentUserId) == 1;
+
+            mWeatherTempStyle = Settings.System.getIntForUser(
+                    resolver, Settings.System.STATUS_BAR_WEATHER_TEMP_STYLE, 0,
+                    UserHandle.USER_CURRENT);
 
             final int oldWeatherState = mWeatherTempState;
             mWeatherTempState = Settings.System.getIntForUser(
@@ -1410,6 +1425,29 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             });
         }
 
+        mWeatherTempStyle = Settings.System.getIntForUser(
+                mContext.getContentResolver(), Settings.System.STATUS_BAR_WEATHER_TEMP_STYLE, 0,
+                UserHandle.USER_CURRENT);
+        if (mWeatherTempStyle == 0) {
+            mWeatherTempView = (TextView) mStatusBarView.findViewById(R.id.weather_temp);
+        } else {
+            mWeatherTempView = (TextView) mStatusBarView.findViewById(R.id.left_weather_temp);
+        }
+
+        mWeatherTempState = Settings.System.getIntForUser(
+                mContext.getContentResolver(), Settings.System.STATUS_BAR_SHOW_WEATHER_TEMP, 0,
+                UserHandle.USER_CURRENT);
+        if (mWeatherController == null) {
+            mWeatherController = new WeatherControllerImpl(mContext);
+            mWeatherController.addCallback(new WeatherController.Callback() {
+                @Override
+                public void onWeatherChanged(WeatherInfo temp) {
+                    updateWeatherTextState(temp.temp);
+                }
+            });
+        }
+        updateWeatherTextState(mWeatherController.getWeatherInfo().temp);
+
         mKeyguardBottomArea.setPhoneStatusBar(this);
         if (mAccessibilityController == null) {
             mAccessibilityController = new AccessibilityController(mContext);
@@ -1424,21 +1462,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         if (mUserSwitcherController == null) {
             mUserSwitcherController = new UserSwitcherController(mContext, mKeyguardMonitor);
         }
-
-        mWeatherTempView = (TextView) mStatusBarView.findViewById(R.id.weather_temp);
-        mWeatherTempState = Settings.System.getIntForUser(
-                mContext.getContentResolver(), Settings.System.STATUS_BAR_SHOW_WEATHER_TEMP, 0,
-                UserHandle.USER_CURRENT);
-        if (mWeatherController == null) {
-            mWeatherController = new WeatherControllerImpl(mContext);
-            mWeatherController.addCallback(new WeatherController.Callback() {
-                @Override
-                public void onWeatherChanged(WeatherInfo temp) {
-                    updateWeatherTextState(temp.temp);
-                }
-            });
-        }
-        updateWeatherTextState(mWeatherController.getWeatherInfo().temp);
 
         mKeyguardUserSwitcher = new KeyguardUserSwitcher(mContext,
                 (ViewStub) mStatusBarWindowContent.findViewById(R.id.keyguard_user_switcher),

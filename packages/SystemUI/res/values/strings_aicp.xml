@@ -102,4 +102,6 @@
     <!-- Themes Tile -->
     <string name="quick_settings_themes">Themes</string>
 
+    <!-- Battery Saver Dismiss -->
+    <string name="battery_saver_dismiss_title">Dismiss</string>
 </resources>

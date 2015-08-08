@@ -4603,6 +4603,16 @@ public final class Settings {
                 BOOLEAN_VALIDATOR;
 
         /**
+         * Three Finger Gesture from Oppo
+         * @hide
+         */
+        public static final String THREE_FINGER_GESTURE = "three_finger_gesture";
+
+        /** @hide */
+        private static final Validator THREE_FINGER_GESTURE_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
          * IMPORTANT: If you add a new public settings you also have to add it to
          * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
          * it to PRIVATE_SETTINGS below. Also add a validator that can validate
@@ -4686,6 +4696,7 @@ public final class Settings {
             STATUSBAR_BATTERY_BAR_ANIMATE,
             AICP_DOUBLE_TAP_SLEEP_GESTURE,
             AICP_DOUBLE_TAP_SLEEP_LOCKSCREEN,
+            THREE_FINGER_GESTURE,
             // AICP Settings end
         };
 
@@ -4850,6 +4861,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(LOCKSCREEN_PIN_SCRAMBLE_LAYOUT);
             PRIVATE_SETTINGS.add(AICP_DOUBLE_TAP_SLEEP_GESTURE);
             PRIVATE_SETTINGS.add(AICP_DOUBLE_TAP_SLEEP_LOCKSCREEN);
+            PRIVATE_SETTINGS.add(THREE_FINGER_GESTURE);
             // AICP Settings end
         }
 
@@ -4964,6 +4976,7 @@ public final class Settings {
                     AICP_DOUBLE_TAP_SLEEP_GESTURE_VALIDATOR);
             VALIDATORS.put(AICP_DOUBLE_TAP_SLEEP_LOCKSCREEN,
                     AICP_DOUBLE_TAP_SLEEP_LOCKSCREEN_VALIDATOR);
+            VALIDATORS.put(THREE_FINGER_GESTURE, THREE_FINGER_GESTURE_VALIDATOR);
             // AICP Settings end
         }
 

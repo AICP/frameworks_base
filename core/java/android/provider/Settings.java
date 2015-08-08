@@ -5654,6 +5654,12 @@ public final class Settings {
           */
         public static final String VOLUME_KEY_CURSOR_CONTROL = "volume_key_cursor_control";
 
+        /**
+         * Three Finger Gesture from Oppo
+         * @hide
+         */
+        public static final String THREE_FINGER_GESTURE = "three_finger_gesture";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5741,6 +5747,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(AICP_DOUBLE_TAP_SLEEP_GESTURE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(AICP_DOUBLE_TAP_SLEEP_LOCKSCREEN, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(VOLUME_KEY_CURSOR_CONTROL, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(THREE_FINGER_GESTURE, BOOLEAN_VALIDATOR);
         }
 
         /**

@@ -116,5 +116,6 @@ public class SystemSettings {
         Settings.System.STATUSBAR_BATTERY_BAR_ANIMATE,
         Settings.System.STATUSBAR_BATTERY_BAR_LOCATION,
         Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN,
+        Settings.System.THREE_FINGER_GESTURE,
     };
 }

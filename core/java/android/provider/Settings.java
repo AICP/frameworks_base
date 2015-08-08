@@ -5824,6 +5824,12 @@ public final class Settings {
         */
         public static final String TOAST_ANIMATION = "toast_animation";
 
+        /**
+         * Three Finger Gesture from Oppo
+         * @hide
+         */
+        public static final String THREE_FINGER_GESTURE = "three_finger_gesture";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5968,6 +5974,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SCREEN_OFF_ANIMATION);
             PRIVATE_SETTINGS.add(VOLUME_KEY_CURSOR_CONTROL);
             PRIVATE_SETTINGS.add(BACK_GESTURE_HAPTIC);
+            PRIVATE_SETTINGS.add(THREE_FINGER_GESTURE);
         }
 
         /**

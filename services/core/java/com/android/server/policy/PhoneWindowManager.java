@@ -680,6 +680,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private int mTorchTimeout;
     private PendingIntent mTorchOffPendingIntent;
 
+    private SwipeToScreenshotListener mSwipeToScreenshot;
+    private boolean mSwipeToScreenshotEnabled = false;
+
     private class PolicyHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
@@ -822,6 +825,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.TORCH_LONG_PRESS_POWER_TIMEOUT), false, this,
+                    UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.THREE_FINGER_GESTURE), false, this,
                     UserHandle.USER_ALL);
             }
 
@@ -2042,6 +2048,12 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         mHandler = new PolicyHandler();
         mCameraManager = (CameraManager) mContext.getSystemService(Context.CAMERA_SERVICE);
         mCameraManager.registerTorchCallback(new TorchModeCallback(), mHandler);
+        mSwipeToScreenshot = new SwipeToScreenshotListener(mContext,
+            () -> interceptScreenshotChord(
+                TAKE_SCREENSHOT_FULLSCREEN,
+                SCREENSHOT_KEY_OTHER,
+                0 /*pressDelay*/
+            ));
         mWakeGestureListener = new MyWakeGestureListener(mContext, mHandler);
         mSettingsObserver = new SettingsObserver(mHandler);
         mModifierShortcutManager = new ModifierShortcutManager(context);
@@ -2514,6 +2526,16 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         }
     }
 
+    private void enableSwipeThreeFingerGesture(boolean enabled) {
+        if (mSwipeToScreenshotEnabled == enabled) return;
+        mSwipeToScreenshotEnabled = enabled;
+        if (mSwipeToScreenshotEnabled) {
+            mWindowManagerFuncs.registerPointerEventListener(mSwipeToScreenshot, DEFAULT_DISPLAY);
+        } else {
+            mWindowManagerFuncs.unregisterPointerEventListener(mSwipeToScreenshot, DEFAULT_DISPLAY);
+        }
+    }
+
     /**
      * Read values from config.xml that may be overridden depending on
      * the configuration of the device.
@@ -2582,6 +2604,12 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     Settings.System.CLICK_PARTIAL_SCREENSHOT, 0,
                     UserHandle.USER_CURRENT) == 1;
             }
+
+            //Three Finger Gesture
+            final boolean threeFingerGestureEnabled = Settings.System.getIntForUser(resolver,
+                    Settings.System.THREE_FINGER_GESTURE, 0,
+                    UserHandle.USER_CURRENT) == 1;
+            enableSwipeThreeFingerGesture(threeFingerGestureEnabled);
 
             // Configure wake gesture.
             boolean wakeGestureEnabledSetting = Settings.Secure.getIntForUser(resolver,

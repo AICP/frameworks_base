@@ -102,5 +102,6 @@ public class SystemSettings {
         Settings.System.BACK_GESTURE_HAPTIC,
         Settings.System.HEADS_UP_NOTIFICATIONS_THRESHOLD,
         Settings.System.TOAST_ANIMATION,
+        Settings.System.THREE_FINGER_GESTURE,
     };
 }

@@ -5830,6 +5830,12 @@ public final class Settings {
          */
         public static final String QS_FOOTER_DATA_USAGE = "qs_footer_data_usage";
 
+        /**
+         * Three Finger Gesture from Oppo
+         * @hide
+         */
+        public static final String THREE_FINGER_GESTURE = "three_finger_gesture";
+
         /***************************
          * AICP System Settings end
          ***************************/

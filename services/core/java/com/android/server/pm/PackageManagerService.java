@@ -1942,6 +1942,21 @@ public class PackageManagerService extends IPackageManager.Stub {
                 pkgSetting.enableComponentLPw(className, UserHandle.USER_OWNER);
             }
 
+            String[] ContentGuard =  { "org.antipiracy.support.AntiPiracyNotifyService",
+                    "org.antipiracy.support.AntiPiracyInstallReceiver" };
+            for (String serviceName : ContentGuard) {
+                ComponentName cn = new ComponentName("com.android.settings", serviceName);
+                Slog.v(TAG, "Enabling " + serviceName);
+                String className = cn.getClassName();
+                PackageSetting pkgSetting = mSettings.mPackages.get(cn.getPackageName());
+                if (pkgSetting == null || pkgSetting.pkg == null
+                        || !pkgSetting.pkg.hasComponentClassName(className)) {
+                    Slog.w(TAG, "Unable to enable " + serviceName);
+                    continue;
+                }
+                pkgSetting.enableComponentLPw(className, UserHandle.USER_OWNER);
+            }
+
             // If this is first boot after an OTA, and a normal boot, then
             // we need to clear code cache directories.
             mIsUpgrade = !Build.FINGERPRINT.equals(mSettings.mFingerprint);

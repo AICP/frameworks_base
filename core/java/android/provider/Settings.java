@@ -6999,6 +6999,12 @@ public final class Settings {
         public static final String DOZE_ENABLED = "doze_enabled";
 
         /**
+         * Whether the device should color invert notifications when doze if enabled.
+         * @hide
+         */
+        public static final String DOZE_NOTIFICATION_INVERT_ENABLED = "doze_notification_invert_enabled";
+
+        /**
          * What happens when the user presses the Home button when the
          * phone is ringing.<br/>
          * <b>Values:</b><br/>

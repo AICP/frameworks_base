@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/* //device/apps/common/assets/res/any/strings.xml
+**
+** Copyright 2015 AICP
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="default_string">Varsayılan</string>
+
+    <string name="silent_mode_priority">Öncelik</string>
+    <string name="silent_mode_none">Yok</string>
+
+    <!-- AOKP custom system animations -->
+    <string name="animation_fade">Belirme</string>
+    <string name="animation_slide_right">Sağdan Kayarak</string>
+    <string name="animation_slide_left">Soldan Kayarak</string>
+    <string name="animation_slide_right_no_fade">Sağdan Kayarak (Belirme Efekti Yok)</string>
+    <string name="animation_slide_left_no_fade">Soldan Kayarak (Belirme Efekti Yok)</string>
+    <string name="animation_slide_up">Alttan Kayaral</string>
+    <string name="animation_slide_down">Üstten Kayarak</string>
+    <string name="animation_default">Varsayılan</string>
+    <string name="animation_translucent">Yarı Saydam</string>
+    <string name="animation_grow_shrink">Büyüyerek (Üstte)</string>
+    <string name="animation_grow_shrink_center">Büyüyerek (Merkezde)</string>
+    <string name="animation_grow_shrink_bottom">Büyüyerek (Altta)</string>
+    <string name="animation_grow_shrink_left">Büyüyerek (Solda)</string>
+    <string name="animation_grow_shrink_right">Büyüyerek (Sağda)</string>
+    <string name="action_null">Boş</string>
+
+    <!-- [CHAR LIMIT=NONE] Message shown in dialog on first boot after clean install for each .apk that is optimized. -->
+    <string name="android_installing_apk">Uygulamalar Yükleniyor
+    <xliff:g id="number" example="123">%1$d</xliff:g> tanenin
+    <xliff:g id="number" example="123">%2$d</xliff:g>\'si .</string>
+
+   <!-- [CHAR LIMIT=40] Title of dialog that is shown when performing a system install. -->
+   <string name="android_installing_title">AICP yükleniyor\u2026</string>
+
+    <!-- status message in phone options dialog for when pie is on -->
+    <string name="global_actions_pie_mode_on_status">SlimPie AÇIK</string>
+
+    <!-- status message in phone options dialog for when pie is off -->
+    <string name="global_actions_pie_mode_off_status">SlimPie KAPALI</string>
+
+    <!-- Error message if user want to try to disable all navigation options -->
+    <string name="disable_pie_navigation_error">Pie kontrollerini devre dışı bırakamazsınız. Diğer Gezinti Araçları aktif değil. Önce Gezinti Çubuğunu aktifleştirin.</string>
+
+    <!-- status message in phone options dialog for when navigation bar is on -->
+    <string name="global_actions_nav_bar_mode_on_status">Gezinti Çubuğu AÇIK</string>
+
+    <!-- status message in phone options dialog for when navigation bar is off -->
+    <string name="global_actions_nav_bar_mode_off_status">Gezinti Çubuğu KAPALI</string>
+
+    <!-- Error message if user want to try to disable all navigation options -->
+    <string name="disable_navigation_pie_error">Gezinti Çubuğunu devre dışı bırakamazsınız. Diğer Gezinti Araçları aktif değil. Önce Pie Kontrollerini aktifleştirin.</string>
+
+    <!-- Floating Window -->
+    <string name="floating_window_snap_top">Üste Sabitle</string>
+    <string name="floating_window_snap_bottom">Alta Sabitle</string>
+    <string name="floating_window_snap_left">Sola Sabitle</string>
+    <string name="floating_window_snap_right">Sağa Sabitle</string>
+    <string name="floating_window_minimize">Küçült</string>
+
+    <!-- Setting confirmation dialog strings. Shown when any UI interaction can be modified by user input -->
+    <string name="setting_confirmation_ask_me_later">Daha Sonra Sor</string>
+    <string name="setting_confirmation_yes">Evet</string>
+    <string name="setting_confirmation_no">Hayır</string>
+
+</resources>

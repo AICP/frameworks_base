@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013 The OmniROM Project
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 2 of the License, or
+ (at your option) any later version.
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- Screenrecord Notification Ticker -->
+    <string name="screenrecord_notif_ticker">Inizia registrazione</string>
+
+    <!-- Screenrecord notification title -->
+    <string name="screenrecord_notif_title">Registra schermo</string>
+
+    <!-- Screenrecord notification action: Stop -->
+    <string name="screenrecord_notif_stop">Stop</string>
+
+    <!-- Screenrecord notification action: show/hide pointer -->
+    <string name="screenrecord_notif_pointer_on">Indicatore ON</string>
+    <string name="screenrecord_notif_pointer_off">Indicatore OFF</string>
+
+    <!-- Screen record notification error title -->
+    <string name="screenrecord_notif_error">Impossibile registare schermo</string>
+
+    <!-- Heads up toast -->
+    <string name="heads_up_enabled">Notifiche Heads up attive</string>
+    <string name="heads_up_disabled">Notifiche head up disattive</string>
+    <string name="heads_up_snooze_message">Heads up sono disattivate per <xliff:g id="number">%d</xliff:g> minuti</string>
+    <string name="heads_up_snooze_button_title">Snooze heads up</string>
+
+    <!-- Quick settings -->
+    <string name="quick_settings_battery_saver">Salva Batteria</string>
+    <string name="quick_settings_battery_saver_off">Salva batteria off</string>
+    <string name="quick_settings_doze">Display Amb. ON</string>
+    <string name="quick_settings_doze_off">Display Amb. OFF</string>
+    <string name="quick_settings_brightness">Luminosità</string>
+    <string name="quick_settings_expanded_desktop">Esteso</string>
+    <string name="quick_settings_expanded_desktop_off">Normale</string>
+    <string name="quick_settings_screen_off">Screen off</string>
+    <string name="quick_settings_screenshot">Screenshot</string>
+    <string name="quick_settings_screenrecord">Screenrecord</string>
+    <string name="quick_settings_screenrecord_on">registrazione ...</string>
+    <string name="quick_settings_sync">Sync</string>
+    <string name="quick_settings_sync_off">Sync off</string>
+    <string name="quick_settings_music_play">Play</string>
+    <string name="quick_settings_music_pause">Pausa</string>
+
+</resources>

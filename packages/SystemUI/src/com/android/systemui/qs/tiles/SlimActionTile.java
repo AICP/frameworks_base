@@ -42,6 +42,11 @@ public class SlimActionTile extends QSTile<QSTile.BooleanState> {
         populateActionConfigs();
     }
 
+    @Override
+    public boolean hasSensitiveData() {
+        return true;
+    }
+
     private void populateActionConfigs() {
         mActionConfigs = ActionHelper.getQuickTileConfigWithDescription(
                 mContext, "shortcut_action_tile_values",

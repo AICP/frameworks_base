@@ -30,6 +30,11 @@ public class KernelAdiutorTile extends QSTile<QSTile.BooleanState> {
     }
 
     @Override
+    public boolean hasSensitiveData() {
+        return true;
+    }
+
+    @Override
     protected void handleDestroy() {
         super.handleDestroy();
     }

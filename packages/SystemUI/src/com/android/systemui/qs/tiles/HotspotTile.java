@@ -50,6 +50,11 @@ public class HotspotTile extends QSTile<QSTile.BooleanState> {
     }
 
     @Override
+    public boolean hasSensitiveData() {
+        return true;
+    }
+
+    @Override
     protected void handleDestroy() {
         super.handleDestroy();
         mUsageTracker.setListening(false);

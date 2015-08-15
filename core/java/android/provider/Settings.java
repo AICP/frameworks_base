@@ -7453,6 +7453,15 @@ public final class Settings {
         public static final String SEARCH_PANEL_ENABLED = "search_panel_enabled";
 
         /**
+         * Whether to show quick settings tiles with sensitive data in secure lockscreens.
+         * 0 will ignore the sensitive data flag, anything else will take care of that
+         * flag. Default is off.
+         * @hide
+         */
+        public static final String LOCKSCREEN_HIDE_TILES_WITH_SENSITIVE_DATA =
+                "lockscreen_hide_qs_tiles_with_sensitive_data";
+
+        /**
          * This are the settings to be backed up.
          *
          * NOTE: Settings are backed up and restored in the order they appear

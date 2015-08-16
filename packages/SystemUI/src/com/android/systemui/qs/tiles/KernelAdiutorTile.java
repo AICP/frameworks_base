@@ -16,19 +16,14 @@
 
 package com.android.systemui.qs.tiles;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
-import android.os.UserHandle;
-import android.view.View;
 
 import com.android.systemui.R;
 import com.android.systemui.qs.QSTile;
 
 /** Quick settings tile: KernelAdiutor **/
 public class KernelAdiutorTile extends QSTile<QSTile.BooleanState> {
-	private static final String CATEGORY_KERNEL_ADIUTOR = "com.grarak.kerneladiutor.MainActivity";
 
     public KernelAdiutorTile(Host host) {
         super(host);

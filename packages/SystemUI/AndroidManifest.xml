@@ -155,7 +155,7 @@
     <uses-permission android:name="android.permission.SET_WALLPAPER" />
 
     <!-- LiveDisplay -->
-    <uses-permission android:name="android.permission.HARDWARE_ABSTRACTION_ACCESS" />
+    <uses-permission android:name="cyanogenmod.permission.HARDWARE_ABSTRACTION_ACCESS" />
 
     <!-- Fingerprint -->
     <uses-permission android:name="android.permission.ACCESS_FINGERPRINT_SERVICE" />

@@ -30,4 +30,7 @@
     <!-- Aicp Extras Tile -->
     <string name="quick_aicp_extras_label">AICP Extras</string>
     <string name="quick_aicp_extras_toast">LOL, you really thought that long click will take you somewhere!!!</string>
+
+    <!-- Volume panel QS tile -->
+    <string name="quick_settings_volume_panel_label">Volume panel</string>
 </resources>

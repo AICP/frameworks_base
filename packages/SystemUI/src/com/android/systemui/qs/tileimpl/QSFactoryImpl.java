@@ -62,6 +62,7 @@ import com.android.systemui.qs.tiles.SyncTile;
 import com.android.systemui.qs.tiles.UiModeNightTile;
 import com.android.systemui.qs.tiles.UsbTetherTile;
 import com.android.systemui.qs.tiles.UserTile;
+import com.android.systemui.qs.tiles.VolumeTile;
 import com.android.systemui.qs.tiles.WifiTile;
 import com.android.systemui.qs.tiles.WorkModeTile;
 import com.android.systemui.util.leak.GarbageMonitor;
@@ -115,6 +116,7 @@ public class QSFactoryImpl implements QSFactory {
     private final Provider<MusicTile> mMusicTileProvider;
     private final Provider<DataSwitchTile> mDataSwitchTileProvider;
     private final Provider<LocaleTile> mLocaleTileProvider;
+    private final Provider<VolumeTile> mVolumeTileProvider;
 
     private final Lazy<QSHost> mQsHostLazy;
     private final Provider<CustomTile.Builder> mCustomTileBuilderProvider;
@@ -161,7 +163,8 @@ public class QSFactoryImpl implements QSFactory {
             Provider<CompassTile> compassTileProvider,
             Provider<MusicTile> musicTileProvider,
             Provider<DataSwitchTile> dataSwitchTileProvider,
-            Provider<LocaleTile> localeTileProvider) {
+            Provider<LocaleTile> localeTileProvider,
+            Provider<VolumeTile> volumeTileProvider) {
         mQsHostLazy = qsHostLazy;
         mCustomTileBuilderProvider = customTileBuilderProvider;
 
@@ -204,6 +207,7 @@ public class QSFactoryImpl implements QSFactory {
         mMusicTileProvider = musicTileProvider;
         mDataSwitchTileProvider = dataSwitchTileProvider;
         mLocaleTileProvider = localeTileProvider;
+        mVolumeTileProvider = volumeTileProvider;
     }
 
     public QSTile createTile(String tileSpec) {
@@ -295,6 +299,8 @@ public class QSFactoryImpl implements QSFactory {
                 return mDataSwitchTileProvider.get();
             case "locale":
                 return mLocaleTileProvider.get();
+            case "volume_panel":
+                return mVolumeTileProvider.get();
         }
 
         // Custom tiles

@@ -4623,6 +4623,12 @@ public final class Settings {
         public static final String DISABLE_TORCH_ON_SCREEN_OFF_DELAY = "disable_torch_on_screen_off_delay";
 
         /**
+         * Clean recent by shake
+         * @hide
+         */
+        public static final String SHAKE_CLEAN_RECENT = "shake_clean_recent";
+
+        /**
          * This preference enables showing the power menu on LockScreen.
          * @hide
          */

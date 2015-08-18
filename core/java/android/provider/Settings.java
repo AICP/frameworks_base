@@ -10568,6 +10568,12 @@ public final class Settings {
                BOOLEAN_VALIDATOR;
 
         /**
+         * Whether to show the brightness slider in quick settings panel
+         * @hide
+         */
+        public static final String LOCKSCREEN_VISUALIZER_ENABLED = "lockscreen_visualizer_enabled";
+
+        /**
          * This are the settings to be backed up.
          *
          * NOTE: Settings are backed up and restored in the order they appear

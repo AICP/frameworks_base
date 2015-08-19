@@ -23,6 +23,8 @@ import android.graphics.Point;
 import android.graphics.PixelFormat;
 import android.os.Handler;
 import android.os.SystemProperties;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.view.Gravity;
 import android.view.Display;
 import android.view.View;
@@ -48,7 +50,7 @@ public class StatusBarWindowManager implements KeyguardMonitor.Callback {
     private WindowManager.LayoutParams mLp;
     private WindowManager.LayoutParams mLpChanged;
     private int mBarHeight;
-    private final boolean mKeyguardScreenRotation;
+    private boolean mKeyguardScreenRotation;
 
     private boolean mKeyguardBlurEnabled;
     private boolean mShowingMedia;
@@ -81,8 +83,18 @@ public class StatusBarWindowManager implements KeyguardMonitor.Callback {
 
     private boolean shouldEnableKeyguardScreenRotation() {
         Resources res = mContext.getResources();
-        return SystemProperties.getBoolean("lockscreen.rot_override", false)
-                || res.getBoolean(R.bool.config_enableLockScreenRotation);
+        final boolean configLockRotationValue = res.getBoolean(R.bool.config_enableLockScreenRotation);
+        boolean enableLockScreenRotation = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.LOCKSCREEN_ROTATION, configLockRotationValue ? 1 : 0, UserHandle.USER_CURRENT) != 0;
+        boolean enableAccelerometerRotation = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.ACCELEROMETER_ROTATION, 0, UserHandle.USER_CURRENT) != 0;
+
+        return SystemProperties.getBoolean("lockscreen.rot_override",false)
+               || (enableLockScreenRotation && enableAccelerometerRotation);
+    }
+
+    public void updateKeyguardScreenRotation() {
+        mKeyguardScreenRotation = shouldEnableKeyguardScreenRotation();
     }
 
     /**

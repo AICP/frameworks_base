@@ -586,6 +586,12 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.Secure.getUriFor(
                     Settings.Secure.QS_NUM_TILE_COLUMNS), false, this,
                     UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.LOCKSCREEN_ROTATION),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.ACCELEROMETER_ROTATION),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -761,6 +767,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 updateWeatherTextState(mWeatherController.getWeatherInfo().temp,
                         mWeatherTempColor, mWeatherTempSize);
             }
+
+            mStatusBarWindowManager.updateKeyguardScreenRotation();
         }
     }
 
@@ -4403,6 +4411,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         updateNotifications(true);
         resetUserSetupObserver();
         setControllerUsers();
+
+        SettingsObserver observer = new SettingsObserver(mHandler);
+        observer.update();
 
         WallpaperManager wm = (WallpaperManager)
                 mContext.getSystemService(Context.WALLPAPER_SERVICE);

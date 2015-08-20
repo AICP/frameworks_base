@@ -496,7 +496,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     // - The custom Recents Long Press, if selected.  When null, use default (switch last app).
     private ComponentName mCustomRecentsLongPressHandler = null;
 
-    class SettingsObserver extends ContentObserver {
+    private class SettingsObserver extends ContentObserver {
         SettingsObserver(Handler handler) {
             super(handler);
         }
@@ -882,6 +882,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
     };
 
+    private SettingsObserver mSettingsObserver = new SettingsObserver(mHandler);
+
     private int mInteractingWindows;
     private boolean mAutohideSuspended;
     private int mStatusBarMode;
@@ -1076,8 +1078,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         addNavigationBar(false);
 
-        SettingsObserver observer = new SettingsObserver(mHandler);
-        observer.observe();
+        mSettingsObserver.observe();
 
         // Developer options - Force Navigation bar
         try {
@@ -4411,9 +4412,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         updateNotifications(true);
         resetUserSetupObserver();
         setControllerUsers();
-
-        SettingsObserver observer = new SettingsObserver(mHandler);
-        observer.update();
+        mSettingsObserver.update();
 
         WallpaperManager wm = (WallpaperManager)
                 mContext.getSystemService(Context.WALLPAPER_SERVICE);
@@ -4608,7 +4607,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
      */
     void updateResources(Configuration newConfig) {
         final Context context = mContext;
-        SettingsObserver observer = new SettingsObserver(mHandler);
 
         // detect theme change.
         ThemeConfig newTheme = newConfig != null ? newConfig.themeConfig : null;
@@ -4617,7 +4615,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         if (updateStatusBar) {
             mContext.recreateTheme();
             recreateStatusBar();
-            observer.update();
+            mSettingsObserver.update();
             addSidebarView();
             attachPieContainer(isPieEnabled());
 

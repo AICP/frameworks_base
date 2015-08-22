@@ -58,6 +58,7 @@ public class NetworkTextView extends TextView implements Observer {
     private int MB = KB*KB;
     private int GB = MB*KB;
     private boolean mAutoHide;
+    private boolean mHideArrows;
     private int mAutoHideThreshold;
     private int mNetworkTrafficColor;
 
@@ -163,6 +164,9 @@ public class NetworkTextView extends TextView implements Observer {
             resolver.registerContentObserver(Settings.System
                     .getUriFor(Settings.System.NETWORK_TRAFFIC_VECTOR_COLOR), false,
                     this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System
+                   .getUriFor(Settings.System.NETWORK_TRAFFIC_HIDE_ARROW), false,
+                   this, UserHandle.USER_ALL);
         }
 
         /*
@@ -224,6 +228,13 @@ public class NetworkTextView extends TextView implements Observer {
         mAutoHideThreshold = Settings.System.getIntForUser(resolver, Settings.System.NETWORK_TRAFFIC_VECTOR_AUTOHIDE_THRESHOLD,
                 10, UserHandle.USER_CURRENT);
 
+        mHideArrows = Settings.System.getIntForUser(resolver,
+                Settings.System.NETWORK_TRAFFIC_HIDE_ARROW, 1,
+                UserHandle.USER_CURRENT) == 1;
+        if (mHideArrows) {
+            setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
+        }
+
         mState = Settings.System.getInt(resolver, Settings.System.NETWORK_TRAFFIC_VECTOR_STATE, 0);
 
         mNetworkTrafficColor = Settings.System.getInt(resolver,
@@ -270,6 +281,10 @@ public class NetworkTextView extends TextView implements Observer {
     }
 
     private void updateTrafficDrawable() {
+        if (mHideArrows) {
+            return;
+        }
+
         // Check settings
         boolean upTraffic = NetworkTrafficSettings.isUpTrafficDisplayed(mState);
         boolean downTraffic = NetworkTrafficSettings.isDownTrafficDisplayed(mState);

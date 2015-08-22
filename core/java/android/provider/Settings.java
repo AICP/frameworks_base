@@ -3902,6 +3902,12 @@ public final class Settings {
        public static final String NETWORK_TRAFFIC_VECTOR_COLOR = "network_traffic_vector_color";
 
         /**
+         * Network stats Color style
+         * @hide
+         */
+        public static final String NETWORK_TRAFFIC_HIDE_ARROW = "network_traffic_hide_arrow";
+
+        /**
          * Whether or not to hide the network traffic indicator when there is no activity
          *
          * @hide

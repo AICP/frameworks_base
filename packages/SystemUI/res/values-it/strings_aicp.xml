@@ -81,7 +81,7 @@
     <string name="title_activity_sidebar_configuration">Appbar setup</string>
     <string name="action_save">Salva</string>
     <string name="toast_items_saved">Appbar elemento salvato</string>
-    <string name="content_setup_instructions">Aggiungi elementi all\'Appbar tenendo premuto sull\'app a destra e sposta sopra l\'Appbar.\n\nUnisci elementi nella cartella spostando un elemento sopra uno già esistente.\n\nPer rimuovere spostalo fuori dall'\appbar</string>
+    <string name="content_setup_instructions">Aggiungi elementi all\'Appbar tenendo premuto sull\'app a destra e sposta sopra l\'Appbar.\n\nUnisci elementi nella cartella spostando un elemento sopra uno già esistente.\n\nPer rimuovere spostalo fuori dall\'appbar</string>
     <string name="content_setup_dismiss">Continua</string>
     <string name="toast_not_installed">App non installata</string>
 

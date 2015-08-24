@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright (c) 2015 AICP Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- App circle sidebar -->
+    <string name="app_float_maximize_item_title">Развернуть</string>
+    <string name="app_float_item_title">В плавающем окне</string>
+    <string name="app_stop_item_title">Закрыть приложение</string>
+
+    <!-- Power Button for Navbar -->
+    <string name="navbar_power_button">Кнопка питания</string>
+
+    <!-- Greeting -->
+    <string name="aicp_label">Добро пожаловать в AICP!</string>
+
+    <!-- Off/On/Toggle -->
+    <string name="off">Выкл.</string>
+    <string name="on">Вкл.</string>
+    <string name="toggle">Переключить</string>
+
+    <!-- Dialog Cancel/OK -->
+    <string name="cancel">Отмена</string>
+    <string name="dlg_ok">ОК</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+
+    <!-- Slim Shortcut Actions -->
+    <string name="shortcut_picker">Ярлыки</string>
+    <string name="shortcut_rotation">Автоповорот</string>
+    <string name="shortcut_reboot">Перезагрузка</string>
+    <string name="shortcut_recovery">Режим восстановления</string>
+    <string name="shortcut_toggle_title">Действие для выполнения</string>
+
+    <!-- Kill app toast -->
+    <string name="app_killed_message">Приложение закрыто</string>
+
+    <!-- mount notifications -->
+    <string name="ext_media_mounted_notification_title">смонтировано</string>
+    <string name="ext_media_unmounted_notification_title">размонтировано</string>
+    <string name="ext_media_unmounted_notification_message">Вы можете безопасно извлечь накопитель.</string>
+    <string name="ext_media_unmount_action">Размонтировать</string>
+    <string name="ext_media_mount_action">Монтировать</string>
+    <string name="ext_media_unmounting_notification_title">размонтирование\u2026</string>
+    <string name="ext_media_mounting_notification_title">монтирование\u2026</string>
+
+    <!-- Additional navring targets -->
+    <string name="navring_action_power_menu">Меню кнопки питания</string>
+    <string name="navring_action_last_app">Последнее приложение</string>
+    <string name="navring_action_expand_desktop">Расширенный экран</string>
+
+    <string name="gestures_message">Нарисуйте ваш жест здесь</string>
+
+    <!-- Battery status in pie controls -->
+    <string name="pie_battery_status_charging">Заряжается (<xliff:g id="percent">%d</xliff:g>%%)</string>
+    <string name="pie_battery_status_full">Заряжено</string>
+    <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% осталось</string>
+
+    <!-- Phone status in pie controls -->
+    <string name="pie_phone_status_no_service">Вне зоны обслуживания</string>
+    <string name="pie_phone_status_airplane_mode">Включен режим полета</string>
+    <string name="pie_phone_status_emergency_only">Только экстренные вызовы</string>
+
+    <!-- App sidebar -->
+    <string name="default_folder_text">Папка</string>
+    <string name="title_activity_sidebar_configuration">Содержимое панели приложений</string>
+    <string name="action_save">Сохранить</string>
+    <string name="toast_items_saved">Элементы \"Панели приложений\" сохранены.</string>
+    <string name="content_setup_instructions">Добавление элементов на \"Панель приложений\" осуществляется долгим нажатием на любой элемент справа и перетаскиванием его на панель\n\nГруппируйте элементы в папки простым перемещением.\n\nЧтобы удалить элемент, просто перетащите его из \"Панели приложений\" в любое место.</string>
+    <string name="content_setup_dismiss">Продолжить</string>
+    <string name="toast_not_installed">Приложение не установлено</string>
+
+    <!-- Slim Action floats tile -->
+    <string name="quick_settings_slim_floats_on">Режим плавающих окон включен</string>
+    <string name="quick_settings_slim_floats_off">Режим плавающих окон выключен</string>
+
+    <!-- Slim Pie Tile -->
+    <string name="quick_settings_slimpie_on">Pie включен</string>
+    <string name="quick_settings_slimpie_off">Pie выключен</string>
+
+    <!-- Title shown in recents popup for showing app launch in floating mode -->
+    <string name="recent_float_mode_title">В плавающем окне</string>
+
+    <!-- Themes Tile -->
+    <string name="quick_settings_themes">Темы</string>
+
+    <!-- Battery Saver Dismiss -->
+    <string name="battery_saver_dismiss_title">Отклонить</string>
+</resources>

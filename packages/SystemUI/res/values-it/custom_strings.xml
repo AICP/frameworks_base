@@ -43,9 +43,9 @@
     <string name="quick_settings_brightness">Luminosità</string>
     <string name="quick_settings_expanded_desktop">Esteso</string>
     <string name="quick_settings_expanded_desktop_off">Normale</string>
-    <string name="quick_settings_screen_off">Screen off</string>
+    <string name="quick_settings_screen_off">Spegni Schermo</string>
     <string name="quick_settings_screenshot">Screenshot</string>
-    <string name="quick_settings_screenrecord">Screenrecord</string>
+    <string name="quick_settings_screenrecord">Registra Schermo</string>
     <string name="quick_settings_screenrecord_on">registrazione ...</string>
     <string name="quick_settings_sync">Sync</string>
     <string name="quick_settings_sync_off">Sync off</string>

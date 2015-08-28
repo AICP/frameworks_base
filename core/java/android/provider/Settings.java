@@ -6128,6 +6128,13 @@ public final class Settings {
          */
         public static final String BACK_GESTURE_HEIGHT = "back_gesture_height";
 
+        /**
+         * Toast icon
+         * @hide
+         */
+        @Readable
+        public static final String TOAST_ICON = "toast_icon";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6327,6 +6334,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(NAV_BAR_COMPACT_LAYOUT);
             PRIVATE_SETTINGS.add(NAVIGATION_BAR_IME_SPACE);
             PRIVATE_SETTINGS.add(BACK_GESTURE_HEIGHT);
+            PRIVATE_SETTINGS.add(TOAST_ICON);
         }
 
         /**

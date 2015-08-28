@@ -305,5 +305,6 @@ public class SystemSettings {
         Settings.System.GAMING_MODE_DISABLE_NOTIFICATION_ALERT,
         Settings.System.GAMING_MODE_DISABLE_ADB,
         Settings.System.VOLUME_ANSWER_CALL,
+        Settings.System.TOAST_ICON,
     };
 }

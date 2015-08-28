@@ -165,5 +165,6 @@ public class SystemSettings {
         Settings.System.NAV_BAR_COMPACT_LAYOUT,
         Settings.System.NAVIGATION_BAR_IME_SPACE,
         Settings.System.BACK_GESTURE_HEIGHT,
+        Settings.System.TOAST_ICON,
     };
 }

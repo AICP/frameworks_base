@@ -4987,6 +4987,16 @@ public final class Settings {
         private static final Validator ANIM_TILE_INTERPOLATOR_VALIDATOR =
               new SettingsValidators.InclusiveIntegerRangeValidator(0, 7);
 
+        /**
+         * Toast icon
+         * @hide
+         */
+        public static final String TOAST_ICON = "toast_icon";
+
+        /** @hide */
+        private static final Validator TOAST_ICON_VALIDATOR =
+              BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5123,6 +5133,7 @@ public final class Settings {
             ANIM_TILE_STYLE,
             ANIM_TILE_DURATION,
             ANIM_TILE_INTERPOLATOR,
+            TOAST_ICON,
             // AICP Settings end
         };
 
@@ -5322,6 +5333,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(ANIM_TILE_STYLE);
             PRIVATE_SETTINGS.add(ANIM_TILE_DURATION);
             PRIVATE_SETTINGS.add(ANIM_TILE_INTERPOLATOR);
+            PRIVATE_SETTINGS.add(TOAST_ICON);
             // AICP Settings end
         }
 
@@ -5501,6 +5513,7 @@ public final class Settings {
             VALIDATORS.put(ANIM_TILE_STYLE,ANIM_TILE_STYLE_VALIDATOR);
             VALIDATORS.put(ANIM_TILE_DURATION,ANIM_TILE_DURATION_VALIDATOR);
             VALIDATORS.put(ANIM_TILE_INTERPOLATOR,ANIM_TILE_INTERPOLATOR_VALIDATOR);
+            VALIDATORS.put(TOAST_ICON,TOAST_ICON_VALIDATOR);
             // AICP Settings end
         }
 

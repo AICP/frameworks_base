@@ -5805,6 +5805,12 @@ public final class Settings {
           */
          public static final String VOLUME_DIALOG_TIMEOUT = "volume_dialog_timeout";
 
+        /**
+         * Toast icon
+         * @hide
+         */
+        public static final String TOAST_ICON = "toast_icon";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5917,6 +5923,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(ANIM_TILE_DURATION, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(ANIM_TILE_INTERPOLATOR, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(VOLUME_DIALOG_TIMEOUT, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(TOAST_ICON, BOOLEAN_VALIDATOR);
         }
 
         /**

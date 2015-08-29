@@ -35,7 +35,7 @@ import java.net.URISyntaxException;
 import static com.android.internal.util.cm.NavigationRingConstants.*;
 
 public class NavigationRingHelpers {
-    public static final int MAX_ACTIONS = 3;
+    public static final int MAX_ACTIONS = 5;
 
     private NavigationRingHelpers() {
         // Do nothing here
@@ -81,6 +81,8 @@ public class NavigationRingHelpers {
         Settings.Secure.putString(cr, Settings.Secure.NAVIGATION_RING_TARGETS[0], null);
         Settings.Secure.putString(cr, Settings.Secure.NAVIGATION_RING_TARGETS[1], ACTION_ASSIST);
         Settings.Secure.putString(cr, Settings.Secure.NAVIGATION_RING_TARGETS[2], null);
+        Settings.Secure.putString(cr, Settings.Secure.NAVIGATION_RING_TARGETS[3], null);
+        Settings.Secure.putString(cr, Settings.Secure.NAVIGATION_RING_TARGETS[4], null);
     }
 
     public static boolean isAssistantAvailable(Context context) {

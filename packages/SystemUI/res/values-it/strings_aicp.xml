@@ -43,7 +43,7 @@
     <!-- Slim Shortcut Actions -->
     <string name="shortcut_picker">Scorciatoie Slim</string>
     <string name="shortcut_rotation">Rotazione</string>
-    <string name="shortcut_reboot">Reboot</string>
+    <string name="shortcut_reboot">Riavvia</string>
     <string name="shortcut_recovery">Recovery</string>
     <string name="shortcut_toggle_title">Azione da compiere</string>
 

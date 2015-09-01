@@ -34,6 +34,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.provider.Settings;
 import android.provider.Settings.Global;
 import android.util.Log;
 import android.view.View;
@@ -112,6 +115,14 @@ public class NotificationsTile extends QSTile<NotificationsTile.NotificationsSta
         }
         int ringerMode = RINGERS[mRingerIndex];
         int zenMode = ZENS[mRingerIndex];
+
+        // If we are setting a ringer state, ring to indicate it
+        if (ringerMode == AudioManager.RINGER_MODE_NORMAL) {
+            Ringtone ringTone = RingtoneManager.getRingtone(mContext,
+                Settings.System.DEFAULT_NOTIFICATION_URI);
+            ringTone.setStreamType(AudioManager.STREAM_MUSIC);
+            ringTone.play();
+        }
 
         // If we are setting a vibrating state, vibrate to indicate it
         if (ringerMode == AudioManager.RINGER_MODE_VIBRATE && mVibrator != null) {

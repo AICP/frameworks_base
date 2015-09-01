@@ -210,4 +210,9 @@
   <string name="silent_mode_priority">Priorità</string>
   <string name="silent_mode_none">Nessuno</string>
   <string name="global_action_screenrecord">Registra Schermo</string>
+  <string name="global_action_reboot">Riavvia</string>
+  <string name="reboot_reboot">Riavvia</string>
+  <string name="reboot_title">Riavvia</string>
+  <string name="reboot_progress">Riavvio\u2026</string>
+  <string name="reboot_systemui">Riavvia SystemUI</string>
 </resources>

@@ -107,7 +107,7 @@
     <string name="quick_settings_slimpie_on">Pie Enabled</string>
     <string name="quick_settings_slimpie_off">Pie Disabled</string>
 
-    <!-- Battery Saver Dimss -->
+    <!-- Battery Saver Dismiss -->
     <string name="battery_saver_dismiss_title">Dismiss</string>
 
     <!-- Title shown in recents popup for showing app launch in floating mode -->
@@ -115,7 +115,4 @@
 
     <!-- Themes Tile -->
     <string name="quick_settings_themes">Themes</string>
-
-    <!-- Battery Saver Dismiss -->
-    <string name="battery_saver_dismiss_title">Dismiss</string>
 </resources>

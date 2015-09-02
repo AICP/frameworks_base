@@ -81,6 +81,7 @@ public class SearchPanelView extends FrameLayout implements StatusBarPanel,
 
     private int mThreshold;
     private boolean mHorizontal;
+    private boolean mLeftNavbar;
 
     private boolean mLaunching;
     private boolean mDragging;
@@ -343,7 +344,8 @@ public class SearchPanelView extends FrameLayout implements StatusBarPanel,
                     mDragging = true;
                 }
                 if (mDragging) {
-                    float offset = Math.max(mStartDrag - currentTouch, 0.0f);
+                    float offset = Math.max(mHorizontal && mLeftNavbar
+                            ? currentTouch - mStartTouch : mStartTouch - currentTouch, 0.0f);
                     mCircle.setDragDistance(offset);
                     int indexOfIntersect = mCircle.isIntersecting(event);
                     mDraggedFarEnough = indexOfIntersect != -1;
@@ -403,6 +405,11 @@ public class SearchPanelView extends FrameLayout implements StatusBarPanel,
     public void setHorizontal(boolean horizontal) {
         mHorizontal = horizontal;
         mCircle.setHorizontal(horizontal);
+    }
+
+    public void setLeftNavbar(boolean leftNavbar) {
+        mLeftNavbar = leftNavbar;
+        mCircle.setLeftNavbar(mLeftNavbar);
     }
 
     @Override

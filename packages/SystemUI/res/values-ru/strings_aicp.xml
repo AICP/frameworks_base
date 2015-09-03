@@ -47,6 +47,10 @@
     <string name="shortcut_chamber">Тайная комната</string>
     <string name="shortcut_reboot">Перезагрузка</string>
     <string name="shortcut_recovery">Режим восстановления</string>
+    <string name="shortcut_screensleep">Выключить экран</string>
+    <string name="shortcut_volume">Громкость</string>
+    <string name="shortcut_restart_ui">Перезапустить интерфейс</string>
+    <string name="shortcut_powermenu">Меню кнопки питания</string>
     <string name="shortcut_toggle_title">Действие для выполнения</string>
     <string name="chamber_disabled">Тайная комната закрыта</string>
     <string name="chamber_title">Строка ввода параметров</string>

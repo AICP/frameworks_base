@@ -44,6 +44,7 @@ import android.os.AsyncTask;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.PowerManager;
 import android.os.Process;
 import android.provider.MediaStore;
 import android.util.DisplayMetrics;
@@ -374,6 +375,7 @@ class GlobalScreenshot {
     private final int mPreviewHeight;
 
     private Context mContext;
+    private PowerManager mPowerManager;
     private WindowManager mWindowManager;
     private WindowManager.LayoutParams mWindowLayoutParams;
     private NotificationManager mNotificationManager;
@@ -409,6 +411,8 @@ class GlobalScreenshot {
         mContext = context;
         LayoutInflater layoutInflater = (LayoutInflater)
                 context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        mPowerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
 
         // Inflate the screenshot layout
         mDisplayMatrix = new Matrix();
@@ -522,6 +526,9 @@ class GlobalScreenshot {
     }
 
     private void takeScreenshotInternal(Runnable finisher, boolean statusBarVisible, boolean navBarVisible) {
+        // a lot of work ahead, help out a bit
+        mPowerManager.cpuBoost(1500000);
+
         // We need to orient the screenshot correctly (and the Surface api seems to take screenshots
         // only in the natural orientation of the device :!)
         mDisplay.getRealMetrics(mDisplayMetrics);

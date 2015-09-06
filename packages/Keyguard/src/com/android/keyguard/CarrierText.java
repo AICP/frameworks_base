@@ -144,9 +144,7 @@ public class CarrierText extends TextView {
                 // "No SIM card"
                 // Grab the first subscripton, because they all should contain the emergency text,
                 // described above.
-                displayText =  makeCarrierStringOnEmergencyCapable(
-                        getContext().getText(R.string.keyguard_missing_sim_message_short),
-                        subs.get(0).getCarrierName());
+                displayText =  null;
             } else {
                 // We don't have a SubscriptionInfo to get the emergency calls only from.
                 // Grab it from the old sticky broadcast if possible instead. We can use it
@@ -168,8 +166,7 @@ public class CarrierText extends TextView {
                     if (DEBUG) Log.d(TAG, "Getting plmn/spn sticky brdcst " + plmn + "/" + spn);
                     text = concatenate(plmn, spn);
                 }
-                displayText =  makeCarrierStringOnEmergencyCapable(
-                        getContext().getText(R.string.keyguard_missing_sim_message_short), text);
+                displayText =  null;
             }
         }
         if (Settings.System.getInt(mContext.getContentResolver(),

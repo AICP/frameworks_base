@@ -444,6 +444,14 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         }
     }
 
+    void setTaskManagerEnabled(boolean enabled) {
+        mShowTaskManager = enabled;
+        updateVisibilities();
+        updateSystemIconsLayoutParams();
+        updateMultiUserSwitch();
+        requestCaptureValues();
+    }
+
     private void updateHeights() {
         int height = mExpanded ? mExpandedHeight : mCollapsedHeight;
         ViewGroup.LayoutParams lp = getLayoutParams();
@@ -994,21 +1002,19 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         mSettingsButton.setTranslationY(mSystemIconsSuperContainer.getTranslationY());
         mSettingsButton.setTranslationX(values.settingsTranslation);
         mSettingsButton.setRotation(values.settingsRotation);
-        if (mTaskManagerButton != null) {
-            mTaskManagerButton.setTranslationY(mSystemIconsSuperContainer.getTranslationY());
-            mTaskManagerButton.setTranslationX(values.settingsTranslation+values.taskManagerTranslation);
-            mTaskManagerButton.setRotation(values.settingsRotation);
-        }
-        if (mStatusBarPowerMenuStyle != STATUS_BAR_POWER_MENU_OFF) {
-            mStatusBarPowerMenu.setTranslationY(mSystemIconsSuperContainer.getTranslationY());
-            mStatusBarPowerMenu.setTranslationX(values.settingsTranslation+values.statusBarPowerMenuY);
-            mStatusBarPowerMenu.setRotation(values.settingsRotation);
-        }
         if (mHeadsUpButton != null) {
             mHeadsUpButton.setTranslationY(mSystemIconsSuperContainer.getTranslationY());
             mHeadsUpButton.setTranslationX(values.settingsTranslation+values.headsUpTranslation);
             mHeadsUpButton.setRotation(values.settingsRotation);
         }
+        if (mStatusBarPowerMenuStyle != null) {
+            mStatusBarPowerMenu.setTranslationY(mSystemIconsSuperContainer.getTranslationY());
+            mStatusBarPowerMenu.setTranslationX(values.settingsTranslation+values.statusBarPowerMenuY);
+            mStatusBarPowerMenu.setRotation(values.settingsRotation);
+        }
+        mTaskManagerButton.setTranslationY(mSystemIconsSuperContainer.getTranslationY());
+        mTaskManagerButton.setTranslationX(values.settingsTranslation);
+        mTaskManagerButton.setRotation(values.settingsRotation);
         applyAlpha(mEmergencyCallsOnly, values.emergencyCallsOnlyAlpha);
         if (!mShowingDetail) {
             // Otherwise it needs to stay invisible

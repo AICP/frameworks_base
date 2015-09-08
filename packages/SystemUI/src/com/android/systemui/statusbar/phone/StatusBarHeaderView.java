@@ -971,9 +971,6 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         mClock.setY(values.clockY - mClock.getHeight());
         mDateGroup.setY(values.dateY);
         mWeatherContainer.setY(values.weatherY);
-        if (mStatusBarPowerMenuStyle != STATUS_BAR_POWER_MENU_OFF) {
-            mStatusBarPowerMenu.setY(values.statusBarPowerMenuY);
-        }
         mAlarmStatus.setY(values.dateY - mAlarmStatus.getPaddingTop());
         mMultiUserAvatar.setScaleX(values.avatarScale);
         mMultiUserAvatar.setScaleY(values.avatarScale);
@@ -1008,13 +1005,13 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
             mHeadsUpButton.setTranslationX(values.settingsTranslation+values.headsUpTranslation);
             mHeadsUpButton.setRotation(values.settingsRotation);
         }
-        if (mStatusBarPowerMenuStyle != null) {
+        if (mStatusBarPowerMenuStyle != STATUS_BAR_POWER_MENU_OFF) {
             mStatusBarPowerMenu.setTranslationY(mSystemIconsSuperContainer.getTranslationY());
             mStatusBarPowerMenu.setTranslationX(values.settingsTranslation+values.statusBarPowerMenuY);
             mStatusBarPowerMenu.setRotation(values.settingsRotation);
         }
         mTaskManagerButton.setTranslationY(mSystemIconsSuperContainer.getTranslationY());
-        mTaskManagerButton.setTranslationX(values.settingsTranslation);
+        mTaskManagerButton.setTranslationX(values.settingsTranslation+values.taskManagerTranslation);
         mTaskManagerButton.setRotation(values.settingsRotation);
         applyAlpha(mEmergencyCallsOnly, values.emergencyCallsOnlyAlpha);
         if (!mShowingDetail) {
@@ -1168,7 +1165,6 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
                     Settings.System.QS_COLOR_SWITCH, 0) == 1;
             transition(mClock, !showingDetail);
             transition(mDateGroup, !showingDetail);
-            transition(mStatusBarPowerMenu, !showingDetail);
             if (mShowWeather) {
                 transition(mWeatherContainer, !showingDetail);
             }
@@ -1203,7 +1199,6 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
             } else {
                 mQsDetailHeader.setClickable(false);
             }
-            updateStatusBarPowerMenuVisibility();
         }
 
         private void transition(final View v, final boolean in) {

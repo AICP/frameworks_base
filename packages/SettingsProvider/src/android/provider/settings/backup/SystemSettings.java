@@ -150,5 +150,9 @@ public class SystemSettings {
         Settings.System.NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD,
         Settings.System.SENSOR_BLOCK,
         Settings.System.NETWORK_TRAFFIC_EXPANDED_STATUS_BAR_STATE,
+        Settings.System.GLOBAL_ACTIONS_ONTHEGO,
+        Settings.System.ON_THE_GO_SERVICE_RESTART,
+        Settings.System.ON_THE_GO_CAMERA,
+        Settings.System.ON_THE_GO_ALPHA,
     };
 }

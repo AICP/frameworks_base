@@ -43,6 +43,7 @@ import android.app.trust.TrustManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
@@ -136,6 +137,8 @@ import com.android.systemui.util.RingerModeTracker;
 import com.android.systemui.util.settings.GlobalSettings;
 import com.android.systemui.util.settings.SecureSettings;
 
+import com.android.internal.util.aicp.OnTheGoActions;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -176,6 +179,7 @@ public class GlobalActionsDialogLite implements DialogInterface.OnDismissListene
     private static final String GLOBAL_ACTION_KEY_LOGOUT = "logout";
     static final String GLOBAL_ACTION_KEY_EMERGENCY = "emergency";
     static final String GLOBAL_ACTION_KEY_SCREENSHOT = "screenshot";
+    static final String GLOBAL_ACTION_KEY_ONTHEGO = "onthego";
     private static final String GLOBAL_ACTION_KEY_ADVANCED_RESTART = "advanced";
     private static final String GLOBAL_ACTION_KEY_TORCH = "torch";
 
@@ -711,6 +715,11 @@ public class GlobalActionsDialogLite implements DialogInterface.OnDismissListene
                 if (Settings.System.getInt(mContext.getContentResolver(),
                         Settings.System.POWERMENU_EMERGENCY, 0) == 1) {
                     addIfShouldShowAction(tempActions, new EmergencyDialerAction());
+                }
+            } else if (GLOBAL_ACTION_KEY_ONTHEGO.equals(actionKey)) {
+                if (Settings.System.getInt(mContext.getContentResolver(),
+                        Settings.System.GLOBAL_ACTIONS_ONTHEGO, 0) == 1) {
+                    addIfShouldShowAction(tempActions, getOnTheGoAction());
                 }
             } else {
                 Log.e(TAG, "Invalid global action key " + actionKey);
@@ -1264,6 +1273,27 @@ public class GlobalActionsDialogLite implements DialogInterface.OnDismissListene
         };
     }
 
+    private Action getOnTheGoAction() {
+        return new SinglePressAction(com.android.internal.R.drawable.ic_lock_onthego,
+                com.android.systemui.R.string.global_action_onthego) {
+            @Override
+            public void onPress() {
+                OnTheGoActions.processAction(mContext,
+                        OnTheGoActions.ACTION_ONTHEGO_TOGGLE);
+            }
+
+            @Override
+            public boolean showDuringKeyguard() {
+                return true;
+            }
+
+            @Override
+            public boolean showBeforeProvisioning() {
+                return true;
+            }
+        };
+    }
+
     private Action getVoiceAssistAction() {
         return new SinglePressAction(R.drawable.ic_voice_search,
                 R.string.global_action_voice_assist) {
@@ -1386,6 +1416,15 @@ public class GlobalActionsDialogLite implements DialogInterface.OnDismissListene
                 }
             }
         }
+    }
+
+    protected void startOnTheGo() {
+        final ComponentName cn = new ComponentName("com.android.systemui",
+                "com.android.systemui.aicp.onthego.OnTheGoService");
+        final Intent startIntent = new Intent();
+        startIntent.setComponent(cn);
+        startIntent.setAction("start");
+        mContext.startService(startIntent);
     }
 
     protected void prepareDialog() {

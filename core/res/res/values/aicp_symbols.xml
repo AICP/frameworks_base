@@ -173,4 +173,7 @@
   <java-symbol type="drawable" name="spidey_clock_hand_minute" />
 
   <java-symbol type="bool" name="config_dozeAlwaysOnDisplayEnabledDefault" />
+
+  <!-- On-The-Go -->
+  <java-symbol type="drawable" name="ic_lock_onthego" />
 </resources>

@@ -39,6 +39,7 @@ import android.app.StatusBarManager;
 import android.app.WallpaperManager;
 import android.app.trust.TrustManager;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -202,6 +203,7 @@ public class GlobalActionsDialogLite implements DialogInterface.OnDismissListene
     static final String GLOBAL_ACTION_KEY_SCREENSHOT = "screenshot";
     static final String GLOBAL_ACTION_KEY_SYSTEM_UPDATE = "system_update";
     static final String GLOBAL_ACTION_KEY_STANDBY = "standby";
+    private static final String GLOBAL_ACTION_KEY_ONTHEGO = "onthego";
 
     // See NotificationManagerService#scheduleDurationReachedLocked
     private static final long TOAST_FADE_TIME = 333;
@@ -721,6 +723,12 @@ public class GlobalActionsDialogLite implements DialogInterface.OnDismissListene
                 addIfShouldShowAction(tempActions, restartAction);
             } else if (GLOBAL_ACTION_KEY_SCREENSHOT.equals(actionKey)) {
                 addIfShouldShowAction(tempActions, new ScreenshotAction());
+		} 
+            } else if (GLOBAL_ACTION_KEY_ONTHEGO.equals(actionKey)) {
+                if (Settings.System.getInt(mContext.getContentResolver(),
+                        Settings.System.POWERMENU_ONTHEGO, 0) == 1) {
+                    addIfShouldShowAction(tempActions, new getOnTheGoAction());
+                }
             } else if (GLOBAL_ACTION_KEY_LOGOUT.equals(actionKey)) {
                 if (mLogoutInteractor.isLogoutEnabled().getValue()) {
                     addIfShouldShowAction(tempActions, new LogoutAction());
@@ -1405,6 +1413,34 @@ public class GlobalActionsDialogLite implements DialogInterface.OnDismissListene
                 return true;
             }
         };
+    }
+
+    class getOnTheGoAction extends SinglePressAction {
+
+        public getOnTheGoAction() {
+            super(com.android.systemui.res.R.drawable.ic_lock_onthego,
+                    com.android.systemui.res.R.string.global_action_onthego);
+        }
+
+        @Override
+        public void onPress() {
+            ComponentName cn = new ComponentName("com.android.systemui",
+                    "com.android.systemui.aicp.onthego.OnTheGoService");
+            Intent onTheGoIntent = new Intent();
+            onTheGoIntent.setComponent(cn);
+            onTheGoIntent.setAction("start");
+            mContext.startService(onTheGoIntent);
+        }
+
+        @Override
+        public boolean showDuringKeyguard() {
+            return true;
+        }
+
+        @Override
+        public boolean showBeforeProvisioning() {
+            return false;
+        }
     }
 
     @VisibleForTesting

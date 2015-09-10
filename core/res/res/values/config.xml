@@ -2872,6 +2872,7 @@
         <item>logout</item>
         <item>bugreport</item>
         <item>screenshot</item>
+        <item>onthego</item>
         <item>emergency</item>
     </string-array>
 

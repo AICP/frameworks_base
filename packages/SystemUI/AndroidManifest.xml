@@ -34,6 +34,8 @@
     <uses-permission android:name="android.permission.WRITE_MEDIA_STORAGE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
+    <uses-permission android:name="android.permission.ACCESS_SURFACE_FLINGER" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INJECT_EVENTS" />
     <uses-permission android:name="android.permission.DUMP" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
@@ -277,6 +279,12 @@
             </intent-filter>
         </receiver>
 
+        <!-- started from PhoneWindowManager
+             TODO: Should have an android:permission attribute -->
+        <service android:name=".aicp.onthego.OnTheGoService"
+            android:process=":onthego"
+            android:exported="false" />
+
         <receiver android:name=".SysuiRestartReceiver"
             android:exported="false">
             <intent-filter>
@@ -304,7 +312,7 @@
 
         <!-- started from PhoneWindowManager
              TODO: Should have an android:permission attribute -->
-        <service android:name=".benzo.screenrecord.TakeScreenrecordService"
+        <service android:name=".aicp.screenrecord.TakeScreenrecordService"
             android:process=":screenrecord"
             android:exported="false" />
 

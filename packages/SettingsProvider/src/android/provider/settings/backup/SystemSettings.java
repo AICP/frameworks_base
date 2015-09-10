@@ -129,7 +129,12 @@ public class SystemSettings {
                 Settings.System.PREFERRED_REGION,
                 Settings.System.CV_ENABLED,
                 Settings.System.CV_DYNAMIC_ENABLED,
-                Settings.System.CV_PREFERRED_INTENSITY
+                Settings.System.CV_PREFERRED_INTENSITY,
+                // AICP Settings start
+                Settings.System.GLOBAL_ACTIONS_ONTHEGO,
+                Settings.System.ON_THE_GO_ALPHA,
+                Settings.System.ON_THE_GO_SERVICE_RESTART,
+                Settings.System.ON_THE_GO_CAMERA
         ));
         if (Flags.backUpSmoothDisplayAndForcePeakRefreshRate()) {
             settings.add(Settings.System.PEAK_REFRESH_RATE);

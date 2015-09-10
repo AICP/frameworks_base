@@ -82,4 +82,6 @@
 
   <java-symbol type="array" name="config_blockPackagesSensorDrain" />
 
+  <!-- On-The-Go -->
+  <java-symbol type="drawable" name="ic_lock_onthego" />
 </resources>

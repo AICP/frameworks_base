@@ -179,5 +179,9 @@ public class SystemSettings {
         Settings.System.POWER_MENU_ANIMATIONS,
         Settings.System.VOLUME_DIALOG_TIMEOUT,
         Settings.System.STATUSBAR_CLOCK_CHIP,
+        Settings.System.GLOBAL_ACTIONS_ONTHEGO,
+        Settings.System.ON_THE_GO_ALPHA,
+        Settings.System.ON_THE_GO_SERVICE_RESTART,
+        Settings.System.ON_THE_GO_CAMERA,
     };
 }

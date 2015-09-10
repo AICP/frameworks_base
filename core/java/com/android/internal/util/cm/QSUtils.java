@@ -31,6 +31,7 @@ import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
+import android.os.PowerManager;
 import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.provider.Settings;
@@ -125,9 +126,11 @@ public class QSUtils {
                 case QSConstants.TILE_AMBIENT_DISPLAY:
                     removeTile = !isDozeAvailable(context);
                     break;
-
                 case QSConstants.DYNAMIC_TILE_SU:
                     removeTile = !supportsRootAccess();
+                    break;
+                case QSConstants.TILE_PERFORMANCE:
+                    removeTile = !hasPowerMode(context);
                     break;
             }
             if (removeTile) {
@@ -300,5 +303,10 @@ public class QSUtils {
 
     private static boolean supportsRootAccess() {
         return Build.IS_DEBUGGABLE || "eng".equals(Build.TYPE);
+    }
+
+    private static boolean hasPowerMode(Context context) {
+        PowerManager mPowerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+        return mPowerManager.hasPowerProfiles();
     }
 }

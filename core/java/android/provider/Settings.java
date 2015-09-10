@@ -5734,6 +5734,36 @@ public final class Settings {
         public static final String NETWORK_TRAFFIC_EXPANDED_STATUS_BAR_STATE =
                 "network_traffic_expanded_status_bar_state";
 
+        /**
+         * If On-The-Go should be displayed at the power menu.
+         *
+         * @hide
+         */
+        public static final String GLOBAL_ACTIONS_ONTHEGO = "global_actions_onthego";
+
+        /**
+         * The alpha value of the On-The-Go overlay.
+         *
+         * @hide
+         */
+        public static final String ON_THE_GO_ALPHA = "on_the_go_alpha";
+
+        /**
+         * Whether the service should restart itself or not.
+         *
+         * @hide
+         */
+        public static final String ON_THE_GO_SERVICE_RESTART = "on_the_go_service_restart";
+
+        /**
+         * The camera instance to use.
+         * 0 = Rear Camera
+         * 1 = Front Camera
+         *
+         * @hide
+         */
+        public static final String ON_THE_GO_CAMERA = "on_the_go_camera";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5834,6 +5864,11 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(SENSOR_BLOCK, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(NETWORK_TRAFFIC_EXPANDED_STATUS_BAR_STATE, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(GLOBAL_ACTIONS_ONTHEGO, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(ON_THE_GO_SERVICE_RESTART, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(ON_THE_GO_SERVICE_RESTART, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(ON_THE_GO_CAMERA, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(ON_THE_GO_ALPHA, ANY_STRING_VALIDATOR);
         }
 
         /**

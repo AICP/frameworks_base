@@ -6727,6 +6727,38 @@ public final class Settings {
         public static final String VOLUME_KEY_CURSOR_CONTROL = "volume_key_cursor_control";
 
         /**
+         * Whether to display the on-the-go option in the power menu
+         * @hide
+         */
+        public static final String POWERMENU_ONTHEGO = "powermenu_onthego";
+
+        /**
+         * If On-The-Go should be displayed at the power menu.
+         * @hide
+         */
+        public static final String GLOBAL_ACTIONS_ONTHEGO = "global_actions_onthego";
+
+        /**
+         * The alpha value of the On-The-Go overlay.
+         * @hide
+         */
+        public static final String ON_THE_GO_ALPHA = "on_the_go_alpha";
+
+        /**
+         * Whether the service should restart itself or not.
+         * @hide
+         */
+        public static final String ON_THE_GO_SERVICE_RESTART = "on_the_go_service_restart";
+
+        /**
+         * The camera instance to use.
+         * 0 = Rear Camera
+         * 1 = Front Camera
+         * @hide
+         */
+        public static final String ON_THE_GO_CAMERA = "on_the_go_camera";
+
+        /**
          * IMPORTANT: If you add a new public settings you also have to add it to
          * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
          * it to PRIVATE_SETTINGS below. Also add a validator that can validate
@@ -6879,6 +6911,11 @@ public final class Settings {
             PRIVATE_SETTINGS.add(PREFERRED_REGION);
             PRIVATE_SETTINGS.add(MOUSE_SCROLLING_ACCELERATION);
             PRIVATE_SETTINGS.add(MOUSE_SCROLLING_SPEED);
+            // AICP Settings start
+            PRIVATE_SETTINGS.add(GLOBAL_ACTIONS_ONTHEGO);
+            PRIVATE_SETTINGS.add(ON_THE_GO_ALPHA);
+            PRIVATE_SETTINGS.add(ON_THE_GO_SERVICE_RESTART);
+            PRIVATE_SETTINGS.add(ON_THE_GO_CAMERA);
         }
 
         /**

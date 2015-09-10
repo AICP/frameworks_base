@@ -43,6 +43,7 @@ import android.app.UiModeManager;
 import android.app.WallpaperManager;
 import android.app.trust.TrustManager;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -204,6 +205,7 @@ public class GlobalActionsDialogLite implements DialogInterface.OnDismissListene
 
     private static final boolean SHOW_SILENT_TOGGLE = true;
 
+<<<<<<< HEAD
     /* Valid settings for restart actions keys.
      * see lineage-sdk config.xml config_restartActionsList */
     private static final String RESTART_ACTION_KEY_RESTART = "restart";
@@ -211,6 +213,27 @@ public class GlobalActionsDialogLite implements DialogInterface.OnDismissListene
     private static final String RESTART_ACTION_KEY_RESTART_BOOTLOADER = "restart_bootloader";
     private static final String RESTART_ACTION_KEY_RESTART_DOWNLOAD = "restart_download";
     private static final String RESTART_ACTION_KEY_RESTART_FASTBOOT = "restart_fastboot";
+=======
+    /* Valid settings for global actions keys.
+     * see config.xml config_globalActionList */
+    @VisibleForTesting
+    static final String GLOBAL_ACTION_KEY_POWER = "power";
+    private static final String GLOBAL_ACTION_KEY_AIRPLANE = "airplane";
+    static final String GLOBAL_ACTION_KEY_BUGREPORT = "bugreport";
+    private static final String GLOBAL_ACTION_KEY_SILENT = "silent";
+    private static final String GLOBAL_ACTION_KEY_USERS = "users";
+    private static final String GLOBAL_ACTION_KEY_SETTINGS = "settings";
+    static final String GLOBAL_ACTION_KEY_LOCKDOWN = "lockdown";
+    private static final String GLOBAL_ACTION_KEY_VOICEASSIST = "voiceassist";
+    private static final String GLOBAL_ACTION_KEY_ASSIST = "assist";
+    static final String GLOBAL_ACTION_KEY_RESTART = "restart";
+    private static final String GLOBAL_ACTION_KEY_LOGOUT = "logout";
+    static final String GLOBAL_ACTION_KEY_EMERGENCY = "emergency";
+    static final String GLOBAL_ACTION_KEY_SCREENSHOT = "screenshot";
+    static final String GLOBAL_ACTION_KEY_SYSTEM_UPDATE = "system_update";
+    static final String GLOBAL_ACTION_KEY_STANDBY = "standby";
+    private static final String GLOBAL_ACTION_KEY_ONTHEGO = "onthego";
+>>>>>>> c4579e1d0b56 (SystemUI: On-The-Go Mode (1/2))
 
     // See NotificationManagerService#scheduleDurationReachedLocked
     private static final long TOAST_FADE_TIME = 333;
@@ -769,11 +792,7 @@ public class GlobalActionsDialogLite implements DialogInterface.OnDismissListene
             } else if (GLOBAL_ACTION_KEY_RESTART.equals(actionKey)) {
                 addIfShouldShowAction(tempActions, restartAction);
             } else if (GLOBAL_ACTION_KEY_SCREENSHOT.equals(actionKey)) {
-                UiModeManager uiModeManager =
-                        (UiModeManager) mContext.getSystemService(Context.UI_MODE_SERVICE);
-                if (uiModeManager.getCurrentModeType() != Configuration.UI_MODE_TYPE_TELEVISION) {
-                    addIfShouldShowAction(tempActions, new ScreenshotAction());
-                }
+                addIfShouldShowAction(tempActions, new ScreenshotAction());
             } else if (GLOBAL_ACTION_KEY_LOGOUT.equals(actionKey)) {
                 if (mLogoutInteractor.isLogoutEnabled().getValue()) {
                     addIfShouldShowAction(tempActions, new LogoutAction());
@@ -793,6 +812,10 @@ public class GlobalActionsDialogLite implements DialogInterface.OnDismissListene
             }
             // Add here so we don't add more than one.
             addedKeys.add(actionKey);
+        }
+        if (Settings.System.getInt(mContext.getContentResolver(),
+            Settings.System.POWERMENU_ONTHEGO, 0) == 1) {
+            addIfShouldShowAction(tempActions, new getOnTheGoAction());
         }
 
         for (int i = 0; i < restartActions.length; i++) {
@@ -1613,6 +1636,34 @@ public class GlobalActionsDialogLite implements DialogInterface.OnDismissListene
                 return true;
             }
         };
+    }
+
+    class getOnTheGoAction extends SinglePressAction {
+
+        public getOnTheGoAction() {
+            super(com.android.systemui.res.R.drawable.ic_lock_onthego,
+                    com.android.systemui.res.R.string.global_action_onthego);
+        }
+
+        @Override
+        public void onPress() {
+            ComponentName cn = new ComponentName("com.android.systemui",
+                    "com.android.systemui.aicp.onthego.OnTheGoService");
+            Intent onTheGoIntent = new Intent();
+            onTheGoIntent.setComponent(cn);
+            onTheGoIntent.setAction("start");
+            mContext.startService(onTheGoIntent);
+        }
+
+        @Override
+        public boolean showDuringKeyguard() {
+            return true;
+        }
+
+        @Override
+        public boolean showBeforeProvisioning() {
+            return false;
+        }
     }
 
     @VisibleForTesting

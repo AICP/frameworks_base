@@ -3996,26 +3996,26 @@ public final class Settings {
          */
         public static final String CUSTOM_CARRIER_LABEL = "custom_carrier_label";
 
-         /**
-         * Change the color of the lockscreen bottom camera shortcut
+        /**
+         * Change the color of the lockscreen bottom shortcuts
          *
          * @hide
          */
-        public static final String LOCKSCREEN_CAMERA_ICON_COLOR = "lockscreen_camera_icon_color";
+        public static final String LOCKSCREEN_BOTTOM_ICONS_COLOR = "lockscreen_bottom_icons_color";
 
         /**
-         * Change the color of the lockscreen bottom phone shortcut
+         * Change the color of the lockscreen owner's info text
          *
          * @hide
          */
-        public static final String LOCKSCREEN_PHONE_ICON_COLOR = "lockscreen_phone_icon_color";
+        public static final String LOCKSCREEN_OWNER_INFO_COLOR = "lockscreen_owner_info_color";
 
         /**
-         * Change the color of the lockscreen lock icon
+         * Change the color of the lockscreen alarm text
          *
          * @hide
          */
-        public static final String LOCKSCREEN_LOCK_ICON_COLOR = "lockscreen_lock_icon_color";
+        public static final String LOCKSCREEN_ALARM_COLOR = "lockscreen_alarm_color";
 
         /**
          * Carrier Label Custom Color

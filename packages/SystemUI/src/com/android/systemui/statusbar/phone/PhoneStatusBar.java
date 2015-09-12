@@ -539,6 +539,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.Secure.getUriFor(
                     Settings.Secure.RECENTS_LONG_PRESS_ACTIVITY), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.LOCKSCREEN_BOTTOM_ICONS_COLOR),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_AICP_LOGO),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
@@ -669,6 +672,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                         mContext.getResources().getBoolean(R.bool.enable_ticker)
                         ? 1 : 0, UserHandle.USER_CURRENT) == 1;
                 initTickerView();
+             } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.LOCKSCREEN_BOTTOM_ICONS_COLOR))) {
+                setBottomIconsColors();
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.PIE_CONTROLS))) {
                     attachPieContainer(isPieEnabled());
@@ -1748,6 +1754,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 new Intent(pm.isScreenOn() ? Intent.ACTION_SCREEN_ON : Intent.ACTION_SCREEN_OFF));
 
         startGlyphRasterizeHack();
+        setBottomIconsColors();
         mStatusBarHeaderMachine = new StatusBarHeaderMachine(mContext);
         mStatusBarHeaderMachine.addObserver(mHeader);
         mStatusBarHeaderMachine.updateEnablement();
@@ -2946,6 +2953,15 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                             .start();
                 }
             }
+        }
+    }
+
+    public void setBottomIconsColors() {
+        int iconColor =
+                Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.LOCKSCREEN_BOTTOM_ICONS_COLOR, 0xffffffff);
+        if (mKeyguardBottomArea != null) {
+            mKeyguardBottomArea.updateIconColor(iconColor);
         }
     }
 

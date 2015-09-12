@@ -14,7 +14,7 @@
 * limitations under the License.
 */
 
-package com.android.internal.util.bliss;
+package com.android.internal.util.aicp;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -36,7 +36,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
 
-import com.android.internal.util.bliss.Converter;
+import com.android.internal.util.aicp.Converter;
 
 public class AltImageHelper {
 

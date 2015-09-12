@@ -3996,6 +3996,27 @@ public final class Settings {
          */
         public static final String CUSTOM_CARRIER_LABEL = "custom_carrier_label";
 
+         /**
+         * Change the color of the lockscreen bottom camera shortcut
+         *
+         * @hide
+         */
+        public static final String LOCKSCREEN_CAMERA_ICON_COLOR = "lockscreen_camera_icon_color";
+
+        /**
+         * Change the color of the lockscreen bottom phone shortcut
+         *
+         * @hide
+         */
+        public static final String LOCKSCREEN_PHONE_ICON_COLOR = "lockscreen_phone_icon_color";
+
+        /**
+         * Change the color of the lockscreen lock icon
+         *
+         * @hide
+         */
+        public static final String LOCKSCREEN_LOCK_ICON_COLOR = "lockscreen_lock_icon_color";
+
         /**
          * Carrier Label Custom Color
          * @hide
@@ -4007,6 +4028,27 @@ public final class Settings {
          * @hide
          */
         public static final String STATUS_BAR_CARRIER_FONT_SIZE = "status_bar_carrier_font_size";
+
+        /**
+         * Change the color of the lockscreen indication text
+         *
+         * @hide
+         */
+        public static final String LOCKSCREEN_INDICATION_TEXT_COLOR = "lockscreen_indication_text_color";
+
+        /**
+         * Change the color of the lockscreen clock
+         *
+         * @hide
+         */
+        public static final String LOCKSCREEN_CLOCK_COLOR = "lockscreen_clock_color";
+
+        /**
+         * Change the color of the lockscreen date underneath the clock
+         *
+         * @hide
+         */
+        public static final String LOCKSCREEN_CLOCK_DATE_COLOR = "lockscreen_clock_date_color";
 
         /**
          * show carrier in statusbae while on lockscreen. The value is

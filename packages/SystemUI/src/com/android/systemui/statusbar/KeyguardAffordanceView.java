@@ -58,8 +58,8 @@ public class KeyguardAffordanceView extends ImageView implements Palette.Palette
     private final Paint mCirclePaint;
     private final Interpolator mAppearInterpolator;
     private final Interpolator mDisappearInterpolator;
-    private int mInverseColor;
-    private int mNormalColor;
+    private final int mInverseColor;
+    private final int mNormalColor;
     private final ArgbEvaluator mColorInterpolator;
     private final FlingAnimationUtils mFlingAnimationUtils;
     private final Drawable mArrowDrawable;
@@ -132,9 +132,11 @@ public class KeyguardAffordanceView extends ImageView implements Palette.Palette
         super(context, attrs, defStyleAttr, defStyleRes);
         mCirclePaint = new Paint();
         mCirclePaint.setAntiAlias(true);
+        mCircleColor = 0xffffffff;
+        mCirclePaint.setColor(mCircleColor);
 
-        int iconColor = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.LOCK_SCREEN_ICON_COLOR, 0xffffffff);
+        mNormalColor = 0xffffffff;
+        mInverseColor = 0xff000000;
         mMinBackgroundRadius = mContext.getResources().getDimensionPixelSize(
                 R.dimen.keyguard_affordance_min_background_radius);
         mHintChevronPadding = mContext.getResources().getDimensionPixelSize(
@@ -148,8 +150,6 @@ public class KeyguardAffordanceView extends ImageView implements Palette.Palette
         mArrowDrawable = context.getDrawable(R.drawable.ic_chevron_left);
         mArrowDrawable.setBounds(0, 0, mArrowDrawable.getIntrinsicWidth(),
                 mArrowDrawable.getIntrinsicHeight());
-
-        updateColorSettings(iconColor);
     }
 
     @Override
@@ -558,30 +558,5 @@ public class KeyguardAffordanceView extends ImageView implements Palette.Palette
     public void onGenerated(Palette palette) {
         mCircleColor = palette.getDarkVibrantColor(Color.WHITE);
         addOverlay();
-    }
-
-    public void updateColorSettings() {
-        updateColorSettings(mNormalColor);
-    }
-
-    public void updateColorSettings(int color) {
-        mCircleColor = color;
-        mNormalColor = color;
-        mInverseColor = isColorDark(color) ? 0xffffffff : 0xff000000;
-
-        mCirclePaint.setColor(mCircleColor);
-        mArrowDrawable.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
-        updateIconColor();
-    }
-
-    private boolean isColorDark(int color) {
-        double a = 1- (0.299 * Color.red(color)
-                + 0.587 * Color.green(color)
-                + 0.114 * Color.blue(color)) / 255;
-        if (a < 0.5) {
-            return false;
-        } else {
-            return true;
-        }
     }
 }

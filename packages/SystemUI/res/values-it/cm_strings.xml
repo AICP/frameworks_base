@@ -162,4 +162,5 @@
   <string name="quick_settings_custom_qs_detail_empty_text">Nessun elemento trovato</string>
   <string name="quick_settings_powermenu_label">Tasto Power</string>
   <string name="quick_settings_reboot_label">Riavvia</string>
+  <string name="quick_settings_volume_panel_label">Volumi</string>
 </resources>

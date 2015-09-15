@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright (c) 2015 AICP Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- App circle sidebar -->
+    <string name="app_float_maximize_item_title">Maximalizálás</string>
+    <string name="app_float_item_title">Lebegő nézet</string>
+    <string name="app_stop_item_title">Alkalmazás kilővése</string>
+
+    <!-- Power Button for Navbar -->
+    <string name="navbar_power_button">Bekapcsoló gomb</string>
+
+    <!-- Greeting -->
+    <string name="aicp_label">Üdvözöl az AICP</string>
+
+    <!-- Off/On/Toggle -->
+    <string name="off">Ki</string>
+    <string name="on">Be</string>
+    <string name="toggle">Kapcsoló</string>
+
+    <!-- Dialog Cancel/OK -->
+    <string name="cancel">Törlés</string>
+    <string name="dlg_ok">Ok</string>
+    <string name="yes">Igen</string>
+    <string name="no">Nem</string>
+
+    <!-- Slim Shortcut Actions -->
+    <string name="shortcut_picker">Slim Parancsikonok</string>
+    <string name="shortcut_rotation">Forgatás</string>
+    <string name="shortcut_reboot">Újraindítás</string>
+    <string name="shortcut_recovery">Recovery</string>
+    <string name="shortcut_toggle_title">Végrehajtani kívánt műveletet</string>
+
+    <!-- Kill app toast -->
+    <string name="app_killed_message">Alkalmazás kilőve</string>
+
+    <!-- mount notifications -->
+    <string name="ext_media_mounted_notification_title">csatolva</string>
+    <string name="ext_media_unmounted_notification_title">leválasztva</string>
+    <string name="ext_media_unmounted_notification_message">Biztonságosan eltávolítható a tároló.</string>
+    <string name="ext_media_unmount_action">Leválasztás</string>
+    <string name="ext_media_mount_action">Csatolás</string>
+    <string name="ext_media_unmounting_notification_title">leválaszt\u2026</string>
+    <string name="ext_media_mounting_notification_title">csatol\u2026</string>
+
+    <!-- Additional navring targets -->
+    <string name="navring_action_power_menu">Kikapcsolási menü</string>
+    <string name="navring_action_last_app">Elöző alklamazás</string>
+    <string name="navring_action_expand_desktop">Kiterjesztett kijelző</string>
+
+    <string name="gestures_message">Rajzolj gesztust ide</string>
+
+    <!-- Battery status in pie controls -->
+    <string name="pie_battery_status_charging">Töltés (<xliff:g id="percent">%d</xliff:g>%%)</string>
+    <string name="pie_battery_status_full">Feltöltve</string>
+    <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% hátralévő</string>
+
+    <!-- Phone status in pie controls -->
+    <string name="pie_phone_status_no_service">Nincs szolgáltatás</string>
+    <string name="pie_phone_status_airplane_mode">Repülő mód be</string>
+    <string name="pie_phone_status_emergency_only">Csak vészhívás</string>
+
+    <!-- App sidebar -->
+    <string name="default_folder_text">Mappa</string>
+    <string name="title_activity_sidebar_configuration">Alkalmazás sáv tartalmának beállítása</string>
+    <string name="action_save">Mentés</string>
+    <string name="toast_items_saved">Alkalmazás sáv elemei mentve.</string>
+    <string name="content_setup_instructions">Elem hozzáadás az Alkalmazás sávhoz a jobb oldali elemen hosszan nyomva és behúzva lehetséges.\n\nElemek egyesítéséshez mappába, húzd rá egy meglévő elemre az Alkalmazás sávban.\n\nElem eltávolításához egyszerűen húzd ki az \@alklamazás sávból.</string>
+    <string name="content_setup_dismiss">Folytatás</string>
+    <string name="toast_not_installed">Alkalmazás nincs telepítve</string>
+
+    <!-- Slim Action floats tile -->
+    <string name="quick_settings_slim_floats_on">Slim Lebegő Engedélyezve</string>
+    <string name="quick_settings_slim_floats_off">Slim Lebegő Tiltva</string>
+
+    <!-- Slim Pie Tile -->
+    <string name="quick_settings_slimpie_on">Pie Engedélyezve</string>
+    <string name="quick_settings_slimpie_off">Pie Tiltva</string>
+
+    <!-- Battery Saver Dimss -->
+    <string name="battery_saver_dismiss_title">Elutasítva</string>
+
+    <!-- Title shown in recents popup for showing app launch in floating mode -->
+    <string name="recent_float_mode_title">Lebegő mód</string>
+
+    <!-- Themes Tile -->
+    <string name="quick_settings_themes">Témák</string>
+
+</resources>

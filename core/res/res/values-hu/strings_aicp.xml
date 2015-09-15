@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/* //device/apps/common/assets/res/any/strings.xml
+**
+** Copyright 2015 AICP
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="default_string">Alapértelmezett</string>
+
+    <!-- AOKP custom system animations -->
+    <string name="animation_fade">Áttűnés</string>
+    <string name="animation_slide_right">Jobbról csúsztat</string>
+    <string name="animation_slide_left">Balról csúsztat</string>
+    <string name="animation_slide_right_no_fade">Jobbról csúsztat (Nincs áttűnés)</string>
+    <string name="animation_slide_left_no_fade">Balról csúsztat (Nincs áttűnés)</string>
+    <string name="animation_slide_up">Alulról csúsztat</string>
+    <string name="animation_slide_down">Felülről csúsztat</string>
+    <string name="animation_default">Alapértelmezett</string>
+    <string name="animation_translucent">Áttetsző</string>
+    <string name="animation_grow_shrink">Nővekvő (Felül)</string>
+    <string name="animation_grow_shrink_center">Nővekvő (Közép)</string>
+    <string name="animation_grow_shrink_bottom">Növekvő (Alul)</string>
+    <string name="animation_grow_shrink_left">Növekvő (Bal)</string>
+    <string name="animation_grow_shrink_right">Növekvő (Jobb)</string>
+    <string name="action_null">Üres</string>
+
+    <!-- [CHAR LIMIT=NONE] Message shown in dialog on first boot after clean install for each .apk that is optimized. -->
+    <string name="android_installing_apk">Alkalmazás telepítése
+    <xliff:g id="number" example="123">%1$d</xliff:g> 
+    <xliff:g id="number" example="123">%2$d</xliff:g>.</string>
+
+   <!-- [CHAR LIMIT=40] Title of dialog that is shown when performing a system install. -->
+   <string name="android_installing_title">AICP telepít\u2026</string>
+
+    <!-- status message in phone options dialog for when pie is on -->
+    <string name="global_actions_pie_mode_on_status">SlimPie Bekapcsolva</string>
+
+    <!-- status message in phone options dialog for when pie is off -->
+    <string name="global_actions_pie_mode_off_status">SlimPie Kikapcsolva</string>
+
+    <!-- Error message if user want to try to disable all navigation options -->
+    <string name="disable_pie_navigation_error">Nem tudod tiltani a pie vezérlést. Nincs egyéb navigálási mód engedélyezve. Engedélyezd a navigációs sávot a pie vezérlés kikapcsolásához.</string>
+
+    <!-- status message in phone options dialog for when navigation bar is on -->
+    <string name="global_actions_nav_bar_mode_on_status">Navigációs sáv Bekapcsolva</string>
+
+    <!-- status message in phone options dialog for when navigation bar is off -->
+    <string name="global_actions_nav_bar_mode_off_status">Navigációs sáv Kikapcsolva</string>
+
+    <!-- Error message if user want to try to disable all navigation options -->
+    <string name="disable_navigation_pie_error">Nem tudod tiltani a navigációs sávot. Nincs egyéb navigálási mód engedélyezve. Engedélyezd a pie vezérlést a navigációs sáv kikapcsolásához.</string>
+
+    <!-- Floating Window -->
+    <string name="floating_window_snap_top">Felül rögzít</string>
+    <string name="floating_window_snap_bottom">Alján rögzít</string>
+    <string name="floating_window_snap_left">Bal rögzítés</string>
+    <string name="floating_window_snap_right">Jobb rögzítés</string>
+    <string name="floating_window_minimize">Minimalizál</string>
+
+    <!-- Setting confirmation dialog strings. Shown when any UI interaction can be modified by user input -->
+    <string name="setting_confirmation_ask_me_later">Később kérdez</string>
+    <string name="setting_confirmation_yes">Igen</string>
+    <string name="setting_confirmation_no">Nem</string>
+
+</resources>

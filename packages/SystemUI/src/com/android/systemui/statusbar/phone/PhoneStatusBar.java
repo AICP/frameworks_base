@@ -5675,6 +5675,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mVisualizerView.setVisible(true);
     }
 
+    public boolean isScreenOnFromKeyguard() {
+        return mScreenOnFromKeyguard;
+    }
+
     /**
      * This handles long-press of both back and recents.  They are
      * handled together to capture them both being long-pressed

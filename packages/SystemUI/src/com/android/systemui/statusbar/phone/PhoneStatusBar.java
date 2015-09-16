@@ -434,9 +434,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private boolean mShowLabel;
     private int mShowLabelTimeout;
 
-    // Status bar carrier
-    private boolean mShowStatusBarCarrier;
-
     // Aicp logo
     private boolean mAicpLogo;
     private int mAicpLogoColor;
@@ -764,10 +761,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
             // This method reads Settings.Secure.RECENTS_LONG_PRESS_ACTIVITY
             updateCustomRecentsLongPressHandler(false);
-
-            mShowStatusBarCarrier = Settings.System.getIntForUser(resolver,
-                    Settings.System.STATUS_BAR_CARRIER, 0, mCurrentUserId) == 1;
-            showStatusBarCarrierLabel(mShowStatusBarCarrier);
 
             mAicpLogoStyle = Settings.System.getIntForUser(
                     resolver, Settings.System.STATUS_BAR_AICP_LOGO_STYLE, 0,
@@ -4490,15 +4483,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             }
         }
     };
-
-    public void showStatusBarCarrierLabel(boolean show) {
-        if (mStatusBarView == null) return;
-        ContentResolver resolver = mContext.getContentResolver();
-        View statusBarCarrierLabel = mStatusBarView.findViewById(R.id.status_bar_carrier_label);
-        if (statusBarCarrierLabel != null) {
-            statusBarCarrierLabel.setVisibility(show ? (mShowStatusBarCarrier ? View.VISIBLE : View.GONE) : View.GONE);
-        }
-    }
 
     private void resetUserExpandedStates() {
         ArrayList<Entry> activeNotifications = mNotificationData.getActiveNotifications();

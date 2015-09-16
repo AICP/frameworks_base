@@ -4484,22 +4484,25 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     public void userSwitched(int newUserId) {
         super.userSwitched(newUserId);
         if (MULTIUSER_DEBUG) mNotificationPanelDebugText.setText("USER " + newUserId);
+
+        WallpaperManager wm = (WallpaperManager)
+                mContext.getSystemService(Context.WALLPAPER_SERVICE);
+        wm.forgetLoadedKeyguardWallpaper();
+        mKeyguardWallpaper = null;
+
         animateCollapsePanels();
-        updatePublicMode(); 
+        updatePublicMode();
         updateNotifications(true);
         resetUserSetupObserver();
         setControllerUsers();
         mSettingsObserver.update();
 
-        WallpaperManager wm = (WallpaperManager)
-                mContext.getSystemService(Context.WALLPAPER_SERVICE);
-        wm.forgetLoadedKeyguardWallpaper();
-        mKeyguardWallpaper = wm.getKeyguardBitmap();
-        updateMediaMetaData(true);
-
         if (mNavigationBarView != null) {
             mNavigationBarView.updateSettings();
         }
+
+        mKeyguardWallpaper = wm.getKeyguardBitmap();
+        updateMediaMetaData(true);
     }
 
     private void setControllerUsers() {

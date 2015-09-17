@@ -579,9 +579,6 @@ public class PieController implements BaseStatusBar.NavigationBarCallback, PieVi
     }
 
     private Drawable resizeIcon(ImageView view, Drawable d, boolean useSystemDimens) {
-        if (view == null && d == null) {
-            return null;
-        }
         int size = 0;
         Drawable dOriginal = d;
         if (d == null) {
@@ -619,8 +616,8 @@ public class PieController implements BaseStatusBar.NavigationBarCallback, PieVi
             d = resizeIcon(null, d, true);
         }
         if ((customImageColorize != 1 || !customIcon) && customImageColorize != 3) {
-            d = new BitmapDrawable(mContext.getResources(), ImageHelper.drawableToBitmap(
-                    ImageHelper.getColoredDrawable(d, drawableColor)));
+            d = new BitmapDrawable(mContext.getResources(),
+                    ImageHelper.getColoredBitmap(d, drawableColor));
         }
         return d;
     }

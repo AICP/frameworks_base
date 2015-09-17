@@ -4239,6 +4239,12 @@ public final class Settings {
         public static final String HIDDEN_SHIT = "hidden_shit";
 
         /**
+         * Wether navigation bar is enabled or not
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_SHOW = "navigation_bar_show";
+
+        /**
          * Navigation bar height when it is on protrait
          * @hide
          */

@@ -66,9 +66,11 @@ public class StatusBarWindowView extends FrameLayout {
     private GestureDetector mDoubleTapGesture;
     private Handler mHandler = new Handler();
     private SettingsObserver mSettingsObserver;
+    private PowerManager mPowerManager;
 
-    public StatusBarWindowView(Context context, AttributeSet attrs) {
+    public StatusBarWindowView(Context context, AttributeSet attrs, PowerManager powerManager) {
         super(context, attrs);
+        mPowerManager = powerManager;
         setMotionEventSplittingEnabled(false);
         mTransparentSrcPaint.setColor(0);
         mTransparentSrcPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
@@ -110,12 +112,11 @@ public class StatusBarWindowView extends FrameLayout {
         mDoubleTapGesture = new GestureDetector(mContext, new GestureDetector.SimpleOnGestureListener() {
             @Override
             public boolean onDoubleTap(MotionEvent e) {
-                PowerManager pm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
-                Log.d(TAG, "Gesture!!");
-                if(pm != null)
-                    pm.goToSleep(e.getEventTime());
-                else
+                if (mPowerManager != null) {
+                    mPowerManager.goToSleep(e.getEventTime());
+                } else {
                     Log.d(TAG, "getSystemService returned null PowerManager");
+                }
 
                 return true;
             }

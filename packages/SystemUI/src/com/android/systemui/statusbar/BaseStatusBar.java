@@ -512,7 +512,7 @@ public abstract class BaseStatusBar extends SystemUI implements
             if (Intent.ACTION_USER_SWITCHED.equals(action)) {
                 mCurrentUserId = intent.getIntExtra(Intent.EXTRA_USER_HANDLE, -1);
                 updateCurrentProfilesCache();
-                if (true) Log.v(TAG, "userId " + mCurrentUserId + " is in the house");
+                if (DEBUG) Log.v(TAG, "userId " + mCurrentUserId + " is in the house");
 
                 updateLockscreenNotificationSetting();
 

@@ -536,7 +536,7 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
                     R.dimen.keyguard_affordance_icon_height);
             int iconWidth = getResources().getDimensionPixelSize(
                     R.dimen.keyguard_affordance_icon_width);
-            if (icon.getIntrinsicHeight() != iconHeight || icon.getIntrinsicWidth() != iconWidth) {
+            if (icon == null || icon.getIntrinsicHeight() != iconHeight || icon.getIntrinsicWidth() != iconWidth) {
                 icon = new IntrinsicSizeDrawable(icon, iconWidth, iconHeight);
             }
             mLockIcon.setImageDrawable(icon);

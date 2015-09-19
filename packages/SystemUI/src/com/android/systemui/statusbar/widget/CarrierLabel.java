@@ -49,6 +49,7 @@ public class CarrierLabel extends TextView {
     private static boolean isCN;
     private int mCarrierFontSize = 14;
 
+    protected int mCarrierColor = getResources().getColor(R.color.kg_carrier_text);
     Handler mHandler;
 
     class SettingsObserver extends ContentObserver {
@@ -171,7 +172,7 @@ public class CarrierLabel extends TextView {
         ContentResolver resolver = mContext.getContentResolver();
 
         int defaultColor = getResources().getColor(R.color.status_bar_clock_color);
-        int mCarrierColor = Settings.System.getInt(resolver,
+        mCarrierColor = Settings.System.getInt(resolver,
                 Settings.System.STATUS_BAR_CARRIER_COLOR, defaultColor);
 
         if  (mCarrierColor == Integer.MIN_VALUE) {

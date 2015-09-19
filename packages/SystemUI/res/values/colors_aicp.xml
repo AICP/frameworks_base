@@ -69,4 +69,7 @@
     <!-- app sidebar item text shadow color -->
     <color name="sidebar_item_text_shadow_color">#ff000000</color>
 
+    <!-- Carrier Label -->
+    <color name="kg_carrier_text">#ffffffff</color>
+
 </resources>

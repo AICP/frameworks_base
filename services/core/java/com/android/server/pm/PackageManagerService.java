@@ -7292,6 +7292,9 @@ public class PackageManagerService extends IPackageManager.Stub {
                     break;
                 }
             }
+            if (mResolveActivity.theme == 0) {
+                mResolveActivity.theme = R.style.Theme_DeviceDefault_Resolver;
+            }
         }
     }
 

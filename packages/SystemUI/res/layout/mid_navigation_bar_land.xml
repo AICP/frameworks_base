@@ -39,6 +39,7 @@
 
         <com.android.systemui.statusbar.policy.KeyButtonView
             android:id="@+id/one"
+            android:scaleType="centerInside"
             android:layout_height="40dp"
             android:layout_width="match_parent"
             android:layout_weight="0" />
@@ -48,7 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_weight="0"
-            android:scaleType="fitCenter"
+            android:scaleType="centerInside"
             systemui:keyRepeat="true"/>
     </FrameLayout>
     <LinearLayout
@@ -64,6 +65,7 @@
         android:animateLayoutChanges="true">
         <com.android.systemui.statusbar.policy.KeyButtonView
             android:id="@+id/two"
+            android:scaleType="centerInside"
             android:layout_height="80dp"
             android:layout_width="match_parent"
             android:layout_weight="1"
@@ -121,7 +123,7 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_weight="0"
-            android:scaleType="fitCenter"
+            android:scaleType="centerInside"
             systemui:keyRepeat="true" />
         <com.android.systemui.statusbar.policy.KeyButtonView
             android:id="@+id/sev"

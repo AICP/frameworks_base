@@ -1324,6 +1324,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         addAppCircleSidebar();
         addGestureAnywhereView();
 
+        // Setup pie container if enabled
+        attachPieContainer(isPieEnabled());
+
         if (mNavigationBarView == null) {
             mNavigationBarView =
                 (NavigationBarView) View.inflate(context, R.layout.navigation_bar, null);
@@ -1332,6 +1335,17 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         mNavigationBarView.setDisabledFlags(mDisabled);
         mNavigationBarView.setBar(this);
+        addNavigationBarCallback(mNavigationBarView);
+        mNavigationBarView.setOnVerticalChangedListener(
+                new NavigationBarView.OnVerticalChangedListener() {
+            @Override
+            public void onVerticalChanged(boolean isVertical) {
+                if (mSearchPanelView != null) {
+                    mSearchPanelView.setHorizontal(isVertical);
+                }
+                mNotificationPanel.setQsScrimEnabled(!isVertical);
+            }
+        });
         mNavigationBarView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -1339,20 +1353,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 return false;
             }
         });
-
-        try {
-            boolean showNav = mWindowManagerService.hasNavigationBar();
-            if (!showNav) {
-                mSearchPanelSwipeView = new SearchPanelSwipeView(mContext, this);
-                mWindowManager.addView(mSearchPanelSwipeView, mSearchPanelSwipeView.getGesturePanelLayoutParams());
-                updateSearchPanel();
-            }
-        } catch (RemoteException ex) {
-            // no window manager? good luck with that
-        }
-
-        // Setup pie container if enabled
-        attachPieContainer(isPieEnabled());
 
         // figure out which pixel-format to use for the status bar.
         mPixelFormat = PixelFormat.OPAQUE;

@@ -119,4 +119,9 @@
 
     <!-- Themes Tile -->
     <string name="quick_settings_themes">Themes</string>
+
+    <!-- NavBar tile -->
+    <string name="quick_settings_navbar_on">NavBar On</string>
+    <string name="quick_settings_navbar_off">NavBar Off</string>
+
 </resources>

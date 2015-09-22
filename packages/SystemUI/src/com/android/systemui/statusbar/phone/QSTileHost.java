@@ -58,6 +58,7 @@ import com.android.systemui.qs.tiles.NfcTile;
 import com.android.systemui.qs.tiles.LockscreenToggleTile;
 import com.android.systemui.qs.tiles.LteTile;
 import com.android.systemui.qs.tiles.MusicTile;
+import com.android.systemui.qs.tiles.NavBarTile;
 import com.android.systemui.qs.tiles.NotificationsTile;
 import com.android.systemui.qs.tiles.ProfilesTile;
 import com.android.systemui.qs.tiles.PerfProfileTile;
@@ -426,6 +427,8 @@ public class QSTileHost implements QSTile.Host {
                 return new ThemesTile(this);
             case QSConstants.TILE_KERNEL_ADIUTOR:
                 return new KernelAdiutorTile(this);
+            case QSConstants.TILE_NAVBAR:
+                return new NavBarTile(this);
             default:
                 throw new IllegalArgumentException("Bad tile spec: " + tileSpec);
         }

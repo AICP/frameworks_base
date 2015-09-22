@@ -112,7 +112,7 @@ public class LockTaskNotify {
             // Observe all users' changes
             final ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.System.getUriFor(
-                            Settings.System.DEV_FORCE_SHOW_NAVBAR), false, this,
+                            Settings.System.NAVIGATION_BAR_SHOW), false, this,
                     UserHandle.USER_ALL);
             onChange(true);
         }
@@ -120,7 +120,7 @@ public class LockTaskNotify {
         @Override public void onChange(boolean selfChange) {
             final ContentResolver resolver = mContext.getContentResolver();
             mDevForceNavbar = Settings.System.getIntForUser(resolver,
-                    Settings.System.DEV_FORCE_SHOW_NAVBAR, 0, UserHandle.USER_CURRENT) == 1;
+                    Settings.System.NAVIGATION_BAR_SHOW, 0, UserHandle.USER_CURRENT) == 1;
         }
     }
 }

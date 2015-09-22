@@ -4,5 +4,8 @@
     <!-- Whether doze should invert colors for notifications -->
     <bool name="config_invert_colors_on_doze">false</bool>
 
+    <!-- Hardware keys on/off option -->
+    <bool name="config_hwKeysPref">false</bool>
+
 </resources>
 

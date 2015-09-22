@@ -23,4 +23,5 @@
 
     <!-- Flags enabling default window features. See Window.java -->
     <bool name="config_defaultWindowFeatureOptionsPanel">false</bool>
+
 </resources>

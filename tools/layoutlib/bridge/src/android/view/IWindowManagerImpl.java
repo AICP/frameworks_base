@@ -504,4 +504,9 @@ public class IWindowManagerImpl implements IWindowManager {
     public int getSystemUIVisibility() {
         return 0;
     }
+
+    @Override
+    public boolean hasPermanentMenuKey() {
+        return true;
+    }
 }

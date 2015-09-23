@@ -4701,7 +4701,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         final boolean updateStatusBar = shouldUpdateStatusbar(mCurrentTheme, newTheme);
         if (newTheme != null) mCurrentTheme = (ThemeConfig) newTheme.clone();
         if (updateStatusBar) {
-            mContext.recreateTheme();
             recreateStatusBar();
             mSettingsObserver.update();
             addSidebarView();

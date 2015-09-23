@@ -119,4 +119,9 @@
 
     <!-- Themes Tile -->
     <string name="quick_settings_themes">Темы</string>
+
+    <!-- NavBar tile -->
+    <string name="quick_settings_navbar_on">Панель навигации вкл.</string>
+    <string name="quick_settings_navbar_off">Панель навигации выкл.</string>
+
 </resources>

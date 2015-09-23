@@ -97,6 +97,7 @@
   <string name="accessibility_quick_settings_visualizer">Визуализатор.</string>
   <string name="accessibility_dpad_left">Курсор влево</string>
   <string name="accessibility_dpad_right">Курсор вправо</string>
+  <string name="quick_settings_powermenu_label">Меню кнопки питания</string>
   <string name="quick_settings_mobile_data_label">Мобильные данные</string>
   <string name="quick_settings_roaming_label">Роуминг</string>
   <string name="quick_settings_apn_switch_label">Переключатель APN</string>
@@ -119,9 +120,13 @@
   <string name="quick_settings_screen_timeout_detail_title">Задержка отключения экрана</string>
   <string name="quick_settings_usb_tether_label">USB-модем</string>
   <string name="quick_settings_heads_up_label">Всплывающие уведомления</string>
+  <string name="quick_settings_reboot_label">Перезагрузка</string>
+  <string name="quick_settings_reboot_recovery_label">Режим восстановления</string>
   <string name="quick_settings_ambient_display_label">Индикация событий</string>
   <string name="quick_settings_sync_label">Синхронизация</string>
+  <string name="quick_settings_systemui_restart_label">Перезапуск интерфейса</string>
   <string name="quick_settings_custom_tile_detail_title">Пользовательская плитка</string>
+  <string name="quick_settings_kernel_adiutor">Настройки ядра</string>
   <string name="status_bar_expanded_header_weather_format"><xliff:g id="temp">%1$s</xliff:g> - <xliff:g id="condition">%2$s</xliff:g></string>
   <string name="left_shortcut_hint">Проведите вправо, чтобы открыть приложение «%1$s»</string>
   <string name="right_shortcut_hint">Проведите влево, чтобы открыть приложение «%1$s»</string>

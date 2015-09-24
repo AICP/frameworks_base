@@ -1962,6 +1962,7 @@
          "bugreport" = Take bug report, if available
          "silent" = silent mode
          "torch" = Toggle torch
+	 "on-the-go" = On The Go
          -->
     <string-array translatable="false" name="config_globalActionsList">
         <item>power</item>
@@ -1969,6 +1970,7 @@
         <item>profile</item>
         <item>airplane</item>
         <item>users</item>
+        <item>onthego</item>
         <item>settings</item>
         <item>lockdown</item>
         <item>silent</item>

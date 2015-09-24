@@ -104,6 +104,8 @@ import java.util.UUID;
 
 import static com.android.internal.util.cm.PowerMenuConstants.*;
 
+import com.android.internal.util.aicp.AicpActions;
+
 /**
  * Helper to show the global actions dialog.  Each item is an {@link Action} that
  * may show depending on whether the keyguard is showing, and whether the device
@@ -347,6 +349,8 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                 mItems.add(getLockdownAction());
             } else if (GLOBAL_ACTION_KEY_TORCH.equals(actionKey)) {
                 mItems.add(getTorchToggleAction());
+            } else if (GLOBAL_ACTION_KEY_ONTHEGO.equals(actionKey)) {
+                mItems.add(getOTGToggleAction());
             } else {
                 Log.e(TAG, "Invalid global action key " + actionKey);
             }
@@ -511,6 +515,31 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
             }
         };
     }
+	
+    private Action getOTGToggleAction() {
+	return new SinglePressAction(com.android.internal.R.drawable.ic_lock_onthego,
+        		R.string.global_action_onthego) {
+
+           public void onPress() {
+            	AicpActions.processAction(mContext,
+                 AicpActions.ACTION_ONTHEGO_TOGGLE);
+		return;	
+            }
+
+            public boolean onLongPress() {
+            	return false;
+            }
+
+            public boolean showDuringKeyguard() {
+            	return true;
+            }
+
+            public boolean showBeforeProvisioning() {
+            	return true;
+            }
+
+        };
+     }
 
     private Action getBugReportAction() {
         return new SinglePressAction(com.android.internal.R.drawable.ic_lock_bugreport,
@@ -825,6 +854,15 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                 mHandler.postDelayed(mScreenrecordTimeout, 31 * 60 * 1000);
             }
         }
+    }
+
+    private void startOnTheGo() {
+        final ComponentName cn = new ComponentName("com.android.systemui",
+                "com.android.systemui.aicp.onthego.OnTheGoService");
+        final Intent startIntent = new Intent();
+        startIntent.setComponent(cn);
+        startIntent.setAction("start");
+        mContext.startService(startIntent);
     }
 
     private void prepareDialog() {

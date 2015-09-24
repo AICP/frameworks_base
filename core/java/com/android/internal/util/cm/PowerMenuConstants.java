@@ -25,6 +25,7 @@ public class PowerMenuConstants {
     public static final String GLOBAL_ACTION_KEY_AIRPLANE = "airplane";
     public static final String GLOBAL_ACTION_KEY_USERS = "users";
     public static final String GLOBAL_ACTION_KEY_TORCH = "torch";
+    public static final String GLOBAL_ACTION_KEY_ONTHEGO = "onthego";
     public static final String GLOBAL_ACTION_KEY_SETTINGS = "settings";
     public static final String GLOBAL_ACTION_KEY_LOCKDOWN = "lockdown";
     public static final String GLOBAL_ACTION_KEY_BUGREPORT = "bugreport";
@@ -37,6 +38,7 @@ public class PowerMenuConstants {
         GLOBAL_ACTION_KEY_SCREENRECORD,
         GLOBAL_ACTION_KEY_AIRPLANE,
         GLOBAL_ACTION_KEY_TORCH,
+        GLOBAL_ACTION_KEY_ONTHEGO,
         GLOBAL_ACTION_KEY_USERS,
         GLOBAL_ACTION_KEY_SETTINGS,
         GLOBAL_ACTION_KEY_LOCKDOWN,

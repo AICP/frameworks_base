@@ -21,6 +21,8 @@
   <string name="global_action_choose_profile">Профиль</string>
   <string name="profile_none">Нет</string>
   <string name="global_action_screenshot">Скриншот</string>
+  <string name="global_action_screenrecord">Запись экрана</string>
+  <string name="global_action_torch">Фонарик</string>
   <string name="permlab_receiveProtectedSms">Получение защищённых SMS</string>
   <string name="permdesc_receiveProtectedSms">Приложение сможет получать входящие защищённые SMS-сообщения.</string>
   <string name="permlab_modifyProtectedSmsList">Изменение списка защищённых SMS</string>
@@ -51,7 +53,8 @@
   <string name="reboot_recovery">Режим восстановления</string>
   <string name="reboot_bootloader">Загрузчик</string>
   <string name="reboot_download">Режим обновления ПО</string>
-  <string name="reboot_soft">Перезапуск интерфейса</string>
+  <string name="reboot_soft">Мягкая перезагрузка</string>
+  <string name="reboot_systemui">Перезапуск интерфейса</string>
   <string name="reboot_title">Перезагрузка</string>
   <string name="reboot_confirm" product="tablet">Ваш планшет будет перезагружен.</string>
   <string name="reboot_confirm" product="default">Ваш телефон будет перезагружен.</string>

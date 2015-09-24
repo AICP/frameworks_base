@@ -38,6 +38,10 @@ import static com.android.keyguard.KeyguardSecurityModel.SecurityMode;
  */
 public class KeyguardBouncer {
 
+    public static final int UNLOCK_SEQUENCE_DEFAULT = 0;
+    public static final int UNLOCK_SEQUENCE_BOUNCER_FIRST = 1;
+    public static final int UNLOCK_SEQUENCE_FORCE_BOUNCER = 2;
+
     private Context mContext;
     private ViewMediatorCallback mCallback;
     private LockPatternUtils mLockPatternUtils;
@@ -191,23 +195,24 @@ public class KeyguardBouncer {
     }
 
     /**
-     * @return True if and only if the security method should be shown before showing the
-     * notifications on Keyguard, like SIM PIN/PUK - and if user selected "show unlock screen directly" from CM lock screen settings.
+     * @return Whether the bouncer should be shown first, this could be because of SIM PIN/PUK
+     * or it just could be chosen to be shown first.
      */
     public int needsFullscreenBouncer() {
         if (mKeyguardView != null) {
             SecurityMode mode = mKeyguardView.getSecurityMode();
-            if(mode == SecurityMode.SimPin ||
-               mode == SecurityMode.SimPuk)
-                return 1;
-            else if((mode == SecurityMode.Pattern ||
+            if (mode == SecurityMode.SimPin ||
+                mode == SecurityMode.SimPuk)
+                return UNLOCK_SEQUENCE_FORCE_BOUNCER;
+            // "Bouncer first" mode currently only available to some security methods.
+            else if ((mode == SecurityMode.Pattern ||
                      mode == SecurityMode.Password ||
                      mode == SecurityMode.PIN ||
                      mode == SecurityMode.Gesture)
                      && (mLockPatternUtils != null && mLockPatternUtils.shouldPassToSecurityView()))
-                return 2;
+                return UNLOCK_SEQUENCE_BOUNCER_FIRST;
         }
-        return 0;
+        return UNLOCK_SEQUENCE_DEFAULT;
     }
 
     /**
@@ -217,17 +222,18 @@ public class KeyguardBouncer {
     public int isFullscreenBouncer() {
         if (mKeyguardView != null) {
             SecurityMode mode = mKeyguardView.getCurrentSecurityMode();
-            if(mode == SecurityMode.SimPin ||
-               mode == SecurityMode.SimPuk)
-                return 1;
+            if (mode == SecurityMode.SimPin ||
+                mode == SecurityMode.SimPuk)
+                return UNLOCK_SEQUENCE_FORCE_BOUNCER;
+            // "Bouncer first" mode currently only available to some security methods.
             else if((mode == SecurityMode.Pattern ||
                      mode == SecurityMode.Password ||
                      mode == SecurityMode.PIN ||
                      mode == SecurityMode.Gesture)
                      && (mLockPatternUtils != null && mLockPatternUtils.shouldPassToSecurityView()))
-                return 2;
+                return UNLOCK_SEQUENCE_BOUNCER_FIRST;
         }
-        return 0;
+        return UNLOCK_SEQUENCE_DEFAULT;
     }
 
     /**

@@ -350,7 +350,7 @@ public class Typeface {
      *
      * This should only be called once, from the static class initializer block.
      */
-    private static void init(boolean forceSystemFonts) {
+    private static void init() {
         // Load font config and initialize Minikin state
         File systemFontConfigLocation = getSystemFontConfigLocation();
         File themeFontConfigLocation = getThemeFontConfigLocation();
@@ -360,7 +360,7 @@ public class Typeface {
         File configFile = null;
         File fontDir;
 
-        if (!forceSystemFonts && themeConfigFile.exists()) {
+        if (themeConfigFile.exists()) {
             configFile = themeConfigFile;
             fontDir = getThemeFontDirLocation();
         } else {
@@ -437,20 +437,15 @@ public class Typeface {
         }
     }
 
-    /** @hide  */
-    public static void recreateDefaults() {
-        recreateDefaults(false);
-    }
-
     /**
      * Clears caches in java and skia.
      * Skia will then reparse font config
      * @hide
      */
-    public static void recreateDefaults(boolean forceSystemFonts) {
+    public static void recreateDefaults() {
         sTypefaceCache.clear();
         sSystemFontMap.clear();
-        init(forceSystemFonts);
+        init();
 
         DEFAULT_INTERNAL = create((String) null, 0);
         DEFAULT_BOLD_INTERNAL = create((String) null, Typeface.BOLD);
@@ -468,7 +463,7 @@ public class Typeface {
     }
 
     static {
-        init(false);
+        init();
         // Set up defaults and typefaces exposed in public API
         DEFAULT_INTERNAL         = create((String) null, 0);
         DEFAULT_BOLD_INTERNAL    = create((String) null, Typeface.BOLD);

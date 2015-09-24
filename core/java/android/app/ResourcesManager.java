@@ -32,6 +32,7 @@ import android.content.res.Configuration;
 import android.content.res.ThemeConfig;
 import android.content.res.Resources;
 import android.content.res.ResourcesKey;
+import android.graphics.Typeface;
 import android.hardware.display.DisplayManagerGlobal;
 import android.os.IBinder;
 import android.os.RemoteException;

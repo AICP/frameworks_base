@@ -32,7 +32,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.os.PowerManager;
-import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
@@ -124,13 +123,14 @@ public class QSUtils {
                     removeTile = !deviceSupportsCompass(context);
                     break;
                 case QSConstants.TILE_AMBIENT_DISPLAY:
-                    removeTile = !isDozeAvailable(context);
-                    break;
-                case QSConstants.DYNAMIC_TILE_SU:
-                    removeTile = !supportsRootAccess();
+                    removeTile = !deviceSupportsDoze(context);
                     break;
                 case QSConstants.TILE_PERFORMANCE:
-                    removeTile = !hasPowerMode(context);
+                    removeTile = !deviceSupportsPowerProfiles(context);
+                    break;
+
+                case QSConstants.DYNAMIC_TILE_SU:
+                    removeTile = !supportsRootAccess();
                     break;
             }
             if (removeTile) {
@@ -292,21 +292,19 @@ public class QSUtils {
                 && sm.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD) != null;
     }
 
-    private static boolean isDozeAvailable(Context context) {
-        String name = Build.IS_DEBUGGABLE ? SystemProperties.get("debug.doze.component") : null;
-        if (TextUtils.isEmpty(name)) {
-            name = context.getResources().getString(
+    public static boolean deviceSupportsDoze(Context context) {
+        String name = context.getResources().getString(
                     com.android.internal.R.string.config_dozeComponent);
-        }
         return !TextUtils.isEmpty(name);
+    }
+
+    public static boolean deviceSupportsPowerProfiles(Context context) {
+        PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+        return pm.hasPowerProfiles();
     }
 
     private static boolean supportsRootAccess() {
         return Build.IS_DEBUGGABLE || "eng".equals(Build.TYPE);
     }
 
-    private static boolean hasPowerMode(Context context) {
-        PowerManager mPowerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-        return mPowerManager.hasPowerProfiles();
-    }
 }

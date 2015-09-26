@@ -53,7 +53,7 @@
     <string name="global_actions_pie_mode_off_status">Pie выключен</string>
 
     <!-- Error message if user want to try to disable all navigation options -->
-    <string name="disable_pie_navigation_error">Нельзя отключить управление pie, поскольку не включено иной навигации. Сначала включите панель навигации.</string>
+    <string name="disable_pie_navigation_error">Нельзя отключить pie навигацию, поскольку не включено иной навигации. Сначала включите панель навигации.</string>
 
     <!-- status message in phone options dialog for when navigation bar is on -->
     <string name="global_actions_nav_bar_mode_on_status">Панель навигации включена</string>
@@ -62,7 +62,7 @@
     <string name="global_actions_nav_bar_mode_off_status">Панель навигации отключена</string>
 
     <!-- Error message if user want to try to disable all navigation options -->
-    <string name="disable_navigation_pie_error">Нельзя отключить панель навигации, поскольку не включено иной навигации. Сначала включите управление pie.</string>
+    <string name="disable_navigation_pie_error">Нельзя отключить панель навигации, поскольку не включено иной навигации. Сначала включите pie навигацию.</string>
 
     <!-- Floating Window -->
     <string name="floating_window_snap_top">Закрепить сверху</string>
@@ -75,5 +75,8 @@
     <string name="setting_confirmation_ask_me_later">Спросить позже</string>
     <string name="setting_confirmation_yes">Да</string>
     <string name="setting_confirmation_no">Нет</string>
+
+    <!-- label for item that takes On-The-Go in the phone options dialog -->
+    <string name="global_action_onthego">Режим \"На ходу\"</string>
 
 </resources>

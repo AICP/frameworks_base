@@ -5030,6 +5030,12 @@ public final class Settings {
         public static final String SELINUX_SWITCH_STATE = "selinux_switch_state";
 
         /**
+         * Set selinux on boot
+         * @hide
+         */
+        public static final String SELINUX_SWITCH_ONBOOT = "selinux_switch_onboot";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *

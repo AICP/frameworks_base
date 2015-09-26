@@ -5024,6 +5024,12 @@ public final class Settings {
         public static final String ON_THE_GO_SERVICE_RESTART = "on_the_go_service_restart";
 
         /**
+         * Selinux state set in settings
+         * @hide
+         */
+        public static final String SELINUX_SWITCH_STATE = "selinux_switch_state";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *

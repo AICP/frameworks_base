@@ -35,9 +35,7 @@
 
     <!-- Heads up toast -->
     <string name="heads_up_enabled">Всплывающие уведомления включены</string>
-    <string name="heads_up_disabled">Всплывающие уведомления выключены</string>
-    <string name="heads_up_snooze_message">Всплывающие уведомления отключены на <xliff:g id="number">%d</xliff:g> минут.</string>
-    <string name="heads_up_snooze_button_title">Отложить</string>
+    <string name="heads_up_disabled">Всплывающие уведомления отключены</string>
 
     <!-- Quick settings -->
     <string name="quick_settings_battery_saver">Энергосбережение</string>

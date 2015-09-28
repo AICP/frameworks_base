@@ -634,6 +634,12 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.LOCKSCREEN_BLUR_RADIUS), false, this);	
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.Secure.UI_THEME_MODE), false, this,
+                    UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.Secure.UI_THEME_AUTO_MODE), false, this,
+                    UserHandle.USER_ALL);
             update();
         }
 
@@ -733,17 +739,14 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     updateClearAll();
                     updateEmptyShadeView();
             } else if (uri.equals(Settings.System.getUriFor(
-                    Settings.System.HEADS_UP_SNOOZE_TIME))) {
-                final int snoozeTime = Settings.System.getIntForUser(
-                        mContext.getContentResolver(),
-                        Settings.System.HEADS_UP_SNOOZE_TIME,
-                        mContext.getResources().getInteger(
-                        R.integer.heads_up_snooze_time),
-                        UserHandle.USER_CURRENT);
-                setHeadsUpSnoozeTime(snoozeTime);
-                if (mHeadsUpNotificationView != null) {
-                    mHeadsUpNotificationView.setSnoozeVisibility(snoozeTime != 0);
-                }
+                    Settings.Secure.UI_THEME_MODE))
+                    || uri.equals(Settings.System.getUriFor(
+                    Settings.Secure.UI_THEME_AUTO_MODE))) {
+                    recreateStatusBar();
+                    updateRowStates();
+                    updateSpeedbump();
+                    updateClearAll();
+                    updateEmptyShadeView();
             }
             update();
         }
@@ -4774,6 +4777,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         if (uiThemeMode != mCurrUiThemeMode) {
             mCurrUiThemeMode = uiThemeMode;
            // recreateStatusBar(false);
+            updateRowStates();
+            updateSpeedbump();
+            updateClearAll();
+            updateEmptyShadeView();
         } else {
             loadDimens();
         }

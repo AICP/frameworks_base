@@ -49,6 +49,9 @@
    <!-- [CHAR LIMIT=40] Title of dialog that is shown when performing a system install. -->
    <string name="android_installing_title">AICP is installing\u2026</string>
 
+    <!-- Error description on theme switch with ligtsensor mode enabled -->
+    <string name="theme_auto_switch_mode_error">Automatic light condition change mode is enabled. Manual switching is not possible.</string>
+
     <!-- status message in phone options dialog for when pie is on -->
     <string name="global_actions_pie_mode_on_status">SlimPie is ON</string>
 

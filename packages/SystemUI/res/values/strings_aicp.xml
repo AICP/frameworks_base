@@ -152,4 +152,7 @@
     <string name="quick_settings_expanded_hide_both">Hide both</string>
     <string name="accessibility_quick_settings_expanded_desktop_off">Expanded desktop disabled</string>
 
+    <!-- Torch detail tile -->
+    <string name="disable_torch_screen_off_title">Disable torch on screen off</string>
+
 </resources>

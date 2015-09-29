@@ -738,6 +738,7 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
             startDateActivity();
         } else if (v == mStatusBarPowerMenu) {
             statusBarPowerMenuAction();
+            vibrate(20);
         } else if (v == mHeadsUpButton) {
             startHeadsUpActivity();
             updateHeadsUpButton();

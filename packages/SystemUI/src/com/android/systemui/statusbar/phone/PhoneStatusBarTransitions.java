@@ -34,7 +34,7 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
     private final float mIconAlphaWhenOpaque;
 
     private View mLeftSide, mStatusIcons, mSignalCluster, mBattery, mClock, mCenterClock, mLeftClock,
-            mNetworkTrafficVector, mAicpLogo;
+            mNetworkTrafficVector, mAicpLogo, mWeatherTextView, mLeftWeatherTextView;
     private Animator mCurrentAnimation;
 
     public PhoneStatusBarTransitions(PhoneStatusBarView view) {
@@ -57,6 +57,8 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
         mLeftClock = mView.findViewById(R.id.left_clock);
         mNetworkTrafficVector = mView.findViewById(R.id.network_traffic);
         mAicpLogo = mView.findViewById(R.id.aicp_logo);
+        mWeatherTextView = mView.findViewById(R.id.weather_temp);
+        mLeftWeatherTextView = mView.findViewById(R.id.left_weather_temp);
         applyModeBackground(-1, getMode(), false /*animate*/);
         applyMode(getMode(), false /*animate*/);
     }
@@ -102,6 +104,8 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
                     animateTransitionTo(mStatusIcons, newAlpha),
                     animateTransitionTo(mSignalCluster, newAlpha),
                     animateTransitionTo(mNetworkTrafficVector, newAlpha),
+                    animateTransitionTo(mWeatherTextView, newAlpha),
+                    animateTransitionTo(mLeftWeatherTextView, newAlpha),
                     animateTransitionTo(mBattery, newAlphaBC),
                     animateTransitionTo(mClock, newAlphaBC),
                     animateTransitionTo(mCenterClock, newAlphaBC),
@@ -117,7 +121,9 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
             mLeftSide.setAlpha(newAlpha);
             mStatusIcons.setAlpha(newAlpha);
             mSignalCluster.setAlpha(newAlpha);
-            mNetworkTrafficVector.setAlpha(newAlphaBC);
+            mNetworkTrafficVector.setAlpha(newAlpha);
+            mWeatherTextView.setAlpha(newAlpha);
+            mLeftWeatherTextView.setAlpha(newAlpha);
             mBattery.setAlpha(newAlphaBC);
             mClock.setAlpha(newAlphaBC);
             mCenterClock.setAlpha(newAlphaBC);

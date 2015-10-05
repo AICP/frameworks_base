@@ -132,6 +132,10 @@ public class IntentForwarderActivity extends Activity  {
 
     boolean canForward(Intent intent, int targetUserId)  {
         IPackageManager ipm = AppGlobals.getPackageManager();
+        if (intent.getAction() == null){
+               Slog.e(TAG, "Action is null");
+               return false;
+        }
         if (intent.getAction().equals(Intent.ACTION_CHOOSER)) {
             // The EXTRA_INITIAL_INTENTS may not be allowed to be forwarded.
             if (intent.hasExtra(Intent.EXTRA_INITIAL_INTENTS)) {

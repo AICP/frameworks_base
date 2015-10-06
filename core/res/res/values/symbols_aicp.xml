@@ -108,10 +108,6 @@
   <java-symbol type="anim" name="no_animation" />
 
   <java-symbol type="bool" name="config_dozeUseAccelerometer" />
-  
-  <!-- UI theme mode -->
-  <java-symbol type="integer" name="config_uiThemeMode" />
-  <java-symbol type="string" name="theme_auto_switch_mode_error" />
 
   <java-symbol type="drawable" name="aicpdexopt1" />
   <java-symbol type="drawable" name="aicpdexopt2" />

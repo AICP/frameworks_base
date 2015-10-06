@@ -1951,8 +1951,7 @@ public class Resources {
                     keyboardHidden, mConfiguration.navigation, width, height,
                     mConfiguration.smallestScreenWidthDp,
                     mConfiguration.screenWidthDp, mConfiguration.screenHeightDp,
-                    mConfiguration.screenLayout,
-                    mConfiguration.uiThemeMode, mConfiguration.uiMode,
+                    mConfiguration.screenLayout, mConfiguration.uiMode,
                     Build.VERSION.RESOURCES_SDK_INT);
 
             if (DEBUG_CONFIG) {
@@ -2018,23 +2017,12 @@ public class Resources {
     }
 
     private void clearDrawableCacheLocked(
-            LongSparseArray<WeakReference<ConstantState>> cache,
-            int configChanges) {
-		if (Configuration.needNewResources(configChanges, 0)) {
-            if (DEBUG_CONFIG) {
-                Log.d(TAG, "Clear drawable cache from config changes: 0x"
-                        + Integer.toHexString(configChanges));
-            }
-            cache.clear();
-            return;
-        }
-
+            LongSparseArray<WeakReference<ConstantState>> cache, int configChanges) {
         /*
          * Quick test to find out if the config change that occurred should
          * trigger a full cache wipe.
          */
-
-        if (Configuration.needNewResources(configChanges, ActivityInfo.CONFIG_UI_THEME_MODE)) {
+        if (Configuration.needNewResources(configChanges, 0)) {
             if (DEBUG_CONFIG) {
                 Log.d(TAG, "Clear drawable cache from config changes: 0x"
                         + Integer.toHexString(configChanges));
@@ -2477,11 +2465,6 @@ public class Resources {
     public final void updateStringCache() {
         synchronized (mAccessLock) {
             mAssets.recreateStringBlocks();
-	}
-        if (mTmpValue != null) {
-            synchronized (mTmpValue) {
-                mAssets.recreateStringBlocks();
-            }
         }
     }
 

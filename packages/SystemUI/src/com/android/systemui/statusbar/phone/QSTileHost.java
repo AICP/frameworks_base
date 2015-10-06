@@ -79,7 +79,6 @@ import com.android.systemui.qs.tiles.SyncTile;
 import com.android.systemui.qs.tiles.SlimFloatsTile;
 import com.android.systemui.qs.tiles.WifiTile;
 import com.android.systemui.qs.tiles.SlimPieTile;
-import com.android.systemui.qs.tiles.TrdsTile;
 import com.android.systemui.qs.tiles.ThemesTile;
 import com.android.systemui.qs.tiles.KernelAdiutorTile;
 import com.android.systemui.settings.CurrentUserTracker;
@@ -420,8 +419,6 @@ public class QSTileHost implements QSTile.Host {
                 return new MusicTile(this);
             case QSConstants.TILE_HEADS_UP:
                 return new HeadsUpTile(this);
-            case QSConstants.TILE_TRDS:
-                return new TrdsTile(this);	
             case QSConstants.TILE_SYSTEMUI_RESTART:
                 return new SystemUIRestartTile(this);
             case QSConstants.TILE_SLIM_FLOATS:

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/* //device/apps/common/assets/res/any/strings.xml
+**
+** Copyright 2015 AICP
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="default_string">Standard</string>
+
+    <!-- AOKP custom system animations -->
+    <string name="animation_fade">Verblassen</string>
+    <string name="animation_slide_right">Von rechts einblenden</string>
+    <string name="animation_slide_left">Von links einblenden</string>
+    <string name="animation_slide_right_no_fade">Von rechts einblenden (Kein Verblassen)</string>
+    <string name="animation_slide_left_no_fade">Von links einblenden (Kein Verblassen)</string>
+    <string name="animation_slide_up">Von unten einblenden</string>
+    <string name="animation_slide_down">Von oben einblenden</string>
+    <string name="animation_default">Standard</string>
+    <string name="animation_translucent">Transparent</string>
+    <string name="animation_grow_shrink">Zunehmend (Oben)</string>
+    <string name="animation_grow_shrink_center">Zunehmend (Mitte)</string>
+    <string name="animation_grow_shrink_bottom">Zunehmend (Unten)</string>
+    <string name="animation_grow_shrink_left">Zunehmend (Links)</string>
+    <string name="animation_grow_shrink_right">Zunehmend (Rechts)</string>
+    <string name="action_null">Blank</string>
+
+    <!-- [CHAR LIMIT=NONE] Message shown in dialog on first boot after clean install for each .apk that is optimized. -->
+    <string name="android_installing_apk">Installiere App
+    <xliff:g id="number" example="123">%1$d</xliff:g> von
+    <xliff:g id="number" example="123">%2$d</xliff:g>.</string>
+
+   <!-- [CHAR LIMIT=40] Title of dialog that is shown when performing a system install. -->
+   <string name="android_installing_title">AICP installiert \u2026</string>
+
+    <!-- Error description on theme switch with ligtsensor mode enabled -->
+    <string name="theme_auto_switch_mode_error">Automatischer Lichtwechselmodus ist aktiviert. Manuelle Steuerung ist nicht möglich.</string>
+
+    <!-- status message in phone options dialog for when pie is on -->
+    <string name="global_actions_pie_mode_on_status">SlimPie ist an</string>
+
+    <!-- status message in phone options dialog for when pie is off -->
+    <string name="global_actions_pie_mode_off_status">SlimPie ist aus</string>
+
+    <!-- Error message if user want to try to disable all navigation options -->
+    <string name="disable_pie_navigation_error">Du kannst PIE nicht deaktivieren, da keine andere Navigation aktiviert ist. Aktivere zuerst die Navigationsleiste bevor du PIE deaktivierst.</string>
+
+    <!-- status message in phone options dialog for when navigation bar is on -->
+    <string name="global_actions_nav_bar_mode_on_status">Navigationsleiste ist an</string>
+
+    <!-- status message in phone options dialog for when navigation bar is off -->
+    <string name="global_actions_nav_bar_mode_off_status">Navigationsleiste ist aus</string>
+
+    <!-- Error message if user want to try to disable all navigation options -->
+    <string name="disable_navigation_pie_error">Du kannst die Navigationsleiste nicht deaktivieren, da keine andere Navigation aktiviert ist. Aktivere zuerst PIE bevor du die Navigationsleiste deaktivierst.</string>
+
+    <!-- Floating Window -->
+    <string name="floating_window_snap_top">Oben anbinden</string>
+    <string name="floating_window_snap_bottom">Unten anbinden</string>
+    <string name="floating_window_snap_left">Links anbinden</string>
+    <string name="floating_window_snap_right">Rechts anbinden</string>
+    <string name="floating_window_minimize">Minimieren</string>
+
+    <!-- Setting confirmation dialog strings. Shown when any UI interaction can be modified by user input -->
+    <string name="setting_confirmation_ask_me_later">Später nachfragen</string>
+    <string name="setting_confirmation_yes">Ja</string>
+    <string name="setting_confirmation_no">Nein</string>
+
+    <!-- label for item that takes On-The-Go in the phone options dialog -->
+    <string name="global_action_onthego">On-The-Go Modus</string>
+
+</resources>

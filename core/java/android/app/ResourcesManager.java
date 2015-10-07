@@ -176,9 +176,8 @@ public class ResourcesManager {
             Configuration overrideConfiguration, CompatibilityInfo compatInfo, IBinder token,
             Context context, boolean isThemeable) {
         final float scale = compatInfo.applicationScale;
-        ThemeConfig themeConfig = getThemeConfig();
         ResourcesKey key = new ResourcesKey(resDir, displayId, overrideConfiguration, scale,
-                isThemeable, themeConfig, token);
+                isThemeable, getThemeConfig(), token);
         Resources r;
         synchronized (this) {
             // Resources is app scale dependent.
@@ -256,22 +255,20 @@ public class ResourcesManager {
 
         boolean iconsAttached = false;
         /* Attach theme information to the resulting AssetManager when appropriate. */
-        if (config != null && !context.getPackageManager().isSafeMode()) {
-            if (themeConfig == null) {
+        if (isThemeable && config != null && !context.getPackageManager().isSafeMode()) {
+            if (config.themeConfig == null) {
                 try {
-                    themeConfig = ThemeConfig.getBootTheme(context.getContentResolver());
+                    config.themeConfig = ThemeConfig.getBootTheme(context.getContentResolver());
                 } catch (Exception e) {
                     Slog.d(TAG, "ThemeConfig.getBootTheme failed, falling back to system theme", e);
-                    themeConfig = ThemeConfig.getSystemTheme();
+                    config.themeConfig = ThemeConfig.getSystemTheme();
                 }
             }
 
-            if (isThemeable) {
-                if (themeConfig != null) {
-                    attachThemeAssets(assets, themeConfig);
-                    attachCommonAssets(assets, themeConfig);
-                    iconsAttached = attachIconAssets(assets, themeConfig);
-                }
+            if (config.themeConfig != null) {
+                attachThemeAssets(assets, config.themeConfig);
+                attachCommonAssets(assets, config.themeConfig);
+                iconsAttached = attachIconAssets(assets, config.themeConfig);
             }
         }
 
@@ -774,7 +771,10 @@ public class ResourcesManager {
     }
 
     private ThemeConfig getThemeConfig() {
-        final Configuration config = getConfiguration();
-        return config != null ? config.themeConfig : null;
+        Configuration config = getConfiguration();
+        if (config != null) {
+            return config.themeConfig;
+        }
+        return null;
     }
 }

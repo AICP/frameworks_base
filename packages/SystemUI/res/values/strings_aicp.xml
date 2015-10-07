@@ -155,7 +155,4 @@
     <!-- Torch detail tile -->
     <string name="disable_torch_screen_off_title">Disable torch on screen off</string>
 
-    <!-- TRDS -->
-    <string name="quick_settings_trds_label">TRDS</string>
-
 </resources>

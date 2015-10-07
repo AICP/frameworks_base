@@ -42,7 +42,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.content.pm.UserInfo;
-import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -206,12 +205,7 @@ public class ResolverActivity extends Activity implements AdapterView.OnItemClic
     protected void onCreate(Bundle savedInstanceState, Intent intent,
             CharSequence title, int defaultTitleRes, Intent[] initialIntents,
             List<ResolveInfo> rList, boolean alwaysUseOption) {
-        if (getResources().getConfiguration().uiThemeMode
-                    == Configuration.UI_THEME_MODE_HOLO_DARK) {
-              setTheme(R.style.Theme_DeviceDefault_Dialog_Alert);
-        } else {
-              setTheme(R.style.Theme_DeviceDefault_Resolver);
-        }
+        setTheme(R.style.Theme_DeviceDefault_Resolver);
         super.onCreate(savedInstanceState);
 
         // Determine whether we should show that intent is forwarded

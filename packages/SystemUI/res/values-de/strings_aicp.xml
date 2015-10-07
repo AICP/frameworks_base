@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright (c) 2015 AICP Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- App circle sidebar -->
+    <string name="app_float_maximize_item_title">Maximieren</string>
+    <string name="app_float_item_title">Schwebe-Modus</string>
+    <string name="app_stop_item_title">App beenden</string>
+
+    <!-- Power Button for Navbar -->
+    <string name="navbar_power_button">Ein-/Aus-Taste</string>
+
+    <!-- Greeting -->
+    <string name="aicp_label">Willkommen zu AICP</string>
+
+    <!-- Off/On/Toggle -->
+    <string name="off">Aus</string>
+    <string name="on">An</string>
+    <string name="toggle">Umschalten</string>
+
+    <!-- Dialog Cancel/OK -->
+    <string name="cancel">Abbrechen</string>
+    <string name="dlg_ok">Ok</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nein</string>
+
+    <!-- Slim Shortcut Actions -->
+    <string name="shortcut_picker">Slim-Verknüpfungen</string>
+    <string name="shortcut_rotation">Bildschirm-Ausrichtung</string>
+    <string name="shortcut_torch">Taschenlampe</string>
+    <string name="shortcut_chamber">Kammer des Schreckens</string>
+    <string name="shortcut_reboot">Neu starten</string>
+    <string name="shortcut_recovery">Recovery</string>
+    <string name="shortcut_screensleep">Bildschirm aus</string>
+    <string name="shortcut_volume">Lautstärke</string>
+    <string name="shortcut_restart_ui">SystemUI neustarten</string>
+    <string name="shortcut_powermenu">Startmenü</string>
+    <string name="shortcut_toggle_title">Aktion ausführen</string>
+    <string name="chamber_disabled">Kammer des Schreckens ist geschlossen</string>
+    <string name="chamber_title">Einstellungs-String eingeben</string>
+    <string name="chamber_message">Gebe einen Einstellungs-String der entwender eine An- oder Ausfunktion (Kontrollkästchen) hat oder eine Listeneinstellungen ein. Zum Beispiel, doze_enabled oder ähnliches. Einstellungen können in der Settings.java Datei gefunden werden. WARNUNG: Dieser Prozess ist gefährlich!</string>
+    <string name="chamber_invalid">Dies ist eine ungültige Eingabe. Sei vorsichtig.</string>
+    <string name="chamber_invalid_setting">Versuche die Einstellung manuell auszuführen um sicherzustellen das die Einstellungensdatenbank für diese Aktion existiert.</string>
+    <string name="chamber_checkbox">Kontrollkästchen</string>
+    <string name="chamber_chk_message">Ist diese Einstellungen ein Kontrollkästchen?</string>
+    <string name="chamber_int">Werte eingeben</string>
+    <string name="chamber_int_message">Gebe die Werte für die Einstellung ein zwischen welchen du umschalten möchtest. Trenne jeden Wert mit einem Komma. Farbeinstellungen akzepieren Hex-Werte wie z.B. #FF00aacc oder Standardfarben wie rot, grün und gelb.</string>
+    <string name="chamber_name_title">Verknüpfungsnamen</string>
+    <string name="chamber_name_message">Gebe der Verknüpfung einen Namen welche mit dem Symbol angezeigt wird.</string>
+    <string name="chamber_name_toast">Standardnamen benutzen</string>
+
+    <!-- Kill app toast -->
+    <string name="app_killed_message">App beendet</string>
+
+    <!-- mount notifications -->
+    <string name="ext_media_mounted_notification_title">Eingebunden</string>
+    <string name="ext_media_unmounted_notification_title">Ausgeworfen</string>
+    <string name="ext_media_unmounted_notification_message">Du kannst den Speicher nun sicher entfernen</string>
+    <string name="ext_media_unmount_action">Auswerfen</string>
+    <string name="ext_media_mount_action">Einbinden</string>
+    <string name="ext_media_unmounting_notification_title">Werfe aus\u2026</string>
+    <string name="ext_media_mounting_notification_title">Binde ein\u2026</string>
+
+    <!-- Additional navring targets -->
+    <string name="navring_action_power_menu">Startmenü</string>
+    <string name="navring_action_last_app">Letzte App</string>
+    <string name="navring_action_expand_desktop">Erweiterter Desktop</string>
+
+    <string name="gestures_message">Zeichne hier deine Geste</string>
+
+    <!-- Battery status in pie controls -->
+    <string name="pie_battery_status_charging">Lade (<xliff:g id="percent">%d</xliff:g>%%)</string>
+    <string name="pie_battery_status_full">Aufgeladen</string>
+    <string name="pie_battery_status_discharging"><xliff:g id="percent">%d</xliff:g>%% verbleibend</string>
+
+    <!-- Phone status in pie controls -->
+    <string name="pie_phone_status_no_service">Kein Dienst</string>
+    <string name="pie_phone_status_airplane_mode">Flugmodus an</string>
+    <string name="pie_phone_status_emergency_only">Nur Notrufe</string>
+
+    <!-- App sidebar -->
+    <string name="default_folder_text">Ordner</string>
+    <string name="title_activity_sidebar_configuration">Inhalt der App-Leiste einrichten</string>
+    <string name="action_save">Speichern</string>
+    <string name="toast_items_saved">App-Leisteneintrag wurde gespeichert.</string>
+    <string name="content_setup_instructions">Füge Apps hinzu indem du lange auf eine App auf der rechten Seite drückst und Sie dann in die App-Leiste ziehst.\n\nErstelle Ordner indem du Apps über bereits vorhandene Apps in der App-Leiste ziehst.\n\nUm eine App zu entfernen ziehe Sie aus der App-Leiste.</string>
+    <string name="content_setup_dismiss">Fortsetzen</string>
+    <string name="toast_not_installed">App ist nicht installiert</string>
+
+    <!-- Slim Action floats tile -->
+    <string name="quick_settings_slim_floats_on">Schwebe-Modus aktiviert</string>
+    <string name="quick_settings_slim_floats_off">Schwebe-Modus deaktiviert</string>
+
+    <!-- Slim Pie Tile -->
+    <string name="quick_settings_slimpie_on">Pie aktiviert</string>
+    <string name="quick_settings_slimpie_off">Pie deaktiviert</string>
+
+    <!-- Battery Saver Dismiss -->
+    <string name="battery_saver_dismiss_title">Ausblenden</string>
+
+    <!-- Title shown in recents popup for showing app launch in floating mode -->
+    <string name="recent_float_mode_title">Schwebe-Modus</string>
+
+    <!-- Themes Tile -->
+    <string name="quick_settings_themes">Designs</string>
+
+    <!-- NavBar tile -->
+    <string name="quick_settings_navbar_on">Navigationsleite an</string>
+    <string name="quick_settings_navbar_off">Navigationsleite aus</string>
+
+    <!-- On The Go -->
+    <string name="onthego_notif_ticker">On-The-Go aktiviert</string>
+    <string name="onthego_notif_title">On-The-Go ist aktiv</string>
+    <string name="onthego_notif_stop">Stop</string>
+    <string name="onthego_notif_options">Optionen</string>
+    <string name="onthego_notif_error">Starten von On-The-Go nicht möglich</string>
+    <string name="onthego_notif_restart">On-The-Go neustarten</string>
+    <string name="onthego_notif_camera_changed">Kameramodus ändern</string>
+    <string name="onthego_transparency">Transparenz</string>
+    <string name="onthego_front_camera">Frontkamera benutzen</string>
+    <string name="onthego_service_toggle">Dienst automatisch neustarten</string>
+    <!-- To do: Add QS OnTheGo
+    <string name="quick_settings_onthego_back">Vordere Kamera</string>
+    <string name="quick_settings_onthego_front">Hintere Kamera</string>-->
+
+    <!-- Heads up -->
+    <string name="heads_up_snooze_message">Pop-Up Benachrichtigungen sind für <xliff:g id="number">%d</xliff:g> Minuten deaktiviert.</string>
+    <string name="heads_up_snooze_button_title">Pop-Up Benachrichtigungen einschläfern</string>
+
+    <!-- Expanded desktop detail tile -->
+    <string name="quick_settings_expanded_desktop">Erweitert</string>
+    <string name="quick_settings_expanded_desktop_off">Normal</string>
+    <string name="quick_settings_expanded_desktop_detail_title">Erweiterter Desktop</string>
+    <string name="quick_settings_expanded_hide_status">Statusleiste verbergen</string>
+    <string name="quick_settings_expanded_hide_navigation">Navigationsleiste verbergen</string>
+    <string name="quick_settings_expanded_hide_both">Beide verbergen</string>
+    <string name="accessibility_quick_settings_expanded_desktop_off">Erweiterter Desktop aus</string>
+
+    <!-- Torch detail tile -->
+    <string name="disable_torch_screen_off_title">Taschenlampe bei Bildschirm-aus deaktivieren</string>
+
+    <!-- TRDS -->
+    <string name="quick_settings_trds_label">TRDS</string>
+
+</resources>

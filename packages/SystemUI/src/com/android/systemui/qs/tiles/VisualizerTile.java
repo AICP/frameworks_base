@@ -44,6 +44,9 @@ import com.pheelicks.visualizer.renderer.Renderer;
 
 public class VisualizerTile extends QSTile<QSTile.State> implements KeyguardMonitor.Callback {
 
+    private static final Intent AUDIO_EFFECTS =
+            new Intent(AudioEffect.ACTION_DISPLAY_AUDIO_EFFECT_CONTROL_PANEL);
+
     private KeyguardMonitor mKeyguardMonitor;
     private VisualizerView mVisualizer;
     private ImageView mStaticVisualizerIcon;
@@ -169,10 +172,12 @@ public class VisualizerTile extends QSTile<QSTile.State> implements KeyguardMoni
 
     @Override
     protected void handleClick() {
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.setClassName("org.cyanogenmod.audiofx",
-                "org.cyanogenmod.audiofx.ActivityMusic");
-        mHost.startSettingsActivity(intent);
+        mHost.startSettingsActivity(AUDIO_EFFECTS);
+    }
+
+    @Override
+    protected void handleLongClick() {
+        mHost.startSettingsActivity(AUDIO_EFFECTS);
     }
 
     @Override

@@ -105,6 +105,7 @@ class SaveImageInBackgroundData {
     int previewWidth;
     int previewheight;
     int errorMsgResId;
+    float previewScale;
 
     void clearImage() {
         image = null;
@@ -189,7 +190,9 @@ class SaveImageInBackgroundTask extends AsyncTask<Void, Void, Void> {
         int overlayColor = 0x40FFFFFF;
 
         Bitmap picture = Bitmap.createBitmap(previewWidth, previewHeight, data.image.getConfig());
-        matrix.setTranslate((previewWidth - mImageWidth) / 2, (previewHeight - mImageHeight) / 2);
+        matrix.setScale(data.previewScale, data.previewScale);
+        matrix.postTranslate((previewWidth - (mImageWidth * data.previewScale)) / 2,
+                 (previewHeight - (mImageHeight * data.previewScale)) / 2);
         c.setBitmap(picture);
         c.drawBitmap(data.image, matrix, paint);
         c.drawColor(overlayColor);
@@ -471,6 +474,7 @@ class GlobalScreenshot {
     private static final float SCREENSHOT_DROP_OUT_MIN_SCALE_OFFSET = 0f;
     private final int mPreviewWidth;
     private final int mPreviewHeight;
+    private final float mScale;
 
     private Context mContext;
     private WindowManager mWindowManager;
@@ -563,6 +567,17 @@ class GlobalScreenshot {
         mPreviewWidth = panelWidth;
         mPreviewHeight = r.getDimensionPixelSize(R.dimen.notification_max_height);
 
+        int physicalWidth = (mDisplay.getRotation() % 2 == 0) ?
+                          mDisplayMetrics.widthPixels : mDisplayMetrics.heightPixels;
+        int maxPhysicalWidth = physicalWidth;
+        Display.Mode[] modes = mDisplay.getSupportedModes();
+        for (Display.Mode mode : modes) {
+            if (physicalWidth < mode.getPhysicalWidth()) {
+                maxPhysicalWidth = mode.getPhysicalWidth();
+            }
+        }
+        mScale = (float) physicalWidth / (float) maxPhysicalWidth;
+
         // Setup the Screenshot sound
         mScreenshotSound= RingtoneManager.getRingtone(mContext,
                     Uri.parse("file://" + "/system/media/audio/ui/camera_click.ogg"));
@@ -579,6 +594,7 @@ class GlobalScreenshot {
         data.finisher = finisher;
         data.previewWidth = mPreviewWidth;
         data.previewheight = mPreviewHeight;
+        data.previewScale = mScale;
         if (mSaveInBgTask != null) {
             mSaveInBgTask.cancel(false);
         }
@@ -609,7 +625,8 @@ class GlobalScreenshot {
         // We need to orient the screenshot correctly (and the Surface api seems to take screenshots
         // only in the natural orientation of the device :!)
         mDisplay.getRealMetrics(mDisplayMetrics);
-        float[] dims = {mDisplayMetrics.widthPixels, mDisplayMetrics.heightPixels};
+        float[] dims = {mDisplayMetrics.widthPixels / mScale,
+                        mDisplayMetrics.heightPixels / mScale};
         float degrees = getDegreesForRotation(mDisplay.getRotation());
         boolean requiresRotation = (degrees > 0);
         if (requiresRotation) {
@@ -632,8 +649,8 @@ class GlobalScreenshot {
 
         if (requiresRotation) {
             // Rotate the screenshot to the current orientation
-            Bitmap ss = Bitmap.createBitmap(mDisplayMetrics.widthPixels,
-                    mDisplayMetrics.heightPixels, Bitmap.Config.ARGB_8888,
+            Bitmap ss = Bitmap.createBitmap((int) (mDisplayMetrics.widthPixels / mScale),
+                    (int) (mDisplayMetrics.heightPixels / mScale), Bitmap.Config.ARGB_8888,
                     mScreenBitmap.hasAlpha(), mScreenBitmap.getColorSpace());
             Canvas c = new Canvas(ss);
             c.translate(ss.getWidth() / 2, ss.getHeight() / 2);

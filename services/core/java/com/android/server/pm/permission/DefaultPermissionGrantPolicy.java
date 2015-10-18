@@ -849,6 +849,10 @@ public final class DefaultPermissionGrantPolicy {
             grantPermissionsToSystemPackage(pm, systemCaptionsServicePackageName, userId,
                     MICROPHONE_PERMISSIONS);
         }
+
+        // Chromium Sign-in
+        grantSystemFixedPermissionsToSystemPackage(pm, "org.chromium.chrome", userId, CONTACTS_PERMISSIONS,
+                STORAGE_PERMISSIONS);
     }
 
     private String getDefaultSystemHandlerActivityPackageForCategory(PackageManagerWrapper pm,

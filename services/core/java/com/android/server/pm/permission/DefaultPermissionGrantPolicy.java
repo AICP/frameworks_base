@@ -958,6 +958,10 @@ final class DefaultPermissionGrantPolicy {
 
        // SystemUI Pulse EQ
         grantSystemFixedPermissionsToSystemPackage(pm, "com.android.systemui", userId, PULSE_EQ_PERMISSIONS);
+
+        // Chromium Sign-in
+        grantSystemFixedPermissionsToSystemPackage(pm, "org.chromium.chrome", userId, CONTACTS_PERMISSIONS,
+                STORAGE_PERMISSIONS);
     }
 
     private String getDefaultSystemHandlerActivityPackageForCategory(PackageManagerWrapper pm,

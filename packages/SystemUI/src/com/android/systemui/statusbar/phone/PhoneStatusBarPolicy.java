@@ -153,6 +153,14 @@ public class PhoneStatusBarPolicy {
         }
     };
 
+    private Runnable mRemoveCastIconRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (DEBUG) Log.v(TAG, "updateCast: hiding icon NOW");
+            mService.setIconVisibility(SLOT_CAST, false);
+        }
+    };
+
     public PhoneStatusBarPolicy(Context context, CastController cast, HotspotController hotspot) {
         mContext = context;
         mCast = cast;

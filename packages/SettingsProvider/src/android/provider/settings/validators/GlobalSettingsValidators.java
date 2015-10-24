@@ -485,5 +485,6 @@ public class GlobalSettingsValidators {
                 new InclusiveIntegerRangeValidator(0, 1));
         VALIDATORS.put(Global.MINMODE_ACTIVE, BOOLEAN_VALIDATOR);
         VALIDATORS.put(Global.WATCH_RANGING_AVAILABLE, BOOLEAN_VALIDATOR);
+        VALIDATORS.put(Global.LOCKSCREEN_ENABLE_POWER_MENU, BOOLEAN_VALIDATOR);
     }
 }

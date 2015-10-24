@@ -5932,6 +5932,12 @@ public final class Settings {
          */
         public static final String OMNI_LOCKSCREEN_MEDIA_BLUR = "lockscreen_media_blur";
 
+          /**
+          * Whether to show media art on lockscreen
+          * @hide
+          */
+         public static final String LOCKSCREEN_MEDIA_METADATA = "lockscreen_media_metadata";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6065,6 +6071,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(AICP_LOCKSCREEN_WEATHER_STYLE, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(TOAST_ANIMATION, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(OMNI_LOCKSCREEN_MEDIA_BLUR, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(LOCKSCREEN_MEDIA_METADATA, BOOLEAN_VALIDATOR);
         }
 
         /**

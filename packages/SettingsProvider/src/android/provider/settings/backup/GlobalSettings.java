@@ -116,5 +116,6 @@ public class GlobalSettings {
         Settings.Global.Wearable.CHARGING_SOUNDS_ENABLED,
         Settings.Global.Wearable.WRIST_DETECTION_AUTO_LOCKING_ENABLED,
         Settings.Global.FORCE_ENABLE_PSS_PROFILING,
+        Settings.Global.LOCKSCREEN_ENABLE_POWER_MENU,
     };
 }

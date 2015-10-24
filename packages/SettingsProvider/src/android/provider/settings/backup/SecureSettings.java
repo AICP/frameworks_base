@@ -246,5 +246,6 @@ public class SecureSettings {
         Settings.Secure.STATUSBAR_CLOCK_DATE_FORMAT,
         Settings.Secure.STATUSBAR_CLOCK_DATE_POSITION,
         Settings.Secure.DISABLE_SECURE_TILES_ON_LOCKSCREEN,
+        Settings.Secure.POWER_MENU_HIDE_ON_SECURE,
     };
 }

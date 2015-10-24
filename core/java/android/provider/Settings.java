@@ -16727,6 +16727,20 @@ public final class Settings {
                 CLOCKWORK_HOME_READY,
         };
 
+        /*****************************
+         * AICP Global Settings start
+         *****************************/
+
+        /**
+         * This preference enables showing the power menu on LockScreen.
+         * @hide
+         */
+        public static final String LOCKSCREEN_ENABLE_POWER_MENU = "lockscreen_enable_power_menu";
+
+        /*****************************
+         * AICP Global Settings end
+         *****************************/
+
         /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.

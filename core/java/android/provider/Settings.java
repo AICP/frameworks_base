@@ -5854,6 +5854,16 @@ public final class Settings {
         /** @hide */
         private static final Validator STATUS_BAR_BRIGHTNESS_CONTROL_VALIDATOR = BOOLEAN_VALIDATOR;
 
+          /**
+          * Whether to show media art on lockscreen
+          * @hide
+          */
+         public static final String LOCKSCREEN_MEDIA_METADATA = "lockscreen_media_metadata";
+
+         /** @hide */
+         private static final Validator LOCKSCREEN_MEDIA_METADATA_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6313,6 +6323,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(THEMING_SETTINGS_DASHBOARD_ICONS);
             PRIVATE_SETTINGS.add(POCKET_JUDGE);
             PRIVATE_SETTINGS.add(STATUS_BAR_BRIGHTNESS_CONTROL);
+            PRIVATE_SETTINGS.add(LOCKSCREEN_MEDIA_METADATA);
             // AICP Settings end
         }
 
@@ -6555,6 +6566,7 @@ public final class Settings {
             VALIDATORS.put(THEMING_SETTINGS_DASHBOARD_ICONS, THEMING_SETTINGS_DASHBOARD_ICONS_VALIDATOR);
             VALIDATORS.put(POCKET_JUDGE, POCKET_JUDGE_VALIDATOR);
             VALIDATORS.put(STATUS_BAR_BRIGHTNESS_CONTROL, STATUS_BAR_BRIGHTNESS_CONTROL_VALIDATOR);
+            VALIDATORS.put(LOCKSCREEN_MEDIA_METADATA,LOCKSCREEN_MEDIA_METADATA_VALIDATOR);
             // AICP Settings end
         }
 

@@ -127,5 +127,6 @@ public class GlobalSettings {
         Settings.Global.ADD_USERS_WHEN_LOCKED,
         Settings.Global.REMOVE_GUEST_ON_EXIT,
         Settings.Global.USER_SWITCHER_ENABLED,
+        Settings.Global.LOCKSCREEN_ENABLE_POWER_MENU,
     };
 }

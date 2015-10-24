@@ -130,5 +130,6 @@ public class GlobalSettings {
         Settings.Global.REMOVE_GUEST_ON_EXIT,
         Settings.Global.USER_SWITCHER_ENABLED,
         Settings.Global.GLOBAL_ACTIONS_TIMEOUT_MILLIS,
+        Settings.Global.LOCKSCREEN_ENABLE_POWER_MENU,
     };
 }

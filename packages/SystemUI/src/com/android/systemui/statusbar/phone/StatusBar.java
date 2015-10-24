@@ -1702,7 +1702,7 @@ public class StatusBar extends SystemUI implements DemoMode,
         }
 
         Drawable artworkDrawable = null;
-        if (mediaMetadata != null) {
+        if (mediaMetadata != null && mLockscreenMediaMetadata) {
             Bitmap artworkBitmap = mediaMetadata.getBitmap(MediaMetadata.METADATA_KEY_ART);
             if (artworkBitmap == null) {
                 artworkBitmap = mediaMetadata.getBitmap(MediaMetadata.METADATA_KEY_ALBUM_ART);
@@ -5312,6 +5312,7 @@ public class StatusBar extends SystemUI implements DemoMode,
     }
 
     private boolean mShowTileTitles;
+    private boolean mLockscreenMediaMetadata;
     private AicpSettingsObserver mAicpSettingsObserver = new AicpSettingsObserver(mHandler);
     private class AicpSettingsObserver extends ContentObserver {
         AicpSettingsObserver(Handler handler) {
@@ -5351,11 +5352,14 @@ public class StatusBar extends SystemUI implements DemoMode,
                     Settings.System.AICP_QS_QUICKBAR_COLUMNS),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                     Settings.System.AICP_DOUBLE_TAP_SLEEP_GESTURE),
-                     false, this, UserHandle.USER_ALL);
+                    Settings.System.AICP_DOUBLE_TAP_SLEEP_GESTURE),
+                    false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                     Settings.System.AICP_DOUBLE_TAP_SLEEP_LOCKSCREEN),
-                     false, this, UserHandle.USER_ALL);
+                    Settings.System.AICP_DOUBLE_TAP_SLEEP_LOCKSCREEN),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.LOCKSCREEN_MEDIA_METADATA),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
         @Override
@@ -5380,6 +5384,8 @@ public class StatusBar extends SystemUI implements DemoMode,
             } else if (uri.equals(Settings.System.getUriFor(Settings.System.AICP_DOUBLE_TAP_SLEEP_GESTURE)) ||
                     uri.equals(Settings.System.getUriFor(Settings.System.AICP_DOUBLE_TAP_SLEEP_LOCKSCREEN))) {
                 updateDoubleTapSettings();
+            } else if (uri.equals(Settings.System.getUriFor(Settings.System.LOCKSCREEN_MEDIA_METADATA))) {
+                setLockscreenMediaMetadata();
             }
 
         }
@@ -5389,6 +5395,7 @@ public class StatusBar extends SystemUI implements DemoMode,
             updateTickerTickDuration();
             updateTileLayouts();
             updateDoubleTapSettings();
+            setLockscreenMediaMetadata();
         }
     }
 
@@ -6070,5 +6077,10 @@ public class StatusBar extends SystemUI implements DemoMode,
         if (mQuickQSPanel != null) {
           mQuickQSPanel.updateResources();
         }
+    }
+
+    private void setLockscreenMediaMetadata() {
+        mLockscreenMediaMetadata = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.LOCKSCREEN_MEDIA_METADATA, 0, UserHandle.USER_CURRENT) == 1;
     }
 }

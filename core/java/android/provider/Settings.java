@@ -4924,6 +4924,16 @@ public final class Settings {
          private static final Validator VOLUME_DIALOG_TIMEOUT_VALIDATOR =
                 new SettingsValidators.InclusiveIntegerRangeValidator(500, 10000);;
 
+          /**
+          * Whether to show media art on lockscreen
+          * @hide
+          */
+         public static final String LOCKSCREEN_MEDIA_METADATA = "lockscreen_media_metadata";
+
+         /** @hide */
+         private static final Validator LOCKSCREEN_MEDIA_METADATA_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5248,6 +5258,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(VOLUME_BUTTON_MUSIC_CONTROL);
             PRIVATE_SETTINGS.add(SCREENSHOT_SOUND);
             PRIVATE_SETTINGS.add(VOLUME_DIALOG_TIMEOUT);
+            PRIVATE_SETTINGS.add(LOCKSCREEN_MEDIA_METADATA);
             // AICP Settings end
         }
 
@@ -5421,6 +5432,7 @@ public final class Settings {
             VALIDATORS.put(VOLUME_BUTTON_MUSIC_CONTROL,VOLUME_BUTTON_MUSIC_CONTROL_VALIDATOR);
             VALIDATORS.put(SCREENSHOT_SOUND,SCREENSHOT_SOUND_VALIDATOR);
             VALIDATORS.put(VOLUME_DIALOG_TIMEOUT,VOLUME_DIALOG_TIMEOUT_VALIDATOR);
+            VALIDATORS.put(LOCKSCREEN_MEDIA_METADATA,LOCKSCREEN_MEDIA_METADATA_VALIDATOR);
             // AICP Settings end
         }
 

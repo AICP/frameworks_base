@@ -78,5 +78,6 @@ public class GlobalSettings {
         Settings.Global.POWER_BUTTON_LONG_PRESS,
         Settings.Global.POWER_BUTTON_LONG_PRESS_DURATION_MS,
         Settings.Global.WAKE_WHEN_PLUGGED_OR_UNPLUGGED,
+        Settings.Global.LOCKSCREEN_ENABLE_POWER_MENU,
     };
 }

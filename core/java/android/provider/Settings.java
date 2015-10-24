@@ -14022,6 +14022,26 @@ public final class Settings {
          */
         public static final String HYBRID_SYSUI_BATTERY_WARNING_FLAGS = "hybrid_sysui_battery_warning_flags";
 
+        /*****************************
+         * AICP Global Settings start
+         *****************************/
+
+         /**
+         Add aicp settings like e.g.
+         @hide
+         public static final String AICP_FOO_BAR_BALABALA = "foo_bar_balabala";
+         */
+
+        /**
+         * This preference enables showing the power menu on LockScreen.
+         * @hide
+         */
+        public static final String LOCKSCREEN_ENABLE_POWER_MENU = "lockscreen_enable_power_menu";
+
+        /***************************
+         * AICP System Settings end
+         ***************************/
+
         /**
          * Global settings that shouldn't be persisted.
          *

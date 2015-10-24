@@ -219,5 +219,6 @@ public class SecureSettings {
         Settings.Secure.SHOW_BACK_ARROW_GESTURE,
         Settings.Secure.SECURE_LOCKSCREEN_QS_DISABLED,
         Settings.Secure.DISABLE_SECURE_TILES_ON_LOCKSCREEN,
+        Settings.Secure.LOCKSCREEN_MEDIA_METADATA,
     };
 }

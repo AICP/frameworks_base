@@ -95,6 +95,7 @@
   <string name="accessibility_quick_settings_usb_tether_changed_off">USB-модем выключен.</string>
   <string name="accessibility_quick_settings_usb_tether_changed_on">USB-модем включён.</string>
   <string name="accessibility_quick_settings_visualizer">Визуализатор.</string>
+  <string name="accessibility_quick_settings_volume_panel">Панель громкости.</string>
   <string name="accessibility_dpad_left">Курсор влево</string>
   <string name="accessibility_dpad_right">Курсор вправо</string>
   <string name="quick_settings_powermenu_label">Меню кнопки питания</string>

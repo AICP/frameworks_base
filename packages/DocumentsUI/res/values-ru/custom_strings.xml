@@ -24,6 +24,14 @@
     <!-- Title of the Delete confirmation dialog -->
     <string name="dialog_delete_confirm_title">Удалить файлы?</string>
 
+    <!-- Menu item title that copies the selected documents [CHAR LIMIT=24] -->
+    <string name="menu_copy">Копировать</string>
+    <!-- Menu item title that cuts the selected documents [CHAR LIMIT=24] -->
+    <string name="menu_cut">Вырезать</string>
+    <!-- Menu item title that pastes the selected documents [CHAR LIMIT=24] -->
+    <string name="menu_paste">Вставить</string>
+
+
     <!-- Text shown in a toast when the user copies files -->
     <plurals name="files_copied">
         <item quantity="one">Файл был помещён в буфер обмена</item>

@@ -153,6 +153,6 @@
     <string name="accessibility_quick_settings_expanded_desktop_off">Расширенный экран отключен</string>
 
     <!-- Torch detail tile -->
-    <string name="disable_torch_screen_off_title">Отключать фонарик при выключенном экране</string>
+    <string name="disable_torch_screen_off_title">Отключать при выключенном экране</string>
 
 </resources>

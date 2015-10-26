@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2013 The Android Open Source Project
+ * Modifications Copyright (C) 2013 The OmniROM Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,6 +13,20 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Per article 5 of the Apache 2.0 License, some modifications to this code
+ * were made by the OmniROM Project.
+ *
+ * Modifications Copyright (C) 2013 The OmniROM Project
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 3
+ * of the License, or (at your option) any later version.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
 package com.android.documentsui;
@@ -23,20 +38,10 @@ import static com.android.documentsui.BaseActivity.State.ACTION_MANAGE;
 import static com.android.documentsui.BaseActivity.State.ACTION_OPEN;
 import static com.android.documentsui.BaseActivity.State.ACTION_OPEN_COPY_DESTINATION;
 import static com.android.documentsui.BaseActivity.State.ACTION_OPEN_TREE;
+import static com.android.documentsui.BaseActivity.State.ACTION_STANDALONE;
 import static com.android.documentsui.DirectoryFragment.ANIM_DOWN;
 import static com.android.documentsui.DirectoryFragment.ANIM_NONE;
 import static com.android.documentsui.DirectoryFragment.ANIM_UP;
-<<<<<<< HEAD
-=======
-import static com.android.documentsui.DocumentsActivity.State.ACTION_CREATE;
-import static com.android.documentsui.DocumentsActivity.State.ACTION_GET_CONTENT;
-import static com.android.documentsui.DocumentsActivity.State.ACTION_MANAGE;
-import static com.android.documentsui.DocumentsActivity.State.ACTION_OPEN;
-import static com.android.documentsui.DocumentsActivity.State.ACTION_STANDALONE;
-import static com.android.documentsui.DocumentsActivity.State.ACTION_OPEN_TREE;
-import static com.android.documentsui.DocumentsActivity.State.MODE_GRID;
-import static com.android.documentsui.DocumentsActivity.State.MODE_LIST;
->>>>>>> 9fc07eb... Add a standalone File Manager
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -61,11 +66,8 @@ import android.graphics.Point;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-<<<<<<< HEAD
-=======
 import android.os.Environment;
 import android.os.Parcel;
->>>>>>> 35e4471... Allow open files instead of URIs
 import android.os.Parcelable;
 import android.os.RemoteException;
 import android.os.storage.StorageManager;
@@ -91,8 +93,6 @@ import com.android.documentsui.model.DocumentInfo;
 import com.android.documentsui.model.DocumentStack;
 import com.android.documentsui.model.DurableUtils;
 import com.android.documentsui.model.RootInfo;
-<<<<<<< HEAD
-=======
 import com.google.common.collect.Maps;
 
 import libcore.io.IoUtils;
@@ -101,21 +101,15 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.Executor;
-
-public class DocumentsActivity extends Activity {
-    public static final String TAG = "Documents";
-
-    private static final String EXTRA_STATE = "state";
->>>>>>> 9fc07eb... Add a standalone File Manager
 
 public class DocumentsActivity extends BaseActivity {
     private static final int CODE_FORWARD = 42;
@@ -156,8 +150,6 @@ public class DocumentsActivity extends BaseActivity {
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-<<<<<<< HEAD
-=======
         mRoots = DocumentsApplication.getRootsCache(this);
 
         mStorageManager = (StorageManager) getSystemService(Context.STORAGE_SERVICE);
@@ -165,7 +157,6 @@ public class DocumentsActivity extends BaseActivity {
         mIdToPath = Maps.newHashMap();
         updateVolumes();
 
->>>>>>> 35e4471... Allow open files instead of URIs
         setResult(Activity.RESULT_CANCELED);
         setContentView(R.layout.activity);
 
@@ -242,15 +233,11 @@ public class DocumentsActivity extends BaseActivity {
             moreApps.setComponent(null);
             moreApps.setPackage(null);
             RootsFragment.show(getFragmentManager(), moreApps);
-<<<<<<< HEAD
         } else if (mState.action == ACTION_OPEN ||
                    mState.action == ACTION_CREATE ||
                    mState.action == ACTION_OPEN_TREE ||
-                   mState.action == ACTION_OPEN_COPY_DESTINATION) {
-=======
-        } else if (mState.action == ACTION_OPEN || mState.action == ACTION_CREATE
-                || mState.action == ACTION_OPEN_TREE || mState.action == ACTION_STANDALONE) {
->>>>>>> 9fc07eb... Add a standalone File Manager
+                   mState.action == ACTION_OPEN_COPY_DESTINATION ||
+                   mState.action == ACTION_STANDALONE) {
             RootsFragment.show(getFragmentManager(), null);
         }
 
@@ -283,10 +270,6 @@ public class DocumentsActivity extends BaseActivity {
         }
     }
 
-<<<<<<< HEAD
-    private State buildDefaultState() {
-        State state = new State();
-=======
     public void updateVolumes() {
         synchronized (mRootsLock) {
             updateVolumesLocked();
@@ -322,9 +305,8 @@ public class DocumentsActivity extends BaseActivity {
 
     }
 
-    private void buildDefaultState() {
-        mState = new State();
->>>>>>> 35e4471... Allow open files instead of URIs
+    private State buildDefaultState() {
+        State state = new State();
 
         final Intent intent = getIntent();
         final String action = intent.getAction();
@@ -337,25 +319,21 @@ public class DocumentsActivity extends BaseActivity {
         } else if (Intent.ACTION_OPEN_DOCUMENT_TREE.equals(action)) {
             state.action = ACTION_OPEN_TREE;
         } else if (DocumentsContract.ACTION_MANAGE_ROOT.equals(action)) {
-<<<<<<< HEAD
             state.action = ACTION_MANAGE;
         } else if (DocumentsContract.ACTION_BROWSE_DOCUMENT_ROOT.equals(action)) {
             state.action = ACTION_BROWSE;
         } else if (DocumentsIntent.ACTION_OPEN_COPY_DESTINATION.equals(action)) {
             state.action = ACTION_OPEN_COPY_DESTINATION;
-=======
-            mState.action = ACTION_MANAGE;
         } else if (Intent.ACTION_MAIN.equals(action)) {
-            mState.action = ACTION_STANDALONE;
->>>>>>> 9fc07eb... Add a standalone File Manager
+            state.action = ACTION_STANDALONE;
         }
 
         if (state.action == ACTION_OPEN || state.action == ACTION_GET_CONTENT) {
             state.allowMultiple = intent.getBooleanExtra(
                     Intent.EXTRA_ALLOW_MULTIPLE, false);
-            } else if (mState.action == ACTION_STANDALONE) {
-                mState.allowMultiple = true;
-            }
+        } else if (state.action == ACTION_STANDALONE) {
+            state.allowMultiple = true;
+        }
 
         if (state.action == ACTION_MANAGE || state.action == ACTION_BROWSE) {
             state.acceptMimes = new String[] { "*/*" };
@@ -402,8 +380,6 @@ public class DocumentsActivity extends BaseActivity {
         @Override
         protected void onPostExecute(RootInfo root) {
             if (isDestroyed()) return;
-            mState.restored = true;
-
             if (root != null) {
                 onRootPicked(root);
             } else {
@@ -517,7 +493,12 @@ public class DocumentsActivity extends BaseActivity {
     @Override
     public void updateActionBar() {
         if (mRootsToolbar != null) {
-<<<<<<< HEAD
+            if (mState.action == ACTION_OPEN || mState.action == ACTION_GET_CONTENT
+                    || mState.action == ACTION_OPEN_TREE) {
+                mRootsToolbar.setTitle(R.string.title_open);
+            } else if (mState.action == ACTION_CREATE) {
+                mRootsToolbar.setTitle(R.string.title_save);
+            }
             final String prompt = getIntent().getStringExtra(DocumentsContract.EXTRA_PROMPT);
             if (prompt != null) {
                 mRootsToolbar.setTitle(prompt);
@@ -529,20 +510,9 @@ public class DocumentsActivity extends BaseActivity {
                 } else if (mState.action == ACTION_CREATE ||
                            mState.action == ACTION_OPEN_COPY_DESTINATION) {
                     mRootsToolbar.setTitle(R.string.title_save);
+                } else if (mState.action == ACTION_STANDALONE) {
+                    mRootsToolbar.setTitle(R.string.title_standalone);
                 }
-=======
-            if (mState.action == ACTION_OPEN || mState.action == ACTION_GET_CONTENT
-                    || mState.action == ACTION_OPEN_TREE) {
-                mRootsToolbar.setTitle(R.string.title_open);
-            } else if (mState.action == ACTION_CREATE) {
-                mRootsToolbar.setTitle(R.string.title_save);
-            } else if (mState.action == ACTION_STANDALONE) {
-<<<<<<< HEAD
-                actionBar.setTitle(R.string.title_standalone);
->>>>>>> 9fc07eb... Add a standalone File Manager
-=======
-                mRootsToolbar.setTitle(R.string.title_standalone);
->>>>>>> 8614742... Fix build and API changes for lollipop
             }
         }
 
@@ -605,7 +575,13 @@ public class DocumentsActivity extends BaseActivity {
         final MenuItem list = menu.findItem(R.id.menu_list);
         final MenuItem advanced = menu.findItem(R.id.menu_advanced);
         final MenuItem fileSize = menu.findItem(R.id.menu_file_size);
-<<<<<<< HEAD
+        final MenuItem paste = menu.findItem(R.id.menu_paste);
+
+        // Paste is visible only if we have files in the clipboard, and if
+        // we can paste in this directory
+        paste.setVisible(mClipboardFiles != null && mClipboardFiles.size() > 0
+            && cwd != null && cwd.isCreateSupported());
+
         final MenuItem settings = menu.findItem(R.id.menu_settings);
 
         boolean fileSizeVisible = !(mState.action == ACTION_MANAGE
@@ -613,42 +589,6 @@ public class DocumentsActivity extends BaseActivity {
         if (mState.action == ACTION_CREATE
                 || mState.action == ACTION_OPEN_TREE
                 || mState.action == ACTION_OPEN_COPY_DESTINATION) {
-=======
-        final MenuItem paste = menu.findItem(R.id.menu_paste);
-
-        // Paste is visible only if we have files in the clipboard, and if
-        // we can paste in this directory
-        paste.setVisible(mClipboardFiles != null && mClipboardFiles.size() > 0
-        && cwd != null && cwd.isCreateSupported());
-
-        sort.setVisible(cwd != null);
-        grid.setVisible(mState.derivedMode != MODE_GRID);
-        list.setVisible(mState.derivedMode != MODE_LIST);
-
-        if (mState.currentSearch != null) {
-            // Search uses backend ranking; no sorting
-            sort.setVisible(false);
-
-            search.expandActionView();
-
-            mSearchView.setIconified(false);
-            mSearchView.clearFocus();
-            mSearchView.setQuery(mState.currentSearch, false);
-        } else {
-            mIgnoreNextClose = true;
-            mSearchView.setIconified(true);
-            mSearchView.clearFocus();
-
-            mIgnoreNextCollapse = true;
-            search.collapseActionView();
-        }
-
-        // Only sort by size when visible
-        sortSize.setVisible(mState.showSize);
-
-        final boolean searchVisible;
-        if (mState.action == ACTION_CREATE || mState.action == ACTION_OPEN_TREE || mState.action == ACTION_STANDALONE) {
->>>>>>> 9fc07eb... Add a standalone File Manager
             createDir.setVisible(cwd != null && cwd.isCreateSupported());
             mSearchManager.showMenu(false);
 
@@ -681,91 +621,7 @@ public class DocumentsActivity extends BaseActivity {
         if (mDrawerToggle != null && mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
-<<<<<<< HEAD
         return super.onOptionsItemSelected(item);
-=======
-
-        final int id = item.getItemId();
-        if (id == android.R.id.home) {
-            onBackPressed();
-            return true;
-        } else if (id == R.id.menu_create_dir) {
-            CreateDirectoryFragment.show(getFragmentManager());
-            return true;
-        } else if (id == R.id.menu_paste) {
-            onPasteRequested();
-            return true;
-        } else if (id == R.id.menu_search) {
-            return false;
-        } else if (id == R.id.menu_sort_name) {
-            setUserSortOrder(State.SORT_ORDER_DISPLAY_NAME);
-            return true;
-        } else if (id == R.id.menu_sort_date) {
-            setUserSortOrder(State.SORT_ORDER_LAST_MODIFIED);
-            return true;
-        } else if (id == R.id.menu_sort_size) {
-            setUserSortOrder(State.SORT_ORDER_SIZE);
-            return true;
-        } else if (id == R.id.menu_grid) {
-            setUserMode(State.MODE_GRID);
-            return true;
-        } else if (id == R.id.menu_list) {
-            setUserMode(State.MODE_LIST);
-            return true;
-        } else if (id == R.id.menu_advanced) {
-            setDisplayAdvancedDevices(!LocalPreferences.getDisplayAdvancedDevices(this));
-            return true;
-        } else if (id == R.id.menu_file_size) {
-            setDisplayFileSize(!LocalPreferences.getDisplayFileSize(this));
-            return true;
-        } else {
-            return super.onOptionsItemSelected(item);
-        }
-    }
-
-    private void setDisplayAdvancedDevices(boolean display) {
-        LocalPreferences.setDisplayAdvancedDevices(this, display);
-        mState.showAdvanced = mState.forceAdvanced | display;
-        RootsFragment.get(getFragmentManager()).onDisplayStateChanged();
-        invalidateOptionsMenu();
-    }
-
-    private void setDisplayFileSize(boolean display) {
-        LocalPreferences.setDisplayFileSize(this, display);
-        mState.showSize = display;
-        DirectoryFragment.get(getFragmentManager()).onDisplayStateChanged();
-        invalidateOptionsMenu();
-    }
-
-    /**
-     * Update UI to reflect internal state changes not from user.
-     */
-    public void onStateChanged() {
-        invalidateOptionsMenu();
-    }
-
-    /**
-     * Set state sort order based on explicit user action.
-     */
-    private void setUserSortOrder(int sortOrder) {
-        mState.userSortOrder = sortOrder;
-        DirectoryFragment.get(getFragmentManager()).onUserSortOrderChanged();
-    }
-
-    /**
-     * Set state mode based on explicit user action.
-     */
-    private void setUserMode(int mode) {
-        mState.userMode = mode;
-        DirectoryFragment.get(getFragmentManager()).onUserModeChanged();
-    }
-
-    public void setPending(boolean pending) {
-        final SaveFragment save = SaveFragment.get(getFragmentManager());
-        if (save != null) {
-            save.setPending(pending);
-        }
->>>>>>> 9fc07eb... Add a standalone File Manager
     }
 
     @Override
@@ -894,26 +750,15 @@ public class DocumentsActivity extends BaseActivity {
                     Toast.makeText(this, R.string.toast_no_application, Toast.LENGTH_SHORT).show();
                 }
             }
-<<<<<<< HEAD
-        } else if (mState.action == ACTION_BROWSE) {
+        } else if (mState.action == ACTION_STANDALONE || mState.action == ACTION_BROWSE) {
             // Go straight to viewing
-=======
-        } else if (mState.action == ACTION_STANDALONE) {
->>>>>>> 9fc07eb... Add a standalone File Manager
             final Intent view = new Intent(Intent.ACTION_VIEW);
             view.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             view.setData(doc.derivedUri);
 
             try {
                 startActivity(view);
-<<<<<<< HEAD
-            } catch (ActivityNotFoundException ex) {
-=======
             } catch (ActivityNotFoundException ex2) {
-<<<<<<< HEAD
->>>>>>> 9fc07eb... Add a standalone File Manager
-                Toast.makeText(this, R.string.toast_no_application, Toast.LENGTH_SHORT).show();
-=======
                 File file = null;
                 int idx = doc.documentId.indexOf(":");
                 if (idx != -1){
@@ -936,7 +781,6 @@ public class DocumentsActivity extends BaseActivity {
                 } else {
                     Toast.makeText(this, R.string.toast_no_application, Toast.LENGTH_SHORT).show();
                 }
->>>>>>> 35e4471... Allow open files instead of URIs
             }
         }
     }
@@ -953,15 +797,13 @@ public class DocumentsActivity extends BaseActivity {
         }
     }
 
-<<<<<<< HEAD
-=======
     public void setClipboardDocuments(List<DocumentInfo> docs, boolean copy) {
         mClipboardFiles = docs;
         mClipboardIsCopy = copy;
         final Resources r = getResources();
         Toast.makeText(this,
-        r.getQuantityString(R.plurals.files_copied, docs.size(), docs.size()),
-        Toast.LENGTH_SHORT).show();
+            r.getQuantityString(R.plurals.files_copied, docs.size(), docs.size()),
+            Toast.LENGTH_SHORT).show();
 
         // Update the action bar buttons
         invalidateOptionsMenu();
@@ -979,15 +821,6 @@ public class DocumentsActivity extends BaseActivity {
         mClipboardFiles = null;
     }
 
-    public void onSaveRequested(DocumentInfo replaceTarget) {
-        new ExistingFinishTask(replaceTarget.derivedUri).executeOnExecutor(getCurrentExecutor());
-    }
-
-    public void onSaveRequested(String mimeType, String displayName) {
-        new CreateFinishTask(mimeType, displayName).executeOnExecutor(getCurrentExecutor());
-    }
-
->>>>>>> 9fc07eb... Add a standalone File Manager
     public void onPickRequested(DocumentInfo pickTarget) {
         Uri result;
         if (mState.action == ACTION_OPEN_TREE) {
@@ -1063,7 +896,17 @@ public class DocumentsActivity extends BaseActivity {
         finish();
     }
 
-<<<<<<< HEAD
+    public void copyFile(Uri input, Uri output) throws IOException {
+        OutputStream os = getContentResolver().openOutputStream(output);
+        InputStream is = getContentResolver().openInputStream(input);
+
+        byte[] buffer = new byte[1024];
+        int len;
+        while ((len = is.read(buffer)) != -1) {
+            os.write(buffer, 0, len);
+        }
+    }
+
     public static DocumentsActivity get(Fragment fragment) {
         return (DocumentsActivity) fragment.getActivity();
     }
@@ -1110,20 +953,6 @@ public class DocumentsActivity extends BaseActivity {
      * Task that creates a new document in the background.
      */
     final class CreateFinishTask extends AsyncTask<Void, Void, Uri> {
-=======
-    public void copyFile(Uri input, Uri output) throws IOException {
-        OutputStream os = getContentResolver().openOutputStream(output);
-        InputStream is = getContentResolver().openInputStream(input);
-
-        byte[] buffer = new byte[1024];
-        int len;
-        while ((len = is.read(buffer)) != -1) {
-            os.write(buffer, 0, len);
-        }
-    }
-
-    private class CreateFinishTask extends AsyncTask<Void, Void, Uri> {
->>>>>>> 9fc07eb... Add a standalone File Manager
         private final String mMimeType;
         private final String mDisplayName;
 
@@ -1174,8 +1003,6 @@ public class DocumentsActivity extends BaseActivity {
             setPending(false);
         }
     }
-<<<<<<< HEAD
-=======
 
     private class CopyOrCutFilesTask extends AsyncTask<Void, Integer, Void> {
         private final DocumentInfo[] mDocs;
@@ -1206,11 +1033,11 @@ public class DocumentsActivity extends BaseActivity {
                 try {
                     final DocumentInfo cwd = getCurrentDirectory();
                     client = DocumentsApplication.acquireUnstableProviderOrThrow(
-                    resolver, cwd.derivedUri.getAuthority());
+                        resolver, cwd.derivedUri.getAuthority());
 
                     // Create a new file of the same MIME type as the original
                     final Uri childUri = DocumentsContract.createDocument(
-                    client, cwd.derivedUri, doc.mimeType, doc.displayName);
+                            client, cwd.derivedUri, doc.mimeType, doc.displayName);
 
                     ContentProviderClient.releaseQuietly(client);
 
@@ -1251,11 +1078,11 @@ public class DocumentsActivity extends BaseActivity {
         protected void onPostExecute(Void result) {
             mProgressDialog.dismiss();
 
-            // Notify that files were copied
+             // Notify that files were copied
             final Resources r = getResources();
             Toast.makeText(DocumentsActivity.this,
-            r.getQuantityString(R.plurals.files_pasted, mDocs.length, mDocs.length),
-            Toast.LENGTH_SHORT).show();
+                r.getQuantityString(R.plurals.files_pasted, mDocs.length, mDocs.length),
+                Toast.LENGTH_SHORT).show();
 
             // Update the action bar buttons
             invalidateOptionsMenu();
@@ -1264,152 +1091,4 @@ public class DocumentsActivity extends BaseActivity {
             DirectoryFragment.get(getFragmentManager()).onUserSortOrderChanged();
         }
     }
-
-    private class ExistingFinishTask extends AsyncTask<Void, Void, Void> {
-        private final Uri[] mUris;
-
-        public ExistingFinishTask(Uri... uris) {
-            mUris = uris;
-        }
-
-        @Override
-        protected Void doInBackground(Void... params) {
-            saveStackBlocking();
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            onFinished(mUris);
-        }
-    }
-
-    private class PickFinishTask extends AsyncTask<Void, Void, Void> {
-        private final Uri mUri;
-
-        public PickFinishTask(Uri uri) {
-            mUri = uri;
-        }
-
-        @Override
-        protected Void doInBackground(Void... params) {
-            saveStackBlocking();
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            onFinished(mUri);
-        }
-    }
-
-    public static class State implements android.os.Parcelable {
-        public int action;
-        public String[] acceptMimes;
-
-        /** Explicit user choice */
-        public int userMode = MODE_UNKNOWN;
-        /** Derived after loader */
-        public int derivedMode = MODE_LIST;
-
-        /** Explicit user choice */
-        public int userSortOrder = SORT_ORDER_UNKNOWN;
-        /** Derived after loader */
-        public int derivedSortOrder = SORT_ORDER_DISPLAY_NAME;
-
-        public boolean allowMultiple = false;
-        public boolean showSize = false;
-        public boolean localOnly = false;
-        public boolean forceAdvanced = false;
-        public boolean showAdvanced = false;
-        public boolean stackTouched = false;
-        public boolean restored = false;
-
-        /** Current user navigation stack; empty implies recents. */
-        public DocumentStack stack = new DocumentStack();
-        /** Currently active search, overriding any stack. */
-        public String currentSearch;
-
-        /** Instance state for every shown directory */
-        public HashMap<String, SparseArray<Parcelable>> dirState = Maps.newHashMap();
-
-        public static final int ACTION_OPEN = 1;
-        public static final int ACTION_CREATE = 2;
-        public static final int ACTION_GET_CONTENT = 3;
-        public static final int ACTION_OPEN_TREE = 4;
-        public static final int ACTION_MANAGE = 5;
-        public static final int ACTION_STANDALONE = 6;
-
-        public static final int MODE_UNKNOWN = 0;
-        public static final int MODE_LIST = 1;
-        public static final int MODE_GRID = 2;
-
-        public static final int SORT_ORDER_UNKNOWN = 0;
-        public static final int SORT_ORDER_DISPLAY_NAME = 1;
-        public static final int SORT_ORDER_LAST_MODIFIED = 2;
-        public static final int SORT_ORDER_SIZE = 3;
-
-        @Override
-        public int describeContents() {
-            return 0;
-        }
-
-        @Override
-        public void writeToParcel(Parcel out, int flags) {
-            out.writeInt(action);
-            out.writeInt(userMode);
-            out.writeStringArray(acceptMimes);
-            out.writeInt(userSortOrder);
-            out.writeInt(allowMultiple ? 1 : 0);
-            out.writeInt(showSize ? 1 : 0);
-            out.writeInt(localOnly ? 1 : 0);
-            out.writeInt(forceAdvanced ? 1 : 0);
-            out.writeInt(showAdvanced ? 1 : 0);
-            out.writeInt(stackTouched ? 1 : 0);
-            out.writeInt(restored ? 1 : 0);
-            DurableUtils.writeToParcel(out, stack);
-            out.writeString(currentSearch);
-            out.writeMap(dirState);
-        }
-
-        public static final Creator<State> CREATOR = new Creator<State>() {
-            @Override
-            public State createFromParcel(Parcel in) {
-                final State state = new State();
-                state.action = in.readInt();
-                state.userMode = in.readInt();
-                state.acceptMimes = in.readStringArray();
-                state.userSortOrder = in.readInt();
-                state.allowMultiple = in.readInt() != 0;
-                state.showSize = in.readInt() != 0;
-                state.localOnly = in.readInt() != 0;
-                state.forceAdvanced = in.readInt() != 0;
-                state.showAdvanced = in.readInt() != 0;
-                state.stackTouched = in.readInt() != 0;
-                state.restored = in.readInt() != 0;
-                DurableUtils.readFromParcel(in, state.stack);
-                state.currentSearch = in.readString();
-                in.readMap(state.dirState, null);
-                return state;
-            }
-
-            @Override
-            public State[] newArray(int size) {
-                return new State[size];
-            }
-        };
-    }
-
-    private void dumpStack() {
-        Log.d(TAG, "Current stack: ");
-        Log.d(TAG, " * " + mState.stack.root);
-        for (DocumentInfo doc : mState.stack) {
-            Log.d(TAG, " +-- " + doc);
-        }
-    }
-
-    public static DocumentsActivity get(Fragment fragment) {
-        return (DocumentsActivity) fragment.getActivity();
-    }
->>>>>>> 9fc07eb... Add a standalone File Manager
 }

@@ -159,6 +159,10 @@
     <string name="accessibility_quick_settings_perf_profile_bal">Pil Modu: Dengeli</string>
     <!-- Content description of the battery mode tile in quick settings when on, performance mode (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_perf_profile_perf">Pil Modu: Performans.</string>
+    <!-- Content description of the battery mode tile in quick settings when on, efficiency mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_perf_profile_bias_power">Pil modu: verimlilik modu.</string>
+    <!-- Content description of the battery mode tile in quick settings when on, quick mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_perf_profile_bias_perf">Pil modu: hızlı mod.</string>
 
     <!-- Announcement made when the battery mode tile changes to power save (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_perf_profile_changed_pwrsv">Pil Modu Güç Tasarrufu\'na çevrildi.</string>
@@ -166,6 +170,10 @@
     <string name="accessibility_quick_settings_perf_profile_changed_bal">Pil Modu Dengeli\'ye çevrildi.</string>
     <!-- Announcement made when the battery mode tile changes to performance (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_perf_profile_changed_perf">Pil Modu Performans\' çevrildi.</string>
+    <!-- Announcement made when the battery mode tile changes to efficiency (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_perf_profile_changed_bias_power">Pil modu verimlilik moduna geçti.</string>
+    <!-- Announcement made when the battery mode tile changes to quick (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_perf_profile_changed_bias_perf">Pil modu hızlı moda geçti.</string>
 
     <!-- Content description of the profiles tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_profiles_off">Profiller Kapalı</string>
@@ -250,6 +258,7 @@
     <string name="quick_settings_systemui_restart_label">SystemUI (arayüz) Yeniden Başlat</string>
     <string name="quick_settings_custom_tile_detail_title">Özel Karo</string>
     <string name="quick_settings_kernel_adiutor">Kernel Adiutor</string>
+    <string name="quick_settings_performance_profile_detail_title">Pil modu</string>
 
     <!-- Weather string format in expanded statusbar header -->
     <string name="status_bar_expanded_header_weather_format"><xliff:g id="temp">%1$s</xliff:g> - <xliff:g id="condition">%2$s</xliff:g></string>
@@ -304,9 +313,12 @@
     <string name="dynamic_qs_tile_ime_selector_label">IME Seçici</string>
     <string name="dynamic_qs_tile_su_label">ROOT Erişimi</string>
 
-   <!-- Fingerprint -->
-   <string name="fingerprint_try_again_hint">Lütfen tekrar tarayın</string>
+    <!-- Fingerprint -->
+    <string name="fingerprint_try_again_hint">Lütfen tekrar tarayın</string>
 
     <!-- Content description of the dock battery level icon for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_dock_battery_level">Ünite Pil Yüzdesi: <xliff:g id="number">%d</xliff:g></string>
+
+    <!-- Play queue -->
+    <string name="play_queue_extention">Oynatma kuyruğunu göster</string>
 </resources>

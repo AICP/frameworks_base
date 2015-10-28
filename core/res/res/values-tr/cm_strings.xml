@@ -227,6 +227,8 @@ uyguladığınız temayı değiştirmesine izin verir.</string>
     <string name="perf_profile_pwrsv">Güç Tasarrufu</string>
     <string name="perf_profile_bal">Dengeli</string>
     <string name="perf_profile_perf">Performans</string>
+    <string name="perf_profile_bias_power">Verimlilik</string>
+    <string name="perf_profile_bias_perf">Hızlı</string>
 
     <!-- Theme installation error notification -->
     <string name="theme_install_error_title">Tema Yüklenemedi</string>

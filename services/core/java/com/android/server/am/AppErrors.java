@@ -749,7 +749,16 @@ class AppErrors {
             final boolean crashSilenced = mAppsNotReportingCrashes != null &&
                     mAppsNotReportingCrashes.contains(proc.info.packageName);
             if ((mService.canShowErrorDialogs() || showBackground) && !crashSilenced) {
-                proc.crashDialog = new AppErrorDialog(mContext, mService, data);
+                if (Settings.System.getInt(mContext.getContentResolver(),
+                        Settings.System.DISABLE_FC_NOTIFICATIONS, 0) != 1) {
+                    proc.crashDialog = new AppErrorDialog(mContext, mService, data);
+                } else {
+                    if (res != null) {
+                        // Pretend user saw dialog and hit "force quit"
+                        Slog.w(TAG, "Skipping crash dialog of " + proc + ": disabled");
+                        res.set(AppErrorDialog.CANT_SHOW);
+                    }
+                }
             } else {
                 // The device is asleep, so just pretend that the user
                 // saw a crash dialog and hit "force quit".

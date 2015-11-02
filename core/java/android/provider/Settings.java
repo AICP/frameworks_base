@@ -5726,6 +5726,17 @@ public final class Settings {
                 BOOLEAN_VALIDATOR;
 
 
+        /**
+         * Volume key controls ringtone or media sound stream
+         * @hide
+         */
+        public static final String VOLUME_KEYS_CONTROL_RING_TONE =
+                "volume_keys_control_ring_tone";
+
+        /** @hide */
+        private static final Validator VOLUME_KEYS_CONTROL_RING_TONE_VALIDATOR =
+               BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5919,6 +5930,7 @@ public final class Settings {
             TORCH_LONG_PRESS_POWER_GESTURE,
             TORCH_LONG_PRESS_POWER_TIMEOUT,
             SWAP_VOLUME_BUTTONS,
+            VOLUME_KEYS_CONTROL_RING_TONE,
             // AICP Settings end
         };
 
@@ -6160,6 +6172,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(TORCH_LONG_PRESS_POWER_GESTURE);
             PRIVATE_SETTINGS.add(TORCH_LONG_PRESS_POWER_TIMEOUT);
             PRIVATE_SETTINGS.add(SWAP_VOLUME_BUTTONS);
+            PRIVATE_SETTINGS.add(VOLUME_KEYS_CONTROL_RING_TONE);
             // AICP Settings end
         }
 
@@ -6392,6 +6405,7 @@ public final class Settings {
             VALIDATORS.put(TORCH_LONG_PRESS_POWER_GESTURE, TORCH_LONG_PRESS_POWER_GESTURE_VALIDATOR);
             VALIDATORS.put(TORCH_LONG_PRESS_POWER_TIMEOUT, TORCH_LONG_PRESS_POWER_TIMEOUT_VALIDATOR);
             VALIDATORS.put(SWAP_VOLUME_BUTTONS, SWAP_VOLUME_BUTTONS_VALIDATOR);
+            VALIDATORS.put(VOLUME_KEYS_CONTROL_RING_TONE,VOLUME_KEYS_CONTROL_RING_TONE_VALIDATOR);
             // AICP Settings end
         }
 

@@ -569,6 +569,7 @@ public class AudioService extends IAudioService.Stub
     private AudioManagerInternal.RingerModeDelegate mRingerModeDelegate;
     private VolumePolicy mVolumePolicy = VolumePolicy.DEFAULT;
     private long mLoweredFromNormalToVibrateTime;
+    private boolean mVolumeKeysControlRingTone;
 
     // Array of Uids of valid accessibility services to check if caller is one of them
     private int[] mAccessibilityServiceUids;
@@ -1560,6 +1561,8 @@ public class AudioService extends IAudioService.Stub
             sendEnabledSurroundFormats(cr, true);
             updateAssistantUId(true);
             updateRttEanbled(cr);
+
+            setVolumeKeysControlRingTone();
         }
 
         mLinkNotificationWithVolume = Settings.Secure.getInt(cr,
@@ -4215,11 +4218,17 @@ public class AudioService extends IAudioService.Stub
                         Log.v(TAG, "getActiveStreamType: Forcing STREAM_NOTIFICATION stream active");
                     return AudioSystem.STREAM_NOTIFICATION;
                 } else {
-                    if (DEBUG_VOL) {
-                        Log.v(TAG, "getActiveStreamType: Forcing DEFAULT_VOL_STREAM_NO_PLAYBACK("
-                                + DEFAULT_VOL_STREAM_NO_PLAYBACK + ") b/c default");
+                    if (mVolumeKeysControlRingTone) {
+                        if (DEBUG_VOL)
+                            Log.v(TAG, "getActiveStreamType: Forcing STREAM_RING b/c user selected");
+                        return AudioSystem.STREAM_RING;
+                    } else {
+                        if (DEBUG_VOL) {
+                            Log.v(TAG, "getActiveStreamType: Forcing DEFAULT_VOL_STREAM_NO_PLAYBACK("
+                                    + DEFAULT_VOL_STREAM_NO_PLAYBACK + ") b/c default");
+                        }
+                        return DEFAULT_VOL_STREAM_NO_PLAYBACK;
                     }
-                    return DEFAULT_VOL_STREAM_NO_PLAYBACK;
                 }
             } else if (
                     wasStreamActiveRecently(AudioSystem.STREAM_NOTIFICATION, sStreamOverrideDelayMs)) {
@@ -4259,11 +4268,16 @@ public class AudioService extends IAudioService.Stub
                     if (DEBUG_VOL) Log.v(TAG, "getActiveStreamType: Forcing STREAM_RING");
                     return AudioSystem.STREAM_RING;
                 } else {
-                    if (DEBUG_VOL) {
-                        Log.v(TAG, "getActiveStreamType: Forcing DEFAULT_VOL_STREAM_NO_PLAYBACK("
-                                + DEFAULT_VOL_STREAM_NO_PLAYBACK + ") b/c default");
+                    if (mVolumeKeysControlRingTone) {
+                        if (DEBUG_VOL) Log.v(TAG, "getActiveStreamType: Forcing STREAM_RING b/c user selected");
+                        return AudioSystem.STREAM_RING;
+                    } else {
+                        if (DEBUG_VOL) {
+                            Log.v(TAG, "getActiveStreamType: Forcing DEFAULT_VOL_STREAM_NO_PLAYBACK("
+                                    + DEFAULT_VOL_STREAM_NO_PLAYBACK + ") b/c default");
+                        }
+                        return DEFAULT_VOL_STREAM_NO_PLAYBACK;
                     }
-                    return DEFAULT_VOL_STREAM_NO_PLAYBACK;
                 }
             }
             break;
@@ -5570,6 +5584,8 @@ public class AudioService extends IAudioService.Stub
                     Settings.Secure.VOICE_INTERACTION_SERVICE), false, this);
             mContentResolver.registerContentObserver(Settings.Secure.getUriFor(
                     Settings.Secure.RTT_CALLING_MODE), false, this);
+            mContentResolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.VOLUME_KEYS_CONTROL_RING_TONE), false, this);
         }
 
         @Override
@@ -5592,6 +5608,8 @@ public class AudioService extends IAudioService.Stub
                 updateMasterBalance(mContentResolver);
                 updateEncodedSurroundOutput();
                 sendEnabledSurroundFormats(mContentResolver, mSurroundModeChanged);
+
+                setVolumeKeysControlRingTone();
                 updateAssistantUId(false);
                 updateRttEanbled(mContentResolver);
 
@@ -5620,6 +5638,12 @@ public class AudioService extends IAudioService.Stub
                 mSurroundModeChanged = false;
             }
         }
+    }
+
+    private void setVolumeKeysControlRingTone() {
+        mVolumeKeysControlRingTone = Settings.System.getIntForUser(mContentResolver,
+                Settings.System.VOLUME_KEYS_CONTROL_RING_TONE, 0,
+                UserHandle.USER_CURRENT) == 1;
     }
 
     public void avrcpSupportsAbsoluteVolume(String address, boolean support) {

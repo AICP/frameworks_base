@@ -6491,6 +6491,13 @@ public final class Settings {
          */
         public static final String VOLUME_ROCKER_WAKE = "volume_rocker_wake";
 
+        /**
+         * Volume key controls ringtone or media sound stream
+         * @hide
+         */
+        public static final String VOLUME_KEYS_CONTROL_RING_TONE =
+                "volume_keys_control_ring_tone";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6740,6 +6747,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(CAMERA_LAUNCH);
             PRIVATE_SETTINGS.add(SWAP_VOLUME_BUTTONS);
             PRIVATE_SETTINGS.add(VOLUME_ROCKER_WAKE);
+            PRIVATE_SETTINGS.add(VOLUME_KEYS_CONTROL_RING_TONE);
         }
 
         /**

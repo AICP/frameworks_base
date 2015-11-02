@@ -214,5 +214,6 @@ public class SystemSettings {
         Settings.System.CAMERA_LAUNCH,
         Settings.System.SWAP_VOLUME_BUTTONS,
         Settings.System.VOLUME_ROCKER_WAKE,
+        Settings.System.VOLUME_KEYS_CONTROL_RING_TONE,
     };
 }

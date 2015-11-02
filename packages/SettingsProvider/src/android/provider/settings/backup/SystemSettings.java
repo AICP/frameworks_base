@@ -191,5 +191,6 @@ public class SystemSettings {
         Settings.System.POCKET_JUDGE,
         Settings.System.TOAST_ANIMATION,
         Settings.System.SWAP_VOLUME_BUTTONS,
+        Settings.System.VOLUME_KEYS_CONTROL_RING_TONE,
     };
 }

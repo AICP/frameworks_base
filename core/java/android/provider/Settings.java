@@ -5967,6 +5967,13 @@ public final class Settings {
          */
         public static final String SWAP_VOLUME_BUTTONS = "swap_volume_buttons";
 
+        /**
+         * Volume key controls ringtone or media sound stream
+         * @hide
+         */
+        public static final String VOLUME_KEYS_CONTROL_RING_TONE =
+                "volume_keys_control_ring_tone";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6106,6 +6113,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(TORCH_LONG_PRESS_POWER_GESTURE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(TORCH_LONG_PRESS_POWER_TIMEOUT, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(SWAP_VOLUME_BUTTONS, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(VOLUME_KEYS_CONTROL_RING_TONE, BOOLEAN_VALIDATOR);
         }
 
         /**

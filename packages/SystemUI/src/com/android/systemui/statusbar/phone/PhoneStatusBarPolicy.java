@@ -145,7 +145,16 @@ public class PhoneStatusBarPolicy {
         }
     };
 
-    public PhoneStatusBarPolicy(Context context, CastController cast, HotspotController hotspot) {
+    private Runnable mRemoveCastIconRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (DEBUG) Log.v(TAG, "updateCast: hiding icon NOW");
+            mService.setIconVisibility(SLOT_CAST, false);
+        }
+    };
+
+    public PhoneStatusBarPolicy(Context context, CastController cast, HotspotController hotspot,
+            SuController su) {
         mContext = context;
         mCast = cast;
         mHotspot = hotspot;
@@ -440,11 +449,17 @@ public class PhoneStatusBarPolicy {
             }
         }
         if (DEBUG) Log.v(TAG, "updateCast: isCasting: " + isCasting);
+        mHandler.removeCallbacks(mRemoveCastIconRunnable);
         if (isCasting) {
             mService.setIcon(SLOT_CAST, R.drawable.stat_sys_cast, 0,
                     mContext.getString(R.string.accessibility_casting));
+            mService.setIconVisibility(SLOT_CAST, true);
+        } else {
+            // don't turn off the screen-record icon for a few seconds, just to make sure the user
+            // has seen it
+            if (DEBUG) Log.v(TAG, "updateCast: hiding icon in 3 sec...");
+            mHandler.postDelayed(mRemoveCastIconRunnable, 3000);
         }
-        mService.setIconVisibility(SLOT_CAST, isCasting);
     }
 
     private final HotspotController.Callback mHotspotCallback = new HotspotController.Callback() {

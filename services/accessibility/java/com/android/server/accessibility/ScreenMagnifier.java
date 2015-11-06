@@ -372,6 +372,9 @@ public final class ScreenMagnifier implements WindowManagerInternal.Magnificatio
 
     @Override
     public void onDestroy() {
+        if (mMagnificationController != null) {
+            mMagnificationController.cancelAnimation();
+        }
         mScreenStateObserver.destroy();
         mWindowManager.setMagnificationCallbacks(null);
     }
@@ -983,10 +986,14 @@ public final class ScreenMagnifier implements WindowManagerInternal.Magnificatio
             return mCurrentMagnificationSpec.scale > 1.0f;
         }
 
-        public void reset(boolean animate) {
+        public void cancelAnimation() {
             if (mTransformationAnimator.isRunning()) {
                 mTransformationAnimator.cancel();
             }
+        }
+
+        public void reset(boolean animate) {
+            cancelAnimation();
             mCurrentMagnificationSpec.clear();
             if (animate) {
                 animateMangificationSpec(mSentMagnificationSpec,
@@ -1051,9 +1058,7 @@ public final class ScreenMagnifier implements WindowManagerInternal.Magnificatio
                             centerY) == 0) {
                 return;
             }
-            if (mTransformationAnimator.isRunning()) {
-                mTransformationAnimator.cancel();
-            }
+            cancelAnimation();
             if (DEBUG_MAGNIFICATION_CONTROLLER) {
                 Slog.i(LOG_TAG, "scale: " + scale + " offsetX: " + centerX
                         + " offsetY: " + centerY);

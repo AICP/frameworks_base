@@ -658,8 +658,7 @@ public class KeyguardViewMediator extends SystemUI {
             // camera while preventing unwanted input.
             int currentUser = KeyguardUpdateMonitor.getCurrentUser();
             final boolean lockImmediately =
-                    mLockPatternUtils.getPowerButtonInstantlyLocks(currentUser)
-                            || !mLockPatternUtils.isSecure(currentUser);
+                    mLockPatternUtils.getPowerButtonInstantlyLocks(currentUser);
             long timeout = getLockTimeout();
 
             if (mExitSecureCallback != null) {

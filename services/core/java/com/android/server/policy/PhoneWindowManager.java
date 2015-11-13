@@ -123,9 +123,9 @@ import android.view.accessibility.AccessibilityManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
+import android.view.WindowManagerPolicyControl;
 import android.widget.Toast;
 
-import android.view.WindowManagerPolicyControl;
 import com.android.internal.R;
 import com.android.internal.policy.IKeyguardService;
 import com.android.internal.statusbar.IStatusBarService;
@@ -1156,7 +1156,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         // taken over the whole screen.
         boolean panic = mImmersiveModeConfirmation.onPowerKeyDown(interactive,
                 SystemClock.elapsedRealtime(), isImmersiveMode(mLastSystemUiFlags));
-        if (panic && !PolicyControl.isImmersiveFiltersActive()) {
+        if (panic && !WindowManagerPolicyControl.isImmersiveFiltersActive()) {
             mHandler.post(mHiddenNavPanic);
         }
 
@@ -7551,7 +7551,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 // If the top fullscreen-or-dimming window is also the top fullscreen, respect
                 // its light flag.
                 vis &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
-                vis |= PolicyControl.getSystemUiVisibility(statusColorWin, null)
+                vis |= WindowManagerPolicyControl.getSystemUiVisibility(statusColorWin, null)
                         & View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
             } else if (statusColorWin != null && statusColorWin.isDimming()) {
                 // Otherwise if it's dimming, clear the light flag.

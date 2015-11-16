@@ -32,6 +32,7 @@ import com.android.systemui.R;
 import com.android.systemui.recents.misc.Console;
 import com.android.systemui.recents.misc.SystemServicesProxy;
 
+import cyanogenmod.providers.CMSettings;
 
 /** A static Recents configuration for the current context
  * NOTE: We should not hold any references to a Context from a static instance */
@@ -308,8 +309,8 @@ public class RecentsConfiguration {
     }
 
     private void updateShowSearch(Context context) {
-        boolean showSearchBar = Settings.System.getIntForUser(context.getContentResolver(),
-                Settings.System.RECENTS_SHOW_SEARCH_BAR, 1, UserHandle.USER_CURRENT) == 1;
+        boolean showSearchBar = CMSettings.System.getIntForUser(context.getContentResolver(),
+                CMSettings.System.RECENTS_SHOW_SEARCH_BAR, 1, UserHandle.USER_CURRENT) == 1;
         searchBarSpaceHeightPx = showSearchBar ? context.getResources().getDimensionPixelSize(
                 R.dimen.recents_search_bar_space_height): 0;
     }

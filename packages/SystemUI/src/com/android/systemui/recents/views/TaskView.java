@@ -386,11 +386,6 @@ public class TaskView extends FrameLayout implements Task.TaskCallbacks,
         ctx.postAnimationTrigger.increment();
     }
 
-    /** Animates this task view away when dismissing all tasks. */
-    void startDismissAllAnimation() {
-        dismissTask();
-    }
-
     /** Animates this task view as it exits recents */
     void startLaunchTaskAnimation(final Runnable postAnimRunnable, boolean isLaunchingTask,
             boolean occludesLaunchTarget, boolean lockToTask) {
@@ -437,16 +432,16 @@ public class TaskView extends FrameLayout implements Task.TaskCallbacks,
     }
 
     /** Animates the deletion of this task view */
-    void startDeleteTaskAnimation(final Runnable r, int delay) {
+    void startDeleteTaskAnimation(final Runnable r, long delayed) {
         // Disabling clipping with the stack while the view is animating away
         setClipViewInStack(false);
 
         animate().translationX(mConfig.taskViewRemoveAnimTranslationXPx)
             .alpha(0f)
-            .setStartDelay(delay)
+            .setStartDelay(delayed)
             .setUpdateListener(null)
             .setInterpolator(mConfig.fastOutSlowInInterpolator)
-            .setDuration(mConfig.taskViewRemoveAnimDuration)
+            .setDuration(mConfig.taskViewRemoveAnimDuration - delayed)
             .withEndAction(new Runnable() {
                 @Override
                 public void run() {
@@ -482,7 +477,7 @@ public class TaskView extends FrameLayout implements Task.TaskCallbacks,
     }
 
     /** Dismisses this task. */
-    void dismissTask() {
+    void dismissTask(long delayed) {
         // Animate out the view and call the callback
         final TaskView tv = this;
         startDeleteTaskAnimation(new Runnable() {
@@ -492,7 +487,7 @@ public class TaskView extends FrameLayout implements Task.TaskCallbacks,
                     mCb.onTaskViewDismissed(tv);
                 }
             }
-        }, 0);
+        }, delayed);
     }
 
     /**
@@ -743,7 +738,7 @@ public class TaskView extends FrameLayout implements Task.TaskCallbacks,
                             }
                         }
                     } else if (v == mHeaderView.mDismissButton) {
-                        dismissTask();
+                        dismissTask(0L);
                         // Keep track of deletions by the dismiss button
                         MetricsLogger.histogram(getContext(), "overview_task_dismissed_source",
                                 Constants.Metrics.DismissSourceHeaderButton);

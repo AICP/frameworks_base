@@ -143,6 +143,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
@@ -6982,6 +6983,14 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                         theme = 0;
                     }
 
+                    // Define Array List For AicpDexOpt Drawable
+                    int AicpDexOptIndex = 0 +  (int)(Math.random()*(4));
+                    ArrayList<Integer> AicpDexOpt = new ArrayList<Integer>();
+                    AicpDexOpt.add(com.android.internal.R.drawable.aicpdexopt1);
+                    AicpDexOpt.add(com.android.internal.R.drawable.aicpdexopt2);
+                    AicpDexOpt.add(com.android.internal.R.drawable.aicpdexopt3);
+                    AicpDexOpt.add(com.android.internal.R.drawable.aicpdexopt4);
+
                     mBootMsgDialog = new ProgressDialog(mContext, theme) {
                         // This dialog will consume all events coming in to
                         // it, to avoid it trying to do things too early in boot.
@@ -7011,6 +7020,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                         mBootMsgDialog.setTitle(R.string.android_start_title);
                     }
                     mBootMsgDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                    mBootMsgDialog.setIcon(AicpDexOpt.get(AicpDexOptIndex));
                     mBootMsgDialog.setIndeterminate(true);
                     mBootMsgDialog.getWindow().setType(
                             WindowManager.LayoutParams.TYPE_BOOT_PROGRESS);

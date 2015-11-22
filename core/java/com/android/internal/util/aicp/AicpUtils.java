@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.internal.util.du;
+package com.android.internal.util.aicp;
 
 import android.content.Context;
 import android.content.res.Resources;

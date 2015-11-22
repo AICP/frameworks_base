@@ -72,4 +72,8 @@
     <!-- Default value for led color when fast charging is active -->
     <integer name="config_notificationsFastBatteryARGB">0xFF0000FF</integer>
 
+    <!-- Older rotation sensors are not setting event.timestamp correctly. Setting to
+         true will use SystemClock.elapsedRealtimeNanos() to set timestamp. -->
+    <bool name="config_useSystemClockforRotationSensor">false</bool>
+
 </resources>

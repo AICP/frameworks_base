@@ -859,6 +859,18 @@ public final class DefaultPermissionGrantPolicy {
         if (mPermissionGrantedCallback != null) {
             mPermissionGrantedCallback.onDefaultRuntimePermissionsGranted(userId);
         }
+
+        // Project Fi
+        PackageParser.Package fiPackage = getDefaultProviderAuthorityPackage(
+                "com.google.android.apps.tycho", userId);
+        if (fiPackage != null) {
+            grantRuntimePermissions(fiPackage, CONTACTS_PERMISSIONS, userId);
+            grantRuntimePermissions(fiPackage, PHONE_PERMISSIONS, userId);
+            grantRuntimePermissions(fiPackage, MICROPHONE_PERMISSIONS, userId);
+            grantRuntimePermissions(fiPackage, LOCATION_PERMISSIONS, userId);
+            grantRuntimePermissions(fiPackage, SMS_PERMISSIONS, userId);
+        }
+
     }
 
     private void grantDefaultPermissionsToDefaultSystemDialerApp(

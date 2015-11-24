@@ -167,6 +167,9 @@ interface IBatteryStats {
     /** {@hide} */
     boolean setChargingStateUpdateDelayMillis(int delay);
 
+    /** @hide **/
+    void resetStatistics();
+
     /** Exposed as a test API. */
     void setChargerAcOnline(boolean online, boolean forceUpdate);
     /** Exposed as a test API. */

@@ -5448,7 +5448,7 @@ public final class Settings {
         }
 
         private String getExtendedFingerprint(long version) {
-            return Build.FINGERPRINT + "?pc_version=" + version;
+            return Build.DATE + "?pc_version=" + version;
         }
 
         public void writePermissionsForUserSyncLPr(int userId) {

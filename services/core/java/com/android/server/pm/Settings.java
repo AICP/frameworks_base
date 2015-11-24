@@ -5346,7 +5346,7 @@ public final class Settings implements Watchable, Snappable {
         }
 
         private String getExtendedFingerprint(long version) {
-            return Build.FINGERPRINT + "?pc_version=" + version;
+            return Build.DATE + "?pc_version=" + version;
         }
 
         public void writeStateForUserAsyncLPr(int userId) {

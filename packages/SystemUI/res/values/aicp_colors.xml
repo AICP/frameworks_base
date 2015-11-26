@@ -65,4 +65,7 @@
     <!-- Used by selector -->
     <color name="card_pressed">#7e3c3c3c</color>
 
+    <!-- Color for the RAM bar text in the recent view -->
+    <color name="ram_bar_text">#FFFFFFFF</color>
+
 </resources>

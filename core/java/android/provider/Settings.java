@@ -6462,6 +6462,12 @@ public final class Settings {
         @Readable
         public static final String SWAP_VOLUME_BUTTONS = "swap_volume_buttons";
 
+        /**
+         * Volume rocker wake
+         * @hide
+         */
+        public static final String VOLUME_ROCKER_WAKE = "volume_rocker_wake";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6706,6 +6712,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(CAMERA_SLEEP_ON_RELEASE);
             PRIVATE_SETTINGS.add(CAMERA_LAUNCH);
             PRIVATE_SETTINGS.add(SWAP_VOLUME_BUTTONS);
+            PRIVATE_SETTINGS.add(VOLUME_ROCKER_WAKE);
         }
 
         /**

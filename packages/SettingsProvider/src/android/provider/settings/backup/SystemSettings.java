@@ -209,5 +209,6 @@ public class SystemSettings {
         Settings.System.CAMERA_SLEEP_ON_RELEASE,
         Settings.System.CAMERA_LAUNCH,
         Settings.System.SWAP_VOLUME_BUTTONS,
+        Settings.System.VOLUME_ROCKER_WAKE,
     };
 }

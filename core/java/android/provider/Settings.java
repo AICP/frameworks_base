@@ -6006,6 +6006,12 @@ public final class Settings {
          */
         public static final String BUTTON_BACKLIGHT_ON_TOUCH_ONLY = "button_backlight_on_touch_only";
 
+        /**
+         * Volume rocker wake
+         * @hide
+         */
+        public static final String VOLUME_ROCKER_WAKE = "volume_rocker_wake";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6151,6 +6157,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(BUTTON_BACKLIGHT_ENABLE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(BUTTON_BACKLIGHT_TIMEOUT, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(BUTTON_BACKLIGHT_ON_TOUCH_ONLY, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(VOLUME_ROCKER_WAKE, BOOLEAN_VALIDATOR);
         }
 
         /**

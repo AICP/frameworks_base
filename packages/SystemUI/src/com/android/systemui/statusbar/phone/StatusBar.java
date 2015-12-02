@@ -129,6 +129,7 @@ import android.util.Slog;
 import android.util.SparseArray;
 import android.util.SparseBooleanArray;
 import android.view.Display;
+import android.view.Gravity;
 import android.view.HapticFeedbackConstants;
 import android.view.IWindowManager;
 import android.view.KeyEvent;
@@ -8872,5 +8873,4 @@ public class StatusBar extends SystemUI implements DemoMode,
 
          return lp;
      }
-   }
 }

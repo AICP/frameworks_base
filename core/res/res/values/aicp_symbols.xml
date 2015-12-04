@@ -23,4 +23,6 @@
   <java-symbol type="drawable" name="aicpdexopt2" />
   <java-symbol type="drawable" name="aicpdexopt3" />
   <java-symbol type="drawable" name="aicpdexopt4" />
+
+  <java-symbol type="bool" name="config_enableScreenrecordChord" />
 </resources>

@@ -141,6 +141,9 @@
     <!-- LiveDisplay -->
     <uses-permission android:name="android.permission.HARDWARE_ABSTRACTION_ACCESS" />
 
+    <!-- Kill app permission -->
+    <uses-permission android:name="android.permission.FORCE_STOP_PACKAGES" />
+
     <!-- Weather -->
     <uses-permission android:name="com.cyanogenmod.lockclock.permission.READ_WEATHER" />
 

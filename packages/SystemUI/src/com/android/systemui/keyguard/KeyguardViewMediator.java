@@ -502,7 +502,7 @@ public class KeyguardViewMediator extends SystemUI {
                     break;
                 case READY:
                     synchronized (this) {
-                        if (mInternallyDisabled) {
+                        if (mInternallyDisabled && !mUpdateMonitor.isSimPinSecure()) {
                             hideLocked();
                         } else if (isShowing()) {
                             resetStateLocked();

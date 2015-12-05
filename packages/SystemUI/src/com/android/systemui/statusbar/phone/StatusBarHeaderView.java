@@ -80,7 +80,7 @@ import cyanogenmod.providers.CMSettings;
 /**
  * The view to manage the header area in the expanded status bar.
  */
-public class StatusBarHeaderView extends RelativeLayout implements View.OnClickListener,
+public class StatusBarHeaderView extends RelativeLayout implements View.OnClickListener, View.OnLongClickListener,
         NextAlarmController.NextAlarmChangeCallback, WeatherController.Callback, EmergencyListener,
         StatusBarHeaderMachine.IStatusBarHeaderMachineObserver {
     static final String TAG = "StatusBarHeaderView";
@@ -185,6 +185,7 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         mSettingsButton = (SettingsButton) findViewById(R.id.settings_button);
         mSettingsContainer = findViewById(R.id.settings_button_container);
         mSettingsButton.setOnClickListener(this);
+        mSettingsButton.setOnLongClickListener(this);
         mQsDetailHeader = findViewById(R.id.qs_detail_header);
         mQsDetailHeader.setAlpha(0);
         mQsDetailHeaderTitle = (TextView) mQsDetailHeader.findViewById(android.R.id.title);
@@ -604,6 +605,21 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
             startForecastActivity();
         }
         mQSPanel.vibrateTile(20);
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        if (v == mSettingsButton){
+            startSettingsLongClickActivity();
+        }
+        return false;
+    }
+
+    private void startSettingsLongClickActivity() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.setClassName("com.lordclockan",
+                "com.lordclockan.aicpextras.MainActivity");
+        mActivityStarter.startActivity(intent, true);
     }
 
     private void startSettingsActivity() {

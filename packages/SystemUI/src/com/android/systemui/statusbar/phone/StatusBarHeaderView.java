@@ -620,6 +620,7 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         intent.setClassName("com.lordclockan",
                 "com.lordclockan.aicpextras.MainActivity");
         mActivityStarter.startActivity(intent, true);
+        mQSPanel.vibrateTile(20);
     }
 
     private void startSettingsActivity() {

@@ -48,6 +48,7 @@ import com.android.systemui.statusbar.policy.BrightnessMirrorController;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import cyanogenmod.app.StatusBarPanelCustomTile;
 import cyanogenmod.providers.CMSettings;
 
 /** View that represents the quick settings tile panel. **/
@@ -96,7 +97,11 @@ public class QSPanel extends ViewGroup {
         setupViews();
     }
 
+    /**
+     * THIS IS OVERRIDDEN in QSDragPanel
+     */
     protected void setupViews() {
+        mDetail = LayoutInflater.from(mContext).inflate(R.layout.qs_detail, this, false);
         mDetailContent = (ViewGroup) mDetail.findViewById(android.R.id.content);
         mDetailSettingsButton = (TextView) mDetail.findViewById(android.R.id.button2);
         mDetailDoneButton = (TextView) mDetail.findViewById(android.R.id.button1);
@@ -423,7 +428,7 @@ public class QSPanel extends ViewGroup {
         handleShowDetailImpl(r, show, x, y);
     }
 
-    protected final void handleShowDetailImpl(Record r, boolean show, int x, int y) {
+    protected void handleShowDetailImpl(Record r, boolean show, int x, int y) {
         boolean visibleDiff = (mDetailRecord != null) != show;
         if (!visibleDiff && mDetailRecord == r) return;  // already in right state
         DetailAdapter detailAdapter = null;

@@ -425,7 +425,7 @@ public class SeekBarVolumizer implements OnSeekBarChangeListener, Handler.Callba
         }
 
         private void updateVolumeSlider(int streamType, int streamValue) {
-            final boolean streamMatch = mNotificationOrRing ? isNotificationOrRing(streamType)
+            final boolean streamMatch = mNotificationOrRing ? isNotification(streamType)
                     : (streamType == mStreamType);
             if (mSeekBar != null && streamMatch && streamValue != -1) {
                 final boolean muted = mAudioManager.isStreamMute(mStreamType)

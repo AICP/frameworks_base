@@ -311,7 +311,7 @@ public abstract class BaseStatusBar extends SystemUI implements
     private ArrayList<String> mBlacklist;
 
     protected AppCircleSidebar mAppCircleSidebar;
-    
+
     // App sidebar
     protected AppSidebar mAppSidebar;
 	protected int mSidebarPosition;
@@ -1951,7 +1951,7 @@ public abstract class BaseStatusBar extends SystemUI implements
         }, afterKeyguardGone);
     }
 
-    protected class NotificationClicker implements View.OnClickListener {
+    public class NotificationClicker implements View.OnClickListener {
         private PendingIntent mIntent;
         private final String mNotificationKey;
         private boolean mIsHeadsUp;

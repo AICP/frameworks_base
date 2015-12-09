@@ -538,18 +538,12 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         @Override
         public void onChange(boolean selfChange, Uri uri) {
             if (uri.equals(Settings.System.getUriFor(
-                    Settings.System.STATUS_BAR_WEATHER_TEMP_STYLE))
-                    || uri.equals(Settings.System.getUriFor(
-                    Settings.System.STATUS_BAR_WEATHER_COLOR))
-                    || uri.equals(Settings.System.getUriFor(
-                    Settings.System.STATUS_BAR_WEATHER_SIZE))
-                    || uri.equals(Settings.System.getUriFor(
-                    Settings.System.STATUS_BAR_WEATHER_FONT_STYLE))) {
-                    recreateStatusBar();
-                    updateRowStates();
-                    updateSpeedbump();
-                    updateClearAll();
-                    updateEmptyShadeView();
+                    Settings.System.STATUS_BAR_WEATHER_TEMP_STYLE))) {
+                recreateStatusBar();
+                updateRowStates();
+                updateSpeedbump();
+                updateClearAll();
+                updateEmptyShadeView();
             }
             update();
         }
@@ -588,14 +582,16 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             mWeatherTempFontStyle = Settings.System.getIntForUser(resolver,
                     Settings.System.STATUS_BAR_WEATHER_FONT_STYLE, FONT_NORMAL, mCurrentUserId);
 
-            final int oldWeatherState = mWeatherTempState;
+            if (mWeatherTempStyle == 0) {
+                mWeatherTempView = (TextView) mStatusBarView.findViewById(R.id.weather_temp);
+            } else {
+                mWeatherTempView = (TextView) mStatusBarView.findViewById(R.id.left_weather_temp);
+            }
             mWeatherTempState = Settings.System.getIntForUser(
                     resolver, Settings.System.STATUS_BAR_SHOW_WEATHER_TEMP, 0,
                     UserHandle.USER_CURRENT);
-            if (oldWeatherState != mWeatherTempState) {
-                updateWeatherTextState(mWeatherController.getWeatherInfo().temp,
-                        mWeatherTempColor, mWeatherTempSize, mWeatherTempFontStyle);
-            }
+            updateWeatherTextState(mWeatherController.getWeatherInfo().temp,
+                    mWeatherTempColor, mWeatherTempSize, mWeatherTempFontStyle);
 
             mBlurRadius = Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.LOCKSCREEN_BLUR_RADIUS, 14);

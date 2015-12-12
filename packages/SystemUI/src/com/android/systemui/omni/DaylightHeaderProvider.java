@@ -106,8 +106,9 @@ public class DaylightHeaderProvider implements
     @Override
     public Drawable getCurrent(final Calendar now) {
 
-        int headerdefault = Settings.System.getInt(mContext.getContentResolver(),
-            Settings.System.STATUS_BAR_CUSTOM_HEADER_DEFAULT, 0);
+        int headerdefault = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.STATUS_BAR_CUSTOM_HEADER_DEFAULT, 0,
+                UserHandle.USER_CURRENT) == 1;
 
         // Check special events first. They have the priority over any other
         // period.

@@ -31,6 +31,7 @@ import com.android.systemui.qs.external.CustomTile;
 import com.android.systemui.qs.tiles.AicpExtrasTile;
 import com.android.systemui.qs.tiles.AirplaneModeTile;
 import com.android.systemui.qs.tiles.AlarmTile;
+import com.android.systemui.qs.tiles.AmbientDisplayTile;
 import com.android.systemui.qs.tiles.AntiFlickerTile;
 import com.android.systemui.qs.tiles.BatterySaverTile;
 import com.android.systemui.qs.tiles.BluetoothTile;
@@ -110,6 +111,7 @@ public class QSFactoryImpl implements QSFactory {
     private final Provider<AntiFlickerTile> mAntiFlickerTileProvider;
     private final Provider<RefreshRateTile> mRefreshRateTileProvider;
     private final Provider<AicpExtrasTile> mAicpExtrasTileProvider;
+    private final Provider<AmbientDisplayTile> mAmbientDisplayTileProvider;
     private final Provider<CaffeineTile> mCaffeineTileProvider;
     private final Provider<HeadsUpTile> mHeadsUpTileProvider;
     private final Provider<SyncTile> mSyncTileProvider;
@@ -155,6 +157,7 @@ public class QSFactoryImpl implements QSFactory {
             Provider<AntiFlickerTile> antiFlickerTileProvider,
             Provider<RefreshRateTile> refreshRateTileProvider,
             Provider<AicpExtrasTile> aicpExtrasTileProvider,
+            Provider<AmbientDisplayTile> ambientDisplayTileProvider,
             Provider<CaffeineTile> caffeineTileProvider,
             Provider<HeadsUpTile> headsUpTileProvider,
             Provider<SyncTile> syncTileProvider) {
@@ -195,6 +198,7 @@ public class QSFactoryImpl implements QSFactory {
         mAntiFlickerTileProvider = antiFlickerTileProvider;
         mRefreshRateTileProvider = refreshRateTileProvider;
         mAicpExtrasTileProvider = aicpExtrasTileProvider;
+        mAmbientDisplayTileProvider = ambientDisplayTileProvider;
         mCaffeineTileProvider = caffeineTileProvider;
         mHeadsUpTileProvider = headsUpTileProvider;
         mSyncTileProvider = syncTileProvider;
@@ -282,6 +286,8 @@ public class QSFactoryImpl implements QSFactory {
                 return mRefreshRateTileProvider.get();
             case "aicp_extras":
                 return mAicpExtrasTileProvider.get();
+            case "ambient_display":
+                return mAmbientDisplayTileProvider.get();
             case "caffeine":
                 return mCaffeineTileProvider.get();
             case "heads_up":

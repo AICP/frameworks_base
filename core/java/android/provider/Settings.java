@@ -3898,6 +3898,12 @@ public final class Settings {
         public static final String DOUBLE_TAP_SLEEP_LOCK_SCREEN = "double_tap_sleep_lock_screen";
 
         /**
+         * Allows setting the hold back to kill timeout
+         * @hide
+         */
+        public static final String HOLD_BACK_TO_KILL_TIMEOUT = "hold_back_to_kill_timeout";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *

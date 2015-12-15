@@ -108,6 +108,7 @@ public class QSPanel extends ViewGroup {
     private int mContainerTop;
     private boolean mVibrationEnabled;
     protected Vibrator mVibrator;
+    private ImageView brightnessIcon;
 
     private SettingsObserver mSettingsObserver;
 
@@ -136,7 +137,7 @@ public class QSPanel extends ViewGroup {
 	mBrightnessView = LayoutInflater.from(context).inflate(
                 R.layout.quick_settings_brightness_dialog, this, false);
         // enable the brightness icon
-        ImageView brightnessIcon = (ImageView) mBrightnessView.findViewById(R.id.brightness_icon);
+        brightnessIcon = (ImageView) mBrightnessView.findViewById(R.id.brightness_icon);
         brightnessIcon.setVisibility(View.VISIBLE);
 
         mDetail.setVisibility(GONE);
@@ -174,6 +175,7 @@ public class QSPanel extends ViewGroup {
         } else {
             mBrightnessView.setVisibility(GONE);
             brightnessSlider.setVisibility(GONE);
+            brightnessIcon.setVisibility(View.GONE);
         }
         updateResources();
         return mBrightnessSliderEnabled;

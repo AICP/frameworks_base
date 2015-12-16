@@ -1101,9 +1101,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     (NavigationBarView) View.inflate(context, R.layout.navigation_bar, null);
                 mNavigationBarView.updateResources(getNavbarThemedResources());
 
-	        addGestureAnywhereView();
-                addAppCircleSidebar();
-
                 mNavigationBarView.setDisabledFlags(mDisabled1);
                 mNavigationBarView.setBar(this);
                 mNavigationBarView.setOnVerticalChangedListener(
@@ -1127,6 +1124,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         } catch (RemoteException ex) {
             // no window manager? good luck with that
         }
+
+        addGestureAnywhereView();
+        addAppCircleSidebar();
 
 	if (mNavigationBarView == null) {
             mNavigationBarView =

@@ -366,11 +366,15 @@ public class RecentsView extends FrameLayout implements TaskStackView.TaskStackV
                 == Configuration.ORIENTATION_LANDSCAPE;
             if (mSearchBar == null || isLandscape) {
                 params.topMargin = mContext.getResources().
-                    getDimensionPixelSize(com.android.internal.R.dimen.status_bar_height);
+                    getDimensionPixelSize(com.android.internal.R.dimen.status_bar_height)
+                        + mContext.getResources().
+                              getDimensionPixelSize(R.dimen.floating_action_button_margin_top);
             } else {
                 params.topMargin = mContext.getResources().
                     getDimensionPixelSize(com.android.internal.R.dimen.status_bar_height)
-                        + searchBarSpaceBounds.height();
+                        + searchBarSpaceBounds.height()
+                            + mContext.getResources().
+                                getDimensionPixelSize(R.dimen.floating_action_button_margin_top);
             }
 
             switch (clearRecentsLocation) {

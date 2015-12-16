@@ -1128,6 +1128,24 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             // no window manager? good luck with that
         }
 
+	if (mNavigationBarView == null) {
+            mNavigationBarView =
+                (NavigationBarView) View.inflate(context, R.layout.navigation_bar, null);
+            mNavigationBarView.updateResources(getNavbarThemedResources());
+         }
+
+	mNavigationBarView.setDisabledFlags(mDisabled1);
+        mNavigationBarView.setBar(this);
+        addNavigationBarCallback(mNavigationBarView);
+        mNavigationBarView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                checkUserAutohide(v, event);
+                return false;
+            }
+        });
+
+
         mAssistManager = new AssistManager(this, context);
         if (mNavigationBarView == null) {
             mAssistManager.onConfigurationChanged();

@@ -228,7 +228,8 @@ public class KeyguardBouncer {
                 return UNLOCK_SEQUENCE_FORCE_BOUNCER;
             // "Bouncer first" mode currently only available to some security methods.
             else if ((mode == SecurityMode.Pattern || mode == SecurityMode.Password
-                    || mode == SecurityMode.PIN) && (mLockPatternUtils != null &&
+                    || mode == SecurityMode.PIN || mode == SecurityMode.Gesture) &&
+                    (mLockPatternUtils != null &&
                     mLockPatternUtils.shouldPassToSecurityView() &&
                     !UnlockMethodCache.getInstance(mContext).isCurrentlyInsecure()))
                 return UNLOCK_SEQUENCE_BOUNCER_FIRST;

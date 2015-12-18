@@ -17,6 +17,7 @@
 package com.android.server.statusbar;
 
 import android.app.StatusBarManager;
+import android.content.Intent;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.Handler;
@@ -587,6 +588,20 @@ public class StatusBarManagerService extends IStatusBarService.Stub {
         if (mBar != null) {
             try {
                 mBar.toggleScreenshot();
+            } catch (RemoteException ex) {}
+        }
+    }
+
+    /**
+     * Ask keyguard to invoke a custom intent after dismissing keyguard
+     * @hide
+     */
+    @Override
+    public void showCustomIntentAfterKeyguard(Intent intent) {
+        enforceStatusBarService();
+        if (mBar != null) {
+            try {
+                mBar.showCustomIntentAfterKeyguard(intent);
             } catch (RemoteException ex) {}
         }
     }

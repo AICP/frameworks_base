@@ -416,6 +416,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
     boolean mExpandedVisible;
 
+    private boolean mDoubleTapVib;
+
     // Weather temperature
     private TextView mWeatherTempView;
     private int mWeatherTempState;
@@ -5053,8 +5055,15 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     }
 
     private void vibrateForCameraGesture() {
+        mDoubleTapVib = Settings.System.getIntForUser(mContext.getContentResolver(),
+            Settings.System.DOUBLE_TAP_VIBRATE, 1, UserHandle.USER_CURRENT) == 1;
+
         // Make sure to pass -1 for repeat so VibratorService doesn't stop us when going to sleep.
-        mVibrator.vibrate(new long[] { 0, 250L }, -1 /* repeat */);
+        if (mDoubleTapVib) {
+            mVibrator.vibrate(new long[] { 0, 250L }, -1 /* repeat */);
+        } else {
+            mVibrator.vibrate(new long[] { 0, 0L }, -1 /* repeat */);
+        }
     }
 
     public void onScreenTurnedOn() {

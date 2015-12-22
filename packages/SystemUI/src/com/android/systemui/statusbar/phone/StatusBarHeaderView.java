@@ -836,7 +836,7 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
             mSettingsButton.setRotation(values.settingsRotation);
         }
         mTaskManagerButton.setTranslationY(mSystemIconsSuperContainer.getTranslationY());
-        mTaskManagerButton.setTranslationX(values.settingsTranslation);
+        mTaskManagerButton.setTranslationX(values.taskManagerTranslation);
         mTaskManagerButton.setRotation(values.settingsRotation);
         applyAlpha(mEmergencyCallsOnly, values.emergencyCallsOnlyAlpha);
         if (!mShowingDetail && !mDetailTransitioning) {

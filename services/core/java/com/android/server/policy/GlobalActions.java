@@ -105,10 +105,13 @@ import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.List;
 
+import com.android.internal.util.aicp.AicpActions;
+
 import static com.android.internal.util.cm.PowerMenuConstants.*;
 
 import static android.view.WindowManager.TAKE_SCREENSHOT_FULLSCREEN;
 import static android.view.WindowManager.TAKE_SCREENSHOT_SELECTED_REGION;
+
 
 /**
  * Helper to show the global actions dialog.  Each item is an {@link Action} that
@@ -449,6 +452,8 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
                 mItems.add(new getScreenshotAction());
             } else if (GLOBAL_ACTION_KEY_SCREENRECORD.equals(actionKey)) {
                 mItems.add(getScreenrecordAction());
+            } else if (GLOBAL_ACTION_KEY_ONTHEGO.equals(actionKey)) {
+                mItems.add(getOnTheGoAction());
             } else if (GLOBAL_ACTION_KEY_AIRPLANE.equals(actionKey)) {
                 mItems.add(mAirplaneModeOn);
             } else if (GLOBAL_ACTION_KEY_BUGREPORT.equals(actionKey)) {
@@ -638,6 +643,31 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
             public boolean showBeforeProvisioning() {
                 return false;
+            }
+        };
+    }
+
+    private Action getOnTheGoAction() {
+        return new SinglePressAction(com.android.internal.R.drawable.ic_lock_onthego,
+                        R.string.global_action_onthego) {
+            @Override
+            public void onPress() {
+                 AicpActions.processAction(mContext,
+                        AicpActions.ACTION_ONTHEGO_TOGGLE);
+            }
+
+            public boolean onLongPress() {
+                return true;
+            }
+
+            @Override
+            public boolean showDuringKeyguard() {
+                return true;
+            }
+
+            @Override
+            public boolean showBeforeProvisioning() {
+                return true;
             }
         };
     }

@@ -35,4 +35,7 @@
     <!-- Powermenu Torch -->
     <string name="global_action_torch">Flashlight</string>
 
+    <!-- label for item that takes On-The-Go in the phone options dialog -->
+    <string name="global_action_onthego">On-The-Go Mode</string>
+
 </resources>

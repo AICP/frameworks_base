@@ -241,6 +241,13 @@
 
         <!-- started from PhoneWindowManager
              TODO: Should have an android:permission attribute -->
+        <service android:name=".aicp.onthego.OnTheGoService"
+            android:process=":onthego"
+            android:exported="false" />
+
+
+        <!-- started from PhoneWindowManager
+             TODO: Should have an android:permission attribute -->
         <service android:name=".omni.screenrecord.TakeScreenrecordService"
             android:process=":screenrecord"
             android:exported="false" />

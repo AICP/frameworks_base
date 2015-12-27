@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     Copyright (C) 2015 AICP
+     Copyright (C) 2015 The Resurrection Remix
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -14,13 +14,6 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
-    <string name="system_error_vendorprint">It appears your vendor image may be out of date. Please flash the latest vendor image for your device.</string>
-
-    <string name="default_string">Default</string>
-
-    <!-- label for item that takes On-The-Go in the phone options dialog -->
-    <string name="global_action_onthego">On-The-Go Mode</string>
-
-</resources>
+<bitmap xmlns:android="http://schemas.android.com/apk/res/android"
+    android:src="@drawable/ic_lock_onthego1"
+    android:tint="?attr/colorControlNormal" />

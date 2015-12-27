@@ -33,4 +33,8 @@
   <!-- Power menu -->
   <java-symbol type="drawable" name="ic_lock_screenrecord" />
   <java-symbol type="string" name="global_action_screenrecord" />
+
+  <!-- On-The-Go -->
+  <java-symbol type="string" name="global_action_onthego" />
+  <java-symbol type="drawable" name="ic_lock_onthego" />
 </resources>

@@ -67,9 +67,12 @@ public class ScreenshotTile extends QSTile<QSTile.BooleanState> {
     @Override
     public void handleClick() {
         mHost.collapsePanels();
+        /* minimum delay is set as 1 second to */
         /* wait for the panel to close */
+        int mScreenshotDelay = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.SCREENSHOT_DELAY, 1);
         try {
-             Thread.sleep(2000);
+             Thread.sleep(mScreenshotDelay * 1000);
         } catch (InterruptedException ie) {
              // Do nothing
         }

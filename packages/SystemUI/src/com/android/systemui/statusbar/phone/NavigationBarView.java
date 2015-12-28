@@ -114,6 +114,7 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
     private boolean mIsAnimating = false;
     private boolean mDimNavButtonsAnimate;
     private int mDimNavButtonsAnimateDuration;
+    private boolean mDimNavButtonsTouchAnywhere;
 
     private NavigationBarViewTaskSwitchHelper mTaskSwitchHelper;
     private DeadZone mDeadZone;
@@ -325,6 +326,9 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        if (mDimNavButtonsTouchAnywhere) {
+            onNavButtonTouched();
+        }
         if (!mInEditMode && mTaskSwitchHelper.onTouchEvent(event)) {
             return true;
         }
@@ -992,6 +996,8 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
                     Settings.System.DIM_NAV_BUTTONS_ANIMATE), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.DIM_NAV_BUTTONS_ANIMATE_DURATION), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.DIM_NAV_BUTTONS_TOUCH_ANYWHERE), false, this);
 
             // intialize mModlockDisabled
             onChange(false);
@@ -1024,6 +1030,9 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
             mDimNavButtonsAnimateDuration = Settings.System.getIntForUser(resolver,
                     Settings.System.DIM_NAV_BUTTONS_ANIMATE_DURATION, 2000,
                     UserHandle.USER_CURRENT);
+            mDimNavButtonsTouchAnywhere = (Settings.System.getIntForUser(resolver,
+                    Settings.System.DIM_NAV_BUTTONS_TOUCH_ANYWHERE, 0,
+                    UserHandle.USER_CURRENT) == 1);
             // reset saved side button visibilities
             for (int i = 0; i < mSideButtonVisibilities.length; i++) {
                 for (int j = 0; j < mSideButtonVisibilities[i].length; j++) {

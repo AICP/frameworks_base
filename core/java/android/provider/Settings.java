@@ -4128,10 +4128,10 @@ public final class Settings {
          */
         public static final String PA_PIE_STATUS = "pa_pie_status";
 
-        /**  
+        /**
          * AOKP Custom System Animations
          * @hide
-         */  
+         */
         public static final String[] ACTIVITY_ANIMATION_CONTROLS = new String[] {
                 "activity_open",
                 "activity_close",
@@ -4146,6 +4146,13 @@ public final class Settings {
                 "task_open_behind",
         };  
         public static final String ANIMATION_CONTROLS_DURATION = "animation_controls_duration";
+
+        /**
+         * Toast animations
+         *
+         * @hide
+         */
+        public static final String TOAST_ANIMATION = "toast_animation";
 
         /**
          * @hide

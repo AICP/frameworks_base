@@ -22,6 +22,7 @@ public class PowerMenuConstants {
     public static final String GLOBAL_ACTION_KEY_REBOOT = "reboot";
     public static final String GLOBAL_ACTION_KEY_SCREENSHOT = "screenshot";
     public static final String GLOBAL_ACTION_KEY_SCREENRECORD = "screenrecord";
+    public static final String GLOBAL_ACTION_KEY_ONTHEGO = "onthego";
     public static final String GLOBAL_ACTION_KEY_AIRPLANE = "airplane";
     public static final String GLOBAL_ACTION_KEY_USERS = "users";
     public static final String GLOBAL_ACTION_KEY_SETTINGS = "settings";
@@ -36,6 +37,7 @@ public class PowerMenuConstants {
         GLOBAL_ACTION_KEY_REBOOT,
         GLOBAL_ACTION_KEY_SCREENSHOT,
         GLOBAL_ACTION_KEY_SCREENRECORD,
+        GLOBAL_ACTION_KEY_ONTHEGO,
         GLOBAL_ACTION_KEY_AIRPLANE,
         GLOBAL_ACTION_KEY_USERS,
         GLOBAL_ACTION_KEY_SETTINGS,

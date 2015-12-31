@@ -456,6 +456,8 @@ public class QSTileHost implements QSTile.Host, Tunable {
         else if (spec.equals("brightness")) return R.string.quick_settings_brightness_label;
         else if (spec.equals("screen_off")) return R.string.quick_settings_screen_off_label;
         else if (spec.equals("screenshot")) return R.string.quick_settings_screenshot_label;
+        else if (spec.equals("music")) return R.string.quick_settings_music_label;
+        else if (spec.equals("reboot")) return R.string.quick_settings_reboot_label;
         else if (spec.equals("expanded_desktop")) return R.string.quick_settings_expanded_desktop_label;
         return 0;
     }

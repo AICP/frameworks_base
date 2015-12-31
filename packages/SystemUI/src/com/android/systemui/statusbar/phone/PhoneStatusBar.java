@@ -387,6 +387,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private boolean mAicpLogo;
     private int mAicpLogoColor;
     private ImageView aicpLogo;
+    private int mAicpLogoStyle;
 
     // settings
     private QSDragPanel mQSPanel;
@@ -557,6 +558,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_AICP_LOGO_COLOR),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_AICP_LOGO_STYLE),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -597,6 +601,13 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                         mBatterySaverWarningColor = mContext.getResources()
                                 .getColor(com.android.internal.R.color.battery_saver_mode_color);
                     }
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_AICP_LOGO_STYLE))) {
+                recreateStatusBar();
+                updateRowStates();
+                updateSpeedbump();
+                updateClearAll();
+                updateEmptyShadeView();
             }
 
             update();
@@ -623,11 +634,20 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             // This method reads CMSettings.Secure.RECENTS_LONG_PRESS_ACTIVITY
             updateCustomRecentsLongPressHandler(false);
 
+            mAicpLogoStyle = Settings.System.getIntForUser(
+                    resolver, Settings.System.STATUS_BAR_AICP_LOGO_STYLE, 0,
+                    UserHandle.USER_CURRENT);
             mAicpLogo = Settings.System.getIntForUser(resolver,
                     Settings.System.STATUS_BAR_AICP_LOGO, 0, mCurrentUserId) == 1;
             mAicpLogoColor = Settings.System.getIntForUser(resolver,
                     Settings.System.STATUS_BAR_AICP_LOGO_COLOR, 0xFFFFFFFF, mCurrentUserId);
-            showAicpLogo(mAicpLogo, mAicpLogoColor);
+            if (mAicpLogoStyle == 0) {
+                aicpLogo = (ImageView) mStatusBarView.findViewById(R.id.left_aicp_logo);
+            } else {
+                aicpLogo = (ImageView) mStatusBarView.findViewById(R.id.aicp_logo);
+            }
+            showAicpLogo(mAicpLogo, mAicpLogoColor, mAicpLogoStyle);
+
 
             mWeatherTempStyle = Settings.System.getIntForUser(
                     resolver, Settings.System.STATUS_BAR_WEATHER_TEMP_STYLE, 0,
@@ -1422,6 +1442,20 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
         updateWeatherTextState(mWeatherController.getWeatherInfo().temp, mWeatherTempColor,
                 mWeatherTempSize, mWeatherTempFontStyle);
+
+        mAicpLogoStyle = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.STATUS_BAR_AICP_LOGO_STYLE, 0,
+                UserHandle.USER_CURRENT);
+        if (mAicpLogoStyle == 0) {
+            aicpLogo = (ImageView) mStatusBarView.findViewById(R.id.left_aicp_logo);
+        } else {
+            aicpLogo = (ImageView) mStatusBarView.findViewById(R.id.aicp_logo);
+        }
+        mAicpLogo = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.STATUS_BAR_AICP_LOGO, 0, mCurrentUserId) == 1;
+        mAicpLogoColor = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.STATUS_BAR_AICP_LOGO_COLOR, 0xFFFFFFFF, mCurrentUserId);
+        showAicpLogo(mAicpLogo, mAicpLogoColor, mAicpLogoStyle);
 
         mKeyguardUserSwitcher = new KeyguardUserSwitcher(mContext,
                 (ViewStub) mStatusBarWindowContent.findViewById(R.id.keyguard_user_switcher),
@@ -3836,13 +3870,21 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
     };
 
-    public void showAicpLogo(boolean show, int color) {
+    public void showAicpLogo(boolean show, int color, int style) {
         if (mStatusBarView == null) return;
-        aicpLogo = (ImageView) mStatusBarView.findViewById(R.id.aicp_logo);
-        aicpLogo.setColorFilter(color, Mode.SRC_IN);
-        if (aicpLogo != null) {
-            aicpLogo.setVisibility(show ? (mAicpLogo ? View.VISIBLE : View.GONE) : View.GONE);
+        if (!show) {
+            aicpLogo.setVisibility(View.GONE);
+            return;
         }
+        aicpLogo.setColorFilter(color, Mode.SRC_IN);
+        if (style == 0) {
+            aicpLogo.setVisibility(View.GONE);
+            aicpLogo = (ImageView) mStatusBarView.findViewById(R.id.left_aicp_logo);
+        } else {
+            aicpLogo.setVisibility(View.GONE);
+            aicpLogo = (ImageView) mStatusBarView.findViewById(R.id.aicp_logo);
+        }
+        aicpLogo.setVisibility(View.VISIBLE);
     }
 
     private BroadcastReceiver mPackageBroadcastReceiver = new BroadcastReceiver() {

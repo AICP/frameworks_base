@@ -64,7 +64,7 @@
                 >
 
                 <ImageView
-                    android:id="@+id/aicp_logo"
+                    android:id="@+id/left_aicp_logo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingEnd="4dip"
@@ -161,6 +161,15 @@
                 android:singleLine="true"
                 android:paddingStart="7dp"
                 android:gravity="center_vertical|start"
+                />
+            <ImageView
+                android:id="@+id/aicp_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="4dp"
+                android:src="@drawable/ic_status_bar_aicp_logo"
+                android:scaleType="center"
+                android:visibility="gone"
                 />
         </com.android.keyguard.AlphaOptimizedLinearLayout>
     </LinearLayout>

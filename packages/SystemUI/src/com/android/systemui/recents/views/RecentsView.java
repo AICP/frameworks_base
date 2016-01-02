@@ -103,7 +103,6 @@ public class RecentsView extends FrameLayout implements TaskStackView.TaskStackV
     TextView mMemText;
     ProgressBar mMemBar;
     private ActivityManager mAm;
-    private int mTotalMem;
 
     public RecentsView(Context context) {
         super(context);
@@ -123,7 +122,6 @@ public class RecentsView extends FrameLayout implements TaskStackView.TaskStackV
         mInflater = LayoutInflater.from(context);
         mLayoutAlgorithm = new RecentsViewLayoutAlgorithm(mConfig);
         mAm = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
-        mTotalMem = getTotalMemory();
     }
 
     /** Sets the callbacks */
@@ -404,8 +402,6 @@ public class RecentsView extends FrameLayout implements TaskStackView.TaskStackV
 
             FrameLayout.LayoutParams params = (FrameLayout.LayoutParams)
                     mFloatingButton.getLayoutParams();
-            boolean isLandscape = mContext.getResources().getConfiguration().orientation
-                == Configuration.ORIENTATION_LANDSCAPE;
             if (mSearchBar == null || isLandscape) {
                 params.topMargin = mContext.getResources().
                     getDimensionPixelSize(com.android.internal.R.dimen.status_bar_height)
@@ -503,6 +499,10 @@ public class RecentsView extends FrameLayout implements TaskStackView.TaskStackV
                 dismissAllTasksAnimated();
             }
         });
+        mMemText = (TextView) ((View)getParent()).findViewById(R.id.recents_memory_text);
+        mMemBar = (ProgressBar) ((View)getParent()).findViewById(R.id.recents_memory_bar);
+
+        updateMemoryStatus();
     }
 
     private boolean showMemDisplay() {
@@ -525,35 +525,26 @@ public class RecentsView extends FrameLayout implements TaskStackView.TaskStackV
         if (mMemText.getVisibility() == View.GONE
                 || mMemBar.getVisibility() == View.GONE) return;
 
-        MemoryInfo memInfo = new MemoryInfo();
-        mAm.getMemoryInfo(memInfo);
-            int available = (int)(memInfo.availMem / 1048576L);
-            mMemText.setText("Free RAM: " + String.valueOf(available) + "MB");
-            mMemBar.setMax(mTotalMem);
-            mMemBar.setProgress(available);
+            int max = (int)(readTotalMem() / 1048576L);
+            int currentMem = (int)(readAvailMem() / 1048576L);
+
+            mMemText.setText("Free RAM: " + String.valueOf(currentMem) + "MB");
+            mMemBar.setMax(max);
+            mMemBar.setProgress(currentMem);
     }
 
-    public int getTotalMemory() {
-        int memory = 0;
-        try {
-            final FileReader localFileReader = new FileReader("/proc/meminfo");
-            final BufferedReader localBufferedReader = new BufferedReader(localFileReader, 8192);
-            String str2 = localBufferedReader.readLine(); // meminfo
-            String[] arrayOfString = str2.split("\\s+");
-            memory = Integer.valueOf(arrayOfString[1]).intValue() * 1024;
-            localBufferedReader.close();
-        } catch (IOException e) {
-        }
-        return memory / 1048576;
+    private long readAvailMem() {
+        MemoryInfo mi = new MemoryInfo();
+        mAm.getMemoryInfo(mi);
+        long availableMem = mi.availMem;
+        return availableMem;
     }
-    
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        mMemText = (TextView) ((View)getParent()).findViewById(R.id.recents_memory_text);
-        mMemBar = (ProgressBar) ((View)getParent()).findViewById(R.id.recents_memory_bar);
 
-        updateMemoryStatus();
+    private long readTotalMem() {
+        MemoryInfo mi = new MemoryInfo();
+        mAm.getMemoryInfo(mi);
+        long totalMem = mi.totalMem;
+        return totalMem;
     }
 
     /**
@@ -570,7 +561,7 @@ public class RecentsView extends FrameLayout implements TaskStackView.TaskStackV
                     searchBarSpaceBounds.right, searchBarSpaceBounds.bottom);
         }
 
-        // Layout each TaskStackView with the full width and height of the window since the 
+        // Layout each TaskStackView with the full width and height of the window since the
         // transition view is a child of that stack view
         List<TaskStackView> stackViews = getTaskStackViews();
         int stackCount = stackViews.size();

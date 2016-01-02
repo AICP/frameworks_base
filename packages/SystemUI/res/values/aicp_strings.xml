@@ -211,7 +211,7 @@
     <string name="no">No</string>
 
     <!-- Slim Shortcut Actions -->
-    <string name="shortcut_picker">Slim Shortcuts</string>
+    <string name="shortcut_picker">Aicp Shortcuts</string>
     <string name="shortcut_rotation">Rotation</string>
     <string name="shortcut_reboot">Reboot</string>
     <string name="shortcut_recovery">Recovery</string>

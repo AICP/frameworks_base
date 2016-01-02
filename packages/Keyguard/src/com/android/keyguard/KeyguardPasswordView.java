@@ -18,7 +18,6 @@ package com.android.keyguard;
 
 import android.content.Context;
 import android.graphics.Rect;
-import android.provider.Settings;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -36,7 +35,6 @@ import android.view.inputmethod.InputMethodSubtype;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
-import com.android.internal.widget.LockPatternUtils.RequestThrottledException;
 import com.android.internal.widget.TextViewInputDisabler;
 
 import java.util.List;
@@ -57,10 +55,6 @@ public class KeyguardPasswordView extends KeyguardAbsKeyInputView
 
     private Interpolator mLinearOutSlowInInterpolator;
     private Interpolator mFastOutLinearInInterpolator;
-
-    private final boolean quickUnlock = (Settings.System.getInt(getContext().getContentResolver(),
-            Settings.System.LOCKSCREEN_QUICK_UNLOCK_CONTROL, 0) == 1);
-    private final int userId = KeyguardUpdateMonitor.getCurrentUser();
 
     public KeyguardPasswordView(Context context) {
         this(context, null);
@@ -317,15 +311,6 @@ public class KeyguardPasswordView extends KeyguardAbsKeyInputView
         // is from the user.
         if (!TextUtils.isEmpty(s)) {
             onUserInput();
-            if (quickUnlock) {
-                String entry = getPasswordText();
-                if (entry.length() > MINIMUM_PASSWORD_LENGTH_BEFORE_REPORT
-                        && kpvCheckPassword(entry)) {
-                    mCallback.reportUnlockAttempt(true, userId);
-                    mCallback.dismiss(true);
-                    resetPasswordText(true);
-                }
-            }
         }
     }
 
@@ -344,13 +329,5 @@ public class KeyguardPasswordView extends KeyguardAbsKeyInputView
             return true;
         }
         return false;
-    }
-
-    private boolean kpvCheckPassword(String entry) {
-        try {
-            return mLockPatternUtils.checkPassword(entry, userId);
-        } catch (RequestThrottledException ex) {
-            return false;
-        }
     }
 }

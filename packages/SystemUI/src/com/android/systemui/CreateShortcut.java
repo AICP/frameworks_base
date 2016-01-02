@@ -74,6 +74,8 @@ public class CreateShortcut extends LauncherActivity {
 
         if (c.equals("Rotation")) {
             return R.drawable.ic_qs_auto_rotate;
+        } else if (c.equals("SleepScreen")) {
+            return R.drawable.ic_qs_sleep;
         } else if (c.equals("Reboot")) {
             return R.drawable.ic_qs_reboot;
         } else if (c.equals("Recovery")) {

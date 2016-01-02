@@ -84,6 +84,8 @@ public class CreateShortcut extends LauncherActivity {
             return R.drawable.ic_qs_volume;
         } else if (c.equals("RestartUI")) {
             return R.drawable.ic_qs_systemui_restart;
+        } else if (c.equals("PowerMenu")) {
+            return R.drawable.ic_qs_power;
         } else {
             // Oh-Noes, you found a wild derp.
             return R.drawable.ic_sysbar_null;

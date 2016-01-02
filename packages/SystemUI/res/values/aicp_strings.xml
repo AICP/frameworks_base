@@ -215,7 +215,8 @@
     <string name="shortcut_rotation">Rotation</string>
     <string name="shortcut_reboot">Reboot</string>
     <string name="shortcut_recovery">Recovery</string>
-    <string name="shortcut_screensleep">Sleep Screen</string>
+    <string name="shortcut_screensleep">Sleep screen</string>
+    <string name="shortcut_volume">Volume panel</string>
     <string name="shortcut_toggle_title">Action to perform</string>
 
 </resources>

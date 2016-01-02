@@ -80,6 +80,8 @@ public class CreateShortcut extends LauncherActivity {
             return R.drawable.ic_qs_reboot;
         } else if (c.equals("Recovery")) {
             return R.drawable.ic_qs_reboot_recovery;
+        } else if (c.equals("VolumePanel")) {
+            return R.drawable.ic_qs_volume;
         } else {
             // Oh-Noes, you found a wild derp.
             return R.drawable.ic_sysbar_null;

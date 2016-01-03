@@ -211,4 +211,7 @@
     <string name="dlg_ok">@android:string/ok</string>
     <string name="dlg_cancel">@android:string/cancel</string>
     <string name="guts_force_close_app">Close App</string>
+
+    <string name="tuner_show_brightness_mode">Show brightness mode switch</string>
+    <string name="tuner_show_brightness_side_buttons">Show brightness slider side buttons</string>
 </resources>

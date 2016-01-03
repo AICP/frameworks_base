@@ -3611,6 +3611,18 @@ public final class Settings {
         public static final String RECENTS_FULL_SCREEN = "recents_full_screen";
 
         /**
+         * Whether to display clock while recents are in full screen
+         * @hide
+         */
+        public static final String RECENTS_FULL_SCREEN_CLOCK = "recents_full_screen_clock";
+
+        /**
+         * Whether to display clock while recents are in full screen
+         * @hide
+         */
+        public static final String RECENTS_FULL_SCREEN_DATE = "recents_full_screen_date";
+
+        /**
          * Whether the notification light will be allowed when in zen mode during downtime
          * @hide
          */

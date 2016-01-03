@@ -18,6 +18,8 @@ package com.android.systemui.statusbar.phone;
 
 import static android.app.StatusBarManager.WINDOW_STATE_SHOWING;
 
+import static com.android.systemui.qs.QSPanel.QS_SHOW_BRIGHTNESS_SIDE_BUTTONS;
+
 import android.app.StatusBarManager;
 import android.graphics.RectF;
 import android.hardware.display.AmbientDisplayConfiguration;
@@ -32,6 +34,7 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.systemui.ExpandHelper;
@@ -53,6 +56,7 @@ import com.android.systemui.statusbar.notification.NotificationWakeUpCoordinator
 import com.android.systemui.statusbar.notification.stack.NotificationStackScrollLayout;
 import com.android.systemui.statusbar.policy.KeyguardStateController;
 import com.android.systemui.tuner.TunerService;
+
 import com.android.systemui.util.InjectionInflationController;
 
 import java.io.FileDescriptor;
@@ -109,6 +113,11 @@ public class NotificationShadeWindowViewController {
 
     // omni additions start
     private boolean mDoubleTapEnabledNative;
+    private ImageView mMaxBrightness;
+    private ImageView mMinBrightness;
+
+    private boolean mShowBrightnessSideButtons;
+
 
     @Inject
     public NotificationShadeWindowViewController(
@@ -157,6 +166,8 @@ public class NotificationShadeWindowViewController {
 
         // This view is not part of the newly inflated expanded status bar.
         mBrightnessMirror = mView.findViewById(R.id.brightness_mirror);
+        mMaxBrightness = (ImageView) mBrightnessMirror.findViewById(R.id.brightness_right);
+        mMinBrightness = (ImageView) mBrightnessMirror.findViewById(R.id.brightness_left);
     }
 
     /** Inflates the {@link R.layout#status_bar_expanded} layout and sets it up. */
@@ -178,12 +189,20 @@ public class NotificationShadeWindowViewController {
                     mDoubleTapEnabledNative = Settings.Secure.getIntForUser(mView.getContext().getContentResolver(),
                             Settings.Secure.DOUBLE_TAP_TO_WAKE, 0, UserHandle.USER_CURRENT) == 1;
                     break;
+                case QS_SHOW_BRIGHTNESS_SIDE_BUTTONS:
+                    if (mMaxBrightness != null || mMinBrightness != null) {
+                        mShowBrightnessSideButtons = (newValue == null || Integer.parseInt(newValue) == 0) ? false : true;
+                        mMaxBrightness.setVisibility(!mShowBrightnessSideButtons ? View.GONE : View.VISIBLE);
+                        mMinBrightness.setVisibility(!mShowBrightnessSideButtons ? View.GONE : View.VISIBLE);
+                    }
+                    break;
             }
         };
         mTunerService.addTunable(tunable,
                 Settings.Secure.DOZE_DOUBLE_TAP_GESTURE,
                 Settings.Secure.DOZE_TAP_SCREEN_GESTURE,
-                Settings.Secure.DOUBLE_TAP_TO_WAKE);
+                Settings.Secure.DOUBLE_TAP_TO_WAKE,
+                QS_SHOW_BRIGHTNESS_SIDE_BUTTONS);
 
         GestureDetector.SimpleOnGestureListener gestureListener =
                 new GestureDetector.SimpleOnGestureListener() {
@@ -388,6 +407,10 @@ public class NotificationShadeWindowViewController {
             public void onChildViewAdded(View parent, View child) {
                 if (child.getId() == R.id.brightness_mirror) {
                     mBrightnessMirror = child;
+                    mMaxBrightness = (ImageView) child.findViewById(R.id.brightness_right);
+                    mMaxBrightness.setVisibility(!mShowBrightnessSideButtons ? View.GONE : View.VISIBLE);
+                    mMinBrightness = (ImageView) child.findViewById(R.id.brightness_left);
+                    mMinBrightness.setVisibility(!mShowBrightnessSideButtons ? View.GONE : View.VISIBLE);
                 }
             }
 

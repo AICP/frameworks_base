@@ -4904,6 +4904,16 @@ public final class Settings {
         private static final Validator VOLUME_BUTTON_MUSIC_CONTROL_VALIDATOR =
                BOOLEAN_VALIDATOR;
 
+        /**
+         * Enable/Disable screenshot sound
+         * @hide
+         */
+        public static final String SCREENSHOT_SOUND = "screenshot_sound";
+
+        /** @hide */
+        private static final Validator SCREENSHOT_SOUND_VALIDATOR =
+               BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5033,6 +5043,7 @@ public final class Settings {
             SWAP_VOLUME_BUTTONS,
             VOLUME_KEYS_CONTROL_RING_TONE,
             VOLUME_BUTTON_MUSIC_CONTROL,
+            SCREENSHOT_SOUND,
             // AICP Settings end
         };
 
@@ -5224,6 +5235,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SWAP_VOLUME_BUTTONS);
             PRIVATE_SETTINGS.add(VOLUME_KEYS_CONTROL_RING_TONE);
             PRIVATE_SETTINGS.add(VOLUME_BUTTON_MUSIC_CONTROL);
+            PRIVATE_SETTINGS.add(SCREENSHOT_SOUND);
             // AICP Settings end
         }
 
@@ -5395,6 +5407,7 @@ public final class Settings {
             VALIDATORS.put(SWAP_VOLUME_BUTTONS, SWAP_VOLUME_BUTTONS_VALIDATOR);
             VALIDATORS.put(VOLUME_KEYS_CONTROL_RING_TONE,VOLUME_KEYS_CONTROL_RING_TONE_VALIDATOR);
             VALIDATORS.put(VOLUME_BUTTON_MUSIC_CONTROL,VOLUME_BUTTON_MUSIC_CONTROL_VALIDATOR);
+            VALIDATORS.put(SCREENSHOT_SOUND,SCREENSHOT_SOUND_VALIDATOR);
             // AICP Settings end
         }
 

@@ -29,11 +29,9 @@ public interface WeatherController {
     }
     public static class WeatherInfo {
         public String city = null;
-        public String wind = null;
+        public String condition = null;
         public int conditionCode = 0;
         public Drawable conditionDrawable = null;
         public String temp = null;
-        public String humidity = null;
-        public String condition = null;
     }
 }

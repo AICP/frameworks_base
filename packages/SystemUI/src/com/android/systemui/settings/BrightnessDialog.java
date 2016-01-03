@@ -16,24 +16,37 @@
 
 package com.android.systemui.settings;
 
+import static com.android.settingslib.display.BrightnessUtils.GAMMA_SPACE_MAX;
+import static com.android.systemui.qs.QSPanel.QS_SHOW_BRIGHTNESS_SIDE_BUTTONS;
+
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.UserHandle;
+import android.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
+
+import android.content.ContentResolver;
+import android.content.Context;
+import android.provider.Settings;
 
 import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
+import com.android.systemui.Dependency;
 import com.android.systemui.R;
 import com.android.systemui.broadcast.BroadcastDispatcher;
+import com.android.systemui.tuner.TunerService;
+import com.android.systemui.tuner.TunerService.Tunable;
 
 import javax.inject.Inject;
 
 /** A dialog that provides controls for adjusting the screen brightness. */
-public class BrightnessDialog extends Activity {
+public class BrightnessDialog extends Activity implements Tunable {
 
     private BrightnessController mBrightnessController;
     private final BroadcastDispatcher mBroadcastDispatcher;
@@ -44,9 +57,18 @@ public class BrightnessDialog extends Activity {
     }
 
 
+    private ImageView mMaxBrightness;
+    private ImageView mMinBrightness;
+
+    private boolean mShowBrightnessSideButtons;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        final Context mContext = this;
+
+        final ContentResolver resolver = mContext.getContentResolver();
 
         final Window window = getWindow();
 
@@ -54,12 +76,67 @@ public class BrightnessDialog extends Activity {
         window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         window.requestFeature(Window.FEATURE_NO_TITLE);
 
-        View v = LayoutInflater.from(this).inflate(
+        // Use a dialog theme as the activity theme, but inflate the content as
+        // the QS content.
+        ContextThemeWrapper themedContext = new ContextThemeWrapper(this,
+                com.android.internal.R.style.Theme_DeviceDefault_QuickSettings);
+        View brightnessView = LayoutInflater.from(themedContext).inflate(
                 R.layout.quick_settings_brightness_dialog, null);
-        setContentView(v);
+        setContentView(brightnessView);
 
         final ToggleSliderView slider = findViewById(R.id.brightness_slider);
+
         mBrightnessController = new BrightnessController(this, slider, mBroadcastDispatcher);
+
+        mMinBrightness = brightnessView.findViewById(R.id.brightness_left);
+        mMinBrightness.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int currentValue = Settings.System.getIntForUser(resolver,
+                        Settings.System.SCREEN_BRIGHTNESS, 0, UserHandle.USER_CURRENT);
+                int brightness = currentValue - 10;
+                if (currentValue != 0) {
+                    int math = Math.max(0, brightness);
+                    Settings.System.putIntForUser(resolver,
+                            Settings.System.SCREEN_BRIGHTNESS, math, UserHandle.USER_CURRENT);
+                }
+            }
+        });
+
+        mMinBrightness.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                setBrightnessMinMax(true);
+                return true;
+            }
+        });
+
+        mMaxBrightness = brightnessView.findViewById(R.id.brightness_right);
+        mMaxBrightness.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int currentValue = Settings.System.getIntForUser(resolver,
+                        Settings.System.SCREEN_BRIGHTNESS, 0, UserHandle.USER_CURRENT);
+                int brightness = currentValue + 10;
+                if (currentValue != 255) {
+                    int math = Math.min(255, brightness);
+                    Settings.System.putIntForUser(resolver,
+                            Settings.System.SCREEN_BRIGHTNESS, math, UserHandle.USER_CURRENT);
+                }
+            }
+        });
+
+        mMaxBrightness.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                setBrightnessMinMax(false);
+                return true;
+            }
+        });
+    }
+
+    private void setBrightnessMinMax(boolean min) {
+        mBrightnessController.setBrightnessFromSliderButtons(min ? 0 : GAMMA_SPACE_MAX);
     }
 
     @Override
@@ -67,6 +144,8 @@ public class BrightnessDialog extends Activity {
         super.onStart();
         mBrightnessController.registerCallbacks();
         MetricsLogger.visible(this, MetricsEvent.BRIGHTNESS_DIALOG);
+
+        Dependency.get(TunerService.class).addTunable(this, QS_SHOW_BRIGHTNESS_SIDE_BUTTONS);
     }
 
     @Override
@@ -74,6 +153,8 @@ public class BrightnessDialog extends Activity {
         super.onStop();
         MetricsLogger.hidden(this, MetricsEvent.BRIGHTNESS_DIALOG);
         mBrightnessController.unregisterCallbacks();
+
+        Dependency.get(TunerService.class).removeTunable(this);
     }
 
     @Override
@@ -85,5 +166,16 @@ public class BrightnessDialog extends Activity {
         }
 
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void onTuningChanged(String key, String newValue) {
+        if (QS_SHOW_BRIGHTNESS_SIDE_BUTTONS.equals(key)) {
+            if (mMaxBrightness != null || mMinBrightness != null) {
+                mShowBrightnessSideButtons = (newValue == null || Integer.parseInt(newValue) == 0) ? false : true;
+                mMaxBrightness.setVisibility(!mShowBrightnessSideButtons ? View.GONE : View.VISIBLE);
+                mMinBrightness.setVisibility(!mShowBrightnessSideButtons ? View.GONE : View.VISIBLE);
+            }
+        }
     }
 }

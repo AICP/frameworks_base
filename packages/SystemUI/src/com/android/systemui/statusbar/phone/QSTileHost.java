@@ -492,6 +492,12 @@ public class QSTileHost implements QSTile.Host, Tunable {
         else if (spec.equals("lockscreen")) return R.drawable.ic_qs_lock_screen_on;
         else if (spec.equals("ambient_display")) return R.drawable.ic_qs_ambientdisplay_on;
         else if (spec.equals("live_display")) return R.drawable.ic_livedisplay_auto;
+        else if (spec.equals("music")) return R.drawable.ic_qs_media_play;
+        else if (spec.equals("brightness")) return R.drawable.ic_qs_brightness_auto_on;
+        else if (spec.equals("screen_off")) return R.drawable.ic_qs_power;
+        else if (spec.equals("screenshot")) return R.drawable.ic_qs_screenshot;
+        else if (spec.equals("expanded_desktop")) return R.drawable.ic_qs_expanded_desktop;
+	else if (spec.equals("reboot")) return R.drawable.ic_qs_reboot;
         return 0;
     }
 

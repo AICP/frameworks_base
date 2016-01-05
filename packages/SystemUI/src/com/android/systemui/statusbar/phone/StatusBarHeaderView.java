@@ -205,7 +205,6 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         mSettingsButton = (SettingsButton) findViewById(R.id.settings_button);
         mSettingsContainer = findViewById(R.id.settings_button_container);
         mSettingsButton.setOnClickListener(this);
-        mSettingsButton.setOnLongClickListener(this);
         mTaskManagerButton = findViewById(R.id.task_manager_button);
         mQsDetailHeader = findViewById(R.id.qs_detail_header);
         mQsDetailHeader.setAlpha(0);
@@ -643,9 +642,7 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
 
     @Override
     public boolean onLongClick(View v) {
-        if (v == mSettingsButton){
-            startSettingsLongClickActivity();
-        } else if (v == mSystemIconsSuperContainer) {
+        if (v == mSystemIconsSuperContainer) {
             startBatteryLongClickActivity();
         } else if (v == mClock) {
             startClockLongClickActivity();
@@ -658,13 +655,6 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         }
         vibrateheader(20);
         return false;
-    }
-
-    private void startSettingsLongClickActivity() {
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.setClassName("com.lordclockan",
-                "com.lordclockan.aicpextras.MainActivity");
-        mActivityStarter.startActivity(intent, true);
     }
 
     private void startSettingsActivity() {

@@ -68,4 +68,7 @@
     <!-- Color for the RAM bar text in the recent view -->
     <color name="ram_bar_text">#FFFFFFFF</color>
 
+    <!-- app sidebar trigger region color -->
+    <color name="trigger_region_color">#8015a0e5</color>
+
 </resources>

@@ -188,6 +188,9 @@
     <!-- Locale QS -->
     <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
 
+    <!-- AppSidebar -->
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
+
     <application
         android:name=".SystemUIApplication"
         android:persistent="true"
@@ -487,6 +490,21 @@
             android:name=".keyguard.KeyguardService"
             android:exported="true"
             android:enabled="@bool/config_enableKeyguardService" />
+
+        <activity android:name=".statusbar.sidebar.SidebarConfigurationActivity"
+                  android:label="@string/title_activity_sidebar_configuration"
+                  android:taskAffinity=""
+                  android:excludeFromRecents="true"
+                  android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name=".statusbar.sidebar.SidebarContentProvider"
+            android:authorities="org.chameleonos.sidebar.contentprovider" >
+        </provider>
 
         <activity android:name=".Somnambulator"
             android:label="@string/start_dreams"

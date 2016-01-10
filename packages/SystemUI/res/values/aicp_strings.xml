@@ -107,5 +107,20 @@
     <string name="content_setup_dismiss">Continue</string>
     <string name="toast_not_installed">App is not installed</string>
 
+    <!-- NavBar tile -->
+    <string name="quick_settings_navbar_title">NavBar</string>
+    <string name="quick_settings_navbar_on">NavBar on</string>
+    <string name="quick_settings_navbar_off">NavBar off</string>
+
+    <!-- App Circle Bar tile -->
+    <string name="quick_settings_appcirclebar_title">AppCircleBar</string>
+    <string name="quick_settings_appcirclebar_on">AppCircleBar on</string>
+    <string name="quick_settings_appcirclebar_off">AppCircleBar off</string>
+
+    <!-- Pie tile -->
+    <string name="quick_settings_pie_title">Pie</string>
+    <string name="quick_settings_pie_on">Pie on</string>
+    <string name="quick_settings_pie_off">Pie off</string>
+
 </resources>
 

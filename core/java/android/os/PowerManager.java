@@ -953,6 +953,17 @@ public final class PowerManager {
         }
     }
 
+    public String getSeenWakeLocks()
+    {
+	try {
+	    if (mService != null) {
+		return mService.getSeenWakeLocks();
+	    }
+	} catch (RemoteException e) {
+	}
+	return null;
+    }
+
     /**
      * Intent that is broadcast when the state of {@link #isPowerSaveMode()} changes.
      * This broadcast is only sent to registered receivers.

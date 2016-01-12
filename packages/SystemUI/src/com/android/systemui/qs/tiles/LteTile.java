@@ -25,10 +25,10 @@ import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.PhoneFactory;
-import com.android.internal.logging.MetricsLogger;
 import com.android.systemui.qs.QSTile;
 import com.android.systemui.qs.QSTileView;
 import com.android.systemui.statusbar.phone.QSTileHost;
+import org.cyanogenmod.internal.logging.CMMetricsLogger;
 import com.android.systemui.R;
 
 /**
@@ -57,7 +57,7 @@ public class LteTile extends QSTile<QSTile.BooleanState> {
 
     @Override
     public int getMetricsCategory() {
-        return MetricsLogger.DONT_TRACK_ME_BRO;
+        return CMMetricsLogger.AICPEXTRAS;
     }
 
     @Override

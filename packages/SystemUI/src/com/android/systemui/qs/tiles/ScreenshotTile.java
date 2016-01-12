@@ -30,7 +30,7 @@ import android.provider.Settings;
 import android.os.RemoteException;
 import android.view.View;
 
-import com.android.internal.logging.MetricsConstants;
+import org.cyanogenmod.internal.logging.CMMetricsLogger;
 import com.android.systemui.R;
 import com.android.systemui.screenshot.TakeScreenshotService;
 import com.android.systemui.qs.QSTile;
@@ -86,7 +86,7 @@ public class ScreenshotTile extends QSTile<QSTile.BooleanState> {
 
     @Override
     public int getMetricsCategory() {
-        return MetricsConstants.DONT_TRACK_ME_BRO;
+        return CMMetricsLogger.AICPEXTRAS;
     }
 
     @Override

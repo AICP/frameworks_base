@@ -38,7 +38,7 @@ import com.android.systemui.qs.QSTileView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import com.android.internal.logging.MetricsLogger;
+import org.cyanogenmod.internal.logging.CMMetricsLogger;
 
 public class AppCircleBarTile extends QSTile<QSTile.BooleanState> {
     private boolean mListening;
@@ -61,7 +61,7 @@ public class AppCircleBarTile extends QSTile<QSTile.BooleanState> {
 
    @Override
     public int getMetricsCategory() {
-        return MetricsLogger.DONT_TRACK_ME_BRO;
+        return CMMetricsLogger.AICPEXTRAS;
     }
 
     @Override

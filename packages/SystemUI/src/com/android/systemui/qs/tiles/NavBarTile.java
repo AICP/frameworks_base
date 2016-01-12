@@ -38,7 +38,7 @@ import com.android.systemui.qs.QSTileView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import com.android.internal.logging.MetricsLogger;
+import org.cyanogenmod.internal.logging.CMMetricsLogger;
 import cyanogenmod.providers.CMSettings;
 
 public class NavBarTile extends QSTile<QSTile.BooleanState> {
@@ -65,7 +65,7 @@ private static final Intent NAVBAR_Settings = new Intent().setComponent(new Comp
 
    @Override
     public int getMetricsCategory() {
-        return MetricsLogger.DONT_TRACK_ME_BRO;
+        return CMMetricsLogger.AICPEXTRAS;
     }
 
      @Override

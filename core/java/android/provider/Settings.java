@@ -5702,6 +5702,13 @@ public final class Settings {
          */
         public static final String MUSIC_TILE_TITLE = "music_tile_title";
 
+        /**
+         * whether to enable or disable vibration on succesful fingerprint auth
+         *
+         * @hide
+         */
+        public static final String FINGERPRINT_SUCCESS_VIB = "fingerprint_success_vib";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5797,6 +5804,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(SMART_PIXELS_PATTERN, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(SMART_PIXELS_ON_POWER_SAVE, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(MUSIC_TILE_TITLE, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(FINGERPRINT_SUCCESS_VIB, BOOLEAN_VALIDATOR);
         }
 
         /**

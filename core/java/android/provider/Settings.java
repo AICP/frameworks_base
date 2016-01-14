@@ -4199,6 +4199,16 @@ public final class Settings {
          */
         public static final String NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD = "network_traffic_autohide_threshold";
 
+        /**
+         * whether to enable or disable vibration on succesful fingerprint auth
+         *
+         * @hide
+         */
+        public static final String FINGERPRINT_SUCCESS_VIB = "fingerprint_success_vib";
+
+        /** @hide */
+        private static final Validator FINGERPRINT_SUCCESS_VIB_VALIDATOR =
+                BOOLEAN_VALIDATOR;
 
         /***************************
          * AICP System Settings end
@@ -4292,7 +4302,8 @@ public final class Settings {
             PEOPLE_LOOKUP_PROVIDER,
             REVERSE_LOOKUP_PROVIDER,
             DIALER_OPENCNAM_ACCOUNT_SID,
-            DIALER_OPENCNAM_AUTH_TOKEN
+            DIALER_OPENCNAM_AUTH_TOKEN,
+            FINGERPRINT_SUCCESS_VIB,
         };
 
         /**
@@ -4419,6 +4430,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(DIALER_OPENCNAM_AUTH_TOKEN);
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_STATE);
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD);
+            PRIVATE_SETTINGS.add(FINGERPRINT_SUCCESS_VIB);
         }
 
         /**
@@ -4517,6 +4529,8 @@ public final class Settings {
             VALIDATORS.put(REVERSE_LOOKUP_PROVIDER, REVERSE_LOOKUP_PROVIDER_VALIDATOR);
             VALIDATORS.put(DIALER_OPENCNAM_ACCOUNT_SID, DIALER_OPENCNAM_ACCOUNT_SID_VALIDATOR);
             VALIDATORS.put(DIALER_OPENCNAM_AUTH_TOKEN, DIALER_OPENCNAM_AUTH_TOKEN_VALIDATOR);
+            VALIDATORS.put(FINGERPRINT_SUCCESS_VIB,
+                    FINGERPRINT_SUCCESS_VIB_VALIDATOR);
         }
 
         /**

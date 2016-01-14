@@ -6174,6 +6174,13 @@ public final class Settings {
          */
         public static final String ENABLE_RIPPLE_EFFECT = "enable_ripple_effect";
 
+        /**
+         * whether to enable or disable vibration on succesful fingerprint auth
+         *
+         * @hide
+         */
+        public static final String FINGERPRINT_SUCCESS_VIB = "fingerprint_success_vib";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6380,6 +6387,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(POCKET_JUDGE);
             PRIVATE_SETTINGS.add(OMNI_LOCKSCREEN_MEDIA_BLUR);
             PRIVATE_SETTINGS.add(ENABLE_RIPPLE_EFFECT);
+            PRIVATE_SETTINGS.add(FINGERPRINT_SUCCESS_VIB);
         }
 
         /**

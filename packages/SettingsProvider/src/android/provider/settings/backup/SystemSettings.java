@@ -171,5 +171,6 @@ public class SystemSettings {
         Settings.System.OMNI_LOCKSCREEN_MEDIA_BLUR,
         Settings.System.LOCKSCREEN_ALBUMART_FILTER,
         Settings.System.ENABLE_RIPPLE_EFFECT,
+        Settings.System.FINGERPRINT_SUCCESS_VIB,
     };
 }

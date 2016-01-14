@@ -4171,6 +4171,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         networkController.removeSignalCallback(signalCluster);
         networkController.removeSignalCallback(signalClusterKeyguard);
         networkController.removeSignalCallback(signalClusterQs);
+
+        if (signalCluster != null) signalCluster.setSecurityController(null);
+        if (signalClusterKeyguard != null) signalClusterKeyguard.setSecurityController(null);
+        if (signalClusterQs != null) signalClusterQs.setSecurityController(null);
     }
 
     private void recreateStatusBar() {
@@ -4178,9 +4182,19 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         if (mNetworkController != null) {
             removeSignalCallbacks(mNetworkController);
+            if (mNetworkController.hasVoiceCallingFeature()) {
+                mNetworkController.removeEmergencyListener(mHeader);
+            }
         }
         if (mHeadsUpManager != null) {
             mHeadsUpManager.removeListener(mNotificationPanel);
+            mHeadsUpManager.removeListener(mScrimController);
+        }
+        if (mIconController != null) {
+            mIconController.cleanup();
+        }
+        if (mKeyguardIndicationController != null) {
+            mKeyguardIndicationController.cleanup();
         }
 
         mStatusBarWindow.removeContent(mStatusBarWindowContent);
@@ -4202,10 +4216,16 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         // extract notifications.
         RankingMap rankingMap = mNotificationData.getRankingMap();
         int nNotifs = mNotificationData.size();
-        ArrayList<Pair<String, StatusBarNotification>> notifications =
-                new ArrayList<Pair<String, StatusBarNotification>>(nNotifs);
+        ArrayList<Pair<String, StatusBarNotification>> notifications = new ArrayList<>(nNotifs);
         copyNotifications(notifications, mNotificationData);
-        mNotificationData.clear();
+        // now remove all the notification views since we'll be re-inflating these with the copied
+        // data
+        for (int i = 0; i < nNotifs; i++) {
+            final NotificationData.Entry entry = mNotificationData.get(i);
+            if (entry != null) {
+                removeNotificationViews(entry.key, rankingMap);
+            }
+        }
 
         makeStatusBarView();
         repositionNavigationBar();

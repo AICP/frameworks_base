@@ -25,8 +25,10 @@ import android.os.PowerManager;
 import android.os.Process;
 import android.os.RemoteException;
 import android.os.SystemClock;
+import android.os.UserHandle;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.provider.Settings;
 import android.util.Slog;
 
 /**
@@ -194,7 +196,9 @@ public abstract class AcquisitionClient<T> extends HalClientMonitor<T> implement
 
     protected final void vibrateSuccess() {
         Vibrator vibrator = getContext().getSystemService(Vibrator.class);
-        if (vibrator != null) {
+        boolean fingerprintVib = Settings.System.getIntForUser(getContext().getContentResolver(),
+                Settings.System.FINGERPRINT_SUCCESS_VIB, 1, UserHandle.USER_CURRENT) == 1;
+        if (vibrator != null && fingerprintVib) {
             vibrator.vibrate(Process.myUid(),
                     getContext().getOpPackageName(),
                     SUCCESS_VIBRATION_EFFECT,

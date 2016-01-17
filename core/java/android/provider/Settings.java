@@ -4857,6 +4857,30 @@ public final class Settings {
         private static final Validator VOLUME_WAKE_SCREEN_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
+        /**
+         * Activate torchlight when power button is
+         * long-pressed while the display is off
+         * The value is boolean (1 or 0).
+         */
+        public static final String TORCH_LONG_PRESS_POWER_GESTURE =
+                "torch_long_press_power_gesture";
+
+        /** @hide */
+        private static final Validator TORCH_LONG_PRESS_POWER_GESTURE_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
+         * When the torch has been turned on by long press on power,
+         * automatically turn off after a configurable number of seconds.
+         * The value is an integer number of seconds in the range 0-3600.
+         * 0 means never automatically turn off.
+         */
+        public static final String TORCH_LONG_PRESS_POWER_TIMEOUT =
+                "torch_long_press_power_timeout";
+
+        /** @hide */
+        private static final Validator TORCH_LONG_PRESS_POWER_TIMEOUT_VALIDATOR =
+                new SettingsValidators.InclusiveIntegerRangeValidator(0, 3600);
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -4981,6 +5005,8 @@ public final class Settings {
             APP_SWITCH_WAKE_SCREEN,
             CAMERA_WAKE_SCREEN,
             VOLUME_KEY_CURSOR_CONTROL,
+            TORCH_LONG_PRESS_POWER_GESTURE,
+            TORCH_LONG_PRESS_POWER_TIMEOUT,
             // AICP Settings end
         };
 
@@ -5167,6 +5193,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(APP_SWITCH_WAKE_SCREEN);
             PRIVATE_SETTINGS.add(CAMERA_WAKE_SCREEN);
             PRIVATE_SETTINGS.add(VOLUME_KEY_CURSOR_CONTROL);
+            PRIVATE_SETTINGS.add(TORCH_LONG_PRESS_POWER_GESTURE);
+            PRIVATE_SETTINGS.add(TORCH_LONG_PRESS_POWER_TIMEOUT);
             // AICP Settings end
         }
 
@@ -5331,6 +5359,10 @@ public final class Settings {
             VALIDATORS.put(APP_SWITCH_WAKE_SCREEN, APP_SWITCH_WAKE_SCREEN_VALIDATOR);
             VALIDATORS.put(CAMERA_WAKE_SCREEN, CAMERA_WAKE_SCREEN_VALIDATOR);
             VALIDATORS.put(VOLUME_KEY_CURSOR_CONTROL, VOLUME_KEY_CURSOR_CONTROL_VALIDATOR);
+            VALIDATORS.put(TORCH_LONG_PRESS_POWER_GESTURE,
+                    TORCH_LONG_PRESS_POWER_GESTURE_VALIDATOR);
+            VALIDATORS.put(TORCH_LONG_PRESS_POWER_TIMEOUT,
+                    TORCH_LONG_PRESS_POWER_TIMEOUT_VALIDATOR);
             // AICP Settings end
         }
 

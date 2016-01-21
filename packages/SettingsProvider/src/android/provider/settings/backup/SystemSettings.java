@@ -174,5 +174,7 @@ public class SystemSettings {
         Settings.System.FINGERPRINT_SUCCESS_VIB,
         Settings.System.ADAPTIVE_PLAYBACK_ENABLED,
         Settings.System.ADAPTIVE_PLAYBACK_TIMEOUT,
+        Settings.System.TRANSPARENT_POWER_MENU,
+        Settings.System.TRANSPARENT_POWER_DIALOG_DIM,
     };
 }

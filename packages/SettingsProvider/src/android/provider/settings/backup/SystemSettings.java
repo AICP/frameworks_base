@@ -135,7 +135,9 @@ public class SystemSettings {
                 Settings.System.ON_THE_GO_ALPHA,
                 Settings.System.ON_THE_GO_SERVICE_RESTART,
                 Settings.System.ON_THE_GO_CAMERA,
-                Settings.System.CHARGING_ANIMATION
+                Settings.System.CHARGING_ANIMATION,
+                Settings.System.TRANSPARENT_POWER_MENU,
+                Settings.System.TRANSPARENT_POWER_DIALOG_DIM
         ));
         if (Flags.backUpSmoothDisplayAndForcePeakRefreshRate()) {
             settings.add(Settings.System.PEAK_REFRESH_RATE);

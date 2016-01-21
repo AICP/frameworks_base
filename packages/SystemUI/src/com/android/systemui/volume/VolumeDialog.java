@@ -132,6 +132,9 @@ public class VolumeDialog {
     private long mCollapseTime;
     private int mLastActiveStream;
 
+    // Volume dialog alpha
+    private int mVolumeDialogAlpha;
+
     public VolumeDialog(Context context, int windowType, VolumeDialogController controller,
             ZenModeController zenModeController, Callback callback) {
         mContext = context;
@@ -589,6 +592,7 @@ public class VolumeDialog {
         final VolumeRow activeRow = getActiveRow();
         updateFooterH();
         updateExpandButtonH();
+        setVolumeAlpha();
         if (!mShowing) {
             trimObsoleteH();
         }
@@ -1161,5 +1165,13 @@ public class VolumeDialog {
         void onSettingsClicked();
         void onZenSettingsClicked();
         void onZenPrioritySettingsClicked();
+    }
+
+    private void setVolumeAlpha() {
+        mVolumeDialogAlpha = Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.TRANSPARENT_VOLUME_DIALOG, 255);
+        if (mDialogView != null) {
+            mDialogView.getBackground().setAlpha(mVolumeDialogAlpha);
+        }
     }
 }

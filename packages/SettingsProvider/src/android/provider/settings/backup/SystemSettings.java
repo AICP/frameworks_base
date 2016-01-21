@@ -198,7 +198,10 @@ public class SystemSettings {
                 Settings.System.VOLUME_DIALOG_TIMEOUT,
                 Settings.System.CHARGING_ANIMATION,
                 Settings.System.LOCK_SCREEN_CUSTOM_NOTIF,
-                Settings.System.LOCKSCREEN_MAX_NOTIF_CONFIG
+                Settings.System.LOCKSCREEN_MAX_NOTIF_CONFIG,
+                Settings.System.TRANSPARENT_POWER_MENU,
+                Settings.System.TRANSPARENT_POWER_DIALOG_DIM
+
         ));
         if (Flags.backUpSmoothDisplayAndForcePeakRefreshRate()) {
             settings.add(Settings.System.PEAK_REFRESH_RATE);

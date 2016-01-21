@@ -5919,6 +5919,26 @@ public final class Settings {
         /** @hide */
         private static final Validator QS_RUNNING_SERVICES_TOGGLE_VALIDATOR = BOOLEAN_VALIDATOR;
 
+        /**
+         * Transparent power menu and dialogs
+         * @hide
+         */
+        public static final String TRANSPARENT_POWER_MENU = "transparent_power_menu";
+
+        /** @hide */
+        private static final Validator TRANSPARENT_POWER_MENU_VALIDATOR =
+               new SettingsValidators.InclusiveIntegerRangeValidator(0, 100);
+
+        /**
+         * Dim amount around power/reboot menu dialogs
+         * @hide
+         */
+        public static final String TRANSPARENT_POWER_DIALOG_DIM = "transparent_power_dialog_dim";
+
+        /** @hide */
+        private static final Validator TRANSPARENT_POWER_DIALOG_DIM_VALIDATOR =
+               new SettingsValidators.InclusiveIntegerRangeValidator(0, 100);
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6136,6 +6156,8 @@ public final class Settings {
             BLUR_QUICKSETTINGS_PERCENTAGE,
             MEDIA_SCANNER_ON_BOOT,
             QS_RUNNING_SERVICES_TOGGLE,
+            TRANSPARENT_POWER_MENU,
+            TRANSPARENT_POWER_DIALOG_DIM,
             // AICP Settings end
         };
 
@@ -6417,6 +6439,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(BLUR_QUICKSETTINGS_PERCENTAGE);
             PRIVATE_SETTINGS.add(MEDIA_SCANNER_ON_BOOT);
             PRIVATE_SETTINGS.add(QS_RUNNING_SERVICES_TOGGLE);
+            PRIVATE_SETTINGS.add(TRANSPARENT_POWER_MENU);
+            PRIVATE_SETTINGS.add(TRANSPARENT_POWER_DIALOG_DIM);
             // AICP Settings end
         }
 
@@ -6691,6 +6715,8 @@ public final class Settings {
             VALIDATORS.put(BLUR_QUICKSETTINGS_PERCENTAGE,BLUR_QUICKSETTINGS_PERCENTAGE_VALIDATOR);
             VALIDATORS.put(MEDIA_SCANNER_ON_BOOT,MEDIA_SCANNER_ON_BOOT_VALIDATOR);
             VALIDATORS.put(QS_RUNNING_SERVICES_TOGGLE,QS_RUNNING_SERVICES_TOGGLE_VALIDATOR);
+            VALIDATORS.put(TRANSPARENT_POWER_MENU,TRANSPARENT_POWER_MENU_VALIDATOR);
+            VALIDATORS.put(TRANSPARENT_POWER_DIALOG_DIM,TRANSPARENT_POWER_DIALOG_DIM_VALIDATOR);
             // AICP Settings end
         }
 

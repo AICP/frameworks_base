@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="tasklist_memory_usage" formatted="false">Свободно/Всего памяти: %s / %s</string>
+	<string name="quick_settings_tiles_category_system">Тайлы системы</string>
+	<string name="quick_settings_heads_up_label">Уведобления</string>
+	<string name="quick_settings_screen_off_label">Меню выключения</string>
+    <string name="quick_settings_screenshot_label">Скриншот</string>
+	<string name="quick_settings_music_label">Музыка</string>
+	<string name="quick_settings_reboot_label">Перезагрузка</string>
+	<string name="quick_settings_navbar_title">Навигационная панель</string>
+	<string name="quick_settings_battery_saver_label">Режим энергосбережения</string>
+	<string name="quick_settings_tiles_add_tiles">Добавить плитку</string>
+	<string name="quick_settings_expanded_desktop_label">Расширенный рабочий стол</string>
+    <string name="quick_settings_expanded_desktop">Расширенный</string>
+    <string name="quick_settings_expanded_desktop_off">Нормально</string>
+	<string name="onthego_notif_ticker">Режим-На-Ходу активировать</string>
+    <string name="onthego_notif_title">Режим-На-Ходу активный</string>
+    <string name="onthego_notif_stop">Стоп</string>
+    <string name="onthego_notif_options">Опции</string>
+    <string name="onthego_notif_error">Невозможно начать Режим-На-Ходу</string>
+    <string name="onthego_notif_restart">Перезапуск Режим-На-Ходу</string>
+    <string name="onthego_notif_camera_changed">Изменить режим камеры</string>
+    <string name="onthego_transparency">Прозрачность</string>
+    <string name="onthego_front_camera">Использовать фронтальную камеру</string>
+	<string name="tasklist_killall">Убрать все</string>
+	<string name="task_manager_title">Диспетчер задач</string>
+	<string name="quick_settings_appcirclebar_title">Круговая панель</string>
+    <string name="quick_settings_appcirclebar_on">Круговая панель Вкл</string>
+    <string name="quick_settings_appcirclebar_off">Круговая панель Выкл</string>
+    <string name="quick_settings_app_sidebar">Боковая панель</string>
+    <string name="quick_settings_appsidebar_on">Боковая панель Вкл</string>
+    <string name="quick_settings_appsidebar_off">Боковая панель Выкл</string>
+	<string name="quick_settings_pie_on">Pie Вкл</string>
+    <string name="quick_settings_pie_off">Pie Выкл</string>
+</resources>

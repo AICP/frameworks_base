@@ -4488,7 +4488,7 @@ public final class Settings {
         public static final String MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD =
                 "mute_annoying_notifications_threshold";
 
-	/**
+	    /**
          * Statusbar AICP logo
          * @hide
          */
@@ -4705,17 +4705,17 @@ public final class Settings {
          */
         public static final String BRIGHTNESS_ICON = "brightness_icon";
 
-	/**
-	 * Enable blocking wakelock
-	 * @hide
-	 */
-	public static final String WAKELOCK_BLOCKING_ENABLED = "wakelock_blocking_enabled";
+	   /**
+	    * Enable blocking wakelock
+	    * @hide
+	    */
+	   public static final String WAKELOCK_BLOCKING_ENABLED = "wakelock_blocking_enabled";
 
-	/**
-	 * List of wakelock blocks selected
-	 * @hide
-	 */
-	public static final String WAKELOCK_BLOCKING_LIST = "wakelock_blocking_list";
+	   /**
+	    * List of wakelock blocks selected
+	    * @hide
+	    */
+	   public static final String WAKELOCK_BLOCKING_LIST = "wakelock_blocking_list";
 
         /**
          * Whether or not to use the app sidebar
@@ -4816,6 +4816,12 @@ public final class Settings {
          * @hide
          */
         public static final String TRANSPARENT_POWER_MENU = "transparent_power_menu";
+
+        /**
+         * Whether to display dashboard tiles in a double line layout
+         * @hide
+         */
+        public static final String DASHBOARD_TILEVIEW_DOUBLE_LINES = "dashboard_tileview_double_lines";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2015 AICP
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- The text for the button in the notification window-shade that clears
+         all of the currently visible notifications. [CHAR LIMIT=10]-->
+    <string name="clear_recents">Összes legutóbbi bezárása</string>
+
+    <!-- Battery Saver Dimss -->
+    <string name="battery_saver_dismiss_title">Elutasítva</string>
+    <string name="battery_saver_notification_action_text_short">Kikapcsolva</string>
+
+    <!-- Screenshot Delete Toast -->
+    <string name="delete_screenshot_toast">Képernyőkép törölve</string>
+
+    <!-- App circle sidebar -->
+    <string name="app_float_maximize_item_title">Maximalizálás</string>
+    <string name="app_float_item_title">Lebegő nézet</string>
+    <string name="app_stop_item_title">Alkalmazás kilővése</string>
+
+    <!-- PA Pie controls -->
+    <string name="pie_date_format">ccc, dd MMM yyyy</string>
+    <string name="pie_hour_format_12">hh:mm</string>
+    <string name="pie_hour_format_24">HH:mm</string>
+    <string name="pie_am_pm">a</string>
+
+    <!-- Task Manager -->
+    <string name="task_manager_title">Feladat kezelő</string>
+    <string name="message_switch_fail">Nem lehet váltani ezt az alkalmazást, mivel nincs interfész.</string>
+    <string name="tasklist_killall">Összes kilővése</string>
+    <string name="tasklist_memory_usage">"Szabad/Teljes Memória: <xliff:g id="number">%s</xliff:g> / <xliff:g id="name">%s</xliff:g>"</string>
+    <string name="message_keep_one_launcher">Meg kell tartanod legalább egy kezdő alkalmazást!</string>
+
+    <!-- On The Go -->
+    <string name="onthego_notif_ticker">Menet közbeni aktiválva</string>
+    <string name="onthego_notif_title">Menet közbeni aktív</string>
+    <string name="onthego_notif_stop">Állj</string>
+    <string name="onthego_notif_options">Opciók</string>
+    <string name="onthego_notif_error">Nem sikerült elindítani a Menet közbenit</string>
+    <string name="onthego_notif_restart">Menet közbeni újraindítása</string>
+    <string name="onthego_notif_camera_changed">Kamera mód változtatva</string>
+    <string name="onthego_transparency">Áttetsző</string>
+    <string name="onthego_front_camera">Első kamera használata</string>
+    <string name="onthego_service_toggle">Szolgáltatás automatikus újraindítása</string>
+    <!-- To do: Add QS OnTheGo
+    <string name="quick_settings_onthego_back">Rear Camera</string>
+    <string name="quick_settings_onthego_front">Front Camera</string>-->
+
+    <!-- Quick settings -->
+    <string name="quick_settings_brightness_label">Fényerő</string>
+    <string name="quick_settings_screen_off_label">Képernyő ki</string>
+    <string name="quick_settings_screenshot_label">Képernyőkép</string>
+
+    <!-- Expanded desktop tile -->
+    <string name="quick_settings_expanded_desktop_label">Kiterjesztett asztal</string>
+    <string name="quick_settings_expanded_desktop">Kiterjesztett</string>
+    <string name="quick_settings_expanded_desktop_off">Normál</string>
+    <string name="quick_settings_expanded_desktop_detail_title">Kiterjesztett asztal mód</string>
+    <string name="quick_settings_expanded_hide_status">Állapot sáv rejtése</string>
+    <string name="quick_settings_expanded_hide_navigation">Navigációs sáv rejtése</string>
+    <string name="quick_settings_expanded_hide_both">Rejti együtt</string>
+    <string name="accessibility_quick_settings_expanded_desktop_off">Kiterjesztett asztal tiltva</string>
+
+    <!-- Content description of the brightness tile in quick settings (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_brightness">Hangerő panel.</string>
+
+    <!-- Content description of the screen off tile in quick settings (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_screen_off">Képernyő ki.</string>
+
+    <!-- Content description of the screenshot tile in quick settings (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_screenshot">Képernyőkép.</string>
+
+    <!-- Music QS Tile -->
+    <string name="quick_settings_music_label">Zene</string>
+    <string name="quick_settings_music_play">Lejátszás</string>
+    <string name="quick_settings_music_pause">Pause</string>
+
+    <!-- Reboot/Recovery QS Tile -->
+    <string name="quick_settings_reboot_label">Újraindítás</string>
+    <string name="quick_settings_reboot_recovery_label">Recovery</string>
+
+    <!-- LTE Tile -->
+    <string name="qs_lte_label">LTE</string>
+    <string name="lte_on">LTE BE</string>
+    <string name="lte_off">LTE KI</string>
+
+    <!-- App sidebar -->
+    <string name="default_folder_text">Mappa</string>
+    <string name="title_activity_sidebar_configuration">Appbar content setup</string>
+    <string name="action_save">Mentés</string>
+    <string name="toast_items_saved">Alkalmazás sáv elemei mentve.</string>
+    <string name="content_setup_instructions">Elem hozzáadás az Alkalmazás sávhoz a jobb oldali elemen hosszan nyomva és behúzva lehetséges.\n\nElemek egyesítéséshez mappába, húzd rá egy meglévő elemre az Alkalmazás sávban.\n\nElem eltávolításához egyszerűen húzd ki az \@alklamazás sávból.</string>
+    <string name="content_setup_dismiss">Folytatás</string>
+    <string name="toast_not_installed">Alkalmazás nincs installálva</string>
+
+    <!-- NavBar tile -->
+    <string name="quick_settings_navbar_title">Navigációs sáv</string>
+    <string name="quick_settings_navbar_on">Navigációs sáv be</string>
+    <string name="quick_settings_navbar_off">Navigációs sáv ki</string>
+
+    <!-- App Circle Bar tile -->
+    <string name="quick_settings_appcirclebar_title">Alkalmazás körsáv</string>
+    <string name="quick_settings_appcirclebar_on">Alkalmazás körsáv be</string>
+    <string name="quick_settings_appcirclebar_off">Alkalmazás körsáv ki</string>
+
+    <!-- App Side Bar tile -->
+    <string name="quick_settings_app_sidebar">Alkalmazás oldalsáv</string>
+    <string name="quick_settings_appsidebar_on">Alkalmazás oldalsáv be</string>
+    <string name="quick_settings_appsidebar_off">Alkalmazás oldalsáv ki</string>
+
+    <!-- Pie tile -->
+    <string name="quick_settings_pie_title">Pie</string>
+    <string name="quick_settings_pie_on">Pie be</string>
+    <string name="quick_settings_pie_off">Pie ki</string>
+
+</resources>
+

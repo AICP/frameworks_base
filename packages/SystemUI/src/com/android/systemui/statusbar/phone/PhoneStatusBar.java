@@ -1492,9 +1492,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                         mHandler);
             }
         }
-        if (mWeatherController == null) {
-            mWeatherController = new WeatherControllerImpl(mContext);
-        }
 
         mWeatherTempStyle = Settings.System.getIntForUser(
                 mContext.getContentResolver(), Settings.System.STATUS_BAR_WEATHER_TEMP_STYLE, 0,

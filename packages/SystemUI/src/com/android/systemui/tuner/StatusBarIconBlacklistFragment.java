@@ -16,19 +16,41 @@
 package com.android.systemui.tuner;
 
 import android.annotation.Nullable;
+import android.content.ContentResolver;
 import android.os.Bundle;
 import android.preference.Preference;
+import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceFragment;
-
 import android.preference.PreferenceGroup;
+import android.preference.PreferenceScreen;
+import android.preference.SwitchPreference;
+import android.provider.Settings;
+
+import com.android.internal.util.aicp.AicpUtils;
 import com.android.systemui.R;
 import com.android.systemui.statusbar.phone.StatusBarIconController;
 
 public class StatusBarIconBlacklistFragment extends PreferenceFragment {
+
+    private static final String SHOW_FOURG = "show_fourg";
+
+    private SwitchPreference mShowFourG;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.tuner_statusbar_icons);
+        PreferenceScreen prefSet = getPreferenceScreen();
+
+        final ContentResolver resolver = getActivity().getContentResolver();
+
+        mShowFourG = (SwitchPreference) findPreference(SHOW_FOURG);
+        if (AicpUtils.isWifiOnly(getActivity())) {
+            prefSet.removePreference(mShowFourG);
+        } else {
+            mShowFourG.setChecked((Settings.System.getInt(resolver,
+                    Settings.System.SHOW_FOURG, 0) == 1));
+        }
     }
 
     @Override
@@ -67,5 +89,16 @@ public class StatusBarIconBlacklistFragment extends PreferenceFragment {
                 registerPrefs((PreferenceGroup) pref);
             }
         }
+    }
+
+    @Override
+    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+        if  (preference == mShowFourG) {
+            boolean checked = ((SwitchPreference)preference).isChecked();
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.SHOW_FOURG, checked ? 1:0);
+            return true;
+        }
+        return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 }

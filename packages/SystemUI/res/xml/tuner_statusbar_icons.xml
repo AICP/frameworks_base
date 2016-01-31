@@ -17,6 +17,16 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
                   android:title="@string/status_bar">
 
+    <SwitchPreference
+            android:key="show_fourg"
+            android:title="@string/show_fourg_title"
+            android:summary="@string/show_fourg_summary"
+            android:defaultValue="false" />
+
+    <PreferenceCategory
+            android:key="hide_statusbar_items"
+            android:title="@string/statusbar_tuner_category_title">
+
     <com.android.systemui.tuner.StatusBarSwitch
             android:key="cast"
             android:title="@string/quick_settings_cast_title"/>
@@ -56,5 +66,7 @@
     <com.android.systemui.tuner.StatusBarSwitch
             android:key="airplane"
             android:title="@string/status_bar_airplane"/>
+
+    </PreferenceCategory>
 
 </PreferenceScreen>

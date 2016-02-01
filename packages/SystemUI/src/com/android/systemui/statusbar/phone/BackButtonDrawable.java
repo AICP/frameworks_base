@@ -19,7 +19,6 @@ import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.annotation.NonNull;
 import android.app.ActivityManager;
-import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Rect;
@@ -50,7 +49,7 @@ public class BackButtonDrawable extends Drawable {
         }
     };
 
-    public BackButtonDrawable(Context context, Drawable wrappedDrawable) {
+    public BackButtonDrawable(Drawable wrappedDrawable) {
         mWrappedDrawable = wrappedDrawable;
     }
 

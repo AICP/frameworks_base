@@ -124,4 +124,9 @@
     <string name="quick_settings_pie_on">Le menu circulaire est activé</string>
     <string name="quick_settings_pie_off">Le menu circulaire est désactivé</string>
 
+    <!-- 4G LTE switch -->
+    <string name="show_fourg_title">Afficher l\'icône de 4G plutôt que l\'icône LTE</string>
+    <string name="show_fourg_summary">Remplacer l\'indicateur LTE dans la barre d\'état par celle de 4G</string>
+    <string name="statusbar_tuner_category_title">Cacher certains éléments de la barre d\'état</string>
+
 </resources>

@@ -4413,6 +4413,12 @@ public final class Settings {
         public static final String NAVIGATION_BAR_TINT = "navigation_bar_tint";
 
         /**
+         * Navigation bar button color master switch
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_TINT_SWITCH = "navigation_bar_tint_switch";
+
+        /**
          * Defines the shortcuts to be shown on lockscreen
          * Usage is like this: target:icon|target:icon|target:icon
          * if :icon is not set, default application icon will be used

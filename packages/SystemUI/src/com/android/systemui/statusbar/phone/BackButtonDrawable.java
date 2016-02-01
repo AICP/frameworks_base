@@ -19,10 +19,12 @@ import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.annotation.NonNull;
 import android.app.ActivityManager;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.provider.Settings;
 import android.util.FloatProperty;
 import android.util.Property;
 
@@ -48,7 +50,7 @@ public class BackButtonDrawable extends Drawable {
         }
     };
 
-    public BackButtonDrawable(Drawable wrappedDrawable) {
+    public BackButtonDrawable(Context context, Drawable wrappedDrawable) {
         mWrappedDrawable = wrappedDrawable;
     }
 
@@ -62,7 +64,11 @@ public class BackButtonDrawable extends Drawable {
         canvas.rotate(mRotation);
         canvas.translate(- boundsCenterX, - boundsCenterY);
         reportedColor = KeyButtonView.reportColor();
-        mWrappedDrawable.setTint(reportedColor);
+        if (reportedColor != -1) {
+            mWrappedDrawable.setTint(reportedColor);
+        } else {
+            mWrappedDrawable.setTintList(null);
+        }
         mWrappedDrawable.draw(canvas);
     }
 

@@ -2532,7 +2532,6 @@
         <item>-44</item>
     </integer-array>
 
-
     <!-- The BT name of the keyboard packaged with the device. If this is defined, SystemUI will
          automatically try to pair with it when the device exits tablet mode. -->
     <string translatable="false" name="config_packagedKeyboardName"></string>
@@ -2540,4 +2539,7 @@
 
     <!-- Use alternative way to blur lockscreen -->
     <bool name="config_use_stackblur">false</bool>
+
+    <!-- Show battery fully charged notification -->
+    <bool name="config_showBatteryFullyChargedNotification">false</bool>
 </resources>

@@ -1083,7 +1083,12 @@ public class TaskStackView extends FrameLayout implements TaskStack.TaskStackCal
 
     /** Hides the dismiss button */
     void hideDismissAllButton(final Runnable postAnimRunnable) {
-        if (mDismissAllButton == null) return;
+        if (mDismissAllButton == null) {
+            if (postAnimRunnable != null) {
+                postAnimRunnable.run();
+            }
+            return;
+        }
 
         mDismissAllButtonAnimating = true;
         mDismissAllButton.animate()

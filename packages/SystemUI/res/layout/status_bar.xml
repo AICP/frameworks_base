@@ -90,7 +90,7 @@
                     android:visibility="gone"
                     />
                 <com.android.systemui.statusbar.widget.CarrierLabel
-                    android:id="@+id/statusbar_carrier_text"
+                    android:id="@+id/left_statusbar_carrier_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -161,6 +161,16 @@
                 android:singleLine="true"
                 android:paddingStart="7dp"
                 android:gravity="center_vertical|start"
+                />
+            <com.android.systemui.statusbar.widget.CarrierLabel
+                android:id="@+id/statusbar_carrier_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textAppearance="@style/TextAppearance.StatusBar.CarrierLabel"
+                android:paddingStart="4dp"
+                android:visibility="gone"
+                android:singleLine="true"
                 />
             <ImageView
                 android:id="@+id/aicp_logo"

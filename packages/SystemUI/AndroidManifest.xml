@@ -163,6 +163,11 @@
     <!-- AppSidebar -->
     <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
 
+    <!-- Themes tile -->
+    <uses-permission android:name="android.permission.ACCESS_THEME_MANAGER" />
+    <uses-permission android:name="android.permission.READ_THEMES" />
+    <uses-permission android:name="android.permission.WRITE_THEMES" />
+
     <application
         android:name=".SystemUIApplication"
         android:persistent="true"

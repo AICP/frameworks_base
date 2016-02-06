@@ -271,6 +271,10 @@ public class KeyguardStatusView extends GridLayout {
     public void hideLockscreenItems() {
         final ContentResolver resolver = getContext().getContentResolver();
         final Resources res = getContext().getResources();
+        AlarmManager.AlarmClockInfo nextAlarm =
+                mAlarmManager.getNextAlarmClock(UserHandle.USER_CURRENT);
+        boolean showAlarm = Settings.System.getInt(resolver,
+                Settings.System.HIDE_LOCKSCREEN_ALARM, 1) == 1;
         boolean showClock = Settings.System.getInt(resolver,
                 Settings.System.HIDE_LOCKSCREEN_CLOCK, 1) == 1;
         boolean showDate = Settings.System.getInt(resolver,
@@ -281,6 +285,9 @@ public class KeyguardStatusView extends GridLayout {
 
         mDateView = (TextClock) findViewById(R.id.date_view);
         mDateView.setVisibility(showDate ? View.VISIBLE : View.GONE);
+
+        mAlarmStatusView = (TextView) findViewById(R.id.alarm_status);
+        mAlarmStatusView.setVisibility(showAlarm && nextAlarm != null ? View.VISIBLE : View.GONE);
     }
 
     // DateFormat.getBestDateTimePattern is extremely expensive, and refresh is called often.

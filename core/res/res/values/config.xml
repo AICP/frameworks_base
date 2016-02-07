@@ -2538,7 +2538,7 @@
     <integer name="config_dayColorTemperature">6500</integer>
 
     <!-- Use alternative way to blur lockscreen -->
-    <bool name="config_use_stackblur">false</bool>
+    <bool name="config_use_stackblur">true</bool>
 
     <!-- Show battery fully charged notification -->
     <bool name="config_showBatteryFullyChargedNotification">false</bool>

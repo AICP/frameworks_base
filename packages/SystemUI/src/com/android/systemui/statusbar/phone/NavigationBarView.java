@@ -160,6 +160,7 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
     private OnClickListener mCameraClickListener;
     private OnClickListener mScreenShotClickListener;
     private OnClickListener mImmersiveClickListener;
+    private OnClickListener mAppPickerClickListener;
 
     private SettingsObserver mSettingsObserver;
     private boolean mShowDpadArrowKeys;
@@ -630,6 +631,7 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
         setButtonWithTagVisibility(NavbarEditor.NAVBAR_TORCH, !disableRecent);
         setButtonWithTagVisibility(NavbarEditor.NAVBAR_CAMERA, !disableRecent);
         setButtonWithTagVisibility(NavbarEditor.NAVBAR_SCREENSHOT, !disableRecent);
+        setButtonWithTagVisibility(NavbarEditor.NAVBAR_APP_PICKER, !disableRecent);
         setButtonWithTagVisibility(NavbarEditor.NAVBAR_SEARCH, !disableSearch);
     }
 
@@ -953,9 +955,9 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
     void setListeners(OnClickListener recentsClickListener, OnTouchListener recentsPreloadListener,
                       OnLongClickListener recentsBackListener, OnTouchListener homeSearchActionListener,
                       OnLongClickListener longPressHomeListener, OnClickListener notificationsClickListener,
-                      OnLongClickListener notificationsLongListener,OnClickListener torchClickListener,
+                      OnLongClickListener notificationsLongListener, OnClickListener torchClickListener,
                       OnClickListener cameraClickListener, OnClickListener screenshotClickListener,
-                      OnClickListener immersiveClickListener) {
+                      OnClickListener immersiveClickListener, OnClickListener appPickerClickListener) {
         mRecentsClickListener = recentsClickListener;
         mRecentsPreloadListener = recentsPreloadListener;
         mHomeSearchActionListener = homeSearchActionListener;
@@ -967,6 +969,7 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
         mCameraClickListener = cameraClickListener;
         mScreenShotClickListener = screenshotClickListener;
         mImmersiveClickListener = immersiveClickListener;
+        mAppPickerClickListener = appPickerClickListener;
         updateButtonListeners();
     }
 
@@ -1029,6 +1032,10 @@ public class NavigationBarView extends LinearLayout implements BaseStatusBar.Nav
         View immersivetView = mCurrentView.findViewWithTag(NavbarEditor.NAVBAR_EXPAND);
         if (immersivetView != null) {
             immersivetView.setOnClickListener(mImmersiveClickListener);
+        }
+        View appPickerView = mCurrentView.findViewWithTag(NavbarEditor.NAVBAR_APP_PICKER);
+        if (appPickerView != null) {
+            appPickerView.setOnClickListener(mAppPickerClickListener);
         }
     }
 

@@ -40,7 +40,7 @@
 
     <!-- Task Manager -->
     <string name="task_manager_title">Диспетчер задач</string>
-    <string name="message_switch_fail">Не удается переключить эту задачу , потому что она не имеет интерфейса.</string>
+    <string name="message_switch_fail">Не удается переключить эту задачу, потому что она не имеет интерфейса.</string>
     <string name="tasklist_killall">Убрать все</string>
     <string name="tasklist_memory_usage">"Свободно/Всего памяти: <xliff:g id="number">%s</xliff:g> / <xliff:g id="name">%s</xliff:g>"</string>
     <string name="message_keep_one_launcher">Should keep at least one home activity!</string>
@@ -131,5 +131,14 @@
     <string name="show_fourg_title">Показать 4G вместо LTE</string>
     <string name="show_fourg_summary">Заменяет индикатор LTE на 4G</string>
     <string name="statusbar_tuner_category_title">Скрыть</string>
+
+	<!-- Themes tile -->
+	<string name="quick_settings_themes">Темы</string>
+    <string name="quick_settings_themes_icon_packs">Иконки</string>
+    <string name="quick_settings_themes_app_theme">Приложение</string>
+    <string name="quick_settings_themes_system_theme">Темы системы</string>
+    <string name="quick_settings_themes_changing_complete">Тема успешно изменена</string>
+    <string name="quick_settings_themes_default_theme">По Умолчанию</string>
+    <string name="quick_settings_themes_match_system">Подборка системных тем</string>
 
 </resources>

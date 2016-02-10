@@ -56,10 +56,9 @@
     <string name="onthego_transparency">Transparenz</string>
     <string name="onthego_front_camera">Benutze vordere Kamera</string>
     <string name="onthego_service_toggle">Dienst automatisch neustarten</string>
-
-    <!-- To do: Add QS OnTheGo -->
-    <!--<string name="quick_settings_onthego_back">Hintere Kamera</string>-->
-    <!--<string name="quick_settings_onthego_front">Vordere Kamera</string>-->
+    <!-- To do: Add QS OnTheGo
+    <string name="quick_settings_onthego_back">Hintere Kamera</string>
+    <string name="quick_settings_onthego_front">Vordere Kamera</string>-->
 
     <!-- Quick settings -->
     <string name="quick_settings_brightness_label">Helligkeit</string>
@@ -130,7 +129,7 @@
 
     <!-- 4G LTE switch -->
     <string name="show_fourg_title">Zeige 4G an Stelle von LTE</string>
-    <string name="show_fourg_summary">Ersetzt den &quot;LTE&quot;-Indikator in der Statusleiste durch &quot;4G&quot;</string>
+    <string name="show_fourg_summary">Ersetzt den \"LTE\"-Indikator in der Statusleiste durch \"4G\"</string>
     <string name="statusbar_tuner_category_title">Angezeigte Symbole in der Statusleiste</string>
 
     <!-- Dialog title for navigation bar button selection -->
@@ -156,6 +155,13 @@
 
     <!-- Content description of the power button for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_expand">Vollbildmodus</string>
+
+    <!-- Dialog title for navigation bar button selection -->
+    <string name="navbar_app_picker">Applikation wählen</string>
+
+    <!-- Content description of the Application picker button for accessibility
+    (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_app_picker">Applikation wählen</string>
 
     <!-- Themes QS Tile -->
     <string name="quick_settings_themes">Designs</string>

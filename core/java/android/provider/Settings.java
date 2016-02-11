@@ -4193,10 +4193,10 @@ public final class Settings {
 
         /**
          * Locations of the Pa Pie in the screen.
-         * (1<<0) = LEFT
-         * (1<<1) = BOTTOM
-         * (1<<2) = RIGHT
-         * (1<<3) = TOP
+         * (0) = LEFT
+         * (1) = BOTTOM
+         * (2) = RIGHT
+         * (3) = TOP
          * Default: LEFT
          * @hide
          */
@@ -4615,6 +4615,14 @@ public final class Settings {
          * @hide
          */
         public static final String CLOCK_USE_SECOND = "clock_use_second";
+
+        /**
+         * Position of date
+         * 0 - Left of clock
+         * 1 - Right of clock
+         * @hide
+         */
+        public static final String STATUSBAR_CLOCK_DATE_POSITION = "statusbar_clock_date_position";
 
         /**
          * Whether or not to launch default music player when headset is connected

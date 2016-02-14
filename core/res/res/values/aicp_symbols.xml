@@ -114,4 +114,7 @@
   <!-- System fonts -->
   <java-symbol type="array" name="config_fontPackages" />
   <java-symbol type="string" name="fontservice_incompatible_font" />
+
+  <!-- Hardware key binding -->
+  <java-symbol type="integer" name="config_deviceHardwareKeys" />
 </resources>

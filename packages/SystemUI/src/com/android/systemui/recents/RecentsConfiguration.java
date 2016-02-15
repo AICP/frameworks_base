@@ -76,7 +76,6 @@ public class RecentsConfiguration {
     public int maxNumTasksToLoad;
 
     /** Search bar */
-    public boolean searchBarEnabled = true;
     public int searchBarSpaceHeightPx;
 
     /** Task stack */
@@ -294,13 +293,6 @@ public class RecentsConfiguration {
         svelteLevel = res.getInteger(R.integer.recents_svelte_level);
 
         updateShowSearch(context);
-    }
-
-    public boolean updateShowSearch(Context context) {
-        boolean wasEnabled = searchBarEnabled;
-        searchBarEnabled = CMSettings.System.getInt(context.getContentResolver(),
-                CMSettings.System.RECENTS_SHOW_SEARCH_BAR, 1) == 1;
-        return wasEnabled != searchBarEnabled;
     }
 
     /** Updates the system insets */

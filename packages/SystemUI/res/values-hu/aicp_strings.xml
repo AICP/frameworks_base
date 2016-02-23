@@ -98,15 +98,6 @@
     <string name="lte_on">LTE BE</string>
     <string name="lte_off">LTE KI</string>
 
-    <!-- App sidebar -->
-    <string name="default_folder_text">Mappa</string>
-    <string name="title_activity_sidebar_configuration">Appbar content setup</string>
-    <string name="action_save">Mentés</string>
-    <string name="toast_items_saved">Alkalmazás sáv elemei mentve.</string>
-    <string name="content_setup_instructions">Elem hozzáadás az Alkalmazás sávhoz a jobb oldali elemen hosszan nyomva és behúzva lehetséges.\n\nElemek egyesítéséshez mappába, húzd rá egy meglévő elemre az Alkalmazás sávban.\n\nElem eltávolításához egyszerűen húzd ki az \@alklamazás sávból.</string>
-    <string name="content_setup_dismiss">Folytatás</string>
-    <string name="toast_not_installed">Alkalmazás nincs installálva</string>
-
     <!-- NavBar tile -->
     <string name="quick_settings_navbar_title">Navigációs sáv</string>
     <string name="quick_settings_navbar_on">Navigációs sáv be</string>
@@ -117,15 +108,60 @@
     <string name="quick_settings_appcirclebar_on">Alkalmazás körsáv be</string>
     <string name="quick_settings_appcirclebar_off">Alkalmazás körsáv ki</string>
 
-    <!-- App Side Bar tile -->
-    <string name="quick_settings_app_sidebar">Alkalmazás oldalsáv</string>
-    <string name="quick_settings_appsidebar_on">Alkalmazás oldalsáv be</string>
-    <string name="quick_settings_appsidebar_off">Alkalmazás oldalsáv ki</string>
-
     <!-- Pie tile -->
     <string name="quick_settings_pie_title">Pie</string>
     <string name="quick_settings_pie_on">Pie be</string>
     <string name="quick_settings_pie_off">Pie ki</string>
+
+    <!-- 4G LTE switch -->
+    <string name="show_fourg_title">4G mutatása LTE helyett</string>
+    <string name="show_fourg_summary">LTE kijelzést az állapot sávon 4G-re cseréli</string>
+    <string name="statusbar_tuner_category_title">Rejtés az állapot sávon</string>
+
+    <!-- Dialog title for navigation bar button selection -->
+    <string name="navbar_torch">Zseblámpa</string>
+
+    <!-- Content description of the power button for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_torch">Zseblámpa</string>
+
+    <!-- Dialog title for navigation bar button selection -->
+    <string name="navbar_camera">Kamera</string>
+
+    <!-- Content description of the power button for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_camera">Kamera</string>
+
+    <!-- Dialog title for navigation bar button selection -->
+    <string name="navbar_screenshot">Képernyőkép</string>
+
+    <!-- Content description of the power button for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_screenshot">Képernyőkép</string>
+
+    <!-- Dialog title for navigation bar button selection -->
+    <string name="navbar_expand">Magával ragadó Mód</string>
+
+    <!-- Content description of the power button for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_expand">Magával ragadó Mód</string>
+
+    <!-- Dialog title for navigation bar button selection -->
+    <string name="navbar_app_picker">Alkalmazás kijelölő</string>
+
+    <!-- Content description of the Application picker button for accessibility
+    (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_app_picker">Alkalmazás kijelölő</string>
+
+    <!-- Themes QS Tile -->
+    <string name="quick_settings_themes">Témák</string>
+    <string name="quick_settings_themes_icon_packs">Ikon csomagok</string>
+    <string name="quick_settings_themes_app_theme">Alkalmazás téma</string>
+    <string name="quick_settings_themes_system_theme">Rendszer téma</string>
+    <string name="quick_settings_themes_default_theme">Alapértelmezett</string>
+    <string name="quick_settings_themes_match_system">Összeillő rendszer téma</string>
+
+    <!-- Sound QS Tile -->
+    <string name="quick_settings_sound_label">Hang</string>
+    <string name="quick_settings_sound_ring">Csengés</string>
+    <string name="quick_settings_sound_vibrate">Rezgés</string>
+    <string name="quick_settings_sound_silent">Csendes</string>
 
 </resources>
 

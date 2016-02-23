@@ -3706,6 +3706,12 @@ public final class Settings {
         public static final String RECENTS_FULL_SCREEN = "recents_full_screen";
 
         /**
+        * volume answer.
+        * @hide
+        */
+        public static final String ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER = "call_volume_answer";
+
+        /**
          * Whether to display clock while recents are in full screen
          * @hide
          */

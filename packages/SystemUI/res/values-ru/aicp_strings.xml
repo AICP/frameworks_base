@@ -132,13 +132,50 @@
     <string name="show_fourg_summary">Заменяет индикатор LTE на 4G</string>
     <string name="statusbar_tuner_category_title">Скрыть</string>
 
-	<!-- Themes tile -->
-	<string name="quick_settings_themes">Темы</string>
+	<!-- Dialog title for navigation bar button selection -->
+    <string name="navbar_torch">Фонарик</string>
+
+    <!-- Content description of the power button for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_torch">Фонарик</string>
+
+    <!-- Dialog title for navigation bar button selection -->
+    <string name="navbar_camera">Камера</string>
+
+    <!-- Content description of the power button for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_camera">Камера</string>
+
+    <!-- Dialog title for navigation bar button selection -->
+    <string name="navbar_screenshot">Скриншот</string>
+
+    <!-- Content description of the power button for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_screenshot">Скриншот</string>
+
+    <!-- Dialog title for navigation bar button selection -->
+    <string name="navbar_expand">Режим Immersive</string>
+
+    <!-- Content description of the power button for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_expand">Режим Immersive</string>
+
+    <!-- Dialog title for navigation bar button selection -->
+    <string name="navbar_app_picker">Application picker</string>
+
+    <!-- Content description of the Application picker button for accessibility
+    (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_app_picker">Application picker</string>
+
+    <!-- Themes QS Tile -->
+    <string name="quick_settings_themes">Темы</string>
     <string name="quick_settings_themes_icon_packs">Иконки</string>
     <string name="quick_settings_themes_app_theme">Приложение</string>
     <string name="quick_settings_themes_system_theme">Темы системы</string>
     <string name="quick_settings_themes_changing_complete">Тема успешно изменена</string>
     <string name="quick_settings_themes_default_theme">По Умолчанию</string>
     <string name="quick_settings_themes_match_system">Подборка системных тем</string>
+
+    <!-- Sound QS Tile -->
+    <string name="quick_settings_sound_label">Звук</string>
+    <string name="quick_settings_sound_ring">Ригтон</string>
+    <string name="quick_settings_sound_vibrate">Вибрация</string>
+    <string name="quick_settings_sound_silent">Беззвучный</string>
 
 </resources>

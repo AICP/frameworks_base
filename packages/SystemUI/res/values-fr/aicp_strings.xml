@@ -95,15 +95,6 @@
     <string name="lte_on">LTE ACTIVE </string>
     <string name="lte_off">LTE DESACTIVE</string>
 
-    <!-- App sidebar -->
-    <string name="default_folder_text">Dossier</string>
-    <string name="title_activity_sidebar_configuration">Contenu de la mise en place de la barre d\'application</string>
-    <string name="action_save">Sauvegarder</string>
-    <string name="toast_items_saved">Les objets de la barre d\'application ont été sauvegarder.</string>
-    <string name="content_setup_instructions">Ajouter des objets dans la barre d\'application en faisant en appui long sur la droite et en le glissant dans la barre d\'application.\n\nRegrouper les objets dans un dossier en glissant un objet dans un objet déjà crée dans la barre d\'application\n\nPour enlever un objet,glisser le en dehors de la barre d\'application.</string>
-    <string name="content_setup_dismiss">Continuer</string>
-    <string name="toast_not_installed">L\'application n\'est pas instalée</string>
-
     <!-- NavBar tile -->
     <string name="quick_settings_navbar_title">Barre de navigation</string>
     <string name="quick_settings_navbar_on">La barre de navigation est activée</string>
@@ -113,11 +104,6 @@
     <string name="quick_settings_appcirclebar_title">Cercle d\'applications</string>
     <string name="quick_settings_appcirclebar_on">Le cercle d\'applications est activé</string>
     <string name="quick_settings_appcirclebar_off">Le cercle d\'applications est désactivé</string>
-
-    <!-- App Side Bar tile -->
-    <string name="quick_settings_app_sidebar">Barre d\'application latérale</string>
-    <string name="quick_settings_appsidebar_on">La barre d\'application latérale est activé</string>
-    <string name="quick_settings_appsidebar_off">La barre d\'application latérale est désactivée</string>
 
     <!-- Pie tile -->
     <string name="quick_settings_pie_title">Menu circulaire</string>
@@ -168,5 +154,11 @@
     <string name="quick_settings_themes_changing_complete">Changement de thème effectué</string>
     <string name="quick_settings_themes_default_theme">Par défaut</string>
     <string name="quick_settings_themes_match_system">Faire correspondre avec le thème du système</string>
+
+    <!-- Sound QS Tile -->
+    <string name="quick_settings_sound_label">Son</string>
+    <string name="quick_settings_sound_ring">Sonnerie</string>
+    <string name="quick_settings_sound_vibrate">Vibreur</string>
+    <string name="quick_settings_sound_silent">Silencieux</string>
 
 </resources>

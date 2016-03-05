@@ -23,6 +23,9 @@
     <!-- label for item that takes On-The-Go in the phone options dialog -->
     <string name="global_action_onthego">Режим "На ходу"</string>
 
+    <!-- Powermenu Torch -->
+    <string name="global_action_torch">Фонарик</string>
+
     <!-- AOKP custom system animations -->
     <string name="animation_fade">Стирание</string>
     <string name="animation_slide_right">Слайд с права</string>

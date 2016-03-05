@@ -41,7 +41,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.content.pm.ThemeUtils;
 import android.content.res.Resources;
 import android.database.ContentObserver;
 import android.hardware.Sensor;
@@ -86,6 +85,7 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.Iterator;
 
+import org.cyanogenmod.internal.util.ThemeUtils;
 import cyanogenmod.providers.CMSettings;
 import libcore.util.Objects;
 

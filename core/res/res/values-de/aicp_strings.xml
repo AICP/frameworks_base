@@ -23,6 +23,9 @@
     <!-- label for item that takes On-The-Go in the phone options dialog -->
     <string name="global_action_onthego">On-The-Go Modus</string>
 
+   <!-- Powermenu Torch -->
+    <string name="global_action_torch">Taschenlampe</string>
+
     <!-- AOKP custom system animations -->
     <string name="animation_fade">Verblassen</string>
     <string name="animation_slide_right">Gleiten von rechts</string>

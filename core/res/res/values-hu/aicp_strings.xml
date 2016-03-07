@@ -23,6 +23,9 @@
     <!-- label for item that takes On-The-Go in the phone options dialog -->
     <string name="global_action_onthego">Menet közbeni mód</string>
 
+    <!-- Powermenu Torch -->
+    <string name="global_action_torch">Zseblámpa</string>
+
     <!-- AOKP custom system animations -->
     <string name="animation_fade">Áttűnés</string>
     <string name="animation_slide_right">Jobbról csúsztat</string>

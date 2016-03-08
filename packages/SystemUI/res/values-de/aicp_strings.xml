@@ -149,15 +149,6 @@
     (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_app_picker">Applikation wählen</string>
 
-    <!-- Themes QS Tile -->
-    <string name="quick_settings_themes">Designs</string>
-    <string name="quick_settings_themes_icon_packs">Symbol-Pakete</string>
-    <string name="quick_settings_themes_app_theme">App-Thema</string>
-    <string name="quick_settings_themes_system_theme">System-Thema</string>
-    <string name="quick_settings_themes_changing_complete">Wechsel des Designs abgeschlossen</string>
-    <string name="quick_settings_themes_default_theme">Standard</string>
-    <string name="quick_settings_themes_match_system">An System-Thema anpassen</string>
-
     <!-- Sound QS Tile -->
     <string name="quick_settings_sound_label">Ton</string>
     <string name="quick_settings_sound_ring">Klingeln</string>

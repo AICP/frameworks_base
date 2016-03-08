@@ -149,14 +149,6 @@
     (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_app_picker">Alkalmazás kijelölő</string>
 
-    <!-- Themes QS Tile -->
-    <string name="quick_settings_themes">Témák</string>
-    <string name="quick_settings_themes_icon_packs">Ikon csomagok</string>
-    <string name="quick_settings_themes_app_theme">Alkalmazás téma</string>
-    <string name="quick_settings_themes_system_theme">Rendszer téma</string>
-    <string name="quick_settings_themes_default_theme">Alapértelmezett</string>
-    <string name="quick_settings_themes_match_system">Összeillő rendszer téma</string>
-
     <!-- Sound QS Tile -->
     <string name="quick_settings_sound_label">Hang</string>
     <string name="quick_settings_sound_ring">Csengés</string>

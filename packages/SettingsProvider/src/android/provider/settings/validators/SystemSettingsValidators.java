@@ -254,5 +254,6 @@ public class SystemSettingsValidators {
         });
         VALIDATORS.put(System.LIVE_DISPLAY_HINTED, new InclusiveIntegerRangeValidator(-3, 1));
         VALIDATORS.put(System.DISPLAY_ANTI_FLICKER, BOOLEAN_VALIDATOR);
+        VALIDATORS.put(System.HIGH_TOUCH_SENSITIVITY_ENABLE, BOOLEAN_VALIDATOR);
     }
 }

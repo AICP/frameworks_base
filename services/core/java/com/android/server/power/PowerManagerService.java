@@ -534,6 +534,7 @@ public final class PowerManagerService extends SystemService
     private boolean mProximityWakeSupported;
     android.os.PowerManager.WakeLock mProximityWakeLock;
     SensorEventListener mProximityListener;
+    private boolean mForceNavbar;
 
     private PerformanceManagerInternal mPerf;
 
@@ -714,6 +715,9 @@ public final class PowerManagerService extends SystemService
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.WAKELOCK_BLOCKING_LIST),
                     false, mSettingsObserver, UserHandle.USER_ALL);
+            resolver.registerContentObserver(CMSettings.Secure.getUriFor(
+                    CMSettings.Secure.DEV_FORCE_SHOW_NAVBAR),
+                    false, mSettingsObserver, UserHandle.USER_ALL);
 
             // Go.
             readConfigurationLocked();
@@ -866,7 +870,8 @@ public final class PowerManagerService extends SystemService
         mKeyboardBrightness = CMSettings.Secure.getIntForUser(resolver,
                 CMSettings.Secure.KEYBOARD_BRIGHTNESS, mKeyboardBrightnessSettingDefault,
                 UserHandle.USER_CURRENT);
-
+        mForceNavbar = CMSettings.Secure.getIntForUser(resolver,
+                CMSettings.Secure.DEV_FORCE_SHOW_NAVBAR, 0, UserHandle.USER_CURRENT) == 1;
         mDirty |= DIRTY_SETTINGS;
     }
 
@@ -1744,7 +1749,11 @@ public final class PowerManagerService extends SystemService
                                 buttonBrightness = mButtonBrightnessOverrideFromWindowManager;
                                 keyboardBrightness = mButtonBrightnessOverrideFromWindowManager;
                             } else {
-                                buttonBrightness = mButtonBrightness;
+                                if (!mForceNavbar) {
+                                    buttonBrightness = mButtonBrightness;
+                                } else {
+                                    buttonBrightness = 0;
+                                }
                                 keyboardBrightness = mKeyboardBrightness;
                             }
 

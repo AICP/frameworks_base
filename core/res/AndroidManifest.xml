@@ -326,6 +326,9 @@
     <protected-broadcast android:name="android.app.action.DEVICE_OWNER_CHANGED" />
     <protected-broadcast android:name="org.cyanogenmod.intent.action.THEME_CHANGED" />
     <protected-broadcast android:name="android.intent.action.THEME_RESOURCES_CACHED" />
+
+    <protected-broadcast android:name="android.net.action.SHOW_NETWORK_POLICY_NOTIFICATION" />
+
     <!-- ====================================================================== -->
     <!--                          RUNTIME PERMISSIONS                           -->
     <!-- ====================================================================== -->
@@ -874,7 +877,7 @@
     <!-- @SystemApi @hide Allows an application to modify cell broadcasts through the content provider.
          <p>Not for use by third-party applications. -->
     <permission android:name="android.permission.MODIFY_CELL_BROADCASTS"
-                android:protectionLevel="signature|privileged" />
+                android:protectionLevel="signature|system" />
 
     <!-- =============================================================== -->
     <!-- Permissions for setting the device alarm                        -->

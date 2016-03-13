@@ -121,7 +121,6 @@ import com.android.systemui.SystemUI;
 import com.android.systemui.assist.AssistManager;
 import com.android.systemui.chaos.lab.gestureanywhere.GestureAnywhereView;
 import com.android.systemui.recents.Recents;
-import com.android.systemui.recents.RecentsActivity;
 import com.android.systemui.cm.SpamMessageProvider;
 import com.android.systemui.slimrecent.RecentController;
 import com.android.systemui.statusbar.NotificationData.Entry;
@@ -166,7 +165,6 @@ public abstract class BaseStatusBar extends SystemUI implements
     protected static final int MSG_TOGGLE_LAST_APP = 1026;
     protected static final int MSG_TOGGLE_KILL_APP = 1027;
     protected static final int MSG_TOGGLE_SCREENSHOT = 1028;
-    protected static final int MSG_CLEAR_RECENT_APPS = 1029;
 
     protected static final boolean ENABLE_HEADS_UP = true;
     // scores above this threshold should be displayed in heads up mode.
@@ -1301,13 +1299,6 @@ public abstract class BaseStatusBar extends SystemUI implements
     }
 
     @Override
-    public void clearRecentApps() {
-        int msg = MSG_CLEAR_RECENT_APPS;
-        mHandler.removeMessages(msg);
-        mHandler.sendEmptyMessage(msg);
-    }
-
-    @Override
     public void preloadRecentApps() {
         int msg = MSG_PRELOAD_RECENT_APPS;
         mHandler.removeMessages(msg);
@@ -1403,14 +1394,6 @@ public abstract class BaseStatusBar extends SystemUI implements
         }
     }
 
-    protected boolean isRecentAppsVisible() {
-        return RecentsActivity.isActivityShowing();
-    }
-
-    protected boolean hasRecentApps() {
-        return RecentsActivity.hasTaskStacks();
-    }
-
     protected void toggleRecents() {
         if (isOmniSwitchEnabled()) {
             Intent showIntent = new Intent(OmniSwitchConstants.ACTION_TOGGLE_OVERLAY);
@@ -1421,12 +1404,6 @@ public abstract class BaseStatusBar extends SystemUI implements
         } else if (mSlimRecents != null) {
             sendCloseSystemWindows(mContext, SYSTEM_DIALOG_REASON_RECENT_APPS);
             mSlimRecents.toggleRecents(mDisplay, mLayoutDirection, getStatusBarView());
-        }
-    }
-
-    protected void clearRecents() {
-        if (mRecents != null) {
-            mRecents.clearRecents();
         }
     }
 
@@ -1572,9 +1549,6 @@ public abstract class BaseStatusBar extends SystemUI implements
                  break;
              case MSG_TOGGLE_RECENTS_APPS:
                  toggleRecents();
-                 break;
-             case MSG_CLEAR_RECENT_APPS:
-                 clearRecents();
                  break;
              case MSG_PRELOAD_RECENT_APPS:
                   preloadRecents();

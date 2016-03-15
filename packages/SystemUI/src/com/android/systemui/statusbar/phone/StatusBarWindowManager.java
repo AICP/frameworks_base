@@ -25,6 +25,9 @@ import android.graphics.PixelFormat;
 import android.os.Binder;
 import android.os.RemoteException;
 import android.os.SystemProperties;
+import android.os.Trace;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -58,8 +61,8 @@ public class StatusBarWindowManager implements RemoteInputController.Callback, D
     private boolean mHasTopUi;
     private boolean mHasTopUiChanged;
     private int mBarHeight;
-    private final boolean mKeyguardScreenRotation;
     private float mScreenBrightnessDoze;
+    private boolean mKeyguardScreenRotation;
     private final State mCurrentState = new State();
     private OtherwisedCollapsedListener mListener;
 
@@ -74,8 +77,16 @@ public class StatusBarWindowManager implements RemoteInputController.Callback, D
 
     private boolean shouldEnableKeyguardScreenRotation() {
         Resources res = mContext.getResources();
-        return SystemProperties.getBoolean("lockscreen.rot_override", false)
-                || res.getBoolean(R.bool.config_enableLockScreenRotation);
+        final boolean configLockRotationValue = res.getBoolean(R.bool.config_enableLockScreenRotation);
+        boolean enableLockScreenRotation = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.LOCKSCREEN_ROTATION, configLockRotationValue ? 1 : 0, UserHandle.USER_CURRENT) != 0;
+
+        return SystemProperties.getBoolean("lockscreen.rot_override",false)
+               || enableLockScreenRotation;
+    }
+
+    public void updateKeyguardScreenRotation() {
+        mKeyguardScreenRotation = shouldEnableKeyguardScreenRotation();
     }
 
     /**

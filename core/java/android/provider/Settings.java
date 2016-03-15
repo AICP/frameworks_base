@@ -5786,6 +5786,14 @@ public final class Settings {
         private static final Validator TRANSPARENT_POWER_DIALOG_DIM_VALIDATOR =
                new SettingsValidators.InclusiveIntegerRangeValidator(0, 100);
 
+        /**
+         * Whether user can swap navigation lateral keys.
+         * <p>
+         * Type: int (0 for false, 1 for true)
+         * @hide
+         */
+        public static final String SWAP_NAVIGATION_KEYS = "swap_navigation_keys";
+
         /***************************
          * AICP System Settings end
          ***************************/

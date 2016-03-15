@@ -5077,6 +5077,12 @@ public final class Settings {
         public static final String SETTINGS_TITLE_TEXT_COLOR = "settings_title_text_color";
 
         /**
+         * Toolbar title text color
+         * @hide
+         */
+        public static final String SETTINGS_TOOLBAR_TEXT_COLOR = "settings_toolbar_text_color";
+
+        /**
          * Dashboard icon color
          * @hide
          */

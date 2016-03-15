@@ -23,17 +23,13 @@ import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.provider.Settings;
 import android.util.FloatProperty;
 import android.util.Property;
-
-import com.android.systemui.statusbar.policy.KeyButtonView;
 
 public class BackButtonDrawable extends Drawable {
     private final Drawable mWrappedDrawable;
     private float mRotation;
     private Animator mCurrentAnimator;
-    private int reportedColor;
 
     private static final int ANIMATION_DURATION = 200;
     public static final Property<BackButtonDrawable, Float> ROTATION
@@ -62,12 +58,7 @@ public class BackButtonDrawable extends Drawable {
         canvas.translate(boundsCenterX, boundsCenterY);
         canvas.rotate(mRotation);
         canvas.translate(- boundsCenterX, - boundsCenterY);
-        reportedColor = KeyButtonView.reportColor();
-        if (reportedColor != -1) {
-            mWrappedDrawable.setTint(reportedColor);
-        } else {
-            mWrappedDrawable.setTintList(null);
-        }
+
         mWrappedDrawable.draw(canvas);
     }
 

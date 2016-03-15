@@ -83,7 +83,7 @@ private static final Intent NAVBAR_Settings = new Intent().setComponent(new Comp
 	CMSettings.Secure.putInt(mContext.getContentResolver(),
                     CMSettings.Secure.DEV_FORCE_SHOW_NAVBAR, !HwkeysDisabled() ? 1 : 0);
          Settings.System.putInt(mContext.getContentResolver(),
-                        Settings.System.NAVIGATION_BAR_SHOW, !navbarEnabled() ? 1 : 0);
+                        Settings.Secure.NAVIGATION_BAR_VISIBLE, !navbarEnabled() ? 1 : 0);
     }
 
 
@@ -102,8 +102,7 @@ private static final Intent NAVBAR_Settings = new Intent().setComponent(new Comp
     private boolean navbarEnabled() {
 
         return Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.NAVIGATION_BAR_SHOW, 1) == 1;
-
+                Settings.Secure.NAVIGATION_BAR_VISIBLE, 1) == 1;
     }
 
 	private boolean HwkeysDisabled()
@@ -135,7 +134,7 @@ private static final Intent NAVBAR_Settings = new Intent().setComponent(new Comp
 
         public void startObserving() {
             mContext.getContentResolver().registerContentObserver(
-                    Settings.System.getUriFor(Settings.System.NAVIGATION_BAR_SHOW),
+                    Settings.System.getUriFor(Settings.Secure.NAVIGATION_BAR_VISIBLE),
                     false, this);
         }
 

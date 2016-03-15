@@ -6030,6 +6030,14 @@ public final class Settings {
         public static final String STATUSBAR_BATTERY_BAR_BLEND_DARK_COLORS_REVERSE =
                 "statusbar_battery_bar_blend_dark_color_reverse";
 
+        /**
+         * Whether user can swap navigation lateral keys.
+         * <p>
+         * Type: int (0 for false, 1 for true)
+         * @hide
+         */
+        public static final String SWAP_NAVIGATION_KEYS = "swap_navigation_keys";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6276,6 +6284,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(BUTTON_BRIGHTNESS);
             PRIVATE_SETTINGS.add(BUTTON_BACKLIGHT_ONLY_WHEN_PRESSED);
             PRIVATE_SETTINGS.add(FORCE_SHOW_NAVBAR);
+            PRIVATE_SETTINGS.add(SWAP_NAVIGATION_KEYS);
         }
 
         /**

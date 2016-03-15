@@ -6293,6 +6293,14 @@ public final class Settings {
          */
         public static final String FORCE_SHOW_NAVBAR = "navigation_bar_show_new";
 
+        /**
+         * Whether user can swap navigation lateral keys.
+         * <p>
+         * Type: int (0 for false, 1 for true)
+         * @hide
+         */
+        public static final String SWAP_NAVIGATION_KEYS = "swap_navigation_keys";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6475,6 +6483,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(BUTTON_BRIGHTNESS, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(BUTTON_BACKLIGHT_ONLY_WHEN_PRESSED, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(FORCE_SHOW_NAVBAR, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(SWAP_NAVIGATION_KEYS, BOOLEAN_VALIDATOR);
         }
 
         /**

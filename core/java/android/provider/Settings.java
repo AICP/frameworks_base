@@ -4990,6 +4990,18 @@ public final class Settings {
         public static final String NFC_POLLING_MODE = "nfc_polling";
 
         /**
+         * Dashboard title text size
+         * @hide
+         */
+        public static final String SETTINGS_TITLE_TEXT_SIZE = "settings_title_text_size";
+
+        /**
+         * Dashboard category text size
+         * @hide
+         */
+        public static final String SETTINGS_CATEGORY_TEXT_SIZE = "settings_category_text_size";
+
+        /**
          * Nfc sound mode.
          */
         public static final String NFC_SOUND_MODE = "nfc_sound_mode";

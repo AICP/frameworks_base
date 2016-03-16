@@ -120,6 +120,7 @@ import com.android.systemui.SwipeHelper;
 import com.android.systemui.SystemUI;
 import com.android.systemui.assist.AssistManager;
 import com.android.systemui.chaos.lab.gestureanywhere.GestureAnywhereView;
+import com.android.systemui.navigation.Navigator;
 import com.android.systemui.recents.Recents;
 import com.android.systemui.cm.SpamMessageProvider;
 import com.android.systemui.slimrecent.RecentController;
@@ -211,7 +212,7 @@ public abstract class BaseStatusBar extends SystemUI implements
     protected AccessibilityManager mAccessibilityManager;
 
     // on-screen navigation buttons
-    protected NavigationBarView mNavigationBarView = null;
+    protected Navigator mNavigationBarView = null;
 
     protected boolean mDeviceInteractive;
 
@@ -240,32 +241,6 @@ public abstract class BaseStatusBar extends SystemUI implements
     private NotificationColorUtil mNotificationColorUtil;
 
     private UserManager mUserManager;
-
-   /**
-     * An interface for navigation key bars to allow status bars to signal which keys are
-     * currently of interest to the user.<br>
-     * See {@link NavigationBarView} in Phone UI for an example.
-     */
-    public interface NavigationBarCallback {
-        /**
-         * @param hints flags from StatusBarManager (NAVIGATION_HINT...) to indicate which key is
-         * available for navigation
-         * @see StatusBarManager
-         */
-        public abstract void setNavigationIconHints(int hints);
-        /**
-         * @param showMenu {@code true} when an menu key should be displayed by the navigation bar.
-         */
-        public abstract void setMenuVisibility(boolean showMenu);
-        /**
-         * @param disabledFlags flags from View (STATUS_BAR_DISABLE_...) to indicate which key
-         * is currently disabled on the navigation bar.
-         * {@see View}
-         */
-        public void setDisabledFlags(int disabledFlags);
-    };
-    private ArrayList<NavigationBarCallback> mNavigationCallbacks =
-            new ArrayList<NavigationBarCallback>();
 
     // UI-specific methods
 
@@ -1345,6 +1320,12 @@ public abstract class BaseStatusBar extends SystemUI implements
         int msg = MSG_TOGGLE_SCREENSHOT;
         mHandler.removeMessages(msg);
         mHandler.sendEmptyMessage(msg);
+    }
+	
+	public void screenPinningStateChanged(boolean enabled) {
+        if (mNavigationBarView != null) {
+            mNavigationBarView.screenPinningStateChanged(enabled);
+        }
     }
 
     protected H createHandler() {
@@ -2615,10 +2596,6 @@ public abstract class BaseStatusBar extends SystemUI implements
             // Ignore.
         }
     }
-
-    public void addNavigationBarCallback(NavigationBarCallback callback) {
-       mNavigationCallbacks.add(callback);
-	}
 
     /**
      * @return a PackageManger for userId or if userId is < 0 (USER_ALL etc) then

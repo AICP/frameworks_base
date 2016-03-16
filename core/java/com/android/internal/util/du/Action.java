@@ -14,7 +14,7 @@
 * limitations under the License.
 */
 
-package com.android.internal.util.aicp;
+package com.android.internal.util.du;
 
 import android.app.Activity;
 import android.app.ActivityManagerNative;
@@ -223,17 +223,6 @@ public class Action {
                 return;
             }
 
-    }
-
-    public static boolean isNavBarEnabled(Context context) {
-        return Settings.Secure.getIntForUser(context.getContentResolver(),
-                Settings.Secure.NAVIGATION_BAR_VISIBLE ,
-                isNavBarDefault(context) ? 1 : 0, UserHandle.USER_CURRENT) == 1;
-    }
-
-    public static boolean isNavBarDefault(Context context) {
-        return context.getResources().getBoolean(
-                com.android.internal.R.bool.config_showNavigationBar);
     }
 
     public static boolean isActionKeyEvent(String action) {

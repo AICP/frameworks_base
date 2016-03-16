@@ -32,6 +32,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import org.cyanogenmod.internal.logging.CMMetricsLogger;
+import com.android.internal.utils.du.DUActionUtils;
 import com.android.systemui.R;
 import com.android.systemui.qs.QSDetailItemsList;
 import com.android.systemui.qs.QSTile;
@@ -122,7 +123,8 @@ public class NavBarTile extends QSTile<NaviBarTile.NavbarState> {
 
     private boolean navbarEnabled() {
         return Settings.Secure.getInt(mContext.getContentResolver(),
-                Settings.Secure.NAVIGATION_BAR_VISIBLE, 1) == 1;
+            Settings.Secure.NAVIGATION_BAR_VISIBLE,
+            DUActionUtils.hasNavbarByDefault(mContext) ? 1 : 0) == 1;
     }
 
     @Override

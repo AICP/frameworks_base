@@ -4183,12 +4183,6 @@ public final class Settings {
         public static final String DOUBLE_TAP_SLEEP_ANYWHERE = "double_tap_sleep_anywhere";
 
         /**
-         * Allows setting the hold back to kill timeout
-         * @hide
-         */
-        public static final String HOLD_BACK_TO_KILL_TIMEOUT = "hold_back_to_kill_timeout";
-
-        /**
          * Three Finger Gesture from Oppo
          *
          * @hide

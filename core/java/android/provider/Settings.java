@@ -3759,6 +3759,14 @@ public final class Settings {
         public static final String STATUS_BAR_CUSTOM_HEADER = "status_bar_custom_header";
 
         /**
+         *
+         * Whether to apply a shadow on top of the header image
+         * value is the alpha value of the shadow image is 0 -> no shadow -> 255 black
+         * @hide
+         */
+        public static final String STATUS_BAR_CUSTOM_HEADER_SHADOW = "status_bar_custom_header_shadow";
+
+        /**
          * Current active provider
          * @hide
          */
@@ -4415,7 +4423,7 @@ public final class Settings {
         public static final String TOAST_ANIMATION = "toast_animation";
 
         /**
-         *
+         * Current active provider
          * @hide
          */
         public static final String ANIMATION_IME_DURATION = "animation_ime_duration";

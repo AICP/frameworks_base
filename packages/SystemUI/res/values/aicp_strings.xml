@@ -99,9 +99,10 @@
     <string name="lte_off">LTE OFF</string>
 
     <!-- NavBar tile -->
-    <string name="quick_settings_navbar_title">NavBar</string>
-    <string name="quick_settings_navbar_on">NavBar on</string>
-    <string name="quick_settings_navbar_off">NavBar off</string>
+    <string name="quick_settings_navigation_bar">Navigation bar</string>
+    <string name="quick_settings_smartbar_off">Navigation bar off</string>
+    <string name="quick_settings_smartbar">SmartBar</string>
+    <string name="quick_settings_fling">Fling gesture</string>
 
     <!-- App Circle Bar tile -->
     <string name="quick_settings_appcirclebar_title">AppCircleBar</string>

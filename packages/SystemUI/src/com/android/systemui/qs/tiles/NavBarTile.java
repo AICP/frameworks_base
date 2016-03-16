@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 The Dirty Unicorns Project
+ * Copyright (C) 2016 The Dirty Unicorns Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,129 +18,256 @@ package com.android.systemui.qs.tiles;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.database.ContentObserver;
-import android.os.Handler;
+import android.graphics.drawable.AnimatedVectorDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.provider.Settings;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.content.ComponentName;
 import android.widget.ArrayAdapter;
-import android.widget.CheckedTextView;
 import android.widget.ListView;
 
+import org.cyanogenmod.internal.logging.CMMetricsLogger;
 import com.android.systemui.R;
+import com.android.systemui.qs.QSDetailItemsList;
 import com.android.systemui.qs.QSTile;
-import com.android.systemui.qs.QSTileView;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-import org.cyanogenmod.internal.logging.CMMetricsLogger;
-import cyanogenmod.providers.CMSettings;
+import java.util.Arrays;
 
-public class NavBarTile extends QSTile<QSTile.BooleanState> {
-    private boolean mListening;
-    private NavbarObserver mObserver;
-private static final Intent NAVBAR_Settings = new Intent().setComponent(new ComponentName(
-            "com.android.settings", "com.android.settings.Settings$ButtonSettingsActivity"));
+public class NavBarTile extends QSTile<NaviBarTile.NavbarState> {
+
+    private static final String NAVBAR_MODE_ENTRIES_NAME = "systemui_navbar_mode_entries";
+    private static final String NAVBAR_MODE_VALUES_NAME = "systemui_navbar_mode_values";
+    private static final String SETTINGS_PACKAGE_NAME = "com.android.settings";
+
+    private String[] mEntries, mValues;
+    private boolean mShowingDetail;
+    ArrayList<Integer> mAnimationList
+            = new ArrayList<Integer>();
 
     public NavBarTile(Host host) {
         super(host);
-        mObserver = new NavbarObserver(mHandler);
+        populateList();
+    }
+
+    private void populateList() {
+        try {
+            Context context = mContext.createPackageContext(SETTINGS_PACKAGE_NAME, 0);
+            Resources mSettingsResources = context.getResources();
+            int id = mSettingsResources.getIdentifier(NAVBAR_MODE_ENTRIES_NAME,
+                    "array", SETTINGS_PACKAGE_NAME);
+            if (id < 0) {
+                return;
+            }
+            mEntries = mSettingsResources.getStringArray(id);
+            id = mSettingsResources.getIdentifier(NAVBAR_MODE_VALUES_NAME,
+                    "array", SETTINGS_PACKAGE_NAME);
+            if (id < 0) {
+                return;
+            }
+            mValues = mSettingsResources.getStringArray(id);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    protected BooleanState newTileState() {
-        return new BooleanState();
-    }
-
-    @Override
-    protected void handleClick() {
-        toggleState();
-        refreshState();
-    }
-
-   @Override
     public int getMetricsCategory() {
         return CMMetricsLogger.AICPEXTRAS;
     }
 
-     @Override
-    protected void handleSecondaryClick() {
-	mHost.startActivityDismissingKeyguard(NAVBAR_Settings);
-    }
-
     @Override
-    public void handleLongClick() {
-	mHost.startActivityDismissingKeyguard(NAVBAR_Settings);
+    public DetailAdapter getDetailAdapter() {
+        return new NavbarDetailAdapter();
     }
 
- protected void toggleState() {
-
-	CMSettings.Secure.putInt(mContext.getContentResolver(),
-                    CMSettings.Secure.DEV_FORCE_SHOW_NAVBAR, !HwkeysDisabled() ? 1 : 0);
-         Settings.System.putInt(mContext.getContentResolver(),
-                        Settings.Secure.NAVIGATION_BAR_VISIBLE, !navbarEnabled() ? 1 : 0);
-    }
-
-
-    @Override
-    protected void handleUpdateState(BooleanState state, Object arg) {
-        state.visible = true;
-	if (navbarEnabled()) {
-        state.icon = ResourceIcon.get(R.drawable.ic_qs_navbar_on);
-        state.label = mContext.getString(R.string.quick_settings_navbar_on);
-	} else {
-        state.icon = ResourceIcon.get(R.drawable.ic_qs_navbar_off);
-	state.label = mContext.getString(R.string.quick_settings_navbar_off);
-	    }
-	}
-
-    private boolean navbarEnabled() {
-
-        return Settings.System.getInt(mContext.getContentResolver(),
-                Settings.Secure.NAVIGATION_BAR_VISIBLE, 1) == 1;
-    }
-
-	private boolean HwkeysDisabled()
-	{
-	return CMSettings.Secure.getInt(mContext.getContentResolver(),
-                CMSettings.Secure.DEV_FORCE_SHOW_NAVBAR, 1) == 1;
-	}
+    private ContentObserver mObserver = new ContentObserver(mHandler) {
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
+            refreshState();
+        }
+    };
 
     @Override
     public void setListening(boolean listening) {
-        if (mListening == listening) return;
-        mListening = listening;
         if (listening) {
-            mObserver.startObserving();
+            mContext.getContentResolver().registerContentObserver(
+                    Settings.Secure.getUriFor(Settings.Secure.NAVIGATION_BAR_MODE),
+                    false, mObserver);
+            mContext.getContentResolver().registerContentObserver(
+                    Settings.Secure.getUriFor(Settings.Secure.NAVIGATION_BAR_VISIBLE),
+                    false, mObserver);
         } else {
-            mObserver.endObserving();
+            mContext.getContentResolver().unregisterContentObserver(mObserver);
         }
     }
 
-    private class NavbarObserver extends ContentObserver {
-        public NavbarObserver(Handler handler) {
-            super(handler);
+    @Override
+    protected NavbarState newTileState() {
+        return new NavbarState();
+    }
+
+    private int getNavigationBar() {
+        return Settings.Secure.getInt(mContext.getContentResolver(),
+            Settings.Secure.NAVIGATION_BAR_MODE, 0);
+    }
+
+    private boolean navbarEnabled() {
+        return Settings.Secure.getInt(mContext.getContentResolver(),
+                Settings.Secure.NAVIGATION_BAR_VISIBLE, 0) == 1;
+    }
+
+    @Override
+    protected void handleClick() {
+        if (mEntries.length > 0) {
+            mShowingDetail = true;
+            mAnimationList.clear();
+            showDetail(true);
+        }
+    }
+
+    @Override
+    protected void handleSecondaryClick() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.setClassName("com.android.settings",
+            "com.android.settings.Settings$NavigationSettingsActivity");
+        mHost.startActivityDismissingKeyguard(intent);
+    }
+
+    @Override
+    protected void handleLongClick() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.setClassName("com.android.settings",
+            "com.android.settings.Settings$NavigationSettingsActivity");
+        mHost.startActivityDismissingKeyguard(intent);
+    }
+
+    public static final class NavbarState extends QSTile.State {
+    }
+
+    @Override
+    protected void handleUpdateState(final NavbarState state, Object arg) {
+        if (mAnimationList.isEmpty() && mShowingDetail && arg == null) {
+            return;
+        }
+
+        int navMode = getNavigationBar();
+
+        if (navbarEnabled()) {
+            if (navMode == 0) {
+                state.icon = ResourceIcon.get(R.drawable.ic_qs_smartbar);
+                state.label = mContext.getString(R.string.quick_settings_smartbar);
+            } else if (navMode == 1){
+                state.icon = ResourceIcon.get(R.drawable.ic_qs_fling);
+                state.label = mContext.getString(R.string.quick_settings_fling);
+            }
+        } else {
+            state.icon = ResourceIcon.get(R.drawable.ic_qs_smartbar_off);
+            state.label = mContext.getString(R.string.quick_settings_smartbar_off);
+        }
+        state.visible = true;
+    }
+
+    private class RadioAdapter extends ArrayAdapter<String> {
+
+        public RadioAdapter(Context context, int resource, String[] objects) {
+            super(context, resource, objects);
+        }
+
+        public RadioAdapter(Context context, int resource,
+                            int textViewResourceId, String[] objects) {
+            super(context, resource, textViewResourceId, objects);
         }
 
         @Override
-        public void onChange(boolean selfChange) {
-            refreshState();
+        public View getView(int position, View view, ViewGroup parent) {
+            view = super.getView(position, view, parent);
+            view.setMinimumHeight(mContext.getResources().getDimensionPixelSize(
+                    R.dimen.qs_detail_item_height));
+            if (!navbarEnabled()) {
+                view.setVisibility(View.GONE);
+            } else {
+                view.setVisibility(View.VISIBLE);
+            }
+            notifyDataSetChanged();
+            return view;
+        }
+    }
+
+    private class NavbarDetailAdapter implements DetailAdapter, AdapterView.OnItemClickListener {
+        private QSDetailItemsList mItems;
+
+        @Override
+        public int getMetricsCategory() {
+            return MetricsLogger.DISPLAY;
         }
 
-        public void startObserving() {
-            mContext.getContentResolver().registerContentObserver(
-                    Settings.System.getUriFor(Settings.Secure.NAVIGATION_BAR_VISIBLE),
-                    false, this);
+        @Override
+        public int getTitle() {
+            return R.string.quick_settings_navigation_bar;
         }
 
-        public void endObserving() {
-            mContext.getContentResolver().unregisterContentObserver(this);
+        @Override
+        public Boolean getToggleState() {
+            return navbarEnabled();
+        }
+
+        @Override
+        public Intent getSettingsIntent() {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.setClassName("com.android.settings",
+                "com.android.settings.Settings$NavigationSettingsActivity");
+            return intent;
+        }
+
+        @Override
+        public void setToggleState(boolean state) {
+            MetricsLogger.action(mContext, MetricsLogger.QS_NAVBAR_TOGGLE, state);
+            Settings.Secure.putInt(mContext.getContentResolver(),
+                    Settings.Secure.NAVIGATION_BAR_VISIBLE, state ? 1 : 0);
+        }
+
+        @Override
+        public View createDetailView(Context context, View convertView, ViewGroup parent) {
+            mItems = QSDetailItemsList.convertOrInflate(context, convertView, parent);
+            ListView listView = mItems.getListView();
+            listView.setOnItemClickListener(this);
+            listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+            listView.setDivider(null);
+            RadioAdapter adapter = new RadioAdapter(context,
+                    android.R.layout.simple_list_item_single_choice, mEntries);
+            int indexOfSelection = Arrays.asList(mValues).indexOf(String.valueOf(getNavigationBar()));
+            mItems.setAdapter(adapter);
+            listView.setItemChecked(indexOfSelection, true);
+            mItems.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
+                @Override
+                public void onViewAttachedToWindow(View v) {
+                }
+
+                @Override
+                public void onViewDetachedFromWindow(View v) {
+                    mUiHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            mShowingDetail = false;
+                            refreshState(true);
+                        }
+                    }, 100);
+                }
+            });
+            return mItems;
+        }
+
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            int selectedNavmode = Integer.valueOf(mValues[position]);
+            Settings.Secure.putInt(mContext.getContentResolver(),
+                    Settings.Secure.NAVIGATION_BAR_MODE, selectedNavmode);
         }
     }
 }
-

@@ -504,7 +504,7 @@ public class QSTileHost implements QSTile.Host, Tunable {
         else if (spec.equals("reboot")) return R.string.quick_settings_reboot_label;
         else if (spec.equals("expanded_desktop")) return R.string.quick_settings_expanded_desktop_label;
         else if (spec.equals("lte")) return R.string.qs_lte_label;
-        else if (spec.equals("navbar")) return R.string.quick_settings_navbar_title;
+        else if (spec.equals("navbar")) return R.string.quick_settings_navigation_bar;
         else if (spec.equals("appcirclebar")) return R.string.quick_settings_appcirclebar_title;
         else if (spec.equals("pie")) return R.string.quick_settings_pie_title;
         else if (spec.equals("heads_up")) return R.string.quick_settings_heads_up_label;
@@ -547,7 +547,7 @@ public class QSTileHost implements QSTile.Host, Tunable {
         else if (spec.equals("expanded_desktop")) return R.drawable.ic_qs_expanded_desktop;
         else if (spec.equals("reboot")) return R.drawable.ic_qs_reboot;
         else if (spec.equals("lte")) return R.drawable.ic_qs_lte_on;
-        else if (spec.equals("navbar")) return R.drawable.ic_qs_navbar_on;
+        else if (spec.equals("navbar")) return R.drawable.ic_qs_smartbar;
         else if (spec.equals("appcirclebar")) return R.drawable.ic_qs_appcirclebar_on;
         else if (spec.equals("pie")) return R.drawable.ic_qs_pie_on;	
         else if (spec.equals("heads_up")) return R.drawable.ic_qs_heads_up_on;

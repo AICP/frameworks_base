@@ -181,5 +181,6 @@ public class SystemSettings {
         Settings.System.TORCH_LONG_PRESS_POWER_GESTURE,
         Settings.System.TORCH_LONG_PRESS_POWER_TIMEOUT,
         Settings.System.VOLUME_ROCKER_WAKE,
+        Settings.System.VOLUME_BUTTON_MUSIC_CONTROL,
     };
 }

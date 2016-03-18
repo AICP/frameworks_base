@@ -4894,6 +4894,16 @@ public final class Settings {
         private static final Validator VOLUME_KEYS_CONTROL_RING_TONE_VALIDATOR =
                BOOLEAN_VALIDATOR;
 
+        /** Whether to skip music track with volume rocker
+        /**
+        * @hide
+        */
+        public static final String VOLUME_BUTTON_MUSIC_CONTROL = "volume_button_music_control";
+
+        /** @hide */
+        private static final Validator VOLUME_BUTTON_MUSIC_CONTROL_VALIDATOR =
+               BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5022,6 +5032,7 @@ public final class Settings {
             TORCH_LONG_PRESS_POWER_TIMEOUT,
             SWAP_VOLUME_BUTTONS,
             VOLUME_KEYS_CONTROL_RING_TONE,
+            VOLUME_BUTTON_MUSIC_CONTROL,
             // AICP Settings end
         };
 
@@ -5212,6 +5223,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(TORCH_LONG_PRESS_POWER_TIMEOUT);
             PRIVATE_SETTINGS.add(SWAP_VOLUME_BUTTONS);
             PRIVATE_SETTINGS.add(VOLUME_KEYS_CONTROL_RING_TONE);
+            PRIVATE_SETTINGS.add(VOLUME_BUTTON_MUSIC_CONTROL);
             // AICP Settings end
         }
 
@@ -5382,6 +5394,7 @@ public final class Settings {
                     TORCH_LONG_PRESS_POWER_TIMEOUT_VALIDATOR);
             VALIDATORS.put(SWAP_VOLUME_BUTTONS, SWAP_VOLUME_BUTTONS_VALIDATOR);
             VALIDATORS.put(VOLUME_KEYS_CONTROL_RING_TONE,VOLUME_KEYS_CONTROL_RING_TONE_VALIDATOR);
+            VALIDATORS.put(VOLUME_BUTTON_MUSIC_CONTROL,VOLUME_BUTTON_MUSIC_CONTROL_VALIDATOR);
             // AICP Settings end
         }
 

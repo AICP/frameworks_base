@@ -115,11 +115,6 @@
     <string name="quick_settings_pie_on">Pie on</string>
     <string name="quick_settings_pie_off">Pie off</string>
 
-    <!-- 4G LTE switch -->
-    <string name="show_fourg_title">Show 4G instead of LTE</string>
-    <string name="show_fourg_summary">Replaces LTE statusbar indicator with 4G</string>
-    <string name="statusbar_tuner_category_title">Hide items from statusbar</string>
-
     <!-- Dialog title for navigation bar button selection -->
     <string name="navbar_torch">Torch</string>
 

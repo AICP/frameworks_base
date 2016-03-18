@@ -6463,6 +6463,12 @@ public final class Settings {
         public static final String VOLUME_ROCKER_WAKE = "volume_rocker_wake";
 
         /**
+         * Volume key media control
+         * @hide
+         */
+        public static final String VOLUME_BUTTON_MUSIC_CONTROL = "volume_button_music_control";
+
+        /**
          * Volume key controls ringtone or media sound stream
          * @hide
          */
@@ -6873,6 +6879,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(CAMERA_LAUNCH);
             PRIVATE_SETTINGS.add(SWAP_VOLUME_BUTTONS);
             PRIVATE_SETTINGS.add(VOLUME_ROCKER_WAKE);
+            PRIVATE_SETTINGS.add(VOLUME_BUTTON_MUSIC_CONTROL);
             PRIVATE_SETTINGS.add(VOLUME_KEYS_CONTROL_RING_TONE);
             PRIVATE_SETTINGS.add(VOLUME_ANSWER_CALL);
             PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR);

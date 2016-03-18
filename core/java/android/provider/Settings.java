@@ -5040,6 +5040,16 @@ public final class Settings {
         /** @hide */
         private static final Validator RECENT_PANEL_BG_COLOR_VALIDATOR = ANY_INTEGER_VALIDATOR;
 
+        /** Whether to skip music track with volume rocker
+        /**
+        * @hide
+        */
+        public static final String VOLUME_BUTTON_MUSIC_CONTROL = "volume_button_music_control";
+
+        /** @hide */
+        private static final Validator VOLUME_BUTTON_MUSIC_CONTROL_VALIDATOR =
+               BOOLEAN_VALIDATOR;
+
         /**
          * Recent card background color
          *
@@ -6002,6 +6012,7 @@ public final class Settings {
             QS_RUNNING_SERVICES_TOGGLE,
             TRANSPARENT_POWER_MENU,
             TRANSPARENT_POWER_DIALOG_DIM,
+            VOLUME_BUTTON_MUSIC_CONTROL,
             // AICP Settings end
         };
 
@@ -6267,6 +6278,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(BUTTON_BACKLIGHT_ENABLE);
             PRIVATE_SETTINGS.add(BUTTON_BACKLIGHT_TIMEOUT);
             PRIVATE_SETTINGS.add(BUTTON_BACKLIGHT_ON_TOUCH_ONLY);
+            PRIVATE_SETTINGS.add(VOLUME_BUTTON_MUSIC_CONTROL);
             // AICP Settings end
         }
 
@@ -6533,6 +6545,7 @@ public final class Settings {
             VALIDATORS.put(QS_RUNNING_SERVICES_TOGGLE,QS_RUNNING_SERVICES_TOGGLE_VALIDATOR);
             VALIDATORS.put(TRANSPARENT_POWER_MENU,TRANSPARENT_POWER_MENU_VALIDATOR);
             VALIDATORS.put(TRANSPARENT_POWER_DIALOG_DIM,TRANSPARENT_POWER_DIALOG_DIM_VALIDATOR);
+            VALIDATORS.put(VOLUME_BUTTON_MUSIC_CONTROL,VOLUME_BUTTON_MUSIC_CONTROL_VALIDATOR);
             // AICP Settings end
         }
 

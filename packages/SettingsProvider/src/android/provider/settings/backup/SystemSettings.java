@@ -206,6 +206,7 @@ public class SystemSettings {
         Settings.System.CAMERA_LAUNCH,
         Settings.System.SWAP_VOLUME_BUTTONS,
         Settings.System.VOLUME_ROCKER_WAKE,
+        Settings.System.VOLUME_BUTTON_MUSIC_CONTROL,
         Settings.System.VOLUME_KEYS_CONTROL_RING_TONE,
         Settings.System.VOLUME_ANSWER_CALL,
         Settings.System.STATUSBAR_BATTERY_BAR,

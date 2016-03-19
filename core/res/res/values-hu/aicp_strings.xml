@@ -43,9 +43,4 @@
     <string name="animation_grow_shrink_right">Növekvő (Jobb)</string>
     <string name="action_null">Üres</string>
 
-    <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <string name="permlab_resetBatteryStats">akkumulátor statisztika alaphelyzetbe</string>
-    <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <string name="permdesc_resetBatteryStats">Lehetővé teszi alkalmazásnak, hogy alaphelyzetbe tegye a jelenlegi alacsony akksi szint használati adatot.</string>
-
 </resources>

@@ -43,9 +43,4 @@
     <string name="animation_grow_shrink_right">Увеличение с (права)</string>
     <string name="action_null">Пусто</string>
 
-    <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <string name="permlab_resetBatteryStats">Сбросить статистику батареи</string>
-    <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <string name="permdesc_resetBatteryStats">Позволяет программе Сбросить текущие данные об использовании батареи низкого уровня.</string>
-
 </resources>

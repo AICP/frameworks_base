@@ -126,6 +126,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.PathInterpolator;
+import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -164,6 +165,7 @@ import com.android.systemui.keyguard.KeyguardViewMediator;
 import com.android.systemui.navigation.NavigationController;
 import com.android.systemui.navigation.Navigator;
 import com.android.systemui.omni.StatusBarHeaderMachine;
+import com.android.systemui.qs.QSDetailItemsList;
 import com.android.systemui.qs.QSDragPanel;
 import com.android.systemui.qs.QSPanel;
 import com.android.systemui.qs.QSTile;
@@ -4346,7 +4348,18 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 removeAllViews((ViewGroup) child);
             }
         }
-        parent.removeAllViews();
+
+        if (parent instanceof AdapterView) {
+            //We know that when it's AdapterView it's from CM's QS detail items list
+            QSDetailItemsList.QSDetailListAdapter adapter =
+                    (QSDetailItemsList.QSDetailListAdapter) ((AdapterView) parent).getAdapter();
+
+            adapter.clear();
+            adapter.notifyDataSetInvalidated();
+        } else {
+            parent.removeAllViews();
+        }
+
     }
 
     /**

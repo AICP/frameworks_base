@@ -240,6 +240,8 @@ public class ThemesTile extends QSTile<QSTile.BooleanState> implements ThemeMana
             } else if (mode == Mode.ICON_PACK) {
                 builder.setIcons(pkg);
             } else if (mode == Mode.APP_THEME) {
+                //When we set to "default" we have to reapply global theme for some reason
+                builder.setOverlay(getCurrentTheme());
                 builder.setAppOverlay(getTopApp(), pkg);
             }
 

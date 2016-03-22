@@ -113,11 +113,6 @@
     <string name="quick_settings_pie_on">PIE AN</string>
     <string name="quick_settings_pie_off">PIE AUS</string>
 
-    <!-- 4G LTE switch -->
-    <string name="show_fourg_title">Zeige 4G an Stelle von LTE</string>
-    <string name="show_fourg_summary">Ersetzt den \"LTE\"-Indikator in der Statusleiste durch \"4G\"</string>
-    <string name="statusbar_tuner_category_title">Angezeigte Symbole in der Statusleiste</string>
-
     <!-- Dialog title for navigation bar button selection -->
     <string name="navbar_torch">Taschenlampe</string>
 
@@ -148,6 +143,14 @@
     <!-- Content description of the Application picker button for accessibility
     (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_app_picker">Applikation wählen</string>
+
+    <!-- Themes QS Tile -->
+    <string name="quick_settings_themes">Designs</string>
+    <string name="quick_settings_themes_icon_packs">Symbolpakete</string>
+    <string name="quick_settings_themes_app_theme">App-Design</string>
+    <string name="quick_settings_themes_system_theme">System-Design</string>
+    <string name="quick_settings_themes_default_theme">Standard</string>
+    <string name="quick_settings_themes_match_system">An System-Design anpassen</string>
 
     <!-- Sound QS Tile -->
     <string name="quick_settings_sound_label">Ton</string>

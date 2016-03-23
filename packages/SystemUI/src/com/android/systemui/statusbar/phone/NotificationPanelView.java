@@ -2726,11 +2726,14 @@ public class NotificationPanelView extends PanelView implements
     }
 
     private void setQSBackgroundAlpha() {
-        if (mQsContainer != null) {
-            mQsContainer.getBackground().setAlpha(mQSShadeAlpha);
-        }
-        if (mQsPanel != null) {
-            mQsPanel.setQSShadeAlphaValue(mQSShadeAlpha);
+        if (Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.QS_TRANSPARENT_SHADE, 255) != 255) {
+            if (mQsContainer != null) {
+                mQsContainer.getBackground().setAlpha(mQSShadeAlpha);
+            }
+            if (mQsPanel != null) {
+                mQsPanel.setQSShadeAlphaValue(mQSShadeAlpha);
+            }
         }
     }
 

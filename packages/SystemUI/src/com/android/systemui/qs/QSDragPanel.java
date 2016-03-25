@@ -1735,10 +1735,7 @@ public class QSDragPanel extends QSPanel implements View.OnDragListener, View.On
 
     public void updateResources() {
         final Resources res = mContext.getResources();
-        mLargeCellHeight = res.getDimensionPixelSize(R.dimen.qs_dual_tile_height);
-        mLargeCellWidth = (int) (mLargeCellHeight * TILE_ASPECT);
         mPanelPaddingBottom = res.getDimensionPixelSize(R.dimen.qs_panel_padding_bottom);
-        mDualTileUnderlap = res.getDimensionPixelSize(R.dimen.qs_dual_tile_padding_vertical);
         mBrightnessPaddingTop = res.getDimensionPixelSize(R.dimen.qs_brightness_padding_top);
         mPageIndicatorHeight = res.getDimensionPixelSize(R.dimen.qs_panel_page_indicator_height);
         if (isLaidOut()) {
@@ -1787,6 +1784,10 @@ public class QSDragPanel extends QSPanel implements View.OnDragListener, View.On
         mCellHeight = Math.round(res.getDimensionPixelSize(
                 R.dimen.qs_tile_height) * aspect);
         mCellWidth = Math.round(mCellHeight * (TILE_ASPECT * aspect));
+        mLargeCellHeight = Math.round(res.getDimensionPixelSize(R.dimen.qs_dual_tile_height) * aspect);
+        mLargeCellWidth = Math.round(mLargeCellHeight * (TILE_ASPECT * aspect));
+        mDualTileUnderlap = Math.round(res.getDimensionPixelSize(R.dimen.qs_dual_tile_padding_vertical) * aspect);
+
         for (TileRecord record : mRecords) {
             record.tileView.updateDimens(res, aspect);
             record.tileView.recreateLabel();

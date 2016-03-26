@@ -20,6 +20,7 @@ package com.android.systemui.qs.tiles;
 import android.app.ActivityManager;
 import android.app.ActivityManagerNative;
 import android.content.ComponentName;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -62,7 +63,7 @@ public class ThemesTile extends QSTile<QSTile.BooleanState> implements ThemeMana
     public ThemesTile(Host host) {
         super(host);
         mDetailAdapter = new ThemesDetailAdapter();
-        mService = ThemeManager.getInstance();
+        mService = ThemeManager.getInstance(getHost().getContext());
         mState.value = true;
         mService.registerThemeChangeListener(this);
         // Log.d("ThemesTile", "new");

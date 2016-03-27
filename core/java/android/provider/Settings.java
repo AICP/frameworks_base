@@ -5870,11 +5870,17 @@ public final class Settings {
          */
         public static final String VOLTE_VOWIFI_OVERRIDE = "volte_vowifi_override";
 
-       /**
-        * Defines the global heads up notification snooze
-        * @hide
-        */
+        /**
+         * Defines the global heads up notification snooze
+         * @hide
+         */
         public static final String HEADS_UP_NOTIFICATION_SNOOZE = "heads_up_notification_snooze";
+
+        /**
+         * Heads up timeout configuration
+         * @hide
+         */
+        public static final String HEADS_UP_TIMEOUT = "heads_up_timeout";
 
         /***************************
          * AICP System Settings end
@@ -6000,6 +6006,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(VOWIFI_ICON_STYLE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(VOLTE_VOWIFI_OVERRIDE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(HEADS_UP_NOTIFICATION_SNOOZE, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(HEADS_UP_TIMEOUT, ANY_INTEGER_VALIDATOR);
         }
 
         /**

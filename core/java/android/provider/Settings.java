@@ -5266,6 +5266,16 @@ public final class Settings {
         private static final Validator HEADS_UP_NOTIFICATION_SNOOZE_VALIDATOR =
               new SettingsValidators.InclusiveIntegerRangeValidator(0, 1200000);
 
+        /**
+        * Heads up timeout configuration
+        * @hide
+        */
+        public static final String HEADS_UP_TIMEOUT = "heads_up_timeout";
+
+        /** @hide */
+        private static final Validator HEADS_UP_TIMEOUT_VALIDATOR =
+              new SettingsValidators.InclusiveIntegerRangeValidator(0, 10000);
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5414,6 +5424,7 @@ public final class Settings {
             OMNI_DOZE_ON_CHARGE,
             LOCK_HIDE_STATUS_BAR,
             HEADS_UP_NOTIFICATION_SNOOZE,
+            HEADS_UP_TIMEOUT,
             // AICP Settings end
         };
 
@@ -5610,6 +5621,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(OMNI_DOZE_ON_CHARGE);
             PRIVATE_SETTINGS.add(LOCK_HIDE_STATUS_BAR);
             PRIVATE_SETTINGS.add(HEADS_UP_NOTIFICATION_SNOOZE);
+            PRIVATE_SETTINGS.add(HEADS_UP_TIMEOUT);
             // AICP Settings end
         }
 
@@ -5796,6 +5808,7 @@ public final class Settings {
             VALIDATORS.put(OMNI_DOZE_ON_CHARGE, OMNI_DOZE_ON_CHARGE_VALIDATOR);
             VALIDATORS.put(LOCK_HIDE_STATUS_BAR,LOCK_HIDE_STATUS_BAR_VALIDATOR);
             VALIDATORS.put(HEADS_UP_NOTIFICATION_SNOOZE,HEADS_UP_NOTIFICATION_SNOOZE_VALIDATOR);
+            VALIDATORS.put(HEADS_UP_TIMEOUT,HEADS_UP_TIMEOUT_VALIDATOR);
             // AICP Settings end
         }
 

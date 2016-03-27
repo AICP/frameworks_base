@@ -4163,6 +4163,12 @@ public final class Settings {
         public static final String SCREENSHOT_DELAY = "screenshot_delay";
 
         /**
+         * Heads up timeout configuration
+         * @hide
+         */
+        public static final String HEADS_UP_TIMEOUT = "heads_up_timeout";
+
+        /**
          * Override and forcefully disable the fullscreen keyboard
          * @hide
          */

@@ -100,8 +100,10 @@
 
     <!-- NavBar tile -->
     <string name="quick_settings_navbar_title">Navigationsleiste</string>
-    <string name="quick_settings_navbar_on">Nav.-leiste AN</string>
-    <string name="quick_settings_navbar_off">Nav.-leiste AUS</string>
+    <string name="quick_settings_smartbar">SmartBar</string>
+    <string name="quick_settings_smartbar_off">SmartBar AUS</string>
+    <string name="quick_settings_fling">Fling-Gesten</string>
+    <string name="quick_settings_fling_off">Fling-Gesten AUS</string>
 
     <!-- App Circle Bar tile -->
     <string name="quick_settings_appcirclebar_title">App-Kreisleiste</string>
@@ -150,12 +152,16 @@
     <string name="quick_settings_themes_app_theme">App-Design</string>
     <string name="quick_settings_themes_system_theme">System-Design</string>
     <string name="quick_settings_themes_default_theme">Standard</string>
-    <string name="quick_settings_themes_match_system">An System-Design anpassen</string>
+    <string name="quick_settings_themes_match_system">Wie System-Design</string>
 
     <!-- Sound QS Tile -->
     <string name="quick_settings_sound_label">Ton</string>
     <string name="quick_settings_sound_ring">Klingeln</string>
     <string name="quick_settings_sound_vibrate">Vibration</string>
     <string name="quick_settings_sound_silent">Lautlos</string>
+
+    <!-- Screenrecord QS Tile -->
+    <string name="quick_settings_screenrecord_label">Bildschirmaufnahme</string>
+    <string name="quick_settings_screenrecord_on">Aufnahme läuft ...</string>
 
 </resources>

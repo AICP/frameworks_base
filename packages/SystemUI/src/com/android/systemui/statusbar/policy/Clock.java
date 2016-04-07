@@ -107,6 +107,7 @@ public class Clock extends TextView implements DemoMode {
     protected int mClockDateStyle = CLOCK_DATE_STYLE_REGULAR;
     private int mClockFontStyle = FONT_NORMAL;
     private int mClockFontSize = 14;
+    protected int mclockColor;
 
     private SettingsObserver mSettingsObserver;
 
@@ -225,30 +226,11 @@ public class Clock extends TextView implements DemoMode {
 
     final void updateClock() {
         if (mDemoMode || mCalendar == null) return;
-
-        ContentResolver resolver = mContext.getContentResolver();
-
-        mClockFontStyle = Settings.System.getIntForUser(resolver,
-                Settings.System.STATUSBAR_CLOCK_FONT_STYLE, FONT_NORMAL,
-                UserHandle.USER_CURRENT);
-        mClockFontSize = Settings.System.getIntForUser(resolver,
-                Settings.System.STATUSBAR_CLOCK_FONT_SIZE, 14,
-                UserHandle.USER_CURRENT);
-
-        int defaultColor = mContext.getResources().getColor(R.color.status_bar_clock_color);
-        int clockColor = Settings.System.getIntForUser(resolver,
-                Settings.System.STATUSBAR_CLOCK_COLOR, defaultColor,
-                UserHandle.USER_CURRENT);
-        if (clockColor == Integer.MIN_VALUE) {
-            // flag to reset the color
-            clockColor = defaultColor;
-        }
-        setTextColor(clockColor);
-        getFontStyle(mClockFontStyle);
-        setTextSize(mClockFontSize);
-
         mCalendar.setTimeInMillis(System.currentTimeMillis());
         setText(getSmallTime());
+        setTextColor(mclockColor);
+        getFontStyle(mClockFontStyle);
+        setTextSize(mClockFontSize);
     }
 
     private final CharSequence getSmallTime() {
@@ -384,8 +366,23 @@ public class Clock extends TextView implements DemoMode {
         mClockDateStyle = Settings.System.getIntForUser(resolver,
                 Settings.System.STATUS_BAR_DATE_STYLE, CLOCK_DATE_STYLE_REGULAR,
                 UserHandle.USER_CURRENT);
-
-        updateClock();
+        mClockFontStyle = Settings.System.getIntForUser(resolver,
+                Settings.System.STATUSBAR_CLOCK_FONT_STYLE, FONT_NORMAL,
+                UserHandle.USER_CURRENT);
+        mClockFontSize = Settings.System.getIntForUser(resolver,
+                Settings.System.STATUSBAR_CLOCK_FONT_SIZE, 14,
+                UserHandle.USER_CURRENT);
+        int defaultColor = getResources().getColor(R.color.status_bar_clock_color);
+        mclockColor = Settings.System.getIntForUser(resolver,
+                Settings.System.STATUSBAR_CLOCK_COLOR, defaultColor,
+                UserHandle.USER_CURRENT);
+        if (mclockColor == Integer.MIN_VALUE) {
+            // flag to reset the color
+            mclockColor = defaultColor;
+        }
+        if (mAttached) {
+            updateClock();
+        }
     }
 
     public void getFontStyle(int font) {

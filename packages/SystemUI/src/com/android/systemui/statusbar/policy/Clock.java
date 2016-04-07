@@ -249,7 +249,11 @@ public class Clock extends TextView implements DemoMode {
             // flag to reset the color
             clockColor = defaultColor;
         }
-        setTextColor(clockColor);
+        if (Settings.System.getIntForUser(resolver,
+                Settings.System.STATUSBAR_CLOCK_COLOR, defaultColor,
+                UserHandle.USER_CURRENT) != defaultColor) {
+            setTextColor(clockColor);
+        }
         getFontStyle(mClockFontStyle);
         setTextSize(mClockFontSize);
 

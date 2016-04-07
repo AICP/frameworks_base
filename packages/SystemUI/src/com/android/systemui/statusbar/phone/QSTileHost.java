@@ -60,6 +60,7 @@ import com.android.systemui.qs.tiles.IntentTile;
 import com.android.systemui.qs.tiles.LiveDisplayTile;
 import com.android.systemui.qs.tiles.LocationTile;
 import com.android.systemui.qs.tiles.AppCircleBarTile;
+import com.android.systemui.qs.tiles.AppsidebarTile;
 import com.android.systemui.qs.tiles.NavBarTile;
 import com.android.systemui.qs.tiles.PieTile;
 import com.android.systemui.qs.tiles.LockscreenToggleTile;
@@ -410,6 +411,7 @@ public class QSTileHost implements QSTile.Host, Tunable {
         else if (tileSpec.equals("lte")) return new LteTile(this);
         else if (tileSpec.equals("navbar")) return new NavBarTile(this);
         else if (tileSpec.equals("appcirclebar")) return new AppCircleBarTile(this);
+        else if (tileSpec.equals("appsidebar")) return new AppsidebarTile(this);
         else if (tileSpec.equals("pie")) return new PieTile(this);
         else if (tileSpec.equals("heads_up")) return new HeadsUpTile(this);
         else if (tileSpec.equals("battery_saver")) return new BatterySaverTile(this);
@@ -518,6 +520,7 @@ public class QSTileHost implements QSTile.Host, Tunable {
         else if (spec.equals("lte")) return R.string.qs_lte_label;
         else if (spec.equals("navbar")) return R.string.quick_settings_navigation_bar;
         else if (spec.equals("appcirclebar")) return R.string.quick_settings_appcirclebar_title;
+        else if (spec.equals("appsidebar")) return R.string.quick_settings_app_sidebar;
         else if (spec.equals("pie")) return R.string.quick_settings_pie_title;
         else if (spec.equals("heads_up")) return R.string.quick_settings_heads_up_label;
         else if (spec.equals("battery_saver")) return R.string.quick_settings_battery_saver_label;
@@ -563,6 +566,7 @@ public class QSTileHost implements QSTile.Host, Tunable {
         else if (spec.equals("lte")) return R.drawable.ic_qs_lte_on;
         else if (spec.equals("navbar")) return R.drawable.ic_qs_smartbar;
         else if (spec.equals("appcirclebar")) return R.drawable.ic_qs_appcirclebar_on;
+        else if (spec.equals("appsidebar")) return R.drawable.ic_qs_appsidebar_on;
         else if (spec.equals("pie")) return R.drawable.ic_qs_pie_on;	
         else if (spec.equals("heads_up")) return R.drawable.ic_qs_heads_up_on;
         else if (spec.equals("battery_saver")) return R.drawable.ic_qs_battery_saver_on;

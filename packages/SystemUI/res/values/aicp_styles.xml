@@ -72,4 +72,17 @@
         <item name="android:padding">@dimen/card_expand_layout_padding</item>
     </style>
 
+    <!-- App side bar -->
+    <style name="AppSidebarItemText" >
+        <item name="android:textColor">@color/sidebar_item_text_color</item>
+        <item name="android:textSize">@dimen/item_title_text_size</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">center</item>
+        <item name="android:shadowColor">@color/sidebar_item_text_shadow_color</item>
+        <item name="android:shadowRadius">1.0</item>
+        <item name="android:shadowDx">2.0</item>
+        <item name="android:shadowDy">2.0</item>
+    </style>
+
 </resources>

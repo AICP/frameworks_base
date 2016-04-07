@@ -1460,8 +1460,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         // set the inital view visibility
         setAreThereNotifications();
 
-        mMinitBatteryController = new MinitBatteryController(mContext, mStatusBarView, mHeader, mKeyguardStatusBar);
-        mPackageMonitor.addListener(mMinitBatteryController);
+        if (mMinitBatteryController == null) {
+            mMinitBatteryController = new MinitBatteryController(mContext, mStatusBarView, mHeader, mKeyguardStatusBar);
+            mPackageMonitor.addListener(mMinitBatteryController);
+        }
 
         mIconController = new StatusBarIconController(
                 mContext, mStatusBarView, mKeyguardStatusBar, this);

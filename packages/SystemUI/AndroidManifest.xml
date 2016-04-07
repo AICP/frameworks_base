@@ -160,6 +160,9 @@
     <uses-permission android:name="android.permission.REBOOT" />
     <uses-permission android:name="android.permission.RECOVERY" />
 
+    <!-- AppSidebar -->
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
+
     <!-- Themes tile -->
     <uses-permission android:name="cyanogenmod.permission.ACCESS_THEME_MANAGER" />
     <uses-permission android:name="cyanogenmod.permission.READ_THEMES" />
@@ -413,6 +416,21 @@
             android:name=".keyguard.KeyguardService"
             android:exported="true"
             android:enabled="@bool/config_enableKeyguardService" />
+
+        <activity android:name=".statusbar.sidebar.SidebarConfigurationActivity"
+                  android:label="@string/title_activity_sidebar_configuration"
+                  android:taskAffinity=""
+                  android:excludeFromRecents="true"
+                  android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name=".statusbar.sidebar.SidebarContentProvider"
+            android:authorities="org.chameleonos.sidebar.contentprovider" >
+        </provider>
 
         <activity android:name=".Somnambulator"
             android:label="@string/start_dreams"

@@ -5008,6 +5008,16 @@ public final class Settings {
         private static final Validator TOAST_ANIMATION_VALIDATOR =
               new SettingsValidators.InclusiveIntegerRangeValidator(0, 15);
 
+        /**
+        * Defines the global heads up notification snooze
+        * @hide
+        */
+        public static final String HEADS_UP_NOTIFICATION_SNOOZE = "heads_up_notification_snooze";
+
+        /** @hide */
+        private static final Validator HEADS_UP_NOTIFICATION_SNOOZE_VALIDATOR =
+              new SettingsValidators.InclusiveIntegerRangeValidator(0, 1200000);
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5146,6 +5156,7 @@ public final class Settings {
             ANIM_TILE_INTERPOLATOR,
             TOAST_ICON,
             TOAST_ANIMATION,
+            HEADS_UP_NOTIFICATION_SNOOZE,
             // AICP Settings end
         };
 
@@ -5347,6 +5358,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(ANIM_TILE_INTERPOLATOR);
             PRIVATE_SETTINGS.add(TOAST_ICON);
             PRIVATE_SETTINGS.add(TOAST_ANIMATION);
+            PRIVATE_SETTINGS.add(HEADS_UP_NOTIFICATION_SNOOZE);
             // AICP Settings end
         }
 
@@ -5528,6 +5540,7 @@ public final class Settings {
             VALIDATORS.put(ANIM_TILE_INTERPOLATOR,ANIM_TILE_INTERPOLATOR_VALIDATOR);
             VALIDATORS.put(TOAST_ICON,TOAST_ICON_VALIDATOR);
             VALIDATORS.put(TOAST_ANIMATION,TOAST_ANIMATION_VALIDATOR);
+            VALIDATORS.put(HEADS_UP_NOTIFICATION_SNOOZE,HEADS_UP_NOTIFICATION_SNOOZE_VALIDATOR);
             // AICP Settings end
         }
 

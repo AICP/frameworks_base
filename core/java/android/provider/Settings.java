@@ -6605,6 +6605,12 @@ public final class Settings {
          */
         public static final String RIGHT_VERTICAL_BACK_SWIPE_APP_ACTIVITY_ACTION = "right_vertical_back_swipe_app_activity_action";
 
+       /**
+        * Defines the global heads up notification snooze
+        * @hide
+        */
+        public static final String HEADS_UP_NOTIFICATION_SNOOZE = "heads_up_notification_snooze";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6934,6 +6940,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(RIGHT_VERTICAL_BACK_SWIPE_APP_ACTION);
             PRIVATE_SETTINGS.add(RIGHT_VERTICAL_BACK_SWIPE_APP_FR_ACTION);
             PRIVATE_SETTINGS.add(RIGHT_VERTICAL_BACK_SWIPE_APP_ACTIVITY_ACTION);
+            PRIVATE_SETTINGS.add(HEADS_UP_NOTIFICATION_SNOOZE);
         }
 
         /**

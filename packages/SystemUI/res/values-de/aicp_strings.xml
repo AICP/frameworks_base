@@ -98,6 +98,15 @@
     <string name="lte_on">LTE AN </string>
     <string name="lte_off">LTE AUS</string>
 
+    <!-- App sidebar -->
+    <string name="default_folder_text">Ordner</string>
+    <string name="title_activity_sidebar_configuration">Objekte der App-Seitenleiste ändern</string>
+    <string name="action_save">Speichern</string>
+    <string name="toast_items_saved">Inhalt der App-Seitenleiste wurde gespeichert.</string>
+    <string name="content_setup_instructions">Objekte der Seitenleiste hinzufügen, indem ein Symbol auf der rechten Seite lange gedrückt und in die Leiste gezogen wird.\n\nObjekte in Ordner zusammenfassen, indem ein Symbol über ein anderes Symbol in der Leiste bewegt wird.\n\nZum Entfernen von Objekten aus der Leiste, einfach das Symbol aus der \@appbar ziehen.</string>
+    <string name="content_setup_dismiss">Weiter</string>
+    <string name="toast_not_installed">App ist nicht installiert</string>
+
     <!-- NavBar tile -->
     <string name="quick_settings_navbar_title">Navigationsleiste</string>
     <string name="quick_settings_smartbar">SmartBar</string>
@@ -109,6 +118,11 @@
     <string name="quick_settings_appcirclebar_title">App-Kreisleiste</string>
     <string name="quick_settings_appcirclebar_on">App-Kreisleiste AN</string>
     <string name="quick_settings_appcirclebar_off">App-Kreisleiste AUS</string>
+
+    <!-- App Side Bar tile -->
+    <string name="quick_settings_app_sidebar">App-Seitenleiste</string>
+    <string name="quick_settings_appsidebar_on">App-Seitenleiste AN</string>
+    <string name="quick_settings_appsidebar_off">App-Seitenleiste AUS</string>
 
     <!-- Pie tile -->
     <string name="quick_settings_pie_title">PIE</string>

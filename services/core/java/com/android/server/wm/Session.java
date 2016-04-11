@@ -475,6 +475,11 @@ final class Session extends IWindowSession.Stub
         mService.wallpaperCommandComplete(window, result);
     }
 
+    @Override
+    public void setWallpaperResized() {
+        mService.setWallpaperResized();
+    }
+
     public void onRectangleOnScreenRequested(IBinder token, Rect rectangle) {
         synchronized(mService.mWindowMap) {
             final long identity = Binder.clearCallingIdentity();

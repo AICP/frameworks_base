@@ -141,9 +141,6 @@
             android:protectionLevel="signature" />
     <uses-permission android:name="com.android.systemui.permission.SELF" />
 
-    <!-- LiveDisplay -->
-    <uses-permission android:name="android.permission.HARDWARE_ABSTRACTION_ACCESS" />
-
     <!-- Kill app permission -->
     <uses-permission android:name="android.permission.FORCE_STOP_PACKAGES" />
 

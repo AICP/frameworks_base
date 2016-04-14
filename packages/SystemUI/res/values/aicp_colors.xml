@@ -34,4 +34,7 @@
     <color name="icon_color_overview">@android:color/white</color>
 
 
+    <!-- Navigation button ripple color -->
+    <color name="navbutton_ripple_color">#FFFFFFFF</color>
+
 </resources>

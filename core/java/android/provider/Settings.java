@@ -4383,7 +4383,7 @@ public final class Settings {
                 "wallpaper_intra_open",
                 "wallpaper_intra_close",
                 "task_open_behind",
-        };  
+        };
         public static final String ANIMATION_CONTROLS_DURATION = "animation_controls_duration";
 
         public static final String ANIMATION_CONTROLS_NO_OVERRIDE = "animation_controls_no_override";
@@ -4406,7 +4406,7 @@ public final class Settings {
           * @hide
           */
         public static final String LISTVIEW_ANIMATION = "listview_animation";
-        
+
          /**
          * ListView Interpolators
          * 0 == None
@@ -4970,6 +4970,12 @@ public final class Settings {
          * @hide
          */
         public static final String DOZE_WAKEUP_DOUBLETAP = "doze_wakeup_doubletap";
+
+        /**
+         *  List of apps hidden from recents
+         * @hide
+         */
+        public static final String HIDE_FROM_RECENTS_LIST = "hide_from_recents_list";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
@@ -7318,7 +7324,7 @@ public final class Settings {
          * @hide
          */
         public static final String NAVIGATION_BAR_VISIBLE = "navigation_bar_visible";
-        
+
         /**
          * The current night mode that has been selected by the user.  Owned
          * and controlled by UiModeManagerService.  Constants are as per

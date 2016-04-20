@@ -73,6 +73,7 @@ import com.android.systemui.EventLogTags;
 import com.android.systemui.R;
 import com.android.systemui.SwipeHelper;
 import com.android.systemui.qs.QSContainer;
+import com.android.systemui.qs.QSDetailClipper;
 import com.android.systemui.qs.QSDragPanel;
 import com.android.systemui.statusbar.ExpandableNotificationRow;
 import com.android.systemui.statusbar.ExpandableView;
@@ -237,6 +238,8 @@ public class NotificationPanelView extends PanelView implements
     private boolean mStatusBarLockedOnSecureKeyguard;
 
     private CmLockPatternUtils mLockPatternUtils;
+
+    private QSDetailClipper mClipper;
 
     private Runnable mHeadsUpExistenceChangedRunnable = new Runnable() {
         @Override
@@ -433,6 +436,7 @@ public class NotificationPanelView extends PanelView implements
         mQsContainer = (QSContainer) findViewById(R.id.quick_settings_container);
         mQsPanel = (QSDragPanel) findViewById(R.id.quick_settings_panel);
         mTaskManagerPanel = (LinearLayout) findViewById(R.id.task_manager_panel);
+        mClipper = new QSDetailClipper(mTaskManagerPanel);
         mClockView = (TextView) findViewById(R.id.clock_view);
         mScrollView = (ObservableScrollView) findViewById(R.id.scroll_view);
         mScrollView.setFocusable(false);
@@ -1848,16 +1852,25 @@ public class NotificationPanelView extends PanelView implements
     }
 
     public void setTaskManagerVisibility(boolean taskManagerShowing) {
-        if (mShowTaskManager) {
+        if (mShowTaskManager && !mKeyguardShowing) {
             mTaskManagerShowing = taskManagerShowing;
             cancelAnimation();
-            boolean expandVisually = mQsExpanded || mStackScrollerOverscrolling;
-            mQsPanel.setVisibility(expandVisually && !taskManagerShowing
-                    ? View.VISIBLE : View.GONE);
-            mTaskManagerPanel.setVisibility(expandVisually && taskManagerShowing
-                    && !mKeyguardShowing ? View.VISIBLE : View.GONE);
+            int x = mQsPanel.getLeft() + mQsPanel.getWidth() / 2;
+            int y = mQsPanel.getTop() + mQsPanel.getHeight() / 2;
+            if (!taskManagerShowing) {
+                mQsPanel.setVisibility(View.VISIBLE);
+            }
+            mClipper.animateCircularClip(x, y, taskManagerShowing, mHideQsPanelWhenDone);
         }
     }
+
+    private final AnimatorListenerAdapter mHideQsPanelWhenDone = new AnimatorListenerAdapter() {
+        public void onAnimationEnd(Animator animation) {
+            if (mTaskManagerShowing) {
+                mQsPanel.setVisibility(View.GONE);
+            }
+        };
+    };
 
     private void cancelAnimation() {
         if (mQsExpansionAnimator != null) {

@@ -364,27 +364,14 @@ public class KeyguardStatusView extends GridLayout implements
             mWeatherCurrentTemp.setTextColor(secondaryTextColor);
         }
 
-        if (showClock) {
-            mClockView = (TextClock) findViewById(R.id.clock_view);
-            mClockView.setVisibility(View.VISIBLE);
-        } else {
-            mClockView = (TextClock) findViewById(R.id.clock_view);
-            mClockView.setVisibility(View.INVISIBLE);
-        }
-        if (showDate) {
-            mDateView = (TextClock) findViewById(R.id.date_view);
-            mDateView.setVisibility(View.VISIBLE);
-        } else {
-            mDateView = (TextClock) findViewById(R.id.date_view);
-            mDateView.setVisibility(View.INVISIBLE);
-        }
-        if (showAlarm && nextAlarm != null) {
-            mAlarmStatusView = (TextView) findViewById(R.id.alarm_status);
-            mAlarmStatusView.setVisibility(View.VISIBLE);
-        } else {
-            mAlarmStatusView = (TextView) findViewById(R.id.alarm_status);
-            mAlarmStatusView.setVisibility(View.INVISIBLE);
-        }
+        mClockView = (TextClock) findViewById(R.id.clock_view);
+        mClockView.setVisibility(showClock ? View.VISIBLE : View.INVISIBLE);
+
+        mDateView = (TextClock) findViewById(R.id.date_view);
+        mDateView.setVisibility(showDate ? View.VISIBLE : View.INVISIBLE);
+
+        mAlarmStatusView = (TextView) findViewById(R.id.alarm_status);
+        mAlarmStatusView.setVisibility(showAlarm && nextAlarm != null ? View.VISIBLE : View.GONE);
 
         if (lockClockFont == 0) {
             mClockView.setTypeface(Typeface.create("sans-serif", Typeface.NORMAL));

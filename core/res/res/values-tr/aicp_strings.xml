@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2015 AICP
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
+    <string name="system_error_vendorprint">Vendor image dosyanız eski olabilir. Lütfen cihazınız için olan en güncel vendor image dosyasını flash edin.</string>
+
+    <string name="default_string">Varsayılan</string>
+
+    <!-- label for item that takes On-The-Go in the phone options dialog -->
+    <string name="global_action_onthego">On-The-Go Modu</string>
+
+    <!-- Powermenu Torch -->
+    <string name="global_action_torch">El Feneri</string>
+
+    <!-- AOKP custom system animations -->
+    <string name="animation_fade">Soldurma</string>
+    <string name="animation_slide_right">Sağdan kaydır</string>
+    <string name="animation_slide_left">Soldan kaydır</string>
+    <string name="animation_slide_right_no_fade">Sağdan kaydır (Solmadan)</string>
+    <string name="animation_slide_left_no_fade">Soldan kaydır (Solmadan)</string>
+    <string name="animation_slide_up">Alttan kaydır</string>
+    <string name="animation_slide_down">Üstten kaydır</string>
+    <string name="animation_default">Varsayılan</string>
+    <string name="animation_translucent">Yarı Saydam</string>
+    <string name="animation_grow_shrink">Uzat (Üst)</string>
+    <string name="animation_grow_shrink_center">Uzat (Orta)</string>
+    <string name="animation_grow_shrink_bottom">Uzat (Alt)</string>
+    <string name="animation_grow_shrink_left">Uzat (Sol)</string>
+    <string name="animation_grow_shrink_right">Uzat (Sağ)</string>
+    <string name="action_null">Boş</string>
+
+</resources>

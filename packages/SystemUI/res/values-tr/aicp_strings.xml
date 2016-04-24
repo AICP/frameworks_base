@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2015 AICP
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- The text for the button in the notification window-shade that clears
+         all of the currently visible notifications. [CHAR LIMIT=10]-->
+    <string name="clear_recents">Son uygulamaları kapat</string>
+
+    <!-- Battery Saver Dimss -->
+    <string name="battery_saver_dismiss_title">Yoksay</string>
+    <string name="battery_saver_notification_action_text_short">Kapat</string>
+
+    <!-- Screenshot Delete Toast -->
+    <string name="delete_screenshot_toast">Ekran Görüntüsü Silindi</string>
+
+    <!-- App circle sidebar -->
+    <string name="app_float_maximize_item_title">Büyüt</string>
+    <string name="app_float_item_title">Yüzen Görünüm</string>
+    <string name="app_stop_item_title">Uygulamayı Sonlandır</string>
+
+    <!-- Task Manager -->
+    <string name="task_manager_title">Görev YÖneticisi</string>
+    <string name="message_switch_fail">Bu göreve geçemezsiniz, çünkü hiçbir arayüze sahip değil.</string>
+    <string name="tasklist_killall">Hepsini Sonlandır</string>
+    <string name="tasklist_memory_usage">"Boş/Toplam Hafıza: <xliff:g id="number">%s</xliff:g> / <xliff:g id="name">%s</xliff:g>"</string>
+    <string name="message_keep_one_launcher">Should keep at least one home activity!</string>
+
+    <!-- On The Go -->
+    <string name="onthego_notif_ticker">On-The-Go etkinleştirildi</string>
+    <string name="onthego_notif_title">On-The-Go etkin</string>
+    <string name="onthego_notif_stop">Dur</string>
+    <string name="onthego_notif_options">Seçenekler</string>
+    <string name="onthego_notif_error">On-The-Go Başlatılamıyor</string>
+    <string name="onthego_notif_restart">On-The-Go\'yu yeniden başlat</string>
+    <string name="onthego_notif_camera_changed">Kamera modu değişti</string>
+    <string name="onthego_transparency">Saydamlık</string>
+    <string name="onthego_front_camera">Ön kamerayı kullan</string>
+    <string name="onthego_service_toggle">Hizmeti otomatik olarak yeniden başlat</string>
+    <!-- To do: Add QS OnTheGo
+    <string name="quick_settings_onthego_back">Rear Camera</string>
+    <string name="quick_settings_onthego_front">Front Camera</string>-->
+
+    <!-- Quick settings -->
+    <string name="quick_settings_brightness_label">Parlaklık</string>
+    <string name="quick_settings_screen_off_label">Ekranı kapat</string>
+    <string name="quick_settings_screenshot_label">Ekran görüntüsü</string>
+
+    <!-- Expanded desktop tile -->
+    <string name="quick_settings_expanded_desktop_label">Genişletilmiş masaüstü</string>
+    <string name="quick_settings_expanded_desktop">Genişletilmiş</string>
+    <string name="quick_settings_expanded_desktop_off">Normal</string>
+    <string name="quick_settings_expanded_desktop_detail_title">Genişletilmiş masaüstü modu</string>
+    <string name="quick_settings_expanded_hide_status">Durum çubuğunu gizle</string>
+    <string name="quick_settings_expanded_hide_navigation">Navigasyon çubuğunu gizle</string>
+    <string name="quick_settings_expanded_hide_both">İkisini de gizle</string>
+    <string name="accessibility_quick_settings_expanded_desktop_off">Genişletilmiş masaüstü devre dışı bırakıldı</string>
+
+    <!-- Content description of the brightness tile in quick settings (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_brightness">Ses paneli.</string>
+
+    <!-- Content description of the screen off tile in quick settings (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_screen_off">Ekranı kapat.</string>
+
+    <!-- Content description of the screenshot tile in quick settings (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_screenshot">Ekran görüntüsü.</string>
+
+    <!-- Music QS Tile -->
+    <string name="quick_settings_music_label">Müzik</string>
+    <string name="quick_settings_music_play">Oynat</string>
+    <string name="quick_settings_music_pause">Durdur</string>
+
+    <!-- Reboot/Recovery QS Tile -->
+    <string name="quick_settings_reboot_label">Yeniden başlat</string>
+    <string name="quick_settings_reboot_recovery_label">Kurtarma Modu</string>
+
+    <!-- LTE Tile -->
+    <string name="qs_lte_label">LTE</string>
+    <string name="lte_on">LTE AÇIK </string>
+    <string name="lte_off">LTE KAPALI</string>
+
+    <!-- NavBar tile -->
+    <string name="quick_settings_navigation_bar">Navigasyon çubuğu</string>
+    <string name="quick_settings_smartbar">SmartBar</string>
+    <string name="quick_settings_smartbar_off">SmartBar kapalı</string>
+    <string name="quick_settings_fling">Fırlatma Hareketi</string>
+    <string name="quick_settings_fling_off">Fırlatma hareketi kapalı</string>
+
+    <!-- App Circle Bar tile -->
+    <string name="quick_settings_appcirclebar_title">AppCircleBar</string>
+    <string name="quick_settings_appcirclebar_on">AppCircleBar açık</string>
+    <string name="quick_settings_appcirclebar_off">AppCircleBar kapalı</string>
+
+    <!-- Pie tile -->
+    <string name="quick_settings_pie_title">Pie</string>
+    <string name="quick_settings_pie_on">Pie açık</string>
+    <string name="quick_settings_pie_off">Pie kapalı</string>
+
+    <!-- Dialog title for navigation bar button selection -->
+    <string name="navbar_torch">El Feneri</string>
+
+    <!-- Content description of the power button for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_torch">El Feneri</string>
+
+    <!-- Dialog title for navigation bar button selection -->
+    <string name="navbar_camera">Kamera</string>
+
+    <!-- Content description of the power button for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_camera">Kamera</string>
+
+    <!-- Dialog title for navigation bar button selection -->
+    <string name="navbar_screenshot">Ekran Görüntüsü</string>
+
+    <!-- Content description of the power button for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_screenshot">Ekran Görüntüsü</string>
+
+    <!-- Dialog title for navigation bar button selection -->
+    <string name="navbar_expand">Immersive Mode</string>
+
+    <!-- Content description of the power button for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_expand">Immersive Mode</string>
+
+    <!-- Dialog title for navigation bar button selection -->
+    <string name="navbar_app_picker">Uygulama seçici</string>
+
+    <!-- Content description of the Application picker button for accessibility
+    (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_app_picker">Uygulama seçici</string>
+
+    <!-- Themes QS Tile -->
+    <string name="quick_settings_themes">Temalar</string>
+    <string name="quick_settings_themes_icon_packs">Simge paketleri</string>
+    <string name="quick_settings_themes_app_theme">Uygulama tema\'sı</string>
+    <string name="quick_settings_themes_system_theme">Sistem Tema\'sı</string>
+    <string name="quick_settings_themes_default_theme">Varsayılan</string>
+    <string name="quick_settings_themes_match_system">Sistem Tema\'sını takip et</string>
+
+    <!-- Sound QS Tile -->
+    <string name="quick_settings_sound_label">Ses</string>
+    <string name="quick_settings_sound_ring">Zil</string>
+    <string name="quick_settings_sound_vibrate">Titreşim</string>
+    <string name="quick_settings_sound_silent">Sessiz</string>
+
+    <!-- Screenrecord QS Tile -->
+    <string name="quick_settings_screenrecord_label">Ekran Kaydı</string>
+    <string name="quick_settings_screenrecord_on">Kayıt Ediliyor ...</string>
+</resources>

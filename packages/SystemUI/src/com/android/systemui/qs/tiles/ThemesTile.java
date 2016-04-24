@@ -229,6 +229,10 @@ public class ThemesTile extends QSTile<QSTile.BooleanState> implements ThemeMana
 
             Item selectedItem = (Item) parent.getItemAtPosition(position);
 
+            if (selectedItem.icon == R.drawable.ic_qs_themes_on){
+                return;
+            }
+
             String pkg = (String) selectedItem.tag;
 
             ThemeChangeRequest.Builder builder = new ThemeChangeRequest.Builder();

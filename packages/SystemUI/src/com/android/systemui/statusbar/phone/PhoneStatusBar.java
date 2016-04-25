@@ -5874,6 +5874,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         });
     }
 
+    public void slideNotificationPanelIn() {
+        mNotificationPanel.slideLockScreenIn();
+    }
+
     private final class ShadeUpdates {
         private final ArraySet<String> mVisibleNotifications = new ArraySet<String>();
         private final ArraySet<String> mNewVisibleNotifications = new ArraySet<String>();

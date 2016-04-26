@@ -30,7 +30,6 @@ import android.util.ArraySet;
 import com.android.internal.app.IVoiceInteractor;
 import com.android.internal.content.ReferrerIntent;
 import com.android.internal.os.BatteryStatsImpl;
-import com.android.server.AttributeCache;
 import com.android.server.Watchdog;
 import com.android.server.am.ActivityManagerService.ItemMatcher;
 import com.android.server.am.ActivityStackSupervisor.ActivityContainer;
@@ -68,7 +67,6 @@ import android.os.UserHandle;
 import android.service.voice.IVoiceInteractionSession;
 import android.util.EventLog;
 import android.util.Slog;
-import android.view.ContextThemeWrapper;
 import android.view.Display;
 
 import com.android.server.LocalServices;
@@ -164,7 +162,7 @@ final class ActivityStack {
      * The back history of all previous (and possibly still
      * running) activities.  It contains #TaskRecord objects.
      */
-    ArrayList<TaskRecord> mTaskHistory = new ArrayList<>();
+    private ArrayList<TaskRecord> mTaskHistory = new ArrayList<>();
 
     /**
      * Used for validating app tokens with window manager.
@@ -1398,13 +1396,13 @@ final class ActivityStack {
                     // Aggregate current change flags.
                     configChanges |= r.configChangeFlags;
 
-                    if (r.fullscreen && !r.floatingWindow) {
+                    if (r.fullscreen) {
                         // At this point, nothing else needs to be shown
                         if (DEBUG_VISIBILITY) Slog.v(TAG_VISIBILITY, "Fullscreen: at " + r);
                         behindFullscreen = true;
                     } else if (!isHomeStack() && r.frontOfTask && task.isOverHomeStack()) {
                         if (DEBUG_VISIBILITY) Slog.v(TAG_VISIBILITY, "Showing home: at " + r);
-                        behindFullscreen = !isHomeStack() && r.frontOfTask && task.isOverHomeStack();
+                        behindFullscreen = true;
                     }
                 } else {
                     if (DEBUG_VISIBILITY) Slog.v(TAG_VISIBILITY,
@@ -1645,25 +1643,12 @@ final class ActivityStack {
         }
 
         final TaskRecord nextTask = next.task;
-		boolean isFloatingWindow = prev != null ? prev.floatingWindow : false;        
         if (prevTask != null && prevTask.stack == this &&
                 prevTask.isOverHomeStack() && prev.finishing && prev.frontOfTask) {
             if (DEBUG_STACK)  mStackSupervisor.validateTopActivitiesLocked();
             if (prevTask == nextTask) {
                 prevTask.setFrontOfTask();
-            } else if (prevTask != topTask() && !isFloatingWindow) {
-                ArrayList<ActivityRecord> activities = prevTask.mActivities;
-                final int numActivities = activities.size();
-                for (int activityNdx = 0; activityNdx < numActivities; ++activityNdx) {
-                    final ActivityRecord r = activities.get(activityNdx);
-                    // r is usually the same as next, but what if two activities were launched
-                    // before prev finished?
-                    if (!r.finishing) {
-                        r.frontOfTask = true;
-                        break;
-                    }
-                }
-            } else if (prevTask != topTask() && !prev.floatingWindow) {
+            } else if (prevTask != topTask()) {
                 // This task is going away but it was supposed to return to the home stack.
                 // Now the task above it has to return to the home task instead.
                 final int taskNdx = mTaskHistory.indexOf(prevTask) + 1;
@@ -1764,7 +1749,7 @@ final class ActivityStack {
         // can be resumed...
         boolean dontWaitForPause = (next.info.flags&ActivityInfo.FLAG_RESUME_WHILE_PAUSING) != 0;
         boolean pausing = mStackSupervisor.pauseBackStacks(userLeaving, true, dontWaitForPause);
-        if (mResumedActivity != null && !next.floatingWindow) {
+        if (mResumedActivity != null) {
             if (DEBUG_STATES) Slog.d(TAG_STATES,
                     "resumeTopActivityLocked: Pausing " + mResumedActivity);
             pausing |= startPausingLocked(userLeaving, false, true, dontWaitForPause);
@@ -1845,7 +1830,7 @@ final class ActivityStack {
             if (prev.finishing) {
                 if (DEBUG_TRANSITION) Slog.v(TAG_TRANSITION,
                         "Prepare close transition: prev=" + prev);
-                if (mNoAnimActivities.contains(prev) || next.floatingWindow) {
+                if (mNoAnimActivities.contains(prev)) {
                     anim = false;
                     mWindowManager.prepareAppTransition(AppTransition.TRANSIT_NONE, false);
                 } else {
@@ -1863,7 +1848,7 @@ final class ActivityStack {
             } else {
                 if (DEBUG_TRANSITION) Slog.v(TAG_TRANSITION,
                         "Prepare open transition: prev=" + prev);
-                if (mNoAnimActivities.contains(next) || next.floatingWindow) {
+                if (mNoAnimActivities.contains(next)) {
                     anim = false;
                     mWindowManager.prepareAppTransition(AppTransition.TRANSIT_NONE, false);
                 } else {
@@ -2007,7 +1992,7 @@ final class ActivityStack {
                 if (!next.hasBeenLaunched) {
                     next.hasBeenLaunched = true;
                 } else  if (SHOW_APP_STARTING_PREVIEW && lastStack != null &&
-                        mStackSupervisor.isFrontStack(lastStack) && !next.floatingWindow) {
+                        mStackSupervisor.isFrontStack(lastStack)) {
                     mWindowManager.setAppStartingWindow(
                             next.appToken, next.packageName, next.theme,
                             mService.compatibilityInfoForPackageLocked(next.info.applicationInfo),
@@ -2040,7 +2025,7 @@ final class ActivityStack {
             if (!next.hasBeenLaunched) {
                 next.hasBeenLaunched = true;
             } else {
-                if (SHOW_APP_STARTING_PREVIEW && !next.floatingWindow) {
+                if (SHOW_APP_STARTING_PREVIEW) {
                     mWindowManager.setAppStartingWindow(
                             next.appToken, next.packageName, next.theme,
                             mService.compatibilityInfoForPackageLocked(
@@ -2239,11 +2224,11 @@ final class ActivityStack {
             }
             if (DEBUG_TRANSITION) Slog.v(TAG_TRANSITION,
                     "Prepare open transition: starting " + r);
-            if (((r.intent.getFlags() & Intent.FLAG_ACTIVITY_NO_ANIMATION) != 0) || (r.floatingWindow && !r.topIntent)) {
+            if ((r.intent.getFlags() & Intent.FLAG_ACTIVITY_NO_ANIMATION) != 0) {
                 mWindowManager.prepareAppTransition(AppTransition.TRANSIT_NONE, keepCurTransition);
                 mNoAnimActivities.add(r);
             } else {
-                mWindowManager.prepareAppTransition(newTask && !r.floatingWindow
+                mWindowManager.prepareAppTransition(newTask
                         ? r.mLaunchTaskBehind
                                 ? AppTransition.TRANSIT_TASK_OPEN_BEHIND
                                 : AppTransition.TRANSIT_TASK_OPEN
@@ -2274,7 +2259,7 @@ final class ActivityStack {
                 // tell WindowManager that r is visible even though it is at the back of the stack.
                 mWindowManager.setAppVisibility(r.appToken, true);
                 ensureActivitiesVisibleLocked(null, 0);
-            } else if (SHOW_APP_STARTING_PREVIEW && doShow && !r.floatingWindow) {
+            } else if (SHOW_APP_STARTING_PREVIEW && doShow) {
                 // Figure out if we are transitioning from another activity that is
                 // "has the same starting icon" as the next one.  This allows the
                 // window manager to keep the previous window it had previously
@@ -2993,7 +2978,7 @@ final class ActivityStack {
             boolean endTask = index <= 0;
             if (DEBUG_VISIBILITY || DEBUG_TRANSITION) Slog.v(TAG_TRANSITION,
                     "Prepare close transition: finishing " + r);
-            mWindowManager.prepareAppTransition(endTask && !r.floatingWindow
+            mWindowManager.prepareAppTransition(endTask
                     ? AppTransition.TRANSIT_TASK_CLOSE
                     : AppTransition.TRANSIT_ACTIVITY_CLOSE, false);
 
@@ -3354,7 +3339,7 @@ final class ActivityStack {
                 if (r.finishing) {
                     continue;
                 }
-                if (r.fullscreen && !r.floatingWindow) {
+                if (r.fullscreen) {
                     lastIsOpaque = true;
                 }
                 if (owner != null && r.app != owner) {

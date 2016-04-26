@@ -183,7 +183,7 @@
      from home. -->
     <integer name="recents_task_enter_from_home_duration">225</integer>
 
-    <!-- The stagger for each task when animating the task from the bottom of the screen when 
+    <!-- The stagger for each task when animating the task from the bottom of the screen when
      transitioning from home. -->
     <integer name="recents_task_enter_from_home_stagger_delay">12</integer>
 
@@ -304,4 +304,3 @@
     <bool name="flashlight_use_wakelock">false</bool>
 
 </resources>
-

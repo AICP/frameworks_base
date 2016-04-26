@@ -162,9 +162,10 @@
 
     <!-- Themes QS Tile -->
     <string name="quick_settings_themes">Designs</string>
-    <string name="quick_settings_themes_icon_packs">Symbolpakete</string>
-    <string name="quick_settings_themes_app_theme">App-Design</string>
-    <string name="quick_settings_themes_system_theme">System-Design</string>
+    <string name="quick_settings_themes_icon_packs">Symbolpaket anwenden</string>
+    <string name="quick_settings_themes_app_theme_with_label">Design auf folgende App <xliff:g id="application">%1$s</xliff:g> anwenden</string>
+    <string name="quick_settings_themes_app_theme">Design auf App anwenden</string>
+    <string name="quick_settings_themes_system_theme">Design anwenden</string>
     <string name="quick_settings_themes_default_theme">Standard</string>
     <string name="quick_settings_themes_match_system">Wie System-Design</string>
 

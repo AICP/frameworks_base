@@ -182,20 +182,5 @@
     <!-- Heads up snooze toast -->
     <string name="heads_up_snooze_message">Heads up is snoozing for <xliff:g id="number">%d</xliff:g> minutes.</string>
 
-    <!-- Title shown in recents popup for showing app launch in floating mode -->
-    <string name="recent_float_mode_title">Float Mode</string>
-
-    <!-- App circle sidebar -->
-    <string name="app_float_maximize_item_title">Maximize</string>
-    <string name="app_float_item_title">Float Mode</string>
-    <string name="app_stop_item_title">Kill app</string>
-
-    <!-- Floating Windows tile -->
-    <string name="quick_settings_floating_windows_on">Float Mode Enabled</string>
-    <string name="quick_settings_floating_windows_off">Float Mode Disabled</string>
-
-    <!-- Floating Windows tile -->
-    <string name="quick_settings_slim_floats_on">Slim Float Mode Enabled</string>
-    <string name="quick_settings_slim_floats_off">Slim Float Mode Disabled</string>
-
 </resources>
+

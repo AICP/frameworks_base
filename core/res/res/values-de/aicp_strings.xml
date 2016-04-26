@@ -43,4 +43,11 @@
     <string name="animation_grow_shrink_right">Zoom-in (von rechts)</string>
     <string name="action_null">Leer</string>
 
+    <!-- Floating Window -->
+    <string name="floating_window_snap_top">Oben anheften</string>
+    <string name="floating_window_snap_bottom">Unten anheften</string>
+    <string name="floating_window_snap_left">Links anheften</string>
+    <string name="floating_window_snap_right">Rechts anheften</string>
+    <string name="floating_window_minimize">Minimieren</string>
+
 </resources>

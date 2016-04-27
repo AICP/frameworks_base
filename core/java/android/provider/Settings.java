@@ -3899,6 +3899,12 @@ public final class Settings {
         public static final String STATUS_BAR_WEATHER_COLOR = "status_bar_weather_color";
 
         /**
+         * Custom Pulse Widths
+         * @hide
+         */
+        public static final String PULSE_CUSTOM_DIMEN = "pulse_custom_dimen";
+
+        /**
          * Statusbar weather font size setting
          * @hide
          */

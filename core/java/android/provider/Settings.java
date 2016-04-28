@@ -3905,6 +3905,12 @@ public final class Settings {
         public static final String PULSE_CUSTOM_DIMEN = "pulse_custom_dimen";
 
         /**
+         * Custom Spacing Between Pulse Bars
+         * @hide
+         */
+        public static final String PULSE_CUSTOM_DIV = "pulse_custom_div";
+
+        /**
          * Statusbar weather font size setting
          * @hide
          */

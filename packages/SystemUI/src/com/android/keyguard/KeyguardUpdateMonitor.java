@@ -43,6 +43,7 @@ import android.app.admin.DevicePolicyManager;
 import android.app.trust.TrustManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -148,6 +149,8 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
             = "com.android.facelock.FACE_UNLOCK_STARTED";
     private static final String ACTION_FACE_UNLOCK_STOPPED
             = "com.android.facelock.FACE_UNLOCK_STOPPED";
+
+    public static final String FP_WAKE_UNLOCK = "fp_wake_unlock";
 
     // Callback messages
     private static final int MSG_TIME_UPDATE = 301;
@@ -292,7 +295,7 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
     private int mActiveMobileDataSubscription = SubscriptionManager.INVALID_SUBSCRIPTION_ID;
     private final Executor mBackgroundExecutor;
 
-    private final boolean mFingerprintWakeAndUnlock;
+    private boolean mFingerprintWakeAndUnlock;
 
     /**
      * Short delay before restarting fingerprint authentication after a successful try. This should
@@ -1588,6 +1591,30 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
         mRingerModeTracker.getRingerMode().observeForever(mRingerModeObserver);
     }
 
+    private class AicpSettingsObserver extends ContentObserver {
+        AicpSettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        void observe() {
+            ContentResolver resolver = mContext.getContentResolver();
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.FP_WAKE_UNLOCK),
+                    false, this, UserHandle.USER_ALL);
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            update();
+        }
+
+        public void update() {
+            updateSettings();
+        }
+    }
+
+    private AicpSettingsObserver mAicpSettingsObserver;
+
     @VisibleForTesting
     @Inject
     protected KeyguardUpdateMonitor(
@@ -1603,8 +1630,9 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
         mSubscriptionManager = SubscriptionManager.from(context);
         mDeviceProvisioned = isDeviceProvisionedInSettingsDb();
         mStrongAuthTracker = new StrongAuthTracker(context, this::notifyStrongAuthStateChanged);
-        mFingerprintWakeAndUnlock = mContext.getResources().getBoolean(
-                com.android.systemui.R.bool.config_fingerprintWakeAndUnlock);
+        mFingerprintWakeAndUnlock = Settings.System.getIntForUser(
+                mContext.getContentResolver(), FP_WAKE_UNLOCK, 1,
+                UserHandle.USER_CURRENT) != 0;
         mBackgroundExecutor = backgroundExecutor;
         mBroadcastDispatcher = broadcastDispatcher;
         mRingerModeTracker = ringerModeTracker;
@@ -1863,6 +1891,15 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
                 }
             }
         }
+        mAicpSettingsObserver = new AicpSettingsObserver(mHandler);
+        mAicpSettingsObserver.observe();
+        mAicpSettingsObserver.update();
+    }
+
+    private void updateSettings() {
+        mFingerprintWakeAndUnlock = Settings.System.getIntForUser(
+                mContext.getContentResolver(), Settings.System.FP_WAKE_UNLOCK, 1,
+                UserHandle.USER_CURRENT) != 0;
     }
 
     private final UserSwitchObserver mUserSwitchObserver = new UserSwitchObserver() {

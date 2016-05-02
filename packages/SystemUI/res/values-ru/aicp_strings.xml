@@ -182,4 +182,23 @@
     <string name="quick_settings_screenrecord_label">Запись экрана</string>
     <string name="quick_settings_screenrecord_on">Запись...</string>
 
+    <!-- Heads up snooze toast -->
+    <string name="heads_up_snooze_message">Таймер переноса<xliff:g id="number">%d</xliff:g> минут.</string>
+
+    <!-- Title shown in recents popup for showing app launch in floating mode -->
+    <string name="recent_float_mode_title">Плавающие окна</string>
+
+    <!-- App circle sidebar -->
+    <string name="app_float_maximize_item_title">Максимизировать</string>
+    <string name="app_float_item_title">Плавающие окна</string>
+    <string name="app_stop_item_title">Убрать все</string>
+
+    <!-- Floating Windows tile -->
+    <string name="quick_settings_floating_windows_on">Включено</string>
+    <string name="quick_settings_floating_windows_off">Выключено</string>
+
+    <!-- Floating Windows tile -->
+    <string name="quick_settings_slim_floats_on">Включено</string>
+    <string name="quick_settings_slim_floats_off">Выключено</string>
+
 </resources>

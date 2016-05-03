@@ -2063,13 +2063,17 @@ public class Toolbar extends ViewGroup {
     }
 
     public void updateTextColor() {
-        final int textColor = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.SETTINGS_TOOLBAR_TEXT_COLOR, 0xff000000);
-        if (mTitleTextView != null) {
-            mTitleTextView.setTextColor(textColor);
-        }
-        if (mSubtitleTextView != null) {
-            mSubtitleTextView.setTextColor(textColor);
+        final boolean mCustomDashBoard = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.DASHBOARD_CUSTOMIZATIONS, 0) == 1;
+        if (mCustomDashBoard) {
+            final int textColor = Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.SETTINGS_TOOLBAR_TEXT_COLOR, 0xff000000);
+            if (mTitleTextView != null) {
+                mTitleTextView.setTextColor(textColor);
+            }
+            if (mSubtitleTextView != null) {
+                mSubtitleTextView.setTextColor(textColor);
+            }
         }
     }
 

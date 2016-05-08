@@ -153,4 +153,6 @@
   <java-symbol type="string" name="floating_window_snap_right"/>
   <java-symbol type="string" name="floating_window_minimize"/>
 
+  <!--Exposed Java styles for power menu -->
+  <java-symbol type="style" name="Theme.Power.Dialog" />
 </resources>

@@ -47,4 +47,8 @@
 
   <!-- Whether key handler sends intent when changing slider position -->
   <java-symbol type="string" name="config_alertSliderIntent" />
+
+  <!--Exposed Java styles for power menu -->
+  <java-symbol type="style" name="Theme.Power.Dialog" />
+
 </resources>

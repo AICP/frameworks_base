@@ -202,4 +202,8 @@
 
   <!-- Gesture handle width -->
   <java-symbol type="array" name="config_handleLengthScales" />
+
+  <!--Exposed Java styles for power menu -->
+  <java-symbol type="style" name="Theme.Power.Dialog" />
+
 </resources>

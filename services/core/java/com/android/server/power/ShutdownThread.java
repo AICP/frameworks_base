@@ -46,6 +46,7 @@ import android.util.ArrayMap;
 import android.util.Log;
 import android.util.Slog;
 import android.util.TimingsTraceLog;
+import android.view.ContextThemeWrapper;
 import android.view.WindowManager;
 
 import com.android.server.LocalServices;
@@ -255,7 +256,7 @@ public final class ShutdownThread extends Thread {
         mRebootSafeMode = true;
         mRebootHasProgressBar = false;
         mReason = null;
-        shutdownInner(context, confirm);
+        shutdownInner(getDialogThemedContext(context), confirm);
     }
 
     private static ProgressDialog showShutdownDialog(Context context) {
@@ -383,7 +384,7 @@ public final class ShutdownThread extends Thread {
             sIsStarted = true;
         }
 
-        sInstance.mProgressDialog = showShutdownDialog(context);
+        sInstance.mProgressDialog = showShutdownDialog(getDialogThemedContext(context));
         sInstance.mContext = context;
         sInstance.mPowerManager = (PowerManager)context.getSystemService(Context.POWER_SERVICE);
 
@@ -788,5 +789,9 @@ public final class ShutdownThread extends Thread {
                 Log.e(TAG, "Failed to write timeout message to uncrypt status", e);
             }
         }
+    }
+
+    private static final Context getDialogThemedContext(Context context) {
+        return new ContextThemeWrapper(context, com.android.internal.R.style.Theme_Power_Dialog);
     }
 }

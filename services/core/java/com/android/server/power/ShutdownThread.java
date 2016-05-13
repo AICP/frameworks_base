@@ -460,12 +460,12 @@ public final class ShutdownThread extends Thread {
         if (um.hasUserRestriction(UserManager.DISALLOW_SAFE_BOOT)) {
             return;
         }
-
+        final Context uiContext = getUiContext(context);
         mReboot = true;
         mRebootSafeMode = true;
         mRebootUpdate = false;
         mRebootReason = null;
-        shutdownInner(context, confirm);
+        shutdownInner(uiContext, confirm);
     }
 
     private static void beginShutdownSequence(Context context) {

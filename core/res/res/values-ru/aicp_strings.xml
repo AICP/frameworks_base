@@ -41,6 +41,13 @@
     <string name="animation_grow_shrink_bottom">Увеличение (снизу)</string>
     <string name="animation_grow_shrink_left">Увеличение с (лева)</string>
     <string name="animation_grow_shrink_right">Увеличение с (права)</string>
-    <string name="action_null">Пусто</string>
+    <string name="action_null">Нету</string>
+
+    <!-- Floating Window -->
+    <string name="floating_window_snap_top">Кнопка сверху</string>
+    <string name="floating_window_snap_bottom">Кнопка снизу</string>
+    <string name="floating_window_snap_left">Кнопка слева</string>
+    <string name="floating_window_snap_right">Кнопка справа</string>
+    <string name="floating_window_minimize">Минимизировать</string>
 
 </resources>

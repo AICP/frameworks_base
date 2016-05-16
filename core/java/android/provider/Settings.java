@@ -4954,6 +4954,28 @@ public final class Settings {
         private static final Validator QS_SMART_PULLDOWN_VALIDATOR =
               new SettingsValidators.InclusiveIntegerRangeValidator(0, 3);
 
+        /**
+         * Change quick settings tiles animation style
+         *
+         * @hide
+         */
+        public static final String ANIM_TILE_STYLE = "anim_tile_style";
+
+        /** @hide */
+        private static final Validator ANIM_TILE_STYLE_VALIDATOR =
+              new SettingsValidators.InclusiveIntegerRangeValidator(0, 2);
+
+        /**
+         * Change quick settings tiles animation duration
+         *
+         * @hide
+         */
+        public static final String ANIM_TILE_DURATION = "anim_tile_duration";
+
+        /** @hide */
+        private static final Validator ANIM_TILE_DURATION_VALIDATOR =
+              new SettingsValidators.InclusiveIntegerRangeValidator(1500, 2500);
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5087,6 +5109,8 @@ public final class Settings {
             VOLUME_DIALOG_TIMEOUT,
             BLUETOOTH_SHOW_BATTERY,
             QS_SMART_PULLDOWN,
+            ANIM_TILE_STYLE,
+            ANIM_TILE_DURATION,
             // AICP Settings end
         };
 
@@ -5283,6 +5307,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(LOCKSCREEN_MEDIA_METADATA);
             PRIVATE_SETTINGS.add(BLUETOOTH_SHOW_BATTERY);
             PRIVATE_SETTINGS.add(QS_SMART_PULLDOWN);
+            PRIVATE_SETTINGS.add(ANIM_TILE_STYLE);
+            PRIVATE_SETTINGS.add(ANIM_TILE_DURATION);
             // AICP Settings end
         }
 
@@ -5459,6 +5485,8 @@ public final class Settings {
             VALIDATORS.put(LOCKSCREEN_MEDIA_METADATA,LOCKSCREEN_MEDIA_METADATA_VALIDATOR);
             VALIDATORS.put(BLUETOOTH_SHOW_BATTERY,BLUETOOTH_SHOW_BATTERY_VALIDATOR);
             VALIDATORS.put(QS_SMART_PULLDOWN,QS_SMART_PULLDOWN_VALIDATOR);
+            VALIDATORS.put(ANIM_TILE_STYLE,ANIM_TILE_STYLE_VALIDATOR);
+            VALIDATORS.put(ANIM_TILE_DURATION,ANIM_TILE_DURATION_VALIDATOR);
             // AICP Settings end
         }
 

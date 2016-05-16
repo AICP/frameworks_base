@@ -4916,15 +4916,29 @@ public final class Settings {
         public static final String AMBIENT_BATTERY_PERCENT = "ambient_battery_percent";
 
         /**
-         * --- AICP System settings end
-         *  Add new system settings above this comment
-         */
-
-        /**
          * Stores the app to be launched if the user taps on the screenshot notification edit button
          * @hide
          */
         public static final String SCREENSHOT_EDIT_USER_APP = "screenshot_edit_user_app";
+
+        /**
+         * Change quick settings tiles animation style
+         *
+         * @hide
+         */
+        public static final String ANIM_TILE_STYLE = "anim_tile_style";
+
+        /**
+         * Change quick settings tiles animation duration
+         *
+         * @hide
+         */
+        public static final String ANIM_TILE_DURATION = "anim_tile_duration";
+
+        /**
+         * --- AICP System settings end
+         *  Add new system settings above this comment
+         */
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings

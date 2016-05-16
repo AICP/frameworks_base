@@ -125,7 +125,12 @@ public class SystemSettings {
                 Settings.System.NOTIFICATION_COOLDOWN_ALL,
                 Settings.System.NOTIFICATION_COOLDOWN_VIBRATE_UNLOCKED,
                 Settings.System.PREFERRED_REGION,
-                Settings.System.CV_ENABLED
+                Settings.System.CV_ENABLED,
+
+                // AICP Settings start
+                Settings.System.ANIM_TILE_STYLE,
+                Settings.System.ANIM_TILE_DURATION,
+                Settings.System.ANIM_TILE_INTERPOLATOR
         ));
         if (Flags.backUpSmoothDisplayAndForcePeakRefreshRate()) {
             settings.add(Settings.System.PEAK_REFRESH_RATE);

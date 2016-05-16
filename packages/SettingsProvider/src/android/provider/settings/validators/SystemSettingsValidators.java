@@ -274,5 +274,10 @@ public class SystemSettingsValidators {
         VALIDATORS.put(System.PREFERRED_REGION, ANY_STRING_VALIDATOR);
         VALIDATORS.put(System.CV_ENABLED,
                 new InclusiveIntegerRangeValidator(0, 1));
+
+        // AICP Settings start
+        VALIDATORS.put(System.ANIM_TILE_STYLE, ANY_INTEGER_VALIDATOR);
+        VALIDATORS.put(System.ANIM_TILE_DURATION, ANY_INTEGER_VALIDATOR);
+        VALIDATORS.put(System.ANIM_TILE_INTERPOLATOR, ANY_INTEGER_VALIDATOR);
     }
 }

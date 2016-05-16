@@ -6607,6 +6607,11 @@ public final class Settings {
             PRIVATE_SETTINGS.add(MOUSE_REVERSE_VERTICAL_SCROLLING);
             PRIVATE_SETTINGS.add(MOUSE_SWAP_PRIMARY_BUTTON);
             PRIVATE_SETTINGS.add(PREFERRED_REGION);
+
+            // AICP Settings start
+            PRIVATE_SETTINGS.add(ANIM_TILE_STYLE);
+            PRIVATE_SETTINGS.add(ANIM_TILE_DURATION);
+            PRIVATE_SETTINGS.add(ANIM_TILE_INTERPOLATOR);
         }
 
         /**
@@ -12628,6 +12633,24 @@ public final class Settings {
          */
         @Readable
         public static final String WINDOW_IGNORE_SECURE = "window_ignore_secure";
+
+        /**
+         * Change quick settings tiles animation style
+         * @hide
+         */
+        public static final String ANIM_TILE_STYLE = "anim_tile_style";
+
+        /**
+         * Change quick settings tiles animation duration
+         * @hide
+         */
+        public static final String ANIM_TILE_DURATION = "anim_tile_duration";
+
+        /**
+         * Change quick settings tiles interpolator
+         * @hide
+         */
+        public static final String ANIM_TILE_INTERPOLATOR = "anim_tile_interpolator";
 
         /*****************************
          * AICP Secure Settings end

@@ -111,6 +111,9 @@ public class QuickQSPanelController extends QSPanelControllerBase<QuickQSPanel> 
         mTunerService.addTunable(mView, QSPanel.QS_LAYOUT_COLUMNS);
         mTunerService.addTunable(mView, QSPanel.QS_LAYOUT_COLUMNS_LANDSCAPE);
         mTunerService.addTunable(mView, QSPanel.QS_TILE_LABEL_HIDE);
+        mTunerService.addTunable(mView, QSPanel.ANIM_TILE_STYLE);
+        mTunerService.addTunable(mView, QSPanel.ANIM_TILE_DURATION);
+        mTunerService.addTunable(mView, QSPanel.ANIM_TILE_INTERPOLATOR);
 
         mView.setBrightnessRunnable(() -> {
             mView.updateResources();

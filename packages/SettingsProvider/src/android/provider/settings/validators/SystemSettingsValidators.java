@@ -282,5 +282,10 @@ public class SystemSettingsValidators {
                 System.CV_PREFERRED_INTENSITY,
                 new InclusiveIntegerRangeValidator(
                         CV_PREFERRED_INTENSITY_MIN, CV_PREFERRED_INTENSITY_MAX));
+
+        // AICP Settings start
+        VALIDATORS.put(System.ANIM_TILE_STYLE, ANY_INTEGER_VALIDATOR);
+        VALIDATORS.put(System.ANIM_TILE_DURATION, ANY_INTEGER_VALIDATOR);
+        VALIDATORS.put(System.ANIM_TILE_INTERPOLATOR, ANY_INTEGER_VALIDATOR);
     }
 }

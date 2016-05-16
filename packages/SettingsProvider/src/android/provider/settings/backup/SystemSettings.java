@@ -128,7 +128,12 @@ public class SystemSettings {
                 Settings.System.PREFERRED_REGION,
                 Settings.System.CV_ENABLED,
                 Settings.System.CV_DYNAMIC_ENABLED,
-                Settings.System.CV_PREFERRED_INTENSITY
+                Settings.System.CV_PREFERRED_INTENSITY,
+
+                // AICP Settings start
+                Settings.System.ANIM_TILE_STYLE,
+                Settings.System.ANIM_TILE_DURATION,
+                Settings.System.ANIM_TILE_INTERPOLATOR
         ));
         if (Flags.backUpSmoothDisplayAndForcePeakRefreshRate()) {
             settings.add(Settings.System.PEAK_REFRESH_RATE);

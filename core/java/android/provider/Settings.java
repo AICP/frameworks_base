@@ -5131,6 +5131,28 @@ public final class Settings {
         private static final Validator BLUETOOTH_SHOW_BATTERY_VALIDATOR =
               BOOLEAN_VALIDATOR;
 
+        /**
+         * Change quick settings tiles animation style
+         *
+         * @hide
+         */
+        public static final String ANIM_TILE_STYLE = "anim_tile_style";
+
+        /** @hide */
+        private static final Validator ANIM_TILE_STYLE_VALIDATOR =
+              new SettingsValidators.InclusiveIntegerRangeValidator(0, 2);
+
+        /**
+         * Change quick settings tiles animation duration
+         *
+         * @hide
+         */
+        public static final String ANIM_TILE_DURATION = "anim_tile_duration";
+
+        /** @hide */
+        private static final Validator ANIM_TILE_DURATION_VALIDATOR =
+              new SettingsValidators.InclusiveIntegerRangeValidator(1500, 2500);
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5267,6 +5289,8 @@ public final class Settings {
             ROAMING_INDICATOR_ICON,
             SHOW_LTE_FOURGEE,
             BLUETOOTH_SHOW_BATTERY,
+            ANIM_TILE_STYLE,
+            ANIM_TILE_DURATION,
             // AICP Settings end
         };
 
@@ -5451,6 +5475,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(ROAMING_INDICATOR_ICON);
             PRIVATE_SETTINGS.add(SHOW_LTE_FOURGEE);
             PRIVATE_SETTINGS.add(BLUETOOTH_SHOW_BATTERY);
+            PRIVATE_SETTINGS.add(ANIM_TILE_STYLE);
+            PRIVATE_SETTINGS.add(ANIM_TILE_DURATION);
             // AICP Settings end
         }
 
@@ -5625,6 +5651,8 @@ public final class Settings {
             VALIDATORS.put(ROAMING_INDICATOR_ICON,ROAMING_INDICATOR_ICON_VALIDATOR);
             VALIDATORS.put(SHOW_LTE_FOURGEE,SHOW_LTE_FOURGEE_VALIDATOR);
             VALIDATORS.put(BLUETOOTH_SHOW_BATTERY,BLUETOOTH_SHOW_BATTERY_VALIDATOR);
+            VALIDATORS.put(ANIM_TILE_STYLE,ANIM_TILE_STYLE_VALIDATOR);
+            VALIDATORS.put(ANIM_TILE_DURATION,ANIM_TILE_DURATION_VALIDATOR);
             // AICP Settings end
         }
 

@@ -155,5 +155,8 @@ public class SystemSettings {
         Settings.System.FLASHLIGHT_ON_CALL_IGNORE_DND,
         Settings.System.FLASHLIGHT_ON_CALL_RATE,
         Settings.System.QS_TRANSPARENCY,
+        Settings.System.ANIM_TILE_STYLE,
+        Settings.System.ANIM_TILE_DURATION,
+        Settings.System.ANIM_TILE_INTERPOLATOR,
     };
 }

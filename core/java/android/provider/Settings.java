@@ -5781,6 +5781,18 @@ public final class Settings {
          */
         public static final String DATA_DISABLED_ICON = "data_disabled_icon";
 
+        /**
+         * Change quick settings tiles animation style
+         * @hide
+         */
+        public static final String ANIM_TILE_STYLE = "anim_tile_style";
+
+        /**
+         * Change quick settings tiles animation duration
+         * @hide
+         */
+        public static final String ANIM_TILE_DURATION = "anim_tile_duration";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5889,6 +5901,8 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(ROAMING_INDICATOR_ICON, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(SHOW_LTE_FOURGEE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(DATA_DISABLED_ICON, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(ANIM_TILE_STYLE, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(ANIM_TILE_DURATION, ANY_INTEGER_VALIDATOR);
         }
 
         /**

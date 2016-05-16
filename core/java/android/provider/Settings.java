@@ -6533,6 +6533,24 @@ public final class Settings {
          */
         public static final String STATUS_BAR_CLOCK_DATE_FORMAT = "status_bar_clock_date_format";
 
+        /**
+         * Change quick settings tiles animation style
+         * @hide
+         */
+        public static final String ANIM_TILE_STYLE = "anim_tile_style";
+
+        /**
+         * Change quick settings tiles animation duration
+         * @hide
+         */
+        public static final String ANIM_TILE_DURATION = "anim_tile_duration";
+
+        /**
+         * Change quick settings tiles interpolator
+         * @hide
+         */
+        public static final String ANIM_TILE_INTERPOLATOR = "anim_tile_interpolator";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6726,6 +6744,9 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK_DATE_STYLE);
             PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK_DATE_POSITION);
             PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK_DATE_FORMAT);
+            PRIVATE_SETTINGS.add(ANIM_TILE_STYLE);
+            PRIVATE_SETTINGS.add(ANIM_TILE_DURATION);
+            PRIVATE_SETTINGS.add(ANIM_TILE_INTERPOLATOR);
         }
 
         /**

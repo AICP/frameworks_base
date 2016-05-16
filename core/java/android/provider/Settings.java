@@ -6791,6 +6791,24 @@ public final class Settings {
          */
         public static final String OPTIMIZED_CHARGE_FLOOR = "optimized_charge_floor";
 
+        /**
+         * Change quick settings tiles animation style
+         * @hide
+         */
+        public static final String ANIM_TILE_STYLE = "anim_tile_style";
+
+        /**
+         * Change quick settings tiles animation duration
+         * @hide
+         */
+        public static final String ANIM_TILE_DURATION = "anim_tile_duration";
+
+        /**
+         * Change quick settings tiles interpolator
+         * @hide
+         */
+        public static final String ANIM_TILE_INTERPOLATOR = "anim_tile_interpolator";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7146,6 +7164,9 @@ public final class Settings {
             PRIVATE_SETTINGS.add(OPTIMIZED_CHARGE_ENABLED);
             PRIVATE_SETTINGS.add(OPTIMIZED_CHARGE_CEILING);
             PRIVATE_SETTINGS.add(OPTIMIZED_CHARGE_FLOOR);
+            PRIVATE_SETTINGS.add(ANIM_TILE_STYLE);
+            PRIVATE_SETTINGS.add(ANIM_TILE_DURATION);
+            PRIVATE_SETTINGS.add(ANIM_TILE_INTERPOLATOR);
         }
 
         /**

@@ -318,5 +318,8 @@ public class SystemSettings {
         Settings.System.OPTIMIZED_CHARGE_ENABLED,
         Settings.System.OPTIMIZED_CHARGE_CEILING,
         Settings.System.OPTIMIZED_CHARGE_FLOOR,
+        Settings.System.ANIM_TILE_STYLE,
+        Settings.System.ANIM_TILE_DURATION,
+        Settings.System.ANIM_TILE_INTERPOLATOR,
     };
 }

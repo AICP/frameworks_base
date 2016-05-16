@@ -169,7 +169,10 @@ public class QuickQSPanel extends QSPanel implements TunerService.Tunable {
              case QS_TILE_VERTICAL_LAYOUT:
              case QS_LAYOUT_COLUMNS:
              case QS_LAYOUT_COLUMNS_LANDSCAPE:
-             case QS_TILE_LABEL_HIDE
+             case QS_TILE_LABEL_HIDE:
+             case ANIM_TILE_STYLE:
+             case ANIM_TILE_DURATION:
+             case ANIM_TILE_INTERPOLATOR:
                 if (mLayoutRunnable != null) {
                     mLayoutRunnable.run();
                 }

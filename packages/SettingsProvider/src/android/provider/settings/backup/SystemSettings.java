@@ -163,6 +163,9 @@ public class SystemSettings {
                 Settings.System.STATUS_BAR_CLOCK_DATE_STYLE,
                 Settings.System.STATUS_BAR_CLOCK_DATE_POSITION,
                 Settings.System.STATUS_BAR_CLOCK_DATE_FORMAT
+                Settings.System.ANIM_TILE_STYLE,
+                Settings.System.ANIM_TILE_DURATION,
+                Settings.System.ANIM_TILE_INTERPOLATOR
         ));
         if (Flags.backUpSmoothDisplayAndForcePeakRefreshRate()) {
             settings.add(Settings.System.PEAK_REFRESH_RATE);

@@ -18,6 +18,7 @@ package com.android.systemui.qs;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.app.ActivityManager;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -387,6 +388,27 @@ public class QSDragPanel extends QSPanel implements View.OnDragListener, View.On
         r.tileView.onStateChanged(state);
     }
 
+    private void setAnimationTile(TileRecord r) {
+        ObjectAnimator animTile = null;
+        int animStyle = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.ANIM_TILE_STYLE, 0, UserHandle.USER_CURRENT);
+        int animDuration = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.ANIM_TILE_DURATION, 2000, UserHandle.USER_CURRENT);
+        if (animStyle == 0) {
+            //No animation
+        }
+        if (animStyle == 1) {
+            animTile = ObjectAnimator.ofFloat(r.tileView, "rotationY", 0f, 360f);
+        }
+        if (animStyle == 2) {
+            animTile = ObjectAnimator.ofFloat(r.tileView, "rotation", 0f, 360f);
+        }
+        if (animTile != null) {
+            animTile.setDuration(animDuration);
+            animTile.start();
+        }
+    }
+
     @Override
     public void setListening(boolean listening) {
         if (mListening == listening) return;
@@ -733,6 +755,7 @@ public class QSDragPanel extends QSPanel implements View.OnDragListener, View.On
             public void onClick(View v) {
                 if (!mEditing || r.tile instanceof EditTile) {
                     r.tile.click();
+                    setAnimationTile(r);
                 }
             }
         };
@@ -741,6 +764,7 @@ public class QSDragPanel extends QSPanel implements View.OnDragListener, View.On
             public void onClick(View v) {
                 if (!mEditing) {
                     r.tile.secondaryClick();
+                    setAnimationTile(r);
                 }
             }
         };
@@ -749,6 +773,7 @@ public class QSDragPanel extends QSPanel implements View.OnDragListener, View.On
             public boolean onLongClick(View v) {
                 if (!mEditing) {
                     r.tile.longClick();
+                    setAnimationTile(r);
                 } else {
                     QSDragPanel.this.onLongClick(r.tileView);
                 }

@@ -315,5 +315,8 @@ public class SystemSettings {
         Settings.System.QS_FOOTER_TEXT_SHOW,
         Settings.System.QS_FOOTER_TEXT_STRING,
         Settings.System.GAMESPACE_SUPPRESS_FULLSCREEN_INTENT,
+        Settings.System.ANIM_TILE_STYLE,
+        Settings.System.ANIM_TILE_DURATION,
+        Settings.System.ANIM_TILE_INTERPOLATOR,
     };
 }

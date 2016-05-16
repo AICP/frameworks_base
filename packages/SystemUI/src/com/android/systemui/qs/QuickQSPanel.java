@@ -177,6 +177,21 @@ public class QuickQSPanel extends QSPanel implements TunerService.Tunable {
             if (mLayoutRunnable != null) {
                 mLayoutRunnable.run();
             }
+        } else if (ANIM_TILE_STYLE.equals(key)) {
+            animStyle = TunerService.parseIntegerSwitch(newValue, false) ? Integer.parseInt(newValue) : 0;
+            if (mLayoutRunnable != null) {
+                mLayoutRunnable.run();
+            }
+        } else if (ANIM_TILE_DURATION.equals(key)) {
+            animDuration = TunerService.parseIntegerSwitch(newValue, false) ? Integer.parseInt(newValue) : 2000;
+            if (mLayoutRunnable != null) {
+                mLayoutRunnable.run();
+            }
+        } else if (ANIM_TILE_INTERPOLATOR.equals(key)) {
+            interpolatorType = TunerService.parseIntegerSwitch(newValue, false) ? Integer.parseInt(newValue) : 0;
+            if (mLayoutRunnable != null) {
+                mLayoutRunnable.run();
+            }
         }
     }
 

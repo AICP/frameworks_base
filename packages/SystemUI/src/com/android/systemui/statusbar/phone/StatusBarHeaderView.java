@@ -348,6 +348,11 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         mClockCollapsedSize = getResources().getDimensionPixelSize(R.dimen.qs_time_collapsed_size);
         mClockExpandedSize = getResources().getDimensionPixelSize(R.dimen.qs_time_expanded_size);
         mClockCollapsedScaleFactor = (float) mClockCollapsedSize / (float) mClockExpandedSize;
+
+        if (mEditTileDoneText != null) {
+            mEditTileDoneText.setText(R.string.quick_settings_done);
+        }
+
         updateClockScale();
         updateClockCollapsedMargin();
     }

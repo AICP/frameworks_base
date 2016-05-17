@@ -42,6 +42,7 @@ public class BatteryBarController extends LinearLayout {
 
     public static final int STYLE_REGULAR = 0;
     public static final int STYLE_SYMMETRIC = 1;
+    public static final int STYLE_REVERSE = 2;
 
     int mStyle = STYLE_REGULAR;
     int mLocation = 0;
@@ -184,6 +185,11 @@ public class BatteryBarController extends LinearLayout {
                         LayoutParams.MATCH_PARENT, 1)));
             }
 
+        } else if (mStyle == STYLE_REVERSE) {
+            BatteryBar bar = new BatteryBar(mContext, mBatteryCharging, mBatteryLevel, isVertical);
+            bar.setRotation(180);
+            addView(bar, new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
+                        LayoutParams.MATCH_PARENT, 1));
         }
     }
 

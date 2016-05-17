@@ -3633,6 +3633,16 @@ public final class Settings {
         /**
          * @hide
          */
+        public static final String STATUSBAR_BATTERY_BAR_CHARGING_COLOR = "statusbar_battery_bar_charging_color";
+
+        /**
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_BATTERY_LOW_COLOR = "statusbar_battery_bar_battery_low_color";
+
+        /**
+         * @hide
+         */
         public static final String STATUSBAR_BATTERY_BAR_THICKNESS = "statusbar_battery_bar_thickness";
 
         /**
@@ -5029,7 +5039,7 @@ public final class Settings {
          * @hide
          */
         public static final String HIDE_FROM_RECENTS_LIST = "hide_from_recents_list";
-		
+
 	/**
          * Option to launch slim actions in floating mode
          * @hide

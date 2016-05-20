@@ -315,6 +315,7 @@ public class PhoneStatusBarView extends PanelBar {
     @Override
     public void onPanelPeeked() {
         super.onPanelPeeked();
+        removePendingHideExpandedRunnables();
         mBar.makeExpandedVisible(false);
     }
 

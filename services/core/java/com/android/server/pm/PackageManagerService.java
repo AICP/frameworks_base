@@ -17945,6 +17945,10 @@ public class PackageManagerService extends IPackageManager.Stub {
         if (themeConfig.getOverlayForNavBar() != null) {
             themesToProcess.add(themeConfig.getOverlayForNavBar());
         }
+        // process theme set for statusbar headers
+        if (themeConfig.getOverlayForHeaders() != null) {
+            themesToProcess.add(themeConfig.getOverlayForHeaders());
+        }
         // process themes set for specific apps
         Map<String, ThemeConfig.AppTheme> appThemesMap = themeConfig.getAppThemes();
         for (String themePkgName : appThemesMap.keySet()) {

@@ -252,6 +252,7 @@ public class ThemesTile extends QSTile<QSTile.BooleanState> implements ThemeMana
                 builder.setStatusBar(pkg);
                 builder.setOverlay(pkg);
                 builder.setNavBar(pkg);
+                builder.setHeaders(pkg);
             } else if (mode == Mode.ICON_PACK) {
                 builder.setIcons(pkg);
             } else if (mode == Mode.APP_THEME) {

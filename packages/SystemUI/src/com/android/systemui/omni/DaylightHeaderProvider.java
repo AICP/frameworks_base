@@ -18,25 +18,11 @@
 
 package com.android.systemui.omni;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.res.Resources;
-import android.database.ContentObserver;
 import android.graphics.drawable.Drawable;
+import android.util.ArrayMap;
 import android.util.Log;
-import android.os.Handler;
-import android.os.UserHandle;
-import android.provider.Settings;
-import android.util.SparseArray;
 
-import java.util.Calendar;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Iterator;
 import java.util.Calendar;
 
 import com.android.systemui.R;
@@ -45,6 +31,9 @@ public class DaylightHeaderProvider implements
         StatusBarHeaderMachine.IStatusBarHeaderProvider {
 
     public static final String TAG = "DaylightHeaderProvider";
+
+    // how many header drawables we currently cache
+    private static final int HEADER_COUNT = 9;
 
     // Daily calendar periods
     private static final int TIME_SUNRISE = 6;
@@ -71,11 +60,12 @@ public class DaylightHeaderProvider implements
     // Default drawable (AOSP)
     private static final int DRAWABLE_DEFAULT = R.drawable.notification_header_bg;
 
-    private SparseArray<Drawable> mCache;
-    private Context mContext;
+    // Due to the nature of CMTE SystemUI multiple overlays, we are now required
+    // to hard reference our themed drawables
+    private ArrayMap<Integer, Drawable> mCache = new ArrayMap<Integer, Drawable>(HEADER_COUNT);
 
-    public DaylightHeaderProvider(Context context) {
-        mContext = context;
+    public DaylightHeaderProvider(Resources res) {
+        updateResources(res);
         // There is one downside with this method: it will only work once a
         // year,
         // if you don't reboot your phone. I hope you will reboot your phone
@@ -86,8 +76,20 @@ public class DaylightHeaderProvider implements
 
         CAL_NEWYEARSEVE.set(Calendar.MONTH, Calendar.DECEMBER);
         CAL_NEWYEARSEVE.set(Calendar.DAY_OF_MONTH, 31);
+    }
 
-        mCache = new SparseArray<Drawable>();
+    @Override
+    public void updateResources(Resources res) {
+        mCache.clear();
+        mCache.put(DRAWABLE_SUNRISE, res.getDrawable(DRAWABLE_SUNRISE));
+        mCache.put(DRAWABLE_MORNING, res.getDrawable(DRAWABLE_MORNING));
+        mCache.put(DRAWABLE_NOON, res.getDrawable(DRAWABLE_NOON));
+        mCache.put(DRAWABLE_AFTERNOON, res.getDrawable(DRAWABLE_AFTERNOON));
+        mCache.put(DRAWABLE_SUNSET, res.getDrawable(DRAWABLE_SUNSET));
+        mCache.put(DRAWABLE_NIGHT, res.getDrawable(DRAWABLE_NIGHT));
+        mCache.put(DRAWABLE_CHRISTMAS, res.getDrawable(DRAWABLE_CHRISTMAS));
+        mCache.put(DRAWABLE_NEWYEARSEVE, res.getDrawable(DRAWABLE_NEWYEARSEVE));
+        mCache.put(DRAWABLE_DEFAULT, res.getDrawable(DRAWABLE_DEFAULT));
     }
 
     @Override
@@ -97,6 +99,9 @@ public class DaylightHeaderProvider implements
 
     @Override
     public Drawable getCurrent(final Calendar now) {
+        if (now == null) {
+            return loadOrFetch(DRAWABLE_DEFAULT);
+        }
         // Check special events first. They have the priority over any other
         // period.
         if (isItToday(CAL_CHRISTMAS)) {
@@ -130,16 +135,7 @@ public class DaylightHeaderProvider implements
     }
 
     private Drawable loadOrFetch(int resId) {
-        Drawable res = mCache.get(resId);
-
-        if (res == null) {
-            // We don't have this drawable cached, do it!
-            final Resources r = mContext.getResources();
-            res = r.getDrawable(resId);
-            mCache.put(resId, res);
-        }
-
-        return res;
+        return mCache.get(resId);
     }
 
     private static boolean isItToday(final Calendar date) {

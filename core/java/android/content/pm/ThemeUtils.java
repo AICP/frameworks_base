@@ -122,7 +122,8 @@ public class ThemeUtils {
     public static boolean isPerAppThemeComponent(String component) {
         return !(DEFAULT_PKG.equals(component)
                 || ThemeConfig.SYSTEMUI_STATUS_BAR_PKG.equals(component)
-                || ThemeConfig.SYSTEMUI_NAVBAR_PKG.equals(component));
+                || ThemeConfig.SYSTEMUI_NAVBAR_PKG.equals(component)
+                || ThemeConfig.SYSTEMUI_STATUSBAR_HEADER_PKG.equals(component));
     }
 
     /**

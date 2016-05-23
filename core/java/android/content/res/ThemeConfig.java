@@ -49,9 +49,15 @@ public class ThemeConfig implements Cloneable, Parcelable, Comparable<ThemeConfi
     public static final String SYSTEM_DEFAULT = "system";
 
     /**
+     * Special package name for theming the statusbar headers separate from the rest of SystemUI
+     */
+    public static final String SYSTEMUI_STATUSBAR_HEADER_PKG = "com.android.systemui.headers";
+
+    /**
      * Special package name for theming the navbar separate from the rest of SystemUI
      */
     public static final String SYSTEMUI_NAVBAR_PKG = "com.android.systemui.navbar";
+
     public static final String SYSTEMUI_STATUS_BAR_PKG = "com.android.systemui";
 
     // Key for any app which does not have a specific theme applied
@@ -77,6 +83,10 @@ public class ThemeConfig implements Cloneable, Parcelable, Comparable<ThemeConfi
 
     public String getOverlayForNavBar() {
         return getOverlayPkgNameForApp(SYSTEMUI_NAVBAR_PKG);
+    }
+
+    public String getOverlayForHeaders() {
+        return getOverlayPkgNameForApp(SYSTEMUI_STATUSBAR_HEADER_PKG);
     }
 
     public String getOverlayPkgNameForApp(String appPkgName) {

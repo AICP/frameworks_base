@@ -221,6 +221,7 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
+        setOnLongClickListener(this);
         mHeaderView = findViewById(R.id.header);
         mSystemIconsSuperContainer = findViewById(R.id.system_icons_super_container);
         mSystemIconsContainer = (ViewGroup) findViewById(R.id.system_icons_container);
@@ -741,6 +742,7 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
 
     @Override
     public boolean onLongClick(View v) {
+        vibrateheader(20);
         if (v == mSystemIconsSuperContainer) {
             startBatteryLongClickActivity();
         } else if (v == mClock) {
@@ -753,9 +755,18 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
             startUserLongClickActivity();
         } else if (v == mTaskManagerButton) {
             startTaskManagerLongClickActivity();
+        } else if (v == this) {
+            startThemeHeadersActivity();
         }
         vibrateheader(20);
         return false;
+    }
+
+    private void startThemeHeadersActivity() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.setClassName("org.cyanogenmod.theme.chooser", "org.cyanogenmod.theme.chooser.ChooserActivity");
+        intent.putExtra("component_filter", "mods_statusbar_headers");
+        mActivityStarter.startActivity(intent, true);
     }
 
     private void startSettingsActivity() {

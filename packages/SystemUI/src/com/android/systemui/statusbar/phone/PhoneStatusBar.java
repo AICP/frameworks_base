@@ -4252,6 +4252,12 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         updateMediaMetaData(true);
     }
 
+    public void hideHeadsUp() {
+        if (mUseHeadsUp && mHeadsUpManager != null) {
+            mHeadsUpManager.releaseAllImmediately();
+        }
+    }
+
     private void setControllerUsers() {
         if (mZenModeController != null) {
             mZenModeController.setUserId(mCurrentUserId);

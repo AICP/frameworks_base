@@ -771,6 +771,7 @@ public class PieMenu extends FrameLayout {
                 drawItem(canvas, item);
             }
 
+            if (mStatusMode != -1) { // NOT Bare mode
             // draw chevron ring
             mChevronBackground.setAlpha((int)
                     (mAnimators[ANIMATOR_DEC_SPEED15].fraction * mGlowOffset));
@@ -837,7 +838,7 @@ public class PieMenu extends FrameLayout {
             canvas.drawTextOnPath(mPieHelper.getBatteryLevelReadable(),
                     mStatusPath, 0, mStatusOffset * 0, mStatusPaint);
             canvas.restoreToCount(state);
-
+            } // NOT Bare mode END
             state = canvas.save();
             canvas.rotate(mPanel.getDegree() + 180, mCenter.x, mCenter.y);
 

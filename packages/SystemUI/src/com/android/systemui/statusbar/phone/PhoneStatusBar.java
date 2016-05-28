@@ -1865,6 +1865,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         ThreadedRenderer.overrideProperty("ambientRatio", String.valueOf(1.5f));
 
         mStatusBarHeaderMachine.addObserver(mHeader);
+        mStatusBarHeaderMachine.updateResources(mContext.getResources(), StatusBarHeaderMachine.STATUSBAR_RESOURCES);
         mStatusBarHeaderMachine.forceUpdate();
         return mStatusBarView;
     }
@@ -4475,7 +4476,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         SettingsObserver observer = new SettingsObserver(mHandler);
         if (newTheme != null) mCurrentTheme = (ThemeConfig) newTheme.clone();
         if (updateHeaders) {
-            mStatusBarHeaderMachine.updateResources(getHeadersThemedResources());
+            mStatusBarHeaderMachine.updateResources(getHeadersThemedResources(), StatusBarHeaderMachine.HEADER_RESOURCES);
         }
         if (updateStatusBar) {
             recreateStatusBar();

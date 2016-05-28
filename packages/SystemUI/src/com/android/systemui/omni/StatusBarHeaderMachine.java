@@ -40,6 +40,8 @@ import java.util.Iterator;
 import java.util.Calendar;
 
 public class StatusBarHeaderMachine {
+    public static final int STATUSBAR_RESOURCES = 1;
+    public static final int HEADER_RESOURCES = 2;
 
     private static final String TAG = "StatusBarHeaderMachine";
     private static final boolean DEBUG = false;
@@ -49,7 +51,12 @@ public class StatusBarHeaderMachine {
 
         public String getName();
 
-        public void updateResources(Resources res);
+        /**
+         * 
+         * @param res Resources to update header drawables from
+         * @param resType statusbar or header overlay
+         */
+        public void updateResources(Resources res, int resType);
     }
 
     public interface IStatusBarHeaderMachineObserver {
@@ -109,9 +116,9 @@ public class StatusBarHeaderMachine {
 
     private SettingsObserver mSettingsObserver = new SettingsObserver(mHandler);
 
-    public StatusBarHeaderMachine(Context context, Resources res) {
+    public StatusBarHeaderMachine(Context context, Resources headerRes) {
         mContext = context;
-        addProvider(new DaylightHeaderProvider(res));
+        addProvider(new DaylightHeaderProvider(context, headerRes));
         mSettingsObserver.observe();
     }
 
@@ -140,13 +147,18 @@ public class StatusBarHeaderMachine {
         return null;
     }
 
-    public void updateResources(Resources res) {
+    /**
+     * 
+     * @param res Resources to update header drawables from
+     * @param resType statusbar or header overlay
+     */
+    public void updateResources(Resources res, int resType) {
         if (mProviders.size() > 0) {
             Iterator<IStatusBarHeaderProvider> nextProvider = mProviders
                     .iterator();
             while (nextProvider.hasNext()) {
                 IStatusBarHeaderProvider provider = nextProvider.next();
-                provider.updateResources(res);
+                provider.updateResources(res, resType);
             }
         }
         forceUpdate();

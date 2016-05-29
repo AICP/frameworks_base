@@ -4976,6 +4976,17 @@ public final class Settings {
         private static final Validator ANIM_TILE_DURATION_VALIDATOR =
               new SettingsValidators.InclusiveIntegerRangeValidator(1500, 2500);
 
+        /**
+         * Change quick settings tiles interpolator
+         *
+         * @hide
+         */
+        public static final String ANIM_TILE_INTERPOLATOR = "anim_tile_interpolator";
+
+        /** @hide */
+        private static final Validator ANIM_TILE_INTERPOLATOR_VALIDATOR =
+              new SettingsValidators.InclusiveIntegerRangeValidator(0, 7);
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5111,6 +5122,7 @@ public final class Settings {
             QS_SMART_PULLDOWN,
             ANIM_TILE_STYLE,
             ANIM_TILE_DURATION,
+            ANIM_TILE_INTERPOLATOR,
             // AICP Settings end
         };
 
@@ -5309,6 +5321,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(QS_SMART_PULLDOWN);
             PRIVATE_SETTINGS.add(ANIM_TILE_STYLE);
             PRIVATE_SETTINGS.add(ANIM_TILE_DURATION);
+            PRIVATE_SETTINGS.add(ANIM_TILE_INTERPOLATOR);
             // AICP Settings end
         }
 
@@ -5487,6 +5500,7 @@ public final class Settings {
             VALIDATORS.put(QS_SMART_PULLDOWN,QS_SMART_PULLDOWN_VALIDATOR);
             VALIDATORS.put(ANIM_TILE_STYLE,ANIM_TILE_STYLE_VALIDATOR);
             VALIDATORS.put(ANIM_TILE_DURATION,ANIM_TILE_DURATION_VALIDATOR);
+            VALIDATORS.put(ANIM_TILE_INTERPOLATOR,ANIM_TILE_INTERPOLATOR_VALIDATOR);
             // AICP Settings end
         }
 

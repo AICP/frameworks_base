@@ -5793,6 +5793,12 @@ public final class Settings {
          */
         public static final String ANIM_TILE_DURATION = "anim_tile_duration";
 
+        /**
+         * Change quick settings tiles interpolator
+         * @hide
+         */
+        public static final String ANIM_TILE_INTERPOLATOR = "anim_tile_interpolator";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5903,6 +5909,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(DATA_DISABLED_ICON, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(ANIM_TILE_STYLE, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(ANIM_TILE_DURATION, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(ANIM_TILE_INTERPOLATOR, ANY_INTEGER_VALIDATOR);
         }
 
         /**

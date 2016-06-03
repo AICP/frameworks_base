@@ -38,6 +38,7 @@ import android.widget.RemoteViews;
 import com.android.systemui.R;
 import com.android.systemui.qs.QSTile;
 import com.android.systemui.qs.tiles.AdbOverNetworkTile;
+import com.android.systemui.qs.tiles.AicpExtrasTile;
 import com.android.systemui.qs.tiles.AirplaneModeTile;
 import com.android.systemui.qs.tiles.AmbientDisplayTile;
 import com.android.systemui.qs.tiles.AppPickerTile;
@@ -420,6 +421,7 @@ public class QSTileHost implements QSTile.Host, Tunable {
         else if (tileSpec.equals("sound")) return new SoundTile(this);
         else if (tileSpec.equals("screenrecord")) return new ScreenrecordTile(this);
         else if (tileSpec.equals("float_mode")) return new FloatingWindowsTile(this);
+        else if (tileSpec.equals("aicp_extras")) return new AicpExtrasTile(this);
         else if (tileSpec.startsWith(IntentTile.PREFIX)) return IntentTile.create(this,tileSpec);
         else if (TextUtils.split(tileSpec, "\\|").length == 3) {
             /** restores placeholder for
@@ -533,6 +535,7 @@ public class QSTileHost implements QSTile.Host, Tunable {
         else if (spec.equals("sound")) return R.string.quick_settings_sound_label;
         else if (spec.equals("screenrecord")) return R.string.quick_settings_screenrecord_label;
         else if (spec.equals("float_mode")) return R.string.recent_float_mode_title;
+        else if (spec.equals("aicp_extras")) return R.string.quick_aicp_extras_label;
         return 0;
     }
 
@@ -579,6 +582,7 @@ public class QSTileHost implements QSTile.Host, Tunable {
         else if (spec.equals("sound")) return R.drawable.ic_qs_ringer_audible;
         else if (spec.equals("screenrecord")) return R.drawable.ic_qs_screenrecord;
         else if (spec.equals("float_mode")) return R.drawable.ic_qs_floating_on;
+        else if (spec.equals("aicp_extras")) return R.drawable.ic_qs_aicp_extras;
         return 0;
     }
 

@@ -513,7 +513,7 @@
         <activity
             android:name="com.android.systemui.shortcuts.VolumePanel"
             android:label="@string/shortcut_volume"
-            android:icon="@drawable/ic_qs_volume"
+            android:icon="@drawable/ic_qs_volume_panel"
             android:theme="@android:style/Theme.NoDisplay"
             android:excludeFromRecents="true"
             android:launchMode="singleInstance" >

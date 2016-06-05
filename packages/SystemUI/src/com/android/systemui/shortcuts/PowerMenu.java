@@ -34,5 +34,6 @@ public class PowerMenu extends Activity  {
         super.onResume();
         Intent intent = new Intent(Intent.ACTION_POWERMENU);
         sendBroadcast(intent);
+        this.finish();
     }
 }

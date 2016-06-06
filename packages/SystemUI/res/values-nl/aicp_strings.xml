@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2015 AICP
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- The text for the button in the notification window-shade that clears
+         all of the currently visible notifications. [CHAR LIMIT=10]-->
+    <string name="clear_recents">Wis alles</string>
+
+    <!-- Battery Saver Dimss -->
+    <string name="battery_saver_dismiss_title">Afwijzen</string>
+    <string name="battery_saver_notification_action_text_short">Uitschakelen</string>
+
+    <!-- Screenshot Delete Toast -->
+    <string name="delete_screenshot_toast">Schermafdruk gewist</string>
+
+    <!-- App circle sidebar -->
+    <string name="app_float_maximize_item_title">Maximaliseren</string>
+    <string name="app_float_item_title">Zwevend venster</string>
+    <string name="app_stop_item_title">App afsluiten</string>
+
+    <!-- PA Pie controls -->
+    <string name="pie_date_format">ccc, dd MMM yyyy</string>
+    <string name="pie_hour_format_12">hh:mm</string>
+    <string name="pie_hour_format_24">HH:mm</string>
+    <string name="pie_am_pm">a</string>
+
+    <!-- Task Manager -->
+    <string name="task_manager_title">Taakmanager</string>
+    <string name="message_switch_fail">Kan niet overschakelen naar dit proces, aangezien het geen invoeroppervlak bezit.</string>
+    <string name="tasklist_killall">Alles afsluiten</string>
+    <string name="tasklist_memory_usage">"Vrij / totaal geheugen: <xliff:g id="number">%s</xliff:g> / <xliff:g id="name">%s</xliff:g>"</string>
+    <string name="message_keep_one_launcher">Er moet altijd een startscherm geselecteerd worden!</string>
+
+    <!-- On The Go -->
+    <string name="onthego_notif_ticker">On-The-Go ingeschakeld</string>
+    <string name="onthego_notif_title">On-The-Go is actief</string>
+    <string name="onthego_notif_stop">Stop</string>
+    <string name="onthego_notif_options">Instellingenngen</string>
+    <string name="onthego_notif_error">Kan On-The-Go niet starten</string>
+    <string name="onthego_notif_restart">On-The-Go opnieuw starten</string>
+    <string name="onthego_notif_camera_changed">Camera-modus gewisseld</string>
+    <string name="onthego_transparency">Transparantie</string>
+    <string name="onthego_front_camera">Gebruik frontcamera</string>
+    <string name="onthego_service_toggle">Service automatisch opnieuw starten</string>
+    <!-- To do: Add QS OnTheGo
+    <string name="quick_settings_onthego_back">Hintere Kamera</string>
+    <string name="quick_settings_onthego_front">Vordere Kamera</string>-->
+
+    <!-- Quick settings -->
+    <string name="quick_settings_brightness_label">Helderheid</string>
+    <string name="quick_settings_screen_off_label">Beeldscherm uit</string>
+    <string name="quick_settings_screenshot_label">Schermafdruk</string>
+
+    <!-- Expanded desktop tile -->
+    <string name="quick_settings_expanded_desktop_label">Uitgebreide desktop</string>
+    <string name="quick_settings_expanded_desktop">Uitgebreid</string>
+    <string name="quick_settings_expanded_desktop_off">Normaal</string>
+    <string name="quick_settings_expanded_desktop_detail_title">Uitgebreide desktop-modus</string>
+    <string name="quick_settings_expanded_hide_status">Verberg statusbalk</string>
+    <string name="quick_settings_expanded_hide_navigation">Verberg navigatiebalk</string>
+    <string name="quick_settings_expanded_hide_both">Verberg beide balken</string>
+    <string name="accessibility_quick_settings_expanded_desktop_off">Uitgebreide desktop uitgeschakeld</string>
+
+    <!-- Content description of the brightness tile in quick settings (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_brightness">Volumeregeling.</string>
+
+    <!-- Content description of the screen off tile in quick settings (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_screen_off">Scherm uit.</string>
+
+    <!-- Content description of the screenshot tile in quick settings (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_screenshot">Schermafdruk.</string>
+
+    <!-- Music QS Tile -->
+    <string name="quick_settings_music_label">Muziek</string>
+    <string name="quick_settings_music_play">Afspelen</string>
+    <string name="quick_settings_music_pause">Pauze</string>
+
+    <!-- Reboot/Recovery QS Tile -->
+    <string name="quick_settings_reboot_label">Opnieuw starten</string>
+    <string name="quick_settings_reboot_recovery_label">Recovery</string>
+
+    <!-- LTE Tile -->
+    <string name="qs_lte_label">LTE</string>
+    <string name="lte_on">LTE AAN</string>
+    <string name="lte_off">LTE UIT</string>
+
+    <!-- App sidebar -->
+    <string name="default_folder_text">Bestanden</string>
+    <string name="title_activity_sidebar_configuration">Onderdelen van de app-zijbalk veranderen</string>
+    <string name="action_save">Opslaan</string>
+    <string name="toast_items_saved">Inhoud van de app-zijbalk wordt opgeslagen.</string>
+    <string name="content_setup_instructions">Onderdelen aan de app-zijbalk toevoegen door lang te drukken op een icoon rechts en deze naar de lijst te verslepen.\n\nOnderdelen in een map plaatsen als een icoon op een ander icoon in de lijst gesleept wordt.\n\nOm een onderdeel uit de lijst te verwijderen, kun je eenvoudig het icoon uit de \@appbar slepen.</string>
+    <string name="content_setup_dismiss">Doorgaan</string>
+    <string name="toast_not_installed">App is niet geïnstalleerd</string>
+
+    <!-- NavBar tile -->
+    <string name="quick_settings_navigation_bar">Navigatiebalk</string>
+    <string name="quick_settings_smartbar">SmartBar</string>
+    <string name="quick_settings_smartbar_off">SmartBar UIT</string>
+    <string name="quick_settings_fling">Fling</string>
+    <string name="quick_settings_fling_off">Fling UIT</string>
+
+    <!-- App Circle Bar tile -->
+    <string name="quick_settings_appcirclebar_title">Cirkel-App launcher</string>
+    <string name="quick_settings_appcirclebar_on">Cirkel-App launcher AAN</string>
+    <string name="quick_settings_appcirclebar_off">Cirkel-App launcher UIT</string>
+
+    <!-- App Side Bar tile -->
+    <string name="quick_settings_app_sidebar">App zijbalk</string>
+    <string name="quick_settings_appsidebar_on">App zijbalk AAN</string>
+    <string name="quick_settings_appsidebar_off">App zijbalk UIT</string>
+
+    <!-- Pie tile -->
+    <string name="quick_settings_pie_title">PIE</string>
+    <string name="quick_settings_pie_on">PIE AAN</string>
+    <string name="quick_settings_pie_off">PIE UIT</string>
+	
+    <!-- Aicp Extras Tile -->
+    <string name="quick_aicp_extras_label">Aicp Extras</string>
+    <string name="quick_aicp_extras_toast">Ha, denk je echt dat lang drukken je ergens brengt!?</string>
+	
+    <!-- Dialog title for navigation bar button selection -->
+    <string name="navbar_torch">Zaklamp</string>
+
+    <!-- Content description of the power button for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_torch">Zaklamp</string>
+
+    <!-- Dialog title for navigation bar button selection -->
+    <string name="navbar_camera">Camera</string>
+
+    <!-- Content description of the power button for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_camera">Camera</string>
+
+    <!-- Dialog title for navigation bar button selection -->
+    <string name="navbar_screenshot">Schermafdruk</string>
+
+    <!-- Content description of the power button for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_screenshot">Schermafdruk</string>
+
+    <!-- Dialog title for navigation bar button selection -->
+    <string name="navbar_expand">Volledig scherm</string>
+
+    <!-- Content description of the power button for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_expand">Volledig scherm</string>
+
+    <!-- Dialog title for navigation bar button selection -->
+    <string name="navbar_app_picker">App kiezen</string>
+
+    <!-- Content description of the Application picker button for accessibility
+    (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_app_picker">App kiezen</string>
+
+    <!-- Themes QS Tile -->
+    <string name="quick_settings_themes">Thema-pakketten</string>
+    <string name="quick_settings_themes_icon_packs">Icoonpakket gebruiken</string>
+    <string name="quick_settings_themes_app_theme_with_label">Thema op de volgende app <xliff:g id="application">%1$s</xliff:g> gebruiken</string>
+    <string name="quick_settings_themes_app_theme">Thema op app gebruiken</string>
+    <string name="quick_settings_themes_system_theme">Thema gebruiken</string>
+    <string name="quick_settings_themes_default_theme">Standaard</string>
+    <string name="quick_settings_themes_match_system">Zoals systeemthema</string>
+
+    <!-- Sound QS Tile -->
+    <string name="quick_settings_sound_label">Beltoon</string>
+    <string name="quick_settings_sound_ring">Bellen</string>
+    <string name="quick_settings_sound_vibrate">Trillen</string>
+    <string name="quick_settings_sound_silent">Stil</string>
+
+    <!-- Screenrecord QS Tile -->
+    <string name="quick_settings_screenrecord_label">Beelschermopname</string>
+    <string name="quick_settings_screenrecord_on">Opname loopt ...</string>
+
+    <!-- Heads up snooze toast -->
+    <string name="heads_up_snooze_message">Pop-up berichten worden gedurende <xliff:g id="number">%d</xliff:g> minuten niet getoond.</string>
+
+    <!-- Title shown in recents popup for showing app launch in floating mode -->
+    <string name="recent_float_mode_title">Zweefmodus</string>
+
+    <!-- App circle sidebar -->
+    <string name="app_float_maximize_item_title">Maximaliseren</string>
+    <string name="app_float_item_title">Zweefmodus</string>
+    <string name="app_stop_item_title">App afsluiten</string>
+
+    <!-- Floating Windows tile -->
+    <string name="quick_settings_floating_windows_on">Zweefmodus AAN</string>
+    <string name="quick_settings_floating_windows_off">Zweefmodus UIT</string>
+
+    <!-- Floating Windows tile -->
+    <string name="quick_settings_slim_floats_on">Slimme Zweefmodus AAN</string>
+    <string name="quick_settings_slim_floats_off">Slimme Zweefmodus UIT</string>
+
+    <!-- SystemUI restart tile -->
+    <string name="quick_settings_systemui_restart_label">Herstart gebruikersinterface</string>
+	
+    <!-- Off/On/Toggle -->
+    <string name="off">Uit</string>
+    <string name="on">Aan</string>
+    <string name="toggle">Toggle</string>
+
+    <!-- Dialog Cancel/OK -->
+    <string name="cancel">Annuleren</string>
+    <string name="dlg_ok">OK</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nee</string>
+
+    <!-- Slim Shortcut Actions -->
+    <string name="shortcut_picker">Aicp snelkoppelingen</string>
+    <string name="shortcut_rotation">Draaien</string>
+    <string name="shortcut_reboot">Herstarten</string>
+    <string name="shortcut_recovery">Recovery</string>
+    <string name="shortcut_screensleep">Sleep Screen</string>
+    <string name="shortcut_volume">Volume paneel</string>
+    <string name="shortcut_restart_ui">Herstarten gebruikersinterface</string>
+    <string name="shortcut_powermenu">Aan-/Uit-menu</string>
+    <string name="shortcut_flashlight">Zaklamp</string>
+    <string name="shortcut_toggle_title">Uit te voeren actie</string>
+
+</resources>

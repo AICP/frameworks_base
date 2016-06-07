@@ -47,6 +47,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)material/effects/Unlock.ogg:system/media/audio/ui/Unlock.ogg \
     $(LOCAL_PATH)material/effects/VideoRecord.ogg:system/media/audio/ui/VideoRecord.ogg \
     $(LOCAL_PATH)material/effects/VideoStop.ogg:system/media/audio/ui/VideoStop.ogg \
+    $(LOCAL_PATH)material/effects/VolumeIncremental.ogg:system/media/audio/ui/VolumeIncremental.ogg \
     $(LOCAL_PATH)material/effects/WirelessChargingStarted.ogg:system/media/audio/ui/WirelessChargingStarted.ogg \
     $(LOCAL_PATH)material/notifications/Ariel.ogg:system/media/audio/notifications/Ariel.ogg \
     $(LOCAL_PATH)material/notifications/Carme.ogg:system/media/audio/notifications/Carme.ogg \

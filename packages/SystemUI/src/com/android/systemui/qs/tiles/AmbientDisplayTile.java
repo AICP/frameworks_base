@@ -20,7 +20,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.provider.Settings;
 import android.provider.Settings.Secure;
+import android.widget.Toast;
 
+import com.android.systemui.SysUIToast;
 import com.android.systemui.qs.SecureSetting;
 import com.android.systemui.qs.QSTile;
 import com.android.systemui.R;
@@ -65,6 +67,9 @@ public class AmbientDisplayTile extends QSTile<QSTile.BooleanState> {
             mHost.startActivityDismissingKeyguard(intent);
         } else {
             mHost.startActivityDismissingKeyguard(DISPLAY_SETTINGS);
+            SysUIToast.makeText(mContext, mContext.getString(
+                    R.string.quick_settings_ambient_display_toast_label),
+                    Toast.LENGTH_LONG).show();
         }
     }
 

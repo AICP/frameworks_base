@@ -29,6 +29,8 @@ import org.cyanogenmod.internal.logging.CMMetricsLogger;
 /** Quick settings tile: Ambient Display **/
 public class AmbientDisplayTile extends QSTile<QSTile.BooleanState> {
 
+    private static final Intent DISPLAY_SETTINGS = new Intent("android.settings.DISPLAY_SETTINGS");
+
     private final SecureSetting mSetting;
 
     public AmbientDisplayTile(Host host) {
@@ -55,10 +57,15 @@ public class AmbientDisplayTile extends QSTile<QSTile.BooleanState> {
 
     @Override
     protected void handleLongClick() {
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.setClassName("com.android.settings",
-            "com.android.settings.Settings$AmbientDisplaySettingsActivity");
-        mHost.startActivityDismissingKeyguard(intent);
+        if (Settings.Secure.getInt(mContext.getContentResolver(),
+                Settings.Secure.DOZE_ENABLED, 0) == 1) {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.setClassName("com.android.settings",
+                "com.android.settings.Settings$DozeSettingsFragmentActivity");
+            mHost.startActivityDismissingKeyguard(intent);
+        } else {
+            mHost.startActivityDismissingKeyguard(DISPLAY_SETTINGS);
+        }
     }
 
     private void setEnabled(boolean enabled) {

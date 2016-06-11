@@ -6342,7 +6342,7 @@ public class PackageManagerService extends IPackageManager.Stub {
                     if (!isFirstBoot()) {
                         try {
                             ActivityManagerNative.getDefault().showBootMessage(
-                                    mContext.getResources().getString(
+                                    null, mContext.getResources().getString(
                                             R.string.android_upgrading_fstrim), true);
                         } catch (RemoteException e) {
                         }
@@ -6478,7 +6478,7 @@ public class PackageManagerService extends IPackageManager.Stub {
         }
         mPolicy.setPackageName((String) (ai != null ? mContext.getPackageManager().getApplicationLabel(ai) : pkg.packageName));
         try {
-            ActivityManagerNative.getDefault().showBootMessage(
+            ActivityManagerNative.getDefault().showBootMessage(pkg.applicationInfo,
                     mContext.getResources().getString(R.string.android_upgrading_apk,
                             curr, total), true);
         } catch (RemoteException e) {

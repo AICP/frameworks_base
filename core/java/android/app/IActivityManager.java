@@ -409,7 +409,7 @@ public interface IActivityManager extends IInterface {
 
     public long[] getProcessPss(int[] pids) throws RemoteException;
 
-    public void showBootMessage(CharSequence msg, boolean always) throws RemoteException;
+    public void showBootMessage(ApplicationInfo appInfo, CharSequence msg, boolean always) throws RemoteException;
 
     public void keyguardWaitingForActivityDrawn() throws RemoteException;
 

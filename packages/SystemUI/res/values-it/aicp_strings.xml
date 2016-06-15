@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2015 AICP
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+          http://www.apache.org/licenses/LICENSE-2.0
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- The text for the button in the notification window-shade that clears
+         all of the currently visible notifications. [CHAR LIMIT=10]-->
+    <string name="clear_recents">Chiudi tutti i recenti</string>
+
+    <!-- Battery Saver Dimss -->
+    <string name="battery_saver_dismiss_title">Rimuovere</string>
+    <string name="battery_saver_notification_action_text_short">Spegni</string>
+
+    <!-- Screenshot Delete Toast -->
+    <string name="delete_screenshot_toast">Screenshot eliminato</string>
+
+    <!-- App circle sidebar -->
+    <string name="app_float_maximize_item_title">Massimizza</string>
+    <string name="app_float_item_title">Vista Float</string>
+    <string name="app_stop_item_title">Termina app</string>
+
+    <!-- PA Pie controls -->
+    <string name="pie_date_format">ccc, dd MMM yyyy</string>
+    <string name="pie_hour_format_12">hh:mm</string>
+    <string name="pie_hour_format_24">HH:mm</string>
+    <string name="pie_am_pm">a</string>
+
+    <!-- Task Manager -->
+    <string name="task_manager_title">Task Manager</string>
+    <string name="message_switch_fail">Non può passare a questa attività, perché non ha alcuna interfaccia.</string>
+    <string name="tasklist_killall">Termina tutto</string>
+    <string name="tasklist_memory_usage">"Totale memoria libera: <xliff:g id="number">%s</xliff:g> / <xliff:g id="name">%s</xliff:g>"</string>
+    <string name="message_keep_one_launcher">Devi avere almeno un Launcher in attività!</string>
+
+    <!-- On The Go -->
+    <string name="onthego_notif_ticker">On-The-Go attivato</string>
+    <string name="onthego_notif_title">On-The-Go è attivato</string>
+    <string name="onthego_notif_stop">Ferma</string>
+    <string name="onthego_notif_options">Opzioni</string>
+    <string name="onthego_notif_error">Impossibile avviare On-The-Go</string>
+    <string name="onthego_notif_restart">Riavvia On-The-Go</string>
+    <string name="onthego_notif_camera_changed">Modalità fotocamera cambiata</string>
+    <string name="onthego_transparency">Trasparenza</string>
+    <string name="onthego_front_camera">Usa fotocamera frontale</string>
+    <string name="onthego_service_toggle">Riavvia automaticamente il servizio</string>
+    <!-- To do: Add QS OnTheGo
+    <string name="quick_settings_onthego_back">Fotocamera posteriore</string>
+    <string name="quick_settings_onthego_front">Fotocamera frontale</string>-->
+
+    <!-- Quick settings -->
+    <string name="quick_settings_brightness_label">Luminosità</string>
+    <string name="quick_settings_screen_off_label">Spegni schermo</string>
+    <string name="quick_settings_screenshot_label">Screenshot</string>
+
+    <!-- Expanded desktop tile -->
+    <string name="quick_settings_expanded_desktop_label">Espandi desktop</string>
+    <string name="quick_settings_expanded_desktop">Espandere</string>
+    <string name="quick_settings_expanded_desktop_off">Normale</string>
+    <string name="quick_settings_expanded_desktop_detail_title">Modalità desktop aspansa</string>
+    <string name="quick_settings_expanded_hide_status">Nascondi status bar</string>
+    <string name="quick_settings_expanded_hide_navigation">Nascondi navigation bar</string>
+    <string name="quick_settings_expanded_hide_both">Nascondi both</string>
+    <string name="accessibility_quick_settings_expanded_desktop_off">Espansione desktop disabilitata</string>
+
+    <!-- Content description of the brightness tile in quick settings (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_brightness">Volume pannello</string>
+
+    <!-- Content description of the screen off tile in quick settings (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_screen_off">Spegni schermo</string>
+
+    <!-- Content description of the screenshot tile in quick settings (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_screenshot">Screenshot</string>
+
+    <!-- Music QS Tile -->
+    <string name="quick_settings_music_label">Musica</string>
+    <string name="quick_settings_music_play">Play</string>
+    <string name="quick_settings_music_pause">Pausa</string>
+
+    <!-- Reboot/Recovery QS Tile -->
+    <string name="quick_settings_reboot_label">Riavvia</string>
+    <string name="quick_settings_reboot_recovery_label">Recovery</string>
+
+    <!-- LTE Tile -->
+    <string name="qs_lte_label">LTE</string>
+    <string name="lte_on">LTE ON </string>
+    <string name="lte_off">LTE OFF</string>
+
+    <!-- App sidebar -->
+    <<string name="default_folder_text">Cartella</string>
+    <string name="title_activity_sidebar_configuration">Imposta contenuti Appbar</string>
+    <string name="action_save">Salva</string>
+    <string name="toast_items_saved">GLi elementi in Appbar sono state salvate.</string>
+    <string name="content_setup_instructions">Aggiungi gli elementi all\'Appbar tenendo premendo a lungo su qualsiasi elemento sulla destra e trascinardolo verso l\'Appbar.\n\nCombina gli elementi nelle cartelle lasciando un oggetto sopra un elemento esistente nell\'Appbar.\n\nPer rimuovere un elemento basta semplicemente trascinarlo fuori dall\'Appbar.</string>
+    <string name="content_setup_dismiss">Proseguire</string>
+    <string name="toast_not_installed">App non installata</string>
+
+    <!-- NavBar tile -->
+    <string name="quick_settings_navigation_bar">Barra di navigazione</string>
+    <string name="quick_settings_smartbar">SmartBar</string>
+    <string name="quick_settings_smartbar_off">SmartBar off</string>
+    <string name="quick_settings_fling">Gesti Fling</string>
+    <string name="quick_settings_fling_off">Gesti Fling off</string>
+
+    <!-- App Circle Bar tile -->
+    <string name="quick_settings_appcirclebar_title">AppCircleBar</string>
+    <string name="quick_settings_appcirclebar_on">AppCircleBar on</string>
+    <string name="quick_settings_appcirclebar_off">AppCircleBar off</string>
+
+    <!-- App Side Bar tile -->
+    <string name="quick_settings_app_sidebar">AppSideBar</string>
+    <string name="quick_settings_appsidebar_on">AppSideBar on</string>
+    <string name="quick_settings_appsidebar_off">AppSideBar off</string>
+
+    <!-- Pie tile -->
+    <string name="quick_settings_pie_title">Pie</string>
+    <string name="quick_settings_pie_on">Pie on</string>
+    <string name="quick_settings_pie_off">Pie off</string>
+
+    <!-- Dialog title for navigation bar button selection -->
+    <string name="navbar_torch">Torcia</string>
+
+    <!-- Content description of the power button for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_torch">Torcia</string>
+
+    <!-- Dialog title for navigation bar button selection -->
+    <string name="navbar_camera">Camera</string>
+
+    <!-- Content description of the power button for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_camera">Camera</string>
+
+    <!-- Dialog title for navigation bar button selection -->
+    <string name="navbar_screenshot">ScreenShot</string>
+
+    <!-- Content description of the power button for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_screenshot">ScreenShot</string>
+
+    <!-- Dialog title for navigation bar button selection -->
+    <string name="navbar_expand">Modalità Immersive</string>
+
+    <!-- Content description of the power button for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_expand">Modalità Immersive</string>
+
+    <!-- Dialog title for navigation bar button selection -->
+    <string name="navbar_app_picker">Application picker</string>
+
+    <!-- Content description of the Application picker button for accessibility
+    (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_app_picker">Scegli applicazioni</string>
+
+    <!-- Themes QS Tile -->
+    <string name="quick_settings_themes">Temi</string>
+    <string name="quick_settings_themes_icon_packs">Applica icon pack</string>
+    <string name="quick_settings_themes_app_theme_with_label">Applica tema da <xliff:g id="application">%1$s</xliff:g></string>
+    <string name="quick_settings_themes_app_theme">Applica tema da app</string>
+    <string name="quick_settings_themes_system_theme">Applica tema</string>
+    <string name="quick_settings_themes_default_theme">Predefinito</string>
+    <string name="quick_settings_themes_match_system">Abbinamento tema di sistema</string>
+
+    <!-- Sound QS Tile -->
+    <string name="quick_settings_sound_label">Suoni</string>
+    <string name="quick_settings_sound_ring">Suoneria</string>
+    <string name="quick_settings_sound_vibrate">Vibrazione</string>
+    <string name="quick_settings_sound_silent">Silenzioso</string>
+
+    <!-- Screenrecord QS Tile -->
+    <string name="quick_settings_screenrecord_label">Screenrecord</string>
+    <string name="quick_settings_screenrecord_on">Registrazione ...</string>
+
+    <!-- Heads up snooze toast -->
+    <string name="heads_up_snooze_message">Heads up is snoozing for <xliff:g id="number">%d</xliff:g> minutes.</string>
+
+    <!-- Title shown in recents popup for showing app launch in floating mode -->
+    <string name="recent_float_mode_title">Modalità Float</string>
+
+    <!-- App circle sidebar -->
+    <string name="app_float_maximize_item_title">Maximize</string>
+    <string name="app_float_item_title">Modalità Float</string>
+    <string name="app_stop_item_title">Termina app</string>
+
+    <!-- Floating Windows tile -->
+    <string name="quick_settings_floating_windows_on">Modalità Float abilitata</string>
+    <string name="quick_settings_floating_windows_off">Modalità Float disabilitata</string>
+
+    <!-- Floating Windows tile -->
+    <string name="quick_settings_slim_floats_on">Modalità Slim Float abilitata</string>
+    <string name="quick_settings_slim_floats_off">Modalità Slim Float Mode disabilitata</string>
+
+</resources>

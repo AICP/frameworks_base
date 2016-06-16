@@ -7514,6 +7514,13 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         mHandler.post(new Runnable() {
             @Override public void run() {
                 mPackageManager = mContext.getPackageManager();
+                // Define Array List For AicpDexOpt Drawable
+                final int AicpDexOptIndex = 0 +  (int)(Math.random()*(4));
+                final ArrayList<Integer> AicpDexOpt = new ArrayList<Integer>();
+                AicpDexOpt.add(com.android.internal.R.drawable.aicpdexopt1);
+                AicpDexOpt.add(com.android.internal.R.drawable.aicpdexopt2);
+                AicpDexOpt.add(com.android.internal.R.drawable.aicpdexopt3);
+                AicpDexOpt.add(com.android.internal.R.drawable.aicpdexopt4);
                 if (mBootMsgDialog == null) {
                     int theme;
                     if (mPackageManager.hasSystemFeature(
@@ -7525,14 +7532,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     } else {
                         theme = 0;
                     }
-
-                    // Define Array List For AicpDexOpt Drawable
-                    /*int AicpDexOptIndex = 0 +  (int)(Math.random()*(4));
-                    ArrayList<Integer> AicpDexOpt = new ArrayList<Integer>();
-                    AicpDexOpt.add(com.android.internal.R.drawable.aicpdexopt1);
-                    AicpDexOpt.add(com.android.internal.R.drawable.aicpdexopt2);
-                    AicpDexOpt.add(com.android.internal.R.drawable.aicpdexopt3);
-                    AicpDexOpt.add(com.android.internal.R.drawable.aicpdexopt4);*/
 
                     mBootMsgDialog = new AlertDialog(mContext, theme) {
                         // This dialog will consume all events coming in to
@@ -7562,9 +7561,12 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     } else {
                         mBootMsgDialog.setTitle(R.string.android_start_title);
                     }
-                    mBootMsgDialog.setIcon(appInfo.loadIcon(mPackageManager));
+                    if (always && (currentPackageName != null)) {
+                        mBootMsgDialog.setIcon(appInfo.loadIcon(mPackageManager));
+                    } else {
+                        mBootMsgDialog.setIcon(AicpDexOpt.get(AicpDexOptIndex));
+                    }
                     //mBootMsgDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                    //mBootMsgDialog.setIcon(AicpDexOpt.get(AicpDexOptIndex));
                     //mBootMsgDialog.setIndeterminate(true);
                     mBootMsgDialog.getWindow().setType(
                             WindowManager.LayoutParams.TYPE_BOOT_PROGRESS);
@@ -7594,6 +7596,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                                                             "</font><br><br>Powered by AICP</b>"));
                 }
                 else {
+                    mBootMsgDialog.setIcon(AicpDexOpt.get(AicpDexOptIndex));
                     mBootMsgDialog.setMessage(Html.fromHtml(msg + "<br><br><b>Powered by AICP</b>"));
                 }
             }

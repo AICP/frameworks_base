@@ -79,6 +79,7 @@ public class NavigationBarView extends BaseNavigationBar {
 
     int mBarSize;
     boolean mShowMenu;
+    boolean mLeftInLandscape;
 
     private BackButtonDrawable mBackIcon, mBackLandIcon;
     private Drawable mBackAltIcon, mBackAltLandIcon;
@@ -371,7 +372,7 @@ public class NavigationBarView extends BaseNavigationBar {
     }
 
     public void setDisabledFlags(int disabledFlags, boolean force) {
-        super.setDisabledFlags(disabledFlags, force); 
+        super.setDisabledFlags(disabledFlags, force);
 
         final boolean disableHome = ((disabledFlags & View.STATUS_BAR_DISABLE_HOME) != 0);
         boolean disableRecent = ((disabledFlags & View.STATUS_BAR_DISABLE_RECENT) != 0);
@@ -430,7 +431,7 @@ public class NavigationBarView extends BaseNavigationBar {
     }
 
     public void setLeftInLandscape(boolean leftInLandscape) {
-        super.setLeftInLandscape(leftInLandscape);
+        mLeftInLandscape = leftInLandscape;
         mDeadZone.setStartFromRight(leftInLandscape);
     }
 

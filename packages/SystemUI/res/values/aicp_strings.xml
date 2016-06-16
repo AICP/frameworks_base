@@ -220,6 +220,7 @@
     <string name="shortcut_restart_ui">Restart SystemUI</string>
     <string name="shortcut_powermenu">Power menu</string>
     <string name="shortcut_flashlight">Flashlight</string>
+    <string name="shortcut_clear_notifications">Clear notifications</string>
     <string name="shortcut_toggle_title">Action to perform</string>
 
 </resources>

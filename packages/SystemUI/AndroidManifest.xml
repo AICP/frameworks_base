@@ -561,6 +561,18 @@
                 <category android:name="com.android.systemui.SHORTCUT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.android.systemui.shortcuts.ClearNotifications"
+            android:label="@string/shortcut_clear_notifications"
+            android:icon="@drawable/ic_qs_clear_notifications"
+            android:theme="@android:style/Theme.NoDisplay"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="com.android.systemui.SHORTCUT" />
+            </intent-filter>
+        </activity>
 
         <!-- platform logo easter egg activity -->
         <activity

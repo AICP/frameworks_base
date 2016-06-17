@@ -125,6 +125,7 @@ public class QsTuner extends Fragment implements Callback {
         mQsPanel.setTiles(mTileHost.getTiles());
         mQsPanel.setHost(mTileHost);
         mQsPanel.refreshAllTiles();
+        mQsPanel.updateResources();
         ((ViewGroup) mScrollRoot.findViewById(R.id.all_details)).addView(mQsPanel, 0);
 
         return mScrollRoot;
@@ -139,6 +140,8 @@ public class QsTuner extends Fragment implements Callback {
     @Override
     public void onTilesChanged() {
         mQsPanel.setTiles(mTileHost.getTiles());
+        mQsPanel.refreshAllTiles();
+        mQsPanel.updateResources();
     }
 
     @Override

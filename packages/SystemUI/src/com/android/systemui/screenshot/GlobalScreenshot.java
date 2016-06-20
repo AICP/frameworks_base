@@ -287,6 +287,19 @@ class SaveImageInBackgroundTask extends AsyncTask<SaveImageInBackgroundData, Voi
             mNotificationBuilder.addAction(R.drawable.ic_screenshot_delete,
                     r.getString(com.android.internal.R.string.delete), deleteAction);
 
+            // Create an edit action for the notification
+            final File mScreenShootFile = new File(mImageFilePath);
+            Intent editScreenshootIntent = new Intent(Intent.ACTION_SEND);
+            editScreenshootIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    | Intent.FLAG_ACTIVITY_NEW_TASK);
+            editScreenshootIntent.setType("image/png");
+            editScreenshootIntent.setPackage("com.srbodroid.aicpmemo");
+            editScreenshootIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(mScreenShootFile));
+            mNotificationBuilder.addAction(R.drawable.ic_screenshoot_edit,
+                    r.getString(com.android.internal.R.string.edit),
+                    PendingIntent.getActivity(context, 0, editScreenshootIntent,
+                            PendingIntent.FLAG_CANCEL_CURRENT));
+
             params[0].imageUri = uri;
             params[0].image = null;
             params[0].result = 0;

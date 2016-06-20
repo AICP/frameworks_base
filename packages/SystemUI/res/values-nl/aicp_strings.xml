@@ -49,7 +49,7 @@
     <string name="onthego_notif_ticker">On-The-Go ingeschakeld</string>
     <string name="onthego_notif_title">On-The-Go is actief</string>
     <string name="onthego_notif_stop">Stop</string>
-    <string name="onthego_notif_options">Instellingenngen</string>
+    <string name="onthego_notif_options">Instellingen</string>
     <string name="onthego_notif_error">Kan On-The-Go niet starten</string>
     <string name="onthego_notif_restart">On-The-Go opnieuw starten</string>
     <string name="onthego_notif_camera_changed">Camera-modus gewisseld</string>
@@ -76,13 +76,13 @@
     <string name="accessibility_quick_settings_expanded_desktop_off">Uitgebreide desktop uitgeschakeld</string>
 
     <!-- Content description of the brightness tile in quick settings (not shown on the screen). [CHAR LIMIT=NONE] -->
-    <string name="accessibility_quick_settings_brightness">Volumeregeling.</string>
+    <string name="accessibility_quick_settings_brightness">Volumeregeling</string>
 
     <!-- Content description of the screen off tile in quick settings (not shown on the screen). [CHAR LIMIT=NONE] -->
-    <string name="accessibility_quick_settings_screen_off">Scherm uit.</string>
+    <string name="accessibility_quick_settings_screen_off">Scherm uit</string>
 
     <!-- Content description of the screenshot tile in quick settings (not shown on the screen). [CHAR LIMIT=NONE] -->
-    <string name="accessibility_quick_settings_screenshot">Schermafdruk.</string>
+    <string name="accessibility_quick_settings_screenshot">Schermafdruk</string>
 
     <!-- Music QS Tile -->
     <string name="quick_settings_music_label">Muziek</string>
@@ -102,7 +102,7 @@
     <string name="default_folder_text">Bestanden</string>
     <string name="title_activity_sidebar_configuration">Onderdelen van de app-zijbalk veranderen</string>
     <string name="action_save">Opslaan</string>
-    <string name="toast_items_saved">Inhoud van de app-zijbalk wordt opgeslagen.</string>
+    <string name="toast_items_saved">Inhoud van de app-zijbalk wordt opgeslagen</string>
     <string name="content_setup_instructions">Onderdelen aan de app-zijbalk toevoegen door lang te drukken op een icoon rechts en deze naar de lijst te verslepen.\n\nOnderdelen in een map plaatsen als een icoon op een ander icoon in de lijst gesleept wordt.\n\nOm een onderdeel uit de lijst te verwijderen, kun je eenvoudig het icoon uit de \@appbar slepen.</string>
     <string name="content_setup_dismiss">Doorgaan</string>
     <string name="toast_not_installed">App is niet geïnstalleerd</string>
@@ -130,7 +130,7 @@
     <string name="quick_settings_pie_off">PIE UIT</string>
 	
     <!-- Aicp Extras Tile -->
-    <string name="quick_aicp_extras_label">Aicp Extras</string>
+    <string name="quick_aicp_extras_label">AICP Extras</string>
     <string name="quick_aicp_extras_toast">Ha, denk je echt dat lang drukken je ergens brengt!?</string>
 	
     <!-- Dialog title for navigation bar button selection -->
@@ -181,7 +181,7 @@
 
     <!-- Screenrecord QS Tile -->
     <string name="quick_settings_screenrecord_label">Beelschermopname</string>
-    <string name="quick_settings_screenrecord_on">Opname loopt ...</string>
+    <string name="quick_settings_screenrecord_on">Opname loopt...</string>
 
     <!-- Heads up snooze toast -->
     <string name="heads_up_snooze_message">Pop-up berichten worden gedurende <xliff:g id="number">%d</xliff:g> minuten niet getoond.</string>
@@ -217,7 +217,7 @@
     <string name="no">Nee</string>
 
     <!-- Slim Shortcut Actions -->
-    <string name="shortcut_picker">Aicp snelkoppelingen</string>
+    <string name="shortcut_picker">AICP snelkoppelingen</string>
     <string name="shortcut_rotation">Draaien</string>
     <string name="shortcut_reboot">Herstarten</string>
     <string name="shortcut_recovery">Recovery</string>
@@ -226,6 +226,7 @@
     <string name="shortcut_restart_ui">Herstarten gebruikersinterface</string>
     <string name="shortcut_powermenu">Aan-/Uit-menu</string>
     <string name="shortcut_flashlight">Zaklamp</string>
+    <string name="shortcut_clear_notifications">Wis notificaties</string>
     <string name="shortcut_toggle_title">Uit te voeren actie</string>
 
 </resources>

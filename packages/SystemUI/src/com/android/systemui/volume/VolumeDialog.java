@@ -1197,7 +1197,7 @@ public class VolumeDialog {
         mCustomStrokeThickness = Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.VOLUME_DIALOG_STROKE_THICKNESS, 4);
         mCustomCornerRadius = Settings.System.getInt(mContext.getContentResolver(),
-                    Settings.System.VOLUME_DIALOG_CORNER_RADIUS, 2);
+                    Settings.System.VOLUME_DIALOG_CORNER_RADIUS, 10);
 
         final GradientDrawable volumeDialogGd = new GradientDrawable();
 

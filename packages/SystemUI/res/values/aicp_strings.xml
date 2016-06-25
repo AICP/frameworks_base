@@ -56,9 +56,9 @@
     <string name="onthego_transparency">Transparency</string>
     <string name="onthego_front_camera">Use front camera</string>
     <string name="onthego_service_toggle">Automatically restart service</string>
-    <!-- To do: Add QS OnTheGo
+    <!-- To do: Add QS OnTheGo -->
     <string name="quick_settings_onthego_back">Rear Camera</string>
-    <string name="quick_settings_onthego_front">Front Camera</string>-->
+    <string name="quick_settings_onthego_front">Front Camera</string>
 
     <!-- Quick settings -->
     <string name="quick_settings_brightness_label">Brightness</string>

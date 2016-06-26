@@ -5220,6 +5220,27 @@ public final class Settings {
         public static final String QS_STROKE_DASH_GAP = "qs_stroke_dash_gap";
 
         /**
+         * Quick settings AICP logo
+         *
+         * @hide
+         */
+        public static final String QS_PANEL_LOGO = "qs_panel_logo";
+
+        /**
+         * Quick settings AICP logo color
+         *
+         * @hide
+         */
+        public static final String QS_PANEL_LOGO_COLOR = "qs_panel_logo_color";
+
+        /**
+         * Quick settings AICP logo alpha
+         *
+         * @hide
+         */
+        public static final String QS_PANEL_LOGO_ALPHA = "qs_panel_logo_alpha";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *

@@ -63,6 +63,7 @@ import android.view.animation.Interpolator;
 import android.view.animation.PathInterpolator;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.internal.logging.MetricsLogger;
@@ -282,6 +283,12 @@ public class NotificationPanelView extends PanelView implements
     private int mCustomDashWidth;
     private int mCustomDashGap;
 
+    // AICP panel logo
+    private ImageView mAicpPanelLogo;
+    private int mQSPanelLogo;
+    private int mQSPanelLogoColor;
+    private int mQSPanelLogoAlpha;
+
     // Used to identify whether showUnlock() can dismiss the keyguard
     // or not.
     // TODO - add a new state to make it easier to identify keyguard vs
@@ -451,6 +458,7 @@ public class NotificationPanelView extends PanelView implements
         mQsContainer = (QSContainer) findViewById(R.id.quick_settings_container);
         mQsPanel = (QSDragPanel) findViewById(R.id.quick_settings_panel);
         mQsPanel.setPanelView(this);
+        mAicpPanelLogo = (ImageView) findViewById(R.id.aicp_panel_logo);
         mTaskManagerPanel = (LinearLayout) findViewById(R.id.task_manager_panel);
         mClipper = new QSDetailClipper(mTaskManagerPanel);
         mClockView = (TextView) findViewById(R.id.clock_view);
@@ -546,6 +554,7 @@ public class NotificationPanelView extends PanelView implements
             }
         });
 
+        setQSPanelLogo();
         setQSStroke();
         setQSBackgroundAlpha();
 
@@ -2885,6 +2894,15 @@ public class NotificationPanelView extends PanelView implements
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.QS_STROKE_DASH_GAP),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.QS_PANEL_LOGO),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.QS_PANEL_LOGO_COLOR),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.QS_PANEL_LOGO_ALPHA),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -2934,7 +2952,14 @@ public class NotificationPanelView extends PanelView implements
                     Settings.System.QS_STROKE_DASH_WIDTH, 0);
             mCustomDashGap = Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.QS_STROKE_DASH_GAP, 10);
+            mQSPanelLogo = Settings.System.getInt(mContext.getContentResolver(),
+                        Settings.System.QS_PANEL_LOGO, 0);
+            mQSPanelLogoColor = Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.QS_PANEL_LOGO_COLOR, mContext.getResources().getColor(R.color.system_accent_color));
+            mQSPanelLogoAlpha = Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.QS_PANEL_LOGO_ALPHA, 51);
 
+            setQSPanelLogo();
             setQSStroke();
             setQSBackgroundAlpha();
         }
@@ -2973,6 +2998,20 @@ public class NotificationPanelView extends PanelView implements
                 qSGd.setCornerRadius(mCustomCornerRadius);
                 mQsContainer.setBackground(qSGd);
             }
+        }
+    }
+
+    private void setQSPanelLogo() {
+        if (mQSPanelLogo == 0) {
+            mAicpPanelLogo.setVisibility(View.GONE);
+        } else if (mQSPanelLogo == 1) {
+            mAicpPanelLogo.setImageAlpha(mQSPanelLogoAlpha);
+            mAicpPanelLogo.setColorFilter(mContext.getResources().getColor(R.color.system_accent_color));
+            mAicpPanelLogo.setVisibility(View.VISIBLE);
+        } else if (mQSPanelLogo == 2) {
+            mAicpPanelLogo.setImageAlpha(mQSPanelLogoAlpha);
+            mAicpPanelLogo.setColorFilter(mQSPanelLogoColor);
+            mAicpPanelLogo.setVisibility(View.VISIBLE);
         }
     }
 

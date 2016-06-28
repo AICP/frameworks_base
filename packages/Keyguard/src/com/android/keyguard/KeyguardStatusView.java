@@ -318,6 +318,14 @@ public class KeyguardStatusView extends GridLayout implements
                 Settings.System.LOCKSCREEN_ALARM_COLOR, 0xFFFFFFFF);
         int lockClockFont = Settings.System.getIntForUser(resolver,
                 Settings.System.LOCK_CLOCK_FONTS, 4, UserHandle.USER_CURRENT);
+        int mLockClockFontSize = Settings.System.getIntForUser(resolver,
+                Settings.System.LOCKSCREEN_CLOCK_FONT_SIZE,
+                getResources().getDimensionPixelSize(R.dimen.widget_big_font_size),
+                UserHandle.USER_CURRENT);
+        int mLockDateFontSize = Settings.System.getIntForUser(resolver,
+                Settings.System.LOCKSCREEN_DATE_FONT_SIZE,
+                getResources().getDimensionPixelSize(R.dimen.widget_label_font_size),
+                UserHandle.USER_CURRENT);
         int iconNameValue = Settings.System.getInt(resolver,
                 Settings.System.LOCK_SCREEN_WEATHER_CONDITION_ICON, 0);
         boolean colorizeAllIcons = Settings.System.getInt(resolver,
@@ -335,6 +343,7 @@ public class KeyguardStatusView extends GridLayout implements
                 res.getColor(R.color.keyguard_default_icon_color);
         int iconColor = Settings.System.getInt(resolver,
                 Settings.System.LOCK_SCREEN_WEATHER_ICON_COLOR, defaultIconColor);
+
         if (hideMode == 0) {
             if (currentVisibleNotifications > maxAllowedNotifications) {
                 forceHideByNumberOfNotifications = true;
@@ -451,10 +460,12 @@ public class KeyguardStatusView extends GridLayout implements
 
         if (mClockView != null) {
             mClockView.setTextColor(clockColor);
+            mClockView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mLockClockFontSize);
         }
 
         if (mDateView != null) {
             mDateView.setTextColor(clockDateColor);
+            mDateView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mLockDateFontSize);
         }
 
         if (mOwnerInfo != null) {

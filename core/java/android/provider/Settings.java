@@ -4137,6 +4137,20 @@ public final class Settings {
         public static final String LOCK_CLOCK_FONTS = "lock_clock_fonts";
 
         /**
+         * Lockscreen clock font size
+         *
+         * @hide
+         */
+        public static final String LOCKSCREEN_CLOCK_FONT_SIZE = "lockscreen_clock_font_size";
+
+        /**
+         * Lockscreen date font size
+         *
+         * @hide
+         */
+        public static final String LOCKSCREEN_DATE_FONT_SIZE = "lockscreen_date_font_size";
+
+        /**
          * Whether to show four tiles per row.
          * @hide
          */

@@ -29,6 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/clock_white"
+        android:textSize="@dimen/widget_label_font_size"
         style="@style/widget_label"
         android:textAllCaps="true"
         android:letterSpacing="0.15"

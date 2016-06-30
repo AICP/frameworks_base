@@ -73,6 +73,8 @@ public class KeyguardStatusView extends GridLayout implements
     private boolean mShowWeather;
     private int mIconNameValue = 0;
     private WeatherController mWeatherController;
+    private int mLockClockFontSize;
+    private int mLockDateFontSize;
 
     //On the first boot, keygard will start to receiver TIME_TICK intent.
     //And onScreenTurnedOff will not get called if power off when keyguard is not started.
@@ -146,6 +148,8 @@ public class KeyguardStatusView extends GridLayout implements
         mClockView = (TextClock) findViewById(R.id.clock_view);
         mDateView.setShowCurrentUserTime(true);
         mClockView.setShowCurrentUserTime(true);
+        mDateView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mLockDateFontSize);
+        mClockView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mLockClockFontSize);
         mOwnerInfo = (TextView) findViewById(R.id.owner_info);
         mWeatherView = findViewById(R.id.keyguard_weather_view);
         mWeatherCity = (TextView) findViewById(R.id.city);
@@ -166,11 +170,7 @@ public class KeyguardStatusView extends GridLayout implements
     @Override
     protected void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        mClockView.setTextSize(TypedValue.COMPLEX_UNIT_PX,
-                getResources().getDimensionPixelSize(R.dimen.widget_big_font_size));
         mClockView.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
-        mDateView.setTextSize(TypedValue.COMPLEX_UNIT_PX,
-                getResources().getDimensionPixelSize(R.dimen.widget_label_font_size));
         mOwnerInfo.setTextSize(TypedValue.COMPLEX_UNIT_PX,
                 getResources().getDimensionPixelSize(R.dimen.widget_label_font_size));
     }
@@ -318,11 +318,11 @@ public class KeyguardStatusView extends GridLayout implements
                 Settings.System.LOCKSCREEN_ALARM_COLOR, 0xFFFFFFFF);
         int lockClockFont = Settings.System.getIntForUser(resolver,
                 Settings.System.LOCK_CLOCK_FONTS, 4, UserHandle.USER_CURRENT);
-        int mLockClockFontSize = Settings.System.getIntForUser(resolver,
+        mLockClockFontSize = Settings.System.getIntForUser(resolver,
                 Settings.System.LOCKSCREEN_CLOCK_FONT_SIZE,
                 getResources().getDimensionPixelSize(R.dimen.widget_big_font_size),
                 UserHandle.USER_CURRENT);
-        int mLockDateFontSize = Settings.System.getIntForUser(resolver,
+        mLockDateFontSize = Settings.System.getIntForUser(resolver,
                 Settings.System.LOCKSCREEN_DATE_FONT_SIZE,
                 getResources().getDimensionPixelSize(R.dimen.widget_label_font_size),
                 UserHandle.USER_CURRENT);
@@ -460,12 +460,16 @@ public class KeyguardStatusView extends GridLayout implements
 
         if (mClockView != null) {
             mClockView.setTextColor(clockColor);
-            mClockView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mLockClockFontSize);
+            if (mLockClockFontSize != getResources().getDimensionPixelSize(R.dimen.widget_big_font_size)) {
+                mClockView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mLockClockFontSize);
+            }
         }
 
         if (mDateView != null) {
             mDateView.setTextColor(clockDateColor);
-            mDateView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mLockDateFontSize);
+            if (mLockDateFontSize != getResources().getDimensionPixelSize(R.dimen.widget_label_font_size)) {
+                mDateView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mLockDateFontSize);
+            }
         }
 
         if (mOwnerInfo != null) {

@@ -131,13 +131,13 @@
     <dimen name="close_handle_underlap">32dp</dimen>
 
     <!-- Height of the status bar header bar -->
-    <dimen name="status_bar_header_height">90dp</dimen>
+    <dimen name="status_bar_header_height">65dp</dimen>
 
     <!-- Height of the status bar header bar when expanded -->
-    <dimen name="status_bar_header_height_expanded">65dp</dimen>
+    <dimen name="status_bar_header_height_expanded">116dp</dimen>
 
     <!-- Height of the status bar header bar when on Keyguard -->
-    <dimen name="status_bar_header_height_keyguard">50dp</dimen>
+    <dimen name="status_bar_header_height_keyguard">40dp</dimen>
 
     <!-- Width for the notification panel and related windows -->
     <dimen name="match_parent">-1px</dimen>
@@ -167,7 +167,7 @@
     <dimen name="qs_tile_icon_size">24dp</dimen>
     <dimen name="qs_tile_text_size">12sp</dimen>
     <dimen name="qs_tile_divider_height">0dp</dimen>
-    <dimen name="qs_panel_padding">16dp</dimen>
+    <dimen name="qs_panel_padding">8dp</dimen>
     <dimen name="qs_dual_tile_height">112dp</dimen>
     <dimen name="qs_dual_tile_padding_vertical">8dp</dimen>
     <dimen name="qs_dual_tile_padding_horizontal">6dp</dimen>

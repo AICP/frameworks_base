@@ -2596,27 +2596,27 @@
       has violated its self-enforced StrictMode policy.</string>
 
     <!-- [CHAR LIMIT=40] Title of dialog that is shown when performing a system upgrade. -->
-    <string name="android_upgrading_title">AICP is upgrading\u2026</string>
+    <string name="android_upgrading_title">HexagonRom đang nâng cấp\u2026</string>
 
     <!-- [CHAR LIMIT=40] Title of dialog that is shown when system is starting. -->
-    <string name="android_start_title">AICP is starting\u2026</string>
+    <string name="android_start_title">HexagonRom đang khởi động\u2026</string>
 
     <!-- [CHAR LIMIT=NONE] Message shown in upgrading dialog when doing an fstrim. -->
-    <string name="android_upgrading_fstrim">Optimizing storage.</string>
+    <string name="android_upgrading_fstrim">Tối ưu hóa bộ nhớ.</string>
 
     <!-- [CHAR LIMIT=NONE] Message shown in upgrading dialog for each .apk that is optimized. -->
-    <string name="android_upgrading_apk">Optimizing app
-        <xliff:g id="number" example="123">%1$d</xliff:g> of
+    <string name="android_upgrading_apk">Tối ưu hóa ứng dụng...
+        <xliff:g id="number" example="123">%1$d</xliff:g> của
         <xliff:g id="number" example="123">%2$d</xliff:g>.</string>
 
     <!-- [CHAR LIMIT=NONE] Message shown in upgrading dialog for each .apk pre boot broadcast -->
-    <string name="android_preparing_apk">Preparing <xliff:g id="appname">%1$s</xliff:g>.</string>
+    <string name="android_preparing_apk">Chuẩn bị <xliff:g id="appname">%1$s</xliff:g>.</string>
 
     <!-- [CHAR LIMIT=NONE] Message to show in upgrading dialog when reached the point of starting apps. -->
-    <string name="android_upgrading_starting_apps">Starting apps.</string>
+    <string name="android_upgrading_starting_apps">Khởi động ứng dụng .</string>
 
     <!-- [CHAR LIMIT=NONE] Message to show in upgrading dialog when the bulk of the upgrade work is done. -->
-    <string name="android_upgrading_complete">Finishing boot.</string>
+    <string name="android_upgrading_complete">Hoàn tất khởi động ..</string>
 
     <!-- Notification text to tell the user that a heavy-weight application is running. -->
     <string name="heavy_weight_notification"><xliff:g id="app">%1$s</xliff:g> running</string>

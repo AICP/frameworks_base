@@ -18,11 +18,11 @@
   <!-- Power menu -->
   <java-symbol type="string" name="system_error_vendorprint" />
 
-  <!-- AICP Random Boot Logo -->
-  <java-symbol type="drawable" name="aicpdexopt1" />
-  <java-symbol type="drawable" name="aicpdexopt2" />
-  <java-symbol type="drawable" name="aicpdexopt3" />
-  <java-symbol type="drawable" name="aicpdexopt4" />
+  <!-- Hexagon Random Boot Logo -->
+  <java-symbol type="drawable" name="hexagondexopt1" />
+  <java-symbol type="drawable" name="hexagondexopt2" />
+  <java-symbol type="drawable" name="hexagondexopt3" />
+  <java-symbol type="drawable" name="hexagondexopt4" />
 
   <java-symbol type="bool" name="config_enableScreenrecordChord" />
 

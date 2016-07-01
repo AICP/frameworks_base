@@ -148,8 +148,8 @@ public class KeyguardStatusView extends GridLayout implements
         mClockView = (TextClock) findViewById(R.id.clock_view);
         mDateView.setShowCurrentUserTime(true);
         mClockView.setShowCurrentUserTime(true);
-        mDateView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mLockDateFontSize);
-        mClockView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mLockClockFontSize);
+        //mDateView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mLockDateFontSize);
+        //mClockView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mLockClockFontSize);
         mOwnerInfo = (TextView) findViewById(R.id.owner_info);
         mWeatherView = findViewById(R.id.keyguard_weather_view);
         mWeatherCity = (TextView) findViewById(R.id.city);
@@ -170,6 +170,8 @@ public class KeyguardStatusView extends GridLayout implements
     @Override
     protected void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+        mDateView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mLockDateFontSize);
+        mClockView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mLockClockFontSize);
         mClockView.setTypeface(Typeface.create("sans-serif-light", Typeface.NORMAL));
         mOwnerInfo.setTextSize(TypedValue.COMPLEX_UNIT_PX,
                 getResources().getDimensionPixelSize(R.dimen.widget_label_font_size));

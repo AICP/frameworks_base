@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     Copyright (C) 2015 AICP
+     Copyright (C) 2015 Hexagon
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -130,7 +130,7 @@
     <string name="quick_settings_pie_off">PIE UIT</string>
 	
     <!-- Aicp Extras Tile -->
-    <string name="quick_aicp_extras_label">AICP Extras</string>
+    <string name="quick_aicp_extras_label">Hexagon</string>
     <string name="quick_aicp_extras_toast">Ha, denk je echt dat lang drukken je ergens brengt!?</string>
 	
     <!-- Dialog title for navigation bar button selection -->
@@ -217,7 +217,7 @@
     <string name="no">Nee</string>
 
     <!-- Slim Shortcut Actions -->
-    <string name="shortcut_picker">AICP snelkoppelingen</string>
+    <string name="shortcut_picker">Hexagon snelkoppelingen</string>
     <string name="shortcut_rotation">Draaien</string>
     <string name="shortcut_reboot">Herstarten</string>
     <string name="shortcut_recovery">Recovery</string>

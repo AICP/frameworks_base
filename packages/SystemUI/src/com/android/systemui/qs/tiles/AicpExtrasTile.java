@@ -43,7 +43,7 @@ public class AicpExtrasTile extends QSTile<QSTile.BooleanState> {
     private boolean mListening;
 
     private static final Intent AICP_EXTRAS = new Intent().setComponent(new ComponentName(
-            "com.lordclockan", "com.lordclockan.aicpextras.MainActivity"));
+            "com.droidvnteam", "com.droidvnteam.hexagonrom.MainActivity"));
 
     public AicpExtrasTile(Host host) {
         super(host);
@@ -89,7 +89,7 @@ public class AicpExtrasTile extends QSTile<QSTile.BooleanState> {
     @Override
     protected void handleUpdateState(BooleanState state, Object arg) {
         state.visible = true;
-        state.icon = ResourceIcon.get(R.drawable.ic_qs_aicp_extras);
+        state.icon = ResourceIcon.get(R.drawable.ic_qs_hexagon);
         state.label = mContext.getString(R.string.quick_aicp_extras_label);
     }
 

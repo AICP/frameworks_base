@@ -17,6 +17,12 @@
  */
 -->
 <resources>
+	<color name="one_color">#ff222222</color> 
+	<color name="accent">#ffE84E40</color>
+	<color name="one_color_dark">#ff222222</color>
+	<color name="status_bar">#ff222222</color>
+	<color name="nav_bar_color">#ff222222</color>
+	<color name="background_material_dark">#ff222222</color>
     <drawable name="notification_number_text_color">#ff000000</drawable>
     <drawable name="ticker_background_color">#ff1d1d1d</drawable>
     <drawable name="system_bar_background">@color/system_bar_background_opaque</drawable>
@@ -28,27 +34,29 @@
     <color name="status_bar_recents_app_label_color">#ffffffff</color>
     <color name="status_bar_temp_text_color">#FFFFFFFF</color>
     <drawable name="status_bar_notification_row_background_color">#ff090909</drawable>
-    <color name="notification_list_shadow_top">#80000000</color>
+    <color name="notification_list_shadow_top">#00000000</color>
     <drawable name="recents_callout_line">#99ffffff</drawable>
     <drawable name="heads_up_notification_bg_pressed">#ff33B5E5</drawable>
     <color name="batterymeter_frame_color">#4DFFFFFF</color><!-- 30% white -->
     <color name="batterymeter_charge_color">#FFFFFFFF</color>
     <color name="batterymeter_bolt_color">#FFFFFFFF</color>
     <color name="qs_batterymeter_frame_color">#FF404040</color>
-    <color name="system_primary_color">#ff263238</color><!-- blue grey 900 -->
+	<color name="system_primary_color">@color/one_color_dark</color><!-- blue grey 900 -->
     <color name="system_primary_color_translucent">#90aaaaaa</color><!-- blue grey 900 -->
-    <color name="system_secondary_color">#ff384248</color>
-    <color name="system_accent_color">#ff80CBC4</color><!-- deep teal 200 -->
+    <color name="system_secondary_color">@color/one_color</color>
+	<color name="system_accent_color">@color/accent</color><!-- deep teal 200 -->
     <color name="system_warning_color">#fff4511e</color><!-- deep orange 600 -->
     <color name="qs_text">#FFFFFFFF</color>
-    <color name="qs_tile_divider">#29ffffff</color><!-- 16% white -->
+    <color name="qs_tile_divider">#00000000</color><!-- 16% white -->
     <color name="qs_tile_text">#B3FFFFFF</color><!-- 70% white -->
     <color name="qs_subhead">#99FFFFFF</color><!-- 60% white -->
     <color name="qs_detail_empty">#24B0BEC5</color><!-- 14% blue grey 200 -->
     <color name="qs_detail_button">#FFB0BEC5</color><!-- 100% blue grey 200 -->
     <color name="qs_detail_button_white">#B3FFFFFF</color><!-- 70% white -->
     <color name="qs_detail_transition">#66FFFFFF</color>
-    <color name="qs_detail_progress_track">#99009688</color><!-- 60% deep teal 500 -->
+    <color name="segmented_button_text_inactive">#99aeaeae</color>
+	<color name="fab_color">#30000000</color>
+    <color name="qs_detail_progress_track">#99888888</color><!-- 60% deep teal 500 -->
     <color name="data_usage_secondary">#99FFFFFF</color><!-- 60% white -->
     <color name="data_usage_graph_track">#33FFFFFF</color><!-- 20% white -->
     <color name="data_usage_graph_warning">#FFFFFFFF</color>
@@ -78,20 +86,20 @@
     <color name="keyguard_affordance">#ffffffff</color>
 
     <!-- The color of the legacy notification background -->
-    <color name="notification_legacy_background_color">#ff1a1a1a</color>
+    <color name="notification_legacy_background_color">#ffffffff</color>
 
     <!-- The color of the material notification background -->
-    <color name="notification_material_background_color">#fffafafa</color>
+	<color name="notification_material_background_color">#ffffffff</color>
 
     <!-- The color of the material notification background when dimmed -->
-    <color name="notification_material_background_dimmed_color">#d4ffffff</color>
+    <color name="notification_material_background_dimmed_color">#ffffffff</color>
 
     <!-- The color of the material notification background when low priority -->
-    <color name="notification_material_background_low_priority_color">#ffe0e0e0</color>
+    <color name="notification_material_background_low_priority_color">#fff5f5f5</color>
 
     <!-- The color of the material notification background for media notifications when no custom
          color is specified -->
-    <color name="notification_material_background_media_default_color">#ff424242</color>
+    <color name="notification_material_background_media_default_color">@color/one_color</color>
 
     <!-- The color of the ripples on the untinted notifications -->
     <color name="notification_ripple_untinted_color">#28000000</color>
@@ -125,7 +133,7 @@
     <!-- Shadow color for the furthest pixels around the fake shadow for recents. -->
     <color name="fake_shadow_end_color">#03000000</color>
 
-    <color name="screen_pinning_nav_icon_highlight_outer">#4080cbc4</color><!-- 25% deep teal 200 -->
+    <color name="screen_pinning_nav_icon_highlight_outer">#40ffffff</color><!-- 25% deep teal 200 -->
     <color name="screen_pinning_request_bg">#ff009688</color><!-- deep teal 500 -->
     <color name="screen_pinning_request_window_bg">#80000000</color>
 

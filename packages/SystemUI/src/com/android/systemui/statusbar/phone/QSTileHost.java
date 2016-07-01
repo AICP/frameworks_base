@@ -585,7 +585,7 @@ public class QSTileHost implements QSTile.Host, Tunable {
         else if (spec.equals("sound")) return R.drawable.ic_qs_ringer_audible;
         else if (spec.equals("screenrecord")) return R.drawable.ic_qs_screenrecord;
         else if (spec.equals("float_mode")) return R.drawable.ic_qs_floating_on;
-        else if (spec.equals("aicp_extras")) return R.drawable.ic_qs_aicp_extras;
+        else if (spec.equals("aicp_extras")) return R.drawable.ic_qs_hexagon;
         else if (spec.equals("restart_systemui")) return R.drawable.ic_qs_systemui_restart;
         return 0;
     }

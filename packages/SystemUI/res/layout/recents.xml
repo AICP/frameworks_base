@@ -40,7 +40,7 @@
 
     <!-- Empty View -->
     <ViewStub android:id="@+id/empty_view_stub"
-           android:layout="@layout/no_recents_holder"
+           android:layout="@layout/recents_empty"
            android:layout_width="match_parent"
            android:layout_height="match_parent" />
 

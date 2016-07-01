@@ -14,5 +14,5 @@
      limitations under the License.
 -->
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
-    android:radius="20dp"
+    android:radius="10dp"
     android:color="?android:attr/colorControlHighlight" />

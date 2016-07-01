@@ -95,7 +95,7 @@ public class QSDragPanel extends QSPanel implements View.OnDragListener, View.On
     public static final boolean DEBUG_TILES = false;
     public static final boolean DEBUG_DRAG = false;
 
-    private static final int MAX_ROW_COUNT = 3;
+    private static final int MAX_ROW_COUNT = 2;
 
     // how long to wait before resetting the page
     private static final int PAGE_RESET_DELAY = 10000;
@@ -850,9 +850,9 @@ public class QSDragPanel extends QSPanel implements View.OnDragListener, View.On
 
     public int getTilesPerPage(boolean firstPage) {
         if ((!mFirstRowLarge && firstPage) || !firstPage) {
-            return QSTileHost.TILES_PER_PAGE + 3 * addRows + (3 + addRows) * moreSlots + 1;
+            return QSTileHost.TILES_PER_PAGE;
         }
-        return QSTileHost.TILES_PER_PAGE + 3 * addRows  + (2 + addRows) * moreSlots;
+        return QSTileHost.TILES_PER_PAGE;
       }
 
     @Override
@@ -2412,7 +2412,7 @@ public class QSDragPanel extends QSPanel implements View.OnDragListener, View.On
             ContentResolver resolver = mContext.getContentResolver();
             int currentUserId = ActivityManager.getCurrentUser();
             boolean firstRowLarge = CMSettings.Secure.getIntForUser(resolver,
-                    CMSettings.Secure.QS_USE_MAIN_TILES, 1, currentUserId) == 1;
+                    CMSettings.Secure.QS_USE_MAIN_TILES, 1, currentUserId) == 0;
             if (firstRowLarge != mFirstRowLarge) {
                 mFirstRowLarge = firstRowLarge;
                 setTiles(mHost.getTiles());

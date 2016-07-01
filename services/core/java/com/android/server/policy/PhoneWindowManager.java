@@ -7517,10 +7517,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 // Define Array List For AicpDexOpt Drawable
                 final int AicpDexOptIndex = 0 +  (int)(Math.random()*(4));
                 final ArrayList<Integer> AicpDexOpt = new ArrayList<Integer>();
-                AicpDexOpt.add(com.android.internal.R.drawable.aicpdexopt1);
-                AicpDexOpt.add(com.android.internal.R.drawable.aicpdexopt2);
-                AicpDexOpt.add(com.android.internal.R.drawable.aicpdexopt3);
-                AicpDexOpt.add(com.android.internal.R.drawable.aicpdexopt4);
+                AicpDexOpt.add(com.android.internal.R.drawable.hexagondexopt1);
+                AicpDexOpt.add(com.android.internal.R.drawable.hexagondexopt2);
+                AicpDexOpt.add(com.android.internal.R.drawable.hexagondexopt3);
+                AicpDexOpt.add(com.android.internal.R.drawable.hexagondexopt4);
                 if (mBootMsgDialog == null) {
                     int theme;
                     if (mPackageManager.hasSystemFeature(
@@ -7593,11 +7593,11 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     mBootMsgDialog.setMessage(Html.fromHtml(msg +
                                                             "<br><b><font color=\"#" + randomColor + "\">" +
                                                             currentPackageName +
-                                                            "</font><br><br>Powered by AICP</b>"));
+                                                            "</font><br><br>Powered by DroidVn-Team</b>"));
                 }
                 else {
                     mBootMsgDialog.setIcon(AicpDexOpt.get(AicpDexOptIndex));
-                    mBootMsgDialog.setMessage(Html.fromHtml(msg + "<br><br><b>Powered by AICP</b>"));
+                    mBootMsgDialog.setMessage(Html.fromHtml(msg + "<br><br><b>Powered by DroidVn-Team</b>"));
                 }
             }
         });

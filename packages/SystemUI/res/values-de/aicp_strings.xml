@@ -201,9 +201,9 @@
     <!-- Floating Windows tile -->
     <string name="quick_settings_slim_floats_on">Slim Schwebemodus AN</string>
     <string name="quick_settings_slim_floats_off">Slim Schwebemodus AUS</string>
-    
+
     <!-- SystemUI restart tile -->
-    <string name="quick_settings_systemui_restart_label">SystemUI neustarten</string>
+    <string name="quick_settings_systemui_restart_label">SystemUI-Neustart</string>
 
     <!-- Off/On/Toggle -->
     <string name="off">AUS</string>

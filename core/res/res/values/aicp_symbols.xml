@@ -155,4 +155,7 @@
 
   <!--Exposed Java styles for power menu -->
   <java-symbol type="style" name="Theme.Power.Dialog" />
+
+  <!-- Screenshoot edit action -->
+  <java-symbol type="string" name="edit" />
 </resources>

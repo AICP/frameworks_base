@@ -50,4 +50,7 @@
     <string name="floating_window_snap_right">Snap right</string>
     <string name="floating_window_minimize">Minimize</string>
 
+    <!-- Screenshoot edit action -->
+    <string name="edit">Edit</string>
+
 </resources>

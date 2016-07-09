@@ -670,6 +670,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
 		            Settings.System.LOCKSCREEN_SECURITY_ALPHA), false, this,
 					UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+		            Settings.System.QS_STROKE), false, this,
+					UserHandle.USER_ALL);
             update();
         }
 
@@ -720,6 +723,19 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.USE_SLIM_RECENTS))) {
                 updateRecents();
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.QS_STROKE))) {
+                    int mQSStroke = Settings.System.getIntForUser(
+                            mContext.getContentResolver(),
+                            Settings.System.QS_STROKE, 1,
+                            UserHandle.USER_CURRENT);
+                    if (mQSStroke == 0) {
+                        recreateStatusBar();
+                        updateRowStates();
+                        updateSpeedbump();
+                        updateClearAll();
+                        updateEmptyShadeView();
+                    }
             }
 
             update();

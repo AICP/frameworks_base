@@ -39,4 +39,7 @@
   <java-symbol type="array" name="config_deviceDisabledComponents" />
   <java-symbol type="array" name="config_globallyDisabledComponents" />
   <java-symbol type="array" name="config_forceEnabledComponents" />
+
+  <!-- Whether device has dash charging support -->
+  <java-symbol type="bool" name="config_hasDashCharger" />
 </resources>

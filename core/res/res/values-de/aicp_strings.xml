@@ -50,6 +50,9 @@
     <string name="floating_window_snap_right">Rechts anheften</string>
     <string name="floating_window_minimize">Minimieren</string>
 
+    <!-- Screenshoot edit action -->
+    <string name="edit">Bearbeiten</string>
+
     <!-- Reboot menu -->
     <!-- Button to soft reboot the device, within the Reboot Options dialog -->
     <string name="reboot_systemui">SystemUI-Neustart</string>

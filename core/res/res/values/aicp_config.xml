@@ -62,4 +62,7 @@
 
     <!-- In call notification vibration strength -->
     <integer name="config_in_call_notification_vibration_strength">30</integer>
+    
+    <!-- Whether device has dash charging support -->
+    <bool name="config_hasDashCharger">false</bool>
 </resources>

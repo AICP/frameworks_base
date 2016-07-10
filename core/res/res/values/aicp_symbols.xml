@@ -103,4 +103,7 @@
 
   <!-- In call notification vibration strength -->
   <java-symbol type="integer" name="config_in_call_notification_vibration_strength" />
+  
+  <!-- Whether device has dash charging support -->
+  <java-symbol type="bool" name="config_hasDashCharger" />
 </resources>

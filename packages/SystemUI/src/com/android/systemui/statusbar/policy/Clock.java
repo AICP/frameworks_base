@@ -115,6 +115,7 @@ public class Clock extends TextView implements DemoMode {
     private int mClockFontStyle = FONT_NORMAL;
     private int mClockFontSize = 14;
     protected int mclockColor;
+    protected int mClockColorSwitch;
 
     private SettingsObserver mSettingsObserver;
 
@@ -139,6 +140,9 @@ public class Clock extends TextView implements DemoMode {
                     this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System
                     .getUriFor(Settings.System.STATUSBAR_CLOCK_COLOR), false,
+                    this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System
+                    .getUriFor(Settings.System.STATUSBAR_CLOCK_COLOR_SWITCH), false,
                     this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System
                     .getUriFor(Settings.System.STATUSBAR_CLOCK_FONT_STYLE), false,
@@ -240,7 +244,9 @@ public class Clock extends TextView implements DemoMode {
         if (mDemoMode || mCalendar == null) return;
         mCalendar.setTimeInMillis(System.currentTimeMillis());
         setText(getSmallTime());
-        setTextColor(mclockColor);
+        if (mClockColorSwitch == 1) {
+            setTextColor(mclockColor);
+        }
         getFontStyle(mClockFontStyle);
         setTextSize(mClockFontSize);
     }
@@ -399,6 +405,9 @@ public class Clock extends TextView implements DemoMode {
         int defaultColor = getResources().getColor(R.color.status_bar_clock_color);
         mclockColor = Settings.System.getIntForUser(resolver,
                 Settings.System.STATUSBAR_CLOCK_COLOR, defaultColor,
+                UserHandle.USER_CURRENT);
+        mClockColorSwitch = Settings.System.getIntForUser(resolver,
+                Settings.System.STATUSBAR_CLOCK_COLOR_SWITCH, 0,
                 UserHandle.USER_CURRENT);
         if (mclockColor == Integer.MIN_VALUE) {
             // flag to reset the color

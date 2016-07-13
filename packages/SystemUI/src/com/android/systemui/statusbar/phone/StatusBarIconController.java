@@ -83,6 +83,8 @@ public class StatusBarIconController implements Tunable {
     private ClockController mClockController;
     private View mCenterClockLayout;
     private NetworkTraffic mNetworkTraffic;
+    private TextView mCarrier;
+    private TextView mCarrierLeft;
 
     private int mIconSize;
     private int mIconHPadding;
@@ -138,6 +140,8 @@ public class StatusBarIconController implements Tunable {
         mClockController = new ClockController(statusBar, mNotificationIcons, mHandler);
         mCenterClockLayout = statusBar.findViewById(R.id.center_clock_layout);
         mNetworkTraffic = (NetworkTraffic) statusBar.findViewById(R.id.networkTraffic);
+        mCarrier = (TextView) statusBar.findViewById(R.id.statusbar_carrier_text);
+        mCarrierLeft = (TextView) statusBar.findViewById(R.id.left_statusbar_carrier_text);
         updateResources();
 
         TunerService.get(mContext).addTunable(this, ICON_BLACKLIST);
@@ -416,6 +420,14 @@ public class StatusBarIconController implements Tunable {
             mClockController.setTextColor(mIconTint);
         }
         mNetworkTraffic.setDarkIntensity(mDarkIntensity);
+        if (Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.STATUS_BAR_CARRIER_COLOR,
+                mContext.getResources().getColor(R.color.status_bar_clock_color),
+                UserHandle.USER_CURRENT) == mContext.getResources().
+                getColor(R.color.status_bar_clock_color)) {
+            mCarrier.setTextColor(mIconTint);
+            mCarrierLeft.setTextColor(mIconTint);
+        }
         applyNotificationIconsTint();
     }
 

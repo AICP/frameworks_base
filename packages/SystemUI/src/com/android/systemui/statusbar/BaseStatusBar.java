@@ -1198,18 +1198,20 @@ public abstract class BaseStatusBar extends SystemUI implements
                 }
             });
 
-            if (Settings.System.getInt(mContext.getContentResolver(),
-                    Settings.System.FLOATING_WINDOW_MODE, 0) == 1) {
-                floatButton.setVisibility(View.VISIBLE);
-            } else {
-                floatButton.setVisibility(View.GONE);
-            }
-            floatButton.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    launchFloating(contentIntent);
+            if (floatButton != null) {
+                if (Settings.System.getInt(mContext.getContentResolver(),
+                        Settings.System.FLOATING_WINDOW_MODE, 0) == 1) {
+                    floatButton.setVisibility(View.VISIBLE);
+                } else {
+                    floatButton.setVisibility(View.GONE);
                 }
-            });
-			
+                floatButton.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        launchFloating(contentIntent);
+                    }
+                });
+            }
+
 			final Intent appSettingsQueryIntent
                     = new Intent(Intent.ACTION_MAIN)
                     .addCategory(Notification.INTENT_CATEGORY_NOTIFICATION_PREFERENCES)
@@ -1389,7 +1391,7 @@ public abstract class BaseStatusBar extends SystemUI implements
         mHandler.removeMessages(msg);
         mHandler.sendEmptyMessage(msg);
     }
-	
+
 	public void screenPinningStateChanged(boolean enabled) {
         if (mNavigationBarView != null) {
             mNavigationBarView.screenPinningStateChanged(enabled);

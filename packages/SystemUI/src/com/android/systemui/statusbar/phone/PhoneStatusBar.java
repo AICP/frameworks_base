@@ -4219,7 +4219,11 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             aicpLogo.setVisibility(View.GONE);
             return;
         }
-        aicpLogo.setColorFilter(color, Mode.SRC_IN);
+        if (color != 0xFFFFFFFF) {
+            aicpLogo.setColorFilter(color, Mode.SRC_IN);
+        } else {
+            aicpLogo.clearColorFilter();
+        }
         if (style == 0) {
             aicpLogo.setVisibility(View.GONE);
             aicpLogo = (ImageView) mStatusBarView.findViewById(R.id.left_aicp_logo);

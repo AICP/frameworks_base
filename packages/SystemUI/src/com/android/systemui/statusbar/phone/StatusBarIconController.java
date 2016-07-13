@@ -85,6 +85,8 @@ public class StatusBarIconController implements Tunable {
     private NetworkTraffic mNetworkTraffic;
     private TextView mCarrier;
     private TextView mCarrierLeft;
+    private ImageView mAicpLogo;
+    private ImageView mAicpLogoLeft;
 
     private int mIconSize;
     private int mIconHPadding;
@@ -142,6 +144,8 @@ public class StatusBarIconController implements Tunable {
         mNetworkTraffic = (NetworkTraffic) statusBar.findViewById(R.id.networkTraffic);
         mCarrier = (TextView) statusBar.findViewById(R.id.statusbar_carrier_text);
         mCarrierLeft = (TextView) statusBar.findViewById(R.id.left_statusbar_carrier_text);
+        mAicpLogo = (ImageView) statusBar.findViewById(R.id.aicp_logo);
+        mAicpLogoLeft = (ImageView) statusBar.findViewById(R.id.left_aicp_logo);
         updateResources();
 
         TunerService.get(mContext).addTunable(this, ICON_BLACKLIST);
@@ -427,6 +431,12 @@ public class StatusBarIconController implements Tunable {
                 getColor(R.color.status_bar_clock_color)) {
             mCarrier.setTextColor(mIconTint);
             mCarrierLeft.setTextColor(mIconTint);
+        }
+        if (Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.STATUS_BAR_AICP_LOGO_COLOR, 0xFFFFFFFF,
+                UserHandle.USER_CURRENT) == 0xFFFFFFFF) {
+            mAicpLogo.setImageTintList(ColorStateList.valueOf(mIconTint));
+            mAicpLogoLeft.setImageTintList(ColorStateList.valueOf(mIconTint));
         }
         applyNotificationIconsTint();
     }

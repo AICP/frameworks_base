@@ -673,6 +673,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
 		            Settings.System.QS_STROKE), false, this,
 					UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+		            Settings.System.STATUSBAR_CLOCK_COLOR_SWITCH), false, this,
+					UserHandle.USER_ALL);
             update();
         }
 
@@ -736,6 +739,17 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                         updateClearAll();
                         updateEmptyShadeView();
                     }
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.STATUSBAR_CLOCK_COLOR_SWITCH))) {
+                    int mClockColorSwitch = Settings.System.getIntForUser(
+                            mContext.getContentResolver(),
+                            Settings.System.STATUSBAR_CLOCK_COLOR_SWITCH, 0,
+                            UserHandle.USER_CURRENT);
+                    recreateStatusBar();
+                    updateRowStates();
+                    updateSpeedbump();
+                    updateClearAll();
+                    updateEmptyShadeView();
             }
 
             update();

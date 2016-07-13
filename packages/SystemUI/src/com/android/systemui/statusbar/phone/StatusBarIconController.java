@@ -24,6 +24,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.os.UserHandle;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.ArraySet;
@@ -409,7 +410,11 @@ public class StatusBarIconController implements Tunable {
         mMoreIcon.setImageTintList(ColorStateList.valueOf(mIconTint));
         mBatteryLevelTextView.setTextColor(mIconTint);
         mBatteryMeterView.setDarkIntensity(mDarkIntensity);
-        //mClockController.setTextColor(mIconTint);
+        if (Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.STATUSBAR_CLOCK_COLOR_SWITCH, 0,
+                UserHandle.USER_CURRENT) == 0) {
+            mClockController.setTextColor(mIconTint);
+        }
         mNetworkTraffic.setDarkIntensity(mDarkIntensity);
         applyNotificationIconsTint();
     }

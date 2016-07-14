@@ -87,6 +87,8 @@ public class StatusBarIconController implements Tunable {
     private TextView mCarrierLeft;
     private ImageView mAicpLogo;
     private ImageView mAicpLogoLeft;
+    private TextView mWeather;
+    private TextView mWeatherLeft;
 
     private int mIconSize;
     private int mIconHPadding;
@@ -146,6 +148,8 @@ public class StatusBarIconController implements Tunable {
         mCarrierLeft = (TextView) statusBar.findViewById(R.id.left_statusbar_carrier_text);
         mAicpLogo = (ImageView) statusBar.findViewById(R.id.aicp_logo);
         mAicpLogoLeft = (ImageView) statusBar.findViewById(R.id.left_aicp_logo);
+        mWeather = (TextView) statusBar.findViewById(R.id.weather_temp);
+        mWeatherLeft = (TextView) statusBar.findViewById(R.id.left_weather_temp);
         updateResources();
 
         TunerService.get(mContext).addTunable(this, ICON_BLACKLIST);
@@ -437,6 +441,12 @@ public class StatusBarIconController implements Tunable {
                 UserHandle.USER_CURRENT) == 0xFFFFFFFF) {
             mAicpLogo.setImageTintList(ColorStateList.valueOf(mIconTint));
             mAicpLogoLeft.setImageTintList(ColorStateList.valueOf(mIconTint));
+        }
+        if (Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.STATUS_BAR_WEATHER_COLOR, 0xFFFFFFFF,
+                UserHandle.USER_CURRENT) == 0xFFFFFFFF) {
+            mWeather.setTextColor(mIconTint);
+            mWeatherLeft.setTextColor(mIconTint);
         }
         applyNotificationIconsTint();
     }

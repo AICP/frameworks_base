@@ -33,6 +33,7 @@ import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
@@ -45,6 +46,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.database.ContentObserver;
+import android.graphics.drawable.GradientDrawable;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.hardware.camera2.CameraAccessException;
@@ -131,6 +133,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.view.WindowManagerPolicyControl;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.internal.R;
@@ -7568,6 +7572,15 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     }
                     //mBootMsgDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                     //mBootMsgDialog.setIndeterminate(true);
+                    final GradientDrawable dialogGd = new GradientDrawable();
+                    dialogGd.setColor(Settings.System.getInt(mContext.getContentResolver(),
+                            Settings.System.BOOT_DIALOG_BG_COLOR, 0xFF000000));
+                    dialogGd.setStroke(Settings.System.getInt(mContext.getContentResolver(),
+                            Settings.System.BOOT_DIALOG_STROKE_THICKNESS, 12),
+                            Settings.System.getInt(mContext.getContentResolver(),
+                            Settings.System.BOOT_DIALOG_STROKE_COLOR, 0xFF33B5E5));
+                    dialogGd.setCornerRadius(Settings.System.getInt(mContext.getContentResolver(),
+                            Settings.System.BOOT_DIALOG_CORNER_RADIUS, 45));
                     mBootMsgDialog.getWindow().setType(
                             WindowManager.LayoutParams.TYPE_BOOT_PROGRESS);
                     mBootMsgDialog.getWindow().addFlags(
@@ -7576,6 +7589,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     mBootMsgDialog.getWindow().setDimAmount(1);
                     WindowManager.LayoutParams lp = mBootMsgDialog.getWindow().getAttributes();
                     lp.screenOrientation = ActivityInfo.SCREEN_ORIENTATION_NOSENSOR;
+                    if (Settings.System.getInt(mContext.getContentResolver(),
+                            Settings.System.BOOT_DIALOG_BG_PIMPING, 1) ==  1) {
+                        mBootMsgDialog.getWindow().setBackgroundDrawable(dialogGd);
+                    }
                     mBootMsgDialog.getWindow().setAttributes(lp);
                     mBootMsgDialog.setCancelable(false);
                     mBootMsgDialog.setMessage("");
@@ -7590,6 +7607,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     // Calculate random text color
                     Random rand = new Random();
                     String randomColor = Integer.toHexString(rand.nextInt(0xFFFFFF) & 0xFCFCFC );
+                    if (randomColor == Integer.toHexString((Settings.System.getInt(mContext.getContentResolver(),
+                            Settings.System.BOOT_DIALOG_BG_COLOR, 0xFF000000)))) {
+                        randomColor = Integer.toHexString(0xFF000000);
+                    }
                     mBootMsgDialog.setMessage(Html.fromHtml(msg +
                                                             "<br><b><font color=\"#" + randomColor + "\">" +
                                                             currentPackageName +
@@ -7598,6 +7619,35 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 else {
                     mBootMsgDialog.setIcon(AicpDexOpt.get(AicpDexOptIndex));
                     mBootMsgDialog.setMessage(Html.fromHtml(msg + "<br><br><b>Powered by AICP</b>"));
+                    int dialogIcon = mBootMsgDialog.getContext().getResources().getIdentifier("android:id/icon", null, null);
+                    if (dialogIcon != 0) {
+                        ImageView icon = (ImageView) mBootMsgDialog.findViewById(dialogIcon);
+                        if ((Settings.System.getInt(mContext.getContentResolver(),
+                                Settings.System.BOOT_DIALOG_BG_COLOR, 0xFF000000)) == 0xFF000000) {
+                            icon.setColorFilter(0xFFFFFFFF);
+                        }
+                    }
+                }
+
+                int textViewTitle = mBootMsgDialog.getContext().getResources().getIdentifier("android:id/alertTitle", null, null);
+                if (textViewTitle != 0) {
+                    TextView tvTitle = (TextView) mBootMsgDialog.findViewById(textViewTitle);
+                    if ((Settings.System.getInt(mContext.getContentResolver(),
+                            Settings.System.BOOT_DIALOG_BG_COLOR, 0xFF000000)) == 0xFF000000) {
+                        tvTitle.setTextColor(0xFFFFFFFF);
+                    } else {
+                        tvTitle.setTextColor(0xFF000000);
+                    }
+                }
+                int textViewMessage = mBootMsgDialog.getContext().getResources().getIdentifier("android:id/message", null, null);
+                if (textViewMessage != 0) {
+                    TextView tvMessage = (TextView) mBootMsgDialog.findViewById(textViewMessage);
+                    if ((Settings.System.getInt(mContext.getContentResolver(),
+                            Settings.System.BOOT_DIALOG_BG_COLOR, 0xFF000000)) == 0xFF000000) {
+                        tvMessage.setTextColor(0xFFFFFFFF);
+                    } else {
+                        tvMessage.setTextColor(0xFF000000);
+                    }
                 }
             }
         });

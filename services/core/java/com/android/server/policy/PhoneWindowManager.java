@@ -7609,6 +7609,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     mBootMsgDialog.show();
                 }
 
+                int dialogMessageColor = Settings.System.getInt(mContext.getContentResolver(),
+                        Settings.System.BOOT_DIALOG_MESSAGE_COLOR, 0xFF000000);
+
                 // Only display the current package name if the main message says "Optimizing app N of M".
                 // We don't want to do this when the message says "Starting apps" or "Finishing boot", etc.
                 if (always && (currentPackageName != null)) {
@@ -7617,9 +7620,14 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     // Calculate random text color
                     Random rand = new Random();
                     String randomColor = Integer.toHexString(rand.nextInt(0xFFFFFF) & 0xFCFCFC );
+                    Boolean randomColorSwitch = Settings.System.getInt(mContext.getContentResolver(),
+                            Settings.System.BOOT_DIALOG_PACKAGES_RANDOM_COLOR, 1) == 1;
                     if (randomColor == Integer.toHexString((Settings.System.getInt(mContext.getContentResolver(),
                             Settings.System.BOOT_DIALOG_BG_COLOR, 0xFF000000)))) {
                         randomColor = Integer.toHexString(0xFF000000);
+                    }
+                    if (!randomColorSwitch) {
+                        randomColor = Integer.toHexString(dialogMessageColor);
                     }
                     mBootMsgDialog.setMessage(Html.fromHtml(msg +
                                                             "<br><b><font color=\"#" + randomColor + "\">" +
@@ -7641,22 +7649,26 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
                 int textViewTitle = mBootMsgDialog.getContext().getResources().getIdentifier("android:id/alertTitle", null, null);
                 if (textViewTitle != 0) {
+                    int dialogTitleColor = Settings.System.getInt(mContext.getContentResolver(),
+                            Settings.System.BOOT_DIALOG_TITLE_COLOR, 0xFF000000);
                     TextView tvTitle = (TextView) mBootMsgDialog.findViewById(textViewTitle);
-                    if ((Settings.System.getInt(mContext.getContentResolver(),
-                            Settings.System.BOOT_DIALOG_BG_COLOR, 0xFF000000)) == 0xFF000000) {
+                    if (((Settings.System.getInt(mContext.getContentResolver(),
+                            Settings.System.BOOT_DIALOG_BG_COLOR, 0xFF000000)) == 0xFF000000) &&
+                            (dialogTitleColor == 0xFF000000)) {
                         tvTitle.setTextColor(0xFFFFFFFF);
                     } else {
-                        tvTitle.setTextColor(0xFF000000);
+                        tvTitle.setTextColor(dialogTitleColor);
                     }
                 }
                 int textViewMessage = mBootMsgDialog.getContext().getResources().getIdentifier("android:id/message", null, null);
                 if (textViewMessage != 0) {
                     TextView tvMessage = (TextView) mBootMsgDialog.findViewById(textViewMessage);
-                    if ((Settings.System.getInt(mContext.getContentResolver(),
-                            Settings.System.BOOT_DIALOG_BG_COLOR, 0xFF000000)) == 0xFF000000) {
+                    if (((Settings.System.getInt(mContext.getContentResolver(),
+                            Settings.System.BOOT_DIALOG_BG_COLOR, 0xFF000000)) == 0xFF000000) &&
+                            (dialogMessageColor == 0xFF000000)) {
                         tvMessage.setTextColor(0xFFFFFFFF);
                     } else {
-                        tvMessage.setTextColor(0xFF000000);
+                        tvMessage.setTextColor(dialogMessageColor);
                     }
                 }
             }

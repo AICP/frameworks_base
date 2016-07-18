@@ -5306,6 +5306,12 @@ public final class Settings {
         public static final String BOOT_DIALOG_CORNER_RADIUS = "boot_dialog_corner_radius";
 
         /**
+         * Boot dialog custom title
+         * @hide
+         */
+        public static final String BOOT_DIALOG_TITLE = "boot_dialog_title";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *

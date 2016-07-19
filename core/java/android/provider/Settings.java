@@ -5306,6 +5306,33 @@ public final class Settings {
         public static final String BOOT_DIALOG_CORNER_RADIUS = "boot_dialog_corner_radius";
 
         /**
+         * Boot dialog custom title
+         * @hide
+         */
+        public static final String BOOT_DIALOG_TITLE = "boot_dialog_title";
+
+        /**
+         * Boot dialog title color
+         * 0xFFFFFFFF is default
+         * @hide
+         */
+        public static final String BOOT_DIALOG_TITLE_COLOR = "boot_dialog_title_color";
+
+        /**
+         * Boot dialog message color
+         * 0xFFFFFFFF is default
+         * @hide
+         */
+        public static final String BOOT_DIALOG_MESSAGE_COLOR = "boot_dialog_message_color";
+
+        /**
+         * Boot dialog message random color
+         *
+         * @hide
+         */
+        public static final String BOOT_DIALOG_PACKAGES_RANDOM_COLOR = "boot_dialog_packages_random_color";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *

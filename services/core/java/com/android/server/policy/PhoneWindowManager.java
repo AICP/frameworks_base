@@ -7611,6 +7611,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
                 int dialogMessageColor = Settings.System.getInt(mContext.getContentResolver(),
                         Settings.System.BOOT_DIALOG_MESSAGE_COLOR, 0xFF000000);
+                int dialogIcon = mBootMsgDialog.getContext().getResources().getIdentifier("android:id/icon", null, null);
+                ImageView icon = (ImageView) mBootMsgDialog.findViewById(dialogIcon);
 
                 // Only display the current package name if the main message says "Optimizing app N of M".
                 // We don't want to do this when the message says "Starting apps" or "Finishing boot", etc.
@@ -7633,13 +7635,14 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                                                             "<br><b><font color=\"#" + randomColor + "\">" +
                                                             currentPackageName +
                                                             "</font><br><br>Powered by AICP</b>"));
+                    if (dialogIcon != 0) {
+                        icon.clearColorFilter();
+                    }
                 }
                 else {
                     mBootMsgDialog.setIcon(AicpDexOpt.get(AicpDexOptIndex));
                     mBootMsgDialog.setMessage(Html.fromHtml(msg + "<br><br><b>Powered by AICP</b>"));
-                    int dialogIcon = mBootMsgDialog.getContext().getResources().getIdentifier("android:id/icon", null, null);
                     if (dialogIcon != 0) {
-                        ImageView icon = (ImageView) mBootMsgDialog.findViewById(dialogIcon);
                         if ((Settings.System.getInt(mContext.getContentResolver(),
                                 Settings.System.BOOT_DIALOG_BG_COLOR, 0xFF000000)) == 0xFF000000) {
                             icon.setColorFilter(0xFFFFFFFF);

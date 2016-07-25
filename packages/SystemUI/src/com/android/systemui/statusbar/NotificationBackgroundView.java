@@ -42,6 +42,7 @@ public class NotificationBackgroundView extends View {
     private int mClipTopAmount;
     private int mActualHeight;
     private int mNotificationsAlpha;
+    private int mNotificationsColor;
     private SettingsObserver mSettingsObserver;
 
     public NotificationBackgroundView(Context context, AttributeSet attrs) {
@@ -57,6 +58,11 @@ public class NotificationBackgroundView extends View {
     private void draw(Canvas canvas, Drawable drawable) {
         if (drawable != null && mActualHeight > mClipTopAmount) {
             drawable.setBounds(0, mClipTopAmount, getWidth(), mActualHeight);
+            if (mNotificationsColor != 0xFFFFFFFF) {
+                drawable.setColorFilter(mNotificationsColor, PorterDuff.Mode.SRC_IN);
+            } else {
+                drawable.clearColorFilter();
+            }
             drawable.setAlpha(mNotificationsAlpha);
             drawable.draw(canvas);
         }
@@ -106,6 +112,8 @@ public class NotificationBackgroundView extends View {
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.NOTIFICATION_ALPHA), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.NOTIFICATION_COLOR), false, this);
             update();
         }
 
@@ -128,6 +136,10 @@ public class NotificationBackgroundView extends View {
             ContentResolver resolver = mContext.getContentResolver();
             mNotificationsAlpha = Settings.System.getIntForUser(resolver,
                     Settings.System.NOTIFICATION_ALPHA, 255, UserHandle.USER_CURRENT);
+            mNotificationsColor = Settings.System.getIntForUser(resolver,
+                    Settings.System.NOTIFICATION_COLOR, mContext.getResources().getColor(
+                    com.android.systemui.R.color.notification_material_background_color),
+                    UserHandle.USER_CURRENT);
         }
     }
 

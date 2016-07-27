@@ -5364,7 +5364,7 @@ public final class Settings {
          * Navbar Button Color
          * @hide
          */
-        public static final String NAVBAR_BUTTON_COLOR= "navbar_button_color";
+        public static final String NAVBAR_BUTTON_COLOR = "navbar_button_color";
 
         /**
         * AE Navigation drawer opacity
@@ -8178,6 +8178,12 @@ public final class Settings {
          * @hide
          */
         public static final String FLING_LONGSWIPE_THRESHOLD_DOWN_LAND = "fling_longswipe_threshold_down_land";
+
+        /**
+         * Navbar buttons transparency
+         * @hide
+         */
+        public static final String NAVBAR_BUTTONS_ALPHA = "navbar_buttons_alpha";
 
         /**
          * This are the settings to be backed up.

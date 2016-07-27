@@ -5340,13 +5340,6 @@ public final class Settings {
         public static final String NOTIFICATION_ALPHA = "notification_alpha";
 
         /**
-         * Notifications bg color
-         *
-         * @hide
-         */
-        public static final String NOTIFICATION_COLOR = "notification_color";
-
-        /**
          * Navbar Button Color Switch
          * @hide
          */

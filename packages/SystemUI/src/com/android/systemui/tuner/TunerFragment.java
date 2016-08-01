@@ -56,7 +56,7 @@ public class TunerFragment extends PreferenceFragment {
 
         addPreferencesFromResource(R.xml.tuner_prefs);
         getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
-        setHasOptionsMenu(true);
+        //setHasOptionsMenu(true);
 
         findPreference(KEY_STATUSBAR_BLACKLIST).setOnPreferenceClickListener(new OnPreferenceClickListener() {
             @Override
@@ -136,7 +136,7 @@ public class TunerFragment extends PreferenceFragment {
         }
     }
 
-    @Override
+    /*@Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.add(Menu.NONE, MENU_REMOVE, Menu.NONE, R.string.remove_from_settings);
     }
@@ -157,5 +157,5 @@ public class TunerFragment extends PreferenceFragment {
                 return true;
         }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 }

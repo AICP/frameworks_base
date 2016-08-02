@@ -5372,11 +5372,17 @@ public final class Settings {
         */
        public static final String AE_NAV_DRAWER_OPACITY= "ae_drawer_opacity";
 
+        /**
+        * AE Navigation drawer bg color
+        * @hide
+        */
+       public static final String AE_NAV_DRAWER_BG_COLOR= "ae_drawer_bg_color";
+
        /**
-       * AE Navigation drawer bg color
+       * AE Navigation drawer header bg image opacity
        * @hide
        */
-      public static final String AE_NAV_DRAWER_BG_COLOR= "ae_drawer_bg_color";
+      public static final String AE_NAV_HEADER_BG_IMAGE_OPACITY= "ae_header_bg_image_opacity";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings

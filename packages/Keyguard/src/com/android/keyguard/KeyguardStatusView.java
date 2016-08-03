@@ -492,15 +492,15 @@ public class KeyguardStatusView extends GridLayout implements
         }
 
         Drawable weatherIcon = mWeatherConditionDrawable;
-        Bitmap coloredWeatherIcon =
-                ImageHelper.getColoredBitmap(weatherIcon, iconColor);
+        Drawable coloredWeatherIcon =
+                ImageHelper.getColoredDrawable(weatherIcon, iconColor);
         if (iconNameValue == 0 || colorizeAllIcons) {
             if (mWeatherConditionImage != null) {
                 mWeatherConditionImage.setImageDrawable(weatherIcon);
             }
         } else {
             if (mWeatherConditionImage != null) {
-                mWeatherConditionImage.setImageBitmap(coloredWeatherIcon);
+                mWeatherConditionImage.setImageDrawable(coloredWeatherIcon);
             }
         }
     }

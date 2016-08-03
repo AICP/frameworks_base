@@ -47,6 +47,9 @@
     <!-- Live lock screen manager -->
     <uses-permission android:name="cyanogenmod.permission.LIVE_LOCK_SCREEN_MANAGER_ACCESS_PRIVATE" />
 
+    <!-- Theme manager -->
+    <uses-permission android:name="cyanogenmod.permission.ACCESS_THEME_MANAGER" />
+
     <!-- NFC Tile -->
     <uses-permission android:name="android.permission.NFC" />
 

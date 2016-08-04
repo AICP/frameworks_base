@@ -5379,10 +5379,22 @@ public final class Settings {
        public static final String AE_NAV_DRAWER_BG_COLOR= "ae_drawer_bg_color";
 
        /**
-       * AE Navigation drawer header bg image opacity
+        * AE Navigation drawer header bg image opacity
+        * @hide
+        */
+       public static final String AE_NAV_HEADER_BG_IMAGE_OPACITY= "ae_header_bg_image_opacity";
+
+       /**
+       * AE Navigation drawer unchecked text color
        * @hide
        */
-      public static final String AE_NAV_HEADER_BG_IMAGE_OPACITY= "ae_header_bg_image_opacity";
+      public static final String AE_NAV_DRAWER_UNCHECKED_TEXT= "ae_nav_drawer_unchecked_text";
+
+      /**
+       * AE Navigation drawer checked text color
+       * @hide
+       */
+      public static final String AE_NAV_DRAWER_CHECKED_TEXT= "ae_nav_drawer_checked_text";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings

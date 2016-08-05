@@ -22,11 +22,14 @@ import android.annotation.StringRes;
 import android.app.ActivityManager;
 import android.app.INotificationManager;
 import android.app.ITransientNotification;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.PixelFormat;
+import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.IBinder;
@@ -44,6 +47,8 @@ import android.view.accessibility.AccessibilityManager;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+
+import com.android.internal.util.aicp.RandomColorHelper;
 
 /**
  * A toast is a view containing a quick little message for the user.  The toast class
@@ -67,7 +72,7 @@ import java.lang.annotation.RetentionPolicy;
  * <a href="{@docRoot}guide/topics/ui/notifiers/toasts.html">Toast Notifications</a> developer
  * guide.</p>
  * </div>
- */ 
+ */
 public class Toast {
     static final String TAG = "Toast";
     static final boolean localLOGV = false;
@@ -92,6 +97,7 @@ public class Toast {
     public static final int LENGTH_LONG = 1;
 
     final Context mContext;
+    static Context tContext;
     final TN mTN;
     int mDuration;
     View mNextView;
@@ -105,6 +111,7 @@ public class Toast {
      */
     public Toast(Context context) {
         mContext = context;
+        tContext = context;
         mTN = new TN(context.getPackageName());
         mTN.mY = context.getResources().getDimensionPixelSize(
                 com.android.internal.R.dimen.toast_y_offset);
@@ -175,7 +182,7 @@ public class Toast {
     public int getDuration() {
         return mDuration;
     }
-    
+
     /**
      * Set the margins of the view.
      *
@@ -231,7 +238,7 @@ public class Toast {
     public int getXOffset() {
         return mTN.mX;
     }
-    
+
     /**
      * Return the Y offset in pixels to apply to the gravity's location.
      */
@@ -246,7 +253,7 @@ public class Toast {
     public WindowManager.LayoutParams getWindowParams() {
         return mTN.mParams;
     }
-    
+
     /**
      * Make a standard toast that just contains a text view.
      *
@@ -260,12 +267,14 @@ public class Toast {
     public static Toast makeText(Context context, CharSequence text, @Duration int duration) {
         Toast result = new Toast(context);
 
+        final ColorStateList textColor = RandomColorHelper.getToastTextColorList(tContext);
         LayoutInflater inflate = (LayoutInflater)
                 context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View v = inflate.inflate(com.android.internal.R.layout.transient_notification, null);
         TextView tv = (TextView)v.findViewById(com.android.internal.R.id.message);
         tv.setText(text);
-        
+        tv.setTextColor(textColor);
+
         result.mNextView = v;
         result.mDuration = duration;
 
@@ -295,7 +304,7 @@ public class Toast {
     public void setText(@StringRes int resId) {
         setText(mContext.getText(resId));
     }
-    
+
     /**
      * Update the text in a Toast that was previously created using one of the makeText() methods.
      * @param s The new text for the Toast.
@@ -438,6 +447,7 @@ public class Toast {
                 }
 
                 ImageView appIcon = (ImageView) mView.findViewById(android.R.id.icon);
+                final ColorStateList iconColor = RandomColorHelper.getToastIconColorList(tContext);
                 if ((Settings.System.getInt(context.getContentResolver(),
                         Settings.System.TOAST_ICON, 1) == 1)) {
                     if (appIcon != null) {
@@ -452,6 +462,8 @@ public class Toast {
                                 // nothing to do
                             }
                             appIcon.setImageDrawable(icon);
+                            appIcon.setImageTintList(iconColor);
+                            appIcon.setImageTintMode(Mode.MULTIPLY);
                         }
                     }
                 }
@@ -500,7 +512,7 @@ public class Toast {
             event.setPackageName(mView.getContext().getPackageName());
             mView.dispatchPopulateAccessibilityEvent(event);
             accessibilityManager.sendAccessibilityEvent(event);
-        }        
+        }
 
         public void handleHide() {
             if (localLOGV) Log.v(TAG, "HANDLE HIDE: " + this + " mView=" + mView);

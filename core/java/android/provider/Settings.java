@@ -9767,6 +9767,12 @@ public final class Settings {
                 new SettingsValidators.DiscreteValueValidator(new String[]{"0", "1"});
 
         /**
+         * Disable hw buttons - actions, brightness, haptic feedback, overflow menu
+         * @hide
+         */
+        public static final String HARDWARE_KEYS_DISABLE = "hardware_keys_disable";
+
+        /**
          * Lower the display persistence while the system is in VR mode.
          *
          * @see PackageManager#FEATURE_VR_MODE_HIGH_PERFORMANCE

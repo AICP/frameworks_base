@@ -8340,6 +8340,12 @@ public final class Settings {
                 "search_global_search_activity";
 
         /**
+         * Disable hw buttons - actions, brightness, haptic feedback, overflow menu
+         * @hide
+         */
+        public static final String HARDWARE_KEYS_DISABLE = "hardware_keys_disable";
+
+        /**
          * The number of promoted sources in GlobalSearch.
          * @hide
          */
@@ -9865,12 +9871,6 @@ public final class Settings {
          * @hide
          */
         public static final int ACCESSIBILITY_MAGNIFICATION_MODE_WINDOW = 0x2;
-
-        /**
-         * Controls if hardware keys are disabled.
-         * @hide
-         */
-        public static final String HARDWARE_KEYS_DISABLE = "hardware_keys_disable";
 
         /*
          * Boolean value whether to display volume panel on the display left

@@ -206,5 +206,6 @@ public class SecureSettings {
         Settings.Secure.VOLUME_PANEL_ON_LEFT,
         Settings.Secure.SHOW_CPU_OVERLAY,
         Settings.Secure.SHOW_FPS_OVERLAY,
+        Settings.Secure.HARDWARE_KEYS_DISABLE,
     };
 }

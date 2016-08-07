@@ -10691,6 +10691,12 @@ public final class Settings {
          */
         public static final String SHOW_FPS_OVERLAY = "show_fps_overlay";
 
+        /**
+         * Disable hw buttons - actions, brightness, haptic feedback, overflow menu
+         * @hide
+         */
+        public static final String HARDWARE_KEYS_DISABLE = "hardware_keys_disable";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

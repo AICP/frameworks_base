@@ -211,5 +211,6 @@ public class SecureSettings {
         Settings.Secure.LOCK_PATTERN_SIZE,
         Settings.Secure.LOCK_DOTS_VISIBLE,
         Settings.Secure.LOCK_SHOW_ERROR_PATH,
+        Settings.Secure.HARDWARE_KEYS_DISABLE,
     };
 }

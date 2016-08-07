@@ -10910,6 +10910,12 @@ public final class Settings {
         @Readable
         public static final String MONET_ENGINE_WHITE_LUMINANCE = "monet_engine_white_luminance_user";
 
+        /**
+         * Disable hw buttons - actions, brightness, haptic feedback, overflow menu
+         * @hide
+         */
+        public static final String HARDWARE_KEYS_DISABLE = "hardware_keys_disable";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

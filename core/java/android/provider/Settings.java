@@ -5367,6 +5367,13 @@ public final class Settings {
         public static final String NAVBAR_BUTTON_COLOR = "navbar_button_color";
 
         /**
+        * Whether to enable AE custom color settings
+        * If disabled, themed values will be used
+        * @hide
+        */
+       public static final String AE_CUSTOM_COLORS = "ae_custom_colors";
+
+        /**
         * AE Navigation drawer opacity
         * @hide
         */

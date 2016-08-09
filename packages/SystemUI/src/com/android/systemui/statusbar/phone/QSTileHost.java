@@ -56,6 +56,7 @@ import com.android.systemui.qs.tiles.EditTile;
 import com.android.systemui.qs.tiles.ExpandedDesktopTile;
 import com.android.systemui.qs.tiles.FlashlightTile;
 import com.android.systemui.qs.tiles.FloatingWindowsTile;
+import com.android.systemui.qs.tiles.HaloTile;
 import com.android.systemui.qs.tiles.HeadsUpTile;
 import com.android.systemui.qs.tiles.HotspotTile;
 import com.android.systemui.qs.tiles.IntentTile;
@@ -426,6 +427,7 @@ public class QSTileHost implements QSTile.Host, Tunable {
         else if (tileSpec.equals("float_mode")) return new FloatingWindowsTile(this);
         else if (tileSpec.equals("aicp_extras")) return new AicpExtrasTile(this);
         else if (tileSpec.equals("restart_systemui")) return new SystemUIRestartTile(this);
+        else if (tileSpec.equals("halo")) return new HaloTile(this);
         else if (tileSpec.startsWith(IntentTile.PREFIX)) return IntentTile.create(this,tileSpec);
         else if (TextUtils.split(tileSpec, "\\|").length == 3) {
             /** restores placeholder for
@@ -541,6 +543,7 @@ public class QSTileHost implements QSTile.Host, Tunable {
         else if (spec.equals("float_mode")) return R.string.recent_float_mode_title;
         else if (spec.equals("aicp_extras")) return R.string.quick_aicp_extras_label;
         else if (spec.equals("restart_systemui")) return R.string.quick_settings_systemui_restart_label;
+        else if (spec.equals("halo")) return R.string.quick_settings_halo_on;
         return 0;
     }
 
@@ -589,6 +592,7 @@ public class QSTileHost implements QSTile.Host, Tunable {
         else if (spec.equals("float_mode")) return R.drawable.ic_qs_floating_on;
         else if (spec.equals("aicp_extras")) return R.drawable.ic_qs_aicp_extras;
         else if (spec.equals("restart_systemui")) return R.drawable.ic_qs_systemui_restart;
+        else if (spec.equals("halo")) return R.drawable.ic_notify_halo_normal;
         return 0;
     }
 

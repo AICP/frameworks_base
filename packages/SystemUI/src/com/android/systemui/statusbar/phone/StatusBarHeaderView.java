@@ -920,7 +920,8 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         target.taskManagerAlpha = getAlphaForVisibility(mTaskManagerButton);
         target.taskManagerTranslation = mExpanded
                 ? 0
-                : mHaloButton.getLeft() - mTaskManagerButton.getLeft();
+                : (mShowhaloButton ? mHaloButton.getLeft()
+                : mSettingsContainer.getLeft()) - mTaskManagerButton.getLeft();
         target.signalClusterAlpha = mSignalClusterDetached ? 0f : 1f;
         target.settingsRotation = !mExpanded ? 90f : 0f;
     }

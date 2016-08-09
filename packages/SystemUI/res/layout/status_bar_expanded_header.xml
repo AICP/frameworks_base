@@ -87,7 +87,8 @@
         android:layout_toStartOf="@id/settings_button_container"
         style="@android:style/Widget.Material.Button.Borderless"
         android:layout_marginStart="7dp"
-        android:background="@drawable/ripple_drawable" />
+        android:background="@drawable/ripple_drawable"
+        android:visibility="gone" />
 
     <ImageButton android:id="@+id/task_manager_button"
         style="@android:style/Widget.Material.Button.Borderless"

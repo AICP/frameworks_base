@@ -44,6 +44,11 @@ public class HaloTile extends QSTile<QSTile.BooleanState> {
     private boolean mListening;
     private HaloObserver mObserver;
 
+    private static final Intent HALO_SETTINGS = new Intent(Intent.ACTION_MAIN)
+            .setClassName("com.lordclockan",
+                    "com.lordclockan.aicpextras.MainActivity")
+            .putExtra("init_fragment", "halo");
+
     public HaloTile(Host host) {
         super(host);
         mObserver = new HaloObserver(mHandler);
@@ -73,6 +78,7 @@ public class HaloTile extends QSTile<QSTile.BooleanState> {
 
     @Override
     public void handleLongClick() {
+        mHost.startActivityDismissingKeyguard(HALO_SETTINGS);
     }
 
     protected void toggleState() {

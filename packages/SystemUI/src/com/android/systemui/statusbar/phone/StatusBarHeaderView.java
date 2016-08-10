@@ -254,6 +254,7 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         mTaskManagerButton.setOnLongClickListener(this);
         mHaloButton = findViewById(R.id.halo_button);
         mHaloButton.setOnClickListener(this);
+        mHaloButton.setOnLongClickListener(this);
         mQsDetailHeader = findViewById(R.id.qs_detail_header);
         mQsDetailHeader.setAlpha(0);
         mVibrator = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
@@ -773,6 +774,8 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
             startUserLongClickActivity();
         } else if (v == mTaskManagerButton) {
             startTaskManagerLongClickActivity();
+        } else if (v == mHaloButton) {
+            startHaloSettingsActivity();
         } else if (v == this) {
             startThemeHeadersActivity();
         }
@@ -1244,6 +1247,13 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
     private boolean toggleHalo() {
         return Settings.Secure.putInt(mContext.getContentResolver(),
                     Settings.Secure.HALO_ACTIVE, 1);
+    }
+
+    private void startHaloSettingsActivity() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.setClassName("com.lordclockan", "com.lordclockan.aicpextras.MainActivity");
+        intent.putExtra("init_fragment", "halo");
+        mActivityStarter.startActivity(intent, true);
     }
 
     class SettingsObserver extends UserContentObserver {

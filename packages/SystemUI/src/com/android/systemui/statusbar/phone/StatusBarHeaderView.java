@@ -143,6 +143,9 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
 
     private int mClockCollapsedSize;
     private int mClockExpandedSize;
+    private static boolean mTranslucentHeader;
+    private static int mTranslucencyPercentage;
+    private static StatusBarHeaderView mStatusBarHeaderView;
 
     protected Vibrator mVibrator;
 
@@ -322,6 +325,24 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         d = mHaloButton.getBackground();
         if (d instanceof RippleDrawable) {
             ((RippleDrawable) d).setForceSoftware(true);
+
+        mStatusBarHeaderView = this;
+        handleStatusBarHeaderViewBackround();
+    }
+
+    public static void handleStatusBarHeaderViewBackround() {
+
+        if (NotificationPanelView.mNotificationPanelView == null)
+            return;
+
+        boolean mKeyguardShowing = NotificationPanelView.mKeyguardShowing;
+
+        if (mStatusBarHeaderView == null)
+            return;
+        if (mKeyguardShowing) {
+            mStatusBarHeaderView.getBackground().setAlpha(255);
+        } else {
+            mStatusBarHeaderView.getBackground().setAlpha(mTranslucentHeader ? mTranslucencyPercentage : 255);
         }
     }
 
@@ -1011,6 +1032,14 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
             mTime.setScaleY(1f);
         }
         updateAmPmTranslation();
+    }
+
+    public static void updatePreferences(Context mContext) {
+        mTranslucentHeader = (Settings.System.getInt(mContext.getContentResolver(), Settings.System.TRANSLUCENT_HEADER_PREFERENCE_KEY, 1) == 1);
+        mTranslucencyPercentage =  Settings.System.getInt(mContext.getContentResolver(), Settings.System.TRANSLUCENT_HEADER_PRECENTAGE_PREFERENCE_KEY, 70);
+        mTranslucencyPercentage = 255 - ((mTranslucencyPercentage * 255) / 100);
+
+        handleStatusBarHeaderViewBackround();
     }
 
     public void setEditing(boolean editing) {

@@ -20,12 +20,23 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ActivityOptions;
 import android.app.TaskStackBuilder;
+import android.app.WallpaperManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.graphics.*;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.content.Intent;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.widget.FrameLayout;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.net.Uri;
+import com.android.systemui.statusbar.BlurUtils;
+import com.android.systemui.statusbar.DisplayUtils;
+import com.android.systemui.statusbar.phone.NotificationPanelView;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -39,6 +50,8 @@ import android.view.ViewTreeObserver;
 import android.view.ViewTreeObserver.OnPreDrawListener;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
+import java.lang.reflect.Field;
+import java.util.HashMap;
 
 import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.MetricsProto.MetricsEvent;
@@ -86,6 +99,7 @@ import com.android.systemui.recents.model.TaskStack;
 import com.android.systemui.recents.views.RecentsView;
 import com.android.systemui.recents.views.SystemBarScrimViews;
 import com.android.systemui.statusbar.BaseStatusBar;
+import android.provider.Settings;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
@@ -111,6 +125,7 @@ public class RecentsActivity extends Activity implements ViewTreeObserver.OnPreD
     private boolean mIgnoreAltTabRelease;
     private boolean mIsVisible;
     private boolean mReceivedNewIntent;
+    public static boolean mBlurredRecentAppsEnabled;
 
     // Top level views
     private RecentsView mRecentsView;

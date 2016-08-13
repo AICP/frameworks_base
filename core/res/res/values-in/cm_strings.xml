@@ -53,11 +53,11 @@
   <!-- Button to reboot the phone into recovery, within the Reboot Options dialog -->
   <string name="reboot_recovery">Pemulihan</string>
   <!-- Button to reboot the phone into bootloader, within the Reboot Options dialog -->
-  <string name="reboot_bootloader">Pengelola but</string>
+  <string name="reboot_bootloader">Bootloader</string>
   <!-- Button to reboot the phone into download, within the Reboot Options dialog -->
   <string name="reboot_download">Unduh</string>
   <!-- Button to soft reboot the device, within the Reboot Options dialog -->
-  <string name="reboot_soft">But ulang tanpa mati daya</string>
+  <string name="reboot_soft">But ulang cepat</string>
   <!-- Title of dialog to confirm rebooting. -->
   <string name="reboot_title">But ulang</string>
   <!-- Reboot Confirmation Dialog.  When the user chooses to reboot the device, there will

@@ -66,7 +66,6 @@ public class NotificationBackgroundView extends View {
     private void draw(Canvas canvas, Drawable drawable) {
         if (drawable != null && mActualHeight > mClipTopAmount) {
             drawable.setBounds(0, mClipTopAmount, getWidth(), mActualHeight);
-            drawable.setAlpha(mNotificationsAlpha);
 
             if (mTranslucentNotifications) {
                 if (drawable.getAlpha() != mTranslucencyPercentage)
@@ -78,7 +77,7 @@ public class NotificationBackgroundView extends View {
                     drawable.setAlpha(255);
                 }
             } else {
-                drawable.setAlpha(255);
+                drawable.setAlpha(mNotificationsAlpha);
             }
             drawable.draw(canvas);
         }

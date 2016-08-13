@@ -147,7 +147,6 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
     private int mClockExpandedSize;
     private static boolean mTranslucentHeader;
     private static int mTranslucencyPercentage;
-    private static StatusBarHeaderView mStatusBarHeaderView;
 
     protected Vibrator mVibrator;
 
@@ -285,7 +284,6 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         updateVisibilities();
         updateClockScale();
         updateAvatarScale();
-        setQSHeaderAlpha();
         setStatusBarHeaderFontStyle(mStatusBarHeaderFontStyle);
         addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
             @Override
@@ -326,25 +324,30 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         d = mHaloButton.getBackground();
         if (d instanceof RippleDrawable) {
             ((RippleDrawable) d).setForceSoftware(true);
+        }
 
-        mStatusBarHeaderView = this;
-        handleStatusBarHeaderViewBackround();
+        if (mTranslucentHeader) {
+            handleStatusBarHeaderViewBackround();
+        } else {
+            setQSHeaderAlpha();
+        }
     }
 
-    public static void handleStatusBarHeaderViewBackround() {
+    public void handleStatusBarHeaderViewBackround() {
 
         if (NotificationPanelView.mNotificationPanelView == null)
             return;
 
         boolean mKeyguardShowing = NotificationPanelView.mKeyguardShowing;
 
-        if (mStatusBarHeaderView == null)
+        if (mHeaderView == null)
             return;
         if (mKeyguardShowing) {
-            mStatusBarHeaderView.getBackground().setAlpha(255);
+            mHeaderView.getBackground().setAlpha(255);
+            mBackgroundImage.setAlpha(255);
         } else {
-            mTranslucencyPercentage = 255 - ((mTranslucencyPercentage * 255) / 100);
-            mStatusBarHeaderView.getBackground().setAlpha(mTranslucentHeader ? mTranslucencyPercentage : 255);
+            mHeaderView.getBackground().setAlpha(mTranslucentHeader ? mTranslucencyPercentage : 255);
+            mBackgroundImage.setAlpha(mTranslucentHeader ? mTranslucencyPercentage : 255);
         }
     }
 
@@ -563,6 +566,9 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         if (mDockBatteryLevel != null) {
             mDockBatteryLevel.setForceShown(mExpanded && mShowBatteryTextExpanded);
             mDockBatteryLevel.setVisibility(View.VISIBLE);
+        }
+        if (mTranslucentHeader) {
+            handleStatusBarHeaderViewBackround();
         }
         applyTextShadow();
         applyHeaderBackgroundShadow();
@@ -1350,7 +1356,6 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
 
             mQSHeaderAlpha = Settings.System.getInt(
                     resolver, Settings.System.QS_TRANSPARENT_HEADER, 255);
-            setQSHeaderAlpha();
 
             mStatusBarHeaderFontStyle = Settings.System.getIntForUser(resolver,
                 Settings.System.STATUS_BAR_HEADER_FONT_STYLE, FONT_NORMAL,
@@ -1381,11 +1386,16 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
             mHaloButton.setActivated(mHaloActive);
 
             mTranslucentHeader = Settings.System.getIntForUser(resolver,
-                Settings.System.TRANSLUCENT_HEADER_PREFERENCE_KEY, 0, currentUserId) == 1;
+                    Settings.System.TRANSLUCENT_HEADER_PREFERENCE_KEY, 0, currentUserId) == 1;
             mTranslucencyPercentage = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.TRANSLUCENT_HEADER_PRECENTAGE_PREFERENCE_KEY, 70);
+                    Settings.System.TRANSLUCENT_HEADER_PRECENTAGE_PREFERENCE_KEY, 70);
 
-            handleStatusBarHeaderViewBackround();
+            if (mTranslucentHeader) {
+                mTranslucencyPercentage = 255 - ((mTranslucencyPercentage * 255) / 100);
+                handleStatusBarHeaderViewBackround();
+            } else {
+                setQSHeaderAlpha();
+            }
             updateEverything();
             updateVisibilities();
             requestCaptureValues();
@@ -1474,14 +1484,11 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
 
 
     private void setQSHeaderAlpha() {
-        if (Settings.System.getInt(mContext.getContentResolver(),
-                    Settings.System.QS_TRANSPARENT_HEADER, 255) != 255) {
-            if (mHeaderView != null) {
-                 mHeaderView.getBackground().setAlpha(mQSHeaderAlpha);
-            }
-            if (mBackgroundImage != null) {
-                mBackgroundImage.setAlpha(mQSHeaderAlpha);
-            }
+        if (mHeaderView != null) {
+             mHeaderView.getBackground().setAlpha(mQSHeaderAlpha);
+        }
+        if (mBackgroundImage != null) {
+            mBackgroundImage.setAlpha(mQSHeaderAlpha);
         }
     }
 

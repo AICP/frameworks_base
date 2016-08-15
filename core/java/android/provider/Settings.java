@@ -5356,6 +5356,7 @@ public final class Settings {
         public static final String TRANSLUCENT_HEADER_PREFERENCE_KEY = "translucent_header_pref";
         public static final String TRANSLUCENT_QUICK_SETTINGS_PREFERENCE_KEY = "translucent_quick_settings_pref";
         public static final String TRANSLUCENT_NOTIFICATIONS_PREFERENCE_KEY = "translucent_notifications_pref";
+        public static final String RECENT_APPS_ENABLED_PREFERENCE_KEY = "blurred_recent_app_enabled_pref";
 
         /**
          * Notifications alpha

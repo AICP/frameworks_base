@@ -237,4 +237,7 @@
 
     <!-- Default for Settings.Global.CAPTIVE_PORTAL_DETECTION_ENABLED -->
     <integer name="def_captive_portal_detection_enabled" translatable="false">1</integer>
+
+    <!-- Default setting for showing the 4G indicator -->
+    <integer name="def_show_4g_for_lte">1</integer>
 </resources>

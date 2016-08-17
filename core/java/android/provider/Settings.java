@@ -5378,41 +5378,48 @@ public final class Settings {
         public static final String NAVBAR_BUTTON_COLOR = "navbar_button_color";
 
         /**
-        * Whether to enable AE custom color settings
-        * If disabled, themed values will be used
-        * @hide
-        */
-       public static final String AE_CUSTOM_COLORS = "ae_custom_colors";
+         * Whether to enable AE custom color settings
+         * If disabled, themed values will be used
+         * @hide
+         */
+        public static final String AE_CUSTOM_COLORS = "ae_custom_colors";
 
         /**
-        * AE Navigation drawer opacity
-        * @hide
-        */
-       public static final String AE_NAV_DRAWER_OPACITY= "ae_drawer_opacity";
+         * AE Navigation drawer opacity
+         * @hide
+         */
+        public static final String AE_NAV_DRAWER_OPACITY= "ae_drawer_opacity";
 
         /**
-        * AE Navigation drawer bg color
-        * @hide
-        */
-       public static final String AE_NAV_DRAWER_BG_COLOR= "ae_drawer_bg_color";
+         * AE Navigation drawer bg color
+         * @hide
+         */
+        public static final String AE_NAV_DRAWER_BG_COLOR= "ae_drawer_bg_color";
+
+        /**
+         * AE Navigation drawer header bg image opacity
+         * @hide
+         */
+        public static final String AE_NAV_HEADER_BG_IMAGE_OPACITY= "ae_header_bg_image_opacity";
+
+        /**
+         * AE Navigation drawer unchecked text color
+         * @hide
+         */
+        public static final String AE_NAV_DRAWER_UNCHECKED_TEXT= "ae_nav_drawer_unchecked_text";
 
        /**
-        * AE Navigation drawer header bg image opacity
-        * @hide
-        */
-       public static final String AE_NAV_HEADER_BG_IMAGE_OPACITY= "ae_header_bg_image_opacity";
+         * AE Navigation drawer checked text color
+         * @hide
+         */
+        public static final String AE_NAV_DRAWER_CHECKED_TEXT= "ae_nav_drawer_checked_text";
 
-       /**
-       * AE Navigation drawer unchecked text color
-       * @hide
-       */
-      public static final String AE_NAV_DRAWER_UNCHECKED_TEXT= "ae_nav_drawer_unchecked_text";
+        /**
+         * Show four g instead of lte
+         * @hide
+         */
+        public static final String SHOW_FOURG = "show_fourg";
 
-      /**
-       * AE Navigation drawer checked text color
-       * @hide
-       */
-      public static final String AE_NAV_DRAWER_CHECKED_TEXT= "ae_nav_drawer_checked_text";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings

@@ -27,7 +27,7 @@
     <item
         android:id="@+id/menu_cut"
         android:title="@android:string/cut"
-        android:icon="@drawable/ic_menu_cut_holo_light"
+        android:icon="@*android:drawable/ic_menu_cut_material"
         android:showAsAction="always" />
     <item
         android:id="@+id/menu_share"

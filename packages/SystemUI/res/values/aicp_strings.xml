@@ -252,4 +252,7 @@
     <string name="quick_settings_halo_on">Halo</string>
     <string name="quick_settings_halo_off">Halo disabled</string>
 
+    <!-- Advanced Data Tile -->
+    <string name="quick_settings_title_advanced_data_tile">Advanced data tile</string>
+
 </resources>

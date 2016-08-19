@@ -71,6 +71,13 @@
 
         <com.android.systemui.qs.QSBooleanSettingRow
                 style="@style/SettingRow"
+                android:title="@string/quick_settings_title_advanced_data_tile"
+                android:key="qs_data_advanced"
+                systemui:defaultValue="0"
+                systemui:table="cm_secure"/>
+
+        <com.android.systemui.qs.QSBooleanSettingRow
+                style="@style/SettingRow"
                 android:title="@string/quick_settings_title_advanced_location"
                 android:key="qs_location_advanced"
                 systemui:defaultValue="0"

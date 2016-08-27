@@ -5440,7 +5440,7 @@ public class Notification implements Parcelable
             } else if (isColorized()) {
                 color = getPrimaryTextColor();
             } else {
-                color = resolveContrastColor();
+                color = resolveIconContrastColor();
             }
             if (colorable) {
                 contentView.setDrawableTint(R.id.icon, false, color,
@@ -5460,7 +5460,7 @@ public class Notification implements Parcelable
             if (largeIcon != null && isLegacy()
                     && getColorUtil().isGrayscaleIcon(mContext, largeIcon)) {
                 // resolve color will fall back to the default when legacy
-                contentView.setDrawableTint(R.id.icon, false, resolveContrastColor(),
+                contentView.setDrawableTint(R.id.icon, false, resolveIconContrastColor(),
                         PorterDuff.Mode.SRC_ATOP);
             }
         }
@@ -5471,9 +5471,19 @@ public class Notification implements Parcelable
             }
         }
 
-        int resolveContrastColor() {
-            if (!mContext.getResources().getBoolean(R.bool.config_allowNotificationIconTinting)) {
+        int resolveIconContrastColor() {
+            if (!mContext.getResources().getBoolean(
+                        R.bool.config_allowNotificationIconTextTinting)) {
                 return mContext.getColor(R.color.notification_icon_default_color);
+            } else {
+                return resolveContrastColor();
+            }
+        }
+
+        int resolveContrastColor() {
+            if (!mContext.getResources().getBoolean(
+                        R.bool.config_allowNotificationIconTextTinting)) {
+                return mContext.getColor(R.color.notification_text_default_color);
             }
             if (mCachedContrastColorIsFor == mN.color && mCachedContrastColor != COLOR_INVALID) {
                 return mCachedContrastColor;
@@ -5514,7 +5524,8 @@ public class Notification implements Parcelable
         }
 
         int resolveAmbientColor() {
-            if (!mContext.getResources().getBoolean(R.bool.config_allowNotificationIconTinting)) {
+            if (!mContext.getResources().getBoolean(
+                        R.bool.config_allowNotificationIconTextTinting)) {
                 return mContext.getColor(R.color.notification_ambient_icon_default_color);
             }
             if (mCachedAmbientColorIsFor == mN.color && mCachedAmbientColorIsFor != COLOR_INVALID) {

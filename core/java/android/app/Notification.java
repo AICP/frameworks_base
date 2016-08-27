@@ -4846,6 +4846,10 @@ public class Notification implements Parcelable
             }
         }
 
+        int getSenderTextColor() {
+            return mContext.getColor(R.color.sender_text_color);
+        }
+
         int resolveContrastColor() {
             if (mCachedContrastColorIsFor == mN.color && mCachedContrastColor != COLOR_INVALID) {
                 return mCachedContrastColor;
@@ -6224,7 +6228,7 @@ public class Notification implements Parcelable
                 sb.append(bidi.unicodeWrap(m.mSender),
                         makeFontColorSpan(colorize
                                 ? builder.getPrimaryTextColor()
-                                : Color.BLACK),
+                                : mBuilder.getSenderTextColor()),
                         0 /* flags */);
             }
             CharSequence text = m.mText == null ? "" : m.mText;

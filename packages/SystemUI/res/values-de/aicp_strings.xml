@@ -229,4 +229,30 @@
     <string name="shortcut_clear_notifications">Benachrichtigungen löschen</string>
     <string name="shortcut_toggle_title">Auszuführende Aktion</string>
 
+    <!-- Slim recents app sidebar queue app toast -->
+    <string name="toast_recents_queue_app">Starte %s nach dem Schließen des Verlaufs</string>
+    <string name="toast_recents_cancel_queued_app">Start der Anwendung abgebrochen</string>
+
+    <!-- Content description of the halo button in the notification panel for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_halo">Erzeuge Benachrichigung Halo.</string>
+
+    <!-- HALO -->
+    <string name="halo_dismiss">Benachrichtigung ausblenden</string>
+    <string name="halo_hide">Verstecken</string>
+    <string name="halo_clear_all">Alle Benachrichtigungen ausblenden</string>
+    <string name="halo_silence">Verstecken &amp; ruhig bis zum Aufwecken</string>
+    <string name="halo_tutorial1">Dies ist HALO</string>
+    <string name="halo_tutorial2">Verschiebe mich: 2-mal tippen &amp; ziehen</string>
+    <string name="halo_tutorial3">Anzeigen durchblättern: Horizontal ziehen</string>
+    <string name="halo_tutorial4">HALO schaltet Pop-Up Nachrichten automtisch AUS.</string>
+    <string name="halo_tutorial5">HALO AUS: 2-mal tippen &amp; auf den roten Kreis ziehen</string>
+    <string name="halo_tutorial6">WICHTIG: Abschalten, wenn eine APK-Datei installiert werden soll</string>
+
+    <!-- Halo Tile -->
+    <string name="quick_settings_halo_on">HALO AN</string>
+    <string name="quick_settings_halo_off">HALO AUS</string>
+
+    <!-- Advanced Data Tile -->
+    <string name="quick_settings_title_advanced_data_tile">Erweiterte Mobildaten-Kachel</string>
+
 </resources>

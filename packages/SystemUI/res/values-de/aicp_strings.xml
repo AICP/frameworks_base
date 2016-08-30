@@ -249,10 +249,10 @@
     <string name="halo_tutorial6">WICHTIG: Abschalten, wenn eine APK-Datei installiert werden soll</string>
 
     <!-- Halo Tile -->
-    <string name="quick_settings_halo_on">HALO AN</string>
+    <string name="quick_settings_halo_on">HALO</string>
     <string name="quick_settings_halo_off">HALO AUS</string>
 
     <!-- Advanced Data Tile -->
-    <string name="quick_settings_title_advanced_data_tile">Erweiterte Mobildaten-Kachel</string>
+    <string name="quick_settings_title_advanced_data_tile">Erweiterte Mobilfunkdaten</string>
 
 </resources>

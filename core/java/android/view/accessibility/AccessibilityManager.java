@@ -625,7 +625,10 @@ public final class AccessibilityManager {
         IAccessibilityManager service = IAccessibilityManager.Stub.asInterface(iBinder);
         try {
             final int stateFlags = service.addClient(mClient, mUserId);
-            setStateLocked(stateFlags);
+            // Delay changing accessibility state.
+            // This is to avoid crashes where application may have correctly
+            // checked that accessibility is indeed on.
+            mHandler.obtainMessage(MyHandler.MSG_SET_STATE, stateFlags, 0).sendToTarget();
             mService = service;
         } catch (RemoteException re) {
             Log.e(LOG_TAG, "AccessibilityManagerService is dead", re);

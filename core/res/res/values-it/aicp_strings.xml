@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2015 AICP
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
+    <string name="system_error_vendorprint">Sembra che l\'immagine del fornitore sia essere obsoleto. Si prega di Flashre l\'ultima immagine del fornitore per il tuo dispositivo.</string>
+
+    <string name="default_string">Predefinito</string>
+
+    <!-- label for item that takes On-The-Go in the phone options dialog -->
+    <string name="global_action_onthego">ModalitàOn-The-Go Mode</string>
+
+    <!-- Powermenu Torch -->
+    <string name="global_action_torch">Torcia </string>
+
+    <!-- AOKP custom system animations -->
+  <string name="animation_fade">Dissolvenza</string>
+  <string name="animation_slide_right">Scorri da destra</string>
+  <string name="animation_slide_left">Scorri da sinistra</string>
+  <string name="animation_slide_right_no_fade">Scorri da destra (senza dissolvenza)</string>
+  <string name="animation_slide_left_no_fade">Scorri da sinistra (senza dissolvenza)</string>
+  <string name="animation_slide_up">Scorrimento dal basso</string>
+  <string name="animation_slide_down">Scorrimento dall\'alto</string>
+  <string name="animation_default">Predefinito</string>
+  <string name="animation_translucent">Traslucido</string>
+  <string name="animation_grow_shrink">Espandi (dall\'alto)</string>
+  <string name="animation_grow_shrink_center">Espandi (dal centro)</string>
+  <string name="animation_grow_shrink_bottom">Espandi (dal basso)</string>
+  <string name="animation_grow_shrink_left">Espandi (da sinistra)</string>
+  <string name="animation_grow_shrink_right">Espandi (da destra)</string>
+  <string name="action_null">Vuoto</string>
+ 
+    <!-- Floating Window -->
+  <string name="floating_window_snap_top">Posiziona in alto</string>
+  <string name="floating_window_snap_bottom">Posiziona in basso</string>
+  <string name="floating_window_snap_left">Posiziona a sinistra</string>
+  <string name="floating_window_snap_right">Posiziona a destra</string>
+  <string name="floating_window_minimize">Riduci</string>
+
+    <!-- Screenshoot edit action -->
+    <string name="edit">Modifica</string>
+
+</resources>

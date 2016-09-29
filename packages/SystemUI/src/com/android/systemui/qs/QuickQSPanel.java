@@ -119,11 +119,7 @@ public class QuickQSPanel extends QSPanel {
 
     @Override
     public void onTuningChanged(String key, String newValue) {
-        // No tunings for you.
-        if (key.equals(QS_SHOW_BRIGHTNESS)) {
-            // No Brightness for you.
-            super.onTuningChanged(key, "0");
-        }
+        // No tuning
     }
 
     @Override

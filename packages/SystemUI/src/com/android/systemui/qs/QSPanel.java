@@ -106,14 +106,10 @@ public class QSPanel extends LinearLayout implements Tunable, Callback {
         mFooter = new QSFooter(this, context);
         addView(mFooter.getView());
 
-        // enable the brightness icon
-        ImageView brightnessIcon = (ImageView) mBrightnessView.findViewById(R.id.brightness_icon);
-        brightnessIcon.setVisibility(View.VISIBLE);
-
         updateResources();
 
         mBrightnessController = new BrightnessController(getContext(),
-                brightnessIcon,
+                (ImageView) findViewById(R.id.brightness_icon),
                 (ToggleSlider) findViewById(R.id.brightness_slider));
 
     }
@@ -235,12 +231,15 @@ public class QSPanel extends LinearLayout implements Tunable, Callback {
             mContext.getContentResolver(), Settings.System.QS_SHOW_BRIGHTNESS_SLIDER,
                 1, UserHandle.USER_CURRENT) == 1;
         ToggleSlider brightnessSlider = (ToggleSlider) findViewById(R.id.brightness_slider);
+        ImageView brightnessIcon = (ImageView) findViewById(R.id.brightness_icon);
         if (brightnessSliderEnabled) {
             mBrightnessView.setVisibility(VISIBLE);
             brightnessSlider.setVisibility(VISIBLE);
+            brightnessIcon.setVisibility(View.VISIBLE);
         } else {
             mBrightnessView.setVisibility(GONE);
             brightnessSlider.setVisibility(GONE);
+            brightnessIcon.setVisibility(View.GONE);
         }
         updateResources();
         return brightnessSliderEnabled;

@@ -842,6 +842,7 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
                 label = mContext.getString(R.string.voice_hint);
             } else {
                 label = mContext.getString(R.string.phone_hint);
+
             }
         }
         return label;

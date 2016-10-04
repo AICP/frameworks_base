@@ -355,6 +355,7 @@ public class NetworkTraffic extends TextView {
             if (intTrafficDrawable != 0) {
                 drawTrafficIcon = getResources().getDrawable(intTrafficDrawable);
                 drawTrafficIcon.setColorFilter(null);
+                drawTrafficIcon.setColorFilter(trafcolor, PorterDuff.Mode.SRC_ATOP);
             }
         } else {
             drawTrafficIcon = null;

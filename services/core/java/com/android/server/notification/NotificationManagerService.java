@@ -1151,7 +1151,7 @@ public class NotificationManagerService extends SystemService {
             mDisableNotificationEffects = true;
         }
         mZenModeHelper.initZenMode();
-        mZenModeHelper.readLightsAllowedModeFromSetting();
+        mZenModeHelper.readAllowLightsFromSettings();
         mInterruptionFilter = mZenModeHelper.getZenModeListenerInterruptionFilter();
 
         mUserProfiles.updateCache(getContext());
@@ -3103,10 +3103,11 @@ public class NotificationManagerService extends SystemService {
         // light
         // release the light
         boolean wasShowLights = mLights.remove(key);
-        final boolean canInterruptWithLight = canInterrupt || isLedNotificationForcedOn(record)
-                || (!canInterrupt && mZenModeHelper.getAreLightsAllowed());
+        final boolean canInterruptWithLight = canInterrupt ||
+                isLedNotificationForcedOn(record) ||
+                (!canInterrupt && mZenModeHelper.getAllowLights());
         if ((notification.flags & Notification.FLAG_SHOW_LIGHTS) != 0 && canInterruptWithLight
-                || ((record.getSuppressedVisualEffects()
+                && ((record.getSuppressedVisualEffects()
                 & NotificationListenerService.SUPPRESSED_EFFECT_SCREEN_OFF) == 0)) {
             mLights.add(key);
             updateLightsLocked();

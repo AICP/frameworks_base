@@ -68,6 +68,7 @@ import android.text.TextUtils;
 import android.util.ArraySet;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.InputDevice;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -205,6 +206,22 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         prepareDialog();
         WindowManager.LayoutParams attrs = mDialog.getWindow().getAttributes();
         attrs.setTitle("GlobalActions");
+
+        boolean isPrimary = UserHandle.getCallingUserId() == UserHandle.USER_OWNER;
+        int powermenuAnimations = isPrimary ? getPowermenuAnimations() : 0;
+
+        if (powermenuAnimations == 0) {
+         // default AOSP action
+        }
+        if (powermenuAnimations == 1) {
+            attrs.windowAnimations = R.style.PowerMenuBottomAnimation;
+            attrs.gravity = Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL;
+        }
+        if (powermenuAnimations == 2) {
+            attrs.windowAnimations = R.style.PowerMenuTopAnimation;
+            attrs.gravity = Gravity.TOP|Gravity.CENTER_HORIZONTAL;
+        }
+
         attrs.alpha = setPowerMenuAlpha();
         mDialog.getWindow().setAttributes(attrs);
         mDialog.getWindow().setDimAmount(setPowerMenuDialogDim());
@@ -226,6 +243,11 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         double dDim = mPowerMenuDialogDim / 100.0;
         float dim = (float) dDim;
         return dim;
+    }
+
+    private int getPowermenuAnimations() {
+        return Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.POWER_MENU_ANIMATIONS, 0);
     }
 
     /**

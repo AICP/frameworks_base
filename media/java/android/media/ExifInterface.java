@@ -1504,7 +1504,7 @@ public class ExifInterface {
      */
     public long getDateTime() {
         String dateTimeString = getAttribute(TAG_DATETIME);
-  if (dateTimeString == null
+        if (dateTimeString == null
                 || !sNonZeroTimePattern.matcher(dateTimeString).matches()) return -1;
 
         ParsePosition pos = new ParsePosition(0);

@@ -21,6 +21,7 @@ import android.content.res.Resources;
 import android.net.NetworkCapabilities;
 import android.os.Looper;
 import android.os.SystemProperties;
+import android.provider.Settings;
 import android.telephony.CellLocation;
 import android.telephony.gsm.GsmCellLocation;
 import android.telephony.PhoneStateListener;
@@ -253,7 +254,8 @@ public class MobileSignalController extends SignalController<
             mNetworkToIconLookup.put(TelephonyManager.NETWORK_TYPE_HSPAP, TelephonyIcons.H_PLUS);
         }
 
-        if (mConfig.show4gForLte) {
+        if (Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.SHOW_FOURG, 0) == 1) {
             if (mContext.getResources().getBoolean(R.bool.show_4glte_icon_for_lte)) {
                 mNetworkToIconLookup.put(TelephonyManager.NETWORK_TYPE_LTE,
                         TelephonyIcons.FOUR_G_LTE);

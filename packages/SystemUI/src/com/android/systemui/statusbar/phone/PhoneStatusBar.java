@@ -401,6 +401,13 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private boolean mShowCarrierInPanel = false;
     boolean mExpandedVisible;
 
+    // Aicp logo
+    private boolean mAicpLogo;
+    private int mAicpLogoColor;
+    private ImageView mAicpLogoRight;
+    private ImageView mAicpLogoLeft;
+    private int mAicpLogoStyle;
+
     private int mNavigationBarWindowState = WINDOW_STATE_SHOWING;
 
     private int mStatusBarHeaderHeight;
@@ -457,6 +464,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
     };
 
+    private SettingsObserver mSettingsObserver;
+
     class SettingsObserver extends UserContentObserver {
         SettingsObserver(Handler handler) {
             super(handler);
@@ -476,6 +485,15 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     CMSettings.System.NAVBAR_LEFT_IN_LANDSCAPE), false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.SHOW_FOURG), false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_AICP_LOGO),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_AICP_LOGO_COLOR),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_AICP_LOGO_STYLE),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -498,6 +516,11 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 updateSpeedbump();
                 updateClearAll();
                 updateEmptyShadeView();
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_AICP_LOGO_STYLE))) {
+                if (mIconController != null) {
+                    mIconController.onDensityOrFontScaleChanged();
+                }
             }
 
             update();
@@ -523,6 +546,17 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
             boolean mShow4G = Settings.System.getIntForUser(resolver,
                     Settings.System.SHOW_FOURG, 0, UserHandle.USER_CURRENT) == 1;
+
+            mAicpLogoStyle = Settings.System.getIntForUser(
+                    resolver, Settings.System.STATUS_BAR_AICP_LOGO_STYLE, 0,
+                    UserHandle.USER_CURRENT);
+            mAicpLogo = Settings.System.getIntForUser(resolver,
+                    Settings.System.STATUS_BAR_AICP_LOGO, 0, mCurrentUserId) == 1;
+            mAicpLogoColor = Settings.System.getIntForUser(resolver,
+                    Settings.System.STATUS_BAR_AICP_LOGO_COLOR, 0xFFFFFFFF, mCurrentUserId);
+            mAicpLogoLeft = (ImageView) mStatusBarView.findViewById(R.id.left_aicp_logo);
+            mAicpLogoRight = (ImageView) mStatusBarView.findViewById(R.id.aicp_logo);
+            showAicpLogo(mAicpLogo, mAicpLogoColor, mAicpLogoStyle);
         }
     }
 
@@ -871,8 +905,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             // no window manager? good luck with that
         }
 
-        SettingsObserver observer = new SettingsObserver(mHandler);
-        observer.observe();
+        if (mSettingsObserver == null) {
+            mSettingsObserver = new SettingsObserver(new Handler());
+        }
+        mSettingsObserver.observe();
 
         // Lastly, call to the icon policy to install/update all the icons.
         mIconPolicy = new PhoneStatusBarPolicy(mContext, mIconController, mCastController,
@@ -3744,6 +3780,29 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 return deferred;
             }
         }, cancelAction, afterKeyguardGone);
+    }
+
+    public void showAicpLogo(boolean show, int color, int style) {
+        if (mStatusBarView == null) return;
+        if (!show) {
+            mAicpLogoRight.setVisibility(View.GONE);
+            mAicpLogoLeft.setVisibility(View.GONE);
+            return;
+        }
+        if (color != 0xFFFFFFFF) {
+            mAicpLogoRight.setColorFilter(color, PorterDuff.Mode.SRC_IN);
+            mAicpLogoLeft.setColorFilter(color, PorterDuff.Mode.SRC_IN);
+        } else {
+            mAicpLogoRight.clearColorFilter();
+            mAicpLogoLeft.clearColorFilter();
+        }
+        if (style == 0) {
+            mAicpLogoRight.setVisibility(View.GONE);
+            mAicpLogoLeft.setVisibility(View.VISIBLE);
+        } else {
+            mAicpLogoLeft.setVisibility(View.GONE);
+            mAicpLogoRight.setVisibility(View.VISIBLE);
+        }
     }
 
     private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {

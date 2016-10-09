@@ -3737,6 +3737,12 @@ public final class Settings {
         public static final String AE_NAV_DRAWER_CHECKED_TEXT= "ae_nav_drawer_checked_text";
 
         /**
+          * AE Settings activity custom summary text
+          * @hide
+          */
+        public static final String AE_SETTINGS_SUMMARY= "ae_settings_summary";
+
+        /**
          * Whether to show the battery bar
          * @hide
          */

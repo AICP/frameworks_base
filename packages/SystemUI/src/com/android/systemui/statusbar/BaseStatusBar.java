@@ -2385,7 +2385,8 @@ public abstract class BaseStatusBar extends SystemUI implements
     public boolean shouldShowOnKeyguard(StatusBarNotification sbn) {
         return mShowLockscreenNotifications && !mNotificationData.isAmbient(sbn.getKey())
             && importanceToLevel(mNotificationData.getImportance(sbn.getKey()))
-               > importanceToLevel(IMPORTANCE_VERY_LOW);
+               > importanceToLevel(IMPORTANCE_VERY_LOW)
+            && mNotificationData.getVisibilityOverride(sbn.getKey()) != Notification.VISIBILITY_SECRET;
     }
 
     protected void setZenMode(int mode) {

@@ -18,6 +18,7 @@ package com.android.internal.util.aicp;
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
@@ -140,4 +141,32 @@ public class AicpUtils {
         }
         return false;
     }
+
+    // Omni Switch Constants
+
+    /**
+     * Package name of the omnniswitch app
+     */
+    public static final String APP_PACKAGE_NAME = "org.omnirom.omniswitch";
+
+    /**
+     * Intent broadcast action for showing the omniswitch overlay
+     */
+    public static final String ACTION_SHOW_OVERLAY = APP_PACKAGE_NAME + ".ACTION_SHOW_OVERLAY";
+
+    /**
+     * Intent broadcast action for hiding the omniswitch overlay
+     */
+    public static final String ACTION_HIDE_OVERLAY = APP_PACKAGE_NAME + ".ACTION_HIDE_OVERLAY";
+
+    /**
+     * Intent broadcast action for toogle the omniswitch overlay
+     */
+    public static final String ACTION_TOGGLE_OVERLAY = APP_PACKAGE_NAME + ".ACTION_TOGGLE_OVERLAY";
+
+    /**
+     * Intent for launching the omniswitch settings actvity
+     */
+    public static Intent INTENT_LAUNCH_APP = new Intent(Intent.ACTION_MAIN)
+            .setClassName(APP_PACKAGE_NAME, APP_PACKAGE_NAME + ".SettingsActivity");
 }

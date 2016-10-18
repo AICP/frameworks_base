@@ -235,5 +235,6 @@ public class SecureSettings {
         Settings.Secure.PULSE_SOLID_UNITS_OPACITY,
         Settings.Secure.PULSE_SMOOTHING_ENABLED,
         Settings.Secure.PULSE_SOLID_UNITS_ROUNDED,
+        Settings.Secure.ALLOW_SIGNATURE_FAKE,
     };
 }

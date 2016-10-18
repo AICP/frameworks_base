@@ -12238,6 +12238,14 @@ public final class Settings {
          */
         public static final String STATUSBAR_CLOCK_DATE_POSITION = "statusbar_clock_date_position";
 
+        /**
+         * Whether applications can fake a signature.
+         * 1 = permit apps to fake signature
+         * 0 = disable this feature
+         * @hide
+         */
+        public static final String ALLOW_SIGNATURE_FAKE = "allow_signature_fake";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

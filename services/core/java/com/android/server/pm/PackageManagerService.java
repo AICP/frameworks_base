@@ -3335,7 +3335,9 @@ public class PackageManagerService extends IPackageManager.Stub
                 Set<String> permissions) {
             try {
                 if (p.getMetaData() != null &&
-                        p.getTargetSdkVersion() > Build.VERSION_CODES.LOLLIPOP_MR1) {
+                        p.getTargetSdkVersion() > Build.VERSION_CODES.LOLLIPOP_MR1 &&
+                        android.provider.Settings.Secure.getInt(mContext.getContentResolver(),
+                            android.provider.Settings.Secure.ALLOW_SIGNATURE_FAKE, 1) == 1) {
                     String sig = p.getMetaData().getString("fake-signature");
                     if (sig != null &&
                             permissions.contains("android.permission.FAKE_PACKAGE_SIGNATURE")) {

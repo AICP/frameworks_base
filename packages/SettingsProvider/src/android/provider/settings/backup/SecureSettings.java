@@ -243,5 +243,6 @@ public class SecureSettings {
         Settings.Secure.STATUSBAR_CLOCK_DATE_STYLE,
         Settings.Secure.STATUSBAR_CLOCK_DATE_FORMAT,
         Settings.Secure.STATUSBAR_CLOCK_DATE_POSITION,
+        Settings.Secure.ALLOW_SIGNATURE_FAKE,
     };
 }

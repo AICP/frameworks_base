@@ -95,7 +95,7 @@ public class FlashlightTile extends QSTile<QSTile.BooleanState> implements
 
     @Override
     protected void handleLongClick() {
-        handleClick();
+        mHost.startActivityDismissingKeyguard(new Intent("android.media.action.IMAGE_CAPTURE"));
     }
 
     @Override

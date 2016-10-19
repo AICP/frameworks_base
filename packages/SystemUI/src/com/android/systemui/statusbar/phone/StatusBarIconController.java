@@ -329,11 +329,19 @@ public class StatusBarIconController extends StatusBarIconList implements Tunabl
     public void hideSystemIconArea(boolean animate) {
         animateHide(mSystemIconArea, animate);
         animateHide(mCenterClockLayout, animate);
+        if (Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.STATUS_BAR_AICP_LOGO, 0) == 1) {
+            animateHide(mAicpLogoLeft, animate);
+        }
     }
 
     public void showSystemIconArea(boolean animate) {
         animateShow(mSystemIconArea, animate);
         animateShow(mCenterClockLayout, animate);
+        if (Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.STATUS_BAR_AICP_LOGO, 0) == 1) {
+            animateShow(mAicpLogoLeft, animate);
+        }
     }
 
     public void hideNotificationIconArea(boolean animate) {

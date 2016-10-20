@@ -19,4 +19,7 @@
     <!-- Volume panel border coler -->
     <color name="volume_panel_border_color">#ff2962ff</color><!-- blue A700 -->
 
+    <!-- Custom Carrier Label -->
+    <color name="status_bar_carrier_color">#FFFFFFFF</color>
+
 </resources>

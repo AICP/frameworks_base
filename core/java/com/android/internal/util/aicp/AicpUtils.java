@@ -19,6 +19,7 @@ package com.android.internal.util.aicp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.UserHandle;
 import android.hardware.input.InputManager;
 import android.os.Handler;
@@ -31,6 +32,8 @@ import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
 import android.view.IWindowManager;
 import android.view.WindowManagerGlobal;
+
+import java.util.Locale;
 
 public class AicpUtils {
     /**
@@ -91,5 +94,11 @@ public class AicpUtils {
         if(pm != null) {
             pm.goToSleep(SystemClock.uptimeMillis());
         }
+    }
+
+    // Check for Chinese language
+    public static boolean isChineseLanguage() {
+       return Resources.getSystem().getConfiguration().locale.getLanguage().startsWith(
+               Locale.CHINESE.getLanguage());
     }
 }

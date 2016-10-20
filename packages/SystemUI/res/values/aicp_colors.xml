@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <resources>
+
+    <!-- Custom Carrier Label -->
+    <color name="status_bar_carrier_color">#FFFFFFFF</color>
 
     <!-- Helper color for our theming overlays. Not used directly in here. -->
     <color name="qs_fg_for_transparent_primary">@*android:color/primary_text_default_material_light</color>

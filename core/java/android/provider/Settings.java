@@ -5430,6 +5430,31 @@ public final class Settings {
         private static final Validator ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
+          /**
+          * Status bar carrier label
+          * 0: Hide
+          * 1: Display on keyguard status bar
+          * 2: Display on Normal status bar
+          * 3: Enabled for both
+          * @hide
+          */
+         public static final String STATUS_BAR_SHOW_CARRIER = "status_bar_show_carrier";
+
+         /** @hide */
+         private static final Validator STATUS_BAR_SHOW_CARRIER_VALIDATOR =
+                new SettingsValidators.InclusiveIntegerRangeValidator(0, 3);
+
+         /**
+          * custom carrier label. The value is
+          * String.
+          * @hide
+          */
+         public static final String CUSTOM_CARRIER_LABEL = "custom_carrier_label";
+
+         /** @hide */
+         private static final Validator CUSTOM_CARRIER_LABEL_VALIDATOR =
+                 ANY_STRING_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5605,6 +5630,8 @@ public final class Settings {
             MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD,
             FORCE_AMBIENT_FOR_MEDIA,
             ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER,
+            STATUS_BAR_SHOW_CARRIER,
+            CUSTOM_CARRIER_LABEL,
             // AICP Settings end
         };
 
@@ -5844,6 +5871,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD);
             PRIVATE_SETTINGS.add(FORCE_AMBIENT_FOR_MEDIA);
             PRIVATE_SETTINGS.add(ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER);
+            PRIVATE_SETTINGS.add(STATUS_BAR_SHOW_CARRIER);
+            PRIVATE_SETTINGS.add(CUSTOM_CARRIER_LABEL);
             // AICP Settings end
         }
 
@@ -6065,6 +6094,8 @@ public final class Settings {
                     MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD_VALIDATOR);
             VALIDATORS.put(FORCE_AMBIENT_FOR_MEDIA,FORCE_AMBIENT_FOR_MEDIA_VALIDATOR);
             VALIDATORS.put(ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER,ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER_VALIDATOR);
+            VALIDATORS.put(STATUS_BAR_SHOW_CARRIER,STATUS_BAR_SHOW_CARRIER_VALIDATOR);
+            VALIDATORS.put(CUSTOM_CARRIER_LABEL,CUSTOM_CARRIER_LABEL_VALIDATOR);
             // AICP Settings end
         }
 

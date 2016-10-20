@@ -70,6 +70,8 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
     private View mAicpLogoRight;
     private View mWeatherImageView;
     private View mWeatherTextView;
+    private View mCustomCarrierLabel;
+    private int mShowCarrierLabel;
     private int mShowLogo;
     private int mShowWeather;
     private final Handler mHandler = new Handler();
@@ -85,6 +87,9 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
                     false, this, UserHandle.USER_ALL);
             getContext().getContentResolver().registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_SHOW_WEATHER_TEMP),
+                    false, this, UserHandle.USER_ALL);
+            getContext().getContentResolver().registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_SHOW_CARRIER),
                     false, this, UserHandle.USER_ALL);
         }
 
@@ -133,6 +138,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
         mAicpLogoRight = mStatusBar.findViewById(R.id.status_bar_logo_right);
         mWeatherTextView = mStatusBar.findViewById(R.id.weather_temp);
         mWeatherImageView = mStatusBar.findViewById(R.id.weather_image);
+        mCustomCarrierLabel = mStatusBar.findViewById(R.id.statusbar_carrier_text);
         updateSettings(false);
         // Default to showing until we know otherwise.
         showSystemIconArea(false);
@@ -197,8 +203,10 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
         if ((diff1 & DISABLE_NOTIFICATION_ICONS) != 0) {
             if ((state1 & DISABLE_NOTIFICATION_ICONS) != 0) {
                 hideNotificationIconArea(animate);
+                hideCarrierName(animate);
             } else {
                 showNotificationIconArea(animate);
+                showCarrierName(animate);
             }
         }
     }
@@ -256,6 +264,18 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
         animateShow(mNotificationIconAreaInner, animate);
         if (mShowLogo == 1) {
             animateShow(mAicpLogo, animate);
+        }
+    }
+
+    public void hideCarrierName(boolean animate) {
+        if (mCustomCarrierLabel != null) {
+            animateHide(mCustomCarrierLabel, animate, true);
+        }
+    }
+
+    public void showCarrierName(boolean animate) {
+        if (mCustomCarrierLabel != null) {
+            setCarrierLabel(animate);
         }
     }
 
@@ -328,6 +348,9 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
         mShowWeather = Settings.System.getIntForUser(
                 getContext().getContentResolver(), Settings.System.STATUS_BAR_SHOW_WEATHER_TEMP, 0,
                 UserHandle.USER_CURRENT);
+        mShowCarrierLabel = Settings.System.getIntForUser(
+                getContext().getContentResolver(), Settings.System.STATUS_BAR_SHOW_CARRIER, 1,
+                UserHandle.USER_CURRENT);
         if (mNotificationIconAreaInner != null) {
             if (mShowLogo == 1) {
                 if (mNotificationIconAreaInner.getVisibility() == View.VISIBLE) {
@@ -345,6 +368,15 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
             } else if (mShowLogo != 2) {
                 animateHide(mAicpLogoRight, animate, false);
             }
+        }
+        setCarrierLabel(animate);
+    }
+
+    private void setCarrierLabel(boolean animate) {
+        if (mShowCarrierLabel == 2 || mShowCarrierLabel == 3) {
+            animateShow(mCustomCarrierLabel, animate);
+        } else {
+            animateHide(mCustomCarrierLabel, animate, false);
         }
     }
 }

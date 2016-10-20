@@ -245,6 +245,7 @@ public class NotificationPanelView extends PanelView implements
     private int mStatusBarHeaderHeight;
     private GestureDetector mDoubleTapGesture;
     private boolean mDoubleTapToSleepAnywhere;
+    private boolean mDozeWakeupDoubleTap;
 
     public static boolean mBlurredStatusBarExpandedEnabled;
     public static NotificationPanelView mNotificationPanelView;
@@ -1077,7 +1078,10 @@ public class NotificationPanelView extends PanelView implements
         }
         if ((!mIsExpanding || mHintAnimationRunning)
                 && !mQsExpanded
-                && mStatusBar.getBarState() != StatusBarState.SHADE) {
+                && mStatusBar.getBarState() != StatusBarState.SHADE
+                && !(mDozeWakeupDoubleTap
+                     && mStatusBarState == StatusBarState.KEYGUARD
+                     && mStatusBar.isDozing())) {
             mAfforanceHelper.onTouchEvent(event);
         }
         if (mOnlyAffordanceInThisMotion) {
@@ -2786,6 +2790,8 @@ public class NotificationPanelView extends PanelView implements
                     Settings.System.BLUR_LIGHT_COLOR_PREFERENCE_KEY), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.BLUR_MIXED_COLOR_PREFERENCE_KEY), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.DOUBLE_TAP_WAKE_DOZE), false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -2814,6 +2820,8 @@ public class NotificationPanelView extends PanelView implements
                     resolver, CMSettings.System.STATUS_BAR_QUICK_QS_PULLDOWN, 1);
             mDoubleTapToSleepEnabled = CMSettings.System.getInt(
                     resolver, CMSettings.System.DOUBLE_TAP_SLEEP_GESTURE, 1) == 1;
+            mDozeWakeupDoubleTap = Settings.System.getIntForUser(resolver,
+                    Settings.System.DOUBLE_TAP_WAKE_DOZE, 0, UserHandle.USER_CURRENT) == 1;
             boolean wasKeyguardWeatherEnabled = mKeyguardWeatherEnabled;
             mKeyguardWeatherEnabled = CMSettings.Secure.getInt(
                     resolver, CMSettings.Secure.LOCK_SCREEN_WEATHER_ENABLED, 0) == 1;

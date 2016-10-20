@@ -20,9 +20,11 @@ import android.annotation.ColorInt;
 import android.annotation.DrawableRes;
 import android.annotation.LayoutRes;
 import android.app.StatusBarManager;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
+import android.database.ContentObserver;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -32,11 +34,14 @@ import android.graphics.drawable.Drawable;
 import android.media.session.MediaSessionLegacyHelper;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
 import android.os.IPowerManager;
 import android.os.PowerManager;
 import android.os.RemoteException;
 import android.os.ServiceManager;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.ActionMode;
@@ -100,6 +105,10 @@ public class StatusBarWindowView extends FrameLayout implements TunerService.Tun
 
     private boolean mDoubleTapToSleepEnabled;
     private GestureDetector mDoubleTapGesture;
+    private Handler mHandler = new Handler();
+    private SettingsObserver mSettingsObserver;
+    private boolean mDozeWakeupDoubleTap;
+    private GestureDetector mDozeWakeupDoubleTapGesture;
 
     public StatusBarWindowView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -109,6 +118,7 @@ public class StatusBarWindowView extends FrameLayout implements TunerService.Tun
         mFalsingManager = FalsingManager.getInstance(context);
         mStatusBarHeaderHeight = context
                 .getResources().getDimensionPixelSize(R.dimen.status_bar_header_height);
+        mSettingsObserver = new SettingsObserver(mHandler);
     }
 
     @Override
@@ -201,8 +211,10 @@ public class StatusBarWindowView extends FrameLayout implements TunerService.Tun
     protected void onAttachedToWindow () {
         super.onAttachedToWindow();
 
+        mSettingsObserver.observe();
         TunerService.get(mContext).addTunable(this, DOUBLE_TAP_SLEEP_GESTURE);
-        mDoubleTapGesture = new GestureDetector(mContext, new GestureDetector.SimpleOnGestureListener() {
+        mDoubleTapGesture = new GestureDetector(mContext,
+                new GestureDetector.SimpleOnGestureListener() {
             @Override
             public boolean onDoubleTap(MotionEvent e) {
                 PowerManager pm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
@@ -212,6 +224,14 @@ public class StatusBarWindowView extends FrameLayout implements TunerService.Tun
                 else
                     Log.d(TAG, "getSystemService returned null PowerManager");
 
+                return true;
+            }
+        });
+        mDozeWakeupDoubleTapGesture = new GestureDetector(mContext,
+                new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public boolean onDoubleTap(MotionEvent e) {
+                mService.wakeUpIfDozing(e.getEventTime(), e);
                 return true;
             }
         });
@@ -235,6 +255,7 @@ public class StatusBarWindowView extends FrameLayout implements TunerService.Tun
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         TunerService.get(mContext).removeTunable(this);
+        mSettingsObserver.unobserve();
     }
 
     @Override
@@ -302,10 +323,16 @@ public class StatusBarWindowView extends FrameLayout implements TunerService.Tun
                 && mStackScrollLayout.getVisibility() == View.VISIBLE
                 && mService.getBarState() == StatusBarState.KEYGUARD
                 && !mService.isBouncerShowing()) {
-            intercept = mDragDownHelper.onInterceptTouchEvent(ev);
+            if (!mDozeWakeupDoubleTap || (mDozeWakeupDoubleTap && !mService.isDozing())) {
+                intercept = mDragDownHelper.onInterceptTouchEvent(ev);
+            }
             // wake up on a touch down event, if dozing
-            if (ev.getActionMasked() == MotionEvent.ACTION_DOWN) {
-                mService.wakeUpIfDozing(ev.getEventTime(), ev);
+            if (mDozeWakeupDoubleTap) {
+                mDozeWakeupDoubleTapGesture.onTouchEvent(ev);
+            } else {
+                if (ev.getActionMasked() == MotionEvent.ACTION_DOWN) {
+                    mService.wakeUpIfDozing(ev.getEventTime(), ev);
+                }
             }
         }
         if (!intercept) {
@@ -734,6 +761,40 @@ public class StatusBarWindowView extends FrameLayout implements TunerService.Tun
             return;
         }
         mDoubleTapToSleepEnabled = newValue == null || Integer.parseInt(newValue) == 1;
+    }
+
+    class SettingsObserver extends ContentObserver {
+        SettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        void observe() {
+            ContentResolver resolver = mContext.getContentResolver();
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.DOUBLE_TAP_WAKE_DOZE), false, this, UserHandle.USER_ALL);
+            update();
+        }
+
+        void unobserve() {
+            ContentResolver resolver = mContext.getContentResolver();
+            resolver.unregisterContentObserver(this);
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            update();
+        }
+
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
+            update();
+        }
+
+        public void update() {
+            ContentResolver resolver = mContext.getContentResolver();
+            mDozeWakeupDoubleTap = Settings.System.getIntForUser(
+                    resolver, Settings.System.DOUBLE_TAP_WAKE_DOZE, 0, UserHandle.USER_CURRENT) == 1;
+        }
     }
 }
 

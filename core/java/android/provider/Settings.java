@@ -6096,6 +6096,23 @@ public final class Settings {
          */
         public static final String LOCKSCREEN_MAX_NOTIF_CONFIG = "lockscreen_max_notif_config";
 
+        /**
+         * Status bar carrier label
+         * 0: Hide
+         * 1: Display on keyguard status bar
+         * 2: Display on Normal status bar
+         * 3: Enabled for both
+         * @hide
+         */
+        public static final String STATUS_BAR_SHOW_CARRIER = "status_bar_show_carrier";
+
+        /**
+         * custom carrier label. The value is
+         * String.
+         * @hide
+         */
+        public static final String CUSTOM_CARRIER_LABEL = "custom_carrier_label";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6255,6 +6272,8 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(CONVERSATION_GUTS_KILL_APP_BUTTON, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(LOCK_SCREEN_CUSTOM_NOTIF, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(LOCKSCREEN_MAX_NOTIF_CONFIG, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(STATUS_BAR_SHOW_CARRIER, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(CUSTOM_CARRIER_LABEL, ANY_STRING_VALIDATOR);
         }
 
         /**

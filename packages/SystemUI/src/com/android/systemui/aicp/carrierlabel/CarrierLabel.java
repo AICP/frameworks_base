@@ -23,7 +23,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.ContentObserver;
 import android.os.Handler;
-import com.android.internal.util.aicp.AicpUtils;
 import android.os.UserHandle;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
@@ -34,6 +33,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.android.internal.telephony.TelephonyIntents;
+import com.android.internal.util.aicp.AicpUtils;
 import com.android.systemui.aicp.carrierlabel.SpnOverride;
 
 import java.text.SimpleDateFormat;
@@ -48,6 +48,25 @@ public class CarrierLabel extends TextView {
     private boolean mAttached;
     private static boolean isCN;
 
+    Handler mHandler;
+
+    class SettingsObserver extends ContentObserver {
+        SettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        void observe() {
+            ContentResolver resolver = mContext.getContentResolver();
+            resolver.registerContentObserver(Settings.System
+                    .getUriFor(Settings.System.STATUS_BAR_CARRIER_COLOR), false, this);
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            updateColor();
+        }
+    }
+
     public CarrierLabel(Context context) {
         this(context, null);
     }
@@ -60,6 +79,10 @@ public class CarrierLabel extends TextView {
         super(context, attrs, defStyle);
         mContext = context;
         updateNetworkName(true, null, false, null);
+        mHandler = new Handler();
+        SettingsObserver settingsObserver = new SettingsObserver(mHandler);
+        settingsObserver.observe();
+        updateColor();
     }
 
     @Override
@@ -137,5 +160,18 @@ public class CarrierLabel extends TextView {
             operatorName = telephonyManager.getSimOperatorName();
         }
         return operatorName;
+    }
+
+    private void updateColor() {
+        ContentResolver resolver = mContext.getContentResolver();
+
+        int defaultColor = getResources().getColor(R.color.status_bar_clock_color);
+        int mCarrierColor = Settings.System.getInt(resolver,
+                Settings.System.STATUS_BAR_CARRIER_COLOR, defaultColor);
+
+        if  (mCarrierColor == Integer.MIN_VALUE) {
+             mCarrierColor = defaultColor;
+        }
+        setTextColor(mCarrierColor);
     }
 }

@@ -5083,6 +5083,15 @@ public final class Settings {
                 "lockscreen_quick_unlock_control";
 
         /**
+        * Whether allowing pocket service to register sensors and dispatch informations.
+        *   0 = disabled
+        *   1 = enabled
+        * @author Carlo Savignano
+        * @hide
+        */
+        public static final String POCKET_JUDGE = "pocket_judge";
+
+        /**
          * --- AICP System settings end
          *  Add new system settings above this comment
          */
@@ -5292,6 +5301,9 @@ public final class Settings {
             PRIVATE_SETTINGS.add(BUTTON_BACKLIGHT_TIMEOUT);
             PRIVATE_SETTINGS.add(BUTTON_BACKLIGHT_ON_TOUCH_ONLY);
             PRIVATE_SETTINGS.add(RECENTS_OMNI_SWITCH_ENABLED);
+
+            // Pocket mode handler.
+            PRIVATE_SETTINGS.add(POCKET_JUDGE);
         }
 
         /**

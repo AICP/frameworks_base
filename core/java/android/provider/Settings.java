@@ -6221,6 +6221,19 @@ public final class Settings {
         private static final Validator SHOW_BATTERY_ESTIMATE_QQS_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
+        /**
+        * Whether allowing pocket service to register sensors and dispatch informations.
+        *   0 = disabled
+        *   1 = enabled
+        * @author Carlo Savignano
+        * @hide
+        */
+        public static final String POCKET_JUDGE = "pocket_judge";
+
+        /** @hide */
+        private static final Validator POCKET_JUDGE_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6479,6 +6492,7 @@ public final class Settings {
             DISPLAY_PICTURE_ADJUSTMENT,
             LIVE_DISPLAY_HINTED,
             SHOW_BATTERY_ESTIMATE_QQS,
+            POCKET_JUDGE,
             // AICP Settings end
         };
 
@@ -6779,6 +6793,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(DISPLAY_PICTURE_ADJUSTMENT);
             PRIVATE_SETTINGS.add(LIVE_DISPLAY_HINTED);
             PRIVATE_SETTINGS.add(SHOW_BATTERY_ESTIMATE_QQS);
+            PRIVATE_SETTINGS.add(POCKET_JUDGE);
             // AICP Settings end
         }
 
@@ -7081,6 +7096,7 @@ public final class Settings {
             VALIDATORS.put(DISPLAY_PICTURE_ADJUSTMENT, DISPLAY_PICTURE_ADJUSTMENT_VALIDATOR);
             VALIDATORS.put(LIVE_DISPLAY_HINTED, LIVE_DISPLAY_HINTED_VALIDATOR);
             VALIDATORS.put(SHOW_BATTERY_ESTIMATE_QQS, SHOW_BATTERY_ESTIMATE_QQS_VALIDATOR);
+            VALIDATORS.put(POCKET_JUDGE, POCKET_JUDGE_VALIDATOR);
             // AICP Settings end
         }
 

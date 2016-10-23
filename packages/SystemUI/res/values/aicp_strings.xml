@@ -174,10 +174,10 @@
     <string name="quick_settings_themes_match_system">Match system theme</string>
 
     <!-- Sound QS Tile -->
-    <string name="quick_settings_sound_label">Sound</string>
-    <string name="quick_settings_sound_ring">Ring</string>
-    <string name="quick_settings_sound_vibrate">Vibrate</string>
-    <string name="quick_settings_sound_silent">Silent</string>
+    <string name="quick_settings_sound_label">Suoni</string>
+    <string name="quick_settings_sound_ring">Suona</string>
+    <string name="quick_settings_sound_vibrate">Vibra</string>
+    <string name="quick_settings_sound_silent">Muto</string>
 
     <!-- Screenrecord QS Tile -->
     <string name="quick_settings_screenrecord_label">Screenrecord</string>

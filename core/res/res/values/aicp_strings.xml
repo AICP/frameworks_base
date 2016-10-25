@@ -42,4 +42,7 @@
     <string name="billing_bypass_installed_message">I hereby acknowledge that this system is running an app billing bypass patcher like Lucky Patcher or Uret. I actively harm the developers of apps by using said software.</string>
     <string name="billing_bypass_acknowledge">I acknowledge.</string>
 
+    <!-- Pocket Lock -->
+    <string name="pocket_lock_message_long_press">Long press power button to interact</string>
+
 </resources>

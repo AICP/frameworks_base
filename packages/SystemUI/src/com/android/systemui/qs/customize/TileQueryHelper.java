@@ -57,18 +57,14 @@ public class TileQueryHelper {
     }
 
     private void addSystemTiles(final QSTileHost host) {
-        String possible = mContext.getString(R.string.quick_settings_tiles_default)
-                + "," + mContext.getString(R.string.quick_settings_tiles_extra);
+        String possible = mContext.getString(R.string.quick_settings_tiles_stock);
         String[] possibleTiles = possible.split(",");
         final Handler qsHandler = new Handler(host.getLooper());
         final Handler mainHandler = new Handler(Looper.getMainLooper());
         for (int i = 0; i < possibleTiles.length; i++) {
             final String spec = possibleTiles[i];
             final QSTile<?> tile = host.createTile(spec);
-            if (tile == null) {
-                continue;
-            } else if (!tile.isAvailable()) {
-                tile.destroy();
+            if (tile == null || !tile.isAvailable()) {
                 continue;
             }
             tile.setListening(this, true);
@@ -82,7 +78,6 @@ public class TileQueryHelper {
                     tile.getState().copyTo(state);
                     // Ignore the current state and get the generic label instead.
                     state.label = tile.getTileLabel();
-                    tile.destroy();
                     mainHandler.post(new Runnable() {
                         @Override
                         public void run() {
@@ -131,7 +126,6 @@ public class TileQueryHelper {
         state.label = label;
         state.contentDescription = label;
         state.icon = new DrawableIcon(drawable);
-        state.autoMirrorDrawable = false;
         addTile(spec, appLabel, state, false);
     }
 
@@ -150,9 +144,16 @@ public class TileQueryHelper {
             PackageManager pm = mContext.getPackageManager();
             List<ResolveInfo> services = pm.queryIntentServicesAsUser(
                     new Intent(TileService.ACTION_QS_TILE), 0, ActivityManager.getCurrentUser());
+            String stockTiles = mContext.getString(R.string.quick_settings_tiles_stock);
             for (ResolveInfo info : services) {
                 String packageName = info.serviceInfo.packageName;
                 ComponentName componentName = new ComponentName(packageName, info.serviceInfo.name);
+
+                // Don't include apps that are a part of the default tile set.
+                if (stockTiles.contains(componentName.flattenToString())) {
+                    continue;
+                }
+
                 final CharSequence appLabel = info.serviceInfo.applicationInfo.loadLabel(pm);
                 String spec = CustomTile.toSpec(componentName);
                 State state = getState(params[0], spec);

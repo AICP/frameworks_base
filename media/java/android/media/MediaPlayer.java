@@ -2854,7 +2854,6 @@ public class MediaPlayer extends PlayerBase
                 Log.w(TAG, "mediaplayer went away with unhandled events");
                 return;
             }
-            try {
             switch(msg.what) {
             case MEDIA_PREPARED:
                 try {
@@ -3032,13 +3031,6 @@ public class MediaPlayer extends PlayerBase
             default:
                 Log.e(TAG, "Unknown message type " + msg.what);
                 return;
-            }
-            } catch (NullPointerException e) {
-                /**
-                 * We may get an NPE even with the null checks above due
-                 * to threading issues.  Just ignore it.
-                 */
-                Log.e(TAG, "Unhandled NPE from message type " + msg.what);
             }
         }
     }
@@ -3506,7 +3498,7 @@ public class MediaPlayer extends PlayerBase
          * @param extra an extra code, specific to the info. Typically
          * implementation dependent.
          * @return True if the method handled the info, false if it didn't.
-         * Returning false, or not having an OnErrorListener at all, will
+         * Returning false, or not having an OnInfoListener at all, will
          * cause the info to be discarded.
          */
         boolean onInfo(MediaPlayer mp, int what, int extra);

@@ -66,6 +66,7 @@ interface IStatusBarService
     void addTile(in ComponentName tile);
     void remTile(in ComponentName tile);
     void clickTile(in ComponentName tile);
+    void handleSystemNavigationKey(in int key);
 
     // Start DU methods
     void toggleRecentApps();

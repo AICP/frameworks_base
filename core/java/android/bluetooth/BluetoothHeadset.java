@@ -20,11 +20,11 @@ import android.annotation.SdkConstant;
 import android.annotation.SdkConstant.SdkConstantType;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
+import android.os.Message;
 import android.os.RemoteException;
-import android.os.UserHandle;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -241,8 +241,50 @@ public final class BluetoothHeadset implements BluetoothProfile {
      * {@link #EXTRA_STATE} or {@link #EXTRA_PREVIOUS_STATE} of
      * {@link #ACTION_AUDIO_STATE_CHANGED} intent.
      */
+
+    /**
+     * Intent used to broadcast the headset's indicator status
+     *
+     * <p>This intent will have 3 extras:
+     * <ul>
+     *   <li> {@link #EXTRA_IND_ID} - The Assigned number of headset Indicator which is supported by
+                                        the headset ( as indicated by AT+BIND
+                                        command in the SLC sequence).or whose value
+                                        is changed (indicated by AT+BIEV command)</li>
+     *   <li> {@link #EXTRA_IND_VALUE}- The updated value of headset indicator. </li>
+     *   <li> {@link BluetoothDevice#EXTRA_DEVICE} - The remote device. </li>
+     * </ul>
+     * <p>{@link #EXTRA_IND_ID} is defined by Bluetooth SIG and each of the indicators are
+     * given an assigned number. Below shows the assigned number of Indicator added so far
+     * - Enhanced Safety - 1
+     * <p>Requires {@link android.Manifest.permission#BLUETOOTH} permission to
+     * receive.
+     * @hide
+     */
+    public static final String ACTION_HF_INDICATORS_VALUE_CHANGED =
+            "android.bluetooth.headset.action.HF_INDICATORS_VALUE_CHANGED";
+
+    /**
+     * A String extra field in {@link #ACTION_HF_INDICATORS_VALUE_CHANGED}
+     * intents that contains the UUID of the headset  indicator (as defined by Bluetooth SIG)
+     * that is being sent.
+     * @hide
+     */
+    public static final String EXTRA_HF_INDICATORS_IND_ID =
+            "android.bluetooth.headset.extra.HF_INDICATORS_IND_ID";
+
+    /**
+     * A int  extra field in {@link #ACTION_HF_INDICATORS_VALUE_CHANGED}
+     * intents that contains the value of the Headset indicator that is being sent.
+     * @hide
+     */
+    public static final String EXTRA_HF_INDICATORS_IND_VALUE =
+            "android.bluetooth.headset.extra.HF_INDICATORS_IND_VALUE";
+
     public static final int STATE_AUDIO_CONNECTED = 12;
 
+    private static final int MESSAGE_HEADSET_SERVICE_CONNECTED = 100;
+    private static final int MESSAGE_HEADSET_SERVICE_DISCONNECTED = 101;
 
     private Context mContext;
     private ServiceListener mServiceListener;
@@ -255,14 +297,7 @@ public final class BluetoothHeadset implements BluetoothProfile {
                     if (DBG) Log.d(TAG, "onBluetoothStateChange: up=" + up);
                     if (!up) {
                         if (VDBG) Log.d(TAG,"Unbinding service...");
-                        synchronized (mConnection) {
-                            try {
-                                mService = null;
-                                mContext.unbindService(mConnection);
-                            } catch (Exception re) {
-                                Log.e(TAG,"",re);
-                            }
-                        }
+                        doUnbind();
                     } else {
                         synchronized (mConnection) {
                             try {
@@ -299,15 +334,26 @@ public final class BluetoothHeadset implements BluetoothProfile {
     }
 
     boolean doBind() {
-        Intent intent = new Intent(IBluetoothHeadset.class.getName());
-        ComponentName comp = intent.resolveSystemService(mContext.getPackageManager(), 0);
-        intent.setComponent(comp);
-        if (comp == null || !mContext.bindServiceAsUser(intent, mConnection, 0,
-                UserHandle.CURRENT_OR_SELF)) {
-            Log.e(TAG, "Could not bind to Bluetooth Headset Service with " + intent);
-            return false;
+        try {
+            return mAdapter.getBluetoothManager().bindBluetoothProfileService(
+                    BluetoothProfile.HEADSET, mConnection);
+        } catch (RemoteException e) {
+            Log.e(TAG, "Unable to bind HeadsetService", e);
         }
-        return true;
+        return false;
+    }
+
+    void doUnbind() {
+        synchronized (mConnection) {
+            if (mService != null) {
+                try {
+                    mAdapter.getBluetoothManager().unbindBluetoothProfileService(
+                            BluetoothProfile.HEADSET, mConnection);
+                } catch (RemoteException e) {
+                    Log.e(TAG,"Unable to unbind HeadsetService", e);
+                }
+            }
+        }
     }
 
     /**
@@ -327,18 +373,8 @@ public final class BluetoothHeadset implements BluetoothProfile {
                 Log.e(TAG,"",e);
             }
         }
-
-        synchronized (mConnection) {
-            if (mService != null) {
-                try {
-                    mService = null;
-                    mContext.unbindService(mConnection);
-                } catch (Exception re) {
-                    Log.e(TAG,"",re);
-                }
-            }
-        }
         mServiceListener = null;
+        doUnbind();
     }
 
     /**
@@ -994,21 +1030,44 @@ public final class BluetoothHeadset implements BluetoothProfile {
         return false;
     }
 
-    private final ServiceConnection mConnection = new ServiceConnection() {
+    /**
+     * Send Headset the BIND response from AG to report change in the status of the
+     * HF indicators to the headset
+     *
+     * @param ind_id Assigned Number of the indicator (defined by SIG)
+     * @param ind_status
+     * possible values- false-Indicator is disabled, no value changes shall be sent for this indicator
+     *                  true-Indicator is enabled, value changes may be sent for this indicator
+     * @hide
+     */
+    public void bindResponse(int ind_id, boolean ind_status) {
+        if (mService != null && isEnabled()) {
+            try {
+                mService.bindResponse(ind_id, ind_status);
+            } catch (RemoteException e) {
+                Log.e(TAG, e.toString());
+            }
+        } else {
+            Log.w(TAG, "Proxy not attached to service");
+            if (DBG) Log.d(TAG, Log.getStackTraceString(new Throwable()));
+        }
+    }
+
+    private final IBluetoothProfileServiceConnection mConnection
+            = new IBluetoothProfileServiceConnection.Stub()  {
+        @Override
         public void onServiceConnected(ComponentName className, IBinder service) {
             if (DBG) Log.d(TAG, "Proxy object connected");
             mService = IBluetoothHeadset.Stub.asInterface(service);
-
-            if (mServiceListener != null) {
-                mServiceListener.onServiceConnected(BluetoothProfile.HEADSET, BluetoothHeadset.this);
-            }
+            mHandler.sendMessage(mHandler.obtainMessage(
+                    MESSAGE_HEADSET_SERVICE_CONNECTED));
         }
+        @Override
         public void onServiceDisconnected(ComponentName className) {
             if (DBG) Log.d(TAG, "Proxy object disconnected");
             mService = null;
-            if (mServiceListener != null) {
-                mServiceListener.onServiceDisconnected(BluetoothProfile.HEADSET);
-            }
+            mHandler.sendMessage(mHandler.obtainMessage(
+                    MESSAGE_HEADSET_SERVICE_DISCONNECTED));
         }
     };
 
@@ -1032,4 +1091,25 @@ public final class BluetoothHeadset implements BluetoothProfile {
     private static void log(String msg) {
         Log.d(TAG, msg);
     }
+
+    private final Handler mHandler = new Handler(Looper.getMainLooper()) {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case MESSAGE_HEADSET_SERVICE_CONNECTED: {
+                    if (mServiceListener != null) {
+                        mServiceListener.onServiceConnected(BluetoothProfile.HEADSET,
+                                BluetoothHeadset.this);
+                    }
+                    break;
+                }
+                case MESSAGE_HEADSET_SERVICE_DISCONNECTED: {
+                    if (mServiceListener != null) {
+                        mServiceListener.onServiceDisconnected(BluetoothProfile.HEADSET);
+                    }
+                    break;
+                }
+            }
+        }
+    };
 }

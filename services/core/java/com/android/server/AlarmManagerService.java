@@ -112,7 +112,7 @@ class AlarmManagerService extends SystemService {
     private final Intent mBackgroundIntent
             = new Intent().addFlags(Intent.FLAG_FROM_BACKGROUND);
     static final IncreasingTimeOrder sIncreasingTimeOrder = new IncreasingTimeOrder();
-    
+
     static final boolean WAKEUP_STATS = false;
 
     private static final Intent NEXT_ALARM_CLOCK_CHANGED_INTENT =
@@ -971,14 +971,14 @@ class AlarmManagerService extends SystemService {
         intent.addFlags(Intent.FLAG_RECEIVER_REPLACE_PENDING);
         mDateChangeSender = PendingIntent.getBroadcastAsUser(getContext(), 0, intent,
                 Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT, UserHandle.ALL);
-        
+
         // now that we have initied the driver schedule the alarm
         mClockReceiver = new ClockReceiver();
         mClockReceiver.scheduleTimeTickEvent();
         mClockReceiver.scheduleDateChangedEvent();
         mInteractiveStateReceiver = new InteractiveStateReceiver();
         mUninstallReceiver = new UninstallReceiver();
-        
+
         if (mNativeData != 0) {
             AlarmThread waitThread = new AlarmThread();
             waitThread.start();
@@ -2159,12 +2159,12 @@ class AlarmManagerService extends SystemService {
                 alarmSeconds = when / 1000;
                 alarmNanoseconds = (when % 1000) * 1000 * 1000;
             }
-            
+
             set(mNativeData, type, alarmSeconds, alarmNanoseconds);
         } else {
             Message msg = Message.obtain();
             msg.what = ALARM_EVENT;
-            
+
             mHandler.removeMessages(ALARM_EVENT);
             mHandler.sendMessageAtTime(msg, when);
         }
@@ -2335,7 +2335,7 @@ class AlarmManagerService extends SystemService {
             return 0;
         }
     }
-    
+
     private static class Alarm {
         public final int type;
         public final long origWhen;
@@ -2556,7 +2556,7 @@ class AlarmManagerService extends SystemService {
         {
             super("AlarmManager");
         }
-        
+
         public void run()
         {
             ArrayList<Alarm> triggerList = new ArrayList<Alarm>();
@@ -2589,8 +2589,10 @@ class AlarmManagerService extends SystemService {
                             Slog.v(TAG, "Time changed notification from kernel; rebatching");
                         }
                         removeImpl(mTimeTickSender);
+                        removeImpl(mDateChangeSender);
                         rebatchAllAlarms();
                         mClockReceiver.scheduleTimeTickEvent();
+                        mClockReceiver.scheduleDateChangedEvent();
                         synchronized (mLock) {
                             mNumTimeChanged++;
                             mLastTimeChangeClockTime = nowRTC;
@@ -2667,9 +2669,9 @@ class AlarmManagerService extends SystemService {
                     }
 
                 } else {
+                    // Just in case -- even though no wakeup flag was set, make sure
+                    // we have updated the kernel to the next alarm time.
                     synchronized (mLock) {
-                        // Just in case -- even though no wakeup flag was set, make sure
-                        // we have updated the kernel to the next alarm time.
                         rescheduleKernelAlarmsLocked();
                     }
                 }
@@ -2717,10 +2719,10 @@ class AlarmManagerService extends SystemService {
         public static final int SEND_NEXT_ALARM_CLOCK_CHANGED = 2;
         public static final int LISTENER_TIMEOUT = 3;
         public static final int REPORT_ALARMS_ACTIVE = 4;
-        
+
         public AlarmHandler() {
         }
-        
+
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case ALARM_EVENT: {
@@ -2768,7 +2770,7 @@ class AlarmManagerService extends SystemService {
             }
         }
     }
-    
+
     class ClockReceiver extends BroadcastReceiver {
         public ClockReceiver() {
             IntentFilter filter = new IntentFilter();
@@ -2776,7 +2778,7 @@ class AlarmManagerService extends SystemService {
             filter.addAction(Intent.ACTION_DATE_CHANGED);
             getContext().registerReceiver(this, filter);
         }
-        
+
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(Intent.ACTION_TIME_TICK)) {
@@ -2795,7 +2797,7 @@ class AlarmManagerService extends SystemService {
                 scheduleDateChangedEvent();
             }
         }
-        
+
         public void scheduleTimeTickEvent() {
             final long currentTime = System.currentTimeMillis();
             final long nextTime = 60000 * ((currentTime / 60000) + 1);
@@ -2813,7 +2815,7 @@ class AlarmManagerService extends SystemService {
         public void scheduleDateChangedEvent() {
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(System.currentTimeMillis());
-            calendar.set(Calendar.HOUR, 0);
+            calendar.set(Calendar.HOUR_OF_DAY, 0);
             calendar.set(Calendar.MINUTE, 0);
             calendar.set(Calendar.SECOND, 0);
             calendar.set(Calendar.MILLISECOND, 0);
@@ -2825,7 +2827,7 @@ class AlarmManagerService extends SystemService {
                     Process.myUid(), "android");
         }
     }
-    
+
     class InteractiveStateReceiver extends BroadcastReceiver {
         public InteractiveStateReceiver() {
             IntentFilter filter = new IntentFilter();
@@ -2858,7 +2860,7 @@ class AlarmManagerService extends SystemService {
             sdFilter.addAction(Intent.ACTION_UID_REMOVED);
             getContext().registerReceiver(this, sdFilter);
         }
-        
+
         @Override
         public void onReceive(Context context, Intent intent) {
             synchronized (mLock) {

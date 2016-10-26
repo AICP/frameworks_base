@@ -136,7 +136,6 @@ public interface IActivityManager extends IInterface {
             ActivityManager.TaskDescription description, Bitmap thumbnail) throws RemoteException;
     public Point getAppTaskThumbnailSize() throws RemoteException;
     public List<RunningTaskInfo> getTasks(int maxNum, int flags) throws RemoteException;
-    public boolean isPackageInForeground(String packageName) throws RemoteException;
     public ParceledListSlice<ActivityManager.RecentTaskInfo> getRecentTasks(int maxNum,
             int flags, int userId) throws RemoteException;
     public ActivityManager.TaskThumbnail getTaskThumbnail(int taskId) throws RemoteException;
@@ -513,7 +512,8 @@ public interface IActivityManager extends IInterface {
     public int getLaunchedFromUid(IBinder activityToken) throws RemoteException;
     public String getLaunchedFromPackage(IBinder activityToken) throws RemoteException;
 
-    public void registerUserSwitchObserver(IUserSwitchObserver observer) throws RemoteException;
+    public void registerUserSwitchObserver(IUserSwitchObserver observer,
+            String name) throws RemoteException;
     public void unregisterUserSwitchObserver(IUserSwitchObserver observer) throws RemoteException;
 
     public void requestBugReport(int bugreportType) throws RemoteException;
@@ -657,6 +657,19 @@ public interface IActivityManager extends IInterface {
     public int sendIntentSender(IIntentSender target, int code, Intent intent, String resolvedType,
             IIntentReceiver finishedReceiver, String requiredPermission, Bundle options)
             throws RemoteException;
+
+    public void setVrThread(int tid) throws RemoteException;
+    public void setRenderThread(int tid) throws RemoteException;
+
+    /**
+     * Lets activity manager know whether the calling process is currently showing "top-level" UI
+     * that is not an activity, i.e. windows on the screen the user is currently interacting with.
+     *
+     * <p>This flag can only be set for persistent processes.
+     *
+     * @param hasTopUi Whether the calling process has "top-level" UI.
+     */
+    public void setHasTopUi(boolean hasTopUi) throws RemoteException;
 
     /*
      * Private non-Binder interfaces
@@ -1005,7 +1018,6 @@ public interface IActivityManager extends IInterface {
             = IBinder.FIRST_CALL_TRANSACTION+299;
     int SHOW_ASSIST_FROM_ACTIVITY_TRANSACTION = IBinder.FIRST_CALL_TRANSACTION+300;
     int IS_ROOT_VOICE_INTERACTION_TRANSACTION = IBinder.FIRST_CALL_TRANSACTION+301;
-    int IS_PACKAGE_IN_FOREGROUND_TRANSACTION = IBinder.FIRST_CALL_TRANSACTION+302;
 
     // Start of N transactions
     int START_BINDER_TRACKING_TRANSACTION = IBinder.FIRST_CALL_TRANSACTION + 340;
@@ -1045,4 +1057,9 @@ public interface IActivityManager extends IInterface {
     int START_CONFIRM_DEVICE_CREDENTIAL_INTENT = IBinder.FIRST_CALL_TRANSACTION + 374;
     int SEND_IDLE_JOB_TRIGGER_TRANSACTION = IBinder.FIRST_CALL_TRANSACTION + 375;
     int SEND_INTENT_SENDER_TRANSACTION = IBinder.FIRST_CALL_TRANSACTION + 376;
+
+    // Start of N MR1 transactions
+    int SET_VR_THREAD_TRANSACTION = IBinder.FIRST_CALL_TRANSACTION + 377;
+    int SET_RENDER_THREAD_TRANSACTION = IBinder.FIRST_CALL_TRANSACTION + 378;
+    int SET_HAS_TOP_UI = IBinder.FIRST_CALL_TRANSACTION + 379;
 }

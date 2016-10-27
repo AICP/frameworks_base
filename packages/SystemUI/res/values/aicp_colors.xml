@@ -19,6 +19,9 @@
     <!-- Volume panel border coler -->
     <color name="volume_panel_border_color">#ff2962ff</color><!-- blue A700 -->
 
+    <color name="system_primary_color">@*android:color/primary_material_dark</color>
+    <color name="system_accent_color">@*android:color/material_deep_teal_700</color>
+
     <!-- Custom Carrier Label -->
     <color name="status_bar_carrier_color">#FFFFFFFF</color>
 

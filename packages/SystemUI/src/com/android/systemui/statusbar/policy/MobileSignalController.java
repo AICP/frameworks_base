@@ -199,25 +199,9 @@ public class MobileSignalController extends SignalController<
 
         if (Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.SHOW_FOURG, 0) == 1) {
-            if (mContext.getResources().getBoolean(R.bool.show_4glte_icon_for_lte)) {
-                mNetworkToIconLookup.put(TelephonyManager.NETWORK_TYPE_LTE,
-                        TelephonyIcons.FOUR_G_LTE);
-            } else if (mContext.getResources().getBoolean(R.bool.show_network_indicators)) {
-                mNetworkToIconLookup.put(TelephonyManager.NETWORK_TYPE_LTE, TelephonyIcons.LTE);
-            } else {
-                mNetworkToIconLookup.put(TelephonyManager.NETWORK_TYPE_LTE, TelephonyIcons.FOUR_G);
-            }
-            mNetworkToIconLookup.put(TelephonyManager.NETWORK_TYPE_LTE_CA,
-                TelephonyIcons.FOUR_G_PLUS);
+            mNetworkToIconLookup.put(TelephonyManager.NETWORK_TYPE_LTE, TelephonyIcons.FOUR_G);
         } else {
             mNetworkToIconLookup.put(TelephonyManager.NETWORK_TYPE_LTE, TelephonyIcons.LTE);
-            if (mConfig.hideLtePlus) {
-                mNetworkToIconLookup.put(TelephonyManager.NETWORK_TYPE_LTE_CA,
-                        TelephonyIcons.LTE);
-            } else {
-                mNetworkToIconLookup.put(TelephonyManager.NETWORK_TYPE_LTE_CA,
-                        TelephonyIcons.LTE_PLUS);
-            }
         }
         mNetworkToIconLookup.put(TelephonyManager.NETWORK_TYPE_IWLAN, TelephonyIcons.WFC);
     }

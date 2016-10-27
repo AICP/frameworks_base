@@ -104,7 +104,7 @@
     </string>
 
     <!-- The default tiles to display in QuickSettings -->
-    <string name="quick_settings_tiles_extra" translatable="false">
+    <string name="quick_settings_tiles_stock" translatable="false">
         wifi,cell,battery,dnd,flashlight,rotation,bt,airplane,location,hotspot,inversion,saver,work,cast,night,screenshot,adb_network,sync,expanded_desktop,reboot,usb_tether,music,ime,caffeine,navigation_bar
     </string>
 

@@ -4429,11 +4429,21 @@ public final class Settings {
         /** @hide */
         public static final Validator THEMING_ACCENT_VALIDATOR = ANY_INTEGER_VALIDATOR;
 
-
-        /***************************
-         * AICP System Settings end
-         ***************************/
-
+        /**
+        * Number of qs columns on landscape orientation
+        * @hide
+        */
+        public static final String OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE = "qs_layout_columns_landscape";
+        /** @hide */
+        private static final Validator OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE_VALIDATOR =
+               ANY_STRING_VALIDATOR;
+        /**
+        * @hide
+        */
+        public static final String OMNI_QS_LAYOUT_COLUMNS = "qs_layout_columns";
+        /** @hide */
+        private static final Validator OMNI_QS_LAYOUT_COLUMNS_VALIDATOR =
+               ANY_STRING_VALIDATOR;
 
         /**
          * @hide
@@ -4647,9 +4657,13 @@ public final class Settings {
         private static final Validator OMNI_SHOW_BATTERY_IMAGE_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
+        /***************************
+         * AICP System Settings end
+         ***************************/
+
         /**
          * IMPORTANT: If you add a new public settings you also have to add it to
-         * PUBLIC_SETTINGS below. If the new setting is hidden you have to add   
+         * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
          * it to PRIVATE_SETTINGS below. Also add a validator that can validate
          * the setting value. See an example above.
          */
@@ -4746,6 +4760,8 @@ public final class Settings {
             THEMING_ACCENT,
             OMNI_USE_BOTTOM_GESTURE_NAVIGATION,
             OMNI_SHOW_BATTERY_IMAGE,
+            OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE,
+            OMNI_QS_LAYOUT_COLUMNS,
             // AICP Settings end
         };
 
@@ -4911,6 +4927,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(KEY_CAMERA_LONG_PRESS_ACTION);
             PRIVATE_SETTINGS.add(KEY_CAMERA_DOUBLE_TAP_ACTION);
             PRIVATE_SETTINGS.add(OMNI_SHOW_BATTERY_IMAGE);
+            PRIVATE_SETTINGS.add(OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE);
+            PRIVATE_SETTINGS.add(OMNI_QS_LAYOUT_COLUMNS);
             // AICP Settings end
         }
 
@@ -5049,6 +5067,9 @@ public final class Settings {
             VALIDATORS.put(BUTTON_BRIGHTNESS, BUTTON_BRIGHTNESS_VALIDATOR);
             VALIDATORS.put(BUTTON_BRIGHTNESS_ENABLED, BUTTON_BRIGHTNESS_ENABLED_VALIDATOR);
             VALIDATORS.put(OMNI_SHOW_BATTERY_IMAGE, OMNI_SHOW_BATTERY_IMAGE_VALIDATOR);
+            VALIDATORS.put(OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE,
+                    OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE_VALIDATOR);
+            VALIDATORS.put(OMNI_QS_LAYOUT_COLUMNS, OMNI_QS_LAYOUT_COLUMNS_VALIDATOR);
             // AICP Settings end
         }
 

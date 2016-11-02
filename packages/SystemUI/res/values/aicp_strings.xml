@@ -58,8 +58,8 @@
     <string name="quick_settings_fling_off">Fling off</string>
 
     <!-- Heads up snooze toast -->
-    <string name="heads_up_snooze_message_one_minute">Heads up is snoozing for 1 minute.</string>
-    <string name="heads_up_snooze_message">Heads up is snoozing for <xliff:g id="number">%d</xliff:g> minutes.</string>
+    <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Heads up notification are snoozing for 1 minute.</string>
+    <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - Heads up notifications are snoozing for <xliff:g id="number">%d</xliff:g> minutes.</string>
 
     <!-- Screenshot action -->
     <string name="screenshot_abort_title">No screenshot taken</string>

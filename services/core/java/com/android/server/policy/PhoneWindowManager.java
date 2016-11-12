@@ -852,6 +852,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     boolean mHavePendingMediaKeyRepeatWithWakeLock;
 
     private int mCurrentUserId;
+
+    private int mScreenshotDelay;
+
     private boolean haveEnableGesture = false;
 
     // Maps global key codes to the components that will handle them.
@@ -1043,6 +1046,13 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 mHandler.sendEmptyMessage(MSG_DISPATCH_SHOW_GLOBAL_ACTIONS);
             } else if (ActionHandler.INTENT_SCREENSHOT.equals(action)) {
                 mHandler.removeCallbacks(mScreenshotRunnable);
+                checkSettings();
+                mScreenshotRunnable.setScreenshotType(TAKE_SCREENSHOT_FULLSCREEN);
+                mHandler.post(mScreenshotRunnable);
+            } else if (ActionHandler.INTENT_REGION_SCREENSHOT.equals(action)) {
+                mHandler.removeCallbacks(mScreenshotRunnable);
+                checkSettings();
+                mScreenshotRunnable.setScreenshotType(TAKE_SCREENSHOT_SELECTED_REGION);
                 mHandler.post(mScreenshotRunnable);
             } else if (ActionHandler.INTENT_TOGGLE_SCREENRECORD.equals(action)) {
                 mHandler.removeCallbacks(mScreenrecordRunnable);
@@ -1512,6 +1522,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 && (event.getFlags() & KeyEvent.FLAG_FALLBACK) == 0) {
             mPowerKeyTriggered = true;
             mPowerKeyTime = event.getDownTime();
+            checkSettings();
             interceptScreenshotChord();
             interceptScreenrecordChord();
         }
@@ -2342,6 +2353,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         filter = new IntentFilter();
         filter.addAction(ActionHandler.INTENT_SHOW_POWER_MENU);
         filter.addAction(ActionHandler.INTENT_SCREENSHOT);
+        filter.addAction(ActionHandler.INTENT_REGION_SCREENSHOT);
         filter.addAction(ActionHandler.INTENT_TOGGLE_SCREENRECORD);
         context.registerReceiver(mDUReceiver, filter);
 
@@ -6813,6 +6825,14 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                         };
                         msg.replyTo = new Messenger(h);
                         msg.arg1 = msg.arg2 = 0;
+
+                        // Needs delay or else we'll be taking a screenshot of the dialog each time
+                        try {
+                            Thread.sleep(mScreenshotDelay * 1000);
+                        } catch (InterruptedException ie) {
+                            // Do nothing
+                        }
+
                         if (mStatusBar != null && mStatusBar.isVisibleLw())
                             msg.arg1 = 1;
                         if (mNavigationBar != null && mNavigationBar.isVisibleLw())
@@ -9641,5 +9661,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 Settings.Global.getString(context.getContentResolver(),
                     Settings.Global.SINGLE_HAND_MODE).isEmpty() ?
                     isLeft ? "left" : "right" : "");
+    }
+
+    private void checkSettings() {
+        mScreenshotDelay = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.SCREENSHOT_DELAY, 1);
     }
 }

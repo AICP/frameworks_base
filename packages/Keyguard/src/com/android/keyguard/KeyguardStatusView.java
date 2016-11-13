@@ -261,7 +261,8 @@ public class KeyguardStatusView extends GridLayout {
             }
 
             clockView12 = DateFormat.getBestDateTimePattern(locale, clockView12Skel);
-            if(!context.getResources().getBoolean(R.bool.config_showAmpm)){
+            if(Settings.System.getInt(context.getContentResolver(),
+                            Settings.System.LOCK_SCREEN_HIDE_AMPM, 0) == 1){
                 // CLDR insists on adding an AM/PM indicator even though it wasn't in the skeleton
                 // format.  The following code removes the AM/PM indicator if we didn't want it.
                 if (!clockView12Skel.contains("a")) {

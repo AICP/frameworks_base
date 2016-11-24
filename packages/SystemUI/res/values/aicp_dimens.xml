@@ -77,4 +77,8 @@
     <dimen name="pie_touch_offset">15dp</dimen>
     <dimen name="pie_tab_title_height">24dp</dimen>
     <dimen name="pie_panel_padding">20dp</dimen>
+
+    <!-- Singlehanded mode dimensions -->
+    <dimen name="navbar_single_hand_mode_horizontal_threshhold">90dp</dimen>
+    <dimen name="navbar_single_hand_mode_vertical_threshhold">48dp</dimen>
 </resources>

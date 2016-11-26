@@ -584,6 +584,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     updateResources();
             } else if (uri.equals(Settings.Secure.getUriFor(
                     Settings.Secure.QS_COLUMNS))) {
+                    if (mHeader != null) {
+                        mHeader.updateSettings();
+                    }
                     updateResources();
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_SHOW_CARRIER))) {

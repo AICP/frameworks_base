@@ -34,6 +34,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.internal.util.aicp.AicpUtils;
+import com.android.systemui.BatteryMeterDrawable;
 import com.android.systemui.BatteryMeterView;
 import com.android.systemui.Interpolators;
 import com.android.systemui.R;
@@ -201,7 +202,6 @@ public class KeyguardStatusBarView extends RelativeLayout
         }
         mBatteryLevel.setVisibility(
                 mBatteryCharging || mShowBatteryText || mForceBatteryText ? View.VISIBLE : View.GONE);
-
         if (mCarrierLabel != null) {
             if (mShowCarrierLabel == 1) {
                 mCarrierLabel.setVisibility(View.VISIBLE);
@@ -388,7 +388,7 @@ public class KeyguardStatusBarView extends RelativeLayout
             updateVisibilities();
         } else if (key.equals(STATUS_BAR_BATTERY_STYLE)) {
             mForceBatteryText = newValue != null
-                    && Integer.parseInt(newValue) == 6;
+                    && Integer.parseInt(newValue) == BatteryMeterDrawable.BATTERY_STYLE_TEXT;
             updateVisibilities();
         }
     }

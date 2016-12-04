@@ -238,7 +238,8 @@ public class KeyguardStatusBarView extends RelativeLayout
         }
         mBatteryListening = listening;
         if (mBatteryListening) {
-            TunerService.get(getContext()).addTunable(this, STATUS_BAR_SHOW_BATTERY_PERCENT);
+            TunerService.get(getContext()).addTunable(this,
+                    STATUS_BAR_SHOW_BATTERY_PERCENT, STATUS_BAR_BATTERY_STYLE);
             mBatteryController.addStateChangedCallback(this);
         } else {
             mBatteryController.removeStateChangedCallback(this);
@@ -387,8 +388,10 @@ public class KeyguardStatusBarView extends RelativeLayout
     public void onTuningChanged(String key, String newValue) {
         if (key.equals(STATUS_BAR_SHOW_BATTERY_PERCENT)) {
             mShowBatteryText = newValue == null ? false : Integer.parseInt(newValue) == 2;
-            mForceBatteryText = Settings.System.getInt(getContext().getContentResolver(),
-                    STATUS_BAR_BATTERY_STYLE, 0) == 6 ? true : false;
+            updateVisibilities();
+        } else if (key.equals(STATUS_BAR_BATTERY_STYLE)) {
+            mForceBatteryText = newValue != null
+                    && Integer.parseInt(newValue) == 6;
             updateVisibilities();
         }
     }

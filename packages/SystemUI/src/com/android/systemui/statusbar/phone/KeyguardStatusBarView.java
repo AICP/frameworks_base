@@ -96,7 +96,7 @@ public class KeyguardStatusBarView extends RelativeLayout
     }
 
     private void showStatusBarCarrier() {
-        mShowCarrierLabel = Settings.System.getIntForUser(getContext().getContentResolver(),
+        mShowCarrierLabel = AicpUtils.isWifiOnly(getContext()) ? 0 : Settings.System.getIntForUser(getContext().getContentResolver(),
                 Settings.System.STATUS_BAR_SHOW_CARRIER, 1, UserHandle.USER_CURRENT);
     }
 
@@ -109,9 +109,6 @@ public class KeyguardStatusBarView extends RelativeLayout
         mMultiUserAvatar = (ImageView) findViewById(R.id.multi_user_avatar);
         mBatteryLevel = (TextView) findViewById(R.id.battery_level);
         mCarrierLabel = (TextView) findViewById(R.id.keyguard_carrier_text);
-        if (AicpUtils.isWifiOnly(getContext())) {
-            mCarrierLabel.setText("");
-        }
         loadDimens();
         updateUserSwitcher();
         updateVisibilities();

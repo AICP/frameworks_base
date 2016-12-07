@@ -216,16 +216,14 @@ public class PackageInstallerSession extends IPackageInstallerSession.Stub {
                 try {
                     commitLocked(pkgInfo, appInfo);
                 } catch (PackageManagerException e) {
-                    returnCode = e.error;
-                    completeMsg = ExceptionUtils.getCompleteMessage(e);
+                    final String completeMsg = ExceptionUtils.getCompleteMessage(e);
                     Slog.e(TAG, "Commit of session " + sessionId + " failed: " + completeMsg);
                     destroyInternal();
+                    dispatchSessionFinished(e.error, completeMsg, null);
                 }
+
+                return true;
             }
-            if (returnCode != INSTALL_SUCCEEDED) {
-                dispatchSessionFinished(returnCode, completeMsg, null);
-            }
-            return true;
         }
     };
 

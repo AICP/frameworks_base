@@ -363,6 +363,17 @@ public class QuickStatusBarHeader extends BaseStatusBarHeader implements
     private void startSettingsActivity() {
         mActivityStarter.startActivity(new Intent(android.provider.Settings.ACTION_SETTINGS),
                 true /* dismissShade */);
+
+    private void startClockActivity(AlarmManager.AlarmClockInfo alarm) {
+        Intent intent = null;
+        if (alarm != null) {
+            PendingIntent showIntent = alarm.getShowIntent();
+            mActivityStarter.startPendingIntentDismissingKeyguard(showIntent);
+        }
+        if (intent == null) {
+            intent = new Intent(AlarmClock.ACTION_SHOW_ALARMS);
+        }
+        mActivityStarter.startActivity(intent, true /* dismissShade */);
     }
 
     private void startCalendarActivity() {

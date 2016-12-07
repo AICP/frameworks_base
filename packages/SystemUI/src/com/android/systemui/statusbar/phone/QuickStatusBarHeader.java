@@ -24,6 +24,7 @@ import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
 import android.os.UserManager;
+import android.provider.AlarmClock;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -363,6 +364,7 @@ public class QuickStatusBarHeader extends BaseStatusBarHeader implements
     private void startSettingsActivity() {
         mActivityStarter.startActivity(new Intent(android.provider.Settings.ACTION_SETTINGS),
                 true /* dismissShade */);
+    }
 
     private void startClockActivity(AlarmManager.AlarmClockInfo alarm) {
         Intent intent = null;

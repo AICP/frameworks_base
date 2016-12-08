@@ -60,6 +60,9 @@
   <java-symbol type="color" name="notification_text_default_color" />
   <java-symbol type="color" name="sender_text_color" />
 
+  <!-- Doze mode -->
+  <java-symbol type="bool" name="config_doze_enabled_by_default" />
+
   <!-- Doze invert -->
   <java-symbol type="bool" name="config_invert_colors_on_doze" />
 

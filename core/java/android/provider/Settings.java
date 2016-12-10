@@ -3836,10 +3836,10 @@ public final class Settings {
         public static final String KEYGUARD_TOGGLE_TORCH = "keyguard_toggle_torch";
 
           /**
-          * Whether to show the negociated charger current in the lockscreen
+          * Whether to show the battery info on the lockscreen while charging
           * @hide
           */
-         public static final String LOCKSCREEN_CHARGING_CURRENT = "lockscreen_charging_current";
+         public static final String LOCKSCREEN_BATTERY_INFO = "lockscreen_battery_info";
  
         /**
          * Network traffic indicator, goes from least to greatest significant bitwise

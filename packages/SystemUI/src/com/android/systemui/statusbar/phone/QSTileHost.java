@@ -467,6 +467,7 @@ public class QSTileHost implements QSTile.Host, Tunable {
         else if (tileSpec.equals("battery")) return new BatteryTile(this);
         else if (tileSpec.equals("saver")) return new DataSaverTile(this);
         else if (tileSpec.equals("night")) return new NightDisplayTile(this);
+        else if (tileSpec.equals("nfc")) return new NfcTile(this);
         else if (tileSpec.equals("screenshot")) return new ScreenshotTile(this);
         else if (tileSpec.equals("screenrecord")) return new ScreenrecordTile(this);
         else if (tileSpec.equals("adb_network")) return new AdbOverNetworkTile(this);
@@ -486,7 +487,6 @@ public class QSTileHost implements QSTile.Host, Tunable {
         else if (tileSpec.equals("sound")) return new SoundTile(this);
         else if (tileSpec.equals("ambient_display")) return new AmbientDisplayTile(this);
         else if (tileSpec.equals("app_picker")) return new AppPickerTile(this);
-        else if (tileSpec.equals("nfc")) return new NfcTile(this);
         else if (tileSpec.equals("compass")) return new CompassTile(this);
         else if (tileSpec.equals("weather")) return new WeatherTile(this);
         else if (tileSpec.equals("magiskmanager")) return new MagiskManagerTile(this);

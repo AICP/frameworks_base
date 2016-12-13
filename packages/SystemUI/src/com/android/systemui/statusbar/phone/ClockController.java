@@ -22,9 +22,9 @@ public class ClockController implements TunerService.Tunable {
 
     private static final String TAG = "ClockController";
 
-    public static final int STYLE_CLOCK_RIGHT = 1;
-    public static final int STYLE_CLOCK_CENTER = 2;
-    public static final int STYLE_CLOCK_LEFT = 3;
+    public static final int CLOCK_POSITION_RIGHT = 0;
+    public static final int CLOCK_POSITION_CENTER = 1;
+    public static final int CLOCK_POSITION_LEFT = 2;
 
     public static final String CLOCK_POSITION = "cmsystem:status_bar_clock";
     public static final String CLOCK_STYLE = "cmsystem:status_bar_am_pm";
@@ -35,7 +35,7 @@ public class ClockController implements TunerService.Tunable {
     public static Clock mCenterClock, mActiveClock;
 
     private int mAmPmStyle = AM_PM_STYLE_GONE;
-    private int mClockPosition = STYLE_CLOCK_RIGHT;
+    private int mClockPosition = CLOCK_POSITION_RIGHT;
     private boolean mClockVisible = true;
     private boolean mShowSeconds = false;
 
@@ -57,13 +57,13 @@ public class ClockController implements TunerService.Tunable {
     private Clock getClockForCurrentLocation() {
         Clock clockForAlignment;
         switch (mClockPosition) {
-            case STYLE_CLOCK_CENTER:
+            case CLOCK_POSITION_CENTER:
                 clockForAlignment = mCenterClock;
                 break;
-            case STYLE_CLOCK_LEFT:
+            case CLOCK_POSITION_LEFT:
                 clockForAlignment = mLeftClock;
                 break;
-            case STYLE_CLOCK_RIGHT:
+            case CLOCK_POSITION_RIGHT:
             default:
                 clockForAlignment = mRightClock;
                 break;
@@ -92,7 +92,7 @@ public class ClockController implements TunerService.Tunable {
         Log.d(TAG, "onTuningChanged key=" + key + " value=" + newValue);
 
         if (CLOCK_POSITION.equals(key)) {
-            mClockPosition = newValue == null ? STYLE_CLOCK_RIGHT : Integer.valueOf(newValue);
+            mClockPosition = newValue == null ? CLOCK_POSITION_RIGHT : Integer.valueOf(newValue);
         } else if (CLOCK_STYLE.equals(key)) {
             mAmPmStyle = newValue == null ? AM_PM_STYLE_GONE : Integer.valueOf(newValue);
         } else if (CLOCK_SECONDS.equals(key)) {

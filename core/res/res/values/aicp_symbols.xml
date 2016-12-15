@@ -63,4 +63,7 @@
   <!-- Doze invert -->
   <java-symbol type="bool" name="config_invert_colors_on_doze" />
 
+  <!-- Power menu -->
+  <java-symbol type="drawable" name="ic_lock_screenrecord" />
+  <java-symbol type="string" name="global_action_screenrecord" />
 </resources>

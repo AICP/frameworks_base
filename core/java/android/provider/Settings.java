@@ -5954,6 +5954,15 @@ public final class Settings {
         private static final Validator PROXIMITY_ON_WAKE_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
+        /**
+          * enable or disable single handed mode
+          * @hide
+          */
+        public static final String ONE_HAND_MODE_ENABLED = "one_hand_mode_enabled";
+
+        /** @hide */
+        private static final Validator ONE_HAND_MODE_ENABLED_VALIDATOR = BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6183,6 +6192,7 @@ public final class Settings {
             THEMING_CONTROL_NIGHT_MODE,
             SLIM_RECENT_ENTER_EXIT_ANIMATION,
             PROXIMITY_ON_WAKE,
+            ONE_HAND_MODE_ENABLED,
             // AICP Settings end
         };
 
@@ -6460,6 +6470,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(THEMING_CONTROL_NIGHT_MODE);
             PRIVATE_SETTINGS.add(SLIM_RECENT_ENTER_EXIT_ANIMATION);
             PRIVATE_SETTINGS.add(PROXIMITY_ON_WAKE);
+            PRIVATE_SETTINGS.add(ONE_HAND_MODE_ENABLED);
             // AICP Settings end
         }
 
@@ -6738,6 +6749,7 @@ public final class Settings {
             VALIDATORS.put(THEMING_CONTROL_NIGHT_MODE, THEMING_CONTROL_NIGHT_MODE_VALIDATOR);
             VALIDATORS.put(SLIM_RECENT_ENTER_EXIT_ANIMATION, SLIM_RECENT_ENTER_EXIT_ANIMATION_VALIDATOR);
             VALIDATORS.put(PROXIMITY_ON_WAKE,PROXIMITY_ON_WAKE_VALIDATOR);
+            VALIDATORS.put(ONE_HAND_MODE_ENABLED,ONE_HAND_MODE_ENABLED_VALIDATOR);
             // AICP Settings end
         }
 

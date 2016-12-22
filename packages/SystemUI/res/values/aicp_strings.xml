@@ -60,4 +60,9 @@
     <!-- Heads up snooze toast -->
     <string name="heads_up_snooze_message_one_minute">Heads up is snoozing for 1 minute.</string>
     <string name="heads_up_snooze_message">Heads up is snoozing for <xliff:g id="number">%d</xliff:g> minutes.</string>
+
+    <!-- Screenshot action -->
+    <string name="screenshot_abort_title">No screenshot taken</string>
+    <string name="screenshot_abort_text">Operation aborted</string>
+
 </resources>

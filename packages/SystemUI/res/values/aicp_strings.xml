@@ -254,4 +254,7 @@
 
     <!-- OnTheGo Tile -->
     <string name="quick_settings_onthego_label">On-The-Go</string>
+
+    <!-- Recents Memory Bar -->
+    <string name="recents_free_ram">FREE RAM: %1$d MB</string>
 </resources>

@@ -3696,6 +3696,12 @@ public final class Settings {
         public static final String AE_NAV_HEADER_BG_IMAGE_OPACITY= "ae_header_bg_image_opacity";
 
         /**
+         * AE Navigation drawer header bg image color
+         * @hide
+         */
+        public static final String AE_NAV_HEADER_BG_IMAGE_COLOR= "ae_header_bg_image_color";
+
+        /**
          * AE Navigation drawer unchecked text color
          * @hide
          */

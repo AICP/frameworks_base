@@ -227,4 +227,6 @@
     <string name="accessibility_quick_settings_sync_on">Sync on</string>
     <string name="accessibility_quick_settings_sync_changed_off">Sync turned off</string>
     <string name="accessibility_quick_settings_sync_changed_on">Sync turned on</string>
+
+    <string name="recents_free_ram">Free RAM: %1$d MB</string>
 </resources>

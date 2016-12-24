@@ -517,6 +517,9 @@
     <protected-broadcast android:name="com.android.server.retaildemo.ACTION_RESET_DEMO" />
 
     <protected-broadcast android:name="cyanogenmod.intent.action.LID_STATE_CHANGED" />
+
+    <protected-broadcast android:name="org.omnirom.omniswitch.ACTION_TOGGLE_OVERLAY" />
+
     <!-- ====================================================================== -->
     <!--                          RUNTIME PERMISSIONS                           -->
     <!-- ====================================================================== -->

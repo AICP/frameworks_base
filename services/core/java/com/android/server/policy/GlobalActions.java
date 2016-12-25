@@ -442,7 +442,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
             } else if (GLOBAL_ACTION_KEY_RESTART.equals(actionKey)) {
                 mItems.add(new RestartAction());
             } else if (GLOBAL_ACTION_KEY_SCREENSHOT.equals(actionKey)) {
-                mItems.add(getScreenshotAction());
+                mItems.add(new getScreenshotAction());
             } else if (GLOBAL_ACTION_KEY_SCREENRECORD.equals(actionKey)) {
                 mItems.add(getScreenrecordAction());
             } else if (GLOBAL_ACTION_KEY_AIRPLANE.equals(actionKey)) {
@@ -585,27 +585,37 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         }
     }
 
-    private Action getScreenshotAction() {
-        return new SinglePressAction(com.android.internal.R.drawable.ic_lock_screenshot,
-                R.string.global_action_screenshot) {
+    private final class getScreenshotAction extends SinglePressAction implements LongPressAction {
+        private getScreenshotAction() {
+            super(com.android.internal.R.drawable.ic_lock_screenshot,
+                    R.string.global_action_screenshot);
+        }
 
-            public void onPress() {
-                if (Settings.System.getInt(mContext.getContentResolver(),
-                       Settings.System.SCREENSHOT_TYPE, 0) == 1) {
-                    takeScreenshot(mScreenshotSelectedRegion);
-                } else {
-                    takeScreenshot(mScreenshotFullscreen);
-                }
+        @Override
+        public void onPress() {
+            if (Settings.System.getInt(mContext.getContentResolver(),
+                   Settings.System.SCREENSHOT_TYPE, 0) == 1) {
+                takeScreenshot(mScreenshotSelectedRegion);
+            } else {
+                takeScreenshot(mScreenshotFullscreen);
             }
+        }
 
-            public boolean showDuringKeyguard() {
-                return true;
-            }
+        @Override
+        public boolean onLongPress() {
+            takeScreenshot(mScreenshotSelectedRegion);
+            return false;
+        }
 
-            public boolean showBeforeProvisioning() {
-                return true;
-            }
-        };
+        @Override
+        public boolean showDuringKeyguard() {
+            return true;
+        }
+
+        @Override
+        public boolean showBeforeProvisioning() {
+            return true;
+        }
     }
 
     private Action getScreenrecordAction() {

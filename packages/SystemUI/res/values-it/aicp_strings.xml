@@ -52,4 +52,12 @@
     <string name="quick_settings_fling">Fling</string>
     <string name="quick_settings_fling_off">Fling attivato</string>
 
+    <!-- Heads up snooze toast -->
+    <string name="heads_up_snooze_message_one_minute">Heads up posticipate per 1 minuto.</string>
+    <string name="heads_up_snooze_message">Heads up posticipate per <xliff:g id="number">%d</xliff:g> minuti.</string>
+
+    <!-- Screenshot action -->
+    <string name="screenshot_abort_title">Nessun screenshot preso</string>
+    <string name="screenshot_abort_text">Operazione fallita</string>
+  
 </resources>

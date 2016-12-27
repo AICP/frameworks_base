@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 
+<!--
 /**
  * Copyright (c) 2009, The Android Open Source Project
  *
@@ -448,10 +448,10 @@
   <string-array name="volume_stream_titles">
     <item msgid="5841843895402729630">"Anruf"</item>
     <item msgid="5997713001067658559">"System"</item>
-    <item msgid="7858983209929864160">"Klingeln lassen"</item>
+    <item msgid="7858983209929864160">"Klingelton"</item>
     <item msgid="1850038478268896762">"Medien"</item>
     <item msgid="8265110906352372092">"Wecker"</item>
-    <item msgid="5339394737636839168"></item>
+    <item msgid="5339394737636839168">"Benachrichtigungen"</item>
     <item msgid="2951313578278086204">"Bluetooth"</item>
     <item msgid="2919807739709798970"></item>
     <item msgid="150349973435223405"></item>

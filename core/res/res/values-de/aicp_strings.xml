@@ -22,4 +22,6 @@
     <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
     <string name="system_error_vendorprint">Das Firmware-Image ist nicht passend für dieses System. Bitte installieren Sie das Hersteller-Image <xliff:g id="string">%s</xliff:g> für ihr Gerät</string>
 
+    <!-- Button to soft reboot the device, within the Reboot Options dialog -->
+    <string name="reboot_systemui">System-UI neu starten</string>
 </resources>

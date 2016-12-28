@@ -3938,6 +3938,15 @@ public final class Settings {
         public static final String QS_TRANSPARENT_SHADE = "qs_transparent_shade";
 
         /**
+         * MediaScanner behavior on boot.
+         * 0 = enabled
+         * 1 = ask (notification)
+         * 2 = disabled
+         * @hide
+         */
+        public static final String MEDIA_SCANNER_ON_BOOT = "media_scanner_on_boot";
+
+        /**
          * Quick settings stroke
          * 0 = disabled
          * 1 = use accent color (default)

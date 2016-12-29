@@ -24,4 +24,7 @@
 
     <!-- label for item that screenrecord in phone options dialog -->
     <string name="global_action_screenrecord">Screenrecord</string>
+
+    <!-- Screenshoot edit action -->
+    <string name="edit">Edit</string>
 </resources>

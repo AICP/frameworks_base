@@ -5926,6 +5926,12 @@ public final class Settings {
         */
         public static final String TOAST_ANIMATION = "toast_animation";
 
+        /**
+         * media artwork wallpaper blur level on lockscreen
+         * @hide
+         */
+        public static final String OMNI_LOCKSCREEN_MEDIA_BLUR = "lockscreen_media_blur";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6058,6 +6064,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(OMNI_LOCKSCREEN_WEATHER_ENABLED, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(AICP_LOCKSCREEN_WEATHER_STYLE, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(TOAST_ANIMATION, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(OMNI_LOCKSCREEN_MEDIA_BLUR, ANY_INTEGER_VALIDATOR);
         }
 
         /**

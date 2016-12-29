@@ -308,5 +308,6 @@ public class SystemSettings {
         Settings.System.TOAST_ICON,
         Settings.System.BLUETOOTH_SHOW_BATTERY,
         Settings.System.HEADS_UP_NOTIFICATIONS_THRESHOLD,
+        Settings.System.OMNI_LOCKSCREEN_MEDIA_BLUR,
     };
 }

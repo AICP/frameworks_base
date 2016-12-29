@@ -92,6 +92,7 @@ public class PhoneStatusBarPolicy implements Callback, RotationLockController.Ro
     private StatusBarKeyguardViewManager mStatusBarKeyguardViewManager;
     private final SuController mSuController;
     private boolean mSuIndicatorVisible;
+    private boolean mShowBluetoothBattery;
 
     // Assume it's all good unless we hear otherwise.  We don't always seem
     // to get broadcasts that it *is* there.
@@ -173,6 +174,11 @@ public class PhoneStatusBarPolicy implements Callback, RotationLockController.Ro
         // bluetooth status
         updateBluetooth();
 
+        //Bluetooth icon
+        mContext.getContentResolver().registerContentObserver(
+                Settings.System.getUriFor(Settings.System.BLUETOOTH_SHOW_BATTERY),
+                false, mSettingsObserver);
+
         // Alarm clock
         mIconController.setIcon(mSlotAlarmClock, R.drawable.stat_sys_alarm, null);
         mIconController.setIconVisibility(mSlotAlarmClock, false);
@@ -223,6 +229,10 @@ public class PhoneStatusBarPolicy implements Callback, RotationLockController.Ro
             mSuIndicatorVisible = Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.SHOW_SU_INDICATOR, 0) == 1;
             updateSu();
+
+            mShowBluetoothBattery = Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.BLUETOOTH_SHOW_BATTERY, 0) == 1;
+            updateBluetooth();
         }
 
         @Override
@@ -379,9 +389,9 @@ public class PhoneStatusBarPolicy implements Callback, RotationLockController.Ro
         if (mBluetooth != null) {
             bluetoothEnabled = mBluetooth.isBluetoothEnabled();
             if (mBluetooth.isBluetoothConnected()) {
-                if (mBluetoothBatteryLevel == null) {
+                if (mBluetoothBatteryLevel == null && !mShowBluetoothBattery) {
                     iconId = R.drawable.stat_sys_data_bluetooth_connected;
-                } else {
+                } else if (mBluetoothBatteryLevel != null && mShowBluetoothBattery) {
                     if (mBluetoothBatteryLevel<=0.15f) {
                         iconId = R.drawable.stat_sys_data_bluetooth_connected_battery_1;
                     } else if (mBluetoothBatteryLevel<=0.375f) {

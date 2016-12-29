@@ -168,5 +168,6 @@ public class SystemSettings {
         Settings.System.TOAST_ICON,
         Settings.System.FINGERPRINT_WAKE_UNLOCK,
         Settings.System.LOCKSCREEN_PIN_SCRAMBLE_LAYOUT,
+        Settings.System.OMNI_LOCKSCREEN_MEDIA_BLUR,
     };
 }

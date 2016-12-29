@@ -168,5 +168,6 @@ public class SystemSettings {
         Settings.System.BACK_GESTURE_HEIGHT,
         Settings.System.TOAST_ICON,
         Settings.System.FINGERPRINT_WAKE_UNLOCK,
+        Settings.System.OMNI_LOCKSCREEN_MEDIA_BLUR,
     };
 }

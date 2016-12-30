@@ -1,0 +1,14 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- ADB enabled, but not connected notification title -->
+    <string name="adb_not_connected_notification_title">ADB inactivo</string>
+    <string name="adb_active_custom_tile_not_connected">inactivo</string>
+
+    <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
+    <string name="system_error_vendorprint">La imágen del vendor no coincide con el sistema. Flashear la imágen del vendor <xliff:g id="string">%s</xliff:g> para este dispositivo</string>
+
+    <!-- label for item that screenrecord in phone options dialog -->
+    <string name="global_action_screenrecord">Grabar pantalla</string>
+
+    <!-- Screenshoot edit action -->
+    <string name="edit">Editar</string>
+</resources>

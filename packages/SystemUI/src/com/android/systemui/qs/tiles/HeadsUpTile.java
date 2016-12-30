@@ -27,7 +27,6 @@ import com.android.systemui.qs.GlobalSetting;
 import com.android.systemui.qs.QSTile;
 import com.android.systemui.R;
 
-/** Quick settings tile: Heads up **/
 public class HeadsUpTile extends QSTile<QSTile.BooleanState> {
 
     private final GlobalSetting mSetting;
@@ -57,7 +56,7 @@ public class HeadsUpTile extends QSTile<QSTile.BooleanState> {
     @Override
     public Intent getLongClickIntent() {
         return new Intent().setComponent(new ComponentName(
-            "com.android.settings", "com.android.settings.Settings$HeadsUpSettingsActivity"));
+            "com.android.settings", "com.android.settings.Settings$NotificationAppListActivity"));
     }
 
     @Override

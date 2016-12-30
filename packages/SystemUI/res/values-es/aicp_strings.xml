@@ -46,6 +46,11 @@
     <string name="accessibility_quick_settings_caffeine_on">Cafeína on</string>
     <string name="quick_settings_screenrecord">Grabar pantalla</string>
     <string name="quick_settings_screenrecord_on">Grabando...</string>
+    <string name="quick_settings_heads_up_label">Notificaciones emergentes</string>
+    <string name="accessibility_quick_settings_heads_up_off">Notif. emergentes desactivadas</string>
+    <string name="accessibility_quick_settings_heads_up_on">Notif. emergentes activadas</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">Se han desactivo las notif. emergentes</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">Se han activado las notif. emergentes</string>
 
     <!-- Screenshot Delete Toast -->
     <string name="delete_screenshot_toast">Captura de pantalla eliminada</string>

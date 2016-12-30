@@ -27,7 +27,7 @@
     <string name="accessibility_quick_settings_sync_on">Sync AN</string>
     <string name="accessibility_quick_settings_sync_changed_off">Sync deaktiviert</string>
     <string name="accessibility_quick_settings_sync_changed_on">Sync aktiviert</string>
-    <string name="quick_settings_expanded_desktop_label">Erweiterter Bildschirm</string>
+    <string name="quick_settings_expanded_desktop_label">Erweiterte Oberfläche</string>
     <string name="quick_settings_expanded_desktop">Erweitert</string>
     <string name="quick_settings_expanded_desktop_off">Normal</string>
     <string name="quick_settings_reboot_label">Neustart</string>
@@ -44,9 +44,23 @@
     <string name="quick_settings_caffeine_label">Koffein</string>
     <string name="accessibility_quick_settings_caffeine_off">Koffein AUS</string>
     <string name="accessibility_quick_settings_caffeine_on">Koffein AN</string>
+    <string name="quick_settings_screenrecord">Bildschirmaufnahme</string>
+    <string name="quick_settings_screenrecord_on">Aufnahme läuft ...</string>
+    <string name="quick_settings_heads_up_label">Pop-Up\'s</string>
+    <string name="accessibility_quick_settings_heads_up_off">Pop-Up\'s AUS</string>
+    <string name="accessibility_quick_settings_heads_up_on">Pop-Up\'s AN</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">Pop-Up\'s deaktiviert</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">Pop-Up\'s aktiviert</string>
+    <string name="quick_settings_pulse_enabled">Pulse Aktiviert</string>
+    <string name="quick_settings_pulse_disabled">Keine Visualisierung</string>
+    <string name="quick_settings_pulse_label">Pulse</string>
+    <string name="accessibility_quick_settings_pulse_off">Pulse AUS</string>
+    <string name="accessibility_quick_settings_pulse_on">Pulse AN</string>
+    <string name="accessibility_quick_settings_pulse_changed_off">Pulse deaktiviert</string>
+    <string name="accessibility_quick_settings_pulse_changed_on">Pulse aktiviert</string>
 
     <!-- Screenshot Delete Toast -->
-    <string name="delete_screenshot_toast">Bildschirnfoto gelöscht</string>
+    <string name="delete_screenshot_toast">Bildschirmfoto gelöscht</string>
 
     <!-- Navigation bar Tile -->
     <string name="quick_settings_navigation_bar">Navigationsleiste</string>
@@ -54,5 +68,13 @@
     <string name="quick_settings_smartbar_off">SmartBar AUS</string>
     <string name="quick_settings_fling">Fling</string>
     <string name="quick_settings_fling_off">Fling AUS</string>
+
+    <!-- Heads up snooze toast -->
+    <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Pop-Up Benachrichtigungen schlummern für 1 Minute.</string>
+    <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - Pop-Up Benachrichtigungen schlummern für <xliff:g id="number">%d</xliff:g> Minuten.</string>
+
+    <!-- Screenshot action -->
+    <string name="screenshot_abort_title">Kein Bildschirmfoto aufgenommen</string>
+    <string name="screenshot_abort_text">Aktion abgebrochen</string>
 
 </resources>

@@ -58,6 +58,8 @@
     <string name="accessibility_quick_settings_pulse_on">Pulse on</string>
     <string name="accessibility_quick_settings_pulse_changed_off">Pulse turned off</string>
     <string name="accessibility_quick_settings_pulse_changed_on">Pulse turned on</string>
+    <string name="quick_settings_locale_label">Language</string>
+    <string name="quick_settings_locale_more_locales_toast">Please configure multiple languages to enable toggle functionality</string>
 
     <!-- Screenshot Delete Toast -->
     <string name="delete_screenshot_toast">Screenshot Deleted</string>

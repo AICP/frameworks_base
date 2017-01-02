@@ -746,17 +746,19 @@ public class NavigationBarFragment extends Fragment implements Callbacks {
         mNavigationBarView.reorient();
 
         ButtonDispatcher recentsButton = mNavigationBarView.getRecentsButton();
-        recentsButton.setOnClickListener(this::onRecentsClick);
-        recentsButton.setOnTouchListener(this::onRecentsTouch);
-        recentsButton.setLongClickable(true);
-        recentsButton.setOnLongClickListener(this::onLongPressBackRecents);
+        recentsButton.setLongClickable(false);
+        //recentsButton.setOnClickListener(this::onRecentsClick);
+        //recentsButton.setOnTouchListener(this::onRecentsTouch);
+        //recentsButton.setOnLongClickListener(this::onLongPressBackRecents);
 
         ButtonDispatcher backButton = mNavigationBarView.getBackButton();
-        backButton.setLongClickable(true);
+        backButton.setLongClickable(false);
+        //backButton.setOnLongClickListener(this::onLongPressBackRecents);
 
         ButtonDispatcher homeButton = mNavigationBarView.getHomeButton();
-        homeButton.setOnTouchListener(this::onHomeTouch);
-        homeButton.setOnLongClickListener(this::onHomeLongClick);
+        homeButton.setLongClickable(false);
+        //homeButton.setOnTouchListener(this::onHomeTouch);
+        //homeButton.setOnLongClickListener(this::onHomeLongClick);
 
         ButtonDispatcher accessibilityButton = mNavigationBarView.getAccessibilityButton();
         accessibilityButton.setOnClickListener(this::onAccessibilityClick);

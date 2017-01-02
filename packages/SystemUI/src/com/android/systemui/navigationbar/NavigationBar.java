@@ -1151,13 +1151,14 @@ public class NavigationBar implements View.OnAttachStateChangeListener,
         mNavigationBarView.reorient();
 
         ButtonDispatcher recentsButton = mNavigationBarView.getRecentsButton();
-        recentsButton.setOnClickListener(this::onRecentsClick);
-        recentsButton.setOnTouchListener(this::onRecentsTouch);
-
+        recentsButton.setLongClickable(false);
+        //recentsButton.setOnClickListener(this::onRecentsClick);
+        //recentsButton.setOnTouchListener(this::onRecentsTouch);
         ButtonDispatcher homeButton = mNavigationBarView.getHomeButton();
-        homeButton.setOnTouchListener(this::onHomeTouch);
+        homeButton.setLongClickable(false);
+        //homeButton.setOnTouchListener(this::onHomeTouch);
 
-        reconfigureHomeLongClick();
+        //reconfigureHomeLongClick();
 
         ButtonDispatcher accessibilityButton = mNavigationBarView.getAccessibilityButton();
         accessibilityButton.setOnClickListener(this::onAccessibilityClick);

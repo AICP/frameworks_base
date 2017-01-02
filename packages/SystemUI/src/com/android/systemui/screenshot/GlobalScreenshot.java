@@ -283,6 +283,18 @@ class SaveImageInBackgroundTask extends AsyncTask<Void, Void, Void> {
                     r.getString(com.android.internal.R.string.share), shareAction);
             mNotificationBuilder.addAction(shareActionBuilder.build());
 
+            // Create an edit action for the notification
+            final Intent editScreenshootIntent = new Intent(Intent.ACTION_SEND);
+            editScreenshootIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    | Intent.FLAG_ACTIVITY_NEW_TASK);
+            editScreenshootIntent.setType("image/png");
+            editScreenshootIntent.putExtra(Intent.EXTRA_STREAM, uri);
+            editScreenshootIntent.setPackage("com.srbodroid.aicpmemo");
+            final PendingIntent editAction = PendingIntent.getActivity(context,  0, editScreenshootIntent,
+                    PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_ONE_SHOT);
+            mNotificationBuilder.addAction(R.drawable.ic_screenshoot_edit,
+                    r.getString(com.android.internal.R.string.edit), editAction);
+
             // Create a delete action for the notification
             PendingIntent deleteAction = PendingIntent.getBroadcast(context,  0,
                     new Intent(context, GlobalScreenshot.DeleteScreenshotReceiver.class)
@@ -292,26 +304,6 @@ class SaveImageInBackgroundTask extends AsyncTask<Void, Void, Void> {
                     R.drawable.ic_screenshot_delete,
                     r.getString(com.android.internal.R.string.delete), deleteAction);
             mNotificationBuilder.addAction(deleteActionBuilder.build());
-
-            // Create an edit action for the notification
-            Intent editScreenshootIntent = new Intent(Intent.ACTION_SEND);
-            editScreenshootIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    | Intent.FLAG_ACTIVITY_NEW_TASK);
-            editScreenshootIntent.setType("image/png");
-            editScreenshootIntent.putExtra(Intent.EXTRA_STREAM, uri);
-            editScreenshootIntent.setPackage("com.srbodroid.aicpmemo");
-            PendingIntent chooseEditAction = PendingIntent.getBroadcast(context, 0,
-                    new Intent(context, GlobalScreenshot.TargetChosenReceiver.class),
-                    PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_ONE_SHOT);
-            Intent chooserEditIntent = Intent.createChooser(editScreenshootIntent, null,
-                    chooseEditAction.getIntentSender())
-                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-            PendingIntent editAction = PendingIntent.getActivity(context, 0, chooserEditIntent,
-                    PendingIntent.FLAG_CANCEL_CURRENT);
-            Notification.Action.Builder editActionBuilder = new Notification.Action.Builder(
-                    R.drawable.ic_screenshoot_edit,
-                    r.getString(com.android.internal.R.string.edit), editAction);
-            mNotificationBuilder.addAction(editActionBuilder.build());
 
             mParams.imageUri = uri;
             mParams.image = null;

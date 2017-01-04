@@ -92,5 +92,7 @@ public class SystemSettings {
         Settings.System.AE_THEME,
         Settings.System.ACCELEROMETER_ROTATION_ANGLES,
         Settings.System.LOCKSCREEN_ROTATION,
+        Settings.System.NETWORK_TRAFFIC_STATE,
+        Settings.System.NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD,
     };
 }

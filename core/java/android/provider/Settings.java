@@ -5709,6 +5709,18 @@ public final class Settings {
          */
         public static final String FINGERPRINT_SUCCESS_VIB = "fingerprint_success_vib";
 
+        /**
+         * Wheter to show network traffic indicator in statusbar
+         * @hide
+         */
+        public static final String NETWORK_TRAFFIC_STATE = "network_traffic_state";
+
+        /**
+         * Network traffic inactivity threshold (default is 1 kBs)
+         * @hide
+         */
+        public static final String NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD = "network_traffic_autohide_threshold";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5805,6 +5817,8 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(SMART_PIXELS_ON_POWER_SAVE, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(MUSIC_TILE_TITLE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(FINGERPRINT_SUCCESS_VIB, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(NETWORK_TRAFFIC_STATE, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD, ANY_INTEGER_VALIDATOR);
         }
 
         /**

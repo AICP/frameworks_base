@@ -4073,6 +4073,18 @@ public final class Settings {
         */
         public static final String QS_FOOTER_WARNINGS = "qs_footer_warnings";
 
+         /**
+         * Wheter to show network traffic indicator in statusbar
+         * @hide
+         */
+        public static final String NETWORK_TRAFFIC_STATE = "network_traffic_state";
+
+        /**
+         * Network traffic inactivity threshold (default is 1 kBs)
+         * @hide
+         */
+        public static final String NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD = "network_traffic_autohide_threshold";
+
         /**
          * --- AICP System settings end
          *  Add new system settings above this comment
@@ -4247,6 +4259,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(QS_ROWS_LANDSCAPE);
             PRIVATE_SETTINGS.add(QS_COLUMNS_PORTRAIT);
             PRIVATE_SETTINGS.add(QS_COLUMNS_LANDSCAPE);
+            PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_STATE);
+            PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD);
         }
 
         /**

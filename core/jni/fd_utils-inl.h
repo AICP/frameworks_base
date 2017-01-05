@@ -390,7 +390,7 @@ class FileDescriptorTable {
   // Creates a new FileDescriptorTable. This function scans
   // /proc/self/fd for the list of open file descriptors and collects
   // information about them. Returns NULL if an error occurs.
-  static FileDescriptorTable* Create(bool permissive = false) {
+  static FileDescriptorTable* Create() {
     DIR* d = opendir(kFdPath);
     if (d == NULL) {
       ALOGE("Unable to open directory %s: %s", kFdPath, strerror(errno));
@@ -408,15 +408,12 @@ class FileDescriptorTable {
 
       FileDescriptorInfo* info = FileDescriptorInfo::createFromFd(fd);
       if (info == NULL) {
-        if (!permissive) {
-          if (closedir(d) == -1) {
-            ALOGE("Unable to close directory : %s", strerror(errno));
-          }
-          return NULL;
+        if (closedir(d) == -1) {
+          ALOGE("Unable to close directory : %s", strerror(errno));
         }
-      } else {
-        open_fd_map[fd] = info;
+        return NULL;
       }
+      open_fd_map[fd] = info;
     }
 
     if (closedir(d) == -1) {

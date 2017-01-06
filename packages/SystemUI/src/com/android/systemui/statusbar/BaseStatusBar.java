@@ -533,9 +533,6 @@ public abstract class BaseStatusBar extends SystemUI implements
                 updateLockscreenNotificationSetting();
 
                 userSwitched(mCurrentUserId);
-
-                SidebarObserver observer = new SidebarObserver(mHandler);
-                observer.observe();
             } else if (Intent.ACTION_USER_ADDED.equals(action)) {
                 updateCurrentProfilesCache();
             } else if (Intent.ACTION_USER_PRESENT.equals(action)) {
@@ -2828,48 +2825,6 @@ public abstract class BaseStatusBar extends SystemUI implements
         return mStatusBarKeyguardViewManager.isSecure();
     }
 
-    @Override
-    public void showAssistDisclosure() {
-        if (mAssistManager != null) {
-            mAssistManager.showDisclosure();
-        }
-    }
-
-    @Override
-    public void startAssist(Bundle args) {
-        if (mAssistManager != null) {
-            mAssistManager.startAssist(args);
-        }
-    }
-
-    class SidebarObserver extends ContentObserver {
-        SidebarObserver(Handler handler) {
-            super(handler);
-        }
-
-        void observe() {
-            ContentResolver resolver = mContext.getContentResolver();
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.APP_SIDEBAR_POSITION), false, this);
-            update();
-        }
-
-        @Override
-        public void onChange(boolean selfChange) {
-            update();
-        }
-
-        public void update() {
-            ContentResolver resolver = mContext.getContentResolver();
-            int sidebarPosition = Settings.System.getInt(
-                    resolver, Settings.System.APP_SIDEBAR_POSITION, AppSidebar.SIDEBAR_POSITION_LEFT);
-            if (sidebarPosition != mSidebarPosition) {
-                mSidebarPosition = sidebarPosition;
-                mWindowManager.updateViewLayout(mAppSidebar, getAppSidebarLayoutParams(sidebarPosition));
-            }
-        }
-    }
-
     protected void addSidebarView() {
         mAppSidebar = (AppSidebar)View.inflate(mContext, R.layout.app_sidebar, null);
         mWindowManager.addView(mAppSidebar, getAppSidebarLayoutParams(mSidebarPosition));
@@ -2898,5 +2853,19 @@ public abstract class BaseStatusBar extends SystemUI implements
         lp.setTitle("AppSidebar");
 
         return lp;
+    }
+
+    @Override
+    public void showAssistDisclosure() {
+        if (mAssistManager != null) {
+            mAssistManager.showDisclosure();
+        }
+    }
+
+    @Override
+    public void startAssist(Bundle args) {
+        if (mAssistManager != null) {
+            mAssistManager.startAssist(args);
+        }
     }
 }

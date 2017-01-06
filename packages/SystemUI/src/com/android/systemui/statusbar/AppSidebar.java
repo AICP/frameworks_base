@@ -181,14 +181,16 @@ public class AppSidebar extends TriggerOverlayView {
                     mScrollView.onTouchEvent(ev);
                     mFirstTouch = true;
                 } else
-                    updateAutoHideTimer(AUTO_HIDE_DELAY);
+                    updateAutoHideTimer(Settings.System.getInt(
+                            mContext.getContentResolver(), Settings.System.APP_SIDEBAR_HIDE_TIMEOUT, 3000));
                 break;
             case MotionEvent.ACTION_MOVE:
                 cancelAutoHideTimer();
                 break;
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
-                updateAutoHideTimer(AUTO_HIDE_DELAY);
+                updateAutoHideTimer(Settings.System.getInt(
+                        mContext.getContentResolver(), Settings.System.APP_SIDEBAR_HIDE_TIMEOUT, 3000));
                 if (mState != SIDEBAR_STATE.CLOSED)
                     mState = SIDEBAR_STATE.OPENED;
                 if (mFirstTouch) {
@@ -210,7 +212,8 @@ public class AppSidebar extends TriggerOverlayView {
                 return true;
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
-                updateAutoHideTimer(AUTO_HIDE_DELAY);
+                updateAutoHideTimer(Settings.System.getInt(
+                        mContext.getContentResolver(), Settings.System.APP_SIDEBAR_HIDE_TIMEOUT, 3000));
                 break;
             case MotionEvent.ACTION_MOVE:
             default:
@@ -479,7 +482,8 @@ public class AppSidebar extends TriggerOverlayView {
         protected void onScrollChanged(int l, int t, int oldl, int oldt) {
             super.onScrollChanged(l, t, oldl, oldt);
             if (Math.abs(oldt - t) <= 1 && mSnapTrigger) {
-                updateAutoHideTimer(AUTO_HIDE_DELAY);
+                updateAutoHideTimer(Settings.System.getInt(
+                        mContext.getContentResolver(), Settings.System.APP_SIDEBAR_HIDE_TIMEOUT, 3000));
                 removeCallbacks(mSnapRunnable);
                 postDelayed(mSnapRunnable, 100);
             }
@@ -529,6 +533,8 @@ public class AppSidebar extends TriggerOverlayView {
                     Settings.System.APP_SIDEBAR_TRIGGER_HEIGHT), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.APP_SIDEBAR_SHOW_TRIGGER), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.APP_SIDEBAR_HIDE_TIMEOUT), false, this);
             update();
         }
 
@@ -601,7 +607,8 @@ public class AppSidebar extends TriggerOverlayView {
             mWM.addView(mFolder, getFolderLayoutParams(iconY, folder.getHeight()));
             mFolder.setVisibility(View.VISIBLE);
             ArrayList<View> items = folder.getItemsInReadingOrder();
-            updateAutoHideTimer(AUTO_HIDE_DELAY);
+            updateAutoHideTimer(Settings.System.getInt(
+                    mContext.getContentResolver(), Settings.System.APP_SIDEBAR_HIDE_TIMEOUT, 3000));
             for (View item : items)
                 item.setOnClickListener(mItemClickedListener);
             folder.setOnTouchListener(new OnTouchListener() {
@@ -622,7 +629,8 @@ public class AppSidebar extends TriggerOverlayView {
         if (mFolder != null) {
             mWM.removeView(mFolder);
             mFolder = null;
-            updateAutoHideTimer(AUTO_HIDE_DELAY);
+            updateAutoHideTimer(Settings.System.getInt(
+                    mContext.getContentResolver(), Settings.System.APP_SIDEBAR_HIDE_TIMEOUT, 3000));
         }
     }
 

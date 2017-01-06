@@ -624,14 +624,14 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     Settings.System.TRANSLUCENT_HEADER_PRECENTAGE_PREFERENCE_KEY), false, this,
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                 Settings.System.RECENT_APPS_ENABLED_PREFERENCE_KEY),
-                 false, this, UserHandle.USER_ALL);
+                    Settings.System.RECENT_APPS_ENABLED_PREFERENCE_KEY),
+                    false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                 Settings.System.RECENT_APPS_SCALE_PREFERENCE_KEY),
-                 false, this);
+                    Settings.System.RECENT_APPS_SCALE_PREFERENCE_KEY),
+                    false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                 Settings.System.RECENT_APPS_RADIUS_PREFERENCE_KEY),
-                 false, this);
+                    Settings.System.RECENT_APPS_RADIUS_PREFERENCE_KEY),
+                    false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.APP_SIDEBAR_POSITION),
                     false, this, UserHandle.USER_ALL);
@@ -770,6 +770,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     Settings.System.RECENT_APPS_RADIUS_PREFERENCE_KEY, 3);
 
             RecentsActivity.updateRadiusScale(mScaleRecents,mRadiusRecents);
+            }
 
             int sidebarPosition = Settings.System.getInt(resolver,
                     Settings.System.APP_SIDEBAR_POSITION,
@@ -778,7 +779,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 mSidebarPosition = sidebarPosition;
                 removeSidebarView();
                 addSidebarView();
-            }
             }
         }
     }
@@ -1246,6 +1246,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mTickerEnabled = Settings.System.getIntForUser(mContext.getContentResolver(),
                     Settings.System.STATUS_BAR_SHOW_TICKER, 0, UserHandle.USER_CURRENT) == 1;
         initTickerView();
+
+        addSidebarView();
 
         // set the initial view visibility
         setAreThereNotifications();

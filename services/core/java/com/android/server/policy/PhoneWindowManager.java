@@ -1194,9 +1194,12 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
             if (position == EdgeGesturePosition.TOP) {
                 target = mStatusBar;
-            } else if (position == EdgeGesturePosition.BOTTOM  && mNavigationBarOnBottom) {
+            } else if (position == EdgeGesturePosition.BOTTOM  && (NAV_BAR_BOTTOM == 0)) {
                 target = mNavigationBar;
-            } else if (position == EdgeGesturePosition.RIGHT && !mNavigationBarOnBottom) {
+            } else if (position == EdgeGesturePosition.LEFT
+                    && (NAV_BAR_BOTTOM != 0) && mNavigationBarLeftInLandscape) {
+                target = mNavigationBar;
+            } else if (position == EdgeGesturePosition.RIGHT && ((NAV_BAR_BOTTOM != 0) && !mNavigationBarLeftInLandscape)) {
                 target = mNavigationBar;
             }
 
@@ -1222,8 +1225,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 flags |= EdgeGesturePosition.TOP.FLAG;
             }
             if (mNavigationBar != null && !mNavigationBar.isVisibleLw() && !isStatusBarKeyguard()) {
-                if (mNavigationBarOnBottom) {
+                if (NAV_BAR_BOTTOM == 0) {
                     flags |= EdgeGesturePosition.BOTTOM.FLAG;
+                } else if (mNavigationBarLeftInLandscape) {
+                    flags |= EdgeGesturePosition.LEFT.FLAG;
                 } else {
                     flags |= EdgeGesturePosition.RIGHT.FLAG;
                 }

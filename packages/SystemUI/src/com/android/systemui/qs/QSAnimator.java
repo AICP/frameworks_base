@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnAttachStateChangeListener;
 import android.view.View.OnLayoutChangeListener;
+import android.widget.HorizontalScrollView;
 import android.widget.TextView;
 
 import com.android.systemui.qs.PagedTileLayout.PageListener;
@@ -63,14 +64,18 @@ public class QSAnimator implements Callback, PageListener, Listener, OnLayoutCha
 
     private boolean mAllowFancy;
     private boolean mFullRows;
-    private int mNumQuickTiles;
+    private boolean mNotScrolled = true;
     private float mLastPosition;
     private QSTileHost mHost;
 
-    public QSAnimator(QSContainer container, QuickQSPanel quickPanel, QSPanel panel) {
+    // omni additions
+    private HorizontalScrollView mQuickQsPanelScroller;
+
+    public QSAnimator(QSContainer container, QuickQSPanel quickPanel, QSPanel panel,HorizontalScrollView quickPanelScroller) {
         mQsContainer = container;
         mQuickQsPanel = quickPanel;
         mQsPanel = panel;
+        mQuickQsPanelScroller = quickPanelScroller;
         mQsPanel.addOnAttachStateChangeListener(this);
         container.addOnLayoutChangeListener(this);
         QSTileLayout tileLayout = mQsPanel.getTileLayout();
@@ -103,7 +108,7 @@ public class QSAnimator implements Callback, PageListener, Listener, OnLayoutCha
     @Override
     public void onViewAttachedToWindow(View v) {
         TunerService.get(mQsContainer.getContext()).addTunable(this, ALLOW_FANCY_ANIMATION,
-                MOVE_FULL_ROWS, QuickQSPanel.NUM_QUICK_TILES);
+                MOVE_FULL_ROWS);
     }
 
     @Override
@@ -118,13 +123,17 @@ public class QSAnimator implements Callback, PageListener, Listener, OnLayoutCha
     public void onTuningChanged(String key, String newValue) {
         if (ALLOW_FANCY_ANIMATION.equals(key)) {
             mAllowFancy = newValue == null || Integer.parseInt(newValue) != 0;
-            if (!mAllowFancy) {
+            boolean notScrolledBackup = mNotScrolled;
+            notScrolled();
+            if (!mAllowFancy && mNotScrolled == notScrolledBackup) {
+                // If mNotScrolled != notScrolledBackup, clearAnimationState() was already called
+                // during notScrolled()
                 clearAnimationState();
             }
         } else if (MOVE_FULL_ROWS.equals(key)) {
             mFullRows = newValue == null || Integer.parseInt(newValue) != 0;
         } else if (QuickQSPanel.NUM_QUICK_TILES.equals(key)) {
-            mNumQuickTiles = mQuickQsPanel.getNumQuickTiles(mQsContainer.getContext());
+            //mNumQuickTiles = mQuickQsPanel.getNumQuickTiles(mQsContainer.getContext());
             clearAnimationState();
         }
         updateAnimators();
@@ -166,7 +175,7 @@ public class QSAnimator implements Callback, PageListener, Listener, OnLayoutCha
             }
             final TextView label = ((QSTileView) tileView).getLabel();
             final View tileIcon = tileView.getIcon().getIconView();
-            if (count < mNumQuickTiles && mAllowFancy) {
+            if (count < mQuickQsPanel.getNumVisibleQuickTiles() && allowFancy()) {
                 // Quick tiles.
                 QSTileBaseView quickTileView = mQuickQsPanel.getTileView(tile);
                 if (quickTileView != null) {
@@ -193,7 +202,7 @@ public class QSAnimator implements Callback, PageListener, Listener, OnLayoutCha
                     mAllViews.add(tileIcon);
                     mAllViews.add(quickTileView);
                 }
-            } else if (mFullRows && isIconInAnimatedRow(count)) {
+            } else if (fullRows() && isIconInAnimatedRow(count)) {
                 // TODO: Refactor some of this, it shares a lot with the above block.
                 // Move the last tile position over by the last difference between quick tiles.
                 // This makes the extra icons seems as if they are coming from positions in the
@@ -210,13 +219,16 @@ public class QSAnimator implements Callback, PageListener, Listener, OnLayoutCha
 
                 mAllViews.add(tileIcon);
             } else {
-                firstPageBuilder.addFloat(tileView, "alpha", 0, 1);
+                QSTileBaseView quickTileView = mQuickQsPanel.getTileView(tile);
+                if (quickTileView != null) {
+                    mAllViews.add(quickTileView);
+                }
             }
             mAllViews.add(tileView);
             mAllViews.add(label);
             count++;
         }
-        if (mAllowFancy) {
+        if (allowFancy()) {
             // Make brightness appear static position and alpha in through second half.
             View brightness = mQsPanel.getBrightnessView();
             if (brightness != null) {
@@ -250,6 +262,12 @@ public class QSAnimator implements Callback, PageListener, Listener, OnLayoutCha
             translationYBuilder.setInterpolator(interpolatorBuilder.getYInterpolator());
             mTranslationXAnimator = translationXBuilder.build();
             mTranslationYAnimator = translationYBuilder.build();
+        } else {
+            mFirstPageAnimator = new TouchAnimator.Builder()
+                .addFloat(mQuickQsPanel, "alpha", 1, 0)
+                .setListener(mNonFirstPageListener)
+                .setEndDelay(.5f)
+                .build();
         }
         mNonfirstPageAnimator = new TouchAnimator.Builder()
                 .addFloat(mQuickQsPanel, "alpha", 1, 0)
@@ -263,7 +281,7 @@ public class QSAnimator implements Callback, PageListener, Listener, OnLayoutCha
             return false;
         }
         final int columnCount = mPagedLayout.getColumnCount();
-        return count < ((mNumQuickTiles + columnCount - 1) / columnCount) * columnCount;
+        return count < ((mQuickQsPanel.getNumVisibleQuickTiles() + columnCount - 1) / columnCount) * columnCount;
     }
 
     private void getRelativePosition(int[] loc1, View view, View parent) {
@@ -289,7 +307,7 @@ public class QSAnimator implements Callback, PageListener, Listener, OnLayoutCha
             return;
         }
         mLastPosition = position;
-        if (mOnFirstPage && mAllowFancy) {
+        if (mOnFirstPage && allowFancy()) {
             mQuickQsPanel.setAlpha(1);
             mFirstPageAnimator.setPosition(position);
             mFirstPageDelayedAnimator.setPosition(position);
@@ -371,4 +389,20 @@ public class QSAnimator implements Callback, PageListener, Listener, OnLayoutCha
             setPosition(mLastPosition);
         }
     };
+
+    private boolean allowFancy() {
+        return mAllowFancy && notScrolled();
+    }
+
+    private boolean fullRows() {
+        return mFullRows && notScrolled();
+    }
+
+    private boolean notScrolled() {
+        if ((mQuickQsPanelScroller.getScrollX() == 0) != mNotScrolled) {
+            mNotScrolled = !mNotScrolled;
+            clearAnimationState();
+        }
+        return mNotScrolled;
+    }
 }

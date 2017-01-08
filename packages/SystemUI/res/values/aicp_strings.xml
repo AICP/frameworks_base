@@ -101,10 +101,8 @@
 
     <!-- PA Pie Tile -->
     <string name="quick_settings_pie">Pie</string>
-    <string name="accessibility_quick_settings_pie_off">Pie off</string>
-    <string name="accessibility_quick_settings_pie_on">Pie on</string>
-    <string name="accessibility_quick_settings_pie_changed_off">Pie turned off</string>
-    <string name="accessibility_quick_settings_pie_changed_on">Pie turned on</string>
+    <string name="quick_settings_pie_off">Pie off</string>
+    <string name="quick_settings_pie_on">Pie on</string>
 
     <!-- Kill app toast -->
     <string name="app_killed_message">App Killed</string>

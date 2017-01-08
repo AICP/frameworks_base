@@ -18,6 +18,7 @@ package com.android.systemui.statusbar.phone;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -34,6 +35,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -147,6 +149,7 @@ public class QuickStatusBarHeader extends BaseStatusBarHeader implements
         mSettingsButton = (SettingsButton) findViewById(R.id.settings_button);
         mSettingsContainer = findViewById(R.id.settings_button_container);
         mSettingsButton.setOnClickListener(this);
+        mSettingsButton.setOnLongClickListener(mAicpLongClickListener);
 
         mAlarmStatusCollapsed = findViewById(R.id.alarm_status_collapsed);
         mAlarmStatus = (TextView) findViewById(R.id.alarm_status);
@@ -419,6 +422,12 @@ public class QuickStatusBarHeader extends BaseStatusBarHeader implements
                 true /* dismissShade */);
     }
 
+    private void startAicpExtrasActivity() {
+        mActivityStarter.startActivity(new Intent().setComponent(new ComponentName(
+                "com.lordclockan", "com.lordclockan.aicpextras.MainActivity")),
+                true /* dismissShade */);
+    }
+
     @Override
     public void setNextAlarmController(NextAlarmController nextAlarmController) {
         mNextAlarmController = nextAlarmController;
@@ -545,4 +554,15 @@ public class QuickStatusBarHeader extends BaseStatusBarHeader implements
             }
         }
     }
+
+    private OnLongClickListener mAicpLongClickListener = new OnLongClickListener() {
+        @Override
+        public boolean onLongClick(View v) {
+            if (v == mSettingsButton) {
+                startAicpExtrasActivity();
+                return true;
+            }
+            return false;
+        }
+    };
 }

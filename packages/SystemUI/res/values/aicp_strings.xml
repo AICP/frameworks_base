@@ -61,6 +61,10 @@
     <string name="accessibility_quick_settings_pulse_changed_on">Pulse turned on</string>
     <string name="quick_settings_locale_label">Language</string>
     <string name="quick_settings_locale_more_locales_toast">Please configure multiple languages to enable toggle functionality</string>
+    <string name="quick_settings_sound_label">Sound</string>
+    <string name="quick_settings_sound_ring">Ring</string>
+    <string name="quick_settings_sound_vibrate">Vibrate</string>
+    <string name="quick_settings_sound_silent">Silent</string>
 
     <!-- Screenshot Delete Toast -->
     <string name="delete_screenshot_toast">Screenshot Deleted</string>

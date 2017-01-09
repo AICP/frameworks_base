@@ -44,4 +44,6 @@
         <item name="android:shadowDy">2.0</item>
     </style>
 
+    <style name="BatteryMeterViewDrawable.Solid"/>
+
 </resources>

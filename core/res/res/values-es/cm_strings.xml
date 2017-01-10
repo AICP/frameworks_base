@@ -28,22 +28,31 @@
   <!-- label for item that opens the profile choosing dialog -->
   <string name="global_action_choose_profile">Perfil</string>
   <!-- label for item that restarts the phone in phone options dialog -->
+  <string name="global_action_reboot">Restart</string>
   <!-- label for current user in phone options dialog -->
   <string name="global_action_current_user">Actual</string>
   <!-- status message in phone options dialog for screenshot action -->
   <!-- Restart menu -->
   <!-- Button to restart the phone, within the Restart Options dialog -->
+   <string name="reboot_reboot">Reiniciar</string>
   <!-- Button to restart the phone into recovery, within the Restart Options dialog -->
-  <string name="reboot_recovery">Recovery</string>
+  <string name="reboot_recovery">Modo Recovery</string>
   <!-- Button to restart the phone into bootloader, within the Restart Options dialog -->
   <string name="reboot_bootloader">Modo Bootloader</string>
   <!-- Button to restart the phone into download, within the Restart Options dialog -->
-  <string name="reboot_download">Descargar</string>
+  <string name="reboot_download">Modo Descarga</string>
   <!-- Button to soft restart the device, within the Restart Options dialog -->
+  <string name="reboot_soft">Reinicio rápido</string>
+  <!-- Button to soft reboot the device, within the Reboot Options dialog -->
+  <string name="reboot_systemui">Reiniciar SystemUI</string>
   <!-- Title of dialog to confirm restarting. -->
+  <string name="reboot_title">Reiniciar</string>
   <!-- Restart Confirmation Dialog.  When the user chooses to restart the device, there will
          be a confirmation dialog.  This is the message. -->
+  <string name="reboot_confirm" product="tablet">La tableta se reiniciará.</string>
+  <string name="reboot_confirm" product="default">El teléfono se reiniciará.</string>
   <!-- Restart Progress Dialog. This is shown if the user chooses to restart the phone. -->
+  <string name="reboot_progress">Reiniciando\u2026</string>
   <!-- ADB over network notification -->
   <string name="adb_net_active_notification_title">ADB sobre red activado</string>
   <!-- ADB over USB and network notification -->

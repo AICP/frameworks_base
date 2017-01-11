@@ -2688,6 +2688,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         mDisplay = display;
 
         final Resources res = mContext.getResources();
+        final ContentResolver resolver = mContext.getContentResolver();
         int shortSize, longSize;
         if (width > height) {
             shortSize = height;
@@ -2723,6 +2724,17 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         mNavigationBarCanMove = width != height && shortSizeDp < 600;
 
         mHasNavigationBar = res.getBoolean(com.android.internal.R.bool.config_showNavigationBar);
+
+        // Override prop based on our internal config. carlosavignano@aospa.co
+        // TODO> Create a setting helper to centralize navigation bar settings.
+        final boolean defaultToNavigationBar = res
+                .getBoolean(com.android.internal.R.bool.config_defaultToNavigationBar);
+        mNavBarEnabled = Settings.System.getIntForUser(resolver,
+                Settings.System.NAVIGATION_BAR_ENABLED, defaultToNavigationBar ? 1 : 0,
+                        UserHandle.USER_CURRENT) == 1;
+        if (mDeviceHardwareKeys != 0) {
+            SystemProperties.set("qemu.hw.mainkeys", mNavBarEnabled ? "0" : "1");
+        }
 
         // Allow a system property to override this. Used by the emulator.
         // See also hasNavigationBar().
@@ -2785,6 +2797,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
     public void updateSettings() {
         ContentResolver resolver = mContext.getContentResolver();
+        Resources resources = mContext.getResources();
         boolean updateRotation = false;
         synchronized (mLock) {
             mEndcallBehavior = Settings.System.getIntForUser(resolver,
@@ -2833,10 +2846,17 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     Settings.System.THREE_FINGER_GESTURE, 0, UserHandle.USER_CURRENT) == 1;
             enableSwipeThreeFingerGesture(threeFingerGesture);
 
+            final boolean defaultToNavigationBar = resources
+                    .getBoolean(com.android.internal.R.bool.config_defaultToNavigationBar);
+
             final boolean navBarEnabled = Settings.System.getIntForUser(resolver,
-                    Settings.System.NAVIGATION_BAR_ENABLED, 0, UserHandle.USER_CURRENT) == 1;
+                    Settings.System.NAVIGATION_BAR_ENABLED, defaultToNavigationBar ? 1 : 0,
+                            UserHandle.USER_CURRENT) == 1;
             if (navBarEnabled != mNavBarEnabled) {
                 mNavBarEnabled = navBarEnabled;
+                if (mDeviceHardwareKeys != 0) {
+                    SystemProperties.set("qemu.hw.mainkeys", mNavBarEnabled ? "0" : "1");
+                }
             }
 
             readConfigurationDependentBehaviors();

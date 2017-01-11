@@ -60,4 +60,7 @@
     <java-symbol type="integer" name="config_longPressOnAppSwitchKeyBehavior" />
     <java-symbol type="integer" name="config_longPressOnCameraKeyBehavior" />
 
+    <!-- Internal default to navigation bar value -->
+    <java-symbol type="bool" name="config_defaultToNavigationBar" />
+
 </resources>

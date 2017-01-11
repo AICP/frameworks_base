@@ -19,6 +19,7 @@
 
     <!-- Quick Settings tiles -->
     <string name="quick_settings_screenshot_label">Captura de pantalla</string>
+    <string name="quick_settings_region_screenshot_label">Captura de pantalla parcial</string>
     <string name="quick_settings_adb_network">ADB sobre red</string>
     <string name="quick_settings_network_adb_enabled_label">Habilitado</string>
     <string name="quick_settings_network_adb_disabled_label">Deshabilitado</string>
@@ -51,6 +52,19 @@
     <string name="accessibility_quick_settings_heads_up_on">Notif. emergentes activadas</string>
     <string name="accessibility_quick_settings_heads_up_changed_off">Se han desactivo las notif. emergentes</string>
     <string name="accessibility_quick_settings_heads_up_changed_on">Se han activado las notif. emergentes</string>
+    <string name="quick_settings_pulse_enabled">Pulso habilitado</string>
+    <string name="quick_settings_pulse_disabled">Sin ecualizador</string>
+    <string name="quick_settings_pulse_label">Pulso</string>
+    <string name="accessibility_quick_settings_pulse_off">Pulse desactivado</string>
+    <string name="accessibility_quick_settings_pulse_on">Pulse activado</string>
+    <string name="accessibility_quick_settings_pulse_changed_off">Pulse desactivado</string>
+    <string name="accessibility_quick_settings_pulse_changed_on">Pulse activado</string>
+    <string name="quick_settings_locale_label">Idioma</string>
+    <string name="quick_settings_locale_more_locales_toast">Es necesario configurar múltiples idiomas para que este interruptor funcione</string>
+    <string name="quick_settings_sound_label">Sonido</string>
+    <string name="quick_settings_sound_ring">Sonar</string>
+    <string name="quick_settings_sound_vibrate">Vibrar</string>
+    <string name="quick_settings_sound_silent">Silencio</string>
 
     <!-- Screenshot Delete Toast -->
     <string name="delete_screenshot_toast">Captura de pantalla eliminada</string>
@@ -69,5 +83,9 @@
     <!-- Screenshot action -->
     <string name="screenshot_abort_title">No se capturó la pantalla</string>
     <string name="screenshot_abort_text">Operación cancelada</string>
+
+    <!-- Aicp Extras Tile -->
+    <string name="quick_aicp_extras_label">Aicp Extras</string>
+    <string name="quick_aicp_extras_toast">Jajaja, esperabas que la pulsación larga mostrara algo!!!</string>
 
 </resources>

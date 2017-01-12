@@ -88,4 +88,40 @@
     <string name="quick_aicp_extras_label">Aicp Extras</string>
     <string name="quick_aicp_extras_toast">Jajaja, esperabas que la pulsación larga mostrara algo!!!</string>
 
+    <!-- App sidebar -->
+    <string name="default_folder_text">Carpeta</string>
+    <string name="title_activity_sidebar_configuration">Configuración de contenido de la barra</string>
+    <string name="action_save">Guardar</string>
+    <string name="toast_items_saved">Contenido de la barra guardado.</string>
+    <string name="content_setup_instructions">Añadir elementos a la barra presionando de forma prolongada en la derecha de cualquier elemento y arrastrándolo a la barra.\n\nCombinar elementos en carpetas soltándolos sobre un elemento existente en la barra.\n\nPara borrar un elemento arrástrelo fuera de la \@appbar.</string>
+    <string name="content_setup_dismiss">Continuar</string>
+    <string name="toast_not_installed">La aplicación no está instalada</string>
+
+    <!-- PA Pie controls -->
+    <string name="pie_hour_format_12">hh:mm</string>
+    <string name="pie_hour_format_24">HH:mm</string>
+    <string name="pie_am_pm">a</string>
+
+    <!-- PA Pie Tile -->
+    <string name="quick_settings_pie">Pie</string>
+    <string name="quick_settings_pie_off">Pie activado</string>
+    <string name="quick_settings_pie_on">Pie desactivado</string>
+
+    <!-- Kill app toast -->
+    <string name="app_killed_message">Aplicación cerrada</string>
+
+    <!-- Ambient Display Tile -->
+    <string name="quick_settings_ambient_display_label">Pantalla ambiente</string>
+    <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_ambient_display_off">Pantalla ambiente desactivada.</string>
+    <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_ambient_display_on">Pantalla ambiente activada.</string>
+    <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_ambient_display_changed_off">Pantalla ambiente desactivada.</string>
+    <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_ambient_display_changed_on">Pantalla ambiente activada.</string>
+
+    <!-- Application picker Tile -->
+    <string name="quick_settings_app_picker">Selector de aplicación</string>
+
 </resources>

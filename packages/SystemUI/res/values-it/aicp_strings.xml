@@ -41,6 +41,22 @@
     <string name="quick_settings_caffeine_label">Caffeina</string>
     <string name="accessibility_quick_settings_caffeine_off">Caffeina disattivata</string>
     <string name="accessibility_quick_settings_caffeine_on">Caffeina attivata</string>
+    <string name="quick_settings_screenrecord">Registra schermo</string>
+    <string name="quick_settings_screenrecord_on">Registrazione ...</string>
+    <string name="quick_settings_heads_up_label">Heads up</string>
+    <string name="accessibility_quick_settings_heads_up_off">Heads up spento</string>
+    <string name="accessibility_quick_settings_heads_up_on">Heads up acceso</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">Heads up disattivato</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">Heads up attivato</string>
+    <string name="quick_settings_pulse_enabled">Pulse abilitato</string>
+    <string name="quick_settings_pulse_disabled">Nessun visualizzatore</string>
+    <string name="quick_settings_pulse_label">Pulse</string>
+    <string name="accessibility_quick_settings_pulse_off">Pulse spento</string>
+    <string name="accessibility_quick_settings_pulse_on">Pulse acceso</string>
+    <string name="accessibility_quick_settings_pulse_changed_off">Pulse disattivato</string>
+    <string name="accessibility_quick_settings_pulse_changed_on">Pulse attivato</string>
+    <string name="quick_settings_locale_label">Lingua</string>
+    <string name="quick_settings_locale_more_locales_toast">Si prega di configurare più lingue per abilitare la funzionalità attiva/disattiva</string>
 
     <!-- Screenshot Delete Toast -->
     <string name="delete_screenshot_toast">Screenshot eliminato</string>
@@ -59,5 +75,30 @@
     <!-- Screenshot action -->
     <string name="screenshot_abort_title">Nessun screenshot preso</string>
     <string name="screenshot_abort_text">Operazione fallita</string>
-  
+
+    <!-- Aicp Extras Tile -->
+    <string name="quick_aicp_extras_label">Aicp Extras</string>
+    <string name="quick_aicp_extras_toast">LOL, credete davvero che quel click lungo vi porterà da qualche parte!!!</string>
+
+    <!-- App sidebar -->
+    <string name="default_folder_text">Cartella</string>
+    <string name="title_activity_sidebar_configuration">Imposta contenuti appbar</string>
+    <string name="action_save">Salava</string>
+    <string name="toast_items_saved">Gli elementi dell\'appbar sono stati salvati.</string>
+    <string name="content_setup_instructions">Aggiungi gli elementi nell\'appbar premendo a lungo su qualsiasi elemento sulla destra e trascinalo verso l\'appbar.\n\nCombina gli elementi in cartelle trascinado un elemento sopra qualsiasi altro elemento esistente nella appbar.\n\nPer rimuovere un elemento basta semplicemente trascinarlo fuori dall\'appbar.</string>
+    <string name="content_setup_dismiss">Continua</string>
+    <string name="toast_not_installed">Applicazione non installata</string>
+
+    <!-- PA Pie controls -->
+    <string name="pie_hour_format_12">hh:mm</string>
+    <string name="pie_hour_format_24">HH:mm</string>
+    <string name="pie_am_pm">un</string>
+
+    <!-- PA Pie Tile -->
+    <string name="quick_settings_pie">Pie</string>
+    <string name="quick_settings_pie_off">Pie spenta</string>
+    <string name="quick_settings_pie_on">Pie accesa</string>
+
+    <!-- Kill app toast -->
+    <string name="app_killed_message">Termina App</string>
 </resources>

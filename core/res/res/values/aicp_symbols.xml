@@ -141,4 +141,7 @@
   <!-- Available icon mask paths for the adaptive icon shape setting -->
   <java-symbol type="array" name="system_icon_masks" />
 
+  <!-- Statusbar Burn in protection -->
+  <java-symbol type="bool" name="config_statusBarBurnInProtection" />
+  <java-symbol type="integer" name="config_shift_interval" />
 </resources>

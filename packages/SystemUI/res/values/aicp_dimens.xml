@@ -64,4 +64,8 @@
 
     <!-- Power Menu Lite-->
     <dimen name="global_actions_light_icon_padding">32dp</dimen>
+
+    <!-- Statusbar burnin protection-->
+    <dimen name="burnin_protection_horizontal_shift">3dp</dimen>
+    <dimen name="burnin_protection_vertical_shift">1dp</dimen>
 </resources>

@@ -35,4 +35,8 @@
     <dimen name="status_bar_carrier_height">14dp</dimen>
 
     <dimen name="qs_temperatur_icon_size">16sp</dimen>
+
+    <!-- Burn-in protection -->
+    <dimen name="horizontal_max_swift">3.0dp</dimen>
+    <dimen name="vertical_max_swift">1.0dp</dimen>
 </resources>

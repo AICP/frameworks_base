@@ -397,6 +397,10 @@ public class PowerProfile {
      * @return the average current in milliAmps.
      */
     public double getAveragePowerOrDefault(String type, double defaultValue) {
+        final int defaultCapacity = SystemProperties.getInt("ro.battery.capacity", 0);
+        if (defaultCapacity != 0 && type.equals(POWER_BATTERY_CAPACITY)) {
+            return (double) defaultCapacity;
+        }
         if (sPowerMap.containsKey(type)) {
             Object data = sPowerMap.get(type);
             if (data instanceof Double[]) {
@@ -417,7 +421,7 @@ public class PowerProfile {
     public double getAveragePower(String type) {
         return getAveragePowerOrDefault(type, 0);
     }
-    
+
     /**
      * Returns the average current in mA consumed by the subsystem for the given level.
      * @param type the subsystem type

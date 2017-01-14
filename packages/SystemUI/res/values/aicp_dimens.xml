@@ -61,4 +61,7 @@
     <dimen name="volume_seekbar_progress_corner_radius">4dp</dimen>
 
     <dimen name="fps_info_text_padding">4dp</dimen>
+
+    <dimen name="burnin_protection_horizontal_shift">3dp</dimen>
+    <dimen name="burnin_protection_vertical_shift">1dp</dimen>
 </resources>

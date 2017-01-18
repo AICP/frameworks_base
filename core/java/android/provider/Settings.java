@@ -7970,7 +7970,13 @@ public final class Settings {
          *
          * @hide
          */
-        public static final String QS_COLUMNS = "qs_columns";
+        public static final String QS_COLUMNS_PORTRAIT = "qs_columns_portrait";
+
+        /**
+         * Number of qs columns on landscape orientation
+         * @hide
+         */
+        public static final String QS_COLUMNS_LANDSCAPE = "qs_columns_landscape";
 
         /**
          * Whether or not the automatic storage manager is enabled and should run on the device.

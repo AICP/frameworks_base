@@ -128,4 +128,9 @@
     <!-- Application picker Tile -->
     <string name="quick_settings_app_picker">freie App-Auswahl</string>
 
+    <!-- QS NFC tile -->
+    <string name="quick_settings_nfc">NFC</string>
+    <string name="quick_settings_nfc_label">NFC</string>
+    <string name="quick_settings_nfc_off">NFC AUS</string>
+
 </resources>

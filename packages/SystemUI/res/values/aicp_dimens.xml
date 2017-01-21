@@ -54,6 +54,7 @@
     <dimen name="qs_panel_top_offset_header">110dp</dimen>
 
     <dimen name="qs_scroller_margin">12dp</dimen>
+    <dimen name="qs_scroller_min_tile_gap">4dp</dimen>
 
     <!-- PA Pie controls dimensions -->
     <dimen name="pie_snap_radius">45dp</dimen>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  Copyright (C) 2014-2016 The Dirty Unicorns Project
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ -->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- Quick Settings tiles -->
+    <string name="quick_settings_screenshot_label">Скриншот</string>
+    <string name="quick_settings_adb_network">ADB сеть</string>
+    <string name="quick_settings_network_adb_enabled_label">Включен</string>
+    <string name="quick_settings_network_adb_disabled_label">Отключен</string>
+    <string name="quick_settings_sync_label">Синхронизация</string>
+    <string name="accessibility_quick_settings_sync_off">Синхронизация Нет</string>
+    <string name="accessibility_quick_settings_sync_on">Синхронизация Да</string>
+    <string name="accessibility_quick_settings_sync_changed_off">Синхронизация Нет</string>
+    <string name="accessibility_quick_settings_sync_changed_on">Синхронизация Да</string>
+    <string name="quick_settings_expanded_desktop_label">Расширенный рабочий стол</string>
+    <string name="quick_settings_expanded_desktop">Расширенный</string>
+    <string name="quick_settings_expanded_desktop_off">Нормальный</string>
+    <string name="quick_settings_reboot_label">Перезагрузка</string>
+    <string name="quick_settings_reboot_recovery_label">Режим восстановления</string>
+    <string name="accessibility_quick_settings_usb_tether_off">USB модем Нет</string>
+    <string name="accessibility_quick_settings_usb_tether_on">USB модем Да</string>
+    <string name="accessibility_quick_settings_usb_tether_changed_off">USB модем Нет</string>
+    <string name="accessibility_quick_settings_usb_tether_changed_on">USB модем Да</string>
+    <string name="quick_settings_usb_tether_label">USB модем</string>
+    <string name="quick_settings_music_label">Музыка</string>
+    <string name="quick_settings_music_play">Играть</string>
+    <string name="quick_settings_music_pause">Пауза</string>
+    <string name="quick_settings_ime_tile_label">Метод ввода</string>
+    <string name="quick_settings_caffeine_label">Таймер</string>
+    <string name="accessibility_quick_settings_caffeine_off">Таймер Нет</string>
+    <string name="accessibility_quick_settings_caffeine_on">Таймер Да</string>
+    <string name="quick_settings_screenrecord">Запись экрана</string>
+    <string name="quick_settings_screenrecord_on">Запись...</string>
+
+    <!-- Screenshot Delete Toast -->
+    <string name="delete_screenshot_toast">Скриншот удалён</string>
+
+    <!-- Navigation bar Tile -->
+    <string name="quick_settings_navigation_bar">Бар навигации</string>
+    <string name="quick_settings_smartbar">Смарт бар</string>
+    <string name="quick_settings_smartbar_off">Смарт бар Нет</string>
+    <string name="quick_settings_fling">Росчерк</string>
+    <string name="quick_settings_fling_off">Росчерк Нет</string>
+
+</resources>

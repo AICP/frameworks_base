@@ -65,6 +65,18 @@
     <string name="quick_settings_sound_ring">Sonar</string>
     <string name="quick_settings_sound_vibrate">Vibrar</string>
     <string name="quick_settings_sound_silent">Silencio</string>
+    <string name="accessibility_quick_settings_location_battery_saving">Informe de ubicación: ahorro de batería.</string>
+    <string name="accessibility_quick_settings_location_gps_only">Informe de ubicación: sólo sensores.</string>
+    <string name="accessibility_quick_settings_location_high_accuracy">Informe de ubicación: alta precisión.</string>
+    <string name="accessibility_quick_settings_location_changed_battery_saving">Informe de ubicación cambiado a modo ahorro de batería.</string>
+    <string name="accessibility_quick_settings_location_changed_gps_only">Informe de ubicación cambiado a modo sólo sensores.</string>
+    <string name="accessibility_quick_settings_location_changed_high_accuracy">Informe de ubicación cambiado a modo alta precisión.</string>
+    <string name="quick_settings_location_detail_title">Modo de ubicación</string>
+    <string name="quick_settings_location_battery_saving_label">Ahorro de batería</string>
+    <string name="quick_settings_location_gps_only_label">Sólo dispositivo</string>
+    <string name="quick_settings_location_high_accuracy_label">Alta precisión</string>
+    <string name="quick_settings_location_off_label">Ubicación deshabilitada</string>
+
 
     <!-- Screenshot Delete Toast -->
     <string name="delete_screenshot_toast">Captura de pantalla eliminada</string>

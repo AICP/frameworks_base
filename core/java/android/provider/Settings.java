@@ -6114,6 +6114,20 @@ public final class Settings {
         public static final String FLING_PULSE_LAVALAMP_SPEED = "fling_pulse_lavalamp_speed";
 
         /**
+         * Fling pulse lavalamp start color
+         *
+         * @hide
+         */
+        public static final String FLING_PULSE_LAVALAMP_COLOR_FROM = "fling_lavalamp_color_from";
+
+        /**
+         * Fling pulse lavalamp end color
+         *
+         * @hide
+         */
+        public static final String FLING_PULSE_LAVALAMP_COLOR_TO = "fling_lavalamp_color_to";
+
+        /**
          * Pulse renderer implementation
          *
          * @hide
@@ -7862,6 +7876,12 @@ public final class Settings {
          * @hide
          */
         public static final String WEB_ACTION_ENABLED = "web_action_enabled";
+
+        /**
+         * One Handed mode toggle
+         * @hide
+         */
+        public static final String ONE_HANDED_MODE_UI = "one_handed_mode_ui";
 
         /**
          * This are the settings to be backed up.
@@ -9761,6 +9781,9 @@ public final class Settings {
          * @see com.android.server.AlarmManagerService.Constants
          */
         public static final String ALARM_MANAGER_CONSTANTS = "alarm_manager_constants";
+
+        /** {@hide} */
+        public static final String SINGLE_HAND_MODE = "single_hand_mode";
 
         /**
          * Job scheduler specific settings.

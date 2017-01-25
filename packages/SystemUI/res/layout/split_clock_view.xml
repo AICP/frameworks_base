@@ -26,15 +26,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:singleLine="true"
-        android:textAppearance="@style/TextAppearance.StatusBar.Expanded.Clock"
+        android:textAppearance="@style/TextAppearance.StatusBar.Expanded.Clock.Shadow"
         android:textSize="@dimen/qs_time_collapsed_size"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
         />
     <TextClock
         android:id="@+id/am_pm_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:singleLine="true"
-        android:textAppearance="@style/TextAppearance.StatusBar.Expanded.Clock"
+        android:textAppearance="@style/TextAppearance.StatusBar.Expanded.Clock.Shadow"
         android:textSize="@dimen/qs_time_collapsed_size"
         android:importantForAccessibility="no"
         />

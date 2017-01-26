@@ -73,4 +73,17 @@
     <style name="UnlaunchableAppActivityTheme" parent="Theme.DeviceDefault.Light.Dialog.Alert" />
 
 
+    <style name="Animation" />
+
+    <!-- Slim recent app screen animation -->
+    <style name="Animation.RecentScreen">
+        <item name="android:windowEnterAnimation">@anim/recent_screen_enter</item>
+        <item name="android:windowExitAnimation">@anim/recent_screen_exit</item>
+    </style>
+
+    <style name="Animation.RecentScreen.Left">
+        <item name="android:windowEnterAnimation">@anim/recent_screen_enter_left</item>
+        <item name="android:windowExitAnimation">@anim/recent_screen_exit_left</item>
+    </style>
+
 </resources>

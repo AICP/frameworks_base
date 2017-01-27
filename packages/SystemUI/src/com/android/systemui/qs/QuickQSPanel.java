@@ -165,10 +165,6 @@ public class QuickQSPanel extends QSPanel {
         return TunerService.get(context).getValue(NUM_QUICK_TILES, NUM_QUICK_TILES_DEFAULT);
     }
 
-    public int getNumVisibleQuickTiles() {
-        return NUM_QUICK_TILES_DEFAULT;
-    }
-
     @Override
     protected void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);

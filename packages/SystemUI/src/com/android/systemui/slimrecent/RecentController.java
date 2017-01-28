@@ -30,6 +30,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.ContentObserver;
 import android.graphics.Color;
+import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.VectorDrawable;
 import android.graphics.PixelFormat;
@@ -113,6 +114,8 @@ public class RecentController implements RecentPanelView.OnExitListener,
     private int mPanelColor;
 
     private float mScaleFactor = DEFAULT_SCALE_FACTOR;
+
+    private boolean mAicpEmptyView;
 
     // Main panel view.
     private RecentPanelView mRecentPanelView;
@@ -278,14 +281,24 @@ public class RecentController implements RecentPanelView.OnExitListener,
 
         // Set correct backgrounds based on calculated main gravity.
         mRecentWarningContent.setBackgroundColor(Color.RED);
-        VectorDrawable vd = (VectorDrawable)
-                mContext.getResources().getDrawable(R.drawable.ic_empty_recent);
-        vd.setTint(getEmptyRecentColor());
-        mEmptyRecentView.setImageDrawable(vd);
+
+        if (mAicpEmptyView) {
+            // AICP empty recents drawable
+            AnimatedVectorDrawable vd = (AnimatedVectorDrawable)
+                    mContext.getResources().getDrawable(R.drawable.no_recents, null);
+            vd.setTint(getEmptyRecentColor());
+            mEmptyRecentView.setImageDrawable(vd);
+        } else {
+            // Default empty recents drawable
+            VectorDrawable vd = (VectorDrawable)
+                    mContext.getResources().getDrawable(R.drawable.ic_empty_recent);
+            vd.setTint(getEmptyRecentColor());
+            mEmptyRecentView.setImageDrawable(vd);
+        }
         int padding = mContext.getResources().getDimensionPixelSize(R.dimen.slim_recents_elevation);
         if (mMainGravity == Gravity.LEFT) {
             mRecentContainer.setPadding(0, 0, padding, 0);
-            mEmptyRecentView.setRotation(180);
+            mEmptyRecentView.setRotation(mAicpEmptyView ? 0 : 180);
         } else {
             mRecentContainer.setPadding(padding, 0, 0, 0);
             mEmptyRecentView.setRotation(0);
@@ -309,7 +322,9 @@ public class RecentController implements RecentPanelView.OnExitListener,
     }
 
     private int getEmptyRecentColor() {
-        if (Utilities.computeContrastBetweenColors(mPanelColor,
+        int color = mPanelColor == 0x00ffffff ?
+                mContext.getResources().getColor(R.color.recent_background) : mPanelColor;
+        if (Utilities.computeContrastBetweenColors(color,
                 Color.WHITE) < 3f) {
             return mContext.getResources().getColor(
                     R.color.recents_empty_dark_color);
@@ -573,6 +588,9 @@ public class RecentController implements RecentPanelView.OnExitListener,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.RECENT_SHOW_RUNNING_TASKS),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.SLIM_RECENT_AICP_EMPTY_DRAWABLE),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -587,6 +605,10 @@ public class RecentController implements RecentPanelView.OnExitListener,
             mUserGravity = Settings.System.getIntForUser(
                     resolver, Settings.System.RECENT_PANEL_GRAVITY, Gravity.RIGHT,
                     UserHandle.USER_CURRENT);
+
+            mAicpEmptyView = Settings.System.getIntForUser(resolver,
+                    Settings.System.SLIM_RECENT_AICP_EMPTY_DRAWABLE, 1,
+                    UserHandle.USER_CURRENT) == 1;
 
             // Set main gravity and background images.
             setGravityAndImageResources();

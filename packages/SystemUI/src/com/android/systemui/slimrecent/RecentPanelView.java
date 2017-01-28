@@ -31,6 +31,7 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
+import android.graphics.drawable.AnimatedVectorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -326,7 +327,9 @@ public class RecentPanelView {
 
         // All apps were removed? Close recents panel.
         if (mCards.size() == 0) {
-            setVisibility();
+            if (!(mEmptyRecentView.getDrawable() instanceof AnimatedVectorDrawable)) {
+                setVisibility();
+            }
             exit();
         }
     }
@@ -508,6 +511,14 @@ public class RecentPanelView {
     private void setVisibility() {
         mEmptyRecentView.setVisibility(mCards.size() == 0 ? View.VISIBLE : View.GONE);
         mCardRecyclerView.setVisibility(mCards.size() == 0 ? View.GONE : View.VISIBLE);
+        if (mEmptyRecentView.getDrawable() instanceof AnimatedVectorDrawable) {
+            AnimatedVectorDrawable vd = (AnimatedVectorDrawable) mEmptyRecentView.getDrawable();
+            if (mCards.isEmpty()) {
+                vd.start();
+            } else {
+                vd.stop();
+            }
+        }
     }
 
     /**

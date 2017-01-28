@@ -4849,6 +4849,13 @@ public final class Settings {
         public static final String RECENT_CARD_TEXT_COLOR = "recent_card_text_color";
 
         /**
+         * Slim recents AICPfied empty recents drawable
+         *
+         * @hide
+         */
+        public static final String SLIM_RECENT_AICP_EMPTY_DRAWABLE = "slim_recents_aicp_empty_drawable";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *

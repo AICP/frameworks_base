@@ -65,6 +65,17 @@
     <string name="quick_settings_sound_ring">Klingelton</string>
     <string name="quick_settings_sound_vibrate">Vibrieren</string>
     <string name="quick_settings_sound_silent">Lautlos</string>
+    <string name="accessibility_quick_settings_location_battery_saving">Standort: Energiesparmodus</string>
+    <string name="accessibility_quick_settings_location_gps_only">Standort: Nur Gerät</string>
+    <string name="accessibility_quick_settings_location_high_accuracy">Standort: Hohe Genauigkeit</string>
+    <string name="accessibility_quick_settings_location_changed_battery_saving">Energiesparmodus wird zur Standortermittlung verwendet.</string>
+    <string name="accessibility_quick_settings_location_changed_gps_only">Gerätesensoren (GPS) werden zur Standortermittlung verwendet.</string>
+    <string name="accessibility_quick_settings_location_changed_high_accuracy">Hohe Genauigkeit wird zur Standortermittlung verwendet.</string>
+    <string name="quick_settings_location_detail_title">Standortmodus</string>
+    <string name="quick_settings_location_battery_saving_label">Energiesparmodus</string>
+    <string name="quick_settings_location_gps_only_label">Nur Gerät</string>
+    <string name="quick_settings_location_high_accuracy_label">Hohe Genauigkeit</string>
+    <string name="quick_settings_location_off_label">Standort AUS</string>
 
     <!-- Screenshot Delete Toast -->
     <string name="delete_screenshot_toast">Bildschirmfoto gelöscht</string>

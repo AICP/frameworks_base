@@ -16,6 +16,9 @@
 -->
 <resources>
 
+    <!-- Alarm status color -->
+    <color name="alarm_status_color">#E0E0E0</color>
+
     <!-- Volume panel border coler -->
     <color name="volume_panel_border_color">#ff2962ff</color><!-- blue A700 -->
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     Copyright (C) 2015 AICP
+     Copyright (C) 2015-2017 AICP
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -45,7 +45,7 @@
     <color name="qs_edit_button_text_color">#64FFFFFF</color>
 
     <!-- Floating action button -->
-    <color name="fab_color">?android:attr/colorAccent</color>
+    <color name="fab_color">@*android:color/accent_device_default_light</color>
     <color name="floating_action_button_icon_color">@android:color/white</color>
 
     <!-- QS battery % text color -->

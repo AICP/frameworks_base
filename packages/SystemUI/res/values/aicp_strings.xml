@@ -196,4 +196,6 @@
     <string name="keyguard_plugged_in_turbo_power_charging">TurboPower connected</string>
     <string name="keyguard_plugged_in_turbo_charging">Turbo Charging</string>
 
+    <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_running_services">Open Running Services screen.</string>
 </resources>

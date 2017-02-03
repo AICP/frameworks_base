@@ -4574,7 +4574,8 @@ public class PackageManagerService extends IPackageManager.Stub {
                         || actionName.startsWith("com.android.internal.telephony.data-reconnect")
                         || actionName.startsWith("android.net.netmon.launchCaptivePortalApp")
                         || actionName.startsWith("intent_navbar_edit")
-                        || actionName.startsWith("org.omnirom.omniswitch")) {
+                        || actionName.startsWith("org.omnirom.omniswitch")
+                        || actionName.startsWith("masquerade.substratum.STATUS_CHANGED")) {
                     return true;
                 }
             }

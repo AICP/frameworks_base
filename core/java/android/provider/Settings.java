@@ -8182,6 +8182,12 @@ public final class Settings {
         public static final String QS_NIGHT_BRIGHTNESS_VALUE = "qs_night_brightness_value";
 
         /**
+         * Hide lockscreen bottom shortcuts
+         * @hide
+         */
+        public static final String HIDE_LOCKSCREEN_SHORTCUTS = "hide_lockscreen_shortcuts";
+
+        /**
          * This are the settings to be backed up.
          *
          * NOTE: Settings are backed up and restored in the order they appear

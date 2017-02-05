@@ -906,8 +906,8 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
 
     private boolean hideShortcuts() {
         boolean secure = mLockPatternUtils.isSecure(KeyguardUpdateMonitor.getCurrentUser());
-        return secure && Settings.Secure.getIntForUser(
-                mContext.getContentResolver(), Settings.Secure.LOCK_QS_DISABLED, 0,
-                KeyguardUpdateMonitor.getCurrentUser()) != 0;
+        boolean hidebottomshortcuts = (Settings.Secure.getIntForUser(getContext().getContentResolver(),
+                Settings.Secure.HIDE_LOCKSCREEN_SHORTCUTS, 0, KeyguardUpdateMonitor.getCurrentUser()) == 1);
+        return secure || hidebottomshortcuts;
     }
 }

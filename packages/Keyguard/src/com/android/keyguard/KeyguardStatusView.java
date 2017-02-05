@@ -269,22 +269,18 @@ public class KeyguardStatusView extends GridLayout {
 
     // Hide LockscreenItems
     public void hideLockscreenItems() {
-        if (Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.HIDE_LOCKSCREEN_CLOCK, 1) == 1) {
-            mClockView = (TextClock) findViewById(R.id.clock_view);
-            mClockView.setVisibility(View.VISIBLE);
-        } else {
-            mClockView = (TextClock) findViewById(R.id.clock_view);
-            mClockView.setVisibility(View.GONE);
-        }
-        if (Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.HIDE_LOCKSCREEN_DATE, 1) == 1) {
-            mDateView = (TextClock) findViewById(R.id.date_view);
-            mDateView.setVisibility(View.VISIBLE);
-        } else {
-            mDateView = (TextClock) findViewById(R.id.date_view);
-            mDateView.setVisibility(View.GONE);
-        }
+        final ContentResolver resolver = getContext().getContentResolver();
+        final Resources res = getContext().getResources();
+        boolean showClock = Settings.System.getInt(resolver,
+                Settings.System.HIDE_LOCKSCREEN_CLOCK, 1) == 1;
+        boolean showDate = Settings.System.getInt(resolver,
+                Settings.System.HIDE_LOCKSCREEN_DATE, 1) == 1;
+
+        mClockView = (TextClock) findViewById(R.id.clock_view);
+        mClockView.setVisibility(showClock ? View.VISIBLE : View.GONE);
+
+        mDateView = (TextClock) findViewById(R.id.date_view);
+        mDateView.setVisibility(showDate ? View.VISIBLE : View.GONE);
     }
 
     // DateFormat.getBestDateTimePattern is extremely expensive, and refresh is called often.

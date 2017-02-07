@@ -76,6 +76,7 @@ public class BatteryMeterDrawable extends Drawable implements
     public static final int BATTERY_STYLE_LANDSCAPE = 5;
     public static final int BATTERY_STYLE_TEXT      = 6;
     public static final int BATTERY_STYLE_SOLID     = 7;
+    public static final int BATTERY_STYLE_AICP      = 8;
 
     private final int[] mColors;
     private final int mIntrinsicWidth;
@@ -536,8 +537,10 @@ public class BatteryMeterDrawable extends Drawable implements
                 return R.drawable.ic_battery_circle;
             case BATTERY_STYLE_PORTRAIT:
                 return R.drawable.ic_battery_portrait;
-           case BATTERY_STYLE_SOLID:
-                return R.drawable.ic_battery_solid; 
+            case BATTERY_STYLE_SOLID:
+                return R.drawable.ic_battery_solid;
+            case BATTERY_STYLE_AICP:
+                return R.drawable.ic_battery_aicp;
             default:
                 return 0;
         }
@@ -553,6 +556,8 @@ public class BatteryMeterDrawable extends Drawable implements
                 return R.style.BatteryMeterViewDrawable_Portrait;
             case BATTERY_STYLE_SOLID:
                 return R.style.BatteryMeterViewDrawable_Solid;
+            case BATTERY_STYLE_AICP:
+                return R.style.BatteryMeterViewDrawable_Aicp;
             default:
                 return R.style.BatteryMeterViewDrawable;
         }

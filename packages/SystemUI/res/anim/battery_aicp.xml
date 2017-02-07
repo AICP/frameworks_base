@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<objectAnimator
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:interpolator="@android:interpolator/linear"
+    android:propertyName="pathData"
+    android:valueFrom="M 0.00 64.00 C 24.00 64.00 48.00 64.00 72.00 64.00 L 72.00 65.00 C 48.00 65.00 24.00 65.00 0.00 65.00 L 0.00 64.00 Z"
+    android:valueTo=" M 0.00 7.03 C 24.00 7.03 48.00 7.03 72.00 7.03 L 72.00 64.97 C 48.00 64.97 24.00 64.97 0.00 64.97 L 0.00 7.03 Z"
+    android:valueType="pathType"/>

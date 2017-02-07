@@ -1,0 +1,11 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="72"
+    android:viewportHeight="72"
+    android:tint="@android:color/white">
+
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData=" M 29.14 42.96 C 33.04 37.10 37.63 31.56 42.98 26.96 C 41.62 31.69 38.82 35.89 37.83 40.73 C 39.86 41.97 42.06 42.91 44.04 44.25 C 43.87 46.51 42.16 48.18 40.84 49.87 C 37.57 53.60 34.54 57.58 30.87 60.94 C 32.05 56.09 34.76 51.80 36.20 47.04 C 33.99 45.43 31.45 44.40 29.14 42.96 Z" />
+</vector>

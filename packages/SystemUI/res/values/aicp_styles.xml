@@ -60,6 +60,7 @@
     </style>
 
     <style name="BatteryMeterViewDrawable.Solid"/>
+    <style name="BatteryMeterViewDrawable.Aicp"/>
 
     <style name="AppPicker" parent="@android:style/Theme.DeviceDefault.NoActionBar">
         <item name="android:windowIsTranslucent">true</item>

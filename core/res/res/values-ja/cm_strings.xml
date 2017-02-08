@@ -44,6 +44,8 @@
   <string name="reboot_soft">ソフトリブート</string>
   <!-- Title of dialog to confirm restarting. -->
   <string name="reboot_title">再起動</string>
+  <!-- Button to soft reboot the device, within the Reboot Options dialog -->
+  <string name="reboot_systemui">システムUIの再起動</string>
   <!-- Restart Confirmation Dialog.  When the user chooses to restart the device, there will
          be a confirmation dialog.  This is the message. -->
   <string name="reboot_confirm" product="tablet">タブレットは再起動します。</string>

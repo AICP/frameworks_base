@@ -19,25 +19,104 @@
 
     <!-- Quick Settings tiles -->
     <string name="quick_settings_screenshot_label">スクリーンショット</string>
+    <string name="quick_settings_region_screenshot_label">部分的なスクリーンショット</string>
+    <string name="quick_settings_adb_network">ADBネットワーク</string>
     <string name="quick_settings_network_adb_enabled_label">有効</string>
     <string name="quick_settings_network_adb_disabled_label">無効</string>
     <string name="quick_settings_sync_label">同期</string>
-    <string name="accessibility_quick_settings_sync_off">同期オフ</string>
-    <string name="accessibility_quick_settings_sync_on">同期オン</string>
-    <string name="accessibility_quick_settings_sync_changed_off">同期がオフになりました</string>
-    <string name="accessibility_quick_settings_sync_changed_on">同期がオンになりました</string>
+    <string name="accessibility_quick_settings_sync_off">同期 OFF</string>
+    <string name="accessibility_quick_settings_sync_on">同期 ON</string>
+    <string name="accessibility_quick_settings_sync_changed_off">同期が OFF になりました</string>
+    <string name="accessibility_quick_settings_sync_changed_on">同期が ON になりました</string>
     <string name="quick_settings_expanded_desktop_label">拡張デスクトップ</string>
     <string name="quick_settings_expanded_desktop">展開中</string>
     <string name="quick_settings_expanded_desktop_off">標準</string>
     <string name="quick_settings_reboot_label">再起動</string>
     <string name="quick_settings_reboot_recovery_label">リカバリ</string>
-    <string name="accessibility_quick_settings_usb_tether_off">USBテザリングオフ</string>
+    <string name="accessibility_quick_settings_usb_tether_off">USBテザリング OFF</string>
+    <string name="accessibility_quick_settings_usb_tether_on">USBテザリング ON</string>
+    <string name="accessibility_quick_settings_usb_tether_changed_off">USBテザリングが OFF になりました</string>
+    <string name="accessibility_quick_settings_usb_tether_changed_on">USBテザリングが ON になりました</string>
+    <string name="quick_settings_usb_tether_label">USBテザリング</string>
+    <string name="quick_settings_music_label">音楽</string>
+    <string name="quick_settings_music_play">再生</string>
+    <string name="quick_settings_music_pause">一時停止</string>
     <string name="quick_settings_ime_tile_label">IME</string>
     <string name="quick_settings_caffeine_label">カフェイン</string>
+    <string name="accessibility_quick_settings_caffeine_off">カフェイン OFF</string>
+    <string name="accessibility_quick_settings_caffeine_on">カフェイン ON</string>
+    <string name="quick_settings_screenrecord">スクリーンレコード</string>
+    <string name="quick_settings_screenrecord_on">録画中...</string>
+    <string name="quick_settings_heads_up_label">ヘッドアップ</string>
+    <string name="accessibility_quick_settings_heads_up_off">ヘッドアップ OFF</string>
+    <string name="accessibility_quick_settings_heads_up_on">ヘッドアップ ON</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">ヘッドアップが OFF になりました</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">ヘッドアップが ON になりました</string>
+    <string name="quick_settings_pulse_enabled">Pulse有効</string>
+    <string name="quick_settings_pulse_disabled">ビジュアライザなし</string>
+    <string name="quick_settings_pulse_label">Pulse</string>
+    <string name="accessibility_quick_settings_pulse_off">Pulse OFF</string>
+    <string name="accessibility_quick_settings_pulse_on">Pulse ON</string>
+    <string name="accessibility_quick_settings_pulse_changed_off">Pulseが OFF になりました</string>
+    <string name="accessibility_quick_settings_pulse_changed_on">Pulseが ON になりました</string>
+    <string name="quick_settings_locale_label">言語</string>
+    <string name="quick_settings_locale_more_locales_toast">トグル機能を有効にするには複数の言語を設定してください</string>
+    <string name="quick_settings_sound_label">音</string>
+    <string name="quick_settings_sound_ring">通常</string>
+    <string name="quick_settings_sound_vibrate">マナー</string>
+    <string name="quick_settings_sound_silent">サイレント</string>
+
     <!-- Screenshot Delete Toast -->
     <string name="delete_screenshot_toast">スクリーンショットを削除しました</string>
 
     <!-- Navigation bar Tile -->
     <string name="quick_settings_navigation_bar">ナビゲーションバー</string>
+    <string name="quick_settings_smartbar">ナビゲーションバー</string>
+    <string name="quick_settings_smartbar_off">ナビゲーションバー OFF</string>
     <string name="quick_settings_fling">Fling</string>
-    </resources>
+    <string name="quick_settings_fling_off">Fling OFF</string>
+
+    <!-- Heads up snooze toast -->
+    <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - ヘッドアップ通知は1分間スヌーズされます。</string>
+    <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - ヘッドアップ通知は<xliff:g id="number">%d</xliff:g>分間スヌーズされます。</string>
+
+    <!-- Screenshot action -->
+    <string name="screenshot_abort_title">スクリーンショットは撮影されていません</string>
+    <string name="screenshot_abort_text">操作を中止しました</string>
+
+    <!-- Aicp Extras Tile -->
+    <string name="quick_aicp_extras_label">Aicp Extras</string>
+    <string name="quick_aicp_extras_toast">長押しで何か起きると思った? 残念! 何も起こりません!</string>
+
+    <!-- App sidebar -->
+    <string name="default_folder_text">フォルダ</string>
+    <string name="title_activity_sidebar_configuration">アプリバーコンテンツのセットアップ</string>
+    <string name="action_save">保存</string>
+    <string name="toast_items_saved">アプリバーのアイテムを保存しました。</string>
+    <string name="content_setup_instructions">右側にあるアイテムを長押ししてアプリバーにドラッグすると、アプリバーにアイテムを追加できます。\n\nアプリバーにあるアイテムに重ねるようアイテムをドラッグするとフォルダにまとめられます。\n\n \@appbar の外にドラッグするとアイテムを削除できます。</string>
+    <string name="content_setup_dismiss">続ける</string>
+    <string name="toast_not_installed">アプリがインストールされていません</string>
+
+    <!-- PA Pie Tile -->
+    <string name="quick_settings_pie">Pie</string>
+    <string name="quick_settings_pie_off">Pie OFF</string>
+    <string name="quick_settings_pie_on">Pie ON</string>
+
+    <!-- Kill app toast -->
+    <string name="app_killed_message">アプリを終了しました</string>
+
+    <!-- Ambient Display Tile -->
+    <string name="quick_settings_ambient_display_label">アンビエント表示</string>
+    <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_ambient_display_off">アンビエント表示は OFF です。</string>
+    <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_ambient_display_on">アンビエント表示は ON です。</string>
+    <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_ambient_display_changed_off">アンビエント表示を OFF にしました。</string>
+    <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_ambient_display_changed_on">アンビエント表示を ON にしました。</string>
+
+    <!-- Application picker Tile -->
+    <string name="quick_settings_app_picker">アプリピッカー</string>
+
+</resources>

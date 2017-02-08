@@ -22,4 +22,14 @@
     <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
     <string name="system_error_vendorprint">vendor イメージがシステムと一致しません。お使いの端末に <xliff:g id="string">%s</xliff:g> vendor イメージを導入してください。</string>
 
+    <!-- label for item that screenrecord in phone options dialog -->
+    <string name="global_action_screenrecord">画面の録画</string>
+
+    <!-- Screenshoot edit action -->
+    <string name="edit">編集</string>
+
+    <!-- Singlehanded Mode -->
+    <string name="singlehandmode_click_hint_message">画面の外をタップすると片手モードを終了します</string>
+    <string name="singlehandmode_slide_hint_message">ナビゲーションバーを横切るようスライドすると通常表示と片手モードを切り替えられます</string>
+
 </resources>

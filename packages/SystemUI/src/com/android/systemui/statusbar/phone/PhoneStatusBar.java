@@ -602,7 +602,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                    Settings.Secure.QS_ROWS_LANDSCAPE),
                    false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.Secure.getUriFor(
-                   Settings.Secure.QS_COLUMNS),
+                   Settings.Secure.QS_COLUMNS_PORTRAIT),
+                   false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.Secure.getUriFor(
+                   Settings.Secure.QS_COLUMNS_LANDSCAPE),
                    false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                    Settings.System.STATUS_BAR_SHOW_CARRIER),
@@ -703,7 +706,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     Settings.Secure.QS_ROWS_LANDSCAPE))) {
                     updateResources();
             } else if (uri.equals(Settings.Secure.getUriFor(
-                    Settings.Secure.QS_COLUMNS))) {
+                    Settings.Secure.QS_COLUMNS_PORTRAIT))
+                    || uri.equals(Settings.Secure.getUriFor(
+                    Settings.Secure.QS_COLUMNS_LANDSCAPE))) {
                     if (mHeader != null) {
                         mHeader.updateSettings();
                     }

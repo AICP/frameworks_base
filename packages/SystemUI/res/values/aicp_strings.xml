@@ -256,7 +256,7 @@
     <string name="accessibility_quick_settings_perf_profile_changed_bias_perf">Battery mode changed to quick mode.</string>
     <string name="quick_settings_performance_profile_detail_title">Battery mode</string>
 
-   <!-- Live display tile -->
+    <!-- Live display tile -->
     <string name="live_display_title" translatable="false">LiveDisplay</string>
     <string name="quick_settings_live_display_off">LiveDisplay off.</string>
     <string name="quick_settings_live_display_auto">LiveDisplay: auto mode.</string>
@@ -271,4 +271,8 @@
 
     <string name="accessibility_data_sim">Current Data Sim</string>
     <string name="data_switch_started">Switching data SIM, this may take up to a minute...</string>
+
+    <!-- volte icon switch -->
+    <string name="status_bar_volte">VoLTE</string>
+
 </resources>

@@ -16903,6 +16903,12 @@ public final class Settings {
          */
         public static final String BLUETOOTH_OFF_TIMEOUT = "bluetooth_off_timeout";
 
+        /**
+         * Audio focus mode for ringtones when headset is connected
+         * @hide
+         */
+        public static final String RINGTONE_FOCUS_MODE = "ringtone_focus_mode";
+
         /*****************************
          * AICP Global Settings end
          *****************************/

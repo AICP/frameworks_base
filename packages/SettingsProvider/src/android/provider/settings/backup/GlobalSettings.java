@@ -82,5 +82,6 @@ public class GlobalSettings {
         Settings.Global.WAKE_WHEN_PLUGGED_OR_UNPLUGGED,
         Settings.Global.LOCKSCREEN_ENABLE_POWER_MENU,
         Settings.Global.UIDS_ALLOWED_ON_RESTRICTED_NETWORKS,
+        Settings.Global.RINGTONE_FOCUS_MODE,
     };
 }

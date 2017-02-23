@@ -133,5 +133,6 @@ public class SystemSettings {
         Settings.System.LOCKSCREEN_SMALL_CLOCK,
         Settings.System.AICP_ASPECT_RATIO_APPS_LIST,
         Settings.System.AICP_ASPECT_RATIO_APPS_ENABLED,
+        Settings.System.LOCK_HIDE_STATUS_BAR,
     };
 }

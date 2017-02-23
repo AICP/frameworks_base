@@ -5840,6 +5840,11 @@ public final class Settings {
          */
         public static final String STATUS_BAR_BRIGHTNESS_CONTROL = "status_bar_brightness_control";
 
+        /**
+         * @hide
+         */
+        public static final String LOCK_HIDE_STATUS_BAR = "lockscreen_hide_status_bar";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5958,6 +5963,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(OMNI_DOZE_ON_CHARGE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(OMNI_DOZE_ON_CHARGE_NOW, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(STATUS_BAR_BRIGHTNESS_CONTROL, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(LOCK_HIDE_STATUS_BAR, BOOLEAN_VALIDATOR);
         }
 
         /**

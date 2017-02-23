@@ -5247,6 +5247,15 @@ public final class Settings {
          */
         public static final String OMNI_DOZE_ON_CHARGE_NOW = "doze_on_charge_now";
 
+        /**
+         * @hide
+         */
+        public static final String LOCK_HIDE_STATUS_BAR = "lockscreen_hide_status_bar";
+
+        /** @hide */
+        private static final Validator LOCK_HIDE_STATUS_BAR_VALIDATOR =
+               BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5393,6 +5402,7 @@ public final class Settings {
             TOAST_ICON,
             WIRELESS_CHARGING_ANIMATION,
             OMNI_DOZE_ON_CHARGE,
+            LOCK_HIDE_STATUS_BAR,
             // AICP Settings end
         };
 
@@ -5587,6 +5597,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(TOAST_ICON);
             PRIVATE_SETTINGS.add(WIRELESS_CHARGING_ANIMATION);
             PRIVATE_SETTINGS.add(OMNI_DOZE_ON_CHARGE);
+            PRIVATE_SETTINGS.add(LOCK_HIDE_STATUS_BAR);
             // AICP Settings end
         }
 
@@ -5771,6 +5782,7 @@ public final class Settings {
             VALIDATORS.put(TOAST_ICON,TOAST_ICON_VALIDATOR);
             VALIDATORS.put(WIRELESS_CHARGING_ANIMATION, WIRELESS_CHARGING_ANIMATION_VALIDATOR);
             VALIDATORS.put(OMNI_DOZE_ON_CHARGE, OMNI_DOZE_ON_CHARGE_VALIDATOR);
+            VALIDATORS.put(LOCK_HIDE_STATUS_BAR,LOCK_HIDE_STATUS_BAR_VALIDATOR);
             // AICP Settings end
         }
 

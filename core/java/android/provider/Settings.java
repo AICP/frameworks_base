@@ -4977,6 +4977,11 @@ public final class Settings {
         public static final String SHOW_LOCKSCREEN_ALARM = "show_lockscreen_alarm";
 
         /**
+         * @hide
+         */
+        public static final String LOCK_HIDE_STATUS_BAR = "lockscreen_hide_status_bar";
+
+        /**
          * --- AICP System settings end
          *  Add new system settings above this comment
          */

@@ -50,6 +50,10 @@
   <string name="accessibility_dpad_left">Markör till vänster</string>
   <string name="accessibility_dpad_right">Markör till höger</string>
   <!-- NavBar Tuner -->
+  <string name="search">Sök</string>
+  <!-- Path data for portrait battery -->
+  <!-- Path data for landscape battery -->
+  <!-- Path data for circle battery -->
   <!-- Wi-Fi hotspot label when enabled -->
   <plurals name="wifi_hotspot_connected_clients_label">
     <item quantity="one">%1$d klient</item>

@@ -146,4 +146,17 @@
         <item name="android:overScrollMode">never</item>
         <item name="android:divider">@null</item>
     </style>
+
+   <style name="TextAppearance.StatusBar.Expanded.Weather">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
+    <style name="TextAppearance.StatusBar.Expanded.Weather.Detailed">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
 </resources>

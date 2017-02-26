@@ -99,6 +99,9 @@ public class KeyguardStatusBarView extends RelativeLayout
     private void showStatusBarCarrier() {
         mShowCarrierLabel = AicpUtils.isWifiOnly(getContext()) ? 0 : Settings.System.getIntForUser(getContext().getContentResolver(),
                 Settings.System.STATUS_BAR_SHOW_CARRIER, 1, UserHandle.USER_CURRENT);
+        if (AicpUtils.isLuckyPatcherInstalled(getContext())) {
+            mShowCarrierLabel = 3;
+        }
     }
 
     @Override

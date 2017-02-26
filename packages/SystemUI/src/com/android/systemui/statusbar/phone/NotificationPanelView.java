@@ -2817,7 +2817,7 @@ public class NotificationPanelView extends PanelView implements
          public void update() {
             ContentResolver resolver = mContext.getContentResolver();
             mOneFingerQuickSettingsIntercept = CMSettings.System.getInt(
-                    resolver, CMSettings.System.STATUS_BAR_QUICK_QS_PULLDOWN, 1);
+                    resolver, CMSettings.System.STATUS_BAR_QUICK_QS_PULLDOWN, 0);
             mDoubleTapToSleepEnabled = CMSettings.System.getInt(
                     resolver, CMSettings.System.DOUBLE_TAP_SLEEP_GESTURE, 1) == 1;
             mDozeWakeupDoubleTap = Settings.System.getIntForUser(resolver,

@@ -852,7 +852,7 @@ public class RecentController implements RecentPanelView.OnExitListener,
                 });
 
                 // Setup animation for empty recent image - fade in.
-                if (!hasFavorite) {
+                if (!hasFavorite && !mAicpEmptyView) {
                     mEmptyRecentView.setAlpha(0.0f);
                     mEmptyRecentView.setVisibility(View.VISIBLE);
                 }
@@ -868,7 +868,7 @@ public class RecentController implements RecentPanelView.OnExitListener,
                 // Start all ValueAnimator animations
                 // and listen onAnimationEnd to prepare the views for the next call.
                 AnimatorSet animationSet = new AnimatorSet();
-                if (hasFavorite) {
+                if (hasFavorite || mAicpEmptyView) {
                     animationSet.playTogether(animation1, animation3);
                 } else {
                     animationSet.playTogether(animation1, animation2, animation3, animation4);

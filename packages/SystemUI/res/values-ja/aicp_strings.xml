@@ -65,6 +65,17 @@
     <string name="quick_settings_sound_ring">通常</string>
     <string name="quick_settings_sound_vibrate">マナー</string>
     <string name="quick_settings_sound_silent">サイレント</string>
+    <string name="accessibility_quick_settings_location_battery_saving">位置情報：バッテリー節約モードです。</string>
+    <string name="accessibility_quick_settings_location_gps_only">位置情報：端末のみモードです。</string>
+    <string name="accessibility_quick_settings_location_high_accuracy">位置情報：高精度モードです。</string>
+    <string name="accessibility_quick_settings_location_changed_battery_saving">位置情報をバッテリー節約モードに変更しました。</string>
+    <string name="accessibility_quick_settings_location_changed_gps_only">位置情報を端末のみモードに変更しました。</string>
+    <string name="accessibility_quick_settings_location_changed_high_accuracy">位置情報を高精度モードに変更しました。</string>
+    <string name="quick_settings_location_detail_title">位置情報モード</string>
+    <string name="quick_settings_location_battery_saving_label">バッテリー節約</string>
+    <string name="quick_settings_location_gps_only_label">端末のみ</string>
+    <string name="quick_settings_location_high_accuracy_label">高精度</string>
+    <string name="quick_settings_location_off_label">位置情報 OFF</string>
 
     <!-- Screenshot Delete Toast -->
     <string name="delete_screenshot_toast">スクリーンショットを削除しました</string>
@@ -118,5 +129,23 @@
 
     <!-- Application picker Tile -->
     <string name="quick_settings_app_picker">アプリピッカー</string>
+
+    <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_running_services">実行中のサービス画面を開きます。</string>
+
+    <!-- On The Go -->
+    <string name="onthego_notif_ticker">On-The-Go モードを有効化しました</string>
+    <string name="onthego_notif_title">On-The-Go モードが有効です</string>
+    <string name="onthego_notif_stop">停止</string>
+    <string name="onthego_notif_options">オプション</string>
+    <string name="onthego_notif_error">On-The-Go モードを開始できません</string>
+    <string name="onthego_notif_restart">On-The-Go モードの再起動</string>
+    <string name="onthego_notif_camera_changed">カメラモードを変更しました</string>
+    <string name="onthego_transparency">透過度</string>
+    <string name="onthego_front_camera">フロントカメラを使用する</string>
+    <string name="onthego_service_toggle">サービスを自動的に再起動する</string>
+    <!-- To do: Add QS OnTheGo
+    <string name="quick_settings_onthego_back">Rear Camera</string>
+    <string name="quick_settings_onthego_front">Front Camera</string>-->
 
 </resources>

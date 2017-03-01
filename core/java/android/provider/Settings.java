@@ -15871,6 +15871,9 @@ public final class Settings {
         /** @hide */
         @UnsupportedAppUsage(maxTargetSdk = Build.VERSION_CODES.R, trackingBug = 170729553)
         public static final int ZEN_MODE_ALARMS = 3;
+        /** @hide */
+        @UnsupportedAppUsage
+        public static final int ZEN_MODE_OFF_ONLY = 4;
 
         /**
          * A comma-separated list of HDR formats that have been disabled by the user.

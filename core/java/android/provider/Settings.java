@@ -14666,6 +14666,9 @@ public final class Settings {
         /** @hide */
         @UnsupportedAppUsage
         public static final int ZEN_MODE_ALARMS = 3;
+        /** @hide */
+        @UnsupportedAppUsage
+        public static final int ZEN_MODE_OFF_ONLY = 4;
 
         /** @hide */ public static String zenModeToString(int mode) {
             if (mode == ZEN_MODE_IMPORTANT_INTERRUPTIONS) return "ZEN_MODE_IMPORTANT_INTERRUPTIONS";

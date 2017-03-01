@@ -98,6 +98,8 @@ public class AnimationDrawable extends DrawableContainer implements Runnable, An
 
     private boolean mMutated;
 
+    private OnAnimationFinishedListener mOnAnimationFinishedListener;
+
     public AnimationDrawable() {
         this(null, null);
     }
@@ -261,6 +263,9 @@ public class AnimationDrawable extends DrawableContainer implements Runnable, An
 
         // Loop if necessary. One-shot animations should never hit this case.
         if (!mAnimationState.mOneShot && nextFrame >= numFrames) {
+            if (mOnAnimationFinishedListener != null) {
+                mOnAnimationFinishedListener.onAnimationFinished();
+            }
             nextFrame = 0;
         }
 
@@ -440,5 +445,19 @@ public class AnimationDrawable extends DrawableContainer implements Runnable, An
             setFrame(0, true, false);
         }
     }
-}
 
+    /**
+     * @hide
+     */
+    public interface OnAnimationFinishedListener
+    {
+        public void onAnimationFinished();
+    }
+
+    /**
+     * @hide
+     */
+    public void setOnAnimationFinishedListener(OnAnimationFinishedListener l) {
+        mOnAnimationFinishedListener = l;
+    }
+}

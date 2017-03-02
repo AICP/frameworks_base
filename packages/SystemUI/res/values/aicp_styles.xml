@@ -31,7 +31,7 @@
         <item name="android:shadowDy">1</item>
         <item name="android:shadowRadius">4</item>
     </style>
- 
+
     <!-- Custom Carrier Label -->
     <style name="TextAppearance.StatusBar.CarrierLabel" parent="@*android:style/TextAppearance.StatusBar.Icon">
         <item name="android:textSize">@dimen/status_bar_carrier_height</item>
@@ -134,5 +134,16 @@
 
     <style name="SlimRecentsCardOptionsButton">
         <item name="android:padding">2dp</item>
+    </style>
+
+    <style name="ListTheme" parent="@*android:style/Theme.Holo">
+        <item name="android:windowBackground">@*android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:listSelector">@*android:color/transparent</item>
+        <item name="android:scrollbars">none</item>
+        <item name="android:clipChildren">false</item>
+        <item name="android:overScrollMode">never</item>
+        <item name="android:divider">@null</item>
     </style>
 </resources>

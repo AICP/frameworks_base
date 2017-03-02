@@ -1329,6 +1329,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         initTickerView();
 
         addSidebarView();
+        addAppCircleSidebar();
 
         mSlimScreenPinningRequest = new SlimScreenPinningRequest(mContext);
 

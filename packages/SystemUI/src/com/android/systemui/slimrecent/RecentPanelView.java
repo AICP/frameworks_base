@@ -332,6 +332,7 @@ public class RecentPanelView {
             }
             exit();
         }
+        mController.updateMemoryStatus();
     }
 
     /**
@@ -366,6 +367,7 @@ public class RecentPanelView {
         int pos = mCards.indexOf(card);
         mCards.remove(pos);
         mCardAdapter.notifyItemRemoved(pos);
+        mController.updateMemoryStatus();
     }
 
     /**
@@ -504,6 +506,7 @@ public class RecentPanelView {
         // Let us load the cards for it in background.
         final CardLoader cardLoader = new CardLoader();
         cardLoader.executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
+        mController.updateMemoryStatus();
     }
 
     /**
@@ -520,6 +523,7 @@ public class RecentPanelView {
                 vd.stop();
             }
         }
+        mController.updateMemoryStatus();
     }
 
     /**
@@ -542,6 +546,7 @@ public class RecentPanelView {
                                 item.identifier, item.getExpandedState()));
             }
         }
+        mController.updateMemoryStatus();
     }
 
     /**

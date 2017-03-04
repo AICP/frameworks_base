@@ -21,9 +21,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.PackageManager;
 import android.database.ContentObserver;
-import android.graphics.Color;
 import android.os.Handler;
 import android.os.UserHandle;
 import android.provider.Settings;
@@ -147,11 +145,6 @@ public class CarrierLabel extends TextView {
         } else {
             setText(TextUtils.isEmpty(str) ? getOperatorName() : str);
         }
-
-        // LuckyPatcher carnt sniffer
-        if (AicpUtils.isLuckyPatcherInstalled(mContext)) {
-            luckyPatcherCarnt();
-        }
     }
 
     private String getOperatorName() {
@@ -192,12 +185,5 @@ public class CarrierLabel extends TextView {
                 Settings.System.STATUS_BAR_CARRIER_FONT_SIZE, 14);
 
         setTextSize(mCarrierFontSize);
-    }
-
-    private void luckyPatcherCarnt() {
-        setText("\uD83D\uDD95");
-        Settings.System.putInt(mContext.getContentResolver(),
-                Settings.System.STATUS_BAR_CARRIER_COLOR, Color.YELLOW);
-        updateColor();
     }
 }

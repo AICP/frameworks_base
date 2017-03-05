@@ -28,6 +28,21 @@
     <!-- Screenshoot edit action -->
     <string name="edit">Ändern</string>
 
+    <!-- Singlehanded Mode -->
+    <string name="singlehandmode_click_hint_message">Außerhalb des Bildschirms berühren, um die Mini-Ansicht zu beenden</string>
+
+    <!-- Powermenu Torch -->
+    <string name="global_action_torch">Taschenlampe</string>
+
+    <!-- label for item that takes On-The-Go in the phone options dialog -->
+    <string name="global_action_onthego">\"On-The-Go\"-Modus</string>
+
+    <!-- LuckyPatcher carnt dialog -->
+    <string name="lucky_patcher_installed_title">LuckyPatcher gefunden!!!</string>
+    <string name="lucky_patcher_installed_message">Hiermit gestehe ich, dass ich ein linker Bazillus, Dieb und Software-Pirat bin. Ich liebe es das Geld von hart arbeitenden Entwicklern zu stehlen und damit auch noch zu prahlen.</string>
+    <string name="lucky_patcher_admit">Ich gestehe</string>
+
     <!-- Button to soft reboot the device, within the Reboot Options dialog -->
     <string name="reboot_systemui">System-UI neu starten</string>
+
 </resources>

@@ -158,6 +158,7 @@ import com.android.internal.policy.IKeyguardService;
 import com.android.internal.policy.IShortcutService;
 import com.android.internal.statusbar.IStatusBarService;
 import com.android.internal.util.ScreenShapeHelper;
+import com.android.internal.util.aicp.AicpUtils;
 import com.android.internal.util.cm.ActionUtils;
 import com.android.internal.utils.du.ActionHandler;
 import com.android.internal.utils.du.DUActionUtils;
@@ -825,6 +826,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     // use the same delay values as for screenshot
     private boolean mScreenrecordChordEnabled;
     private boolean mScreenrecordChordVolumeUpKeyConsumed;
+
+    // OmniSwitch recents enabled
+    private boolean mOmniSwitchRecents;
 
     /* The number of steps between min and max brightness */
     private static final int BRIGHTNESS_STEPS = 10;
@@ -2657,7 +2661,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
             mTorchEnabled = (Settings.System.getIntForUser(resolver,
                     Settings.System.KEYGUARD_TOGGLE_TORCH, 0, UserHandle.USER_CURRENT) == 1);
-
+            mOmniSwitchRecents = (Settings.System.getIntForUser(resolver,
+                    Settings.System.RECENTS_USE_OMNISWITCH, 0, UserHandle.USER_CURRENT) == 1);
         }
         synchronized (mWindowManagerFuncs.getWindowManagerLock()) {
             WindowManagerPolicyControl.reloadFromSetting(mContext);
@@ -4569,10 +4574,18 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     }
 
     private void showRecentApps(boolean triggeredFromAltTab, boolean fromHome) {
-        mPreloadedRecentApps = false; // preloading no longer needs to be canceled
-        StatusBarManagerInternal statusbar = getStatusBarManagerInternal();
-        if (statusbar != null) {
-            statusbar.showRecentApps(triggeredFromAltTab, fromHome);
+        if (mOmniSwitchRecents) {
+            if (fromHome) {
+              AicpUtils.restoreHomeStack(mContext, UserHandle.CURRENT);
+            } else {
+              AicpUtils.toggleOmniSwitchRecents(mContext, UserHandle.CURRENT);
+            }
+        } else {
+            mPreloadedRecentApps = false; // preloading no longer needs to be canceled
+            StatusBarManagerInternal statusbar = getStatusBarManagerInternal();
+            if (statusbar != null) {
+                statusbar.showRecentApps(triggeredFromAltTab, fromHome);
+            }
         }
     }
 

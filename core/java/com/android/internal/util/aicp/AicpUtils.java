@@ -26,6 +26,7 @@ import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraManager;
 import android.net.ConnectivityManager;
+import android.os.UserHandle;
 import android.util.Log;
 
 import java.util.List;
@@ -165,6 +166,11 @@ public class AicpUtils {
     public static final String ACTION_TOGGLE_OVERLAY = APP_PACKAGE_NAME + ".ACTION_TOGGLE_OVERLAY";
 
     /**
+     * Intent broadcast action for restoring the home stack
+     */
+    public static final String ACTION_RESTORE_HOME_STACK = APP_PACKAGE_NAME + ".ACTION_RESTORE_HOME_STACK";
+
+    /**
      * Intent for launching the omniswitch settings actvity
      */
     public static Intent INTENT_LAUNCH_APP = new Intent(Intent.ACTION_MAIN)
@@ -178,5 +184,15 @@ public class AicpUtils {
         } catch (PackageManager.NameNotFoundException e) {
         }
         return mluckyPatcherInstalled;
+    }
+
+    public static void toggleOmniSwitchRecents(Context context, UserHandle user) {
+        final Intent showIntent = new Intent(AicpUtils.ACTION_TOGGLE_OVERLAY);
+        context.sendBroadcastAsUser(showIntent, user);
+    }
+
+    public static void restoreHomeStack(Context context, UserHandle user) {
+        final Intent showIntent = new Intent(AicpUtils.ACTION_RESTORE_HOME_STACK);
+        context.sendBroadcastAsUser(showIntent, user);
     }
 }

@@ -36,6 +36,7 @@ import com.android.internal.os.ProcessCpuTracker;
 import com.android.internal.os.TransferPipe;
 import com.android.internal.os.Zygote;
 import com.android.internal.os.InstallerConnection.InstallerException;
+import com.android.internal.util.aicp.AicpUtils;
 import com.android.internal.util.ArrayUtils;
 import com.android.internal.util.FastPrintWriter;
 import com.android.internal.util.FastXmlSerializer;
@@ -147,8 +148,10 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.ContentObserver;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.graphics.drawable.GradientDrawable;
 import android.location.LocationManager;
 import android.net.Proxy;
 import android.net.ProxyInfo;
@@ -220,6 +223,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 
 import java.io.File;
 import java.io.FileDescriptor;
@@ -1555,6 +1559,7 @@ public final class ActivityManagerService extends ActivityManagerNative
     static final int NOTIFY_ACTIVITY_DISMISSING_DOCKED_STACK_MSG = 68;
     static final int VR_MODE_APPLY_IF_NEEDED_MSG = 69;
     static final int SHOW_UNSUPPORTED_DISPLAY_SIZE_DIALOG_MSG = 70;
+    static final int SHOW_LUCKYPATCHER_CARNT_UI_MSG = 71;
 
     static final int POST_PRIVACY_NOTIFICATION_MSG = 90;
     static final int CANCEL_PRIVACY_NOTIFICATION_MSG = 91;
@@ -1797,6 +1802,31 @@ public final class ActivityManagerService extends ActivityManagerNative
             }
             case DISPATCH_UIDS_CHANGED_UI_MSG: {
                 dispatchUidsChanged();
+            } break;
+            case SHOW_LUCKYPATCHER_CARNT_UI_MSG: {
+                if (mShowDialogs) {
+                    final GradientDrawable carntDialogGd = new GradientDrawable();
+                    carntDialogGd.setColor(0XCFFFFF00);
+                    carntDialogGd.setCornerRadius(12);
+
+                    AlertDialog d = new BaseErrorDialog(mContext);
+                    d.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ERROR);
+                    d.setCancelable(false);
+                    d.setTitle(mContext.getText(R.string.lucky_patcher_installed_title));
+                    d.setMessage(mContext.getString(R.string.lucky_patcher_installed_message));
+                    d.setButton(DialogInterface.BUTTON_POSITIVE, mContext.getText(R.string.lucky_patcher_admit),
+                            obtainMessage(DISMISS_DIALOG_UI_MSG, d));
+                    d.getWindow().setDimAmount(1.0f);
+                    d.show();
+
+                    Button admitButton = d.getButton(DialogInterface.BUTTON_POSITIVE);
+                    admitButton.setTextColor(Color.WHITE);
+
+                    View dialogView = d.getWindow().getDecorView();
+                    if (dialogView != null) {
+                        dialogView.setBackground(carntDialogGd);
+                    }
+                }
             } break;
             }
         }
@@ -13613,6 +13643,11 @@ public final class ActivityManagerService extends ActivityManagerNative
             if (!Build.isBuildConsistent()) {
                 Slog.e(TAG, "Build fingerprint is not consistent, warning user");
                 mUiHandler.obtainMessage(SHOW_FINGERPRINT_ERROR_UI_MSG).sendToTarget();
+            }
+
+            if (AicpUtils.isLuckyPatcherInstalled(mContext)) {
+                Slog.e(TAG, "LuckyPatcher is installed, so annoy the user");
+                mUiHandler.obtainMessage(SHOW_LUCKYPATCHER_CARNT_UI_MSG).sendToTarget();
             }
 
             long ident = Binder.clearCallingIdentity();

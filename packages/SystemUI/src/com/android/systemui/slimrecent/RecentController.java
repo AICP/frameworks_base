@@ -132,6 +132,8 @@ public class RecentController implements RecentPanelView.OnExitListener,
     boolean enableMemDisplay;
     private ActivityManager mAm;
 
+    private boolean mMemBarLongClickToClear;
+
     private float mScaleFactor = DEFAULT_SCALE_FACTOR;
 
     private boolean mAicpEmptyView;
@@ -203,6 +205,8 @@ public class RecentController implements RecentPanelView.OnExitListener,
         mAm = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
         mMemText = (TextView) mRecentContainer.findViewById(R.id.recents_memory_text);
         mMemBar = (ProgressBar) mRecentContainer.findViewById(R.id.recents_memory_bar);
+        mRecentContainer.findViewById(R.id.recents_membar)
+                .setOnLongClickListener(mMemBarLongClickListener);
 
         cardRecyclerView.setHasFixedSize(true);
         CacheMoreCardsLayoutManager llm = new CacheMoreCardsLayoutManager(context, mWindowManager);
@@ -692,6 +696,9 @@ public class RecentController implements RecentPanelView.OnExitListener,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.SLIM_RECENTS_MEM_DISPLAY),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.SLIM_RECENTS_MEM_DISPLAY_LONG_CLICK_CLEAR),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -767,9 +774,13 @@ public class RecentController implements RecentPanelView.OnExitListener,
             mAppSidebarOpenSimultaneously = Settings.System.getIntForUser(resolver,
                     Settings.System.RECENT_APP_SIDEBAR_OPEN_SIMULTANEOUSLY, 1,
                     UserHandle.USER_CURRENT) == 1;
-            enableMemDisplay = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.SLIM_RECENTS_MEM_DISPLAY, 0) == 1;
+
+            enableMemDisplay = Settings.System.getInt(resolver,
+                    Settings.System.SLIM_RECENTS_MEM_DISPLAY, 0) == 1;
             showMemDisplay();
+
+            mMemBarLongClickToClear = Settings.System.getInt(resolver,
+                    Settings.System.SLIM_RECENTS_MEM_DISPLAY_LONG_CLICK_CLEAR, 0) == 1;
         }
     }
 
@@ -1040,4 +1051,20 @@ public class RecentController implements RecentPanelView.OnExitListener,
             return screenHeight;
         }
     }
+
+    private View.OnLongClickListener mMemBarLongClickListener = new View.OnLongClickListener() {
+        @Override
+        public boolean onLongClick(View v) {
+            if (!mMemBarLongClickToClear) {
+                return false;
+            }
+            if (mRecentPanelView.hasClearableTasks()) {
+                if (mRecentPanelView.removeAllApplications()) {
+                    hideRecents(false);
+                }
+                return true;
+            }
+            return false;
+        }
+    };
 }

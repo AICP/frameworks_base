@@ -20,6 +20,7 @@ package com.android.systemui.qs.tiles;
 import static com.android.internal.logging.MetricsLogger.VIEW_UNKNOWN;
 
 import android.content.Context;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -30,6 +31,7 @@ import android.graphics.PaintFlagsDrawFilter;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.VectorDrawable;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.Settings;
@@ -48,6 +50,7 @@ import androidx.annotation.Nullable;
 import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 import com.android.internal.util.aicp.OmniJawsClient;
+import com.android.internal.util.aicp.PackageUtils;
 import com.android.systemui.Dependency;
 import com.android.systemui.R;
 import com.android.systemui.dagger.qualifiers.Background;
@@ -157,22 +160,17 @@ public class WeatherTile extends QSTileImpl<BooleanState> implements OmniJawsCli
     @Override
     protected void handleClick(@Nullable View view) {
         if (DEBUG) Log.d(TAG, "handleClick");
-        if (!mState.value) {
-            if (!mWeatherClient.isOmniJawsSetupDone()) {
-                mActivityStarter.postStartActivityDismissingKeyguard(mWeatherClient.getSettingsIntent(), 0);
-            } else {
-                // service enablement is delayed so we keep the status
-                // extra and hope service will follow correct :)
-                mEnabled = true;
-                mWeatherData = null;
-                mWeatherClient.setOmniJawsEnabled(true);
-            }
+        if (!mWeatherClient.isOmniJawsSetupDone()) {
+            mActivityStarter.postStartActivityDismissingKeyguard(mWeatherClient.getSettingsIntent(), 0);
         } else {
-            mEnabled = false;
-            mWeatherData = null;
-            mWeatherClient.setOmniJawsEnabled(false);
+            if (PackageUtils.isPackageAvailable(mContext,"com.google.android.googlequicksearchbox")) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("dynact://velour/weather/ProxyActivity"));
+                intent.setComponent(new ComponentName("com.google.android.googlequicksearchbox",
+                        "com.google.android.apps.gsa.velour.DynamicActivityTrampoline"));
+                mActivityStarter.postStartActivityDismissingKeyguard(intent, 0);
+            }
         }
-        refreshState();
     }
 
     @Override

@@ -682,7 +682,7 @@ public class VolumeDialog implements TunerService.Tunable {
 
     private void removeRow(VolumeRow volumeRow) {
         mRows.remove(volumeRow);
-        mDialogContentView.removeView(volumeRow.view);
+        mDialogRowsView.removeView(volumeRow.view);
     }
 
     private void onStateChangedH(State state) {

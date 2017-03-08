@@ -184,4 +184,13 @@
 
     <!-- Slim recents membar -->
     <string name="recents_free_ram">RAM: %1$d MB frei</string>
+
+    <!-- OmniJAWS -->
+    <string name="omnijaws_service_error">Fehler</string>
+    <string name="omnijaws_service_unkown">keine Wetterdaten</string>
+    <string name="omnijaws_detail_header">Wetter</string>
+    <string name="omnijaws_label_default">Wetter</string>
+    <string name="omnijaws_current_text">Jetzt</string>
+    <string name="omnijaws_package_not_available">OmniJaws nicht verfügbar</string>
+
 </resources>

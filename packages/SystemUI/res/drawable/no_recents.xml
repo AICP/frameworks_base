@@ -10,5 +10,5 @@
         android:name="rotate_lamp"/>
     <target
         android:animation="@anim/move_eyes"
-        android:name="eyes"/>
+        android:name="move_eyes"/>
 </animated-vector>

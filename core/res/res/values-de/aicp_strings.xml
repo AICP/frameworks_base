@@ -28,9 +28,6 @@
     <!-- Screenshoot edit action -->
     <string name="edit">Ändern</string>
 
-    <!-- Singlehanded Mode -->
-    <string name="singlehandmode_click_hint_message">Außerhalb des Bildschirms berühren, um die Mini-Ansicht zu beenden</string>
-
     <!-- Powermenu Torch -->
     <string name="global_action_torch">Taschenlampe</string>
 

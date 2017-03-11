@@ -161,6 +161,7 @@ import com.android.systemui.navigation.Navigator;
 import com.android.systemui.qs.QSContainer;
 import com.android.systemui.omni.StatusBarHeaderMachine;
 import com.android.systemui.qs.QSPanel;
+import com.android.systemui.recents.Recents;
 import com.android.systemui.recents.RecentsActivity;
 import com.android.systemui.recents.ScreenPinningRequest;
 import com.android.systemui.recents.events.EventBus;
@@ -1904,6 +1905,21 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
     @Override
     protected void toggleSplitScreenMode(int metricsDockAction, int metricsUndockAction) {
+        if (mSlimRecents != null) {
+            int dockSide = WindowManagerProxy.getInstance().getDockSide();
+            if (dockSide == WindowManager.DOCKED_INVALID) {
+                mSlimRecents.startMultiWindow();
+                if (metricsDockAction != -1) {
+                    MetricsLogger.action(mContext, metricsDockAction);
+                }
+            } else {
+                EventBus.getDefault().send(new UndockingTaskEvent());
+                if (metricsUndockAction != -1) {
+                    MetricsLogger.action(mContext, metricsUndockAction);
+                }
+            }
+            return;
+        }
         if (mRecents == null) {
             return;
         }
@@ -6093,9 +6109,11 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         if (slimRecents) {
             mSlimRecents = new RecentController(mContext, mLayoutDirection);
+            mRecents = null;
             //mSlimRecents.setCallback(this);
             rebuildRecentsScreen();
         } else {
+            mRecents = getComponent(Recents.class);
             mSlimRecents = null;
         }
     }

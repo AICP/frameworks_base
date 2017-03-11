@@ -582,11 +582,6 @@ public class RecentPanelView {
 
     protected void notifyDataSetChanged(boolean forceupdate) {
         if (forceupdate || !mController.isShowing()) {
-            // We want to have the list scrolled down before it is visible for the user.
-            // Whoever calls notifyDataSetChanged() first (not visible) do it now.
-            if (mCardRecyclerView != null) {
-               // mCardRecyclerView.setSelection(mCards.size() - 1);
-            }
             mCardAdapter.notifyDataSetChanged();
         }
     }
@@ -733,8 +728,10 @@ public class RecentPanelView {
                     UserHandle.USER_CURRENT);
 
             final List<ActivityManager.RecentTaskInfo> recentTasks =
-                    am.getRecentTasksForUser(maxNumTasksToLoad,
+                    am.getRecentTasksForUser(ActivityManager.getMaxRecentTasksStatic(),
                     ActivityManager.RECENT_IGNORE_HOME_STACK_TASKS
+                            | ActivityManager.RECENT_INGORE_DOCKED_STACK_TOP_TASK
+                            | ActivityManager.RECENT_INGORE_PINNED_STACK_TASKS
                             | ActivityManager.RECENT_IGNORE_UNAVAILABLE
                             | ActivityManager.RECENT_INCLUDE_PROFILES,
                             UserHandle.CURRENT.getIdentifier());
@@ -796,6 +793,11 @@ public class RecentPanelView {
                         false, EXPANDED_STATE_UNKNOWN, recentInfo.taskDescription);
 
                 if (item != null) {
+                    // Remove any tasks after our max task limit to keep good ux
+                    if (i >= maxNumTasksToLoad) {
+                        am.removeTask(item.persistentTaskId);
+                        continue;
+                    }
                     for (String fav : favList) {
                         if (fav.equals(item.identifier)) {
                             item.setIsFavorite(true);

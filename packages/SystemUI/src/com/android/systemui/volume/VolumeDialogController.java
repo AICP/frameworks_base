@@ -124,7 +124,7 @@ public class VolumeDialogController {
         mObserver = new SettingObserver(mWorker);
         mObserver.init();
         mReceiver.init();
-        mStreamTitles = mContext.getResources().getStringArray(R.array.volume_stream_titles);
+        mStreamTitles = mContext.getResources().getStringArray(R.array.volume_stream_titles_lineage);
         mVibrator = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
         mHasVibrator = mVibrator != null && mVibrator.hasVibrator();
     }
@@ -422,6 +422,9 @@ public class VolumeDialogController {
     private boolean updateLinkNotificationConfigW() {
         boolean linkNotificationWithVolume = Settings.Secure.getInt(mContext.getContentResolver(),
                 Settings.Secure.VOLUME_LINK_NOTIFICATION, 1) == 1;
+        if (!Util.isVoiceCapable(mContext)) {
+            return false;
+        }
         if (mState.linkedNotification == linkNotificationWithVolume) {
             return false;
         }

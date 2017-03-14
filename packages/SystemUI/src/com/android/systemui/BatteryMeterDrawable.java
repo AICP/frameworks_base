@@ -336,6 +336,10 @@ public class BatteryMeterDrawable extends Drawable implements
         if (mPowerSaveEnabled) {
             return mColors[mColors.length - 1];
         }
+        if (mPluggedIn) {
+            return Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.BATTERY_CHARGING_COLOR, Color.WHITE);
+        }
         int thresh = 0;
         int color = 0;
         for (int i = 0; i < mColors.length; i += 2) {

@@ -5764,6 +5764,11 @@ public final class Settings {
          */
         public static final String ON_THE_GO_CAMERA = "on_the_go_camera";
 
+        /**
+         * @hide
+         */
+        public static final String ROAMING_INDICATOR_ICON = "roaming_indicator_icon";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5869,6 +5874,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(ON_THE_GO_SERVICE_RESTART, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(ON_THE_GO_CAMERA, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(ON_THE_GO_ALPHA, ANY_STRING_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(ROAMING_INDICATOR_ICON, BOOLEAN_VALIDATOR);
         }
 
         /**

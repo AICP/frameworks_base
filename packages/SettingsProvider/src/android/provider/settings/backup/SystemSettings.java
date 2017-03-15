@@ -142,5 +142,6 @@ public class SystemSettings {
         Settings.System.STATUS_BAR_CLOCK_SIZE,
         Settings.System.QS_HEADER_CLOCK_SIZE,
         Settings.System.USE_OLD_MOBILETYPE,
+        Settings.System.ROAMING_INDICATOR_ICON,
     };
 }

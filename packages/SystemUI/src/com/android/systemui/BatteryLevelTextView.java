@@ -41,6 +41,9 @@ public class BatteryLevelTextView extends TextView implements
 
     private boolean mRequestedVisibility;
 
+    private int mTextColor = Color.WHITE;
+    private boolean mCharging = false;
+
     public BatteryLevelTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
@@ -48,12 +51,28 @@ public class BatteryLevelTextView extends TextView implements
     @Override
     public void onBatteryLevelChanged(int level, boolean pluggedIn, boolean charging) {
         setText(NumberFormat.getPercentInstance().format((double) level / 100.0));
-        if (pluggedIn && charging) {
-            setTextColor(Settings.System.getInt(getContext().getContentResolver(),
-                    Settings.System.BATTERY_CHARGING_COLOR, Color.WHITE));
+        mCharging = charging;
+        updateTextColor();
+    }
+
+    @Override
+    public void setTextColor(int color) {
+        mTextColor = color;
+        updateTextColor();
+    }
+
+    private void updateTextColor() {
+        int chargingColor = getChargingColor();
+        if (mCharging && chargingColor != Color.WHITE) {
+            super.setTextColor(chargingColor);
         } else {
-            setTextColor(Color.WHITE);
+            super.setTextColor(mTextColor);
         }
+    }
+
+    private int getChargingColor() {
+        return Settings.System.getInt(getContext().getContentResolver(),
+                    Settings.System.BATTERY_CHARGING_COLOR, Color.WHITE);
     }
 
     public void setBatteryController(BatteryController batteryController) {

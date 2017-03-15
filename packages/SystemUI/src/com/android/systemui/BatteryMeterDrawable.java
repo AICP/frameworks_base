@@ -337,8 +337,11 @@ public class BatteryMeterDrawable extends Drawable implements
             return mColors[mColors.length - 1];
         }
         if (mPluggedIn) {
-            return Settings.System.getInt(mContext.getContentResolver(),
+            int customColor = Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.BATTERY_CHARGING_COLOR, Color.WHITE);
+            if (customColor != Color.WHITE) {
+                return customColor;
+            }
         }
         int thresh = 0;
         int color = 0;

@@ -5667,6 +5667,14 @@ public final class Settings {
         /** @hide */
         private static final Validator LOCKSCREEN_QUICK_UNLOCK_CONTROL_VALIDATOR = BOOLEAN_VALIDATOR;
 
+        /**
+         * @hide
+         */
+        public static final String ROAMING_INDICATOR_ICON = "roaming_indicator_icon";
+
+        /** @hide */
+        private static final Validator ROAMING_INDICATOR_ICON_VALIDATOR = BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5864,6 +5872,7 @@ public final class Settings {
             SHOW_CLEAR_ALL_RECENTS,
             LOCKSCREEN_PIN_SCRAMBLE_LAYOUT,
             LOCKSCREEN_QUICK_UNLOCK_CONTROL,
+            ROAMING_INDICATOR_ICON,
             // AICP Settings end
         };
 
@@ -6125,6 +6134,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SHOW_CLEAR_ALL_RECENTS);
             PRIVATE_SETTINGS.add(LOCKSCREEN_PIN_SCRAMBLE_LAYOUT);
             PRIVATE_SETTINGS.add(LOCKSCREEN_QUICK_UNLOCK_CONTROL);
+            PRIVATE_SETTINGS.add(ROAMING_INDICATOR_ICON);
             // AICP Settings end
         }
 
@@ -6376,6 +6386,7 @@ public final class Settings {
             VALIDATORS.put(SHOW_CLEAR_ALL_RECENTS,SHOW_CLEAR_ALL_RECENTS_VALIDATOR);
             VALIDATORS.put(LOCKSCREEN_PIN_SCRAMBLE_LAYOUT,LOCKSCREEN_PIN_SCRAMBLE_LAYOUT_VALIDATOR);
             VALIDATORS.put(LOCKSCREEN_QUICK_UNLOCK_CONTROL,LOCKSCREEN_QUICK_UNLOCK_CONTROL_VALIDATOR);
+            VALIDATORS.put(ROAMING_INDICATOR_ICON,ROAMING_INDICATOR_ICON_VALIDATOR);
             // AICP Settings end
         }
 

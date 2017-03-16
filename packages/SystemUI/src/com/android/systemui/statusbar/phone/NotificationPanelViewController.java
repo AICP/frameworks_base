@@ -29,6 +29,7 @@ import android.animation.ValueAnimator;
 import android.app.ActivityManager;
 import android.app.Fragment;
 import android.app.StatusBarManager;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
@@ -65,6 +66,7 @@ import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 import com.android.internal.util.LatencyTracker;
 import com.android.internal.util.aicp.AicpUtils;
+import com.android.internal.widget.LockPatternUtils;
 import com.android.keyguard.KeyguardClockSwitch;
 import com.android.keyguard.KeyguardStatusView;
 import com.android.keyguard.KeyguardUpdateMonitor;
@@ -117,7 +119,6 @@ import com.android.systemui.statusbar.policy.KeyguardUserSwitcher;
 import com.android.systemui.statusbar.policy.OnHeadsUpChangedListener;
 import com.android.systemui.statusbar.policy.ZenModeController;
 import com.android.systemui.util.InjectionInflationController;
-
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -418,13 +419,14 @@ public class NotificationPanelViewController extends PanelViewController {
     private final ShadeController mShadeController;
     private int mDisplayId;
 
-    // omni additions start
+    // aicp additions start
     private Context mContext;
     private int mStatusBarHeaderHeight;
     private GestureDetector mDoubleTapGesture;
     private GestureDetector mLockscreenDoubleTapToSleep;
+    private LockPatternUtils mLockPatternUtils;
     private boolean mIsLockscreenDoubleTapEnabled;
-
+    private boolean mQsSecureExpandDisabled;
     /**
      * Cache the resource id of the theme to avoid unnecessary work in onThemeChanged.
      *
@@ -520,6 +522,7 @@ public class NotificationPanelViewController extends PanelViewController {
         mStatusBarKeyguardViewManager = statusBarKeyguardViewManager;
         mView.setWillNotDraw(!DEBUG);
         mInjectionInflationController = injectionInflationController;
+        mLockPatternUtils = new LockPatternUtils(mContext);
         mFalsingManager = falsingManager;
         mPowerManager = powerManager;
         mWakeUpCoordinator = coordinator;
@@ -1044,7 +1047,7 @@ public class NotificationPanelViewController extends PanelViewController {
     }
 
     public void expandWithQs() {
-        if (mQsExpansionEnabled) {
+        if (mQsExpansionEnabled && !isQsSecureExpandDisabled()) {
             mQsExpandImmediate = true;
             mNotificationStackScroller.setShouldShowShelfOnly(true);
         }
@@ -1279,7 +1282,8 @@ public class NotificationPanelViewController extends PanelViewController {
     private boolean handleQsTouch(MotionEvent event) {
         final int action = event.getActionMasked();
         if (action == MotionEvent.ACTION_DOWN && getExpandedFraction() == 1f
-                && mBarState != StatusBarState.KEYGUARD && !mQsExpanded && mQsExpansionEnabled) {
+                && mBarState != StatusBarState.KEYGUARD && !mQsExpanded
+                && mQsExpansionEnabled && !isQsSecureExpandDisabled()) {
 
             // Down in the empty area while fully expanded - go to QS.
             mQsTracking = true;
@@ -1344,7 +1348,7 @@ public class NotificationPanelViewController extends PanelViewController {
                         MotionEvent.BUTTON_SECONDARY) || event.isButtonPressed(
                         MotionEvent.BUTTON_TERTIARY));
 
-        return twoFingerDrag || stylusButtonClickDrag || mouseButtonClickDrag;
+        return !isQsSecureExpandDisabled() && (twoFingerDrag || stylusButtonClickDrag || mouseButtonClickDrag);
     }
 
     private void handleQsDown(MotionEvent event) {
@@ -1941,8 +1945,9 @@ public class NotificationPanelViewController extends PanelViewController {
      * @return Whether we should intercept a gesture to open Quick Settings.
      */
     private boolean shouldQuickSettingsIntercept(float x, float y, float yDiff) {
-        if (!mQsExpansionEnabled || mCollapsedOnDown || (mKeyguardShowing
-                && mKeyguardBypassController.getBypassEnabled())) {
+        if (!mQsExpansionEnabled || mCollapsedOnDown
+                || (mKeyguardShowing && mKeyguardBypassController.getBypassEnabled())
+                || isQsSecureExpandDisabled()) {
             return false;
         }
         View header = mKeyguardShowing || mQs == null ? mKeyguardStatusBar : mQs.getHeader();
@@ -3292,7 +3297,7 @@ public class NotificationPanelViewController extends PanelViewController {
         @Override
         public void onOverscrollTopChanged(float amount, boolean isRubberbanded) {
             cancelQsAnimation();
-            if (!mQsExpansionEnabled) {
+            if (!mQsExpansionEnabled || isQsSecureExpandDisabled()) {
                 amount = 0f;
             }
             float rounded = amount >= 1f ? amount : 0f;
@@ -3586,6 +3591,10 @@ public class NotificationPanelViewController extends PanelViewController {
             mBarState = statusBarState;
             mKeyguardShowing = keyguardShowing;
 
+            if (mQs != null) {
+                mQs.setSecureExpandDisabled(isQsSecureExpandDisabled());
+            }
+
             if (oldState == StatusBarState.KEYGUARD && (goingToFullShade
                     || statusBarState == StatusBarState.SHADE_LOCKED)) {
                 animateKeyguardStatusBarOut();
@@ -3804,5 +3813,16 @@ public class NotificationPanelViewController extends PanelViewController {
 
     public void clearAllNotifications(boolean forceToLeft) {
         mNotificationStackScroller.clearAllNotifications(forceToLeft);
+    }
+
+    public void setQsSecureExpandDisabled(boolean isQsSecureExDisabled) {
+        mQsSecureExpandDisabled = isQsSecureExDisabled;
+    }
+
+    private boolean isQsSecureExpandDisabled() {
+        final boolean keyguardOrShadeShowing = mBarState == StatusBarState.KEYGUARD
+                || mBarState == StatusBarState.SHADE_LOCKED;
+        return mLockPatternUtils.isSecure(KeyguardUpdateMonitor.getCurrentUser()) && mQsSecureExpandDisabled &&
+                keyguardOrShadeShowing;
     }
 }

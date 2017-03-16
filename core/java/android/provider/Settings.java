@@ -9319,7 +9319,7 @@ public final class Settings {
         private static final Validator AWARE_LOCK_ENABLED_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /*****************************
-         * AICP System Settings start
+         * AICP Secure Settings start
          *****************************/
 
         /**
@@ -9347,8 +9347,17 @@ public final class Settings {
 
         private static final Validator VOLUME_LINK_NOTIFICATION_VALIDATOR = BOOLEAN_VALIDATOR;
 
+        /**
+         * Disable expanding quick settings on secure lock screens
+         *
+         * @hide
+         */
+        public static final String LOCK_QS_DISABLED = "lockscreen_qs_disabled";
+
+        private static final Validator LOCK_QS_DISABLED_VALIDATOR = BOOLEAN_VALIDATOR;
+
         /*****************************
-         * AICP System Settings end
+         * AICP Secure Settings end
          *****************************/
 
         /**
@@ -9496,7 +9505,8 @@ public final class Settings {
             AWARE_LOCK_ENABLED,
             FACE_AUTO_UNLOCK,
             VOLUME_PANEL_ON_LEFT,
-            VOLUME_LINK_NOTIFICATION
+            VOLUME_LINK_NOTIFICATION,
+            LOCK_QS_DISABLED
         };
 
         /**
@@ -9694,6 +9704,7 @@ public final class Settings {
             VALIDATORS.put(FACE_AUTO_UNLOCK, FACE_AUTO_UNLOCK_VALIDATOR);
             VALIDATORS.put(VOLUME_PANEL_ON_LEFT, VOLUME_PANEL_ON_LEFT_VALIDATOR);
             VALIDATORS.put(VOLUME_LINK_NOTIFICATION, VOLUME_LINK_NOTIFICATION_VALIDATOR);
+            VALIDATORS.put(LOCK_QS_DISABLED, LOCK_QS_DISABLED_VALIDATOR);
         }
 
         /**

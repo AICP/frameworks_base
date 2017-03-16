@@ -6132,6 +6132,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.QS_SMART_PULLDOWN),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.Secure.getUriFor(
+                    Settings.Secure.LOCK_QS_DISABLED),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -6180,6 +6183,9 @@ public class StatusBar extends SystemUI implements DemoMode,
                 initTickerView();
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.QS_SMART_PULLDOWN))) {
+                setStatusBarWindowViewOptions();
+            } else if (uri.equals(Settings.Secure.getUriFor(
+                    Settings.Secure.LOCK_QS_DISABLED))) {
                 setStatusBarWindowViewOptions();
             }
         }

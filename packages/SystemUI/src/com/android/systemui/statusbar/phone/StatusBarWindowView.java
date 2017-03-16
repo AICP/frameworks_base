@@ -747,10 +747,14 @@ public class StatusBarWindowView extends FrameLayout {
                 Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN, 0, UserHandle.USER_CURRENT) == 1;
         int qsSmartPullDown = Settings.System.getIntForUser(resolver,
                 Settings.System.QS_SMART_PULLDOWN, 0, UserHandle.USER_CURRENT);
+        boolean isQsSecureExpandDisabled = Settings.Secure.getIntForUser(
+                resolver, Settings.Secure.LOCK_QS_DISABLED, 0,
+                UserHandle.USER_CURRENT) != 0;
         if (mNotificationPanel != null) {
             mNotificationPanel.setLockscreenDoubleTapToSleep(isDoubleTapEnabled);
             mNotificationPanel.setQsQuickPulldown(isQsQuickPulldown);
             mNotificationPanel.setQsSmartPulldown(qsSmartPullDown);
+            mNotificationPanel.setQsSecureExpandDisabled(isQsSecureExpandDisabled);
         }
     }
 }

@@ -124,6 +124,11 @@ public class CarQSFragment extends Fragment implements QS {
     }
 
     @Override
+    public void setSecureExpandDisabled(boolean value) {
+        // No quick settings panel to expand.
+    }
+
+    @Override
     public void setPanelView(HeightListener notificationPanelView) {
         // No quick settings panel.
     }

@@ -40,8 +40,8 @@ public class Recovery extends Activity  {
                         (PowerManager) Recovery.this.getSystemService(
                         Context.POWER_SERVICE);
                 pm.reboot("recovery");
-                Recovery.this.finish();
             }
         }, 500);
+        Recovery.this.finish();
     }
 }

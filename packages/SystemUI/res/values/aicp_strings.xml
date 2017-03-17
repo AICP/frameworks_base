@@ -226,4 +226,8 @@
     <!-- Substratum QS Tile -->
     <string name="quick_substratum_label">Substratum</string>
     <string name="quick_substratum_na">Substratum is not installed! Install first.</string>
+
+    <!-- MagiskManager QS Tile -->
+    <string name="quick_magiskmanager_label">Magisk</string>
+    <string name="quick_magiskmanager_na">Magisk Manager is not installed! Install first.</string>
 </resources>

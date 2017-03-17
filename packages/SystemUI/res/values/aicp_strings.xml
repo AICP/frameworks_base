@@ -223,4 +223,7 @@
     <string name="shortcut_clear_notifications">Clear notifications</string>
     <string name="shortcut_toggle_title">Action to perform</string>
 
+    <!-- Substratum QS Tile -->
+    <string name="quick_substratum_label">Substratum</string>
+    <string name="quick_substratum_na">Substratum is not installed! Install first.</string>
 </resources>

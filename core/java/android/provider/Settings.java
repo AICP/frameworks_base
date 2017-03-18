@@ -5121,6 +5121,16 @@ public final class Settings {
          */
         public static final String DATA_DISABLED_ICON = "data_disabled_icon";
 
+        /**
+         * Enable\Disable Bluetooth Battery bar
+         * @hide
+         */
+        public static final String BLUETOOTH_SHOW_BATTERY = "bluetooth_show_battery";
+
+        /** @hide */
+        private static final Validator BLUETOOTH_SHOW_BATTERY_VALIDATOR =
+              BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5256,6 +5266,7 @@ public final class Settings {
             GLOBAL_ACTIONS_SCREENRECORD,
             ROAMING_INDICATOR_ICON,
             SHOW_LTE_FOURGEE,
+            BLUETOOTH_SHOW_BATTERY,
             // AICP Settings end
         };
 
@@ -5439,6 +5450,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(GLOBAL_ACTIONS_SCREENRECORD);
             PRIVATE_SETTINGS.add(ROAMING_INDICATOR_ICON);
             PRIVATE_SETTINGS.add(SHOW_LTE_FOURGEE);
+            PRIVATE_SETTINGS.add(BLUETOOTH_SHOW_BATTERY);
             // AICP Settings end
         }
 
@@ -5612,6 +5624,7 @@ public final class Settings {
             VALIDATORS.put(GLOBAL_ACTIONS_SCREENRECORD,GLOBAL_ACTIONS_SCREENRECORD_VALIDATOR);
             VALIDATORS.put(ROAMING_INDICATOR_ICON,ROAMING_INDICATOR_ICON_VALIDATOR);
             VALIDATORS.put(SHOW_LTE_FOURGEE,SHOW_LTE_FOURGEE_VALIDATOR);
+            VALIDATORS.put(BLUETOOTH_SHOW_BATTERY,BLUETOOTH_SHOW_BATTERY_VALIDATOR);
             // AICP Settings end
         }
 

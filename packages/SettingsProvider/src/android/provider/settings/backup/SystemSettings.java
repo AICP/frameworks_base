@@ -306,5 +306,6 @@ public class SystemSettings {
         Settings.System.GAMING_MODE_DISABLE_ADB,
         Settings.System.VOLUME_ANSWER_CALL,
         Settings.System.TOAST_ICON,
+        Settings.System.BLUETOOTH_SHOW_BATTERY,
     };
 }

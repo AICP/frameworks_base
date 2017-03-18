@@ -4914,25 +4914,35 @@ public final class Settings {
         private static final Validator SCREENSHOT_SOUND_VALIDATOR =
                BOOLEAN_VALIDATOR;
 
-         /**
-          * Volume dialog timeout
-          * @hide
-          */
-         public static final String VOLUME_DIALOG_TIMEOUT = "volume_dialog_timeout";
+        /**
+        * Volume dialog timeout
+        * @hide
+        */
+        public static final String VOLUME_DIALOG_TIMEOUT = "volume_dialog_timeout";
 
-         /** @hide */
-         private static final Validator VOLUME_DIALOG_TIMEOUT_VALIDATOR =
-                new SettingsValidators.InclusiveIntegerRangeValidator(500, 10000);;
+        /** @hide */
+        private static final Validator VOLUME_DIALOG_TIMEOUT_VALIDATOR =
+              new SettingsValidators.InclusiveIntegerRangeValidator(500, 10000);;
 
-          /**
-          * Whether to show media art on lockscreen
-          * @hide
-          */
-         public static final String LOCKSCREEN_MEDIA_METADATA = "lockscreen_media_metadata";
+        /**
+        * Whether to show media art on lockscreen
+        * @hide
+        */
+        public static final String LOCKSCREEN_MEDIA_METADATA = "lockscreen_media_metadata";
 
-         /** @hide */
-         private static final Validator LOCKSCREEN_MEDIA_METADATA_VALIDATOR =
-                BOOLEAN_VALIDATOR;
+        /** @hide */
+        private static final Validator LOCKSCREEN_MEDIA_METADATA_VALIDATOR =
+              BOOLEAN_VALIDATOR;
+
+        /**
+         * Enable\Disable Bluetooth Battery bar
+         * @hide
+         */
+        public static final String BLUETOOTH_SHOW_BATTERY = "bluetooth_show_battery";
+
+        /** @hide */
+        private static final Validator BLUETOOTH_SHOW_BATTERY_VALIDATOR =
+              BOOLEAN_VALIDATOR;
 
         /***************************
          * AICP System Settings end
@@ -5065,6 +5075,7 @@ public final class Settings {
             VOLUME_BUTTON_MUSIC_CONTROL,
             SCREENSHOT_SOUND,
             VOLUME_DIALOG_TIMEOUT,
+            BLUETOOTH_SHOW_BATTERY,
             // AICP Settings end
         };
 
@@ -5259,6 +5270,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SCREENSHOT_SOUND);
             PRIVATE_SETTINGS.add(VOLUME_DIALOG_TIMEOUT);
             PRIVATE_SETTINGS.add(LOCKSCREEN_MEDIA_METADATA);
+            PRIVATE_SETTINGS.add(BLUETOOTH_SHOW_BATTERY);
             // AICP Settings end
         }
 
@@ -5433,6 +5445,7 @@ public final class Settings {
             VALIDATORS.put(SCREENSHOT_SOUND,SCREENSHOT_SOUND_VALIDATOR);
             VALIDATORS.put(VOLUME_DIALOG_TIMEOUT,VOLUME_DIALOG_TIMEOUT_VALIDATOR);
             VALIDATORS.put(LOCKSCREEN_MEDIA_METADATA,LOCKSCREEN_MEDIA_METADATA_VALIDATOR);
+            VALIDATORS.put(BLUETOOTH_SHOW_BATTERY,BLUETOOTH_SHOW_BATTERY_VALIDATOR);
             // AICP Settings end
         }
 

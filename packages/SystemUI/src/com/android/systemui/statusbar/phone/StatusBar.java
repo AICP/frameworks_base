@@ -672,6 +672,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.Secure.getUriFor(
                     Settings.Secure.LOCK_QS_DISABLED),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.BLUETOOTH_SHOW_BATTERY),
+                    false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -4488,6 +4491,10 @@ public class StatusBar extends SystemUI implements DemoMode,
         boolean isQsSecureExpandDisabled = Settings.Secure.getIntForUser(
                 mContext.getContentResolver(), Settings.Secure.LOCK_QS_DISABLED, 0,
                 UserHandle.USER_CURRENT) != 0;
+        boolean showBluetoothBattery = Settings.System.getIntForUser(
+                mContext.getContentResolver(), Settings.System.BLUETOOTH_SHOW_BATTERY, 0,
+                UserHandle.USER_CURRENT) == 1;
+
         if (mNotificationPanelViewController != null) {
             mNotificationPanelViewController.updateDoubleTapToSleep(doubleTapToSleepEnabled);
             mNotificationPanelViewController.setLockscreenDoubleTapToSleep(isDoubleTapEnabled);
@@ -4502,6 +4509,9 @@ public class StatusBar extends SystemUI implements DemoMode,
         }
         if (mQuickQSPanel != null) {
             mQuickQSPanel.updateSettings();
+        }
+        if (mIconPolicy != null) {
+            mIconPolicy.updateSettings(showBluetoothBattery);
         }
     }
 }

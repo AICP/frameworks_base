@@ -161,6 +161,8 @@ public class PhoneStatusBarPolicy
 
     private boolean mManagedProfileIconVisible = false;
 
+    private boolean mShowBluetoothBattery = false;
+
     private BluetoothController mBluetooth;
     private AlarmManager.AlarmClockInfo mNextAlarm;
 
@@ -349,6 +351,11 @@ public class PhoneStatusBarPolicy
         mCommandQueue.addCallback(this);
     }
 
+    public void updateSettings(boolean showBluetoothBattery) {
+        mShowBluetoothBattery = showBluetoothBattery;
+        updateBluetooth();
+    }
+
     @Override
     public void onZenChanged(int zen) {
         updateVolumeZen();
@@ -464,7 +471,8 @@ public class PhoneStatusBarPolicy
                         if (state == BluetoothProfile.STATE_CONNECTED) {
                             int batteryLevel = device.getBatteryLevel();
                             BluetoothClass type = device.getBtClass();
-                            if (batteryLevel != BluetoothDevice.BATTERY_LEVEL_UNKNOWN && showBatteryForThis(type)) {
+                            if (batteryLevel != BluetoothDevice.BATTERY_LEVEL_UNKNOWN && showBatteryForThis(type)
+                                    && mShowBluetoothBattery) {
                                 iconId = getBtLevelIconRes(batteryLevel);
                             } else {
                                 iconId = R.drawable.stat_sys_data_bluetooth_connected;

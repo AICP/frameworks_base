@@ -20,6 +20,7 @@
     <color name="status_bar_temperature_text_color">#FFFFFFFF</color>
     <color name="status_bar_temperature_location_text_color">#FFFFFFFF</color>
 
-    <!-- Status bar battery level text color -->
+    <!-- Status bar battery colors -->
     <color name="status_bar_battery_level_text_color">#ffffff</color>
+    <color name="batterymeter_frame_color_darkintensity">@color/dark_mode_icon_color_dual_tone_background</color>
 </resources>

@@ -37,6 +37,7 @@ import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.drawable.AnimatedVectorDrawable;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.Paint;
 import android.graphics.RectF;
@@ -44,6 +45,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.ParcelFileDescriptor;
 import android.os.Process;
 import android.os.RemoteException;
@@ -132,11 +134,15 @@ public class RecentPanelView {
     private boolean mIsLoading;
 
     private int mMainGravity;
+    private int mMaxAppsToLoad;
     private float mScaleFactor;
     private int mExpandedMode = EXPANDED_MODE_AUTO;
+    private boolean mIsScreenPinningEnabled;
     private boolean mShowTopTask;
     private boolean mOnlyShowRunningTasks;
     private static int mCardColor = 0x0ffffff;
+
+    private String mCurrentFavorites = "";
 
     final static BitmapFactory.Options sBitmapOptions;
 
@@ -171,7 +177,7 @@ public class RecentPanelView {
                     favorite = !favorite;
                     handleFavoriteEntry(task);
                     mCardAdapter.notifyItemChanged(position);
-                    return true;
+                    return false;
                 }
             };
 
@@ -274,10 +280,9 @@ public class RecentPanelView {
             final boolean isExpanded =
                     ((isSystemExpanded && !isUserCollapsed) || isUserExpanded) && !isTopTask;
 
-            boolean screenPinningEnabled = screenPinningEnabled();
             expanded = isExpanded;
             expandVisible = !isTopTask;
-            customIcon = isTopTask && screenPinningEnabled;
+            customIcon = isTopTask && mIsScreenPinningEnabled;
             custom = mContext.getDrawable(R.drawable.recents_lock_to_app_pin);
             customClickListener = new View.OnClickListener() {
                 @Override
@@ -293,11 +298,6 @@ public class RecentPanelView {
                     }
                 }
             };
-        }
-
-        private boolean screenPinningEnabled() {
-            return Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.LOCK_TO_APP_ENABLED, 0) != 0;
         }
 
         private Intent getAppInfoIntent() {
@@ -521,21 +521,18 @@ public class RecentPanelView {
      */
     private void handleFavoriteEntry(TaskDescription td) {
         ContentResolver resolver = mContext.getContentResolver();
-        final String favorites = Settings.System.getStringForUser(
-                    resolver, Settings.System.RECENT_PANEL_FAVORITES,
-                    UserHandle.USER_CURRENT);
         String entryToSave = "";
 
         if (!td.getIsFavorite()) {
-            if (favorites != null && !favorites.isEmpty()) {
-                entryToSave += favorites + "|";
+            if (mCurrentFavorites != null && !mCurrentFavorites.isEmpty()) {
+                entryToSave += mCurrentFavorites + "|";
             }
             entryToSave += td.identifier;
         } else {
-            if (favorites == null) {
+            if (mCurrentFavorites == null) {
                 return;
             }
-            for (String favorite : favorites.split("\\|")) {
+            for (String favorite : mCurrentFavorites.split("\\|")) {
                 if (favorite.equals(td.identifier)) {
                     continue;
                 }
@@ -904,6 +901,10 @@ public class RecentPanelView {
         mCardColor = color;
     }
 
+    protected void setCurrentFavorites(String favorites) {
+        mCurrentFavorites = favorites;
+    }
+
     /**
      * Notify listener that tasks are loaded.
      */
@@ -968,13 +969,10 @@ public class RecentPanelView {
             mCounter = 0;
 
             // Check and get user favorites.
-            final String favorites = Settings.System.getStringForUser(
-                    mContext.getContentResolver(), Settings.System.RECENT_PANEL_FAVORITES,
-                    UserHandle.USER_CURRENT);
             final ArrayList<String> favList = new ArrayList<>();
             final ArrayList<TaskDescription> nonFavoriteTasks = new ArrayList<>();
-            if (favorites != null && !favorites.isEmpty()) {
-                for (String favorite : favorites.split("\\|")) {
+            if (mCurrentFavorites != null && !mCurrentFavorites.isEmpty()) {
+                for (String favorite : mCurrentFavorites.split("\\|")) {
                     favList.add(favorite);
                 }
             }
@@ -982,10 +980,6 @@ public class RecentPanelView {
             final PackageManager pm = mContext.getPackageManager();
             final ActivityManager am = (ActivityManager)
                     mContext.getSystemService(Context.ACTIVITY_SERVICE);
-
-            int maxNumTasksToLoad = Settings.System.getIntForUser(mContext.getContentResolver(),
-                    Settings.System.RECENTS_MAX_APPS, ActivityManager.getMaxRecentTasksStatic(),
-                    UserHandle.USER_CURRENT);
 
             final List<ActivityManager.RecentTaskInfo> recentTasks =
                     am.getRecentTasksForUser(ActivityManager.getMaxRecentTasksStatic(),
@@ -1053,7 +1047,7 @@ public class RecentPanelView {
 
                 if (item != null) {
                     // Remove any tasks after our max task limit to keep good ux
-                    if (i >= maxNumTasksToLoad) {
+                    if (i >= mMaxAppsToLoad) {
                         am.removeTask(item.persistentTaskId);
                         continue;
                     }
@@ -1065,7 +1059,7 @@ public class RecentPanelView {
                     }
 
                     if (topTask) {
-                        if (mShowTopTask || screenPinningEnabled()) {
+                        if (mShowTopTask || mIsScreenPinningEnabled) {
                             // User want to see actual running task. Set it here
                             int oldState = getExpandedState(item);
                             if ((oldState & EXPANDED_STATE_TOPTASK) == 0) {
@@ -1161,29 +1155,51 @@ public class RecentPanelView {
             card.cardBackgroundColor = getCardBackgroundColor(task);
 
             final ExpandableCard ec = card;
-            AppIconLoader.getInstance(mContext).loadAppIcon(task.resolveInfo,
-                            task.identifier, new AppIconLoader.IconCallback() {
-                        @Override
-                        public void onDrawableLoaded(Drawable drawable) {
-                            ec.appIcon = drawable;
-                            mCardAdapter.notifyItemChanged(index);
-                        }
-                    }, mScaleFactor);
+
+            final Drawable appIcon =
+                    CacheController.getInstance(mContext).getBitmapFromMemCache(task.identifier);
+            if (appIcon != null) {
+                ec.appIcon = appIcon;
+                postnotifyItemChanged(mCardRecyclerView, index);
+            } else {
+                AppIconLoader.getInstance(mContext).loadAppIcon(task.resolveInfo,
+                        task.identifier, new AppIconLoader.IconCallback() {
+                            @Override
+                            public void onDrawableLoaded(Drawable drawable) {
+                                ec.appIcon = drawable;
+                                postnotifyItemChanged(mCardRecyclerView, index);
+                            }
+                }, mScaleFactor);
+            }
             new BitmapDownloaderTask(mContext, mScaleFactor, new DownloaderCallback() {
-                        @Override
-                        public void onBitmapLoaded(Bitmap bitmap) {
-                            ec.screenshot = bitmap;
-                            mCardAdapter.notifyItemChanged(index);
-                        }
-                    }).executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, task.persistentTaskId);
+                @Override
+                public void onBitmapLoaded(Bitmap bitmap) {
+                    ec.screenshot = bitmap;
+                    postnotifyItemChanged(mCardRecyclerView, index);
+                }
+            }).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, task.persistentTaskId);
             card.cardClickListener = new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        startApplication(task);
-                    }
+                @Override
+                public void onClick(View v) {
+                    startApplication(task);
+                }
             };
             mCounter++;
             publishProgress(card);
+        }
+
+        private void postnotifyItemChanged(final RecyclerView recyclerView, int index) {
+            Handler handler = new Handler(Looper.getMainLooper());
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    if (!recyclerView.isComputingLayout()) {
+                        mCardAdapter.notifyItemChanged(index);
+                    } else {
+                        postnotifyItemChanged(recyclerView, index);
+                    }
+                }
+            });
         }
 
         @Override
@@ -1236,9 +1252,12 @@ public class RecentPanelView {
         return null;
     }
 
-    private boolean screenPinningEnabled() {
-        return Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.LOCK_TO_APP_ENABLED, 0) != 0;
+    protected void isScreenPinningEnabled(boolean enabled) {
+        mIsScreenPinningEnabled = enabled;
+    }
+
+    protected void setMaxAppsToLoad(int max) {
+        mMaxAppsToLoad = max;
     }
 
     /**

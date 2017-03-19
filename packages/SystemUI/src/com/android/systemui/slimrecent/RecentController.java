@@ -282,8 +282,8 @@ public class RecentController implements RecentPanelView.OnExitListener,
         });
 
         // Settings observer
-        SettingsObserver observer = new SettingsObserver(mHandler);
-        observer.observe();
+        new SettingsObserver(mHandler).observe();
+        new KeepOpenSettingsObserver(mHandler).observe();
     }
 
     /**
@@ -807,12 +807,18 @@ public class RecentController implements RecentPanelView.OnExitListener,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.SLIM_RECENTS_ICON_PACK),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.LOCK_TO_APP_ENABLED),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.RECENTS_MAX_APPS),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
         @Override
         protected void update() {
-            // Close recent panel if it is opened.
+            // Close recent panel if it is opened
             hideRecents(false);
 
             ContentResolver resolver = mContext.getContentResolver();
@@ -843,6 +849,7 @@ public class RecentController implements RecentPanelView.OnExitListener,
             if (scaleFactor != mScaleFactor) {
                 mScaleFactor = scaleFactor;
                 rebuildRecentsScreen();
+                CacheController.getInstance(mContext).clearCache();
             }
             if (mRecentPanelView != null) {
                 mRecentPanelView.setScaleFactor(mScaleFactor);
@@ -859,6 +866,12 @@ public class RecentController implements RecentPanelView.OnExitListener,
                 mRecentPanelView.setCardColor(Settings.System.getIntForUser(
                     resolver, Settings.System.RECENT_CARD_BG_COLOR, 0x00ffffff,
                     UserHandle.USER_CURRENT));
+                mRecentPanelView.isScreenPinningEnabled(Settings.System.getIntForUser(
+                        resolver, Settings.System.LOCK_TO_APP_ENABLED, 0,
+                        UserHandle.USER_CURRENT) == 1);
+                mRecentPanelView.setMaxAppsToLoad(Settings.System.getIntForUser(
+                        resolver, Settings.System.RECENTS_MAX_APPS, 15,
+                        UserHandle.USER_CURRENT));
             }
 
             mRecentContent.setElevation(50);
@@ -896,6 +909,35 @@ public class RecentController implements RecentPanelView.OnExitListener,
             String currentIconPack = Settings.System.getString(resolver,
                 Settings.System.SLIM_RECENTS_ICON_PACK);
             IconPackHelper.getInstance(mContext).updatePrefs(currentIconPack);
+        }
+    }
+
+    /**
+     * Settingsobserver to take care of the user settings that don't require closing the panel.
+     */
+    private class KeepOpenSettingsObserver extends UserContentObserver {
+        KeepOpenSettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        @Override
+        protected void observe() {
+            super.observe();
+            ContentResolver resolver = mContext.getContentResolver();
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.RECENT_PANEL_FAVORITES),
+                    false, this, UserHandle.USER_ALL);
+            update();
+        }
+
+        @Override
+        protected void update() {
+            ContentResolver resolver = mContext.getContentResolver();
+            if (mRecentPanelView != null) {
+                mRecentPanelView.setCurrentFavorites(Settings.System.getStringForUser(
+                        resolver, Settings.System.RECENT_PANEL_FAVORITES,
+                        UserHandle.USER_CURRENT));
+            }
         }
     }
 

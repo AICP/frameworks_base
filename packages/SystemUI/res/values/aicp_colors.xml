@@ -114,4 +114,8 @@
     <!-- Screenshot action colors -->
     <color name="screenshot_flash_color">@android:color/white</color>
     <color name="screenshot_background_color">@android:color/black</color>
+
+    <!-- Fonts used in the MediaQueue -->
+    <color name="notification_media_queue_text">#7c7c7c</color>
+
 </resources>

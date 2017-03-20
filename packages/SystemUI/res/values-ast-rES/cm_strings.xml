@@ -24,7 +24,7 @@
   <!-- Weather string format in expanded statusbar header -->
   <string name="status_bar_expanded_header_weather_format"><xliff:g id="temp">%1$s</xliff:g> - <xliff:g id="condition">%2$s</xliff:g></string>
   <!-- Content description of the light brightness slider (not shown on the screen). [CHAR LIMIT=NONE] -->
-  <string name="accessibility_notification_brightness">Rellumu de lluz</string>
+  <string name="accessibility_notification_brightness">Brilléu de lluz</string>
   <!-- Lights settings, LED notification -->
   <string name="led_notification_title">Axustes de lluz</string>
   <string name="led_notification_text">Lluz LED habilitada polos axustes</string>

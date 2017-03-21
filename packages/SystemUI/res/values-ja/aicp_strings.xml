@@ -148,4 +148,47 @@
     <string name="quick_settings_onthego_back">Rear Camera</string>
     <string name="quick_settings_onthego_front">Front Camera</string>-->
 
+    <!-- Slim Recents -->
+    <string name="slim_recent_keyguard">履歴を表示するには端末をロック解除してください</string>
+
+    <!-- Slim recents app sidebar queue app toast -->
+    <string name="toast_recents_queue_app">履歴を閉じた後%sを起動します</string>
+    <string name="toast_recents_cancel_queued_app">アプリの起動をキャンセルしました</string>
+
+    <!-- Kill button in notification guts -->
+    <string name="force_stop_dlg_title">強制停止しますか？</string>
+    <string name="force_stop_dlg_text">アプリを強制停止すると、アプリが正常に機能しないことがあります。</string>
+    <string name="dlg_cancel">キャンセル</string>
+    <string name="kill">アプリの終了</string>
+
+    <!-- Off/On/Toggle -->
+    <string name="off">OFF</string>
+    <string name="on">ON</string>
+
+    <!-- Dialog Cancel/OK -->
+    <string name="cancel">キャンセル</string>
+    <string name="dlg_ok">OK</string>
+    <string name="yes">はい</string>
+    <string name="no">いいえ</string>
+
+    <!-- Slim Shortcut Actions -->
+    <string name="shortcut_picker">AICP ショートカット</string>
+    <string name="shortcut_rotation">画面の回転</string>
+    <string name="shortcut_reboot">再起動</string>
+    <string name="shortcut_recovery">リカバリー</string>
+    <string name="shortcut_volume">音量パネル</string>
+    <string name="shortcut_restart_ui">システムUIを再起動</string>
+    <string name="shortcut_powermenu">電源メニュー</string>
+    <string name="shortcut_flashlight">ライト</string>
+    <string name="shortcut_clear_notifications">通知を消去</string>
+
+    <!-- Substratum QS Tile -->
+    <string name="quick_substratum_na">Substratum はインストールされていません！まずはインストールしてください</string>
+
+    <!-- MagiskManager QS Tile -->
+    <string name="quick_magiskmanager_na">Magisk Manager はインストールされていません！まずはインストールしてください</string>
+
+    <!-- Compass QS Tile -->
+    <string name="quick_settings_compass_label">コンパス</string>
+
 </resources>

@@ -21,10 +21,6 @@
   <string name="app_killed_message">Aplicación finada</string>
   <!-- label for item that screenshots in phone options dialog -->
   <string name="global_action_screenshot">Capturar pantalla</string>
-  <!-- Title of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permgrouplab_security">Seguridá</string>
-  <!-- Description of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permgroupdesc_security">Permisos rellacionaos a la seguridá de la información del preséu.</string>
   <!-- label for item that restarts the phone in phone options dialog -->
   <!-- label for current user in phone options dialog -->
   <string name="global_action_current_user">Actual</string>
@@ -82,6 +78,7 @@
   <string name="app_ops_toggle_wifi">alternar Wi-Fi</string>
   <string name="app_ops_use_alarm_volume">controlar volume d\'alarma</string>
   <string name="app_ops_use_notification_volume">controlar el volume d\'avisu</string>
+  <string name="app_ops_use_ring_volume">controlar el volume del timbre</string>
   <string name="app_ops_write_mms">escribir un mensaxe MMS</string>
   <string name="app_ops_write_sms">escribir un mensaxe SMS</string>
   <string name="app_ops_use_fingerprint">usar buelga</string>

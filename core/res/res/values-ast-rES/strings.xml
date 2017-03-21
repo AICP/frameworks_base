@@ -35,7 +35,7 @@
          to display a size in kilobytes, megabytes, or other size units.
          Some languages (like French) will want to add a space between
          the placeholders. -->
-  <string name="fileSizeSuffix"><xliff:g id="number" example="123">%1$s</xliff:g><xliff:g id="unit" example="KB">%2$s</xliff:g></string>
+  <string name="fileSizeSuffix"><xliff:g id="number" example="123">%1$s</xliff:g> <xliff:g id="unit" example="KB">%2$s</xliff:g></string>
   <!-- [CHAR_LIMIT=10] Suffix added to signify duration in days -->
   <string name="durationDays"><xliff:g id="days">%1$d</xliff:g> díes</string>
   <!-- [CHAR_LIMIT=10] Suffix added to signify duration of one day with hours -->
@@ -43,15 +43,15 @@
             <xliff:g id="hours">%2$d</xliff:g> hrs</string>
   <!-- [CHAR_LIMIT=10] Suffix added to signify duration of one day with one hours -->
   <string name="durationDayHour"><xliff:g id="days">%1$d</xliff:g> día
-            <xliff:g id="hours">%2$d</xliff:g> hrs</string>
+            <xliff:g id="hours">%2$d</xliff:g> h</string>
   <!-- [CHAR_LIMIT=10] Suffix added to signify duration in hours -->
   <string name="durationHours"><xliff:g id="hours">%1$d</xliff:g> hrs</string>
   <!-- [CHAR_LIMIT=10] Suffix added to signify duration of one hour with minutes -->
-  <string name="durationHourMinutes"><xliff:g id="hours">%1$d</xliff:g> hr
+  <string name="durationHourMinutes"><xliff:g id="hours">%1$d</xliff:g> h
             <xliff:g id="minutes">%2$d</xliff:g> mins</string>
   <!-- [CHAR_LIMIT=10] Suffix added to signify duration of one hour with one minute -->
-  <string name="durationHourMinute"><xliff:g id="hours">%1$d</xliff:g> hr
-            <xliff:g id="minutes">%2$d</xliff:g> mins</string>
+  <string name="durationHourMinute"><xliff:g id="hours">%1$d</xliff:g> h
+            <xliff:g id="minutes">%2$d</xliff:g> min</string>
   <!-- [CHAR_LIMIT=10] Suffix added to signify duration in minutes -->
   <string name="durationMinutes"><xliff:g id="minutes">%1$d</xliff:g> mins</string>
   <!-- [CHAR_LIMIT=10] Suffix added to signify duration of one minute -->
@@ -347,7 +347,7 @@
   <string name="me">Yo</string>
   <!-- Power Dialog -->
   <!-- Title for the Phone Options dialog to lock the screen, turn off the phone etc. -->
-  <string name="power_dialog" product="tablet">Opciones de la tablet</string>
+  <string name="power_dialog" product="tablet">Opciones de tableta</string>
   <!-- Title for the Phone Options dialog to lock the screen, turn off the phone etc. -->
   <string name="power_dialog" product="tv">Opciones de TV</string>
   <!-- Title for the Phone Options dialog to lock the screen, turn off the phone etc. -->
@@ -370,7 +370,7 @@
   <string name="silent_mode_ring">Timbre activáu</string>
   <!-- Reboot to Recovery Progress Dialog. This is shown before it reboots to recovery. -->
   <string name="reboot_to_update_title">Anovamientu del sistema Android</string>
-  <string name="reboot_to_update_prepare">Preparando l\'anovamientu\u2026</string>
+  <string name="reboot_to_update_prepare">Tresnando anovamientu\u2026</string>
   <string name="reboot_to_update_package">Procesando\'l paquete d\'anovamientu\u2026</string>
   <string name="reboot_to_update_reboot">Reaniciando\u2026</string>
   <!-- Reboot to Recovery for factory reset. -->
@@ -411,7 +411,7 @@
      -->
   <string name="no_recent_tasks">Nun hai aplicaciones recientes.</string>
   <!-- Title of the Global Actions Dialog -->
-  <string name="global_actions" product="tablet">Opciones de la tablet</string>
+  <string name="global_actions" product="tablet">Opciones de tableta</string>
   <!-- Title of the Global Actions Dialog -->
   <string name="global_actions" product="tv">Opciones de TV</string>
   <!-- Title of the Global Actions Dialog -->
@@ -432,8 +432,10 @@
   <!-- TODO: remove if not used anymore -->
   <string name="bugreport_message">Va atropase información tocante al estáu actual del preséu y va unviase per corréu-e. Van pasar unos minutos dende qu\'entame a xenerase l\'informe de fallos hasta que s\'unvie, polo qu\'encamentámoste que seyas paciente.</string>
   <!-- Title in the bugreport dialog for the interactive workflow. Should fit in one line. [CHAR LIMIT=30] -->
+  <string name="bugreport_option_interactive_title">Informe interautivu</string>
   <!-- Summary in the bugreport dialog for the interactive workflow. [CHAR LIMIT=NONE] -->
   <!-- Title in the bugreport dialog for the full workflow. Should fit in one line. [CHAR LIMIT=30] -->
+  <string name="bugreport_option_full_title">Informe completu</string>
   <!-- Summary in the bugreport dialog for the full workflow. [CHAR LIMIT=NONE] -->
   <!--  Toast message informing user in how many seconds a bugreport screenshot will be taken -->
   <!-- Format for build summary info [CHAR LIMIT=NONE] -->
@@ -446,9 +448,9 @@
   <!-- label for item that toggles airplane mode -->
   <string name="global_actions_toggle_airplane_mode">Mou avión</string>
   <!-- status message in phone options dialog for when airplane mode is on -->
-  <string name="global_actions_airplane_mode_on_status">Mou avión activáu</string>
+  <string name="global_actions_airplane_mode_on_status">El mou avión ta ACTIVÁU</string>
   <!-- status message in phone options dialog for when airplane mode is off -->
-  <string name="global_actions_airplane_mode_off_status">Mou avión desactiváu</string>
+  <string name="global_actions_airplane_mode_off_status">El mou avión ta DESACTIVÁU</string>
   <!-- label for item that launches settings in phone options dialog [CHAR LIMIT=15]-->
   <string name="global_action_settings">Axustes</string>
   <!-- label for item that launches assist in phone options dialog [CHAR LIMIT=15]-->
@@ -695,6 +697,7 @@
       a comandos estres del fornidor de llocalización. Esto pue permiti-y interferir
       nel funcionamientu del GPS o d\'otres fontes de llocalización.</string>
   <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permlab_accessFineLocation">acceder al allugamientu precisu (GPS)</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_accessFineLocation">Permite que l\'aplicación obtenga la to llocalización precisa per duana del Sistema de posicionamientu global (GPS) o fontes de llocalización de rede, como torres de telefonía y redes Wi-Fi. Estos servicios de llocalización tienen de tar activaos y disponibles pa que l\'aplicación pueda usalos. Les aplicaciones puen usar esti permisu pa determinar la to llocalización y ye dable que\'l preséu consuma más batería.</string>
   <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
@@ -883,6 +886,7 @@
   <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permlab_sdcardRead" product="default">consultar el conteníu de la tarxeta SD</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. [CHAR LIMIT=30] -->
+  <string name="permdesc_sdcardRead" product="nosdcard">Permite que l\'aplicación llea\'l conteníu del to almacenamientu internu.</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_sdcardRead" product="default">Permite que l\'aplicación llea\'l conteníu de la tarxeta SD.</string>
   <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. [CHAR LIMIT=30] -->
@@ -957,7 +961,7 @@
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_accessDrmCertificates">Permite a la app dar y usar certificaos DRM. Nun tendría de ser necesario pa les aplicaciones normales.</string>
   <string name="permlab_handoverStatus">recibir estáu de tresferencies d\'Android Beam</string>
-  <string name="permdesc_handoverStatus">Permite qu\'esta app reciba información tocante a les tresferencies actuales d\'Android Beam</string>
+  <string name="permdesc_handoverStatus">Permite qu\'esta aplicación reciba información tocante a les tos tresferencies actuales d\'Android Beam</string>
   <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permlab_removeDrmCertificates">desaniciar certificaos DRM</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
@@ -1393,7 +1397,7 @@
   <string name="lockscreen_access_pattern_cleared">Patrón desaniciáu</string>
   <!-- Accessibility description sent when user adds a dot to the pattern. [CHAR LIMIT=NONE]  -->
   <string name="lockscreen_access_pattern_cell_added">Amestóse una caxella.</string>
-  <!-- Accessibility description sent when user adds a dot to the pattern. Announces the 
+  <!-- Accessibility description sent when user adds a dot to the pattern. Announces the
     actual cell when headphones are connected [CHAR LIMIT=NONE]  -->
   <string name="lockscreen_access_pattern_cell_added_verbose">
             Amestóse la caxella <xliff:g id="cell_index" example="3">%1$s</xliff:g></string>
@@ -1701,7 +1705,7 @@
          the user selects to enables the service. (default). [CHAR LIMIT=NONE] -->
   <string name="enable_explore_by_touch_warning_message" product="default"><xliff:g id="ACCESSIBILITY_SERVICE_NAME">%1$s</xliff:g> quier habilitar la esploración táctil. Cuando esta función tea activada, vas poder escuchar o ver descripciones del conteníu esbilláu o usar xestos pa interactuar col teléfonu.</string>
   <!-- String used to display the date. This is the string to say something happened 1 month ago. -->
-  <string name="oneMonthDurationPast">hai un mes</string>
+  <string name="oneMonthDurationPast">Hai un mes</string>
   <!-- String used to display the date. This is the string to say something happened more than 1 month ago. -->
   <string name="beforeOneMonthDurationPast">hai más d\'un mes</string>
   <!-- This is used to express that something occurred within the last X days (e.g., Last 7 days). -->
@@ -1760,17 +1764,65 @@
   </plurals>
   <!-- A string denoting the current point in time that should be as short as possible. Abbreviations are preferred to full strings as this might be shown repetitively. It is used in the header of notifications. [CHAR LIMIT=8]-->
   <!-- Phrase describing a time duration using minutes that is as short as possible, preferrably one character. If the language needs a space in between the integer and the unit, please also integrate it in the string, but preferably it should not have a space in between.[CHAR LIMIT=6] -->
+  <plurals name="duration_minutes_shortest">
+    <item quantity="one"><xliff:g example="1" id="count">%d</xliff:g>m</item>
+    <item quantity="other"><xliff:g example="2" id="count">%d</xliff:g>m</item>
+  </plurals>
   <!-- Phrase describing a time duration using hours that is as short as possible, preferrably one character. If the language needs a space in between the integer and the unit, please also integrate it in the string, but preferably it should not have a space in between.[CHAR LIMIT=6] -->
+  <plurals name="duration_hours_shortest">
+    <item quantity="one"><xliff:g example="1" id="count">%d</xliff:g>h</item>
+    <item quantity="other"><xliff:g example="2" id="count">%d</xliff:g>h</item>
+  </plurals>
   <!-- Phrase describing a time duration using days that is as short as possible, preferrably one character. If the language needs a space in between the integer and the unit, please also integrate it in the string, but preferably it should not have a space in between.[CHAR LIMIT=6] -->
+  <plurals name="duration_days_shortest">
+    <item quantity="one"><xliff:g example="1" id="count">%d</xliff:g>d</item>
+    <item quantity="other"><xliff:g example="2" id="count">%d</xliff:g>d</item>
+  </plurals>
   <!-- Phrase describing a time duration using years that is as short as possible, preferrably one character. If the language needs a space in between the integer and the unit, please also integrate it in the string, but preferably it should not have a space in between.[CHAR LIMIT=6] -->
+  <plurals name="duration_years_shortest">
+    <item quantity="one"><xliff:g example="1" id="count">%d</xliff:g>a</item>
+    <item quantity="other"><xliff:g example="1" id="count">%d</xliff:g>a</item>
+  </plurals>
   <!-- Phrase describing a time duration using minutes that is as short as possible, preferrably one character. This version should be a future point in time. If the language needs a space in between the integer and the unit, please also integrate it in the string, but preferably it should not have a space in between.[CHAR LIMIT=14] -->
+  <plurals name="duration_minutes_shortest_future">
+    <item quantity="one">en <xliff:g example="1" id="count">%d</xliff:g>m</item>
+    <item quantity="other">en <xliff:g example="1" id="count">%d</xliff:g>m</item>
+  </plurals>
   <!-- Phrase describing a time duration using hours that is as short as possible, preferrably one character. This version should be a future point in time. If the language needs a space in between the integer and the unit, please also integrate it in the string, but preferably it should not have a space in between.[CHAR LIMIT=14] -->
+  <plurals name="duration_hours_shortest_future">
+    <item quantity="one">en <xliff:g example="2" id="count">%d</xliff:g>h</item>
+    <item quantity="other">en <xliff:g example="1" id="count">%d</xliff:g>h</item>
+  </plurals>
   <!-- Phrase describing a time duration using days that is as short as possible, preferrably one character. This version should be a future point in time. If the language needs a space in between the integer and the unit, please also integrate it in the string, but preferably it should not have a space in between.[CHAR LIMIT=14] -->
+  <plurals name="duration_days_shortest_future">
+    <item quantity="one">en <xliff:g example="1" id="count">%d</xliff:g>d</item>
+    <item quantity="other">en <xliff:g example="2" id="count">%d</xliff:g>d</item>
+  </plurals>
   <!-- Phrase describing a time duration using years that is as short as possible, preferrably one character. This version should be a future point in time. If the language needs a space in between the integer and the unit, please also integrate it in the string, but preferably it should not have a space in between.[CHAR LIMIT=14] -->
+  <plurals name="duration_years_shortest_future">
+    <item quantity="one">en <xliff:g example="1" id="count">%d</xliff:g>a</item>
+    <item quantity="other">in <xliff:g example="1" id="count">%d</xliff:g>a</item>
+  </plurals>
   <!-- Phrase describing a relative time using minutes in the past that is not shown on the screen but used for accessibility. [CHAR LIMIT=NONE] -->
+  <plurals name="duration_minutes_relative">
+    <item quantity="one">Hai <xliff:g example="1" id="count">%d</xliff:g> minutu</item>
+    <item quantity="other">Hai <xliff:g example="1" id="count">%d</xliff:g> minutos</item>
+  </plurals>
   <!-- Phrase describing a relative time using hours in the past that is not shown on the screen but used for accessibility. [CHAR LIMIT=NONE] -->
+  <plurals name="duration_hours_relative">
+    <item quantity="one">Hai <xliff:g example="1" id="count">%d</xliff:g> hora</item>
+    <item quantity="other">Hai <xliff:g example="1" id="count">%d</xliff:g> hores</item>
+  </plurals>
   <!-- Phrase describing a relative time using days in the past that is not shown on the screen but used for accessibility. [CHAR LIMIT=NONE] -->
+  <plurals name="duration_days_relative">
+    <item quantity="one">Hai <xliff:g example="1" id="count">%d</xliff:g> día</item>
+    <item quantity="other">Hai <xliff:g example="1" id="count">%d</xliff:g> díes</item>
+  </plurals>
   <!-- Phrase describing a relative time using years in the past that is not shown on the screen but used for accessibility. [CHAR LIMIT=NONE] -->
+  <plurals name="duration_years_relative">
+    <item quantity="one">Hai <xliff:g example="1" id="count">%d</xliff:g> añu</item>
+    <item quantity="other">Hai <xliff:g example="1" id="count">%d</xliff:g> años</item>
+  </plurals>
   <!-- Phrase describing a relative time using minutes that is not shown on the screen but used for accessibility. This version should be a future point in time. [CHAR LIMIT=NONE] -->
   <!-- Phrase describing a relative time using hours that is not shown on the screen but used for accessibility. This version should be a future point in time. [CHAR LIMIT=NONE] -->
   <!-- Phrase describing a relative time using days that is not shown on the screen but used for accessibility. This version should be a future point in time. [CHAR LIMIT=NONE] -->
@@ -1785,7 +1837,7 @@
   <string name="VideoView_error_button">Aceutar</string>
   <!-- Format indicating a relative expression and time.
          Example: "4 hours ago, 11:00 am" -->
-  <string name="relative_time">"<xliff:g id="DATE">%1$s</xliff:g>, <xliff:g id="TIME">%2$s</xliff:g>"</string>
+  <string name="relative_time">"<xliff:g id="date" example="4 hours ago">%1$s</xliff:g>, <xliff:g id="time" example="11:00 am">%2$s</xliff:g>"</string>
   <!-- Quoted name for 12pm, lowercase -->
   <string name="noon">"meudía"</string>
   <!-- Quoted name for 12pm, uppercase first letter -->
@@ -1913,7 +1965,7 @@
   <string name="chooseUsbActivity">Seleicionar una aplicación pal preséu USB</string>
   <!-- Text to display when there are no activities found to display in the
          activity chooser. See the "Select an action" title. -->
-  <string name="noApplications">Nenguna aplicación pue facer esta aición.</string>
+  <string name="noApplications">Denguna aplicación pue facer esta aición.</string>
   <!-- Text of the alert that is displayed when an application has crashed. -->
   <!-- Text of the alert that is displayed when a process has crashed. -->
   <!-- Text of the alert that is displayed when an application has crashed repeatedly. -->
@@ -1927,9 +1979,13 @@
   <!-- Button that closes an unresponsive application -->
   <!-- Title of the alert when an application is not responding. -->
   <!-- Text of the alert that is displayed when an application is not responding. -->
+  <string name="anr_activity_application"><xliff:g id="application">%2$s</xliff:g> nun ta respondiendo</string>
   <!-- Text of the alert that is displayed when an application is not responding. -->
+  <string name="anr_activity_process"><xliff:g id="activity">%1$s</xliff:g> nun ta respondiendo</string>
   <!-- Text of the alert that is displayed when an application is not responding. -->
+  <string name="anr_application_process"><xliff:g id="application">%1$s</xliff:g> nun ta respondiendo</string>
   <!-- Text of the alert that is displayed when an application is not responding. -->
+  <string name="anr_process">El procesu <xliff:g id="process">%1$s</xliff:g> nun ta respondiendo</string>
   <!-- Button allowing the user to close an application that is not responding. This will kill the application. -->
   <string name="force_close">Aceutar</string>
   <!-- Button allowing the user to send a bug report for application which has encountered an error. -->
@@ -1963,10 +2019,14 @@
   <!-- [CHAR LIMIT=NONE] Message shown in upgrading dialog when doing an fstrim. -->
   <string name="android_upgrading_fstrim">Optimizando almacenamientu.</string>
   <!-- [CHAR LIMIT=40] Title of notification that is shown when finishing a system upgrade. -->
+  <string name="android_upgrading_notification_title">Finando anovamientu d\'Android\u2026</string>
   <!-- [CHAR LIMIT=200] Body of notification that is shown when performing a system upgrade. -->
   <!-- [CHAR LIMIT=40] Toast that is shown when an app is still upgrading. -->
+  <string name="app_upgrading_toast"><xliff:g id="application">%1$s</xliff:g> ta anovando\u2026</string>
   <!-- [CHAR LIMIT=NONE] Message shown in upgrading dialog for each .apk that is optimized. -->
-  <string name="android_upgrading_apk">Optimizando aplicación <xliff:g id="NUMBER_0">%1$d</xliff:g> de <xliff:g id="NUMBER_1">%2$d</xliff:g>\u2026</string>
+  <string name="android_upgrading_apk">Optimizando aplicación
+        <xliff:g id="number" example="123">%1$d</xliff:g> de
+        <xliff:g id="number" example="123">%2$d</xliff:g>.</string>
   <!-- [CHAR LIMIT=NONE] Message shown in upgrading dialog for each .apk pre boot broadcast -->
   <string name="android_preparing_apk">Preparando <xliff:g id="appname">%1$s</xliff:g>.</string>
   <!-- [CHAR LIMIT=NONE] Message to show in upgrading dialog when reached the point of starting apps. -->
@@ -2021,7 +2081,7 @@
   <!-- Content description for bluetooth volume icon [CHAR LIMIT=100] -->
   <string name="volume_icon_description_bluetooth">Volume de Bluetooth</string>
   <!-- Content description for ringer volume icon [CHAR LIMIT=100] -->
-  <string name="volume_icon_description_ringer">Volume del tonu</string>
+  <string name="volume_icon_description_ringer">Volume del timbre</string>
   <!-- Content description for in-call volume icon [CHAR LIMIT=100] -->
   <string name="volume_icon_description_incall">Volume de llamada</string>
   <!-- Content description for media volume icon [CHAR LIMIT=100] -->
@@ -2030,15 +2090,15 @@
   <string name="volume_icon_description_notification">Volume de notificaciones</string>
   <!-- Ringtone picker strings -->
   <!-- Choice in the ringtone picker.  If chosen, the default ringtone will be used. -->
-  <string name="ringtone_default">Tonu predetermináu</string>
+  <string name="ringtone_default">Timbre por defeutu</string>
   <!-- Choice in the ringtone picker.  If chosen, the default ringtone will be used. This fills in the actual ringtone's title into the message. -->
-  <string name="ringtone_default_with_actual">Tonu predetermináu (<xliff:g id="ACTUAL_RINGTONE">%1$s</xliff:g>)</string>
+  <string name="ringtone_default_with_actual">Timbre por defeutu (<xliff:g id="actual_ringtone">%1$s</xliff:g>)</string>
   <!-- Choice in the ringtone picker.  If chosen, there will be silence instead of a ringtone played. -->
   <string name="ringtone_silent">Nengún</string>
   <!-- The title of the ringtone picker dialog. -->
-  <string name="ringtone_picker_title">Tonos</string>
+  <string name="ringtone_picker_title">Timbres</string>
   <!-- If there is ever a ringtone set for some setting, but that ringtone can no longer be resolved, t his is shown instead.  For example, if the ringtone was on a SD card and it had been removed, this woudl be shown for ringtones on that SD card. -->
-  <string name="ringtone_unknown">Tonu desconocíu</string>
+  <string name="ringtone_unknown">Timbre desconocíu</string>
   <!-- A notification is shown when there are open wireless networks nearby.  This is the notification's title. -->
   <plurals name="wifi_available">
     <item quantity="one">Rede Wi-Fi disponible</item>
@@ -2085,7 +2145,7 @@
   <string name="wifi_p2p_dialog_title">Wi-Fi Direutu</string>
   <string name="wifi_p2p_turnon_message">Aniciar Wi-Fi Direct. Va desactivase\'l funcionamientu de la zona o del cliente Wi-Fi.</string>
   <string name="wifi_p2p_failed_message">Nun pudo aniciase Wi-Fi Direct.</string>
-  <string name="wifi_p2p_enabled_notification_title">Wi-Fi Direct activáu</string>
+  <string name="wifi_p2p_enabled_notification_message">Calca pa los axustes</string>
   <string name="accept">Aceutar</string>
   <string name="decline">Refugar</string>
   <string name="wifi_p2p_invitation_sent_title">Invitación unviada</string>
@@ -2283,6 +2343,7 @@
   <!-- Description of an application permission that lets it read install sessions. -->
   <string name="permdesc_requestInstallPackages">Permite qu\'una app solicite la instalación de paquetes.</string>
   <!-- Shown in the tutorial for tap twice for zoom control. -->
+  <string name="tutorial_double_tap_to_zoom_message_short">Calca dos vegaes pal control de zoom</string>
   <!-- Shown in gadget hosts (e.g. the home screen) when there was an error inflating
     the gadget. -->
   <string name="gadget_host_error_inflating">Nun pudo amestase\'l widget.</string>
@@ -2367,7 +2428,7 @@
   <string name="car_mode_disable_notification_title">Habilitóse\'l mou coche.</string>
   <!-- Strings for tethered notification -->
   <!-- Shown when the device is tethered -->
-  <string name="tethered_notification_title">Anclaxe a rede/Zona Wi-Fi activu</string>
+  <string name="tethered_notification_no_device_message">Nun hai preseos coneutaos</string>
   <!--  Strings for possible PreferenceActivity Back/Next buttons -->
   <string name="back_button_label">Atrás</string>
   <string name="next_button_label">Siguiente</string>

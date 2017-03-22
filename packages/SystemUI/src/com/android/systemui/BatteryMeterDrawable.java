@@ -496,21 +496,19 @@ public class BatteryMeterDrawable extends Drawable implements
     }
 
     private void loadBatteryDrawables(Resources res, int style) {
-        if (isThemeApplied()) {
-            try {
-                checkBatteryMeterDrawableValid(res, style);
-            } catch (BatteryMeterDrawableException e) {
-                Log.w(TAG, "Invalid themed battery meter drawable, falling back to system", e);
+        try {
+            checkBatteryMeterDrawableValid(res, style);
+        } catch (BatteryMeterDrawableException e) {
+            Log.w(TAG, "Invalid themed battery meter drawable, falling back to system", e);
 /*              Disable until the theme engine is brought up
-                PackageManager pm = mContext.getPackageManager();
-                try {
-                    res = pm.getThemedResourcesForApplication(mContext.getPackageName(),
-                            ThemeConfig.SYSTEM_DEFAULT);
-                } catch (PackageManager.NameNotFoundException nnfe) {
-                    // Ignore; this should not happen
-                }
-*/
+            PackageManager pm = mContext.getPackageManager();
+            try {
+                res = pm.getThemedResourcesForApplication(mContext.getPackageName(),
+                        ThemeConfig.SYSTEM_DEFAULT);
+            } catch (PackageManager.NameNotFoundException nnfe) {
+                // Ignore; this should not happen
             }
+*/
         }
 
         final int drawableResId = getBatteryDrawableResourceForStyle(style);

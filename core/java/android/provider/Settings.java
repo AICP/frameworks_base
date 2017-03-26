@@ -5136,7 +5136,13 @@ public final class Settings {
          * Navbar Button Color
          * @hide
          */
-        public static final String NAVBAR_BUTTON_COLOR= "navbar_button_color";
+        public static final String NAVBAR_BUTTON_COLOR = "navbar_button_color";
+
+        /**
+         * Navbar Button Custom icon Color Switch
+         * @hide
+         */
+        public static final String NAVBAR_BUTON_CUSTOM_ICON_SWITCH = "navbar_button_custom_icon_switch";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings

@@ -343,7 +343,9 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
         boolean canSkipBouncer = updateMonitor.getUserCanSkipBouncer(
                 KeyguardUpdateMonitor.getCurrentUser());
         boolean secure = mLockPatternUtils.isSecure(KeyguardUpdateMonitor.getCurrentUser());
-        return (secure && !canSkipBouncer) ? SECURE_CAMERA_INTENT : INSECURE_CAMERA_INTENT;
+        boolean showCameraIntent = (Settings.Secure.getIntForUser(getContext().getContentResolver(),
+                Settings.Secure.SHOW_CAMERA_INTENT, 0, KeyguardUpdateMonitor.getCurrentUser()) == 1);
+        return (showCameraIntent ? INSECURE_CAMERA_INTENT : ((secure && !canSkipBouncer) ? SECURE_CAMERA_INTENT : INSECURE_CAMERA_INTENT));
     }
 
     /**
@@ -908,6 +910,8 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
         boolean secure = mLockPatternUtils.isSecure(KeyguardUpdateMonitor.getCurrentUser());
         boolean hidebottomshortcuts = (Settings.Secure.getIntForUser(getContext().getContentResolver(),
                 Settings.Secure.HIDE_LOCKSCREEN_SHORTCUTS, 0, KeyguardUpdateMonitor.getCurrentUser()) == 1);
-        return secure || hidebottomshortcuts;
+        boolean showCameraIntent = (Settings.Secure.getIntForUser(getContext().getContentResolver(),
+                Settings.Secure.SHOW_CAMERA_INTENT, 0, KeyguardUpdateMonitor.getCurrentUser()) == 1);
+        return (showCameraIntent ? hidebottomshortcuts : (secure || hidebottomshortcuts));
     }
 }

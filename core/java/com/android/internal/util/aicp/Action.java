@@ -242,14 +242,14 @@ public class Action {
         if (intent == null) {
             return;
         }
-        //if (isKeyguardShowing) {
+        if (isKeyguardShowing) {
             // Have keyguard show the bouncer and launch the activity if the user succeeds.
-            //try {
-                //barService.showCustomIntentAfterKeyguard(intent);
-            //} catch (RemoteException e) {
-            //    Log.w("Action", "Error starting custom intent on keyguard", e);
-            //}
-        //} else {
+            try {
+                barService.showCustomIntentAfterKeyguard(intent);
+            } catch (RemoteException e) {
+                Log.w("Action", "Error starting custom intent on keyguard", e);
+            }
+        } else {
             // otherwise let us do it here
             try {
                 WindowManagerGlobal.getWindowManagerService().dismissKeyguard();
@@ -262,7 +262,7 @@ public class Action {
                     | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             context.startActivityAsUser(intent,
                     new UserHandle(UserHandle.USER_CURRENT));
-        //}
+        }
     }
 
     private static void dispatchMediaKeyWithWakeLock(int keycode, Context context) {

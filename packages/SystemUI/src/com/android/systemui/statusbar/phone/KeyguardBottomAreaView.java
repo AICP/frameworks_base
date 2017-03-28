@@ -369,7 +369,7 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
                 // Display left shortcut
             }
         }
-        mLeftAffordanceView.setVisibility(visible ? View.VISIBLE : View.GONE);
+        mLeftAffordanceView.setVisibility((visible && !hideShortcuts()) ? View.VISIBLE : View.GONE);
     }
 
     private void updateCameraVisibility() {
@@ -395,7 +395,7 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
         Drawable drawable;
         String contentDescription;
         boolean shouldGrayScale = false;
-        boolean visible = mUserSetupComplete && !hideShortcuts();
+        boolean visible = mUserSetupComplete;
         if (mShortcutHelper.isTargetCustom(Shortcuts.LEFT_SHORTCUT)) {
             drawable = mShortcutHelper.getDrawableForTarget(Shortcuts.LEFT_SHORTCUT);
             shouldGrayScale = true;
@@ -409,7 +409,7 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
             drawable = mContext.getDrawable(R.drawable.ic_phone_24dp);
             contentDescription = mContext.getString(R.string.accessibility_phone_button);
         }
-        mLeftAffordanceView.setVisibility(visible ? View.VISIBLE : View.GONE);
+        mLeftAffordanceView.setVisibility((visible && !hideShortcuts()) ? View.VISIBLE : View.GONE);
         mLeftAffordanceView.setImageDrawable(drawable);
         mLeftAffordanceView.setContentDescription(contentDescription);
         mLeftAffordanceView.setDefaultFilter(shouldGrayScale ? mGrayScaleFilter : null);

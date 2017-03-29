@@ -326,6 +326,7 @@
   <!-- UI debug setting: debug app has been set [CHAR LIMIT=50] -->
   <!-- UI debug setting: title for app picker dialog [CHAR LIMIT=50] -->
   <!-- UI debug setting: label for app picker to select no applicatiojn [CHAR LIMIT=50] -->
+  <string name="no_application">Nada</string>
   <!-- UI debug setting: wait for debugger to attach to debugging process? [CHAR LIMIT=50] -->
   <!-- UI debug setting: wait for debugger to attach to debugging process summary [CHAR LIMIT=500] -->
   <!-- Preference category for input debugging development settings. [CHAR LIMIT=25] -->

@@ -74,7 +74,7 @@
   <!-- Description for the print button - spoken to the user. [CHAR LIMIT=none] -->
   <string name="print_button">Imprentar</string>
   <!-- Description for the save to PDF button - spoken to the user. [CHAR LIMIT=none] -->
-  <string name="savetopdf_button">Guardar a PDF</string>
+  <string name="savetopdf_button">Guardar en PDF</string>
   <!-- Message to announce print options are expanded - spoken to the user. [CHAR LIMIT=none] -->
   <string name="print_options_expanded">Opciones d\'imprentación espandíes</string>
   <!-- Message to announce print options are collapsed - spoken to the user. [CHAR LIMIT=none] -->

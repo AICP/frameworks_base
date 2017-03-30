@@ -38,6 +38,7 @@ import android.content.res.Resources;
 import android.database.ContentObserver;
 import android.graphics.Color;
 import android.graphics.drawable.AnimatedVectorDrawable;
+import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.VectorDrawable;
 import android.graphics.PixelFormat;
@@ -139,6 +140,8 @@ public class RecentController implements RecentPanelView.OnExitListener,
     ProgressBar mMemBar;
     boolean enableMemDisplay;
     private ActivityManager mAm;
+    private int mMembarcolor;
+    private int mMemtextcolor;
 
     private boolean mMemBarLongClickToClear;
 
@@ -813,6 +816,12 @@ public class RecentController implements RecentPanelView.OnExitListener,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.RECENTS_MAX_APPS),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.SLIM_MEM_BAR_COLOR),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.SLIM_MEM_TEXT_COLOR),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -905,6 +914,10 @@ public class RecentController implements RecentPanelView.OnExitListener,
 
             mMemBarLongClickToClear = Settings.System.getInt(resolver,
                     Settings.System.SLIM_RECENTS_MEM_DISPLAY_LONG_CLICK_CLEAR, 0) == 1;
+            mMembarcolor = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.SLIM_MEM_BAR_COLOR, mContext.getResources().getColor(R.color.system_accent_color));
+            mMemtextcolor = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.SLIM_MEM_TEXT_COLOR, mContext.getResources().getColor(R.color.recents_membar_text_color));
 
             String currentIconPack = Settings.System.getString(resolver,
                 Settings.System.SLIM_RECENTS_ICON_PACK);
@@ -1176,6 +1189,8 @@ public class RecentController implements RecentPanelView.OnExitListener,
             mMemText.setText(String.format(mContext.getResources().getString(R.string.recents_free_ram),available));
             mMemBar.setMax(max);
             mMemBar.setProgress(available);
+            mMemBar.getProgressDrawable().setColorFilter(mMembarcolor, Mode.MULTIPLY);
+            mMemText.setTextColor(mMemtextcolor);
     }
 
     public long getTotalMemory() {

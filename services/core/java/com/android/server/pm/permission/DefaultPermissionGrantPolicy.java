@@ -864,6 +864,9 @@ public final class DefaultPermissionGrantPolicy {
 
         // AICP Updater3
         grantSystemFixedPermissionsToSystemPackage(pm,"com.aicp.updater3", userId, STORAGE_PERMISSIONS);
+
+        // OmniJaws
+        grantSystemFixedPermissionsToSystemPackage(pm, "org.omnirom.omnijaws", userId, ALWAYS_LOCATION_PERMISSIONS);
     }
 
     private String getDefaultSystemHandlerActivityPackageForCategory(PackageManagerWrapper pm,

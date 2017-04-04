@@ -39,7 +39,7 @@ import java.util.ArrayList;
  * <p>
  * For ways of retrieving {@link Ringtone} objects or to show a ringtone
  * picker, see {@link RingtoneManager}.
- *
+ * 
  * @see RingtoneManager
  */
 public class Ringtone {
@@ -76,8 +76,10 @@ public class Ringtone {
     private Uri mUri;
     private String mTitle;
 
-    private AudioAttributes mAudioAttributes;
-
+    private AudioAttributes mAudioAttributes = new AudioAttributes.Builder()
+            .setUsage(AudioAttributes.USAGE_NOTIFICATION_RINGTONE)
+            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+            .build();
     // playback properties, use synchronized with mPlaybackSettingsLock
     private boolean mIsLooping = false;
     private float mVolume = 1.0f;
@@ -90,12 +92,11 @@ public class Ringtone {
         mAllowRemote = allowRemote;
         mRemotePlayer = allowRemote ? mAudioManager.getRingtonePlayer() : null;
         mRemoteToken = allowRemote ? new Binder() : null;
-        setCustomAudioAttributes();
     }
 
     /**
      * Sets the stream type where this ringtone will be played.
-     *
+     * 
      * @param streamType The stream, see {@link AudioManager}.
      * @deprecated use {@link #setAudioAttributes(AudioAttributes)}
      */
@@ -108,7 +109,7 @@ public class Ringtone {
 
     /**
      * Gets the stream type where this ringtone will be played.
-     *
+     * 
      * @return The stream type, see {@link AudioManager}.
      * @deprecated use of stream types is deprecated, see
      *     {@link #setAudioAttributes(AudioAttributes)}
@@ -191,8 +192,8 @@ public class Ringtone {
     /**
      * Returns a human-presentable title for ringtone. Looks in media
      * content provider. If not in either, uses the filename
-     *
-     * @param context A context used for querying.
+     * 
+     * @param context A context used for querying. 
      */
     public String getTitle(Context context) {
         if (mTitle != null) return mTitle;
@@ -205,7 +206,7 @@ public class Ringtone {
     public static String getTitle(
             Context context, Uri uri, boolean followSettingsUri, boolean allowRemote) {
         ContentResolver res = context.getContentResolver();
-
+        
         String title = null;
 
         if (uri != null) {
@@ -260,48 +261,13 @@ public class Ringtone {
 
         if (title == null) {
             title = context.getString(com.android.internal.R.string.ringtone_unknown);
-
+            
             if (title == null) {
                 title = "";
             }
         }
-
+        
         return title;
-    }
-
-    /**
-     * @hide
-     */
-    public void setCustomAudioAttributes() {
-        int focusmode = getWiredRingtoneFocusMode();
-        switch (focusmode) {
-            case 0: //play ringtone only from headset if music playing, otherwise from speakerphone
-                if (mAudioManager.isWiredHeadsetOn() && mAudioManager.isMusicActive()) {
-                    mAudioAttributes = new AudioAttributes.Builder()
-                            .setUsage(AudioAttributes.USAGE_NOTIFICATION)
-                            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                            .build();
-                } else {
-                    mAudioAttributes = new AudioAttributes.Builder()
-                            .setUsage(AudioAttributes.USAGE_NOTIFICATION_RINGTONE)
-                            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                            .build();
-                }
-                break;
-            default:
-            case 1: //aosp behavior, ringtone always from both headset and speakerphone
-                    mAudioAttributes = new AudioAttributes.Builder()
-                            .setUsage(AudioAttributes.USAGE_NOTIFICATION_RINGTONE)
-                            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                            .build();
-                break;
-        }
-    }
-
-    private int getWiredRingtoneFocusMode() {
-        int mode = Settings.Global.getInt(mContext.getContentResolver(),
-                Settings.Global.WIRED_RINGTONE_FOCUS_MODE, 1);
-        return mode;
     }
 
     /**
@@ -424,7 +390,7 @@ public class Ringtone {
 
     /**
      * Whether this ringtone is currently playing.
-     *
+     * 
      * @return True if playing, false otherwise.
      */
     public boolean isPlaying() {

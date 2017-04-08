@@ -2472,6 +2472,7 @@ public class InputMethodService extends AbstractInputMethodService {
         return true;
     }
 
+
     IStatusBarService getStatusBarService() {
         synchronized (mServiceAquireLock) {
             if (mStatusBarService == null) {
@@ -2482,6 +2483,7 @@ public class InputMethodService extends AbstractInputMethodService {
         }
     }
 
+
     /**
      * Return text that can be used as a button label for the given
      * {@link EditorInfo#imeOptions EditorInfo.imeOptions}.  Returns null
@@ -2489,7 +2491,7 @@ public class InputMethodService extends AbstractInputMethodService {
      * the returned text will be relatively short, so you probably do not
      * want to use it as text on a soft keyboard key label.
      *
-     * @param imeOptions The value from @link EditorInfo#imeOptions EditorInfo.imeOptions}.
+     * @param imeOptions The value from {@link EditorInfo#imeOptions EditorInfo.imeOptions}.
      *
      * @return Returns a label to use, or null if there is no action.
      */

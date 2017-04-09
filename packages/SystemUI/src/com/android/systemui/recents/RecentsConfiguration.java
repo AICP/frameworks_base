@@ -18,9 +18,14 @@ package com.android.systemui.recents;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.database.ContentObserver;
 import android.graphics.Rect;
 
+import android.os.Handler;
 import android.os.SystemProperties;
+import android.os.UserHandle;
+import android.provider.Settings;
+
 import com.android.systemui.R;
 import com.android.systemui.recents.misc.SystemServicesProxy;
 
@@ -58,6 +63,7 @@ public class RecentsConfiguration {
     /** Misc **/
     public boolean fakeShadows;
     public int svelteLevel;
+    private Context mContext;
 
 
     public int fabEnterAnimDuration;
@@ -66,17 +72,48 @@ public class RecentsConfiguration {
 
     // Whether this product supports Grid-based Recents. If this is field is set to true, then
     // Recents will layout task views in a grid mode when there's enough space in the screen.
-    public boolean isGridEnabled;
+    private boolean isGridEnabledDefault;
+    private boolean mIsGridEnabled;
+    private Handler mHandler = new Handler();
+    private SettingsObserver mSettingsObserver;
+
+    private class SettingsObserver extends ContentObserver {
+        SettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        void observe() {
+            mContext.getContentResolver().registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.GRID_RECENTS),
+                    false, this);
+            update();
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            update();
+        }
+
+        public void update() {
+            mIsGridEnabled = Settings.System.getIntForUser(mContext.getContentResolver(),
+                    Settings.System.GRID_RECENTS, isGridEnabledDefault ? 1 : 0,
+                    UserHandle.USER_CURRENT) == 1;
+        }
+    }
 
     public RecentsConfiguration(Context context) {
         // Load only resources that can not change after the first load either through developer
         // settings or via multi window
         SystemServicesProxy ssp = Recents.getSystemServices();
         Context appContext = context.getApplicationContext();
+        mContext = appContext;
         Resources res = appContext.getResources();
         fakeShadows = res.getBoolean(R.bool.config_recents_fake_shadows);
         svelteLevel = res.getInteger(R.integer.recents_svelte_level);
-        isGridEnabled = SystemProperties.getBoolean("ro.recents.grid", false);
+        isGridEnabledDefault = SystemProperties.getBoolean("ro.recents.grid", false);
+
+        mSettingsObserver = new SettingsObserver(mHandler);
+        mSettingsObserver.observe();
 
         float screenDensity = context.getResources().getDisplayMetrics().density;
         smallestWidth = ssp.getDeviceSmallestWidth();
@@ -97,5 +134,9 @@ public class RecentsConfiguration {
      */
     public RecentsActivityLaunchState getLaunchState() {
         return mLaunchState;
+    }
+
+    public boolean isGridEnabled() {
+        return mIsGridEnabled;
     }
 }

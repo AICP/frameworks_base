@@ -5260,6 +5260,12 @@ public final class Settings {
         public static final String USE_BOTTOM_GESTURE_NAVIGATION = "use_bottom_gesture_navigation";
 
         /**
+         * Whether to display cross sign for a data disabled connection
+         * @hide
+         */
+        public static final String DATA_DISABLED_ICON = "data_disabled_icon";
+
+        /**
          * --- AICP System settings end
          *  Add new system settings above this comment
          */

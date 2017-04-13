@@ -186,6 +186,8 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
     private boolean mRoamingIconAllowed;
     private boolean mShowLteFourGee;
 
+    private boolean mDataDisabledIcon;
+
     // TODO: Reduce number of vars passed in, if we have the NetworkController, probably don't
     // need listener lists anymore.
     public MobileSignalController(
@@ -255,6 +257,9 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
             resolver.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.SHOW_LTE_FOURGEE), false,
                     this, UserHandle.USER_ALL);
+           resolver.registerContentObserver(Settings.System.getUriFor(
+                  Settings.System.DATA_DISABLED_ICON),
+                  false, this, UserHandle.USER_ALL);
         }
 
         /*
@@ -275,6 +280,9 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
 
         mShowLteFourGee = Settings.System.getIntForUser(resolver,
                 Settings.System.SHOW_LTE_FOURGEE, 0,
+                UserHandle.USER_CURRENT) == 1;
+        mDataDisabledIcon = Settings.System.getIntForUser(resolver,
+                Settings.System.DATA_DISABLED_ICON, 1,
                 UserHandle.USER_CURRENT) == 1;
 
         mNetworkToIconLookup = mapIconSets(mConfig, mShowLteFourGee);
@@ -795,7 +803,7 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
         mCurrentState.roaming = isRoaming() && mRoamingIconAllowed;
         if (isCarrierNetworkChangeActive()) {
             mCurrentState.iconGroup = TelephonyIcons.CARRIER_NETWORK_CHANGE;
-        } else if (isDataDisabled() && !mConfig.alwaysShowDataRatIcon) {
+        } else if (isDataDisabled() && mDataDisabledIcon) {
             if (mSubscriptionInfo.getSubscriptionId() != mDefaults.getDefaultDataSubId()) {
                 mCurrentState.iconGroup = TelephonyIcons.NOT_DEFAULT_DATA;
             } else {

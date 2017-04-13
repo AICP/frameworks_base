@@ -6375,6 +6375,12 @@ public final class Settings {
          */
         public static final String CHOOSER_ACTIVITY_BLACKLIST = "chooser_activity_blacklist";
 
+        /**
+         * Whether to display cross sign for a data disabled connection
+         * @hide
+         */
+        public static final String DATA_DISABLED_ICON = "data_disabled_icon";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6668,6 +6674,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(LOCKSCREEN_QUICK_UNLOCK_CONTROL);
             PRIVATE_SETTINGS.add(PULSE_ON_NEW_TRACKS);
             PRIVATE_SETTINGS.add(CHOOSER_ACTIVITY_BLACKLIST);
+            PRIVATE_SETTINGS.add(DATA_DISABLED_ICON);
         }
 
         /**

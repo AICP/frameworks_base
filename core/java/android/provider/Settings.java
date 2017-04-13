@@ -5775,6 +5775,12 @@ public final class Settings {
          */
         public static final String SHOW_LTE_FOURGEE = "show_lte_fourgee";
 
+        /**
+         * Whether to display cross sign for a data disabled connection
+         * @hide
+         */
+        public static final String DATA_DISABLED_ICON = "data_disabled_icon";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5882,6 +5888,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(ON_THE_GO_ALPHA, ANY_STRING_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(ROAMING_INDICATOR_ICON, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(SHOW_LTE_FOURGEE, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(DATA_DISABLED_ICON, BOOLEAN_VALIDATOR);
         }
 
         /**

@@ -290,5 +290,4 @@
 
     <bool name="config_show4gForIWlan">false</bool>
     <bool name="config_showSignalForIWlan">false</bool>
-
 </resources>

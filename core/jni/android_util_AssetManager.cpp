@@ -28,7 +28,6 @@
 #include <sys/system_properties.h>
 
 #include <private/android_filesystem_config.h> // for AID_SYSTEM
-#include <private/regionalization/Environment.h>
 
 #include "androidfw/Asset.h"
 #include "androidfw/AssetManager.h"
@@ -130,7 +129,6 @@ jint copyValue(JNIEnv* env, jobject outValue, const ResTable* table,
     }
     return block;
 }
-
 
 // ----------------------------------------------------------------------------
 

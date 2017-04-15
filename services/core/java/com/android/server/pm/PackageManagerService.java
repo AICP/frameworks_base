@@ -310,6 +310,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Keep track of all those APKs everywhere.
@@ -554,8 +555,8 @@ public class PackageManagerService extends IPackageManager.Stub {
     final String[] mSeparateProcesses;
     final boolean mIsUpgrade;
     final boolean mIsPreNUpgrade;
-    final boolean mIsPreNMR1Upgrade;
     final boolean mIsAlarmBoot;
+    final boolean mIsPreNMR1Upgrade;
 
     @GuardedBy("mPackages")
     private boolean mDexOptDialogShown;
@@ -2187,6 +2188,7 @@ public class PackageManagerService extends IPackageManager.Stub {
         mSystemPermissions = systemConfig.getSystemPermissions();
         mAvailableFeatures = systemConfig.getAvailableFeatures();
         mSignatureAllowances = systemConfig.getSignatureAllowances();
+
         mProtectedPackages = new ProtectedPackages(mContext);
 
 //        synchronized (mInstallLock) {
@@ -2351,12 +2353,17 @@ public class PackageManagerService extends IPackageManager.Stub {
                 }
             }
 
-            // Collect vendor overlay packages.
-            // (Do this before scanning any apps.)
+            // Collect vendor overlay packages. (Do this before scanning any apps.)
             // For security and version matching reason, only consider
-            // overlay packages if they reside in VENDOR_OVERLAY_DIR.
-            File vendorOverlayDir = new File(VENDOR_OVERLAY_DIR);
-            scanDirTracedLI(vendorOverlayDir, mDefParseFlags
+            // overlay packages if they reside in the right directory.
+            String overlayThemeDir = SystemProperties.get(VENDOR_OVERLAY_THEME_PROPERTY);
+            if (!overlayThemeDir.isEmpty()) {
+                scanDirTracedLI(new File(VENDOR_OVERLAY_DIR, overlayThemeDir), mDefParseFlags
+                        | PackageParser.PARSE_IS_SYSTEM
+                        | PackageParser.PARSE_IS_SYSTEM_DIR,
+                        scanFlags, 0);
+            }
+            scanDirTracedLI(new File(VENDOR_OVERLAY_DIR), mDefParseFlags
                     | PackageParser.PARSE_IS_SYSTEM
                     | PackageParser.PARSE_IS_SYSTEM_DIR,
                     scanFlags, 0);
@@ -2766,7 +2773,11 @@ public class PackageManagerService extends IPackageManager.Stub {
                         PackageManager.SYSTEM_SHARED_LIBRARY_SHARED);
             } else {
                 mRequiredVerifierPackage = null;
-                mRequiredInstallerPackage = null;
+                if (mOnlyPowerOffAlarm) {
+                    mRequiredInstallerPackage = getRequiredInstallerLPr();
+                } else {
+                    mRequiredInstallerPackage = null;
+                }
                 mRequiredUninstallerPackage = null;
                 mIntentFilterVerifierComponent = null;
                 mIntentFilterVerifier = null;
@@ -16534,7 +16545,8 @@ public class PackageManagerService extends IPackageManager.Stub {
                     false /*installed*/, true /*stopped*/, true /*notLaunched*/,
                     false /*hidden*/, false /*suspended*/, null, null, null,
                     false /*blockUninstall*/,
-                    ps.readUserState(nextUserId).domainVerificationStatus, 0,null, null, null);
+                    ps.readUserState(nextUserId).domainVerificationStatus, 0,
+                    null, null, null);
         }
     }
 
@@ -21408,7 +21420,6 @@ Slog.v(TAG, ":: stepped forward, applying functor at tag " + parser.getName());
             }
         }
 
-        @Override
         public String getNameForUid(int uid) {
             return PackageManagerService.this.getNameForUid(uid);
         }

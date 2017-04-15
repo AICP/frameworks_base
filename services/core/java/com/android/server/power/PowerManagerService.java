@@ -414,9 +414,6 @@ public final class PowerManagerService extends SystemService
     // Whether device supports double tap to wake.
     private boolean mSupportsDoubleTapWakeConfig;
 
-    // Default value for proximity prevent accidental wakeups
-    private boolean mProximityWakeEnabledByDefaultConfig;
-
     // The screen off timeout setting value in milliseconds.
     private int mScreenOffTimeoutSetting;
 
@@ -563,6 +560,9 @@ public final class PowerManagerService extends SystemService
 
     private boolean mKeyboardVisible = false;
 
+    // Whether proximity check on wake is enabled by default
+    private boolean mProximityWakeEnabledByDefaultConfig;
+
     private boolean mProximityWakeSupported;
     private boolean mProximityWakeEnabled;
     private int mProximityTimeOut;
@@ -579,7 +579,6 @@ public final class PowerManagerService extends SystemService
         mHandlerThread.start();
         mHandler = new PowerManagerHandler(mHandlerThread.getLooper());
         qcNsrmPowExt = new QCNsrmPowerExtension(this);
-
         synchronized (mLock) {
             mWakeLockSuspendBlocker = createSuspendBlockerLocked("PowerManagerService.WakeLocks");
             mDisplaySuspendBlocker = createSuspendBlockerLocked("PowerManagerService.Display");
@@ -677,28 +676,26 @@ public final class PowerManagerService extends SystemService
             // Initialize proximity sensor
             mSensorManager = (SensorManager) mContext.getSystemService(Context.SENSOR_SERVICE);
             mProximitySensor = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
-        }
 
-        // Register for broadcasts from other components of the system.
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(Intent.ACTION_BATTERY_CHANGED);
-        filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
-        mContext.registerReceiver(new BatteryReceiver(), filter, null, mHandler);
+            // Register for broadcasts from other components of the system.
+            IntentFilter filter = new IntentFilter();
+            filter.addAction(Intent.ACTION_BATTERY_CHANGED);
+            filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
+            mContext.registerReceiver(new BatteryReceiver(), filter, null, mHandler);
 
-        filter = new IntentFilter();
-        filter.addAction(Intent.ACTION_DREAMING_STARTED);
-        filter.addAction(Intent.ACTION_DREAMING_STOPPED);
-        mContext.registerReceiver(new DreamReceiver(), filter, null, mHandler);
+            filter = new IntentFilter();
+            filter.addAction(Intent.ACTION_DREAMING_STARTED);
+            filter.addAction(Intent.ACTION_DREAMING_STOPPED);
+            mContext.registerReceiver(new DreamReceiver(), filter, null, mHandler);
 
-        filter = new IntentFilter();
-        filter.addAction(Intent.ACTION_USER_SWITCHED);
-        mContext.registerReceiver(new UserSwitchedReceiver(), filter, null, mHandler);
+            filter = new IntentFilter();
+            filter.addAction(Intent.ACTION_USER_SWITCHED);
+            mContext.registerReceiver(new UserSwitchedReceiver(), filter, null, mHandler);
 
-        filter = new IntentFilter();
-        filter.addAction(Intent.ACTION_DOCK_EVENT);
-        mContext.registerReceiver(new DockReceiver(), filter, null, mHandler);
+            filter = new IntentFilter();
+            filter.addAction(Intent.ACTION_DOCK_EVENT);
+            mContext.registerReceiver(new DockReceiver(), filter, null, mHandler);
 
-        synchronized (mLock) {
             // Register for settings changes.
             final ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.Secure.getUriFor(
@@ -743,12 +740,6 @@ public final class PowerManagerService extends SystemService
             resolver.registerContentObserver(Settings.Secure.getUriFor(
                     Settings.Secure.DOUBLE_TAP_TO_WAKE),
                     false, mSettingsObserver, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.Secure.getUriFor(
-                    Secure.BRIGHTNESS_USE_TWILIGHT),
-                    false, mSettingsObserver, UserHandle.USER_ALL);
-            resolver.registerContentObserver(CMSettings.System.getUriFor(
-                    CMSettings.System.PROXIMITY_ON_WAKE),
-                    false, mSettingsObserver, UserHandle.USER_ALL);
             IVrManager vrManager =
                     (IVrManager) getBinderService(VrManagerService.VR_MANAGER_BINDER_SERVICE);
             if (vrManager != null) {
@@ -773,6 +764,9 @@ public final class PowerManagerService extends SystemService
                     false, mSettingsObserver, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.Secure.getUriFor(
                     Settings.Secure.NAVIGATION_BAR_VISIBLE),
+                    false, mSettingsObserver, UserHandle.USER_ALL);
+            resolver.registerContentObserver(CMSettings.System.getUriFor(
+                    CMSettings.System.PROXIMITY_ON_WAKE),
                     false, mSettingsObserver, UserHandle.USER_ALL);
 
             // Go.
@@ -859,9 +853,6 @@ public final class PowerManagerService extends SystemService
                 Settings.Global.STAY_ON_WHILE_PLUGGED_IN, BatteryManager.BATTERY_PLUGGED_AC);
         mTheaterModeEnabled = Settings.Global.getInt(mContext.getContentResolver(),
                 Settings.Global.THEATER_MODE_ON, 0) == 1;
-        mProximityWakeEnabled = CMSettings.System.getInt(resolver,
-                CMSettings.System.PROXIMITY_ON_WAKE,
-                mProximityWakeEnabledByDefaultConfig ? 1 : 0) == 1;
         mWakeUpWhenPluggedOrUnpluggedSetting = CMSettings.Global.getInt(resolver,
                 CMSettings.Global.WAKE_WHEN_PLUGGED_OR_UNPLUGGED,
                 (mWakeUpWhenPluggedOrUnpluggedConfig ? 1 : 0));
@@ -926,6 +917,9 @@ public final class PowerManagerService extends SystemService
                 UserHandle.USER_CURRENT);
         mForceNavbar = Settings.Secure.getIntForUser(resolver,
                 Settings.Secure.NAVIGATION_BAR_VISIBLE, 0, UserHandle.USER_CURRENT) == 1;
+        mProximityWakeEnabled = CMSettings.System.getInt(resolver,
+                CMSettings.System.PROXIMITY_ON_WAKE,
+                mProximityWakeEnabledByDefaultConfig ? 1 : 0) == 1;
 
         mDirty |= DIRTY_SETTINGS;
     }
@@ -1642,18 +1636,10 @@ public final class PowerManagerService extends SystemService
                 userActivityNoUpdateLocked(
                         now, PowerManager.USER_ACTIVITY_EVENT_OTHER, 0, Process.SYSTEM_UID);
 
-                if (mPlugType == BatteryManager.BATTERY_PLUGGED_WIRELESS ||
-                        oldPlugType == BatteryManager.BATTERY_PLUGGED_WIRELESS) {
-                    // Tell the notifier whether wireless charging has started so that
-                    // it can provide feedback to the user.
-                    if (dockedOnWirelessCharger) {
-                        mNotifier.onWirelessChargingStarted();
-                    }
-                } else {
-                    // anything wired is now plugged
-                    if (!wasPowered && mIsPowered) {
-                        mNotifier.onWiredChargingStarted();
-                    }
+                // Tell the notifier whether wireless charging has started so that
+                // it can provide feedback to the user.
+                if (dockedOnWirelessCharger) {
+                    mNotifier.onWirelessChargingStarted();
                 }
             }
 
@@ -3307,12 +3293,12 @@ public final class PowerManagerService extends SystemService
                 case MSG_SCREEN_BRIGHTNESS_BOOST_TIMEOUT:
                     handleScreenBrightnessBoostTimeout();
                     break;
+                case MSG_CHECK_FOR_LONG_WAKELOCKS:
+                    checkForLongWakeLocks();
+                    break;
                 case MSG_WAKE_UP:
                     cleanupProximity();
                     ((Runnable) msg.obj).run();
-                    break;
-                case MSG_CHECK_FOR_LONG_WAKELOCKS:
-                    checkForLongWakeLocks();
                     break;
             }
         }
@@ -3710,6 +3696,16 @@ public final class PowerManagerService extends SystemService
             }
         }
 
+        @Override // Binder call
+        public void wakeUp(long eventTime, String reason, String opPackageName) {
+            wakeUp(eventTime, reason, opPackageName, false);
+        }
+
+        @Override // Binder call
+        public void wakeUpWithProximityCheck(long eventTime, String reason, String opPackageName) {
+            wakeUp(eventTime, reason, opPackageName, true);
+        }
+
         /**
          * @hide
          */
@@ -3739,49 +3735,6 @@ public final class PowerManagerService extends SystemService
             } else {
                 r.run();
             }
-        }
-
-        private void runPostProximityCheck(final Runnable r) {
-            if (mSensorManager == null) {
-                r.run();
-                return;
-            }
-            synchronized (mProximityWakeLock) {
-                mProximityWakeLock.acquire();
-                mProximityListener = new SensorEventListener() {
-                    @Override
-                    public void onSensorChanged(SensorEvent event) {
-                        cleanupProximityLocked();
-                        if (!mHandler.hasMessages(MSG_WAKE_UP)) {
-                            Slog.w(TAG, "The proximity sensor took too long, wake event already triggered!");
-                            return;
-                        }
-                        mHandler.removeMessages(MSG_WAKE_UP);
-                        float distance = event.values[0];
-                        if (distance >= PROXIMITY_NEAR_THRESHOLD ||
-                                distance >= mProximitySensor.getMaximumRange()) {
-                            r.run();
-                        } else {
-                            Slog.w(TAG, "Not waking up.  Proximity sensor blocked.");
-                        }
-                    }
-
-                    @Override
-                    public void onAccuracyChanged(Sensor sensor, int accuracy) {}
-                };
-                mSensorManager.registerListener(mProximityListener,
-                       mProximitySensor, SensorManager.SENSOR_DELAY_FASTEST);
-            }
-        }
-
-        @Override // Binder call
-        public void wakeUpWithProximityCheck(long eventTime, String reason, String opPackageName) {
-            wakeUp(eventTime, reason, opPackageName, true);
-        }
-
-        @Override // Binder call
-        public void wakeUp(long eventTime, String reason, String opPackageName) {
-            wakeUp(eventTime, reason, opPackageName, false);
         }
 
         @Override // Binder call

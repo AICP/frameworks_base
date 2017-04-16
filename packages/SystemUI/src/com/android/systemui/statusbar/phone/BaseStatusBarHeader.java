@@ -50,4 +50,6 @@ public abstract class BaseStatusBarHeader extends RelativeLayout implements
     public abstract void setWeatherController(WeatherController weatherController);
     public abstract void updateSettings();
     public abstract void onClosingFinished();
+    public abstract void updateVisibilities();
+    public abstract void queryAndUpdateWeather();
 }

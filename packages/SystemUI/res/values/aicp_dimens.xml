@@ -112,4 +112,7 @@
     <dimen name="app_sidebar_icon_width">72dp</dimen>
     <dimen name="app_sidebar_icon_height">72dp</dimen>
 
+    <!-- Padding end for weather text -->
+    <dimen name="status_bar_weather_padding_end">16dp</dimen>
+
 </resources>

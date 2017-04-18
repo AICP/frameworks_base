@@ -283,6 +283,7 @@ public class BluetoothTile extends QSTile<QSTile.BooleanState>  {
             ArrayList<Item> items = new ArrayList<Item>();
             final Collection<CachedBluetoothDevice> devices = mController.getDevices();
             if (devices != null) {
+                int connectedDevices = 0;
                 for (CachedBluetoothDevice device : devices) {
                     if (device.getBondState() == BluetoothDevice.BOND_NONE) continue;
                     final Item item = new Item();
@@ -294,11 +295,12 @@ public class BluetoothTile extends QSTile<QSTile.BooleanState>  {
                         item.icon = R.drawable.ic_qs_bluetooth_connected;
                         item.line2 = mContext.getString(R.string.quick_settings_connected);
                         item.canDisconnect = true;
-                        items.add(0, item);
+                        items.add(connectedDevices, item);
+                        connectedDevices++;
                     } else if (state == BluetoothProfile.STATE_CONNECTING) {
                         item.icon = R.drawable.ic_qs_bluetooth_connecting;
                         item.line2 = mContext.getString(R.string.quick_settings_connecting);
-                        items.add(item);
+                        items.add(connectedDevices, item);
                     } else {
                         items.add(item);
                     }

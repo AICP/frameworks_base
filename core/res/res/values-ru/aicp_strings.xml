@@ -37,4 +37,8 @@
     <!-- label for item that takes On-The-Go in the phone options dialog -->
     <string name="global_action_onthego">Режим на ходу</string>
 
+    <!-- LuckyPatcher carnt dialog -->
+    <string name="lucky_patcher_installed_title">Найден LuckyPatcher!!!</string>
+    <string name="lucky_patcher_installed_message">Я признаю, что я вор и пират. Я люблю воровать труды/деньги разработчиков и хвастаюсь этим.</string>
+    <string name="lucky_patcher_admit">Я признаю</string>
 </resources>

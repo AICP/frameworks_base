@@ -42,7 +42,6 @@
   <!-- Instructions telling the user that they entered the wrong pin while trying
          to unlock the keyguard.  Displayed in one line in a large font.  -->
   <string name="keyguard_password_wrong_pin_code">Códigu PIN incorreutu</string>
-  <!-- Shown in the lock screen when there is SIM card IO error. -->
   <!-- When the lock screen is showing, the phone is plugged in and the battery is fully
          charged, say that it is charged. -->
   <string name="keyguard_charged">Cargada</string>
@@ -217,6 +216,4 @@
   </plurals>
   <!-- Fingerprint hint message when finger was not recognized.-->
   <string name="fingerprint_not_recognized">Non reconocío</string>
-  <!-- Instructions telling the user remaining times when enter SIM PIN view.  -->
-  <!-- Instructions telling the user remaining times when enter SIM PUK view.  -->
 </resources>

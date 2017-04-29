@@ -90,7 +90,7 @@ public class ScreenshotTile extends QSTile<QSTile.BooleanState> {
     protected void handleUpdateState(BooleanState state, Object arg) {
         if (mRegion) {
             state.label = mContext.getString(R.string.quick_settings_region_screenshot_label);
-            state.icon = ResourceIcon.get(R.drawable.ic_qs_screenshot);
+            state.icon = ResourceIcon.get(R.drawable.ic_qs_region_screenshot);
             state.contentDescription =  mContext.getString(
                     R.string.quick_settings_region_screenshot_label);
          } else {

@@ -4221,6 +4221,19 @@ public final class Settings {
         public static final String BATTERY_LIGHT_REALLY_FULL_COLOR = "battery_light_really_full_color";
 
         /**
+         * Whether to blend battery light colors between full and low value
+         * @hide
+         */
+        public static final String BATTERY_LIGHT_BLEND_COLOR = "battery_light_blend_color";
+
+        /**
+         * Whether to reverse the blend direction of battery light colors between full and low value
+         * (HSV color model)
+         * @hide
+         */
+        public static final String BATTERY_LIGHT_BLEND_COLOR_REVERSE = "battery_light_blend_color_reverse";
+
+        /**
          * Status bar carrier label
          * 0: Hide
          * 1: Display on keyguard status bar

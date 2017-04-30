@@ -22,7 +22,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.ContentObserver;
-import android.graphics.Color;
 import android.graphics.drawable.Animatable;
 import android.os.BatteryManager;
 import android.os.Handler;
@@ -36,6 +35,8 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+
+import com.android.internal.util.aicp.AicpUtils;
 
 public class BatteryBar extends RelativeLayout implements Animatable {
 
@@ -312,34 +313,8 @@ public class BatteryBar extends RelativeLayout implements Animatable {
         if (mBatteryCharging && mUseChargingColor) {
             return mChargingColor;
         } else if (mBlendColors) {
-            float[] newColor = new float[3];
-            float[] empty = new float[3];
-            float[] full = new float[3];
-            Color.colorToHSV(mColor, full);
-            int fullAlpha = Color.alpha(mColor);
-            Color.colorToHSV(mBatteryLowColor, empty);
-            int emptyAlpha = Color.alpha(mBatteryLowColor);
-            float blendFactor = percentage/100f;
-            if (mBlendColorsReversed) {
-                if (empty[0] < full[0]) {
-                    empty[0] += 360f;
-                }
-                newColor[0] = empty[0] - (empty[0]-full[0])*blendFactor;
-            } else {
-                if (empty[0] > full[0]) {
-                    full[0] += 360f;
-                }
-                newColor[0] = empty[0] + (full[0]-empty[0])*blendFactor;
-            }
-            if (newColor[0] > 360f) {
-                newColor[0] -= 360f;
-            } else if (newColor[0] < 0) {
-                newColor[0] += 360f;
-            }
-            newColor[1] = empty[1] + ((full[1]-empty[1])*blendFactor);
-            newColor[2] = empty[2] + ((full[2]-empty[2])*blendFactor);
-            int newAlpha = (int) (emptyAlpha + ((fullAlpha-emptyAlpha)*blendFactor));
-            return Color.HSVToColor(newAlpha, newColor);
+            return AicpUtils.getBlendColorForPercent(mColor, mBatteryLowColor,
+                    mBlendColorsReversed, percentage);
         } else {
             return percentage > BATTERY_LOW_VALUE ? mColor : mBatteryLowColor;
         }

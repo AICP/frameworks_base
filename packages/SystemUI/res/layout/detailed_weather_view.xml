@@ -87,6 +87,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/condition_line"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
@@ -230,5 +231,19 @@
                     android:singleLine="true" />
 
             </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/progress_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:orientation="horizontal"
+            android:paddingTop="20dp"
+            android:visibility="gone">
+
+            <ProgressBar
+                style="?android:attr/progressBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 </com.android.systemui.omni.DetailedWeatherView>

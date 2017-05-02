@@ -118,7 +118,7 @@ public class QuickStatusBarHeader extends BaseStatusBarHeader implements
     private View mEdit;
     private boolean mShowFullAlarm;
     private float mDateTimeTranslation;
-	
+
     private HorizontalScrollView mQuickQsPanelScroller;
 
     // omni additions
@@ -379,6 +379,7 @@ public class QuickStatusBarHeader extends BaseStatusBarHeader implements
                 ? View.VISIBLE : View.GONE);
 
         mWeatherContainer.setVisibility(mExpanded && isWeatherShown() ? View.VISIBLE : View.GONE);
+        mWeatherimage.setVisibility((mExpanded && mWeatherClient.isOmniJawsEnabled()) && isWeatherShown() ? View.VISIBLE : View.GONE);
 
         hasEdit = !isEditDisabled();
         mEdit.setVisibility(hasEdit && !isDemo && mExpanded ? View.VISIBLE : View.GONE);
@@ -398,32 +399,27 @@ public class QuickStatusBarHeader extends BaseStatusBarHeader implements
     @Override
     public void queryAndUpdateWeather() {
         try {
-                updateImageVisibility();
-                if (mWeatherEnabled && isWeatherShown()) {
-                    mWeatherClient.queryWeather();
-                    mWeatherData = mWeatherClient.getWeatherInfo();
-                    mWeatherLine2.setText(mWeatherData.city);
-                    mWeatherimage.setImageDrawable(
-                         mWeatherClient.getWeatherConditionImage(mWeatherData.conditionCode));
-                    mWeatherLine1.setText(mWeatherData.temp + mWeatherData.tempUnits);
-                    mNoWeatherimage.setVisibility(View.GONE);
-                } else {
-                    mWeatherLine2.setText(null);
-                    mWeatherLine1.setText(null);
-                    mWeatherimage.setVisibility(View.GONE);
-                    if(isWeatherShown()) {
-                       mNoWeatherimage.setVisibility(View.VISIBLE);
-                    } else {
-                       mNoWeatherimage.setVisibility(View.GONE);
-                    }
-                }
-          } catch(Exception e) {
-            // Do nothing
-       }
+            updateImageVisibility();
+            if (mWeatherEnabled && isWeatherShown()) {
+                mWeatherClient.queryWeather();
+                mWeatherData = mWeatherClient.getWeatherInfo();
+                mWeatherLine2.setText(mWeatherData.city);
+                mWeatherimage.setImageDrawable(
+                        mWeatherClient.getWeatherConditionImage(mWeatherData.conditionCode));
+                mWeatherLine1.setText(mWeatherData.temp + mWeatherData.tempUnits);
+                mNoWeatherimage.setVisibility(View.GONE);
+            } else {
+                mWeatherLine2.setText(null);
+                mWeatherLine1.setText(null);
+                mWeatherimage.setVisibility(View.GONE);
+            }
+        } catch(Exception e) {
+            mNoWeatherimage.setVisibility(View.VISIBLE);
+        }
     }
 
     public void updateImageVisibility() {
-          mWeatherimage.setVisibility(isWeatherImageShown() && isWeatherShown() ? View.VISIBLE : View.GONE);
+          mWeatherimage.setVisibility(mWeatherClient.isOmniJawsEnabled() && (isWeatherImageShown() && isWeatherShown()) ? View.VISIBLE : View.GONE);
           mNoWeatherimage.setVisibility(mExpanded && isWeatherShown() ? View.VISIBLE : View.GONE);
     }
 

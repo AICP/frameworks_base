@@ -48,6 +48,8 @@ public class BrightnessMirrorController {
     private final int[] mInt2Cache = new int[2];
     private View mBrightnessMirror;
     private final ImageView mIcon;
+    private final ImageView mIconLeft;
+    private boolean mBrightnessIconPosition;
     private Context mContext;
 
     public BrightnessMirrorController(Context context, StatusBarWindowView statusBarWindow) {
@@ -59,6 +61,7 @@ public class BrightnessMirrorController {
         mStackScroller = (NotificationStackScrollLayout) statusBarWindow.findViewById(
                 R.id.notification_stack_scroller);
         mIcon = (ImageView) statusBarWindow.findViewById(R.id.brightness_icon);
+        mIconLeft = (ImageView) statusBarWindow.findViewById(R.id.brightness_icon_left);
     }
 
     public void showMirror() {
@@ -139,16 +142,33 @@ public class BrightnessMirrorController {
         boolean brightnessIconEnabled = Settings.System.getIntForUser(
                 mContext.getContentResolver(), Settings.System.BRIGHTNESS_ICON,
                 1, UserHandle.USER_CURRENT) == 1;
-        mIcon.setVisibility(brightnessIconEnabled? View.VISIBLE : View.GONE);
-
-        if (mIcon != null) {
-            boolean automatic = Settings.System.getIntForUser(mContext.getContentResolver(),
-                    Settings.System.SCREEN_BRIGHTNESS_MODE,
-                    Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL,
-                    UserHandle.USER_CURRENT) != Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL;
-            mIcon.setImageResource(automatic ?
-                    com.android.systemui.R.drawable.ic_qs_brightness_auto_on_new :
-                    com.android.systemui.R.drawable.ic_qs_brightness_auto_off_new);
+        mBrightnessIconPosition = Settings.System.getIntForUser(
+                mContext.getContentResolver(), Settings.System.BRIGHTNESS_ICON_POSITION,
+                1, UserHandle.USER_CURRENT) == 1;
+        if (mBrightnessIconPosition) {
+            mIcon.setVisibility(brightnessIconEnabled? View.VISIBLE : View.GONE);
+            mIconLeft.setVisibility(View.GONE);
+            if (mIcon != null) {
+                boolean automatic = Settings.System.getIntForUser(mContext.getContentResolver(),
+                        Settings.System.SCREEN_BRIGHTNESS_MODE,
+                        Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL,
+                        UserHandle.USER_CURRENT) != Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL;
+                mIcon.setImageResource(automatic ?
+                        com.android.systemui.R.drawable.ic_qs_brightness_auto_on_new :
+                        com.android.systemui.R.drawable.ic_qs_brightness_auto_off_new);
+            }
+        } else {
+            mIconLeft.setVisibility(brightnessIconEnabled? View.VISIBLE : View.GONE);
+            mIcon.setVisibility(View.GONE);
+            if (mIconLeft != null) {
+                boolean automatic = Settings.System.getIntForUser(mContext.getContentResolver(),
+                        Settings.System.SCREEN_BRIGHTNESS_MODE,
+                        Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL,
+                        UserHandle.USER_CURRENT) != Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL;
+                mIconLeft.setImageResource(automatic ?
+                        com.android.systemui.R.drawable.ic_qs_brightness_auto_on_new :
+                        com.android.systemui.R.drawable.ic_qs_brightness_auto_off_new);
+            }
         }
     }
 }

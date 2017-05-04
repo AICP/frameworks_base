@@ -3848,6 +3848,12 @@ public final class Settings {
         public static final String BRIGHTNESS_ICON = "brightness_icon";
 
         /**
+         * Brightness Icon position on Brightness Slider
+         * @hide
+         */
+        public static final String BRIGHTNESS_ICON_POSITION = "brightness_icon_position";
+
+        /**
          * Change quick settings tiles animation style
          *
          * @hide

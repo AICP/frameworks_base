@@ -19,4 +19,8 @@
 -->
 <resources>
     <color name="omni_kg_wrong_passcode">#fff4511e</color>
+
+    <!-- AmbientD battery colors -->
+    <color name="keyguard_default_primary_text_color">#ffffffff</color>
+    <color name="keyguard_default_icon_color">#ffffffff</color>
 </resources>

@@ -29,7 +29,7 @@
     <string name="edit">Ändern</string>
 
     <!-- Singlehanded Mode -->
-    <string name="singlehandmode_click_hint_message">Ausserhalb des Bildschirms berühren, um die Mini-Displayansicht zu beenden</string>
+    <!-- <string name="singlehandmode_click_hint_message">Ausserhalb des Bildschirms berühren, um die Mini-Displayansicht zu beenden</string> -->
 
     <!-- Powermenu Torch -->
     <string name="global_action_torch">Taschenlampe</string>
@@ -43,6 +43,6 @@
     <string name="lucky_patcher_admit">Ich gestehe</string>
 
     <!-- Button to soft reboot the device, within the Reboot Options dialog -->
-    <string name="reboot_systemui">System-UI neu starten</string>
+    <string name="reboot_systemui">SystemUI neu starten</string>
 
 </resources>

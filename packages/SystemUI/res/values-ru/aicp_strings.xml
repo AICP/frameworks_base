@@ -19,58 +19,62 @@
 
     <!-- Quick Settings tiles -->
     <string name="quick_settings_screenshot_label">Снимок экрана</string>
-    <string name="quick_settings_region_screenshot_label">Частичный снимок экрана</string>
-    <string name="quick_settings_adb_network">Отладка по сети</string>
-    <string name="quick_settings_network_adb_enabled_label">Да</string>
-    <string name="quick_settings_network_adb_disabled_label">Нет</string>
+    <string name="quick_settings_region_screenshot_label">Скриншот выбранной области экрана</string>
+    <string name="quick_settings_adb_network">ADB по сети</string>
+    <string name="quick_settings_network_adb_enabled_label">Включено</string>
+    <string name="quick_settings_network_adb_disabled_label">Отключено</string>
     <string name="quick_settings_sync_label">Синхронизация</string>
-    <string name="accessibility_quick_settings_sync_off">Синхронизация Нет</string>
-    <string name="accessibility_quick_settings_sync_on">Синхронизация Да</string>
-    <string name="accessibility_quick_settings_sync_changed_off">Синхронизация Нет</string>
-    <string name="accessibility_quick_settings_sync_changed_on">Синхронизация Да</string>
+    <string name="accessibility_quick_settings_sync_off">Синхронизация выкл.</string>
+    <string name="accessibility_quick_settings_sync_on">Синхронизация вкл.</string>
+    <string name="accessibility_quick_settings_sync_changed_off">Синхронизация выключена</string>
+    <string name="accessibility_quick_settings_sync_changed_on">Синхронизация включена</string>
     <string name="quick_settings_expanded_desktop_label">Расширенный экран</string>
     <string name="quick_settings_expanded_desktop">Расширенный</string>
-    <string name="quick_settings_expanded_desktop_off">Нормальный</string>
-    <string name="quick_settings_reboot_label">Перезагрузка</string>
-    <string name="quick_settings_reboot_recovery_label">Режим восстановления</string>
-    <string name="accessibility_quick_settings_usb_tether_off">USB-модем Нет</string>
-    <string name="accessibility_quick_settings_usb_tether_on">USB-модем Да</string>
-    <string name="accessibility_quick_settings_usb_tether_changed_off">USB-модем Нет</string>
-    <string name="accessibility_quick_settings_usb_tether_changed_on">USB-модем Да</string>
+    <string name="quick_settings_expanded_desktop_off">Обычный</string>
+    <string name="quick_settings_reboot_label">Перезагрузить</string>
+    <string name="quick_settings_reboot_recovery_label">Восстановление</string>
+    <string name="accessibility_quick_settings_usb_tether_off">USB-модем выкл.</string>
+    <string name="accessibility_quick_settings_usb_tether_on">USB-модем вкл.</string>
+    <string name="accessibility_quick_settings_usb_tether_changed_off">USB-модем выключен</string>
+    <string name="accessibility_quick_settings_usb_tether_changed_on">USB-модем включен</string>
     <string name="quick_settings_usb_tether_label">USB-модем</string>
     <string name="quick_settings_music_label">Музыка</string>
     <string name="quick_settings_music_play">Пуск</string>
     <string name="quick_settings_music_pause">Пауза</string>
     <string name="quick_settings_ime_tile_label">Метод ввода</string>
     <string name="quick_settings_caffeine_label">Запрет сна</string>
-    <string name="accessibility_quick_settings_caffeine_off">Запрет сна Нет</string>
-    <string name="accessibility_quick_settings_caffeine_on">Запрет сна Да</string>
+    <string name="accessibility_quick_settings_caffeine_off">Запрет сна выкл.</string>
+    <string name="accessibility_quick_settings_caffeine_on">Запрет сна вкл.</string>
+    <string name="quick_settings_navigation_bar">Панель навигации</string>
+    <string name="quick_settings_smartbar">SmartBar</string>
+    <string name="quick_settings_fling">Fling</string>
+    <string name="quick_settings_screenrecord">Запись экрана</string>
     <string name="quick_settings_screenrecord">Запись экрана</string>
     <string name="quick_settings_screenrecord_on">Запись...</string>
-    <string name="quick_settings_heads_up_label">Уведомления</string>
-    <string name="accessibility_quick_settings_heads_up_off">Уведомления Нет</string>
-    <string name="accessibility_quick_settings_heads_up_on">Уведомления Да</string>
-    <string name="accessibility_quick_settings_heads_up_changed_off">Уведомления Нет</string>
-    <string name="accessibility_quick_settings_heads_up_changed_on">Уведомления Да</string>
-    <string name="quick_settings_pulse_enabled">Визуализатор Да</string>
-    <string name="quick_settings_pulse_disabled">Визуализатор Нет</string>
-    <string name="quick_settings_pulse_label">Визуализатор</string>
-    <string name="accessibility_quick_settings_pulse_off">Визуализатор Нет</string>
-    <string name="accessibility_quick_settings_pulse_on">Визуализатор Да</string>
-    <string name="accessibility_quick_settings_pulse_changed_off">Визуализатор Нет</string>
-    <string name="accessibility_quick_settings_pulse_changed_on">Визуализатор Да</string>
+    <string name="quick_settings_heads_up_label">Всплывающие уведомления</string>
+    <string name="accessibility_quick_settings_heads_up_off">Всплывающие уведомления выкл.</string>
+    <string name="accessibility_quick_settings_heads_up_on">Всплывающие уведомления вкл.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">Всплывающие уведомления выключены</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">Всплывающие уведомления включены</string>
+    <string name="quick_settings_pulse_enabled">Pulse вкл.</string>
+    <string name="quick_settings_pulse_disabled">Pulse выкл.</string>
+    <string name="quick_settings_pulse_label">Pulse</string>
+    <string name="accessibility_quick_settings_pulse_off">Pulse выкл.</string>
+    <string name="accessibility_quick_settings_pulse_on">Pulse вкл.</string>
+    <string name="accessibility_quick_settings_pulse_changed_off">Pulse выключен</string>
+    <string name="accessibility_quick_settings_pulse_changed_on">Pulse включен</string>
     <string name="quick_settings_locale_label">Язык</string>
     <string name="quick_settings_locale_more_locales_toast">Настройте язык, чтобы включить функцию переключения</string>
     <string name="quick_settings_sound_label">Звук</string>
-    <string name="quick_settings_sound_ring">Звонок</string>
+    <string name="quick_settings_sound_ring">Звук вкл.</string>
     <string name="quick_settings_sound_vibrate">Вибрация</string>
-    <string name="quick_settings_sound_silent">Беззвучный</string>
-    <string name="accessibility_quick_settings_location_battery_saving">Местоположение: по координатам сети</string>
-    <string name="accessibility_quick_settings_location_gps_only">Местоположение: по спутникам GPS</string>
-    <string name="accessibility_quick_settings_location_high_accuracy">Местоположение: по всем источникам</string>
-    <string name="accessibility_quick_settings_location_changed_battery_saving">Изменено</string>
-    <string name="accessibility_quick_settings_location_changed_gps_only">Изменено</string>
-    <string name="accessibility_quick_settings_location_changed_high_accuracy">Изменено</string>
+    <string name="quick_settings_sound_silent">Без звука</string>
+    <string name="accessibility_quick_settings_location_battery_saving">Определение местоположения: по координатам сети.</string>
+    <string name="accessibility_quick_settings_location_gps_only">Определение местоположения: по спутникам GPS.</string>
+    <string name="accessibility_quick_settings_location_high_accuracy">Определение местоположения: по всем источникам.</string>
+    <string name="accessibility_quick_settings_location_changed_battery_saving">Служба отправки местоположения переключена в режим по координатам сети.</string>
+    <string name="accessibility_quick_settings_location_changed_gps_only">Для отправки местоположения используются только данные GPS.</string>
+    <string name="accessibility_quick_settings_location_changed_high_accuracy">Служба отправки местоположения переключена в режим высокой точности.</string>
     <string name="quick_settings_location_detail_title">Местоположение</string>
     <string name="quick_settings_location_battery_saving_label">По координатам сети</string>
     <string name="quick_settings_location_gps_only_label">По спутникам GPS</string>
@@ -81,23 +85,23 @@
     <string name="delete_screenshot_toast">Снимок экрана удалён</string>
 
     <!-- Navigation bar Tile -->
-    <string name="quick_settings_navigation_bar">Бар навигации</string>
-    <string name="quick_settings_smartbar">Бар навигации</string>
-    <string name="quick_settings_smartbar_off">Бар навигации Нет</string>
-    <string name="quick_settings_fling">Жестом</string>
-    <string name="quick_settings_fling_off">Жестом Нет</string>
+    <string name="quick_settings_navigation_bar">Панель навигации</string>
+    <string name="quick_settings_smartbar">SmartBar</string>
+    <string name="quick_settings_smartbar_off">SmartBar выкл.</string>
+    <string name="quick_settings_fling">Fling</string>
+    <string name="quick_settings_fling_off">Fling выкл.</string>
 
     <!-- Heads up snooze toast -->
-    <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Уведомления в течении минуты</string>
-    <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - Уведомления <xliff:g id="number">%d</xliff:g> минут</string>
+    <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Всплывающие уведомления выключены на одну минуту.</string>
+    <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - Всплывающие уведомления выключены на <xliff:g id="number">%d</xliff:g> минут.</string>
 
     <!-- Screenshot action -->
-    <string name="screenshot_abort_title">Нет снимка экрана</string>
+    <string name="screenshot_abort_title">Снимок экрана не был снят</string>
     <string name="screenshot_abort_text">Операция прервана</string>
 
     <!-- Aicp Extras Tile -->
     <string name="quick_aicp_extras_label">Настройки</string>
-    <string name="quick_aicp_extras_toast">Вы думали, что будет выполнено!!!</string>
+    <string name="quick_aicp_extras_toast">АХАХАХ, вы действительно думали что долгое нажатие перенесет вас куда-то!!!</string>
 
     <!-- App sidebar -->
     <string name="default_folder_text">Папка</string>
@@ -109,42 +113,42 @@
     <string name="toast_not_installed">Приложение не установлено</string>
 
     <!-- PA Pie controls -->
-    <string name="pie_hour_format_12">hh:mm</string>
-    <string name="pie_hour_format_24">HH:mm</string>
+    <string name="pie_hour_format_12">чч:мм</string>
+    <string name="pie_hour_format_24">ЧЧ:мм</string>
     <string name="pie_am_pm">a</string>
 
     <!-- PA Pie Tile -->
-    <string name="quick_settings_pie">Всплывающее меню</string>
-    <string name="quick_settings_pie_off">Всплывающее меню Нет</string>
-    <string name="quick_settings_pie_on">Всплывающее меню Да</string>
+    <string name="quick_settings_pie">Панель Pie</string>
+    <string name="quick_settings_pie_off">Панель Pie выкл.</string>
+    <string name="quick_settings_pie_on">Панель Pie вкл.</string>
 
     <!-- Kill app toast -->
     <string name="app_killed_message">Приложение закрыто</string>
 
     <!-- Ambient Display Tile -->
-    <string name="quick_settings_ambient_display_label">Экран</string>
+    <string name="quick_settings_ambient_display_label">Ambient Display</string>
     <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
-    <string name="accessibility_quick_settings_ambient_display_off">Экран Нет</string>
+    <string name="accessibility_quick_settings_ambient_display_off">Ambient Display выкл.</string>
     <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
-    <string name="accessibility_quick_settings_ambient_display_on">Экран Да</string>
+    <string name="accessibility_quick_settings_ambient_display_on">Ambient Display вкл.</string>
     <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
-    <string name="accessibility_quick_settings_ambient_display_changed_off">Экран Нет</string>
+    <string name="accessibility_quick_settings_ambient_display_changed_off">Ambient Display выключен</string>
     <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
-    <string name="accessibility_quick_settings_ambient_display_changed_on">Экран Да</string>
+    <string name="accessibility_quick_settings_ambient_display_changed_on">Ambient Display включен</string>
 
     <!-- Application picker Tile -->
     <string name="quick_settings_app_picker">Приложения</string>
 
     <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
-    <string name="accessibility_quick_settings_running_services">Открыты сервисы экрана</string>
+    <string name="accessibility_quick_settings_running_services">Открыть окно запущенных приложений</string>
 
     <!-- On The Go -->
-    <string name="onthego_notif_ticker">Режим на ходу активирован</string>
-    <string name="onthego_notif_title">Режим на ходу активен</string>
-    <string name="onthego_notif_stop">Стоп</string>
-    <string name="onthego_notif_options">Опции</string>
-    <string name="onthego_notif_error">Не удаётся запустить режим на ходу</string>
-    <string name="onthego_notif_restart">Перезапустить режим на ходу</string>
+    <string name="onthego_notif_ticker">Режим \"На ходу\" активирован</string>
+    <string name="onthego_notif_title">Режим \"На ходу\" активен</string>
+    <string name="onthego_notif_stop">Остановить</string>
+    <string name="onthego_notif_options">Настройки</string>
+    <string name="onthego_notif_error">Не удаётся запустить режим \"На ходу\"</string>
+    <string name="onthego_notif_restart">Перезапустить режим \"На ходу\"</string>
     <string name="onthego_notif_camera_changed">Режим камеры изменен</string>
     <string name="onthego_transparency">Прозрачность</string>
     <string name="onthego_front_camera">Использовать переднюю камеру</string>
@@ -154,29 +158,29 @@
     <string name="quick_settings_onthego_front">Front Camera</string>-->
 
     <!-- Slim Recents -->
-    <string name="recents_multiwin_warning">Многооконность уже активно\nПросто нажмите на приложение</string>
-    <string name="recents_multiwin_nolastapp">Вы очистили все последние, выберите приложения из лаунчера</string>
-    <string name="slim_recent_keyguard">Разблокировка вашего устройства, чтобы просмотреть последние</string>
-    <string name="slim_recent_pinned">Открепить экран для просмотра последних</string>
+    <string name="recents_multiwin_warning">Мультиоконная сессия уже активна.\nПросто нажмите на приложение, чтобы прикрепить.</string>
+    <string name="recents_multiwin_nolastapp">Вы очистили список недавних приложений, пожалуйста выберите приложение с рабочего стола или из меню приложений.</string>
+    <string name="slim_recent_keyguard">Разблокируйте устройство для просмотра меню недавних приложений</string>
+    <string name="slim_recent_pinned">Открепить экран для просмотра меню недавних приложений</string>
 
     <!-- Slim recents app sidebar queue app toast -->
-    <string name="toast_recents_queue_app">Запуск %s после закрытия</string>
+    <string name="toast_recents_queue_app">Запустить %s после закрытия меню недавних приложений</string>
     <string name="toast_recents_cancel_queued_app">Запуск приложения отменён</string>
 
     <!-- Kill button in notification guts -->
-    <string name="force_stop_dlg_title">Остановить?</string>
-    <string name="force_stop_dlg_text">Если принудительно остановить приложение, последствия неоднозначны</string>
+    <string name="force_stop_dlg_title">Остановить принудительно?</string>
+    <string name="force_stop_dlg_text">Принудительное закрытие приложения может отразиться на его работоспособности.</string>
     <string name="dlg_ok">ОК</string>
     <string name="dlg_cancel">Отмена</string>
     <string name="kill">Закрыть приложение</string>
 
     <!-- App circle sidebar -->
-    <string name="app_float_maximize_item_title">Максимально</string>
-    <string name="app_float_item_title">Боковая панель</string>
+    <string name="app_float_maximize_item_title">Развернуть</string>
+    <string name="app_float_item_title">Плавающий вид</string>
     <string name="app_stop_item_title">Закрыть приложение</string>
 
     <!-- Slim recents membar -->
-    <string name="recents_free_ram">RAM: %1$d MB</string>
+    <string name="recents_free_ram">Свободно ОЗУ: %1$d Мб</string>
 
     <!-- OmniJAWS -->
     <string name="omnijaws_service_error">Ошибка</string>
@@ -184,15 +188,17 @@
     <string name="omnijaws_detail_header">Погода</string>
     <string name="omnijaws_label_default">Погода</string>
     <string name="omnijaws_current_text">Сейчас</string>
-    <string name="omnijaws_package_not_available">Не доступен</string>
+    <string name="omnijaws_package_not_available">OmniJaws недоступен</string>
+    <string name="omnijaws_service_error_long">Ошибка при загрузке данных о погоде</string>
+    <string name="omnijaws_service_disabled">Служба отключена</string>
 
     <!-- Weather string format in expanded statusbar header -->
     <string name="status_bar_weather_format"><xliff:g id="temp">%1$s</xliff:g></string>
 
     <!-- Off/On/Toggle -->
-    <string name="off">Нет</string>
-    <string name="on">Да</string>
-    <string name="toggle">Переключатель</string>
+    <string name="off">Выключить</string>
+    <string name="on">Включить</string>
+    <string name="toggle">Переключить</string>
 
     <!-- Dialog Cancel/OK -->
     <string name="cancel">Отмена</string>
@@ -201,36 +207,60 @@
     <string name="no">Нет</string>
 
     <!-- Slim Shortcut Actions -->
-    <string name="shortcut_picker">Горячие кнопки</string>
+    <string name="shortcut_picker">Ярлыки AICP</string>
     <string name="shortcut_rotation">Поворот</string>
     <string name="shortcut_reboot">Перезагрузка</string>
     <string name="shortcut_recovery">Режим восстановления</string>
     <string name="shortcut_screensleep">Режим сна</string>
     <string name="shortcut_volume">Панель громкости</string>
-    <string name="shortcut_restart_ui">Перезапуск системы</string>
+    <string name="shortcut_restart_ui">Перезапуск интерфейса</string>
     <string name="shortcut_powermenu">Меню питания</string>
     <string name="shortcut_flashlight">Фонарик</string>
     <string name="shortcut_clear_notifications">Очистить уведомления</string>
-    <string name="shortcut_toggle_title">Очистка уведомлений</string>
+    <string name="shortcut_toggle_title">Подтвердите действие</string>
 
     <!-- MagiskManager QS Tile -->
-    <string name="quick_magiskmanager_label">Менеджер</string>
-    <string name="quick_magiskmanager_na">Менеджер не установлен</string>
+    <string name="quick_magiskmanager_label">Менеджер Magisk</string>
+    <string name="quick_magiskmanager_na">Magisk не установлен</string>
 
     <!-- Compass QS Tile -->
     <string name="quick_settings_compass_label">Компас</string>
     <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
     <string name="quick_settings_compass_init">Инициализация\u2026</string>
-    <string name="accessibility_quick_settings_compass_off">Компас Нет</string>
-    <string name="accessibility_quick_settings_compass_on">Компас Да</string>
-    <string name="accessibility_quick_settings_compass_changed_off">Компас Нет</string>
-    <string name="accessibility_quick_settings_compass_changed_on">Компас Да</string>
-    <string name="quick_settings_compass_N">N</string>
-    <string name="quick_settings_compass_NE">NE</string>
-    <string name="quick_settings_compass_E">E</string>
-    <string name="quick_settings_compass_SE">SE</string>
-    <string name="quick_settings_compass_S">S</string>
-    <string name="quick_settings_compass_SW">SW</string>
-    <string name="quick_settings_compass_W">W</string>
-    <string name="quick_settings_compass_NW">NW</string>
+    <string name="accessibility_quick_settings_compass_off">Компас выкл.</string>
+    <string name="accessibility_quick_settings_compass_on">Компас вкл.</string>
+    <string name="accessibility_quick_settings_compass_changed_off">Компас выключен</string>
+    <string name="accessibility_quick_settings_compass_changed_on">Компас включен</string>
+    <string name="quick_settings_compass_N">С</string>
+    <string name="quick_settings_compass_NE">СВ</string>
+    <string name="quick_settings_compass_E">В</string>
+    <string name="quick_settings_compass_SE">ЮВ</string>
+    <string name="quick_settings_compass_S">Ю</string>
+    <string name="quick_settings_compass_SW">ЮЗ</string>
+    <string name="quick_settings_compass_W">З</string>
+    <string name="quick_settings_compass_NW">СЗ</string>
+
+    <!-- Perf Profile Tile -->
+    <string name="qs_tile_performance">Профиль производительности</string>
+    <!-- Content description of the battery mode tile in quick settings when on, power save mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_perf_profile_pwrsv">Профиль производительности: экономия энергии.</string>
+    <!-- Content description of the battery mode tile in quick settings when on, balanced mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_perf_profile_bal">Профиль производительности: сбалансированный.</string>
+    <!-- Content description of the battery mode tile in quick settings when on, performance mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_perf_profile_perf">Профиль производительности: производительный.</string>
+    <!-- Content description of the battery mode tile in quick settings when on, efficiency mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_perf_profile_bias_power">Профиль производительности: эффективный.</string>
+    <!-- Content description of the battery mode tile in quick settings when on, quick mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_perf_profile_bias_perf">Профиль производительности: быстрый режим.</string>
+    <!-- Announcement made when the battery mode tile changes to power save (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_perf_profile_changed_pwrsv">Профиль производительности изменен на экономию энергии.</string>
+    <!-- Announcement made when the battery mode tile changes to balanced (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_perf_profile_changed_bal">Профиль производительности изменен на сбалансированный.</string>
+    <!-- Announcement made when the battery mode tile changes to performance (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_perf_profile_changed_perf">Профиль производительности изменен на производительный.</string>
+    <!-- Announcement made when the battery mode tile changes to efficiency (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_perf_profile_changed_bias_power">Профиль производительности изменен на эффективный.</string>
+    <!-- Announcement made when the battery mode tile changes to quick (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_perf_profile_changed_bias_perf">Профиль производительности изменен на быстрый.</string>
+    <string name="quick_settings_performance_profile_detail_title">Профиль производительности</string>
 </resources>

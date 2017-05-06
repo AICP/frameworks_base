@@ -18,18 +18,18 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <!-- Screenrecord Notification Ticker -->
-    <string name="screenrecord_notif_ticker">Запись</string>
+    <string name="screenrecord_notif_ticker">Идет запись экрана</string>
 
     <!-- Screenrecord notification title -->
     <string name="screenrecord_notif_title">Запись экрана</string>
 
     <!-- Screenrecord notification action: Stop -->
-    <string name="screenrecord_notif_stop">Стоп</string>
+    <string name="screenrecord_notif_stop">Остановить</string>
 
     <!-- Screenrecord notification action: show/hide pointer -->
-    <string name="screenrecord_notif_pointer_on">Показать касания</string>
-    <string name="screenrecord_notif_pointer_off">Скрывать касания</string>
+    <string name="screenrecord_notif_pointer_on">Отображать нажатия</string>
+    <string name="screenrecord_notif_pointer_off">Скрыть нажатия</string>
 
     <!-- Screen record notification error title -->
-    <string name="screenrecord_notif_error">Невозможно записать экран</string>
+    <string name="screenrecord_notif_error">Невозможно начать запись экрана</string>
 </resources>

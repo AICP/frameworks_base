@@ -16,11 +16,11 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- ADB enabled, but not connected notification title -->
-    <string name="adb_not_connected_notification_title">ADB не активно</string>
+    <string name="adb_not_connected_notification_title">ADB не активен</string>
     <string name="adb_active_custom_tile_not_connected">не активно</string>
 
     <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
-    <string name="system_error_vendorprint">Изображение поставщика не соответствует системе <xliff:g id="string">%s</xliff:g> изображение поставщика для вашего устройства</string>
+    <string name="system_error_vendorprint">Образ ПО производителя не соответствует системе <xliff:g id="string">%s</xliff:g>, обновите vendor поставщика для вашего устройства</string>
 
     <!-- label for item that screenrecord in phone options dialog -->
     <string name="global_action_screenrecord">Запись экрана</string>
@@ -35,10 +35,13 @@
     <string name="global_action_torch">Фонарик</string>
 
     <!-- label for item that takes On-The-Go in the phone options dialog -->
-    <string name="global_action_onthego">Режим на ходу</string>
+    <string name="global_action_onthego">Режим \"На ходу\"</string>
 
     <!-- LuckyPatcher carnt dialog -->
     <string name="lucky_patcher_installed_title">Найден LuckyPatcher!!!</string>
-    <string name="lucky_patcher_installed_message">Я признаю, что я вор и пират. Я люблю воровать труды/деньги разработчиков и хвастаюсь этим.</string>
-    <string name="lucky_patcher_admit">Я признаю</string>
+    <string name="lucky_patcher_installed_message">Я признаю то, что я вор и пират. Я люблю воровать труд и деньги разработчиков и хвастаюсь этим.</string>
+    <string name="lucky_patcher_admit">Я признаю это</string>
+
+    <!-- Restart SystemUI -->
+    <string name="reboot_systemui">Перезапустить пользовательский интерфейс</string>
 </resources>

@@ -40,6 +40,8 @@ import android.widget.ImageView;
 import android.widget.TextClock;
 import android.widget.TextView;
 
+import com.android.internal.util.aicp.OmniJawsClient;
+
 import com.android.internal.widget.LockPatternUtils;
 
 import java.util.Locale;
@@ -271,6 +273,11 @@ public class KeyguardStatusView extends GridLayout implements
         return info;
     }
 
+    @Override
+    public void weatherError(int errorReason) {
+       // not used
+    }
+    
     @Override
     public void weatherUpdated() {
         queryAndUpdateWeather();

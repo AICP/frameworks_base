@@ -117,4 +117,6 @@
   <java-symbol type="string" name="lucky_patcher_installed_message" />
   <java-symbol type="string" name="lucky_patcher_admit" />
 
+  <!-- OmniJaws Weather drawable -->
+  <java-symbol type="drawable" name="ic_qs_weather_default_on" />
 </resources>

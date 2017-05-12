@@ -32,4 +32,8 @@
     <color name="pie_shader_start">#FF4d4d4d</color>
     <color name="pie_shader_end">#FF212121</color>
     <color name="system_primary_color">@*android:color/primary_material_light</color>
+
+     <!-- Recents Memory bar -->
+    <color name="recents_memory_progress_overall">@*android:color/resize_shadow_start_color</color>
+    <color name="recents_memory_progress_free">@*android:color/accent_device_default_light</color>
 </resources>

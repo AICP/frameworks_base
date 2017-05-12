@@ -144,6 +144,9 @@ public class OmniJawsClient {
             mContext.getContentResolver().registerContentObserver(Settings.System.getUriFor(
                     Settings.System.OMNIJAWS_WEATHER_ICON_PACK),
                     false, this, UserHandle.USER_ALL);
+            mContext.getContentResolver().registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.OMNIJAWS_WINDSPEED_M_S),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -168,6 +171,7 @@ public class OmniJawsClient {
     private String mIconPrefix;
     private String mSettingIconPackage;
     private boolean mMetric;
+    private boolean mWindSpeedMPS;
     private List<OmniJawsObserver> mObserver;
     private WeatherUpdateReceiver mReceiver;
     private OmniJawsSettingsObserver mSettingsObserver;
@@ -244,7 +248,7 @@ public class OmniJawsClient {
                         c.moveToPosition(i);
                         if (i == 0) {
                             mCachedInfo.city = c.getString(0);
-                            mCachedInfo.windSpeed = getFormattedValue(c.getFloat(1));
+                            mCachedInfo.windSpeed = getFormattedValue(c.getFloat(1) * (float)(mWindSpeedMPS ? 1./3.6 : 1));
                             mCachedInfo.windDirection = String.valueOf(c.getInt(2)) + "\u00b0";
                             mCachedInfo.conditionCode = c.getInt(3);
                             mCachedInfo.temp = getFormattedValue(c.getFloat(4));
@@ -381,7 +385,8 @@ public class OmniJawsClient {
     }
 
     private String getWindUnit() {
-        return mMetric ? "km/h":"mph";
+        return mMetric ?
+             (mWindSpeedMPS ? "m/s" : "km/h") :"mph";
     }
 
     private void updateSettings() {
@@ -394,6 +399,9 @@ public class OmniJawsClient {
                 mSettingIconPackage = iconPack;
                 loadCustomIconPackage();
             }
+
+            mWindSpeedMPS = Settings.System.getInt(mContext.getContentResolver(),
+                 Settings.System.OMNIJAWS_WINDSPEED_M_S, 0) == 1;
         }
     }
 

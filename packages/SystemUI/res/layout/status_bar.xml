@@ -49,6 +49,7 @@
         android:paddingTop="@dimen/status_bar_padding_top"
         android:orientation="horizontal"
         >
+
         <FrameLayout
             android:layout_height="match_parent"
             android:layout_width="0dp"
@@ -63,8 +64,21 @@
                 android:id="@+id/status_bar_left_side"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
+                android:orientation="horizontal"
                 android:clipChildren="false"
             >
+
+                <com.android.systemui.aicp.logo.LogoImageView
+                    android:id="@+id/statusbar_logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:paddingStart="@dimen/status_bar_left_clock_starting_padding"
+                    android:paddingEnd="@dimen/status_bar_left_clock_end_padding"
+                    android:gravity="center_vertical"
+                    android:scaleType="center"
+                    android:visibility="gone" />
+
                 <ViewStub
                     android:id="@+id/operator_name"
                     android:layout_width="wrap_content"
@@ -120,6 +134,7 @@
             >
 
             <include layout="@layout/system_icons" />
+
         </com.android.keyguard.AlphaOptimizedLinearLayout>
     </LinearLayout>
 

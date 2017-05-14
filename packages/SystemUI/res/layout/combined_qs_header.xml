@@ -76,6 +76,14 @@ frame when animating QS <-> QQS transition
         app:barrierDirection="start"
         app:constraint_referenced_ids="shade_header_system_icons,privacy_container" />
 
+    <com.android.systemui.aicp.logo.LogoImageViewQuick
+        android:id="@+id/statusbar_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingEnd="1dip"
+        android:scaleType="center"
+        android:visibility="gone" />
+
     <com.android.systemui.statusbar.policy.Clock
         android:id="@+id/clock"
         android:layout_width="wrap_content"
@@ -148,6 +156,16 @@ frame when animating QS <-> QQS transition
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:textAppearance="@style/TextAppearance.QS.Status" />
+
+    <com.android.systemui.aicp.logo.LogoImageViewQuickRight
+        android:id="@+id/statusbar_logo_right"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingStart="2dip"
+        android:scaleType="center"
+        android:gravity="center_vertical"
+        android:visibility="gone" />
+
         </LinearLayout>
     </FrameLayout>
 
@@ -165,5 +183,12 @@ frame when animating QS <-> QQS transition
             android:layout_height="match_parent" />
 
     </FrameLayout>
-
+    <com.android.systemui.aicp.logo.LogoImageViewQuickRight
+        android:id="@+id/statusbar_logo_right"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingStart="2dip"
+        android:scaleType="center"
+        android:gravity="center_vertical"
+        android:visibility="gone" />
 </com.android.systemui.util.NoRemeasureMotionLayout>

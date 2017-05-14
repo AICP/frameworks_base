@@ -120,6 +120,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
     private final ShadeViewController mShadeViewController;
     private MultiSourceMinAlphaController mEndSideAlphaController;
     private LinearLayout mEndSideContent;
+    private View mStatusBarLogo, mStatusBarLogoRight;
     private View mOngoingCallChip;
     private View mNotificationIconAreaInner;
     // Visibilities come in from external system callers via disable flags, but we also sometimes
@@ -357,6 +358,8 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
         showEndSideContent(false);
         mBatteryBars[0] = mStatusBar.findViewById(R.id.battery_bar);
         mBatteryBars[1] = mStatusBar.findViewById(R.id.battery_bar_1);
+        mStatusBarLogo = mStatusBar.findViewById(R.id.statusbar_logo);
+        mStatusBarLogoRight = mStatusBar.findViewById(R.id.statusbar_logo_right);
         showClock(false);
         initOperatorName();
         initNotificationIconArea();
@@ -695,6 +698,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
             for (View batteryBar: mBatteryBars) {
                 animateHide(batteryBar, animate);
             }
+            animateHide(mStatusBarLogoRight, animate);
         }
     }
 
@@ -706,6 +710,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
             for (View batteryBar: mBatteryBars) {
                 animateShow(batteryBar, animate);
             }
+            animateShow(mStatusBarLogoRight, animate);
         }
         if (mKeyguardStateController.isKeyguardFadingAway()) {
             mEndSideAlphaController.animateToAlpha(/*alpha*/ 1f, SOURCE_OTHER,
@@ -751,10 +756,12 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
 
     public void hideNotificationIconArea(boolean animate) {
         animateHide(mNotificationIconAreaInner, animate);
+        animateHide(mStatusBarLogo, animate);
     }
 
     public void showNotificationIconArea(boolean animate) {
         animateShow(mNotificationIconAreaInner, animate);
+        animateShow(mStatusBarLogo, animate);
     }
 
     public void hideOperatorName(boolean animate) {

@@ -5153,7 +5153,7 @@ public final class Settings {
         private static final Validator ANIM_TILE_DURATION_VALIDATOR =
               new SettingsValidators.InclusiveIntegerRangeValidator(500, 2500);
 
-	/**
+	      /**
          * Change quick settings tiles interpolator
          *
          * @hide
@@ -5169,6 +5169,48 @@ public final class Settings {
          /** @hide */
          private static final Validator VOLUME_DIALOG_TIMEOUT_VALIDATOR =
                 new SettingsValidators.InclusiveIntegerRangeValidator(500, 10000);;
+
+         /**
+         * Statusbar AICP logo
+         * @hide
+         */
+        public static final String STATUS_BAR_LOGO = "status_bar_logo";
+
+        /** @hide */
+        private static final Validator STATUS_BAR_LOGO_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
+         * Statusbar AICP logo color setting
+         * @hide
+         */
+        public static final String STATUS_BAR_LOGO_COLOR = "status_bar_logo_color";
+
+        /** @hide */
+        private static final Validator STATUS_BAR_LOGO_COLOR_VALIDATOR =
+                ANY_STRING_VALIDATOR;
+
+        /**
+         * Position of Status bar AICP logo
+         * 0 - Left (default)
+         * 1 - Right
+         * @hide
+         */
+        public static final String STATUS_BAR_LOGO_POSITION = "status_bar_logo_position";
+
+        /** @hide */
+        private static final Validator STATUS_BAR_LOGO_POSITION_VALIDATOR =
+              ANY_STRING_VALIDATOR;
+
+        /**
+         * Statusbar AICP logo custom style
+         * @hide
+         */
+        public static final String STATUS_BAR_LOGO_STYLE = "status_bar_logo_style";
+
+        /** @hide */
+        private static final Validator STATUS_BAR_LOGO_STYLE_VALIDATOR =
+              ANY_STRING_VALIDATOR;
 
         /***************************
          * AICP System Settings end
@@ -5309,6 +5351,10 @@ public final class Settings {
             ANIM_TILE_STYLE,
             ANIM_TILE_DURATION,
             VOLUME_DIALOG_TIMEOUT,
+            STATUS_BAR_LOGO,
+            STATUS_BAR_LOGO_COLOR,
+            STATUS_BAR_LOGO_POSITION,
+            STATUS_BAR_LOGO_STYLE,
             // AICP Settings end
         };
 
@@ -5496,6 +5542,10 @@ public final class Settings {
             PRIVATE_SETTINGS.add(ANIM_TILE_STYLE);
             PRIVATE_SETTINGS.add(ANIM_TILE_DURATION);
             PRIVATE_SETTINGS.add(VOLUME_DIALOG_TIMEOUT);
+            PRIVATE_SETTINGS.add(STATUS_BAR_LOGO);
+            PRIVATE_SETTINGS.add(STATUS_BAR_LOGO_COLOR);
+            PRIVATE_SETTINGS.add(STATUS_BAR_LOGO_POSITION);
+            PRIVATE_SETTINGS.add(STATUS_BAR_LOGO_STYLE);
             // AICP Settings end
         }
 
@@ -5673,6 +5723,10 @@ public final class Settings {
             VALIDATORS.put(ANIM_TILE_STYLE,ANIM_TILE_STYLE_VALIDATOR);
             VALIDATORS.put(ANIM_TILE_DURATION,ANIM_TILE_DURATION_VALIDATOR);
             VALIDATORS.put(VOLUME_DIALOG_TIMEOUT,VOLUME_DIALOG_TIMEOUT_VALIDATOR);
+            VALIDATORS.put(STATUS_BAR_LOGO, STATUS_BAR_LOGO_VALIDATOR);
+            VALIDATORS.put(STATUS_BAR_LOGO_COLOR, STATUS_BAR_LOGO_COLOR_VALIDATOR);
+            VALIDATORS.put(STATUS_BAR_LOGO_POSITION, STATUS_BAR_LOGO_POSITION_VALIDATOR);
+            VALIDATORS.put(STATUS_BAR_LOGO_STYLE, STATUS_BAR_LOGO_STYLE_VALIDATOR);
             // AICP Settings end
         }
 

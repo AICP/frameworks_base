@@ -183,5 +183,10 @@ public class SystemSettings {
         Settings.System.ON_THE_GO_ALPHA,
         Settings.System.ON_THE_GO_SERVICE_RESTART,
         Settings.System.ON_THE_GO_CAMERA,
+        Settings.System.STATUS_BAR_LOGO,
+        Settings.System.STATUS_BAR_LOGO_COLOR,
+        Settings.System.STATUS_BAR_LOGO_POSITION,
+        Settings.System.STATUS_BAR_LOGO_STYLE,
+        Settings.System.STATUS_BAR_LOGO_COLOR_ACCENT,
     };
 }

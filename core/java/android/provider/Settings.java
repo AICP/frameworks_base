@@ -6853,6 +6853,38 @@ public final class Settings {
                 "statusbar_battery_bar_blend_dark_color_reverse";
 
         /**
+         * Statusbar AICP logo
+         * @hide
+         */
+        public static final String STATUS_BAR_LOGO = "status_bar_logo";
+
+        /**
+         * Statusbar AICP logo color setting
+         * @hide
+         */
+        public static final String STATUS_BAR_LOGO_COLOR = "status_bar_logo_color";
+
+        /**
+         * Position of Status bar AICP logo
+         * 0 - Left (default)
+         * 1 - Right
+         * @hide
+         */
+        public static final String STATUS_BAR_LOGO_POSITION = "status_bar_logo_position";
+
+        /**
+         * Statusbar AICP logo custom style
+         * @hide
+         */
+        public static final String STATUS_BAR_LOGO_STYLE = "status_bar_logo_style";
+
+        /**
+         * Statusbar AICP logo accent color setting
+         * @hide
+         */
+        public static final String STATUS_BAR_LOGO_COLOR_ACCENT = "status_bar_logo_color_accent";
+
+        /**
          * IMPORTANT: If you add a new public settings you also have to add it to
          * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
          * it to PRIVATE_SETTINGS below. Also add a validator that can validate
@@ -7047,6 +7079,11 @@ public final class Settings {
             PRIVATE_SETTINGS.add(POWER_MENU_ANIMATIONS);
             PRIVATE_SETTINGS.add(LOCKSCREEN_BATTERY_INFO);
             PRIVATE_SETTINGS.add(LOCKSCREEN_BATTERY_INFO_TEMP_UNIT);
+            PRIVATE_SETTINGS.add(STATUS_BAR_LOGO);
+            PRIVATE_SETTINGS.add(STATUS_BAR_LOGO_COLOR);
+            PRIVATE_SETTINGS.add(STATUS_BAR_LOGO_POSITION);
+            PRIVATE_SETTINGS.add(STATUS_BAR_LOGO_STYLE);
+            PRIVATE_SETTINGS.add(STATUS_BAR_LOGO_COLOR_ACCENT);
             PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR);
             PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_COLOR);
             PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_THICKNESS);

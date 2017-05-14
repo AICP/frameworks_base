@@ -63,6 +63,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
     private KeyguardMonitor mKeyguardMonitor;
     private NetworkController mNetworkController;
     private LinearLayout mSystemIconArea;
+    private View mStatusBarLogo, mStatusBarLogoRight;
     private View mNotificationIconAreaInner;
     private int mDisabled1;
     private StatusBar mStatusBarComponent;
@@ -146,6 +147,8 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
         mWeatherTextView = mStatusBar.findViewById(R.id.weather_temp);
         mWeatherImageView = mStatusBar.findViewById(R.id.weather_image);
         mCustomCarrierLabel = mStatusBar.findViewById(R.id.statusbar_carrier_text);
+        mStatusBarLogo = mStatusBar.findViewById(R.id.statusbar_logo);
+        mStatusBarLogoRight = mStatusBar.findViewById(R.id.statusbar_logo_right);
         mBatteryBar = mStatusBar.findViewById(R.id.battery_bar);
         mAicpSettingsObserver.observe();
         updateSettings(false);
@@ -254,24 +257,32 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
         animateHide(mSystemIconArea, animate, true);
         animateHide(mBatteryBar, animate, true);
         animateHide(mCenterClockLayout, animate, true);
+        animateHide(mStatusBarLogo, animate, true);
+        animateHide(mStatusBarLogoRight, animate, true);
     }
 
     public void showSystemIconArea(boolean animate) {
         animateShow(mSystemIconArea, animate);
         animateShow(mBatteryBar, animate);
         animateShow(mCenterClockLayout, animate);
+        animateShow(mStatusBarLogo, animate);
+        animateShow(mStatusBarLogoRight, animate);
     }
 
     public void hideNotificationIconArea(boolean animate) {
         animateHide(mNotificationIconAreaInner, animate, true);
         animateHide(mBatteryBar, animate, true);
         animateHide(mCenterClockLayout, animate, true);
+        animateHide(mStatusBarLogo, animate, true);
+        animateHide(mStatusBarLogoRight, animate, true);
     }
 
     public void showNotificationIconArea(boolean animate) {
         animateShow(mNotificationIconAreaInner, animate);
         animateShow(mBatteryBar, animate);
         animateShow(mCenterClockLayout, animate);
+        animateShow(mStatusBarLogo, animate);
+        animateShow(mStatusBarLogoRight, animate);
     }
 
     public void hideCarrierName(boolean animate) {

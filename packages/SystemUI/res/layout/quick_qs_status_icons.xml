@@ -26,6 +26,14 @@
     android:focusable="true"
     android:theme="@style/Theme.SystemUI.QuickSettings.Header">
 
+    <com.android.systemui.aicp.logo.LogoImageViewQuick
+        android:id="@+id/statusbar_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingEnd="1dip"
+        android:scaleType="center"
+        android:visibility="gone" />
+
     <LinearLayout
         android:id="@+id/clock_container"
         android:layout_width="wrap_content"
@@ -108,4 +116,12 @@
     </LinearLayout>
     </FrameLayout>
 
+    <com.android.systemui.aicp.logo.LogoImageViewQuickRight
+        android:id="@+id/statusbar_logo_right"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingStart="2dip"
+        android:scaleType="center"
+        android:gravity="center_vertical"
+        android:visibility="gone" />
 </LinearLayout>

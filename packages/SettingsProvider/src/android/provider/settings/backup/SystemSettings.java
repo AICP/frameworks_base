@@ -141,5 +141,10 @@ public class SystemSettings {
         Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL,
         Settings.System.FINGERPRINT_SUCCESS_VIB,
         Settings.System.SCREEN_OFF_ANIMATION,
+        Settings.System.STATUS_BAR_LOGO,
+        Settings.System.STATUS_BAR_LOGO_COLOR,
+        Settings.System.STATUS_BAR_LOGO_POSITION,
+        Settings.System.STATUS_BAR_LOGO_STYLE,
+        Settings.System.STATUS_BAR_LOGO_COLOR_ACCENT,
     };
 }

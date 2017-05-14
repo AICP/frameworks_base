@@ -135,6 +135,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
     private View mClockView;
     private View mPrimaryOngoingActivityChip;
     private View mSecondaryOngoingActivityChip;
+    private View mStatusBarLogo, mStatusBarLogoRight;
     private View mNotificationIconAreaInner;
     // Visibilities come in from external system callers via disable flags, but we also sometimes
     // modify the visibilities internally. We need to store both so that we don't accidentally
@@ -413,6 +414,8 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
         }
         mBatteryBars[0] = mStatusBar.findViewById(R.id.battery_bar);
         mBatteryBars[1] = mStatusBar.findViewById(R.id.battery_bar_1);
+        mStatusBarLogo = mStatusBar.findViewById(R.id.statusbar_logo);
+        mStatusBarLogoRight = mStatusBar.findViewById(R.id.statusbar_logo_right);
         initOperatorName();
         initNotificationIconArea();
         mSystemEventAnimator = getSystemEventAnimator();
@@ -834,6 +837,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
             for (View batteryBar: mBatteryBars) {
                 animateHide(batteryBar, animate);
             }
+            animateHide(mStatusBarLogoRight, animate);
         }
     }
 
@@ -846,6 +850,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
             for (View batteryBar: mBatteryBars) {
                 animateShow(batteryBar, animate);
             }
+            animateShow(mStatusBarLogoRight, animate);
         }
         if (mKeyguardStateController.isKeyguardFadingAway()) {
             mEndSideAlphaController.animateToAlpha(/*alpha*/ 1f, SOURCE_OTHER,
@@ -909,11 +914,13 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
     public void hideNotificationIconArea(boolean animate) {
         StatusBarRootModernization.assertInLegacyMode();
         animateHide(mNotificationIconAreaInner, animate);
+        animateHide(mStatusBarLogo, animate);
     }
 
     public void showNotificationIconArea(boolean animate) {
         StatusBarRootModernization.assertInLegacyMode();
         animateShow(mNotificationIconAreaInner, animate);
+        animateShow(mStatusBarLogo, animate);
     }
 
     public void hideOperatorName(boolean animate) {

@@ -6024,6 +6024,48 @@ public final class Settings {
         private static final Validator LOCKCLOCK_FONT_SIZE_VALIDATOR =
               new SettingsValidators.InclusiveIntegerRangeValidator(50, 108);
 
+        /**
+         * Statusbar AICP logo
+         * @hide
+         */
+        public static final String STATUS_BAR_LOGO = "status_bar_logo";
+
+        /** @hide */
+        private static final Validator STATUS_BAR_LOGO_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
+         * Statusbar AICP logo color setting
+         * @hide
+         */
+        public static final String STATUS_BAR_LOGO_COLOR = "status_bar_logo_color";
+
+        /** @hide */
+        private static final Validator STATUS_BAR_LOGO_COLOR_VALIDATOR =
+                ANY_STRING_VALIDATOR;
+
+        /**
+         * Position of Status bar AICP logo
+         * 0 - Left (default)
+         * 1 - Right
+         * @hide
+         */
+        public static final String STATUS_BAR_LOGO_POSITION = "status_bar_logo_position";
+
+        /** @hide */
+        private static final Validator STATUS_BAR_LOGO_POSITION_VALIDATOR =
+              ANY_STRING_VALIDATOR;
+
+        /**
+         * Statusbar AICP logo custom style
+         * @hide
+         */
+        public static final String STATUS_BAR_LOGO_STYLE = "status_bar_logo_style";
+
+        /** @hide */
+        private static final Validator STATUS_BAR_LOGO_STYLE_VALIDATOR =
+              ANY_STRING_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6260,6 +6302,10 @@ public final class Settings {
             NOTIFICATION_GUTS_KILL_APP_BUTTON,
             LOCKDATE_FONT_SIZE,
             LOCKCLOCK_FONT_SIZE,
+            STATUS_BAR_LOGO,
+            STATUS_BAR_LOGO_COLOR,
+            STATUS_BAR_LOGO_POSITION,
+            STATUS_BAR_LOGO_STYLE,
             // AICP Settings end
         };
 
@@ -6544,6 +6590,10 @@ public final class Settings {
             PRIVATE_SETTINGS.add(NOTIFICATION_GUTS_KILL_APP_BUTTON);
             PRIVATE_SETTINGS.add(LOCKDATE_FONT_SIZE);
             PRIVATE_SETTINGS.add(LOCKCLOCK_FONT_SIZE);
+            PRIVATE_SETTINGS.add(STATUS_BAR_LOGO);
+            PRIVATE_SETTINGS.add(STATUS_BAR_LOGO_COLOR);
+            PRIVATE_SETTINGS.add(STATUS_BAR_LOGO_POSITION);
+            PRIVATE_SETTINGS.add(STATUS_BAR_LOGO_STYLE);
             // AICP Settings end
         }
 
@@ -6830,6 +6880,10 @@ public final class Settings {
                     NOTIFICATION_GUTS_KILL_APP_BUTTON_VALIDATOR);
             VALIDATORS.put(LOCKDATE_FONT_SIZE, LOCKDATE_FONT_SIZE_VALIDATOR);
             VALIDATORS.put(LOCKCLOCK_FONT_SIZE, LOCKCLOCK_FONT_SIZE_VALIDATOR);
+            VALIDATORS.put(STATUS_BAR_LOGO, STATUS_BAR_LOGO_VALIDATOR);
+            VALIDATORS.put(STATUS_BAR_LOGO_COLOR, STATUS_BAR_LOGO_COLOR_VALIDATOR);
+            VALIDATORS.put(STATUS_BAR_LOGO_POSITION, STATUS_BAR_LOGO_POSITION_VALIDATOR);
+            VALIDATORS.put(STATUS_BAR_LOGO_STYLE, STATUS_BAR_LOGO_STYLE_VALIDATOR);
             // AICP Settings end
         }
 

@@ -55,6 +55,14 @@
             android:layout_height="match_parent"
             android:layout="@layout/operator_name" />
 
+        <com.android.systemui.aicp.logo.LogoImageView
+            android:id="@+id/statusbar_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingEnd="1dip"
+            android:scaleType="center"
+            android:visibility="gone" />
+
         <com.android.systemui.carrierlabel.CarrierLabel
             android:id="@+id/statusbar_carrier_text"
             android:layout_width="wrap_content"
@@ -121,6 +129,7 @@
             >
 
             <include layout="@layout/system_icons" />
+
         </com.android.keyguard.AlphaOptimizedLinearLayout>
     </LinearLayout>
 

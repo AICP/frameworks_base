@@ -176,7 +176,12 @@ public class SystemSettings {
                 Settings.System.STATUSBAR_BATTERY_BAR_THICKNESS,
                 Settings.System.STATUSBAR_BATTERY_BAR_STYLE,
                 Settings.System.STATUSBAR_BATTERY_BAR_ANIMATE,
-                Settings.System.STATUSBAR_BATTERY_BAR_LOCATION
+                Settings.System.STATUSBAR_BATTERY_BAR_LOCATION,
+                Settings.System.STATUS_BAR_LOGO,
+                Settings.System.STATUS_BAR_LOGO_COLOR,
+                Settings.System.STATUS_BAR_LOGO_POSITION,
+                Settings.System.STATUS_BAR_LOGO_STYLE,
+                Settings.System.STATUS_BAR_LOGO_COLOR_ACCENT
         ));
         if (Flags.backUpSmoothDisplayAndForcePeakRefreshRate()) {
             settings.add(Settings.System.PEAK_REFRESH_RATE);

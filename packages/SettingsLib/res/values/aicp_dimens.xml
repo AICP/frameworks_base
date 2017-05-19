@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="drawer_header_height">175dp</dimen>
+    <dimen name="drawer_header_margin_top">-5dp</dimen>
+    <dimen name="drawer_header_margin_bottom">-35dp</dimen>
+</resources>
+

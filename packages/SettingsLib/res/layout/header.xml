@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/drawer_header_height"
+        android:layout_marginTop="@dimen/drawer_header_margin_top"
+        android:layout_marginBottom="@dimen/drawer_header_margin_bottom"
+        android:scaleType="centerInside"
+        android:src="@drawable/aicplogo" />
+</LinearLayout>
+

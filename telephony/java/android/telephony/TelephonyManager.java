@@ -1143,6 +1143,13 @@ public class TelephonyManager {
     }
 
     /**
+     * @hide
+     */
+    public CellLocation getCellLocationBySubId(int subId) {
+        return getCellLocation();
+    }
+
+    /**
      * Enables location update notifications.  {@link PhoneStateListener#onCellLocationChanged
      * PhoneStateListener.onCellLocationChanged} will be called on location updates.
      *
@@ -1569,6 +1576,13 @@ public class TelephonyManager {
         CarrierConfigManager carrierConfigManager = mContext
                 .getSystemService(CarrierConfigManager.class);
         return carrierConfigManager.getConfigForSubId(getSubId());
+    }
+
+    /**
+     * @hide
+     */
+    public String getNetworkOperatorForSubscription(int subId) {
+        return getNetworkOperatorForPhone(subId);
     }
 
     /**

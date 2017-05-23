@@ -498,6 +498,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private boolean mAutomaticBrightness;
     private boolean mBrightnessControl;
     private boolean mBrightnessChanged;
+    private boolean mFingerprintQuickPulldown;
     private float mScreenWidth;
     private int mMinBrightness;
     private boolean mJustPeeked;
@@ -709,6 +710,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.QS_FOOTER_WARNINGS),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                     Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN_FP),
+                     false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -886,6 +890,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 removeSidebarView();
                 addSidebarView();
             }
+
+            mFingerprintQuickPulldown = Settings.System.getIntForUser(resolver,
+                    Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN_FP, 0, UserHandle.USER_CURRENT) == 1;
 
             if (mNotificationPanel != null) {
                 mNotificationPanel.updateSettings();
@@ -3460,14 +3467,18 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         } else if (KeyEvent.KEYCODE_SYSTEM_NAVIGATION_DOWN == key) {
             MetricsLogger.action(mContext, MetricsEvent.ACTION_SYSTEM_NAVIGATION_KEY_DOWN);
             if (mNotificationPanel.isFullyCollapsed()) {
-                mNotificationPanel.expand(true /* animate */);
-                MetricsLogger.count(mContext, NotificationPanelView.COUNTER_PANEL_OPEN, 1);
+                if (mFingerprintQuickPulldown) {
+                    mNotificationPanel.expandWithQs();
+                    MetricsLogger.count(mContext, NotificationPanelView.COUNTER_PANEL_OPEN_QS, 1);
+                } else {
+                    mNotificationPanel.expand(true /* animate */);
+                    MetricsLogger.count(mContext, NotificationPanelView.COUNTER_PANEL_OPEN, 1);
+                }
             } else if (!mNotificationPanel.isInSettings() && !mNotificationPanel.isExpanding()){
                 mNotificationPanel.flingSettings(0 /* velocity */, true /* expand */);
                 MetricsLogger.count(mContext, NotificationPanelView.COUNTER_PANEL_OPEN_QS, 1);
             }
         }
-
     }
 
     boolean panelsEnabled() {

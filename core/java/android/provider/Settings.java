@@ -11236,12 +11236,6 @@ public final class Settings {
         public static final String DATABASE_DOWNGRADE_REASON = "database_downgrade_reason";
 
         /**
-         * Signature Spoofing
-         * @hide
-         */
-        public static final String SIGNATURE_SPOOFING = "signature_spoofing";
-
-        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *

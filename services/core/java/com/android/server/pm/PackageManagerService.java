@@ -3184,15 +3184,9 @@ public class PackageManagerService extends IPackageManager.Stub {
                 ? Collections.<String>emptySet() : permissionsState.getPermissions(userId);
         final PackageUserState state = ps.readUserState(userId);
 
-        if (Global.getInt(mContext.getContentResolver(),
-                Global.SIGNATURE_SPOOFING, 0) == 0) {
-            return PackageParser.generatePackageInfo(p, gids, flags,
-                    ps.firstInstallTime, ps.lastUpdateTime, permissions, state, userId);
-        } else {
-            return mayFakeSignature(p, PackageParser.generatePackageInfo(p, gids, flags,
-                    ps.firstInstallTime, ps.lastUpdateTime, permissions, state, userId),
-                    permissions);
-        }
+        return mayFakeSignature(p, PackageParser.generatePackageInfo(p, gids, flags,
+                ps.firstInstallTime, ps.lastUpdateTime, permissions, state, userId),
+                permissions);
     }
 
     private PackageInfo mayFakeSignature(PackageParser.Package p, PackageInfo pi,

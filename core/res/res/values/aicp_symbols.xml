@@ -119,4 +119,7 @@
 
   <!-- OmniJaws Weather drawable -->
   <java-symbol type="drawable" name="ic_qs_weather_default_on" />
+
+  <!-- Wether device has dash charging support -->
+  <java-symbol type="bool" name="config_hasDashCharger" />
 </resources>

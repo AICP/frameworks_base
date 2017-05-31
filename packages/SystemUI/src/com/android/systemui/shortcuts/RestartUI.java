@@ -33,6 +33,6 @@ public class RestartUI extends Activity  {
     @Override
     public void onResume() {
         super.onResume();
-        Helpers.restartSystemUI();
+        Helpers.restartSystemUI(this);
     }
 }

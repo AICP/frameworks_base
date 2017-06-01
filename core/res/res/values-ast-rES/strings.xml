@@ -2433,6 +2433,7 @@
   <!-- Strings for car mode notification -->
   <!-- Shown when car mode is enabled -->
   <string name="car_mode_disable_notification_title">Habilitóse\'l mou coche.</string>
+  <string name="car_mode_disable_notification_message">Calca pa colar del mou coche.</string>
   <!-- Strings for tethered notification -->
   <!-- Shown when the device is tethered -->
   <string name="tethered_notification_no_device_message">Nun hai preseos coneutaos</string>
@@ -2473,10 +2474,10 @@
   <string name="find_previous">Atopar anterior</string>
   <!-- Network positioning notification ticker. The name of the user (e.g. John Doe) who sent
          the request is shown as a dynamic string. -->
-  <string name="gpsNotifTicker">Solicitú de llocalización de <xliff:g id="NAME">%s</xliff:g></string>
+  <string name="gpsNotifTicker">Solicitú d\'allugamientu de <xliff:g id="name">%s</xliff:g></string>
   <!-- Network positioning notification and verification title to inform the user about
          an incoming location request. -->
-  <string name="gpsNotifTitle">Solicitú de llocalización</string>
+  <string name="gpsNotifTitle">Solicitú d\'allugamientu</string>
   <!-- Network positioning notification message. The name of the user (e.g. John Doe) and
          service (SUPL-service) who sent the request is shown as dynamic strings.
          Translation should not be longer than master text. -->

@@ -2453,7 +2453,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
         mPowerMenuReceiver = new PowerMenuReceiver(context);
         mPowerMenuReceiver.registerSelf();
-        
+
         final Resources res = mContext.getResources();
         final String[] deviceKeyHandlerLibs = res.getStringArray(
                 org.cyanogenmod.platform.internal.R.array.config_deviceKeyHandlerLibs);
@@ -4752,6 +4752,13 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     }
 
     private void preloadRecentApps() {
+        if (keyguardOn()) {
+            return;
+        }
+        if (mOmniSwitchRecents) {
+            AicpUtils.preloadOmniSwitchRecents(mContext, UserHandle.CURRENT);
+            return;
+        }
         mPreloadedRecentApps = true;
         StatusBarManagerInternal statusbar = getStatusBarManagerInternal();
         if (statusbar != null) {
@@ -4760,6 +4767,12 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     }
 
     private void cancelPreloadRecentApps() {
+        if (keyguardOn()) {
+            return;
+        }
+        if (mOmniSwitchRecents) {
+            return;
+        }
         if (mPreloadedRecentApps) {
             mPreloadedRecentApps = false;
             StatusBarManagerInternal statusbar = getStatusBarManagerInternal();

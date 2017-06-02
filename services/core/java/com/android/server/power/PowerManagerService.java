@@ -227,6 +227,9 @@ public final class PowerManagerService extends SystemService
     private int mKeyboardBrightness;
     private int mKeyboardBrightnessSettingDefault;
 
+    private boolean mButtonPressed = false;
+    private boolean mButtonLightOnKeypressOnly;
+
     private final Object mLock = new Object();
 
     // A bitfield that indicates what parts of the power state have
@@ -273,6 +276,7 @@ public final class PowerManagerService extends SystemService
     private long mLastSleepTime;
 
     // Timestamp of the last call to user activity.
+    private long mLastButtonActivityTime;
     private long mLastUserActivityTime;
     private long mLastUserActivityTimeNoChangeLights;
 
@@ -827,6 +831,8 @@ public final class PowerManagerService extends SystemService
             mProximityWakeLock = ((PowerManager) mContext.getSystemService(Context.POWER_SERVICE))
                     .newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "ProximityWakeLock");
         }
+        mButtonLightOnKeypressOnly = resources.getBoolean(
+                com.android.internal.R.bool.config_buttonLightOnKeypressOnly);
     }
 
     private void updateSettingsLocked() {
@@ -1309,6 +1315,10 @@ public final class PowerManagerService extends SystemService
                 }
             } else {
                 if (eventTime > mLastUserActivityTime) {
+                    mButtonPressed = event == PowerManager.USER_ACTIVITY_EVENT_BUTTON;
+                    if (mButtonLightOnKeypressOnly && mButtonPressed) {
+                        mLastButtonActivityTime = eventTime;
+                    }
                     mLastUserActivityTime = eventTime;
                     mDirty |= DIRTY_USER_ACTIVITY;
                     return true;
@@ -1867,12 +1877,16 @@ public final class PowerManagerService extends SystemService
 
                             mKeyboardLight.setBrightness(mKeyboardVisible ?
                                     keyboardBrightness : 0);
+                            mLastButtonActivityTime = mButtonLightOnKeypressOnly ?
+                                    mLastButtonActivityTime : mLastUserActivityTime;
                             if (mButtonTimeout != 0
-                                    && now > mLastUserActivityTime + mButtonTimeout) {
+                                    && now > mLastButtonActivityTime + mButtonTimeout) {
                                 mButtonsLight.setBrightness(0);
                             } else {
-                                if (!mProximityPositive) {
+                                if ((!mButtonLightOnKeypressOnly || mButtonPressed) &&
+                                        !mProximityPositive) {
                                     mButtonsLight.setBrightness(buttonBrightness);
+                                    mButtonPressed = false;
                                     if (buttonBrightness != 0 && mButtonTimeout != 0) {
                                         nextTimeout = now + mButtonTimeout;
                                     }

@@ -6281,6 +6281,12 @@ public final class Settings {
          */
         public static final String BUTTON_BRIGHTNESS = "button_brightness";
 
+        /**
+         * Whether the button backlight is only lit when pressed (and not when screen is touched)
+         * The value is boolean (1 or 0).
+         */
+        public static final String BUTTON_BACKLIGHT_ONLY_WHEN_PRESSED =
+                "button_backlight_only_when_pressed";
 
         /***************************
          * AICP System Settings end
@@ -6462,6 +6468,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(QS_DATAUSAGE, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(BUTTON_BACKLIGHT_TIMEOUT, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(BUTTON_BRIGHTNESS, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(BUTTON_BACKLIGHT_ONLY_WHEN_PRESSED, BOOLEAN_VALIDATOR);
         }
 
         /**
@@ -8730,12 +8737,6 @@ public final class Settings {
                 "search_global_search_activity";
 
         /**
-         * Disable hw buttons - actions, brightness, haptic feedback, overflow menu
-         * @hide
-         */
-        public static final String HARDWARE_KEYS_DISABLE = "hardware_keys_disable";
-
-        /**
          * The number of promoted sources in GlobalSearch.
          * @hide
          */
@@ -10271,6 +10272,12 @@ public final class Settings {
          @hide
          public static final String AICP_FOO_BAR_BALABALA = "foo_bar_balabala";
          */
+
+        /**
+         * Disable hw buttons - actions, brightness, haptic feedback, overflow menu
+         * @hide
+         */
+        public static final String HARDWARE_KEYS_DISABLE = "hardware_keys_disable";
 
         /*
          * Boolean value whether to display volume panel on the display left

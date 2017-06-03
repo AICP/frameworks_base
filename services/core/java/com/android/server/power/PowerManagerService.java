@@ -301,6 +301,10 @@ public final class PowerManagerService extends SystemService
     private float mButtonBrightness;
     private float mButtonBrightnessSettingDefault;
 
+    private boolean mButtonPressed;
+    private boolean mButtonOn;
+    private boolean mButtonLightOnKeypressOnly;
+
     private InattentiveSleepWarningController mInattentiveSleepWarningOverlayController;
     private final AmbientDisplaySuppressionController mAmbientDisplaySuppressionController;
 
@@ -349,6 +353,9 @@ public final class PowerManagerService extends SystemService
     // Last reason the device went to sleep.
     private @WakeReason int mLastWakeReason;
     private int mLastSleepReason;
+
+    // Timestamp of the last call to user activity.
+    private long mLastButtonActivityTime;
 
     // Timestamp of last time power boost interaction was sent.
     private long mLastInteractivePowerHintTime;
@@ -1279,6 +1286,9 @@ public final class PowerManagerService extends SystemService
         resolver.registerContentObserver(Settings.Secure.getUriFor(
                 Settings.Secure.HARDWARE_KEYS_DISABLE),
                 false, mSettingsObserver, UserHandle.USER_ALL);
+        resolver.registerContentObserver(Settings.System.getUriFor(
+                Settings.System.BUTTON_BACKLIGHT_ONLY_WHEN_PRESSED),
+                false, mSettingsObserver, UserHandle.USER_ALL);
 
         IVrManager vrManager = IVrManager.Stub.asInterface(getBinderService(Context.VR_SERVICE));
 
@@ -1420,6 +1430,9 @@ public final class PowerManagerService extends SystemService
         mHardwareKeysDisable = Settings.Secure.getIntForUser(resolver,
                 Settings.Secure.HARDWARE_KEYS_DISABLE, 0,
                 UserHandle.USER_CURRENT) != 0;
+        mButtonLightOnKeypressOnly = Settings.System.getIntForUser(resolver,
+                Settings.System.BUTTON_BACKLIGHT_ONLY_WHEN_PRESSED,
+                0, UserHandle.USER_CURRENT) == 1;
 
         mDirty |= DIRTY_SETTINGS;
     }
@@ -1851,6 +1864,12 @@ public final class PowerManagerService extends SystemService
             } else {
                 if (eventTime > mDisplayGroupPowerStateMapper.getLastUserActivityTimeLocked(
                         groupId)) {
+                    mButtonPressed = event == PowerManager.USER_ACTIVITY_EVENT_BUTTON;
+                    if ((mButtonLightOnKeypressOnly && mButtonPressed)
+                            || eventTime == mLastWakeTime) {
+                        mButtonPressed = true;
+                        mLastButtonActivityTime = eventTime;
+                    }
                     mDisplayGroupPowerStateMapper.setLastUserActivityTimeLocked(groupId, eventTime);
                     mDirty |= DIRTY_USER_ACTIVITY;
                     if (event == PowerManager.USER_ACTIVITY_EVENT_BUTTON) {
@@ -2632,14 +2651,27 @@ public final class PowerManagerService extends SystemService
                                 }
                             }
 
+                            mLastButtonActivityTime = mButtonLightOnKeypressOnly ?
+                                    mLastButtonActivityTime : lastUserActivityTime;
                             if (mButtonTimeout != 0 &&
-                                    now > lastUserActivityTime + mButtonTimeout) {
+                                    now > mLastButtonActivityTime + mButtonTimeout) {
                                 mButtonsLight.setBrightness(PowerManager.BRIGHTNESS_OFF_FLOAT);
+                                mButtonOn = false;
                             } else {
-                                mButtonsLight.setBrightness(buttonBrightness);
-                                if (buttonBrightness != PowerManager.BRIGHTNESS_OFF_FLOAT &&
-                                        mButtonTimeout != 0) {
-                                    nextTimeout = now + mButtonTimeout;
+                                if ((!mButtonLightOnKeypressOnly || mButtonPressed) &&
+                                        !mProximityPositive) {
+                                    mButtonsLight.setBrightness(buttonBrightness);
+                                    mButtonPressed = false;
+                                    if (buttonBrightness != PowerManager.BRIGHTNESS_OFF_FLOAT &&
+                                            mButtonTimeout != 0) {
+                                        mButtonOn = true;
+                                        if (now + mButtonTimeout < groupNextTimeout) {
+                                            groupNextTimeout = now + mButtonTimeout;
+                                        }
+                                    }
+                                } else if (mButtonLightOnKeypressOnly && mButtonOn &&
+                                        mLastButtonActivityTime + mButtonTimeout < groupNextTimeout) {
+                                    groupNextTimeout = mLastButtonActivityTime + mButtonTimeout;
                                 }
                             }
                         }
@@ -2649,6 +2681,7 @@ public final class PowerManagerService extends SystemService
                             groupUserActivitySummary = USER_ACTIVITY_SCREEN_DIM;
                             if (mDisplayGroupPowerStateMapper.getWakefulnessLocked(groupId) == WAKEFULNESS_AWAKE) {
                                 mButtonsLight.setBrightness(PowerManager.BRIGHTNESS_OFF_FLOAT);
+                                mButtonOn = false;
                             }
                         }
                     }

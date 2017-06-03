@@ -194,5 +194,6 @@ public class SystemSettings {
         Settings.System.VOLUME_KEYS_CONTROL_RING_TONE,
         Settings.System.BUTTON_BACKLIGHT_TIMEOUT,
         Settings.System.BUTTON_BRIGHTNESS,
+        Settings.System.BUTTON_BACKLIGHT_ONLY_WHEN_PRESSED,
     };
 }

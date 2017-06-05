@@ -825,6 +825,9 @@ public class RecentController implements RecentPanelView.OnExitListener,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.SLIM_MEM_TEXT_COLOR),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.SLIM_RECENTS_CORNER_RADIUS),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -884,6 +887,10 @@ public class RecentController implements RecentPanelView.OnExitListener,
                 mRecentPanelView.setMaxAppsToLoad(Settings.System.getIntForUser(
                         resolver, Settings.System.RECENTS_MAX_APPS, 15,
                         UserHandle.USER_CURRENT));
+                mRecentPanelView.setCornerRadius(Converter.floatDpToPx(mContext,
+                        Settings.System.getIntForUser(resolver,
+                                Settings.System.SLIM_RECENTS_CORNER_RADIUS, 5,
+                                UserHandle.USER_CURRENT)));
             }
 
             mRecentContent.setElevation(50);

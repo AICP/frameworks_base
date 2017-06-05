@@ -26,4 +26,8 @@ public class Converter {
     public static int pxToDp(Context context, int px) {
         return (int) ((px / context.getResources().getDisplayMetrics().density) + 0.5);
     }
+
+    public static float floatDpToPx(Context context, int dp) {
+        return (float) (dp * context.getResources().getDisplayMetrics().density);
+    }
 }

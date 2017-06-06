@@ -320,12 +320,12 @@ public abstract class BaseStatusBar extends SystemUI implements
 
     protected boolean mVrMode;
 
+    // Omni additions
+    protected boolean mOmniSwitchRecents;
+
     private static final HashMap<String, Field> fieldCache = new HashMap<String, Field>();
 
     private Set<String> mNonBlockablePkgs;
-
-    // Omni additions
-    protected boolean mOmniSwitchRecents;
 
     @Override  // NotificationData.Environment
     public boolean isDeviceProvisioned() {
@@ -376,6 +376,10 @@ public abstract class BaseStatusBar extends SystemUI implements
             setZenMode(mode);
 
             updateLockscreenNotificationSetting();
+
+            mOmniSwitchRecents = Settings.System.getIntForUser(mContext.getContentResolver(),
+                    Settings.System.RECENTS_USE_OMNISWITCH, 0,
+                    UserHandle.USER_CURRENT) == 1;
         }
     };
 
@@ -806,6 +810,11 @@ public abstract class BaseStatusBar extends SystemUI implements
                 Settings.Secure.getUriFor(Settings.Secure.LOCK_SCREEN_ALLOW_PRIVATE_NOTIFICATIONS),
                 true,
                 mLockscreenSettingsObserver,
+                UserHandle.USER_ALL);
+
+        mContext.getContentResolver().registerContentObserver(
+                Settings.System.getUriFor(Settings.System.RECENTS_USE_OMNISWITCH), false,
+                mSettingsObserver,
                 UserHandle.USER_ALL);
 
         mBarService = IStatusBarService.Stub.asInterface(
@@ -1622,50 +1631,32 @@ public abstract class BaseStatusBar extends SystemUI implements
 
     /** Proxy for RecentsComponent */
 
-    private boolean isOmniSwitchEnabled() {
-        int settingsValue = Settings.System.getIntForUser(
-                mContext.getContentResolver(), Settings.System.RECENTS_USE_OMNISWITCH, 0
-                , UserHandle.USER_CURRENT);
-        return (settingsValue == 1);
-    }
-
     protected void showRecents(boolean triggeredFromAltTab, boolean fromHome) {
-        if (isOmniSwitchEnabled()) {
-            Intent showIntent = new Intent(AicpUtils.ACTION_SHOW_OVERLAY);
-            mContext.sendBroadcastAsUser(showIntent, UserHandle.CURRENT);
-        } else {
-            if (mRecents != null) {
-                sendCloseSystemWindows(SYSTEM_DIALOG_REASON_RECENT_APPS);
-                mRecents.showRecents(triggeredFromAltTab, fromHome);
-            }
+        if (mRecents != null) {
+            sendCloseSystemWindows(SYSTEM_DIALOG_REASON_RECENT_APPS);
+            mRecents.showRecents(triggeredFromAltTab, fromHome);
         }
     }
 
     protected void hideRecents(boolean triggeredFromAltTab, boolean triggeredFromHomeKey) {
-        if (isOmniSwitchEnabled()) {
-            Intent showIntent = new Intent(AicpUtils.ACTION_HIDE_OVERLAY);
-            mContext.sendBroadcastAsUser(showIntent, UserHandle.CURRENT);
-        } else if (mRecents != null) {
+        if (mRecents != null) {
             mRecents.hideRecents(triggeredFromAltTab, triggeredFromHomeKey);
         }
     }
 
     protected void toggleRecents() {
-        if (isOmniSwitchEnabled()) {
-            Intent showIntent = new Intent(AicpUtils.ACTION_TOGGLE_OVERLAY2);
-            mContext.sendBroadcastAsUser(showIntent, UserHandle.CURRENT);
+        if (mOmniSwitchRecents) {
+            AicpUtils.toggleOmniSwitchRecents(mContext, UserHandle.CURRENT);
         } else if (mRecents != null) {
             mRecents.toggleRecents(mDisplay);
         }
     }
 
     protected void preloadRecents() {
-        if (!isOmniSwitchEnabled()) {
-            if (mRecents != null) {
-                mRecents.showNextAffiliatedTask();
-            }
-        } else if (mRecents != null) {
+        if (!mOmniSwitchRecents && mRecents != null) {
             mRecents.preloadRecents();
+        } else {
+            AicpUtils.preloadOmniSwitchRecents(mContext, UserHandle.CURRENT);
         }
     }
 
@@ -1678,28 +1669,20 @@ public abstract class BaseStatusBar extends SystemUI implements
     }
 
     protected void cancelPreloadingRecents() {
-        if (!isOmniSwitchEnabled()) {
-            if (mRecents != null) {
-                mRecents.showNextAffiliatedTask();
-            }
-        } else if (mRecents != null) {
+        if (!mOmniSwitchRecents && mRecents != null) {
             mRecents.cancelPreloadingRecents();
         }
     }
 
     protected void showRecentsNextAffiliatedTask() {
-        if (!isOmniSwitchEnabled()) {
-            if (mRecents != null) {
-                mRecents.showNextAffiliatedTask();
-            }
+        if (!mOmniSwitchRecents && mRecents != null) {
+            mRecents.showNextAffiliatedTask();
         }
     }
 
     protected void showRecentsPreviousAffiliatedTask() {
-        if (!isOmniSwitchEnabled()) {
-            if (mRecents != null) {
-                mRecents.showPrevAffiliatedTask();
-            }
+        if (!mOmniSwitchRecents && mRecents != null) {
+            mRecents.showPrevAffiliatedTask();
         }
     }
 

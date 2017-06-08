@@ -324,6 +324,9 @@ public abstract class BaseStatusBar extends SystemUI implements
 
     private Set<String> mNonBlockablePkgs;
 
+    // Omni additions
+    protected boolean mOmniSwitchRecents;
+
     @Override  // NotificationData.Environment
     public boolean isDeviceProvisioned() {
         return mDeviceProvisioned;
@@ -1586,12 +1589,20 @@ public abstract class BaseStatusBar extends SystemUI implements
         public boolean onTouch(View v, MotionEvent event) {
             int action = event.getAction() & MotionEvent.ACTION_MASK;
             if (action == MotionEvent.ACTION_DOWN) {
-                preloadRecents();
+                if (mOmniSwitchRecents) {
+                    AicpUtils.preloadOmniSwitchRecents(mContext, UserHandle.CURRENT);
+                } else {
+                    preloadRecents();
+                }
             } else if (action == MotionEvent.ACTION_CANCEL) {
-                cancelPreloadingRecents();
+                if (!mOmniSwitchRecents) {
+                    cancelPreloadingRecents();
+                }
             } else if (action == MotionEvent.ACTION_UP) {
                 if (!v.isPressed()) {
-                    cancelPreloadingRecents();
+                    if (!mOmniSwitchRecents) {
+                        cancelPreloadingRecents();
+                    }
                 }
 
             }
@@ -1641,7 +1652,7 @@ public abstract class BaseStatusBar extends SystemUI implements
 
     protected void toggleRecents() {
         if (isOmniSwitchEnabled()) {
-            Intent showIntent = new Intent(AicpUtils.ACTION_TOGGLE_OVERLAY);
+            Intent showIntent = new Intent(AicpUtils.ACTION_TOGGLE_OVERLAY2);
             mContext.sendBroadcastAsUser(showIntent, UserHandle.CURRENT);
         } else if (mRecents != null) {
             mRecents.toggleRecents(mDisplay);

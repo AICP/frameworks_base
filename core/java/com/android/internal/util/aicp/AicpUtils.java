@@ -164,7 +164,12 @@ public class AicpUtils {
     /**
      * Intent broadcast action for toogle the omniswitch overlay
      */
-    public static final String ACTION_TOGGLE_OVERLAY = APP_PACKAGE_NAME + ".ACTION_TOGGLE_OVERLAY";
+    public static final String ACTION_TOGGLE_OVERLAY2 = APP_PACKAGE_NAME + ".ACTION_TOGGLE_OVERLAY2";
+
+    /**
+     * Intent broadcast action for telling omniswitch to preload tasks
+     */
+    private static final String ACTION_PRELOAD_TASKS = APP_PACKAGE_NAME + ".ACTION_PRELOAD_TASKS";
 
     /**
      * Intent broadcast action for restoring the home stack
@@ -187,14 +192,31 @@ public class AicpUtils {
         return mluckyPatcherInstalled;
     }
 
+    /**
+     * @hide
+     */
     public static void toggleOmniSwitchRecents(Context context, UserHandle user) {
-        final Intent showIntent = new Intent(AicpUtils.ACTION_TOGGLE_OVERLAY);
-        context.sendBroadcastAsUser(showIntent, user);
+        final Intent intent = new Intent(AicpUtils.ACTION_TOGGLE_OVERLAY2);
+        intent.setPackage(APP_PACKAGE_NAME);
+        context.sendBroadcastAsUser(intent, user);
     }
 
-    public static void restoreHomeStack(Context context, UserHandle user) {
-        final Intent showIntent = new Intent(AicpUtils.ACTION_RESTORE_HOME_STACK);
-        context.sendBroadcastAsUser(showIntent, user);
+    /**
+     * @hide
+     */
+     public static void restoreHomeStack(Context context, UserHandle user) {
+        final Intent intent = new Intent(AicpUtils.ACTION_RESTORE_HOME_STACK);
+        intent.setPackage(APP_PACKAGE_NAME);
+        context.sendBroadcastAsUser(intent, user);
+    }
+
+    /**
+     * @hide
+     */
+     public static void preloadOmniSwitchRecents(Context context, UserHandle user) {
+        final Intent intent = new Intent(AicpUtils.ACTION_PRELOAD_TASKS);
+        intent.setPackage(APP_PACKAGE_NAME);
+        context.sendBroadcastAsUser(intent, user);
     }
 
     public static int getBlendColorForPercent(int fullColor, int emptyColor, boolean reversed,

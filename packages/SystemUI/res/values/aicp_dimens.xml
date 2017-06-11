@@ -99,7 +99,6 @@
     <dimen name="recent_card_layout_margin_horizontal">5dp</dimen>
     <dimen name="recent_card_layout_marginTop">5dp</dimen>
     <dimen name="recent_card_layout_marginBottom">5dp</dimen>
-    <dimen name="recent_card_corner_radius">5dp</dimen>
 
     <!-- Slim recent app sidebar -->
     <dimen name="recent_app_sidebar_item_size">60dp</dimen>

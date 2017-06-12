@@ -1167,6 +1167,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.ACCELEROMETER_ROTATION_ANGLES), false, this,
                     UserHandle.USER_ALL);
+            resolver.registerContentObserver(CMSettings.System.getUriFor(
+                    CMSettings.System.NAVBAR_LEFT_IN_LANDSCAPE), false, this,
+                    UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.KEYGUARD_TOGGLE_TORCH), false, this,
                     UserHandle.USER_ALL);
@@ -2763,6 +2766,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             }
 
             updateNavigationBarSize();
+
+            mNavigationBarLeftInLandscape = CMSettings.System.getIntForUser(resolver,
+                    CMSettings.System.NAVBAR_LEFT_IN_LANDSCAPE, 0, UserHandle.USER_CURRENT) == 1;
 
             updateKeyAssignments();
 
@@ -5325,7 +5331,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     // we can tell the app that it is covered by it.
                     mSystemBottom = mTmpNavigationFrame.top;
                 }
-            } else if (mNavigationBarLeftInLandscape) {
+            } else if (mNavigationBarPosition == NAV_BAR_LEFT) {
                 // Landscape screen; nav bar goes to the left.
                 int right = overscanLeft + getNavigationBarWidth(displayRotation, uiMode);
                 mTmpNavigationFrame.set(0, 0, right, displayHeight);

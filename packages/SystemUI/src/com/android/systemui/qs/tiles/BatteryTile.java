@@ -64,6 +64,8 @@ public class BatteryTile extends QSTile<QSTile.State> implements BatteryControll
     public BatteryTile(Host host) {
         super(host);
         mBatteryController = host.getBatteryController();
+        mBatteryStyleTile = Settings.Secure.getInt(host.getContext().getContentResolver(),
+        Settings.Secure.BATTERY_TILE_STYLE, 0);
     }
 
     @Override

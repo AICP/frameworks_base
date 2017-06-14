@@ -8629,6 +8629,13 @@ public final class Settings {
         public static final String BATTERY_TILE_STYLE = "battery_tile_style";
 
         /**
+         * battery saver color
+         *
+         * @hide
+         */
+        public static final String STATUS_BAR_BATTERY_SAVER_COLOR = "status_bar_battery_saver_color";
+
+        /**
          * This are the settings to be backed up.
          *
          * NOTE: Settings are backed up and restored in the order they appear

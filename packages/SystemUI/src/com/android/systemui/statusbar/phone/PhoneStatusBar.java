@@ -597,8 +597,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.SCREEN_BRIGHTNESS_MODE), false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(CMSettings.System.getUriFor(
-                    CMSettings.System.NAVBAR_LEFT_IN_LANDSCAPE), false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.SHOW_FOURG), false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
@@ -842,12 +840,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             mBrightnessControl = CMSettings.System.getIntForUser(
                     resolver, CMSettings.System.STATUS_BAR_BRIGHTNESS_CONTROL, 0,
                     UserHandle.USER_CURRENT) == 1;
-
-            if (mNavigationController.getBar() != null) {
-                boolean navLeftInLandscape = CMSettings.System.getIntForUser(resolver,
-                        CMSettings.System.NAVBAR_LEFT_IN_LANDSCAPE, 0, UserHandle.USER_CURRENT) == 1;
-                mNavigationController.getBar().setLeftInLandscape(navLeftInLandscape);
-            }
 
             boolean mShow4G = Settings.System.getIntForUser(resolver,
                     Settings.System.SHOW_FOURG, 0, UserHandle.USER_CURRENT) == 1;

@@ -1168,9 +1168,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.ACCELEROMETER_ROTATION_ANGLES), false, this,
                     UserHandle.USER_ALL);
-            resolver.registerContentObserver(CMSettings.System.getUriFor(
-                    CMSettings.System.NAVBAR_LEFT_IN_LANDSCAPE), false, this,
-                    UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.KEYGUARD_TOGGLE_TORCH), false, this,
                     UserHandle.USER_ALL);
@@ -2771,9 +2768,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
             updateNavigationBarSize();
 
-            mNavigationBarLeftInLandscape = CMSettings.System.getIntForUser(resolver,
-                    CMSettings.System.NAVBAR_LEFT_IN_LANDSCAPE, 0, UserHandle.USER_CURRENT) == 1;
-
             updateKeyAssignments();
 
             final boolean useEdgeService = Settings.System.getIntForUser(resolver,
@@ -3776,10 +3770,12 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             } else if (mNavigationBarPosition == NAV_BAR_RIGHT) {
                 if (transit == TRANSIT_EXIT
                         || transit == TRANSIT_HIDE) {
-                    return R.anim.dock_right_exit;
+                    return mNavigationBarLeftInLandscape
+                            ? R.anim.dock_left_exit : R.anim.dock_right_exit;
                 } else if (transit == TRANSIT_ENTER
                         || transit == TRANSIT_SHOW) {
-                    return R.anim.dock_right_enter;
+                    return mNavigationBarLeftInLandscape
+                            ? R.anim.dock_left_enter : R.anim.dock_right_enter;
                 }
             } else if (mNavigationBarPosition == NAV_BAR_LEFT) {
                 if (transit == TRANSIT_EXIT
@@ -5335,7 +5331,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     // we can tell the app that it is covered by it.
                     mSystemBottom = mTmpNavigationFrame.top;
                 }
-            } else if (mNavigationBarPosition == NAV_BAR_LEFT) {
+            } else if (mNavigationBarLeftInLandscape) {
                 // Landscape screen; nav bar goes to the left.
                 int right = overscanLeft + getNavigationBarWidth(displayRotation, uiMode);
                 mTmpNavigationFrame.set(0, 0, right, displayHeight);
@@ -5438,7 +5434,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
     private int navigationBarPosition(int displayWidth, int displayHeight, int displayRotation) {
         if (mNavigationBarCanMove && displayWidth > displayHeight) {
-            if (mNavigationBarLeftInLandscape) {
+            if (displayRotation == Surface.ROTATION_270) {
                 return NAV_BAR_LEFT;
             } else {
                 return NAV_BAR_RIGHT;

@@ -37,6 +37,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -77,8 +78,8 @@ public class CaptivePortalLoginActivity extends Activity {
         mCm = ConnectivityManager.from(this);
         mNetwork = getIntent().getParcelableExtra(ConnectivityManager.EXTRA_NETWORK);
         mCaptivePortal = getIntent().getParcelableExtra(ConnectivityManager.EXTRA_CAPTIVE_PORTAL);
-        mUserAgent = getIntent().getParcelableExtra(
-                ConnectivityManager.EXTRA_CAPTIVE_PORTAL_USER_AGENT);
+        mUserAgent =
+                getIntent().getStringExtra(ConnectivityManager.EXTRA_CAPTIVE_PORTAL_USER_AGENT);
         mUrl = getUrl();
         if (mUrl == null) {
             // getUrl() failed to parse the url provided in the intent: bail out in a way that
@@ -96,8 +97,6 @@ public class CaptivePortalLoginActivity extends Activity {
         // Proxy system properties must be initialized before setContentView is called because
         // setContentView initializes the WebView logic which in turn reads the system properties.
         setContentView(R.layout.activity_captive_portal_login);
-
-        getActionBar().setDisplayShowHomeEnabled(false);
 
         // Exit app if Network disappears.
         final NetworkCapabilities networkCapabilities = mCm.getNetworkCapabilities(mNetwork);
@@ -117,9 +116,14 @@ public class CaptivePortalLoginActivity extends Activity {
         }
         mCm.registerNetworkCallback(builder.build(), mNetworkCallback);
 
-        final WebView myWebView = (WebView) findViewById(R.id.webview);
-        myWebView.clearCache(true);
-        WebSettings webSettings = myWebView.getSettings();
+        getActionBar().setDisplayShowHomeEnabled(false);
+        getActionBar().setElevation(0); // remove shadow
+        getActionBar().setTitle(getHeaderTitle());
+        getActionBar().setSubtitle("");
+
+        final WebView webview = getWebview();
+        webview.clearCache(true);
+        WebSettings webSettings = webview.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
         webSettings.setUseWideViewPort(true);
@@ -128,11 +132,11 @@ public class CaptivePortalLoginActivity extends Activity {
         webSettings.setBuiltInZoomControls(true);
         webSettings.setDisplayZoomControls(false);
         mWebViewClient = new MyWebViewClient();
-        myWebView.setWebViewClient(mWebViewClient);
-        myWebView.setWebChromeClient(new MyWebChromeClient());
+        webview.setWebViewClient(mWebViewClient);
+        webview.setWebChromeClient(new MyWebChromeClient());
         // Start initial page load so WebView finishes loading proxy settings.
         // Actual load of mUrl is initiated by MyWebViewClient.
-        myWebView.loadData("", "text/html", null);
+        webview.loadData("", "text/html", null);
     }
 
     // Find WebView's proxy BroadcastReceiver and prompt it to read proxy system properties.
@@ -251,10 +255,14 @@ public class CaptivePortalLoginActivity extends Activity {
         if (url == null) {
             url = mCm.getCaptivePortalServerUrl();
         }
+        return makeURL(url);
+    }
+
+    private static URL makeURL(String url) {
         try {
             return new URL(url);
         } catch (MalformedURLException e) {
-            Log.e(TAG, "Invalid captive portal URL " + url);
+            Log.e(TAG, "Invalid URL " + url);
         }
         return null;
     }
@@ -279,8 +287,17 @@ public class CaptivePortalLoginActivity extends Activity {
                     if (mUserAgent != null) {
                        urlConnection.setRequestProperty("User-Agent", mUserAgent);
                     }
+                    // cannot read request header after connection
+                    String requestHeader = urlConnection.getRequestProperties().toString();
+
                     urlConnection.getInputStream();
                     httpResponseCode = urlConnection.getResponseCode();
+                    if (DBG) {
+                        Log.d(TAG, "probe at " + mUrl +
+                                " ret=" + httpResponseCode +
+                                " request=" + requestHeader +
+                                " headers=" + urlConnection.getHeaderFields());
+                    }
                 } catch (IOException e) {
                 } finally {
                     if (urlConnection != null) urlConnection.disconnect();
@@ -322,15 +339,16 @@ public class CaptivePortalLoginActivity extends Activity {
             // For internally generated pages, leave URL bar listing prior URL as this is the URL
             // the page refers to.
             if (!url.startsWith(INTERNAL_ASSETS)) {
-                final TextView myUrlBar = (TextView) findViewById(R.id.url_bar);
-                myUrlBar.setText(url);
+                getActionBar().setSubtitle(getHeaderSubtitle(url));
             }
+            getProgressBar().setVisibility(View.VISIBLE);
             testForCaptivePortal();
         }
 
         @Override
         public void onPageFinished(WebView view, String url) {
             mPagesLoaded++;
+            getProgressBar().setVisibility(View.INVISIBLE);
             if (mPagesLoaded == 1) {
                 // Now that WebView has loaded at least one page we know it has read in the proxy
                 // settings.  Now prompt the WebView read the Network-specific proxy settings.
@@ -403,8 +421,31 @@ public class CaptivePortalLoginActivity extends Activity {
     private class MyWebChromeClient extends WebChromeClient {
         @Override
         public void onProgressChanged(WebView view, int newProgress) {
-            final ProgressBar myProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
-            myProgressBar.setProgress(newProgress);
+            getProgressBar().setProgress(newProgress);
         }
+    }
+
+    private ProgressBar getProgressBar() {
+        return (ProgressBar) findViewById(R.id.progress_bar);
+    }
+
+    private WebView getWebview() {
+        return (WebView) findViewById(R.id.webview);
+    }
+
+    private String getHeaderTitle() {
+        return getString(R.string.action_bar_label);
+    }
+
+    private String getHeaderSubtitle(String urlString) {
+        URL url = makeURL(urlString);
+        if (url == null) {
+            return urlString;
+        }
+        final String https = "https";
+        if (https.equals(url.getProtocol())) {
+            return https + "://" + url.getHost();
+        }
+        return url.getHost();
     }
 }

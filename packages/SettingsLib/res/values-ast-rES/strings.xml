@@ -388,6 +388,11 @@
   <!-- Toast message shown when setting a new local backup password fails due to the user not supplying the correct existing password. The phrasing here is deliberately quite general. [CHAR LIMIT=80] -->
   <!-- Name of each color mode for the display. [CHAR LIMIT=40] -->
   <!-- Description of each color mode for the display. [CHAR LIMIT=NONE] -->
+  <string-array name="color_mode_descriptions">
+    <item>Enhanced colors</item>
+    <item>Natural colors as seen by the eye</item>
+    <item>Colores optimizaes pal conteníu dixital</item>
+  </string-array>
   <!-- Settings item title for inactive apps [CHAR LIMIT=35] -->
   <!-- Settings item summary for inactive app [CHAR LIMIT=100] -->
   <!-- Settings item summary for active app [CHAR LIMIT=100] -->

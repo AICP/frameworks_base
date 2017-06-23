@@ -484,7 +484,7 @@
          for its own notifications [CHAR LIMIT=NONE] -->
   <string name="status_bar_notification_app_settings_title">Axustes <xliff:g id="app_name" example="Calendar">%s</xliff:g></string>
   <!-- Description of the button in the phone-style notification panel that controls auto-rotation, when auto-rotation is on. [CHAR LIMIT=NONE] -->
-  <string name="accessibility_rotation_lock_off">La pantalla va xirar automáticamente.</string>
+  <string name="accessibility_rotation_lock_off">La pantalla voltiará automáticamente.</string>
   <!-- Description of the button in the phone-style notification panel that controls auto-rotation, when auto-rotation is off. [CHAR LIMIT=NONE] -->
   <string name="accessibility_rotation_lock_on_landscape">La pantalla ta bloquiada en mou horizontal.</string>
   <!-- Description of the button in the phone-style notification panel that controls auto-rotation, when auto-rotation is off. [CHAR LIMIT=NONE] -->
@@ -620,6 +620,7 @@
   <string name="quick_settings_nfc_label">NFC</string>
   <!-- QuickSettings: NFC (off) [CHAR LIMIT=NONE] -->
   <!-- QuickSettings: NFC (on) [CHAR LIMIT=NONE] -->
+  <string name="quick_settings_nfc_on">El NFC ta habilitáu</string>
   <!-- Recents: The empty recents string. [CHAR LIMIT=NONE] -->
   <string name="recents_empty_message">Nun hai elementos recientes</string>
   <!-- Recents: The empty recents string after dismissing all tasks. [CHAR LIMIT=NONE] -->

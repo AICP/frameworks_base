@@ -172,14 +172,21 @@ public class AicpUtils {
     public static Intent INTENT_LAUNCH_APP = new Intent(Intent.ACTION_MAIN)
             .setClassName(APP_PACKAGE_NAME, APP_PACKAGE_NAME + ".SettingsActivity");
 
-    public static boolean isLuckyPatcherInstalled(final Context context) {
-        boolean mluckyPatcherInstalled = false;
-        try {
-            mluckyPatcherInstalled = (context.getPackageManager().getPackageInfo(
-                    "com.android.vending.billing.InAppBillingService.LOCK", 0).versionCode > 0);
-        } catch (PackageManager.NameNotFoundException e) {
+    public static boolean isBillingBypassInstalled(final Context context) {
+        boolean mBillingBypassInstalled = false;
+        final String[] billingBypassPackageNames = {
+            "com.dimonvideo.luckypatcher", // used by Lucky Patcher
+            "com.chelpus.lackypatch", // used by Lucky Patcher
+            "com.android.vending.billing.InAppBillingService.LACK", // used by Lucky Patcher
+            "com.android.vending.billing.InAppBillingService.LOCK", // used by Lucky Patcher
+            "com.android.vendinc", // used by Uret
+            "uret.jasi2169.patcher" // used by Uret
+        };
+        for (String billingBypassPackageName : billingBypassPackageNames) {
+            mBillingBypassInstalled = mBillingBypassInstalled || isPackageInstalled(context, billingBypassPackageName);
         }
-        return mluckyPatcherInstalled;
+
+        return mBillingBypassInstalled;
     }
 
     /**

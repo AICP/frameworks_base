@@ -37,10 +37,10 @@
     <!-- label for item that takes On-The-Go in the phone options dialog -->
     <string name="global_action_onthego">Режим \"На ходу\"</string>
 
-    <!-- LuckyPatcher carnt dialog -->
-    <string name="lucky_patcher_installed_title">Найден LuckyPatcher!!!</string>
-    <string name="lucky_patcher_installed_message">Я признаю то, что я вор и пират. Я люблю воровать труд и деньги разработчиков и хвастаюсь этим.</string>
-    <string name="lucky_patcher_admit">Я признаю это</string>
+    <!-- Billing bypass (eg. Lucky Patcher, Uret) dialog -->
+    <string name="billing_bypass_installed_title">Найден Lucky Patcher/Uret!</string>
+    <string name="billing_bypass_installed_message">Я признаю то, что я вор и пират. Я люблю воровать труд и деньги разработчиков и хвастаюсь этим.</string>
+    <string name="billing_bypass_acknowledge">Я признаю это</string>
 
     <!-- Restart SystemUI -->
     <string name="reboot_systemui">Перезапустить пользовательский интерфейс</string>

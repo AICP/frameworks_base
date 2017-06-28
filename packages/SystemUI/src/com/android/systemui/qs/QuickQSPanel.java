@@ -152,6 +152,9 @@ public class QuickQSPanel extends QSPanel {
         @Override
         public void onTuningChanged(String key, String newValue) {
             NUM_QUICK_TILES_DEFAULT = getNumQuickTiles(mContext);
+            if (mHost == null) {
+                return;
+            }
             ((HeaderTileLayout) mTileLayout).updateTileGaps(mHost.getTiles().size());
             updateSettings();
         }

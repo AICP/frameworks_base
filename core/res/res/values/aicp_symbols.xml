@@ -112,10 +112,10 @@
   <java-symbol type="string" name="global_action_onthego" />
   <java-symbol type="drawable" name="ic_lock_onthego" />
 
-  <!-- LuckyPatcher carnt dialog -->
-  <java-symbol type="string" name="lucky_patcher_installed_title" />
-  <java-symbol type="string" name="lucky_patcher_installed_message" />
-  <java-symbol type="string" name="lucky_patcher_admit" />
+  <!-- Billing bypass (eg. Lucky Patcher, Uret) warning dialog -->
+  <java-symbol type="string" name="billing_bypass_installed_title" />
+  <java-symbol type="string" name="billing_bypass_installed_message" />
+  <java-symbol type="string" name="billing_bypass_acknowledge" />
 
   <!-- OmniJaws Weather drawable -->
   <java-symbol type="drawable" name="ic_qs_weather_default_on" />

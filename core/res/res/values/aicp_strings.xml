@@ -37,9 +37,9 @@
     <!-- label for item that takes On-The-Go in the phone options dialog -->
     <string name="global_action_onthego">On-The-Go Mode</string>
 
-    <!-- LuckyPatcher carnt dialog -->
-    <string name="lucky_patcher_installed_title">LuckyPatcher found!!!</string>
-    <string name="lucky_patcher_installed_message">I hereby willingly admit that I\'m a carnt, thief and a pirate. I love to steal money from the hard working developers and to brag about it.</string>
-    <string name="lucky_patcher_admit">I admit</string>
+    <!-- Billing bypass (eg. Lucky Patcher, Uret) dialog -->
+    <string name="billing_bypass_installed_title">Billing Patcher found!</string>
+    <string name="billing_bypass_installed_message">I hereby acknowledge that this system is running an app billing bypass patcher like Lucky Patcher or Uret. I actively harm the developers of apps by using said software.</string>
+    <string name="billing_bypass_acknowledge">I acknowledge.</string>
 
 </resources>

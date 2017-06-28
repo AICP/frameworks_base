@@ -37,10 +37,10 @@
     <!-- label for item that takes On-The-Go in the phone options dialog -->
     <string name="global_action_onthego">\"On-The-Go\"-Modus</string>
 
-    <!-- LuckyPatcher carnt dialog -->
-    <string name="lucky_patcher_installed_title">LuckyPatcher gefunden!!!</string>
-    <string name="lucky_patcher_installed_message">Hiermit gestehe ich, dass ich ein linker Bazillus, Dieb und Software-Pirat bin. Ich liebe es das Geld von hart arbeitenden Entwicklern zu stehlen und damit auch noch zu prahlen.</string>
-    <string name="lucky_patcher_admit">Ich gestehe</string>
+    <!-- Billing bypass (eg. Lucky Patcher, Uret) dialog -->
+    <string name="billing_bypass_installed_title">Bezhalsystemumgehungsapp gefunden!</string>
+    <string name="billing_bypass_installed_message">Hiermit gestehe ich, Bezahlsystemungehungsapps wie Lucky Patcher oder Uret zu benutzen. Mir ist bewusst das dies, bei benutzung, den App-Entwicklern aktiv schadet.</string>
+    <string name="billing_bypass_acknowledge">Ich verstehe.</string>
 
     <!-- Button to soft reboot the device, within the Reboot Options dialog -->
     <string name="reboot_systemui">SystemUI neu starten</string>

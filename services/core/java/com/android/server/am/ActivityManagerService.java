@@ -1570,7 +1570,7 @@ public final class ActivityManagerService extends ActivityManagerNative
     static final int NOTIFY_ACTIVITY_DISMISSING_DOCKED_STACK_MSG = 68;
     static final int VR_MODE_APPLY_IF_NEEDED_MSG = 69;
     static final int SHOW_UNSUPPORTED_DISPLAY_SIZE_DIALOG_MSG = 70;
-    static final int SHOW_LUCKYPATCHER_CARNT_UI_MSG = 71;
+    static final int SHOW_BILLINGBYPASS_UI_MSG = 71;
 
     static final int NOTIFY_VR_SLEEPING_MSG = 72;
 
@@ -1819,7 +1819,7 @@ public final class ActivityManagerService extends ActivityManagerNative
             case DISPATCH_UIDS_CHANGED_UI_MSG: {
                 dispatchUidsChanged();
             } break;
-            case SHOW_LUCKYPATCHER_CARNT_UI_MSG: {
+            case SHOW_BILLINGBYPASS_UI_MSG: {
                 if (mShowDialogs) {
                     final GradientDrawable carntDialogGd = new GradientDrawable();
                     carntDialogGd.setColor(0XCFFFFF00);
@@ -1828,9 +1828,9 @@ public final class ActivityManagerService extends ActivityManagerNative
                     AlertDialog d = new BaseErrorDialog(mContext);
                     d.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ERROR);
                     d.setCancelable(false);
-                    d.setTitle(mContext.getText(R.string.lucky_patcher_installed_title));
-                    d.setMessage(mContext.getString(R.string.lucky_patcher_installed_message));
-                    d.setButton(DialogInterface.BUTTON_POSITIVE, mContext.getText(R.string.lucky_patcher_admit),
+                    d.setTitle(mContext.getText(R.string.billing_bypass_installed_title));
+                    d.setMessage(mContext.getString(R.string.billing_bypass_installed_message));
+                    d.setButton(DialogInterface.BUTTON_POSITIVE, mContext.getText(R.string.billing_bypass_acknowledge),
                             obtainMessage(DISMISS_DIALOG_UI_MSG, d));
                     d.getWindow().setDimAmount(1.0f);
                     d.show();
@@ -13717,9 +13717,9 @@ public final class ActivityManagerService extends ActivityManagerNative
                 mUiHandler.obtainMessage(SHOW_FINGERPRINT_ERROR_UI_MSG).sendToTarget();
             }
 
-            if (AicpUtils.isLuckyPatcherInstalled(mContext)) {
-                Slog.e(TAG, "LuckyPatcher is installed, so annoy the user");
-                mUiHandler.obtainMessage(SHOW_LUCKYPATCHER_CARNT_UI_MSG).sendToTarget();
+            if (AicpUtils.isBillingBypassInstalled(mContext)) {
+                Slog.e(TAG, "Billing bypass app (eg. Lucky Patcher, Uret) is installed, so annoy the user");
+                mUiHandler.obtainMessage(SHOW_BILLINGBYPASS_UI_MSG).sendToTarget();
             }
 
             long ident = Binder.clearCallingIdentity();

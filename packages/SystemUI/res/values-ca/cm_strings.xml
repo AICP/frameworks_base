@@ -69,6 +69,7 @@
   <!-- Screen pinning dialog description (for devices without navbar) -->
   <string name="screen_pinning_description_no_navbar">Això ho manté a la vista fins que el desancoris. Toca i aguanta el botó Enrera per desancorar.</string>
   <!-- String for lockscreen shortcut hints -->
+  <string name="shortcut_hint">Llisca des de la icona per %1$s</string>
   <string name="lockscreen_message">Toca una icona a l\'esquerra o a la dreta per reassignar una drecera a la pantalla de bloqueig.</string>
   <string name="lockscreen_default_target">Per defecte</string>
   <string name="select_application">Selecciona l\'aplicació</string>

@@ -70,6 +70,7 @@
   <!-- Screen pinning dialog description (for devices without navbar) -->
   <string name="screen_pinning_description_no_navbar">Aceasta ține în vizualizare ecranul până îl deblocați. Apăsați și țineți apăsat butonul Înapoi pentru a debloca.</string>
   <!-- String for lockscreen shortcut hints -->
+  <string name="shortcut_hint">Glisați de pe iconiță pentru %1$s</string>
   <string name="lockscreen_message">Apăsaţi o pictogramă din stânga sau dreapta pentru a realoca o comandă rapidă pe ecranul de blocare.</string>
   <string name="lockscreen_default_target">Implicit</string>
   <string name="select_application">Selectați aplicația</string>

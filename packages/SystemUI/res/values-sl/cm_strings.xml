@@ -70,6 +70,7 @@
   <!-- Screen pinning dialog description (for devices without navbar) -->
   <string name="screen_pinning_description_no_navbar">To jo ohrani prikazano, dokler je ne odpnete. Tapnite in pridržite gumb Nazaj, da jo odpnete.</string>
   <!-- String for lockscreen shortcut hints -->
+  <string name="shortcut_hint">Potegnite iz ikone za %1$s</string>
   <string name="lockscreen_message">Tapnite ikono na levi ali desni, da ponovno dodelite bližnjico zaklenjenega zaslona.</string>
   <string name="lockscreen_default_target">Privzeto</string>
   <string name="select_application">Izberite aplikacijo</string>

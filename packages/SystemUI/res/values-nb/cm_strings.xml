@@ -70,6 +70,7 @@
   <!-- Screen pinning dialog description (for devices without navbar) -->
   <string name="screen_pinning_description_no_navbar">Dette holder den i syne inntill du løsner den. Trykk og hold på tilbake knappen for å løsne.</string>
   <!-- String for lockscreen shortcut hints -->
+  <string name="shortcut_hint">Sveip fra ikonet for %1$s</string>
   <string name="lockscreen_message">Trykk på ikonet til venstre eller høyre for å tilordne en låseskjermsnarvei.</string>
   <string name="lockscreen_default_target">Standard</string>
   <string name="select_application">Velg applikasjon</string>

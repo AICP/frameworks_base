@@ -40,6 +40,7 @@
   <!-- Screen pinning dialog description (for devices without navbar) -->
   <string name="screen_pinning_description_no_navbar">הפעולה שומרת זאת בתצוגה עד שתבטל את ההצמדה. גע והחזק את לחצן \"הקודם\" כדי לבטל את ההצמדה.</string>
   <!-- String for lockscreen shortcut hints -->
+  <string name="shortcut_hint">החלק מהסמל בשביל %1$s</string>
   <string name="lockscreen_message">הקש על סמל בצד שמאל או ימין כדי להקצות מחדש קיצור דרך של מסך הנעילה.</string>
   <string name="lockscreen_default_target">ברירת מחדל</string>
   <string name="select_application">בחר יישום</string>

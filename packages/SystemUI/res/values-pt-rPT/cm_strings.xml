@@ -70,6 +70,7 @@
   <!-- Screen pinning dialog description (for devices without navbar) -->
   <string name="screen_pinning_description_no_navbar">Irá ficar visível até que o solte. Toque e segure o botão Anterior para soltar.</string>
   <!-- String for lockscreen shortcut hints -->
+  <string name="shortcut_hint">Deslize a partir do ícone para %1$s</string>
   <string name="lockscreen_message">Toque num ícone da esquerda ou da direita para atribuir um atalho no ecrã de bloqueio.</string>
   <string name="lockscreen_default_target">Padrão</string>
   <string name="select_application">Selecionar aplicação</string>

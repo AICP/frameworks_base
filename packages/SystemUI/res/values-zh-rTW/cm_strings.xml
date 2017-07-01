@@ -70,6 +70,7 @@
   <!-- Screen pinning dialog description (for devices without navbar) -->
   <string name="screen_pinning_description_no_navbar">此功能會固定螢幕顯示直到您取消固定。觸控並長按 [返回] 鍵即可解除固定。</string>
   <!-- String for lockscreen shortcut hints -->
+  <string name="shortcut_hint">滑動圖示即可 %1$s</string>
   <string name="lockscreen_message">輕觸左側或右側的圖示即可設定鎖定畫面捷徑</string>
   <string name="lockscreen_default_target">預設</string>
   <string name="select_application">選擇應用程式</string>

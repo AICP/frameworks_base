@@ -70,6 +70,7 @@
   <!-- Screen pinning dialog description (for devices without navbar) -->
   <string name="screen_pinning_description_no_navbar">Esto fija la pantalla en esta vista hasta que se desancla. Mantén pulsado el botón Atrás para desanclar.</string>
   <!-- String for lockscreen shortcut hints -->
+  <string name="shortcut_hint">Deslizar desde el icono para %1$s</string>
   <string name="lockscreen_message">Pulsa el icono de la izquierda o derecha para reasignar un atajo a la pantalla de bloqueo.</string>
   <string name="lockscreen_default_target">Predefinido</string>
   <string name="select_application">Selecciona una aplicación</string>

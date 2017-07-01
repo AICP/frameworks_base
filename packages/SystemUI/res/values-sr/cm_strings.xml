@@ -27,7 +27,7 @@
   <!-- Content description of the light brightness slider (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_notification_brightness">Осветљење</string>
   <!-- Lights settings, LED notification -->
-  <string name="led_notification_title">Подешавања осветљења</string>
+  <string name="led_notification_title">Подешавања индикатора</string>
   <string name="led_notification_text">LED светло је омогућено у подешавањима</string>
   <!-- Notification which notifies user flashlight is enabled -->
   <string name="quick_settings_tile_flashlight_not_title">Лампа је укључена</string>
@@ -70,9 +70,10 @@
   <!-- Screen pinning dialog description (for devices without navbar) -->
   <string name="screen_pinning_description_no_navbar">Ова апликација ће остати активна све док је не откачите дугим притиском на дугме „Назад“.</string>
   <!-- String for lockscreen shortcut hints -->
+  <string name="shortcut_hint">Превуците од иконе за %1$s</string>
   <string name="lockscreen_message">Додирните икону слева или здесна да бисте променили пречицу на закључаном екрану.</string>
   <string name="lockscreen_default_target">Подразумевана</string>
-  <string name="select_application">Изабери апликацију</string>
+  <string name="select_application">Избор апликације</string>
   <string name="lockscreen_choose_action_title">Избор радње</string>
   <string name="lockscreen_none_target">Ниједна</string>
   <!-- Play queue -->

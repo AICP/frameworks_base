@@ -4,6 +4,7 @@
 /**
  * Copyright (c) 2009, The Android Open Source Project
  * Copyright (c) 2015, The CyanogenMod Project
+ * Copyright (c) 2017, The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -19,17 +20,11 @@
  */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <!-- Content description of the data connection type HSPA+ for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
-  <string name="accessibility_data_connection_hspap">HSPA+</string>
-  <!-- Weather string format in expanded statusbar header -->
-  <string name="status_bar_expanded_header_weather_format"><xliff:g id="temp">%1$s</xliff:g> - <xliff:g id="condition">%2$s</xliff:g></string>
   <!-- Content description of the light brightness slider (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_notification_brightness">指示灯亮度</string>
   <!-- Lights settings, LED notification -->
   <string name="led_notification_title">指示灯设置</string>
   <string name="led_notification_text">LED 灯由设置启用</string>
-  <!-- Content description of the superuser tile -->
-  <string name="accessibility_su_active">超级用户会话已启用</string>
   <!-- Notification which notifies user flashlight is enabled -->
   <string name="quick_settings_tile_flashlight_not_title">手电筒已开</string>
   <string name="quick_settings_tile_flashlight_not_summary">轻按以关闭</string>
@@ -70,9 +65,8 @@
   <string name="notification_importance_very_low">不允许全屏时打扰、显示速览、发出声音或振动。在锁屏界面中隐藏。</string>
   <!-- Screen pinning dialog description (for devices without navbar) -->
   <string name="screen_pinning_description_no_navbar">这将会固定显示此屏幕，直到您取消固定为止。触摸并按住返回键即可取消固定。</string>
-  <!-- Strings for lockscreen shortcut hints -->
-  <string name="left_shortcut_hint">向右滑动以%1$s</string>
-  <string name="right_shortcut_hint">向左滑动以%1$s</string>
+  <!-- String for lockscreen shortcut hints -->
+  <string name="shortcut_hint">滑动图标即可%1$s</string>
   <string name="lockscreen_message">轻触左边或右边的图标来重新分配锁屏快捷方式。</string>
   <string name="lockscreen_default_target">默认</string>
   <string name="select_application">选择应用</string>
@@ -85,15 +79,102 @@
   <string name="accessibility_dpad_left">光标左移</string>
   <string name="accessibility_dpad_right">光标右移</string>
   <!-- NavBar Tuner -->
-  <string name="menu_ime_always_show">菜单 / 键盘切换器 (总是显示)</string>
+  <string name="menu_ime_always_show">菜单 / 键盘切换器 (始终显示)</string>
   <string name="search">搜索</string>
+  <!-- Path data for portrait battery -->
+  <!-- Path data for landscape battery -->
+  <!-- Path data for circle battery -->
   <!-- Wi-Fi hotspot label when enabled -->
   <plurals name="wifi_hotspot_connected_clients_label">
     <item quantity="other">%1$d 台设备</item>
   </plurals>
-  
-  <!-- QS NFC tile -->
-  <string name="quick_settings_nfc">NFC</string>
-  <string name="quick_settings_nfc_label">NFC</string>
-  <string name="quick_settings_nfc_off">NFC关闭</string>
+  <!-- Weather string format in expanded statusbar header -->
+  <string name="status_bar_expanded_header_weather_format"><xliff:g id="temp">%1$s</xliff:g> - <xliff:g id="condition">%2$s</xliff:g></string>
+  <!-- Volume stream titles - should match the string-array in AOSP -->
+  <string-array name="volume_stream_titles_lineage">
+    <item>通话</item>
+    <!-- STREAM_VOICE_CALL -->
+    <item>系统</item>
+    <!-- STREAM_SYSTEM -->
+    <item>铃声</item>
+    <!-- STREAM_RING -->
+    <item>媒体</item>
+    <!-- STREAM_MUSIC -->
+    <item>闹钟</item>
+    <!-- STREAM_ALARM -->
+    <item>通知</item>
+    <!-- STREAM_NOTIFICATION -->
+    <item>蓝牙</item>
+    <!-- STREAM_BLUETOOTH_SCO -->
+    <item></item>
+    <!-- STREAM_SYSTEM_ENFORCED -->
+    <item></item>
+    <!-- STREAM_DTMF -->
+    <item></item>
+    <!-- STREAM_TTS -->
+  </string-array>
+  <!-- Content description of the data connection type HSPA+ for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_data_connection_hspap">HSPA+</string>
+  <!-- Text to use when the number in a notification info is too large
+         (greater than status_bar_notification_info_maxnum, defined in
+         values/config.xml) and must be truncated.
+         [CHAR LIMIT=4] -->
+  <!-- Content description of the location tile in quick settings when on, battery saving mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_location_battery_saving">位置报告：节电模式。</string>
+  <!-- Content description of the location tile in quick settings when on, sensors only mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_location_gps_only">位置报告：仅传感器模式。</string>
+  <!-- Content description of the location tile in quick settings when on, high accuracy mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_location_high_accuracy">位置报告：高准确度模式。</string>
+  <!-- QuickSettings: Location (On, low-power) [CHAR LIMIT=NONE] -->
+  <string name="quick_settings_location_battery_saving_label">耗电量低</string>
+  <string name="quick_settings_location_battery_saving_label_twoline">节省\n电量</string>
+  <!-- QuickSettings: Location (On, gps-only) [CHAR LIMIT=NONE] -->
+  <string name="quick_settings_location_gps_only_label">仅 GPS</string>
+  <string name="quick_settings_location_gps_only_label_twoline">仅 GPS</string>
+  <!-- QuickSettings: Location (On, high-accuracy) [CHAR LIMIT=NONE] -->
+  <string name="quick_settings_location_high_accuracy_label">准确度高</string>
+  <string name="quick_settings_location_high_accuracy_label_twoline">高\n精确度</string>
+  <!-- QuickSettings: Location detail panel title [CHAR LIMIT=NONE] -->
+  <string name="quick_settings_location_detail_title">位置</string>
+  <!-- QuickSettings: Location detail panel menu title [CHAR LIMIT=NONE] -->
+  <string name="quick_settings_location_detail_menu_title">选择模式：</string>
+  <!-- [CHAR LIMIT=30] Location detail panel, high accuracy location mode -->
+  <string name="quick_settings_location_detail_mode_high_accuracy_title">准确度高</string>
+  <!-- [CHAR LIMIT=30] Location detail panel, battery saving location mode -->
+  <string name="quick_settings_location_detail_mode_battery_saving_title">耗电量低</string>
+  <!-- [CHAR LIMIT=30] Location detail panel, device only location mode -->
+  <string name="quick_settings_location_detail_mode_sensors_only_title">仅限设备</string>
+  <!-- [CHAR LIMIT=130] Location detail panel, description for high accuracy mode -->
+  <string name="quick_settings_location_detail_mode_high_accuracy_description">使用 GPS、Wi\u2011Fi、蓝牙或移动网络确定位置</string>
+  <!-- [CHAR LIMIT=130] Location detail panel, description for battery saving mode -->
+  <string name="quick_settings_location_detail_mode_battery_saving_description">使用 Wi\u2011Fi、蓝牙或移动网络确定位置</string>
+  <!-- [CHAR LIMIT=130] Location detail panel, description for sensors only mode -->
+  <string name="quick_settings_location_detail_mode_sensors_only_description">使用 GPS 确定位置</string>
+  <!-- Adb over network QS tile -->
+  <string name="quick_settings_network_adb_label">网络 ADB 调试</string>
+  <!-- Ambient display QS tile -->
+  <string name="quick_settings_ambient_display_label">环境显示</string>
+  <string name="accessibility_quick_settings_ambient_display_off">关闭环境显示。</string>
+  <string name="accessibility_quick_settings_ambient_display_on">开启环境显示。</string>
+  <string name="accessibility_quick_settings_ambient_display_changed_off">环境显示已关闭。</string>
+  <string name="accessibility_quick_settings_ambient_display_changed_on">环境显示已开启。</string>
+  <!-- Caffeine -->
+  <string name="quick_settings_caffeine_label">保持亮屏</string>
+  <!-- Heads up QS tile -->
+  <string name="quick_settings_heads_up_label">浮动通知</string>
+  <string name="accessibility_quick_settings_heads_up_off">浮动通知关。</string>
+  <string name="accessibility_quick_settings_heads_up_on">浮动通知开。</string>
+  <string name="accessibility_quick_settings_heads_up_changed_off">浮动通知已关闭。</string>
+  <string name="accessibility_quick_settings_heads_up_changed_on">浮动通知已开启。</string>
+  <!-- Sync QS tile -->
+  <string name="quick_settings_sync_label">同步</string>
+  <string name="accessibility_quick_settings_sync_off">同步关闭。</string>
+  <string name="accessibility_quick_settings_sync_on">同步开启。</string>
+  <string name="accessibility_quick_settings_sync_changed_off">同步已关闭。</string>
+  <string name="accessibility_quick_settings_sync_changed_on">同步已开启。</string>
+  <!-- USB tethering QS tile -->
+  <string name="quick_settings_usb_tether_label">USB 共享网络</string>
+  <!-- Volume panel QS tile -->
+  <string name="quick_settings_sync_label">同步</string>
+  <string name="quick_settings_volume_panel_label">音量面板</string>
 </resources>

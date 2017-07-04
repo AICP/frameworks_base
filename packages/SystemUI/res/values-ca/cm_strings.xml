@@ -4,6 +4,7 @@
 /**
  * Copyright (c) 2009, The Android Open Source Project
  * Copyright (c) 2015, The CyanogenMod Project
+ * Copyright (c) 2017, The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -115,4 +116,68 @@
     <item></item>
     <!-- STREAM_TTS -->
   </string-array>
+  <!-- Content description of the data connection type HSPA+ for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_data_connection_hspap">HSPA+</string>
+  <!-- Text to use when the number in a notification info is too large
+         (greater than status_bar_notification_info_maxnum, defined in
+         values/config.xml) and must be truncated.
+         [CHAR LIMIT=4] -->
+  <!-- Content description of the location tile in quick settings when on, battery saving mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_location_battery_saving">Informes d\'ubicació: Mode d\'estalvi de bateria.</string>
+  <!-- Content description of the location tile in quick settings when on, sensors only mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_location_gps_only">Informes d\'ubicació: Mode només sensors.</string>
+  <!-- Content description of the location tile in quick settings when on, high accuracy mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_location_high_accuracy">Informes d\'ubicació: Mode d\'alta precisió.</string>
+  <!-- QuickSettings: Location (On, low-power) [CHAR LIMIT=NONE] -->
+  <string name="quick_settings_location_battery_saving_label">Estalvi de bateria</string>
+  <string name="quick_settings_location_battery_saving_label_twoline">Estalvi\nde bateria</string>
+  <!-- QuickSettings: Location (On, gps-only) [CHAR LIMIT=NONE] -->
+  <string name="quick_settings_location_gps_only_label">Només GPS</string>
+  <string name="quick_settings_location_gps_only_label_twoline">Només GPS</string>
+  <!-- QuickSettings: Location (On, high-accuracy) [CHAR LIMIT=NONE] -->
+  <string name="quick_settings_location_high_accuracy_label">Alta precisió</string>
+  <string name="quick_settings_location_high_accuracy_label_twoline">Alta\nprecisió</string>
+  <!-- QuickSettings: Location detail panel title [CHAR LIMIT=NONE] -->
+  <string name="quick_settings_location_detail_title">Ubicació</string>
+  <!-- QuickSettings: Location detail panel menu title [CHAR LIMIT=NONE] -->
+  <string name="quick_settings_location_detail_menu_title">Selecciona un mode:</string>
+  <!-- [CHAR LIMIT=30] Location detail panel, high accuracy location mode -->
+  <string name="quick_settings_location_detail_mode_high_accuracy_title">Alta precisió</string>
+  <!-- [CHAR LIMIT=30] Location detail panel, battery saving location mode -->
+  <string name="quick_settings_location_detail_mode_battery_saving_title">Estalvi de bateria</string>
+  <!-- [CHAR LIMIT=30] Location detail panel, device only location mode -->
+  <string name="quick_settings_location_detail_mode_sensors_only_title">Només dispositiu</string>
+  <!-- [CHAR LIMIT=130] Location detail panel, description for high accuracy mode -->
+  <string name="quick_settings_location_detail_mode_high_accuracy_description">Utilitza el GPS, la Wi\u2011Fi, el Bluetooth, o les xarxes mòbils per determinar la ubicació</string>
+  <!-- [CHAR LIMIT=130] Location detail panel, description for battery saving mode -->
+  <string name="quick_settings_location_detail_mode_battery_saving_description">Utilitza la Wi\u2011Fi, el Bluetooth o les xarxes mòbils per determinar la ubicació</string>
+  <!-- [CHAR LIMIT=130] Location detail panel, description for sensors only mode -->
+  <string name="quick_settings_location_detail_mode_sensors_only_description">Utilitza el GPS per determinar la ubicació</string>
+  <!-- Adb over network QS tile -->
+  <string name="quick_settings_network_adb_label">ADB sobre xarxa</string>
+  <!-- Ambient display QS tile -->
+  <string name="quick_settings_ambient_display_label">Pantalla ambient</string>
+  <string name="accessibility_quick_settings_ambient_display_off">Pantalla ambient desactivada.</string>
+  <string name="accessibility_quick_settings_ambient_display_on">Pantalla ambient activada.</string>
+  <string name="accessibility_quick_settings_ambient_display_changed_off">S\'ha desactivat la pantalla ambient.</string>
+  <string name="accessibility_quick_settings_ambient_display_changed_on">S\'ha activat la pantalla ambient.</string>
+  <!-- Caffeine -->
+  <string name="quick_settings_caffeine_label">Cafeïna</string>
+  <!-- Heads up QS tile -->
+  <string name="quick_settings_heads_up_label">Notificacions emergents</string>
+  <string name="accessibility_quick_settings_heads_up_off">Notificacions emergents apagades.</string>
+  <string name="accessibility_quick_settings_heads_up_on">Notificacions emergents activades.</string>
+  <string name="accessibility_quick_settings_heads_up_changed_off">S\'han apagat les notificacions emergents.</string>
+  <string name="accessibility_quick_settings_heads_up_changed_on">S\'han encès les notificacions emergents.</string>
+  <!-- Sync QS tile -->
+  <string name="quick_settings_sync_label">Sinc</string>
+  <string name="accessibility_quick_settings_sync_off">Sinc desactivada.</string>
+  <string name="accessibility_quick_settings_sync_on">Sinc activada.</string>
+  <string name="accessibility_quick_settings_sync_changed_off">S\'ha desactivat la sincronització.</string>
+  <string name="accessibility_quick_settings_sync_changed_on">S\'ha activat la sincronització.</string>
+  <!-- USB tethering QS tile -->
+  <string name="quick_settings_usb_tether_label">Ancoratge USB</string>
+  <!-- Volume panel QS tile -->
+  <string name="quick_settings_sync_label">Sinc</string>
+  <string name="quick_settings_volume_panel_label">Panell de volum</string>
 </resources>

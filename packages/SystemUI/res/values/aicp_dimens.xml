@@ -114,7 +114,4 @@
     <!-- Padding end for weather text -->
     <dimen name="status_bar_weather_padding_end">16dp</dimen>
 
-    <!-- Recents task locking button -->
-    <dimen name="recents_task_view_header_lock_button_padding">44dp</dimen>
-
 </resources>

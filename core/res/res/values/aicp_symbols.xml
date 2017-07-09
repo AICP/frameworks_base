@@ -122,4 +122,6 @@
 
   <!-- Wether device has dash charging support -->
   <java-symbol type="bool" name="config_hasDashCharger" />
+
+  <java-symbol type="array" name="config_blockPackagesSensorDrain" />
 </resources>

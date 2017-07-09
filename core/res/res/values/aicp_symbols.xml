@@ -79,4 +79,7 @@
 
   <!-- Whether device ignores the RSSNR signal implementation -->
   <java-symbol type="bool" name="config_ignoreRssnrSignalLevel" />
+
+  <java-symbol type="array" name="config_blockPackagesSensorDrain" />
+
 </resources>

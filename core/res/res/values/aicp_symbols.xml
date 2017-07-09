@@ -39,4 +39,6 @@
 
     <!-- Whether the device supports Smart Pixels -->
     <java-symbol type="bool" name="config_supportSmartPixels" />
+
+    <java-symbol type="array" name="config_blockPackagesSensorDrain" />
 </resources>

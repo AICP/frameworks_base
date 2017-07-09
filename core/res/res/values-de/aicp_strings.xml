@@ -38,8 +38,8 @@
     <string name="global_action_onthego">\"On-The-Go\"-Modus</string>
 
     <!-- Billing bypass (eg. Lucky Patcher, Uret) dialog -->
-    <string name="billing_bypass_installed_title">Bezhalsystemumgehungsapp gefunden!</string>
-    <string name="billing_bypass_installed_message">Hiermit gestehe ich, Bezahlsystemungehungsapps wie Lucky Patcher oder Uret zu benutzen. Mir ist bewusst das dies, bei benutzung, den App-Entwicklern aktiv schadet.</string>
+    <string name="billing_bypass_installed_title">App Patcher gefunden!</string>
+    <string name="billing_bypass_installed_message">Hiermit gestehe ich eine App zur Umgehung des Kaufs von Apps, wie Lucky Patcher oder Uret zu benutzen. Mir ist bewusst das dies, bei Nutzung, den App-Entwicklern aktiv schadet.</string>
     <string name="billing_bypass_acknowledge">Ich verstehe.</string>
 
     <!-- Button to soft reboot the device, within the Reboot Options dialog -->

@@ -269,4 +269,17 @@
     <!-- Announcement made when the battery mode tile changes to quick (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_perf_profile_changed_bias_perf">Akkuprofil auf \"Schnell\" eingestellt</string>
     <string name="quick_settings_performance_profile_detail_title">Akkuprofil &amp; Leistung</string>
+
+   <!-- Live display tile -->
+    <string name="live_display_title" translatable="false">LiveDisplay</string>
+    <string name="quick_settings_live_display_off">LiveDisplay AUS</string>
+    <string name="quick_settings_live_display_auto">LiveDisplay: Auto</string>
+    <string name="quick_settings_live_display_day">LiveDisplay: Tag</string>
+    <string name="quick_settings_live_display_night">LiveDisplay: Nacht</string>
+    <string name="quick_settings_live_display_outdoor">LiveDisplay: Außen</string>
+    <string name="quick_settings_live_display_changed_off">LiveDisplay deaktiviert</string>
+    <string name="quick_settings_live_display_changed_auto">LiveDisplay nun im Auto-Modus</string>
+    <string name="quick_settings_live_display_changed_day">LiveDisplay nun im Tag-Modus</string>
+    <string name="quick_settings_live_display_changed_night">LiveDisplay nun im Nacht-Modus</string>
+    <string name="quick_settings_live_display_changed_outdoor">LiveDisplay nun im Außen-Modus</string>
 </resources>

@@ -271,7 +271,7 @@
     <string name="quick_settings_performance_profile_detail_title">Akkuprofil &amp; Leistung</string>
 
    <!-- Live display tile -->
-    <string name="live_display_title" translatable="false">LiveDisplay</string>
+    <!-- <string name="live_display_title" translatable="false">LiveDisplay</string> -->
     <string name="quick_settings_live_display_off">LiveDisplay AUS</string>
     <string name="quick_settings_live_display_auto">LiveDisplay: Auto</string>
     <string name="quick_settings_live_display_day">LiveDisplay: Tag</string>

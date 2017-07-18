@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (C) 2017 AICP Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <path
+        android:fillColor="#4DFFFFFF"
+        android:pathData="M1.77 2.09L0.44 3.42 2.16 5.14C2.05 5.5 1.98 5.87 1.98 6.26c0 2.15 1.76 4.14 4.01 4.14 0.43 0 0.83 -0.1 1.2 -0.2L10 13C9.17 13.2 8.37 13.6 7.64 14L6.57 12.9c-0.2 -0.2 -0.59 -0.2 -0.88 0 -0.2 0.2 -0.2 0.6 0 0.9l0.98 1c-1.66 1.5 -2.74 3.6 -2.74 6.1l14 0 2.7 2.6 1.3 -1.3L1.83 2.1ZM4.09 7.07L5.13 8.11C4.67 7.9 4.29 7.53 4.09 7.07Zm3.74 10.2c0.5 0 1.04 0 1.19 0.1 0.29 0.3 0.29 0.8 0 1.1 -0.3 0.3 -0.79 0.3 -1.08 0 -0.29 -0.3 -1.08 -1.2 -1.08 -1.2l0.97 0zm6.77 0.3l0.3 0.2c-0.1 0.1 -0.2 0.2 -0.2 0.3 0 0.3 0.2 0.4 0.4 0.4 0.1 0 0.2 0 0.3 -0.1l0.2 0.1c-0.3 0.3 -0.7 0.4 -0.9 0.2 -0.4 -0.2 -0.5 -0.7 -0.3 -1 0 0 0.1 -0.1 0.2 -0.1z" />
+    <path
+        android:fillColor="#4DFFFFFF"
+        android:pathData="M5.99 2.25c-0.422 0 -0.818 0.0845 -1.2 0.205l2 2c0.503 0.201 0.891 0.592 1.09 1.09l2.22 2.2 0 -5.5 -2.06 0 0 0.59C7.45 2.435 6.77 2.245 5.99 2.245Z" />
+    <path
+        android:fillColor="#4DFFFFFF"
+        android:pathData="M17.5 12.9l-1.07 1.07c0 0 -0.1 -0.1 -0.2 -0.1l2.7 2.7c-0.416 -0.675 -0.928 -1.28 -1.52 -1.8l0.0039 0 0.979 -0.979c0.196 -0.196 0.248 -0.629 0 -0.879 -0.322 -0.324 -0.672 -0.192 -0.881 0z" />
+    <path
+        android:fillColor="#4DFFFFFF"
+        android:pathData="M8.53 17.8c0.216 0 0.391 0.175 0.391 0.391 0 0.216 -0.175 0.391 -0.391 0.391 -0.216 0 -0.391 -0.175 -0.391 -0.391 0 -0.216 0.175 -0.391 0.391 -0.391z" />
+    <path
+        android:fillColor="#4DFFFFFF"
+        android:pathData="M2.37 20.3c-0.782 0 -1.47 0.489 -1.47 1.47l2.84 0C3.74 20.792 3.153 20.3 2.37 20.3Z" />
+    <path
+        android:fillColor="#4DFFFFFF"
+        android:fillAlpha="0.702"
+        android:pathData="M10.1 2.25l0 5.5 2 2.06 0 -7.56 -2 0z" />
+    <path
+        android:fillColor="#4DFFFFFF"
+        android:fillAlpha="0.702"
+        android:pathData="M16.1 4.3l0 4.02 2.05 0 0 -4.02z" />
+    <path
+        android:fillColor="#4DFFFFFF"
+        android:fillAlpha="0.702"
+        android:pathData="M16.1 10.3l0 2.15 2.05 0 0 -2.15z" />
+    <path
+        android:fillColor="#4DFFFFFF"
+        android:fillAlpha="0.702"
+        android:pathData="M18.2 4.3c1.08 0 2.05 0.782 2.05 1.96 0 1.17 -0.88 2.05 -2.05 2.05l0 1.96c2.25 0 4.01 -1.86 4.01 -4.01 0 -2.15 -1.86 -4.01 -4.01 -4.01z" />
+    <path
+        android:fillColor="#4DFFFFFF"
+        android:pathData="M16.1 4.3l2.05 0 0 -2.05 -2.05 0c-2.25 0 -4.01 1.86 -4.01 4.01 0 2.15 1.86 4.01 4.01 4.01l2.05 0 0 -1.99 -2.05 0c-1.08 0 -2.05 -0.88 -2.05 -2.05 0 -1.17 0.978 -1.96 2.05 -1.96" />
+</vector>

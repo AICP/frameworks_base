@@ -88,6 +88,11 @@
         android:key="volume"
         android:title="@*android:string/volume_unknown" />
 
+    <com.android.systemui.tuner.TunerSwitch
+        android:icon="@drawable/ic_statusbar_volte"
+        android:key="ims"
+        android:title="@string/status_bar_ims" />
+
     <com.android.systemui.tuner.StatusBarSwitch
         android:icon="@drawable/ic_statusbar_vpn"
         android:key="vpn"

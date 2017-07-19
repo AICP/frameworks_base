@@ -174,6 +174,8 @@ constructor(
                 latest(false) { isAllowedDuringAirplaneMode }
             override val carrierNetworkChangeActive: State<Boolean> =
                 latest(false) { carrierNetworkChangeActive }
+            override val shouldShowFourgIcon: State<Boolean> =
+                latest(false) { shouldShowFourgIcon }
         }
 
     private fun trackedCommonViewModel(subId: Int) =

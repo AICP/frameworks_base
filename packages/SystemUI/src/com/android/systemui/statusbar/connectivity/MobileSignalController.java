@@ -33,10 +33,6 @@ import android.telephony.AccessNetworkConstants;
 import android.telephony.CellSignalStrength;
 import android.telephony.CellSignalStrengthCdma;
 import android.telephony.NetworkRegistrationInfo;
-import android.telephony.ims.ImsMmTelManager;
-import android.telephony.ims.ImsReasonInfo;
-import android.telephony.ims.feature.ImsFeature;
-import android.telephony.ims.feature.MmTelFeature;
 import android.telephony.PhoneStateListener;
 import android.telephony.ServiceState;
 import android.telephony.SignalStrength;
@@ -47,6 +43,8 @@ import android.telephony.ims.ImsMmTelManager;
 import android.telephony.ims.ImsReasonInfo;
 import android.telephony.ims.ImsRegistrationAttributes;
 import android.telephony.ims.RegistrationManager.RegistrationCallback;
+import android.telephony.ims.feature.ImsFeature;
+import android.telephony.ims.feature.MmTelFeature;
 import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
@@ -82,6 +80,8 @@ import java.util.Map;
  * Monitors the mobile signal changes and update the SysUI icons.
  */
 public class MobileSignalController extends SignalController<MobileState, MobileIconGroup> {
+
+    private static final String IMS_STATUS_CHANGED = "android.intent.action.IMS_REGISTRATION_CHANGED";
     private static final SimpleDateFormat SSDF = new SimpleDateFormat("MM-dd HH:mm:ss.SSS");
     private static final int STATUS_HISTORY_SIZE = 64;
     private static final int IMS_TYPE_WWAN = 1;
@@ -185,12 +185,14 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
                 }
             }
             mCurrentState.imsRegistered = true;
+            mContext.sendBroadcast(new Intent(IMS_STATUS_CHANGED));
             notifyListenersIfNecessary();
         }
 
         @Override
         public void onRegistering(ImsRegistrationAttributes attr) {
             mCurrentState.imsRegistered = false;
+            mContext.sendBroadcast(new Intent(IMS_STATUS_CHANGED));
             notifyListenersIfNecessary();
         }
 
@@ -204,6 +206,7 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
                     getCallStrengthDescription(mLastWwanLevel, /* isWifi= */false));
             notifyCallStateChange(statusIcon, mSubscriptionInfo.getSubscriptionId());
             mCurrentState.imsRegistered = false;
+            mContext.sendBroadcast(new Intent(IMS_STATUS_CHANGED));
             notifyListenersIfNecessary();
         }
     };
@@ -418,8 +421,8 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
     private int getVolteResId() {
         int resId = 0;
 
-        if ( (mCurrentState.voiceCapable || mCurrentState.videoCapable)
-                &&  mCurrentState.imsRegistered ) {
+        if ((mCurrentState.voiceCapable || mCurrentState.videoCapable)
+                && mCurrentState.imsRegistered) {
             resId = R.drawable.ic_volte;
         }
         return resId;
@@ -494,18 +497,8 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
             dataContentDescription = mContext.getString(R.string.data_connection_no_internet);
         }
 
-        int volteId = mShowVolteIcon && isVolteSwitchOn() ? getVolteResId() : 0;
-
         final QsInfo qsInfo = getQsInfo(contentDescription, icons.dataType);
         final SbInfo sbInfo = getSbInfo(contentDescription, icons.dataType);
-
-        MobileIconGroup vowifiIconGroup = getVowifiIconGroup();
-        if (vowifiIconGroup != null ) {
-            typeIcon = vowifiIconGroup.dataType;
-            statusIcon = new IconState(true,
-                    mCurrentState.enabled && !mCurrentState.airplaneMode? statusIcon.icon : -1,
-                    statusIcon.contentDescription);
-        }
 
         MobileDataIndicators mobileDataIndicators = new MobileDataIndicators(
                 sbInfo.icon,
@@ -520,7 +513,7 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
                 mSubscriptionInfo.getSubscriptionId(),
                 mCurrentState.roaming,
                 sbInfo.showTriangle,
-                volteId);
+                0);
         callback.setMobileDataIndicators(mobileDataIndicators);
     }
 
@@ -575,17 +568,15 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
                     (mCurrentState.dataConnected && mCurrentState.isDefault) || dataDisabled;
             typeIcon =
                     (showDataIconInStatusBar || mConfig.alwaysShowDataRatIcon) ? dataTypeIcon : 0;
-            MobileIconGroup vowifiIconGroup = getVowifiIconGroup();
-            if (vowifiIconGroup != null && mVoWiFiIcon) {
-                typeIcon = vowifiIconGroup.dataType;
-                statusIcon = new IconState(true,
-                        mCurrentState.enabled && !mCurrentState.airplaneMode? statusIcon.icon : -1,
-                        statusIcon.contentDescription);
-            }
             showTriangle = mCurrentState.enabled && !mCurrentState.airplaneMode;
         }
 
         return new SbInfo(showTriangle, typeIcon, statusIcon);
+    }
+
+    public boolean isVolteAvailable() {
+        return isVolteSwitchOn() && mCurrentState.imsRegistered
+                   && (mCurrentState.voiceCapable || mCurrentState.videoCapable);
     }
 
     @Override
@@ -957,8 +948,8 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
                 mCurrentState.getDataNetworkType() : TelephonyManager.NETWORK_TYPE_UNKNOWN;
     }
 
-    private boolean isVowifiAvailable() {
-        return mCurrentState.voiceCapable &&  mCurrentState.imsRegistered
+    public boolean isVowifiAvailable() {
+        return mCurrentState.voiceCapable && mCurrentState.imsRegistered
                 && getDataNetworkType() == TelephonyManager.NETWORK_TYPE_IWLAN;
     }
 
@@ -1007,6 +998,7 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
                     config.isCapable(MmTelFeature.MmTelCapabilities.CAPABILITY_TYPE_VIDEO);
             Log.d(mTag, "onCapabilitiesStatusChanged isVoiceCapable=" + mCurrentState.voiceCapable
                     + " isVideoCapable=" + mCurrentState.videoCapable);
+            mContext.sendBroadcast(new Intent(IMS_STATUS_CHANGED));
             notifyListenersIfNecessary();
         }
     };

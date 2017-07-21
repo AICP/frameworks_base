@@ -54,7 +54,6 @@ public class LocationControllerImpl extends BroadcastReceiver implements Locatio
     private StatusBarManager mStatusBarManager;
 
     private boolean mAreActiveLocationRequests;
-    private int mLastActiveMode;
 
     private ArrayList<LocationSettingsChangeCallback> mSettingsChangeCallbacks =
             new ArrayList<LocationSettingsChangeCallback>();
@@ -64,11 +63,6 @@ public class LocationControllerImpl extends BroadcastReceiver implements Locatio
     public LocationControllerImpl(Context context, Looper bgLooper) {
         mContext = context;
         mSlotLocation = mContext.getString(com.android.internal.R.string.status_bar_location);
-
-        // Initialize last active mode. If state was off use the default high accuracy mode
-        mLastActiveMode = getLocationCurrentState();
-        if(mLastActiveMode == Settings.Secure.LOCATION_MODE_OFF)
-            mLastActiveMode = Settings.Secure.LOCATION_MODE_HIGH_ACCURACY;
 
         // Register to listen for changes in location settings.
         IntentFilter filter = new IntentFilter();
@@ -115,14 +109,10 @@ public class LocationControllerImpl extends BroadcastReceiver implements Locatio
         }
         final ContentResolver cr = mContext.getContentResolver();
 
-        // Store last active mode if we are switching off
-        // so we can restore it at the next enable
-        if(!enabled)
-            mLastActiveMode = getLocationCurrentState();
         // When enabling location, a user consent dialog will pop up, and the
         // setting won't be fully enabled until the user accepts the agreement.
         int mode = enabled
-                ? mLastActiveMode : Settings.Secure.LOCATION_MODE_OFF;
+                ? Settings.Secure.LOCATION_MODE_PREVIOUS : Settings.Secure.LOCATION_MODE_OFF;
         // QuickSettings always runs as the owner, so specifically set the settings
         // for the current foreground user.
         return Settings.Secure
@@ -150,8 +140,7 @@ public class LocationControllerImpl extends BroadcastReceiver implements Locatio
         // setting won't be fully enabled until the user accepts the agreement.
         // QuickSettings always runs as the owner, so specifically set the settings
         // for the current foreground user.
-        return Settings.Secure.putIntForUser(cr, Settings.Secure.LOCATION_MODE,
-                mode, currentUserId);
+        return Settings.Secure.putIntForUser(cr, Settings.Secure.LOCATION_MODE, mode, currentUserId);
     }
 
     /**

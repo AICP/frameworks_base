@@ -16,14 +16,6 @@
  -->
 
 <resources>
-
-    <!-- Advanced Location tile mode -->
-    <string-array name="location_mode_entries" translatable="false">
-        <item>@string/quick_settings_location_battery_saving_label</item>
-        <item>@string/quick_settings_location_gps_only_label</item>
-        <item>@string/quick_settings_location_high_accuracy_label</item>
-    </string-array>
-
     <!-- Cardinal directions for the compass tile -->
     <string-array name="cardinal_directions">
         <item>@string/quick_settings_compass_N</item>  <!-- North -->

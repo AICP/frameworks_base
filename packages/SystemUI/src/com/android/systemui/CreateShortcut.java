@@ -73,23 +73,23 @@ public class CreateShortcut extends LauncherActivity {
         String c = intentClass.substring(intentClass.lastIndexOf(".") + 1);
 
         if (c.equals("Rotation")) {
-            return R.drawable.ic_qs_auto_rotate;
+            return R.drawable.ic_shortcut_rotation;
         } else if (c.equals("SleepScreen")) {
-            return R.drawable.ic_qs_sleep;
+            return R.drawable.ic_shortcut_screensleep;
         } else if (c.equals("Reboot")) {
-            return R.drawable.ic_qs_reboot;
+            return R.drawable.ic_shortcut_reboot;
         } else if (c.equals("Recovery")) {
-            return R.drawable.ic_qs_reboot_recovery;
+            return R.drawable.ic_shortcut_reboot_recovery;
         } else if (c.equals("VolumePanel")) {
-            return R.drawable.ic_qs_volume_panel;
+            return R.drawable.ic_shortcut_volume_panel;
         } else if (c.equals("RestartUI")) {
-            return R.drawable.ic_qs_systemui_restart;
+            return R.drawable.ic_shortcut_restart_ui;
         } else if (c.equals("PowerMenu")) {
-            return R.drawable.ic_qs_power;
+            return R.drawable.ic_shortcut_powermenu;
         } else if (c.equals("Flashlight")) {
-            return R.drawable.ic_sysbar_flashlight;
+            return R.drawable.ic_shortcut_flashlight;
         } else if (c.equals("ClearNotifications")) {
-            return R.drawable.ic_qs_clear_notifications;
+            return R.drawable.ic_shortcut_clear_notifications;
         } else {
             // Oh-Noes, you found a wild derp.
             return R.drawable.ic_sysbar_null;

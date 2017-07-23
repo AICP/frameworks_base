@@ -198,7 +198,7 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
 
-    <!-- Slim Shortcut Actions -->
+    <!-- Aicp Shortcut Actions -->
     <string name="shortcut_picker">Aicp Shortcuts</string>
     <string name="shortcut_rotation">Rotation</string>
     <string name="shortcut_reboot">Reboot</string>

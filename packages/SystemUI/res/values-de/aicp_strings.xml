@@ -21,8 +21,6 @@
     <string name="quick_settings_screenshot_label">Bildschirmfoto</string>
     <string name="quick_settings_region_screenshot_label">Bildschirm-Ausschnitt</string>
     <string name="quick_settings_adb_network">ADB-Netzwerk</string>
-    <string name="quick_settings_network_adb_enabled_label">Aktiviert</string>
-    <string name="quick_settings_network_adb_disabled_label">Deaktiviert</string>
     <string name="quick_settings_sync_label">Sync</string>
     <string name="accessibility_quick_settings_sync_off">Sync AUS</string>
     <string name="accessibility_quick_settings_sync_on">Sync AN</string>
@@ -65,17 +63,6 @@
     <string name="quick_settings_sound_ring">Klingelton</string>
     <string name="quick_settings_sound_vibrate">Vibrieren</string>
     <string name="quick_settings_sound_silent">Lautlos</string>
-    <string name="accessibility_quick_settings_location_battery_saving">Standort: Energiesparmodus</string>
-    <string name="accessibility_quick_settings_location_gps_only">Standort: Nur Gerät</string>
-    <string name="accessibility_quick_settings_location_high_accuracy">Standort: Hohe Genauigkeit</string>
-    <string name="accessibility_quick_settings_location_changed_battery_saving">Energiesparmodus wird zur Standortermittlung verwendet.</string>
-    <string name="accessibility_quick_settings_location_changed_gps_only">Gerätesensoren (GPS) werden zur Standortermittlung verwendet.</string>
-    <string name="accessibility_quick_settings_location_changed_high_accuracy">Hohe Genauigkeit wird zur Standortermittlung verwendet.</string>
-    <string name="quick_settings_location_detail_title">Standortmodus</string>
-    <string name="quick_settings_location_battery_saving_label">Energiesparmodus</string>
-    <string name="quick_settings_location_gps_only_label">Nur Gerät</string>
-    <string name="quick_settings_location_high_accuracy_label">Hohe Genauigkeit</string>
-    <string name="quick_settings_location_off_label">Standort AUS</string>
 
     <!-- Screenshot Delete Toast -->
     <string name="delete_screenshot_toast">Bildschirmfoto gelöscht</string>
@@ -83,9 +70,7 @@
     <!-- Navigation bar Tile -->
     <string name="quick_settings_navigation_bar">Navigationsleiste</string>
     <string name="quick_settings_smartbar">SmartBar</string>
-    <string name="quick_settings_smartbar_off">SmartBar AUS</string>
     <string name="quick_settings_fling">Fling</string>
-    <string name="quick_settings_fling_off">Fling AUS</string>
 
     <!-- Heads up snooze toast -->
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Pop-Up Benachrichtigungen schlummern für 1 Minute.</string>
@@ -197,6 +182,7 @@
     <string name="omnijaws_package_not_available">OmniJaws nicht verfügbar</string>
     <string name="omnijaws_service_error_long">Fehler beim Laden der Wetterdaten</string>
     <string name="omnijaws_service_disabled">Dienst deaktiviert</string>
+    <!-- <string name="omnijaws_service_error_marker" translatable="false">*</string> -->
 
     <!-- Weather string format in expanded statusbar header -->
     <string name="status_bar_weather_format"><xliff:g id="temp">%1$s</xliff:g></string>

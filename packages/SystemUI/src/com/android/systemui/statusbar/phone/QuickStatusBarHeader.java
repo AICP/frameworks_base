@@ -247,17 +247,22 @@ public class QuickStatusBarHeader extends BaseStatusBarHeader implements
         FontSizeUtils.updateFontSize(mAlarmStatusCenter, R.dimen.qs_date_collapsed_size);
         FontSizeUtils.updateFontSize(mEmergencyOnly, R.dimen.qs_emergency_calls_only_text_size);
         FontSizeUtils.updateFontSize(this, R.id.date, R.dimen.qs_time_collapsed_size);
+        FontSizeUtils.updateFontSize(this, R.id.date_center, R.dimen.qs_time_collapsed_size);
         FontSizeUtils.updateFontSize(mDateTimeGroup, R.id.time_view,
                 R.dimen.qs_time_collapsed_size);
         FontSizeUtils.updateFontSize(mDateTimeCenterGroup, R.id.time_view,
                 R.dimen.qs_time_collapsed_size);
         FontSizeUtils.updateFontSize(mDateTimeAlarmGroup, R.id.time_view,
                 R.dimen.qs_time_collapsed_size);
+        FontSizeUtils.updateFontSize(mDateTimeAlarmCenterGroup, R.id.time_view,
+                R.dimen.qs_time_collapsed_size);
         FontSizeUtils.updateFontSize(mDateTimeGroup, R.id.am_pm_view,
                 R.dimen.qs_time_collapsed_size);
         FontSizeUtils.updateFontSize(mDateTimeCenterGroup, R.id.am_pm_view,
                 R.dimen.qs_time_collapsed_size);
         FontSizeUtils.updateFontSize(mDateTimeAlarmGroup, R.id.am_pm_view,
+                R.dimen.qs_time_collapsed_size);
+        FontSizeUtils.updateFontSize(mDateTimeAlarmCenterGroup, R.id.am_pm_view,
                 R.dimen.qs_time_collapsed_size);
 
         Builder builder = new Builder()

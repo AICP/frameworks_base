@@ -48,7 +48,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.ParcelFileDescriptor;
 import android.os.Process;
-import android.os.RemoteException;
 import android.os.UserHandle;
 import android.provider.Settings;
 import android.support.v7.widget.LinearLayoutManager;
@@ -223,7 +222,7 @@ public class RecentPanelView {
                                 ActivityManagerNative.getDefault().resizeStack(
                                                     ActivityManager.StackId.DOCKED_STACK_ID,
                                                     null, true, true, false, -1);
-                            } catch (RemoteException e) {}
+                            } catch (Exception e) {}
                             wasDocked = true;
                         }
                         ActivityOptions options = ActivityOptions.makeBasic();
@@ -238,7 +237,7 @@ public class RecentPanelView {
                                              options.toBundle());
                                     mController.openLastApptoBottom();
                                     clearOptions();
-                                } catch (RemoteException e) {}
+                                } catch (Exception e) {}
                             }
                         // if we disabled a running multiwindow mode, just wait a little bit before
                         // docking the new apps
@@ -456,7 +455,7 @@ public class RecentPanelView {
                         ActivityManagerNative.getDefault().resizeStack(
                                             ActivityManager.StackId.DOCKED_STACK_ID,
                                             null, true, true, false, -1);
-                    } catch (RemoteException e) {}
+                    } catch (Exception e) {}
                     wasDocked = true;
                 }
 
@@ -479,7 +478,7 @@ public class RecentPanelView {
                             // No need to keep the panel open, we already chose both
                             // top and bottom apps
                             mController.closeRecents();
-                        } catch (RemoteException e) {}
+                        } catch (Exception e) {}
                     }
                 /*if we disabled a running multiwindow mode, just wait a little bit
                 before docking the new apps*/

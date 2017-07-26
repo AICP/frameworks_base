@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (C) 2017 AICP Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="24dp"
     android:height="24dp"
@@ -6,7 +21,7 @@
     android:viewportHeight="24">
 
     <path
-        android:fillColor="#fff"
+        android:fillColor="#ffffff"
         android:pathData="M16.636,13.422h3.705a0.757,0.757,0,0,1,0,1.514H14.784a0.759,0.759,0,0,1-.532-1.3l4.239-4.165H14.784a0.757,0.757,0,1,1,0-1.514h5.557a0.757,0.757,0,0,1,.533,1.3Zm-4.083,7.2a0.758,0.758,0,0,1-.757
 .757
 H7.362a0.759,0.759,0,0,1-.532-1.3l3.116-3.06H7.362a0.757,0.757,0,1,1,0-1.514H11.8a0.757,0.757,0,0,1,.531,1.3l-3.115,3.06H11.8A0.756,0.756,0,0,1,12.553,20.619Zm-0.266-9.508a0.757,0.757,0,0,1-.757

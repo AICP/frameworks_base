@@ -206,6 +206,8 @@
 
     <protected-broadcast android:name="android.intent.action.SCREEN_STATE_SERVICE_UPDATE" />
 
+    <protected-broadcast android:name="android.intent.action.POWERMENU" />
+
     <application
         android:name=".SystemUIApplication"
         android:persistent="true"
@@ -467,11 +469,11 @@
             android:launchMode="singleTop"
             android:excludeFromRecents="true" />
 
-        <!-- Slim shortcut picker -->
+        <!-- Aicp shortcut picker -->
         <activity
             android:name="com.android.systemui.CreateShortcut"
             android:label="@string/shortcut_picker"
-            android:icon="@drawable/ic_qs_reboot_recovery"
+            android:icon="@drawable/aicp_shortcut"
             android:configChanges="orientation|keyboardHidden|screenSize" >
             <intent-filter>
                 <action android:name="android.intent.action.CREATE_SHORTCUT" />
@@ -483,7 +485,7 @@
         <activity
             android:name="com.android.systemui.shortcuts.Reboot"
             android:label="@string/shortcut_reboot"
-            android:icon="@drawable/ic_qs_reboot"
+            android:icon="@drawable/ic_shortcut_reboot"
             android:theme="@android:style/Theme.NoDisplay"
             android:excludeFromRecents="true"
             android:launchMode="singleInstance" >
@@ -495,7 +497,7 @@
         <activity
             android:name="com.android.systemui.shortcuts.Recovery"
             android:label="@string/shortcut_recovery"
-            android:icon="@drawable/ic_qs_reboot_recovery"
+            android:icon="@drawable/ic_shortcut_reboot_recovery"
             android:theme="@android:style/Theme.NoDisplay"
             android:excludeFromRecents="true"
             android:launchMode="singleInstance" >
@@ -507,7 +509,7 @@
         <activity
             android:name="com.android.systemui.shortcuts.Rotation"
             android:label="@string/shortcut_rotation"
-            android:icon="@drawable/ic_qs_auto_rotate"
+            android:icon="@drawable/ic_shortcut_rotation"
             android:theme="@android:style/Theme.NoDisplay"
             android:excludeFromRecents="true"
             android:launchMode="singleInstance" >
@@ -519,7 +521,7 @@
         <activity
             android:name="com.android.systemui.shortcuts.SleepScreen"
             android:label="@string/shortcut_screensleep"
-            android:icon="@drawable/ic_qs_sleep"
+            android:icon="@drawable/ic_shortcut_screensleep"
             android:theme="@android:style/Theme.NoDisplay"
             android:excludeFromRecents="true"
             android:launchMode="singleInstance" >
@@ -532,7 +534,7 @@
         <activity
             android:name="com.android.systemui.shortcuts.VolumePanel"
             android:label="@string/shortcut_volume"
-            android:icon="@drawable/ic_qs_volume_panel"
+            android:icon="@drawable/ic_shortcut_volume_panel"
             android:theme="@android:style/Theme.NoDisplay"
             android:excludeFromRecents="true"
             android:launchMode="singleInstance" >
@@ -545,7 +547,7 @@
         <activity
             android:name="com.android.systemui.shortcuts.RestartUI"
             android:label="@string/shortcut_restart_ui"
-            android:icon="@drawable/ic_qs_systemui_restart"
+            android:icon="@drawable/ic_shortcut_restart_ui"
             android:theme="@android:style/Theme.NoDisplay"
             android:excludeFromRecents="true"
             android:launchMode="singleInstance" >
@@ -558,7 +560,7 @@
         <activity
             android:name="com.android.systemui.shortcuts.PowerMenu"
             android:label="@string/shortcut_powermenu"
-            android:icon="@drawable/ic_qs_power"
+            android:icon="@drawable/ic_shortcut_powermenu"
             android:theme="@android:style/Theme.NoDisplay"
             android:excludeFromRecents="true"
             android:launchMode="singleInstance" >
@@ -571,7 +573,7 @@
         <activity
             android:name="com.android.systemui.shortcuts.Flashlight"
             android:label="@string/shortcut_flashlight"
-            android:icon="@drawable/ic_sysbar_flashlight"
+            android:icon="@drawable/ic_shortcut_flashlight"
             android:theme="@android:style/Theme.NoDisplay"
             android:excludeFromRecents="true"
             android:launchMode="singleInstance" >
@@ -583,7 +585,7 @@
         <activity
             android:name="com.android.systemui.shortcuts.ClearNotifications"
             android:label="@string/shortcut_clear_notifications"
-            android:icon="@drawable/ic_qs_clear_notifications"
+            android:icon="@drawable/ic_shortcut_clear_notifications"
             android:theme="@android:style/Theme.NoDisplay"
             android:excludeFromRecents="true"
             android:launchMode="singleInstance" >

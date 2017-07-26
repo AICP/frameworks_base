@@ -78,6 +78,8 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Our main view controller which handles and construct most of the view
@@ -1007,7 +1009,7 @@ public class RecentPanelView {
             mCounter = 0;
 
             // Check and get user favorites.
-            final ArrayList<String> favList = new ArrayList<>();
+            final Set<String> favList = new HashSet<>();
             final ArrayList<TaskDescription> nonFavoriteTasks = new ArrayList<>();
             if (mCurrentFavorites != null && !mCurrentFavorites.isEmpty()) {
                 for (String favorite : mCurrentFavorites.split("\\|")) {
@@ -1089,12 +1091,9 @@ public class RecentPanelView {
                         am.removeTask(item.persistentTaskId);
                         continue;
                     }
-                    for (String fav : favList) {
-                        if (fav.equals(item.identifier)) {
-                            item.setIsFavorite(true);
-                            break;
-                        }
-                    }
+                    if (favList.contains(item.identifier)) {
+                        item.setIsFavorite(true);
+                     }
 
                     if (topTask) {
                         if (mShowTopTask || mIsScreenPinningEnabled) {

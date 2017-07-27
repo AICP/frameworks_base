@@ -5344,6 +5344,13 @@ public final class Settings {
         public static final String QS_DATE_TIME_CENTER = "qs_date_time_center";
 
         /**
+         * Whether the battery light should be enabled on DND mode
+         * The value is boolean (1 or 0).
+         * @hide
+         */
+        public static final String BATTERY_LIGHT_ALLOW_ON_DND = "battery_light_allow_on_dnd";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *

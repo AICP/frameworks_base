@@ -181,6 +181,10 @@ public final class BatteryService extends SystemService {
     private boolean mBatteryBlendColorsReverse;
     private boolean mMultiColorLed;
 
+    //Battery light on DND
+    private boolean mAllowBatteryLightOnDnd;
+    private boolean mIsDndActive;
+
     private boolean mSentLowBatteryBroadcast = false;
 
     private final int mVbattSamplingIntervalMsec = 30000; /* sampling frequency - 30 seconds */
@@ -1012,7 +1016,7 @@ private boolean isDashCharger() {
             mNotificationLedBrightnessLevel = mUseSegmentedBatteryLed ? level :
                     LIGHT_BRIGHTNESS_MAXIMUM;
 
-            if (!mLightEnabled) {
+            if (!mLightEnabled || (mIsDndActive && !mAllowBatteryLightOnDnd)) {
                 // No lights if explicitly disabled
                 mBatteryLight.turnOff();
             } else if (level < mLowBatteryWarningLevel) {
@@ -1176,6 +1180,12 @@ private boolean isDashCharger() {
                 resolver.registerContentObserver(
                         Settings.System.getUriFor(Settings.System.BATTERY_LIGHT_BLEND_COLOR_REVERSE),
                         false, this, UserHandle.USER_ALL);
+                resolver.registerContentObserver(
+                        Settings.System.getUriFor(Settings.System.BATTERY_LIGHT_ALLOW_ON_DND),
+                        false, this, UserHandle.USER_ALL);
+                resolver.registerContentObserver(
+                        Settings.Global.getUriFor(Settings.Global.ZEN_MODE),
+                        false, this, UserHandle.USER_ALL);
             }
 
             update();
@@ -1196,6 +1206,13 @@ private boolean isDashCharger() {
             // Low battery pulse
             mLedPulseEnabled = CMSettings.System.getInt(resolver,
                         CMSettings.System.BATTERY_LIGHT_PULSE, 1) != 0;
+
+            // Battery light enabled on DND
+            mAllowBatteryLightOnDnd = Settings.System.getInt(resolver,
+                    Settings.System.BATTERY_LIGHT_ALLOW_ON_DND, 1) != 0;
+            mIsDndActive = Settings.Global.getInt(resolver,
+                    Settings.Global.ZEN_MODE, Settings.Global.ZEN_MODE_OFF)
+                    != Settings.Global.ZEN_MODE_OFF;
 
             // Light colors
             mBatteryLowARGB = CMSettings.System.getInt(resolver,

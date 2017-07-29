@@ -170,8 +170,8 @@
     <string name="app_float_item_title">Float view</string>
     <string name="app_stop_item_title">Kill app</string>
 
-    <!-- Slim recents membar -->
-    <string name="recents_free_ram">RAM: %1$d MB free</string>
+    <!-- recents membar -->
+    <string name="recents_free_ram">FREE RAM: %1$d MB</string>
 
     <!-- OmniJAWS -->
     <string name="omnijaws_service_error">Error</string>

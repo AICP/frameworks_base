@@ -289,6 +289,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private static final int KEY_ACTION_SINGLE_HAND_LEFT = 10;
     private static final int KEY_ACTION_SINGLE_HAND_RIGHT = 11;
     private static final int KEY_ACTION_SCREENSHOT = 12;
+    private static final int KEY_ACTION_EXPAND_NOTIFICATIONS = 13;
 
     // Masks for checking presence of hardware keys.
     // Must match values in core/res/res/values/config.xml
@@ -2156,6 +2157,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 break;
             case KEY_ACTION_SCREENSHOT:
                 takeScreenshot(TAKE_SCREENSHOT_FULLSCREEN);
+                break;
+            case KEY_ACTION_EXPAND_NOTIFICATIONS:
+                expandNotifications();
                 break;
             default:
                 break;
@@ -4261,14 +4265,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             return -1;
         } else if (keyCode == KeyEvent.KEYCODE_N && event.isMetaPressed()) {
             if (down) {
-                IStatusBarService service = getStatusBarService();
-                if (service != null) {
-                    try {
-                        service.expandNotificationsPanel();
-                    } catch (RemoteException e) {
-                        // do nothing.
-                    }
-                }
+                expandNotifications();
             }
         } else if (keyCode == KeyEvent.KEYCODE_S && event.isMetaPressed()
                 && event.isCtrlPressed()) {
@@ -9689,5 +9686,16 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private void checkSettings() {
         mScreenshotDelay = Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.SCREENSHOT_DELAY, 1);
+    }
+
+    private void expandNotifications(){
+        IStatusBarService service = getStatusBarService();
+        if (service != null) {
+            try {
+                service.expandNotificationsPanel();
+            } catch (RemoteException e) {
+                // do nothing.
+            }
+        }
     }
 }

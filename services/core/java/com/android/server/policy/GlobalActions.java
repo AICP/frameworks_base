@@ -627,6 +627,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
         @Override
         public boolean onLongPress() {
+            mHandler.sendEmptyMessage(MESSAGE_DISMISS);
             takeScreenshot(mScreenshotSelectedRegion);
             return false;
         }
@@ -966,21 +967,21 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
         public void setScreenshotType(int screenshotType) {
             if (Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.SCREENSHOT_TYPE, 0) == 1) {
-            mScreenshotSelectedRegion = screenshotType;
+                    Settings.System.SCREENSHOT_TYPE, 0) == 1) {
+                mScreenshotSelectedRegion = screenshotType;
             } else {
-            mScreenshotFullscreen = screenshotType;
+                mScreenshotFullscreen = screenshotType;
             }
         }
 
         @Override
         public void run() {
-        if (Settings.System.getInt(mContext.getContentResolver(),
-              Settings.System.SCREENSHOT_TYPE, 0) == 1) {
-           takeScreenshot(mScreenshotSelectedRegion);
-        } else {
-           takeScreenshot(mScreenshotFullscreen);
-           }
+            if (Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.SCREENSHOT_TYPE, 0) == 1) {
+                takeScreenshot(mScreenshotSelectedRegion);
+            } else {
+                takeScreenshot(mScreenshotFullscreen);
+            }
         }
     }
 

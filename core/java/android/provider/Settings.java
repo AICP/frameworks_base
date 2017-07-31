@@ -5351,6 +5351,12 @@ public final class Settings {
         public static final String BATTERY_LIGHT_ALLOW_ON_DND = "battery_light_allow_on_dnd";
 
         /**
+         * Whether to enable the vibration mode entered vibration indicator
+         * @hide
+         */
+        public static final String VIBRATION_MODE_INDICATION = "vibration_mode_indication";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *

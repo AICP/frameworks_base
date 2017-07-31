@@ -281,6 +281,7 @@ public class BrightnessController implements ToggleSlider.Listener {
         mIcon = icon;
         mIconLeft = iconLeft;
         mControl = control;
+        Dependency.initDependencies(context.getApplicationContext());
         mBackgroundHandler = new Handler((Looper) Dependency.get(Dependency.BG_LOOPER));
         mUserTracker = new CurrentUserTracker(mContext) {
             @Override

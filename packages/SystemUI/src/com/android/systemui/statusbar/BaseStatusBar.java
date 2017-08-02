@@ -1576,6 +1576,12 @@ public abstract class BaseStatusBar extends SystemUI implements
         Log.d(TAG, "StatusBar API screenPinningStateChanged = " + enabled);
     }
 
+    @Override
+    public void leftInLandscapeChanged(boolean isLeft) {
+        if (DEBUG)
+            Log.d(TAG, "StatusBar API leftInLandscapeChanged = " + isLeft);
+    }
+
     protected H createHandler() {
          return new H();
     }

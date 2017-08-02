@@ -111,6 +111,7 @@ oneway interface IStatusBar
     void showAssistDisclosure();
     void startAssist(in Bundle args);
     void screenPinningStateChanged(boolean enabled);
+    void leftInLandscapeChanged(boolean isLeft);
 
     /**
      * Shows the TV's picture-in-picture menu if an activity is in picture-in-picture mode.

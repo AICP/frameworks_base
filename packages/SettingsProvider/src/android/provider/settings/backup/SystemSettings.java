@@ -159,7 +159,8 @@ public class SystemSettings {
                 Settings.System.STATUS_BAR_LOGO_COLOR,
                 Settings.System.STATUS_BAR_LOGO_POSITION,
                 Settings.System.STATUS_BAR_LOGO_STYLE,
-                Settings.System.STATUS_BAR_LOGO_COLOR_ACCENT
+                Settings.System.STATUS_BAR_LOGO_COLOR_ACCENT,
+                Settings.System.SENSOR_BLOCK
         ));
         if (Flags.backUpSmoothDisplayAndForcePeakRefreshRate()) {
             settings.add(Settings.System.PEAK_REFRESH_RATE);

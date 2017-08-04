@@ -6885,6 +6885,12 @@ public final class Settings {
         public static final String STATUS_BAR_LOGO_COLOR_ACCENT = "status_bar_logo_color_accent";
 
         /**
+         * Sensor block per-package
+         * @hide
+         */
+        public static final String SENSOR_BLOCK = "sensor_block";
+
+        /**
          * IMPORTANT: If you add a new public settings you also have to add it to
          * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
          * it to PRIVATE_SETTINGS below. Also add a validator that can validate
@@ -7122,6 +7128,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_ENABLE_CHARGING_COLOR);
             PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_BLEND_COLORS_REVERSE);
             PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_BLEND_DARK_COLORS_REVERSE);
+            PRIVATE_SETTINGS.add(SENSOR_BLOCK);
         }
 
         /**

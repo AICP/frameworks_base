@@ -346,5 +346,6 @@ public class SystemSettingsValidators {
         // SLIM RECENTS END
 
         VALIDATORS.put(System.QS_LAYOUT_COLUMNS_ROWS, NON_NEGATIVE_INTEGER_VALIDATOR);
+        VALIDATORS.put(System.SENSOR_BLOCK, BOOLEAN_VALIDATOR);
     }
 }

@@ -194,7 +194,8 @@ public class SystemSettings {
                 Settings.System.SLIM_RECENTS_BLACKLIST_VALUES,
                 Settings.System.SLIM_RECENT_ENTER_EXIT_ANIMATION,
                 // SLIM RECENTS END
-                Settings.System.QS_LAYOUT_COLUMNS_ROWS
+                Settings.System.QS_LAYOUT_COLUMNS_ROWS,
+                Settings.System.SENSOR_BLOCK
         ));
         if (Flags.backUpSmoothDisplayAndForcePeakRefreshRate()) {
             settings.add(Settings.System.PEAK_REFRESH_RATE);

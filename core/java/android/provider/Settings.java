@@ -4351,6 +4351,12 @@ public final class Settings {
         public static final String SLIM_RECENTS_CORNER_RADIUS = "slim_recents_corner_radius";
 
         /**
+         * Sensor block per-package
+         * @hide
+         */
+        public static final String SENSOR_BLOCK = "sensor_block";
+
+        /**
          * --- AICP System settings end
          *  Add new system settings above this comment
          */

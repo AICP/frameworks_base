@@ -4779,6 +4779,15 @@ public final class Settings {
         private static final Validator FINGERPRINT_SUCCESS_VIB_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
+        /**
+         * Sensor block per-package
+         * @hide
+         */
+        public static final String SENSOR_BLOCK = "sensor_block";
+
+        private static final Validator SENSOR_BLOCK_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -4881,6 +4890,7 @@ public final class Settings {
             NETWORK_TRAFFIC_STATE,
             NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD,
             FINGERPRINT_SUCCESS_VIB,
+            SENSOR_BLOCK
             // AICP Settings end
         };
 
@@ -5030,6 +5040,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_STATE);
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD);
             PRIVATE_SETTINGS.add(FINGERPRINT_SUCCESS_VIB);
+            PRIVATE_SETTINGS.add(SENSOR_BLOCK);
             // AICP Settings end
         }
 
@@ -5162,6 +5173,7 @@ public final class Settings {
             VALIDATORS.put(NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD, NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD_VALIDATOR);
             VALIDATORS.put(FINGERPRINT_SUCCESS_VIB,
                     FINGERPRINT_SUCCESS_VIB_VALIDATOR);
+            VALIDATORS.put(SENSOR_BLOCK, SENSOR_BLOCK_VALIDATOR);
             // AICP Settings end
         }
 

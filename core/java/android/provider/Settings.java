@@ -5721,6 +5721,12 @@ public final class Settings {
          */
         public static final String NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD = "network_traffic_autohide_threshold";
 
+        /**
+         * Sensor block per-package
+         * @hide
+         */
+        public static final String SENSOR_BLOCK = "sensor_block";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5819,6 +5825,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(FINGERPRINT_SUCCESS_VIB, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(NETWORK_TRAFFIC_STATE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(SENSOR_BLOCK, BOOLEAN_VALIDATOR);
         }
 
         /**

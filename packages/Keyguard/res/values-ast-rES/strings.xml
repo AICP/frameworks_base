@@ -215,5 +215,5 @@
     <item quantity="other">Hai <xliff:g id="number">%d</xliff:g> hores que nun se desbloquia\'l preséu. Confirma la contraseña.</item>
   </plurals>
   <!-- Fingerprint hint message when finger was not recognized.-->
-  <string name="fingerprint_not_recognized">Non reconocío</string>
+  <string name="fingerprint_not_recognized">Nun se reconocío</string>
 </resources>

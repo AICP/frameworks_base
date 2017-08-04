@@ -91,7 +91,7 @@
   <!-- Title of storage root location that contains recently modified or used documents [CHAR LIMIT=24] -->
   <string name="root_recent">Recién</string>
   <!-- Subtitle of storage root indicating the total free space available, in bytes [CHAR LIMIT=24] -->
-  <string name="root_available_bytes"><xliff:g id="size" example="3GB">%1$s</xliff:g> d\'espaciu llibre</string>
+  <string name="root_available_bytes"><xliff:g id="size" example="3GB">%1$s</xliff:g> llibre</string>
   <!-- Header title for list of storage roots that contains cloud services [CHAR LIMIT=24] -->
   <string name="root_type_service">Servicios d\'almacenamientu</string>
   <!-- Header title for list of storage roots that contains shortcuts to documents that may be available elsewhere [CHAR LIMIT=24] -->

@@ -16,6 +16,8 @@
 
 #define LOG_TAG "Zygote"
 
+#include <sstream>
+
 // sys/mount.h has to come before linux/fs.h due to redefinition of MS_RDONLY, MS_BIND, etc
 #include <sys/mount.h>
 #include <linux/fs.h>
@@ -53,6 +55,7 @@
 #include "ScopedLocalRef.h"
 #include "ScopedPrimitiveArray.h"
 #include "ScopedUtfChars.h"
+#include "fd_utils-inl.h"
 
 #include "nativebridge/native_bridge.h"
 
@@ -76,6 +79,12 @@ enum MountExternalKind {
 
 static void RuntimeAbort(JNIEnv* env) {
   env->FatalError("RuntimeAbort");
+}
+
+static void RuntimeAbort(JNIEnv* env, int line, const char* msg) {
+  std::ostringstream oss;
+  oss << __FILE__ << ":" << line << ": " << msg;
+  env->FatalError(oss.str().c_str());
 }
 
 // This signal handler is for zygote mode, since the zygote must reap its children
@@ -439,6 +448,9 @@ static void SetForkLoad(bool boost) {
 }
 #endif
 
+// The list of open zygote file descriptors.
+static FileDescriptorTable* gOpenFdTable = NULL;
+
 // Utility routine to fork zygote and specialize the child process.
 static pid_t ForkAndSpecializeCommon(JNIEnv* env, uid_t uid, gid_t gid, jintArray javaGids,
                                      jint debug_flags, jobjectArray javaRlimits,
@@ -453,6 +465,36 @@ static pid_t ForkAndSpecializeCommon(JNIEnv* env, uid_t uid, gid_t gid, jintArra
   SetForkLoad(true);
 #endif
 
+  sigset_t sigchld;
+  sigemptyset(&sigchld);
+  sigaddset(&sigchld, SIGCHLD);
+
+  // Temporarily block SIGCHLD during forks. The SIGCHLD handler might
+  // log, which would result in the logging FDs we close being reopened.
+  // This would cause failures because the FDs are not whitelisted.
+  //
+  // Note that the zygote process is single threaded at this point.
+  if (sigprocmask(SIG_BLOCK, &sigchld, NULL) == -1) {
+    ALOGE("sigprocmask(SIG_SETMASK, { SIGCHLD }) failed: %s", strerror(errno));
+    RuntimeAbort(env, __LINE__, "Call to sigprocmask(SIG_BLOCK, { SIGCHLD }) failed.");
+  }
+
+  // Close any logging related FDs before we start evaluating the list of
+  // file descriptors.
+  __android_log_close();
+
+  // If this is the first fork for this zygote, create the open FD table.
+  // If it isn't, we just need to check whether the list of open files has
+  // changed (and it shouldn't in the normal case).
+  if (gOpenFdTable == NULL) {
+    gOpenFdTable = FileDescriptorTable::Create();
+    if (gOpenFdTable == NULL) {
+      RuntimeAbort(env, __LINE__, "Unable to construct file descriptor table.");
+    }
+  } else if (!gOpenFdTable->Restat()) {
+    RuntimeAbort(env, __LINE__, "Unable to restat file descriptor table.");
+  }
+
   pid_t pid = fork();
 
   if (pid == 0) {
@@ -461,6 +503,17 @@ static pid_t ForkAndSpecializeCommon(JNIEnv* env, uid_t uid, gid_t gid, jintArra
 
     // Clean up any descriptors which must be closed immediately
     DetachDescriptors(env, fdsToClose);
+
+    // Re-open all remaining open file descriptors so that they aren't shared
+    // with the zygote across a fork.
+    if (!gOpenFdTable->ReopenOrDetach()) {
+      RuntimeAbort(env, __LINE__, "Unable to reopen whitelisted descriptors.");
+    }
+
+    if (sigprocmask(SIG_UNBLOCK, &sigchld, NULL) == -1) {
+      ALOGE("sigprocmask(SIG_SETMASK, { SIGCHLD }) failed: %s", strerror(errno));
+      RuntimeAbort(env, __LINE__, "Call to sigprocmask(SIG_UNBLOCK, { SIGCHLD }) failed.");
+    }
 
     // Keep capabilities across UID change, unless we're staying root.
     if (uid != 0) {
@@ -594,11 +647,11 @@ static pid_t ForkAndSpecializeCommon(JNIEnv* env, uid_t uid, gid_t gid, jintArra
   } else if (pid > 0) {
     // the parent process
 
-#ifdef ENABLE_SCHED_BOOST
-    // unset scheduler knob
-    SetForkLoad(false);
-#endif
-
+    // We blocked SIGCHLD prior to a fork, we unblock it here.
+    if (sigprocmask(SIG_UNBLOCK, &sigchld, NULL) == -1) {
+      ALOGE("sigprocmask(SIG_SETMASK, { SIGCHLD }) failed: %s", strerror(errno));
+      RuntimeAbort(env, __LINE__, "Call to sigprocmask(SIG_UNBLOCK, { SIGCHLD }) failed.");
+    }
   }
   return pid;
 }

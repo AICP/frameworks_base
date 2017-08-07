@@ -6938,7 +6938,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
                         // Needs delay or else we'll be taking a screenshot of the dialog each time
                         try {
-                            Thread.sleep(mScreenshotDelay * 1000);
+                            Thread.sleep(mScreenshotDelay);
                         } catch (InterruptedException ie) {
                             // Do nothing
                         }
@@ -7179,6 +7179,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                             mScreenshotChordVolumeDownKeyConsumed = false;
                             cancelPendingPowerKeyAction();
                             cancelPendingScreenrecordChordAction();
+                            checkSettings();
                             interceptScreenshotChord();
                         }
                     } else {
@@ -9875,7 +9876,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
     private void checkSettings() {
         mScreenshotDelay = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.SCREENSHOT_DELAY, 1);
+                Settings.System.SCREENSHOT_DELAY, 1000);
     }
 
     private void expandNotifications(){

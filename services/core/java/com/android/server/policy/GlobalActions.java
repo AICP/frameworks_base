@@ -128,6 +128,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
     private ServiceConnection mScreenshotConnection = null;
     private int mScreenshotFullscreen = TAKE_SCREENSHOT_FULLSCREEN;
     private int mScreenshotSelectedRegion = TAKE_SCREENSHOT_SELECTED_REGION;
+    private int mScreenshotDelay;
 
     private final Context mContext;
     private final WindowManagerFuncs mWindowManagerFuncs;
@@ -155,7 +156,6 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
     // Power menu customizations
     String mActions;
-    private int mScreenshotDelay;
 
     private BitSet mAirplaneModeBits;
     private final List<PhoneStateListener> mPhoneStateListeners = new ArrayList<>();
@@ -1036,7 +1036,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
                         /* wait for the dialog box to close */
                         try {
-                             Thread.sleep(mScreenshotDelay * 1000);
+                             Thread.sleep(mScreenshotDelay);
                         } catch (InterruptedException ie) {
                             // Do nothing
                         }
@@ -1134,11 +1134,6 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
             mContext.registerReceiver(mRingerModeReceiver, filter);
         }
     }
-   private void checkSettings() {
-        mScreenshotDelay = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.SCREENSHOT_DELAY, 1);
-    }
-
 
     private void refreshSilentMode() {
         if (!mHasVibrator) {
@@ -1851,5 +1846,10 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
             }
             return super.onKeyUp(keyCode, event);
         }
+    }
+
+    private void checkSettings() {
+        mScreenshotDelay = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.SCREENSHOT_DELAY, 1000);
     }
 }

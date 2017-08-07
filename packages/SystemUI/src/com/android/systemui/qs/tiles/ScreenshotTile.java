@@ -46,6 +46,8 @@ public class ScreenshotTile extends QSTile<QSTile.BooleanState> {
     private final Object mScreenshotLock = new Object();
     private ServiceConnection mScreenshotConnection = null;
 
+    private int mScreenshotDelay;
+
     public ScreenshotTile(Host host) {
         super(host);
     }
@@ -69,12 +71,10 @@ public class ScreenshotTile extends QSTile<QSTile.BooleanState> {
     @Override
     public void handleLongClick() {
         mHost.collapsePanels();
-        /* minimum delay is set as 1 second to */
+        checkSettings();
         /* wait for the panel to close */
-        int mScreenshotDelay = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.SCREENSHOT_DELAY, 1);
         try {
-             Thread.sleep(mScreenshotDelay * 1000);
+             Thread.sleep(mScreenshotDelay);
         } catch (InterruptedException ie) {
              // Do nothing
         }
@@ -173,5 +173,10 @@ public class ScreenshotTile extends QSTile<QSTile.BooleanState> {
                 mHandler.postDelayed(mScreenshotTimeout, 10000);
             }
         }
+    }
+
+    private void checkSettings() {
+        mScreenshotDelay = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.SCREENSHOT_DELAY, 1000);
     }
 }

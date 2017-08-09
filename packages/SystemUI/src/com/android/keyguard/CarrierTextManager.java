@@ -467,7 +467,7 @@ public class CarrierTextManager {
 
             case NetworkLocked:
                 carrierText = makeCarrierStringOnEmergencyCapable(
-                        mContext.getText(R.string.keyguard_network_locked_message), text);
+                        mContext.getText(R.string.keyguard_perso_locked_message), text);
                 break;
 
             case SimMissing:
@@ -555,7 +555,7 @@ public class CarrierTextManager {
             case TelephonyManager.SIM_STATE_ABSENT:
                 return CarrierTextManager.StatusMode.SimMissing;
             case TelephonyManager.SIM_STATE_NETWORK_LOCKED:
-                return CarrierTextManager.StatusMode.SimMissingLocked;
+                return CarrierTextManager.StatusMode.NetworkLocked;
             case TelephonyManager.SIM_STATE_NOT_READY:
                 return CarrierTextManager.StatusMode.SimNotReady;
             case TelephonyManager.SIM_STATE_PIN_REQUIRED:

@@ -613,6 +613,8 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         private getScreenshotAction() {
             super(com.android.internal.R.drawable.ic_lock_screenshot,
                     R.string.global_action_screenshot);
+
+            setStatus(mContext.getString(R.string.global_actions_screenshot_status));
         }
 
         @Override

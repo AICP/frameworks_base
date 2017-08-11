@@ -1803,6 +1803,8 @@
     <string-array name="config_locationProviderPackageNames" translatable="false">
         <!-- The standard AOSP fused location provider -->
         <item>com.android.location.fused</item>
+        <!-- microG unifiednlp location provider (standalone) -->
+        <item>org.microg.nlp</item>
     </string-array>
 
     <!-- Package name(s) of Advanced Driver Assistance applications. These packages have additional

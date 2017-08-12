@@ -81,6 +81,7 @@ interface IStatusBarService
     void startAssist(in Bundle args);
     void screenPinningStateChanged(boolean enabled);
     void leftInLandscapeChanged(boolean isLeft);
+    void toggleFlashlight();
 
     void setAutoRotate(boolean enabled);
 

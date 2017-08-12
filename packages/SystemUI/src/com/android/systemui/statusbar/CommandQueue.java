@@ -85,6 +85,7 @@ public class CommandQueue extends IStatusBar.Stub {
     private static final int MSG_TOGGLE_SCREENSHOT             = 38 << MSG_SHIFT;
     private static final int MSG_START_CUSTOM_INTENT_AFTER_KEYGUARD = 39 << MSG_SHIFT;
     private static final int MSG_LEFT_IN_LANDSCAPE_STATE_CHANGED = 40 << MSG_SHIFT;
+    private static final int MSG_TOGGLE_FLASHLIGHT = 41 << MSG_SHIFT;
 
     public static final int FLAG_EXCLUDE_NONE = 0;
     public static final int FLAG_EXCLUDE_SEARCH_PANEL = 1 << 0;
@@ -148,10 +149,18 @@ public class CommandQueue extends IStatusBar.Stub {
         public void toggleOrientationListener(boolean enable);
         public void showCustomIntentAfterKeyguard(Intent intent);
         void leftInLandscapeChanged(boolean isLeft);
+        void toggleFlashlight();
     }
 
     public CommandQueue(Callbacks callbacks) {
         mCallbacks = callbacks;
+    }
+
+    public void toggleFlashlight() {
+        synchronized (mLock) {
+            mHandler.removeMessages(MSG_TOGGLE_FLASHLIGHT);
+            mHandler.sendEmptyMessage(MSG_TOGGLE_FLASHLIGHT);
+        }
     }
 
     public void leftInLandscapeChanged(boolean isLeft) {
@@ -607,6 +616,9 @@ public class CommandQueue extends IStatusBar.Stub {
                     break;
                 case MSG_LEFT_IN_LANDSCAPE_STATE_CHANGED:
                     mCallbacks.leftInLandscapeChanged(msg.arg1 != 0);
+                    break;
+                case MSG_TOGGLE_FLASHLIGHT:
+                    mCallbacks.toggleFlashlight();
                     break;
             }
         }

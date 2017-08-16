@@ -52,10 +52,6 @@ public class WifiCommand extends Svc.Command {
                 IWifiManager wifiMgr
                         = IWifiManager.Stub.asInterface(ServiceManager.getService(Context.WIFI_SERVICE));
                 try {
-                    if (wifiMgr == null) {
-                        System.err.println("Wi-Fi service is not ready");
-                        return;
-                    }
                     wifiMgr.setWifiEnabled("com.android.shell", flag);
                 }
                 catch (RemoteException e) {

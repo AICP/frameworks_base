@@ -167,11 +167,6 @@ public class AicpUtils {
     private static final String ACTION_RESTORE_HOME_STACK = APP_PACKAGE_NAME + ".ACTION_RESTORE_HOME_STACK";
 
     /**
-     * Intent broadcast action for hide the omniswitch overlay
-     */
-    private static final String ACTION_HIDE_OVERLAY = APP_PACKAGE_NAME + ".ACTION_HIDE_OVERLAY";
-
-    /**
      * Intent for launching the omniswitch settings actvity
      */
     public static Intent INTENT_LAUNCH_APP = new Intent(Intent.ACTION_MAIN)
@@ -184,6 +179,7 @@ public class AicpUtils {
             "com.chelpus.lackypatch", // used by Lucky Patcher
             "com.android.vending.billing.InAppBillingService.LACK", // used by Lucky Patcher
             "com.android.vending.billing.InAppBillingService.LOCK", // used by Lucky Patcher
+            "com.android.vending.billing.InAppBillingService.CLON", // used by Lucky Patcher
             "com.android.vendinc", // used by Uret
             "uret.jasi2169.patcher" // used by Uret
         };
@@ -199,15 +195,6 @@ public class AicpUtils {
      */
     public static void toggleOmniSwitchRecents(Context context, UserHandle user) {
         final Intent intent = new Intent(AicpUtils.ACTION_TOGGLE_OVERLAY2);
-        intent.setPackage(APP_PACKAGE_NAME);
-        context.sendBroadcastAsUser(intent, user);
-    }
-
-    /**
-     * @hide
-     */
-    public static void hideOmniSwitchRecents(Context context, UserHandle user) {
-        final Intent intent = new Intent(AicpUtils.ACTION_HIDE_OVERLAY);
         intent.setPackage(APP_PACKAGE_NAME);
         context.sendBroadcastAsUser(intent, user);
     }

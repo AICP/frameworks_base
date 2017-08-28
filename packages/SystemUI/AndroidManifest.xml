@@ -363,6 +363,7 @@
         </activity>
 
         <activity android:name=".tuner.TunerActivity"
+                  android:enabled="true"
                   android:icon="@drawable/ic_settings_tuner"
                   android:theme="@style/TunerSettings"
                   android:label="@string/system_ui_tuner"

@@ -1,5 +1,5 @@
 <!--
-   Copyright (C) 2015-2018 AOSiP
+   Copyright (C) 2019 AICP
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -18,5 +18,13 @@
   <!-- Device keyhandlers -->
   <java-symbol type="array" name="config_deviceKeyHandlerLibs" />
   <java-symbol type="array" name="config_deviceKeyHandlerClasses" />
+
+  <!-- Power Menu -->
+  <java-symbol type="string" name="reboot_to_recovery_title" />
+  <java-symbol type="string" name="reboot_to_recovery_message" />
+  <java-symbol type="string" name="reboot_to_bootloader_title" />
+  <java-symbol type="string" name="reboot_to_bootloader_message" />
+  <java-symbol type="string" name="reboot_title" />
+  <java-symbol type="string" name="reboot_message" />
 
 </resources>

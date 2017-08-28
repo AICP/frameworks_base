@@ -161,7 +161,6 @@
     <!-- Kill button in notification guts -->
     <string name="force_stop_dlg_title">Force stop?</string>
     <string name="force_stop_dlg_text">If you force stop an app, it may misbehave.</string>
-    <string name="dlg_ok">OK</string>
     <string name="dlg_cancel">Cancel</string>
     <string name="kill">Kill App</string>
 

@@ -88,5 +88,6 @@ public class SystemSettings {
         Settings.System.BACK_GESTURE_HAPTIC,
         Settings.System.ACCELEROMETER_ROTATION_ANGLES,
         Settings.System.AE_THEME,
+        Settings.System.DOUBLE_TAP_SLEEP_GESTURE,
     };
 }

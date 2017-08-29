@@ -524,4 +524,10 @@ public class NotificationShadeWindowViewController {
                 mTempLocation[1] + view.getHeight());
         return mTempRect.contains(x, y);
     }
+
+    public void setDoubleTapToSleep(boolean enabled) {
+        if (mDragDownHelper != null) {
+            mDragDownHelper.setDoubleTapToSleep(enabled);
+        }
+    }
 }

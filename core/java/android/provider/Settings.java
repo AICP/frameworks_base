@@ -4753,6 +4753,16 @@ public final class Settings {
         private static final Validator AICP_SHOW_BATTERY_IMAGE_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
+        /**
+        *  Enable statusbar double tap gesture on to put device to sleep
+        * @hide
+        */
+        public static final String AICP_DOUBLE_TAP_SLEEP_GESTURE = "double_tap_sleep_gesture";
+
+        /** @hide */
+        private static final Validator AICP_DOUBLE_TAP_SLEEP_GESTURE_VALIDATOR =
+               BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -4867,6 +4877,7 @@ public final class Settings {
             TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK,
             MUSIC_TILE_TITLE,
             THREE_FINGER_GESTURE,
+            AICP_DOUBLE_TAP_SLEEP_GESTURE,
             // AICP Settings end
         };
 
@@ -5043,6 +5054,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK);
             PRIVATE_SETTINGS.add(MUSIC_TILE_TITLE);
             PRIVATE_SETTINGS.add(THREE_FINGER_GESTURE);
+            PRIVATE_SETTINGS.add(AICP_DOUBLE_TAP_SLEEP_GESTURE);
             // AICP Settings end
         }
 
@@ -5194,7 +5206,9 @@ public final class Settings {
             VALIDATORS.put(AICP_QS_QUICKBAR_COLUMNS, AICP_QS_QUICKBAR_COLUMNS_VALIDATOR);
             VALIDATORS.put(TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK, TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK_VALIDATOR);
             VALIDATORS.put(MUSIC_TILE_TITLE, MUSIC_TILE_TITLE_VALIDATOR);
-            VALIDATORS.put(THREE_FINGER_GESTURE,THREE_FINGER_GESTURE_VALIDATOR);
+            VALIDATORS.put(THREE_FINGER_GESTURE, THREE_FINGER_GESTURE_VALIDATOR);
+            VALIDATORS.put(AICP_DOUBLE_TAP_SLEEP_GESTURE,
+                    AICP_DOUBLE_TAP_SLEEP_GESTURE_VALIDATOR);
             // AICP Settings end
         }
 

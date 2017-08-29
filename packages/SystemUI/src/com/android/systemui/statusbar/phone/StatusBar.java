@@ -5350,6 +5350,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.AICP_QS_QUICKBAR_COLUMNS),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                     Settings.System.AICP_DOUBLE_TAP_SLEEP_GESTURE),
+                     false, this, UserHandle.USER_ALL);
             update();
         }
         @Override
@@ -5372,13 +5375,18 @@ public class StatusBar extends SystemUI implements DemoMode,
                     uri.equals(Settings.System.getUriFor(Settings.System.AICP_QS_LAYOUT_COLUMNS_LANDSCAPE) ||
                     uri.equals(Settings.System.getUriFor(Settings.System.AICP_QS_QUICKBAR_COLUMNS))) {
                 updateTileLayouts();
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.AICP_DOUBLE_TAP_SLEEP_GESTURE))) {
+                updateStatusBarSettings();
             }
+
         }
 
         public void update() {
             updateTickerAnimation();
             updateTickerTickDuration();
             updateTileLayouts();
+            updateStatusBarSettings();
         }
     }
 
@@ -5410,6 +5418,13 @@ public class StatusBar extends SystemUI implements DemoMode,
             updateTiles();
         }
     }
+
+    private void updateStatusBarSettings(){
+       if (mStatusBarWindow != null) {
+           mStatusBarWindow.updateSettings();
+       }
+    }
+
     private final BroadcastReceiver mBannerActionBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {

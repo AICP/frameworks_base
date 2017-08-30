@@ -4989,6 +4989,12 @@ public final class Settings {
         public static final String TOAST_ANIMATION = "toast_animation";
 
         /**
+         * Whether to enable OmniSwitch as recents implementation.
+         * @hide
+         */
+        public static final String RECENTS_OMNI_SWITCH_ENABLED = "recents_omni_switch";
+
+        /**
          * --- AICP System settings end
          *  Add new system settings above this comment
          */
@@ -5198,6 +5204,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(BUTTON_BACKLIGHT_TIMEOUT);
             PRIVATE_SETTINGS.add(BUTTON_BACKLIGHT_ON_TOUCH_ONLY);
             PRIVATE_SETTINGS.add(BUTTON_HOME_WAKE_SCREEN);
+            PRIVATE_SETTINGS.add(RECENTS_OMNI_SWITCH_ENABLED);
         }
 
         /**

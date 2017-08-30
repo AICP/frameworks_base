@@ -17,6 +17,7 @@
 <resources>
 
     <dimen name="qs_scroller_margin">8dp</dimen>
+    <dimen name="qs_scroller_top_margin">40dp</dimen>
 
     <!-- Clear-All recents FAB -->
     <dimen name="floating_action_button_height">56dp</dimen>
@@ -45,4 +46,9 @@
     <dimen name="status_bar_carrier_height">14dp</dimen>
 
     <dimen name="screenrecord_hint_size">48dp</dimen>
+
+    <dimen name="qs_panel_margin_top">25dp</dimen>
+    <dimen name="qs_panel_margin_top_header">85dp</dimen>
+
+    <dimen name="qs_panel_footer_height">40dp</dimen>
 </resources>

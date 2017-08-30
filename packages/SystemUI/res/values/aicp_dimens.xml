@@ -17,6 +17,7 @@
 <resources>
 
     <dimen name="qs_scroller_margin">8dp</dimen>
+    <dimen name="qs_scroller_top_margin">40dp</dimen>
 
     <!-- Clear-All recents FAB -->
     <dimen name="floating_action_button_height">56dp</dimen>
@@ -37,4 +38,9 @@
     <dimen name="ticker_icon_end_margin">4dp</dimen>
     <dimen name="ticker_text_top_padding">2dp</dimen>
     <dimen name="ticker_text_end_padding">10dp</dimen>
+
+    <dimen name="qs_panel_margin_top">28dp</dimen>
+    <dimen name="qs_panel_margin_top_header">85dp</dimen>
+
+    <dimen name="qs_panel_footer_height">48dp</dimen>
 </resources>

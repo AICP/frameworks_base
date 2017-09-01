@@ -64,6 +64,7 @@ import com.android.internal.annotations.VisibleForTesting;
 import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 import com.android.internal.util.LatencyTracker;
+import com.android.internal.util.aicp.AicpUtils;
 import com.android.keyguard.KeyguardClockSwitch;
 import com.android.keyguard.KeyguardStatusView;
 import com.android.keyguard.KeyguardUpdateMonitor;
@@ -418,9 +419,11 @@ public class NotificationPanelViewController extends PanelViewController {
     private int mDisplayId;
 
     // omni additions start
+    private Context mContext;
     private int mStatusBarHeaderHeight;
     private GestureDetector mDoubleTapGesture;
-    private Context mContext;
+    private GestureDetector mLockscreenDoubleTapToSleep;
+    private boolean mIsLockscreenDoubleTapEnabled;
 
     /**
      * Cache the resource id of the theme to avoid unnecessary work in onThemeChanged.
@@ -569,11 +572,16 @@ public class NotificationPanelViewController extends PanelViewController {
         mDoubleTapGesture = new GestureDetector(mContext, new GestureDetector.SimpleOnGestureListener() {
             @Override
             public boolean onDoubleTap(MotionEvent e) {
-                PowerManager pm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
-                if(pm != null) {
-                    pm.goToSleep(e.getEventTime());
-                }
+                AicpUtils.goToSleep(mContext);
                 return true;
+            }
+        });
+        mLockscreenDoubleTapToSleep = new GestureDetector(mContext,
+                new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public boolean onDoubleTap(MotionEvent e) {
+                AicpUtils.goToSleep(mContext);
+               return true;
             }
         });
 
@@ -1267,7 +1275,6 @@ public class NotificationPanelViewController extends PanelViewController {
     protected float getOpeningHeight() {
         return mNotificationStackScroller.getOpeningHeight();
     }
-
 
     private boolean handleQsTouch(MotionEvent event) {
         final int action = event.getActionMasked();
@@ -3179,6 +3186,11 @@ public class NotificationPanelViewController extends PanelViewController {
                         && event.getY() < mStatusBarHeaderHeight) {
                     mDoubleTapGesture.onTouchEvent(event);
                 }
+                if (mIsLockscreenDoubleTapEnabled
+                        && mBarState == StatusBarState.KEYGUARD) {
+                    mLockscreenDoubleTapToSleep.onTouchEvent(event);
+                }
+                initDownStates(event);
 
                 // Make sure the next touch won't the blocked after the current ends.
                 if (event.getAction() == MotionEvent.ACTION_UP
@@ -3784,5 +3796,9 @@ public class NotificationPanelViewController extends PanelViewController {
 
     public void updateDoubleTapToSleep(boolean doubleTapToSleepEnabled) {
         mDoubleTapToSleepEnabled = doubleTapToSleepEnabled;
+    }
+
+    public void setLockscreenDoubleTapToSleep(boolean isDoubleTapEnabled) {
+        mIsLockscreenDoubleTapEnabled = isDoubleTapEnabled;
     }
 }

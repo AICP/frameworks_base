@@ -196,5 +196,6 @@ public class SystemSettings {
         Settings.System.APP_SWITCH_WAKE_SCREEN,
         Settings.System.CAMERA_WAKE_SCREEN,
         Settings.System.TOAST_ANIMATION,
+        Settings.System.SWAP_VOLUME_BUTTONS,
     };
 }

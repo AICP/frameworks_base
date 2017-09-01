@@ -5941,6 +5941,12 @@ public final class Settings {
         */
         public static final String TOAST_ANIMATION = "toast_animation";
 
+        /**
+         * Change volume up and down handlign based on rotation
+         * @hide
+         */
+        public static final String SWAP_VOLUME_BUTTONS = "swap_volume_buttons";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6181,6 +6187,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(ASSIST_WAKE_SCREEN);
             PRIVATE_SETTINGS.add(APP_SWITCH_WAKE_SCREEN);
             PRIVATE_SETTINGS.add(CAMERA_WAKE_SCREEN);
+            PRIVATE_SETTINGS.add(SWAP_VOLUME_BUTTONS);
         }
 
         /**

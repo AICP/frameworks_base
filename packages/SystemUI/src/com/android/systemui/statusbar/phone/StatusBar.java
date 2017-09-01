@@ -4627,6 +4627,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.DOUBLE_TAP_SLEEP_GESTURE),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.DOUBLE_TAP_SLEEP_LOCKSCREEN),
+                    false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -5049,8 +5052,12 @@ public class StatusBar extends SystemUI implements DemoMode,
         boolean doubleTapToSleepEnabled = Settings.System.getIntForUser(
                 mContext.getContentResolver(), Settings.System.DOUBLE_TAP_SLEEP_GESTURE, 0,
                 UserHandle.USER_CURRENT) != 0;
+        boolean lsDoubleTapToSleepEnabled = Settings.System.getIntForUser(
+                mContext.getContentResolver(), Settings.System.DOUBLE_TAP_SLEEP_LOCKSCREEN, 0,
+                UserHandle.USER_CURRENT) != 0;
         if (mNotificationPanelViewController != null) {
             mNotificationPanelViewController.setDoubleTapToSleep(doubleTapToSleepEnabled);
+            mNotificationPanelViewController.setLockscreenDoubleTapToSleep(lsDoubleTapToSleepEnabled);
         }
         if (mNotificationShadeWindowViewController != null) {
             mNotificationShadeWindowViewController.setDoubleTapToSleep(doubleTapToSleepEnabled);

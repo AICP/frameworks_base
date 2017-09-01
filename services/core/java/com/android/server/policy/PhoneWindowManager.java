@@ -1594,15 +1594,28 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         if (mScreenshotChordEnabled
                 && mScreenshotChordVolumeDownKeyTriggered && mScreenshotChordPowerKeyTriggered
                 && !mA11yShortcutChordVolumeUpKeyTriggered) {
-            final long now = SystemClock.uptimeMillis();
-            if (now <= mScreenshotChordVolumeDownKeyTime + SCREENSHOT_CHORD_DEBOUNCE_DELAY_MILLIS
-                    && now <= mScreenshotChordPowerKeyTime
-                            + SCREENSHOT_CHORD_DEBOUNCE_DELAY_MILLIS) {
+            triggerScreenshotAction(true);
+        } else if (mScreenshotChordEnabled
+                && !mScreenshotChordVolumeDownKeyTriggered && mScreenshotChordPowerKeyTriggered
+                && mA11yShortcutChordVolumeUpKeyTriggered) {
+            triggerScreenshotAction(false);
+        }
+    }
+
+    private void triggerScreenshotAction(boolean isFullScreenshot) {
+        final long now = SystemClock.uptimeMillis();
+        if (now <= (isFullScreenshot ? mScreenshotChordVolumeDownKeyTime : mA11yShortcutChordVolumeUpKeyTime)
+                + SCREENSHOT_CHORD_DEBOUNCE_DELAY_MILLIS && now <= mScreenshotChordPowerKeyTime
+                        + SCREENSHOT_CHORD_DEBOUNCE_DELAY_MILLIS) {
+            if (isFullScreenshot) {
                 mScreenshotChordVolumeDownKeyConsumed = true;
-                cancelPendingPowerKeyAction();
-                mScreenshotRunnable.setScreenshotType(TAKE_SCREENSHOT_FULLSCREEN);
-                mHandler.postDelayed(mScreenshotRunnable, getScreenshotChordLongPressDelay());
+            } else {
+                mA11yShortcutChordVolumeUpKeyConsumed = true;
             }
+            cancelPendingPowerKeyAction();
+            mScreenshotRunnable.setScreenshotType(isFullScreenshot ? TAKE_SCREENSHOT_FULLSCREEN
+                    : TAKE_SCREENSHOT_SELECTED_REGION);
+            mHandler.postDelayed(mScreenshotRunnable, getScreenshotChordLongPressDelay());
         }
     }
 
@@ -3317,7 +3330,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         // If we think we might have a volume down & power key chord on the way
         // but we're not sure, then tell the dispatcher to wait a little while and
         // try again later before dispatching.
-        if (mScreenshotChordEnabled && (flags & KeyEvent.FLAG_FALLBACK) == 0) {
+        /*if (mScreenshotChordEnabled && (flags & KeyEvent.FLAG_FALLBACK) == 0) {
             if (mScreenshotChordVolumeDownKeyTriggered && !mScreenshotChordPowerKeyTriggered) {
                 final long now = SystemClock.uptimeMillis();
                 final long timeoutTime = mScreenshotChordVolumeDownKeyTime
@@ -3333,13 +3346,14 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 }
                 return -1;
             }
-        }
+        }*/
 
         // If an accessibility shortcut might be partially complete, hold off dispatching until we
         // know if it is complete or not
-        if (mAccessibilityShortcutController.isAccessibilityShortcutAvailable(false)
+        if ((mAccessibilityShortcutController.isAccessibilityShortcutAvailable(false) || mScreenshotChordEnabled)
                 && (flags & KeyEvent.FLAG_FALLBACK) == 0) {
-            if (mScreenshotChordVolumeDownKeyTriggered ^ mA11yShortcutChordVolumeUpKeyTriggered) {
+            if ((mScreenshotChordVolumeDownKeyTriggered ^ mA11yShortcutChordVolumeUpKeyTriggered)
+                    && !mScreenshotChordPowerKeyTriggered) {
                 final long now = SystemClock.uptimeMillis();
                 final long timeoutTime = (mScreenshotChordVolumeDownKeyTriggered
                         ? mScreenshotChordVolumeDownKeyTime : mA11yShortcutChordVolumeUpKeyTime)
@@ -5979,7 +5993,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                             mA11yShortcutChordVolumeUpKeyTime = event.getDownTime();
                             mA11yShortcutChordVolumeUpKeyConsumed = false;
                             cancelPendingPowerKeyAction();
-                            cancelPendingScreenshotChordAction();
+                            interceptScreenshotChord();
                             interceptAccessibilityShortcutChord();
                         }
                     } else {

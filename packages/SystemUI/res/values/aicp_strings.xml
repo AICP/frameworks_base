@@ -28,4 +28,8 @@
     <string name="global_action_restart_advanced">Advanced reboot</string>
     <string name="global_action_restart_recovery">Go to recovery</string>
     <string name="global_action_restart_bootloader">Go to bootloader</string>
+
+    <!-- Partial Screenshot -->
+    <string name="screenshot_abort_title">No screenshot taken</string>
+    <string name="screenshot_abort_text">Operation aborted.</string>
 </resources>

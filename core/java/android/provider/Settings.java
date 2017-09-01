@@ -4763,6 +4763,17 @@ public final class Settings {
         private static final Validator AICP_DOUBLE_TAP_SLEEP_GESTURE_VALIDATOR =
                BOOLEAN_VALIDATOR;
 
+        /**
+        * Double tap on lockscreen to sleep
+        * @hide
+        */
+        public static final String AICP_DOUBLE_TAP_SLEEP_LOCKSCREEN =
+               "double_tap_sleep_lockscreen";
+
+        /** @hide */
+        private static final Validator AICP_DOUBLE_TAP_SLEEP_LOCKSCREEN_VALIDATOR =
+               BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -4878,6 +4889,7 @@ public final class Settings {
             MUSIC_TILE_TITLE,
             THREE_FINGER_GESTURE,
             AICP_DOUBLE_TAP_SLEEP_GESTURE,
+            AICP_DOUBLE_TAP_SLEEP_LOCKSCREEN,
             // AICP Settings end
         };
 
@@ -5055,6 +5067,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(MUSIC_TILE_TITLE);
             PRIVATE_SETTINGS.add(THREE_FINGER_GESTURE);
             PRIVATE_SETTINGS.add(AICP_DOUBLE_TAP_SLEEP_GESTURE);
+            PRIVATE_SETTINGS.add(AICP_DOUBLE_TAP_SLEEP_LOCKSCREEN);
             // AICP Settings end
         }
 
@@ -5209,6 +5222,8 @@ public final class Settings {
             VALIDATORS.put(THREE_FINGER_GESTURE, THREE_FINGER_GESTURE_VALIDATOR);
             VALIDATORS.put(AICP_DOUBLE_TAP_SLEEP_GESTURE,
                     AICP_DOUBLE_TAP_SLEEP_GESTURE_VALIDATOR);
+            VALIDATORS.put(AICP_DOUBLE_TAP_SLEEP_LOCKSCREEN,
+                    AICP_DOUBLE_TAP_SLEEP_LOCKSCREEN_VALIDATOR);
             // AICP Settings end
         }
 

@@ -54,6 +54,7 @@ import android.app.admin.DevicePolicyManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentCallbacks2;
 import android.content.ComponentName;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -5846,8 +5847,12 @@ public class StatusBar extends SystemUI implements DemoMode,
         }
 
         void observe() {
-            mContext.getContentResolver().registerContentObserver(Settings.System.getUriFor(
+            ContentResolver resolver = mContext.getContentResolver();
+            resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.DOUBLE_TAP_SLEEP_NAVBAR),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.DOUBLE_TAP_SLEEP_LOCKSCREEN),
                     false, this, UserHandle.USER_ALL);
         }
 
@@ -5856,17 +5861,27 @@ public class StatusBar extends SystemUI implements DemoMode,
             if (uri.equals(Settings.System.getUriFor(
                     Settings.System.DOUBLE_TAP_SLEEP_NAVBAR))) {
                 setDoubleTapNavbar();
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.DOUBLE_TAP_SLEEP_LOCKSCREEN))) {
+                setLockscreenDoubleTapToSleep();
             }
         }
 
         public void update() {
             setDoubleTapNavbar();
+            setLockscreenDoubleTapToSleep();
         }
     }
 
     private void setDoubleTapNavbar() {
         if (mNavigationBar != null) {
             mNavigationBar.setDoubleTapToSleep();
+        }
+    }
+
+    private void setLockscreenDoubleTapToSleep() {
+        if (mStatusBarWindow != null) {
+            mStatusBarWindow.setLockscreenDoubleTapToSleep();
         }
     }
 

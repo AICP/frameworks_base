@@ -4529,15 +4529,7 @@ public final class Settings {
         private static final Validator MUSIC_TILE_TITLE_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
-        /***************************
-         * AICP System Settings end
-         ***************************/
-
         /**
-         * IMPORTANT: If you add a new public settings you also have to add it to
-         * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
-         * it to PRIVATE_SETTINGS below. Also add a validator that can validate
-         * the setting value. See an example above.
          * @hide
          */
         public static final String AICP_USE_BOTTOM_GESTURE_NAVIGATION =
@@ -4881,6 +4873,16 @@ public final class Settings {
         private static final Validator TORCH_LONG_PRESS_POWER_TIMEOUT_VALIDATOR =
                 new SettingsValidators.InclusiveIntegerRangeValidator(0, 3600);
 
+        /**
+         * Change volume up and down handlign based on rotation
+         * @hide
+         */
+        public static final String SWAP_VOLUME_BUTTONS = "swap_volume_buttons";
+
+        /** @hide */
+        private static final Validator SWAP_VOLUME_BUTTONS_VALIDATOR =
+               BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5007,6 +5009,7 @@ public final class Settings {
             VOLUME_KEY_CURSOR_CONTROL,
             TORCH_LONG_PRESS_POWER_GESTURE,
             TORCH_LONG_PRESS_POWER_TIMEOUT,
+            SWAP_VOLUME_BUTTONS,
             // AICP Settings end
         };
 
@@ -5195,6 +5198,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(VOLUME_KEY_CURSOR_CONTROL);
             PRIVATE_SETTINGS.add(TORCH_LONG_PRESS_POWER_GESTURE);
             PRIVATE_SETTINGS.add(TORCH_LONG_PRESS_POWER_TIMEOUT);
+            PRIVATE_SETTINGS.add(SWAP_VOLUME_BUTTONS);
             // AICP Settings end
         }
 
@@ -5363,6 +5367,7 @@ public final class Settings {
                     TORCH_LONG_PRESS_POWER_GESTURE_VALIDATOR);
             VALIDATORS.put(TORCH_LONG_PRESS_POWER_TIMEOUT,
                     TORCH_LONG_PRESS_POWER_TIMEOUT_VALIDATOR);
+            VALIDATORS.put(SWAP_VOLUME_BUTTONS, SWAP_VOLUME_BUTTONS_VALIDATOR);
             // AICP Settings end
         }
 

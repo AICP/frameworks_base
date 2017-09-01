@@ -18,9 +18,11 @@ package android.media.session;
 
 import android.annotation.NonNull;
 import android.annotation.Nullable;
+import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.pm.ParceledListSlice;
+import android.content.res.Configuration;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.MediaMetadata;
@@ -33,9 +35,12 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.RemoteException;
 import android.os.ResultReceiver;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Surface;
+import android.view.View;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -187,6 +192,18 @@ public final class MediaController {
                     case KeyEvent.KEYCODE_VOLUME_MUTE:
                         direction = AudioManager.ADJUST_TOGGLE_MUTE;
                         break;
+                }
+                final int rotation = ((Activity)mContext).getWindowManager().getDefaultDisplay().getRotation();
+                final Configuration config = mContext.getResources().getConfiguration();
+                final boolean swapKeys = Settings.System.getInt(mContext.getContentResolver(),
+                        Settings.System.SWAP_VOLUME_BUTTONS, 0) == 1;
+
+                if (swapKeys
+                        && (rotation == Surface.ROTATION_90 || rotation == Surface.ROTATION_180)
+                        && config.getLayoutDirection() == View.LAYOUT_DIRECTION_LTR) {
+                    direction = keyEvent.getKeyCode() == KeyEvent.KEYCODE_VOLUME_UP
+                            ? AudioManager.ADJUST_LOWER
+                            : AudioManager.ADJUST_RAISE;
                 }
                 try {
                     mSessionBinder.adjustVolume(mContext.getPackageName(), mCbStub, true, direction,

@@ -5961,6 +5961,12 @@ public final class Settings {
          */
         public static final String TORCH_LONG_PRESS_POWER_TIMEOUT = "torch_long_press_power_timeout";
 
+        /**
+         * Change volume up and down handlign based on rotation
+         * @hide
+         */
+        public static final String SWAP_VOLUME_BUTTONS = "swap_volume_buttons";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6099,6 +6105,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(ANBI_ENABLED_OPTION, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(TORCH_LONG_PRESS_POWER_GESTURE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(TORCH_LONG_PRESS_POWER_TIMEOUT, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(SWAP_VOLUME_BUTTONS, BOOLEAN_VALIDATOR);
         }
 
         /**

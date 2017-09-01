@@ -191,5 +191,6 @@ public class SystemSettings {
         Settings.System.CAMERA_WAKE_SCREEN,
         Settings.System.POCKET_JUDGE,
         Settings.System.TOAST_ANIMATION,
+        Settings.System.SWAP_VOLUME_BUTTONS,
     };
 }

@@ -5638,6 +5638,13 @@ public final class Settings {
          */
         public static final String AICP_DOUBLE_TAP_SLEEP_GESTURE = "double_tap_sleep_gesture";
 
+        /**
+         * Double tap on lockscreen to sleep
+         * @hide
+         */
+        public static final String AICP_DOUBLE_TAP_SLEEP_LOCKSCREEN =
+                "double_tap_sleep_lockscreen";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5723,6 +5730,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(LOCKSCREEN_BATTERY_INFO, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(LOCKSCREEN_PIN_SCRAMBLE_LAYOUT, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(AICP_DOUBLE_TAP_SLEEP_GESTURE, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(AICP_DOUBLE_TAP_SLEEP_LOCKSCREEN, BOOLEAN_VALIDATOR);
         }
 
         /**

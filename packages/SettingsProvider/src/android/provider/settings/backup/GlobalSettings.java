@@ -83,5 +83,7 @@ public class GlobalSettings {
         Settings.Global.LOCKSCREEN_ENABLE_POWER_MENU,
         Settings.Global.UIDS_ALLOWED_ON_RESTRICTED_NETWORKS,
         Settings.Global.RINGTONE_FOCUS_MODE_V2,
+        Settings.Global.WAKELOCK_BLOCKING_ENABLED,
+        Settings.Global.WAKELOCK_BLOCKING_LIST,
     };
 }

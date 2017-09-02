@@ -16035,6 +16035,18 @@ public final class Settings {
          */
         public static final String SCREEN_STATE_ON_DELAY = "screen_state_on_delay";
 
+        /**
+         * Enable blocking wakelock
+         * @hide
+         */
+        public static final String WAKELOCK_BLOCKING_ENABLED = "wakelock_blocking_enabled";
+
+         /**
+         * List of wakelock blocks selected
+         * @hide
+         */
+        public static final String WAKELOCK_BLOCKING_LIST = "wakelock_blocking_list";
+
         /***************************
          * AICP Global Settings end
          ***************************/

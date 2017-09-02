@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--  Copyright (C) 2014-2016 The Dirty Unicorns Project
+<!--  Copyright (C) 2017 AICP Project
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
     <!-- Quick Settings tiles -->
     <string name="quick_settings_screenshot_label">スクリーンショット</string>
     <string name="quick_settings_region_screenshot_label">部分的なスクリーンショット</string>
-    <string name="quick_settings_adb_network">ADBネットワーク</string>
+    <string name="quick_settings_network_adb_label">ネットワーク経由のADB</string>
     <string name="quick_settings_network_adb_enabled_label">有効</string>
     <string name="quick_settings_network_adb_disabled_label">無効</string>
     <string name="quick_settings_sync_label">同期</string>
@@ -144,12 +144,10 @@
     <string name="onthego_transparency">透過度</string>
     <string name="onthego_front_camera">フロントカメラを使用する</string>
     <string name="onthego_service_toggle">サービスを自動的に再起動する</string>
-    <!-- To do: Add QS OnTheGo
-    <string name="quick_settings_onthego_back">Rear Camera</string>
-    <string name="quick_settings_onthego_front">Front Camera</string>-->
 
     <!-- Slim Recents -->
     <string name="slim_recent_keyguard">履歴を表示するには端末をロック解除してください</string>
+    <string name="slim_recent_pinned">履歴を表示するには画面の固定を解除してください</string>
 
     <!-- Slim recents app sidebar queue app toast -->
     <string name="toast_recents_queue_app">履歴を閉じた後%sを起動します</string>
@@ -161,9 +159,26 @@
     <string name="dlg_cancel">キャンセル</string>
     <string name="kill">アプリの終了</string>
 
+    <!-- App circle sidebar -->
+    <string name="app_float_maximize_item_title">最大化</string>
+    <string name="app_float_item_title">フロートビュー</string>
+    <string name="app_stop_item_title">アプリの終了</string>
+
+    <!-- recents membar -->
+    <string name="recents_free_ram">RAM: %1$d MB 空き</string>
+
+    <!-- OmniJAWS -->
+    <string name="omnijaws_service_error">エラー</string>
+    <string name="omnijaws_service_unkown">天気データがありません</string>
+    <string name="omnijaws_detail_header">天気</string>
+    <string name="omnijaws_label_default">天気</string>
+    <string name="omnijaws_current_text">現在</string>
+    <string name="omnijaws_package_not_available">OmniJaws がありません</string>
+
     <!-- Off/On/Toggle -->
     <string name="off">OFF</string>
     <string name="on">ON</string>
+    <string name="toggle">切り替え</string>
 
     <!-- Dialog Cancel/OK -->
     <string name="cancel">キャンセル</string>
@@ -171,16 +186,18 @@
     <string name="yes">はい</string>
     <string name="no">いいえ</string>
 
-    <!-- Slim Shortcut Actions -->
+    <!-- Aicp Shortcut Actions -->
     <string name="shortcut_picker">AICP ショートカット</string>
     <string name="shortcut_rotation">画面の回転</string>
     <string name="shortcut_reboot">再起動</string>
     <string name="shortcut_recovery">リカバリー</string>
+    <string name="shortcut_screensleep">画面の消灯</string>
     <string name="shortcut_volume">音量パネル</string>
     <string name="shortcut_restart_ui">システムUIを再起動</string>
     <string name="shortcut_powermenu">電源メニュー</string>
     <string name="shortcut_flashlight">ライト</string>
     <string name="shortcut_clear_notifications">通知を消去</string>
+    <string name="shortcut_toggle_title">実行するアクション</string>
 
     <!-- Substratum QS Tile -->
     <string name="quick_substratum_na">Substratum はインストールされていません！まずはインストールしてください</string>
@@ -190,5 +207,12 @@
 
     <!-- Compass QS Tile -->
     <string name="quick_settings_compass_label">コンパス</string>
+    <string name="quick_settings_compass_init">初期化中...</string>
+    <string name="accessibility_quick_settings_compass_off">コンパスは OFF です。</string>
+    <string name="accessibility_quick_settings_compass_on">コンパスは ON です。</string>
+    <string name="accessibility_quick_settings_compass_changed_off">コンパスを OFF にしました。</string>
+    <string name="accessibility_quick_settings_compass_changed_on">コンパスを ON にしました。</string>
+    <string name="accessibility_data_sim">現在のデータSIM</string>
+    <string name="data_switch_started">データSIMの切り替え中です、しばらくお待ちください…</string>
 
 </resources>

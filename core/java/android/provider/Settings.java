@@ -17282,6 +17282,18 @@ public final class Settings {
          */
         public static final String RINGTONE_FOCUS_MODE_V2 = "ringtone_focus_mode_v2";
 
+        /**
+         * Enable blocking wakelock
+         * @hide
+         */
+        public static final String WAKELOCK_BLOCKING_ENABLED = "wakelock_blocking_enabled";
+
+         /**
+         * List of wakelock blocks selected
+         * @hide
+         */
+        public static final String WAKELOCK_BLOCKING_LIST = "wakelock_blocking_list";
+
         /*****************************
          * AICP Global Settings end
          *****************************/

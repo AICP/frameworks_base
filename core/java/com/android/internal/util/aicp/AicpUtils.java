@@ -143,12 +143,30 @@ public class AicpUtils {
 
     // Toggle flashlight
     public static void toggleCameraFlash() {
-        IStatusBarService service = getStatusBarService();
-        if (service != null) {
-            try {
-                service.toggleCameraFlash();
-            } catch (RemoteException e) {
-                // do nothing.
+        FireActions.toggleCameraFlash();
+    }
+
+    private static final class FireActions {
+        private static IStatusBarService mStatusBarService = null;
+
+        private static IStatusBarService getStatusBarService() {
+            synchronized (FireActions.class) {
+                if (mStatusBarService == null) {
+                    mStatusBarService = IStatusBarService.Stub.asInterface(
+                            ServiceManager.getService("statusbar"));
+                }
+                return mStatusBarService;
+            }
+        }
+
+        public static void toggleCameraFlash() {
+            IStatusBarService service = getStatusBarService();
+            if (service != null) {
+                try {
+                    service.toggleCameraFlash();
+                } catch (RemoteException e) {
+                    // do nothing.
+                }
             }
         }
     }

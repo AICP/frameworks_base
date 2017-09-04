@@ -230,5 +230,11 @@ public class SystemSettings {
         Settings.System.KEY_APP_SWITCH_DOUBLE_TAP_CUSTOM_APP_FR_NAME,
         Settings.System.KEY_CAMERA_LONG_PRESS_ACTION,
         Settings.System.KEY_CAMERA_DOUBLE_TAP_ACTION,
+        Settings.System.BATTERY_LIGHT_ALLOW_ON_DND,
+        Settings.System.BATTERY_LIGHT_LOW_BLINKING,
+        Settings.System.BATTERY_LIGHT_LOW_COLOR,
+        Settings.System.BATTERY_LIGHT_MEDIUM_COLOR,
+        Settings.System.BATTERY_LIGHT_FULL_COLOR,
+        Settings.System.BATTERY_LIGHT_REALLYFULL_COLOR,
     };
 }

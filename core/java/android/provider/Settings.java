@@ -6284,6 +6284,42 @@ public final class Settings {
          */
         public static final String PULSE_ON_NEW_TRACKS = "pulse_on_new_tracks";
 
+        /**
+        * Whether to show battery light when DND mode is active
+        * @hide
+        */
+       public static final String BATTERY_LIGHT_ALLOW_ON_DND = "battery_light_allow_on_dnd";
+
+        /**
+        * Whether to show blinking light when battery is low
+        * @hide
+        */
+       public static final String BATTERY_LIGHT_LOW_BLINKING = "battery_light_low_blinking";
+
+        /**
+        * Low battery charging color
+        * @hide
+        */
+       public static final String BATTERY_LIGHT_LOW_COLOR = "battery_light_low_color";
+
+        /**
+        * Medium battery charging color
+        * @hide
+        */
+       public static final String BATTERY_LIGHT_MEDIUM_COLOR = "battery_light_medium_color";
+
+        /**
+        * Full battery charging color
+        * @hide
+        */
+       public static final String BATTERY_LIGHT_FULL_COLOR = "battery_light_full_color";
+
+        /**
+        * Really full 100 battery charging color
+        * @hide
+        */
+       public static final String BATTERY_LIGHT_REALLYFULL_COLOR = "battery_light_reallyfull_color";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6465,6 +6501,12 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(PULSE_AMBIENT_LIGHT_COLOR_AUTOMATIC, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(PULSE_AMBIENT_LIGHT_WIDTH, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(PULSE_ON_NEW_TRACKS, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(BATTERY_LIGHT_ALLOW_ON_DND, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(BATTERY_LIGHT_LOW_BLINKING, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(BATTERY_LIGHT_LOW_COLOR, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(BATTERY_LIGHT_MEDIUM_COLOR, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(BATTERY_LIGHT_FULL_COLOR, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(BATTERY_LIGHT_REALLYFULL_COLOR, ANY_INTEGER_VALIDATOR);
         }
 
         /**

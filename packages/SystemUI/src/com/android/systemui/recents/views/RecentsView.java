@@ -52,6 +52,7 @@ import android.util.MathUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.view.ViewDebug;
 import android.view.ViewPropertyAnimator;
 import android.view.Window;
@@ -422,6 +423,30 @@ public class RecentsView extends FrameLayout {
         int alpha = mMultiWindowBackgroundScrim.getAlpha();
         mMultiWindowBackgroundScrim.setColor(scrimColors.getMainColor());
         mMultiWindowBackgroundScrim.setAlpha(alpha);
+    }
+
+    public void startFABanimation() {
+        RecentsConfiguration config = Recents.getConfiguration();
+        // Animate the action button in
+        mFloatingButton = ((View)getParent()).findViewById(R.id.floating_action_button);
+        mFloatingButton.animate().alpha(1f)
+                .setStartDelay(config.fabEnterAnimDelay)
+                .setDuration(config.fabEnterAnimDuration)
+                .setInterpolator(Interpolators.ALPHA_IN)
+                .withLayer()
+                .start();
+    }
+
+    public void endFABanimation() {
+        RecentsConfiguration config = Recents.getConfiguration();
+        // Animate the action button away
+        mFloatingButton = ((View)getParent()).findViewById(R.id.floating_action_button);
+        mFloatingButton.animate().alpha(0f)
+                .setStartDelay(0)
+                .setDuration(config.fabExitAnimDuration)
+                .setInterpolator(Interpolators.ALPHA_OUT)
+                .withLayer()
+                .start();
     }
 
     @Override

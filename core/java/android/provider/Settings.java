@@ -5633,6 +5633,21 @@ public final class Settings {
         private static final Validator PULSE_APPS_BLACKLIST_VALIDATOR =
                 ANY_STRING_VALIDATOR;
 
+        /**
+        * show clear all recents button
+        * @hide
+        */
+        public static final String SHOW_CLEAR_ALL_RECENTS = "show_clear_all_recents";
+
+        /** @hide */
+        private static final Validator SHOW_CLEAR_ALL_RECENTS_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
+        * location of the clear all rectents button
+        * @hide
+        */
+        public static final String  RECENTS_CLEAR_ALL_LOCATION = "recents_clear_all_location";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5827,6 +5842,7 @@ public final class Settings {
             BATTERY_LIGHT_BLEND_REVERSE,
             NETWORK_TRAFFIC_EXPANDED_STATUS_BAR_STATE,
             PULSE_APPS_BLACKLIST,
+            SHOW_CLEAR_ALL_RECENTS,
             // AICP Settings end
         };
 
@@ -6085,6 +6101,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(BATTERY_LIGHT_BLEND_REVERSE);
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_EXPANDED_STATUS_BAR_STATE);
             PRIVATE_SETTINGS.add(PULSE_APPS_BLACKLIST);
+            PRIVATE_SETTINGS.add(SHOW_CLEAR_ALL_RECENTS);
             // AICP Settings end
         }
 
@@ -6333,6 +6350,7 @@ public final class Settings {
             VALIDATORS.put(BATTERY_LIGHT_BLEND_REVERSE, BATTERY_LIGHT_BLEND_REVERSE_VALIDATOR);
             VALIDATORS.put(NETWORK_TRAFFIC_EXPANDED_STATUS_BAR_STATE, NETWORK_TRAFFIC_EXPANDED_STATUS_BAR_STATE_VALIDATOR);
             VALIDATORS.put(PULSE_APPS_BLACKLIST,PULSE_APPS_BLACKLIST_VALIDATOR);
+            VALIDATORS.put(SHOW_CLEAR_ALL_RECENTS,SHOW_CLEAR_ALL_RECENTS_VALIDATOR);
             // AICP Settings end
         }
 

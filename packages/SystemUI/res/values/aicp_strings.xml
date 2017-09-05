@@ -257,4 +257,9 @@
 
     <!-- Recents Memory Bar -->
     <string name="recents_free_ram">FREE RAM: %1$d MB</string>
+
+    <!-- LTE QS Tile -->
+    <string name="qs_lte_label">LTE</string>
+    <string name="lte_on">LTE ON </string>
+    <string name="lte_off">LTE OFF</string>
 </resources>

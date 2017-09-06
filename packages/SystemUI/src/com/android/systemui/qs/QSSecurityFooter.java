@@ -22,6 +22,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.os.UserHandle;
 import android.provider.Settings;
 import android.text.SpannableStringBuilder;
 import android.text.method.LinkMovementMethod;
@@ -63,6 +64,7 @@ public class QSSecurityFooter implements OnClickListener, DialogInterface.OnClic
     protected H mHandler;
 
     private boolean mIsVisible;
+    private boolean mShowWarnings;
     private CharSequence mFooterTextContent = null;
     private int mFooterTextId;
     private int mFooterIconId;
@@ -136,8 +138,8 @@ public class QSSecurityFooter implements OnClickListener, DialogInterface.OnClic
         final CharSequence organizationName = mSecurityController.getDeviceOwnerOrganizationName();
         final CharSequence workProfileName = mSecurityController.getWorkProfileOrganizationName();
         // Update visibility of footer
-        mIsVisible = isDeviceManaged || hasCACerts || hasCACertsInWorkProfile ||
-            vpnName != null || vpnNameWorkProfile != null;
+        mIsVisible = mShowWarnings && (isDeviceManaged || hasCACerts || hasCACertsInWorkProfile ||
+            vpnName != null || vpnNameWorkProfile != null);
         // Update the string
         mFooterTextContent = getFooterText(isDeviceManaged, hasWorkProfile,
                 hasCACerts, hasCACertsInWorkProfile, isNetworkLoggingEnabled, vpnName,
@@ -451,5 +453,11 @@ public class QSSecurityFooter implements OnClickListener, DialogInterface.OnClic
         public int hashCode() {
             return 314159257; // prime
         }
+    }
+
+    public void updateSettings() {
+        mShowWarnings = Settings.System.getIntForUser(
+                mContext.getContentResolver(), Settings.System.QS_FOOTER_WARNINGS, 0,
+                UserHandle.USER_CURRENT) == 1;
     }
 }

@@ -582,4 +582,10 @@ public class QSPanel extends LinearLayout implements Tunable, Callback {
 
         void setListening(boolean listening);
     }
+
+    public void updateSettings() {
+        if (mFooter != null) {
+            mFooter.updateSettings();
+        }
+    }
 }

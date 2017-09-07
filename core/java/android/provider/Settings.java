@@ -4731,6 +4731,24 @@ public final class Settings {
         private static final Validator MUSIC_TILE_TITLE_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
+        /**
+         * Disable dashboard conditions in settings
+         * @hide
+         */
+        public static final String ENABLE_CONDITIONS = "enable_conditions";
+        /** @hide */
+        private static final Validator ENABLE_CONDITIONS_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
+         * Disable dashboard suggestions in settings
+         * @hide
+         */
+        public static final String ENABLE_SUGGESTIONS = "enable_suggestions";
+        /** @hide */
+        private static final Validator ENABLE_SUGGESTIONS_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -4828,6 +4846,8 @@ public final class Settings {
             AICP_QS_LAYOUT_ROWS,
             AICP_QS_QUICKBAR_COLUMNS,
             MUSIC_TILE_TITLE,
+            ENABLE_CONDITIONS,
+            ENABLE_SUGGESTIONS,
             // AICP Settings end
         };
 
@@ -4972,6 +4992,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(AICP_QS_LAYOUT_ROWS);
             PRIVATE_SETTINGS.add(AICP_QS_QUICKBAR_COLUMNS);
             PRIVATE_SETTINGS.add(MUSIC_TILE_TITLE);
+            PRIVATE_SETTINGS.add(ENABLE_CONDITIONS);
+            PRIVATE_SETTINGS.add(ENABLE_SUGGESTIONS);
             // AICP Settings end
         }
 
@@ -5098,6 +5120,8 @@ public final class Settings {
             VALIDATORS.put(AICP_QS_LAYOUT_ROWS, AICP_QS_LAYOUT_ROWS_VALIDATOR);
             VALIDATORS.put(AICP_QS_QUICKBAR_COLUMNS, AICP_QS_QUICKBAR_COLUMNS_VALIDATOR);
             VALIDATORS.put(MUSIC_TILE_TITLE, MUSIC_TILE_TITLE_VALIDATOR);
+            VALIDATORS.put(ENABLE_CONDITIONS, ENABLE_CONDITIONS_VALIDATOR);
+            VALIDATORS.put(ENABLE_SUGGESTIONS, ENABLE_SUGGESTIONS_VALIDATOR);
             // AICP Settings end
         }
 

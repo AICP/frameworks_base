@@ -29,4 +29,7 @@
 
     <!-- Anti flicker QS tile -->
     <string name="quick_settings_anti_flicker">Anti flicker</string>
+
+    <!-- Statusbar items -->
+    <string name="statusbar_items_title">Statusbar icon</string>
 </resources>

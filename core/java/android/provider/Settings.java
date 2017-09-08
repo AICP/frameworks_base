@@ -6280,6 +6280,16 @@ public final class Settings {
         private static final Validator DISABLE_INCALL_HOME_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
+        /**
+         * Wheter to show heads up only for dialer and sms apps
+         * @hide
+         */
+        public static final String LESS_BORING_HEADS_UP = "less_boring_heads_up";
+
+        /** @hide */
+        private static final Validator LESS_BORING_HEADS_UP_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6530,6 +6540,7 @@ public final class Settings {
             POCKET_JUDGE,
             WIRELESS_CHARGING_ANIMATION,
             DISABLE_INCALL_HOME,
+            LESS_BORING_HEADS_UP,
             // AICP Settings end
         };
 
@@ -6833,6 +6844,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(POCKET_JUDGE);
             PRIVATE_SETTINGS.add(WIRELESS_CHARGING_ANIMATION);
             PRIVATE_SETTINGS.add(DISABLE_INCALL_HOME);
+            PRIVATE_SETTINGS.add(LESS_BORING_HEADS_UP);
             // AICP Settings end
         }
 
@@ -7138,6 +7150,7 @@ public final class Settings {
             VALIDATORS.put(POCKET_JUDGE, POCKET_JUDGE_VALIDATOR);
             VALIDATORS.put(WIRELESS_CHARGING_ANIMATION, WIRELESS_CHARGING_ANIMATION_VALIDATOR);
             VALIDATORS.put(DISABLE_INCALL_HOME,DISABLE_INCALL_HOME_VALIDATOR);
+            VALIDATORS.put(LESS_BORING_HEADS_UP,LESS_BORING_HEADS_UP_VALIDATOR);
             // AICP Settings end
         }
 

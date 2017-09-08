@@ -17,4 +17,9 @@
         <item name="android:textSize">14.0sp</item>
         <item name="android:fontFamily">@*android:string/config_headlineFontFamilyMedium</item>
     </style>
+
+    <!-- Pure Tuner Theme-->
+    <style name="ExTunerSettings" parent="@android:style/Theme.DeviceDefault.Settings">
+        <item name="preferenceTheme">@style/TunerPreferenceTheme</item>
+    </style>
 </resources>

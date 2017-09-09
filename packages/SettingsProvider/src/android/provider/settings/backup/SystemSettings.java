@@ -90,5 +90,6 @@ public class SystemSettings {
         Settings.System.AE_THEME,
         Settings.System.DOUBLE_TAP_SLEEP_GESTURE,
         Settings.System.DOUBLE_TAP_SLEEP_LOCKSCREEN,
+        Settings.System.LOCKSCREEN_BATTERY_INFO,
     };
 }

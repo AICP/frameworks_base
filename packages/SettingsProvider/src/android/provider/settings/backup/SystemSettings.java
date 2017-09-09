@@ -103,5 +103,6 @@ public class SystemSettings {
         Settings.System.NETWORK_TRAFFIC_STATE,
         Settings.System.NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD,
         Settings.System.NETWORK_TRAFFIC_EXPANDED_STATUS_BAR_STATE,
+        Settings.System.LOCKSCREEN_BATTERY_INFO,
     };
 }

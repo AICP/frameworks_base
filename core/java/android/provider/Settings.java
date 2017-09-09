@@ -4059,6 +4059,12 @@ public final class Settings {
         public static final String QS_QUICKBAR_SCROLL_ENABLED = "qs_quickbar_scroll_enabled";
 
         /**
+        * Whether to show the battery info on the lockscreen while charging
+        * @hide
+        */
+        public static final String LOCKSCREEN_BATTERY_INFO = "lockscreen_battery_info";
+
+        /**
          * --- AICP System settings end
          *  Add new system settings above this comment
          */

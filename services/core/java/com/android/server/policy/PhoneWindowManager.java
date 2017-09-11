@@ -812,6 +812,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     // The volume key answer
     boolean mVolumeAnswer;
 
+    // Behavior of Home button while in-call and screen on
+    boolean mDisableIncallHome;
+
     Display mDisplay;
 
     int mLandscapeRotation = 0;  // default landscape rotation
@@ -1250,6 +1253,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.DOZE_TRIGGER_DOUBLETAP), false, this,
+                    UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.DISABLE_INCALL_HOME), false, this,
                     UserHandle.USER_ALL);
             updateSettings();
         }
@@ -3112,6 +3118,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             mVolumeMusicControl = Settings.System.getIntForUser(resolver,
                     Settings.System.VOLUME_BUTTON_MUSIC_CONTROL, 0,
                     UserHandle.USER_CURRENT) != 0;
+
+            mDisableIncallHome = Settings.System.getIntForUser(resolver,
+                    Settings.System.DISABLE_INCALL_HOME, 0,
+                    UserHandle.USER_CURRENT) != 0;
         }
 
         boolean doShowNavbar = Settings.Secure.getIntForUser(resolver,
@@ -4369,6 +4379,14 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 if (canceled) {
                     Log.i(TAG, "Ignoring HOME; event canceled.");
                     return -1;
+                }
+
+                // If an incoming call is ringing and mDisableIncallHome=true, HOME is totally disabled.
+                TelecomManager telecomManager = getTelecommService();
+                if (telecomManager != null && telecomManager.isRinging()
+                        && mDisableIncallHome) {
+                      Log.i(TAG, "Ignoring HOME; there's a ringing incoming call.");
+                      return -1;
                 }
 
                 // Delay handling home if a double-tap is possible.

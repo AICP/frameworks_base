@@ -6268,6 +6268,18 @@ public final class Settings {
         private static final Validator WIRELESS_CHARGING_ANIMATION_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
+        /**
+        * Whether the Home button works during call
+        *   0 = enabled
+        *   1 = disabled
+        * @hide
+        */
+        public static final String DISABLE_INCALL_HOME = "disable_incall_home";
+
+        /** @hide */
+        private static final Validator DISABLE_INCALL_HOME_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6517,6 +6529,7 @@ public final class Settings {
             SHOW_BATTERY_ESTIMATE_QQS,
             POCKET_JUDGE,
             WIRELESS_CHARGING_ANIMATION,
+            DISABLE_INCALL_HOME,
             // AICP Settings end
         };
 
@@ -6819,6 +6832,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SHOW_BATTERY_ESTIMATE_QQS);
             PRIVATE_SETTINGS.add(POCKET_JUDGE);
             PRIVATE_SETTINGS.add(WIRELESS_CHARGING_ANIMATION);
+            PRIVATE_SETTINGS.add(DISABLE_INCALL_HOME);
             // AICP Settings end
         }
 
@@ -7123,6 +7137,7 @@ public final class Settings {
             VALIDATORS.put(SHOW_BATTERY_ESTIMATE_QQS, SHOW_BATTERY_ESTIMATE_QQS_VALIDATOR);
             VALIDATORS.put(POCKET_JUDGE, POCKET_JUDGE_VALIDATOR);
             VALIDATORS.put(WIRELESS_CHARGING_ANIMATION, WIRELESS_CHARGING_ANIMATION_VALIDATOR);
+            VALIDATORS.put(DISABLE_INCALL_HOME,DISABLE_INCALL_HOME_VALIDATOR);
             // AICP Settings end
         }
 

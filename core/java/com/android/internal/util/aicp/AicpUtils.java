@@ -132,7 +132,6 @@ public class AicpUtils {
         am.adjustVolume(AudioManager.ADJUST_SAME, AudioManager.FLAG_SHOW_UI);
     }
 
-/*
     public static void takeScreenshot(boolean full) {
         IWindowManager wm = WindowManagerGlobal.getWindowManagerService();
         try {
@@ -141,7 +140,7 @@ public class AicpUtils {
             e.printStackTrace();
         }
     }
-*/
+
 /*
     // Toggle flashlight
     public static void toggleCameraFlash() {

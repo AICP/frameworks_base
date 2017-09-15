@@ -111,4 +111,7 @@
 
      <!-- PiP Tile -->
      <string name="quick_settings_pip_label">PiP</string>
+
+     <!-- Recents -->
+     <string name="recents_app_killed">App killed</string>
 </resources>

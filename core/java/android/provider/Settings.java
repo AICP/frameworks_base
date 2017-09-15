@@ -5864,6 +5864,15 @@ public final class Settings {
          private static final Validator LOCKSCREEN_MEDIA_METADATA_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
+        /**
+         * volume answer
+         * @hide
+         */
+        public static final String ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER = "call_volume_answer";
+        /** @hide */
+        private static final Validator ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6067,6 +6076,7 @@ public final class Settings {
             THEMING_SETTINGS_DASHBOARD_ICONS,
             POCKET_JUDGE,
             STATUS_BAR_BRIGHTNESS_CONTROL,
+            ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER,
             // AICP Settings end
         };
 
@@ -6324,6 +6334,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(POCKET_JUDGE);
             PRIVATE_SETTINGS.add(STATUS_BAR_BRIGHTNESS_CONTROL);
             PRIVATE_SETTINGS.add(LOCKSCREEN_MEDIA_METADATA);
+            PRIVATE_SETTINGS.add(ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER);
             // AICP Settings end
         }
 
@@ -6567,6 +6578,7 @@ public final class Settings {
             VALIDATORS.put(POCKET_JUDGE, POCKET_JUDGE_VALIDATOR);
             VALIDATORS.put(STATUS_BAR_BRIGHTNESS_CONTROL, STATUS_BAR_BRIGHTNESS_CONTROL_VALIDATOR);
             VALIDATORS.put(LOCKSCREEN_MEDIA_METADATA,LOCKSCREEN_MEDIA_METADATA_VALIDATOR);
+            VALIDATORS.put(ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER,ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER_VALIDATOR);
             // AICP Settings end
         }
 

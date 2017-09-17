@@ -5470,6 +5470,111 @@ public final class Settings {
         private static final Validator NIGHT_BRIGHTNESS_VALUE_VALIDATOR =
                 new SettingsValidators.InclusiveIntegerRangeValidator(0, 3);
 
+        /**
+         * Whether the battery light should be enabled (if hardware supports it)
+         * The value is boolean (1 or 0).
+         * @hide
+         */
+        public static final String OMNI_BATTERY_LIGHT_ENABLED = "battery_light_enabled";
+
+        /** @hide */
+        private static final Validator OMNI_BATTERY_LIGHT_ENABLED_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
+         * Whether to show battery light when DND mode is active
+         * @hide
+         */
+        public static final String OMNI_BATTERY_LIGHT_ALLOW_ON_DND = "battery_light_allow_on_dnd";
+
+        /** @hide */
+        private static final Validator OMNI_BATTERY_LIGHT_ALLOW_ON_DND_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
+         * Whether to show blinking light when battery is low
+         * @hide
+         */
+        public static final String OMNI_BATTERY_LIGHT_LOW_BLINKING = "battery_light_low_blinking";
+
+        /** @hide */
+        private static final Validator OMNI_BATTERY_LIGHT_LOW_BLINKING_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
+         * Low battery charging color
+         * @hide
+         */
+        public static final String OMNI_BATTERY_LIGHT_LOW_COLOR = "battery_light_low_color";
+
+        /** @hide */
+        private static final Validator OMNI_BATTERY_LIGHT_LOW_COLOR_VALIDATOR =
+                ANY_STRING_VALIDATOR;
+
+        /**
+         * Medium battery charging color
+         * @hide
+         */
+        public static final String OMNI_BATTERY_LIGHT_MEDIUM_COLOR = "battery_light_medium_color";
+
+        /** @hide */
+        private static final Validator OMNI_BATTERY_LIGHT_MEDIUM_COLOR_VALIDATOR =
+                ANY_STRING_VALIDATOR;
+
+        /**
+        * Full battery charging color
+        * @hide
+        */
+        public static final String OMNI_BATTERY_LIGHT_FULL_COLOR = "battery_light_full_color";
+
+        /** @hide */
+        private static final Validator OMNI_BATTERY_LIGHT_FULL_COLOR_VALIDATOR =
+                ANY_STRING_VALIDATOR;
+
+        /**
+         * Really full 100 battery charging color
+         * @hide
+         */
+        public static final String OMNI_BATTERY_LIGHT_REALLY_FULL_COLOR =
+                "battery_light_really_full_color";
+
+        /** @hide */
+        private static final Validator OMNI_BATTERY_LIGHT_REALLY_FULL_COLOR_VALIDATOR =
+                ANY_STRING_VALIDATOR;
+
+        /**
+         * Whether the battery light should only be enabled on fully charged battery.
+         * The value is boolean (1 or 0).
+         * @hide
+         */
+        public static final String OMNI_BATTERY_LIGHT_ONLY_FULLY_CHARGED =
+                "battery_light_only_fully_charged";
+
+        /** @hide */
+        private static final Validator OMNI_BATTERY_LIGHT_ONLY_FULLY_CHARGED_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
+         * What color to use for the battery LED while charging - low
+         * @hide
+         */
+        public static final String OMNI_FAST_BATTERY_LIGHT_COLOR = "fast_battery_light_color";
+
+        /** @hide */
+        private static final Validator OMNI_FAST_BATTERY_LIGHT_COLOR_VALIDATOR =
+                ANY_STRING_VALIDATOR;
+
+        /**
+         * Whether the fast charging battery light is enabled
+         * The value is boolean (1 or 0).
+         * @hide
+         */
+        public static final String OMNI_FAST_CHARGING_LED_ENABLED = "fast_charging_led_enabled";
+
+        /** @hide */
+        private static final Validator OMNI_FAST_CHARGING_LED_ENABLED_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5648,6 +5753,16 @@ public final class Settings {
             STATUS_BAR_SHOW_CARRIER,
             CUSTOM_CARRIER_LABEL,
             NIGHT_BRIGHTNESS_VALUE,
+            OMNI_BATTERY_LIGHT_ENABLED,
+            OMNI_BATTERY_LIGHT_ALLOW_ON_DND,
+            OMNI_BATTERY_LIGHT_LOW_BLINKING,
+            OMNI_BATTERY_LIGHT_LOW_COLOR,
+            OMNI_BATTERY_LIGHT_MEDIUM_COLOR,
+            OMNI_BATTERY_LIGHT_FULL_COLOR,
+            OMNI_BATTERY_LIGHT_REALLY_FULL_COLOR,
+            OMNI_FAST_BATTERY_LIGHT_COLOR,
+            OMNI_FAST_CHARGING_LED_ENABLED,
+            OMNI_BATTERY_LIGHT_ONLY_FULLY_CHARGED,
             // AICP Settings end
         };
 
@@ -5890,6 +6005,16 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUS_BAR_SHOW_CARRIER);
             PRIVATE_SETTINGS.add(CUSTOM_CARRIER_LABEL);
             PRIVATE_SETTINGS.add(NIGHT_BRIGHTNESS_VALUE);
+            PRIVATE_SETTINGS.add(OMNI_BATTERY_LIGHT_ENABLED);
+            PRIVATE_SETTINGS.add(OMNI_BATTERY_LIGHT_ALLOW_ON_DND);
+            PRIVATE_SETTINGS.add(OMNI_BATTERY_LIGHT_LOW_BLINKING);
+            PRIVATE_SETTINGS.add(OMNI_BATTERY_LIGHT_LOW_COLOR);
+            PRIVATE_SETTINGS.add(OMNI_BATTERY_LIGHT_MEDIUM_COLOR);
+            PRIVATE_SETTINGS.add(OMNI_BATTERY_LIGHT_FULL_COLOR);
+            PRIVATE_SETTINGS.add(OMNI_BATTERY_LIGHT_REALLY_FULL_COLOR);
+            PRIVATE_SETTINGS.add(OMNI_FAST_BATTERY_LIGHT_COLOR);
+            PRIVATE_SETTINGS.add(OMNI_FAST_CHARGING_LED_ENABLED);
+            PRIVATE_SETTINGS.add(OMNI_BATTERY_LIGHT_ONLY_FULLY_CHARGED);
             // AICP Settings end
         }
 
@@ -6114,6 +6239,24 @@ public final class Settings {
             VALIDATORS.put(STATUS_BAR_SHOW_CARRIER,STATUS_BAR_SHOW_CARRIER_VALIDATOR);
             VALIDATORS.put(CUSTOM_CARRIER_LABEL,CUSTOM_CARRIER_LABEL_VALIDATOR);
             VALIDATORS.put(NIGHT_BRIGHTNESS_VALUE,NIGHT_BRIGHTNESS_VALUE_VALIDATOR);
+            VALIDATORS.put(OMNI_BATTERY_LIGHT_ENABLED, OMNI_BATTERY_LIGHT_ENABLED_VALIDATOR);
+            VALIDATORS.put(OMNI_BATTERY_LIGHT_ALLOW_ON_DND,
+                    OMNI_BATTERY_LIGHT_ALLOW_ON_DND_VALIDATOR);
+            VALIDATORS.put(OMNI_BATTERY_LIGHT_LOW_BLINKING,
+                    OMNI_BATTERY_LIGHT_LOW_BLINKING_VALIDATOR);
+            VALIDATORS.put(OMNI_BATTERY_LIGHT_LOW_COLOR,
+                    OMNI_BATTERY_LIGHT_LOW_COLOR_VALIDATOR);
+            VALIDATORS.put(OMNI_BATTERY_LIGHT_MEDIUM_COLOR,
+                    OMNI_BATTERY_LIGHT_MEDIUM_COLOR_VALIDATOR);
+            VALIDATORS.put(OMNI_BATTERY_LIGHT_FULL_COLOR,
+                    OMNI_BATTERY_LIGHT_FULL_COLOR_VALIDATOR);
+            VALIDATORS.put(OMNI_BATTERY_LIGHT_REALLY_FULL_COLOR,
+                    OMNI_BATTERY_LIGHT_REALLY_FULL_COLOR_VALIDATOR);
+            VALIDATORS.put(OMNI_FAST_BATTERY_LIGHT_COLOR, OMNI_FAST_BATTERY_LIGHT_COLOR_VALIDATOR);
+            VALIDATORS.put(OMNI_FAST_CHARGING_LED_ENABLED,
+                    OMNI_FAST_CHARGING_LED_ENABLED_VALIDATOR);
+            VALIDATORS.put(OMNI_BATTERY_LIGHT_ONLY_FULLY_CHARGED,
+                    OMNI_BATTERY_LIGHT_ONLY_FULLY_CHARGED_VALIDATOR);
             // AICP Settings end
         }
 

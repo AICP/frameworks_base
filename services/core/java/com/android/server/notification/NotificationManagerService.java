@@ -1220,7 +1220,7 @@ public class NotificationManagerService extends SystemService {
             ContentResolver resolver = getContext().getContentResolver();
             if (uri == null || NOTIFICATION_LIGHT_PULSE_URI.equals(uri)) {
                 boolean pulseEnabled = Settings.System.getIntForUser(resolver,
-                            Settings.System.NOTIFICATION_LIGHT_PULSE, 0, UserHandle.USER_CURRENT)
+                            Settings.System.NOTIFICATION_LIGHT_PULSE, 1, UserHandle.USER_CURRENT)
                         != 0;
                 if (mNotificationPulseEnabled != pulseEnabled) {
                     mNotificationPulseEnabled = pulseEnabled;
@@ -3575,6 +3575,16 @@ public class NotificationManagerService extends SystemService {
                 throws RemoteException {
             new ShellCmd().exec(this, in, out, err, args, callback, resultReceiver);
         }
+
+        @Override
+        public void forceShowLedLight(int color) {
+            forceShowLed(color);
+        }
+
+        @Override
+        public void forcePulseLedLight(int color, int onTime, int offTime) {
+            forcePulseLed(color, onTime, offTime);
+        }
     };
 
     private void applyAdjustment(NotificationRecord r, Adjustment adjustment) {
@@ -4937,7 +4947,10 @@ public class NotificationManagerService extends SystemService {
             return false;
         }
         // suppressed due to DND
-        if ((record.getSuppressedVisualEffects() & SUPPRESSED_EFFECT_LIGHTS) != 0) {
+        if ((record.getSuppressedVisualEffects() & SUPPRESSED_EFFECT_SCREEN_OFF) != 0) {
+            return false;
+        }
+        if (record.isIntercepted() && !record.shouldLightOnZen()) {
             return false;
         }
         // Suppressed because it's a silent update
@@ -4955,6 +4968,24 @@ public class NotificationManagerService extends SystemService {
         }
 
         return true;
+    }
+
+    private void forceShowLed(int color) {
+        if (color != -1) {
+            mNotificationLight.turnOff();
+            mNotificationLight.setColor(color);
+        } else {
+            mNotificationLight.turnOff();
+        }
+    }
+
+    private void forcePulseLed(int color, int onTime, int offTime) {
+        if (color != -1) {
+            mNotificationLight.turnOff();
+            mNotificationLight.setFlashing(color, Light.LIGHT_FLASH_TIMED, onTime, offTime);
+        } else {
+            mNotificationLight.turnOff();
+        }
     }
 
     @GuardedBy("mNotificationLock")

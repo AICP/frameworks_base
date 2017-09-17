@@ -19,8 +19,11 @@ package com.android.systemui.qs.tiles;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
+import android.os.SystemProperties;
 import android.provider.Settings;
 import android.provider.Settings.Secure;
+import android.text.TextUtils;
 
 import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
@@ -47,6 +50,15 @@ public class AmbientDisplayTile extends QSTileImpl<BooleanState> {
     }
 
     @Override
+    public boolean isAvailable() {
+        String name = Build.IS_DEBUGGABLE ? SystemProperties.get("debug.doze.component") : null;
+        if (TextUtils.isEmpty(name)) {
+            name = mContext.getString(com.android.internal.R.string.config_dozeComponent);
+        }
+        return !TextUtils.isEmpty(name);
+    }
+
+    @Override
     public BooleanState newTileState() {
         return new BooleanState();
     }
@@ -62,7 +74,6 @@ public class AmbientDisplayTile extends QSTileImpl<BooleanState> {
         return new Intent().setComponent(new ComponentName(
             "com.android.settings", "com.android.settings.Settings$DisplaySettingsActivity"));
     }
-
 
     @Override
     public CharSequence getTileLabel() {

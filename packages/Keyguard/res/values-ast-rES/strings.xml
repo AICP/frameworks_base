@@ -47,13 +47,10 @@
   <string name="keyguard_charged">Cargada</string>
   <!-- When the lock screen is showing and the phone plugged in, and the battery
          is not fully charged, say that it's charging.  -->
-  <string name="keyguard_plugged_in">Cargando</string>
   <!-- When the lock screen is showing and the phone plugged in, and the battery
          is not fully charged, and it's plugged into a fast charger, say that it's charging fast.  -->
-  <string name="keyguard_plugged_in_charging_fast">Carga rápida</string>
   <!-- When the lock screen is showing and the phone plugged in, and the battery
          is not fully charged, and it's plugged into a slow charger, say that it's charging slowly.  -->
-  <string name="keyguard_plugged_in_charging_slowly">Carga lenta</string>
   <!-- When the lock screen is showing and the battery is low, warn user to plug
          in the phone soon. -->
   <string name="keyguard_low_battery">Coneuta\'l cargador.</string>
@@ -87,13 +84,15 @@
   <!-- Time format strings for fall-back clock widget -->
   <!-- Time format strings for fall-back clock widget -->
   <!-- Accessibility description of the PIN password view. [CHAR_LIMIT=none] -->
+  <string name="keyguard_accessibility_pin_area">Área de PIN</string>
   <!-- Accessibility description of the SIM PIN password view. [CHAR_LIMIT=none] -->
+  <string name="keyguard_accessibility_sim_pin_area">Área de PIN de SIM</string>
   <!-- Accessibility description of the SIM PUK password view. [CHAR_LIMIT=none] -->
+  <string name="keyguard_accessibility_sim_puk_area">Área de PUK de SIM</string>
   <!-- Accessibility description for the text view that indicates when the next alarm is set (not shown on screen). [CHAR_LIMIT=none] -->
   <string name="keyguard_accessibility_next_alarm">Próxima alarma afitada a les <xliff:g id="alarm" example="Fri 8:30 AM">%1$s</xliff:g></string>
   <!-- KeyguardPinView - accessibility support -->
   <!-- Description of the Delete button in a KeyboardView. [CHAR LIMIT=NONE] -->
-  <string name="keyboardview_keycode_delete">Desaniciar</string>
   <!-- Description of the Enter button in a KeyboardView. [CHAR LIMIT=NONE] -->
   <string name="keyboardview_keycode_enter">Intro</string>
   <!-- Message shown in pattern unlock after some number of unsuccessful attempts -->
@@ -101,9 +100,7 @@
   <!-- Message shown when user enters wrong pattern -->
   <string name="kg_wrong_pattern">El patrón ye incorreutu</string>
   <!-- Message shown when user enters wrong password -->
-  <string name="kg_wrong_password">Contraseña incorreuta</string>
   <!-- Message shown when user enters wrong PIN -->
-  <string name="kg_wrong_pin">PIN incorreutu</string>
   <!-- Countdown message shown after too many failed unlock attempts -->
   <string name="kg_too_many_failed_attempts_countdown">Inténtalo otra vegada en <xliff:g id="NUMBER">%d</xliff:g> segundos.</string>
   <!-- Instructions for using the pattern unlock screen -->
@@ -111,6 +108,7 @@
   <!-- Instructions for using the SIM PIN unlock screen -->
   <string name="kg_sim_pin_instructions">Inxerta\'l PIN de la tarxeta SIM.</string>
   <!-- Instructions for using the SIM PIN unlock screen when there's more than one SIM -->
+  <string name="kg_sim_pin_instructions_multi">Introduz el PUK de SIM pa «<xliff:g id="carrier" example="CARD 1">%1$s</xliff:g>»</string>
   <!-- Instructions for using the PIN unlock screen -->
   <string name="kg_pin_instructions">Inxerta\'l PIN.</string>
   <!-- Instructions for using the password unlock screen -->
@@ -125,7 +123,7 @@
   <!-- Message shown in dialog while the device is unlocking the SIM card -->
   <string name="kg_sim_unlock_progress_dialog_message">Desbloquiando tarxeta SIM…</string>
   <!-- Message shown when the user enters an invalid SIM pin password in PUK screen -->
-  <string name="kg_invalid_sim_pin_hint">Inxerta un códigu PIN con una llonxitú ente cuatro y ocho díxitos.</string>
+  <string name="kg_invalid_sim_pin_hint">Teclexa un PIN que tea ente 1 y 8 caráuteres.</string>
   <!-- Message shown when the user enters an invalid PUK code in the PUK screen -->
   <string name="kg_invalid_sim_puk_hint">El códigu PUK tien de tener ocho númberos como mínimu.</string>
   <!-- Message shown when the user enters an invalid PUK code -->
@@ -181,11 +179,14 @@
         This is displayed if the phone is not connected to a carrier.-->
   <string name="keyguard_carrier_default">Ensin serviciu</string>
   <!-- Content description of the switch input method button for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_ime_switch_button" msgid="5032926134740456424">Camudar métodu d\'entrada</string>
   <!-- Description of airplane mode -->
-  <string name="airplane_mode">Mou avión</string>
   <!-- An explanation text that the pattern needs to be solved since the device has just been restarted. [CHAR LIMIT=80] -->
+  <string name="kg_prompt_reason_restart_pattern">Ríquese\'l patrón dempués de reaniciar el preséu</string>
   <!-- An explanation text that the pin needs to be entered since the device has just been restarted. [CHAR LIMIT=80] -->
+  <string name="kg_prompt_reason_restart_pin">Ríquese\'l PIN dempués de reaniciar el preséu</string>
   <!-- An explanation text that the password needs to be entered since the device has just been restarted. [CHAR LIMIT=80] -->
+  <string name="kg_prompt_reason_restart_password">Ríquese la contraseña dempués de reaniciar el preséu</string>
   <!-- An explanation text that the pattern needs to be solved since the user hasn't used strong authentication since quite some time. [CHAR LIMIT=80] -->
   <string name="kg_prompt_reason_timeout_pattern">Ríquese\'l patrón pa más seguranza</string>
   <!-- An explanation text that the pin needs to be entered since the user hasn't used strong authentication since quite some time. [CHAR LIMIT=80] -->
@@ -193,12 +194,17 @@
   <!-- An explanation text that the password needs to be entered since the user hasn't used strong authentication since quite some time. [CHAR LIMIT=80] -->
   <string name="kg_prompt_reason_timeout_password">Ríquese la contraseña pa más seguranza</string>
   <!-- An explanation text that the pattern needs to be solved since profiles have just been switched. [CHAR LIMIT=80] -->
+  <string name="kg_prompt_reason_switch_profiles_pattern">Ríquese\'l patrón al camudar de perfil</string>
   <!-- An explanation text that the pin needs to be entered since profiles have just been switched. [CHAR LIMIT=80] -->
+  <string name="kg_prompt_reason_switch_profiles_pin">Ríquese\'l PIN cuando camudes de perfil</string>
   <!-- An explanation text that the password needs to be entered since profiles have just been switched. [CHAR LIMIT=80] -->
+  <string name="kg_prompt_reason_switch_profiles_password">Ríquese la contraseña cuando camudes de perfil</string>
   <!-- An explanation text that the credential needs to be entered because a device admin has
     locked the device. [CHAR LIMIT=80] -->
+  <string name="kg_prompt_reason_device_admin">Preséu bloquiáu pol xestor de preseos</string>
   <!-- An explanation text that the credential needs to be entered because the user has clicked
      the force lock button. [CHAR LIMIT=80] -->
+  <string name="kg_prompt_reason_user_request">Bloquióse\'l preséu a mano</string>
   <!-- An explanation text that the pattern needs to be solved since it hasn't been solved in a while. [CHAR LIMIT=80]-->
   <plurals name="kg_prompt_reason_time_pattern">
     <item quantity="one">Hai <xliff:g id="number">%d</xliff:g> hora que nun se desbloquia\'l preséu. Confirma\'l patrón.</item>

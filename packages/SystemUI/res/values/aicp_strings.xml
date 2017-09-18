@@ -67,4 +67,8 @@
     <string name="accessibility_quick_settings_caffeine_off">Caffeine off</string>
     <string name="accessibility_quick_settings_caffeine_on">Caffeine on</string>
 
+    <!-- Aicp Extras Tile -->
+    <string name="quick_aicp_extras_label">Aicp Extras</string>
+    <string name="quick_aicp_extras_toast">LOL, you really thought that long click will take you somewhere!!!</string>
+
 </resources>

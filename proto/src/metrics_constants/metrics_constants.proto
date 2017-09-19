@@ -4195,6 +4195,9 @@ message MetricsEvent {
     // TAg FIELD_AUTOFILL_AUGMENTED_ONLY: if the session was used just for augmented autofill
     AUTOFILL_SESSION_FINISHED = 919;
 
+    // ACTION: Custom AICP metrics
+    AICP_METRICS = 10000;
+
     // meta-event: a reader has checkpointed the log here.
     METRICS_CHECKPOINT = 920;
 

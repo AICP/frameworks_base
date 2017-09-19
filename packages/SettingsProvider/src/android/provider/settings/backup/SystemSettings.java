@@ -101,5 +101,6 @@ public class SystemSettings {
         Settings.System.POWERMENU_USERS,
         Settings.System.POWERMENU_LOGOUT,
         Settings.System.POWERMENU_EMERGENCY,
+        Settings.System.POWERMENU_TORCH,
     };
 }

@@ -5299,6 +5299,13 @@ public final class Settings {
          */
         public static final String POWERMENU_EMERGENCY = "powermenu_emergency";
 
+        /**
+         * Whether to display the torch option in the power menu
+         *
+         * @hide
+         */
+        public static final String POWERMENU_TORCH = "powermenu_torch";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5447,6 +5454,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(POWERMENU_USERS);
             PRIVATE_SETTINGS.add(POWERMENU_LOGOUT);
             PRIVATE_SETTINGS.add(POWERMENU_EMERGENCY);
+            PRIVATE_SETTINGS.add(POWERMENU_TORCH);
         }
 
         /**

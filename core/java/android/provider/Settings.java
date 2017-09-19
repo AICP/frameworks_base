@@ -5254,6 +5254,76 @@ public final class Settings {
          */
         public static final String LOCKSCREEN_BATTERY_INFO = "lockscreen_battery_info";
 
+        /**
+         * Whether to display sound panel in the power menu
+         *
+         * @hide
+         */
+        public static final String POWERMENU_SOUNDPANEL = "powermenu_soundpanel";
+
+         /**
+         * Whether to display screenshot in the power menu
+         *
+         * @hide
+         */
+        public static final String POWERMENU_SCREENSHOT = "powermenu_screenshot";
+
+         /**
+         * Whether to display settings in the power menu
+         *
+         * @hide
+         */
+        public static final String POWERMENU_SETTINGS = "powermenu_settings";
+
+         /**
+         * Whether to display lock in the power menu
+         *
+         * @hide
+         */
+        public static final String POWERMENU_LOCKDOWN = "powermenu_lockdown";
+
+         /**
+         * Whether to display airplane in the power menu
+         *
+         * @hide
+         */
+        public static final String POWERMENU_AIRPLANE = "powermenu_airplane";
+
+         /**
+         * Whether to display reboot in the power menu
+         *
+         * @hide
+         */
+        public static final String POWERMENU_RESTART = "powermenu_restart";
+
+         /**
+         * Whether to display power in the power menu
+         *
+         * @hide
+         */
+        public static final String POWERMENU_POWER = "powermenu_power";
+
+         /**
+         * Whether to display the users option in the power menu
+         *
+         * @hide
+         */
+        public static final String POWERMENU_USERS = "powermenu_users";
+
+         /**
+         * Whether to display the users option in the power menu
+         *
+         * @hide
+         */
+        public static final String POWERMENU_LOGOUT = "powermenu_logout";
+
+         /**
+         * Whether to display the users option in the power menu
+         *
+         * @hide
+         */
+        public static final String POWERMENU_EMERGENCY = "powermenu_emergency";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5392,6 +5462,16 @@ public final class Settings {
             PRIVATE_SETTINGS.add(DOUBLE_TAP_SLEEP_GESTURE);
             PRIVATE_SETTINGS.add(DOUBLE_TAP_SLEEP_LOCKSCREEN);
             PRIVATE_SETTINGS.add(LOCKSCREEN_BATTERY_INFO);
+            PRIVATE_SETTINGS.add(POWERMENU_SOUNDPANEL);
+            PRIVATE_SETTINGS.add(POWERMENU_SCREENSHOT);
+            PRIVATE_SETTINGS.add(POWERMENU_SETTINGS);
+            PRIVATE_SETTINGS.add(POWERMENU_LOCKDOWN);
+            PRIVATE_SETTINGS.add(POWERMENU_AIRPLANE);
+            PRIVATE_SETTINGS.add(POWERMENU_RESTART);
+            PRIVATE_SETTINGS.add(POWERMENU_POWER);
+            PRIVATE_SETTINGS.add(POWERMENU_USERS);
+            PRIVATE_SETTINGS.add(POWERMENU_LOGOUT);
+            PRIVATE_SETTINGS.add(POWERMENU_EMERGENCY);
         }
 
         /**

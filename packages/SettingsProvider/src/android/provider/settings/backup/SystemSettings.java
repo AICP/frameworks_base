@@ -91,5 +91,15 @@ public class SystemSettings {
         Settings.System.DOUBLE_TAP_SLEEP_GESTURE,
         Settings.System.DOUBLE_TAP_SLEEP_LOCKSCREEN,
         Settings.System.LOCKSCREEN_BATTERY_INFO,
+        Settings.System.POWERMENU_SOUNDPANEL,
+        Settings.System.POWERMENU_SCREENSHOT,
+        Settings.System.POWERMENU_SETTINGS,
+        Settings.System.POWERMENU_LOCKDOWN,
+        Settings.System.POWERMENU_AIRPLANE,
+        Settings.System.POWERMENU_RESTART,
+        Settings.System.POWERMENU_POWER,
+        Settings.System.POWERMENU_USERS,
+        Settings.System.POWERMENU_LOGOUT,
+        Settings.System.POWERMENU_EMERGENCY,
     };
 }

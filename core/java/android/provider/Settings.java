@@ -4446,6 +4446,17 @@ public final class Settings {
                ANY_STRING_VALIDATOR;
 
         /**
+         * Whether to display qs tile titles in the qs panel
+         * @hide
+         */
+        public static final String OMNI_QS_TILE_TITLE_VISIBILITY = "qs_tile_title_visibility";
+
+        /** @hide */
+        private static final Validator OMNI_QS_TILE_TITLE_VISIBILITY_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
+         * the setting value. See an example above.
          * @hide
          */
         public static final String OMNI_USE_BOTTOM_GESTURE_NAVIGATION =
@@ -4762,6 +4773,7 @@ public final class Settings {
             OMNI_SHOW_BATTERY_IMAGE,
             OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE,
             OMNI_QS_LAYOUT_COLUMNS,
+            OMNI_QS_TILE_TITLE_VISIBILITY,
             // AICP Settings end
         };
 
@@ -4929,6 +4941,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(OMNI_SHOW_BATTERY_IMAGE);
             PRIVATE_SETTINGS.add(OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE);
             PRIVATE_SETTINGS.add(OMNI_QS_LAYOUT_COLUMNS);
+            PRIVATE_SETTINGS.add(OMNI_QS_TILE_TITLE_VISIBILITY);
             // AICP Settings end
         }
 
@@ -5070,6 +5083,7 @@ public final class Settings {
             VALIDATORS.put(OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE,
                     OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE_VALIDATOR);
             VALIDATORS.put(OMNI_QS_LAYOUT_COLUMNS, OMNI_QS_LAYOUT_COLUMNS_VALIDATOR);
+            VALIDATORS.put(OMNI_QS_TILE_TITLE_VISIBILITY, OMNI_QS_TILE_TITLE_VISIBILITY_VALIDATOR);
             // AICP Settings end
         }
 

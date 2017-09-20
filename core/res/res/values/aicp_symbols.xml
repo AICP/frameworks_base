@@ -36,4 +36,8 @@
   <java-symbol type="anim" name="recent_screen_fade_out" />
 
   <java-symbol type="array" name="config_blockPackagesSensorDrain" />
+
+  <java-symbol type="drawable" name="ic_audio_notification_new" />
+  <java-symbol type="drawable" name="ic_audio_notification_mute_new" />
+
 </resources>

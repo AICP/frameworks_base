@@ -3885,11 +3885,23 @@ public final class Settings {
         private static final Validator SHOW_BATTERY_PERCENT_VALIDATOR = sBooleanValidator;
 
         /**
+         * Volume dialog timeout
+         * @hide
+         */
+        public static final String VOLUME_DIALOG_TIMEOUT = "volume_dialog_timeout";
+
+        /**
          * IMPORTANT: If you add a new public settings you also have to add it to
          * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
          * it to PRIVATE_SETTINGS below. Also add a validator that can validate
          * the setting value. See an example above.
          */
+
+        /**
+         * Enable/Disable screenshot sound
+         * @hide
+         */
+        public static final String SCREENSHOT_SOUND = "screenshot_sound";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings

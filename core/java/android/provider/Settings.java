@@ -6518,6 +6518,12 @@ public final class Settings {
         public static final String SCREEN_OFF_ANIMATION = "screen_off_animation";
 
         /**
+          * Volume dialog timeout
+          * @hide
+          */
+         public static final String VOLUME_DIALOG_TIMEOUT = "volume_dialog_timeout";
+
+       /**
          * IMPORTANT: If you add a new public settings you also have to add it to
          * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
          * it to PRIVATE_SETTINGS below. Also add a validator that can validate
@@ -6673,6 +6679,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(ON_THE_GO_ALPHA);
             PRIVATE_SETTINGS.add(ON_THE_GO_SERVICE_RESTART);
             PRIVATE_SETTINGS.add(ON_THE_GO_CAMERA);
+            PRIVATE_SETTINGS.add(VOLUME_DIALOG_TIMEOUT);
         }
 
         /**

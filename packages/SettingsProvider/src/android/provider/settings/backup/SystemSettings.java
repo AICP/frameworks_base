@@ -130,7 +130,8 @@ public class SystemSettings {
                 Settings.System.GLOBAL_ACTIONS_ONTHEGO,
                 Settings.System.ON_THE_GO_ALPHA,
                 Settings.System.ON_THE_GO_SERVICE_RESTART,
-                Settings.System.ON_THE_GO_CAMERA
+                Settings.System.ON_THE_GO_CAMERA,
+                Settings.System.VOLUME_DIALOG_TIMEOUT
         ));
         if (Flags.backUpSmoothDisplayAndForcePeakRefreshRate()) {
             settings.add(Settings.System.PEAK_REFRESH_RATE);

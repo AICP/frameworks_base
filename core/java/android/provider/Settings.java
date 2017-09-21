@@ -6221,6 +6221,12 @@ public final class Settings {
          */
         public static final String POWER_MENU_ANIMATIONS = "power_menu_animations";
 
+         /**
+          * Volume dialog timeout
+          * @hide
+          */
+         public static final String VOLUME_DIALOG_TIMEOUT = "volume_dialog_timeout";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6432,6 +6438,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(TRANSPARENT_POWER_MENU);
             PRIVATE_SETTINGS.add(TRANSPARENT_POWER_DIALOG_DIM);
             PRIVATE_SETTINGS.add(POWER_MENU_ANIMATIONS);
+            PRIVATE_SETTINGS.add(VOLUME_DIALOG_TIMEOUT);
         }
 
         /**

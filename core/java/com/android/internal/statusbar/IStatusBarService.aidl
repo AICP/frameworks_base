@@ -169,4 +169,11 @@ interface IStatusBarService
      */
     void toggleCameraFlash();
     void toggleCameraFlashState(boolean enable);
+
+    // AICP - Used by mwkeys implementation
+    void toggleRecentApps();
+    void toggleSplitScreen();
+    void preloadRecentApps();
+    void cancelPreloadRecentApps();
+    //void startAssist(in Bundle args); defined above
 }

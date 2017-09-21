@@ -162,4 +162,11 @@ interface IStatusBarService
 
     // Used to block or unblock usage of gestural navigation
     void setBlockedGesturalNavigation(boolean blocked);
+
+    // AICP - Used by mwkeys implementation
+    void toggleRecentApps();
+    void toggleSplitScreen();
+    void preloadRecentApps();
+    void cancelPreloadRecentApps();
+    void startAssist(in Bundle args);
 }

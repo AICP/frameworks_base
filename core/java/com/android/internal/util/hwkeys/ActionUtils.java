@@ -59,7 +59,6 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
-import android.util.Log;
 import android.view.Display;
 import android.provider.MediaStore;
 import android.view.IWindowManager;
@@ -163,15 +162,13 @@ public final class ActionUtils {
         return getInt(context, "config_deviceHardwareKeys", PACKAGE_ANDROID) != 64;
     }
 
-/*
     public static boolean deviceSupportsLte(Context ctx) {
         final TelephonyManager tm = (TelephonyManager)
                 ctx.getSystemService(Context.TELEPHONY_SERVICE);
-//        return (tm.getLteOnCdmaMode() == PhoneConstants.LTE_ON_CDMA_TRUE)
+        return (tm.getLteOnCdmaMode(tm.getSubscriptionId()) == PhoneConstants.LTE_ON_CDMA_TRUE);
 //                || tm.getLteOnGsmMode() != 0;
-        return tm.getLteOnCdmaModeStatic() == PhoneConstants.LTE_ON_CDMA_TRUE;
+//        return tm.getLteOnCdmaModeStatic() == PhoneConstants.LTE_ON_CDMA_TRUE;
     }
-*/
 
     public static boolean deviceSupportsDdsSupported(Context context) {
         TelephonyManager tm = (TelephonyManager)
@@ -954,5 +951,4 @@ public final class ActionUtils {
         }
         return packageNames;
     }
-
 }

@@ -178,5 +178,6 @@ public class SystemSettings {
         Settings.System.TRANSPARENT_POWER_MENU,
         Settings.System.TRANSPARENT_POWER_DIALOG_DIM,
         Settings.System.POWER_MENU_ANIMATIONS,
+        Settings.System.VOLUME_DIALOG_TIMEOUT,
     };
 }

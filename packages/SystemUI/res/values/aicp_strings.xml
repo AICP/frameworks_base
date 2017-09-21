@@ -162,4 +162,7 @@
     <!-- SystemUI Tuner Parts -->
     <string name="custom_hint">Swipe from icon to launch</string>
 
+    <!-- DUI -->
+    <string name="systemui_tuner_navbar_title">Stock settings</string>
+
 </resources>

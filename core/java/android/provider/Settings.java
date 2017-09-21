@@ -6349,6 +6349,12 @@ public final class Settings {
          */
         public static final String ANIM_TILE_INTERPOLATOR = "anim_tile_interpolator";
 
+         /**
+          * Volume dialog timeout
+          * @hide
+          */
+         public static final String VOLUME_DIALOG_TIMEOUT = "volume_dialog_timeout";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6645,6 +6651,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(ANIM_TILE_STYLE);
             PRIVATE_SETTINGS.add(ANIM_TILE_DURATION);
             PRIVATE_SETTINGS.add(ANIM_TILE_INTERPOLATOR);
+            PRIVATE_SETTINGS.add(VOLUME_DIALOG_TIMEOUT);
         }
 
         /**

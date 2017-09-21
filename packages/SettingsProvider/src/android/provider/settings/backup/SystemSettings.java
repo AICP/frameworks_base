@@ -261,5 +261,6 @@ public class SystemSettings {
         Settings.System.ANIM_TILE_STYLE,
         Settings.System.ANIM_TILE_DURATION,
         Settings.System.ANIM_TILE_INTERPOLATOR,
+        Settings.System.VOLUME_DIALOG_TIMEOUT,
     };
 }

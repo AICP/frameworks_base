@@ -4914,6 +4914,16 @@ public final class Settings {
         private static final Validator SCREENSHOT_SOUND_VALIDATOR =
                BOOLEAN_VALIDATOR;
 
+         /**
+          * Volume dialog timeout
+          * @hide
+          */
+         public static final String VOLUME_DIALOG_TIMEOUT = "volume_dialog_timeout";
+
+         /** @hide */
+         private static final Validator VOLUME_DIALOG_TIMEOUT_VALIDATOR =
+                new SettingsValidators.InclusiveIntegerRangeValidator(500, 10000);;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5044,6 +5054,7 @@ public final class Settings {
             VOLUME_KEYS_CONTROL_RING_TONE,
             VOLUME_BUTTON_MUSIC_CONTROL,
             SCREENSHOT_SOUND,
+            VOLUME_DIALOG_TIMEOUT,
             // AICP Settings end
         };
 
@@ -5236,6 +5247,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(VOLUME_KEYS_CONTROL_RING_TONE);
             PRIVATE_SETTINGS.add(VOLUME_BUTTON_MUSIC_CONTROL);
             PRIVATE_SETTINGS.add(SCREENSHOT_SOUND);
+            PRIVATE_SETTINGS.add(VOLUME_DIALOG_TIMEOUT);
             // AICP Settings end
         }
 
@@ -5408,6 +5420,7 @@ public final class Settings {
             VALIDATORS.put(VOLUME_KEYS_CONTROL_RING_TONE,VOLUME_KEYS_CONTROL_RING_TONE_VALIDATOR);
             VALIDATORS.put(VOLUME_BUTTON_MUSIC_CONTROL,VOLUME_BUTTON_MUSIC_CONTROL_VALIDATOR);
             VALIDATORS.put(SCREENSHOT_SOUND,SCREENSHOT_SOUND_VALIDATOR);
+            VALIDATORS.put(VOLUME_DIALOG_TIMEOUT,VOLUME_DIALOG_TIMEOUT_VALIDATOR);
             // AICP Settings end
         }
 

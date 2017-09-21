@@ -257,5 +257,6 @@ public class SystemSettings {
         Settings.System.PULSE_ON_NEW_TRACKS,
         Settings.System.AUTO_BRIGHTNESS_ONE_SHOT,
         Settings.System.DATA_DISABLED_ICON,
+        Settings.System.VOLUME_DIALOG_TIMEOUT,
     };
 }

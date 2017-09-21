@@ -6371,6 +6371,12 @@ public final class Settings {
          */
         public static final String DATA_DISABLED_ICON = "data_disabled_icon";
 
+         /**
+          * Volume dialog timeout
+          * @hide
+          */
+         public static final String VOLUME_DIALOG_TIMEOUT = "volume_dialog_timeout";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6664,6 +6670,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(PULSE_ON_NEW_TRACKS);
             PRIVATE_SETTINGS.add(CHOOSER_ACTIVITY_BLACKLIST);
             PRIVATE_SETTINGS.add(DATA_DISABLED_ICON);
+            PRIVATE_SETTINGS.add(VOLUME_DIALOG_TIMEOUT);
         }
 
         /**

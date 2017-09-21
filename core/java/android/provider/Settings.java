@@ -5160,6 +5160,16 @@ public final class Settings {
          */
         public static final String ANIM_TILE_INTERPOLATOR = "anim_tile_interpolator";
 
+         /**
+          * Volume dialog timeout
+          * @hide
+          */
+         public static final String VOLUME_DIALOG_TIMEOUT = "volume_dialog_timeout";
+
+         /** @hide */
+         private static final Validator VOLUME_DIALOG_TIMEOUT_VALIDATOR =
+                new SettingsValidators.InclusiveIntegerRangeValidator(500, 10000);;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5298,6 +5308,7 @@ public final class Settings {
             BLUETOOTH_SHOW_BATTERY,
             ANIM_TILE_STYLE,
             ANIM_TILE_DURATION,
+            VOLUME_DIALOG_TIMEOUT,
             // AICP Settings end
         };
 
@@ -5484,6 +5495,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(BLUETOOTH_SHOW_BATTERY);
             PRIVATE_SETTINGS.add(ANIM_TILE_STYLE);
             PRIVATE_SETTINGS.add(ANIM_TILE_DURATION);
+            PRIVATE_SETTINGS.add(VOLUME_DIALOG_TIMEOUT);
             // AICP Settings end
         }
 
@@ -5660,6 +5672,7 @@ public final class Settings {
             VALIDATORS.put(BLUETOOTH_SHOW_BATTERY,BLUETOOTH_SHOW_BATTERY_VALIDATOR);
             VALIDATORS.put(ANIM_TILE_STYLE,ANIM_TILE_STYLE_VALIDATOR);
             VALIDATORS.put(ANIM_TILE_DURATION,ANIM_TILE_DURATION_VALIDATOR);
+            VALIDATORS.put(VOLUME_DIALOG_TIMEOUT,VOLUME_DIALOG_TIMEOUT_VALIDATOR);
             // AICP Settings end
         }
 

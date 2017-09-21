@@ -6730,6 +6730,12 @@ public final class Settings {
          */
         public static final String DOUBLE_TAP_SLEEP_LOCKSCREEN = "double_tap_sleep_lockscreen";
 
+         /**
+          * Volume dialog timeout
+          * @hide
+          */
+         public static final String VOLUME_DIALOG_TIMEOUT = "volume_dialog_timeout";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6972,6 +6978,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(LOCKSCREEN_BATTERY_INFO_TEMP_UNIT);
             PRIVATE_SETTINGS.add(DOUBLE_TAP_SLEEP_GESTURE);
             PRIVATE_SETTINGS.add(DOUBLE_TAP_SLEEP_LOCKSCREEN);
+            PRIVATE_SETTINGS.add(VOLUME_DIALOG_TIMEOUT);
         }
 
         /**

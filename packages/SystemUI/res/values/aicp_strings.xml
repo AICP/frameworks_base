@@ -312,4 +312,7 @@
 
     <!-- Daily data usage -->
     <string name="daily_data_usage_title">Today\'s usage</string>
+
+    <string name="lockscreen_default">Default</string>
+    <string name="lockscreen_hidden">None</string>
 </resources>

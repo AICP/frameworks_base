@@ -284,4 +284,6 @@
 
     <string name="app_picker_dialog_title">Select an app</string>
 
+    <string name="lockscreen_default">Default</string>
+    <string name="lockscreen_hidden">None</string>
 </resources>

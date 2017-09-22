@@ -136,4 +136,7 @@
     <!-- Screen record notification error title -->
     <string name="screenrecord_notif_error">Unable to record screen</string>
     <string name="notification_channel_screenrecord">Screenrecords</string>
+
+    <string name="lockscreen_default">Default</string>
+    <string name="lockscreen_hidden">None</string>
 </resources>

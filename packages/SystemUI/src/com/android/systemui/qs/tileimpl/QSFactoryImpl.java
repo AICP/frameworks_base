@@ -35,6 +35,7 @@ import com.android.systemui.qs.tiles.IntentTile;
 import com.android.systemui.qs.tiles.LocationTile;
 import com.android.systemui.qs.tiles.NfcTile;
 import com.android.systemui.qs.tiles.NightDisplayTile;
+import com.android.systemui.qs.tiles.RebootTile;
 import com.android.systemui.qs.tiles.RotationLockTile;
 import com.android.systemui.qs.tiles.UserTile;
 import com.android.systemui.qs.tiles.WifiTile;
@@ -69,6 +70,7 @@ public class QSFactoryImpl implements QSFactory {
         else if (tileSpec.equals("night")) return new NightDisplayTile(mHost);
         else if (tileSpec.equals("nfc")) return new NfcTile(mHost);
         else if (tileSpec.equals("aicp_extras")) return new AicpExtrasTile(mHost);
+        else if (tileSpec.equals("reboot")) return new RebootTile(mHost);
         // Intent tiles.
         else if (tileSpec.startsWith(IntentTile.PREFIX)) return IntentTile.create(mHost, tileSpec);
         else if (tileSpec.startsWith(CustomTile.PREFIX)) return CustomTile.create(mHost, tileSpec);

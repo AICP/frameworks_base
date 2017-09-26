@@ -5652,6 +5652,16 @@ public final class Settings {
         private static final Validator NOTIFICATION_GUTS_KILL_APP_BUTTON_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
+        /**
+         * Indicates whether ANBI (Accidental navigation button interaction) is enabled.
+         *
+         * @hide
+         */
+        public static final String ANBI_ENABLED_OPTION = "anbi_enabled_option";
+        /** @hide */
+        private static final Validator ANBI_ENABLED_OPTION_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5837,6 +5847,7 @@ public final class Settings {
             SHOW_VOLTE_ICON,
             OMNI_LOCKSCREEN_MEDIA_BLUR,
             NOTIFICATION_GUTS_KILL_APP_BUTTON,
+            ANBI_ENABLED_OPTION,
             // AICP Settings end
         };
 
@@ -6070,6 +6081,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SHOW_VOLTE_ICON);
             PRIVATE_SETTINGS.add(OMNI_LOCKSCREEN_MEDIA_BLUR);
             PRIVATE_SETTINGS.add(NOTIFICATION_GUTS_KILL_APP_BUTTON);
+            PRIVATE_SETTINGS.add(ANBI_ENABLED_OPTION);
             // AICP Settings end
         }
 
@@ -6294,6 +6306,7 @@ public final class Settings {
             VALIDATORS.put(OMNI_LOCKSCREEN_MEDIA_BLUR, OMNI_LOCKSCREEN_MEDIA_BLUR_VALIDATOR);
             VALIDATORS.put(NOTIFICATION_GUTS_KILL_APP_BUTTON,
                     NOTIFICATION_GUTS_KILL_APP_BUTTON_VALIDATOR);
+            VALIDATORS.put(ANBI_ENABLED_OPTION, ANBI_ENABLED_OPTION_VALIDATOR);
             // AICP Settings end
         }
 

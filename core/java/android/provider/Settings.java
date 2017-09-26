@@ -5944,6 +5944,13 @@ public final class Settings {
          */
         public static final String ALLOW_INCALL_HOME = "allow_incall_home";
 
+        /**
+         * Indicates whether ANBI (Accidental navigation button interaction) is enabled.
+         *
+         * @hide
+         */
+        public static final String ANBI_ENABLED_OPTION = "anbi_enabled_option";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6079,6 +6086,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(OMNI_LOCKSCREEN_MEDIA_BLUR, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(LOCKSCREEN_MEDIA_METADATA, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(ALLOW_INCALL_HOME, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(ANBI_ENABLED_OPTION, BOOLEAN_VALIDATOR);
         }
 
         /**

@@ -27,6 +27,7 @@ import com.android.systemui.qs.tiles.BluetoothTile;
 import com.android.systemui.qs.tiles.CastTile;
 import com.android.systemui.qs.tiles.CellularTile;
 import com.android.systemui.qs.tiles.ColorInversionTile;
+import com.android.systemui.qs.tiles.CompassTile;
 import com.android.systemui.qs.tiles.DataSaverTile;
 import com.android.systemui.qs.tiles.DndTile;
 import com.android.systemui.qs.tiles.FlashlightTile;
@@ -71,6 +72,7 @@ public class QSFactoryImpl implements QSFactory {
         else if (tileSpec.equals("nfc")) return new NfcTile(mHost);
         else if (tileSpec.equals("aicp_extras")) return new AicpExtrasTile(mHost);
         else if (tileSpec.equals("reboot")) return new RebootTile(mHost);
+        else if (tileSpec.equals("compass")) return new CompassTile(mHost);
         // Intent tiles.
         else if (tileSpec.startsWith(IntentTile.PREFIX)) return IntentTile.create(mHost, tileSpec);
         else if (tileSpec.startsWith(CustomTile.PREFIX)) return CustomTile.create(mHost, tileSpec);

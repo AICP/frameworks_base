@@ -24,6 +24,7 @@ import com.android.systemui.omni.OmniSystemUIService;
 
 import com.android.systemui.qs.tiles.AODTile;
 import com.android.systemui.qs.tiles.CaffeineTile;
+import com.android.systemui.qs.tiles.CompassTile;
 import com.android.systemui.qs.tiles.DataSwitchTile;
 import com.android.systemui.qs.tiles.ScreenshotTile;
 import com.android.systemui.qs.tiles.HeadsUpTile;
@@ -54,6 +55,11 @@ public interface AicpModule {
     @IntoMap
     @StringKey(CaffeineTile.TILE_SPEC)
     public abstract QSTileImpl<?> bindCaffeineTile(CaffeineTile caffeineTile);
+
+    @Binds
+    @IntoMap
+    @StringKey(CompassTile.TILE_SPEC)
+    public abstract QSTileImpl<?> bindCompassTile(CompassTile compassTile);
 
     @Binds
     @IntoMap

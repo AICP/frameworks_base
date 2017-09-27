@@ -30,4 +30,8 @@
     <integer name="config_currentInfoDivider" translatable="false">1000</integer>
     <!-- Update battery info every second when device is charging -->
     <bool name="config_alternateFastchargeInfoUpdate">false</bool>
+    <!-- The default tiles to display in QuickSettings -->
+    <string name="quick_settings_tiles_extra" translatable="false">
+        compass
+    </string>
 </resources>

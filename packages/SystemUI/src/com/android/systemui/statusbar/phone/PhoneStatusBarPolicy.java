@@ -388,7 +388,17 @@ public class PhoneStatusBarPolicy
 
         if (DndTile.isVisible(mSharedPreferences) || DndTile.isCombinedIcon(mSharedPreferences)) {
             zenVisible = zen != Global.ZEN_MODE_OFF;
-            zenIconId = R.drawable.stat_sys_dnd;
+            switch (zen) {
+                case Global.ZEN_MODE_IMPORTANT_INTERRUPTIONS:
+                    zenIconId = R.drawable.stat_sys_dnd_priority;
+                    break;
+                case Global.ZEN_MODE_NO_INTERRUPTIONS:
+                    zenIconId = R.drawable.stat_sys_dnd_total_silence;
+                    break;
+                default:
+                    zenIconId = R.drawable.stat_sys_dnd;
+                    break;
+            }
             zenDescription = mResources.getString(R.string.quick_settings_dnd_label);
         } else if (zen == Global.ZEN_MODE_NO_INTERRUPTIONS) {
             zenVisible = true;

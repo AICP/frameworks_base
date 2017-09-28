@@ -3874,6 +3874,10 @@ public final class Settings {
         };
 
         /**
+         * --- AICP System settings start
+         */
+
+        /**
          * Setting to determine whether or not to show the battery percentage in the status bar.
          *    0 - Don't show percentage
          *    1 - Show percentage
@@ -4003,6 +4007,11 @@ public final class Settings {
          * @hide
          */
         public static final String VOLUME_DIALOG_STROKE_DASH_GAP = "volume_dialog_stroke_dash_gap";
+
+        /**
+         * --- AICP System settings end
+         *  Add new system settings above this comment
+         */
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings

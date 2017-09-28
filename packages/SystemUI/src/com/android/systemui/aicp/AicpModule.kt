@@ -74,6 +74,12 @@ interface AicpModule {
     @StringKey(HeadsUpTile.TILE_SPEC)
     fun bindHeadsUpTile(headsUpTile: HeadsUpTile): QSTileImpl<*>
 
+    /** Inject MusicTile into tileMap in QSModule */
+    @Binds
+    @IntoMap
+    @StringKey(MusicTile.TILE_SPEC)
+    fun bindMusicTile(musicTile: MusicTile): QSTileImpl<*>
+
     /** Inject PowerShareTile into tileMap in QSModule */
     @Binds
     @IntoMap

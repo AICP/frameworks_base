@@ -48,6 +48,7 @@ import com.android.systemui.qs.tiles.RotationLockTile;
 import com.android.systemui.qs.tiles.ScreenrecordTile;
 import com.android.systemui.qs.tiles.UiModeNightTile;
 import com.android.systemui.qs.tiles.ScreenshotTile;
+import com.android.systemui.qs.tiles.UsbTetherTile;
 import com.android.systemui.qs.tiles.UserTile;
 import com.android.systemui.qs.tiles.WifiTile;
 import com.android.systemui.qs.tiles.WorkModeTile;
@@ -191,6 +192,8 @@ public class QSFactoryImpl implements QSFactory {
                 return mScrTileProvider.get();
             case "reboot":
                 return new RebootTile(mHost);
+            case "usb_tether":
+                return new UsbTetherTile(mHost);
         }
 
         // Intent tiles.

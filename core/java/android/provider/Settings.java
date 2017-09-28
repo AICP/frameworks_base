@@ -4721,6 +4721,16 @@ public final class Settings {
         private static final Validator AICP_QS_QUICKBAR_COLUMNS_VALIDATOR =
                 ANY_INTEGER_VALIDATOR;
 
+        /**
+         * Whether to display music track title within the music qs tile
+         * @hide
+         */
+        public static final String MUSIC_TILE_TITLE = "music_tile_title";
+
+        /** @hide */
+        private static final Validator MUSIC_TILE_TITLE_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -4817,6 +4827,7 @@ public final class Settings {
             AICP_QS_TILE_TITLE_VISIBILITY,
             AICP_QS_LAYOUT_ROWS,
             AICP_QS_QUICKBAR_COLUMNS,
+            MUSIC_TILE_TITLE,
             // AICP Settings end
         };
 
@@ -4960,6 +4971,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(AICP_QS_TILE_TITLE_VISIBILITY);
             PRIVATE_SETTINGS.add(AICP_QS_LAYOUT_ROWS);
             PRIVATE_SETTINGS.add(AICP_QS_QUICKBAR_COLUMNS);
+            PRIVATE_SETTINGS.add(MUSIC_TILE_TITLE);
             // AICP Settings end
         }
 
@@ -5085,6 +5097,7 @@ public final class Settings {
             VALIDATORS.put(AICP_QS_TILE_TITLE_VISIBILITY, AICP_QS_TILE_TITLE_VISIBILITY_VALIDATOR);
             VALIDATORS.put(AICP_QS_LAYOUT_ROWS, AICP_QS_LAYOUT_ROWS_VALIDATOR);
             VALIDATORS.put(AICP_QS_QUICKBAR_COLUMNS, AICP_QS_QUICKBAR_COLUMNS_VALIDATOR);
+            VALIDATORS.put(MUSIC_TILE_TITLE, MUSIC_TILE_TITLE_VALIDATOR);
             // AICP Settings end
         }
 

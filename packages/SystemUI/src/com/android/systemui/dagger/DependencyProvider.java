@@ -16,8 +16,8 @@
 
 package com.android.systemui.dagger;
 
-import static com.android.systemui.Dependency.TIME_TICK_HANDLER_NAME;
 import static com.android.systemui.Dependency.MAIN_HANDLER_NAME;
+import static com.android.systemui.Dependency.TIME_TICK_HANDLER_NAME;
 
 import android.app.INotificationManager;
 import android.content.Context;
@@ -91,6 +91,13 @@ public class DependencyProvider {
         HandlerThread thread = new HandlerThread("TimeTick");
         thread.start();
         return new Handler(thread.getLooper());
+    }
+
+    @Singleton
+    @Provides
+    @Named(MAIN_HANDLER_NAME)
+    public Handler provideMainHandler() {
+        return new Handler(Looper.getMainLooper());
     }
 
     /** */
@@ -257,7 +264,7 @@ public class DependencyProvider {
     @Singleton
     @Provides
     public PulseController providePulseController(Context context,
-            @Main Handler mainHandler) {
+            @Named(MAIN_HANDLER_NAME) Handler mainHandler) {
         return new PulseControllerImpl(context, mainHandler);
     }
 }

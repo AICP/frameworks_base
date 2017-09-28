@@ -134,5 +134,6 @@ public class SystemSettings {
         Settings.System.AICP_ASPECT_RATIO_APPS_LIST,
         Settings.System.AICP_ASPECT_RATIO_APPS_ENABLED,
         Settings.System.LOCK_HIDE_STATUS_BAR,
+        Settings.System.MUSIC_TILE_TITLE,
     };
 }

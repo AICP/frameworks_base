@@ -44,6 +44,7 @@ import com.android.systemui.qs.tiles.FlashlightTile;
 import com.android.systemui.qs.tiles.HeadsUpTile;
 import com.android.systemui.qs.tiles.HotspotTile;
 import com.android.systemui.qs.tiles.IntentTile;
+import com.android.systemui.qs.tiles.LocaleTile;
 import com.android.systemui.qs.tiles.LocationTile;
 import com.android.systemui.qs.tiles.MusicTile;
 import com.android.systemui.qs.tiles.NfcTile;
@@ -216,6 +217,8 @@ public class QSFactoryImpl implements QSFactory {
                 return new AdbOverNetworkTile(mHost);
             case "aod":
                 return new AODTile(mHost);
+            case "locale":
+                return new LocaleTile(mHost);
         }
 
         // Intent tiles.

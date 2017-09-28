@@ -4519,6 +4519,16 @@ public final class Settings {
         private static final Validator TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
+        /**
+         * Whether to display music track title within the music qs tile
+         * @hide
+         */
+        public static final String MUSIC_TILE_TITLE = "music_tile_title";
+
+        /** @hide */
+        private static final Validator MUSIC_TILE_TITLE_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -4851,6 +4861,7 @@ public final class Settings {
             OMNI_QS_LAYOUT_ROWS_LANDSCAPE,
             OMNI_QS_QUICKBAR_COLUMNS,
             TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK,
+            MUSIC_TILE_TITLE,
             // AICP Settings end
         };
 
@@ -5025,6 +5036,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(OMNI_QS_LAYOUT_ROWS_LANDSCAPE);
             PRIVATE_SETTINGS.add(OMNI_QS_QUICKBAR_COLUMNS);
             PRIVATE_SETTINGS.add(TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK);
+            PRIVATE_SETTINGS.add(MUSIC_TILE_TITLE);
             // AICP Settings end
         }
 
@@ -5175,6 +5187,7 @@ public final class Settings {
             VALIDATORS.put(OMNI_QS_LAYOUT_ROWS_LANDSCAPE, OMNI_QS_LAYOUT_ROWS_LANDSCAPE_VALIDATOR);
             VALIDATORS.put(OMNI_QS_QUICKBAR_COLUMNS, OMNI_QS_QUICKBAR_COLUMNS_VALIDATOR);
             VALIDATORS.put(TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK, TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK_VALIDATOR);
+            VALIDATORS.put(MUSIC_TILE_TITLE, MUSIC_TILE_TITLE_VALIDATOR);
             // AICP Settings end
         }
 

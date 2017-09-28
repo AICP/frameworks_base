@@ -5696,6 +5696,12 @@ public final class Settings {
          */
         public static final String SMART_PIXELS_ON_POWER_SAVE = "smart_pixels_on_power_save";
 
+        /**
+         * Whether to display music track title within the music qs tile
+         * @hide
+         */
+        public static final String MUSIC_TILE_TITLE = "music_tile_title";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5790,6 +5796,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(SMART_PIXELS_SHIFT_TIMEOUT, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(SMART_PIXELS_PATTERN, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(SMART_PIXELS_ON_POWER_SAVE, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(MUSIC_TILE_TITLE, BOOLEAN_VALIDATOR);
         }
 
         /**

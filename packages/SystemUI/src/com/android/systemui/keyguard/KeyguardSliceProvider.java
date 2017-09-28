@@ -299,7 +299,7 @@ public class KeyguardSliceProvider extends SliceProvider implements
                 .setContentDescription(getContext().getResources()
                         .getString(R.string.accessibility_quick_settings_dnd))
                 .addEndItem(
-                    IconCompat.createWithResource(getContext(), R.drawable.stat_sys_dnd),
+                    IconCompat.createWithResource(getContext(), getDndResource()),
                     ListBuilder.ICON_IMAGE);
         builder.addRow(dndBuilder);
     }
@@ -309,6 +309,26 @@ public class KeyguardSliceProvider extends SliceProvider implements
      */
     protected boolean isDndOn() {
         return mZenModeController.getZen() != Settings.Global.ZEN_MODE_OFF;
+    }
+
+    /**
+     * Return the resource ID of DND state icon
+     */
+    protected int getDndResource() {
+        int zenIconId = 0;
+        int zen = mZenModeController.getZen();
+        switch (zen) {
+            case Settings.Global.ZEN_MODE_IMPORTANT_INTERRUPTIONS:
+                zenIconId = R.drawable.ic_qs_dnd_on_priority;
+                break;
+            case Settings.Global.ZEN_MODE_NO_INTERRUPTIONS:
+                zenIconId = R.drawable.ic_qs_dnd_on_total_silence;
+                break;
+            default:
+                zenIconId = com.android.internal.R.drawable.ic_qs_dnd;
+                break;
+        }
+        return zenIconId;
     }
 
     protected void addWeather(ListBuilder builder) {

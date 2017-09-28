@@ -26,7 +26,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -327,7 +326,6 @@ public class LockscreenFragment extends PreferenceFragment {
 
         @Override
         public IntentButton create(Map<String, String> settings) {
-        Log.d("maxwen", "create " + mKey + " " + settings);
             String buttonStr = settings.get(mKey);
             if (!TextUtils.isEmpty(buttonStr)) {
                 if (buttonStr.contains("::")) {

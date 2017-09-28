@@ -3936,7 +3936,7 @@ public final class Settings {
          */
         public static final String STATUS_BAR_QUICK_QS_PULLDOWN = "status_bar_quick_qs_pulldown";
 
-        /** Whether to skip music track with volume rocker 
+        /** Whether to skip music track with volume rocker
         /**
          * @hide
          */
@@ -3947,6 +3947,12 @@ public final class Settings {
         * @hide
         */
        public static final String LOCKSCREEN_MEDIA_METADATA = "lockscreen_media_metadata";
+
+        /**
+         * Whether to display music track title within the music qs tile
+         * @hide
+         */
+        public static final String MUSIC_TILE_TITLE = "music_tile_title";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings

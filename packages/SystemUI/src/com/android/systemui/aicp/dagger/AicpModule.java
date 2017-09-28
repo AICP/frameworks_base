@@ -29,6 +29,7 @@ import com.android.systemui.qs.tiles.CompassTile;
 import com.android.systemui.qs.tiles.DataSwitchTile;
 import com.android.systemui.qs.tiles.ScreenshotTile;
 import com.android.systemui.qs.tiles.HeadsUpTile;
+import com.android.systemui.qs.tiles.MusicTile;
 
 import com.android.systemui.qs.tileimpl.QSTileImpl;
 
@@ -82,6 +83,11 @@ public interface AicpModule {
     @IntoMap
     @StringKey(AicpExtrasTile.TILE_SPEC)
     public abstract QSTileImpl<?> bindAicpExtrasTile(AicpExtrasTile aicp_extrasTile);
+
+    @Binds
+    @IntoMap
+    @StringKey(MusicTile.TILE_SPEC)
+    public abstract QSTileImpl<?> bindMusicTile(MusicTile musicTile);
 
     /** */
     @Binds

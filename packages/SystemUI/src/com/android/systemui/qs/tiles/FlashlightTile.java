@@ -26,6 +26,7 @@ import android.widget.Switch;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 import com.android.systemui.Dependency;
 import com.android.systemui.R;
+import com.android.systemui.plugins.ActivityStarter;
 import com.android.systemui.plugins.qs.QSTile.BooleanState;
 import com.android.systemui.qs.QSHost;
 import com.android.systemui.qs.tileimpl.QSTileImpl;
@@ -37,10 +38,12 @@ public class FlashlightTile extends QSTileImpl<BooleanState> implements
 
     private final Icon mIcon = ResourceIcon.get(R.drawable.ic_signal_flashlight);
     private final FlashlightController mFlashlightController;
+    private final ActivityStarter mActivityStarter;
 
     public FlashlightTile(QSHost host) {
         super(host);
         mFlashlightController = Dependency.get(FlashlightController.class);
+        mActivityStarter = Dependency.get(ActivityStarter.class);
     }
 
     @Override
@@ -93,7 +96,7 @@ public class FlashlightTile extends QSTileImpl<BooleanState> implements
 
     @Override
     protected void handleLongClick() {
-        handleClick();
+        mActivityStarter.postStartActivityDismissingKeyguard(new Intent("android.media.action.IMAGE_CAPTURE"), 0);
     }
 
     @Override

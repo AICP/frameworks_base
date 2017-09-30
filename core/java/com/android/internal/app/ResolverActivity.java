@@ -1940,7 +1940,7 @@ public class ResolverActivity extends Activity {
 
             final int checkedPos = mAdapterView.getCheckedItemPosition();
             final boolean hasValidSelection = checkedPos != ListView.INVALID_POSITION;
-            if (!useLayoutWithDefault()
+            if (useLayoutWithDefault()
                     && (!hasValidSelection || mLastSelected != checkedPos)
                     && mAlwaysButton != null) {
                 setAlwaysButtonEnabled(hasValidSelection, checkedPos, true);

@@ -63,6 +63,8 @@ public class QSPanel extends LinearLayout implements Tunable, Callback {
     protected final ArrayList<TileRecord> mRecords = new ArrayList<TileRecord>();
     protected final View mBrightnessView;
     protected final ImageView mBrightnessIcon;
+    protected final ImageView mBrightnessIconLeft;
+    private boolean mBrightnessIconPosition;
     private final H mHandler = new H();
     private final View mPageIndicator;
     private final MetricsLogger mMetricsLogger = Dependency.get(MetricsLogger.class);
@@ -102,6 +104,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback {
         addView(mBrightnessView);
 
         mBrightnessIcon = (ImageView) mBrightnessView.findViewById(R.id.brightness_icon);
+        mBrightnessIconLeft = (ImageView) mBrightnessView.findViewById(R.id.brightness_icon_left);
 
         setupTileLayout();
 
@@ -119,8 +122,12 @@ public class QSPanel extends LinearLayout implements Tunable, Callback {
 
         updateResources();
 
+        mBrightnessIconPosition = Settings.System.getIntForUser(
+                mContext.getContentResolver(), Settings.System.BRIGHTNESS_ICON_POSITION,
+                1, UserHandle.USER_CURRENT) == 1;
+
         mBrightnessController = new BrightnessController(getContext(),
-                mBrightnessIcon,
+                (mBrightnessIconPosition ? mBrightnessIcon : mBrightnessIconLeft),
                 findViewById(R.id.brightness_slider));
     }
 
@@ -200,9 +207,18 @@ public class QSPanel extends LinearLayout implements Tunable, Callback {
 
     private void setBrightnessIcon() {
         boolean brightnessIconEnabled = Settings.System.getIntForUser(
-            mContext.getContentResolver(), Settings.System.BRIGHTNESS_ICON,
+                mContext.getContentResolver(), Settings.System.BRIGHTNESS_ICON,
                 0, UserHandle.USER_CURRENT) == 1;
-        mBrightnessIcon.setVisibility(brightnessIconEnabled ? View.VISIBLE : View.GONE);
+        mBrightnessIconPosition = Settings.System.getIntForUser(
+                mContext.getContentResolver(), Settings.System.BRIGHTNESS_ICON_POSITION,
+                1, UserHandle.USER_CURRENT) == 1;
+        if (mBrightnessIconPosition) {
+            mBrightnessIcon.setVisibility(brightnessIconEnabled ? View.VISIBLE : View.GONE);
+            mBrightnessIconLeft.setVisibility(View.GONE);
+        } else {
+            mBrightnessIconLeft.setVisibility(brightnessIconEnabled ? View.VISIBLE : View.GONE);
+            mBrightnessIcon.setVisibility(View.GONE);
+        }
         updateResources();
     }
 

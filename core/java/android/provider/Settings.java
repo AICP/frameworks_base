@@ -4098,6 +4098,12 @@ public final class Settings {
         public static final String BRIGHTNESS_ICON = "brightness_icon";
 
         /**
+         * Brightness Icon position on Brightness Slider
+         * @hide
+         */
+        public static final String BRIGHTNESS_ICON_POSITION = "brightness_icon_position";
+
+        /**
          * --- AICP System settings end
          *  Add new system settings above this comment
          */

@@ -1216,7 +1216,7 @@ public class ContentProviderHelper {
 
         private void onChange() {
             final boolean enabled = Settings.Global.getInt(mService.mContext.getContentResolver(),
-                    Settings.Global.DEVELOPMENT_SETTINGS_ENABLED, Build.IS_ENG ? 1 : 0) != 0;
+                    Settings.Global.DEVELOPMENT_SETTINGS_ENABLED, 1) != 0;
             mService.mContext.getPackageManager().setComponentEnabledSetting(
                     mBugreportStorageProvider,
                     enabled ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED

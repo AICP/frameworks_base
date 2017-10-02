@@ -46,7 +46,7 @@ public class DevelopmentSettingsEnablerTest {
     @Test
     public void isEnabled_settingsOn_noRestriction_isAdmin_shouldReturnTrue() {
         Settings.Global.putInt(mContext.getContentResolver(),
-                Settings.Global.DEVELOPMENT_SETTINGS_ENABLED, 0);
+                Settings.Global.DEVELOPMENT_SETTINGS_ENABLED, 1);
 
         assertThat(DevelopmentSettingsEnabler.isDevelopmentSettingsEnabled(mContext)).isFalse();
 

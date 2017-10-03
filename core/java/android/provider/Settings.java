@@ -5287,7 +5287,34 @@ public final class Settings {
         /** @hide */
         public static final String BACK_GESTURE_HAPTIC = "back_gesture_haptic";
 
-        /***************************
+        /**
+         * Whether to show the battery bar
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR = "statusbar_battery_bar";
+
+        /**
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_COLOR = "statusbar_battery_bar_color";
+
+        /**
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_THICKNESS = "statusbar_battery_bar_thickness";
+
+        /**
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_STYLE = "statusbar_battery_bar_style";
+
+        /**
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_ANIMATE = "statusbar_battery_bar_animate";
+
+
+	/***************************
          * AICP System Settings end
          ***************************/
 
@@ -5308,6 +5335,11 @@ public final class Settings {
             OMNI_SYSTEM_PROXI_CHECK_ENABLED,
             ALERT_SLIDER_NOTIFICATIONS,
             BACK_GESTURE_HAPTIC,
+            STATUSBAR_BATTERY_BAR,
+            STATUSBAR_BATTERY_BAR_COLOR,
+            STATUSBAR_BATTERY_BAR_THICKNESS,
+            STATUSBAR_BATTERY_BAR_STYLE,
+            STATUSBAR_BATTERY_BAR_ANIMATE
         };
 
         /**
@@ -5332,6 +5364,12 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(OMNI_SYSTEM_PROXI_CHECK_ENABLED, 0);
             AICP_SETTINGS_VALIDATORS.put(ALERT_SLIDER_NOTIFICATIONS, 2);
             AICP_SETTINGS_VALIDATORS.put(BACK_GESTURE_HAPTIC, 0);
+            AICP_SETTINGS_VALIDATORS.put(STATUSBAR_BATTERY_BAR, 1);
+            AICP_SETTINGS_VALIDATORS.put(STATUSBAR_BATTERY_BAR_COLOR, 1);
+            AICP_SETTINGS_VALIDATORS.put(STATUSBAR_BATTERY_BAR_THICKNESS,1);
+            AICP_SETTINGS_VALIDATORS.put(STATUSBAR_BATTERY_BAR_STYLE, 1);
+            AICP_SETTINGS_VALIDATORS.put(STATUSBAR_BATTERY_BAR_ANIMATE, 2);
+
         }
     }
 

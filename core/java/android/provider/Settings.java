@@ -6119,6 +6119,11 @@ public final class Settings {
         */
         public static final String STATUS_BAR_QUICK_QS_PULLDOWN = "status_bar_quick_qs_pulldown";
 
+        /**
+         * @hide
+         */
+        public static final String AICP_SHOW_BATTERY_IMAGE = "status_bar_show_battery_image";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6281,6 +6286,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(STATUS_BAR_SHOW_CARRIER, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(CUSTOM_CARRIER_LABEL, ANY_STRING_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(STATUS_BAR_QUICK_QS_PULLDOWN, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(AICP_SHOW_BATTERY_IMAGE, BOOLEAN_VALIDATOR);
         }
 
         /**

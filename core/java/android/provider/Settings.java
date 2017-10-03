@@ -6529,6 +6529,32 @@ public final class Settings {
          */
         public static final String CHARGING_ANIMATION = "charging_animation";
 
+       /**
+         * Whether to show the battery bar
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR = "statusbar_battery_bar";
+
+        /**
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_COLOR = "statusbar_battery_bar_color";
+
+        /**
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_THICKNESS = "statusbar_battery_bar_thickness";
+
+        /**
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_STYLE = "statusbar_battery_bar_style";
+
+        /**
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_ANIMATE = "statusbar_battery_bar_animate";
+
         /**
          * IMPORTANT: If you add a new public settings you also have to add it to
          * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
@@ -6729,6 +6755,11 @@ public final class Settings {
             PRIVATE_SETTINGS.add(TRANSPARENT_POWER_MENU);
             PRIVATE_SETTINGS.add(TRANSPARENT_POWER_DIALOG_DIM);
             PRIVATE_SETTINGS.add(POWER_MENU_ANIMATIONS);
+            PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR);
+            PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_COLOR);
+            PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_THICKNESS);
+            PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_STYLE);
+            PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_ANIMATE);
         }
 
         /**

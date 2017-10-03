@@ -162,14 +162,20 @@ public class SystemSettings {
                 Settings.System.STATUS_BAR_CLOCK_DATE_DISPLAY,
                 Settings.System.STATUS_BAR_CLOCK_DATE_STYLE,
                 Settings.System.STATUS_BAR_CLOCK_DATE_POSITION,
-                Settings.System.STATUS_BAR_CLOCK_DATE_FORMAT
+                Settings.System.STATUS_BAR_CLOCK_DATE_FORMAT,
                 Settings.System.ANIM_TILE_STYLE,
                 Settings.System.ANIM_TILE_DURATION,
                 Settings.System.ANIM_TILE_INTERPOLATOR,
                 Settings.System.GLOBAL_ACTIONS_ONTHEGO,
                 Settings.System.ON_THE_GO_ALPHA,
                 Settings.System.ON_THE_GO_SERVICE_RESTART,
-                Settings.System.ON_THE_GO_CAMERA
+                Settings.System.ON_THE_GO_CAMERA,
+                Settings.System.STATUS_BAR_CLOCK_DATE_FORMAT,
+                Settings.System.STATUSBAR_BATTERY_BAR,
+                Settings.System.STATUSBAR_BATTERY_BAR_COLOR,
+                Settings.System.STATUSBAR_BATTERY_BAR_THICKNESS,
+                Settings.System.STATUSBAR_BATTERY_BAR_STYLE,
+                Settings.System.STATUSBAR_BATTERY_BAR_ANIMATE
         ));
         if (Flags.backUpSmoothDisplayAndForcePeakRefreshRate()) {
             settings.add(Settings.System.PEAK_REFRESH_RATE);

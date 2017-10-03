@@ -140,10 +140,18 @@ public class SystemSettings {
                 Settings.System.POWER_MENU_ANIMATIONS,
                 Settings.System.STATUSBAR_BATTERY_BAR,
                 Settings.System.STATUSBAR_BATTERY_BAR_COLOR,
+                Settings.System.STATUSBAR_BATTERY_BAR_DARK_COLOR,
                 Settings.System.STATUSBAR_BATTERY_BAR_THICKNESS,
                 Settings.System.STATUSBAR_BATTERY_BAR_STYLE,
                 Settings.System.STATUSBAR_BATTERY_BAR_ANIMATE,
-                Settings.System.STATUSBAR_BATTERY_BAR_LOCATION
+                Settings.System.STATUSBAR_BATTERY_BAR_LOCATION,
+                Settings.System.STATUSBAR_BATTERY_BAR_CHARGING_COLOR,
+                Settings.System.STATUSBAR_BATTERY_BAR_CHARGING_DARK_COLOR,
+                Settings.System.STATUSBAR_BATTERY_BAR_BATTERY_LOW_COLOR,
+                Settings.System.STATUSBAR_BATTERY_BAR_BATTERY_LOW_DARK_COLOR,
+                Settings.System.STATUSBAR_BATTERY_BAR_ENABLE_CHARGING_COLOR,
+                Settings.System.STATUSBAR_BATTERY_BAR_BLEND_COLORS_REVERSE,
+                Settings.System.STATUSBAR_BATTERY_BAR_BLEND_DARK_COLORS_REVERSE
         ));
         if (Flags.backUpSmoothDisplayAndForcePeakRefreshRate()) {
             settings.add(Settings.System.PEAK_REFRESH_RATE);

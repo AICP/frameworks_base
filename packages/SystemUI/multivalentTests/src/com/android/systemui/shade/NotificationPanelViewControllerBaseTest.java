@@ -527,7 +527,7 @@ public class NotificationPanelViewControllerBaseTest extends SysuiTestCase {
                 mStatusBarStateController,
                 mNotificationShadeWindowController,
                 mDozeLog, mDozeParameters, mCommandQueue, mVibratorHelper,
-                mLatencyTracker, mAccessibilityManager, 0, mUpdateMonitor,
+                mLatencyTracker, mPowerManager, mAccessibilityManager, 0, mUpdateMonitor,
                 mMetricsLogger,
                 mShadeLog,
                 mConfigurationController,
@@ -584,7 +584,8 @@ public class NotificationPanelViewControllerBaseTest extends SysuiTestCase {
                 mBrightnessMirrorShowingRepository,
                 new BlurConfig(0f, 0f),
                 () -> mKosmos.getFakeShadeDisplaysRepository(),
-                mWindowRootViewBlurInteractor);
+                mWindowRootViewBlurInteractor,
+                mContext);
         mNotificationPanelViewController.initDependencies(
                 mCentralSurfaces,
                 null,

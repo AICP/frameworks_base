@@ -210,5 +210,10 @@ public class SystemSettings {
         Settings.System.AICP_ASPECT_RATIO_APPS_ENABLED,
         Settings.System.LOCKSCREEN_PIN_SCRAMBLE_LAYOUT,
         Settings.System.LOCKSCREEN_QUICK_UNLOCK_CONTROL,
+        Settings.System.STATUSBAR_BATTERY_BAR,
+        Settings.System.STATUSBAR_BATTERY_BAR_COLOR,
+        Settings.System.STATUSBAR_BATTERY_BAR_THICKNESS,
+        Settings.System.STATUSBAR_BATTERY_BAR_STYLE,
+        Settings.System.STATUSBAR_BATTERY_BAR_ANIMATE,
     };
 }

@@ -6467,6 +6467,32 @@ public final class Settings {
         public static final String LOCKSCREEN_QUICK_UNLOCK_CONTROL =
                 "lockscreen_quick_unlock_control";
 
+        /**
+         * Whether to show the battery bar
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR = "statusbar_battery_bar";
+
+        /**
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_COLOR = "statusbar_battery_bar_color";
+
+        /**
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_THICKNESS = "statusbar_battery_bar_thickness";
+
+        /**
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_STYLE = "statusbar_battery_bar_style";
+
+        /**
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_ANIMATE = "statusbar_battery_bar_animate";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6712,6 +6738,11 @@ public final class Settings {
             PRIVATE_SETTINGS.add(AICP_ASPECT_RATIO_APPS_ENABLED);
             PRIVATE_SETTINGS.add(LOCKSCREEN_PIN_SCRAMBLE_LAYOUT);
             PRIVATE_SETTINGS.add(LOCKSCREEN_QUICK_UNLOCK_CONTROL);
+            PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR);
+            PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_COLOR);
+            PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_THICKNESS);
+            PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_STYLE);
+            PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_ANIMATE);
         }
 
         /**

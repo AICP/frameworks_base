@@ -162,7 +162,12 @@ public class SystemSettings {
                 Settings.System.STATUS_BAR_CLOCK_DATE_DISPLAY,
                 Settings.System.STATUS_BAR_CLOCK_DATE_STYLE,
                 Settings.System.STATUS_BAR_CLOCK_DATE_POSITION,
-                Settings.System.STATUS_BAR_CLOCK_DATE_FORMAT
+                Settings.System.STATUS_BAR_CLOCK_DATE_FORMAT,
+                Settings.System.STATUSBAR_BATTERY_BAR,
+                Settings.System.STATUSBAR_BATTERY_BAR_COLOR,
+                Settings.System.STATUSBAR_BATTERY_BAR_THICKNESS,
+                Settings.System.STATUSBAR_BATTERY_BAR_STYLE,
+                Settings.System.STATUSBAR_BATTERY_BAR_ANIMATE
         ));
         if (Flags.backUpSmoothDisplayAndForcePeakRefreshRate()) {
             settings.add(Settings.System.PEAK_REFRESH_RATE);

@@ -4616,6 +4616,15 @@ public final class Settings {
         private static final Validator NAVIGATION_BAR_ENABLED_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
+         * @hide
+         */
+        public static final String OMNI_SHOW_BATTERY_IMAGE = "status_bar_show_battery_image";
+
+        /** @hide */
+        private static final Validator OMNI_SHOW_BATTERY_IMAGE_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -4704,6 +4713,7 @@ public final class Settings {
             THEMING_BASE,
             THEMING_ACCENT,
             OMNI_USE_BOTTOM_GESTURE_NAVIGATION,
+            OMNI_SHOW_BATTERY_IMAGE,
             // AICP Settings end
         };
 
@@ -4866,6 +4876,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(KEY_APP_SWITCH_DOUBLE_TAP_ACTION);
             PRIVATE_SETTINGS.add(KEY_CAMERA_LONG_PRESS_ACTION);
             PRIVATE_SETTINGS.add(KEY_CAMERA_DOUBLE_TAP_ACTION);
+            PRIVATE_SETTINGS.add(OMNI_SHOW_BATTERY_IMAGE);
             // AICP Settings end
         }
 
@@ -5001,6 +5012,7 @@ public final class Settings {
             VALIDATORS.put(NAVIGATION_BAR_ENABLED, NAVIGATION_BAR_ENABLED_VALIDATOR);
             VALIDATORS.put(BUTTON_BRIGHTNESS, BUTTON_BRIGHTNESS_VALIDATOR);
             VALIDATORS.put(BUTTON_BRIGHTNESS_ENABLED, BUTTON_BRIGHTNESS_ENABLED_VALIDATOR);
+            VALIDATORS.put(OMNI_SHOW_BATTERY_IMAGE, OMNI_SHOW_BATTERY_IMAGE_VALIDATOR);
             // AICP Settings end
         }
 

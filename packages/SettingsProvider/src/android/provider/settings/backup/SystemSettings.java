@@ -216,5 +216,10 @@ public class SystemSettings {
         Settings.System.VOLUME_ROCKER_WAKE,
         Settings.System.VOLUME_KEYS_CONTROL_RING_TONE,
         Settings.System.VOLUME_ANSWER_CALL,
+        Settings.System.STATUSBAR_BATTERY_BAR,
+        Settings.System.STATUSBAR_BATTERY_BAR_COLOR,
+        Settings.System.STATUSBAR_BATTERY_BAR_THICKNESS,
+        Settings.System.STATUSBAR_BATTERY_BAR_STYLE,
+        Settings.System.STATUSBAR_BATTERY_BAR_ANIMATE,
     };
 }

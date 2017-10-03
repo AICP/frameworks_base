@@ -264,5 +264,6 @@ public class SystemSettings {
         Settings.System.VOLUME_DIALOG_TIMEOUT,
         Settings.System.STATUSBAR_LEFT_PADDING,
         Settings.System.STATUSBAR_RIGHT_PADDING,
+        Settings.System.AICP_SHOW_BATTERY_IMAGE,
     };
 }

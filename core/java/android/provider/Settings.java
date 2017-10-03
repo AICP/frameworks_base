@@ -5741,6 +5741,13 @@ public final class Settings {
         @SuppressLint("NoSettingsProvider")
         public static final String STATUS_BAR_QUICK_QS_PULLDOWN = "qs_quick_pulldown";
 
+        /**
+         *  Enable statusbar double tap gesture on to put device to sleep
+         *  0 = 0ff, 1 = on
+         */
+        @SuppressLint("NoSettingsProvider")
+        public static final String DOUBLE_TAP_SLEEP_GESTURE = "double_tap_sleep_gesture";
+
         /***************************
          * AICP System Settings end
          ***************************/

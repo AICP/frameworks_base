@@ -109,5 +109,10 @@ public class SystemSettings {
         Settings.System.OMNI_BUTTON_EXTRA_KEY_MAPPING,
         Settings.System.OMNI_SYSTEM_PROXI_CHECK_ENABLED,
         Settings.System.ALERT_SLIDER_NOTIFICATIONS,
+        Settings.System.STATUSBAR_BATTERY_BAR,
+        Settings.System.STATUSBAR_BATTERY_BAR_COLOR,
+        Settings.System.STATUSBAR_BATTERY_BAR_THICKNESS,
+        Settings.System.STATUSBAR_BATTERY_BAR_STYLE,
+        Settings.System.STATUSBAR_BATTERY_BAR_ANIMATE,
     };
 }

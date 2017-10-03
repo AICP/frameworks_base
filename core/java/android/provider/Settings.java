@@ -6378,6 +6378,11 @@ public final class Settings {
          */
         public static final String SHOW_APP_VOLUME = "show_app_volume";
 
+        /**
+         * @hide
+         */
+        public static final String AICP_SHOW_BATTERY_IMAGE = "status_bar_show_battery_image";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6675,6 +6680,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(ANIM_TILE_DURATION);
             PRIVATE_SETTINGS.add(ANIM_TILE_INTERPOLATOR);
             PRIVATE_SETTINGS.add(VOLUME_DIALOG_TIMEOUT);
+            PRIVATE_SETTINGS.add(AICP_SHOW_BATTERY_IMAGE);
         }
 
         /**

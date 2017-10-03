@@ -161,7 +161,6 @@
     <!-- Kill button in notification guts -->
     <string name="force_stop_dlg_title">Stopp erzwingen?</string>
     <string name="force_stop_dlg_text">Das erzwungene Beenden einer App kann zu abnormalem Verhalten führen.</string>
-    <string name="dlg_ok">OK</string>
     <string name="dlg_cancel">Abbrechen</string>
     <string name="kill">App beenden</string>
 
@@ -268,4 +267,11 @@
     <string name="quick_settings_live_display_changed_day">LiveDisplay nun im Tag-Modus</string>
     <string name="quick_settings_live_display_changed_night">LiveDisplay nun im Nacht-Modus</string>
     <string name="quick_settings_live_display_changed_outdoor">LiveDisplay nun im Außen-Modus</string>
+
+    <string name="accessibility_data_sim">Momentane Daten-SIM</string>
+    <string name="data_switch_started">Wechsle die Daten-SIM. Dies kann bis zu einer Minute dauern...</string>
+
+    <!-- volte icon switch -->
+    <string name="status_bar_volte">VoLTE</string>
+
 </resources>

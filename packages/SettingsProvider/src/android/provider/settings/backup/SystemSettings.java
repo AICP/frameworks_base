@@ -140,7 +140,12 @@ public class SystemSettings {
                 Settings.System.TRANSPARENT_POWER_DIALOG_DIM,
                 Settings.System.POWER_MENU_ANIMATIONS,
                 Settings.System.LOCKSCREEN_BATTERY_INFO,
-                Settings.System.LOCKSCREEN_BATTERY_INFO_TEMP_UNIT
+                Settings.System.LOCKSCREEN_BATTERY_INFO_TEMP_UNIT,
+                Settings.System.STATUSBAR_BATTERY_BAR,
+                Settings.System.STATUSBAR_BATTERY_BAR_COLOR,
+                Settings.System.STATUSBAR_BATTERY_BAR_THICKNESS,
+                Settings.System.STATUSBAR_BATTERY_BAR_STYLE,
+                Settings.System.STATUSBAR_BATTERY_BAR_ANIMATE
         ));
         if (Flags.backUpSmoothDisplayAndForcePeakRefreshRate()) {
             settings.add(Settings.System.PEAK_REFRESH_RATE);

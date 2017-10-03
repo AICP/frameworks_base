@@ -192,7 +192,8 @@ public class SystemSettings {
                 Settings.System.STATUS_BAR_LOGO_COLOR_ACCENT,
                 Settings.System.SCREEN_OFF_ANIMATION,
                 Settings.System.LOCKSCREEN_BATTERY_INFO,
-                Settings.System.LOCKSCREEN_BATTERY_INFO_TEMP_UNIT
+                Settings.System.LOCKSCREEN_BATTERY_INFO_TEMP_UNIT,
+                Settings.System.DOUBLE_TAP_SLEEP_GESTURE
         ));
         if (Flags.backUpSmoothDisplayAndForcePeakRefreshRate()) {
             settings.add(Settings.System.PEAK_REFRESH_RATE);

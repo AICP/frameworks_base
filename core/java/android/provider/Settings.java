@@ -5311,6 +5311,12 @@ public final class Settings {
         /**
          * @hide
          */
+        public static final String STATUSBAR_BATTERY_BAR_DARK_COLOR =
+                "statusbar_battery_bar_dark_color";
+
+        /**
+         * @hide
+         */
         public static final String STATUSBAR_BATTERY_BAR_THICKNESS = "statusbar_battery_bar_thickness";
 
         /**
@@ -5328,6 +5334,48 @@ public final class Settings {
          * @hide
          */
         public static final String STATUSBAR_BATTERY_BAR_LOCATION = "statusbar_battery_bar_location";
+
+        /**
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_CHARGING_COLOR =
+                "statusbar_battery_bar_charging_color";
+
+        /**
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_CHARGING_DARK_COLOR =
+                "statusbar_battery_bar_charging_dark_color";
+
+        /**
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_BATTERY_LOW_COLOR =
+                "statusbar_battery_bar_battery_low_color";
+
+        /**
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_BATTERY_LOW_DARK_COLOR =
+                "statusbar_battery_bar_battery_low_dark_color";
+
+        /**
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_ENABLE_CHARGING_COLOR =
+                "statusbar_battery_bar_enable_charging_color";
+
+        /**
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_BLEND_COLORS_REVERSE =
+                "statusbar_battery_bar_blend_color_reverse";
+
+        /**
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_BLEND_DARK_COLORS_REVERSE =
+                "statusbar_battery_bar_blend_dark_color_reverse";
 
         /**
          * Disable dashboard conditions in settings
@@ -5557,10 +5605,18 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(OMNI_QS_LAYOUT_ROWS, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(STATUSBAR_BATTERY_BAR, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(STATUSBAR_BATTERY_BAR_COLOR, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(STATUSBAR_BATTERY_BAR_DARK_COLOR, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(STATUSBAR_BATTERY_BAR_THICKNESS, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(STATUSBAR_BATTERY_BAR_STYLE, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(STATUSBAR_BATTERY_BAR_ANIMATE, ANY_STRING_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(STATUSBAR_BATTERY_BAR_LOCATION, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(STATUSBAR_BATTERY_BAR_CHARGING_COLOR, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(STATUSBAR_BATTERY_BAR_CHARGING_DARK_COLOR, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(STATUSBAR_BATTERY_BAR_BATTERY_LOW_COLOR, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(STATUSBAR_BATTERY_BAR_BATTERY_LOW_DARK_COLOR, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(STATUSBAR_BATTERY_BAR_ENABLE_CHARGING_COLOR, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(STATUSBAR_BATTERY_BAR_BLEND_COLORS_REVERSE, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(STATUSBAR_BATTERY_BAR_BLEND_DARK_COLORS_REVERSE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(ENABLE_CONDITIONS, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(ENABLE_SUGGESTIONS, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(THEMING_SETTINGS_DASHBOARD_ICONS, ANY_INTEGER_VALIDATOR);

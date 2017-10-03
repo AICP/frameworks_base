@@ -6505,6 +6505,32 @@ public final class Settings {
         @SuppressLint("NoSettingsProvider")
         public static final String VOLUME_ANSWER_CALL = "volume_answer_call";
 
+        /**
+         * Whether to show the battery bar
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR = "statusbar_battery_bar";
+
+        /**
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_COLOR = "statusbar_battery_bar_color";
+
+        /**
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_THICKNESS = "statusbar_battery_bar_thickness";
+
+        /**
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_STYLE = "statusbar_battery_bar_style";
+
+        /**
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_ANIMATE = "statusbar_battery_bar_animate";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6756,6 +6782,11 @@ public final class Settings {
             PRIVATE_SETTINGS.add(VOLUME_ROCKER_WAKE);
             PRIVATE_SETTINGS.add(VOLUME_KEYS_CONTROL_RING_TONE);
             PRIVATE_SETTINGS.add(VOLUME_ANSWER_CALL);
+            PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR);
+            PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_COLOR);
+            PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_THICKNESS);
+            PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_STYLE);
+            PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_ANIMATE);
         }
 
         /**

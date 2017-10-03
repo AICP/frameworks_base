@@ -6717,6 +6717,13 @@ public final class Settings {
          */
         public static final String LOCKSCREEN_BATTERY_INFO_TEMP_UNIT = "lockscreen_charge_temp_unit";
 
+        /**
+         *  Enable statusbar double tap gesture on to put device to sleep
+         *  0 = 0ff, 1 = on
+	 * @hide
+         */
+        public static final String DOUBLE_TAP_SLEEP_GESTURE = "double_tap_sleep_gesture";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6957,6 +6964,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SCREEN_OFF_ANIMATION);
             PRIVATE_SETTINGS.add(LOCKSCREEN_BATTERY_INFO);
             PRIVATE_SETTINGS.add(LOCKSCREEN_BATTERY_INFO_TEMP_UNIT);
+            PRIVATE_SETTINGS.add(DOUBLE_TAP_SLEEP_GESTURE);
         }
 
         /**

@@ -134,6 +134,7 @@ class NotificationShadeWindowViewControllerTest : SysuiTestCase() {
     @Mock lateinit var sysUIKeyEventHandler: SysUIKeyEventHandler
     @Mock lateinit var primaryBouncerInteractor: PrimaryBouncerInteractor
     @Mock lateinit var alternateBouncerInteractor: AlternateBouncerInteractor
+    @Mock private lateinit var qqsGestureListener: QQSGestureListener
     private val notificationLaunchAnimationRepository = NotificationLaunchAnimationRepository()
     private val notificationLaunchAnimationInteractor =
         NotificationLaunchAnimationInteractor(notificationLaunchAnimationRepository)
@@ -208,7 +209,8 @@ class NotificationShadeWindowViewControllerTest : SysuiTestCase() {
                 alternateBouncerInteractor,
                 { mock(JavaAdapter::class.java) },
                 { mock(AlternateBouncerDependencies::class.java) },
-                mock(BouncerViewBinder::class.java)
+                mock(BouncerViewBinder::class.java),
+                qqsGestureListener,
             )
         underTest.setupExpandedStatusBar()
         underTest.setDragDownHelper(dragDownHelper)

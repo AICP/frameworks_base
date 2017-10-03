@@ -4493,6 +4493,52 @@ public final class Settings {
         private static final Validator TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
+        /**
+         * Whether to show the battery bar
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR = "statusbar_battery_bar";
+
+        /** @hide */
+        private static final Validator STATUSBAR_BATTERY_BAR_VALIDATOR = ANY_INTEGER_VALIDATOR;
+
+        /**
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_COLOR = "statusbar_battery_bar_color";
+
+        /** @hide */
+        private static final Validator STATUSBAR_BATTERY_BAR_COLOR_VALIDATOR =
+                ANY_INTEGER_VALIDATOR;
+
+        /**
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_THICKNESS =
+                "statusbar_battery_bar_thickness";
+
+        /** @hide */
+        private static final Validator STATUSBAR_BATTERY_BAR_THICKNESS_VALIDATOR =
+                ANY_INTEGER_VALIDATOR;
+
+        /**
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_STYLE = "statusbar_battery_bar_style";
+
+        /** @hide */
+        private static final Validator STATUSBAR_BATTERY_BAR_STYLE_VALIDATOR =
+                ANY_INTEGER_VALIDATOR;
+
+        /**
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_ANIMATE = "statusbar_battery_bar_animate";
+
+        /** @hide */
+        private static final Validator STATUSBAR_BATTERY_BAR_ANIMATE_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -4573,6 +4619,11 @@ public final class Settings {
             // AICP Settings
             AE_THEME,
             TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK,
+            STATUSBAR_BATTERY_BAR,
+            STATUSBAR_BATTERY_BAR_COLOR,
+            STATUSBAR_BATTERY_BAR_THICKNESS,
+            STATUSBAR_BATTERY_BAR_STYLE,
+            STATUSBAR_BATTERY_BAR_ANIMATE
             // AICP Settings end
         };
 
@@ -4696,11 +4747,16 @@ public final class Settings {
             // AICP Settings
             PRIVATE_SETTINGS.add(AE_THEME);
             PRIVATE_SETTINGS.add(TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK);
+            PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR);
+            PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_COLOR);
+            PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_THICKNESS);
+            PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_STYLE);
+            PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_ANIMATE);
             // AICP Settings end
         }
 
         /**
-         * These are all public system settings
+         * These are all public system and private Aicp settings
          *
          * All settings in {@link SETTINGS_TO_BACKUP} array *must* have a non-null validator,
          * otherwise they won't be restored.
@@ -4793,6 +4849,12 @@ public final class Settings {
             // AICP Settings
             VALIDATORS.put(AE_THEME, AE_THEME_VALIDATOR);
             VALIDATORS.put(TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK, TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK_VALIDATOR);
+            VALIDATORS.put(STATUSBAR_BATTERY_BAR, STATUSBAR_BATTERY_BAR_VALIDATOR);
+            VALIDATORS.put(STATUSBAR_BATTERY_BAR_COLOR, STATUSBAR_BATTERY_BAR_COLOR_VALIDATOR);
+            VALIDATORS.put(STATUSBAR_BATTERY_BAR_THICKNESS,
+                    STATUSBAR_BATTERY_BAR_THICKNESS_VALIDATOR);
+            VALIDATORS.put(STATUSBAR_BATTERY_BAR_STYLE, STATUSBAR_BATTERY_BAR_STYLE_VALIDATOR);
+            VALIDATORS.put(STATUSBAR_BATTERY_BAR_ANIMATE, STATUSBAR_BATTERY_BAR_ANIMATE_VALIDATOR);
             // AICP Settings end
         }
 

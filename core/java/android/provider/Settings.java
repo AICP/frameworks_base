@@ -6157,6 +6157,15 @@ public final class Settings {
         private static final Validator HEADSET_CONNECT_PLAYER_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
+        /**
+         * @hide
+         */
+        public static final String AICP_SHOW_BATTERY_IMAGE = "status_bar_show_battery_image";
+
+        /** @hide */
+        private static final Validator AICP_SHOW_BATTERY_IMAGE_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6389,6 +6398,7 @@ public final class Settings {
             LOCKSCREEN_LOCK_ICON,
             HEADSET_CONNECT_PLAYER,
             PULSE_AMBIENT_LIGHT_AUTO_COLOR,
+            AICP_SHOW_BATTERY_IMAGE,
             // AICP Settings end
         };
 
@@ -6675,6 +6685,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(LOCKSCREEN_LOCK_ICON);
             PRIVATE_SETTINGS.add(HEADSET_CONNECT_PLAYER);
             PRIVATE_SETTINGS.add(PULSE_AMBIENT_LIGHT_AUTO_COLOR);
+            PRIVATE_SETTINGS.add(AICP_SHOW_BATTERY_IMAGE);
             // AICP Settings end
         }
 
@@ -6951,6 +6962,7 @@ public final class Settings {
             VALIDATORS.put(LOCKSCREEN_LOCK_ICON, LOCKSCREEN_LOCK_ICON_VALIDATOR);
             VALIDATORS.put(HEADSET_CONNECT_PLAYER, HEADSET_CONNECT_PLAYER_VALIDATOR);
             VALIDATORS.put(PULSE_AMBIENT_LIGHT_AUTO_COLOR, PULSE_AMBIENT_LIGHT_AUTO_COLOR_VALIDATOR);
+            VALIDATORS.put(AICP_SHOW_BATTERY_IMAGE, AICP_SHOW_BATTERY_IMAGE_VALIDATOR);
             // AICP Settings end
         }
 

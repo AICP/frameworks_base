@@ -63,7 +63,8 @@ android_library {
         "SystemUI-tags",
         "SystemUI-proto",
         "dagger2-2.19",
-        "jsr330"
+        "jsr330",
+        "AicpGear-util"
     ],
     manifest: "AndroidManifest.xml",
     additional_manifests: ["AicpManifest.xml"],

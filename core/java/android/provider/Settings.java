@@ -4905,6 +4905,12 @@ public final class Settings {
         public static final String INCALL_NOTIFICATIONS_VIBRATE = "incall_notifications_vibrate";
 
         /**
+        * Whether to use icon pack for Recents
+        * @hide
+        */
+        public static final String RECENTS_ICON_PACK = "recents_icon_pack";
+
+        /**
          * --- AICP System settings end
          *  Add new system settings above this comment
          */

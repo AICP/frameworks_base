@@ -215,6 +215,7 @@ import com.android.systemui.recents.ScreenPinningRequest;
 import com.android.systemui.recents.events.EventBus;
 import com.android.systemui.recents.events.activity.AppTransitionFinishedEvent;
 import com.android.systemui.recents.events.activity.UndockingTaskEvent;
+import com.android.systemui.recents.misc.IconPackHelper;
 import com.android.systemui.recents.misc.SystemServicesProxy;
 import com.android.systemui.slimrecent.RecentController;
 import com.android.systemui.stackdivider.Divider;
@@ -6512,6 +6513,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_TICKER_ANIMATION_MODE),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.RECENTS_ICON_PACK),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -6576,6 +6580,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_TICKER_ANIMATION_MODE))) {
                 updateTickerAnimation();
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.RECENTS_ICON_PACK))) {
+                updateRecentsIconPack();
             }
         }
 
@@ -6588,6 +6595,7 @@ public class StatusBar extends SystemUI implements DemoMode,
             updateFPQuickPulldown();
             updateBatterySaverColor();
             updateTickerAnimation();
+            updateRecentsIconPack();
 
             // Update slim recents
             updateRecentsMode();
@@ -6672,6 +6680,13 @@ public class StatusBar extends SystemUI implements DemoMode,
         mFpDismissNotifications = Settings.Secure.getIntForUser(mContext.getContentResolver(),
                 Settings.Secure.FP_SWIPE_TO_DISMISS_NOTIFICATIONS, 0,
                 UserHandle.USER_CURRENT) == 1;
+    }
+
+    private void updateRecentsIconPack() {
+        String currentIconPack = Settings.System.getStringForUser(mContext.getContentResolver(),
+            Settings.System.RECENTS_ICON_PACK, mCurrentUserId);
+        IconPackHelper.getInstance(mContext).updatePrefs(currentIconPack);
+        mRecents.evictAllCaches();
     }
 
     private void updateTickerAnimation() {

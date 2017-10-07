@@ -27,6 +27,7 @@ import com.android.systemui.qs.tiles.BatterySaverTile;
 import com.android.systemui.qs.tiles.BluetoothTile;
 import com.android.systemui.qs.tiles.CastTile;
 import com.android.systemui.qs.tiles.CellularTile;
+import com.android.systemui.qs.tiles.CaffeineTile;
 import com.android.systemui.qs.tiles.ColorInversionTile;
 import com.android.systemui.qs.tiles.CompassTile;
 import com.android.systemui.qs.tiles.DataSaverTile;
@@ -45,8 +46,10 @@ import com.android.systemui.qs.tiles.PictureInPictureTile;
 import com.android.systemui.qs.tiles.RotationLockTile;
 import com.android.systemui.qs.tiles.ScreenshotTile;
 import com.android.systemui.qs.tiles.SoundTile;
+import com.android.systemui.qs.tiles.SyncTile;
 import com.android.systemui.qs.tiles.UsbTetherTile;
 import com.android.systemui.qs.tiles.UserTile;
+import com.android.systemui.qs.tiles.VolumeTile;
 import com.android.systemui.qs.tiles.WifiTile;
 import com.android.systemui.qs.tiles.WorkModeTile;
 import com.android.systemui.qs.QSTileHost;
@@ -64,6 +67,7 @@ public class QSFactoryImpl implements QSFactory {
         if (tileSpec.equals("wifi")) return new WifiTile(mHost);
         else if (tileSpec.equals("bt")) return new BluetoothTile(mHost);
         else if (tileSpec.equals("cell")) return new CellularTile(mHost);
+        else if (tileSpec.equals("caffeine")) return new CaffeineTile(mHost);
         else if (tileSpec.equals("dnd")) return new DndTile(mHost);
         else if (tileSpec.equals("inversion")) return new ColorInversionTile(mHost);
         else if (tileSpec.equals("airplane")) return new AirplaneModeTile(mHost);
@@ -89,6 +93,8 @@ public class QSFactoryImpl implements QSFactory {
         else if (tileSpec.equals("sound")) return new SoundTile(mHost);
         else if (tileSpec.equals("ambient_display")) return new AmbientDisplayTile(mHost);
         else if (tileSpec.equals("pip")) return new PictureInPictureTile(mHost);
+        else if (tileSpec.equals("sync")) return new SyncTile(mHost);
+        else if (tileSpec.equals("volume")) return new VolumeTile(mHost);
         // Intent tiles.
         else if (tileSpec.startsWith(IntentTile.PREFIX)) return IntentTile.create(mHost, tileSpec);
         else if (tileSpec.startsWith(CustomTile.PREFIX)) return CustomTile.create(mHost, tileSpec);

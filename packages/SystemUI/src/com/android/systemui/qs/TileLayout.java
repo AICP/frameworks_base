@@ -93,7 +93,7 @@ public class TileLayout extends ViewGroup implements QSTileLayout {
                     UserHandle.USER_CURRENT);
         }
         boolean showTitles = Settings.System.getIntForUser(resolver,
-                Settings.System.QS_TILE_TITLE_VISIBILITY, 0,
+                Settings.System.QS_TILE_TITLE_VISIBILITY, 1,
                 UserHandle.USER_CURRENT) == 1;
         mShowTitles = showTitles;
         if (showTitles) {

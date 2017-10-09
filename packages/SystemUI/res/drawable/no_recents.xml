@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="1000dp"
+    android:height="500dp"
+    android:viewportWidth="1000"
+    android:viewportHeight="500"
+    android:drawable="@drawable/no_recents_grouped">
+    <target
+        android:animation="@anim/rotate_lamp"
+        android:name="rotate_lamp"/>
+    <target
+        android:animation="@anim/move_eyes"
+        android:name="eyes"/>
+</animated-vector>

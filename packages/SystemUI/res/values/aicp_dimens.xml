@@ -18,4 +18,6 @@
 
     <dimen name="qs_scroller_margin">8dp</dimen>
 
+    <!-- Floating action button -->
+    <dimen name="floating_action_button_translation_z">12dp</dimen>
 </resources>

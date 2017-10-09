@@ -37,6 +37,8 @@ import android.view.ViewDebug;
 import android.view.ViewPropertyAnimator;
 import android.view.WindowInsets;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.internal.logging.MetricsLogger;
@@ -294,6 +296,14 @@ public class RecentsView extends FrameLayout {
     public void showEmptyView(int msgResId) {
         mTaskStackView.setVisibility(View.INVISIBLE);
         mEmptyView.setText(msgResId);
+
+        // Customize empty recents view drawable
+        Drawable drawable = getResources().getDrawable(R.drawable.no_recents, null);
+        ImageView imageView = (ImageView) mEmptyView.findViewById(R.id.no_recents_holder);
+        if (imageView != null){
+            imageView.setImageDrawable(drawable);
+        }
+
         mEmptyView.setVisibility(View.VISIBLE);
         mEmptyView.bringToFront();
         if (RecentsDebugFlags.Static.EnableStackActionButton) {

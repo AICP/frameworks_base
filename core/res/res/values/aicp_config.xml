@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-/* Copyright 2012, The Android Open Source Project
+/* Copyright (c) 2013, The Linux Foundation. All rights reserved.
+** Not a Contribution.
+**
+** Copyright 2012, The Android Open Source Project
 **
 ** Licensed under the Apache License, Version 2.0 (the "License");
 ** you may not use this file except in compliance with the License.
@@ -16,15 +19,6 @@
 */
 -->
 <resources>
-  <java-symbol type="string" name="reboot_to_recovery_title" />
-  <java-symbol type="string" name="reboot_to_recovery_message" />
-  <java-symbol type="string" name="reboot_to_bootloader_title" />
-  <java-symbol type="string" name="reboot_to_bootloader_message" />
-
-  <!-- Package Manager -->
-  <java-symbol type="array" name="config_disabledComponents" />
-  <java-symbol type="array" name="config_forceEnabledComponents" />
-
-  <java-symbol type="bool" name="config_enableScreenrecordChord" />
-
+    <!-- If this is true, key chords can be used to take a screen record on the device. -->
+    <bool name="config_enableScreenrecordChord">true</bool>
 </resources>

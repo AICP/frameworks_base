@@ -203,6 +203,9 @@
 
     <uses-permission android:name="android.permission.FORCE_STOP_PACKAGES" />
 
+    <!-- screenrecord -->
+    <uses-permission android:name="android.permission.ACCESS_SURFACE_FLINGER" />
+
     <application
         android:name=".SystemUIApplication"
         android:persistent="true"
@@ -268,6 +271,12 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+
+        <!-- started from PhoneWindowManager
+             TODO: Should have an android:permission attribute -->
+        <service android:name=".omni.screenrecord.TakeScreenrecordService"
+            android:process=":screenrecord"
+            android:exported="false" />
 
         <service android:name=".ImageWallpaper"
                 android:permission="android.permission.BIND_WALLPAPER"

@@ -97,7 +97,7 @@ public class LocationControllerImpl extends BroadcastReceiver implements Locatio
      *
      * @return true if attempt to change setting was successful.
      */
-    public boolean setLocationEnabled(boolean enabled) {
+    public boolean setLocationEnabled(int mode) {
         // QuickSettings always runs as the owner, so specifically set the settings
         // for the current foreground user.
         int currentUserId = ActivityManager.getCurrentUser();
@@ -106,9 +106,19 @@ public class LocationControllerImpl extends BroadcastReceiver implements Locatio
         }
         // When enabling location, a user consent dialog will pop up, and the
         // setting won't be fully enabled until the user accepts the agreement.
-        updateLocationEnabled(mContext, enabled, currentUserId,
-                Settings.Secure.LOCATION_CHANGER_QUICK_SETTINGS);
+        Settings.Secure.putIntForUser(mContext.getContentResolver(),
+                Settings.Secure.LOCATION_MODE, mode, currentUserId);
         return true;
+    }
+
+    /**
+     * Returns the current location mode.
+     */
+    public int getCurrentMode() {
+        int currentUserId = ActivityManager.getCurrentUser();
+         return Settings.Secure.getIntForUser(mContext.getContentResolver(),
+                Settings.Secure.LOCATION_MODE, Settings.Secure.LOCATION_MODE_OFF,
+                currentUserId);
     }
 
     /**

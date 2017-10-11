@@ -25,9 +25,9 @@ public interface DeviceKeyHandler {
      * this special keys prior to pass the key to the active app.
      *
      * @param event The key event to be handled
-     * @return If the event is consume
+     * @return null if event is consumed, KeyEvent to be handled otherwise
      */
-    public boolean handleKeyEvent(KeyEvent event);
+    public KeyEvent handleKeyEvent(KeyEvent event);
 
     /**
      * Invoked when an unknown key was detected by the system,

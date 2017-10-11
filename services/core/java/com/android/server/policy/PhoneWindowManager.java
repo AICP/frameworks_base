@@ -250,12 +250,15 @@ import com.android.server.wm.DisplayRotation;
 import com.android.server.wm.WindowManagerInternal;
 import com.android.server.wm.WindowManagerInternal.AppTransitionListener;
 
+import dalvik.system.PathClassLoader;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Constructor;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -715,6 +718,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
     // Timeout for showing the keyguard after the screen is on, in case no "ready" is received.
     private int mKeyguardDrawnTimeout = 1000;
+
+    private final List<DeviceKeyHandler> mDeviceKeyHandlers = new ArrayList<>();
 
     private static final int MSG_DISPATCH_MEDIA_KEY_WITH_WAKE_LOCK = 3;
     private static final int MSG_DISPATCH_MEDIA_KEY_REPEAT_WITH_WAKE_LOCK = 4;
@@ -2501,37 +2506,52 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             }
         });
 
+
         mKeyguardDrawnTimeout = mContext.getResources().getInteger(
                 com.android.internal.R.integer.config_keyguardDrawnTimeout);
         mKeyguardDelegate = injector.getKeyguardServiceDelegate();
         mTalkbackShortcutController = injector.getTalkbackShortcutController();
+
+        mKeyguardDelegate = new KeyguardServiceDelegate(mContext,
+                new StateCallback() {
+                    @Override
+                    public void onTrustedChanged() {
+                        mWindowManagerFuncs.notifyKeyguardTrustedChanged();
+                    }
+
+                    @Override
+                    public void onShowingChanged() {
+                        mWindowManagerFuncs.onKeyguardShowingAndNotOccludedChanged();
+                    }
+                });
+        final String[] deviceKeyHandlerLibs = res.getStringArray(
+                com.android.internal.R.array.config_deviceKeyHandlerLibs);
+        final String[] deviceKeyHandlerClasses = res.getStringArray(
+                com.android.internal.R.array.config_deviceKeyHandlerClasses);
+
+        for (int i = 0;
+                i < deviceKeyHandlerLibs.length && i < deviceKeyHandlerClasses.length; i++) {
+            try {
+                PathClassLoader loader = new PathClassLoader(
+                        deviceKeyHandlerLibs[i], getClass().getClassLoader());
+                Class<?> klass = loader.loadClass(deviceKeyHandlerClasses[i]);
+                Constructor<?> constructor = klass.getConstructor(Context.class);
+                mDeviceKeyHandlers.add((DeviceKeyHandler) constructor.newInstance(mContext));
+            } catch (Exception e) {
+                Slog.w(TAG, "Could not instantiate device key handler "
+                        + deviceKeyHandlerLibs[i] + " from class "
+                        + deviceKeyHandlerClasses[i], e);
+            }
+        }
+        if (DEBUG_INPUT) {
+            Slog.d(TAG, "" + mDeviceKeyHandlers.size() + " device key handlers loaded");
+        }
+
         initKeyCombinationRules();
         initSingleKeyGestureRules(injector.getLooper());
         mButtonOverridePermissionChecker = injector.getButtonOverridePermissionChecker();
         mSideFpsEventHandler = new SideFpsEventHandler(mContext, mHandler, mPowerManager);
 
-        String deviceKeyHandlerLib = mContext.getResources().getString(
-                com.android.internal.R.string.config_deviceKeyHandlerLib);
-
-        String deviceKeyHandlerClass = mContext.getResources().getString(
-                com.android.internal.R.string.config_deviceKeyHandlerClass);
-
-        if (!deviceKeyHandlerLib.isEmpty() && !deviceKeyHandlerClass.isEmpty()) {
-            try {
-                PathClassLoader loader =  new PathClassLoader(deviceKeyHandlerLib,
-                        getClass().getClassLoader());
-
-                Class<?> klass = loader.loadClass(deviceKeyHandlerClass);
-                Constructor<?> constructor = klass.getConstructor(Context.class);
-                mDeviceKeyHandler = (DeviceKeyHandler) constructor.newInstance(
-                        mContext);
-                if(DEBUG_INPUT) Slog.d(TAG, "Device key handler loaded");
-            } catch (Exception e) {
-                Slog.w(TAG, "Could not instantiate device key handler "
-                        + deviceKeyHandlerClass + " from class "
-                        + deviceKeyHandlerLib, e);
-            }
-        }
         boolean supportPowerButtonProxyCheck = mContext.getResources().getBoolean(
                 com.android.internal.R.bool.config_proxiSensorWakupCheck);
         if (supportPowerButtonProxyCheck) {
@@ -3861,6 +3881,11 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             }
         }
 
+        // Specific device key handling
+        if (dispatchKeyToKeyHandlers(event)) {
+            return true;
+        }
+
         // Reserve all the META modifier combos for system behavior
         return (metaState & KeyEvent.META_META_ON) != 0;
     }
@@ -4015,6 +4040,23 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         } catch (RemoteException e) {
             Slog.e(TAG, "Error taking bugreport", e);
         }
+    }
+
+    private boolean dispatchKeyToKeyHandlers(KeyEvent event) {
+        for (DeviceKeyHandler handler : mDeviceKeyHandlers) {
+            try {
+                if (DEBUG_INPUT) {
+                    Log.d(TAG, "Dispatching key event " + event + " to handler " + handler);
+                }
+                event = handler.handleKeyEvent(event);
+                if (event == null) {
+                    return true;
+                }
+            } catch (Exception e) {
+                Slog.w(TAG, "Could not dispatch event to device key handler", e);
+            }
+        }
+        return false;
     }
 
     // TODO(b/117479243): handle it in InputPolicy
@@ -4768,52 +4810,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 && event.getRepeatCount() == 0;
 
         // Specific device key handling
-        if (mDeviceKeyHandler != null) {
-            try {
-                // The device says if we should ignore this event.
-                if (mDeviceKeyHandler.isDisabledKeyEvent(event)) {
-                    result &= ~ACTION_PASS_TO_USER;
-                    return result;
-                }
-                if (mDeviceKeyHandler.isCameraLaunchEvent(event)) {
-                    if (DEBUG_INPUT) {
-                        Slog.i(TAG, "isCameraLaunchEvent from DeviceKeyHandler");
-                    }
-                    GestureLauncherService gestureService = LocalServices.getService(
-                            GestureLauncherService.class);
-                    if (gestureService != null) {
-                        gestureService.doCameraLaunchGesture();
-                    }
-                    result &= ~ACTION_PASS_TO_USER;
-                    return result;
-                }
-                if (!interactive && mDeviceKeyHandler.isWakeEvent(event)) {
-                    if (DEBUG_INPUT) {
-                        Slog.i(TAG, "isWakeEvent from DeviceKeyHandler");
-                    }
-                    wakeUp(event.getEventTime(), mAllowTheaterModeWakeFromKey,
-                            PowerManager.WAKE_REASON_WAKE_KEY, "android.policy:KEY");
-                    result &= ~ACTION_PASS_TO_USER;
-                    return result;
-                }
-                final Intent eventLaunchActivity = mDeviceKeyHandler.isActivityLaunchEvent(event);
-                if (!interactive && eventLaunchActivity != null) {
-                    if (DEBUG_INPUT) {
-                        Slog.i(TAG, "isActivityLaunchEvent from DeviceKeyHandler " + eventLaunchActivity);
-                    }
-                    wakeUp(event.getEventTime(), mAllowTheaterModeWakeFromKey,
-                            PowerManager.WAKE_REASON_WAKE_KEY, "android.policy:KEY");
-                    OmniUtils.launchKeyguardDismissIntent(mContext, UserHandle.CURRENT, eventLaunchActivity);
-                    result &= ~ACTION_PASS_TO_USER;
-                    return result;
-                }
-                if (mDeviceKeyHandler.handleKeyEvent(event)) {
-                    result &= ~ACTION_PASS_TO_USER;
-                    return result;
-                }
-            } catch (Exception e) {
-                Slog.w(TAG, "Could not dispatch event to device key handler", e);
-            }
+        if (dispatchKeyToKeyHandlers(event)) {
+            return 0;
         }
 
         // Handle special keys.

@@ -17,8 +17,6 @@
     <!-- Device features Support-->
     <java-symbol type="bool" name="config_enableAutoSuspend" />
     <java-symbol type="bool" name="config_proxiSensorWakupCheck" />
-    <java-symbol type="string" name="config_deviceKeyHandlerLib" />
-    <java-symbol type="string" name="config_deviceKeyHandlerClass" />
 
     <!-- Power menu reboot -->
     <java-symbol type="string" name="reboot_title" />
@@ -39,5 +37,9 @@
     <!-- Device hardware keys -->
     <java-symbol type="integer" name="config_deviceHardwareKeys" />
     <java-symbol type="integer" name="config_deviceHardwareWakeKeys" />
+
+    <!-- Device keyhandlers -->
+    <java-symbol type="array" name="config_deviceKeyHandlerLibs" />
+    <java-symbol type="array" name="config_deviceKeyHandlerClasses" />
 
 </resources>

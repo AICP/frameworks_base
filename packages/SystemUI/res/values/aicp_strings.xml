@@ -105,31 +105,35 @@
     <string name="accessibility_quick_settings_sync_changed_off">Sync turned off</string>
     <string name="accessibility_quick_settings_sync_changed_on">Sync turned on</string>
 
-     <!-- Volume QS Tile -->
-     <string name="accessibility_quick_settings_volume_panel">Volume</string>
-     <string name="quick_settings_volume_panel_label">Volume</string>
+    <!-- Volume QS Tile -->
+    <string name="accessibility_quick_settings_volume_panel">Volume</string>
+    <string name="quick_settings_volume_panel_label">Volume</string>
 
-     <!-- PiP Tile -->
-     <string name="quick_settings_pip_label">PiP</string>
+    <!-- PiP Tile -->
+    <string name="quick_settings_pip_label">PiP</string>
 
-     <!-- Recents -->
-     <string name="recents_app_killed">App killed</string>
+    <!-- Screenrecord tile -->
+    <string name="quick_settings_screenrecord">Screenrecord</string>
+    <string name="quick_settings_screenrecord_on">Recording ...</string>
 
-     <!-- Advance location quick setting tile -->
-     <string name="accessibility_quick_settings_location_battery_saving">Location reporting: battery saving mode.</string>
-     <string name="accessibility_quick_settings_location_gps_only">Location reporting: sensors only mode.</string>
-     <string name="accessibility_quick_settings_location_high_accuracy">Location reporting: high accuracy mode.</string>
+    <!-- Recents -->
+    <string name="recents_app_killed">App killed</string>
 
-     <!-- Screenrecord Notification Ticker -->
-     <string name="screenrecord_notif_ticker">Screen is being recorded</string>
-     <!-- Screenrecord notification title -->
-     <string name="screenrecord_notif_title">Recording screen</string>
-     <!-- Screenrecord notification action: Stop -->
-     <string name="screenrecord_notif_stop">Stop</string>
-     <!-- Screenrecord notification action: show/hide pointer -->
-     <string name="screenrecord_notif_pointer_on">Show pointer</string>
-     <string name="screenrecord_notif_pointer_off">Hide pointer</string>
-     <!-- Screen record notification error title -->
-     <string name="screenrecord_notif_error">Unable to record screen</string>
-     <string name="notification_channel_screenrecord">Screenrecords</string>
+    <!-- Advance location quick setting tile -->
+    <string name="accessibility_quick_settings_location_battery_saving">Location reporting: battery saving mode.</string>
+    <string name="accessibility_quick_settings_location_gps_only">Location reporting: sensors only mode.</string>
+    <string name="accessibility_quick_settings_location_high_accuracy">Location reporting: high accuracy mode.</string>
+
+    <!-- Screenrecord Notification Ticker -->
+    <string name="screenrecord_notif_ticker">Screen is being recorded</string>
+    <!-- Screenrecord notification title -->
+    <string name="screenrecord_notif_title">Recording screen</string>
+    <!-- Screenrecord notification action: Stop -->
+    <string name="screenrecord_notif_stop">Stop</string>
+    <!-- Screenrecord notification action: show/hide pointer -->
+    <string name="screenrecord_notif_pointer_on">Show pointer</string>
+    <string name="screenrecord_notif_pointer_off">Hide pointer</string>
+    <!-- Screen record notification error title -->
+    <string name="screenrecord_notif_error">Unable to record screen</string>
+    <string name="notification_channel_screenrecord">Screenrecords</string>
 </resources>

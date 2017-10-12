@@ -3895,14 +3895,6 @@ public final class Settings {
         public static final String VOLUME_DIALOG_TIMEOUT = "volume_dialog_timeout";
 
         /**
-         * IMPORTANT: If you add a new public settings you also have to add it to
-         * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
-         * it to PRIVATE_SETTINGS below. Also add a validator that can validate
-         * the setting value. See an example above.
-         */
-
-        // ABC custom system settings
-        /**
          * Double tap on navbar to sleep
          * @hide
          */
@@ -4185,6 +4177,11 @@ public final class Settings {
         public static final String TOAST_ICON = "toast_icon";
 
         /**
+         * @hide
+         */
+        public static final String STATUS_BAR_LOGO = "status_bar_logo";
+
+        /**
          * --- AICP System settings end
          *  Add new system settings above this comment
          */
@@ -4361,6 +4358,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_STATE);
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD);
             PRIVATE_SETTINGS.add(QS_TILE_TITLE_VISIBILITY);
+            PRIVATE_SETTINGS.add(STATUS_BAR_LOGO);
         }
 
         /**

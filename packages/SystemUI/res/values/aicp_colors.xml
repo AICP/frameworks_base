@@ -18,11 +18,12 @@
 
     <color name="system_primary_color">@*android:color/primary_material_light</color>
     <color name="system_accent_color">@*android:color/material_deep_teal_700</color>
+    <color name="orange_accent_color">#ffab00</color>
 
     <!-- Floating action button -->
     <color name="fab_color">@*android:color/accent_device_default_light</color>
     <color name="floating_action_button_icon_color">@android:color/white</color>
-    <color name="orange_accent_color">#ffab00</color>
+    <color name="aicp_fab_color">@color/orange_accent_color</color>
 
     <!-- Navbar icon Colors -->
     <color name="icon_color_back">@android:color/white</color>

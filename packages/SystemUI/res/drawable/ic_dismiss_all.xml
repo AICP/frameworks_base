@@ -20,12 +20,12 @@
     android:viewportWidth="48.0"
     android:viewportHeight="48.0">
     <path
-        android:fillColor="@color/orange_accent_color"
+        android:fillColor="@color/aicp_fab_color"
         android:pathData="M8.0,19.994l32.0,0.0l0.0,8.0l-32.0,0.0z"/>
     <path
-        android:fillColor="@color/orange_accent_color"
+        android:fillColor="@color/aicp_fab_color"
         android:pathData="M0.0,32.0l32.0,0.0l0.0,7.979l-32.0,0.0z"/>
     <path
-        android:fillColor="@color/orange_accent_color"
+        android:fillColor="@color/aicp_fab_color"
         android:pathData="M16.0,8.0l32.0,0.0l0.0,8.0l-32.0,0.0z"/>
 </vector>

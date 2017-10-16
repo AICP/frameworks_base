@@ -57,4 +57,10 @@
         <!-- 0.8 Spacing, 0.8/11 = 0.072727273 -->
         <item name="android:letterSpacing">0.072727273</item>
     </style>
+
+    <!-- Status bar notification ticker -->
+    <style name="TextAppearance.StatusBar.PhoneTicker" parent="@*android:style/TextAppearance.StatusBar">
+        <!-- Note: must be dp to fit in status bar -->
+        <item name="android:textSize">14dp</item>
+    </style>
 </resources>

@@ -6984,6 +6984,29 @@ public final class Settings {
          */
         public static final String NOTIFICATION_MATERIAL_DISMISS = "notification_material_dismiss";
 
+        /**
+         * Whether to show the notification ticker on the status bar
+         * @hide
+         */
+        public static final String STATUS_BAR_SHOW_TICKER = "status_bar_show_ticker";
+
+        /**
+         * Ticker animation
+         * 0: Fade animation
+         * 1: Scrolling ticker
+	       * @hide
+         */
+        public static final String STATUS_BAR_TICKER_ANIMATION_MODE =
+                "status_bar_ticker_animation_mode";
+
+        /**
+         * Status bar ticker duration in milliseconds.
+         *
+         * @hide
+         */
+        public static final String STATUS_BAR_TICKER_TICK_DURATION =
+                "status_bar_ticker_tick_duration";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7234,6 +7257,9 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(BATTERY_LIGHT_BLEND_EMPTY_COLOR, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(BATTERY_LIGHT_BLEND_REVERSE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(NOTIFICATION_MATERIAL_DISMISS, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(STATUS_BAR_SHOW_TICKER, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(STATUS_BAR_TICKER_ANIMATION_MODE, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(STATUS_BAR_TICKER_TICK_DURATION, ANY_INTEGER_VALIDATOR);
         }
 
         /**

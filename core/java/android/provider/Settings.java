@@ -4714,6 +4714,7 @@ public final class Settings {
         /** @hide */
         private static final Validator AICP_QS_TILE_TITLE_VISIBILITY_VALIDATOR =
                 BOOLEAN_VALIDATOR;
+
         /**
          * @hide
          */
@@ -6042,6 +6043,40 @@ public final class Settings {
         private static final Validator AICP_FOOTER_TEXT_STRING_VALIDATOR =
                 ANY_STRING_VALIDATOR;
 
+        /**
+         * Whether to show the notification ticker on the status bar
+         * @hide
+         */
+        public static final String STATUS_BAR_SHOW_TICKER = "status_bar_show_ticker";
+
+        /** @hide */
+        private static final Validator STATUS_BAR_SHOW_TICKER_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
+         * Ticker animation
+         * 0: Fade animation
+         * 1: Scrolling ticker
+	 * @hide
+         */
+        public static final String STATUS_BAR_TICKER_ANIMATION_MODE =
+                "status_bar_ticker_animation_mode";
+
+        /** @hide */
+        private static final Validator STATUS_BAR_TICKER_ANIMATION_MODE_VALIDATOR =
+                ANY_INTEGER_VALIDATOR;
+
+        /**
+         * Status bar ticker duration in milliseconds.
+         *
+         * @hide
+         */
+        public static final String STATUS_BAR_TICKER_TICK_DURATION =
+                "status_bar_ticker_tick_duration";
+
+        /** @hide */
+        private static final Validator STATUS_BAR_TICKER_TICK_DURATION_VALIDATOR =
+                ANY_INTEGER_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6263,6 +6298,9 @@ public final class Settings {
             AICP_FOOTER_TEXT_SHOW,
             AICP_FOOTER_TEXT_STRING,
             BACK_GESTURE_HEIGHT,
+            STATUS_BAR_SHOW_TICKER,
+            STATUS_BAR_TICKER_ANIMATION_MODE,
+            STATUS_BAR_TICKER_TICK_DURATION
             // AICP Settings end
         };
 
@@ -6538,6 +6576,9 @@ public final class Settings {
             PRIVATE_SETTINGS.add(AICP_FOOTER_TEXT_SHOW);
             PRIVATE_SETTINGS.add(AICP_FOOTER_TEXT_STRING);
             PRIVATE_SETTINGS.add(BACK_GESTURE_HEIGHT);
+            PRIVATE_SETTINGS.add(STATUS_BAR_SHOW_TICKER);
+            PRIVATE_SETTINGS.add(STATUS_BAR_TICKER_ANIMATION_MODE);
+            PRIVATE_SETTINGS.add(STATUS_BAR_TICKER_TICK_DURATION);
             // AICP Settings end
         }
 
@@ -6801,6 +6842,11 @@ public final class Settings {
             VALIDATORS.put(AICP_FOOTER_TEXT_SHOW, AICP_FOOTER_TEXT_SHOW_VALIDATOR);
             VALIDATORS.put(AICP_FOOTER_TEXT_STRING, AICP_FOOTER_TEXT_STRING_VALIDATOR);
             VALIDATORS.put(BACK_GESTURE_HEIGHT, BACK_GESTURE_HEIGHT_VALIDATOR);
+            VALIDATORS.put(STATUS_BAR_SHOW_TICKER, STATUS_BAR_SHOW_TICKER_VALIDATOR);
+            VALIDATORS.put(STATUS_BAR_TICKER_ANIMATION_MODE,
+                    STATUS_BAR_TICKER_ANIMATION_MODE_VALIDATOR);
+            VALIDATORS.put(STATUS_BAR_TICKER_TICK_DURATION,
+                    STATUS_BAR_TICKER_TICK_DURATION_VALIDATOR);
             // AICP Settings end
         }
 

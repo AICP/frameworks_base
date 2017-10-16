@@ -5225,6 +5225,15 @@ public final class Settings {
         public static final Validator THEMING_SETTINGS_DASHBOARD_ICONS_VALIDATOR =
                 ANY_INTEGER_VALIDATOR;
 
+        /**
+         * Status bar brightness control.
+         * @hide
+         */
+        public static final String STATUS_BAR_BRIGHTNESS_CONTROL = "status_bar_brightness_control";
+
+        /** @hide */
+        public static final Validator STATUS_BAR_BRIGHTNESS_CONTROL_VALIDATOR = BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5372,6 +5381,7 @@ public final class Settings {
             THEMING_CORNERS,
             THEMING_QS_SHAPE,
             THEMING_SETTINGS_DASHBOARD_ICONS,
+            STATUS_BAR_BRIGHTNESS_CONTROL,
             // AICP Settings end
         };
 
@@ -5583,6 +5593,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(GLOBAL_ACTIONS_SCREENRECORD);
             PRIVATE_SETTINGS.add(THEMING_QS_SHAPE);
             PRIVATE_SETTINGS.add(THEMING_SETTINGS_DASHBOARD_ICONS);
+            PRIVATE_SETTINGS.add(STATUS_BAR_BRIGHTNESS_CONTROL);
             // AICP Settings end
         }
 
@@ -5774,6 +5785,7 @@ public final class Settings {
             VALIDATORS.put(THEMING_QS_SHAPE, THEMING_QS_SHAPE_VALIDATOR);
             VALIDATORS.put(THEMING_SETTINGS_DASHBOARD_ICONS,
                     THEMING_SETTINGS_DASHBOARD_ICONS_VALIDATOR);
+            VALIDATORS.put(STATUS_BAR_BRIGHTNESS_CONTROL, STATUS_BAR_BRIGHTNESS_CONTROL_VALIDATOR);
             // AICP Settings end
         }
 

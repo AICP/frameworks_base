@@ -22,12 +22,6 @@
     <!-- If this is true, key chords can be used to take a screen record on the device. -->
     <bool name="config_enableScreenrecordChord">true</bool>
 
-    <!-- The duration (in milliseconds) of slim recent app screen animation. -->
-    <integer name="config_recentDefaultDur">300</integer>
-
-    <!-- The duration (in milliseconds) of slim recent app screen exit animation. -->
-    <integer name="config_recentExitDur">450</integer>
-
     <!-- Any package that has one of the package names defined below will be prevented
          from using specific sensors in order to stop battery drain -->
     <string-array name="config_blockPackagesSensorDrain">
@@ -41,4 +35,7 @@
         <item>com.facebook.orca</item>
         <item>com.Slack</item>
     </string-array>
+
+    <!-- The duration (in milliseconds) of slim recent app screen animation. -->
+    <integer name="config_recentDefaultDur">150</integer>
 </resources>

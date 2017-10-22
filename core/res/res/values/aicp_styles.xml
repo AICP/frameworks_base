@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-/* Copyright (c) 2013, The Linux Foundation. All rights reserved.
-** Not a Contribution.
-**
-** Copyright 2012, The Android Open Source Project
+** Copyright 2017, AICP
 **
 ** Licensed under the Apache License, Version 2.0 (the "License");
 ** you may not use this file except in compliance with the License.
@@ -19,12 +16,17 @@
 */
 -->
 <resources>
-    <!-- If this is true, key chords can be used to take a screen record on the device. -->
-    <bool name="config_enableScreenrecordChord">true</bool>
 
-    <!-- The duration (in milliseconds) of slim recent app screen animation. -->
-    <integer name="config_recentDefaultDur">300</integer>
+    <!-- Slim recent app screen animation -->
+    <style name="Animation.RecentScreen" parent="">
+        <item name="android:windowEnterAnimation">@anim/recent_screen_enter</item>
+        <item name="android:windowExitAnimation">@anim/recent_screen_exit</item>
+    </style>
 
-    <!-- The duration (in milliseconds) of slim recent app screen exit animation. -->
-    <integer name="config_recentExitDur">450</integer>
+    <style name="Animation.RecentScreen.Left" parent="">
+        <item name="android:windowEnterAnimation">@anim/recent_screen_enter_left</item>
+        <item name="android:windowExitAnimation">@anim/recent_screen_exit_left</item>
+    </style>
+
+
 </resources>

@@ -3467,7 +3467,7 @@ public class StatusBar extends SystemUI implements DemoMode,
         if (mTicker == null || mTickerEnabled == 0) return;
 
         // no ticking on keyguard, we have carrier name in the statusbar
-        if (isKeyguardShowing()) return;
+        if (isKeyguardShowing() || isDozing()) return;
 
         // no ticking in lights-out mode
         if (!areLightsOn()) return;
@@ -4655,6 +4655,9 @@ public class StatusBar extends SystemUI implements DemoMode,
         updateQsExpansionEnabled();
         mDozeScrimController.setDozing(mDozing, animate);
         updateRowStates();
+        if (isDozing()) {
+            haltTicker();
+        }
         Trace.endSection();
     }
 

@@ -22,6 +22,9 @@
     <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
     <string name="system_error_vendorprint">Your vendor image does not match the system. Please flash the <xliff:g id="string">%s</xliff:g> vendor image for your device</string>
 
+    <!-- Button to soft reboot the SystemUI, within the Reboot Options dialog -->
+    <string name="reboot_systemui">Restart SystemUI</string>
+
     <!-- label for item that screenrecord in phone options dialog -->
     <string name="global_action_screenrecord">Screenrecord</string>
 

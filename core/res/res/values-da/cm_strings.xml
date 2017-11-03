@@ -21,10 +21,6 @@
   <string name="app_killed_message">App lukket</string>
   <!-- label for item that screenshots in phone options dialog -->
   <string name="global_action_screenshot">Skærmbillede</string>
-  <!-- Title of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permgrouplab_security">Sikkerhed</string>
-  <!-- Description of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permgroupdesc_security">Tilladelser vedr. enhedens sikkerhedsinformation.</string>
   <!-- label for item that restarts the phone in phone options dialog -->
   <string name="global_action_reboot">Genstart</string>
   <!-- label for current user in phone options dialog -->
@@ -139,5 +135,12 @@
   <!-- Notify user that they are in Lock-to-app (for devices without navbar) -->
   <string name="lock_to_app_toast_no_navbar">For at frigøre denne skærm, tryk og hold Tilbage-knappen nede.</string>
   <!-- Message to show the user when their vendor image doesn't match the build's fingerprint. -->
+  <string name="lineage_system_error_manufacturer">Et forkert vendor image blev fundet. Dette betyder typisk, at dit vendor image er forældet. Sørg for, at dit vendor image matcher <xliff:g id="fingerprint">%1$s</xliff:g>.</string>
   <!-- Single hand mode -->
+  <string name="singlehandmode_click_hint_message">Tryk udenfor skærmen for at afslutte enkelthåndstilstand</string>
+  <!-- Strings for tethered notification -->
+  <!-- Shown when the device is tethered -->
+  <string name="tethered_notification_no_device_message">Ingen tilsluttet enhed</string>
+  <string name="tethered_notification_one_device_message"><xliff:g id="count">%1$s</xliff:g> tilsluttet enhed</string>
+  <string name="tethered_notification_multi_device_message"><xliff:g id="count">%1$s</xliff:g> tilsluttede enheder</string>
 </resources>

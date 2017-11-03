@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
+<!-- 
 /* //device/apps/common/assets/res/any/strings.xml
 **
 ** Copyright 2006, The Android Open Source Project
@@ -1026,10 +1026,10 @@
     <string name="unsupported_display_size_show" msgid="7969129195360353041">"Mostrar siempre"</string>
     <string name="smv_application" msgid="3307209192155442829">"La aplicación <xliff:g id="APPLICATION">%1$s</xliff:g> (proceso <xliff:g id="PROCESS">%2$s</xliff:g>) ha infringido su política StrictMode autoaplicable."</string>
     <string name="smv_process" msgid="5120397012047462446">"El proceso <xliff:g id="PROCESS">%1$s</xliff:g> ha infringido su política StrictMode autoaplicable."</string>
-    <string name="android_upgrading_title" msgid="1584192285441405746">"Actualizando AICP"</string>
-    <string name="android_start_title" msgid="8418054686415318207">"AICP se está iniciando…"</string>
+    <string name="android_upgrading_title" msgid="1584192285441405746">"Actualizando Android"</string>
+    <string name="android_start_title" msgid="8418054686415318207">"Android se está iniciando…"</string>
     <string name="android_upgrading_fstrim" msgid="8036718871534640010">"Optimizando almacenamiento."</string>
-    <string name="android_upgrading_notification_title" msgid="8428357096969413169">"Terminando de actualizar AICP…"</string>
+    <string name="android_upgrading_notification_title" msgid="8428357096969413169">"Terminando de actualizar Android…"</string>
     <string name="android_upgrading_notification_body" msgid="5761201379457064286">"Es posible que algunas aplicaciones no funcionen correctamente hasta que finalice la actualización"</string>
     <string name="app_upgrading_toast" msgid="3008139776215597053">"<xliff:g id="APPLICATION">%1$s</xliff:g> se está actualizando…"</string>
     <string name="android_upgrading_apk" msgid="7904042682111526169">"Optimizando aplicación <xliff:g id="NUMBER_0">%1$d</xliff:g> de <xliff:g id="NUMBER_1">%2$d</xliff:g>..."</string>

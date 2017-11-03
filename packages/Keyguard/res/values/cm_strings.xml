@@ -18,12 +18,9 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Instructions telling the user remaining times when enter SIM PIN view.  -->
-    <!-- Instructions telling the user remaining times when enter SIM PIN view.  -->
     <plurals name="kg_password_default_pin_message">
-        <item quantity="one">Enter SIM<xliff:g id="slotid">%d</xliff:g> PIN, you have <xliff:g id="number">%d</xliff:g> remaining
-attempt before you must contact your carrier to unlock your device.</item>
-        <item quantity="other">Enter SIM<xliff:g id="slotid">%d</xliff:g> PIN, you have <xliff:g id="number">%d</xliff:g> remaining
-attempts.</item>
+        <item quantity="one">Enter SIM PIN, you have <xliff:g id="number">%d</xliff:g> remaining attempt before you must contact your carrier to unlock your device.</item>
+        <item quantity="other">Enter SIM PIN, you have <xliff:g id="number">%d</xliff:g> remaining attempts.</item>
     </plurals>
 
     <!-- Instructions telling the user remaining times when enter SIM PUK view.  -->

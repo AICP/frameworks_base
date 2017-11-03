@@ -21,10 +21,6 @@
   <string name="app_killed_message">Ứng dụng đã tắt</string>
   <!-- label for item that screenshots in phone options dialog -->
   <string name="global_action_screenshot">Ảnh chụp màn hình</string>
-  <!-- Title of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permgrouplab_security">Bảo mật</string>
-  <!-- Description of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permgroupdesc_security">Quyền liên quan đến thông tin bảo mật của thiết bị.</string>
   <!-- label for item that restarts the phone in phone options dialog -->
   <string name="global_action_reboot">Khởi động lại</string>
   <!-- label for current user in phone options dialog -->
@@ -142,4 +138,9 @@
   <string name="lineage_system_error_manufacturer">Một hình ảnh nhà cung cấp không phù hợp đã được phát hiện. Thông thường, điều này có nghĩa là hình ảnh nhà cung cấp của bạn hết hạn. Vui lòng đảm bảo rằng hình ảnh nhà cung cấp của bạn phù hợp <xliff:g id="fingerprint">%1$s</xliff:g>.</string>
   <!-- Single hand mode -->
   <string name="singlehandmode_click_hint_message">Chạm vào bên ngoài màn hình để thoát chế độ một tay</string>
+  <!-- Strings for tethered notification -->
+  <!-- Shown when the device is tethered -->
+  <string name="tethered_notification_no_device_message">Không có thiết bị kết nối</string>
+  <string name="tethered_notification_one_device_message"><xliff:g id="count">%1$s</xliff:g> thiết bị đã kết nối</string>
+  <string name="tethered_notification_multi_device_message"><xliff:g id="count">%1$s</xliff:g> thiết bị đã kết nối</string>
 </resources>

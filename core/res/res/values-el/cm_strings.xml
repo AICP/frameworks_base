@@ -21,10 +21,6 @@
   <string name="app_killed_message">Η εφαρμογή τερματίστηκε</string>
   <!-- label for item that screenshots in phone options dialog -->
   <string name="global_action_screenshot">Στιγμιότυπο οθόνης</string>
-  <!-- Title of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permgrouplab_security">Ασφάλεια</string>
-  <!-- Description of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permgroupdesc_security">Δικαιώματα που σχετίζονται με την ασφάλεια των πληροφοριών της συσκευής.</string>
   <!-- label for item that restarts the phone in phone options dialog -->
   <string name="global_action_reboot">Επανεκκίνηση</string>
   <!-- label for current user in phone options dialog -->
@@ -142,4 +138,9 @@
   <string name="lineage_system_error_manufacturer">Εντοπίστηκε μια ασυμφωνία κατάτμησης vendor. Συνήθως αυτό σημαίνει ότι η κατάτμηση vendor της συσκευής σας δεν είναι ενημερωμένη. Παρακαλούμε βεβαιωθείτε ότι έχετε ενημερώσει την κατάτμηση vendor στην έκδοση <xliff:g id="fingerprint">%1$s</xliff:g>.</string>
   <!-- Single hand mode -->
   <string name="singlehandmode_click_hint_message">Αγγίξτε έξω από την οθόνη για να βγείτε από την λειτουργία ενός χεριού</string>
+  <!-- Strings for tethered notification -->
+  <!-- Shown when the device is tethered -->
+  <string name="tethered_notification_no_device_message">Καμία συνδεδεμένη συσκευή</string>
+  <string name="tethered_notification_one_device_message"><xliff:g id="count">%1$s</xliff:g> συνδεδεμένη συσκευή</string>
+  <string name="tethered_notification_multi_device_message"><xliff:g id="count">%1$s</xliff:g> συνδεδεμένες συσκευές</string>
 </resources>

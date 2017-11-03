@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
+<!-- 
 /* //device/apps/common/assets/res/any/strings.xml
 **
 ** Copyright 2006, The Android Open Source Project
@@ -251,7 +251,7 @@
     <string name="permgrouplab_contacts" msgid="3657758145679177612">"Kontakte"</string>
     <string name="permgroupdesc_contacts" msgid="6951499528303668046">"auf deine Kontakte zugreifen"</string>
     <string name="permgrouplab_location" msgid="7275582855722310164">"Standort"</string>
-    <string name="permgroupdesc_location" msgid="1346617465127855033">"auf den Standort deines Geräts zuzugreifen"</string>
+    <string name="permgroupdesc_location" msgid="1346617465127855033">"auf den Standort deines Geräts zugreifen"</string>
     <string name="permgrouplab_calendar" msgid="5863508437783683902">"Kalender"</string>
     <string name="permgroupdesc_calendar" msgid="3889615280211184106">"auf deinen Kalender zugreifen"</string>
     <string name="permgrouplab_sms" msgid="228308803364967808">"SMS"</string>
@@ -1026,10 +1026,10 @@
     <string name="unsupported_display_size_show" msgid="7969129195360353041">"Immer anzeigen"</string>
     <string name="smv_application" msgid="3307209192155442829">"Die App <xliff:g id="APPLICATION">%1$s</xliff:g> (Prozess <xliff:g id="PROCESS">%2$s</xliff:g>) hat gegen deine selbsterzwungene StrictMode-Richtlinie verstoßen."</string>
     <string name="smv_process" msgid="5120397012047462446">"Der Prozess <xliff:g id="PROCESS">%1$s</xliff:g> hat gegen seine selbsterzwungene StrictMode-Richtlinie verstoßen."</string>
-    <string name="android_upgrading_title" msgid="1584192285441405746">"AICP wird aktualisiert..."</string>
-    <string name="android_start_title" msgid="8418054686415318207">"AICP wird gestartet…"</string>
+    <string name="android_upgrading_title" msgid="1584192285441405746">"Android wird aktualisiert..."</string>
+    <string name="android_start_title" msgid="8418054686415318207">"Android wird gestartet…"</string>
     <string name="android_upgrading_fstrim" msgid="8036718871534640010">"Speicher wird optimiert"</string>
-    <string name="android_upgrading_notification_title" msgid="8428357096969413169">"AICP-Update wird beendet…"</string>
+    <string name="android_upgrading_notification_title" msgid="8428357096969413169">"Android-Update wird beendet…"</string>
     <string name="android_upgrading_notification_body" msgid="5761201379457064286">"Einige Apps funktionieren unter Umständen nicht richtig, bis das Upgrade abgeschlossen ist"</string>
     <string name="app_upgrading_toast" msgid="3008139776215597053">"Für <xliff:g id="APPLICATION">%1$s</xliff:g> wird gerade ein Upgrade ausgeführt…"</string>
     <string name="android_upgrading_apk" msgid="7904042682111526169">"App <xliff:g id="NUMBER_0">%1$d</xliff:g> von <xliff:g id="NUMBER_1">%2$d</xliff:g> wird optimiert..."</string>

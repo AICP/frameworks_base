@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
+<!-- 
 /* //device/apps/common/assets/res/any/strings.xml
 **
 ** Copyright 2006, The Android Open Source Project
@@ -1049,10 +1049,10 @@
     <string name="unsupported_display_size_show" msgid="7969129195360353041">"Uvijek prikaži"</string>
     <string name="smv_application" msgid="3307209192155442829">"Aplikacija <xliff:g id="APPLICATION">%1$s</xliff:g> (proces <xliff:g id="PROCESS">%2$s</xliff:g>) prekršila je vlastito pravilo StrictMode."</string>
     <string name="smv_process" msgid="5120397012047462446">"Proces <xliff:g id="PROCESS">%1$s</xliff:g> prekršio je svoje vlastito pravilo StrictMode."</string>
-    <string name="android_upgrading_title" msgid="1584192285441405746">"AICP se nadograđuje…"</string>
-    <string name="android_start_title" msgid="8418054686415318207">"Pokretanje AICPa..."</string>
+    <string name="android_upgrading_title" msgid="1584192285441405746">"Android se nadograđuje…"</string>
+    <string name="android_start_title" msgid="8418054686415318207">"Pokretanje Androida..."</string>
     <string name="android_upgrading_fstrim" msgid="8036718871534640010">"Optimiziranje pohrane."</string>
-    <string name="android_upgrading_notification_title" msgid="8428357096969413169">"Dovršavanje ažuriranja AICP…"</string>
+    <string name="android_upgrading_notification_title" msgid="8428357096969413169">"Dovršavanje ažuriranja Androida…"</string>
     <string name="android_upgrading_notification_body" msgid="5761201379457064286">"Neke aplikacije možda neće funkcionirati pravilno dok nadogradnja ne završi"</string>
     <string name="app_upgrading_toast" msgid="3008139776215597053">"Nadogradnja aplikacije <xliff:g id="APPLICATION">%1$s</xliff:g>…"</string>
     <string name="android_upgrading_apk" msgid="7904042682111526169">"Optimiziranje aplikacije <xliff:g id="NUMBER_0">%1$d</xliff:g> od <xliff:g id="NUMBER_1">%2$d</xliff:g>."</string>

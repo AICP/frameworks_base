@@ -21,10 +21,6 @@
   <string name="app_killed_message">アプリを終了しました。</string>
   <!-- label for item that screenshots in phone options dialog -->
   <string name="global_action_screenshot">スクリーンショット</string>
-  <!-- Title of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permgrouplab_security">セキュリティ</string>
-  <!-- Description of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permgroupdesc_security">端末のセキュリティ情報に関連する権限です。</string>
   <!-- label for item that restarts the phone in phone options dialog -->
   <string name="global_action_reboot">再起動</string>
   <!-- label for current user in phone options dialog -->
@@ -44,12 +40,10 @@
   <string name="reboot_soft">ソフトリブート</string>
   <!-- Title of dialog to confirm restarting. -->
   <string name="reboot_title">再起動</string>
-  <!-- Button to soft reboot the device, within the Reboot Options dialog -->
-  <string name="reboot_systemui">システムUIの再起動</string>
   <!-- Restart Confirmation Dialog.  When the user chooses to restart the device, there will
          be a confirmation dialog.  This is the message. -->
-  <string name="reboot_confirm" product="tablet">タブレットは再起動します。</string>
-  <string name="reboot_confirm" product="default">携帯電話は再起動します。</string>
+  <string name="reboot_confirm" product="tablet">端末を再起動します。</string>
+  <string name="reboot_confirm" product="default">端末を再起動します。</string>
   <!-- Restart Progress Dialog. This is shown if the user chooses to restart the phone. -->
   <string name="reboot_progress">再起動中...</string>
   <!-- ADB over network notification -->
@@ -120,7 +114,7 @@
   <string name="app_ops_write_sms">SMSメッセージの書き込み</string>
   <string name="app_ops_use_fingerprint">指紋の使用</string>
   <string name="app_ops_add_voicemail">ボイスメールの追加</string>
-  <string name="app_ops_read_phone_state">携帯電話の状態へのアクセス</string>
+  <string name="app_ops_read_phone_state">端末の状態へのアクセス</string>
   <string name="app_ops_scan_wifi">Wi-Fiネットワークのスキャン</string>
   <string name="app_ops_change_wallpaper">壁紙の変更</string>
   <string name="app_ops_assist_structure">ストラクチャのアシストの使用</string>
@@ -144,4 +138,9 @@
   <string name="lineage_system_error_manufacturer">ベンダーイメージの不一致を検出しました。ベンダーイメージが最新でない可能性があります。ベンダーイメージが<xliff:g id="fingerprint">%1$s</xliff:g>と一致しているか確認してください。</string>
   <!-- Single hand mode -->
   <string name="singlehandmode_click_hint_message">画面の外をタップすると片手モードを終了します</string>
+  <!-- Strings for tethered notification -->
+  <!-- Shown when the device is tethered -->
+  <string name="tethered_notification_no_device_message">接続しているデバイスはありません</string>
+  <string name="tethered_notification_one_device_message"><xliff:g id="count">%1$s</xliff:g>台のデバイスが接続しています</string>
+  <string name="tethered_notification_multi_device_message"><xliff:g id="count">%1$s</xliff:g>台のデバイスが接続しています</string>
 </resources>

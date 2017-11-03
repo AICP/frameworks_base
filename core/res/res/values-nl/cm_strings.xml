@@ -21,16 +21,12 @@
   <string name="app_killed_message">App afgesloten</string>
   <!-- label for item that screenshots in phone options dialog -->
   <string name="global_action_screenshot">Screenshot</string>
-  <!-- Title of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permgrouplab_security">Beveiliging</string>
-  <!-- Description of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permgroupdesc_security">Machtigingen gerelateerd aan beveiligingsinformatie van het apparaat.</string>
   <!-- label for item that restarts the phone in phone options dialog -->
   <string name="global_action_reboot">Herstarten</string>
   <!-- label for current user in phone options dialog -->
   <string name="global_action_current_user">Huidige</string>
   <!-- status message in phone options dialog for screenshot action -->
-  <string name="global_actions_screenshot_status">Lang drukken voor gedeeltelijke schermafbeelding</string>
+  <string name="global_actions_screenshot_status">Lang indrukken voor gedeeltelijke schermafbeelding</string>
   <!-- Restart menu -->
   <!-- Button to restart the phone, within the Restart Options dialog -->
   <string name="reboot_reboot">Herstarten</string>
@@ -58,7 +54,7 @@
   <string name="adb_active_generic_notification_message">Tik om foutopsporing uit te schakelen.</string>
   <!-- Privacy Guard -->
   <string name="permlab_changePrivacyGuardState">Privacybescherming in- of uitschakelen</string>
-  <string name="permdesc_changePrivacyGuardState">Hiermee kan de app bepalen of een andere app start met Privacybescherming. Als een app start met Privacybescherming, zal het geen toegang hebben tot persoonsgegevens zoals contacten, berichten of gespreksstatistieken.</string>
+  <string name="permdesc_changePrivacyGuardState">Hiermee kan de app bepalen of een andere app start met Privacybescherming. Als een app start met Privacybescherming, zal het geen toegang hebben tot persoonsgegevens zoals contacten, berichten of oproepgeschiedenis.</string>
   <string name="privacy_guard_notification">Privacybescherming actief</string>
   <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> zal geen toegang hebben tot persoonsgegevens</string>
   <string name="privacy_guard_dialog_title">Privacybescherming</string>
@@ -71,7 +67,7 @@
   <string name="app_ops_access_notifications">meldingen lezen</string>
   <string name="app_ops_activate_vpn">VPN activeren</string>
   <string name="app_ops_auto_start">starten tijdens opstarten</string>
-  <string name="app_ops_delete_call_log">gespreksstatistieken verwijderen</string>
+  <string name="app_ops_delete_call_log">oproepgeschiedenis verwijderen</string>
   <string name="app_ops_delete_contacts">contacten verwijderen</string>
   <string name="app_ops_delete_mms">mms-berichten verwijderen</string>
   <string name="app_ops_delete_sms">sms-berichten verwijderen</string>
@@ -80,7 +76,7 @@
   <string name="app_ops_keep_device_awake">apparaat wakker houden</string>
   <string name="app_ops_make_phone_call">telefoongesprek starten</string>
   <string name="app_ops_modify_calendar">agenda vernieuwen</string>
-  <string name="app_ops_modify_call_log">gespreksstatistieken vernieuwen</string>
+  <string name="app_ops_modify_call_log">oproepgeschiedenis vernieuwen</string>
   <string name="app_ops_modify_clipboard">klembord aanpassen</string>
   <string name="app_ops_modify_contacts">contacten vernieuwen</string>
   <string name="app_ops_modify_settings">systeeminstellingen vernieuwen</string>
@@ -89,7 +85,7 @@
   <string name="app_ops_post_notification">melding tonen</string>
   <string name="app_ops_project_media">media projecteren</string>
   <string name="app_ops_read_calendar">agenda lezen</string>
-  <string name="app_ops_read_call_log">gespreksstatistieken lezen</string>
+  <string name="app_ops_read_call_log">oproepgeschiedenis lezen</string>
   <string name="app_ops_read_clipboard">klembord lezen</string>
   <string name="app_ops_read_contacts">contacten lezen</string>
   <string name="app_ops_read_mms">mms-berichten lezen</string>
@@ -124,7 +120,7 @@
   <string name="app_ops_assist_structure">structuur voor ondersteuning gebruiken</string>
   <string name="app_ops_assist_screenshot">screenshot maken</string>
   <string name="app_ops_use_body_sensors">lichaamssensoren gebruiken</string>
-  <string name="app_ops_read_cell_broadcasts">nooduitzendingen lezen</string>
+  <string name="app_ops_read_cell_broadcasts">noodwaarschuwingen lezen</string>
   <string name="app_ops_mock_location">neplocatie gebruiken</string>
   <string name="app_ops_read_external_storage">externe opslag lezen</string>
   <string name="app_ops_write_external_storage">naar externe opslag schrijven</string>

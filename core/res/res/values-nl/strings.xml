@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
+<!-- 
 /* //device/apps/common/assets/res/any/strings.xml
 **
 ** Copyright 2006, The Android Open Source Project
@@ -1026,10 +1026,10 @@
     <string name="unsupported_display_size_show" msgid="7969129195360353041">"Altijd weergeven"</string>
     <string name="smv_application" msgid="3307209192155442829">"De app <xliff:g id="APPLICATION">%1$s</xliff:g> (proces <xliff:g id="PROCESS">%2$s</xliff:g>) heeft het zelf afgedwongen StrictMode-beleid geschonden."</string>
     <string name="smv_process" msgid="5120397012047462446">"Het proces <xliff:g id="PROCESS">%1$s</xliff:g> heeft het zelf afgedwongen StrictMode-beleid geschonden."</string>
-    <string name="android_upgrading_title" msgid="1584192285441405746">"AICP wordt bijgewerkt..."</string>
-    <string name="android_start_title" msgid="8418054686415318207">"AICP wordt gestart…"</string>
+    <string name="android_upgrading_title" msgid="1584192285441405746">"Android wordt bijgewerkt..."</string>
+    <string name="android_start_title" msgid="8418054686415318207">"Android wordt gestart…"</string>
     <string name="android_upgrading_fstrim" msgid="8036718871534640010">"Opslagruimte wordt geoptimaliseerd."</string>
-    <string name="android_upgrading_notification_title" msgid="8428357096969413169">"AICP-update voltooien…"</string>
+    <string name="android_upgrading_notification_title" msgid="8428357096969413169">"Android-update voltooien…"</string>
     <string name="android_upgrading_notification_body" msgid="5761201379457064286">"Sommige apps werken mogelijk pas correct nadat de upgrade is voltooid"</string>
     <string name="app_upgrading_toast" msgid="3008139776215597053">"<xliff:g id="APPLICATION">%1$s</xliff:g> upgraden…"</string>
     <string name="android_upgrading_apk" msgid="7904042682111526169">"App <xliff:g id="NUMBER_0">%1$d</xliff:g> van <xliff:g id="NUMBER_1">%2$d</xliff:g> optimaliseren."</string>

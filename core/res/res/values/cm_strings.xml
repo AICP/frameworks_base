@@ -51,6 +51,11 @@
     <!-- Title of dialog to confirm restarting. -->
     <string name="reboot_title">Restart</string>
 
+    <!-- Restart Confirmation Dialog.  When the user chooses to restart the device, there will
+         be a confirmation dialog.  This is the message. -->
+    <string name="reboot_confirm" product="tablet">Your tablet will restart.</string>
+    <string name="reboot_confirm" product="default">Your phone will restart.</string>
+
     <!-- Restart Progress Dialog. This is shown if the user chooses to restart the phone. -->
     <string name="reboot_progress">Restarting\u2026</string>
 
@@ -147,4 +152,16 @@
 
     <!-- Notify user that they are in Lock-to-app (for devices without navbar) -->
     <string name="lock_to_app_toast_no_navbar">To unpin this screen, touch and hold the Back button.</string>
+
+    <!-- Message to show the user when their vendor image doesn't match the build's fingerprint. -->
+    <string name="lineage_system_error_manufacturer">A vendor image mismatch has been detected. Typically this means your vendor image is out of date. Please ensure your vendor image matches <xliff:g id="fingerprint">%1$s</xliff:g>.</string>
+
+    <!-- Single hand mode -->
+    <string name="singlehandmode_click_hint_message">Touch outside the screen to exit single hand mode</string>
+
+    <!-- Strings for tethered notification -->
+    <!-- Shown when the device is tethered -->
+    <string name="tethered_notification_no_device_message">No connected device</string>
+    <string name="tethered_notification_one_device_message"><xliff:g id="count">%1$s</xliff:g> connected device</string>
+    <string name="tethered_notification_multi_device_message"><xliff:g id="count">%1$s</xliff:g> connected devices</string>
 </resources>

@@ -21,15 +21,12 @@
   <string name="app_killed_message">Aplikacja została zamknięta</string>
   <!-- label for item that screenshots in phone options dialog -->
   <string name="global_action_screenshot">Zrzut ekranu</string>
-  <!-- Title of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permgrouplab_security">Zabezpieczenia</string>
-  <!-- Description of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permgroupdesc_security">Uprawnienia związane z informacjami o bezpieczeństwie urządzenia.</string>
   <!-- label for item that restarts the phone in phone options dialog -->
   <string name="global_action_reboot">Uruchom ponownie</string>
   <!-- label for current user in phone options dialog -->
   <string name="global_action_current_user">Bieżący</string>
   <!-- status message in phone options dialog for screenshot action -->
+  <string name="global_actions_screenshot_status">Naciśnij i przytrzymaj by wykonać częściowy zrzut ekranu</string>
   <!-- Restart menu -->
   <!-- Button to restart the phone, within the Restart Options dialog -->
   <string name="reboot_reboot">Uruchom ponownie</string>
@@ -40,6 +37,7 @@
   <!-- Button to restart the phone into download, within the Restart Options dialog -->
   <string name="reboot_download">Uruchom w trybie Download</string>
   <!-- Button to soft restart the device, within the Restart Options dialog -->
+  <string name="reboot_soft">Szybki restart</string>
   <!-- Title of dialog to confirm restarting. -->
   <string name="reboot_title">Uruchom ponownie</string>
   <!-- Restart Confirmation Dialog.  When the user chooses to restart the device, there will
@@ -47,6 +45,7 @@
   <string name="reboot_confirm" product="tablet">Tablet zostanie uruchomiony ponownie.</string>
   <string name="reboot_confirm" product="default">Telefon zostanie uruchomiony ponownie.</string>
   <!-- Restart Progress Dialog. This is shown if the user chooses to restart the phone. -->
+  <string name="reboot_progress">Ponowne uruchamianie\u2026</string>
   <!-- ADB over network notification -->
   <string name="adb_net_active_notification_title">ADB przez sieć włączone</string>
   <!-- ADB over USB and network notification -->
@@ -139,4 +138,9 @@
   <string name="lineage_system_error_manufacturer">Wykryto niezgodność obrazu dostawcy. Zazwyczaj oznacza to, że obraz twojego dostawcy nie jest aktualny. Upewnij się, że obraz odpowiada <xliff:g id="fingerprint">%1$s</xliff:g>.</string>
   <!-- Single hand mode -->
   <string name="singlehandmode_click_hint_message">Dotknij miejsca poza ekranem, by opuścić tryb obsługi jedną ręką</string>
+  <!-- Strings for tethered notification -->
+  <!-- Shown when the device is tethered -->
+  <string name="tethered_notification_no_device_message">Brak podłączonego urządzenia</string>
+  <string name="tethered_notification_one_device_message"><xliff:g id="count">%1$s </xliff:g> podłączone urządzenie</string>
+  <string name="tethered_notification_multi_device_message"><xliff:g id="count">%1$s </xliff:g> podłączone urządzenia</string>
 </resources>

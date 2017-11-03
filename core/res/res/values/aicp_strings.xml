@@ -31,9 +31,6 @@
     <!-- Screenshoot edit action -->
     <string name="edit">Edit</string>
 
-    <!-- Singlehanded Mode -->
-    <string name="singlehandmode_click_hint_message">Touch outside the screen to exit mini screen view</string>
-
     <!-- Powermenu Torch -->
     <string name="global_action_torch">Flashlight</string>
 

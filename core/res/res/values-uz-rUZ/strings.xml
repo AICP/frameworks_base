@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
+<!-- 
 /* //device/apps/common/assets/res/any/strings.xml
 **
 ** Copyright 2006, The Android Open Source Project
@@ -1026,10 +1026,10 @@
     <string name="unsupported_display_size_show" msgid="7969129195360353041">"Har doim ko‘rsatilsin"</string>
     <string name="smv_application" msgid="3307209192155442829">"“<xliff:g id="APPLICATION">%1$s</xliff:g>” ilovasi (jarayaon: <xliff:g id="PROCESS">%2$s</xliff:g>) o‘zining StrictMode qoidasini buzdi."</string>
     <string name="smv_process" msgid="5120397012047462446">"<xliff:g id="PROCESS">%1$s</xliff:g> jarayoni o‘zining o‘zi-bajaruvchi StrictMode siyosatini buzdi."</string>
-    <string name="android_upgrading_title" msgid="1584192285441405746">"AICP yangilanmoqda…"</string>
-    <string name="android_start_title" msgid="8418054686415318207">"AICP ishga tushmoqda…"</string>
+    <string name="android_upgrading_title" msgid="1584192285441405746">"Android yangilanmoqda…"</string>
+    <string name="android_start_title" msgid="8418054686415318207">"Android ishga tushmoqda…"</string>
     <string name="android_upgrading_fstrim" msgid="8036718871534640010">"Xotira optimallashtirilmoqda."</string>
-    <string name="android_upgrading_notification_title" msgid="8428357096969413169">"AICP yangilanishi tugay deb qoldi…"</string>
+    <string name="android_upgrading_notification_title" msgid="8428357096969413169">"Android yangilanishi tugay deb qoldi…"</string>
     <string name="android_upgrading_notification_body" msgid="5761201379457064286">"Yangilanish vaqtida ba’zi ilovalar to‘g‘ri ishlamasligi mumkin"</string>
     <string name="app_upgrading_toast" msgid="3008139776215597053">"<xliff:g id="APPLICATION">%1$s</xliff:g> ilovasi yangilanmoqda…"</string>
     <string name="android_upgrading_apk" msgid="7904042682111526169">"Ilovalar optimallashtirilmoqda (<xliff:g id="NUMBER_0">%1$d</xliff:g> / <xliff:g id="NUMBER_1">%2$d</xliff:g>)."</string>

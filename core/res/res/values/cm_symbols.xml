@@ -2,6 +2,7 @@
 <!--
      Copyright (C) 2012-2015 The CyanogenMod Project
      Copyright (c) 2013, The Linux Foundation. All rights reserved.
+                   2017  The LineageOS Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -77,8 +78,28 @@
     <!-- Blur effects -->
     <java-symbol type="bool" name="config_uiBlurEnabled" />
 
+    <!-- Message to show the user when their vendor image doesn't match the build's fingerprint. -->
+    <java-symbol type="string" name="lineage_system_error_manufacturer" />
+
     <!-- Whether to enable HumanInteractionController by default -->
     <java-symbol type="bool" name="config_HICEnabledDefault" />
+
+    <!-- Single hand mode -->
+    <java-symbol type="bool" name="single_hand_mode" />
+    <java-symbol type="id" name="relative_top" />
+    <java-symbol type="id" name="hint_info" />
+    <java-symbol type="id" name="single_hand_window_title" />
+    <java-symbol type="id" name="click_hint" />
+    <java-symbol type="id" name="hint_section" />
+    <java-symbol type="id" name="relative_bottom" />
+    <java-symbol type="id" name="slide_hint_area" />
+    <java-symbol type="layout" name="single_hand_window" />
+    <java-symbol type="string" name="singlehandmode_click_hint_message" />
+
+    <!-- Tethering -->
+    <java-symbol type="string" name="tethered_notification_no_device_message" />
+    <java-symbol type="string" name="tethered_notification_one_device_message" />
+    <java-symbol type="string" name="tethered_notification_multi_device_message" />
 
     <!-- Whether notify fingerprint client of successful cancelled authentication -->
     <java-symbol type="bool" name="config_notifyClientOnFingerprintCancelSuccess" />

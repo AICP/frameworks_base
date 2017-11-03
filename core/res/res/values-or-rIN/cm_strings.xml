@@ -21,10 +21,6 @@
   <string name="app_killed_message">ଆପ୍ଲିକେସନ୍‍ କଟାଯାଇଛି</string>
   <!-- label for item that screenshots in phone options dialog -->
   <string name="global_action_screenshot">ସ୍କ୍ରିନସଟ୍</string>
-  <!-- Title of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permgrouplab_security">ସୁରକ୍ଷା</string>
-  <!-- Description of a category of application permissions, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permgroupdesc_security">ଡିଭାଇସ୍‍ ସୁରଷା ସୂଚନା ସମ୍ବଧିତ ଅନୁମତି।</string>
   <!-- label for item that restarts the phone in phone options dialog -->
   <!-- label for current user in phone options dialog -->
   <string name="global_action_current_user">ସମ୍ପ୍ରତି</string>
@@ -131,4 +127,9 @@
   <string name="lock_to_app_toast_no_navbar">ଏହି ସ୍କ୍ରିନ୍‍ ଅନ୍‍ପିନ୍‍ କରିବା ପାଇଁ, ବ୍ୟାକ୍‍ ବଟନ୍‍ ସ୍ପର୍ଶ କରନ୍ତୁ ଓ ଧରିରଖନ୍ତୁ।</string>
   <!-- Message to show the user when their vendor image doesn't match the build's fingerprint. -->
   <!-- Single hand mode -->
+  <!-- Strings for tethered notification -->
+  <!-- Shown when the device is tethered -->
+  <string name="tethered_notification_no_device_message">ସଂଯୋଗ ହୋଇଥିବା କିଛି ଡିଭାଇସ୍‍ ନା୍ହିଁ</string>
+  <string name="tethered_notification_one_device_message"><xliff:g id="count">%1$s</xliff:g> ସଂଯୋଗ ହୋଇଥିବା ଡିଭାଇସ୍</string>
+  <string name="tethered_notification_multi_device_message"><xliff:g id="count">%1$s</xliff:g> ସଂଯୋଗ ହୋଇଥିବା ଡିଭାଇସ୍ଗୁଡିକ</string>
 </resources>

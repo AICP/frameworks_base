@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
+<!-- 
 /* //device/apps/common/assets/res/any/strings.xml
 **
 ** Copyright 2006, The Android Open Source Project
@@ -1026,10 +1026,10 @@
     <string name="unsupported_display_size_show" msgid="7969129195360353041">"Toujours afficher"</string>
     <string name="smv_application" msgid="3307209192155442829">"L\'application <xliff:g id="APPLICATION">%1$s</xliff:g> (du processus <xliff:g id="PROCESS">%2$s</xliff:g>) a enfreint ses propres règles du mode strict."</string>
     <string name="smv_process" msgid="5120397012047462446">"Le processus <xliff:g id="PROCESS">%1$s</xliff:g> a enfreint ses propres règles du mode strict."</string>
-    <string name="android_upgrading_title" msgid="1584192285441405746">"Mise à jour d\'AICP…"</string>
-    <string name="android_start_title" msgid="8418054686415318207">"Démarrage d\'AICP en cours"</string>
+    <string name="android_upgrading_title" msgid="1584192285441405746">"Mise à jour d\'Android…"</string>
+    <string name="android_start_title" msgid="8418054686415318207">"Démarrage d\'Android en cours"</string>
     <string name="android_upgrading_fstrim" msgid="8036718871534640010">"Optimisation du stockage en cours…"</string>
-    <string name="android_upgrading_notification_title" msgid="8428357096969413169">"Finalisation de la mise à jour AICP…"</string>
+    <string name="android_upgrading_notification_title" msgid="8428357096969413169">"Finalisation de la mise à jour Android…"</string>
     <string name="android_upgrading_notification_body" msgid="5761201379457064286">"Certaines applications peuvent ne pas fonctionner correctement jusqu\'à ce que la mise à jour soit terminée."</string>
     <string name="app_upgrading_toast" msgid="3008139776215597053">"Mise à jour de l\'application <xliff:g id="APPLICATION">%1$s</xliff:g>…"</string>
     <string name="android_upgrading_apk" msgid="7904042682111526169">"Optimisation de l\'application <xliff:g id="NUMBER_0">%1$d</xliff:g> sur <xliff:g id="NUMBER_1">%2$d</xliff:g>…"</string>

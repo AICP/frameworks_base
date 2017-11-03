@@ -2817,16 +2817,16 @@
       has violated its self-enforced StrictMode policy.</string>
 
     <!-- [CHAR LIMIT=40] Title of dialog that is shown when performing a system upgrade. -->
-    <string name="android_upgrading_title">AICP is upgrading\u2026</string>
+    <string name="android_upgrading_title">Android is upgrading\u2026</string>
 
     <!-- [CHAR LIMIT=40] Title of dialog that is shown when system is starting. -->
-    <string name="android_start_title">AICP is starting\u2026</string>
+    <string name="android_start_title">Android is starting\u2026</string>
 
     <!-- [CHAR LIMIT=NONE] Message shown in upgrading dialog when doing an fstrim. -->
     <string name="android_upgrading_fstrim">Optimizing storage.</string>
 
-    <!-- [CHAR LIMIT=40] Title of notification that is shown when performing a system upgrade. -->
-    <string name="android_upgrading_notification_title">AICP is upgrading</string>
+    <!-- [CHAR LIMIT=40] Title of notification that is shown when finishing a system upgrade. -->
+    <string name="android_upgrading_notification_title">Finishing Android update\u2026</string>
     <!-- [CHAR LIMIT=200] Body of notification that is shown when performing a system upgrade. -->
     <string name="android_upgrading_notification_body">Some apps may not work properly until the upgrade finishes</string>
 

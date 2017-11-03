@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
+<!-- 
 /* //device/apps/common/assets/res/any/strings.xml
 **
 ** Copyright 2006, The Android Open Source Project
@@ -1026,10 +1026,10 @@
     <string name="unsupported_display_size_show" msgid="7969129195360353041">"Винаги да се показва"</string>
     <string name="smv_application" msgid="3307209192155442829">"Приложението „<xliff:g id="APPLICATION">%1$s</xliff:g>“ (процес „<xliff:g id="PROCESS">%2$s</xliff:g>“) наруши правилото за стриктен режим, наложено от самото него."</string>
     <string name="smv_process" msgid="5120397012047462446">"Процесът <xliff:g id="PROCESS">%1$s</xliff:g> наруши правилото за стриктен режим, наложено от самия него."</string>
-    <string name="android_upgrading_title" msgid="1584192285441405746">"AICP се надстройва..."</string>
-    <string name="android_start_title" msgid="8418054686415318207">"AICP се стартира…"</string>
+    <string name="android_upgrading_title" msgid="1584192285441405746">"Android се надстройва..."</string>
+    <string name="android_start_title" msgid="8418054686415318207">"Android се стартира…"</string>
     <string name="android_upgrading_fstrim" msgid="8036718871534640010">"Хранилището се оптимизира."</string>
-    <string name="android_upgrading_notification_title" msgid="8428357096969413169">"Актуализацията на AICP приключва…"</string>
+    <string name="android_upgrading_notification_title" msgid="8428357096969413169">"Актуализацията на Android приключва…"</string>
     <string name="android_upgrading_notification_body" msgid="5761201379457064286">"Някои приложения може да не работят правилно, докато надстройването не завърши"</string>
     <string name="app_upgrading_toast" msgid="3008139776215597053">"<xliff:g id="APPLICATION">%1$s</xliff:g> се надстройва…"</string>
     <string name="android_upgrading_apk" msgid="7904042682111526169">"Оптимизира се приложение <xliff:g id="NUMBER_0">%1$d</xliff:g> от <xliff:g id="NUMBER_1">%2$d</xliff:g>."</string>

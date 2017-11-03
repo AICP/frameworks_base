@@ -43,4 +43,8 @@
     <dimen name="qs_panel_margin_top_header">85dp</dimen>
 
     <dimen name="qs_panel_footer_height">48dp</dimen>
+
+    <!-- Custom tuner settings -->
+    <dimen name="preference_no_icon_padding_start">24dp</dimen>
+
 </resources>

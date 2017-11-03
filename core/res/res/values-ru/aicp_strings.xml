@@ -22,7 +22,7 @@
   <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
   <string name="system_error_vendorprint">Ваш образ ПО производителя не соответствует системе. Пожалуйста, прошейте <xliff:g id="string">%s</xliff:g> образ ПО производителя для вашего устройства</string>
   <!-- Button to soft reboot the SystemUI, within the Reboot Options dialog -->
-  <string name="reboot_systemui">Перезапустить пользовательский интерфейс</string>
+  <string name="reboot_systemui">Перезапустить интерфейс</string>
   <!-- label for item that screenrecord in phone options dialog -->
   <string name="global_action_screenrecord">Запись экрана</string>
   <!-- Screenshoot edit action -->

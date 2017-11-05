@@ -4,5 +4,8 @@
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
-
+    <!-- The extra quick settings tiles to display in QuickSettings -->
+    <string name="quick_settings_tiles_extra" translatable="false">
+      livedisplay
+    </string>
 </resources>

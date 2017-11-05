@@ -48,6 +48,7 @@ import com.android.systemui.qs.tiles.HotspotTile;
 import com.android.systemui.qs.tiles.HWKeysTile;
 import com.android.systemui.qs.tiles.LocaleTile;
 import com.android.systemui.qs.tiles.KillappTile;
+import com.android.systemui.qs.tiles.LiveDisplayTile;
 import com.android.systemui.qs.tiles.LocationTile;
 import com.android.systemui.qs.tiles.MusicTile;
 import com.android.systemui.qs.tiles.NfcTile;
@@ -103,6 +104,7 @@ public class QSFactoryImpl implements QSFactory {
     private final Provider<UiModeNightTile> mUiModeNightTileProvider;
     private final Provider<ScreenRecordTile> mScreenRecordTileProvider;
     private final Provider<CompassTile> mCompassTileProvider;
+    private final Provider<LiveDisplayTile> mLiveDisplayTileProvider;
     private final Provider<MusicTile> mMusicTileProvider;
     private final Provider<RebootTile> mRebootTileProvider;
     private final Provider<UsbTetherTile> mUsbTetherTileProvider;
@@ -152,6 +154,7 @@ public class QSFactoryImpl implements QSFactory {
             Provider<UiModeNightTile> uiModeNightTileProvider,
             Provider<ScreenRecordTile> screenRecordTileProvider,
             Provider<CompassTile> compassTileProvider,
+            Provider<LiveDisplayTile> liveDisplayTileProvider,
             Provider<MusicTile> musicTileProvider,
             Provider<RebootTile> rebootTileProvider,
             Provider<UsbTetherTile> usbtetherTileProvider,
@@ -197,6 +200,7 @@ public class QSFactoryImpl implements QSFactory {
         mUiModeNightTileProvider = uiModeNightTileProvider;
         mScreenRecordTileProvider = screenRecordTileProvider;
         mCompassTileProvider = compassTileProvider;
+        mLiveDisplayTileProvider = liveDisplayTileProvider;
         mMusicTileProvider = musicTileProvider;
         mRebootTileProvider = rebootTileProvider;
         mUsbTetherTileProvider = usbtetherTileProvider;
@@ -273,6 +277,8 @@ public class QSFactoryImpl implements QSFactory {
                 return mScreenRecordTileProvider.get();
             case "compass":
                 return mCompassTileProvider.get();
+            case "livedisplay":
+                return mLiveDisplayTileProvider.get();
             case "music":
                 return mMusicTileProvider.get();
             case "reboot":

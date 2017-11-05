@@ -249,9 +249,10 @@
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
-    <!-- Sync tile -->
+    <!-- QS Tiles -->
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+    <uses-permission android:name="lineageos.permission.MANAGE_LIVEDISPLAY" />
 
     <!-- One-handed mode -->
     <uses-permission android:name="android.permission.ONE_HANDED_MODE" />

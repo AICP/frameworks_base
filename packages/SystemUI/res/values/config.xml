@@ -106,15 +106,15 @@
 
     <!-- The default tiles to display in QuickSettings -->
     <string name="quick_settings_tiles_default" translatable="false">
-        wifi,bt,cell,dnd,flashlight,aicp_extras,airplane,battery,cast,screenrecord,rotation
+        wifi,bt,cell,dnd,flashlight,aicp_extras,airplane,battery,cast,screenrecord,rotation,livedisplay
     </string>
 
     <!-- The minimum number of tiles to display in QuickSettings -->
     <integer name="quick_settings_min_num_tiles">6</integer>
 
     <!-- Tiles native to System UI. Order should match "quick_settings_tiles_default" -->
-    <string name="quick_settings_tiles_stock" translatable="false">
-        wifi,cell,battery,dnd,flashlight,rotation,bt,airplane,location,hotspot,inversion,saver,dark,work,cast,night,screenrecord,reverse,nfc
+    <string name="quick_settings_tiles_stock" translatable="false">          	
+    wifi,cell,battery,dnd,flashlight,rotation,bt,airplane,location,hotspot,inversion,saver,dark,work,cast,night,screenrecord,reverse,nfc,livedisplay
     </string>
 
     <!-- The tiles to display in QuickSettings -->

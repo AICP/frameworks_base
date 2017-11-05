@@ -49,6 +49,7 @@ import com.android.systemui.qs.tiles.FPSInfoTile;
 import com.android.systemui.qs.tiles.HeadsUpTile;
 import com.android.systemui.qs.tiles.HotspotTile;
 import com.android.systemui.qs.tiles.InternetTile;
+import com.android.systemui.qs.tiles.LiveDisplayTile;
 import com.android.systemui.qs.tiles.LocaleTile;
 import com.android.systemui.qs.tiles.LocationTile;
 import com.android.systemui.qs.tiles.MicrophoneToggleTile;
@@ -137,6 +138,7 @@ public class QSFactoryImpl implements QSFactory {
     private final Provider<WeatherTile> mWeatherTileProvider;
     private final Provider<VpnTile> mVpnTileProvider;
     private final Provider<MonoToggleTile> mMonoToggleTileProvider;
+    private final Provider<LiveDisplayTile> mLiveDisplayTileProvider;
 
     private final Lazy<QSHost> mQsHostLazy;
     private final Provider<CustomTile.Builder> mCustomTileBuilderProvider;
@@ -194,7 +196,8 @@ public class QSFactoryImpl implements QSFactory {
             Provider<OnTheGoTile> onTheGoTileProvider,
             Provider<WeatherTile> weatherTileProvider,
             Provider<VpnTile> vpnTileProvider,
-            Provider<MonoToggleTile> monoToggleTileProvider) {
+            Provider<MonoToggleTile> monoToggleTileProvider,
+            Provider<LiveDisplayTile> liveDisplayTileProvider) {
         mQsHostLazy = qsHostLazy;
         mCustomTileBuilderProvider = customTileBuilderProvider;
 
@@ -248,6 +251,7 @@ public class QSFactoryImpl implements QSFactory {
         mWeatherTileProvider = weatherTileProvider;
         mVpnTileProvider = vpnTileProvider;
         mMonoToggleTileProvider = monoToggleTileProvider;
+        mLiveDisplayTileProvider = liveDisplayTileProvider;
     }
 
     public QSTile createTile(String tileSpec) {
@@ -361,6 +365,8 @@ public class QSFactoryImpl implements QSFactory {
                 return mVpnTileProvider.get();
             case "mono":
                 return mMonoToggleTileProvider.get();
+            case "livedisplay":
+                return mLiveDisplayTileProvider.get();
         }
 
         // Custom tiles

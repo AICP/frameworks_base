@@ -39,6 +39,8 @@ import android.text.style.TextAppearanceSpan;
 import android.util.Log;
 import android.util.Pair;
 
+import com.android.internal.R;
+
 import java.util.Arrays;
 import java.util.WeakHashMap;
 
@@ -368,12 +370,20 @@ public class NotificationColorUtil {
         return findContrastColor(color, bg, true, 3);
     }
 
+    public static int ensureLargeTextContrastOnDark(int color, int bg) {
+        return findContrastColorAgainstDark(color, bg, true, 3);
+    }
+
     /**
      * Finds a text color with sufficient contrast over bg that has the same hue as the original
      * color.
      */
     private static int ensureTextContrast(int color, int bg) {
         return findContrastColor(color, bg, true, 4.5);
+    }
+
+    public static int ensureTextContrastOnDark(int color, int bg) {
+        return findContrastColorAgainstDark(color, bg, true, 4.5);
     }
 
     /** Finds a background color for a text view with given text color and hint text color, that
@@ -416,8 +426,13 @@ public class NotificationColorUtil {
                 com.android.internal.R.color.notification_action_list);
 
         int color = resolvedColor;
-        color = NotificationColorUtil.ensureLargeTextContrast(color, actionBg);
-        color = NotificationColorUtil.ensureTextContrast(color, backgroundColor);
+        if (context.getResources().getBoolean(R.bool.config_useDarkBgNotificationIconTextTinting)) {
+            color = NotificationColorUtil.ensureLargeTextContrastOnDark(color, actionBg);
+            color = NotificationColorUtil.ensureTextContrastOnDark(color, backgroundColor);
+        } else {
+            color = NotificationColorUtil.ensureLargeTextContrast(color, actionBg);
+            color = NotificationColorUtil.ensureTextContrast(color, backgroundColor);
+        }
 
         if (color != resolvedColor) {
             if (DEBUG){

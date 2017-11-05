@@ -38,4 +38,9 @@
 
     <!-- The duration (in milliseconds) of slim recent app screen animation. -->
     <integer name="config_recentDefaultDur">150</integer>
+
+    <!-- True if the notification's dynamic app icon/title tint should be optimised for dark
+    backgrounds (requires config_allowNotificationIconTextTinting to be true)-->
+    <bool name="config_useDarkBgNotificationIconTextTinting">false</bool>
+
 </resources>

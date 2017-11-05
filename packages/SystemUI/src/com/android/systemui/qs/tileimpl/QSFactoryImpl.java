@@ -49,6 +49,7 @@ import com.android.systemui.qs.tiles.HWKeysTile;
 import com.android.systemui.qs.tiles.ImmersiveTile;
 import com.android.systemui.qs.tiles.IntentTile;
 import com.android.systemui.qs.tiles.LocaleTile;
+import com.android.systemui.qs.tiles.LiveDisplayTile;
 import com.android.systemui.qs.tiles.LocationTile;
 import com.android.systemui.qs.tiles.MusicTile;
 import com.android.systemui.qs.tiles.NfcTile;
@@ -105,6 +106,7 @@ public class QSFactoryImpl implements QSFactory {
     private final Provider<DataSwitchTile> mDataSwitchTileProvider;
     private final Provider<GamingModeTile> mGamingModeTileProvider;
     private final Provider<FPSInfoTile> mFPSInfoTileProvider;
+    private final Provider<LiveDisplayTile> mLiveDisplayTileProvider;
 
     private QSTileHost mHost;
 
@@ -133,7 +135,8 @@ public class QSFactoryImpl implements QSFactory {
             Provider<SoundSearchTile> soundSearchTileProvider,
             Provider<DataSwitchTile> dataSwitchTileProvider,
             Provider<GamingModeTile> gamingModeTileProvider,
-            Provider<FPSInfoTile> fpsInfoTileProvider) {
+            Provider<FPSInfoTile> fpsInfoTileProvider,
+            Provider<LiveDisplayTile> liveDisplayTileProvider) {
         mWifiTileProvider = wifiTileProvider;
         mBluetoothTileProvider = bluetoothTileProvider;
         mCellularTileProvider = cellularTileProvider;
@@ -159,6 +162,7 @@ public class QSFactoryImpl implements QSFactory {
         mDataSwitchTileProvider = dataSwitchTileProvider;
         mGamingModeTileProvider = gamingModeTileProvider;
         mFPSInfoTileProvider = fpsInfoTileProvider;
+        mLiveDisplayTileProvider = liveDisplayTileProvider;
     }
 
     public void setHost(QSTileHost host) {
@@ -261,6 +265,8 @@ public class QSFactoryImpl implements QSFactory {
                 return mGamingModeTileProvider.get();
             case "fpsinfo":
                 return mFPSInfoTileProvider.get();
+            case "livedisplay":
+                return mLiveDisplayTileProvider.get();
         }
 
         // Intent tiles.

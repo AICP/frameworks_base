@@ -6187,7 +6187,7 @@ public class StatusBar extends SystemUI implements DemoMode,
 
     private void updateTickerSettings() {
         mTickerEnabled = Settings.System.getIntForUser(mContext.getContentResolver(),
-                Settings.System.STATUS_BAR_SHOW_TICKER, 1,
+                Settings.System.STATUS_BAR_SHOW_TICKER, 0,
                 UserHandle.USER_CURRENT);
     }
 

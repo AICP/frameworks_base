@@ -3443,13 +3443,6 @@ public class WindowManagerService extends IWindowManager.Stub
                 return;
             }
 
-            // Don't enable the screen until all existing windows have been drawn.
-            if (!mForceDisplayEnabled
-                    // TODO(multidisplay): Expand to all displays?
-                    && getDefaultDisplayContentLocked().checkWaitingForWindows()) {
-                return;
-            }
-
             if (!mBootAnimationStopped) {
                 // Do this one time.
                 Trace.asyncTraceBegin(TRACE_TAG_WINDOW_MANAGER, "Stop bootanim", 0);
@@ -3467,6 +3460,13 @@ public class WindowManagerService extends IWindowManager.Stub
                     Slog.e(TAG_WM, "Boot completed: SurfaceFlinger is dead!");
                 }
                 mBootAnimationStopped = true;
+            }
+
+            // Don't enable the screen until all existing windows have been drawn.
+            if (!mForceDisplayEnabled
+                    // TODO(multidisplay): Expand to all displays?
+                    && getDefaultDisplayContentLocked().checkWaitingForWindows()) {
+                return;
             }
 
             if (!mForceDisplayEnabled && !checkBootAnimationCompleteLocked()) {

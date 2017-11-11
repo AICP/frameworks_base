@@ -4427,6 +4427,11 @@ public final class Settings {
         public static final String QS_SMART_PULLDOWN = "qs_smart_pulldown";
 
         /**
+         * @hide
+         */
+        public static final String QS_STYLE_DARK = "qs_style_dark";
+
+        /**
          * --- AICP System settings end
          *  Add new system settings above this comment
          */
@@ -4604,6 +4609,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD);
             PRIVATE_SETTINGS.add(QS_TILE_TITLE_VISIBILITY);
             PRIVATE_SETTINGS.add(STATUS_BAR_LOGO);
+            PRIVATE_SETTINGS.add(QS_STYLE_DARK);
         }
 
         /**

@@ -1193,6 +1193,7 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
     private final class CustomDialog extends Dialog {
         public CustomDialog(Context context) {
             super(context);
+            //super(new ContextThemeWrapper(context, R.style.systemui_theme));
         }
 
         @Override

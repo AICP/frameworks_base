@@ -28,6 +28,7 @@ import android.os.Process;
 import android.os.SystemProperties;
 import android.os.Trace;
 import android.os.UserHandle;
+import android.provider.Settings;
 import android.util.ArraySet;
 import android.util.TimingsTraceLog;
 import android.util.Log;
@@ -114,7 +115,10 @@ public class SystemUIApplication extends Application implements SysUiServiceProv
         // Set the application theme that is inherited by all services. Note that setting the
         // application theme in the manifest does only work for activities. Keep this in sync with
         // the theme set there.
-        setTheme(R.style.Theme_SystemUI);
+        boolean darkStyle = Settings.System.getIntForUser(
+                getContentResolver(), Settings.System.QS_STYLE_DARK, 0,
+                UserHandle.USER_CURRENT) == 1;
+        setTheme(darkStyle ? R.style.systemui_theme_dark : R.style.Theme_SystemUI);
 
         SystemUIFactory.createFromConfig(this);
 

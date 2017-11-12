@@ -201,7 +201,7 @@ public class PowerNotificationWarnings implements PowerUI.WarningsUI {
                 mContext.getString(R.string.battery_saver_start_action),
                 pendingBroadcast(ACTION_START_SAVER));
         if (mPlaySound) {
-            attachLowBatterySound(nb);
+            //attachLowBatterySound(nb);
             mPlaySound = false;
         }
         SystemUI.overrideNotificationAppName(mContext, nb);
@@ -350,7 +350,7 @@ public class PowerNotificationWarnings implements PowerUI.WarningsUI {
         updateNotification();
     }
 
-    private void attachLowBatterySound(Notification.Builder b) {
+    /*private void attachLowBatterySound(Notification.Builder b) {
         final ContentResolver cr = mContext.getContentResolver();
 
         final int silenceAfter = Settings.Global.getInt(cr,
@@ -379,7 +379,7 @@ public class PowerNotificationWarnings implements PowerUI.WarningsUI {
                 }
             }
         }
-    }
+    }*/
 
     @Override
     public void notifyBatteryPlugged() {

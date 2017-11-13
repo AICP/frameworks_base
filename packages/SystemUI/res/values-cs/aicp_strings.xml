@@ -94,6 +94,7 @@
   <string name="quick_settings_volume_panel_label">Hlasitost</string>
   <!-- PiP Tile -->
   <string name="quick_settings_pip_label">PiP</string>
+  <string name="quick_settings_pip_tile_app_na">Aplikace nepodporuje PiP</string>
   <!-- Screenrecord tile -->
   <string name="quick_settings_screenrecord">Záznam obrazovky</string>
   <string name="quick_settings_screenrecord_on">Nahrávání ...</string>
@@ -128,4 +129,7 @@
   <string name="omnijaws_service_last_update">Poslední aktualizace:</string>
   <!-- Weather string format in expanded statusbar header -->
   <string name="status_bar_weather_format"><xliff:g id="temp">%1$s</xliff:g></string>
+  <!-- Notification: Menu row: Snooze options: 12 and 24 hour option. [CHAR LIMIT=50]-->
+  <string name="snooze_option_12_hour">12 hodin</string>
+  <string name="snooze_option_24_hour">24 hodin</string>
 </resources>

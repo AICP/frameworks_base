@@ -63,4 +63,5 @@
   <!-- Screen record notification error title -->
   <string name="omnijaws_package_not_available">OmniJaws jest nie dostępny</string>
   <!-- Weather string format in expanded statusbar header -->
+  <!-- Notification: Menu row: Snooze options: 12 and 24 hour option. [CHAR LIMIT=50]-->
 </resources>

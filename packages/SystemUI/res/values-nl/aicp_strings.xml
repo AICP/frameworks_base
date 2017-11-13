@@ -94,6 +94,7 @@
   <string name="quick_settings_volume_panel_label">Volume</string>
   <!-- PiP Tile -->
   <string name="quick_settings_pip_label">PiP</string>
+  <string name="quick_settings_pip_tile_app_na">App biedt geen ondersteuning voor PiP</string>
   <!-- Screenrecord tile -->
   <string name="quick_settings_screenrecord">Schermopname</string>
   <string name="quick_settings_screenrecord_on">Bezig met opnemen...</string>
@@ -115,13 +116,20 @@
   <!-- Screen record notification error title -->
   <string name="screenrecord_notif_error">Kan scherm niet opnemen</string>
   <string name="notification_channel_screenrecord">Schermopname</string>
+  <string name="lockscreen_default">Standaard</string>
+  <string name="lockscreen_hidden">Geen</string>
   <string name="omnijaws_service_error">Fout</string>
   <string name="omnijaws_service_unkown">Geen weergegevens</string>
   <string name="omnijaws_service_error_long">Fout bij het laden van weergegevens</string>
+  <string name="omnijaws_service_disabled">Service is uitgeschakeld</string>
   <string name="omnijaws_detail_header">Weer opties</string>
   <string name="omnijaws_label_default">Weer</string>
   <string name="omnijaws_current_text">Nu</string>
   <string name="omnijaws_package_not_available">OmniJaws niet beschikbaar</string>
+  <string name="omnijaws_service_last_update">Laatste update:</string>
   <!-- Weather string format in expanded statusbar header -->
   <string name="status_bar_weather_format"><xliff:g id="temp">%1$s</xliff:g></string>
+  <!-- Notification: Menu row: Snooze options: 12 and 24 hour option. [CHAR LIMIT=50]-->
+  <string name="snooze_option_12_hour">12 uur</string>
+  <string name="snooze_option_24_hour">24 uur</string>
 </resources>

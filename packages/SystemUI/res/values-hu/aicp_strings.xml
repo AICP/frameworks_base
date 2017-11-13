@@ -19,12 +19,15 @@
   <!-- Aicp Extras Tile -->
   <!-- Screenshot Delete Toast -->
   <!-- Advanced Reboot in Power Menu -->
+  <string name="global_action_restart_recovery">Újraindítás Recovery módba</string>
+  <string name="global_action_restart_bootloader">Újraindítás bootloader módba</string>
   <!-- Partial Screenshot -->
   <!-- Reboot/Recovery QS Tile -->
   <!-- Compass QS Tile -->
   <!-- Screenshoot tile -->
   <!-- USB Tethering tile -->
   <!-- IME selector tile -->
+  <string name="quick_settings_ime_label">Billenytűzet váltása</string>
   <!-- Language toggle tile -->
   <!-- Music tile -->
   <!-- Sound tile -->
@@ -37,13 +40,16 @@
   <!-- Sync QS Tile -->
   <!-- Volume QS Tile -->
   <!-- PiP Tile -->
+  <string name="quick_settings_pip_label">PiP</string>
   <!-- Screenrecord tile -->
   <!-- Recents -->
   <!-- Advance location quick setting tile -->
+  <string name="accessibility_quick_settings_location_gps_only">Helymeghatározás: csak Gps.</string>
   <!-- Screenrecord Notification Ticker -->
   <!-- Screenrecord notification title -->
   <!-- Screenrecord notification action: Stop -->
   <!-- Screenrecord notification action: show/hide pointer -->
   <!-- Screen record notification error title -->
   <!-- Weather string format in expanded statusbar header -->
+  <!-- Notification: Menu row: Snooze options: 12 and 24 hour option. [CHAR LIMIT=50]-->
 </resources>

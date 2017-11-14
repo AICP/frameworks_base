@@ -304,6 +304,11 @@
         <item name="darkIconTheme">@style/DualToneDarkTheme</item>
     </style>
 
+    <style name="systemui_theme_volume_dark" parent="@*android:style/Theme.DeviceDefault.QuickSettings">
+        <item name="lightIconTheme">@style/DualToneLightTheme</item>
+        <item name="darkIconTheme">@style/DualToneDarkTheme</item>
+    </style>
+
     <style name="qs_theme_dark" parent="systemui_theme_dark">
         <item name="lightIconTheme">@style/QSIconTheme</item>
         <item name="darkIconTheme">@style/QSIconTheme</item>

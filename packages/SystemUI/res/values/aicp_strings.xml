@@ -50,4 +50,8 @@
 
     <!-- Screenrecord tile -->
     <string name="quick_settings_screenrecord_label">Screenrecord</string>
+
+    <!-- Reboot/Recovery QS Tile -->
+    <string name="quick_settings_reboot_label">Reboot</string>
+    <string name="quick_settings_reboot_recovery_label">Recovery</string>
 </resources>

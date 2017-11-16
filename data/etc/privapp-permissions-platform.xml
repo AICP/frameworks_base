@@ -432,6 +432,11 @@ applications that come with the platform
         <permission name="android.permission.INTENT_FILTER_VERIFICATION_AGENT"/>
     </privapp-permissions>
 
+    <privapp-permissions package="com.android.systemui">
+        <permission name="android.permission.REBOOT"/>
+        <permission name="android.permission.RECOVERY"/>
+    </privapp-permissions>
+
     <privapp-permissions package="com.android.tv">
         <permission name="android.permission.CHANGE_HDMI_CEC_ACTIVE_SOURCE"/>
         <permission name="android.permission.DVB_DEVICE"/>

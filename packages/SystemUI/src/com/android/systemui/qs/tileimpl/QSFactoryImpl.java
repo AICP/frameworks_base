@@ -27,6 +27,7 @@ import com.android.systemui.qs.tiles.AicpExtrasTile;
 import com.android.systemui.qs.tiles.AirplaneModeTile;
 import com.android.systemui.qs.tiles.BatterySaverTile;
 import com.android.systemui.qs.tiles.BluetoothTile;
+import com.android.systemui.qs.tiles.CaffeineTile;
 import com.android.systemui.qs.tiles.CastTile;
 import com.android.systemui.qs.tiles.CellularTile;
 import com.android.systemui.qs.tiles.ColorInversionTile;
@@ -111,6 +112,8 @@ public class QSFactoryImpl implements QSFactory {
                 return new ScreenshotTile(mHost);
             case "usb_tether":
                 return new UsbTetherTile(mHost);
+            case "caffeine":
+                return new CaffeineTile(mHost);
         }
         // Intent tiles.
         if (tileSpec.startsWith(IntentTile.PREFIX)) return IntentTile.create(mHost, tileSpec);

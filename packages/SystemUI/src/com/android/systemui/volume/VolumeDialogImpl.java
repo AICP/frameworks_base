@@ -44,6 +44,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.os.SystemClock;
+import android.os.UserHandle;
 import android.provider.Settings;
 import android.provider.Settings.Global;
 import android.transition.AutoTransition;
@@ -1355,18 +1356,23 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
                     Settings.System.VOLUME_DIALOG_STROKE_DASH_GAP, 10);
 
         final GradientDrawable volumeDialogGd = new GradientDrawable();
+        boolean darkStyle = Settings.System.getIntForUser(
+                mContext.getContentResolver(), Settings.System.QS_STYLE_DARK, 0,
+                UserHandle.USER_CURRENT) == 1;
+        final int mVolumeDialogColor = mContext.getResources().getColor(darkStyle ?
+                R.color.system_primary_color_dark : R.color.system_primary_color);
 
         if (mVolumeDialogStroke == 0) { // Disable by setting border thickness to 0
-            volumeDialogGd.setColor(mContext.getResources().getColor(R.color.system_primary_color));
+            volumeDialogGd.setColor(mVolumeDialogColor);
             volumeDialogGd.setStroke(0, mContext.getResources().getColor(R.color.system_accent_color));
             volumeDialogGd.setCornerRadius(mCustomCornerRadius);
             mDialogView.setBackground(volumeDialogGd);
         } else if (mVolumeDialogStroke == 1) { // use accent color for border
-            volumeDialogGd.setColor(mContext.getResources().getColor(R.color.system_primary_color));
+            volumeDialogGd.setColor(mVolumeDialogColor);
             volumeDialogGd.setStroke(mCustomStrokeThickness, mContext.getResources().getColor(R.color.system_accent_color),
                     mCustomDashWidth, mCustomDashGap);
         } else if (mVolumeDialogStroke == 2) { // use custom border color
-            volumeDialogGd.setColor(mContext.getResources().getColor(R.color.system_primary_color));
+            volumeDialogGd.setColor(mVolumeDialogColor);
             volumeDialogGd.setStroke(mCustomStrokeThickness, mCustomStrokeColor, mCustomDashWidth, mCustomDashGap);
         }
 

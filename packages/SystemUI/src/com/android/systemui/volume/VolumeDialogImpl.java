@@ -44,7 +44,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.os.SystemClock;
-import android.os.UserHandle;
 import android.provider.Settings;
 import android.provider.Settings.Global;
 import android.transition.AutoTransition;
@@ -1153,9 +1152,8 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
 
     private final class CustomDialog extends Dialog {
         public CustomDialog(Context context) {
-            super(new ContextThemeWrapper(context, (Settings.System.getIntForUser(
-                    context.getContentResolver(), Settings.System.QS_STYLE_DARK, 0,
-                    UserHandle.USER_CURRENT) == 1) ? R.style.systemui_theme_volume_dark : R.style.systemui_theme));
+            super(context);
+            //super(new ContextThemeWrapper(context, R.style.systemui_theme));
         }
 
         @Override

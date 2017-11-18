@@ -4513,6 +4513,12 @@ public final class Settings {
         public static final String LOCKSCREEN_ROTATION = "lockscreen_rotation";
 
         /**
+        * Play charging sounds for wifi only devices
+         * @hide
+         */
+        public static final String PLAY_CHARGING_SOUNDS = "play_charging_sounds";
+
+        /**
          * --- AICP System settings end
          *  Add new system settings above this comment
          */

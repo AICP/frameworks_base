@@ -75,7 +75,7 @@
             android:clipToPadding="false"
             android:contentDescription="@string/accessibility_quick_settings_edit"
             android:focusable="true"
-            android:padding="10dp"
+            android:padding="16dp"
             android:src="@drawable/ic_mode_edit"
             android:tint="?android:attr/colorForeground"/>
 
@@ -119,7 +119,7 @@
             android:focusable="true"
             android:background="?android:attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/accessibility_quick_settings_expand"
-            android:padding="10dp" />
+            android:padding="14dp" />
     </LinearLayout>
 
     <include layout="@layout/qs_divider"

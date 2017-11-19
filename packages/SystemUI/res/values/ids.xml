@@ -86,6 +86,9 @@
     <item type="id" name="action_snooze_short"/>
     <item type="id" name="action_snooze_long"/>
     <item type="id" name="action_snooze_longer"/>
+    <item type="id" name="action_snooze_longerr"/>
+    <item type="id" name="action_snooze_longerrr"/>
+    <item type="id" name="action_snooze_longerrrr"/>
     <item type="id" name="action_snooze_assistant_suggestion_1"/>
 </resources>
 

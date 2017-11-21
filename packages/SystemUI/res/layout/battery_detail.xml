@@ -33,19 +33,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/battery_detail_graph_space_top" />
 
-    <com.android.settingslib.graph.UsageView
-        android:id="@+id/battery_usage"
-        android:layout_width="match_parent"
-        android:layout_height="141dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="24dp"
-        android:colorAccent="?android:attr/colorAccent"
-        android:textColor="?android:attr/textColorSecondary" />
-
-    <com.android.systemui.ResizingSpace
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/battery_detail_graph_space_bottom" />
-
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

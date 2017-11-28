@@ -181,4 +181,9 @@ public class DeviceUtils {
         return (cm.isNetworkSupported(ConnectivityManager.TYPE_MOBILE) == false);
     }
 
+    public static boolean deviceSupportsFingerPrint(Context context) {
+        PackageManager pm =
+          (PackageManager) context.getPackageManager();
+        return pm != null && pm.hasSystemFeature(PackageManager.FEATURE_FINGERPRINT);
+    }
 }

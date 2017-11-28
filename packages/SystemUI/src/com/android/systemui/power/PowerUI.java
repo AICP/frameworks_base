@@ -101,9 +101,6 @@ public class PowerUI extends SystemUI {
         resolver.registerContentObserver(Settings.Global.getUriFor(
                 Settings.Global.LOW_POWER_MODE_TRIGGER_LEVEL),
                 false, obs, UserHandle.USER_ALL);
-        resolver.registerContentObserver(Settings.System.getUriFor(
-                Settings.System.PLAY_CHARGING_SOUNDS),
-                false, obs, UserHandle.USER_ALL);
         updateBatteryWarningLevels();
         mReceiver.init();
 
@@ -179,7 +176,6 @@ public class PowerUI extends SystemUI {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            ContentResolver resolver = context.getContentResolver();
             String action = intent.getAction();
             if (action.equals(Intent.ACTION_BATTERY_CHANGED)) {
                 final int oldBatteryLevel = mBatteryLevel;
@@ -241,10 +237,7 @@ public class PowerUI extends SystemUI {
                     mWarnings.updateLowBatteryWarning();
                 }
 
-                boolean playChargingSounds = Settings.System.getInt(resolver,
-                        Settings.System.PLAY_CHARGING_SOUNDS, 0) == 1;
-
-                if (plugged && !oldPlugged && playChargingSounds
+                if (plugged && !oldPlugged
                         && (mPlugType == BatteryManager.BATTERY_PLUGGED_AC
                             || mPlugType == BatteryManager.BATTERY_PLUGGED_USB)) {
                     // "Wireless charging started" sound is handled by
@@ -457,3 +450,4 @@ public class PowerUI extends SystemUI {
         void userSwitched();
     }
 }
+

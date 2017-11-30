@@ -833,10 +833,6 @@ public class NavigationBarView extends FrameLayout implements Navigator {
         pw.println();
     }
 
-    public interface OnVerticalChangedListener {
-        void onVerticalChanged(boolean isVertical);
-    }
-
     @Override
     public View getBaseView() {
         return this;

@@ -828,10 +828,6 @@ public class NavigationBarView extends FrameLayout implements Navigator {
         pw.println();
     }
 
-    public interface OnVerticalChangedListener {
-        void onVerticalChanged(boolean isVertical);
-    }
-
     private final Consumer<Boolean> mDockedListener = exists -> mHandler.post(() -> {
         mDockedStackExists = exists;
         updateRecentsIcon();

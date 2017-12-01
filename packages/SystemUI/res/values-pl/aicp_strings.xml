@@ -69,7 +69,7 @@
   <!-- recents membar -->
   <string name="recents_free_ram">%1$d MB wolnego RAMu</string>
   <!-- OmniJAWS -->
-  <string name="omnijaws_package_not_available">OmniJaws jest nie dostępny</string>
+  <string name="omnijaws_package_not_available">OmniJaws jest niedostępny</string>
   <!-- Weather string format in expanded statusbar header -->
   <!-- Off/On/Toggle -->
   <!-- Dialog Cancel/OK -->

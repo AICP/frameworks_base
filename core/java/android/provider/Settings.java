@@ -6319,6 +6319,12 @@ public final class Settings {
         */
         public static final String OMNI_LOCKSCREEN_DND_ENABLED = "lockscreen_dnd_enabled";
 
+        /**
+         * Whether Proximity on Wake is Enabled or not
+         * @hide
+         */
+        public static final String PROXIMITY_ON_WAKE = "proximity_on_wake";
+
         /***************************
          * AICP System Settings end
          ***************************/

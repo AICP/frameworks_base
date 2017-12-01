@@ -28,7 +28,6 @@
   <!-- Screenshoot edit action -->
   <string name="edit">Editar</string>
   <!-- Singlehanded Mode -->
-  <string name="singlehandmode_click_hint_message">Toque fuera de la pantalla para salir de la vista</string>
   <!-- Powermenu Torch -->
   <string name="global_action_torch">Linterna</string>
   <!-- label for item that takes On-The-Go in the phone options dialog -->

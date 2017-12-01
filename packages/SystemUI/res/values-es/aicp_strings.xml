@@ -17,10 +17,16 @@
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Screenrecord Notification Ticker -->
+  <string name="screenrecord_notif_ticker">Grabando pantalla</string>
   <!-- Screenrecord notification title -->
+  <string name="screenrecord_notif_title">Grabando la pantalla</string>
   <!-- Screenrecord notification action: Stop -->
+  <string name="screenrecord_notif_stop">Detener</string>
   <!-- Screenrecord notification action: show/hide pointer -->
+  <string name="screenrecord_notif_pointer_on">Mostrar cursor</string>
+  <string name="screenrecord_notif_pointer_off">Ocultar cursor</string>
   <!-- Screen record notification error title -->
+  <string name="screenrecord_notif_error">No se pudo grabar la pantalla</string>
   <!-- Quick Settings tiles -->
   <string name="quick_settings_screenshot_label">Captura de pantalla</string>
   <string name="quick_settings_region_screenshot_label">Captura de pantalla parcial</string>

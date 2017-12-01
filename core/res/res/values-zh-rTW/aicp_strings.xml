@@ -17,15 +17,27 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- ADB enabled, but not connected notification title -->
+  <string name="adb_not_connected_notification_title">停用 ADB</string>
+  <string name="adb_active_custom_tile_not_connected">停用</string>
   <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
+  <string name="system_error_vendorprint">您的映像檔與系統不相符。 請刷入您的裝置 <xliff:g id="string">%s</xliff:g> 專用的映像檔。</string>
   <!-- Button to soft reboot the SystemUI, within the Reboot Options dialog -->
+  <string name="reboot_systemui">重新啟動系統使用者介面</string>
   <!-- label for item that screenrecord in phone options dialog -->
+  <string name="global_action_screenrecord">螢幕錄製</string>
   <!-- Screenshoot edit action -->
+  <string name="edit">編輯</string>
   <!-- Singlehanded Mode -->
   <!-- Powermenu Torch -->
+  <string name="global_action_torch">手電筒</string>
   <!-- label for item that takes On-The-Go in the phone options dialog -->
+  <string name="global_action_onthego">On-The-Go 模式</string>
   <!-- Billing bypass (eg. Lucky Patcher, Uret) dialog -->
+  <string name="billing_bypass_installed_title">發現 Billing Patcher！</string>
+  <string name="billing_bypass_installed_message">我承認使用 Lucky Patcher 和 Uret 非法避免了應用程式內購買認證。我透過使用該軟體有可能的損害應用程式的開發人員。</string>
+  <string name="billing_bypass_acknowledge">接受上述</string>
   <!-- Pocket Lock -->
+  <string name="pocket_lock_message_long_press">長按電源鍵進行交互</string>
   <!-- Defines the sysfs attribute path used by pocket bridge
         to communicate pocket state to the pocket judge kernel driver. -->
 </resources>

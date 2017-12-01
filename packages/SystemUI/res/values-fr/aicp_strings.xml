@@ -21,6 +21,7 @@
   <!-- Screenrecord notification title -->
   <string name="screenrecord_notif_title">Enregistrement de l\'écran</string>
   <!-- Screenrecord notification action: Stop -->
+  <string name="screenrecord_notif_stop">Arrêter</string>
   <!-- Screenrecord notification action: show/hide pointer -->
   <string name="screenrecord_notif_pointer_on">Afficher le pointeur</string>
   <string name="screenrecord_notif_pointer_off">Masquer le pointeur</string>
@@ -91,6 +92,7 @@
   <string name="title_activity_sidebar_configuration">Réglages du contenu de la barre d\'applications</string>
   <string name="action_save">Sauvegarder</string>
   <string name="toast_items_saved">Les éléments de la barre d\'applications ont été enregistrées.</string>
+  <string name="content_setup_instructions">Ajouter des éléments à la barre d\'application en appuyant longtemps sur n\'importe quel élément à droite et glisser/déposer le sur la barre d\'application.\n\nCombiner les éléments dans des dossiers en les déposant sur un élément existant dans la barre d\'application.\n\nPour supprimer un élément, déposer hors de l\' \@appbar.</string>
   <string name="content_setup_dismiss">Continuer</string>
   <string name="toast_not_installed">L\'application n\'est pas installée</string>
   <!-- PA Pie controls -->

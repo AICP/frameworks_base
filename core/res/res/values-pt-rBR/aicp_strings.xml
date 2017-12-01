@@ -30,7 +30,7 @@
   <string name="global_action_onthego">Modo On-The-Go</string>
   <!-- Billing bypass (eg. Lucky Patcher, Uret) dialog -->
   <string name="billing_bypass_installed_title">Patcher de faturamento encontrado!</string>
-  <string name="billing_bypass_installed_message">Eu reconheço que este sistema está executando um patrulhamento de bypass de cobrança de aplicativo, como Lucky Patcher ou Uret. Eu prejudico ativamente os desenvolvedores de aplicativos usando esse software.</string>
+  <string name="billing_bypass_installed_message">Eu me responsabilizo por usar software como aplicativo que conseguem burlar os sistemas de pagamento para conseguir vantagens neste sistema, como Lucky Patcher ou Uret. Eu prejudico ativamente os desenvolvedores de aplicativos usando esses tipo softwares.</string>
   <!-- Pocket Lock -->
   <!-- Defines the sysfs attribute path used by pocket bridge
         to communicate pocket state to the pocket judge kernel driver. -->

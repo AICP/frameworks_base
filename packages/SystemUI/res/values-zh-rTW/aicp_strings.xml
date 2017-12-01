@@ -17,58 +17,230 @@
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Screenrecord Notification Ticker -->
+  <string name="screenrecord_notif_ticker">正在錄製螢幕</string>
   <!-- Screenrecord notification title -->
+  <string name="screenrecord_notif_title">正在錄製螢幕</string>
   <!-- Screenrecord notification action: Stop -->
+  <string name="screenrecord_notif_stop">停止</string>
   <!-- Screenrecord notification action: show/hide pointer -->
+  <string name="screenrecord_notif_pointer_on">顯示指標</string>
+  <string name="screenrecord_notif_pointer_off">隱藏指標</string>
   <!-- Screen record notification error title -->
+  <string name="screenrecord_notif_error">無法錄製螢幕</string>
   <!-- Quick Settings tiles -->
+  <string name="quick_settings_screenshot_label">擷取螢幕畫面</string>
+  <string name="quick_settings_region_screenshot_label">部分擷取螢幕畫面</string>
+  <string name="quick_settings_network_adb_label">透過網路 ADB</string>
+  <string name="quick_settings_sync_label">同步處理</string>
+  <string name="accessibility_quick_settings_sync_off">同步處理關閉</string>
+  <string name="accessibility_quick_settings_sync_on">同步處理開啟</string>
+  <string name="accessibility_quick_settings_sync_changed_off">同步處理已關閉</string>
+  <string name="accessibility_quick_settings_sync_changed_on">同步處理已開啟</string>
+  <string name="quick_settings_expanded_desktop_label">延伸桌面</string>
+  <string name="quick_settings_expanded_desktop">已延伸</string>
+  <string name="quick_settings_expanded_desktop_off">一般</string>
+  <string name="quick_settings_reboot_label">重新啟動</string>
+  <string name="quick_settings_reboot_recovery_label">Recovery</string>
+  <string name="accessibility_quick_settings_usb_tether_off">USB 網路共用關閉</string>
+  <string name="accessibility_quick_settings_usb_tether_on">USB 網路共用開啟</string>
+  <string name="accessibility_quick_settings_usb_tether_changed_off">USB 網路共用已關閉</string>
+  <string name="accessibility_quick_settings_usb_tether_changed_on">USB 網路共用已開啟</string>
+  <string name="quick_settings_usb_tether_label">USB 網路共用</string>
+  <string name="quick_settings_music_label">音樂</string>
+  <string name="quick_settings_music_play">播放</string>
+  <string name="quick_settings_music_pause">暫停</string>
+  <string name="quick_settings_ime_tile_label">輸入法</string>
+  <string name="quick_settings_caffeine_label">暫停休眠</string>
+  <string name="accessibility_quick_settings_caffeine_off">暫停休眠關閉</string>
+  <string name="accessibility_quick_settings_caffeine_on">暫停休眠開啟</string>
+  <string name="quick_settings_screenrecord">螢幕錄製</string>
+  <string name="quick_settings_screenrecord_on">錄製中…</string>
+  <string name="quick_settings_heads_up_label">浮動通知</string>
+  <string name="accessibility_quick_settings_heads_up_off">浮動通知關閉</string>
+  <string name="accessibility_quick_settings_heads_up_on">浮動通知開啟</string>
+  <string name="accessibility_quick_settings_heads_up_changed_off">浮動通知已關閉</string>
+  <string name="accessibility_quick_settings_heads_up_changed_on">浮動通知已開啟</string>
+  <string name="quick_settings_pulse_enabled">呼吸燈已啟用</string>
+  <string name="quick_settings_pulse_disabled">沒有視覺化</string>
+  <string name="quick_settings_pulse_label">呼吸燈</string>
+  <string name="accessibility_quick_settings_pulse_off">呼吸燈關閉</string>
+  <string name="accessibility_quick_settings_pulse_on">呼吸燈開啟</string>
+  <string name="accessibility_quick_settings_pulse_changed_off">呼吸燈已關閉</string>
+  <string name="accessibility_quick_settings_pulse_changed_on">呼吸燈已開啟</string>
+  <string name="quick_settings_locale_label">語言</string>
+  <string name="quick_settings_locale_more_locales_toast">請配置多種語言以啟用切換功能</string>
+  <string name="quick_settings_sound_label">音效</string>
+  <string name="quick_settings_sound_ring">鈴聲</string>
+  <string name="quick_settings_sound_vibrate">震動</string>
+  <string name="quick_settings_sound_silent">靜音</string>
   <!-- Screenshot Delete Toast -->
+  <string name="delete_screenshot_toast">螢幕擷取畫面已刪除</string>
   <!-- Navigation bar Tile -->
+  <string name="quick_settings_navigation_bar">導覽列</string>
+  <string name="quick_settings_smartbar">智慧列</string>
+  <string name="quick_settings_fling">滑動手勢</string>
   <!-- Heads up snooze toast -->
+  <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - 顯示預覽通知會暫停 1 分鐘。</string>
+  <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - 顯示預覽通知會暫停 <xliff:g id="number">%d</xliff:g> 分鐘。</string>
   <!-- Screenshot action -->
+  <string name="screenshot_abort_title">未擷取螢幕畫面</string>
+  <string name="screenshot_abort_text">操作中止</string>
   <!-- Aicp Extras Tile -->
+  <string name="quick_aicp_extras_label">Aicp 額外功能</string>
+  <string name="quick_aicp_extras_toast">哈哈哈，真的以為長按有東西可以用！！！</string>
   <!-- App sidebar -->
+  <string name="default_folder_text">資料夾</string>
+  <string name="title_activity_sidebar_configuration">Appbar 內容設定</string>
+  <string name="action_save">儲存</string>
+  <string name="toast_items_saved">Appbar 項目已被儲存。</string>
+  <string name="content_setup_instructions">長按任何右側的物件並移動到應用程式列以新增物件\n\n 將物件移動至任何 應用程式列中已存在的物件以合併成為資料夾\n\n將應用程式列中的物件移動到 \@應用程式列外以移除物件。</string>
+  <string name="content_setup_dismiss">繼續</string>
+  <string name="toast_not_installed">應用程式未安裝。</string>
   <!-- PA Pie controls -->
+  <string name="pie_hour_format_12">hh:mm</string>
+  <string name="pie_hour_format_24">HH:mm</string>
+  <string name="pie_am_pm">上午</string>
   <!-- PA Pie Tile -->
+  <string name="quick_settings_pie">扇形</string>
+  <string name="quick_settings_pie_off">扇形關閉</string>
+  <string name="quick_settings_pie_on">扇形開啟</string>
   <!-- Kill app toast -->
+  <string name="app_killed_message">已終止應用程式</string>
   <!-- Ambient Display Tile -->
+  <string name="quick_settings_ambient_display_label">環境顯示</string>
   <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_ambient_display_off">環境顯示關閉。</string>
   <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_ambient_display_on">環境顯示開啟。</string>
   <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_ambient_display_changed_off">環境顯示已關閉。</string>
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_ambient_display_changed_on">環境顯示已開啟。</string>
   <!-- Path data for Solid battery -->
   <!-- Application picker Tile -->
+  <string name="quick_settings_app_picker">應用程式選擇器</string>
   <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_running_services">開啟執行服務的螢幕。</string>
   <!-- Path data for Aicp battery -->
   <!-- On The Go -->
+  <string name="onthego_notif_ticker">On-The-Go 已啟動</string>
+  <string name="onthego_notif_title">On-The-Go 處於活動狀態</string>
+  <string name="onthego_notif_stop">停止</string>
+  <string name="onthego_notif_options">選項</string>
+  <string name="onthego_notif_error">無法啟動 On-The-Go</string>
+  <string name="onthego_notif_restart">重新啟動 On-The-Go</string>
+  <string name="onthego_notif_camera_changed">相機模式已變更</string>
+  <string name="onthego_transparency">透明度</string>
+  <string name="onthego_front_camera">使用前置鏡頭</string>
+  <string name="onthego_service_toggle">自動重新啟動服務</string>
   <!-- To do: Add QS OnTheGo
     <string name="quick_settings_onthego_back">Rear Camera</string>
     <string name="quick_settings_onthego_front">Front Camera</string>-->
   <!-- Slim Recents -->
+  <string name="recents_multiwin_warning">多視窗會話已處於活動狀態。\n如果要立即停駐，請輕觸應用程式。</string>
+  <string name="recents_multiwin_nolastapp">您刪除了所有總覽，請從啟動器或清單中選擇一個應用程式。</string>
+  <string name="slim_recent_keyguard">解鎖您的裝置以檢視總覽</string>
+  <string name="slim_recent_pinned">解鎖畫面以查看總覽</string>
   <!-- Slim recents app sidebar queue app toast -->
+  <string name="toast_recents_queue_app">在關閉總覽後啟動 %s</string>
+  <string name="toast_recents_cancel_queued_app">取消應用程式啟動</string>
   <!-- Kill button in notification guts -->
+  <string name="force_stop_dlg_title">強制停止嗎？</string>
+  <string name="force_stop_dlg_text">如果您強制停止應用程式，應用程式可能無法正常運作。</string>
+  <string name="dlg_cancel">取消</string>
+  <string name="kill">終止應用程式</string>
   <!-- App circle sidebar -->
+  <string name="app_float_maximize_item_title">最大化</string>
+  <string name="app_float_item_title">懸浮視窗</string>
+  <string name="app_stop_item_title">終止應用程式</string>
   <!-- recents membar -->
+  <string name="recents_free_ram">可用記憶體：%1$d MB</string>
   <!-- OmniJAWS -->
+  <string name="omnijaws_service_error">錯誤</string>
+  <string name="omnijaws_service_unkown">無天氣資料</string>
+  <string name="omnijaws_detail_header">天氣</string>
+  <string name="omnijaws_label_default">天氣</string>
+  <string name="omnijaws_current_text">立刻</string>
+  <string name="omnijaws_package_not_available">OmniJaws 不可用</string>
+  <string name="omnijaws_service_error_long">載入天氣資料錯誤</string>
+  <string name="omnijaws_service_disabled">服務已停用</string>
   <!-- Weather string format in expanded statusbar header -->
+  <string name="status_bar_weather_format"><xliff:g id="temp">%1$s</xliff:g></string>
   <!-- Off/On/Toggle -->
+  <string name="off">關閉</string>
+  <string name="on">開啟</string>
+  <string name="toggle">切換</string>
   <!-- Dialog Cancel/OK -->
+  <string name="cancel">取消</string>
+  <string name="dlg_ok">確定</string>
+  <string name="yes">是</string>
+  <string name="no">否</string>
   <!-- Aicp Shortcut Actions -->
   <string name="shortcut_picker">AICP 捷徑</string>
+  <string name="shortcut_rotation">旋轉</string>
+  <string name="shortcut_reboot">重新啟動</string>
+  <string name="shortcut_recovery">Recovery</string>
+  <string name="shortcut_screensleep">螢幕休眠</string>
+  <string name="shortcut_volume">音量面板</string>
+  <string name="shortcut_restart_ui">重新啟動系統使用者介面</string>
+  <string name="shortcut_powermenu">電源選單</string>
+  <string name="shortcut_flashlight">手電筒</string>
+  <string name="shortcut_clear_notifications">清除通知</string>
+  <string name="shortcut_toggle_title">要執行的動作</string>
   <!-- MagiskManager QS Tile -->
+  <string name="quick_magiskmanager_label">Magisk</string>
+  <string name="quick_magiskmanager_na">未安裝 Magisk 管理員！先安裝。</string>
   <!-- Compass QS Tile -->
+  <string name="quick_settings_compass_label">指南針</string>
+  <string name="quick_settings_compass_init">初始化中\u2026</string>
+  <string name="accessibility_quick_settings_compass_off">指南針關閉。</string>
+  <string name="accessibility_quick_settings_compass_on">指南針開啟。</string>
+  <string name="accessibility_quick_settings_compass_changed_off">指南針已關閉。</string>
+  <string name="accessibility_quick_settings_compass_changed_on">指南針已開啟。</string>
+  <string name="quick_settings_compass_N">北</string>
+  <string name="quick_settings_compass_NE">東北</string>
+  <string name="quick_settings_compass_E">東</string>
+  <string name="quick_settings_compass_SE">東南</string>
+  <string name="quick_settings_compass_S">南</string>
+  <string name="quick_settings_compass_SW">西南</string>
+  <string name="quick_settings_compass_W">西</string>
+  <string name="quick_settings_compass_NW">西北</string>
   <!-- Perf Profile Tile -->
+  <string name="qs_tile_performance">電池模式</string>
   <!-- Content description of the battery mode tile in quick settings when on, power save mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_pwrsv">電池模式：省電模式。</string>
   <!-- Content description of the battery mode tile in quick settings when on, balanced mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_bal">電池模式：平衡模式。</string>
   <!-- Content description of the battery mode tile in quick settings when on, performance mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_perf">電池模式：高效能模式。</string>
   <!-- Content description of the battery mode tile in quick settings when on, efficiency mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_bias_power">電池模式：效率模式。</string>
   <!-- Content description of the battery mode tile in quick settings when on, quick mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_bias_perf">電池模式：快速模式。</string>
   <!-- Announcement made when the battery mode tile changes to power save (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_changed_pwrsv">電池模式已變更為省電模式。</string>
   <!-- Announcement made when the battery mode tile changes to balanced (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_changed_bal">電池模式已變更為平衡模式。</string>
   <!-- Announcement made when the battery mode tile changes to performance (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_changed_perf">電池模式已變更為高效能模式。</string>
   <!-- Announcement made when the battery mode tile changes to efficiency (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_changed_bias_power">電池模式已變更為效率模式。</string>
   <!-- Announcement made when the battery mode tile changes to quick (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_changed_bias_perf">電池模式已變更為快速模式。</string>
+  <string name="quick_settings_performance_profile_detail_title">電池模式</string>
   <!-- Live display tile -->
+  <string name="quick_settings_live_display_off">LiveDisplay 關閉。</string>
+  <string name="quick_settings_live_display_auto">LiveDisplay︰自動模式。</string>
+  <string name="quick_settings_live_display_day">LiveDisplay︰日間模式。</string>
+  <string name="quick_settings_live_display_night">LiveDisplay：夜間模式。</string>
+  <string name="quick_settings_live_display_outdoor">LiveDisplay：戶外模式。</string>
+  <string name="quick_settings_live_display_changed_off">LiveDisplay 已關閉。</string>
+  <string name="quick_settings_live_display_changed_auto">LiveDisplay 已變更為自動模式。</string>
+  <string name="quick_settings_live_display_changed_day">LiveDisplay 已變更為日間模式。</string>
+  <string name="quick_settings_live_display_changed_night">LiveDisplay 已變更為夜間模式。</string>
+  <string name="quick_settings_live_display_changed_outdoor">LiveDisplay 已變更為戶外模式。</string>
   <string name="accessibility_data_sim">目前數據 SIM 卡</string>
+  <string name="data_switch_started">正在切換行動數據連線 SIM 卡，這可能需要一點時間...</string>
   <!-- volte icon switch -->
+  <string name="status_bar_volte">VoLTE</string>
 </resources>

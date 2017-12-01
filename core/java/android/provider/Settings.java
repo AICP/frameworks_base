@@ -6537,6 +6537,12 @@ public final class Settings {
          */
         public static final String STATUSBAR_BATTERY_BAR_LOCATION = "statusbar_battery_bar_location";
 
+        /**
+         * Whether Proximity on Wake is Enabled or not
+         * @hide
+         */
+        public static final String PROXIMITY_ON_WAKE = "proximity_on_wake";
+
         /***************************
          * AICP System Settings end
          ***************************/

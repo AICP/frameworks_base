@@ -6603,6 +6603,12 @@ public final class Settings {
          */
         public static final String QS_SHOW_BATTERY_ESTIMATE = "qs_show_battery_estimate";
 
+        /**
+         * Whether Proximity on Wake is Enabled or not
+         * @hide
+         */
+        public static final String PROXIMITY_ON_WAKE = "proximity_on_wake";
+
         /***************************
          * AICP System Settings end
          ***************************/

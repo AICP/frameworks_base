@@ -5974,6 +5974,38 @@ public final class Settings {
         public static final String VOLUME_KEYS_CONTROL_RING_TONE =
                 "volume_keys_control_ring_tone";
 
+        /**
+         * Custom button brightness value for manual mode
+         *
+         * @hide
+         */
+        public static final String CUSTOM_BUTTON_BRIGHTNESS = "custom_button_brightness";
+
+        /**
+         * use same value for buttons as for screen (manual and auto mode)
+         *
+         * @hide
+         */
+        public static final String CUSTOM_BUTTON_USE_SCREEN_BRIGHTNESS = "custom_button_use_screen_brightness";
+
+        /**
+         * disable all button brightness (manual and auto mode)
+         *
+         * @hide
+         */
+        public static final String BUTTON_BACKLIGHT_ENABLE = "button_backlight_enable";
+
+        /**
+         * Timeout value for button lights. 0 = disabled
+         * @hide
+         */
+        public static final String BUTTON_BACKLIGHT_TIMEOUT = "button_backlight_timeout";
+
+        /**
+         * @hide
+         */
+        public static final String BUTTON_BACKLIGHT_ON_TOUCH_ONLY = "button_backlight_on_touch_only";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6114,6 +6146,11 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(TORCH_LONG_PRESS_POWER_TIMEOUT, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(SWAP_VOLUME_BUTTONS, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(VOLUME_KEYS_CONTROL_RING_TONE, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(CUSTOM_BUTTON_BRIGHTNESS, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(CUSTOM_BUTTON_USE_SCREEN_BRIGHTNESS, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(BUTTON_BACKLIGHT_ENABLE, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(BUTTON_BACKLIGHT_TIMEOUT, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(BUTTON_BACKLIGHT_ON_TOUCH_ONLY, BOOLEAN_VALIDATOR);
         }
 
         /**

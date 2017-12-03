@@ -49,6 +49,7 @@
   <string name="quick_settings_compass_NW">SZ</string>
   <!-- Screenshoot tile -->
   <string name="quick_settings_screenshot_label">Snímek obrazovky</string>
+  <string name="quick_settings_region_screenshot_label">Částečný snímek obrazovky</string>
   <!-- USB Tethering tile -->
   <string name="accessibility_quick_settings_usb_tether_off">Vypnout USB tethering</string>
   <string name="accessibility_quick_settings_usb_tether_on">Zapnout USB Tetehering</string>
@@ -132,4 +133,8 @@
   <!-- Notification: Menu row: Snooze options: 12 and 24 hour option. [CHAR LIMIT=50]-->
   <string name="snooze_option_12_hour">12 hodin</string>
   <string name="snooze_option_24_hour">24 hodin</string>
+  <!-- SystemUI Tuner Parts -->
+  <string name="custom_hint">Spustit přejetím prstem od ikony</string>
+  <!-- DUI -->
+  <string name="systemui_tuner_navbar_title">Výchozí nastavení</string>
 </resources>

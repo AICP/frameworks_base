@@ -49,6 +49,7 @@
   <string name="quick_settings_compass_NW">NW</string>
   <!-- Screenshoot tile -->
   <string name="quick_settings_screenshot_label">Bildschirmfoto</string>
+  <string name="quick_settings_region_screenshot_label">Bildschirm-Ausschnitt</string>
   <!-- USB Tethering tile -->
   <string name="accessibility_quick_settings_usb_tether_off">USB Tethering AUS</string>
   <string name="accessibility_quick_settings_usb_tether_on">USB Tethering AN</string>
@@ -132,4 +133,8 @@
   <!-- Notification: Menu row: Snooze options: 12 and 24 hour option. [CHAR LIMIT=50]-->
   <string name="snooze_option_12_hour">12 Stunden</string>
   <string name="snooze_option_24_hour">24 Stunden</string>
+  <!-- SystemUI Tuner Parts -->
+  <string name="custom_hint">Zum Öffnen über das Symbol wischen</string>
+  <!-- DUI -->
+  <string name="systemui_tuner_navbar_title">Standard-Einstellungen</string>
 </resources>

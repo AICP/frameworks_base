@@ -48,6 +48,7 @@
   <string name="quick_settings_compass_NW">NO</string>
   <!-- Screenshoot tile -->
   <string name="quick_settings_screenshot_label">Capture d\'écran</string>
+  <string name="quick_settings_region_screenshot_label">Capture d’écran partielle</string>
   <!-- USB Tethering tile -->
   <string name="accessibility_quick_settings_usb_tether_off">Partage de connexion via USB désactivé</string>
   <string name="accessibility_quick_settings_usb_tether_on">Partage de connexion USB activé</string>
@@ -107,6 +108,7 @@
   <!-- Screenrecord notification title -->
   <string name="screenrecord_notif_title">Enregistrement de l\'écran</string>
   <!-- Screenrecord notification action: Stop -->
+  <string name="screenrecord_notif_stop">Arrêter</string>
   <!-- Screenrecord notification action: show/hide pointer -->
   <string name="screenrecord_notif_pointer_on">Afficher le pointeur</string>
   <string name="screenrecord_notif_pointer_off">Masquer le pointeur</string>
@@ -123,4 +125,6 @@
   <!-- Weather string format in expanded statusbar header -->
   <string name="status_bar_weather_format"><xliff:g id="temp">%1$s</xliff:g></string>
   <!-- Notification: Menu row: Snooze options: 12 and 24 hour option. [CHAR LIMIT=50]-->
+  <!-- SystemUI Tuner Parts -->
+  <!-- DUI -->
 </resources>

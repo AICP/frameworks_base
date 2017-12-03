@@ -17,34 +17,123 @@
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Aicp Extras Tile -->
+  <string name="quick_aicp_extras_label">Aicp 額外功能</string>
+  <string name="quick_aicp_extras_toast">哈哈哈，真的以為長按有東西可以用！！！</string>
   <!-- Screenshot Delete Toast -->
+  <string name="delete_screenshot_toast">螢幕擷取畫面已刪除</string>
   <!-- Advanced Reboot in Power Menu -->
+  <string name="global_action_restart_advanced">進階重新啟動</string>
+  <string name="global_action_restart_recovery">進入 Recovery 模式</string>
+  <string name="global_action_restart_bootloader">進入 BootLoader 模式</string>
   <!-- Partial Screenshot -->
+  <string name="screenshot_abort_title">未擷取螢幕畫面</string>
+  <string name="screenshot_abort_text">操作中止。</string>
   <!-- Reboot/Recovery QS Tile -->
+  <string name="quick_settings_reboot_label">重新啟動</string>
+  <string name="quick_settings_reboot_recovery_label">Recovery</string>
   <!-- Compass QS Tile -->
+  <string name="quick_settings_compass_label">指南針</string>
+  <string name="quick_settings_compass_init">初始化中\u2026</string>
+  <string name="accessibility_quick_settings_compass_off">指南針關閉。</string>
+  <string name="accessibility_quick_settings_compass_on">指南針開啟。</string>
+  <string name="accessibility_quick_settings_compass_changed_off">指南針已關閉。</string>
+  <string name="accessibility_quick_settings_compass_changed_on">指南針已開啟。</string>
+  <string name="quick_settings_compass_N">北</string>
+  <string name="quick_settings_compass_NE">東北</string>
+  <string name="quick_settings_compass_E">東</string>
+  <string name="quick_settings_compass_SE">東南</string>
+  <string name="quick_settings_compass_S">南</string>
+  <string name="quick_settings_compass_SW">西南</string>
+  <string name="quick_settings_compass_W">西</string>
+  <string name="quick_settings_compass_NW">西北</string>
   <!-- Screenshoot tile -->
+  <string name="quick_settings_screenshot_label">擷取螢幕畫面</string>
+  <string name="quick_settings_region_screenshot_label">部分擷取螢幕畫面</string>
   <!-- USB Tethering tile -->
+  <string name="accessibility_quick_settings_usb_tether_off">USB 網路共用關閉</string>
+  <string name="accessibility_quick_settings_usb_tether_on">USB 網路共用開啟</string>
+  <string name="accessibility_quick_settings_usb_tether_changed_off">USB 網路共用已關閉</string>
+  <string name="accessibility_quick_settings_usb_tether_changed_on">USB 網路共用已開啟</string>
+  <string name="quick_settings_usb_tether_label">USB 網路共用</string>
   <!-- IME selector tile -->
+  <string name="quick_settings_ime_label">IME</string>
   <!-- Language toggle tile -->
+  <string name="quick_settings_locale_label">語言</string>
+  <string name="quick_settings_locale_more_locales_toast">請配置多種語言以啟用切換功能</string>
   <!-- Music tile -->
+  <string name="quick_settings_music_label">音樂</string>
+  <string name="quick_settings_music_play">播放</string>
+  <string name="quick_settings_music_pause">暫停</string>
   <!-- Sound tile -->
+  <string name="quick_settings_sound_label">音效</string>
+  <string name="quick_settings_sound_ring">鈴聲</string>
+  <string name="quick_settings_sound_vibrate">震動</string>
+  <string name="quick_settings_sound_silent">靜音</string>
   <!-- Ambient Display Tile -->
+  <string name="quick_settings_ambient_display_label">環境顯示</string>
   <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_ambient_display_off">環境顯示關閉。</string>
   <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_ambient_display_on">環境顯示開啟。</string>
   <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_ambient_display_changed_off">環境顯示已關閉。</string>
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_ambient_display_changed_on">環境顯示已開啟。</string>
   <!-- Caffeine QS Tile -->
+  <string name="quick_settings_caffeine_label">暫停休眠</string>
+  <string name="accessibility_quick_settings_caffeine_off">暫停休眠關閉</string>
+  <string name="accessibility_quick_settings_caffeine_on">暫停休眠開啟</string>
   <!-- Sync QS Tile -->
+  <string name="quick_settings_sync_label">同步處理</string>
+  <string name="accessibility_quick_settings_sync_off">同步處理關閉</string>
+  <string name="accessibility_quick_settings_sync_on">同步處理開啟</string>
+  <string name="accessibility_quick_settings_sync_changed_off">同步處理已關閉</string>
+  <string name="accessibility_quick_settings_sync_changed_on">同步處理已開啟</string>
   <!-- Volume QS Tile -->
+  <string name="accessibility_quick_settings_volume_panel">音量</string>
+  <string name="quick_settings_volume_panel_label">音量</string>
   <!-- PiP Tile -->
+  <string name="quick_settings_pip_label">PiP</string>
+  <string name="quick_settings_pip_tile_app_na">應用程式不支援 PiP</string>
   <!-- Screenrecord tile -->
+  <string name="quick_settings_screenrecord">螢幕錄製</string>
+  <string name="quick_settings_screenrecord_on">錄製中…</string>
   <!-- Recents -->
+  <string name="recents_app_killed">應用程式已終止</string>
   <!-- Advance location quick setting tile -->
+  <string name="accessibility_quick_settings_location_battery_saving">位置回報：省電模式。</string>
+  <string name="accessibility_quick_settings_location_gps_only">位置回報：僅限感應器模式。</string>
+  <string name="accessibility_quick_settings_location_high_accuracy">位置回報：高精度模式。</string>
   <!-- Screenrecord Notification Ticker -->
+  <string name="screenrecord_notif_ticker">正在錄製螢幕</string>
   <!-- Screenrecord notification title -->
+  <string name="screenrecord_notif_title">正在錄製螢幕</string>
   <!-- Screenrecord notification action: Stop -->
+  <string name="screenrecord_notif_stop">停止</string>
   <!-- Screenrecord notification action: show/hide pointer -->
+  <string name="screenrecord_notif_pointer_on">顯示指標</string>
+  <string name="screenrecord_notif_pointer_off">隱藏指標</string>
   <!-- Screen record notification error title -->
+  <string name="screenrecord_notif_error">無法錄製螢幕</string>
+  <string name="notification_channel_screenrecord">螢幕錄製</string>
+  <string name="lockscreen_default">預設</string>
+  <string name="lockscreen_hidden">無</string>
+  <string name="omnijaws_service_error">錯誤</string>
+  <string name="omnijaws_service_unkown">無天氣資料</string>
+  <string name="omnijaws_service_error_long">載入天氣資料錯誤</string>
+  <string name="omnijaws_service_disabled">服務已停用</string>
+  <string name="omnijaws_detail_header">天氣</string>
+  <string name="omnijaws_label_default">天氣</string>
+  <string name="omnijaws_current_text">立刻</string>
+  <string name="omnijaws_package_not_available">OmniJaws 不可用</string>
+  <string name="omnijaws_service_last_update">上次更新：</string>
   <!-- Weather string format in expanded statusbar header -->
+  <string name="status_bar_weather_format"><xliff:g id="temp">%1$s</xliff:g></string>
   <!-- Notification: Menu row: Snooze options: 12 and 24 hour option. [CHAR LIMIT=50]-->
+  <string name="snooze_option_12_hour">12 小時</string>
+  <string name="snooze_option_24_hour">24 小時</string>
+  <!-- SystemUI Tuner Parts -->
+  <string name="custom_hint">滑動圖示以啟動</string>
+  <!-- DUI -->
+  <string name="systemui_tuner_navbar_title">原始設定</string>
 </resources>

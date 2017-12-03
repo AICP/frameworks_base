@@ -30,6 +30,7 @@
   <!-- Compass QS Tile -->
   <!-- Screenshoot tile -->
   <string name="quick_settings_screenshot_label">截图</string>
+  <string name="quick_settings_region_screenshot_label">部分截图</string>
   <!-- USB Tethering tile -->
   <string name="accessibility_quick_settings_usb_tether_off">USB网络共享关闭</string>
   <string name="accessibility_quick_settings_usb_tether_on">USB网络共享开启</string>
@@ -83,4 +84,6 @@
   <!-- Screen record notification error title -->
   <!-- Weather string format in expanded statusbar header -->
   <!-- Notification: Menu row: Snooze options: 12 and 24 hour option. [CHAR LIMIT=50]-->
+  <!-- SystemUI Tuner Parts -->
+  <!-- DUI -->
 </resources>

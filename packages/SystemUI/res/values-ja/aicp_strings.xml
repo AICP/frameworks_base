@@ -36,6 +36,7 @@
   <string name="accessibility_quick_settings_compass_changed_on">コンパスを ON にしました。</string>
   <!-- Screenshoot tile -->
   <string name="quick_settings_screenshot_label">スクリーンショット</string>
+  <string name="quick_settings_region_screenshot_label">部分的なスクリーンショット</string>
   <!-- USB Tethering tile -->
   <string name="accessibility_quick_settings_usb_tether_off">USBテザリング OFF</string>
   <string name="accessibility_quick_settings_usb_tether_on">USBテザリング ON</string>
@@ -95,4 +96,6 @@
   <string name="omnijaws_package_not_available">OmniJaws がありません</string>
   <!-- Weather string format in expanded statusbar header -->
   <!-- Notification: Menu row: Snooze options: 12 and 24 hour option. [CHAR LIMIT=50]-->
+  <!-- SystemUI Tuner Parts -->
+  <!-- DUI -->
 </resources>

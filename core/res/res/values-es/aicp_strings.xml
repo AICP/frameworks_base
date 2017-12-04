@@ -23,6 +23,11 @@
   <string name="reboot_to_recovery_message">Reiniciando en modo recovery</string>
   <string name="reboot_to_bootloader_title">Bootloader</string>
   <string name="reboot_to_bootloader_message">Reiniciando en modo bootloader</string>
-  <string name="reboot_title">Reiniar</string>
+  <string name="reboot_title">Reinicio</string>
   <string name="reboot_message">Reiniciando el sistema</string>
+  <!-- DUI -->
+  <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permlab_toggleNavigationEditor">activar editor de barra de navegación</string>
+  <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permdesc_toggleNavigationEditor">Permite a una aplicación controlar el editor de la barra de navegación.</string>
 </resources>

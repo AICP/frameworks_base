@@ -21,4 +21,9 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="reboot_title">Riavvio</string>
   <string name="reboot_message">Riavvio del sistema</string>
+  <!-- DUI -->
+  <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permlab_toggleNavigationEditor">controllo editor di navigazione</string>
+  <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permdesc_toggleNavigationEditor">Consenti ad un\'app di controllare l\'editor della barra di navigazione.</string>
 </resources>

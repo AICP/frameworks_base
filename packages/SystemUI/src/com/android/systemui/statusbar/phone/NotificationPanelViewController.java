@@ -2170,6 +2170,9 @@ public class NotificationPanelViewController extends PanelViewController {
             case 2: // Left side pulldown
                 showQsOverride = mView.isLayoutRtl() ? w - region < x : x < region;
                 break;
+            case 3: // pull down allways
+                showQsOverride = true;
+                break;
         }
 
         if (mQsSmartPullDown == 1 && !hasActiveClearableNotifications()
@@ -5015,7 +5018,7 @@ public class NotificationPanelViewController extends PanelViewController {
             switch (key) {
                 case STATUS_BAR_QUICK_QS_PULLDOWN:
                     mOneFingerQuickSettingsIntercept =
-                            TunerService.parseInteger(newValue, 1);
+                            TunerService.parseInteger(newValue, 0);
                     break;
                 case DOUBLE_TAP_SLEEP_GESTURE:
                     mDoubleTapToSleepEnabled =

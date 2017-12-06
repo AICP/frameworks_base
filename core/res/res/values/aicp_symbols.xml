@@ -241,4 +241,8 @@
 
   <!-- FOD icon dimming -->
   <java-symbol type="bool" name="config_targetUsesInKernelDimming" />
+
+  <!-- Vendor package signatures -->
+  <java-symbol type="array" name="config_vendorPlatformSignatures" />
+
 </resources>

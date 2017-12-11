@@ -17,10 +17,15 @@
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Screenrecord Notification Ticker -->
+  <string name="screenrecord_notif_ticker">Layar sedang direkam</string>
   <!-- Screenrecord notification title -->
+  <string name="screenrecord_notif_title">Merekam layar</string>
   <!-- Screenrecord notification action: Stop -->
   <!-- Screenrecord notification action: show/hide pointer -->
+  <string name="screenrecord_notif_pointer_on">Tampilkan pointer</string>
+  <string name="screenrecord_notif_pointer_off">Sembunyikan pointer</string>
   <!-- Screen record notification error title -->
+  <string name="screenrecord_notif_error">Tidak dapat merekam tampilan layar</string>
   <!-- Quick Settings tiles -->
   <!-- Screenshot Delete Toast -->
   <!-- Navigation bar Tile -->

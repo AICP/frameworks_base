@@ -39,9 +39,7 @@
         android:layout_height="141dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="24dp"
-        systemui:sideLabels="@array/battery_labels"
-        android:colorAccent="?android:attr/colorAccent"
-        systemui:textColor="?android:attr/textColorSecondary" />
+        android:colorAccent="?android:attr/colorAccent" />
 
     <com.android.systemui.ResizingSpace
         android:layout_width="match_parent"

@@ -33,21 +33,12 @@
 
     <include layout="@layout/quick_status_bar_header_system_icons" />
 
-    <LinearLayout
-        android:layout_width="@dimen/notification_panel_width"
+    <ImageView
+        android:id="@+id/qs_header_image"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipChildren="true"
-        android:clipToPadding="true"
-        android:layout_gravity="center"
-        android:paddingBottom="@dimen/qs_panel_footer_height" >
-
-        <ImageView android:id="@+id/qs_header_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:visibility="gone" />
-
-    </LinearLayout>
+        android:scaleType="centerCrop"
+        android:paddingBottom="@dimen/qs_panel_footer_height"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -154,3 +145,4 @@
 
     </RelativeLayout>
 </com.android.systemui.qs.QuickStatusBarHeader>
+

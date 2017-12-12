@@ -22,6 +22,7 @@ import android.app.AlarmManager;
 import android.app.AlarmManager.AlarmClockInfo;
 import android.app.SynchronousUserSwitchObserver;
 import android.bluetooth.BluetoothAssignedNumbers;
+import android.bluetooth.BluetoothClass;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHeadset;
 import android.bluetooth.BluetoothProfile;
@@ -458,7 +459,8 @@ public class PhoneStatusBarPolicy
                     int state = device.getMaxConnectionState();
                     if (state == BluetoothProfile.STATE_CONNECTED) {
                         int batteryLevel = device.getBatteryLevel();
-                        if (batteryLevel != BluetoothDevice.BATTERY_LEVEL_UNKNOWN) {
+                        BluetoothClass type = device.getBtClass();
+                        if (batteryLevel != BluetoothDevice.BATTERY_LEVEL_UNKNOWN && showBatteryForThis(type)) {
                             iconId = getBtLevelIconRes(batteryLevel);
                         } else {
                             iconId = R.drawable.stat_sys_data_bluetooth_connected;
@@ -472,6 +474,24 @@ public class PhoneStatusBarPolicy
         }
         mIconController.setIcon(mSlotBluetooth, iconId, contentDescription);
         mIconController.setIconVisibility(mSlotBluetooth, bluetoothVisible);
+    }
+
+    private boolean showBatteryForThis(BluetoothClass type) {
+        boolean show = false;
+        if (type != null) {
+            switch (type.getDeviceClass()) {
+            case BluetoothClass.Device.AUDIO_VIDEO_WEARABLE_HEADSET:
+            case BluetoothClass.Device.AUDIO_VIDEO_HANDSFREE:
+                show = true;
+                break;
+            default:
+                show = false;
+                break;
+            }
+        } else {
+            show = false;
+        }
+        return show;
     }
 
     private int getBtLevelIconRes(int level) {

@@ -446,9 +446,6 @@ public final class PowerManagerService extends SystemService
     // A bitfield of battery conditions under which to make the screen stay on.
     private int mStayOnWhilePluggedInSetting;
 
-    // True if the device should wake up when plugged or unplugged
-    private int mWakeUpWhenPluggedOrUnpluggedSetting;
-
     // True if the device should stay on.
     private boolean mStayOn;
 
@@ -819,8 +816,6 @@ public final class PowerManagerService extends SystemService
                 Settings.Secure.DOUBLE_TAP_TO_WAKE),
                 false, mSettingsObserver, UserHandle.USER_ALL);
         resolver.registerContentObserver(Settings.Global.getUriFor(
-                Settings.Global.WAKE_WHEN_PLUGGED_OR_UNPLUGGED),
-                false, mSettingsObserver, UserHandle.USER_ALL);
                 Settings.Global.DEVICE_DEMO_MODE),
                 false, mSettingsObserver, UserHandle.USER_SYSTEM);
         IVrManager vrManager = (IVrManager) getBinderService(Context.VR_SERVICE);
@@ -919,9 +914,6 @@ public final class PowerManagerService extends SystemService
         mTheaterModeEnabled = Settings.Global.getInt(mContext.getContentResolver(),
                 Settings.Global.THEATER_MODE_ON, 0) == 1;
         mAlwaysOnEnabled = mAmbientDisplayConfiguration.alwaysOnEnabled(UserHandle.USER_CURRENT);
-        mWakeUpWhenPluggedOrUnpluggedSetting = Settings.Global.getInt(resolver,
-                Settings.Global.WAKE_WHEN_PLUGGED_OR_UNPLUGGED,
-                (mWakeUpWhenPluggedOrUnpluggedConfig ? 1 : 0));
 
         if (mSupportsDoubleTapWakeConfig) {
             boolean doubleTapWakeEnabled = Settings.Secure.getIntForUser(resolver,
@@ -1766,7 +1758,7 @@ public final class PowerManagerService extends SystemService
     private boolean shouldWakeUpWhenPluggedOrUnpluggedLocked(
             boolean wasPowered, int oldPlugType, boolean dockedOnWirelessCharger) {
         // Don't wake when powered unless configured to do so.
-        if (mWakeUpWhenPluggedOrUnpluggedSetting == 0) {
+        if (!mWakeUpWhenPluggedOrUnpluggedConfig) {
             return false;
         }
 

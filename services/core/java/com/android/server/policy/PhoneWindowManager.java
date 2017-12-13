@@ -860,7 +860,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private static final int MSG_REQUEST_TRANSIENT_BARS_ARG_STATUS = 0;
     private static final int MSG_REQUEST_TRANSIENT_BARS_ARG_NAVIGATION = 1;
 
-    private static final int MSG_DISPATCH_VOLKEY_WITH_WAKE_LOCK = 25;
+    private static final int MSG_DISPATCH_VOLKEY_WITH_WAKE_LOCK = 27;
 
     private class PolicyHandler extends Handler {
         @Override

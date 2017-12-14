@@ -56,9 +56,6 @@
     <string name="accessibility_quick_settings_usb_tether_changed_on">USB tethering turned on</string>
     <string name="quick_settings_usb_tether_label">USB tethering</string>
 
-    <!-- IME selector tile -->
-    <string name="quick_settings_ime_label">IME</string>
-
     <!-- Language toggle tile -->
     <string name="quick_settings_locale_label">Language</string>
     <string name="quick_settings_locale_more_locales_toast">Please configure multiple languages to enable toggle functionality</string>

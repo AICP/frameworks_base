@@ -38,7 +38,7 @@ public class ImeTile extends QSTileImpl<BooleanState> {
         super(host);
     }
 
-    public void handleSetListening(boolean listening) {
+    public void setListening(boolean listening) {
         if (mListening == listening) return;
         mListening = listening;
     }
@@ -51,7 +51,7 @@ public class ImeTile extends QSTileImpl<BooleanState> {
     @Override
     public void handleClick() {
         mHost.collapsePanels();
-        Intent intent = new Intent(Settings.ACTION_SHOW_INPUT_METHOD_PICKER);
+        Intent intent = new Intent(com.android.server.InputMethodManagerService.SHOW_INPUT_METHOD_PICKER);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(mContext, 0, intent, 0);
         try {
             pendingIntent.send();

@@ -888,10 +888,6 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
             row.tracking = false;
         }
 
-        // update slider
-        final boolean enableSlider = !zenMuted;
-        final int vlevel = row.ss.muted && (!isRingStream && !zenMuted) ? 0
-
         // notification slider is disabled when vibrate or silent - only ringer slider can be used
         final boolean enableSlider = isNotificationStream ? (!zenMuted && !isRingVibrate && !isRingSilent && !isNotificationSilent) : !zenMuted;
         // update slider value - 0 if silent or vibrate

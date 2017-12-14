@@ -120,6 +120,8 @@ public class LocationTile extends QSTileImpl<BooleanState> {
         // bug is fixed, this should be reverted to only hiding it on secure lock screens:
         // state.visible = !(mKeyguard.isSecure() && mKeyguard.isShowing());
         checkIfRestrictionEnforcedByAdminOnly(state, UserManager.DISALLOW_SHARE_LOCATION);
+        state.icon = mIcon;
+        state.slash.isSlashed = !state.value;
         int currentMode = mController.getCurrentMode();
         switch (currentMode) {
             case BATTERY_SAVING:
@@ -132,7 +134,6 @@ public class LocationTile extends QSTileImpl<BooleanState> {
                 state.value = true;
                 state.contentDescription = mContext.getString(R.string.accessibility_quick_settings_location_gps_only);
                 state.label = mContext.getString(R.string.quick_settings_location_label);
-                state.icon = mEnable;
                 break;
             case HIGH_ACCURACY:
                 state.value = true;
@@ -144,7 +145,6 @@ public class LocationTile extends QSTileImpl<BooleanState> {
                 state.value = false;
                 state.contentDescription = mContext.getString(R.string.accessibility_quick_settings_location_off);
                 state.label = mContext.getString(R.string.quick_settings_location_label);
-                state.icon = mDisable;
                 break;
         }
         state.state = state.value ? Tile.STATE_ACTIVE : Tile.STATE_INACTIVE;

@@ -485,8 +485,8 @@ public class NavigationBarFragment extends Fragment implements Callbacks, Naviga
                 (((View) mNavigationBarView.getBaseView().getParent()).getLayoutParams()));
     }
 
-    private void notifyNavigationBarScreenOn() {
-        mNavigationBarView.notifyScreenOn();
+    private void notifyNavigationBarScreenOn(boolean screenOn) {
+        mNavigationBarView.notifyScreenOn(screenOn);
     }
 
     private void prepareNavigationBarView() {
@@ -786,9 +786,10 @@ public class NavigationBarFragment extends Fragment implements Callbacks, Naviga
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if (Intent.ACTION_SCREEN_OFF.equals(action)
-                    || Intent.ACTION_SCREEN_ON.equals(action)) {
-                notifyNavigationBarScreenOn();
+            if (Intent.ACTION_SCREEN_OFF.equals(action)) {
+                notifyNavigationBarScreenOn(false);
+            } else if (Intent.ACTION_SCREEN_ON.equals(action)) {
+                notifyNavigationBarScreenOn(true);
             }
         }
     };

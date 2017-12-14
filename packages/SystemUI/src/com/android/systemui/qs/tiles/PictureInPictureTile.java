@@ -47,7 +47,7 @@ public class PictureInPictureTile extends QSTileImpl<BooleanState> {
     }
 
     @Override
-    public void setListening(boolean listening) {}
+    public void handleSetListening(boolean listening) {}
 
     @Override
     public void handleClick() {

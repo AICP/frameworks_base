@@ -1119,7 +1119,7 @@
     <integer name="config_notificationsBatteryLedOn">125</integer>
 
     <!-- Is the notification LED intrusive? Used to decide if there should be a disable option -->
-    <bool name="config_intrusiveNotificationLed">false</bool>
+    <bool name="config_intrusiveNotificationLed">true</bool>
 
     <!-- De we do icon badges? Used to decide if there should be a disable option-->
     <bool name="config_notificationBadging">true</bool>

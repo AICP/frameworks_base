@@ -249,7 +249,7 @@ public class NavigationBarFragment extends Fragment implements Callbacks, Naviga
         IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_OFF);
         filter.addAction(Intent.ACTION_SCREEN_ON);
         getContext().registerReceiverAsUser(mBroadcastReceiver, UserHandle.ALL, filter, null, null);
-        notifyNavigationBarScreenOn(true);
+        notifyNavigationBarScreenOn();
         mNavigationBarView.notifyInflateFromUser();
     }
 
@@ -485,8 +485,8 @@ public class NavigationBarFragment extends Fragment implements Callbacks, Naviga
                 (((View) mNavigationBarView.getBaseView().getParent()).getLayoutParams()));
     }
 
-    private void notifyNavigationBarScreenOn(boolean screenOn) {
-        mNavigationBarView.notifyScreenOn(screenOn);
+    private void notifyNavigationBarScreenOn() {
+        mNavigationBarView.notifyScreenOn();
     }
 
     private void prepareNavigationBarView() {
@@ -519,6 +519,7 @@ public class NavigationBarFragment extends Fragment implements Callbacks, Naviga
             updateAccessibilityServicesState(mAccessibilityManager);
         }
     }
+
     private boolean onHomeTouch(View v, MotionEvent event) {
         if (!isUsingStockNav()) {
             return false;
@@ -786,10 +787,9 @@ public class NavigationBarFragment extends Fragment implements Callbacks, Naviga
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if (Intent.ACTION_SCREEN_OFF.equals(action)) {
-                notifyNavigationBarScreenOn(false);
-            } else if (Intent.ACTION_SCREEN_ON.equals(action)) {
-                notifyNavigationBarScreenOn(true);
+            if (Intent.ACTION_SCREEN_OFF.equals(action)
+                    || Intent.ACTION_SCREEN_ON.equals(action)) {
+                notifyNavigationBarScreenOn();
             }
         }
     };
@@ -844,7 +844,7 @@ public class NavigationBarFragment extends Fragment implements Callbacks, Naviga
             vg.addView(mNavigationBarView.getBaseView());
             prepareNavigationBarView();
             checkNavBarModes();
-            notifyNavigationBarScreenOn(true);
+            notifyNavigationBarScreenOn();
         }
     }
 

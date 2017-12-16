@@ -4065,11 +4065,6 @@ public final class Settings {
         public static final String LOCKSCREEN_BATTERY_INFO = "lockscreen_battery_info";
 
         /**
-         * --- AICP System settings end
-         *  Add new system settings above this comment
-         */
-
-        /**
          * Enable\Disable Bluetooth Battery bar
          * @hide
          */
@@ -4468,11 +4463,6 @@ public final class Settings {
         /**
          * @hide
          */
-        public static final String QS_STYLE_DARK = "qs_style_dark";
-
-        /**
-         * @hide
-         */
         public static final String LOCKSCREEN_ROTATION = "lockscreen_rotation";
 
         /**
@@ -4764,7 +4754,6 @@ public final class Settings {
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD);
             PRIVATE_SETTINGS.add(QS_TILE_TITLE_VISIBILITY);
             PRIVATE_SETTINGS.add(STATUS_BAR_LOGO);
-            PRIVATE_SETTINGS.add(QS_STYLE_DARK);
         }
 
         /**

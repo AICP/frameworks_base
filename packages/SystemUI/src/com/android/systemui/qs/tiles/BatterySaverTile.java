@@ -60,16 +60,6 @@ public class BatterySaverTile extends QSTileImpl<BooleanState> implements
     }
 
     @Override
-    public boolean isDualTarget() {
-        return true;
-    }
-
-    @Override
-    public DetailAdapter getDetailAdapter() {
-        return mBatteryDetail;
-    }
-
-    @Override
     public BooleanState newTileState() {
         return new BooleanState();
     }
@@ -103,14 +93,7 @@ public class BatterySaverTile extends QSTileImpl<BooleanState> implements
 
     @Override
     protected void handleClick() {
-        if (!mCharging) {
-            mBatteryController.setPowerSaveMode(!mPowerSave);
-        }
-    }
-
-    @Override
-    protected void handleSecondaryClick() {
-        showDetail(true);
+        mBatteryController.setPowerSaveMode(!mPowerSave);
     }
 
     @Override
@@ -120,14 +103,12 @@ public class BatterySaverTile extends QSTileImpl<BooleanState> implements
 
     @Override
     protected void handleUpdateState(BooleanState state, Object arg) {
-        state.dualTarget = true;
-        state.state = mPowerSave ? Tile.STATE_ACTIVE : Tile.STATE_INACTIVE;
-        if (mCharging) {
-            state.icon = ResourceIcon.get(R.drawable.ic_qs_battery_saver_charging);
-        } else {
-            state.icon = ResourceIcon.get(R.drawable.ic_qs_battery_saver);
-        }
-        state.label = mLevel + "%";
+        state.state = mPluggedIn ? Tile.STATE_UNAVAILABLE
+                : mPowerSave ? Tile.STATE_ACTIVE : Tile.STATE_INACTIVE;
+        BatterySaverIcon bsi = new BatterySaverIcon();
+        bsi.mState = state.state;
+        state.icon = bsi;
+        state.label = mContext.getString(R.string.battery_detail_switch_title);
         state.contentDescription = state.label;
         state.value = mPowerSave;
         state.expandedAccessibilityClassName = Switch.class.getName();

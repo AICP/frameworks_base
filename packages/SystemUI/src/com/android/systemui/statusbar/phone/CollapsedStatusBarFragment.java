@@ -98,7 +98,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
             updateSettings(true);
         }
     }
-    private AicpSettingsObserver mAicpSettingsObserver = new AicpSettingsObserver(mHandler);
+    private AicpSettingsObserver mAicpSettingsObserver;
 
     private SignalCallback mSignalCallback = new SignalCallback() {
         @Override
@@ -113,7 +113,8 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
         mKeyguardMonitor = Dependency.get(KeyguardMonitor.class);
         mNetworkController = Dependency.get(NetworkController.class);
         mStatusBarComponent = SysUiServiceProvider.getComponent(getContext(), StatusBar.class);
-        mAicpSettingsObserver.observe();
+        mAicpSettingsObserver = new AicpSettingsObserver(mHandler);
+        mOmniSettingsObserver.observe();
     }
 
     @Override

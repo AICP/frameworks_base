@@ -241,4 +241,9 @@
     <!--Google sound search tile -->
     <string name="quick_settings_sound_search">Sound search</string>
     <string name="quick_settings_sound_search_no_app">Sorry, but this doesn\'t work if you don\'t have a Sound search app.</string>
+
+    <!-- HW Keys Tile -->
+    <string name="accessibility_quick_settings_hwkeys_on">HW keys on</string>
+    <string name="accessibility_quick_settings_hwkeys_off">HW keys off</string>
+    <string name="quick_settings_hwkeys_label">HW keys</string>
 </resources>

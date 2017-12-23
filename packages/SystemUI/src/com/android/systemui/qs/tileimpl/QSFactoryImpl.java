@@ -44,6 +44,7 @@ import com.android.systemui.qs.tiles.GoogleNowTile;
 import com.android.systemui.qs.tiles.GoogleVoiceAssistTile;
 import com.android.systemui.qs.tiles.HeadsUpTile;
 import com.android.systemui.qs.tiles.HotspotTile;
+import com.android.systemui.qs.tiles.HWKeysTile;
 import com.android.systemui.qs.tiles.ImmersiveTile;
 import com.android.systemui.qs.tiles.IntentTile;
 import com.android.systemui.qs.tiles.LiveDisplayTile;
@@ -184,6 +185,8 @@ public class QSFactoryImpl implements QSFactory {
                 return new ReadingModeTile(mHost);
             case "vpn":
                 return new VpnTile(mHost);
+            case "hwkeys":
+                return new HWKeysTile(mHost);
         }
         // Intent tiles.
         if (tileSpec.startsWith(IntentTile.PREFIX)) return IntentTile.create(mHost, tileSpec);

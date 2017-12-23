@@ -43,6 +43,7 @@ import com.android.systemui.qs.tiles.DndTile;
 import com.android.systemui.qs.tiles.FlashlightTile;
 import com.android.systemui.qs.tiles.HeadsUpTile;
 import com.android.systemui.qs.tiles.HotspotTile;
+import com.android.systemui.qs.tiles.HWKeysTile;
 import com.android.systemui.qs.tiles.LocaleTile;
 import com.android.systemui.qs.tiles.LocationTile;
 import com.android.systemui.qs.tiles.MusicTile;
@@ -116,6 +117,7 @@ public class QSFactoryImpl implements QSFactory {
     private final Provider<SoundSearchTile> mSoundSearchTileProvider;
     private final Provider<ScreenshotTile> mScreenshotTileProvider;
     private final Provider<WeatherTile> mWeatherTileProvider;
+    private final Provider<HWKeysTile> mHWKeysTileProvider;
 
     private final Lazy<QSHost> mQsHostLazy;
 
@@ -159,7 +161,8 @@ public class QSFactoryImpl implements QSFactory {
             Provider<OnTheGoTile> onTheGoTileProvider,
             Provider<SoundSearchTile> soundSearchTileProvider,
             Provider<ScreenshotTile> screenshotTileProvider,
-            Provider<WeatherTile> weatherTileProvider) {
+            Provider<WeatherTile> weatherTileProvider,
+            Provider<HWKeysTile> hwkeysTileProvider) {
         mQsHostLazy = qsHostLazy;
         mWifiTileProvider = wifiTileProvider;
         mBluetoothTileProvider = bluetoothTileProvider;
@@ -200,6 +203,7 @@ public class QSFactoryImpl implements QSFactory {
         mSoundSearchTileProvider = soundSearchTileProvider;
         mScreenshotTileProvider = screenshotTileProvider;
         mWeatherTileProvider = weatherTileProvider;
+        mHWKeysTileProvider = hwkeysTileProvider;
     }
 
     public QSTile createTile(String tileSpec) {
@@ -290,6 +294,8 @@ public class QSFactoryImpl implements QSFactory {
                 return mScreenshotTileProvider.get();
             case "weather":
                 return mWeatherTileProvider.get();
+            case "hwkeys":
+                return mHWKeysTileProvider.get();
         }
 
         // Custom tiles

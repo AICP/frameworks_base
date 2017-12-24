@@ -160,14 +160,21 @@ public class TunerServiceImpl extends TunerService {
         return key.startsWith("system:");
     }
 
+    private boolean isGlobal(String key) {
+        return key.startsWith("global:");
+    }
+
     private String chomp(String key) {
-        return key.replaceFirst("^(system):", "");
+        return key.replaceFirst("^(system|global):", "");
     }
 
     @Override
     public String getValue(String setting) {
         if (isSystem(setting)) {
             return Settings.System.getStringForUser(
+                    mContentResolver, chomp(setting), mCurrentUser);
+        } else if (isGlobal(setting)) {
+            return Settings.Global.getStringForUser(
                     mContentResolver, chomp(setting), mCurrentUser);
         } else {
             return Settings.Secure.getStringForUser(mContentResolver, setting, mCurrentUser);
@@ -179,6 +186,9 @@ public class TunerServiceImpl extends TunerService {
         if (isSystem(setting)) {
             Settings.System.putStringForUser(
                     mContentResolver, chomp(setting), value, mCurrentUser);
+        } else if (isGlobal(setting)) {
+            Settings.Global.putStringForUser(
+                    mContentResolver, chomp(setting), value, mCurrentUser);
         } else {
             Settings.Secure.putStringForUser(mContentResolver, setting, value, mCurrentUser);
         }
@@ -189,6 +199,9 @@ public class TunerServiceImpl extends TunerService {
         if (isSystem(setting)) {
             return Settings.System.getIntForUser(
                     mContentResolver, chomp(setting), def, mCurrentUser);
+        } else if (isGlobal(setting)) {
+            return Settings.Global.getInt(
+                    mContentResolver, chomp(setting), def);
         } else {
             return Settings.Secure.getIntForUser(mContentResolver, setting, def, mCurrentUser);
         }
@@ -199,6 +212,9 @@ public class TunerServiceImpl extends TunerService {
         String ret;
         if (isSystem(setting)) {
             ret = Settings.System.getStringForUser(
+                    mContentResolver, chomp(setting), mCurrentUser);
+        } else if (isGlobal(setting)) {
+            ret = Settings.Global.getStringForUser(
                     mContentResolver, chomp(setting), mCurrentUser);
         } else {
             ret = Secure.getStringForUser(mContentResolver, setting, mCurrentUser);
@@ -211,6 +227,8 @@ public class TunerServiceImpl extends TunerService {
     public void setValue(String setting, int value) {
         if (isSystem(setting)) {
             Settings.System.putIntForUser(mContentResolver, chomp(setting), value, mCurrentUser);
+        } else if (isGlobal(setting)) {
+            Settings.Global.putInt(mContentResolver, chomp(setting), value);
         } else {
             Settings.Secure.putIntForUser(mContentResolver, setting, value, mCurrentUser);
         }
@@ -235,6 +253,8 @@ public class TunerServiceImpl extends TunerService {
         final Uri uri;
         if (isSystem(key)) {
             uri = Settings.System.getUriFor(chomp(key));
+        } else if (isGlobal(key)) {
+            uri = Settings.Global.getUriFor(chomp(key));
         } else {
             uri = Settings.Secure.getUriFor(key);
         }

@@ -26,6 +26,7 @@ import com.android.systemui.qs.tiles.AicpExtrasTile;
 import com.android.systemui.qs.tiles.AODTile;
 import com.android.systemui.qs.tiles.CaffeineTile;
 import com.android.systemui.qs.tiles.CompassTile;
+import com.android.systemui.qs.tiles.CPUInfoTile;
 import com.android.systemui.qs.tiles.DataSwitchTile;
 import com.android.systemui.qs.tiles.ScreenshotTile;
 import com.android.systemui.qs.tiles.HeadsUpTile;
@@ -100,6 +101,11 @@ public interface AicpModule {
     @IntoMap
     @StringKey(OnTheGoTile.TILE_SPEC)
     public abstract QSTileImpl<?> bindOnTheGoTile(OnTheGoTile onthegoTile);
+
+    @Binds
+    @IntoMap
+    @StringKey(CPUInfoTile.TILE_SPEC)
+    public abstract QSTileImpl<?> bindCPUInfoTile(CPUInfoTile cpuinfoTile);
 
     /** */
     @Binds

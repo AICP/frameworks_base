@@ -23,6 +23,7 @@ import com.android.systemui.qs.tiles.AODTile
 import com.android.systemui.qs.tiles.CaffeineTile
 import com.android.systemui.qs.tiles.CellularTile
 import com.android.systemui.qs.tiles.CompassTile;
+import com.android.systemui.qs.tiles.CPUInfoTile;
 import com.android.systemui.qs.tiles.HeadsUpTile
 import com.android.systemui.qs.tiles.MusicTile
 import com.android.systemui.qs.tiles.OnTheGoTile;
@@ -77,6 +78,12 @@ interface AicpModule {
     @IntoMap
     @StringKey(CompassTile.TILE_SPEC)
     fun bindCompassTile(compassTile: CompassTile): QSTileImpl<*>
+
+    /** Inject CPUInfoTile into tileMap in QSModule */
+    @Binds
+    @IntoMap
+    @StringKey(CPUInfoTile.TILE_SPEC)
+    fun bindCPUInfoTile(cpuinfoTile: CPUInfoTile): QSTileImpl<*>
 
     /** Inject HeadsUpTile into tileMap in QSModule */
     @Binds

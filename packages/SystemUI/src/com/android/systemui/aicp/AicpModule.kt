@@ -24,6 +24,7 @@ import com.android.systemui.qs.tiles.AicpExtrasTile
 import com.android.systemui.qs.tiles.AmbientDisplayTile
 import com.android.systemui.qs.tiles.AODTile
 import com.android.systemui.qs.tiles.CaffeineTile
+import com.android.systemui.qs.tiles.CPUInfoTile;
 import com.android.systemui.qs.tiles.HeadsUpTile
 import com.android.systemui.qs.tiles.MusicTile
 import com.android.systemui.qs.tiles.OnTheGoTile;
@@ -69,6 +70,12 @@ interface AicpModule {
     @IntoMap
     @StringKey(CaffeineTile.TILE_SPEC)
     fun bindCaffeineTile(caffeineTile: CaffeineTile): QSTileImpl<*>
+
+    /** Inject CPUInfoTile into tileMap in QSModule */
+    @Binds
+    @IntoMap
+    @StringKey(CPUInfoTile.TILE_SPEC)
+    fun bindCPUInfoTile(cpuinfoTile: CPUInfoTile): QSTileImpl<*>
 
     /** Inject HeadsUpTile into tileMap in QSModule */
     @Binds
@@ -135,6 +142,7 @@ interface AicpModule {
         const val AMBIENT_DISPLAY_TILE_SPEC = "ambient_display"
         const val AOD_TILE_SPEC = "aod"
         const val CAFFEINE_TILE_SPEC = "caffeine"
+        const val CPUINFO_TILE_SPEC = "cpuinfo"
         const val HEADS_UP_TILE_SPEC = "heads_up"
         const val MUSIC_TILE_SPEC = "music"
         const val ONTHEGO_TILE_SPEC = "onthego"
@@ -204,6 +212,21 @@ interface AicpModule {
                     ),
                 instanceId = uiEventLogger.getNewInstanceId(),
                 category = TileCategory.DISPLAY,
+            )
+
+        @Provides
+        @IntoMap
+        @StringKey(CPUINFO_TILE_SPEC)
+        fun provideCpuInfoTileConfig(uiEventLogger: QsEventLogger): QSTileConfig =
+            QSTileConfig(
+                tileSpec = TileSpec.create(CPUINFO_TILE_SPEC),
+                uiConfig =
+                    QSTileUIConfig.Resource(
+                        iconRes = R.drawable.ic_qs_cpu_info,
+                        labelRes = R.string.quick_settings_cpuinfo_label
+                    ),
+                instanceId = uiEventLogger.getNewInstanceId(),
+                category = TileCategory.UTILITIES,
             )
 
         @Provides

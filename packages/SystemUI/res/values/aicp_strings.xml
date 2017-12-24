@@ -19,6 +19,9 @@
     <string name="accessibility_quick_settings_caffeine_off">Caffeine off.</string>
     <string name="accessibility_quick_settings_caffeine_on">Caffeine on.</string>
 
+    <!-- CPUInfo tile -->
+    <string name="quick_settings_cpuinfo_label">CPU Info</string>
+
     <!-- DataSwitch Tile -->
     <string name="qs_data_switch_label">Switch data card</string>
     <string name="qs_data_switch_changed_1">Using SIM 1 for Mobile data</string>

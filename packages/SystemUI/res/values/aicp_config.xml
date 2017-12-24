@@ -17,7 +17,7 @@
 <resources>
     <!-- The default tiles to display in QuickSettings -->
     <string name="quick_settings_tiles_extra" translatable="false">
-        music,aicp_extras,volume_panel,onthego
+        music,aicp_extras,volume_panel,onthego,cpuinfo
     </string>
 
     <!-- On-The-Go -->
@@ -33,6 +33,7 @@
 
     <!-- Charging info current divider, if needed -->
     <integer name="config_currentInfoDivider" translatable="false">1000</integer>
+    
     <!-- Update battery info every second when device is charging -->
     <bool name="config_alternateFastchargeInfoUpdate">false</bool>
 </resources>

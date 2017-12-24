@@ -17,7 +17,7 @@
 <resources>
     <!-- The default tiles to display in QuickSettings -->
     <string name="quick_settings_tiles_extra" translatable="false">
-        compass,music,aicp_extras,volume_panel,onthego
+        compass,music,aicp_extras,volume_panel,onthego,cpuinfo
     </string>
 
     <!-- On-The-Go -->

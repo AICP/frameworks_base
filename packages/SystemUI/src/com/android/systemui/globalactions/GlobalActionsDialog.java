@@ -252,6 +252,7 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener, DialogIn
         mKeyguardShowing = keyguardShowing;
         mDeviceProvisioned = isDeviceProvisioned;
         if (mDialog != null) {
+            mDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
             mDialog.dismiss();
             mDialog = null;
             // Show delayed, so that the dismiss of the previous dialog completes
@@ -286,10 +287,29 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener, DialogIn
         } else {
             WindowManager.LayoutParams attrs = mDialog.getWindow().getAttributes();
             attrs.setTitle("ActionsDialog");
+            attrs.alpha = setPowerMenuAlpha();
             mDialog.getWindow().setAttributes(attrs);
+            mDialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+            mDialog.getWindow().setDimAmount(setPowerMenuDialogDim());
             mDialog.show();
             mWindowManagerFuncs.onGlobalActionsShown();
         }
+    }
+
+    private float setPowerMenuAlpha() {
+        int mPowerMenuAlpha = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.TRANSPARENT_POWER_MENU, 100);
+        double dAlpha = mPowerMenuAlpha / 100.0;
+        float alpha = (float) dAlpha;
+        return alpha;
+    }
+
+    private float setPowerMenuDialogDim() {
+        int mPowerMenuDialogDim = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.TRANSPARENT_POWER_DIALOG_DIM, 50);
+        double dDim = mPowerMenuDialogDim / 100.0;
+        float dim = (float) dDim;
+        return dim;
     }
 
     /**
@@ -423,6 +443,7 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener, DialogIn
                     long id) {
                 final Action action = mAdapter.getItem(position);
                 if (action instanceof LongPressAction) {
+                    mDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
                     mDialog.dismiss();
                     return ((LongPressAction) action).onLongPress();
                 }
@@ -1336,6 +1357,7 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener, DialogIn
             switch (msg.what) {
                 case MESSAGE_DISMISS:
                     if (mDialog != null) {
+                        mDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
                         mDialog.dismiss();
                         mDialog = null;
                     }

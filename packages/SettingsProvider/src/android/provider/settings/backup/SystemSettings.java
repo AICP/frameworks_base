@@ -194,5 +194,10 @@ public class SystemSettings {
         Settings.System.KEY_ASSIST_LONG_PRESS_ACTION,
         Settings.System.KEY_APP_SWITCH_ACTION,
         Settings.System.KEY_APP_SWITCH_LONG_PRESS_ACTION,
+        Settings.System.HOME_WAKE_SCREEN,
+        Settings.System.BACK_WAKE_SCREEN,
+        Settings.System.MENU_WAKE_SCREEN,
+        Settings.System.ASSIST_WAKE_SCREEN,
+        Settings.System.APP_SWITCH_WAKE_SCREEN,
     };
 }

@@ -4774,6 +4774,76 @@ public final class Settings {
         private static final Validator AICP_DOUBLE_TAP_SLEEP_LOCKSCREEN_VALIDATOR =
                BOOLEAN_VALIDATOR;
 
+        /**
+         * Whether to wake the screen with the home key, the value is boolean.
+         * 0 = 0ff, 1 = on
+         */
+        public static final String HOME_WAKE_SCREEN = "home_wake_screen";
+
+        /** @hide */
+        private static final Validator HOME_WAKE_SCREEN_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
+         * Whether to wake the screen with the assist key, the value is boolean.
+         * 0 = 0ff, 1 = on
+         */
+        public static final String ASSIST_WAKE_SCREEN = "assist_wake_screen";
+
+        /** @hide */
+        private static final Validator ASSIST_WAKE_SCREEN_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
+         * Whether to wake the screen with the app switch key, the value is boolean.
+         * 0 = 0ff, 1 = on
+         */
+        public static final String APP_SWITCH_WAKE_SCREEN = "app_switch_wake_screen";
+
+        /** @hide */
+        private static final Validator APP_SWITCH_WAKE_SCREEN_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
+         * Whether to wake the screen with the camera key half-press.
+         * 0 = 0ff, 1 = on
+         */
+        public static final String CAMERA_WAKE_SCREEN = "camera_wake_screen";
+
+        /** @hide */
+        private static final Validator CAMERA_WAKE_SCREEN_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
+         * Whether to wake the screen with the back key, the value is boolean.
+         * 0 = 0ff, 1 = on
+         */
+        public static final String BACK_WAKE_SCREEN = "back_wake_screen";
+
+        /** @hide */
+        private static final Validator BACK_WAKE_SCREEN_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
+         * Whether to wake the screen with the menu key, the value is boolean.
+         * 0 = 0ff, 1 = on
+         */
+        public static final String MENU_WAKE_SCREEN = "menu_wake_screen";
+
+        /** @hide */
+        private static final Validator MENU_WAKE_SCREEN_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
+         * Whether to wake the screen with the volume keys, the value is boolean.
+         * 0 = 0ff, 1 = on
+         */
+        public static final String VOLUME_WAKE_SCREEN = "volume_wake_screen";
+
+        /** @hide */
+        private static final Validator VOLUME_WAKE_SCREEN_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -4890,6 +4960,13 @@ public final class Settings {
             THREE_FINGER_GESTURE,
             AICP_DOUBLE_TAP_SLEEP_GESTURE,
             AICP_DOUBLE_TAP_SLEEP_LOCKSCREEN,
+            HOME_WAKE_SCREEN,
+            ASSIST_WAKE_SCREEN,
+            BACK_WAKE_SCREEN,
+            VOLUME_WAKE_SCREEN,
+            MENU_WAKE_SCREEN,
+            APP_SWITCH_WAKE_SCREEN,
+            CAMERA_WAKE_SCREEN,
             // AICP Settings end
         };
 
@@ -5068,6 +5145,13 @@ public final class Settings {
             PRIVATE_SETTINGS.add(THREE_FINGER_GESTURE);
             PRIVATE_SETTINGS.add(AICP_DOUBLE_TAP_SLEEP_GESTURE);
             PRIVATE_SETTINGS.add(AICP_DOUBLE_TAP_SLEEP_LOCKSCREEN);
+            PRIVATE_SETTINGS.add(HOME_WAKE_SCREEN);
+            PRIVATE_SETTINGS.add(ASSIST_WAKE_SCREEN);
+            PRIVATE_SETTINGS.add(BACK_WAKE_SCREEN);
+            PRIVATE_SETTINGS.add(VOLUME_WAKE_SCREEN);
+            PRIVATE_SETTINGS.add(MENU_WAKE_SCREEN);
+            PRIVATE_SETTINGS.add(APP_SWITCH_WAKE_SCREEN);
+            PRIVATE_SETTINGS.add(CAMERA_WAKE_SCREEN);
             // AICP Settings end
         }
 
@@ -5224,6 +5308,13 @@ public final class Settings {
                     AICP_DOUBLE_TAP_SLEEP_GESTURE_VALIDATOR);
             VALIDATORS.put(AICP_DOUBLE_TAP_SLEEP_LOCKSCREEN,
                     AICP_DOUBLE_TAP_SLEEP_LOCKSCREEN_VALIDATOR);
+            VALIDATORS.put(HOME_WAKE_SCREEN, HOME_WAKE_SCREEN_VALIDATOR);
+            VALIDATORS.put(ASSIST_WAKE_SCREEN, ASSIST_WAKE_SCREEN_VALIDATOR);
+            VALIDATORS.put(BACK_WAKE_SCREEN, BACK_WAKE_SCREEN_VALIDATOR);
+            VALIDATORS.put(VOLUME_WAKE_SCREEN, VOLUME_WAKE_SCREEN_VALIDATOR);
+            VALIDATORS.put(MENU_WAKE_SCREEN, MENU_WAKE_SCREEN_VALIDATOR);
+            VALIDATORS.put(APP_SWITCH_WAKE_SCREEN, APP_SWITCH_WAKE_SCREEN_VALIDATOR);
+            VALIDATORS.put(CAMERA_WAKE_SCREEN, CAMERA_WAKE_SCREEN_VALIDATOR);
             // AICP Settings end
         }
 

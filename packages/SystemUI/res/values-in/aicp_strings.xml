@@ -17,14 +17,35 @@
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Aicp Extras Tile -->
+  <string name="quick_aicp_extras_label">AICP Extras</string>
+  <string name="quick_aicp_extras_toast">Wkwk. anda dengan menyuntuh lama akan membawamu kemana!!!</string>
   <!-- Screenshot Delete Toast -->
+  <string name="delete_screenshot_toast">Screenshot dihapus</string>
   <!-- Advanced Reboot in Power Menu -->
+  <string name="global_action_restart_advanced">Mulai ulang lanjutan</string>
+  <string name="global_action_restart_recovery">Ke Recovery</string>
+  <string name="global_action_restart_bootloader">Ke bootloader</string>
   <!-- Partial Screenshot -->
+  <string name="screenshot_abort_title">Tidak ada screenshot yang diambil</string>
+  <string name="screenshot_abort_text">Proses dibatalkan.</string>
   <!-- Reboot/Recovery QS Tile -->
+  <string name="quick_settings_reboot_label">Nyalakan ulang</string>
+  <string name="quick_settings_reboot_recovery_label">Recovery</string>
   <!-- Compass QS Tile -->
+  <string name="quick_settings_compass_label">Kompas</string>
+  <string name="quick_settings_compass_init">Menginisialisasi\u2026</string>
+  <string name="accessibility_quick_settings_compass_off">Kompas mati.</string>
+  <string name="accessibility_quick_settings_compass_on">Kompas hidup.</string>
+  <string name="accessibility_quick_settings_compass_changed_off">Kompas dimatikan.</string>
+  <string name="accessibility_quick_settings_compass_changed_on">Kompas dihidupkan.</string>
   <!-- Screenshoot tile -->
+  <string name="quick_settings_screenshot_label">Tangkapan Layar</string>
   <!-- USB Tethering tile -->
+  <string name="accessibility_quick_settings_usb_tether_off">Penambatan USB mati</string>
+  <string name="accessibility_quick_settings_usb_tether_on">Penambatan USB hidup</string>
+  <string name="accessibility_quick_settings_usb_tether_changed_off">Penambatan USB dimatikan</string>
   <!-- IME selector tile -->
+  <string name="quick_settings_ime_label">IME</string>
   <!-- Language toggle tile -->
   <!-- Music tile -->
   <!-- Sound tile -->
@@ -36,17 +57,40 @@
   <!-- Caffeine QS Tile -->
   <!-- Sync QS Tile -->
   <!-- Volume QS Tile -->
+  <string name="accessibility_quick_settings_volume_panel">Volume</string>
+  <string name="quick_settings_volume_panel_label">Volume</string>
   <!-- PiP Tile -->
+  <string name="quick_settings_pip_label">PiP</string>
+  <string name="quick_settings_pip_tile_app_na">Aplikasi tidak mendukung PiP</string>
   <!-- Screenrecord tile -->
+  <string name="quick_settings_screenrecord_on">Merekam ...</string>
   <!-- Recents -->
+  <string name="recents_app_killed">Aplikasi dimatikan</string>
   <!-- Advance location quick setting tile -->
+  <string name="accessibility_quick_settings_location_battery_saving">Lokasi: mode hemat daya.</string>
+  <string name="accessibility_quick_settings_location_gps_only">Lokasi: mode hanya sensor gps.</string>
+  <string name="accessibility_quick_settings_location_high_accuracy">Lokasi: mode akurasi tinggi.</string>
   <!-- Screenrecord Notification Ticker -->
+  <string name="screenrecord_notif_ticker">Layar sedang direkam</string>
   <!-- Screenrecord notification title -->
+  <string name="screenrecord_notif_title">Merekam layar</string>
   <!-- Screenrecord notification action: Stop -->
   <!-- Screenrecord notification action: show/hide pointer -->
+  <string name="screenrecord_notif_pointer_on">Tampilkan pointer</string>
+  <string name="screenrecord_notif_pointer_off">Sembunyikan pointer</string>
   <!-- Screen record notification error title -->
+  <string name="screenrecord_notif_error">Tidak dapat merekam tampilan layar</string>
+  <string name="notification_channel_screenrecord">Perekam layar</string>
+  <string name="lockscreen_default">Standar</string>
+  <string name="lockscreen_hidden">Tidak ada</string>
+  <string name="omnijaws_service_disabled">Layanan dimatikan</string>
+  <string name="omnijaws_service_last_update">Pembaharuan terakhir:</string>
   <!-- Weather string format in expanded statusbar header -->
   <!-- Notification: Menu row: Snooze options: 12 and 24 hour option. [CHAR LIMIT=50]-->
+  <string name="snooze_option_12_hour">12 Jam</string>
+  <string name="snooze_option_24_hour">24 Jam</string>
   <!-- SystemUI Tuner Parts -->
+  <string name="custom_hint">Usap dari ikon untuk meluncurkan</string>
   <!-- DUI -->
+  <string name="systemui_tuner_navbar_title">Setting bawaan</string>
 </resources>

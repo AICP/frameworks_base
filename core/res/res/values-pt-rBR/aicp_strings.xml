@@ -22,16 +22,22 @@
   <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
   <string name="system_error_vendorprint">Sua imagem de fornecedor não coincide com o sistema. Por favor, instale <xliff:g id="string">%s</xliff:g> imagem de fornecedor para o seu dispositivo</string>
   <!-- Button to soft reboot the SystemUI, within the Reboot Options dialog -->
+  <string name="reboot_systemui">Reiniciar SystemUI</string>
   <!-- label for item that screenrecord in phone options dialog -->
+  <string name="global_action_screenrecord">Gravação a tela</string>
   <!-- Screenshoot edit action -->
+  <string name="edit">Editar</string>
   <!-- Singlehanded Mode -->
   <!-- Powermenu Torch -->
+  <string name="global_action_torch">Lanterna</string>
   <!-- label for item that takes On-The-Go in the phone options dialog -->
   <string name="global_action_onthego">Modo On-The-Go</string>
   <!-- Billing bypass (eg. Lucky Patcher, Uret) dialog -->
   <string name="billing_bypass_installed_title">Patcher de faturamento encontrado!</string>
   <string name="billing_bypass_installed_message">Eu me responsabilizo por usar software como aplicativo que conseguem burlar os sistemas de pagamento para conseguir vantagens neste sistema, como Lucky Patcher ou Uret. Eu prejudico ativamente os desenvolvedores de aplicativos usando esses tipo softwares.</string>
+  <string name="billing_bypass_acknowledge">Me responsabilizo.</string>
   <!-- Pocket Lock -->
+  <string name="pocket_lock_message_long_press">Mantenha botão de ligar apertado para interagir</string>
   <!-- Defines the sysfs attribute path used by pocket bridge
         to communicate pocket state to the pocket judge kernel driver. -->
 </resources>

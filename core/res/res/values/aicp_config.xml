@@ -25,4 +25,7 @@
     <integer name="config_proximityCheckTimeout">250</integer>
     <bool name="config_proximityCheckOnWakeEnabledByDefault">false</bool>
 
+    <!-- Time to wait while a button is pressed before triggering a very long press. -->
+    <integer name="config_backKillTimeout">500</integer>
+
 </resources>

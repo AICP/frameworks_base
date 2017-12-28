@@ -265,6 +265,7 @@ import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.view.autofill.AutofillManagerInternal;
 import android.view.inputmethod.InputMethodManagerInternal;
+import android.widget.Toast;
 
 import com.android.internal.R;
 import com.android.internal.accessibility.AccessibilityShortcutController;
@@ -283,6 +284,7 @@ import com.android.internal.statusbar.IStatusBarService;
 import com.android.internal.util.ArrayUtils;
 import com.android.internal.util.ScreenshotHelper;
 import com.android.internal.util.ScreenShapeHelper;
+import com.android.internal.util.aicp.TaskUtils;
 import com.android.internal.widget.PointerLocationView;
 import com.android.server.GestureLauncherService;
 import com.android.server.LocalServices;
@@ -386,6 +388,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private static final int KEY_ACTION_CAMERA = 6;
     private static final int KEY_ACTION_LAST_APP = 7;
     private static final int KEY_ACTION_SPLIT_SCREEN = 8;
+    private static final int KEY_ACTION_FORCE_CLOSE_APP = 9;
 
     // Special values, used internal only.
     private static final int KEY_ACTION_HOME = 100;
@@ -670,6 +673,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     int mDeviceHardwareKeys;
 
     private boolean mHandleVolumeKeysInWM;
+
+    int mKillTimeout;
 
     int mPointerLocationMode = 0; // guarded by mLock
 
@@ -1927,6 +1932,16 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
     private final ScreenshotRunnable mScreenshotRunnable = new ScreenshotRunnable();
 
+    Runnable mForceCloseApp = new Runnable() {
+        public void run() {
+            if (TaskUtils.killActiveTask(mContext, mCurrentUserId)) {
+                Toast.makeText(mContext,
+                        com.android.internal.R.string.app_killed_message,
+                        Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
+
     @Override
     public void showGlobalActions() {
         mHandler.removeMessages(MSG_DISPATCH_SHOW_GLOBAL_ACTIONS);
@@ -2196,6 +2211,13 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         }
     }
 
+    /**
+     * Request current app to be force closed.
+     */
+    private void forceCloseApp() {
+        mHandler.postDelayed(mForceCloseApp, mKillTimeout);
+    }
+
     private boolean isRoundWindow() {
         return mContext.getResources().getConfiguration().isScreenRound();
     }
@@ -2362,6 +2384,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 com.android.internal.R.integer.config_veryLongPressTimeout);
         mAllowStartActivityForLongPressOnPowerDuringSetup = mContext.getResources().getBoolean(
                 com.android.internal.R.bool.config_allowStartActivityForLongPressOnPowerInSetup);
+        mKillTimeout = mContext.getResources().getInteger(
+                com.android.internal.R.integer.config_backKillTimeout);
 
         mUseTvRouting = AudioSystem.getPlatformType(mContext) == AudioSystem.PLATFORM_TELEVISION;
 
@@ -3984,7 +4008,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             KEY_ACTION_IN_APP_SEARCH,
             KEY_ACTION_CAMERA,
             KEY_ACTION_LAST_APP,
-            KEY_ACTION_SPLIT_SCREEN
+            KEY_ACTION_SPLIT_SCREEN,
+            KEY_ACTION_FORCE_CLOSE_APP
         };
 
     /**
@@ -4199,6 +4224,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 break;
             case KEY_ACTION_SPLIT_SCREEN:
                 toggleSplitScreen();
+                break;
+            case KEY_ACTION_FORCE_CLOSE_APP:
+                forceCloseApp();
                 break;
         }
     }
@@ -4444,6 +4472,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 }
             }
             return -1;
+        }
+
+        if (keyCode == KeyEvent.KEYCODE_BACK && !down) {
+            mHandler.removeCallbacks(mForceCloseApp);
         }
 
         // First we always handle the home key here, so applications
@@ -4699,6 +4731,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 launchAssistAction(Intent.EXTRA_ASSIST_INPUT_HINT_KEYBOARD, event.getDeviceId());
             }
             return -1;
+        } else if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (down && repeatCount == 0) {
+                forceCloseApp();
+            }
         }
 
         // Shortcuts are invoked through Search+key, so intercept those here

@@ -295,6 +295,15 @@
 
         <receiver android:name=".BootReceiver" androidprv:systemUserOnly="true">
             <intent-filter android:priority="1000">
+              <action android:name="android.intent.action.BOOT_COMPLETED" />
+          </intent-filter>
+      </receiver>
+              
+        <!-- Smart Pixels -->
+        <service android:name=".smartpixels.SmartPixelsService"
+            android:enabled="true" />
+        <receiver android:name=".smartpixels.SmartPixelsReceiver">
+            <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>

@@ -5672,6 +5672,30 @@ public final class Settings {
          */
         public static final String AICP_ASPECT_RATIO_APPS_ENABLED = "aspect_ratio_apps_enabled";
 
+        /**
+         * Whether to enable Smart Pixels
+         * @hide
+         */
+        public static final String SMART_PIXELS_ENABLE = "smart_pixels_enable";
+
+        /**
+         * Smart Pixels pattern
+         * @hide
+         */
+        public static final String SMART_PIXELS_PATTERN = "smart_pixels_pattern";
+
+        /**
+         * Smart Pixels Shift Timeout
+         * @hide
+         */
+        public static final String SMART_PIXELS_SHIFT_TIMEOUT = "smart_pixels_shift_timeout";
+
+        /**
+         * Whether Smart Pixels should enable on power saver mode
+         * @hide
+         */
+        public static final String SMART_PIXELS_ON_POWER_SAVE = "smart_pixels_on_power_save";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5762,6 +5786,10 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(THREE_FINGER_GESTURE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(AICP_ASPECT_RATIO_APPS_LIST, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(AICP_ASPECT_RATIO_APPS_ENABLED, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(SMART_PIXELS_ENABLE, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(SMART_PIXELS_SHIFT_TIMEOUT, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(SMART_PIXELS_PATTERN, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(SMART_PIXELS_ON_POWER_SAVE, ANY_INTEGER_VALIDATOR);
         }
 
         /**

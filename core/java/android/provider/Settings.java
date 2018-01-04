@@ -5418,6 +5418,12 @@ public final class Settings {
          */
         public static final String THREE_FINGER_GESTURE = "three_finger_gesture";
 
+        /**
+         * Wheter to play notification sound and vibration if screen is on
+         * @hide
+         */
+        public static final String NOTIFICATION_SOUND_VIB_SCREEN_ON = "notification_sound_vib_screen_on";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5582,6 +5588,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_LOCATION);
             PRIVATE_SETTINGS.add(STATUS_BAR_QUICK_QS_PULLDOWN);
             PRIVATE_SETTINGS.add(THREE_FINGER_GESTURE);
+            PRIVATE_SETTINGS.add(NOTIFICATION_SOUND_VIB_SCREEN_ON);
         }
 
         /**

@@ -21,16 +21,9 @@
   <string name="quick_aicp_extras_toast">LOL, dacht je echt dat die lange klik je ergens zou brengen!?</string>
   <!-- Screenshot Delete Toast -->
   <string name="delete_screenshot_toast">Schermafbeelding verwijderd</string>
-  <!-- Advanced Reboot in Power Menu -->
-  <string name="global_action_restart_advanced">Geavanceerd herstarten</string>
-  <string name="global_action_restart_recovery">Herstarten in Recovery modus</string>
-  <string name="global_action_restart_bootloader">Herstarten in Bootloader modus</string>
   <!-- Partial Screenshot -->
   <string name="screenshot_abort_title">Geen schermafbeelding gemaakt</string>
   <string name="screenshot_abort_text">Bewerking afgebroken.</string>
-  <!-- Reboot/Recovery QS Tile -->
-  <string name="quick_settings_reboot_label">Opnieuw opstarten</string>
-  <string name="quick_settings_reboot_recovery_label">Recovery</string>
   <!-- Compass QS Tile -->
   <string name="quick_settings_compass_label">Kompas</string>
   <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
@@ -56,8 +49,6 @@
   <string name="accessibility_quick_settings_usb_tether_changed_off">USB tethering uitgeschakeld</string>
   <string name="accessibility_quick_settings_usb_tether_changed_on">USB tethering ingeschakeld</string>
   <string name="quick_settings_usb_tether_label">USB tethering</string>
-  <!-- IME selector tile -->
-  <string name="quick_settings_ime_label">IME</string>
   <!-- Language toggle tile -->
   <string name="quick_settings_locale_label">Taal</string>
   <string name="quick_settings_locale_more_locales_toast">Configureer alstublieft eerst meerdere talen om te kunnen wisselen</string>
@@ -99,8 +90,6 @@
   <!-- Screenrecord tile -->
   <string name="quick_settings_screenrecord">Schermopname</string>
   <string name="quick_settings_screenrecord_on">Bezig met opnemen...</string>
-  <!-- Recents -->
-  <string name="recents_app_killed">App afgesloten</string>
   <!-- Advance location quick setting tile -->
   <string name="accessibility_quick_settings_location_battery_saving">Locatiebepaling: energiebesparing.</string>
   <string name="accessibility_quick_settings_location_gps_only">Locatiebepaling: alleen apparaatsensoren.</string>
@@ -130,9 +119,6 @@
   <string name="omnijaws_service_last_update">Laatste update:</string>
   <!-- Weather string format in expanded statusbar header -->
   <string name="status_bar_weather_format"><xliff:g id="temp">%1$s</xliff:g></string>
-  <!-- Notification: Menu row: Snooze options: 12 and 24 hour option. [CHAR LIMIT=50]-->
-  <string name="snooze_option_12_hour">12 uur</string>
-  <string name="snooze_option_24_hour">24 uur</string>
   <!-- SystemUI Tuner Parts -->
   <string name="custom_hint">Veeg vanaf icoon om te starten</string>
   <!-- DUI -->

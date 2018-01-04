@@ -21,16 +21,9 @@
   <string name="quick_aicp_extras_toast">LOL, Du hast tatsächlich geglaubt, dass \'Langes Drücken\' dich irgendwo hinbringt?!</string>
   <!-- Screenshot Delete Toast -->
   <string name="delete_screenshot_toast">Bildschirmfoto gelöscht</string>
-  <!-- Advanced Reboot in Power Menu -->
-  <string name="global_action_restart_advanced">Erweiterter Neustart</string>
-  <string name="global_action_restart_recovery">Neustart zur Recovery</string>
-  <string name="global_action_restart_bootloader">Neustart in den Bootloader-Modus</string>
   <!-- Partial Screenshot -->
   <string name="screenshot_abort_title">Kein Bildschirmfoto aufgenommen</string>
   <string name="screenshot_abort_text">Aktion abgebrochen.</string>
-  <!-- Reboot/Recovery QS Tile -->
-  <string name="quick_settings_reboot_label">Neustart</string>
-  <string name="quick_settings_reboot_recovery_label">Recovery</string>
   <!-- Compass QS Tile -->
   <string name="quick_settings_compass_label">Kompass</string>
   <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
@@ -56,8 +49,6 @@
   <string name="accessibility_quick_settings_usb_tether_changed_off">USB Tethering deaktiviert</string>
   <string name="accessibility_quick_settings_usb_tether_changed_on">USB Tethering aktiviert</string>
   <string name="quick_settings_usb_tether_label">USB Tethering</string>
-  <!-- IME selector tile -->
-  <string name="quick_settings_ime_label">Eingabemethoden</string>
   <!-- Language toggle tile -->
   <string name="quick_settings_locale_label">Sprache</string>
   <string name="quick_settings_locale_more_locales_toast">Bitte mehrere Eingabesprachen einrichten, um die Umschaltfunktion zu aktivieren</string>
@@ -99,8 +90,6 @@
   <!-- Screenrecord tile -->
   <string name="quick_settings_screenrecord">Bildschirmaufnahme</string>
   <string name="quick_settings_screenrecord_on">Aufnahme läuft ...</string>
-  <!-- Recents -->
-  <string name="recents_app_killed">App beendet</string>
   <!-- Advance location quick setting tile -->
   <string name="accessibility_quick_settings_location_battery_saving">Standort: Energiesparmodus</string>
   <string name="accessibility_quick_settings_location_gps_only">Standort: Nur Gerät.</string>
@@ -130,9 +119,6 @@
   <string name="omnijaws_service_last_update">Letzte Aktualisierung:</string>
   <!-- Weather string format in expanded statusbar header -->
   <string name="status_bar_weather_format"><xliff:g id="temp">%1$s</xliff:g></string>
-  <!-- Notification: Menu row: Snooze options: 12 and 24 hour option. [CHAR LIMIT=50]-->
-  <string name="snooze_option_12_hour">12 Stunden</string>
-  <string name="snooze_option_24_hour">24 Stunden</string>
   <!-- SystemUI Tuner Parts -->
   <string name="custom_hint">Zum Öffnen über das Symbol wischen</string>
   <!-- DUI -->

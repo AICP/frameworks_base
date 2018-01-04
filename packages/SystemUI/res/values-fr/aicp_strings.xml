@@ -21,16 +21,9 @@
   <string name="quick_aicp_extras_toast">LOL, comme si cet appui long allait vous emmener quelque part !!!</string>
   <!-- Screenshot Delete Toast -->
   <string name="delete_screenshot_toast">Capture d\'écran supprimée</string>
-  <!-- Advanced Reboot in Power Menu -->
-  <string name="global_action_restart_advanced">Redémarrage avancé</string>
-  <string name="global_action_restart_recovery">Aller à la récupération</string>
-  <string name="global_action_restart_bootloader">Aller au bootloader</string>
   <!-- Partial Screenshot -->
   <string name="screenshot_abort_title">Aucune capture d\'écran</string>
   <string name="screenshot_abort_text">Opération annulée.</string>
-  <!-- Reboot/Recovery QS Tile -->
-  <string name="quick_settings_reboot_label">Redémarrer</string>
-  <string name="quick_settings_reboot_recovery_label">Récupération</string>
   <!-- Compass QS Tile -->
   <string name="quick_settings_compass_label">Boussole</string>
   <string name="quick_settings_compass_init">Initialisation\u2026</string>
@@ -55,8 +48,6 @@
   <string name="accessibility_quick_settings_usb_tether_changed_off">Le partage de connexion via USB a été désactivé</string>
   <string name="accessibility_quick_settings_usb_tether_changed_on">Le partage de connexion via USB a été activé</string>
   <string name="quick_settings_usb_tether_label">Partage de connexion USB</string>
-  <!-- IME selector tile -->
-  <string name="quick_settings_ime_label">IME</string>
   <!-- Language toggle tile -->
   <string name="quick_settings_locale_label">Langue</string>
   <string name="quick_settings_locale_more_locales_toast">Veuillez configurer plusieurs langues pour utiliser cette fonctionnalité</string>
@@ -97,8 +88,6 @@
   <!-- Screenrecord tile -->
   <string name="quick_settings_screenrecord">Enregistrement de l\'écran</string>
   <string name="quick_settings_screenrecord_on">Enregistrement ...</string>
-  <!-- Recents -->
-  <string name="recents_app_killed">Application arrêtée</string>
   <!-- Advance location quick setting tile -->
   <string name="accessibility_quick_settings_location_battery_saving">Localisation : mode économie de batterie.</string>
   <string name="accessibility_quick_settings_location_gps_only">Localisation : mode appareil uniquement.</string>
@@ -124,7 +113,6 @@
   <string name="omnijaws_package_not_available">OmniJaws indisponible</string>
   <!-- Weather string format in expanded statusbar header -->
   <string name="status_bar_weather_format"><xliff:g id="temp">%1$s</xliff:g></string>
-  <!-- Notification: Menu row: Snooze options: 12 and 24 hour option. [CHAR LIMIT=50]-->
   <!-- SystemUI Tuner Parts -->
   <!-- DUI -->
 </resources>

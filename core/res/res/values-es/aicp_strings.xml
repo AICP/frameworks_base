@@ -19,15 +19,27 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="reboot_to_recovery_title">Recovery</string>
-  <string name="reboot_to_recovery_message">Reiniciando en modo recovery</string>
-  <string name="reboot_to_bootloader_title">Bootloader</string>
-  <string name="reboot_to_bootloader_message">Reiniciando en modo bootloader</string>
-  <string name="reboot_title">Reinicio</string>
-  <string name="reboot_message">Reiniciando el sistema</string>
   <!-- DUI -->
   <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permlab_toggleNavigationEditor">activar editor de barra de navegación</string>
   <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_toggleNavigationEditor">Permite a una aplicación controlar el editor de la barra de navegación.</string>
+  <!-- AOKP custom system animations -->
+  <string name="animation_fade">Transición</string>
+  <string name="animation_slide_right">Deslizar a la derecha</string>
+  <string name="animation_slide_left">Deslizar a la izquierda</string>
+  <string name="animation_slide_right_no_fade">Deslizar a la derecha (Sin transición)</string>
+  <string name="animation_slide_left_no_fade">Deslizar a la izquieda (sin transición)</string>
+  <string name="animation_slide_up">Deslizar desde abajo</string>
+  <string name="animation_slide_down">Deslizar desde arriba</string>
+  <string name="animation_default">Predeterminado</string>
+  <string name="animation_translucent">Translúcido</string>
+  <string name="animation_grow_shrink">Crecer (Arriba)</string>
+  <string name="animation_grow_shrink_center">Crecer (Centro)</string>
+  <string name="animation_grow_shrink_bottom">Crecer (Abajo)</string>
+  <string name="animation_grow_shrink_left">Crecer (Izquierda)</string>
+  <string name="animation_grow_shrink_right">Crecer (Derecha)</string>
+  <string name="action_null">Vacío</string>
+  <string name="reboot_title">Reniciar</string>
+  <string name="reboot_message">Reiniciando el sistema</string>
 </resources>

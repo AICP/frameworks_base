@@ -101,4 +101,7 @@
 
   <!-- Screen off delay -->
   <java-symbol type="integer" name="config_screen_off_delay" />
+
+  <!-- Whether the device supports Smart Pixels -->
+  <java-symbol type="bool" name="config_enableSmartPixels" />
 </resources>

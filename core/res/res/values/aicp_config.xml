@@ -53,4 +53,7 @@
 
     <!-- Screen off delay -->
     <integer name="config_screen_off_delay">1000</integer>
+
+    <!-- Whether the device supports Smart Pixels -->
+    <bool name="config_enableSmartPixels">false</bool>
 </resources>

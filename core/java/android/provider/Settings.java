@@ -4650,6 +4650,16 @@ public final class Settings {
         };
 
         /**
+         * Wheter to play notification sound and vibration if screen is on
+         * @hide
+         */
+        public static final String NOTIFICATION_SOUND_VIB_SCREEN_ON = "notification_sound_vib_screen_on";
+
+        /** @hide */
+        private static final Validator NOTIFICATION_SOUND_VIB_SCREEN_ON_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
          * These are all public system settings
          *
          * @hide
@@ -4763,6 +4773,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_THICKNESS);
             PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_STYLE);
             PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_ANIMATE);
+            PRIVATE_SETTINGS.add(NOTIFICATION_SOUND_VIB_SCREEN_ON);
             // AICP Settings end
         }
 
@@ -4867,6 +4878,8 @@ public final class Settings {
                     STATUSBAR_BATTERY_BAR_THICKNESS_VALIDATOR);
             VALIDATORS.put(STATUSBAR_BATTERY_BAR_STYLE, STATUSBAR_BATTERY_BAR_STYLE_VALIDATOR);
             VALIDATORS.put(STATUSBAR_BATTERY_BAR_ANIMATE, STATUSBAR_BATTERY_BAR_ANIMATE_VALIDATOR);
+            VALIDATORS.put(NOTIFICATION_SOUND_VIB_SCREEN_ON,
+                    NOTIFICATION_SOUND_VIB_SCREEN_ON_VALIDATOR);
             // AICP Settings end
         }
 

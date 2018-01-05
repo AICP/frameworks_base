@@ -139,6 +139,7 @@ import com.android.keyguard.KeyguardUpdateMonitorCallback;
 import com.android.keyguard.ViewMediatorCallback;
 import com.android.systemui.ActivityIntentHelper;
 import com.android.systemui.AutoReinflateContainer;
+import com.android.systemui.Dependency;
 import com.android.systemui.DejankUtils;
 import com.android.systemui.Dumpable;
 import com.android.systemui.EventLogTags;
@@ -1382,7 +1383,7 @@ public class StatusBar extends SystemUI implements DemoMode,
         // Private API call to make the shadows look better for Recents
         ThreadedRenderer.overrideProperty("ambientRatio", String.valueOf(1.5f));
 
-        mFlashlightController = mContext.getSystemService(FlashlightController.class);
+        mFlashlightController = Dependency.get(FlashlightController.class);
     }
 
 
@@ -2288,8 +2289,11 @@ public class StatusBar extends SystemUI implements DemoMode,
         if (DEBUG) {
             Log.d(TAG, "Toggling camera flashlight");
         }
-        if (mFlashlightController.isAvailable()) {
-            mFlashlightController.setFlashlight(!mFlashlightController.isEnabled());
+        if (mFlashlightController != null) {
+            mFlashlightController.initFlashLight();
+            if (mFlashlightController.hasFlashlight() && mFlashlightController.isAvailable()) {
+                mFlashlightController.setFlashlight(!mFlashlightController.isEnabled());
+            }
         }
     }
 

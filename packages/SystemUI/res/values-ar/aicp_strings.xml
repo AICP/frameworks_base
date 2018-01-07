@@ -20,10 +20,7 @@
   <string name="quick_aicp_extras_label">إضافات Aicp</string>
   <string name="quick_aicp_extras_toast">ههه, هل ظننت أن الضغط مطولا قد يأخذك لخيارات أخرى!!!</string>
   <!-- Screenshot Delete Toast -->
-  <!-- Advanced Reboot in Power Menu -->
   <!-- Partial Screenshot -->
-  <!-- Reboot/Recovery QS Tile -->
-  <string name="quick_settings_reboot_recovery_label">الإسترداد (ريكفري)</string>
   <!-- Compass QS Tile -->
   <!-- Screenshoot tile -->
   <!-- USB Tethering tile -->
@@ -32,7 +29,6 @@
   <string name="accessibility_quick_settings_usb_tether_changed_off">تم إيقاف الانترنت عبر USB</string>
   <string name="accessibility_quick_settings_usb_tether_changed_on">تم تشغيل الانترنت عبر USB</string>
   <string name="quick_settings_usb_tether_label">الانترنت عبر USB</string>
-  <!-- IME selector tile -->
   <!-- Language toggle tile -->
   <!-- Music tile -->
   <!-- Sound tile -->
@@ -51,7 +47,6 @@
   <!-- Volume QS Tile -->
   <!-- PiP Tile -->
   <!-- Screenrecord tile -->
-  <!-- Recents -->
   <!-- Advance location quick setting tile -->
   <!-- Screenrecord Notification Ticker -->
   <!-- Screenrecord notification title -->
@@ -59,7 +54,6 @@
   <!-- Screenrecord notification action: show/hide pointer -->
   <!-- Screen record notification error title -->
   <!-- Weather string format in expanded statusbar header -->
-  <!-- Notification: Menu row: Snooze options: 12 and 24 hour option. [CHAR LIMIT=50]-->
   <!-- SystemUI Tuner Parts -->
   <!-- DUI -->
 </resources>

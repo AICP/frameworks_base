@@ -19,11 +19,27 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="reboot_title">Neu starten</string>
-  <string name="reboot_message">System wird neu gestartet</string>
   <!-- DUI -->
   <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permlab_toggleNavigationEditor">Navigationsleisten-Editor kontrollieren</string>
   <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_toggleNavigationEditor">Ermöglicht einer App die Kontrolle des Navigationsleisten-Editors.</string>
+  <!-- AOKP custom system animations -->
+  <string name="animation_fade">Ausblenden</string>
+  <string name="animation_slide_right">Gleiten von rechts</string>
+  <string name="animation_slide_left">Gleiten von links</string>
+  <string name="animation_slide_right_no_fade">Gleiten von rechts (ohne verblassen)</string>
+  <string name="animation_slide_left_no_fade">Gleiten von links (ohne verblassen)</string>
+  <string name="animation_slide_up">Gleiten von unten</string>
+  <string name="animation_slide_down">Gleiten von oben</string>
+  <string name="animation_default">Standard</string>
+  <string name="animation_translucent">Durchsichtig</string>
+  <string name="animation_grow_shrink">Einblenden (von oben)</string>
+  <string name="animation_grow_shrink_center">Einblenden (aus der Mitte)</string>
+  <string name="animation_grow_shrink_bottom">Einblenden (von unten)</string>
+  <string name="animation_grow_shrink_left">Einblenden (von links)</string>
+  <string name="animation_grow_shrink_right">Einblenden (von rechts)</string>
+  <string name="action_null">Leer</string>
+  <string name="reboot_title">Neu starten</string>
+  <string name="reboot_message">System wird neu gestartet</string>
 </resources>

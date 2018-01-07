@@ -18,13 +18,11 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Aicp Extras Tile -->
   <!-- Screenshot Delete Toast -->
-  <!-- Advanced Reboot in Power Menu -->
   <!-- Partial Screenshot -->
-  <!-- Reboot/Recovery QS Tile -->
+  <string name="screenshot_abort_text">Proses dibatalkan.</string>
   <!-- Compass QS Tile -->
   <!-- Screenshoot tile -->
   <!-- USB Tethering tile -->
-  <!-- IME selector tile -->
   <!-- Language toggle tile -->
   <!-- Music tile -->
   <!-- Sound tile -->
@@ -36,17 +34,36 @@
   <!-- Caffeine QS Tile -->
   <!-- Sync QS Tile -->
   <!-- Volume QS Tile -->
+  <string name="accessibility_quick_settings_volume_panel">Volume</string>
+  <string name="quick_settings_volume_panel_label">Volume</string>
   <!-- PiP Tile -->
+  <string name="quick_settings_pip_label">PiP</string>
+  <string name="quick_settings_pip_tile_app_na">Aplikasi tidak mendukung PiP</string>
   <!-- Screenrecord tile -->
-  <!-- Recents -->
+  <string name="quick_settings_screenrecord_on">Merekam ...</string>
   <!-- Advance location quick setting tile -->
+  <string name="accessibility_quick_settings_location_battery_saving">Lokasi: mode hemat daya.</string>
+  <string name="accessibility_quick_settings_location_gps_only">Lokasi: mode hanya sensor gps.</string>
+  <string name="accessibility_quick_settings_location_high_accuracy">Lokasi: mode akurasi tinggi.</string>
   <!-- Screenrecord Notification Ticker -->
+  <string name="screenrecord_notif_ticker">Layar sedang direkam</string>
   <!-- Screenrecord notification title -->
+  <string name="screenrecord_notif_title">Merekam layar</string>
   <!-- Screenrecord notification action: Stop -->
   <!-- Screenrecord notification action: show/hide pointer -->
+  <string name="screenrecord_notif_pointer_on">Tampilkan pointer</string>
+  <string name="screenrecord_notif_pointer_off">Sembunyikan pointer</string>
   <!-- Screen record notification error title -->
+  <string name="screenrecord_notif_error">Tidak dapat merekam tampilan layar</string>
+  <string name="notification_channel_screenrecord">Perekam layar</string>
+  <string name="lockscreen_default">Standar</string>
+  <string name="lockscreen_hidden">Tidak ada</string>
+  <string name="omnijaws_service_disabled">Layanan dimatikan</string>
+  <string name="omnijaws_detail_header">Cuaca</string>
+  <string name="omnijaws_service_last_update">Pembaharuan terakhir:</string>
   <!-- Weather string format in expanded statusbar header -->
-  <!-- Notification: Menu row: Snooze options: 12 and 24 hour option. [CHAR LIMIT=50]-->
   <!-- SystemUI Tuner Parts -->
+  <string name="custom_hint">Usap dari ikon untuk meluncurkan</string>
   <!-- DUI -->
+  <string name="systemui_tuner_navbar_title">Setting bawaan</string>
 </resources>

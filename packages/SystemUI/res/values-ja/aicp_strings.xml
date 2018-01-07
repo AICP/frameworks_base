@@ -21,12 +21,8 @@
   <string name="quick_aicp_extras_toast">長押しで何か起きると思った? 残念! 何も起こりません!</string>
   <!-- Screenshot Delete Toast -->
   <string name="delete_screenshot_toast">スクリーンショットを削除しました</string>
-  <!-- Advanced Reboot in Power Menu -->
   <!-- Partial Screenshot -->
   <string name="screenshot_abort_title">スクリーンショットは撮影されていません</string>
-  <!-- Reboot/Recovery QS Tile -->
-  <string name="quick_settings_reboot_label">再起動</string>
-  <string name="quick_settings_reboot_recovery_label">リカバリ</string>
   <!-- Compass QS Tile -->
   <string name="quick_settings_compass_label">コンパス</string>
   <string name="quick_settings_compass_init">初期化中...</string>
@@ -43,7 +39,6 @@
   <string name="accessibility_quick_settings_usb_tether_changed_off">USBテザリングが OFF になりました</string>
   <string name="accessibility_quick_settings_usb_tether_changed_on">USBテザリングが ON になりました</string>
   <string name="quick_settings_usb_tether_label">USBテザリング</string>
-  <!-- IME selector tile -->
   <!-- Language toggle tile -->
   <string name="quick_settings_locale_label">言語</string>
   <string name="quick_settings_locale_more_locales_toast">トグル機能を有効にするには複数の言語を設定してください</string>
@@ -81,7 +76,6 @@
   <!-- Screenrecord tile -->
   <string name="quick_settings_screenrecord">スクリーンレコード</string>
   <string name="quick_settings_screenrecord_on">録画中...</string>
-  <!-- Recents -->
   <!-- Advance location quick setting tile -->
   <!-- Screenrecord Notification Ticker -->
   <!-- Screenrecord notification title -->
@@ -95,7 +89,6 @@
   <string name="omnijaws_current_text">現在</string>
   <string name="omnijaws_package_not_available">OmniJaws がありません</string>
   <!-- Weather string format in expanded statusbar header -->
-  <!-- Notification: Menu row: Snooze options: 12 and 24 hour option. [CHAR LIMIT=50]-->
   <!-- SystemUI Tuner Parts -->
   <!-- DUI -->
 </resources>

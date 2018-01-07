@@ -19,11 +19,27 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <string name="reboot_title">Restartovat</string>
-  <string name="reboot_message">Restartování systému</string>
   <!-- DUI -->
   <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permlab_toggleNavigationEditor">ovládání navigačního editoru</string>
   <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_toggleNavigationEditor">Umožňuje aplikaci ovládat navigační panel editoru.</string>
+  <!-- AOKP custom system animations -->
+  <string name="animation_fade">Slábnutí</string>
+  <string name="animation_slide_right">Posunutí vpravo</string>
+  <string name="animation_slide_left">Posunutí vlevo</string>
+  <string name="animation_slide_right_no_fade">Posunutí vpravo (bez slábnutí)</string>
+  <string name="animation_slide_left_no_fade">Posunutí vlevo (bez slábnutí)</string>
+  <string name="animation_slide_up">Posunutí dolů</string>
+  <string name="animation_slide_down">Posunutí nahoru</string>
+  <string name="animation_default">Výchozí</string>
+  <string name="animation_translucent">Průhlednost</string>
+  <string name="animation_grow_shrink">Růst (nahoru)</string>
+  <string name="animation_grow_shrink_center">Růst (uprostřed)</string>
+  <string name="animation_grow_shrink_bottom">Růst (dolů)</string>
+  <string name="animation_grow_shrink_left">Růst (vlevo)</string>
+  <string name="animation_grow_shrink_right">Růst (vpravo)</string>
+  <string name="action_null">Prázdná</string>
+  <string name="reboot_title">Restartovat</string>
+  <string name="reboot_message">Restartování systému</string>
 </resources>

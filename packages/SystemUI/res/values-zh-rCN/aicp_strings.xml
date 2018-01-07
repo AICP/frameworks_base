@@ -21,12 +21,8 @@
   <string name="quick_aicp_extras_toast">你真的认为长按会打开什么！？（笑</string>
   <!-- Screenshot Delete Toast -->
   <string name="delete_screenshot_toast">屏幕截图已删除</string>
-  <!-- Advanced Reboot in Power Menu -->
   <!-- Partial Screenshot -->
   <string name="screenshot_abort_title">没有屏幕截图</string>
-  <!-- Reboot/Recovery QS Tile -->
-  <string name="quick_settings_reboot_label">重启</string>
-  <string name="quick_settings_reboot_recovery_label">恢复模式</string>
   <!-- Compass QS Tile -->
   <!-- Screenshoot tile -->
   <string name="quick_settings_screenshot_label">截图</string>
@@ -37,7 +33,6 @@
   <string name="accessibility_quick_settings_usb_tether_changed_off">USB网络共享关闭</string>
   <string name="accessibility_quick_settings_usb_tether_changed_on">USB网络共享开启</string>
   <string name="quick_settings_usb_tether_label">USB网络共享</string>
-  <!-- IME selector tile -->
   <!-- Language toggle tile -->
   <string name="quick_settings_locale_label">语音</string>
   <string name="quick_settings_locale_more_locales_toast">请配置多种语言以启用切换功能</string>
@@ -75,7 +70,6 @@
   <!-- Screenrecord tile -->
   <string name="quick_settings_screenrecord">屏幕录像</string>
   <string name="quick_settings_screenrecord_on">录像中...</string>
-  <!-- Recents -->
   <!-- Advance location quick setting tile -->
   <!-- Screenrecord Notification Ticker -->
   <!-- Screenrecord notification title -->
@@ -83,7 +77,6 @@
   <!-- Screenrecord notification action: show/hide pointer -->
   <!-- Screen record notification error title -->
   <!-- Weather string format in expanded statusbar header -->
-  <!-- Notification: Menu row: Snooze options: 12 and 24 hour option. [CHAR LIMIT=50]-->
   <!-- SystemUI Tuner Parts -->
   <!-- DUI -->
 </resources>

@@ -128,8 +128,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
                 1, UserHandle.USER_CURRENT) == 1;
 
         mBrightnessController = new BrightnessController(getContext(),
-                (mBrightnessIconPosition ? mBrightnessIcon : mBrightnessIconLeft),
-                findViewById(R.id.brightness_slider));
+                mBrightnessIcon, mBrightnessIconLeft, findViewById(R.id.brightness_slider));
     }
 
     protected void addDivider() {

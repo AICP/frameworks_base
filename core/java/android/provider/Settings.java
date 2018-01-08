@@ -6124,6 +6124,13 @@ public final class Settings {
         */
         public static final String SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
 
+        /**
+         * 0 - fullscreen
+         * 1 - partial
+         * @hide
+         */
+        public static final String SCREENSHOT_DEFAULT_MODE = "screenshot_default_mode";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6287,6 +6294,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(CUSTOM_CARRIER_LABEL, ANY_STRING_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(STATUS_BAR_QUICK_QS_PULLDOWN, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(AICP_SHOW_BATTERY_IMAGE, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(SCREENSHOT_DEFAULT_MODE, BOOLEAN_VALIDATOR);
         }
 
         /**

@@ -20,6 +20,7 @@ import android.app.ActivityManager;
 import android.app.AlarmManager;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.ContentResolver;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -28,6 +29,7 @@ import android.graphics.PorterDuff;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.UserHandle;
+import android.provider.Settings;
 import android.support.v4.graphics.ColorUtils;
 import android.database.ContentObserver;
 import android.graphics.drawable.Drawable;
@@ -100,6 +102,9 @@ public class KeyguardStatusView extends GridLayout implements
     private boolean mShowWeather;
     private boolean mShowConditionIcon;
     private boolean mShowLocation;
+    private boolean mShowAlarm;
+    private boolean mShowClock;
+    private boolean mShowDate;
     private int mIconNameValue = -1;
 
     private boolean mForcedMediaDoze;
@@ -247,6 +252,7 @@ public class KeyguardStatusView extends GridLayout implements
 
         refreshTime();
         refreshAlarmStatus(nextAlarm);
+        updateSettings(false);
     }
 
     void refreshAlarmStatus(AlarmManager.AlarmClockInfo nextAlarm) {
@@ -299,6 +305,7 @@ public class KeyguardStatusView extends GridLayout implements
         mWeatherClient.addObserver(this);
         mSettingsObserver.observe();
         queryAndUpdateWeather();
+        updateSettings(false);
     }
 
     @Override
@@ -402,6 +409,36 @@ public class KeyguardStatusView extends GridLayout implements
                 mWeatherCity.setVisibility(View.GONE);
             }
         }
+
+        AlarmManager.AlarmClockInfo nextAlarm =
+                mAlarmManager.getNextAlarmClock(UserHandle.USER_CURRENT);
+
+        if (mClockView != null) {
+            if (mShowClock){
+                mClockView.setVisibility(forceHide ?
+                    View.GONE : View.VISIBLE);
+            } else {
+                mClockView.setVisibility(View.GONE);
+            }
+        }
+
+        if (mDateView != null) {
+            if (mShowDate){
+                mDateView.setVisibility(forceHide ?
+                    View.GONE : View.VISIBLE);
+            } else {
+                mDateView.setVisibility(View.GONE);
+            }
+        }
+
+        if (mAlarmStatusView != null) {
+            if (mShowAlarm && nextAlarm != null){
+                mAlarmStatusView.setVisibility(forceHide ?
+                    View.GONE : View.VISIBLE);
+            } else {
+                mAlarmStatusView.setVisibility(View.GONE);
+            }
+        }
     }
 
     @Override
@@ -420,7 +457,10 @@ public class KeyguardStatusView extends GridLayout implements
         static void update(Context context, boolean hasAlarm) {
             final Locale locale = Locale.getDefault();
             final Resources res = context.getResources();
-            dateViewSkel = res.getString(hasAlarm
+
+            final boolean showAlarm = Settings.System.getIntForUser(context.getContentResolver(),
+                    Settings.System.SHOW_LOCKSCREEN_ALARM, 1, UserHandle.USER_CURRENT) == 1;
+            dateViewSkel = res.getString(hasAlarm && showAlarm
                     ? R.string.abbrev_wday_month_day_no_year_alarm
                     : R.string.abbrev_wday_month_day_no_year);
             final String clockView12Skel = res.getString(R.string.clock_12hr_format);
@@ -504,6 +544,12 @@ public class KeyguardStatusView extends GridLayout implements
                   Settings.System.OMNIJAWS_WEATHER_ICON_PACK), false, this, UserHandle.USER_ALL);
            resolver.registerContentObserver(Settings.System.getUriFor(
                   Settings.System.LOCK_SCREEN_SHOW_WEATHER_LOCATION), false, this, UserHandle.USER_ALL);
+           resolver.registerContentObserver(Settings.System.getUriFor(
+                  Settings.System.SHOW_LOCKSCREEN_ALARM), false, this, UserHandle.USER_ALL);
+           resolver.registerContentObserver(Settings.System.getUriFor(
+                  Settings.System.SHOW_LOCKSCREEN_CLOCK), false, this, UserHandle.USER_ALL);
+           resolver.registerContentObserver(Settings.System.getUriFor(
+                  Settings.System.SHOW_LOCKSCREEN_DATE), false, this, UserHandle.USER_ALL);
 
            update();
         }
@@ -541,6 +587,12 @@ public class KeyguardStatusView extends GridLayout implements
                 Settings.System.LOCK_SCREEN_WEATHER_CONDITION_ICON, 1) == 1;
            mShowLocation = Settings.System.getInt(resolver,
                 Settings.System.LOCK_SCREEN_SHOW_WEATHER_LOCATION, 1) == 1;
+           mShowAlarm = Settings.System.getIntForUser(resolver,
+                    Settings.System.SHOW_LOCKSCREEN_ALARM, 1, UserHandle.USER_CURRENT) == 1;
+           mShowClock = Settings.System.getIntForUser(resolver,
+                    Settings.System.SHOW_LOCKSCREEN_CLOCK, 1, UserHandle.USER_CURRENT) == 1;
+           mShowDate = Settings.System.getIntForUser(resolver,
+                    Settings.System.SHOW_LOCKSCREEN_DATE, 1, UserHandle.USER_CURRENT) == 1;
 
            updateSettings(false);
          }

@@ -5570,6 +5570,11 @@ public final class Settings {
         public static final String SLIM_RECENT_ENTER_EXIT_ANIMATION =
                 "slim_recent_enter_exit_animation";
 
+        /**
+         * Defines the screen-off animation to display
+         * @hide
+         */
+        public static final String SCREEN_OFF_ANIMATION = "screen_off_animation";
 
         /***************************
          * AICP System Settings end
@@ -5645,6 +5650,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(SLIM_RECENTS_CORNER_RADIUS, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(SLIM_RECENTS_BLACKLIST_VALUES, ANY_STRING_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(SLIM_RECENT_ENTER_EXIT_ANIMATION, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(SCREEN_OFF_ANIMATION, ANY_INTEGER_VALIDATOR);
         }
 
         /**

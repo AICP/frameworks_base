@@ -43,4 +43,6 @@
 
     <!-- Custom Carrier Label -->
     <dimen name="status_bar_carrier_height">14dp</dimen>
+
+    <dimen name="screenrecord_hint_size">48dp</dimen>
 </resources>

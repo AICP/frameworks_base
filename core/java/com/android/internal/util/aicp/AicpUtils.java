@@ -32,10 +32,13 @@ import android.net.ConnectivityManager;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.PowerManager;
+import android.os.RemoteException;
 import android.os.UserHandle;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.InputDevice;
+import android.view.IWindowManager;
+import android.view.WindowManagerGlobal;
 import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
 
@@ -285,6 +288,15 @@ public class AicpUtils {
         PowerManager pm = (PowerManager) ctx.getSystemService(Context.POWER_SERVICE);
         if (pm!= null) {
             pm.goToSleep(SystemClock.uptimeMillis());
+        }
+    }
+
+    public static void takeScreenrecord(int mode) {
+        IWindowManager wm = WindowManagerGlobal.getWindowManagerService();
+        try {
+            wm.screenRecordAction(mode);
+        } catch (RemoteException e) {
+            e.printStackTrace();
         }
     }
 

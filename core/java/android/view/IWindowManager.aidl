@@ -444,4 +444,9 @@ interface IWindowManager
      * Send some ActionHandler commands to WindowManager.
      */
     void sendCustomAction(in Intent intent);
+
+    /**
+     * Call screen record from WindowManager.
+     */
+    void screenRecordAction(int mode);
 }

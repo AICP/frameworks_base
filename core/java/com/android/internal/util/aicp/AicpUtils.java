@@ -156,4 +156,13 @@ public class AicpUtils {
         float px = 24 * (metrics.densityDpi / 160f);
         return result > Math.round(px);
     }
+
+    public static void takeScreenrecord(int mode) {
+        IWindowManager wm = WindowManagerGlobal.getWindowManagerService();
+        try {
+            wm.screenRecordAction(mode);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
 }

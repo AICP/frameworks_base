@@ -7635,4 +7635,8 @@ public class WindowManagerService extends IWindowManager.Stub
     public void sendCustomAction(Intent intent) {
         mPolicy.sendCustomAction(intent);
     }
+
+    public void screenRecordAction(int mode) {
+        mPolicy.screenRecordAction(mode);
+    }
 }

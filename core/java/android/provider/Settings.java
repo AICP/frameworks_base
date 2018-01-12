@@ -4785,8 +4785,19 @@ public final class Settings {
          */
         public static final String SENSOR_BLOCK = "sensor_block";
 
+        /** @hide */
         private static final Validator SENSOR_BLOCK_VALIDATOR =
                 BOOLEAN_VALIDATOR;
+
+        /**
+         * Defines the screen-off animation to display
+         * @hide
+         */
+        public static final String SCREEN_OFF_ANIMATION = "screen_off_animation";
+
+        /** @hide */
+        private static final Validator SCREEN_OFF_ANIMATION_VALIDATOR =
+                ANY_INTEGER_VALIDATOR;
 
         /***************************
          * AICP System Settings end
@@ -4890,7 +4901,8 @@ public final class Settings {
             NETWORK_TRAFFIC_STATE,
             NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD,
             FINGERPRINT_SUCCESS_VIB,
-            SENSOR_BLOCK
+            SENSOR_BLOCK,
+            SCREEN_OFF_ANIMATION
             // AICP Settings end
         };
 
@@ -5041,6 +5053,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD);
             PRIVATE_SETTINGS.add(FINGERPRINT_SUCCESS_VIB);
             PRIVATE_SETTINGS.add(SENSOR_BLOCK);
+            PRIVATE_SETTINGS.add(SCREEN_OFF_ANIMATION);
             // AICP Settings end
         }
 
@@ -5174,6 +5187,7 @@ public final class Settings {
             VALIDATORS.put(FINGERPRINT_SUCCESS_VIB,
                     FINGERPRINT_SUCCESS_VIB_VALIDATOR);
             VALIDATORS.put(SENSOR_BLOCK, SENSOR_BLOCK_VALIDATOR);
+            VALIDATORS.put(SCREEN_OFF_ANIMATION, SCREEN_OFF_ANIMATION_VALIDATOR);
             // AICP Settings end
         }
 

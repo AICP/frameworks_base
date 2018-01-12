@@ -16,12 +16,9 @@
 */
 -->
 <resources>
-
   <!-- Package Manager -->
   <java-symbol type="array" name="config_disabledComponents" />
   <java-symbol type="array" name="config_forceEnabledComponents" />
-
-  <java-symbol type="bool" name="config_enableScreenrecordChord" />
 
   <!-- Slim recent app screen-->
   <java-symbol type="integer" name="config_recentDefaultDur" />

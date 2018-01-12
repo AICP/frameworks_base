@@ -19,9 +19,6 @@
 */
 -->
 <resources>
-    <!-- If this is true, key chords can be used to take a screen record on the device. -->
-    <bool name="config_enableScreenrecordChord">true</bool>
-
     <!-- Any package that has one of the package names defined below will be prevented
          from using specific sensors in order to stop battery drain -->
     <string-array name="config_blockPackagesSensorDrain">
@@ -44,7 +41,7 @@
 
     <bool name="config_canForceDozeNotifications">true</bool>
 
-   <!-- Hardware keys present on the device, stored as a bit field.
+    <!-- Hardware keys present on the device, stored as a bit field.
          This integer should equal the sum of the corresponding value for each
          of the following keys present:
              1 - Home

@@ -272,6 +272,8 @@ import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.lineageos.internal.buttons.LineageButtons;
+
 import dalvik.system.PathClassLoader;
 
 /**
@@ -871,6 +873,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private final MutableBoolean mTmpBoolean = new MutableBoolean(false);
 
     private final List<DeviceKeyHandler> mDeviceKeyHandlers = new ArrayList<>();
+    private LineageButtons mLineageButtons;
 
     private boolean mVolumeMusicControlActive;
     private boolean mVolumeMusicControl;
@@ -6844,6 +6847,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     // {@link interceptKeyBeforeDispatching()}.
                     result |= ACTION_PASS_TO_USER;
                 } else if ((result & ACTION_PASS_TO_USER) == 0 && !mVolumeWakeScreen) {
+                    if (mLineageButtons.handleVolumeKey(event, interactive)) {
+                        break;
+                    }
                     if (!interactive && mVolumeMusicControl && isMusicActive()) {
                         boolean notHandledMusicControl = false;
                         if (down) {
@@ -8231,6 +8237,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             }
         }
 
+        mLineageButtons = new LineageButtons(mContext);
         mSystemGestures.systemReady();
         mImmersiveModeConfirmation.systemReady();
 

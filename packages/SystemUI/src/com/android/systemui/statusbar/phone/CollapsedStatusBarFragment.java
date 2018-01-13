@@ -75,6 +75,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
     private View mWeatherImageView;
     private View mWeatherTextView;
     private View mCustomCarrierLabel;
+    private View mBatteryBar;
     private int mShowCarrierLabel;
     private int mShowLogo;
     private int mShowWeather;
@@ -151,6 +152,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
         mWeatherTextView = mStatusBar.findViewById(R.id.weather_temp);
         mWeatherImageView = mStatusBar.findViewById(R.id.weather_image);
         mCustomCarrierLabel = mStatusBar.findViewById(R.id.statusbar_carrier_text);
+        mBatteryBar = mStatusBar.findViewById(R.id.battery_bar);
         mAicpSettingsObserver.observe();
         updateSettings(false);
         // initTickerView() already called above from updateSettings(false)
@@ -259,6 +261,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
         if (mShowLogo == 2) {
             animateHide(mAicpLogoRight, animate, false);
         }
+        animateHide(mBatteryBar, animate, true);
     }
 
     public void showSystemIconArea(boolean animate) {
@@ -266,6 +269,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
         if (mShowLogo == 2) {
             animateShow(mAicpLogoRight, animate);
         }
+        animateShow(mBatteryBar, animate);
     }
 
     public void hideNotificationIconArea(boolean animate) {
@@ -273,6 +277,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
         if (mShowLogo == 1) {
             animateHide(mAicpLogo, animate, false);
         }
+        animateHide(mBatteryBar, animate, true);
     }
 
     public void showNotificationIconArea(boolean animate) {
@@ -280,6 +285,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
         if (mShowLogo == 1) {
             animateShow(mAicpLogo, animate);
         }
+        animateShow(mBatteryBar, animate);
     }
 
     public void hideCarrierName(boolean animate) {

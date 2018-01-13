@@ -212,7 +212,9 @@ public class QuickQSPanel extends QSPanel {
             setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
             mTileSize = mContext.getResources().getDimensionPixelSize(R.dimen.qs_quick_tile_size);
             mStartMargin = mContext.getResources()
-                    .getDimensionPixelSize(R.dimen.qs_scroller_margin);
+                    .getDimensionPixelSize(R.dimen.qs_scroller_margin) +
+                    mContext.getResources()
+                            .getDimensionPixelSize(R.dimen.rounded_corner_content_padding);
             mScreenWidth = mContext.getResources().getDisplayMetrics().widthPixels;
         }
 

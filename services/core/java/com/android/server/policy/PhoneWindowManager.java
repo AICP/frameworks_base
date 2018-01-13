@@ -253,6 +253,7 @@ import com.android.server.statusbar.StatusBarManagerInternal;
 import com.android.server.vr.VrManagerInternal;
 import com.android.server.wm.AppTransition;
 
+import lineageos.hardware.LineageHardwareManager;
 import lineageos.providers.LineageSettings;
 
 import java.io.File;
@@ -720,6 +721,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     int mInitialMetaState;
     boolean mForceShowSystemBars;
 
+    boolean mDevForceNavbar;
+
     // support for activating the lock screen while the screen is on
     boolean mAllowLockscreenWhenOn;
     int mLockScreenTimeout;
@@ -859,11 +862,12 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private static final int MSG_DISPATCH_BACK_KEY_TO_AUTOFILL = 24;
     private static final int MSG_SYSTEM_KEY_PRESS = 25;
     private static final int MSG_HANDLE_ALL_APPS = 26;
+    private static final int MSG_DISPATCH_VOLKEY_WITH_WAKE_LOCK = 27;
 
     private static final int MSG_REQUEST_TRANSIENT_BARS_ARG_STATUS = 0;
     private static final int MSG_REQUEST_TRANSIENT_BARS_ARG_NAVIGATION = 1;
 
-    private static final int MSG_DISPATCH_VOLKEY_WITH_WAKE_LOCK = 27;
+    private LineageHardwareManager mLineageHardware;
 
     private class PolicyHandler extends Handler {
         @Override
@@ -1039,6 +1043,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(LineageSettings.System.getUriFor(
                     LineageSettings.System.ACCELEROMETER_ROTATION_ANGLES), false, this,
+                    UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.Secure.getUriFor(
+                    Settings.Secure.NAVIGATION_BAR_VISIBLE), false, this,
                     UserHandle.USER_ALL);
             updateSettings();
         }
@@ -2027,7 +2034,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             mOrientationListener.setCurrentRotation(windowManager.getDefaultDisplayRotation());
         } catch (RemoteException ex) { }
         mSettingsObserver = new SettingsObserver(mHandler);
-        mSettingsObserver.observe();
         mShortcutManager = new ShortcutManager(context);
         mUiMode = context.getResources().getInteger(
                 com.android.internal.R.integer.config_defaultUiModeType);
@@ -2466,6 +2472,15 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             boolean threeFingerGesture = Settings.System.getIntForUser(resolver,
                     Settings.System.THREE_FINGER_GESTURE, 0, UserHandle.USER_CURRENT) == 1;
             enableSwipeThreeFingerGesture(threeFingerGesture);
+
+            boolean devForceNavbar = Settings.Secure.getIntForUser(resolver,
+                    Settings.Secure.NAVIGATION_BAR_VISIBLE, 0, UserHandle.USER_CURRENT) == 1;
+            if (devForceNavbar != mDevForceNavbar) {
+                mDevForceNavbar = devForceNavbar;
+                if (mLineageHardware.isSupported(LineageHardwareManager.FEATURE_KEY_DISABLE)) {
+                    mLineageHardware.set(LineageHardwareManager.FEATURE_KEY_DISABLE, mDevForceNavbar);
+                }
+            }
 
             // Configure rotation lock.
             int userRotation = Settings.System.getIntForUser(resolver,
@@ -7774,6 +7789,11 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             mVrManagerInternal.addPersistentVrModeStateListener(mPersistentVrModeListener);
         }
 
+        mLineageHardware = LineageHardwareManager.getInstance(mContext);
+        // Ensure observe happens in systemReady() since we need
+        // LineageHardwareService to be up and running
+        mSettingsObserver.observe();
+
         readCameraLensCoverState();
         updateUiMode();
         synchronized (mLock) {
@@ -8624,6 +8644,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     // overridden by qemu.hw.mainkeys in the emulator.
     @Override
     public boolean hasNavigationBar() {
+        return mNavbarVisible || mDevForceNavbar;
+    }
+
+    public boolean needsNavigationBar() {
         return mNavbarVisible;
     }
 

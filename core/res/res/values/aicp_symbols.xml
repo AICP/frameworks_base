@@ -165,4 +165,6 @@
   <java-symbol type="drawable" name="deadpool_clock_dial_ambient" />
   <java-symbol type="drawable" name="deadpool_clock_hand_hour" />
   <java-symbol type="drawable" name="deadpool_clock_hand_minute" />
+
+  <java-symbol type="bool" name="config_dozeAlwaysOnDisplayEnabledDefault" />
 </resources>

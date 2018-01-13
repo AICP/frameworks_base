@@ -104,4 +104,6 @@
 
     <!-- Proximity check timeout for flashlight -->
     <integer name="config_flashlightProximityTimeout">300</integer>
+
+    <bool name="config_dozeAlwaysOnDisplayEnabledDefault">false</bool>
 </resources>

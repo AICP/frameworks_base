@@ -160,6 +160,9 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
     private List<String> mBlockedIcons = new ArrayList<>();
     private Map<Startable, Startable.State> mStartableStates = new ArrayMap<>();
 
+    // AICP additions
+    private View mBatteryBar;
+
     private final OngoingCallListener mOngoingCallListener = new OngoingCallListener() {
         @Override
         public void onOngoingCallStateChanged(boolean animate) {
@@ -352,6 +355,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
         mClockController = mStatusBar.getClockController();
         mOngoingCallChip = mStatusBar.findViewById(R.id.ongoing_call_chip);
         showEndSideContent(false);
+        mBatteryBar = mStatusBar.findViewById(R.id.battery_bar);
         showClock(false);
         initOperatorName();
         initNotificationIconArea();
@@ -687,6 +691,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
         } else {
             mEndSideAlphaController.animateToAlpha(/*alpha*/ 0f, SOURCE_OTHER, FADE_OUT_DURATION,
                     InterpolatorsAndroidX.ALPHA_OUT, /*startDelay*/ 0);
+        animateHide(mBatteryBar, animate);
         }
     }
 
@@ -703,6 +708,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
         } else {
             mEndSideAlphaController.animateToAlpha(/*alpha*/ 1f, SOURCE_OTHER, FADE_IN_DURATION,
                     InterpolatorsAndroidX.ALPHA_IN, FADE_IN_DELAY);
+            animateShow(mBatteryBar, animate);
         }
     }
 

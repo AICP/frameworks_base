@@ -92,4 +92,5 @@
 
   <java-symbol type="string" name="global_action_screenrecord" />
 
+  <java-symbol type="bool" name="config_canForceDozeNotifications" />
 </resources>

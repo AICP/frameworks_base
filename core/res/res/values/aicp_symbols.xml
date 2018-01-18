@@ -95,4 +95,7 @@
   <!-- Smartnav animations -->
   <java-symbol type="anim" name="inv_app_in" />
   <java-symbol type="anim" name="inv_app_out" />
+
+  <!-- Whether or not ambient media display opt-in setting is available on this device -->
+  <java-symbol type="bool" name="config_canForceDozeNotifications" />
 </resources>

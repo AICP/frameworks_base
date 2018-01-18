@@ -5383,6 +5383,18 @@ public final class Settings {
         private static final Validator MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD_VALIDATOR =
               new SettingsValidators.InclusiveIntegerRangeValidator(0, 120000);
 
+        /**
+         * Force an Ambient notification when a new media track is being played
+         * 0 - disabled
+         * 1 - show track info within normal Ambient Display and force a new Ambient clean layout when skipping tracks
+         * @hide
+         */
+        public static final String FORCE_AMBIENT_FOR_MEDIA = "force_ambient_for_media";
+
+        /** @hide */
+        private static final Validator FORCE_AMBIENT_FOR_MEDIA_VALIDATOR =
+              new SettingsValidators.InclusiveIntegerRangeValidator(0, 1);
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5556,6 +5568,7 @@ public final class Settings {
             SLIM_RECENTS_BLACKLIST_VALUES,
             NOTIFICATION_SOUND_VIB_SCREEN_ON,
             MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD,
+            FORCE_AMBIENT_FOR_MEDIA,
             // AICP Settings end
         };
 
@@ -5793,6 +5806,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SLIM_RECENTS_BLACKLIST_VALUES);
             PRIVATE_SETTINGS.add(NOTIFICATION_SOUND_VIB_SCREEN_ON);
             PRIVATE_SETTINGS.add(MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD);
+            PRIVATE_SETTINGS.add(FORCE_AMBIENT_FOR_MEDIA);
             // AICP Settings end
         }
 
@@ -6012,6 +6026,7 @@ public final class Settings {
                     NOTIFICATION_SOUND_VIB_SCREEN_ON_VALIDATOR);
             VALIDATORS.put(MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD,
                     MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD_VALIDATOR);
+            VALIDATORS.put(FORCE_AMBIENT_FOR_MEDIA,FORCE_AMBIENT_FOR_MEDIA_VALIDATOR);
             // AICP Settings end
         }
 

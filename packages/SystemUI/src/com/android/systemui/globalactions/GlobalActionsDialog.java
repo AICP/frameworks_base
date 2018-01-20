@@ -164,6 +164,8 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener, DialogIn
     private static final String SYSUI_PACKAGE = "com.android.systemui";
     private static final String SYSUI_SCREENSHOT_SERVICE =
             "com.android.systemui.screenshot.TakeScreenshotService";
+    private static final String SYSUI_SCREENRECORD_SERVICE =
+            "com.android.systemui.omni.screenrecord.TakeScreenrecordService";
 
     /**
      * @param context everything needs a context :(
@@ -443,6 +445,8 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener, DialogIn
                 continue;
             } else if (GLOBAL_ACTION_KEY_SCREENSHOT.equals(actionKey)) {
                 mItems.add(new ScreenshotAction());
+            } else if (GLOBAL_ACTION_KEY_SCREENRECORD.equals(actionKey)) {
+                mItems.add(new ScreenrecordAction());
             } else if (GLOBAL_ACTION_KEY_AIRPLANE.equals(actionKey)) {
                 mItems.add(mAirplaneModeOn);
             } else if (GLOBAL_ACTION_KEY_BUGREPORT.equals(actionKey)) {
@@ -698,6 +702,34 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener, DialogIn
             return true;
         }
     }
+
+    private final class ScreenrecordAction extends SinglePressAction implements LongPressAction {
+
+        private ScreenrecordAction() {
+            super(R.drawable.ic_lock_screenrecord, R.string.global_action_screenrecord);
+        }
+
+        @Override
+        public void onPress() {
+            takeScreenrecord();
+        }
+
+        @Override
+        public boolean onLongPress() {
+            return true;
+        }
+
+        @Override
+        public boolean showDuringKeyguard() {
+            return true;
+        }
+
+        @Override
+        public boolean showBeforeProvisioning() {
+            return true;
+        }
+    }
+
 
     private class BugReportAction extends SinglePressAction implements LongPressAction {
 
@@ -1016,6 +1048,74 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener, DialogIn
             }
         }
     }
+
+    /**
+     * functions needed for taking screen record.
+     */
+    final Object mScreenrecordLock = new Object();
+    ServiceConnection mScreenrecordConnection = null;
+
+    final Runnable mScreenrecordTimeout = new Runnable() {
+        @Override public void run() {
+            synchronized (mScreenrecordLock) {
+                if (mScreenrecordConnection != null) {
+                    mContext.unbindService(mScreenrecordConnection);
+                    mScreenrecordConnection = null;
+                }
+            }
+        }
+    };
+
+    // Assume this is called from the Handler thread.
+    private void takeScreenrecord() {
+        synchronized (mScreenrecordLock) {
+            if (mScreenrecordConnection != null) {
+                return;
+            }
+            ComponentName cn = new ComponentName(SYSUI_PACKAGE,
+                    SYSUI_SCREENRECORD_SERVICE);
+            Intent intent = new Intent();
+            intent.setComponent(cn);
+            ServiceConnection conn = new ServiceConnection() {
+                @Override
+                public void onServiceConnected(ComponentName name, IBinder service) {
+                    synchronized (mScreenrecordLock) {
+                        Messenger messenger = new Messenger(service);
+                        Message msg = Message.obtain(null, 1);
+                        final ServiceConnection myConn = this;
+                        Handler h = new Handler(mHandler.getLooper()) {
+                            @Override
+                            public void handleMessage(Message msg) {
+                                synchronized (mScreenrecordLock) {
+                                    if (mScreenrecordConnection == myConn) {
+                                        mContext.unbindService(mScreenrecordConnection);
+                                        mScreenrecordConnection = null;
+                                        mHandler.removeCallbacks(mScreenrecordTimeout);
+                                    }
+                                }
+                            }
+                        };
+                        msg.replyTo = new Messenger(h);
+                        msg.arg1 = msg.arg2 = 0;
+                        try {
+                            messenger.send(msg);
+                        } catch (RemoteException e) {
+                        }
+                    }
+                }
+                @Override
+                public void onServiceDisconnected(ComponentName name) {}
+            };
+            if (mContext.bindServiceAsUser(
+                    intent, conn, Context.BIND_AUTO_CREATE, UserHandle.CURRENT)) {
+                mScreenrecordConnection = conn;
+                // Screenrecord max duration is 30 minutes. Allow 31 minutes before killing
+                // the service.
+                mHandler.postDelayed(mScreenrecordTimeout, 31 * 60 * 1000);
+            }
+        }
+    }
+
 
     private void prepareDialog() {
         refreshSilentMode();

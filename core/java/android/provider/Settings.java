@@ -5070,6 +5070,17 @@ public final class Settings {
         private static final Validator ON_THE_GO_CAMERA_VALIDATOR =
               new SettingsValidators.InclusiveIntegerRangeValidator(0, 1);
 
+        /**
+         * If Screenrecord should be displayed at the power menu.
+         *
+         * @hide
+         */
+        public static final String GLOBAL_ACTIONS_SCREENRECORD = "global_actions_screenrecord";
+
+        /** @hide */
+        private static final Validator GLOBAL_ACTIONS_SCREENRECORD_VALIDATOR =
+              BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5213,6 +5224,7 @@ public final class Settings {
             GLOBAL_ACTIONS_ONTHEGO,
             ON_THE_GO_SERVICE_RESTART,
             ON_THE_GO_CAMERA,
+            GLOBAL_ACTIONS_SCREENRECORD,
             // AICP Settings end
         };
 
@@ -5420,6 +5432,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(ON_THE_GO_SERVICE_RESTART);
             PRIVATE_SETTINGS.add(ON_THE_GO_ALPHA);
             PRIVATE_SETTINGS.add(ON_THE_GO_CAMERA);
+            PRIVATE_SETTINGS.add(GLOBAL_ACTIONS_SCREENRECORD);
             // AICP Settings end
         }
 
@@ -5606,6 +5619,7 @@ public final class Settings {
             VALIDATORS.put(GLOBAL_ACTIONS_ONTHEGO,GLOBAL_ACTIONS_ONTHEGO_VALIDATOR);
             VALIDATORS.put(ON_THE_GO_SERVICE_RESTART,ON_THE_GO_SERVICE_RESTART_VALIDATOR);
             VALIDATORS.put(ON_THE_GO_CAMERA,ON_THE_GO_CAMERA_VALIDATOR);
+            VALIDATORS.put(GLOBAL_ACTIONS_SCREENRECORD,GLOBAL_ACTIONS_SCREENRECORD_VALIDATOR);
             // AICP Settings end
         }
 

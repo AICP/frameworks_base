@@ -42,4 +42,8 @@
 
   <!-- On-The-Go -->
   <java-symbol type="drawable" name="ic_lock_onthego" />
+
+  <!-- Power menu -->
+  <java-symbol type="drawable" name="ic_lock_screenrecord" />
+
 </resources>

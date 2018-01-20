@@ -331,7 +331,7 @@ class FakeStatusBarService : IStatusBarService.Stub() {
 
     override fun shutdown() {}
 
-    override fun reboot(safeMode: Boolean) {}
+    override fun reboot(safeMode: Boolean, reason: String) {}
 
     override fun restart() {}
 

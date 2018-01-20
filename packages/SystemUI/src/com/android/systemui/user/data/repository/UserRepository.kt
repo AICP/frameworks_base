@@ -341,7 +341,7 @@ constructor(
                     activityManager.logoutUser(currentUserId)
                 }
             } else {
-                withContext(backgroundDispatcher) { statusBarService.reboot(false) }
+                withContext(backgroundDispatcher) { statusBarService.reboot(false, null) }
             }
         }
     }

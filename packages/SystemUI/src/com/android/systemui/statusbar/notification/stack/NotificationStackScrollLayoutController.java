@@ -1390,7 +1390,7 @@ public class NotificationStackScrollLayoutController {
     public void clearSilentNotifications() {
         // Leave the shade open if there will be other notifs left over to clear
         final boolean closeShade = !hasActiveClearableNotifications(ROWS_HIGH_PRIORITY);
-        mView.clearNotifications(ROWS_GENTLE, closeShade);
+        mView.clearNotifications(ROWS_GENTLE, closeShade, false /* forceToLeft */);
     }
 
     private void onAnimationEnd(List<ExpandableNotificationRow> viewsToRemove,

@@ -15,12 +15,16 @@
  */
 package com.android.systemui.statusbar.policy;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.ContentObserver;
 import android.net.NetworkCapabilities;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.provider.Settings.Global;
 import android.telephony.PhoneStateListener;
 import android.telephony.ServiceState;
@@ -72,6 +76,8 @@ public class MobileSignalController extends SignalController<
     private MobileIconGroup mDefaultIcons;
     private Config mConfig;
 
+    private boolean mShowLteFourGee;
+
     // TODO: Reduce number of vars passed in, if we have the NetworkController, probably don't
     // need listener lists anymore.
     public MobileSignalController(Context context, Config config, boolean hasMobileData,
@@ -108,7 +114,44 @@ public class MobileSignalController extends SignalController<
                 updateTelephony();
             }
         };
+
+        Handler mHandler = new Handler();
+        SettingsObserver settingsObserver = new SettingsObserver(mHandler);
+        settingsObserver.observe();
     }
+
+    protected class SettingsObserver extends ContentObserver {
+        SettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        void observe() {
+           ContentResolver resolver = mContext.getContentResolver();
+           resolver.registerContentObserver(Settings.System.getUriFor(
+                  Settings.System.SHOW_LTE_FOURGEE),
+                  false, this, UserHandle.USER_ALL);
+           updateSettings();
+        }
+
+        /*
+         *  @hide
+         */
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
+            updateSettings();
+        }
+    }
+
+    private void updateSettings() {
+        ContentResolver resolver = mContext.getContentResolver();
+
+        mShowLteFourGee = Settings.System.getIntForUser(resolver,
+                Settings.System.SHOW_LTE_FOURGEE, 0,
+                UserHandle.USER_CURRENT) == 1;
+
+        mapIconSets();
+        updateTelephony();
+   }
 
     public void setConfiguration(Config config) {
         mConfig = config;
@@ -216,7 +259,7 @@ public class MobileSignalController extends SignalController<
         }
         mNetworkToIconLookup.put(TelephonyManager.NETWORK_TYPE_HSPAP, hGroup);
 
-        if (mConfig.show4gForLte) {
+        if (mShowLteFourGee) {
             mNetworkToIconLookup.put(TelephonyManager.NETWORK_TYPE_LTE, TelephonyIcons.FOUR_G);
             if (mConfig.hideLtePlus) {
                 mNetworkToIconLookup.put(TelephonyManager.NETWORK_TYPE_LTE_CA,
@@ -325,7 +368,7 @@ public class MobileSignalController extends SignalController<
             Log.e(mTag, "Invalid SubscriptionInfo");
         }
         return false;
-      }
+    }
 
     @Override
     protected MobileState cleanState() {

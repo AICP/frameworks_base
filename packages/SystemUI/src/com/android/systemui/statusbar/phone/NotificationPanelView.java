@@ -3544,6 +3544,10 @@ public class NotificationPanelView extends PanelView implements
         mOnReinflationListener = onReinflationListener;
     }
 
+    public void clearAllNotifications(boolean forceToLeft) {
+        mNotificationStackScroller.clearAllNotifications(forceToLeft);
+    }
+
     public void updateDoubleTapToSleep(boolean doubleTapToSleepEnabled) {
         mDoubleTapToSleepEnabled = doubleTapToSleepEnabled;
     }

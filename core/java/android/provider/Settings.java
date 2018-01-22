@@ -5106,6 +5106,15 @@ public final class Settings {
         /** @hide */
         private static final Validator ROAMING_INDICATOR_ICON_VALIDATOR = BOOLEAN_VALIDATOR;
 
+        /**
+         * Whether to display the 4g or lte network icon in the statusbar
+         * @hide
+         */
+        public static final String SHOW_LTE_FOURGEE = "show_lte_fourgee";
+
+        /** @hide */
+        private static final Validator SHOW_LTE_FOURGEE_VALIDATOR = BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5240,6 +5249,7 @@ public final class Settings {
             TRANSPARENT_POWER_DIALOG_DIM,
             GLOBAL_ACTIONS_SCREENRECORD,
             ROAMING_INDICATOR_ICON,
+            SHOW_LTE_FOURGEE,
             // AICP Settings end
         };
 
@@ -5422,6 +5432,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(TRANSPARENT_POWER_DIALOG_DIM);
             PRIVATE_SETTINGS.add(GLOBAL_ACTIONS_SCREENRECORD);
             PRIVATE_SETTINGS.add(ROAMING_INDICATOR_ICON);
+            PRIVATE_SETTINGS.add(SHOW_LTE_FOURGEE);
             // AICP Settings end
         }
 
@@ -5594,6 +5605,7 @@ public final class Settings {
             VALIDATORS.put(TRANSPARENT_POWER_DIALOG_DIM,TRANSPARENT_POWER_DIALOG_DIM_VALIDATOR);
             VALIDATORS.put(GLOBAL_ACTIONS_SCREENRECORD,GLOBAL_ACTIONS_SCREENRECORD_VALIDATOR);
             VALIDATORS.put(ROAMING_INDICATOR_ICON,ROAMING_INDICATOR_ICON_VALIDATOR);
+            VALIDATORS.put(SHOW_LTE_FOURGEE,SHOW_LTE_FOURGEE_VALIDATOR);
             // AICP Settings end
         }
 

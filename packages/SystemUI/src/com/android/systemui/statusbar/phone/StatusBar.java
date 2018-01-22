@@ -642,6 +642,8 @@ public class StatusBar extends SystemUI implements DemoMode,
     private ActivityIntentHelper mActivityIntentHelper;
 
     // aicp additions start
+    private boolean mFpDismissNotifications;
+
     private class AicpSettingsObserver extends ContentObserver {
         AicpSettingsObserver(Handler handler) {
             super(handler);
@@ -653,6 +655,9 @@ public class StatusBar extends SystemUI implements DemoMode,
                     false, this, UserHandle.USER_ALL);
             mContext.getContentResolver().registerContentObserver(Settings.System.getUriFor(
                     Settings.System.AICP_DOUBLE_TAP_SLEEP_LOCKSCREEN),
+                    false, this, UserHandle.USER_ALL);
+            mContext.getContentResolver().registerContentObserver(Settings.Secure.getUriFor(
+                    Settings.Secure.FP_SWIPE_TO_DISMISS_NOTIFICATIONS),
                     false, this, UserHandle.USER_ALL);
         }
 
@@ -2054,6 +2059,12 @@ public class StatusBar extends SystemUI implements DemoMode,
                 mNotificationPanelViewController.flingSettings(0 /* velocity */,
                         NotificationPanelView.FLING_EXPAND);
                 mMetricsLogger.count(NotificationPanelView.COUNTER_PANEL_OPEN_QS, 1);
+            }
+        } else if (mFpDismissNotifications && (KeyEvent.KEYCODE_SYSTEM_NAVIGATION_LEFT == key
+                || KeyEvent.KEYCODE_SYSTEM_NAVIGATION_RIGHT == key)) {
+            if (!mNotificationPanelViewController.isFullyCollapsed() && !mNotificationPanelViewController.isExpanding()){
+                mMetricsLogger.action(MetricsEvent.ACTION_DISMISS_ALL_NOTES);
+                mNotificationPanelViewController.clearAllNotifications(KeyEvent.KEYCODE_SYSTEM_NAVIGATION_LEFT == key ? true : false);
             }
         }
 
@@ -4449,6 +4460,9 @@ public class StatusBar extends SystemUI implements DemoMode,
                 UserHandle.USER_CURRENT) == 1;
         boolean isDoubleTapEnabled = Settings.System.getIntForUser(
                 mContext.getContentResolver(), Settings.System.AICP_DOUBLE_TAP_SLEEP_LOCKSCREEN, 0,
+                UserHandle.USER_CURRENT) == 1;
+        mFpDismissNotifications = Settings.Secure.getIntForUser(mContext.getContentResolver(),
+                Settings.Secure.FP_SWIPE_TO_DISMISS_NOTIFICATIONS, 0,
                 UserHandle.USER_CURRENT) == 1;
         if (mNotificationPanelViewController != null) {
             mNotificationPanelViewController.updateDoubleTapToSleep(doubleTapToSleepEnabled);

@@ -5769,6 +5769,12 @@ public final class Settings {
          */
         public static final String ROAMING_INDICATOR_ICON = "roaming_indicator_icon";
 
+        /**
+         * Whether to display the 4g or lte network icon in the statusbar
+         * @hide
+         */
+        public static final String SHOW_LTE_FOURGEE = "show_lte_fourgee";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5875,6 +5881,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(ON_THE_GO_CAMERA, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(ON_THE_GO_ALPHA, ANY_STRING_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(ROAMING_INDICATOR_ICON, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(SHOW_LTE_FOURGEE, BOOLEAN_VALIDATOR);
         }
 
         /**

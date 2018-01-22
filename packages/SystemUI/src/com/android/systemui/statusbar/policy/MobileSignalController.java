@@ -126,6 +126,7 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
     private int mMobileStatusHistoryIndex;
 
     private boolean mRoamingIconAllowed;
+    private boolean mShowLteFourGee;
 
     // TODO: Reduce number of vars passed in, if we have the NetworkController, probably don't
     // need listener lists anymore.
@@ -255,6 +256,7 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
         Handler mHandler = new Handler();
         SettingsObserver settingsObserver = new SettingsObserver(mHandler);
         settingsObserver.observe();
+        updateSettings();
     }
 
     class SettingsObserver extends ContentObserver {
@@ -267,7 +269,9 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
             Uri uri = Settings.System.getUriFor(Settings.System.ROAMING_INDICATOR_ICON);
             resolver.registerContentObserver(uri, false,
                     this, UserHandle.USER_ALL);
-            updateSettings();
+            resolver.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.SHOW_LTE_FOURGEE), false,
+                    this, UserHandle.USER_ALL);
         }
 
         /*
@@ -286,14 +290,20 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
                 Settings.System.ROAMING_INDICATOR_ICON, 1,
                 UserHandle.USER_CURRENT) == 1;
 
+        mShowLteFourGee = Settings.System.getIntForUser(resolver,
+                Settings.System.SHOW_LTE_FOURGEE, 0,
+                UserHandle.USER_CURRENT) == 1;
+
+        mNetworkToIconLookup = mapIconSets(mConfig, mShowLteFourGee);
         updateTelephony();
     }
 
 
     public void setConfiguration(Config config) {
         mConfig = config;
+        updateSettings();
         updateInflateSignalStrength();
-        mNetworkToIconLookup = mapIconSets(mConfig);
+        mNetworkToIconLookup = mapIconSets(mConfig, mShowLteFourGee);
         mDefaultIcons = getDefaultIcons(mConfig);
         updateTelephony();
     }

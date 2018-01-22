@@ -193,5 +193,6 @@ public class SecureSettings {
         Settings.Secure.LOCKSCREEN_SHOW_WALLET,
         Settings.Secure.VOLUME_LINK_NOTIFICATION,
         Settings.Secure.NAV_BAR_INVERSE,
+        Settings.Secure.FP_SWIPE_TO_DISMISS_NOTIFICATIONS,
     };
 }

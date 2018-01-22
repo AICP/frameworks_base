@@ -10296,6 +10296,12 @@ public final class Settings {
          */
         public static final String NAV_BAR_INVERSE = "sysui_nav_bar_inverse";
 
+        /**
+        * Wheter to dismiss notifications on fingerprint left and right swipe action
+        * @hide
+        */
+        public static final String FP_SWIPE_TO_DISMISS_NOTIFICATIONS = "fp_swipe_to_dismiss_notifications";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

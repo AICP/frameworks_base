@@ -83,11 +83,15 @@ public class MobileMappings {
         }
     }
 
+    public static Map<String, MobileIconGroup> mapIconSets(Config config) {
+        return mapIconSets(config, false);
+    }
+
     /**
      * Produce a mapping of data network types to icon groups for simple and quick use in
      * updateTelephony.
      */
-    public static Map<String, MobileIconGroup> mapIconSets(Config config) {
+    public static Map<String, MobileIconGroup> mapIconSets(Config config, boolean show4gForLteUser) {
         final Map<String, MobileIconGroup> networkToIconLookup = new HashMap<>();
 
         networkToIconLookup.put(toIconKey(TelephonyManager.NETWORK_TYPE_EVDO_0),
@@ -143,7 +147,7 @@ public class MobileMappings {
         networkToIconLookup.put(toIconKey(TelephonyManager.NETWORK_TYPE_HSPA), hGroup);
         networkToIconLookup.put(toIconKey(TelephonyManager.NETWORK_TYPE_HSPAP), hPlusGroup);
 
-        if (config.show4gForLte) {
+        if (show4gForLteUser) {
             networkToIconLookup.put(toIconKey(
                     TelephonyManager.NETWORK_TYPE_LTE),
                     TelephonyIcons.FOUR_G);

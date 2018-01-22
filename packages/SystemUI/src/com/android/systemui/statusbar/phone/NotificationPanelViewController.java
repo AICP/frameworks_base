@@ -3801,4 +3801,8 @@ public class NotificationPanelViewController extends PanelViewController {
     public void setLockscreenDoubleTapToSleep(boolean isDoubleTapEnabled) {
         mIsLockscreenDoubleTapEnabled = isDoubleTapEnabled;
     }
+
+    public void clearAllNotifications(boolean forceToLeft) {
+        mNotificationStackScroller.clearAllNotifications(forceToLeft);
+    }
 }

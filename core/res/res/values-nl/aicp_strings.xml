@@ -40,6 +40,6 @@
   <string name="animation_grow_shrink_left">Ingroeien (van links)</string>
   <string name="animation_grow_shrink_right">Ingroeien (van rechts)</string>
   <string name="action_null">Leeg</string>
-  <string name="reboot_title">Opnieuw opstarten</string>
-  <string name="reboot_message">Systeem wordt opnieuw gestart</string>
+  <!-- Label for item that screenrecords in power menu options dialog -->
+  <string name="global_action_screenrecord">Schermopname</string>
 </resources>

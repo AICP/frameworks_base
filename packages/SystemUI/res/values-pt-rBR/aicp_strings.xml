@@ -96,16 +96,25 @@
   <string name="accessibility_quick_settings_location_high_accuracy">Relatório de localização: modo de alta precisão.</string>
   <!-- Screenrecord Notification Ticker -->
   <string name="screenrecord_notif_ticker">A tela está sendo gravada</string>
+  <string name="screenrecord_notif_final_ticker">Tela gravada com sucesso</string>
   <!-- Screenrecord notification title -->
   <string name="screenrecord_notif_title">Gravando a tela</string>
   <!-- Screenrecord notification action: Stop -->
   <string name="screenrecord_notif_stop">Parar</string>
+  <string name="screenrecord_notif_completed">Tela gravada com sucesso</string>
   <!-- Screenrecord notification action: show/hide pointer -->
   <string name="screenrecord_notif_pointer_on">Mostrar ponteiro</string>
   <string name="screenrecord_notif_pointer_off">Ocultar ponteiro</string>
   <!-- Screen record notification error title -->
   <string name="screenrecord_notif_error">Não é possível gravar a tela</string>
   <string name="notification_channel_screenrecord">Gravações de tela</string>
+  <string name="screenrecord_hide_hint">Esconder dicas</string>
+  <string name="screenrecord_show_hint">Mostrar dica</string>
+  <!-- Screenshot QS tile -->
+  <string name="quick_settings_screenrecord_label">Gravar a tela</string>
+  <string name="quick_settings_screenrecord_lq_label">Gravação de tela em qualidade baixa</string>
+  <string name="quick_settings_screenrecord_mq_label">Gravação de tela em qualidade média</string>
+  <string name="quick_settings_screenrecord_hq_label">Gravação de tela em qualidade alta</string>
   <string name="lockscreen_default">Padrão</string>
   <string name="lockscreen_hidden">Nenhum</string>
   <string name="omnijaws_service_error">Erro</string>

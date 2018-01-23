@@ -104,6 +104,8 @@
   <!-- Screen record notification error title -->
   <string name="screenrecord_notif_error">Impossible d\'enregistrer l\'écran</string>
   <string name="notification_channel_screenrecord">Enregistrement de l\'écran</string>
+  <!-- Screenshot QS tile -->
+  <string name="quick_settings_screenrecord_label">Enregistrement de l\'écran</string>
   <string name="omnijaws_service_error">Erreur</string>
   <string name="omnijaws_service_unkown">Donnée météo indisponible</string>
   <string name="omnijaws_service_error_long">Erreur lors du chargement des données météo</string>

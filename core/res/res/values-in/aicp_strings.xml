@@ -25,6 +25,5 @@
   <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_toggleNavigationEditor">Izinkan sebuah aplikasi mengontrol navigasi bar editor.</string>
   <!-- AOKP custom system animations -->
-  <string name="reboot_title">Nyalakan Ulang</string>
-  <string name="reboot_message">Menyalakan ulang sistem</string>
+  <!-- Label for item that screenrecords in power menu options dialog -->
 </resources>

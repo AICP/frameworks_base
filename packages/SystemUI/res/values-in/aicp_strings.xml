@@ -56,6 +56,7 @@
   <!-- Screen record notification error title -->
   <string name="screenrecord_notif_error">Tidak dapat merekam tampilan layar</string>
   <string name="notification_channel_screenrecord">Perekam layar</string>
+  <!-- Screenshot QS tile -->
   <string name="lockscreen_default">Standar</string>
   <string name="lockscreen_hidden">Tidak ada</string>
   <string name="omnijaws_service_disabled">Layanan dimatikan</string>

@@ -40,6 +40,6 @@
   <string name="animation_grow_shrink_left">Einblenden (von links)</string>
   <string name="animation_grow_shrink_right">Einblenden (von rechts)</string>
   <string name="action_null">Leer</string>
-  <string name="reboot_title">Neu starten</string>
-  <string name="reboot_message">System wird neu gestartet</string>
+  <!-- Label for item that screenrecords in power menu options dialog -->
+  <string name="global_action_screenrecord">Bildschirmaufnahme</string>
 </resources>

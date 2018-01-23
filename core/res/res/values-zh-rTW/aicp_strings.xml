@@ -40,6 +40,6 @@
   <string name="animation_grow_shrink_left">縮放 (左測)</string>
   <string name="animation_grow_shrink_right">縮放 (右側)</string>
   <string name="action_null">空白</string>
-  <string name="reboot_title">重新啟動</string>
-  <string name="reboot_message">重新啟動系統</string>
+  <!-- Label for item that screenrecords in power menu options dialog -->
+  <string name="global_action_screenrecord">螢幕錄製</string>
 </resources>

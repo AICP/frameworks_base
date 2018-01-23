@@ -82,6 +82,8 @@
   <!-- Screenrecord notification action: Stop -->
   <!-- Screenrecord notification action: show/hide pointer -->
   <!-- Screen record notification error title -->
+  <!-- Screenshot QS tile -->
+  <string name="quick_settings_screenrecord_label">スクリーンレコード</string>
   <string name="omnijaws_service_error">エラー</string>
   <string name="omnijaws_service_unkown">天気データがありません</string>
   <string name="omnijaws_detail_header">天気</string>

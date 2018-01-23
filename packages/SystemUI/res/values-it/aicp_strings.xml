@@ -95,16 +95,25 @@
   <string name="accessibility_quick_settings_location_high_accuracy">Segnalazione della posizione: modalità alta precisione.</string>
   <!-- Screenrecord Notification Ticker -->
   <string name="screenrecord_notif_ticker">Registrazione schermo in corso</string>
+  <string name="screenrecord_notif_final_ticker">Schermo registrato con successo</string>
   <!-- Screenrecord notification title -->
   <string name="screenrecord_notif_title">Registrazione schermo</string>
   <!-- Screenrecord notification action: Stop -->
   <string name="screenrecord_notif_stop">Stop</string>
+  <string name="screenrecord_notif_completed">Schermo registrato con successo</string>
   <!-- Screenrecord notification action: show/hide pointer -->
   <string name="screenrecord_notif_pointer_on">Mostra puntatore</string>
   <string name="screenrecord_notif_pointer_off">Nascondi puntatore</string>
   <!-- Screen record notification error title -->
   <string name="screenrecord_notif_error">Impossibile registrare lo schermo</string>
   <string name="notification_channel_screenrecord">Registrazioni schermo</string>
+  <string name="screenrecord_hide_hint">Nascondi suggerimento</string>
+  <string name="screenrecord_show_hint">Mostra suggerimento</string>
+  <!-- Screenshot QS tile -->
+  <string name="quick_settings_screenrecord_label">Registra schermo</string>
+  <string name="quick_settings_screenrecord_lq_label">Registratore schermo LQ</string>
+  <string name="quick_settings_screenrecord_mq_label">Registratore schermo MQ</string>
+  <string name="quick_settings_screenrecord_hq_label">Registratore schermo HQ</string>
   <string name="lockscreen_default">Predefinito</string>
   <string name="lockscreen_hidden">Nessuno</string>
   <string name="omnijaws_service_error">Errore</string>

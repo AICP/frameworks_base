@@ -40,6 +40,6 @@
   <string name="animation_grow_shrink_left">Crecer (Izquierda)</string>
   <string name="animation_grow_shrink_right">Crecer (Derecha)</string>
   <string name="action_null">Vacío</string>
-  <string name="reboot_title">Reniciar</string>
-  <string name="reboot_message">Reiniciando el sistema</string>
+  <!-- Label for item that screenrecords in power menu options dialog -->
+  <string name="global_action_screenrecord">Grabar pantalla</string>
 </resources>

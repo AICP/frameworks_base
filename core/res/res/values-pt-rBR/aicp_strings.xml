@@ -25,6 +25,21 @@
   <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_toggleNavigationEditor">Permite que um aplicativo controle o editor da barra de navegação.</string>
   <!-- AOKP custom system animations -->
-  <string name="reboot_title">Reiniciar</string>
-  <string name="reboot_message">Reiniciando o sistema</string>
+  <string name="animation_fade">Desvanecer</string>
+  <string name="animation_slide_right">Deslize para a direita</string>
+  <string name="animation_slide_left">Deslize para a esquerda</string>
+  <string name="animation_slide_right_no_fade">Deslize para direita (Sem desvanecer)</string>
+  <string name="animation_slide_left_no_fade">Deslize para a Esquerda (Sem desvanecer)</string>
+  <string name="animation_slide_up">Deslize para baixo</string>
+  <string name="animation_slide_down">Deslize para cima</string>
+  <string name="animation_default">Padrão</string>
+  <string name="animation_translucent">Translúcido</string>
+  <string name="animation_grow_shrink">Aumentar (Topo)</string>
+  <string name="animation_grow_shrink_center">Aumentar (Centro)</string>
+  <string name="animation_grow_shrink_bottom">Crescer (Em Baixo)</string>
+  <string name="animation_grow_shrink_left">Aumentar (Esquerda)</string>
+  <string name="animation_grow_shrink_right">Aumentar (Direita)</string>
+  <string name="action_null">Em branco</string>
+  <!-- Label for item that screenrecords in power menu options dialog -->
+  <string name="global_action_screenrecord">Gravação a tela</string>
 </resources>

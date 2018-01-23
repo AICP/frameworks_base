@@ -95,16 +95,25 @@
   <string name="accessibility_quick_settings_location_high_accuracy">位置回報：高精度模式。</string>
   <!-- Screenrecord Notification Ticker -->
   <string name="screenrecord_notif_ticker">正在錄製螢幕</string>
+  <string name="screenrecord_notif_final_ticker">螢幕錄製成功</string>
   <!-- Screenrecord notification title -->
   <string name="screenrecord_notif_title">正在錄製螢幕</string>
   <!-- Screenrecord notification action: Stop -->
   <string name="screenrecord_notif_stop">停止</string>
+  <string name="screenrecord_notif_completed">螢幕錄製成功</string>
   <!-- Screenrecord notification action: show/hide pointer -->
   <string name="screenrecord_notif_pointer_on">顯示指標</string>
   <string name="screenrecord_notif_pointer_off">隱藏指標</string>
   <!-- Screen record notification error title -->
   <string name="screenrecord_notif_error">無法錄製螢幕</string>
   <string name="notification_channel_screenrecord">螢幕錄製</string>
+  <string name="screenrecord_hide_hint">隱藏提示</string>
+  <string name="screenrecord_show_hint">顯示提示</string>
+  <!-- Screenshot QS tile -->
+  <string name="quick_settings_screenrecord_label">螢幕錄製</string>
+  <string name="quick_settings_screenrecord_lq_label">螢幕錄製 低畫質</string>
+  <string name="quick_settings_screenrecord_mq_label">螢幕錄製 中等畫質</string>
+  <string name="quick_settings_screenrecord_hq_label">螢幕錄製 高畫質</string>
   <string name="lockscreen_default">預設</string>
   <string name="lockscreen_hidden">無</string>
   <string name="omnijaws_service_error">錯誤</string>

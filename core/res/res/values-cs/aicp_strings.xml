@@ -40,6 +40,6 @@
   <string name="animation_grow_shrink_left">Růst (vlevo)</string>
   <string name="animation_grow_shrink_right">Růst (vpravo)</string>
   <string name="action_null">Prázdná</string>
-  <string name="reboot_title">Restartovat</string>
-  <string name="reboot_message">Restartování systému</string>
+  <!-- Label for item that screenrecords in power menu options dialog -->
+  <string name="global_action_screenrecord">Záznam obrazovky</string>
 </resources>

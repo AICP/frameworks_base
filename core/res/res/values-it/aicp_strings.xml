@@ -40,6 +40,6 @@
   <string name="animation_grow_shrink_left">Espandi (Da sinistra)</string>
   <string name="animation_grow_shrink_right">Espandi (Da destra)</string>
   <string name="action_null">Vuoto</string>
-  <string name="reboot_title">Riavvio</string>
-  <string name="reboot_message">Riavvio del sistema</string>
+  <!-- Label for item that screenrecords in power menu options dialog -->
+  <string name="global_action_screenrecord">Registratore schermo</string>
 </resources>

@@ -76,6 +76,8 @@
   <!-- Screenrecord notification action: Stop -->
   <!-- Screenrecord notification action: show/hide pointer -->
   <!-- Screen record notification error title -->
+  <!-- Screenshot QS tile -->
+  <string name="quick_settings_screenrecord_label">屏幕录像</string>
   <!-- Weather string format in expanded statusbar header -->
   <!-- SystemUI Tuner Parts -->
   <!-- DUI -->

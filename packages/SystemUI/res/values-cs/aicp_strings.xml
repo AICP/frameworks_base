@@ -96,16 +96,25 @@
   <string name="accessibility_quick_settings_location_high_accuracy">Hlášení polohy: vysoká přesnost.</string>
   <!-- Screenrecord Notification Ticker -->
   <string name="screenrecord_notif_ticker">Obrazovka je nahrávána</string>
+  <string name="screenrecord_notif_final_ticker">Obrazovka byla úspěšně zaznamenána</string>
   <!-- Screenrecord notification title -->
   <string name="screenrecord_notif_title">Záznam obrazovky</string>
   <!-- Screenrecord notification action: Stop -->
   <string name="screenrecord_notif_stop">Zastavit</string>
+  <string name="screenrecord_notif_completed">Obrazovka byla úspěšně zaznamenána</string>
   <!-- Screenrecord notification action: show/hide pointer -->
   <string name="screenrecord_notif_pointer_on">Zobrazit ukazatel</string>
   <string name="screenrecord_notif_pointer_off">Skrýt ukazatel</string>
   <!-- Screen record notification error title -->
   <string name="screenrecord_notif_error">Nahrávání obrazovky není možné</string>
   <string name="notification_channel_screenrecord">Záznamy obrazovky</string>
+  <string name="screenrecord_hide_hint">Skrýt nápovědu</string>
+  <string name="screenrecord_show_hint">Zobrazit nápovědu</string>
+  <!-- Screenshot QS tile -->
+  <string name="quick_settings_screenrecord_label">Záznam obrazovky</string>
+  <string name="quick_settings_screenrecord_lq_label">Záznam obrazovky LQ</string>
+  <string name="quick_settings_screenrecord_mq_label">Záznam obrazovky MQ</string>
+  <string name="quick_settings_screenrecord_hq_label">Záznam obrazovky HQ</string>
   <string name="lockscreen_default">Výchozí</string>
   <string name="lockscreen_hidden">Žádná</string>
   <string name="omnijaws_service_error">Chyba</string>

@@ -96,16 +96,25 @@
   <string name="accessibility_quick_settings_location_high_accuracy">Standort: Hohe Genauigkeit</string>
   <!-- Screenrecord Notification Ticker -->
   <string name="screenrecord_notif_ticker">Bildschirminhalt wird aufgezeichnet</string>
+  <string name="screenrecord_notif_final_ticker">Bildschirmaufzeichnung erfolgreich</string>
   <!-- Screenrecord notification title -->
   <string name="screenrecord_notif_title">Bildschirmaufnahme läuft</string>
   <!-- Screenrecord notification action: Stop -->
   <string name="screenrecord_notif_stop">Stop</string>
+  <string name="screenrecord_notif_completed">Bildschirmaufzeichnung erfolgreich</string>
   <!-- Screenrecord notification action: show/hide pointer -->
   <string name="screenrecord_notif_pointer_on">Zeiger anzeigen</string>
   <string name="screenrecord_notif_pointer_off">Zeiger verstecken</string>
   <!-- Screen record notification error title -->
   <string name="screenrecord_notif_error">Bildschirmaufnahme nicht möglich</string>
   <string name="notification_channel_screenrecord">Bildschirmaufnahme</string>
+  <string name="screenrecord_hide_hint">Hinweise ausblenden</string>
+  <string name="screenrecord_show_hint">Hinweise anzeigen</string>
+  <!-- Screenshot QS tile -->
+  <string name="quick_settings_screenrecord_label">Bildschirmaufnahme</string>
+  <string name="quick_settings_screenrecord_lq_label">Bildschirmaufnahme LQ</string>
+  <string name="quick_settings_screenrecord_mq_label">Bildschirmaufnahme MQ</string>
+  <string name="quick_settings_screenrecord_hq_label">Bildschirmaufnahme HQ</string>
   <string name="lockscreen_default">Standard</string>
   <string name="lockscreen_hidden">Keine Aktion</string>
   <string name="omnijaws_service_error">Fehler</string>

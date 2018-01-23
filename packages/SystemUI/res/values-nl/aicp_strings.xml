@@ -96,16 +96,25 @@
   <string name="accessibility_quick_settings_location_high_accuracy">Locatiebepaling: hoge nauwkeurigheid.</string>
   <!-- Screenrecord Notification Ticker -->
   <string name="screenrecord_notif_ticker">Scherm wordt opgenomen</string>
+  <string name="screenrecord_notif_final_ticker">Schermopname succesvol</string>
   <!-- Screenrecord notification title -->
   <string name="screenrecord_notif_title">Scherm aan het opnemen</string>
   <!-- Screenrecord notification action: Stop -->
   <string name="screenrecord_notif_stop">Stop</string>
+  <string name="screenrecord_notif_completed">Schermopname succesvol</string>
   <!-- Screenrecord notification action: show/hide pointer -->
   <string name="screenrecord_notif_pointer_on">Toon aanwijzer</string>
   <string name="screenrecord_notif_pointer_off">Verberg aanwijzer</string>
   <!-- Screen record notification error title -->
   <string name="screenrecord_notif_error">Kan scherm niet opnemen</string>
   <string name="notification_channel_screenrecord">Schermopname</string>
+  <string name="screenrecord_hide_hint">Verberg tip</string>
+  <string name="screenrecord_show_hint">Toon tip</string>
+  <!-- Screenshot QS tile -->
+  <string name="quick_settings_screenrecord_label">Schermopname</string>
+  <string name="quick_settings_screenrecord_lq_label">Schermopname LQ</string>
+  <string name="quick_settings_screenrecord_mq_label">Schermopname MQ</string>
+  <string name="quick_settings_screenrecord_hq_label">Schermopname HQ</string>
   <string name="lockscreen_default">Standaard</string>
   <string name="lockscreen_hidden">Geen</string>
   <string name="omnijaws_service_error">Fout</string>

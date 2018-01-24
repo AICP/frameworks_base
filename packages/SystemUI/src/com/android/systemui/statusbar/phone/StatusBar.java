@@ -669,6 +669,7 @@ public class StatusBar extends SystemUI implements DemoMode,
     protected PorterDuffXfermode mSrcOverXferMode =
             new PorterDuffXfermode(PorterDuff.Mode.SRC_OVER);
 
+    private Entry mEntryToRefresh;
     private String[] mNavMediaArrowsExcludeList;
     private VisualizerView mVisualizerView;
     private boolean mScreenOn;
@@ -723,6 +724,7 @@ public class StatusBar extends SystemUI implements DemoMode,
                 }
             }
             if (mNavigationBar != null) {
+                // pulse colors already set by titckTrackInfo
                 mNavigationBar.setMediaPlaying(true);
             }
         } else {
@@ -748,6 +750,10 @@ public class StatusBar extends SystemUI implements DemoMode,
                 if (mAmbientMediaPlaying != 0 && mAmbientIndicationContainer != null) {
                     ((AmbientIndicationContainer)mAmbientIndicationContainer).setIndication(mMediaMetadata);
                 }
+                // NotificationInflater calls async MediaNotificationProcessoron to create notification
+                // colors and when finished will trigger AsyncInflationFinished for all registered callbacks
+                // like StatusBar. From there we'll send updated colors to Pulse
+                mEntryToRefresh = entry;
                 break;
             }
         }
@@ -1962,6 +1968,15 @@ public class StatusBar extends SystemUI implements DemoMode,
             updateNotificationShade();
         }
         entry.row.setLowPriorityStateUpdated(false);
+
+        if (mEntryToRefresh == entry) {
+            if (mNavigationBar != null) {
+                Notification n = entry.notification.getNotification();
+                int[] colors = {n.backgroundColor, n.foregroundColor,
+                        n.primaryTextColor, n.secondaryTextColor};
+                mNavigationBar.setPulseColors(n.isColorizedMedia(), colors);
+            }
+        }
     }
 
     private boolean shouldSuppressFullScreenIntent(String key) {

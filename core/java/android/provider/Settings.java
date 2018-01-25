@@ -5818,6 +5818,16 @@ public final class Settings {
         private static final Validator USE_EDGE_SERVICE_FOR_GESTURES_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
+        /**
+         * @hide
+         */
+        public static final String SCREENRECORD_QUALITY_MODE = "screenrecord_quality_mode";
+
+        /** @hide */
+        private static final Validator SCREENRECORD_QUALITY_MODE_VALIDATOR =
+               new SettingsValidators.InclusiveIntegerRangeValidator(0, 2);
+
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6047,6 +6057,7 @@ public final class Settings {
             VOLUME_BUTTON_MUSIC_CONTROL,
             OMNI_DOZE_ON_CHARGE,
             USE_EDGE_SERVICE_FOR_GESTURES,
+            SCREENRECORD_QUALITY_MODE,
             // AICP Settings end
         };
 
@@ -6315,6 +6326,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(VOLUME_BUTTON_MUSIC_CONTROL);
             PRIVATE_SETTINGS.add(OMNI_DOZE_ON_CHARGE);
             PRIVATE_SETTINGS.add(USE_EDGE_SERVICE_FOR_GESTURES);
+            PRIVATE_SETTINGS.add(SCREENRECORD_QUALITY_MODE);
             // AICP Settings end
         }
 
@@ -6584,6 +6596,7 @@ public final class Settings {
             VALIDATORS.put(VOLUME_BUTTON_MUSIC_CONTROL,VOLUME_BUTTON_MUSIC_CONTROL_VALIDATOR);
             VALIDATORS.put(OMNI_DOZE_ON_CHARGE,OMNI_DOZE_ON_CHARGE_VALIDATOR);
             VALIDATORS.put(USE_EDGE_SERVICE_FOR_GESTURES,USE_EDGE_SERVICE_FOR_GESTURES_VALIDATOR);
+            VALIDATORS.put(SCREENRECORD_QUALITY_MODE,SCREENRECORD_QUALITY_MODE_VALIDATOR);
             // AICP Settings end
         }
 

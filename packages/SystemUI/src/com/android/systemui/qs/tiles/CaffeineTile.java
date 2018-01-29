@@ -35,6 +35,8 @@ import com.android.systemui.R;
 /** Quick settings tile: Caffeine **/
 public class CaffeineTile extends QSTileImpl<BooleanState> {
 
+    private final Icon mIcon = ResourceIcon.get(R.drawable.ic_qs_caffeine_on);
+
     private final PowerManager.WakeLock mWakeLock;
     private final Receiver mReceiver = new Receiver();
 
@@ -91,15 +93,19 @@ public class CaffeineTile extends QSTileImpl<BooleanState> {
 
     @Override
     protected void handleUpdateState(BooleanState state, Object arg) {
+        if (state.slash == null) {
+            state.slash = new SlashState();
+        }
+        state.icon = mIcon;
         state.value = mWakeLock.isHeld();
         state.label = mContext.getString(R.string.quick_settings_caffeine_label);
         if (state.value) {
-            state.icon = ResourceIcon.get(R.drawable.ic_qs_caffeine_on);
+            state.slash.isSlashed = false;
             state.contentDescription =  mContext.getString(
                     R.string.accessibility_quick_settings_caffeine_on);
             state.state = Tile.STATE_ACTIVE;
         } else {
-            state.icon = ResourceIcon.get(R.drawable.ic_qs_caffeine_off);
+            state.slash.isSlashed = true;
             state.contentDescription =  mContext.getString(
                     R.string.accessibility_quick_settings_caffeine_off);
             state.state = Tile.STATE_INACTIVE;

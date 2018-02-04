@@ -651,13 +651,7 @@ public class NavigationBarFragment extends Fragment implements Callbacks, Naviga
                     mNavigationBarView.setDisabledFlags(mDisabledFlags1, true);
                     return true;
                 } else if (v.getId() == R.id.recent_apps) {
-                    // Send long press key event so that Lineage button handling can intercept
-                    KeyButtonView keyButtonView = (KeyButtonView) v;
-                    keyButtonView.sendEvent(KeyEvent.ACTION_DOWN, KeyEvent.FLAG_LONG_PRESS);
-                    keyButtonView.sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_LONG_CLICKED);
-                    return true;
-                    // Original AOSP handling:
-                    //return onLongPressRecents();
+                    return onLongPressRecents();
                 }
             }
             if (sendBackLongPress) {

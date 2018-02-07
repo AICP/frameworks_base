@@ -71,13 +71,11 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
     private LinearLayout mCenterClockLayout;
 
     // Aicp additions start
-    private View mAicpLogo;
     private View mWeatherImageView;
     private View mWeatherTextView;
     private View mCustomCarrierLabel;
     private View mBatteryBar;
     private int mShowCarrierLabel;
-    private int mShowLogo;
     private int mShowWeather;
     private final Handler mHandler = new Handler();
 
@@ -87,9 +85,6 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
         }
 
         void observe() {
-            getContext().getContentResolver().registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.STATUS_BAR_LOGO),
-                    false, this, UserHandle.USER_ALL);
             getContext().getContentResolver().registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_SHOW_WEATHER_TEMP),
                     false, this, UserHandle.USER_ALL);
@@ -148,7 +143,6 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
         mSignalClusterView = mStatusBar.findViewById(R.id.signal_cluster);
         mCenterClockLayout = (LinearLayout) mStatusBar.findViewById(R.id.center_clock_layout);
         Dependency.get(DarkIconDispatcher.class).addDarkReceiver(mSignalClusterView);
-        mAicpLogo = mStatusBar.findViewById(R.id.status_bar_logo);
         mWeatherTextView = mStatusBar.findViewById(R.id.weather_temp);
         mWeatherImageView = mStatusBar.findViewById(R.id.weather_image);
         mCustomCarrierLabel = mStatusBar.findViewById(R.id.statusbar_carrier_text);
@@ -270,18 +264,12 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
 
     public void hideNotificationIconArea(boolean animate) {
         animateHide(mNotificationIconAreaInner, animate, true);
-        if (mShowLogo) {
-            animateHide(mAicpLogo, animate, true);
-        }
         animateHide(mBatteryBar, animate, true);
         animateHide(mCenterClockLayout, animate, true);
     }
 
     public void showNotificationIconArea(boolean animate) {
         animateShow(mNotificationIconAreaInner, animate);
-        if (mShowLogo) {
-            animateShow(mAicpLogo, animate);
-        }
         animateShow(mBatteryBar, animate);
         animateShow(mCenterClockLayout, animate);
     }
@@ -301,11 +289,11 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
     /**
      * Hides a view.
      */
-    private void animateHide(final View v, boolean animate, final boolean invisible) {
+    private void animateHide(final View v, boolean animate, final boolean invisible)  {
         v.animate().cancel();
         if (!animate) {
             v.setAlpha(0f);
-            v.setVisibility(invisible ? View.INVISIBLE : View.GONE);
+            v.setVisibility(invisible ? View.INVISIBLE : View.GONE);;
             return;
         }
         v.animate()
@@ -361,24 +349,12 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
     }
 
     public void updateSettings(boolean animate) {
-        mShowLogo = Settings.System.getIntForUser(
-                mContentResolver, Settings.System.STATUS_BAR_LOGO, 0,
-                UserHandle.USER_CURRENT);
         mShowWeather = Settings.System.getIntForUser(
                 mContentResolver, Settings.System.STATUS_BAR_SHOW_WEATHER_TEMP, 0,
                 UserHandle.USER_CURRENT);
         mShowCarrierLabel = Settings.System.getIntForUser(
                 mContentResolver, Settings.System.STATUS_BAR_SHOW_CARRIER, 1,
                 UserHandle.USER_CURRENT);
-        if (mNotificationIconAreaInner != null) {
-            if (mShowLogo) {
-                if (mNotificationIconAreaInner.getVisibility() == View.VISIBLE) {
-                    animateShow(mAicpLogo, animate);
-                }
-            } else {
-                animateHide(mAicpLogo, animate, false);
-            }
-        }
         setCarrierLabel(animate);
         mTickerEnabled = Settings.System.getIntForUser(mContentResolver,
                 Settings.System.STATUS_BAR_SHOW_TICKER, 0,

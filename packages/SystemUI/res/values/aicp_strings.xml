@@ -160,4 +160,7 @@
 
     <!-- OnTheGo Tile -->
     <string name="quick_settings_onthego_label">On-The-Go</string>
+
+    <!-- SoundSearch Tile -->
+    <string name="quick_settings_sound_search">Sound search</string>
 </resources>

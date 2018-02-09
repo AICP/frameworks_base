@@ -241,4 +241,7 @@
 
     <string name="tuner_show_brightness_mode">Show brightness mode switch</string>
     <string name="tuner_show_brightness_side_buttons">Show brightness slider side buttons</string>
+
+    <!--Google sound search tile -->
+    <string name="quick_settings_sound_search">Sound search</string>
 </resources>

@@ -202,4 +202,7 @@
     <string name="quick_settings_full_screenshot_label">Full</string>
     <string name="quick_settings_screenshot_label">Screenshot</string>
     <string name="quick_settings_region_screenshot_label">Partial</string>
+
+    <!-- SoundSearch Tile -->
+    <string name="quick_settings_sound_search">Sound search</string>
 </resources>

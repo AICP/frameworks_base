@@ -170,4 +170,7 @@
    <!-- Battery saver tile -->
     <string name="battery_saver_qs_tile_fully_charged">Fully Charged</string>
 
+    <!-- Caffeine tile -->
+    <string name="caffeine_info_title">What is this?</string>
+    <string name="caffeine_info_message">Caffeine tile is a simple tile that you could switch on to keep your screen on.\n\nPlease note that the tile\'s state will reset itself after turning the screen off.</string>
 </resources>

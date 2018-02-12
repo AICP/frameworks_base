@@ -286,7 +286,6 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
         animateHide(mSystemIconArea, animate, true);
         animateHide(mBatteryBar, animate, true);
         animateHide(mCenterClockLayout, animate, true);
-        animateHide(mStatusBarLogo, animate, true);
         animateHide(mStatusBarLogoRight, animate, true);
     }
 
@@ -294,7 +293,6 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
         animateShow(mSystemIconArea, animate);
         animateShow(mBatteryBar, animate);
         animateShow(mCenterClockLayout, animate);
-        animateShow(mStatusBarLogo, animate);
         animateShow(mStatusBarLogoRight, animate);
     }
 
@@ -306,7 +304,6 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
             animateHide(mLeftClock, animate, true);
         }
         animateHide(mStatusBarLogo, animate, true);
-        animateHide(mStatusBarLogoRight, animate, true);
     }
 
     public void showNotificationIconArea(boolean animate) {
@@ -317,7 +314,6 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
             animateShow(mLeftClock, animate);
         }
         animateShow(mStatusBarLogo, animate);
-        animateShow(mStatusBarLogoRight, animate);
     }
 
     public void hideCarrierName(boolean animate) {

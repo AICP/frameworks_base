@@ -56,10 +56,14 @@
   <!-- App circle sidebar -->
   <!-- recents membar -->
   <!-- OmniJAWS -->
+  <string name="omnijaws_detail_header">Cuaca</string>
   <!-- Weather string format in expanded statusbar header -->
   <!-- Off/On/Toggle -->
   <!-- Dialog Cancel/OK -->
   <!-- Aicp Shortcut Actions -->
+  <string name="shortcut_rotation">Rotasi</string>
+  <string name="shortcut_reboot">Mulai ulang</string>
+  <string name="shortcut_restart_ui">Mulai ulang SystemUI</string>
   <!-- MagiskManager QS Tile -->
   <!-- Compass QS Tile -->
   <!-- Perf Profile Tile -->

@@ -45,7 +45,7 @@
   <string name="accessibility_quick_settings_usb_tether_on">Tethering USB attivato</string>
   <string name="accessibility_quick_settings_usb_tether_changed_off">Tethering USB disattivato</string>
   <string name="accessibility_quick_settings_usb_tether_changed_on">Tethering USB attivato</string>
-  <string name="quick_settings_usb_tether_label">USB tethering</string>
+  <string name="quick_settings_usb_tether_label">Tethering USB</string>
   <string name="quick_settings_music_label">Musica</string>
   <string name="quick_settings_music_play">Play</string>
   <string name="quick_settings_music_pause">Pausa</string>

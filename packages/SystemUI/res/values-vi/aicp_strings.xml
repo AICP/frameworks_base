@@ -17,34 +17,93 @@
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Aicp Extras Tile -->
+  <string name="quick_aicp_extras_label">Tính năng bổ sung Aicp</string>
+  <string name="quick_aicp_extras_toast">LOL, bạn thực sự nghĩ sự nhấn giữ đó sẽ đưa bạn một nơi nào đó!!!</string>
   <!-- Screenshot Delete Toast -->
+  <string name="delete_screenshot_toast">Đã xóa ảnh chụp màn hình</string>
   <!-- Advanced Reboot in Power Menu -->
   <!-- Partial Screenshot -->
+  <string name="screenshot_abort_title">Ảnh màn hình không được chụp</string>
   <!-- Reboot/Recovery QS Tile -->
+  <string name="quick_settings_reboot_label">Khởi động lại</string>
+  <string name="quick_settings_reboot_recovery_label">Chế độ phục hồi</string>
   <!-- Compass QS Tile -->
+  <string name="quick_settings_compass_label">La bàn</string>
+  <string name="quick_settings_compass_init">Đang cài đặt\u2026</string>
+  <string name="accessibility_quick_settings_compass_off">Tắt la bàn.</string>
+  <string name="accessibility_quick_settings_compass_on">Mở la bàn.</string>
+  <string name="accessibility_quick_settings_compass_changed_off">La bàn đã tắt.</string>
+  <string name="accessibility_quick_settings_compass_changed_on">La bàn đã bật.</string>
+  <string name="quick_settings_compass_N">B</string>
+  <string name="quick_settings_compass_NE">ĐB</string>
+  <string name="quick_settings_compass_E">Đ</string>
+  <string name="quick_settings_compass_SE">ĐN</string>
+  <string name="quick_settings_compass_S">N</string>
+  <string name="quick_settings_compass_SW">TN</string>
+  <string name="quick_settings_compass_W">T</string>
+  <string name="quick_settings_compass_NW">TB</string>
   <!-- Screenshoot tile -->
+  <string name="quick_settings_screenshot_label">Chụp ảnh màn hình</string>
+  <string name="quick_settings_region_screenshot_label">Ảnh chụp màn hình một phần</string>
   <!-- USB Tethering tile -->
+  <string name="accessibility_quick_settings_usb_tether_off">Tắt chia sẻ kết nối USB</string>
+  <string name="accessibility_quick_settings_usb_tether_on">Mở chia sẽ kết nối USB</string>
+  <string name="accessibility_quick_settings_usb_tether_changed_off">Chế độ chia sẻ kết nối USB đã tắt</string>
+  <string name="accessibility_quick_settings_usb_tether_changed_on">Chế độ chia sẻ kết nối USB đã bật</string>
+  <string name="quick_settings_usb_tether_label">Chia sẻ kết nối qua USB</string>
   <!-- IME selector tile -->
   <!-- Language toggle tile -->
+  <string name="quick_settings_locale_label">Ngôn ngữ</string>
+  <string name="quick_settings_locale_more_locales_toast">Vui lòng thiết lập nhiều ngôn ngữ để kích hoạt chức năng chuyển đổi</string>
   <!-- Music tile -->
+  <string name="quick_settings_music_label">Nhạc</string>
+  <string name="quick_settings_music_play">Phát</string>
+  <string name="quick_settings_music_pause">Tạm dừng</string>
   <!-- Sound tile -->
+  <string name="quick_settings_sound_label">Âm thanh</string>
+  <string name="quick_settings_sound_ring">Chuông</string>
+  <string name="quick_settings_sound_vibrate">Báo rung</string>
+  <string name="quick_settings_sound_silent">Im lặng</string>
   <!-- Ambient Display Tile -->
+  <string name="quick_settings_ambient_display_label">Màn hình xung quanh</string>
   <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_ambient_display_off">Màn hình xung quanh tắt.</string>
   <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_ambient_display_on">Màn hình xung quanh bật.</string>
   <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_ambient_display_changed_off">Màn hình xung quanh đã tắt.</string>
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_ambient_display_changed_on">Màn hình xung quanh đã bật.</string>
   <!-- Caffeine QS Tile -->
+  <string name="quick_settings_caffeine_label">Caffeine</string>
+  <string name="accessibility_quick_settings_caffeine_off">Caffeine tắt</string>
+  <string name="accessibility_quick_settings_caffeine_on">Caffeine bật</string>
   <!-- Sync QS Tile -->
+  <string name="quick_settings_sync_label">Đồng bộ hoá</string>
+  <string name="accessibility_quick_settings_sync_off">Tắt đồng bộ</string>
+  <string name="accessibility_quick_settings_sync_on">Bật đồng bộ</string>
+  <string name="accessibility_quick_settings_sync_changed_off">Đồng bộ đã tắt</string>
+  <string name="accessibility_quick_settings_sync_changed_on">Đồng bộ đã bật</string>
   <!-- Volume QS Tile -->
   <!-- PiP Tile -->
   <!-- Screenrecord tile -->
+  <string name="quick_settings_screenrecord">Quay màn hình</string>
+  <string name="quick_settings_screenrecord_on">Đang ghi ...</string>
   <!-- Recents -->
   <!-- Advance location quick setting tile -->
   <!-- Screenrecord Notification Ticker -->
   <!-- Screenrecord notification title -->
   <!-- Screenrecord notification action: Stop -->
+  <string name="screenrecord_notif_stop">Dừng</string>
   <!-- Screenrecord notification action: show/hide pointer -->
   <!-- Screen record notification error title -->
+  <string name="omnijaws_service_error">Lỗi</string>
+  <string name="omnijaws_service_unkown">Không có dữ liệu thời tiết</string>
+  <string name="omnijaws_service_error_long">Lỗi khi tải dữ liệu thời tiết</string>
+  <string name="omnijaws_detail_header">Thời tiết</string>
+  <string name="omnijaws_label_default">Thời tiết</string>
+  <string name="omnijaws_current_text">Bây giờ</string>
+  <string name="omnijaws_package_not_available">OmniJaws không có sẵn</string>
   <!-- Weather string format in expanded statusbar header -->
   <!-- Notification: Menu row: Snooze options: 12 and 24 hour option. [CHAR LIMIT=50]-->
   <!-- SystemUI Tuner Parts -->

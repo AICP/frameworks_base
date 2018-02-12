@@ -84,6 +84,7 @@
   <string name="lockscreen_default">Standar</string>
   <string name="lockscreen_hidden">Tidak ada</string>
   <string name="omnijaws_service_disabled">Layanan dimatikan</string>
+  <string name="omnijaws_detail_header">Cuaca</string>
   <string name="omnijaws_service_last_update">Pembaharuan terakhir:</string>
   <!-- Weather string format in expanded statusbar header -->
   <!-- Notification: Menu row: Snooze options: 12 and 24 hour option. [CHAR LIMIT=50]-->

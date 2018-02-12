@@ -54,7 +54,7 @@
   <string name="accessibility_quick_settings_usb_tether_on">Tethering USB attivato</string>
   <string name="accessibility_quick_settings_usb_tether_changed_off">Tethering USB disattivato</string>
   <string name="accessibility_quick_settings_usb_tether_changed_on">Tethering USB attivato</string>
-  <string name="quick_settings_usb_tether_label">USB tethering</string>
+  <string name="quick_settings_usb_tether_label">Tethering USB</string>
   <!-- IME selector tile -->
   <string name="quick_settings_ime_label">Metodo di input</string>
   <!-- Language toggle tile -->

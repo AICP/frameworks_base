@@ -41,22 +41,22 @@ public class ClockCenter extends Clock {
         super(context, attrs, defStyle);
     }
 
-    public void setClockVisibleByUser(boolean visible) {
-        mClockVisibleByUser = visible;
-        updateClockVisibility();
-    }
-
     public void setClockVisibilityByPolicy(boolean visible) {
         mClockVisibleByPolicy = visible;
         updateClockVisibility();
     }
 
+    @Override
+    public boolean isEnabled() {
+        return mClockStyle == STYLE_CLOCK_CENTER && mShowClock
+                && mClockVisibleByPolicy && mClockVisibleByUser;
+     }
+
     protected void updateClockVisibility() {
         boolean visible = mClockStyle == STYLE_CLOCK_CENTER && mShowClock
                 && mClockVisibleByPolicy && mClockVisibleByUser;
         Dependency.get(IconLogger.class).onIconVisibility("center_clock", visible);
-        int visibility = visible ? View.VISIBLE : View.GONE;
-        setVisibility(visibility);
+        setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 
     @Override

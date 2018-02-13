@@ -77,6 +77,7 @@ public class BatteryMeterView extends LinearLayout implements
     private int mLevel;
     private boolean mForceShowPercent;
     private boolean mShowPercentAvailable;
+    private boolean mCharging;
 
     private int mDarkModeBackgroundColor;
     private int mDarkModeFillColor;
@@ -260,6 +261,10 @@ public class BatteryMeterView extends LinearLayout implements
         mDrawable.setBatteryLevel(level);
         mDrawable.setCharging(pluggedIn);
         mLevel = level;
+        if (mCharging != pluggedIn) {
+            mCharging = pluggedIn;
+            updateShowPercent();
+        }
         updatePercentText();
         setContentDescription(
                 getContext().getString(charging ? R.string.accessibility_battery_level_charging
@@ -279,12 +284,20 @@ public class BatteryMeterView extends LinearLayout implements
     }
 
     private void updatePercentText() {
-        mBatteryPercentView.setText(
-                NumberFormat.getPercentInstance(Locale.US).format(mLevel / 100f));
-        if (!mShowBatteryImage && mPowerSaveEnabled && !mCharging) {
-            mBatteryPercentView.setTextColor(mDrawable.getPowersaveColor());
-        } else if (mTextColor != 0) {
-            mBatteryPercentView.setTextColor(mTextColor);
+        if (mBatteryPercentView != null) {
+            // Use the high voltage symbol ⚡ (u26A1 unicode) but prevent the system
+            // to load its emoji colored variant with the uFE0E flag
+            String bolt = "\u26A1\uFE0E";
+            CharSequence mChargeIndicator =
+                    mCharging && mDrawable.getMeterStyle() == BatteryMeterDrawableBase.BATTERY_STYLE_TEXT
+                    ? (bolt + " ") : "";
+            mBatteryPercentView.setText(mChargeIndicator +
+                    NumberFormat.getPercentInstance().format(mLevel / 100f));
+            if (!mShowBatteryImage && mPowerSaveEnabled && !mCharging) {
+                mBatteryPercentView.setTextColor(mDrawable.getPowersaveColor());
+            } else if (mTextColor != 0) {
+                mBatteryPercentView.setTextColor(mTextColor);
+            }
         }
     }
 
@@ -328,8 +341,9 @@ public class BatteryMeterView extends LinearLayout implements
         if (mBatteryPercentView != null) {
             final Resources res = getContext().getResources();
             final int startPadding = res.getDimensionPixelSize(R.dimen.battery_level_padding_start);
-            mBatteryPercentView.setPaddingRelative(startPadding, 0,
-                    /*(mDrawable.getMeterStyle() != BatteryMeterDrawableBase.BATTERY_STYLE_TEXT ? endPadding : */0/*)*/, 0);
+            mBatteryPercentView.setPaddingRelative(
+                    mDrawable.getMeterStyle() == BatteryMeterDrawableBase.BATTERY_STYLE_TEXT ? 0 : startPadding,
+                    0, 0, 0);
         }
     }
 
@@ -464,5 +478,6 @@ public class BatteryMeterView extends LinearLayout implements
 
         scaleBatteryMeterViews();
         updateShowPercent();
+        updatePercentText();
     }
 }

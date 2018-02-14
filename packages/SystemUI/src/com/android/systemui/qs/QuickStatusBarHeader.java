@@ -65,6 +65,8 @@ public class QuickStatusBarHeader extends FrameLayout implements StatusBarHeader
     private ImageView mBackgroundImage;
     private Drawable mCurrentBackground;
 
+    private BatteryMeterView mBatteryView;
+
     public QuickStatusBarHeader(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
@@ -89,8 +91,8 @@ public class QuickStatusBarHeader extends FrameLayout implements StatusBarHeader
         applyDarkness(R.id.battery, tintArea, intensity, colorForeground);
         applyDarkness(R.id.clock, tintArea, intensity, colorForeground);
 
-        BatteryMeterView battery = findViewById(R.id.battery);
-        battery.setIsQuickSbHeaderOrKeyguard(true);
+        mBatteryView = findViewById(R.id.battery);
+        mBatteryView.setIsQuickSbHeaderOrKeyguard(true);
 
         mActivityStarter = Dependency.get(ActivityStarter.class);
 
@@ -98,6 +100,12 @@ public class QuickStatusBarHeader extends FrameLayout implements StatusBarHeader
         mQuickQsPanelScroller.setHorizontalScrollBarEnabled(false);
 
         mBackgroundImage = (ImageView) findViewById(R.id.qs_header_image);
+    }
+
+    public void updateBatterySettings() {
+        if (mBatteryView != null) {
+            mBatteryView.updateSettings(true);
+        }
     }
 
     private void applyDarkness(int id, Rect tintArea, float intensity, int color) {

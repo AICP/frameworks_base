@@ -4803,16 +4803,11 @@ public final class Settings {
         public static final String STATUSBAR_CLOCK_DATE_FORMAT = "statusbar_clock_date_format";
 
         /**
-         * AICP applications' theme
-         * 0 - Derived from DeviceDefault
-         * 1 - Dark amber
-         */
-        public static final String AE_THEME = "ae_theme";
-
-        /**
-         * @hide
-         */
-        public static final String SHOW_BATTERY_IMAGE = "status_bar_show_battery_image";
+          * AICP applications' theme
+          * 0 - Derived from DeviceDefault
+          * 1 - Dark amber
+          */
+         public static final String AE_THEME = "ae_theme";
 
         /**
          * Statusbar AICP logo

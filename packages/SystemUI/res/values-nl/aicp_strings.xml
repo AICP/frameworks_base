@@ -71,6 +71,16 @@
   <string name="accessibility_quick_settings_ambient_display_changed_off">Omgevingsdisplay uitgeschakeld.</string>
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_ambient_display_changed_on">Omgevingsdisplay ingeschakeld.</string>
+  <!-- Always on Display Tile -->
+  <string name="quick_settings_always_on_display_label">\"Always On\"-display</string>
+  <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_off">\"Always On\"-display uit.</string>
+  <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_on">\"Always On\"-display aan.</string>
+  <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_changed_off">\"Always On\"-display uitgeschakeld.</string>
+  <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_changed_on">\"Always On\"-display ingeschakeld.</string>
   <!-- Caffeine QS Tile -->
   <string name="quick_settings_caffeine_label">Cafeïne</string>
   <string name="accessibility_quick_settings_caffeine_off">Cafeïne uit</string>
@@ -113,8 +123,8 @@
   <!-- Screenshot QS tile -->
   <string name="quick_settings_screenrecord_label">Schermopname</string>
   <string name="quick_settings_screenrecord_lq_label">Schermopname LQ</string>
-  <string name="quick_settings_screenrecord_mq_label">Schermopname MQ</string>
-  <string name="quick_settings_screenrecord_hq_label">Schermopname HQ</string>
+  <string name="quick_settings_screenrecord_mq_label">Schermopname HQ</string>
+  <string name="quick_settings_screenrecord_hq_label">Schermopname HQ+</string>
   <string name="lockscreen_default">Standaard</string>
   <string name="lockscreen_hidden">Geen</string>
   <string name="omnijaws_service_error">Fout</string>
@@ -132,4 +142,9 @@
   <string name="custom_hint">Veeg vanaf icoon om te starten</string>
   <!-- DUI -->
   <string name="systemui_tuner_navbar_title">Standaard instellingen</string>
+  <!-- Battery saver tile -->
+  <string name="battery_saver_qs_tile_fully_charged">Volledig opgeladen</string>
+  <!-- Caffeine tile -->
+  <string name="caffeine_info_title">Wat is dit?</string>
+  <string name="caffeine_info_message">Cafeïne tegel is een eenvoudige tegel die u kunt activeren om het scherm ingeschakeld te houden.\n\nMerk op dat deze functie gereset zal worden zodra het scherm wordt uitgeschakeld.</string>
 </resources>

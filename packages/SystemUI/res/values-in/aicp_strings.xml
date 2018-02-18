@@ -31,6 +31,11 @@
   <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <!-- Always on Display Tile -->
+  <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <!-- Caffeine QS Tile -->
   <!-- Sync QS Tile -->
   <!-- Volume QS Tile -->
@@ -47,9 +52,11 @@
   <string name="accessibility_quick_settings_location_high_accuracy">Lokasi: mode akurasi tinggi.</string>
   <!-- Screenrecord Notification Ticker -->
   <string name="screenrecord_notif_ticker">Layar sedang direkam</string>
+  <string name="screenrecord_notif_final_ticker">Layar berhasil direkam</string>
   <!-- Screenrecord notification title -->
   <string name="screenrecord_notif_title">Merekam layar</string>
   <!-- Screenrecord notification action: Stop -->
+  <string name="screenrecord_notif_completed">Layar berhasil direkam</string>
   <!-- Screenrecord notification action: show/hide pointer -->
   <string name="screenrecord_notif_pointer_on">Tampilkan pointer</string>
   <string name="screenrecord_notif_pointer_off">Sembunyikan pointer</string>
@@ -67,4 +74,6 @@
   <string name="custom_hint">Usap dari ikon untuk meluncurkan</string>
   <!-- DUI -->
   <string name="systemui_tuner_navbar_title">Setting bawaan</string>
+  <!-- Battery saver tile -->
+  <!-- Caffeine tile -->
 </resources>

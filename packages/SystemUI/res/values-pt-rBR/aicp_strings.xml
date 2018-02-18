@@ -71,6 +71,11 @@
   <string name="accessibility_quick_settings_ambient_display_changed_off">Brilho adaptável foi desligado.</string>
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_ambient_display_changed_on">Brilho adaptável foi ligado.</string>
+  <!-- Always on Display Tile -->
+  <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <!-- Caffeine QS Tile -->
   <string name="quick_settings_caffeine_label">Cafeína</string>
   <string name="accessibility_quick_settings_caffeine_off">Cafeína desligada</string>
@@ -112,9 +117,6 @@
   <string name="screenrecord_show_hint">Mostrar dica</string>
   <!-- Screenshot QS tile -->
   <string name="quick_settings_screenrecord_label">Gravar a tela</string>
-  <string name="quick_settings_screenrecord_lq_label">Gravação de tela em qualidade baixa</string>
-  <string name="quick_settings_screenrecord_mq_label">Gravação de tela em qualidade média</string>
-  <string name="quick_settings_screenrecord_hq_label">Gravação de tela em qualidade alta</string>
   <string name="lockscreen_default">Padrão</string>
   <string name="lockscreen_hidden">Nenhum</string>
   <string name="omnijaws_service_error">Erro</string>
@@ -132,4 +134,6 @@
   <string name="custom_hint">Deslize do ícone para iniciá-lo</string>
   <!-- DUI -->
   <string name="systemui_tuner_navbar_title">Configurações padrão</string>
+  <!-- Battery saver tile -->
+  <!-- Caffeine tile -->
 </resources>

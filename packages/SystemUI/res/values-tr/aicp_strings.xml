@@ -20,9 +20,29 @@
   <string name="quick_aicp_extras_label">Aicp Extras</string>
   <string name="quick_aicp_extras_toast">LOL, gerçekten uzun basmanın bir işe yarayacağına inandın mı!!!</string>
   <!-- Screenshot Delete Toast -->
+  <string name="delete_screenshot_toast">Ekran görüntüsü silindi</string>
   <!-- Partial Screenshot -->
+  <string name="screenshot_abort_title">Ekran görüntüsü alınamadı</string>
+  <string name="screenshot_abort_text">İşlem iptal edildi.</string>
   <!-- Compass QS Tile -->
+  <string name="quick_settings_compass_label">Pusula</string>
+  <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
+  <string name="quick_settings_compass_init">Başlatılıyor\u2026</string>
+  <string name="accessibility_quick_settings_compass_off">Pusula kapalı.</string>
+  <string name="accessibility_quick_settings_compass_on">Pusula açık.</string>
+  <string name="accessibility_quick_settings_compass_changed_off">Pusula kapatıldı.</string>
+  <string name="accessibility_quick_settings_compass_changed_on">Pusula açıldı.</string>
+  <string name="quick_settings_compass_N">K</string>
+  <string name="quick_settings_compass_NE">KD</string>
+  <string name="quick_settings_compass_E">D</string>
+  <string name="quick_settings_compass_SE">GD</string>
+  <string name="quick_settings_compass_S">G</string>
+  <string name="quick_settings_compass_SW">GB</string>
+  <string name="quick_settings_compass_W">B</string>
+  <string name="quick_settings_compass_NW">KB</string>
   <!-- Screenshoot tile -->
+  <string name="quick_settings_screenshot_label">Ekran görüntüsü</string>
+  <string name="quick_settings_region_screenshot_label">Kısmi ekran görüntüsü</string>
   <!-- USB Tethering tile -->
   <string name="accessibility_quick_settings_usb_tether_off">USB internet paylaşımı kapalı</string>
   <string name="accessibility_quick_settings_usb_tether_on">USB internet paylaşımı açık</string>
@@ -30,8 +50,17 @@
   <string name="accessibility_quick_settings_usb_tether_changed_on">USB internet paylaşımı açıldı</string>
   <string name="quick_settings_usb_tether_label">USB internet paylaşımı</string>
   <!-- Language toggle tile -->
+  <string name="quick_settings_locale_label">Dil</string>
+  <string name="quick_settings_locale_more_locales_toast">Geçiş işlevselliğini etkinleştirmek için lütfen birden fazla dil yapılandırın</string>
   <!-- Music tile -->
+  <string name="quick_settings_music_label">Müzik</string>
+  <string name="quick_settings_music_play">Oynat</string>
+  <string name="quick_settings_music_pause">Duraklat</string>
   <!-- Sound tile -->
+  <string name="quick_settings_sound_label">Ses</string>
+  <string name="quick_settings_sound_ring">Zil sesi</string>
+  <string name="quick_settings_sound_vibrate">Titreş</string>
+  <string name="quick_settings_sound_silent">Sessiz</string>
   <!-- Ambient Display Tile -->
   <string name="quick_settings_ambient_display_label">Ambient display</string>
   <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
@@ -42,23 +71,80 @@
   <string name="accessibility_quick_settings_ambient_display_changed_off">Ambient display kapatıldı.</string>
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_ambient_display_changed_on">Ambient display açıldı.</string>
+  <!-- Always on Display Tile -->
+  <string name="quick_settings_always_on_display_label">Always on ekran</string>
+  <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_off">Always on ekran kapalı.</string>
+  <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_on">Always on ekran açık.</string>
+  <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_changed_off">Always on ekran kapatıldı.</string>
+  <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_changed_on">Always on ekran açıldı.</string>
   <!-- Caffeine QS Tile -->
+  <string name="quick_settings_caffeine_label">Kafein</string>
+  <string name="accessibility_quick_settings_caffeine_off">Kafein kapalı</string>
+  <string name="accessibility_quick_settings_caffeine_on">Kafein açık</string>
   <!-- Sync QS Tile -->
+  <string name="quick_settings_sync_label">Eşitleme</string>
+  <string name="accessibility_quick_settings_sync_off">Eşitleme kapalı</string>
+  <string name="accessibility_quick_settings_sync_on">Eşitleme açık</string>
+  <string name="accessibility_quick_settings_sync_changed_off">Eşitleme kapatıldı</string>
+  <string name="accessibility_quick_settings_sync_changed_on">Eşitleme açıldı</string>
   <!-- Volume QS Tile -->
+  <string name="accessibility_quick_settings_volume_panel">Ses</string>
+  <string name="quick_settings_volume_panel_label">Ses</string>
   <!-- PiP Tile -->
+  <string name="quick_settings_pip_label">PiP</string>
+  <string name="quick_settings_pip_tile_app_na">Uygulama PiP\'i desteklemiyor</string>
   <!-- Screenrecord tile -->
+  <string name="quick_settings_screenrecord">Ekran kaydı</string>
+  <string name="quick_settings_screenrecord_on">Kaydediliyor ...</string>
   <!-- Advance location quick setting tile -->
   <string name="accessibility_quick_settings_location_battery_saving">Konum bildirimi: pil tasarrufu modu.</string>
   <string name="accessibility_quick_settings_location_gps_only">Konum bildirimi: yalnızca sensörler modu.</string>
   <string name="accessibility_quick_settings_location_high_accuracy">Konum bildirimi: yüksek doğruluk modu.</string>
   <!-- Screenrecord Notification Ticker -->
+  <string name="screenrecord_notif_ticker">Ekran kaydediliyor</string>
+  <string name="screenrecord_notif_final_ticker">Ekran başarıyla kaydedildi</string>
   <!-- Screenrecord notification title -->
+  <string name="screenrecord_notif_title">Kayıt ekranı</string>
   <!-- Screenrecord notification action: Stop -->
+  <string name="screenrecord_notif_stop">Durdur</string>
+  <string name="screenrecord_notif_completed">Ekran başarıyla kaydedildi</string>
   <!-- Screenrecord notification action: show/hide pointer -->
+  <string name="screenrecord_notif_pointer_on">İşaretçiyi göster</string>
+  <string name="screenrecord_notif_pointer_off">İşaretçiyi gizle</string>
   <!-- Screen record notification error title -->
+  <string name="screenrecord_notif_error">Ekran görüntüsü kaydedilemiyor</string>
+  <string name="notification_channel_screenrecord">Ekran kayıtları</string>
+  <string name="screenrecord_hide_hint">İpucunu gizle</string>
+  <string name="screenrecord_show_hint">İpucunu göster</string>
   <!-- Screenshot QS tile -->
+  <string name="quick_settings_screenrecord_label">Ekran kaydı</string>
+  <string name="quick_settings_screenrecord_lq_label">Ekran Kaydı 480p</string>
+  <string name="quick_settings_screenrecord_mq_label">Ekran Kaydı 720p</string>
+  <string name="quick_settings_screenrecord_hq_label">Ekran Kaydı 720p+</string>
+  <string name="lockscreen_default">Varsayılan</string>
+  <string name="lockscreen_hidden">Hiçbiri</string>
+  <string name="omnijaws_service_error">Hata</string>
+  <string name="omnijaws_service_unkown">Hava durumu verisi yok</string>
+  <string name="omnijaws_service_error_long">Hava durumu verisi yükleme hatası</string>
+  <string name="omnijaws_service_disabled">Servis devre dışı</string>
+  <string name="omnijaws_detail_header">Hava Durumu</string>
+  <string name="omnijaws_label_default">Hava Durumu</string>
+  <string name="omnijaws_current_text">Şimdi</string>
   <string name="omnijaws_package_not_available">OmniJaws yüklü değil</string>
+  <string name="omnijaws_service_last_update">Son güncelleme:</string>
   <!-- Weather string format in expanded statusbar header -->
+  <string name="status_bar_weather_format"><xliff:g id="temp">%1$s</xliff:g></string>
   <!-- SystemUI Tuner Parts -->
+  <string name="custom_hint">Başlatmak için simgeden kaydırın</string>
   <!-- DUI -->
+  <string name="systemui_tuner_navbar_title">Varsayılan ayarlar</string>
+  <!-- Battery saver tile -->
+  <string name="battery_saver_qs_tile_fully_charged">Tamamen şarj edildi</string>
+  <!-- Caffeine tile -->
+  <string name="caffeine_info_title">Bu nedir?</string>
+  <string name="caffeine_info_message">Kafein, ekranınızın sürekli açık kalmasını sağlayan bir kısayoldur.\n\nUnutmayın ki kısayolun durumu, ekranın kapatılmasından sonra sıfırlanacaktır.</string>
 </resources>

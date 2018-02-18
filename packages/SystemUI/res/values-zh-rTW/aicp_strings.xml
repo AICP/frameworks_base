@@ -70,6 +70,16 @@
   <string name="accessibility_quick_settings_ambient_display_changed_off">環境顯示已關閉。</string>
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_ambient_display_changed_on">環境顯示已開啟。</string>
+  <!-- Always on Display Tile -->
+  <string name="quick_settings_always_on_display_label">一律顯示</string>
+  <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_off">一律顯示關閉。</string>
+  <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_on">一律顯示開啟。</string>
+  <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_changed_off">一律顯示已關閉。</string>
+  <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_changed_on">一律顯示已開啟。</string>
   <!-- Caffeine QS Tile -->
   <string name="quick_settings_caffeine_label">暫停休眠</string>
   <string name="accessibility_quick_settings_caffeine_off">暫停休眠關閉</string>
@@ -111,9 +121,9 @@
   <string name="screenrecord_show_hint">顯示提示</string>
   <!-- Screenshot QS tile -->
   <string name="quick_settings_screenrecord_label">螢幕錄製</string>
-  <string name="quick_settings_screenrecord_lq_label">螢幕錄製 低畫質</string>
-  <string name="quick_settings_screenrecord_mq_label">螢幕錄製 中等畫質</string>
-  <string name="quick_settings_screenrecord_hq_label">螢幕錄製 高畫質</string>
+  <string name="quick_settings_screenrecord_lq_label">螢幕錄製：480P</string>
+  <string name="quick_settings_screenrecord_mq_label">螢幕錄製：720P</string>
+  <string name="quick_settings_screenrecord_hq_label">螢幕錄製：720P+</string>
   <string name="lockscreen_default">預設</string>
   <string name="lockscreen_hidden">無</string>
   <string name="omnijaws_service_error">錯誤</string>
@@ -131,4 +141,9 @@
   <string name="custom_hint">滑動圖示以啟動</string>
   <!-- DUI -->
   <string name="systemui_tuner_navbar_title">原始設定</string>
+  <!-- Battery saver tile -->
+  <string name="battery_saver_qs_tile_fully_charged">完全充滿</string>
+  <!-- Caffeine tile -->
+  <string name="caffeine_info_title">這是什麼？</string>
+  <string name="caffeine_info_message">暫停休眠圖塊是一個簡單的圖塊，您可以開啟以保持螢幕亮起。\n\n請注意，圖塊的狀態將在關閉螢幕後自行重設。</string>
 </resources>

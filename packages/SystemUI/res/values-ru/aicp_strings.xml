@@ -71,6 +71,16 @@
   <string name="accessibility_quick_settings_ambient_display_changed_off">Ambient Display выключен.</string>
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_ambient_display_changed_on">Ambient Display включен.</string>
+  <!-- Always on Display Tile -->
+  <string name="quick_settings_always_on_display_label">Всегда включенный дисплей</string>
+  <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_off">Всегда включенный дисплей выкл.</string>
+  <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_on">Всегда на дисплее вкл.</string>
+  <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_changed_off">Всегда включенный дисплей выключен.</string>
+  <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_changed_on">Всегда включенный дисплей включен.</string>
   <!-- Caffeine QS Tile -->
   <string name="quick_settings_caffeine_label">Запрет сна</string>
   <string name="accessibility_quick_settings_caffeine_off">Запрет сна выкл.</string>
@@ -112,9 +122,9 @@
   <string name="screenrecord_show_hint">Показать подсказки</string>
   <!-- Screenshot QS tile -->
   <string name="quick_settings_screenrecord_label">Запись экрана</string>
-  <string name="quick_settings_screenrecord_lq_label">Запись экрана LQ</string>
-  <string name="quick_settings_screenrecord_mq_label">Запись экрана MQ</string>
-  <string name="quick_settings_screenrecord_hq_label">Запись экрана HQ</string>
+  <string name="quick_settings_screenrecord_lq_label">Запись экрана 480p</string>
+  <string name="quick_settings_screenrecord_mq_label">Запись экрана 720p</string>
+  <string name="quick_settings_screenrecord_hq_label">Запись экрана 720p+</string>
   <string name="lockscreen_default">По умолчанию</string>
   <string name="lockscreen_hidden">Нет</string>
   <string name="omnijaws_service_error">Ошибка</string>
@@ -132,4 +142,9 @@
   <string name="custom_hint">Свайп со значка для запуска</string>
   <!-- DUI -->
   <string name="systemui_tuner_navbar_title">Настройки по умолчанию</string>
+  <!-- Battery saver tile -->
+  <string name="battery_saver_qs_tile_fully_charged">Полностью заряжена</string>
+  <!-- Caffeine tile -->
+  <string name="caffeine_info_title">Что это?</string>
+  <string name="caffeine_info_message">Плитка \"Кофеин\" - простая плитка, после нажатию на которую экран будет держаться во включенном состоянии.\n\nИмейте ввиду, что состояние плитки сбросится после выключения экрана.</string>
 </resources>

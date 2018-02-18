@@ -71,6 +71,16 @@
   <string name="accessibility_quick_settings_ambient_display_changed_off">Pantalla ambiente desactivada.</string>
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_ambient_display_changed_on">Pantalla ambiente activada.</string>
+  <!-- Always on Display Tile -->
+  <string name="quick_settings_always_on_display_label">Pantalla siempre encendida</string>
+  <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_off">Pantalla siempre encendida desactivada.</string>
+  <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_on">Pantalla siempre encendida activada.</string>
+  <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_changed_off">Se ha activado la pantalla siempre encendida.</string>
+  <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_changed_on">Se ha desactivado la pantalla siempre encendida.</string>
   <!-- Caffeine QS Tile -->
   <string name="quick_settings_caffeine_label">Cafeína</string>
   <string name="accessibility_quick_settings_caffeine_off">Cafeína off</string>
@@ -112,9 +122,9 @@
   <string name="screenrecord_show_hint">Mostrar sugerencia</string>
   <!-- Screenshot QS tile -->
   <string name="quick_settings_screenrecord_label">Grabar pantalla</string>
-  <string name="quick_settings_screenrecord_lq_label">Grabación LQ</string>
-  <string name="quick_settings_screenrecord_mq_label">Grabación MQ</string>
-  <string name="quick_settings_screenrecord_hq_label">Grabación HQ</string>
+  <string name="quick_settings_screenrecord_lq_label">Grabación de pantalla 480p</string>
+  <string name="quick_settings_screenrecord_mq_label">Grabación de pantalla 720p</string>
+  <string name="quick_settings_screenrecord_hq_label">Grabación de pantalla 720p+</string>
   <string name="lockscreen_default">Predeterminado</string>
   <string name="lockscreen_hidden">Ninguno</string>
   <string name="omnijaws_service_error">Error</string>
@@ -132,4 +142,9 @@
   <string name="custom_hint">Deslizar desde el icono para abrir</string>
   <!-- DUI -->
   <string name="systemui_tuner_navbar_title">Configuración predeterminada</string>
+  <!-- Battery saver tile -->
+  <string name="battery_saver_qs_tile_fully_charged">Cargado</string>
+  <!-- Caffeine tile -->
+  <string name="caffeine_info_title">¿Qué es esto?</string>
+  <string name="caffeine_info_message">El ajuste Cafeína es un acceso directo que se puede activar para mantener la pantalla encendida.\n\nEl estado del ajuste se reseteará al apagar la pantalla.</string>
 </resources>

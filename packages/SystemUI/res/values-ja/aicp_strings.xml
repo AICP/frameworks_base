@@ -61,6 +61,11 @@
   <string name="accessibility_quick_settings_ambient_display_changed_off">アンビエント表示を OFF にしました。</string>
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_ambient_display_changed_on">アンビエント表示を ON にしました。</string>
+  <!-- Always on Display Tile -->
+  <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <!-- Caffeine QS Tile -->
   <string name="quick_settings_caffeine_label">カフェイン</string>
   <string name="accessibility_quick_settings_caffeine_off">カフェイン OFF</string>
@@ -93,4 +98,6 @@
   <!-- Weather string format in expanded statusbar header -->
   <!-- SystemUI Tuner Parts -->
   <!-- DUI -->
+  <!-- Battery saver tile -->
+  <!-- Caffeine tile -->
 </resources>

@@ -47,7 +47,7 @@
   <string name="accessibility_quick_settings_usb_tether_on">Tethering USB attivato</string>
   <string name="accessibility_quick_settings_usb_tether_changed_off">Tethering USB disattivato</string>
   <string name="accessibility_quick_settings_usb_tether_changed_on">Tethering USB attivato</string>
-  <string name="quick_settings_usb_tether_label">USB tethering</string>
+  <string name="quick_settings_usb_tether_label">Tethering USB</string>
   <!-- Language toggle tile -->
   <string name="quick_settings_locale_label">Lingua</string>
   <string name="quick_settings_locale_more_locales_toast">Si prega di configurare più lingue per abilitare la funzionalità attiva/disattiva</string>
@@ -70,6 +70,16 @@
   <string name="accessibility_quick_settings_ambient_display_changed_off">Display ambient disattivato.</string>
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_ambient_display_changed_on">Display ambient attivato.</string>
+  <!-- Always on Display Tile -->
+  <string name="quick_settings_always_on_display_label">Always on display</string>
+  <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_off">Always on display spento.</string>
+  <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_on">Always on display acceso.</string>
+  <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_changed_off">Always on display disattivato.</string>
+  <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_changed_on">Always on display attivato.</string>
   <!-- Caffeine QS Tile -->
   <string name="quick_settings_caffeine_label">Caffeina</string>
   <string name="accessibility_quick_settings_caffeine_off">Caffeina disattivata</string>
@@ -111,9 +121,9 @@
   <string name="screenrecord_show_hint">Mostra suggerimento</string>
   <!-- Screenshot QS tile -->
   <string name="quick_settings_screenrecord_label">Registra schermo</string>
-  <string name="quick_settings_screenrecord_lq_label">Registratore schermo LQ</string>
-  <string name="quick_settings_screenrecord_mq_label">Registratore schermo MQ</string>
-  <string name="quick_settings_screenrecord_hq_label">Registratore schermo HQ</string>
+  <string name="quick_settings_screenrecord_lq_label">Registra schermo 480p</string>
+  <string name="quick_settings_screenrecord_mq_label">Registra schermo 720p</string>
+  <string name="quick_settings_screenrecord_hq_label">Registra schermo 720p+</string>
   <string name="lockscreen_default">Predefinito</string>
   <string name="lockscreen_hidden">Nessuno</string>
   <string name="omnijaws_service_error">Errore</string>
@@ -131,4 +141,9 @@
   <string name="custom_hint">Scorri dall\'icona per avviare</string>
   <!-- DUI -->
   <string name="systemui_tuner_navbar_title">Impostazioni stock</string>
+  <!-- Battery saver tile -->
+  <string name="battery_saver_qs_tile_fully_charged">Ricarica completa</string>
+  <!-- Caffeine tile -->
+  <string name="caffeine_info_title">Cos\'è questo?</string>
+  <string name="caffeine_info_message">Il tile Caffeina ti permette di tenere acceso lo schermo.\n\nTieni nota che lo stato del tile si resetterà da solo quando lo schermo si spegnerà.</string>
 </resources>

@@ -55,6 +55,11 @@
   <string name="accessibility_quick_settings_ambient_display_changed_off">环境显示关闭</string>
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_ambient_display_changed_on">环境显示开启</string>
+  <!-- Always on Display Tile -->
+  <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <!-- Caffeine QS Tile -->
   <string name="quick_settings_caffeine_label">咖啡定时</string>
   <string name="accessibility_quick_settings_caffeine_off">咖啡定时关闭</string>
@@ -81,4 +86,6 @@
   <!-- Weather string format in expanded statusbar header -->
   <!-- SystemUI Tuner Parts -->
   <!-- DUI -->
+  <!-- Battery saver tile -->
+  <!-- Caffeine tile -->
 </resources>

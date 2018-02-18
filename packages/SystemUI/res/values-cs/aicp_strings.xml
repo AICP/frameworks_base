@@ -71,6 +71,16 @@
   <string name="accessibility_quick_settings_ambient_display_changed_off">Ambientní displej vypnut.</string>
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_ambient_display_changed_on">Ambientní displej zapnut.</string>
+  <!-- Always on Display Tile -->
+  <string name="quick_settings_always_on_display_label">\"Always on\" displej</string>
+  <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_off">\"Always on\" displej vyp.</string>
+  <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_on">\"Always on\" displej zap.</string>
+  <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_changed_off">\"Always on\" displej byl vypnutý.</string>
+  <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_changed_on">\"Always on\" displej byl zapnutý.</string>
   <!-- Caffeine QS Tile -->
   <string name="quick_settings_caffeine_label">Kofein</string>
   <string name="accessibility_quick_settings_caffeine_off">Kofein vyp</string>
@@ -112,9 +122,9 @@
   <string name="screenrecord_show_hint">Zobrazit nápovědu</string>
   <!-- Screenshot QS tile -->
   <string name="quick_settings_screenrecord_label">Záznam obrazovky</string>
-  <string name="quick_settings_screenrecord_lq_label">Záznam obrazovky LQ</string>
-  <string name="quick_settings_screenrecord_mq_label">Záznam obrazovky MQ</string>
-  <string name="quick_settings_screenrecord_hq_label">Záznam obrazovky HQ</string>
+  <string name="quick_settings_screenrecord_lq_label">Záznam obrazovky 480p</string>
+  <string name="quick_settings_screenrecord_mq_label">Záznam obrazovky 720p</string>
+  <string name="quick_settings_screenrecord_hq_label">Záznam obrazovky 720p+</string>
   <string name="lockscreen_default">Výchozí</string>
   <string name="lockscreen_hidden">Žádná</string>
   <string name="omnijaws_service_error">Chyba</string>
@@ -132,4 +142,9 @@
   <string name="custom_hint">Spustit přejetím prstem od ikony</string>
   <!-- DUI -->
   <string name="systemui_tuner_navbar_title">Výchozí nastavení</string>
+  <!-- Battery saver tile -->
+  <string name="battery_saver_qs_tile_fully_charged">Plně nabito</string>
+  <!-- Caffeine tile -->
+  <string name="caffeine_info_title">Co to je?</string>
+  <string name="caffeine_info_message">Dlaždice Kofein je jednoduchá dlaždice, kterou můžete zapnout, aby vaše obrazovka zůstala zapnutá.\n\nVezměte na vědomí, že stav dlaždice se po vypnutí obrazovky obnoví.</string>
 </resources>

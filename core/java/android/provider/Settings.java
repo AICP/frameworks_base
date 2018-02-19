@@ -4899,6 +4899,12 @@ public final class Settings {
         public static final String QS_HEADER_BATTERY_PERCENT = "qs_header_force_battery_percent";
 
         /**
+        * Whether to gently vibrate instead of playin a sound when in-call and a notification is pushed
+        * @hide
+        */
+        public static final String INCALL_NOTIFICATIONS_VIBRATE = "incall_notifications_vibrate";
+
+        /**
          * --- AICP System settings end
          *  Add new system settings above this comment
          */

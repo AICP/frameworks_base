@@ -59,4 +59,7 @@
     <integer name="config_deviceHardwareKeys">64</integer>
     <bool name="config_button_brightness_support">false</bool>
     <integer name="config_button_brightness_default">128</integer>
+
+    <!-- In call notification vibration strength -->
+    <integer name="config_in_call_notification_vibration_strength">30</integer>
 </resources>

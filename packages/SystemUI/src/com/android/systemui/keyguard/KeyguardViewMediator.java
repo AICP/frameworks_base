@@ -1007,12 +1007,6 @@ public class KeyguardViewMediator extends SystemUI {
         }
     }
 
-    private boolean isProfileDisablingKeyguard() {
-        Profile profile = mProfileManager.getActiveProfile();
-        return profile != null &&
-                profile.getScreenLockMode().getValue() == Profile.LockMode.DISABLE;
-    }
-
     private boolean isKeyguardDisabled(int userId) {
         if (!mExternallyEnabled) {
             if (DEBUG) Log.d(TAG, "isKeyguardDisabled: keyguard is disabled externally");
@@ -1022,9 +1016,12 @@ public class KeyguardViewMediator extends SystemUI {
             if (DEBUG) Log.d(TAG, "isKeyguardDisabled: keyguard is disabled by setting");
             return true;
         }
-        if (isProfileDisablingKeyguard()) {
-            if (DEBUG) Log.d(TAG, "isKeyguardDisabled: keyguard is disabled by profile");
-            return true;
+        Profile profile = mProfileManager.getActiveProfile();
+        if (profile != null) {
+            if (profile.getScreenLockMode().getValue() == Profile.LockMode.DISABLE) {
+                if (DEBUG) Log.d(TAG, "isKeyguardDisabled: keyguard is disabled by profile");
+                return true;
+            }
         }
         return false;
     }
@@ -1234,7 +1231,7 @@ public class KeyguardViewMediator extends SystemUI {
      * was suppressed by an app that disabled the keyguard or we haven't been provisioned yet.
      */
     public boolean isInputRestricted() {
-        return (mShowing || mNeedToReshowWhenReenabled) && !isProfileDisablingKeyguard();
+        return mShowing || mNeedToReshowWhenReenabled;
     }
 
     private void updateInputRestricted() {

@@ -33,8 +33,6 @@ import com.android.systemui.statusbar.phone.ButtonDispatcher;
 import com.android.systemui.plugins.statusbar.phone.NavBarButtonProvider;
 import com.android.systemui.statusbar.policy.KeyButtonView;
 
-import lineageos.providers.LineageSettings;
-
 public class OpaLayout extends FrameLayout implements NavBarButtonProvider.ButtonInterface{
 
     static final String TAG = "OpaLayout";
@@ -544,9 +542,8 @@ public class OpaLayout extends FrameLayout implements NavBarButtonProvider.Butto
     }
 
     public void setOpaEnabled(boolean enabled) {
-        final boolean opaToggle = LineageSettings.System.getIntForUser(getContext().getContentResolver(),
-            LineageSettings.System.PIXEL_NAV_ANIMATION, 1, UserHandle.USER_CURRENT) == 1;
-        mOpaEnabled = (enabled || UserManager.isDeviceInDemoMode(getContext())) && opaToggle;
+        final boolean eligible = SystemProperties.getBoolean("ro.opa.eligible_device", false);
+        mOpaEnabled = (enabled || UserManager.isDeviceInDemoMode(getContext())) && eligible;
 
         int visibility = mOpaEnabled ? View.VISIBLE : View.INVISIBLE;
         mBlue.setVisibility(visibility);

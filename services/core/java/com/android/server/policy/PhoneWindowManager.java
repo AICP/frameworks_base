@@ -779,7 +779,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     int mInitialMetaState;
     boolean mForceShowSystemBars;
 
-    int mDevForceNavbar = -1;
+    boolean mDevForceNavbar;
 
     // Tracks user-customisable behavior for certain key events
     private Action mHomeLongPressAction;
@@ -2562,7 +2562,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private void updateKeyAssignments() {
         int activeHardwareKeys = mDeviceHardwareKeys;
 
-        if (mDevForceNavbar == 1) {
+        if (mDevForceNavbar) {
             activeHardwareKeys = 0;
         }
 
@@ -2830,13 +2830,12 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     Settings.System.THREE_FINGER_GESTURE, 0, UserHandle.USER_CURRENT) == 1;
             enableSwipeThreeFingerGesture(threeFingerGesture);
 
-            int devForceNavbar = LineageSettings.Global.getIntForUser(resolver,
-                    LineageSettings.Global.DEV_FORCE_SHOW_NAVBAR, 0, UserHandle.USER_CURRENT);
+            boolean devForceNavbar = Settings.Secure.getIntForUser(resolver,
+                    Settings.Secure.NAVIGATION_BAR_VISIBLE, 0, UserHandle.USER_CURRENT) == 1;
             if (devForceNavbar != mDevForceNavbar) {
                 mDevForceNavbar = devForceNavbar;
                 if (mLineageHardware.isSupported(LineageHardwareManager.FEATURE_KEY_DISABLE)) {
-                    mLineageHardware.set(LineageHardwareManager.FEATURE_KEY_DISABLE,
-                            mDevForceNavbar == 1);
+                    mLineageHardware.set(LineageHardwareManager.FEATURE_KEY_DISABLE, mDevForceNavbar);
                 }
             }
 
@@ -9320,7 +9319,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     // overridden by qemu.hw.mainkeys in the emulator.
     @Override
     public boolean hasNavigationBar() {
-        return mNavbarVisible || mDevForceNavbar == 1;
+        return mNavbarVisible || mDevForceNavbar;
     }
 
     public boolean needsNavigationBar() {

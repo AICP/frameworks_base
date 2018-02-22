@@ -4853,6 +4853,20 @@ public final class Settings {
         public static final String STATUSBAR_CLOCK_DATE_POSITION = "statusbar_clock_date_position";
 
         /**
+         * Whether to blend battery light colors between full and low value
+         * @hide
+         */
+        public static final String BATTERY_LIGHT_BLEND_COLOR = "battery_light_blend_color";
+
+        /**
+         * Whether to reverse the blend direction of battery light colors between full and low value
+         * (HSV color model)
+         * @hide
+         */
+        public static final String BATTERY_LIGHT_BLEND_COLOR_REVERSE =
+                "battery_light_blend_color_reverse";
+
+        /**
          * --- AICP System settings end
          *  Add new system settings above this comment
          */

@@ -611,7 +611,7 @@ public class StatusBar extends SystemUI implements DemoMode,
 
             if (visible && mNavigationBarView == null) {
                 createNavigationBar();
-            } else if (mNavigationBarView != null) {
+            } else {
                 mWindowManager.removeViewImmediate(mNavigationBarView);
                 mNavigationBarView = null;
             }

@@ -428,6 +428,7 @@ public class StatusBar extends SystemUI implements DemoMode,
             "com.aicp.overlay.defaultdark.android",
             "com.aicp.overlay.defaultdark.com.android.systemui",
             "com.aicp.overlay.defaultdark.com.android.settings",
+            "com.aicp.overlay.defaultdark.org.lineageos.lineageparts",
             "com.aicp.overlay.defaultdark.com.android.calculator2",
     };
 

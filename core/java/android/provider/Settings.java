@@ -5242,6 +5242,12 @@ public final class Settings {
         public static final String DISABLE_FC_NOTIFICATIONS = "disable_fc_notifications";
 
         /**
+         * Use EdgeGesture Service for system gestures in PhoneWindowManager
+         * @hide
+         */
+        public static final String USE_EDGE_SERVICE_FOR_GESTURES = "edge_service_for_gestures";
+
+        /**
          * --- AICP System settings end
          *  Add new system settings above this comment
          */
@@ -8851,6 +8857,42 @@ public final class Settings {
          * @hide
          */
         public static final String DEVICE_HOSTNAME = "device_hostname";
+
+        /**
+         * Whether to use edge gestures to navigate.
+         * @hide
+         */
+        public static final String EDGE_GESTURES_ENABLED = "edge_gestures_enabled";
+
+        /**
+         * Haptic feedback duration on edge gesture navigation.
+         * @hide
+         */
+        public static final String EDGE_GESTURES_FEEDBACK_DURATION = "edge_gestures_feedback_duration";
+
+        /**
+         * Long press duration on edge gesture navigation.
+         * @hide
+         */
+        public static final String EDGE_GESTURES_LONG_PRESS_DURATION = "edge_gestures_long_press_duration";
+
+        /**
+         * Back gesture active on this edges.
+         * @hide
+         */
+        public static final String EDGE_GESTURES_BACK_EDGES = "edge_gestures_back_edges";
+
+        /**
+         * Back gesture active on this edges when on landscape.
+         * @hide
+         */
+        public static final String EDGE_GESTURES_LANDSCAPE_BACK_EDGES = "edge_gestures_landscape_back_edges";
+
+        /**
+         * Activate back gestures only when Y position > than this % of screen.
+         * @hide
+         */
+        public static final String EDGE_GESTURES_BACK_SCREEN_PERCENT = "edge_gestures_back_screen_percent";
 
         /**
          * This are the settings to be backed up.

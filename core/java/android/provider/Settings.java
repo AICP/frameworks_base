@@ -4867,6 +4867,14 @@ public final class Settings {
                 "battery_light_blend_color_reverse";
 
         /**
+         * Ticker animation
+         * 0: Fade animation
+         * 1: Scrolling ticker
+         */
+        public static final String STATUS_BAR_TICKER_ANIMATION_MODE =
+                "status_bar_ticker_animation_mode";
+
+        /**
          * --- AICP System settings end
          *  Add new system settings above this comment
          */

@@ -759,6 +759,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             if (mNavigationBar != null) {
                 mNavigationBar.setMediaPlaying(false);
             }
+            if (mTicker != null) {
+                mTicker.resetShownMediaMetadata();
+            }
         }
     }
 

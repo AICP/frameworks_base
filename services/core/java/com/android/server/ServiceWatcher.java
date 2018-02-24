@@ -35,6 +35,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.RemoteException;
+import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.util.Log;
 import android.util.Slog;
@@ -64,6 +65,8 @@ public class ServiceWatcher implements ServiceConnection {
     public static final String EXTRA_SERVICE_VERSION = "serviceVersion";
     public static final String EXTRA_SERVICE_IS_MULTIUSER = "serviceIsMultiuser";
 
+    private static final String WHITELIST_PACKAGELIST_PROPERTY = "ro.services.whitelist.packagelist";
+
 
     /** Function to run on binder interface. */
     public interface BinderRunner {
@@ -85,11 +88,22 @@ public class ServiceWatcher implements ServiceConnection {
         PackageManager pm = context.getPackageManager();
 
         ArrayList<HashSet<Signature>> signatureSets = new ArrayList<>(packageNames.length);
+
+        String whitelistPackagesValue = SystemProperties.get(WHITELIST_PACKAGELIST_PROPERTY,"");
+        String[] whitelistPackagesArray = whitelistPackagesValue.split(",");
+        HashSet<String> whitelistPackagesSet = new HashSet<String>(Arrays.asList(whitelistPackagesArray));
+
         for (String packageName : packageNames) {
             try {
-                Signature[] signatures = pm.getPackageInfo(packageName,
-                        PackageManager.MATCH_SYSTEM_ONLY
-                                | PackageManager.GET_SIGNATURES).signatures;
+                Signature[] signatures = null;
+                if(whitelistPackagesSet != null && whitelistPackagesSet.contains(packageName)) {
+                    signatures = pm.getPackageInfo(packageName, PackageManager.GET_SIGNATURES).signatures;
+                    Log.i("ServiceWatcher", packageName + " is whitelisted, ignored PackageManager.MATCH_SYSTEM_ONLY");
+                } else {
+                    signatures = pm.getPackageInfo(packageName,
+                            PackageManager.MATCH_SYSTEM_ONLY
+                                    | PackageManager.GET_SIGNATURES).signatures;
+                }
 
                 HashSet<Signature> set = new HashSet<>();
                 Collections.addAll(set, signatures);

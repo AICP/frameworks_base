@@ -4870,6 +4870,7 @@ public final class Settings {
          * Ticker animation
          * 0: Fade animation
          * 1: Scrolling ticker
+         * @hide
          */
         public static final String STATUS_BAR_TICKER_ANIMATION_MODE =
                 "status_bar_ticker_animation_mode";

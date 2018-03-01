@@ -84,7 +84,6 @@ import static android.os.Process.removeAllProcessGroups;
 import static android.os.Process.sendSignal;
 import static android.os.Process.setProcessGroup;
 import static android.os.Process.setThreadPriority;
-import static android.os.Process.setThreadScheduler;
 import static android.os.Process.startWebView;
 import static android.os.Process.zygoteProcess;
 import static android.provider.Settings.Global.ALWAYS_FINISH_ACTIVITIES;
@@ -7039,6 +7038,10 @@ public class ActivityManagerService extends IActivityManager.Stub
             handleAppDiedLocked(app, true, true);
         }
 
+        if (UserHandle.isApp(app.uid) || UserHandle.isIsolated(app.uid)) {
+            Cgroups.putProc(app.pid, app.uid);
+        }
+
         // Tell the process all about itself.
 
         if (DEBUG_ALL) Slog.v(
@@ -13587,6 +13590,10 @@ public class ActivityManagerService extends IActivityManager.Stub
     static boolean scheduleAsRegularPriority(int tid, boolean suppressLogs) {
         try {
             Process.setThreadScheduler(tid, Process.SCHED_OTHER, 0);
+            int uid = Process.getUidForPid(tid);
+            if (UserHandle.isApp(uid) || UserHandle.isIsolated(uid)) {
+                Cgroups.putProc(tid, uid);
+            }
             return true;
         } catch (IllegalArgumentException e) {
             if (!suppressLogs) {
@@ -13608,9 +13615,10 @@ public class ActivityManagerService extends IActivityManager.Stub
      *
      * @return {@code true} if this succeeded.
      */
-    static boolean scheduleAsFifoPriority(int tid, boolean suppressLogs) {
+    public static boolean scheduleAsFifoPriority(int tid, int prio, boolean suppressLogs) {
         try {
-            Process.setThreadScheduler(tid, Process.SCHED_FIFO | Process.SCHED_RESET_ON_FORK, 1);
+            Cgroups.putThreadInRoot(tid);
+            Process.setThreadScheduler(tid, Process.SCHED_FIFO | Process.SCHED_RESET_ON_FORK, prio);
             return true;
         } catch (IllegalArgumentException e) {
             if (!suppressLogs) {
@@ -13659,8 +13667,7 @@ public class ActivityManagerService extends IActivityManager.Stub
                     if (proc.curSchedGroup == ProcessList.SCHED_GROUP_TOP_APP) {
                         if (DEBUG_OOM_ADJ) Slog.d("UI_FIFO", "Promoting " + tid + "out of band");
                         if (mUseFifoUiScheduling) {
-                            setThreadScheduler(proc.renderThreadTid,
-                                SCHED_FIFO | SCHED_RESET_ON_FORK, 1);
+                            scheduleAsFifoPriority(proc.renderThreadTid, /*prio*/1, /*noLogs*/true);
                         } else {
                             setThreadPriority(proc.renderThreadTid, TOP_APP_PRIORITY_BOOST);
                         }
@@ -22177,10 +22184,9 @@ public class ActivityManagerService extends IActivityManager.Stub
                             if (mUseFifoUiScheduling) {
                                 // Switch UI pipeline for app to SCHED_FIFO
                                 app.savedPriority = Process.getThreadPriority(app.pid);
-                                scheduleAsFifoPriority(app.pid, /* suppressLogs */true);
+                                scheduleAsFifoPriority(app.pid, /*prio*/1, /*suppressLogs*/true);
                                 if (app.renderThreadTid != 0) {
-                                    scheduleAsFifoPriority(app.renderThreadTid,
-                                        /* suppressLogs */true);
+                                    scheduleAsFifoPriority(app.renderThreadTid, 1, true);
                                     if (DEBUG_OOM_ADJ) {
                                         Slog.d("UI_FIFO", "Set RenderThread (TID " +
                                             app.renderThreadTid + ") to FIFO");
@@ -22209,11 +22215,10 @@ public class ActivityManagerService extends IActivityManager.Stub
                         if (mUseFifoUiScheduling) {
                             try {
                                 // Reset UI pipeline to SCHED_OTHER
-                                setThreadScheduler(app.pid, SCHED_OTHER, 0);
+                                scheduleAsRegularPriority(app.pid, /* suppressLogs */ true);
                                 setThreadPriority(app.pid, app.savedPriority);
                                 if (app.renderThreadTid != 0) {
-                                    setThreadScheduler(app.renderThreadTid,
-                                        SCHED_OTHER, 0);
+                                    scheduleAsRegularPriority(app.renderThreadTid, true);
                                     setThreadPriority(app.renderThreadTid, -4);
                                 }
                             } catch (IllegalArgumentException e) {

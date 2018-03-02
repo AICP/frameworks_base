@@ -4884,6 +4884,14 @@ public final class Settings {
                 "notification_guts_kill_app_button";
 
         /**
+         * Setting to determine whether or not to force the battery percentage in qs header & keyguard.
+         *    0 - Don't show percentage
+         *    1 - Show percentage
+         * @hide
+         */
+        public static final String QS_HEADER_BATTERY_PERCENT = "qs_header_force_battery_percent";
+
+        /**
          * --- AICP System settings end
          *  Add new system settings above this comment
          */

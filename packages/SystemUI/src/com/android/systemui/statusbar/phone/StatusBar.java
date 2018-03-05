@@ -5280,6 +5280,11 @@ public class StatusBar extends SystemUI implements DemoMode,
                 break;
         }
 
+        // Remove previous overlay we had that's causing issues
+        try {
+            mOverlayManager.setEnabled("com.android.systemui.theme.dark", false, mCurrentUserId);
+        } catch (RemoteException e) {}
+
         if (isUsingDarkTheme() != useDarkTheme) {
             for (String overlay: DARK_OVERLAYS) {
                 try {

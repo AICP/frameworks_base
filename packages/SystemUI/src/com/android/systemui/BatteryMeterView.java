@@ -16,6 +16,7 @@
 package com.android.systemui;
 
 import static android.provider.Settings.System.SHOW_BATTERY_PERCENT;
+import static android.provider.Settings.System.QS_HEADER_BATTERY_PERCENT;
 import static android.provider.Settings.Secure.STATUS_BAR_BATTERY_STYLE;
 
 import android.animation.ArgbEvaluator;
@@ -64,6 +65,7 @@ public class BatteryMeterView extends LinearLayout implements
     private int mTextColor;
     private int mLevel;
     private boolean mForceShowPercent;
+    private boolean mForceQSHeaderPercent;
 
     private int mDarkModeBackgroundColor;
     private int mDarkModeFillColor;
@@ -157,9 +159,8 @@ public class BatteryMeterView extends LinearLayout implements
     }
 
     private boolean forcePercentageQsHeader() {
-        return mQsHeaderOrKeyguard && (mStyle == BatteryMeterDrawableBase.BATTERY_STYLE_PORTRAIT
-                || mStyle == BatteryMeterDrawableBase.BATTERY_STYLE_HIDDEN
-                || mStyle == BatteryMeterDrawableBase.BATTERY_STYLE_TEXT);
+        return mQsHeaderOrKeyguard && mForceQSHeaderPercent && (mStyle != BatteryMeterDrawableBase.BATTERY_STYLE_CIRCLE
+                && mStyle != BatteryMeterDrawableBase.BATTERY_STYLE_DOTTED_CIRCLE);
     }
 
     @Override
@@ -364,6 +365,8 @@ public class BatteryMeterView extends LinearLayout implements
     public void updateSettings(boolean fromObserver) {
         mShowPercentText = 0 != Settings.System.getIntForUser(mContext.getContentResolver(),
                 SHOW_BATTERY_PERCENT, 0, mUser);
+        mForceQSHeaderPercent = 0 != Settings.System.getIntForUser(mContext.getContentResolver(),
+                QS_HEADER_BATTERY_PERCENT, 0, mUser);
         mStyle = Settings.Secure.getIntForUser(mContext.getContentResolver(),
                 STATUS_BAR_BATTERY_STYLE, BatteryMeterDrawableBase.BATTERY_STYLE_PORTRAIT, mUser);
         mClockStyle = Settings.System.getIntForUser(mContext.getContentResolver(),

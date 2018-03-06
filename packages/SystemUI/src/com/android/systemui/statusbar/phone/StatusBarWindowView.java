@@ -796,8 +796,6 @@ public class StatusBarWindowView extends FrameLayout implements TunerService.Tun
         ContentResolver resolver = mContext.getContentResolver();
         boolean isDoubleTapEnabled = Settings.System.getIntForUser(resolver,
                 Settings.System.DOUBLE_TAP_SLEEP_LOCKSCREEN, 0, UserHandle.USER_CURRENT) == 1;
-        boolean isQsQuickPulldown = Settings.System.getIntForUser(resolver,
-                Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN, 0, UserHandle.USER_CURRENT) == 1;
         int qsSmartPullDown = Settings.System.getIntForUser(resolver,
                 Settings.System.QS_SMART_PULLDOWN, 0, UserHandle.USER_CURRENT);
         boolean isQsSecureExpandDisabled = Settings.Secure.getIntForUser(
@@ -805,7 +803,6 @@ public class StatusBarWindowView extends FrameLayout implements TunerService.Tun
                 UserHandle.USER_CURRENT) != 0;
         if (mNotificationPanel != null) {
             mNotificationPanel.setLockscreenDoubleTapToSleep(isDoubleTapEnabled);
-            mNotificationPanel.setQsQuickPulldown(isQsQuickPulldown);
             mNotificationPanel.setQsSmartPulldown(qsSmartPullDown);
             mNotificationPanel.setQsSecureExpandDisabled(isQsSecureExpandDisabled);
         }

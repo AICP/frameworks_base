@@ -46,6 +46,12 @@ public class BatterySaverTile extends QSTileImpl<BooleanState> implements
     private static boolean mCharging;
     private boolean mPluggedIn;
 
+    private boolean mDashCharger;
+    private boolean mHasDashCharger;
+
+    private boolean mTurboCharger;
+    private boolean mHasTurboCharger;
+
     public BatterySaverTile(QSHost host) {
         super(host);
         mBatteryController = Dependency.get(BatteryController.class);
@@ -87,6 +93,14 @@ public class BatterySaverTile extends QSTileImpl<BooleanState> implements
 
     @Override
     protected void handleUpdateState(BooleanState state, Object arg) {
+        mHasDashCharger = mContext.getResources().getBoolean(
+                com.android.internal.R.bool.config_hasDashCharger);
+        mDashCharger = mHasDashCharger && isDashCharger();
+
+        mHasTurboCharger = mContext.getResources().getBoolean(
+                com.android.internal.R.bool.config_hasTurboPowerCharger);
+        mTurboCharger = mHasTurboCharger && isTurboPower();
+
         state.state = mPluggedIn ? Tile.STATE_UNAVAILABLE
                 : mPowerSave ? Tile.STATE_ACTIVE : Tile.STATE_INACTIVE;
 
@@ -97,7 +111,13 @@ public class BatterySaverTile extends QSTileImpl<BooleanState> implements
         if (mCharging) {
             state.label = mContext.getString(R.string.keyguard_plugged_in);
         }
-        if (!mCharging) {
+        if (mDashCharger) {
+            state.label = mContext.getString(R.string.keyguard_plugged_in_dash_charging);
+        }
+        if (mTurboCharger) {
+            state.label = mContext.getString(R.string.keyguard_plugged_in_turbo_charging);
+        }
+        if (!mDashCharger && !mTurboCharger && !mCharging) {
             if (getBatteryLevel(mContext) == 100) {
                 state.label = mContext.getString(R.string.battery_saver_qs_tile_fully_charged);
             } else {
@@ -163,6 +183,36 @@ public class BatterySaverTile extends QSTileImpl<BooleanState> implements
         public void setBatteryLevel(int val) {
             // Don't change the actual level, otherwise this won't draw correctly
         }
+    }
+
+    // Check for dash charging -- OnePlus charging method
+    private boolean isDashCharger() {
+        try {
+            FileReader file = new FileReader("/sys/class/power_supply/battery/fastchg_status");
+            BufferedReader br = new BufferedReader(file);
+            String state = br.readLine();
+            br.close();
+            file.close();
+            return "1".equals(state);
+        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
+        }
+        return false;
+    }
+
+    // Check for turbo charging -- Motorola charging method
+    private boolean isTurboPower() {
+        try {
+            FileReader file = new FileReader("/sys/class/power_supply/battery/charge_rate");
+            BufferedReader br = new BufferedReader(file);
+            String state = br.readLine();
+            br.close();
+            file.close();
+            return "Turbo".equals(state);
+        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
+        }
+        return false;
     }
 
     private int getBatteryLevel(Context context) {

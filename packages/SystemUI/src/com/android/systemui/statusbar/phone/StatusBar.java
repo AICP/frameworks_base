@@ -6610,6 +6610,12 @@ public class StatusBar extends SystemUI implements DemoMode,
         }
     }
 
+    public void updateQsbhClock() {
+        if (mQuickStatusBarHeader != null) {
+            mQuickStatusBarHeader.updateQsbhClock();
+        }
+    }
+
     private void updateFPQuickPulldown() {
         mFingerprintQuickPulldown = Settings.System.getIntForUser(mContext.getContentResolver(),
                 Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN_FP, 0,

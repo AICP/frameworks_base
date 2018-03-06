@@ -89,6 +89,25 @@
             </HorizontalScrollView>
         </com.android.systemui.qs.HorizontalClippingLinearLayout>
 
+        <com.android.keyguard.AlphaOptimizedLinearLayout
+            android:id="@+id/center_clock_layout"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/qs_header_system_icons_area_height"
+            >
+
+            <com.android.systemui.statusbar.policy.ClockCenter
+                android:id="@+id/center_clock"
+                android:textAppearance="@style/TextAppearance.StatusBar.Expanded.Clock"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                android:singleLine="true"
+                />
+        </com.android.keyguard.AlphaOptimizedLinearLayout>
+
         <com.android.systemui.statusbar.AlphaOptimizedImageView
             android:id="@+id/qs_detail_header_progress"
             android:layout_width="match_parent"

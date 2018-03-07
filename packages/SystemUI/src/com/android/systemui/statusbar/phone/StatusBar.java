@@ -216,7 +216,7 @@ import com.android.systemui.recents.ScreenPinningRequest;
 import com.android.systemui.recents.events.EventBus;
 import com.android.systemui.recents.events.activity.AppTransitionFinishedEvent;
 import com.android.systemui.recents.events.activity.UndockingTaskEvent;
-import com.android.systemui.recents.misc.IconPackHelper;
+import com.android.systemui.slimrecent.icons.IconsHandler;
 import com.android.systemui.recents.misc.SystemServicesProxy;
 import com.android.systemui.slimrecent.RecentController;
 import com.android.systemui.stackdivider.Divider;
@@ -6611,7 +6611,6 @@ public class StatusBar extends SystemUI implements DemoMode,
             updateFPQuickPulldown();
             updateBatterySaverColor();
             updateTickerAnimation();
-            updateRecentsIconPack();
 
             // Update slim recents
             updateRecentsMode();
@@ -6701,7 +6700,7 @@ public class StatusBar extends SystemUI implements DemoMode,
     private void updateRecentsIconPack() {
         String currentIconPack = Settings.System.getStringForUser(mContext.getContentResolver(),
             Settings.System.RECENTS_ICON_PACK, mCurrentUserId);
-        IconPackHelper.getInstance(mContext).updatePrefs(currentIconPack);
+        IconsHandler.getInstance(mContext).updatePrefs(currentIconPack);
         mRecents.evictAllCaches();
     }
 
@@ -8512,6 +8511,9 @@ public class StatusBar extends SystemUI implements DemoMode,
                 mSlimRecents = null;
             }
         }
+
+        IconsHandler.getInstance(mContext).resetIconNormalizer();
+        updateRecentsIconPack();
     }
 
     private void rebuildRecentsScreen() {

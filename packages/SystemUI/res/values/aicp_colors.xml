@@ -38,4 +38,7 @@
 
     <!-- Custom Carrier Label -->
     <color name="status_bar_carrier_color">#FFFFFFFF</color>
+
+    <!-- Recents -->
+    <color name="legacy_icon_background">#FFFFFF</color>
 </resources>

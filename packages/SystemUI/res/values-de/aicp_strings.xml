@@ -159,4 +159,6 @@
   <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
   <string name="keyguard_plugged_in_dash_charging">Schnellladefunktion (Dash)</string>
   <!-- Indication on the keyguard that is shown when the device is charging with a turbo power charger. Should match keyguard_plugged_in_turbo_power_charging [CHAR LIMIT=40]-->
+  <string name="keyguard_plugged_in_turbo_power_charging">TurboPower angeschlossen</string>
+  <string name="keyguard_plugged_in_turbo_charging">Schnellladefunktion (Turbo)</string>
 </resources>

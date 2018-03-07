@@ -576,7 +576,7 @@
     <!-- How much two taps can be apart to still be recognized as a double tap on the lockscreen -->
     <dimen name="double_tap_slop">32dp</dimen>
 
-    <dimen name="battery_margin_bottom">0dp</dimen>
+    <dimen name="battery_margin_bottom">1dp</dimen>
 
     <!-- Padding at the end of the view that displays the mobile signal icons. If the view is
          empty, then this padding will not be added to that view. -->

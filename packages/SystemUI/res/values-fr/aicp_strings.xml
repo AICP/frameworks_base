@@ -124,4 +124,13 @@
   <!-- DUI -->
   <!-- Battery saver tile -->
   <!-- Caffeine tile -->
+  <!-- Navigation bar Tile -->
+  <string name="quick_settings_navigation_bar">Barre de navigation</string>
+  <string name="quick_settings_smartbar">SmartBar</string>
+  <!-- Kill button in notification guts -->
+  <string name="force_stop_dlg_title">Forcer l\'arrêt ?</string>
+  <string name="force_stop_dlg_text">Si vous forcez l\'arrêt d\'une application, cela peut provoquer son dysfonctionnement.</string>
+  <string name="kill">Arrêter l’application</string>
+  <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
+  <!-- Indication on the keyguard that is shown when the device is charging with a turbo power charger. Should match keyguard_plugged_in_turbo_power_charging [CHAR LIMIT=40]-->
 </resources>

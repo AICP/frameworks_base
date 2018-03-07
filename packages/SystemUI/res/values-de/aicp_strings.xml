@@ -96,7 +96,6 @@
   <string name="quick_settings_volume_panel_label">Lautstärke</string>
   <!-- PiP Tile -->
   <string name="quick_settings_pip_label">PiP</string>
-  <string name="quick_settings_pip_tile_app_na">App unterstützt kein PiP</string>
   <!-- Screenrecord tile -->
   <string name="quick_settings_screenrecord">Bildschirmaufnahme</string>
   <string name="quick_settings_screenrecord_on">Aufnahme läuft ...</string>
@@ -147,4 +146,17 @@
   <!-- Caffeine tile -->
   <string name="caffeine_info_title">Was ist das?</string>
   <string name="caffeine_info_message">Die Koffein-Kachel kann genutzt werden, um den Bildschirm anzulassen.\n\nBitte beachten, dass die Funktion automatisch zurückgesetzt wird, wenn der Bildschirm ausgeschaltet wird.</string>
+  <!-- Navigation bar Tile -->
+  <string name="quick_settings_navigation_bar">Navigationsleiste</string>
+  <string name="quick_settings_smartbar">SmartBar</string>
+  <string name="quick_settings_fling">Fling</string>
+  <string name="quick_settings_navigation_default">Standard</string>
+  <string name="quick_settings_navigation_disabled">Deaktiviert</string>
+  <!-- Kill button in notification guts -->
+  <string name="force_stop_dlg_title">Stopp erzwingen?</string>
+  <string name="force_stop_dlg_text">Das erzwungene Beenden einer App kann zu abnormalem Verhalten führen.</string>
+  <string name="kill">App beenden</string>
+  <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
+  <string name="keyguard_plugged_in_dash_charging">Schnellladefunktion (Dash)</string>
+  <!-- Indication on the keyguard that is shown when the device is charging with a turbo power charger. Should match keyguard_plugged_in_turbo_power_charging [CHAR LIMIT=40]-->
 </resources>

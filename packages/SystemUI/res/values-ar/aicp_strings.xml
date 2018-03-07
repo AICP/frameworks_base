@@ -20,9 +20,27 @@
   <string name="quick_aicp_extras_label">إضافات Aicp</string>
   <string name="quick_aicp_extras_toast">ههه, هل ظننت أن الضغط مطولا قد يأخذك لخيارات أخرى!!!</string>
   <!-- Screenshot Delete Toast -->
+  <string name="delete_screenshot_toast">تم حذف لقطة الشاشة</string>
   <!-- Partial Screenshot -->
+  <string name="screenshot_abort_title">لم يتم تصوير الشاشة</string>
   <!-- Compass QS Tile -->
+  <string name="quick_settings_compass_label">البوصلة</string>
+  <string name="quick_settings_compass_init">تهيئة/u2026</string>
+  <string name="accessibility_quick_settings_compass_off">البوصلة لا تعمل.</string>
+  <string name="accessibility_quick_settings_compass_on">البوصلة تعمل.</string>
+  <string name="accessibility_quick_settings_compass_changed_off">تم تعطيل البوصلة.</string>
+  <string name="accessibility_quick_settings_compass_changed_on">تم تفعيل البوصلة.</string>
+  <string name="quick_settings_compass_N">الشمال</string>
+  <string name="quick_settings_compass_NE">الشمال الشرقي</string>
+  <string name="quick_settings_compass_E">شرق</string>
+  <string name="quick_settings_compass_SE">الجنوب الشرقي</string>
+  <string name="quick_settings_compass_S">الجنوب</string>
+  <string name="quick_settings_compass_SW">الجنوب الغربي</string>
+  <string name="quick_settings_compass_W">الغرب</string>
+  <string name="quick_settings_compass_NW">الشمال الغربي</string>
   <!-- Screenshoot tile -->
+  <string name="quick_settings_screenshot_label">تصوير الشاشة</string>
+  <string name="quick_settings_region_screenshot_label">صورة جزئية للشاشة</string>
   <!-- USB Tethering tile -->
   <string name="accessibility_quick_settings_usb_tether_off">الإنترنت عبر USB لا يعمل</string>
   <string name="accessibility_quick_settings_usb_tether_on">الانترنت عبر USB يعمل</string>
@@ -30,10 +48,19 @@
   <string name="accessibility_quick_settings_usb_tether_changed_on">تم تشغيل الانترنت عبر USB</string>
   <string name="quick_settings_usb_tether_label">الانترنت عبر USB</string>
   <!-- Language toggle tile -->
+  <string name="quick_settings_locale_label">اللّغة</string>
+  <string name="quick_settings_locale_more_locales_toast">قم بإعداد أكثر من لغة لتمكين مفتاح التبديل</string>
   <!-- Music tile -->
+  <string name="quick_settings_music_label">موسيقى</string>
+  <string name="quick_settings_music_play">تشغيل</string>
+  <string name="quick_settings_music_pause">إيقاف مؤقت</string>
   <!-- Sound tile -->
+  <string name="quick_settings_sound_label">الصوت</string>
+  <string name="quick_settings_sound_ring">رنين</string>
   <string name="quick_settings_sound_vibrate">إهتزاز</string>
+  <string name="quick_settings_sound_silent">صامت</string>
   <!-- Ambient Display Tile -->
+  <string name="quick_settings_ambient_display_label">إضاءة الشاشة عند وصول إشعار</string>
   <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_ambient_display_off">إضاءة الشاشة عند وصول إشعار موقف</string>
   <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
@@ -48,10 +75,20 @@
   <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <!-- Caffeine QS Tile -->
+  <string name="quick_settings_caffeine_label">وضع الكافيين</string>
+  <string name="accessibility_quick_settings_caffeine_off">كافيين معطل</string>
+  <string name="accessibility_quick_settings_caffeine_on">كافيين مفعل</string>
   <!-- Sync QS Tile -->
+  <string name="quick_settings_sync_label">مزامنة</string>
+  <string name="accessibility_quick_settings_sync_off">إيقاف المزامنة</string>
+  <string name="accessibility_quick_settings_sync_on">تفعيل المزامنة</string>
+  <string name="accessibility_quick_settings_sync_changed_off">تم إيقاف المزامنة</string>
+  <string name="accessibility_quick_settings_sync_changed_on">تم تشغيل المزامنة</string>
   <!-- Volume QS Tile -->
   <!-- PiP Tile -->
   <!-- Screenrecord tile -->
+  <string name="quick_settings_screenrecord">تسجيل الشاشة</string>
+  <string name="quick_settings_screenrecord_on">جار التسجيل...</string>
   <!-- Advance location quick setting tile -->
   <!-- Screenrecord Notification Ticker -->
   <!-- Screenrecord notification title -->
@@ -59,9 +96,17 @@
   <!-- Screenrecord notification action: show/hide pointer -->
   <!-- Screen record notification error title -->
   <!-- Screenshot QS tile -->
+  <string name="quick_settings_screenrecord_label">تسجيل الشاشة</string>
   <!-- Weather string format in expanded statusbar header -->
   <!-- SystemUI Tuner Parts -->
   <!-- DUI -->
   <!-- Battery saver tile -->
   <!-- Caffeine tile -->
+  <!-- Navigation bar Tile -->
+  <string name="quick_settings_navigation_bar">شريط التنقل</string>
+  <string name="quick_settings_smartbar">الشريط الذكي</string>
+  <string name="quick_settings_fling">الإندفاع</string>
+  <!-- Kill button in notification guts -->
+  <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
+  <!-- Indication on the keyguard that is shown when the device is charging with a turbo power charger. Should match keyguard_plugged_in_turbo_power_charging [CHAR LIMIT=40]-->
 </resources>

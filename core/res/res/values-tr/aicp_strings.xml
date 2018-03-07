@@ -25,7 +25,7 @@
   <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_toggleNavigationEditor">Bir uygulamanın gezinti çubuğunu değiştirmesine izin ver.</string>
   <!-- AOKP custom system animations -->
-  <string name="animation_fade">Solma</string>
+  <string name="animation_fade">Solma efekti</string>
   <string name="animation_slide_right">Sağdan kaydır</string>
   <string name="animation_slide_left">Soldan kaydır</string>
   <string name="animation_slide_right_no_fade">Sağdan kaydır (Solma yok)</string>

@@ -100,4 +100,14 @@
   <!-- DUI -->
   <!-- Battery saver tile -->
   <!-- Caffeine tile -->
+  <!-- Navigation bar Tile -->
+  <string name="quick_settings_navigation_bar">ナビゲーションバー</string>
+  <string name="quick_settings_smartbar">ナビゲーションバー</string>
+  <string name="quick_settings_fling">Fling</string>
+  <!-- Kill button in notification guts -->
+  <string name="force_stop_dlg_title">強制停止しますか？</string>
+  <string name="force_stop_dlg_text">アプリを強制停止すると、アプリが正常に機能しないことがあります。</string>
+  <string name="kill">アプリの終了</string>
+  <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
+  <!-- Indication on the keyguard that is shown when the device is charging with a turbo power charger. Should match keyguard_plugged_in_turbo_power_charging [CHAR LIMIT=40]-->
 </resources>

@@ -19,6 +19,7 @@
   <!-- Aicp Extras Tile -->
   <!-- Screenshot Delete Toast -->
   <!-- Partial Screenshot -->
+  <string name="screenshot_abort_text">Művelet megszakítva.</string>
   <!-- Compass QS Tile -->
   <!-- Screenshoot tile -->
   <!-- USB Tethering tile -->
@@ -38,20 +39,40 @@
   <!-- Caffeine QS Tile -->
   <!-- Sync QS Tile -->
   <!-- Volume QS Tile -->
+  <string name="accessibility_quick_settings_volume_panel">Hangerő</string>
+  <string name="quick_settings_volume_panel_label">Hangerő</string>
   <!-- PiP Tile -->
   <string name="quick_settings_pip_label">PiP</string>
   <!-- Screenrecord tile -->
   <!-- Advance location quick setting tile -->
+  <string name="accessibility_quick_settings_location_battery_saving">Helymeghatározás: energiatakarékos mód.</string>
   <string name="accessibility_quick_settings_location_gps_only">Helymeghatározás: csak Gps.</string>
+  <string name="accessibility_quick_settings_location_high_accuracy">Helymeghatározás: nagy pontosságú mód.</string>
   <!-- Screenrecord Notification Ticker -->
+  <string name="screenrecord_notif_ticker">Képernyőfelvétel folyamatban</string>
   <!-- Screenrecord notification title -->
+  <string name="screenrecord_notif_title">Képernyőfelvétel elindítva</string>
   <!-- Screenrecord notification action: Stop -->
   <!-- Screenrecord notification action: show/hide pointer -->
+  <string name="screenrecord_notif_pointer_on">Mutató megjelenítése</string>
+  <string name="screenrecord_notif_pointer_off">Mutató elrejtése</string>
   <!-- Screen record notification error title -->
+  <string name="screenrecord_notif_error">Képernyőfelvétel nem lehetséges</string>
+  <string name="notification_channel_screenrecord">Képernyőfelvételek</string>
   <!-- Screenshot QS tile -->
+  <string name="lockscreen_default">Alapértelmezett</string>
+  <string name="lockscreen_hidden">Nincs</string>
+  <string name="omnijaws_service_disabled">A szolgáltatás ki van kapcsolva</string>
+  <string name="omnijaws_service_last_update">Utolsó frissítés:</string>
   <!-- Weather string format in expanded statusbar header -->
   <!-- SystemUI Tuner Parts -->
+  <string name="custom_hint">Indításhoz csúsztasson az ikonról</string>
   <!-- DUI -->
+  <string name="systemui_tuner_navbar_title">Gyári beállítások</string>
   <!-- Battery saver tile -->
   <!-- Caffeine tile -->
+  <!-- Navigation bar Tile -->
+  <!-- Kill button in notification guts -->
+  <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
+  <!-- Indication on the keyguard that is shown when the device is charging with a turbo power charger. Should match keyguard_plugged_in_turbo_power_charging [CHAR LIMIT=40]-->
 </resources>

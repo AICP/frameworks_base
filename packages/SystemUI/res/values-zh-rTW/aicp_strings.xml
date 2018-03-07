@@ -95,7 +95,6 @@
   <string name="quick_settings_volume_panel_label">音量</string>
   <!-- PiP Tile -->
   <string name="quick_settings_pip_label">PiP</string>
-  <string name="quick_settings_pip_tile_app_na">應用程式不支援 PiP</string>
   <!-- Screenrecord tile -->
   <string name="quick_settings_screenrecord">螢幕錄製</string>
   <string name="quick_settings_screenrecord_on">錄製中…</string>
@@ -146,4 +145,16 @@
   <!-- Caffeine tile -->
   <string name="caffeine_info_title">這是什麼？</string>
   <string name="caffeine_info_message">暫停休眠圖塊是一個簡單的圖塊，您可以開啟以保持螢幕亮起。\n\n請注意，圖塊的狀態將在關閉螢幕後自行重設。</string>
+  <!-- Navigation bar Tile -->
+  <string name="quick_settings_navigation_bar">導覽列</string>
+  <string name="quick_settings_smartbar">智慧列</string>
+  <string name="quick_settings_fling">滑動手勢</string>
+  <string name="quick_settings_navigation_default">原始</string>
+  <string name="quick_settings_navigation_disabled">已停用</string>
+  <!-- Kill button in notification guts -->
+  <string name="force_stop_dlg_title">強制停止嗎？</string>
+  <string name="force_stop_dlg_text">如果您強制停止應用程式，應用程式可能無法正常運作。</string>
+  <string name="kill">終止應用程式</string>
+  <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
+  <!-- Indication on the keyguard that is shown when the device is charging with a turbo power charger. Should match keyguard_plugged_in_turbo_power_charging [CHAR LIMIT=40]-->
 </resources>

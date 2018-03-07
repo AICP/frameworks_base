@@ -96,7 +96,6 @@
   <string name="quick_settings_volume_panel_label">Volume</string>
   <!-- PiP Tile -->
   <string name="quick_settings_pip_label">PiP</string>
-  <string name="quick_settings_pip_tile_app_na">App biedt geen ondersteuning voor PiP</string>
   <!-- Screenrecord tile -->
   <string name="quick_settings_screenrecord">Schermopname</string>
   <string name="quick_settings_screenrecord_on">Bezig met opnemen...</string>
@@ -147,4 +146,17 @@
   <!-- Caffeine tile -->
   <string name="caffeine_info_title">Wat is dit?</string>
   <string name="caffeine_info_message">Cafeïne tegel is een eenvoudige tegel die u kunt activeren om het scherm ingeschakeld te houden.\n\nMerk op dat deze functie gereset zal worden zodra het scherm wordt uitgeschakeld.</string>
+  <!-- Navigation bar Tile -->
+  <string name="quick_settings_navigation_bar">Navigatiebalk</string>
+  <string name="quick_settings_smartbar">SmartBar</string>
+  <string name="quick_settings_fling">Fling</string>
+  <string name="quick_settings_navigation_default">Standaard</string>
+  <string name="quick_settings_navigation_disabled">Uitgeschakeld</string>
+  <!-- Kill button in notification guts -->
+  <string name="force_stop_dlg_title">Nu gedwongen stoppen?</string>
+  <string name="force_stop_dlg_text">Als je een app gedwongen stopt, kan deze onverwacht gedrag vertonen.</string>
+  <string name="kill">App stoppen</string>
+  <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
+  <string name="keyguard_plugged_in_dash_charging">Snelladen middels Dash</string>
+  <!-- Indication on the keyguard that is shown when the device is charging with a turbo power charger. Should match keyguard_plugged_in_turbo_power_charging [CHAR LIMIT=40]-->
 </resources>

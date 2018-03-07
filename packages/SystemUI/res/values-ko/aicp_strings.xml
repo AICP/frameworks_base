@@ -17,39 +17,81 @@
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Aicp Extras Tile -->
+  <string name="quick_aicp_extras_label">Aicp 추가설정</string>
+  <string name="quick_aicp_extras_toast">하하, 정말로 길게 누르는 행동이 너를 어디론가 데러다 줄거라고 생각하는거야!!</string>
   <!-- Screenshot Delete Toast -->
+  <string name="delete_screenshot_toast">스크린샷이 삭제되었습니다</string>
   <!-- Partial Screenshot -->
+  <string name="screenshot_abort_title">저장된 스크린샷이 없음</string>
   <!-- Compass QS Tile -->
+  <string name="quick_settings_compass_init">초기화중\u2026</string>
+  <string name="accessibility_quick_settings_compass_changed_on">나침반 켜짐.</string>
   <!-- Screenshoot tile -->
+  <string name="quick_settings_screenshot_label">스크린샷</string>
+  <string name="quick_settings_region_screenshot_label">부분 스크린샷</string>
   <!-- USB Tethering tile -->
+  <string name="accessibility_quick_settings_usb_tether_off">USB 테더링 끄기</string>
+  <string name="accessibility_quick_settings_usb_tether_on">USB 테더링 켜기</string>
+  <string name="accessibility_quick_settings_usb_tether_changed_off">USB 테더링 꺼짐</string>
+  <string name="accessibility_quick_settings_usb_tether_changed_on">USB 테더링 켜짐</string>
+  <string name="quick_settings_usb_tether_label">USB 테더링</string>
   <!-- Language toggle tile -->
+  <string name="quick_settings_locale_more_locales_toast">토글 기능을 활성화 하려면 다중 언어를 설정하시기 바랍니다</string>
   <!-- Music tile -->
+  <string name="quick_settings_music_pause">일시중지</string>
   <!-- Sound tile -->
+  <string name="quick_settings_sound_ring">벨소리</string>
+  <string name="quick_settings_sound_silent">무음</string>
   <!-- Ambient Display Tile -->
+  <string name="quick_settings_ambient_display_label">앰비언트 디스플레이</string>
   <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_ambient_display_off">앰비언트 디스플레이 끄기.</string>
   <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_ambient_display_on">앰비언트 디스플레이 켜기.</string>
   <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_ambient_display_changed_off">앰비언트 디스플레이 꺼짐.</string>
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_ambient_display_changed_on">앰비언트 디스플레이 켜짐.</string>
   <!-- Always on Display Tile -->
+  <string name="quick_settings_always_on_display_label">올웨이즈온 디스플레이</string>
   <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_off">올웨이즈온 디스플레이 끄기.</string>
   <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_on">올웨이즈온 디스플레이 켜기.</string>
   <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_changed_off">올웨이즈온 디스플레이가 꺼졌습니다.</string>
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_changed_on">올웨이즈온 디스플레이가 켜졌습니다.</string>
   <!-- Caffeine QS Tile -->
+  <string name="accessibility_quick_settings_caffeine_on">카페인 켜짐</string>
   <!-- Sync QS Tile -->
+  <string name="accessibility_quick_settings_sync_changed_on">동기화 켜짐.</string>
   <!-- Volume QS Tile -->
   <!-- PiP Tile -->
   <!-- Screenrecord tile -->
   <!-- Advance location quick setting tile -->
   <!-- Screenrecord Notification Ticker -->
+  <string name="screenrecord_notif_ticker">화면이 녹화되고 있습니다.</string>
+  <string name="screenrecord_notif_final_ticker">화면이 성공적으로 녹화되었습니다</string>
   <!-- Screenrecord notification title -->
   <!-- Screenrecord notification action: Stop -->
+  <string name="screenrecord_notif_completed">화면이 성공적으로 녹화되었습니다</string>
   <!-- Screenrecord notification action: show/hide pointer -->
   <!-- Screen record notification error title -->
   <!-- Screenshot QS tile -->
+  <string name="omnijaws_package_not_available">OmniJaws를 사용할 수 없음</string>
   <!-- Weather string format in expanded statusbar header -->
   <!-- SystemUI Tuner Parts -->
+  <string name="custom_hint">실행하려면 아이콘에서 스와이프하세요.</string>
   <!-- DUI -->
   <!-- Battery saver tile -->
   <!-- Caffeine tile -->
+  <string name="caffeine_info_message">카페인 타일은 화면을 켜기 위해 전환 할 수있는 간단한 타일입니다.\n\n 화면을 끈 후에는 타일 상태가 자체적으로 재설정됩니다.</string>
+  <!-- Navigation bar Tile -->
+  <string name="quick_settings_smartbar">스마트 바</string>
+  <!-- Kill button in notification guts -->
+  <string name="force_stop_dlg_text">강제로 앱을 종료하면 예기치 않은 오류가 발생할 수 있습니다.</string>
+  <string name="kill">앱 종료</string>
+  <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
+  <!-- Indication on the keyguard that is shown when the device is charging with a turbo power charger. Should match keyguard_plugged_in_turbo_power_charging [CHAR LIMIT=40]-->
 </resources>

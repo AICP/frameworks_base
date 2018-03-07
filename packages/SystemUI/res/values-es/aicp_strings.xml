@@ -96,7 +96,6 @@
   <string name="quick_settings_volume_panel_label">Volumen</string>
   <!-- PiP Tile -->
   <string name="quick_settings_pip_label">PiP</string>
-  <string name="quick_settings_pip_tile_app_na">La aplicación no soporta PiP</string>
   <!-- Screenrecord tile -->
   <string name="quick_settings_screenrecord">Grabar pantalla</string>
   <string name="quick_settings_screenrecord_on">Grabando...</string>
@@ -147,4 +146,19 @@
   <!-- Caffeine tile -->
   <string name="caffeine_info_title">¿Qué es esto?</string>
   <string name="caffeine_info_message">El ajuste Cafeína es un acceso directo que se puede activar para mantener la pantalla encendida.\n\nEl estado del ajuste se reseteará al apagar la pantalla.</string>
+  <!-- Navigation bar Tile -->
+  <string name="quick_settings_navigation_bar">Barra de navegación</string>
+  <string name="quick_settings_smartbar">SmartBar</string>
+  <string name="quick_settings_fling">Fling</string>
+  <string name="quick_settings_navigation_default">Predeterminado</string>
+  <string name="quick_settings_navigation_disabled">Deshabilitado</string>
+  <!-- Kill button in notification guts -->
+  <string name="force_stop_dlg_title">¿Forzar detención?</string>
+  <string name="force_stop_dlg_text">Si se detiene una aplicación, es posible que no funcione correctamente.</string>
+  <string name="kill">Cerrar Aplicación</string>
+  <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
+  <string name="keyguard_plugged_in_dash_charging">Carga Dash</string>
+  <!-- Indication on the keyguard that is shown when the device is charging with a turbo power charger. Should match keyguard_plugged_in_turbo_power_charging [CHAR LIMIT=40]-->
+  <string name="keyguard_plugged_in_turbo_power_charging">TurboPower conectado</string>
+  <string name="keyguard_plugged_in_turbo_charging">Carga Turbo</string>
 </resources>

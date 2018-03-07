@@ -96,7 +96,6 @@
   <string name="quick_settings_volume_panel_label">Hlasitost</string>
   <!-- PiP Tile -->
   <string name="quick_settings_pip_label">PiP</string>
-  <string name="quick_settings_pip_tile_app_na">Aplikace nepodporuje PiP</string>
   <!-- Screenrecord tile -->
   <string name="quick_settings_screenrecord">Záznam obrazovky</string>
   <string name="quick_settings_screenrecord_on">Nahrávání ...</string>
@@ -147,4 +146,16 @@
   <!-- Caffeine tile -->
   <string name="caffeine_info_title">Co to je?</string>
   <string name="caffeine_info_message">Dlaždice Kofein je jednoduchá dlaždice, kterou můžete zapnout, aby vaše obrazovka zůstala zapnutá.\n\nVezměte na vědomí, že stav dlaždice se po vypnutí obrazovky obnoví.</string>
+  <!-- Navigation bar Tile -->
+  <string name="quick_settings_navigation_bar">Navigační lišta</string>
+  <string name="quick_settings_smartbar">Chytrá lišta</string>
+  <string name="quick_settings_fling">Fling</string>
+  <string name="quick_settings_navigation_default">Stock</string>
+  <string name="quick_settings_navigation_disabled">Zakázáno</string>
+  <!-- Kill button in notification guts -->
+  <string name="force_stop_dlg_title">Vynutit ukončení?</string>
+  <string name="force_stop_dlg_text">Vynucené zastavení může způsobit nepředvídatelné chování aplikace.</string>
+  <string name="kill">Ukončit aplikaci</string>
+  <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
+  <!-- Indication on the keyguard that is shown when the device is charging with a turbo power charger. Should match keyguard_plugged_in_turbo_power_charging [CHAR LIMIT=40]-->
 </resources>

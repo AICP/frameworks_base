@@ -110,4 +110,14 @@
   <!-- DUI -->
   <!-- Battery saver tile -->
   <!-- Caffeine tile -->
+  <!-- Navigation bar Tile -->
+  <string name="quick_settings_navigation_bar">Thanh điều hướng</string>
+  <string name="quick_settings_smartbar">SmartBar</string>
+  <string name="quick_settings_fling">Fling</string>
+  <!-- Kill button in notification guts -->
+  <string name="force_stop_dlg_title">Buộc dừng?</string>
+  <string name="force_stop_dlg_text">Nếu bạn buộc dừng một ứng dụng, ứng dụng đó có thể hoạt động sai.</string>
+  <string name="kill">Tắt ứng dụng</string>
+  <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
+  <!-- Indication on the keyguard that is shown when the device is charging with a turbo power charger. Should match keyguard_plugged_in_turbo_power_charging [CHAR LIMIT=40]-->
 </resources>

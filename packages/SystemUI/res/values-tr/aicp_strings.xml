@@ -59,18 +59,18 @@
   <!-- Sound tile -->
   <string name="quick_settings_sound_label">Ses</string>
   <string name="quick_settings_sound_ring">Zil sesi</string>
-  <string name="quick_settings_sound_vibrate">Titreş</string>
+  <string name="quick_settings_sound_vibrate">Titreşim</string>
   <string name="quick_settings_sound_silent">Sessiz</string>
   <!-- Ambient Display Tile -->
-  <string name="quick_settings_ambient_display_label">Ambient display</string>
+  <string name="quick_settings_ambient_display_label">Ortam ekranı</string>
   <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
-  <string name="accessibility_quick_settings_ambient_display_off">Ambient Display kapalı.</string>
+  <string name="accessibility_quick_settings_ambient_display_off">Ortam ekranı kapalı.</string>
   <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
-  <string name="accessibility_quick_settings_ambient_display_on">Ambient Display açık.</string>
+  <string name="accessibility_quick_settings_ambient_display_on">Ortam ekranı açık.</string>
   <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
-  <string name="accessibility_quick_settings_ambient_display_changed_off">Ambient display kapatıldı.</string>
+  <string name="accessibility_quick_settings_ambient_display_changed_off">Ortam ekranı kapatıldı.</string>
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
-  <string name="accessibility_quick_settings_ambient_display_changed_on">Ambient display açıldı.</string>
+  <string name="accessibility_quick_settings_ambient_display_changed_on">Ortam ekranı açıldı.</string>
   <!-- Always on Display Tile -->
   <string name="quick_settings_always_on_display_label">Always on ekran</string>
   <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
@@ -93,16 +93,15 @@
   <string name="accessibility_quick_settings_sync_changed_on">Eşitleme açıldı</string>
   <!-- Volume QS Tile -->
   <string name="accessibility_quick_settings_volume_panel">Ses</string>
-  <string name="quick_settings_volume_panel_label">Ses</string>
+  <string name="quick_settings_volume_panel_label">Ses seviyesi</string>
   <!-- PiP Tile -->
   <string name="quick_settings_pip_label">PiP</string>
-  <string name="quick_settings_pip_tile_app_na">Uygulama PiP\'i desteklemiyor</string>
   <!-- Screenrecord tile -->
   <string name="quick_settings_screenrecord">Ekran kaydı</string>
-  <string name="quick_settings_screenrecord_on">Kaydediliyor ...</string>
+  <string name="quick_settings_screenrecord_on">Kaydediliyor...</string>
   <!-- Advance location quick setting tile -->
   <string name="accessibility_quick_settings_location_battery_saving">Konum bildirimi: pil tasarrufu modu.</string>
-  <string name="accessibility_quick_settings_location_gps_only">Konum bildirimi: yalnızca sensörler modu.</string>
+  <string name="accessibility_quick_settings_location_gps_only">Konum bildirimi: yalnızca sensör modu.</string>
   <string name="accessibility_quick_settings_location_high_accuracy">Konum bildirimi: yüksek doğruluk modu.</string>
   <!-- Screenrecord Notification Ticker -->
   <string name="screenrecord_notif_ticker">Ekran kaydediliyor</string>
@@ -118,8 +117,8 @@
   <!-- Screen record notification error title -->
   <string name="screenrecord_notif_error">Ekran görüntüsü kaydedilemiyor</string>
   <string name="notification_channel_screenrecord">Ekran kayıtları</string>
-  <string name="screenrecord_hide_hint">İpucunu gizle</string>
-  <string name="screenrecord_show_hint">İpucunu göster</string>
+  <string name="screenrecord_hide_hint">İpuçlarını gizle</string>
+  <string name="screenrecord_show_hint">İpuçlarını göster</string>
   <!-- Screenshot QS tile -->
   <string name="quick_settings_screenrecord_label">Ekran kaydı</string>
   <string name="quick_settings_screenrecord_lq_label">Ekran Kaydı 480p</string>
@@ -129,7 +128,7 @@
   <string name="lockscreen_hidden">Hiçbiri</string>
   <string name="omnijaws_service_error">Hata</string>
   <string name="omnijaws_service_unkown">Hava durumu verisi yok</string>
-  <string name="omnijaws_service_error_long">Hava durumu verisi yükleme hatası</string>
+  <string name="omnijaws_service_error_long">Hava durumu verileri yüklenemedi</string>
   <string name="omnijaws_service_disabled">Servis devre dışı</string>
   <string name="omnijaws_detail_header">Hava Durumu</string>
   <string name="omnijaws_label_default">Hava Durumu</string>
@@ -139,7 +138,7 @@
   <!-- Weather string format in expanded statusbar header -->
   <string name="status_bar_weather_format"><xliff:g id="temp">%1$s</xliff:g></string>
   <!-- SystemUI Tuner Parts -->
-  <string name="custom_hint">Başlatmak için simgeden kaydırın</string>
+  <string name="custom_hint">Başlatmak için simgeyi kaydırın</string>
   <!-- DUI -->
   <string name="systemui_tuner_navbar_title">Varsayılan ayarlar</string>
   <!-- Battery saver tile -->
@@ -147,4 +146,18 @@
   <!-- Caffeine tile -->
   <string name="caffeine_info_title">Bu nedir?</string>
   <string name="caffeine_info_message">Kafein, ekranınızın sürekli açık kalmasını sağlayan bir kısayoldur.\n\nUnutmayın ki kısayolun durumu, ekranın kapatılmasından sonra sıfırlanacaktır.</string>
+  <!-- Navigation bar Tile -->
+  <string name="quick_settings_navigation_bar">Gezinme çubuğu</string>
+  <string name="quick_settings_smartbar">Akıllı çubuk</string>
+  <string name="quick_settings_fling">Fling</string>
+  <string name="quick_settings_navigation_default">Varsayılan</string>
+  <string name="quick_settings_navigation_disabled">Devre dışı</string>
+  <!-- Kill button in notification guts -->
+  <string name="force_stop_dlg_title">Zorla durdurulsun mu?</string>
+  <string name="force_stop_dlg_text">Uygulamayı zorla durdurursanız, hatalı davranabilir.</string>
+  <string name="kill">Uygulamayı sonlandır</string>
+  <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
+  <string name="keyguard_indication_dash_charging_time">Hızlı Şarj oluyor (tam dolmasına <xliff:g id="charging_time_left" example="4 hours and 2 minutes">%s</xliff:g> kaldı)</string>
+  <string name="keyguard_plugged_in_dash_charging">Hızlı Şarj oluyor</string>
+  <!-- Indication on the keyguard that is shown when the device is charging with a turbo power charger. Should match keyguard_plugged_in_turbo_power_charging [CHAR LIMIT=40]-->
 </resources>

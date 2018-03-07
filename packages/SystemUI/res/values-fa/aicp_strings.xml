@@ -17,13 +17,10 @@
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Aicp Extras Tile -->
-  <string name="quick_aicp_extras_label">AICP tillegg</string>
   <!-- Screenshot Delete Toast -->
   <!-- Partial Screenshot -->
   <!-- Compass QS Tile -->
   <!-- Screenshoot tile -->
-  <string name="quick_settings_screenshot_label">Skjermdump</string>
-  <string name="quick_settings_region_screenshot_label">Delvis skjermdump</string>
   <!-- USB Tethering tile -->
   <!-- Language toggle tile -->
   <!-- Music tile -->
@@ -40,11 +37,6 @@
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <!-- Caffeine QS Tile -->
   <!-- Sync QS Tile -->
-  <string name="quick_settings_sync_label">Synkronisering</string>
-  <string name="accessibility_quick_settings_sync_off">Synkronisering av</string>
-  <string name="accessibility_quick_settings_sync_on">Synkronisering på</string>
-  <string name="accessibility_quick_settings_sync_changed_off">Synkronisering avslått</string>
-  <string name="accessibility_quick_settings_sync_changed_on">Synkronisering påslått</string>
   <!-- Volume QS Tile -->
   <!-- PiP Tile -->
   <!-- Screenrecord tile -->
@@ -52,7 +44,6 @@
   <!-- Screenrecord Notification Ticker -->
   <!-- Screenrecord notification title -->
   <!-- Screenrecord notification action: Stop -->
-  <string name="screenrecord_notif_stop">Stopp</string>
   <!-- Screenrecord notification action: show/hide pointer -->
   <!-- Screen record notification error title -->
   <!-- Screenshot QS tile -->
@@ -61,6 +52,7 @@
   <!-- DUI -->
   <!-- Battery saver tile -->
   <!-- Caffeine tile -->
+  <string name="caffeine_info_title">این چیست؟</string>
   <!-- Navigation bar Tile -->
   <!-- Kill button in notification guts -->
   <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->

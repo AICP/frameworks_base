@@ -22,6 +22,7 @@
 
 #define APP_DIR_FORMAT CPUCTL_PATH "/app_uid_%d"
 #define APP_PROCS_FORMAT APP_DIR_FORMAT "/cgroup.procs"
+#define APP_SHARES_FORMAT APP_DIR_FORMAT "/cpu.shares"
 
 
 extern "C" {
@@ -60,6 +61,13 @@ void Java_com_android_server_am_Cgroups_putProc(JNIEnv* jni, jclass clazz, jint 
 
 void Java_com_android_server_am_Cgroups_putThreadInRoot(JNIEnv* jni, jclass clazz, jint tid) {
     write_value(ROOT_TASKS, tid);
+}
+
+void Java_com_android_server_am_Cgroups_uidPrio(JNIEnv* jni, jclass clazz, jint uid, jint shares) {
+    char path[sizeof(APP_SHARES_FORMAT) + 20]; // 20 is more than enough for the uid
+
+    sprintf(path, APP_SHARES_FORMAT, uid);
+    write_value(path, shares);
 }
 
 };

@@ -9302,8 +9302,6 @@ public class PackageManagerService extends IPackageManager.Stub
             }
         } catch (PackageParserException e) {
             throw PackageManagerException.from(e);
-        } catch (NullPointerException e) {
-            throw PackageManagerException.from(e);
         } finally {
             Trace.traceEnd(TRACE_TAG_PACKAGE_MANAGER);
         }

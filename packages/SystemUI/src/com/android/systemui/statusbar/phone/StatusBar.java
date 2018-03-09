@@ -51,6 +51,7 @@ import android.app.PendingIntent;
 import android.app.RemoteInput;
 import android.app.StatusBarManager;
 import android.app.TaskStackBuilder;
+import android.app.UiModeManager;
 import android.app.WallpaperColors;
 import android.app.WallpaperManager;
 import android.app.admin.DevicePolicyManager;
@@ -575,6 +576,7 @@ public class StatusBar extends SystemUI implements DemoMode,
     private ScreenPinningRequest mScreenPinningRequest;
 
     private int mBatterySaverColor;
+    private UiModeManager mUiModeManager;
 
     private final MetricsLogger mMetricsLogger = Dependency.get(MetricsLogger.class);
 
@@ -1154,6 +1156,8 @@ public class StatusBar extends SystemUI implements DemoMode,
 
         mScreenPinningRequest = new ScreenPinningRequest(mContext);
         mFalsingManager = FalsingManager.getInstance(mContext);
+
+        mUiModeManager = mContext.getSystemService(UiModeManager.class);
 
         Dependency.get(ActivityStarterDelegate.class).setActivityStarterImpl(this);
 
@@ -5226,6 +5230,11 @@ public class StatusBar extends SystemUI implements DemoMode,
                 } catch (RemoteException e) {
                     Log.w(TAG, "Can't change theme for " + overlay, e);
                 }
+            }
+
+            if (mUiModeManager != null) {
+                mUiModeManager.setNightMode(useDarkTheme ?
+                        UiModeManager.MODE_NIGHT_YES : UiModeManager.MODE_NIGHT_NO);
             }
         }
 

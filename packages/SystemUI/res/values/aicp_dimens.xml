@@ -68,4 +68,6 @@
     <dimen name="opa_rest_to_collapse">7.0dip</dimen>
 
     <dimen name="qs_corner_content_padding">8dp</dimen>
+
+    <dimen name="qs_panel_mini_mode_diff">30dp</dimen>
 </resources>

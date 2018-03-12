@@ -46,10 +46,14 @@ import com.android.systemui.qs.QSDetail.Callback;
 import com.android.systemui.statusbar.SignalClusterView;
 import com.android.systemui.statusbar.policy.Clock;
 import com.android.systemui.statusbar.policy.DarkIconDispatcher.DarkReceiver;
+import com.android.systemui.tuner.TunerService;
+import com.android.systemui.tuner.TunerService.Tunable;
 
-
-public class QuickStatusBarHeader extends FrameLayout implements StatusBarHeaderMachine.IStatusBarHeaderMachineObserver {
+public class QuickStatusBarHeader extends FrameLayout implements
+        StatusBarHeaderMachine.IStatusBarHeaderMachineObserver, Tunable  {
     private static final String TAG = "QuickStatusBarHeader";
+    private static final String QS_SHOW_MINI =
+            "system:" + Settings.System.QS_SHOW_MINI;
 
     private ActivityStarter mActivityStarter;
 
@@ -69,6 +73,9 @@ public class QuickStatusBarHeader extends FrameLayout implements StatusBarHeader
     private BatteryMeterView mBatteryView;
     private Clock mClock;
     private Clock mLeftClock;
+    private View mHeaderContainer;
+    private View mQuickQsPanelScrollerContainer;
+    private boolean mMiniMode;
 
     public QuickStatusBarHeader(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -80,6 +87,8 @@ public class QuickStatusBarHeader extends FrameLayout implements StatusBarHeader
         Resources res = getResources();
 
         mHeaderQsPanel = findViewById(R.id.quick_qs_panel);
+        mHeaderContainer = findViewById(R.id.header);
+        mQuickQsPanelScrollerContainer = findViewById(R.id.quick_qs_panel_scroll_container);
 
         // RenderThread is doing more harm than good when touching the header (to expand quick
         // settings), so disable it for this view
@@ -146,6 +155,8 @@ public class QuickStatusBarHeader extends FrameLayout implements StatusBarHeader
 
     private void updateResources() {
         updateQsPanelLayout();
+        updateHeaderLayout();
+        updateQuickBarLayout();
     }
 
     public int getCollapsedHeight() {
@@ -164,6 +175,12 @@ public class QuickStatusBarHeader extends FrameLayout implements StatusBarHeader
     }
 
     public void setExpansion(float headerExpansionFraction) {
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        Dependency.get(TunerService.class).addTunable(this, QS_SHOW_MINI);
     }
 
     @Override
@@ -292,9 +309,49 @@ public class QuickStatusBarHeader extends FrameLayout implements StatusBarHeader
             int panelMarginTop = res.getDimensionPixelSize(mCurrentBackground != null ?
                     R.dimen.qs_panel_margin_top_header :
                     R.dimen.qs_panel_margin_top);
+            if (mMiniMode) {
+                panelMarginTop = panelMarginTop - res.getDimensionPixelSize(R.dimen.qs_panel_mini_mode_diff);
+            }
             ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) mQsPanel.getLayoutParams();
             layoutParams.topMargin = panelMarginTop;
             mQsPanel.setLayoutParams(layoutParams);
+        }
+    }
+
+    private void updateHeaderLayout() {
+        if (mHeaderContainer != null) {
+            final Resources res = mContext.getResources();
+            int headerHeight = res.getDimensionPixelSize(R.dimen.status_bar_header_height);
+            if (mMiniMode) {
+                headerHeight = headerHeight - res.getDimensionPixelSize(R.dimen.qs_panel_mini_mode_diff);
+            }
+            ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) mHeaderContainer.getLayoutParams();
+            layoutParams.height = headerHeight;
+            mHeaderContainer.setLayoutParams(layoutParams);
+        }
+    }
+
+    private void updateQuickBarLayout() {
+        if (mQuickQsPanelScrollerContainer != null) {
+            final Resources res = mContext.getResources();
+            int panelMarginTop = res.getDimensionPixelSize(R.dimen.qs_scroller_top_margin);
+            if (mMiniMode) {
+                panelMarginTop = panelMarginTop - res.getDimensionPixelSize(R.dimen.qs_panel_mini_mode_diff);
+            }
+            ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) mQuickQsPanelScrollerContainer.getLayoutParams();
+            layoutParams.topMargin = panelMarginTop;
+            mQuickQsPanelScrollerContainer.setLayoutParams(layoutParams);
+        }
+    }
+
+    @Override
+    public void onTuningChanged(String key, String newValue) {
+        if (QS_SHOW_MINI.equals(key)) {
+            mMiniMode = newValue != null && Integer.parseInt(newValue) == 1;
+            findViewById(R.id.quick_status_bar_icons).setVisibility(mMiniMode ? GONE : VISIBLE);
+            updateHeaderLayout();
+            updateQsPanelLayout();
+            updateQuickBarLayout();
         }
     }
 }

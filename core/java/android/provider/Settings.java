@@ -5070,6 +5070,12 @@ public final class Settings {
         public static final String SMART_PIXELS_ON_POWER_SAVE = "smart_pixels_on_power_save";
 
         /**
+         * Whether to show minimal quick settings header
+         * @hide
+         */
+        public static final String QS_SHOW_MINI = "qs_show_mini";
+
+        /**
          * --- AICP System settings end
          *  Add new system settings above this comment
          */

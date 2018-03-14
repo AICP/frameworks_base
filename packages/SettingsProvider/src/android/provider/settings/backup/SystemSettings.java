@@ -179,5 +179,7 @@ public class SystemSettings {
         Settings.System.SLIM_RECENTS_BLACKLIST_VALUES,
         Settings.System.SLIM_RECENT_ENTER_EXIT_ANIMATION,
         Settings.System.ANBI_ENABLED_OPTION,
+        Settings.System.TORCH_LONG_PRESS_POWER_GESTURE,
+        Settings.System.TORCH_LONG_PRESS_POWER_TIMEOUT,
     };
 }

@@ -5724,6 +5724,16 @@ public final class Settings {
          */
         public static final String POWERMENU_TORCH = "powermenu_torch";
 
+        /**
+         * @hide
+         */
+        public static final String TORCH_LONG_PRESS_POWER_GESTURE = "torch_long_press_power_gesture";
+
+        /**
+         * @hide
+         */
+        public static final String TORCH_LONG_PRESS_POWER_TIMEOUT = "torch_long_press_power_timeout";
+
         /***************************
          * AICP System Settings end
          ***************************/

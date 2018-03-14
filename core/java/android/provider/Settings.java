@@ -5951,6 +5951,16 @@ public final class Settings {
          */
         public static final String ANBI_ENABLED_OPTION = "anbi_enabled_option";
 
+        /**
+         * @hide
+         */
+        public static final String TORCH_LONG_PRESS_POWER_GESTURE = "torch_long_press_power_gesture";
+
+        /**
+         * @hide
+         */
+        public static final String TORCH_LONG_PRESS_POWER_TIMEOUT = "torch_long_press_power_timeout";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6087,6 +6097,8 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(LOCKSCREEN_MEDIA_METADATA, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(ALLOW_INCALL_HOME, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(ANBI_ENABLED_OPTION, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(TORCH_LONG_PRESS_POWER_GESTURE, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(TORCH_LONG_PRESS_POWER_TIMEOUT, ANY_INTEGER_VALIDATOR);
         }
 
         /**

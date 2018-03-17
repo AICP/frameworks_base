@@ -201,4 +201,8 @@
 
     <!-- The contents of the Ambient Weather bottom view -->
     <string name="ambient_weather_info">%1$s &amp; %2$s</string>
+
+    <string name="quick_settings_google_assist_label">Assistant</string>
+    <string name="quick_settings_google_voice_assist_label">Voice assist</string>
+    <string name="quick_settings_google_now_label">Google feed</string>
 </resources>

@@ -36,6 +36,9 @@ import com.android.systemui.qs.tiles.ColorInversionTile;
 import com.android.systemui.qs.tiles.DataSaverTile;
 import com.android.systemui.qs.tiles.DndTile;
 import com.android.systemui.qs.tiles.FlashlightTile;
+import com.android.systemui.qs.tiles.GoogleAssistTile;
+import com.android.systemui.qs.tiles.GoogleNowTile;
+import com.android.systemui.qs.tiles.GoogleVoiceAssistTile;
 import com.android.systemui.qs.tiles.HeadsUpTile;
 import com.android.systemui.qs.tiles.HotspotTile;
 import com.android.systemui.qs.tiles.IntentTile;
@@ -127,6 +130,12 @@ public class QSFactoryImpl implements QSFactory {
                 return new LocaleTile(mHost);
             case "music":
                 return new MusicTile(mHost);
+            case "assist":
+                return new GoogleAssistTile(mHost);
+            case "voiceassist":
+                return new GoogleVoiceAssistTile(mHost);
+            case "google":
+                return new GoogleNowTile(mHost);
         }
         // Intent tiles.
         if (tileSpec.startsWith(IntentTile.PREFIX)) return IntentTile.create(mHost, tileSpec);

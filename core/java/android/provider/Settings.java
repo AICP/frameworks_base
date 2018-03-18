@@ -4910,6 +4910,12 @@ public final class Settings {
         public static final String RECENTS_ICON_PACK = "recents_icon_pack";
 
         /**
+        * Whether to show battery percent on ambient bottom
+        * @hide
+        */
+        public static final String AMBIENT_BATTERY_PERCENT = "ambient_battery_percent";
+
+        /**
          * --- AICP System settings end
          *  Add new system settings above this comment
          */

@@ -4910,10 +4910,13 @@ public final class Settings {
         public static final String RECENTS_ICON_PACK = "recents_icon_pack";
 
         /**
-        * Whether to show battery percent on ambient bottom
+        * Whether to show info battery percent on ambient bottom
+        * 0 disabled_print_services
+        * 1 battery percentage
+        * 2 weather temp + condition
         * @hide
         */
-        public static final String AMBIENT_BATTERY_PERCENT = "ambient_battery_percent";
+        public static final String AMBIENT_BOTTOM_DISPLAY = "ambient_bottom_display";
 
         /**
          * Stores the app to be launched if the user taps on the screenshot notification edit button

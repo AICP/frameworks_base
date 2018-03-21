@@ -244,6 +244,7 @@
 
     <!--Google sound search tile -->
     <string name="quick_settings_sound_search">Sound search</string>
+    <string name="quick_settings_sound_search_no_app">Sorry, but this doesn\'t work if you don\'t have a Sound search app.</string>
 
     <string name="status_bar_location">Location</string>
 

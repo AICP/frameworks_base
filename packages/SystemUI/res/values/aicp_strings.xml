@@ -169,9 +169,6 @@
     <!-- OnTheGo Tile -->
     <string name="quick_settings_onthego_label">On-The-Go</string>
 
-    <!-- SoundSearch Tile -->
-    <string name="quick_settings_sound_search">Sound search</string>
-
     <!-- Partial screenshot -->
     <string name="global_screenshot_selector_capture_description">Capture partial screenshot</string>
     <string name="global_screenshot_selector_cancel_description">Cancel partial screenshot</string>
@@ -240,4 +237,8 @@
     <string name="navbar_activity_title">Navigation bar</string>
 
     <string name="qs_footer_aicp_text" translatable="false">#Aicp</string>
+
+    <!--Google sound search tile -->
+    <string name="quick_settings_sound_search">Sound search</string>
+    <string name="quick_settings_sound_search_no_app">Sorry, but this doesn\'t work if you don\'t have a Sound search app.</string>
 </resources>

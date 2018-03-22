@@ -83,6 +83,13 @@ public class WeatherTile extends QSTileImpl<BooleanState> implements OmniJawsCli
 
     private static final String[] ALTERNATIVE_WEATHER_APPS = {
             "cz.martykan.forecastie",
+            "com.accuweather.android",
+            "com.wunderground.android.weather",
+            "de.dwd.warnapp",
+            "mobi.lockdown.weather",
+            "uk.co.openweather",
+            "com.lifeoverflow.app.weather",
+            "ru.yandex.weatherplugin",
     };
 
     @Inject
@@ -168,6 +175,16 @@ public class WeatherTile extends QSTileImpl<BooleanState> implements OmniJawsCli
         if (!mWeatherClient.isOmniJawsSetupDone()) {
             mActivityStarter.postStartActivityDismissingKeyguard(mWeatherClient.getSettingsIntent(), 0);
         } else {
+            PackageManager pm = mContext.getPackageManager();
+            for (String app: ALTERNATIVE_WEATHER_APPS) {
+                if (PackageUtils.isPackageAvailable(mContext, app)) {
+                    Intent intentThird = pm.getLaunchIntentForPackage(app);
+                    if (intentThird != null) {
+                        mActivityStarter.postStartActivityDismissingKeyguard(intentThird, 0);
+                        break;
+                    }
+                }
+            }
             if (PackageUtils.isPackageAvailable(mContext,"com.google.android.googlequicksearchbox")) {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse("dynact://velour/weather/ProxyActivity"));
@@ -175,14 +192,7 @@ public class WeatherTile extends QSTileImpl<BooleanState> implements OmniJawsCli
                         "com.google.android.apps.gsa.velour.DynamicActivityTrampoline"));
                 mActivityStarter.postStartActivityDismissingKeyguard(intent, 0);
             } else {
-                PackageManager pm = mContext.getPackageManager();
-                for (String app: ALTERNATIVE_WEATHER_APPS) {
-                    Intent intentThird = pm.getLaunchIntentForPackage(app);
-                    if (intent != null) {
-                        mActivityStarter.postStartActivityDismissingKeyguard(intentThird, 0);
-                        break;
-                    }
-                }
+                mActivityStarter.postStartActivityDismissingKeyguard(mWeatherClient.getSettingsIntent(), 0);
             }
         }
     }

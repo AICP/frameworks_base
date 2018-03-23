@@ -2063,7 +2063,7 @@
              {@link android.R.attr#windowDrawsSystemBarBackgrounds} and the navigation bar must not
              have been requested to be translucent with
              {@link android.R.attr#windowTranslucentNavigation}.
-             Corresponds to {@link android.view.Window#setNavigationBarColor(int)}. -->
+             Corresponds to {@link android.view.Window#setNavigationBarColor(int)}. @hide -->
         <attr name="navigationBarColordynamic" format="color" />
 
         <!-- Shows a thin line of the specified color between the navigation bar and the app

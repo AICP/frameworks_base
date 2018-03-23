@@ -1411,7 +1411,7 @@
 
     <!-- Allows applications to receive NFC transaction events.
          <p>Protection level: normal
-    -->
+         @hide -->
     <permission android:name="android.permission.NFC_TRANSACTION_EVENT"
         android:protectionLevel="normal" />
 

@@ -4513,11 +4513,6 @@ public final class Settings {
                 "wallpaper_intra_open",
                 "wallpaper_intra_close",
         };
-
-        /**
-         * ANIMATION_CONTROLS_DURATION
-         * @hide
-         */
         public static final String ANIMATION_CONTROLS_DURATION = "animation_controls_duration";
 
         /**
@@ -4826,7 +4821,6 @@ public final class Settings {
           * AICP applications' theme
           * 0 - Derived from DeviceDefault
           * 1 - Dark amber
-          * @hide
           */
          public static final String AE_THEME = "ae_theme";
 

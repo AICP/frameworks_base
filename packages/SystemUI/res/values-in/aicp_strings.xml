@@ -17,16 +17,31 @@
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Aicp Extras Tile -->
-  <string name="quick_aicp_extras_label">Ekstra Aicp</string>
+  <string name="quick_aicp_extras_label">Aicp Extras</string>
+  <string name="quick_aicp_extras_toast">LOL, Anda benar-benar berpikir bahwa klik yang lama akan membawa Anda ke suatu tempat!!!</string>
   <!-- Screenshot Delete Toast -->
   <string name="delete_screenshot_toast">Screenshot Dihapus</string>
   <!-- Partial Screenshot -->
+  <string name="screenshot_abort_title">Tidak ada tangkapan layar yang diambil</string>
   <string name="screenshot_abort_text">Proses dibatalkan.</string>
   <!-- Compass QS Tile -->
+  <string name="quick_settings_compass_label">Kompas</string>
   <string name="quick_settings_compass_init">Menginisialisasi \u2026</string>
   <string name="accessibility_quick_settings_compass_off">Kompas mati</string>
   <string name="accessibility_quick_settings_compass_on">Kompas hidup</string>
+  <string name="accessibility_quick_settings_compass_changed_off">Kompas dimatikan.</string>
+  <string name="accessibility_quick_settings_compass_changed_on">Kompas dihidupkan.</string>
+  <string name="quick_settings_compass_N">N</string>
+  <string name="quick_settings_compass_NE">NE</string>
+  <string name="quick_settings_compass_E">E</string>
+  <string name="quick_settings_compass_SE">SE</string>
+  <string name="quick_settings_compass_S">S</string>
+  <string name="quick_settings_compass_SW">SW</string>
+  <string name="quick_settings_compass_W">W</string>
+  <string name="quick_settings_compass_NW">NW</string>
   <!-- Screenshoot tile -->
+  <string name="quick_settings_screenshot_label">Tangkapan Layar</string>
+  <string name="quick_settings_region_screenshot_label">Tangkapan layar sebagian</string>
   <!-- USB Tethering tile -->
   <string name="accessibility_quick_settings_usb_tether_off">Penambatan USB mati</string>
   <string name="accessibility_quick_settings_usb_tether_on">Penambatan USB hidup</string>
@@ -34,26 +49,47 @@
   <string name="accessibility_quick_settings_usb_tether_changed_on">Penambatan USB dihidupkan</string>
   <string name="quick_settings_usb_tether_label">Penambatan USB</string>
   <!-- Language toggle tile -->
+  <string name="quick_settings_locale_label">Bahasa</string>
   <string name="quick_settings_locale_more_locales_toast">Konfigurasikan beberapa bahasa untuk mengaktifkan fungsi toggle</string>
   <!-- Music tile -->
+  <string name="quick_settings_music_label">Musik</string>
+  <string name="quick_settings_music_play">Putar</string>
+  <string name="quick_settings_music_pause">Jeda</string>
   <!-- Sound tile -->
+  <string name="quick_settings_sound_label">Suara</string>
+  <string name="quick_settings_sound_ring">Cincin</string>
+  <string name="quick_settings_sound_vibrate">Getar</string>
+  <string name="quick_settings_sound_silent">Diam</string>
   <!-- Ambient Display Tile -->
+  <string name="quick_settings_ambient_display_label">Tampilan sekitar</string>
   <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_ambient_display_off">Tampilan sekeliling menyala.</string>
   <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_ambient_display_on">Tampilan sekitar.</string>
   <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_ambient_display_changed_off">Tampilan sekitar dimatikan.</string>
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_ambient_display_changed_on">Tampilan sekitar menyala.</string>
   <!-- Always on Display Tile -->
-  <string name="quick_settings_always_on_display_label">Selalu dipajang</string>
+  <string name="quick_settings_always_on_display_label">Tampilan selalu aktif</string>
   <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_off">Tampilan selalu aktif mati.</string>
   <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
-  <string name="accessibility_quick_settings_always_on_display_on">Selalu dipajang.</string>
+  <string name="accessibility_quick_settings_always_on_display_on">Tampilan selalu aktif hidup.</string>
   <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_changed_off">Tampilan selalu aktif dimatikan.</string>
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_changed_on">Tampilan selalu aktif dihidupkan.</string>
   <!-- Caffeine QS Tile -->
   <string name="quick_settings_caffeine_label">Kafein</string>
   <string name="accessibility_quick_settings_caffeine_off">Kafein mati</string>
   <string name="accessibility_quick_settings_caffeine_on">Kafein hidup</string>
   <!-- Sync QS Tile -->
+  <string name="quick_settings_sync_label">Sinkronisasi</string>
+  <string name="accessibility_quick_settings_sync_off">Sinkronisasi mati</string>
+  <string name="accessibility_quick_settings_sync_on">Sinkronisasi hidup</string>
+  <string name="accessibility_quick_settings_sync_changed_off">Sinkronisasi dimatikan</string>
+  <string name="accessibility_quick_settings_sync_changed_on">Sinkronisasi dihidupkan</string>
   <!-- Volume QS Tile -->
   <string name="accessibility_quick_settings_volume_panel">Volume</string>
   <string name="quick_settings_volume_panel_label">Volume</string>
@@ -80,6 +116,8 @@
   <!-- Screen record notification error title -->
   <string name="screenrecord_notif_error">Tidak dapat merekam tampilan layar</string>
   <string name="notification_channel_screenrecord">Perekam layar</string>
+  <string name="screenrecord_hide_hint">Sembunyikan petunjuk</string>
+  <string name="screenrecord_show_hint">Tampilkan petunjuk</string>
   <!-- Screenshot QS tile -->
   <string name="quick_settings_screenrecord_label">Rekamlayar</string>
   <string name="quick_settings_screenrecord_lq_label">Rekam layar 480p</string>
@@ -87,8 +125,13 @@
   <string name="quick_settings_screenrecord_hq_label">Rekam layar 720p+</string>
   <string name="lockscreen_default">Standar</string>
   <string name="lockscreen_hidden">Tidak ada</string>
+  <string name="omnijaws_service_error">Kesalahan</string>
+  <string name="omnijaws_service_unkown">Tidak ada data cuaca</string>
+  <string name="omnijaws_service_error_long">Kesalahan saat memuat data cuaca</string>
   <string name="omnijaws_service_disabled">Layanan dimatikan</string>
   <string name="omnijaws_detail_header">Cuaca</string>
+  <string name="omnijaws_label_default">Cuaca</string>
+  <string name="omnijaws_current_text">Sekarang</string>
   <string name="omnijaws_package_not_available">OmniJaws tidak tersedia</string>
   <string name="omnijaws_service_last_update">Pembaharuan terakhir:</string>
   <!-- Weather string format in expanded statusbar header -->
@@ -101,9 +144,23 @@
   <!-- Caffeine tile -->
   <string name="caffeine_info_title">Apa ini?</string>
   <!-- Navigation bar Tile -->
+  <string name="quick_settings_navigation_bar">Bilah navigasi</string>
   <string name="quick_settings_smartbar">SmartBar</string>
+  <string name="quick_settings_fling">Melemparkan</string>
+  <string name="quick_settings_navigation_default">Bawaan</string>
+  <string name="quick_settings_navigation_disabled">Mati</string>
   <!-- Kill button in notification guts -->
+  <string name="force_stop_dlg_title">Angkatan berhenti?</string>
+  <string name="force_stop_dlg_text">Jika Anda memaksa menghentikan aplikasi, itu mungkin salah tingkah.</string>
   <string name="kill">Bunuh apl</string>
   <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
+  <string name="keyguard_indication_dash_charging_time">Pengisian Cepat (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%s</xliff:g> sampai penuh)</string>
+  <string name="keyguard_plugged_in_dash_charging">Pengisian Cepat</string>
   <!-- Indication on the keyguard that is shown when the device is charging with a turbo power charger. Should match keyguard_plugged_in_turbo_power_charging [CHAR LIMIT=40]-->
+  <string name="keyguard_indication_turbo_power_time">TurboPower terhubung (<xliff:g id="charging_time_left">%s</xliff:g> sampai penuh)</string>
+  <string name="keyguard_plugged_in_turbo_power_charging">TurboPower terhubung</string>
+  <string name="keyguard_plugged_in_turbo_charging">Pengisian Turbo</string>
+  <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_running_services">Buka layar Running Services.</string>
+  <!-- The contents of the Ambient Weather bottom view -->
 </resources>

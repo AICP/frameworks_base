@@ -25,5 +25,21 @@
   <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_toggleNavigationEditor">Izinkan sebuah aplikasi mengontrol navigasi bar editor.</string>
   <!-- AOKP custom system animations -->
+  <string name="animation_fade">Pudar</string>
+  <string name="animation_slide_right">Meluncur masuk kanan</string>
+  <string name="animation_slide_left">Meluncur masuk kiri</string>
+  <string name="animation_slide_right_no_fade">Meluncur masuk kanan (tanpa pudar)</string>
+  <string name="animation_slide_left_no_fade">Meluncur masuk kiri (tanpa pudar)</string>
+  <string name="animation_slide_up">Meluncur masuk bawah</string>
+  <string name="animation_slide_down">Meluncur masuk atas</string>
+  <string name="animation_default">Standar</string>
+  <string name="animation_translucent">Tembus</string>
+  <string name="animation_grow_shrink">Tumbuh (Atas)</string>
+  <string name="animation_grow_shrink_center">Tumbuh (Tengah)</string>
+  <string name="animation_grow_shrink_bottom">Tumbuh (Bawah)</string>
+  <string name="animation_grow_shrink_left">Tumbuh (Kiri)</string>
+  <string name="animation_grow_shrink_right">Tumbuh (Kanan)</string>
+  <string name="action_null">Tidak ada</string>
   <!-- Label for item that screenrecords in power menu options dialog -->
+  <string name="global_action_screenrecord">Rekam Layar</string>
 </resources>

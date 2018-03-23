@@ -72,10 +72,15 @@
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_ambient_display_changed_on">Brilho adaptável foi ligado.</string>
   <!-- Always on Display Tile -->
+  <string name="quick_settings_always_on_display_label">Exibição ambiente</string>
   <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_off">Exibição ambiente desligada.</string>
   <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_on">Exibição ambiente ligada.</string>
   <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_changed_off">Exibição ambiente desligada.</string>
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_changed_on">Exibição ambiente desligada.</string>
   <!-- Caffeine QS Tile -->
   <string name="quick_settings_caffeine_label">Cafeína</string>
   <string name="accessibility_quick_settings_caffeine_off">Cafeína desligada</string>
@@ -116,6 +121,9 @@
   <string name="screenrecord_show_hint">Mostrar dica</string>
   <!-- Screenshot QS tile -->
   <string name="quick_settings_screenrecord_label">Gravar a tela</string>
+  <string name="quick_settings_screenrecord_lq_label">Gravação de tela 480p</string>
+  <string name="quick_settings_screenrecord_mq_label">Gravação de tela 720p</string>
+  <string name="quick_settings_screenrecord_hq_label">Gravação de tela 720p+</string>
   <string name="lockscreen_default">Padrão</string>
   <string name="lockscreen_hidden">Nenhum</string>
   <string name="omnijaws_service_error">Erro</string>
@@ -134,16 +142,28 @@
   <!-- DUI -->
   <string name="systemui_tuner_navbar_title">Configurações padrão</string>
   <!-- Battery saver tile -->
+  <string name="battery_saver_qs_tile_fully_charged">Totalmente carregado</string>
   <!-- Caffeine tile -->
+  <string name="caffeine_info_title">O que é isso?</string>
   <string name="caffeine_info_message">Cafeína é um bloco simples que você pode ativar para manter a tela acessa.\n\nPor favor note que o estado do bloco será resetado assim que a tela for desligada.</string>
   <!-- Navigation bar Tile -->
   <string name="quick_settings_navigation_bar">Barra de navegação</string>
   <string name="quick_settings_smartbar">SmartBar</string>
   <string name="quick_settings_fling">Fling</string>
+  <string name="quick_settings_navigation_default">Padrão</string>
+  <string name="quick_settings_navigation_disabled">Desativado</string>
   <!-- Kill button in notification guts -->
   <string name="force_stop_dlg_title">Forçar interrupção?</string>
   <string name="force_stop_dlg_text">Se você forçar a interrupção de um aplicativo, ele pode apresentar mau funcionamento.</string>
   <string name="kill">Fechar aplicativo</string>
   <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
+  <string name="keyguard_indication_dash_charging_time">Carregamento rápido (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%s</xliff:g> até concluir)</string>
+  <string name="keyguard_plugged_in_dash_charging">Carregamento rápido</string>
   <!-- Indication on the keyguard that is shown when the device is charging with a turbo power charger. Should match keyguard_plugged_in_turbo_power_charging [CHAR LIMIT=40]-->
+  <string name="keyguard_indication_turbo_power_time">Carregamento rápido (<xliff:g id="charging_time_left">%s</xliff:g> até concluir)</string>
+  <string name="keyguard_plugged_in_turbo_power_charging">Carregamento rápido ativado</string>
+  <string name="keyguard_plugged_in_turbo_charging">Carregamento rápido</string>
+  <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_running_services">Tela de Serviços Abertos em Execução.</string>
+  <!-- The contents of the Ambient Weather bottom view -->
 </resources>

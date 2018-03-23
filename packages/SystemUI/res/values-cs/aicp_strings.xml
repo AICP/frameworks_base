@@ -157,5 +157,13 @@
   <string name="force_stop_dlg_text">Vynucené zastavení může způsobit nepředvídatelné chování aplikace.</string>
   <string name="kill">Ukončit aplikaci</string>
   <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
+  <string name="keyguard_indication_dash_charging_time">DASH nabíjení (plně nabito za <xliff:g id="CHARGING_TIME_LEFT">%s</xliff:g>)</string>
+  <string name="keyguard_plugged_in_dash_charging">DASH nabíjení</string>
   <!-- Indication on the keyguard that is shown when the device is charging with a turbo power charger. Should match keyguard_plugged_in_turbo_power_charging [CHAR LIMIT=40]-->
+  <string name="keyguard_indication_turbo_power_time">TurboPower je připojen (zbývá <xliff:g id="charging_time_left">%s</xliff:g> do plna)</string>
+  <string name="keyguard_plugged_in_turbo_power_charging">TurboPower je připojen</string>
+  <string name="keyguard_plugged_in_turbo_charging">Turbo nabíjení</string>
+  <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_running_services">Otevřít obrazovku spuštěných služeb.</string>
+  <!-- The contents of the Ambient Weather bottom view -->
 </resources>

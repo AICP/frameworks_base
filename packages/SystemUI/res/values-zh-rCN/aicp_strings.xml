@@ -155,6 +155,13 @@
   <string name="force_stop_dlg_text">如果你强制停止一个应用程序，它可能会失败。</string>
   <string name="kill">终止应用</string>
   <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
+  <string name="keyguard_indication_dash_charging_time">Dash 闪充 (还需 <xliff:g id="charging_time_left" example="4 hours and 2 minutes">%s</xliff:g> 充满)</string>
   <string name="keyguard_plugged_in_dash_charging">Dash 闪充</string>
   <!-- Indication on the keyguard that is shown when the device is charging with a turbo power charger. Should match keyguard_plugged_in_turbo_power_charging [CHAR LIMIT=40]-->
+  <string name="keyguard_indication_turbo_power_time">TurboPower 已连接 (还需 <xliff:g id="charging_time_left">%s</xliff:g> 充满)</string>
+  <string name="keyguard_plugged_in_turbo_power_charging">TurboPower 已连接</string>
+  <string name="keyguard_plugged_in_turbo_charging">正在涡轮充电</string>
+  <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_running_services">显示正在运行的服务。</string>
+  <!-- The contents of the Ambient Weather bottom view -->
 </resources>

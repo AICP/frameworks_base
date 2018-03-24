@@ -164,6 +164,11 @@ public class BatteryMeterView extends LinearLayout implements
                 && mStyle != BatteryMeterDrawableBase.BATTERY_STYLE_DOTTED_CIRCLE);
     }
 
+    private boolean isHiddenButQsOrKeyguard() {
+        return mQsHeaderOrKeyguard &&
+                mStyle == BatteryMeterDrawableBase.BATTERY_STYLE_HIDDEN;
+    }
+
     @Override
     public boolean hasOverlappingRendering() {
         return false;
@@ -232,7 +237,8 @@ public class BatteryMeterView extends LinearLayout implements
             // to load its emoji colored variant with the uFE0E flag
             String bolt = "\u26A1\uFE0E";
             CharSequence mChargeIndicator =
-                    mCharging && mStyle == BatteryMeterDrawableBase.BATTERY_STYLE_TEXT ? (bolt + " ") : "";
+                    mCharging && (mStyle == BatteryMeterDrawableBase.BATTERY_STYLE_TEXT || isHiddenButQsOrKeyguard())
+                    ? (bolt + " ") : "";
             mBatteryPercentView.setText(mChargeIndicator +
                     NumberFormat.getPercentInstance().format(mLevel / 100f));
         }
@@ -263,7 +269,8 @@ public class BatteryMeterView extends LinearLayout implements
         // requestLayout() if values aren't different from previous ones
         if (mBatteryPercentView != null) {
             mBatteryPercentView.setPaddingRelative(0, 0,
-                    mStyle == BatteryMeterDrawableBase.BATTERY_STYLE_TEXT ? (isRightClock() ? mEndPadding : 0) : mEndPadding, 0);
+                    (mStyle == BatteryMeterDrawableBase.BATTERY_STYLE_TEXT || isHiddenButQsOrKeyguard())
+                    ? (isRightClock() ? mEndPadding : 0) : mEndPadding, 0);
         }
 
         mDrawable.showPercentInsideCircle(!mShowPercentText);

@@ -21,8 +21,25 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- DUI -->
   <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permlab_toggleNavigationEditor">التحكم فى محرر التنقل</string>
   <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permdesc_toggleNavigationEditor">يسمح لتطبيق ما بالتحكم في محرر شريط التنقل.</string>
   <!-- AOKP custom system animations -->
+  <string name="animation_fade">التلاشي</string>
+  <string name="animation_slide_right">الإنزلاق نحو اليمين</string>
+  <string name="animation_slide_left">الإنزلاق نحو اليسار</string>
+  <string name="animation_slide_right_no_fade">انزلاق إلى اليمين (بدون تلاشي)</string>
+  <string name="animation_slide_left_no_fade">انزلاق إلى اليسار (بدون تلاشي)</string>
+  <string name="animation_slide_up">انزلاق إلى الأسفل</string>
+  <string name="animation_slide_down">الانزلاق الى الاعلى</string>
+  <string name="animation_default">افتراضي</string>
+  <string name="animation_translucent">شبه شفاف</string>
+  <string name="animation_grow_shrink">تنمو في (أعلى)</string>
+  <string name="animation_grow_shrink_center">تنمو في (الوسط)</string>
+  <string name="animation_grow_shrink_bottom">تنمو في (أسفل)</string>
+  <string name="animation_grow_shrink_left">تنمو في (اليسار)</string>
+  <string name="animation_grow_shrink_right">تنمو في (اليمين)</string>
+  <string name="action_null">فارغ</string>
   <!-- Label for item that screenrecords in power menu options dialog -->
   <string name="global_action_screenrecord">تسجيل الشاشة</string>
 </resources>

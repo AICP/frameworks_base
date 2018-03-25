@@ -157,6 +157,13 @@
   <string name="force_stop_dlg_text">Als je een app gedwongen stopt, kan deze onverwacht gedrag vertonen.</string>
   <string name="kill">App stoppen</string>
   <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
+  <string name="keyguard_indication_dash_charging_time">Dash Opladen (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%s</xliff:g> tot volledig opgeladen)</string>
   <string name="keyguard_plugged_in_dash_charging">Snelladen middels Dash</string>
   <!-- Indication on the keyguard that is shown when the device is charging with a turbo power charger. Should match keyguard_plugged_in_turbo_power_charging [CHAR LIMIT=40]-->
+  <string name="keyguard_indication_turbo_power_time">TurboPower aangesloten (<xliff:g id="charging_time_left">%s</xliff:g> tot volledig opgeladen)</string>
+  <string name="keyguard_plugged_in_turbo_power_charging">TurboPower aangesloten</string>
+  <string name="keyguard_plugged_in_turbo_charging">Snellaadfunctie (Turbo)</string>
+  <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_running_services">Open scherm met uitgevoerde services.</string>
+  <!-- The contents of the Ambient Weather bottom view -->
 </resources>

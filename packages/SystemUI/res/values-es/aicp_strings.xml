@@ -157,8 +157,13 @@
   <string name="force_stop_dlg_text">Si se detiene una aplicación, es posible que no funcione correctamente.</string>
   <string name="kill">Cerrar Aplicación</string>
   <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
+  <string name="keyguard_indication_dash_charging_time">Carga Dash (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%s</xliff:g> hasta completar)</string>
   <string name="keyguard_plugged_in_dash_charging">Carga Dash</string>
   <!-- Indication on the keyguard that is shown when the device is charging with a turbo power charger. Should match keyguard_plugged_in_turbo_power_charging [CHAR LIMIT=40]-->
+  <string name="keyguard_indication_turbo_power_time">TurboPower conectado (<xliff:g id="charging_time_left">%s</xliff:g> hasta completar)</string>
   <string name="keyguard_plugged_in_turbo_power_charging">TurboPower conectado</string>
   <string name="keyguard_plugged_in_turbo_charging">Carga Turbo</string>
+  <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_running_services">Abrir la pantalla de servicios en ejecución.</string>
+  <!-- The contents of the Ambient Weather bottom view -->
 </resources>

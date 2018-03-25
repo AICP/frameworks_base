@@ -26,6 +26,7 @@
   <string name="screenshot_abort_text">Operazione fallita.</string>
   <!-- Compass QS Tile -->
   <string name="quick_settings_compass_label">Bussola</string>
+  <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
   <string name="quick_settings_compass_init">Inizializzando\u2026</string>
   <string name="accessibility_quick_settings_compass_off">Bussola spenta.</string>
   <string name="accessibility_quick_settings_compass_on">Bussola accesa.</string>
@@ -156,6 +157,13 @@
   <string name="force_stop_dlg_text">Se forzi la chiusura di un\'app, tale app potrebbe funzionare in modo anomalo.</string>
   <string name="kill">Termina App</string>
   <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
+  <string name="keyguard_indication_dash_charging_time">Ricarica rapida (<xliff:g id="charging_time_left" example="4 hours and 2 minutes"> %s</xliff:g> fino al completamento)</string>
   <string name="keyguard_plugged_in_dash_charging">Ricarica rapida</string>
   <!-- Indication on the keyguard that is shown when the device is charging with a turbo power charger. Should match keyguard_plugged_in_turbo_power_charging [CHAR LIMIT=40]-->
+  <string name="keyguard_indication_turbo_power_time">TurboPower collegato (<xliff:g id="charging_time_left">%s</xliff:g> fino al completamento)</string>
+  <string name="keyguard_plugged_in_turbo_power_charging">Collegamento TurboPower</string>
+  <string name="keyguard_plugged_in_turbo_charging">Ricarica Turbo</string>
+  <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_running_services">Apri la schermata dei servizi in esecuzione.</string>
+  <!-- The contents of the Ambient Weather bottom view -->
 </resources>

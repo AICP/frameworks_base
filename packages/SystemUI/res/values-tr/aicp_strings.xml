@@ -32,14 +32,14 @@
   <string name="accessibility_quick_settings_compass_on">Pusula açık.</string>
   <string name="accessibility_quick_settings_compass_changed_off">Pusula kapatıldı.</string>
   <string name="accessibility_quick_settings_compass_changed_on">Pusula açıldı.</string>
-  <string name="quick_settings_compass_N">K</string>
-  <string name="quick_settings_compass_NE">KD</string>
-  <string name="quick_settings_compass_E">D</string>
-  <string name="quick_settings_compass_SE">GD</string>
-  <string name="quick_settings_compass_S">G</string>
-  <string name="quick_settings_compass_SW">GB</string>
-  <string name="quick_settings_compass_W">B</string>
-  <string name="quick_settings_compass_NW">KB</string>
+  <string name="quick_settings_compass_N">N</string>
+  <string name="quick_settings_compass_NE">NE</string>
+  <string name="quick_settings_compass_E">E</string>
+  <string name="quick_settings_compass_SE">SE</string>
+  <string name="quick_settings_compass_S">S</string>
+  <string name="quick_settings_compass_SW">SW</string>
+  <string name="quick_settings_compass_W">W</string>
+  <string name="quick_settings_compass_NW">NW</string>
   <!-- Screenshoot tile -->
   <string name="quick_settings_screenshot_label">Ekran görüntüsü</string>
   <string name="quick_settings_region_screenshot_label">Kısmi ekran görüntüsü</string>
@@ -128,10 +128,10 @@
   <string name="lockscreen_hidden">Hiçbiri</string>
   <string name="omnijaws_service_error">Hata</string>
   <string name="omnijaws_service_unkown">Hava durumu verisi yok</string>
-  <string name="omnijaws_service_error_long">Hava durumu verileri yüklenemedi</string>
+  <string name="omnijaws_service_error_long">Hava durumu verisi yüklenemedi</string>
   <string name="omnijaws_service_disabled">Servis devre dışı</string>
-  <string name="omnijaws_detail_header">Hava Durumu</string>
-  <string name="omnijaws_label_default">Hava Durumu</string>
+  <string name="omnijaws_detail_header">Hava durumu</string>
+  <string name="omnijaws_label_default">Hava durumu</string>
   <string name="omnijaws_current_text">Şimdi</string>
   <string name="omnijaws_package_not_available">OmniJaws yüklü değil</string>
   <string name="omnijaws_service_last_update">Son güncelleme:</string>
@@ -140,9 +140,9 @@
   <!-- SystemUI Tuner Parts -->
   <string name="custom_hint">Başlatmak için simgeyi kaydırın</string>
   <!-- DUI -->
-  <string name="systemui_tuner_navbar_title">Varsayılan ayarlar</string>
+  <string name="systemui_tuner_navbar_title">Standart ayarlar</string>
   <!-- Battery saver tile -->
-  <string name="battery_saver_qs_tile_fully_charged">Tamamen şarj edildi</string>
+  <string name="battery_saver_qs_tile_fully_charged">Pil tam dolu</string>
   <!-- Caffeine tile -->
   <string name="caffeine_info_title">Bu nedir?</string>
   <string name="caffeine_info_message">Kafein, ekranınızın sürekli açık kalmasını sağlayan bir kısayoldur.\n\nUnutmayın ki kısayolun durumu, ekranın kapatılmasından sonra sıfırlanacaktır.</string>
@@ -150,7 +150,7 @@
   <string name="quick_settings_navigation_bar">Gezinme çubuğu</string>
   <string name="quick_settings_smartbar">Akıllı çubuk</string>
   <string name="quick_settings_fling">Fling</string>
-  <string name="quick_settings_navigation_default">Varsayılan</string>
+  <string name="quick_settings_navigation_default">Standart</string>
   <string name="quick_settings_navigation_disabled">Devre dışı</string>
   <!-- Kill button in notification guts -->
   <string name="force_stop_dlg_title">Zorla durdurulsun mu?</string>
@@ -160,4 +160,10 @@
   <string name="keyguard_indication_dash_charging_time">Hızlı Şarj oluyor (tam dolmasına <xliff:g id="charging_time_left" example="4 hours and 2 minutes">%s</xliff:g> kaldı)</string>
   <string name="keyguard_plugged_in_dash_charging">Hızlı Şarj oluyor</string>
   <!-- Indication on the keyguard that is shown when the device is charging with a turbo power charger. Should match keyguard_plugged_in_turbo_power_charging [CHAR LIMIT=40]-->
+  <string name="keyguard_indication_turbo_power_time">Turbo şarj bağlandı (tam dolmasına <xliff:g id="charging_time_left">%s</xliff:g> kaldı)</string>
+  <string name="keyguard_plugged_in_turbo_power_charging">Turbo şarj bağlandı</string>
+  <string name="keyguard_plugged_in_turbo_charging">Turbo Şarj oluyor</string>
+  <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_running_services">Çalışan hizmetler ekranını aç.</string>
+  <!-- The contents of the Ambient Weather bottom view -->
 </resources>

@@ -26,6 +26,7 @@
   <string name="screenshot_abort_text">Opération annulée.</string>
   <!-- Compass QS Tile -->
   <string name="quick_settings_compass_label">Boussole</string>
+  <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
   <string name="quick_settings_compass_init">Initialisation\u2026</string>
   <string name="accessibility_quick_settings_compass_off">Boussole désactivée.</string>
   <string name="accessibility_quick_settings_compass_on">Boussole activée.</string>
@@ -133,4 +134,6 @@
   <string name="kill">Arrêter l’application</string>
   <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
   <!-- Indication on the keyguard that is shown when the device is charging with a turbo power charger. Should match keyguard_plugged_in_turbo_power_charging [CHAR LIMIT=40]-->
+  <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
+  <!-- The contents of the Ambient Weather bottom view -->
 </resources>

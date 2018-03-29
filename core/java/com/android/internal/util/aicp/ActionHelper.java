@@ -80,7 +80,7 @@ public class ActionHelper {
     }
 
     public static Drawable getActionIconImage(Context context,
-            String clickAction, String customIcon, AbstractIconPackHelper iconPackHelper) {
+            String clickAction, String customIcon, AbstractIconsHandler iconsHandler) {
         int resId = -1;
         Drawable d = null;
         PackageManager pm = context.getPackageManager();
@@ -107,14 +107,11 @@ public class ActionHelper {
                     }
                 }
                 if (d == null) {
-                    if (iconPackHelper != null && iconPackHelper.isIconPackLoaded()) {
+                    if (iconsHandler != null) {
                         try {
                             ActivityInfo info = pm.getActivityInfo(Intent.parseUri(clickAction, 0)
                                     .getComponent(), 0);
-                            resId = iconPackHelper.getResourceIdForActivityIcon(info);
-                            if (resId > 0) {
-                                return iconPackHelper.getIconPackResources().getDrawable(resId);
-                            }
+                            return iconsHandler.getIconFromHandler(context, info);
                         } catch (PackageManager.NameNotFoundException e) {}
                     }
                     d = pm.getActivityIcon(Intent.parseUri(clickAction, 0));

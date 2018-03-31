@@ -4982,6 +4982,13 @@ public final class Settings {
         public static final String LOCK_HIDE_STATUS_BAR = "lockscreen_hide_status_bar";
 
         /**
+         * Toast animations
+         *
+         * @hide
+         */
+        public static final String TOAST_ANIMATION = "toast_animation";
+
+        /**
          * --- AICP System settings end
          *  Add new system settings above this comment
          */

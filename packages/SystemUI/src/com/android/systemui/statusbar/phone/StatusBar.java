@@ -705,6 +705,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             tickTrackInfo(mMediaController);
             mNoMan.setMediaPlaying(true);
             final String currentPkg = mMediaController.getPackageName().toLowerCase();
+            if (mSlimRecents != null) {
+                mSlimRecents.setMediaPlaying(true, currentPkg);
+            }
             for (String packageName : mNavMediaArrowsExcludeList) {
                 if (currentPkg.contains(packageName)) {
                     return;
@@ -713,9 +716,6 @@ public class StatusBar extends SystemUI implements DemoMode,
             if (mNavigationBar != null) {
                 // pulse colors already set by titckTrackInfo
                 mNavigationBar.setMediaPlaying(true);
-            }
-            if (mSlimRecents != null) {
-                mSlimRecents.setMediaPlaying(true, currentPkg);
             }
         } else {
             if (isAmbientContainerAvailable()) {
@@ -2007,7 +2007,8 @@ public class StatusBar extends SystemUI implements DemoMode,
                 mNavigationBar.setPulseColors(n.isColorizedMedia(), colors);
             }
             if (mSlimRecents != null) {
-                mSlimRecents.setMediaColors(n.isColorizedMedia(), colors);
+                mSlimRecents.setMediaColors(n.isColorizedMedia(), colors,
+                        n.getOriginalLargeIcon().loadDrawable(mContext));
             }
         }
     }

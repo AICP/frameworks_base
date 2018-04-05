@@ -555,6 +555,10 @@
     <protected-broadcast android:name="com.qti.dpmframework.DPM_INTERNET_CONNECTED" />
     <protected-broadcast android:name="com.qti.dpmframework.DPM_PREFERENCE_CHANGED" />
 
+    <protected-broadcast android:name="projekt.substratum.APP_CRASHED" />
+    <protected-broadcast android:name="com.android.systemui.action.RESTART_THEME" />
+    <protected-broadcast android:name="com.android.systemui.action.REFRESH_SOUND" />
+
     <!-- ====================================================================== -->
     <!--                          RUNTIME PERMISSIONS                           -->
     <!-- ====================================================================== -->

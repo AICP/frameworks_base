@@ -434,6 +434,14 @@ public class StatusBar extends SystemUI implements DemoMode,
             "com.aicp.overlay.defaultdark.com.android.calculator2",
     };
 
+    private static final String[] BLACK_OVERLAYS = {
+            "com.aicp.overlay.defaultblack.android",
+            "com.aicp.overlay.defaultblack.com.android.systemui",
+            "com.aicp.overlay.defaultdark.com.android.settings",
+            "com.aicp.overlay.defaultdark.org.lineageos.lineageparts",
+            "com.aicp.overlay.defaultdark.com.android.calculator2",
+    };
+
     static {
         boolean onlyCoreApps;
         boolean freeformWindowManagement;
@@ -3220,10 +3228,18 @@ public class StatusBar extends SystemUI implements DemoMode,
         updateTheme();
     }
 
-    public boolean isUsingDarkTheme() {
+    private boolean isUsingDarkTheme() {
+        return isUsingTheme(DARK_OVERLAYS[0]);
+    }
+
+    private boolean isUsingBlackTheme() {
+        return isUsingTheme(BLACK_OVERLAYS[0]);
+    }
+
+    private boolean isUsingTheme(String overlay) {
         OverlayInfo systemuiThemeInfo = null;
         try {
-            systemuiThemeInfo = mOverlayManager.getOverlayInfo(DARK_OVERLAYS[0],
+            systemuiThemeInfo = mOverlayManager.getOverlayInfo(overlay,
                     mCurrentUserId);
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -4114,6 +4130,7 @@ public class StatusBar extends SystemUI implements DemoMode,
             pw.println("    overlay manager not initialized!");
         } else {
             pw.println("    dark overlay on: " + isUsingDarkTheme());
+            pw.println("    black overlay on: " + isUsingBlackTheme());
         }
         final boolean lightWpTheme = mContext.getThemeResId() == R.style.Theme_SystemUI_Light;
         pw.println("    light wallpaper theme: " + lightWpTheme);
@@ -5250,20 +5267,29 @@ public class StatusBar extends SystemUI implements DemoMode,
         WallpaperColors systemColors = mColorExtractor
                 .getWallpaperColors(WallpaperManager.FLAG_SYSTEM);
         final boolean useDarkTheme;
+        final boolean useBlackTheme;
 
         switch (globalStyleSetting) {
             case 1:
                 useDarkTheme = isLiveDisplayNightModeOn();
+                useBlackTheme = false;
                 break;
             case 2:
                 useDarkTheme = false;
+                useBlackTheme = false;
                 break;
             case 3:
                 useDarkTheme = true;
+                useBlackTheme = false;
+                break;
+            case 4:
+                useDarkTheme = false;
+                useBlackTheme = true;
                 break;
             default:
                 useDarkTheme = systemColors != null && (systemColors.getColorHints() &
                         WallpaperColors.HINT_SUPPORTS_DARK_THEME) != 0;
+                useBlackTheme = false;
                 break;
         }
 
@@ -5272,6 +5298,7 @@ public class StatusBar extends SystemUI implements DemoMode,
             mOverlayManager.setEnabled("com.android.systemui.theme.dark", false, mCurrentUserId);
         } catch (RemoteException e) {}
 
+        boolean updateUiModeRequired = false;
         if (isUsingDarkTheme() != useDarkTheme) {
             for (String overlay: DARK_OVERLAYS) {
                 try {
@@ -5281,10 +5308,23 @@ public class StatusBar extends SystemUI implements DemoMode,
                 }
             }
 
-            if (mUiModeManager != null) {
-                mUiModeManager.setNightMode(useDarkTheme ?
-                        UiModeManager.MODE_NIGHT_YES : UiModeManager.MODE_NIGHT_NO);
+            updateUiModeRequired = true;
+        }
+        if (isUsingBlackTheme() != useBlackTheme) {
+            for (String overlay: BLACK_OVERLAYS) {
+                try {
+                    mOverlayManager.setEnabled(overlay, useBlackTheme, mCurrentUserId);
+                } catch (RemoteException e) {
+                    Log.w(TAG, "Can't change theme for " + overlay, e);
+                }
             }
+
+            updateUiModeRequired = true;
+        }
+
+        if (updateUiModeRequired && mUiModeManager != null) {
+            mUiModeManager.setNightMode((useDarkTheme || useBlackTheme) ?
+                    UiModeManager.MODE_NIGHT_YES : UiModeManager.MODE_NIGHT_NO);
         }
 
         // Lock wallpaper defines the color of the majority of the views, hence we'll use it

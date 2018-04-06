@@ -23,6 +23,7 @@ import android.content.ClipboardManager;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.UserManager;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
@@ -54,7 +55,14 @@ import javax.inject.Named;
  * Controller for {@link QSFooterView}.
  */
 @QSScope
-public class QSFooterViewController extends ViewController<QSFooterView> implements QSFooter {
+public class QSFooterViewController extends ViewController<QSFooterView> implements QSFooter,
+        TunerService.Tunable {
+
+    private static final String QS_FOOTER_SHOW_SETTINGS = Settings.Secure.QS_FOOTER_SHOW_SETTINGS;
+    private static final String QS_FOOTER_SHOW_SERVICES = Settings.Secure.QS_FOOTER_SHOW_SERVICES;
+    private static final String QS_FOOTER_SHOW_EDIT = Settings.Secure.QS_FOOTER_SHOW_EDIT;
+    private static final String QS_FOOTER_SHOW_USER = Settings.Secure.QS_FOOTER_SHOW_USER;
+    private static final String QS_FOOTER_SHOW_POWER_MENU = Settings.Secure.QS_FOOTER_SHOW_POWER_MENU;
 
     private final UserManager mUserManager;
     private final UserInfoController mUserInfoController;
@@ -73,10 +81,11 @@ public class QSFooterViewController extends ViewController<QSFooterView> impleme
     private final View mEdit;
     private final PageIndicator mPageIndicator;
     private final View mPowerMenuLite;
-    private final boolean mShowPMLiteButton;
     private final GlobalActionsDialogLite mGlobalActionsDialog;
     private final UiEventLogger mUiEventLogger;
     private View mRunningServicesButton;
+
+    private boolean mShowPMLiteButton;
 
     private final UserInfoController.OnUserInfoChangedListener mOnUserInfoChangedListener =
             new UserInfoController.OnUserInfoChangedListener() {
@@ -175,7 +184,6 @@ public class QSFooterViewController extends ViewController<QSFooterView> impleme
         mEdit = mView.findViewById(android.R.id.edit);
         mPageIndicator = mView.findViewById(R.id.footer_page_indicator);
         mPowerMenuLite = mView.findViewById(R.id.pm_lite);
-        mShowPMLiteButton = showPMLiteButton;
         mGlobalActionsDialog = globalActionsDialog;
         mUiEventLogger = uiEventLogger;
     }
@@ -188,12 +196,7 @@ public class QSFooterViewController extends ViewController<QSFooterView> impleme
 
     @Override
     protected void onViewAttached() {
-        if (mShowPMLiteButton) {
-            mPowerMenuLite.setVisibility(View.VISIBLE);
-            mPowerMenuLite.setOnClickListener(mSettingsOnClickListener);
-        } else {
-            mPowerMenuLite.setVisibility(View.GONE);
-        }
+        mPowerMenuLite.setOnClickListener(mSettingsOnClickListener);
         mView.addOnLayoutChangeListener(
                 (v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) ->
                         mView.updateAnimator(
@@ -224,10 +227,17 @@ public class QSFooterViewController extends ViewController<QSFooterView> impleme
 
         mQsPanelController.setFooterPageIndicator(mPageIndicator);
         mView.updateEverything(isTunerEnabled(), mMultiUserSwitchController.isMultiUserEnabled());
+        mTunerService.addTunable(this,
+                QS_FOOTER_SHOW_POWER_MENU,
+                QS_FOOTER_SHOW_EDIT,
+                QS_FOOTER_SHOW_USER,
+                QS_FOOTER_SHOW_SERVICES,
+                QS_FOOTER_SHOW_SETTINGS);
     }
 
     @Override
     protected void onViewDetached() {
+        mTunerService.removeTunable(this);
         setListening(false);
     }
 
@@ -283,6 +293,25 @@ public class QSFooterViewController extends ViewController<QSFooterView> impleme
         mView.disable(state2, isTunerEnabled(), mMultiUserSwitchController.isMultiUserEnabled());
     }
 
+    @Override
+    public void onTuningChanged(String key, String newValue) {
+        switch (key) {
+            case QS_FOOTER_SHOW_POWER_MENU:
+                mShowPMLiteButton =
+                        TunerService.parseIntegerSwitch(newValue, true);
+                mPowerMenuLite.setVisibility(mShowPMLiteButton ? View.VISIBLE : View.GONE);
+                mPowerMenuLite.setClickable(mShowPMLiteButton);
+                break;
+            case QS_FOOTER_SHOW_EDIT:
+            case QS_FOOTER_SHOW_USER:
+            case QS_FOOTER_SHOW_SERVICES:
+            case QS_FOOTER_SHOW_SETTINGS:
+                mView.updateFooterVisibilities();
+            default:
+                break;
+        }
+    }
+
     private void startRunningServicesActivity() {
         Intent intent = new Intent();
         intent.setClassName("com.android.settings",
@@ -300,6 +329,6 @@ public class QSFooterViewController extends ViewController<QSFooterView> impleme
     }
 
     private boolean isTunerEnabled() {
-        return mTunerService.isTunerEnabled();
+        return false;
     }
 }

@@ -18,6 +18,7 @@ package com.android.systemui.qs;
 
 import static android.app.StatusBarManager.DISABLE2_QUICK_SETTINGS;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.database.ContentObserver;
@@ -51,6 +52,7 @@ import com.android.systemui.statusbar.phone.SettingsButton;
 
 /** */
 public class QSFooterView extends FrameLayout {
+
     private SettingsButton mSettingsButton;
     protected View mSettingsContainer;
     private PageIndicator mPageIndicator;
@@ -78,6 +80,11 @@ public class QSFooterView extends FrameLayout {
     private int mTunerIconTranslation;
 
     private OnClickListener mExpandClickListener;
+
+    private boolean mShowSettingsIcon;
+    private boolean mShowServicesIcon;
+    private boolean mShowEditIcon;
+    private boolean mShowUserIcon;
 
     private final ContentObserver mDeveloperSettingsObserver = new ContentObserver(
             new Handler(mContext.getMainLooper())) {
@@ -194,7 +201,7 @@ public class QSFooterView extends FrameLayout {
     void setExpanded(boolean expanded, boolean isTunerEnabled, boolean multiUserEnabled) {
         if (mExpanded == expanded) return;
         mExpanded = expanded;
-        updateEverything(isTunerEnabled, multiUserEnabled);
+        updateEverything(false, multiUserEnabled);
     }
 
     /** */
@@ -247,16 +254,29 @@ public class QSFooterView extends FrameLayout {
         info.addAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_EXPAND);
     }
 
+    public void updateFooterVisibilities() {
+        ContentResolver resolver = mContext.getContentResolver();
+        mShowSettingsIcon = Settings.Secure.getIntForUser(resolver,
+                  Settings.Secure.QS_FOOTER_SHOW_SETTINGS, 1, UserHandle.USER_CURRENT) != 0;
+        mShowServicesIcon = Settings.Secure.getIntForUser(resolver,
+                  Settings.Secure.QS_FOOTER_SHOW_SERVICES, 0, UserHandle.USER_CURRENT) != 0;
+        mShowEditIcon = Settings.Secure.getIntForUser(resolver,
+                  Settings.Secure.QS_FOOTER_SHOW_EDIT, 1, UserHandle.USER_CURRENT) != 0;
+        mShowUserIcon = Settings.Secure.getIntForUser(resolver,
+                  Settings.Secure.QS_FOOTER_SHOW_USER, 1, UserHandle.USER_CURRENT) != 0;
+        updateEverything(false, true);
+    }
+
     void disable(int state2, boolean isTunerEnabled, boolean multiUserEnabled) {
         final boolean disabled = (state2 & DISABLE2_QUICK_SETTINGS) != 0;
         if (disabled == mQsDisabled) return;
         mQsDisabled = disabled;
-        updateEverything(isTunerEnabled, multiUserEnabled);
+        updateEverything(false, multiUserEnabled);
     }
 
     void updateEverything(boolean isTunerEnabled, boolean multiUserEnabled) {
         post(() -> {
-            updateVisibilities(isTunerEnabled, multiUserEnabled);
+            updateVisibilities(false, multiUserEnabled);
             updateClickabilities();
             setClickable(false);
         });
@@ -271,13 +291,17 @@ public class QSFooterView extends FrameLayout {
     }
 
     private void updateVisibilities(boolean isTunerEnabled, boolean multiUserEnabled) {
-        mSettingsContainer.setVisibility(mQsDisabled ? View.GONE : View.VISIBLE);
+        mSettingsContainer.setVisibility(mQsDisabled || !mShowSettingsIcon ? View.GONE : View.VISIBLE);
         mTunerIcon.setVisibility(isTunerEnabled ? View.VISIBLE : View.INVISIBLE);
         final boolean isDemo = UserManager.isDeviceInDemoMode(mContext);
-        mMultiUserSwitch.setVisibility(
+        mMultiUserSwitch.setVisibility(mShowUserIcon &&
                 showUserSwitcher(multiUserEnabled) ? View.VISIBLE : View.GONE);
-        mRunningServicesButton.setVisibility(isDemo || !mExpanded ? View.INVISIBLE : View.VISIBLE);
-        mSettingsButton.setVisibility(isDemo || !mExpanded ? View.INVISIBLE : View.VISIBLE);
+        mRunningServicesButton.setVisibility(isDemo || !mExpanded || !mShowServicesIcon ?
+                View.GONE : View.VISIBLE);
+        mSettingsButton.setVisibility(isDemo || !mExpanded || !mShowSettingsIcon ?
+                View.GONE : View.VISIBLE);
+        mEdit.setVisibility(isDemo || !mExpanded || !mShowEditIcon ?
+                View.GONE : View.VISIBLE);
 
         mBuildText.setVisibility(mExpanded && mShouldShowBuildText ? View.VISIBLE : View.INVISIBLE);
     }

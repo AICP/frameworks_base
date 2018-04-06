@@ -194,5 +194,10 @@ public class SecureSettings {
         Settings.Secure.VOLUME_LINK_NOTIFICATION,
         Settings.Secure.NAV_BAR_INVERSE,
         Settings.Secure.FP_SWIPE_TO_DISMISS_NOTIFICATIONS,
+        Settings.Secure.QS_FOOTER_SHOW_SETTINGS,
+        Settings.Secure.QS_FOOTER_SHOW_SERVICES,
+        Settings.Secure.QS_FOOTER_SHOW_EDIT,
+        Settings.Secure.QS_FOOTER_SHOW_USER,
+        Settings.Secure.QS_FOOTER_SHOW_POWER_MENU,
     };
 }

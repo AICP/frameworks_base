@@ -32,6 +32,9 @@ import android.util.Log;
 import java.io.File;
 import java.util.Arrays;
 
+/**
+ * @hide
+ */
 public class SoundUtils {
     private static final String TAG = "SubstratumService";
     private static final String SYSTEM_MEDIA_PATH = "/system/media/audio";

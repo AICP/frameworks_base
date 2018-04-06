@@ -71,6 +71,9 @@ import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+/**
+ * @hide
+ */
 public final class SubstratumService extends SystemService {
 
     private static final String TAG = "SubstratumService";

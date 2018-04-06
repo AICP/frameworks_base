@@ -16,6 +16,9 @@
 
 package android.content.substratum;
 
+/**
+ * @hide
+ */
 interface ISubstratumService {
 
     /**
@@ -81,7 +84,7 @@ interface ISubstratumService {
     /**
      * Delete Directory Method
      *
-     * @param destination   Path of the directory to be deleted.
+     * @param directory     Path of the directory to be deleted.
      * @param withParent    Flag to automatically delete the folder encompassing the folder.
      */
     void deleteDirectory(String directory, boolean withParent);
@@ -96,14 +99,14 @@ interface ISubstratumService {
     /**
      * Apply a specified font pack
      *
-     * @param name  Path to extract the font archive from.
+     * @param fileName  Path to extract the font archive from.
      */
     void applyFonts(String pid, String fileName);
 
     /**
      * Apply a specified sound pack
      *
-     * @param name  Path to extract the sounds archive from.
+     * @param fileName  Path to extract the sounds archive from.
      */
     void applySounds(String pid, String fileName);
 

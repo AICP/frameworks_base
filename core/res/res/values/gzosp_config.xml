@@ -29,4 +29,16 @@
     <!-- Whether notify fingerprint client of successful cancelled authentication -->
     <bool name="config_notifyClientOnFingerprintCancelSuccess">false</bool>
 
+    <!-- Minimum screen brightness setting allowed by the power manager.
+         The user is forbidden from setting the brightness below this level. -->
+    <integer name="config_buttonBrightnessSettingMinimum">10</integer>
+
+    <!-- Maximum button brightness allowed by the power manager.
+         The user is forbidden from setting the brightness above this level. -->
+    <integer name="config_buttonBrightnessSettingMaximum">255</integer>
+
+    <!-- Default button brightness setting.
+         Must be in the range specified by minimum and maximum. -->
+    <integer name="config_buttonBrightnessSettingDefault">255</integer>
+
 </resources>

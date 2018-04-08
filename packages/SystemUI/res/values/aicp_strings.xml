@@ -77,4 +77,8 @@
     <string name="flashlight_strength_title">Flashlight Strength</string>
     <string name="flashlight_strength_turn_off">Turn off</string>
     <string name="flashlight_strength_turn_on">Turn on</string>
+
+   <!-- Smart Pixels QS Tile -->
+    <string name="quick_settings_smart_pixels">Smart Pixels</string>
+    <string name="quick_settings_smart_pixels_on_power_save">Auto-enabled Smart Pixels</string>
 </resources>

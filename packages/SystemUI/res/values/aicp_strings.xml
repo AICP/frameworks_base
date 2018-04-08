@@ -169,4 +169,8 @@
     <string name="tuner_show_auto_brightness">Adaptive brightness button</string>
     <string name="tuner_auto_brightness_right">Right position for adaptive brightness button</string>
     <string name="tuner_show_brightness_buttons">Brightness control buttons</string>
+
+    <!-- Smart Pixels QS Tile -->
+    <string name="quick_settings_smart_pixels">Smart Pixels</string>
+    <string name="quick_settings_smart_pixels_on_power_save">Auto-enabled Smart Pixels</string>
 </resources>

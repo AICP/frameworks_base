@@ -81,6 +81,10 @@
   <string name="accessibility_quick_settings_always_on_display_changed_off">Всегда включенный дисплей выключен.</string>
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_always_on_display_changed_on">Всегда включенный дисплей включен.</string>
+  <!-- Expanded desktop QS Tile -->
+  <string name="quick_settings_expanded_desktop_label">Расширенный экран</string>
+  <string name="quick_settings_expanded_desktop">Расширенный</string>
+  <string name="quick_settings_expanded_desktop_off">Обычный</string>
   <!-- Caffeine QS Tile -->
   <string name="quick_settings_caffeine_label">Запрет сна</string>
   <string name="accessibility_quick_settings_caffeine_off">Запрет сна выкл.</string>
@@ -166,4 +170,7 @@
   <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_running_services">Открыть окно запущенных служб.</string>
   <!-- The contents of the Ambient Weather bottom view -->
+  <string name="quick_settings_google_assist_label">Помощник</string>
+  <string name="quick_settings_google_voice_assist_label">Голосовой помощник</string>
+  <string name="quick_settings_google_now_label">Лента Google</string>
 </resources>

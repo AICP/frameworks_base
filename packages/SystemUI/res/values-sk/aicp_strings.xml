@@ -80,6 +80,10 @@
   <string name="accessibility_quick_settings_always_on_display_changed_off">Vždy na obrazovke bolo vypnuté.</string>
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_always_on_display_changed_on">Vždy na obrazovke bolo zapnuté.</string>
+  <!-- Expanded desktop QS Tile -->
+  <string name="quick_settings_expanded_desktop_label">Rozšírená plocha</string>
+  <string name="quick_settings_expanded_desktop">Rozšírená</string>
+  <string name="quick_settings_expanded_desktop_off">Normalna</string>
   <!-- Caffeine QS Tile -->
   <string name="quick_settings_caffeine_label">Kofeín</string>
   <string name="accessibility_quick_settings_caffeine_off">Kofeín vyp.</string>
@@ -164,4 +168,7 @@
   <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_running_services">Otvoriť obrazovku spustených služieb.</string>
   <!-- The contents of the Ambient Weather bottom view -->
+  <string name="quick_settings_google_assist_label">Asistent</string>
+  <string name="quick_settings_google_voice_assist_label">Hlasový asistent</string>
+  <string name="quick_settings_google_now_label">Google Feed</string>
 </resources>

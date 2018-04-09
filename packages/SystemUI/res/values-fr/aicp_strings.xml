@@ -76,6 +76,10 @@
   <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <!-- Expanded desktop QS Tile -->
+  <string name="quick_settings_expanded_desktop_label">Bureau étendu</string>
+  <string name="quick_settings_expanded_desktop">Etendu</string>
+  <string name="quick_settings_expanded_desktop_off">Normal</string>
   <!-- Caffeine QS Tile -->
   <string name="quick_settings_caffeine_label">Caffeine</string>
   <string name="accessibility_quick_settings_caffeine_off">Caffeine désactivée</string>

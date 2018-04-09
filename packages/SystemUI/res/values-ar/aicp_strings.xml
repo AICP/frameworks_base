@@ -23,6 +23,7 @@
   <string name="delete_screenshot_toast">تم حذف لقطة الشاشة</string>
   <!-- Partial Screenshot -->
   <string name="screenshot_abort_title">لم يتم تصوير الشاشة</string>
+  <string name="screenshot_abort_text">تم إحباط العملية.</string>
   <!-- Compass QS Tile -->
   <string name="quick_settings_compass_label">البوصلة</string>
   <string name="quick_settings_compass_init">تهيئة/u2026</string>
@@ -79,6 +80,10 @@
   <string name="accessibility_quick_settings_always_on_display_changed_off">تم ايقاف ميزة دائماً على الشاشة.</string>
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_always_on_display_changed_on">تم تفعيل ميزة دائماً على الشاشة.</string>
+  <!-- Expanded desktop QS Tile -->
+  <string name="quick_settings_expanded_desktop_label">سطح المكتب الموسع</string>
+  <string name="quick_settings_expanded_desktop">توسيع</string>
+  <string name="quick_settings_expanded_desktop_off">عادي</string>
   <!-- Caffeine QS Tile -->
   <string name="quick_settings_caffeine_label">وضع الكافيين</string>
   <string name="accessibility_quick_settings_caffeine_off">كافيين معطل</string>
@@ -90,19 +95,31 @@
   <string name="accessibility_quick_settings_sync_changed_off">تم إيقاف المزامنة</string>
   <string name="accessibility_quick_settings_sync_changed_on">تم تشغيل المزامنة</string>
   <!-- Volume QS Tile -->
+  <string name="accessibility_quick_settings_volume_panel">مستوى الصوت</string>
+  <string name="quick_settings_volume_panel_label">مستوى الصوت</string>
   <!-- PiP Tile -->
+  <string name="quick_settings_pip_label">PiP</string>
   <!-- Screenrecord tile -->
   <string name="quick_settings_screenrecord">تسجيل الشاشة</string>
   <string name="quick_settings_screenrecord_on">جار التسجيل...</string>
   <!-- Advance location quick setting tile -->
+  <string name="accessibility_quick_settings_location_battery_saving">تحديد الموقع: وضع توفير البطارية.</string>
+  <string name="accessibility_quick_settings_location_gps_only">تحديد الموقع: وضع الجهاز فقط.</string>
+  <string name="accessibility_quick_settings_location_high_accuracy">تحديد الموقع: وضع الدقة العالية.</string>
   <!-- Screenrecord Notification Ticker -->
+  <string name="screenrecord_notif_ticker">يتم تسجيل الشاشة</string>
   <string name="screenrecord_notif_final_ticker">تم تسجيل الشاشة بنجاح</string>
   <!-- Screenrecord notification title -->
+  <string name="screenrecord_notif_title">جارٍ تسجيل الشاشة</string>
   <!-- Screenrecord notification action: Stop -->
   <string name="screenrecord_notif_stop">إيقاف</string>
   <string name="screenrecord_notif_completed">تم تسجيل الشاشة بنجاح</string>
   <!-- Screenrecord notification action: show/hide pointer -->
+  <string name="screenrecord_notif_pointer_on">إظهار المؤشر</string>
+  <string name="screenrecord_notif_pointer_off">إخفاء المؤشر</string>
   <!-- Screen record notification error title -->
+  <string name="screenrecord_notif_error">لا يمكن تسجيل الشاشة</string>
+  <string name="notification_channel_screenrecord">تسجيل الشاشة</string>
   <string name="screenrecord_hide_hint">إخفاء التلميح</string>
   <string name="screenrecord_show_hint">إظهار التلميح</string>
   <!-- Screenshot QS tile -->
@@ -110,16 +127,22 @@
   <string name="quick_settings_screenrecord_lq_label">تسجيل الشاشة بجودة 480p</string>
   <string name="quick_settings_screenrecord_mq_label">تسجيل الشاشة بجودة 720p</string>
   <string name="quick_settings_screenrecord_hq_label">تسجيل الشاشة بجودة 720p+</string>
+  <string name="lockscreen_default">افتراضي</string>
+  <string name="lockscreen_hidden">لا شيء</string>
   <string name="omnijaws_service_error">خطأ</string>
   <string name="omnijaws_service_unkown">لا يوجد بيانات الطقس</string>
   <string name="omnijaws_service_error_long">خطأ في تحميل بيانات الطقس</string>
+  <string name="omnijaws_service_disabled">الخدمة معطّلة</string>
   <string name="omnijaws_detail_header">الطقس</string>
   <string name="omnijaws_label_default">الطقس</string>
   <string name="omnijaws_current_text">الآن</string>
   <string name="omnijaws_package_not_available">OmniJaws غير متاح</string>
+  <string name="omnijaws_service_last_update">آخر تحديث:</string>
   <!-- Weather string format in expanded statusbar header -->
   <!-- SystemUI Tuner Parts -->
+  <string name="custom_hint">تمرير من الأيقونة للتشغيل</string>
   <!-- DUI -->
+  <string name="systemui_tuner_navbar_title">الإعدادات الإفتراضية</string>
   <!-- Battery saver tile -->
   <string name="battery_saver_qs_tile_fully_charged">مشحون بالكامل</string>
   <!-- Caffeine tile -->
@@ -145,4 +168,7 @@
   <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_running_services">فتح شاشة الخدمات المشغلة في الخلفية.</string>
   <!-- The contents of the Ambient Weather bottom view -->
+  <string name="quick_settings_google_assist_label">المساعد</string>
+  <string name="quick_settings_google_voice_assist_label">المساعد الصوتي</string>
+  <string name="quick_settings_google_now_label">تغذية جوجل</string>
 </resources>

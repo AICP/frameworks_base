@@ -81,6 +81,10 @@
   <string name="accessibility_quick_settings_always_on_display_changed_off">Always on ekran kapatıldı.</string>
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_always_on_display_changed_on">Always on ekran açıldı.</string>
+  <!-- Expanded desktop QS Tile -->
+  <string name="quick_settings_expanded_desktop_label">Genişletilmiş masaüstü</string>
+  <string name="quick_settings_expanded_desktop">Genişletilmiş</string>
+  <string name="quick_settings_expanded_desktop_off">Normal</string>
   <!-- Caffeine QS Tile -->
   <string name="quick_settings_caffeine_label">Kafein</string>
   <string name="accessibility_quick_settings_caffeine_off">Kafein kapalı</string>
@@ -115,7 +119,7 @@
   <string name="screenrecord_notif_pointer_on">İşaretçiyi göster</string>
   <string name="screenrecord_notif_pointer_off">İşaretçiyi gizle</string>
   <!-- Screen record notification error title -->
-  <string name="screenrecord_notif_error">Ekran görüntüsü kaydedilemiyor</string>
+  <string name="screenrecord_notif_error">Ekran kaydı yapılamıyor</string>
   <string name="notification_channel_screenrecord">Ekran kayıtları</string>
   <string name="screenrecord_hide_hint">İpuçlarını gizle</string>
   <string name="screenrecord_show_hint">İpuçlarını göster</string>
@@ -125,10 +129,10 @@
   <string name="quick_settings_screenrecord_mq_label">Ekran Kaydı 720p</string>
   <string name="quick_settings_screenrecord_hq_label">Ekran Kaydı 720p+</string>
   <string name="lockscreen_default">Varsayılan</string>
-  <string name="lockscreen_hidden">Hiçbiri</string>
+  <string name="lockscreen_hidden">Yok</string>
   <string name="omnijaws_service_error">Hata</string>
-  <string name="omnijaws_service_unkown">Hava durumu verisi yok</string>
-  <string name="omnijaws_service_error_long">Hava durumu verisi yüklenemedi</string>
+  <string name="omnijaws_service_unkown">Hava durumu verileri yok</string>
+  <string name="omnijaws_service_error_long">Hava durumu verileri yüklenemedi</string>
   <string name="omnijaws_service_disabled">Servis devre dışı</string>
   <string name="omnijaws_detail_header">Hava durumu</string>
   <string name="omnijaws_label_default">Hava durumu</string>
@@ -166,4 +170,7 @@
   <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_running_services">Çalışan hizmetler ekranını aç.</string>
   <!-- The contents of the Ambient Weather bottom view -->
+  <string name="quick_settings_google_assist_label">Asistan</string>
+  <string name="quick_settings_google_voice_assist_label">Sesli asistan</string>
+  <string name="quick_settings_google_now_label">Google now</string>
 </resources>

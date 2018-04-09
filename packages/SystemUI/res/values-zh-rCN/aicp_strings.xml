@@ -80,6 +80,10 @@
   <string name="accessibility_quick_settings_always_on_display_changed_off">总是在显示关闭。</string>
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_always_on_display_changed_on">始终显示打开状态。</string>
+  <!-- Expanded desktop QS Tile -->
+  <string name="quick_settings_expanded_desktop_label">扩展桌面</string>
+  <string name="quick_settings_expanded_desktop">扩展</string>
+  <string name="quick_settings_expanded_desktop_off">普通</string>
   <!-- Caffeine QS Tile -->
   <string name="quick_settings_caffeine_label">咖啡定时</string>
   <string name="accessibility_quick_settings_caffeine_off">咖啡定时关闭</string>
@@ -164,4 +168,7 @@
   <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_running_services">显示正在运行的服务。</string>
   <!-- The contents of the Ambient Weather bottom view -->
+  <string name="quick_settings_google_assist_label">助手</string>
+  <string name="quick_settings_google_voice_assist_label">语音助手</string>
+  <string name="quick_settings_google_now_label">谷歌 feed</string>
 </resources>

@@ -62,6 +62,8 @@
   <string name="accessibility_quick_settings_always_on_display_changed_off">올웨이즈온 디스플레이가 꺼졌습니다.</string>
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_always_on_display_changed_on">올웨이즈온 디스플레이가 켜졌습니다.</string>
+  <!-- Expanded desktop QS Tile -->
+  <string name="quick_settings_expanded_desktop_label">확장 데스크탑</string>
   <!-- Caffeine QS Tile -->
   <string name="accessibility_quick_settings_caffeine_on">카페인 켜짐</string>
   <!-- Sync QS Tile -->

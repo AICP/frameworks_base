@@ -81,6 +81,10 @@
   <string name="accessibility_quick_settings_always_on_display_changed_off">Exibição ambiente desligada.</string>
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_always_on_display_changed_on">Exibição ambiente desligada.</string>
+  <!-- Expanded desktop QS Tile -->
+  <string name="quick_settings_expanded_desktop_label">Área de trabalho expandida</string>
+  <string name="quick_settings_expanded_desktop">Expandido</string>
+  <string name="quick_settings_expanded_desktop_off">Normal</string>
   <!-- Caffeine QS Tile -->
   <string name="quick_settings_caffeine_label">Cafeína</string>
   <string name="accessibility_quick_settings_caffeine_off">Cafeína desligada</string>

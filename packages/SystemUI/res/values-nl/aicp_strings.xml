@@ -81,6 +81,10 @@
   <string name="accessibility_quick_settings_always_on_display_changed_off">\"Always On\"-display uitgeschakeld.</string>
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_always_on_display_changed_on">\"Always On\"-display ingeschakeld.</string>
+  <!-- Expanded desktop QS Tile -->
+  <string name="quick_settings_expanded_desktop_label">Uitgebreid bureaublad</string>
+  <string name="quick_settings_expanded_desktop">Uitgebreid</string>
+  <string name="quick_settings_expanded_desktop_off">Normaal</string>
   <!-- Caffeine QS Tile -->
   <string name="quick_settings_caffeine_label">Cafeïne</string>
   <string name="accessibility_quick_settings_caffeine_off">Cafeïne uit</string>
@@ -166,4 +170,7 @@
   <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_running_services">Open scherm met uitgevoerde services.</string>
   <!-- The contents of the Ambient Weather bottom view -->
+  <string name="quick_settings_google_assist_label">Assistent</string>
+  <string name="quick_settings_google_voice_assist_label">Spraakassistent</string>
+  <string name="quick_settings_google_now_label">Google feed</string>
 </resources>

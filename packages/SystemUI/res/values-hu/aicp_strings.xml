@@ -36,6 +36,7 @@
   <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <!-- Expanded desktop QS Tile -->
   <!-- Caffeine QS Tile -->
   <!-- Sync QS Tile -->
   <!-- Volume QS Tile -->

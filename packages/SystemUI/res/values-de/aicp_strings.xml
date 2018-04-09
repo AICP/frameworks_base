@@ -81,6 +81,10 @@
   <string name="accessibility_quick_settings_always_on_display_changed_off">\"Always On\"-Display wurde deaktiviert.</string>
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_always_on_display_changed_on">\"Always On\"-Display wurde aktiviert.</string>
+  <!-- Expanded desktop QS Tile -->
+  <string name="quick_settings_expanded_desktop_label">Erweiterte Oberfläche</string>
+  <string name="quick_settings_expanded_desktop">Erweitert</string>
+  <string name="quick_settings_expanded_desktop_off">Normal</string>
   <!-- Caffeine QS Tile -->
   <string name="quick_settings_caffeine_label">Koffein</string>
   <string name="accessibility_quick_settings_caffeine_off">Koffein AUS</string>
@@ -166,4 +170,7 @@
   <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_running_services">Übersicht der laufenden Anwendungen öffnen.</string>
   <!-- The contents of the Ambient Weather bottom view -->
+  <string name="quick_settings_google_assist_label">Google Assistent</string>
+  <string name="quick_settings_google_voice_assist_label">Sprachassistent</string>
+  <string name="quick_settings_google_now_label">Google Meldungen</string>
 </resources>

@@ -141,4 +141,18 @@
     <!-- Button backlight -->
     <java-symbol type="dimen" name="config_buttonBrightnessSettingDefaultFloat" />
     <java-symbol type="bool" name="config_deviceHasVariableButtonBrightness" />
+
+    <!-- Input policy constants  -->
+    <java-symbol type="integer" name="config_doubleTapOnHomeKeyBehavior" />
+    <java-symbol type="integer" name="config_doubleTapOnMenuKeyBehavior" />
+    <java-symbol type="integer" name="config_doubleTapOnBackKeyBehavior" />
+    <java-symbol type="integer" name="config_doubleTapOnAssistKeyBehavior" />
+    <java-symbol type="integer" name="config_doubleTapOnAppSwitchKeyBehavior" />
+    <java-symbol type="integer" name="config_doubleTapOnCameraKeyBehavior" />
+    <java-symbol type="integer" name="config_longPressOnHomeKeyBehavior" />
+    <java-symbol type="integer" name="config_longPressOnMenuKeyBehavior" />
+    <java-symbol type="integer" name="config_longPressOnBackKeyBehavior" />
+    <java-symbol type="integer" name="config_longPressOnAssistKeyBehavior" />
+    <java-symbol type="integer" name="config_longPressOnAppSwitchKeyBehavior" />
+    <java-symbol type="integer" name="config_longPressOnCameraKeyBehavior" />
 </resources>

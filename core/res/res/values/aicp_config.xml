@@ -183,4 +183,29 @@
     <!-- Button backlight -->
     <dimen name="config_buttonBrightnessSettingDefaultFloat">1.0</dimen>
     <bool name="config_deviceHasVariableButtonBrightness">false</bool>
+
+    <!-- Control the behavior when the user long presses or double taps one of the below keys.
+          0 - Nothing
+          1 - Menu key
+          2 - Recent apps view in SystemUI
+          3 - Launch assist intent
+          4 - Voice search
+          5 - In-app search
+          6 - Launch camera
+          7 - Launch last app
+          8 - Split screen
+       This needs to match the constants in
+       services/core/java/com/android/server/policy/PhoneWindowManager.java -->
+    <integer name="config_longPressOnHomeKeyBehavior">3</integer>
+    <integer name="config_doubleTapOnHomeKeyBehavior">6</integer>
+    <integer name="config_longPressOnMenuKeyBehavior">0</integer>
+    <integer name="config_doubleTapOnMenuKeyBehavior">0</integer>
+    <integer name="config_longPressOnBackKeyBehavior">0</integer>
+    <integer name="config_doubleTapOnBackKeyBehavior">0</integer>
+    <integer name="config_longPressOnAssistKeyBehavior">0</integer>
+    <integer name="config_doubleTapOnAssistKeyBehavior">0</integer>
+    <integer name="config_longPressOnAppSwitchKeyBehavior">8</integer>
+    <integer name="config_doubleTapOnAppSwitchKeyBehavior">7</integer>
+    <integer name="config_longPressOnCameraKeyBehavior">0</integer>
+    <integer name="config_doubleTapOnCameraKeyBehavior">0</integer>
 </resources>

@@ -206,5 +206,17 @@ public class SystemSettings {
         Settings.System.STATUSBAR_BATTERY_BAR_BLEND_COLORS_REVERSE,
         Settings.System.STATUSBAR_BATTERY_BAR_BLEND_DARK_COLORS_REVERSE,
         Settings.System.SWAP_NAVIGATION_KEYS,
+        Settings.System.KEY_HOME_LONG_PRESS_ACTION,
+        Settings.System.KEY_HOME_DOUBLE_TAP_ACTION,
+        Settings.System.KEY_MENU_LONG_PRESS_ACTION,
+        Settings.System.KEY_MENU_DOUBLE_TAP_ACTION,
+        Settings.System.KEY_BACK_LONG_PRESS_ACTION,
+        Settings.System.KEY_BACK_DOUBLE_TAP_ACTION,
+        Settings.System.KEY_ASSIST_LONG_PRESS_ACTION,
+        Settings.System.KEY_ASSIST_DOUBLE_TAP_ACTION,
+        Settings.System.KEY_APP_SWITCH_LONG_PRESS_ACTION,
+        Settings.System.KEY_APP_SWITCH_DOUBLE_TAP_ACTION,
+        Settings.System.KEY_CAMERA_LONG_PRESS_ACTION,
+        Settings.System.KEY_CAMERA_DOUBLE_TAP_ACTION,
     };
 }

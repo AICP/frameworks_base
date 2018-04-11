@@ -18,17 +18,26 @@ package com.android.systemui.qs;
 
 import android.content.Context;
 import android.graphics.Point;
+import android.graphics.drawable.Drawable;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.android.systemui.Dependency;
 import com.android.systemui.R;
 import com.android.systemui.qs.customize.QSCustomizer;
+import com.android.systemui.tuner.TunerService;
+import com.android.systemui.tuner.TunerService.Tunable;
 
 /**
  * Wrapper view with background which contains {@link QSPanel} and {@link BaseStatusBarHeader}
  */
-public class QSContainerImpl extends FrameLayout {
+public class QSContainerImpl extends FrameLayout implements Tunable {
+
+    public static final String QSPANEL_BG_SETTING =
+            "system:" + Settings.System.QS_PANEL_BG_ALPHA;
 
     private final Point mSizePoint = new Point();
 
@@ -40,6 +49,8 @@ public class QSContainerImpl extends FrameLayout {
     private QSCustomizer mQSCustomizer;
     private View mQSFooter;
     private float mFullElevation;
+    private Drawable mQsBackGround;
+    private int mQsBackGroundAlpha;
 
     public QSContainerImpl(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -51,12 +62,43 @@ public class QSContainerImpl extends FrameLayout {
         mQSPanel = findViewById(R.id.quick_settings_panel);
         mQSDetail = findViewById(R.id.qs_detail);
         mHeader = findViewById(R.id.header);
-        mQSCustomizer = findViewById(R.id.qs_customize);
+        mQSCustomizer = (QSCustomizer) findViewById(R.id.qs_customize);
         mQSFooter = findViewById(R.id.qs_footer);
         mFullElevation = mQSPanel.getElevation();
+        mQsBackGround = getContext().getDrawable(R.drawable.qs_background_primary);
 
         setClickable(true);
         setImportantForAccessibility(IMPORTANT_FOR_ACCESSIBILITY_NO);
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        Dependency.get(TunerService.class).addTunable(this,
+                        QSPANEL_BG_SETTING);
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        Dependency.get(TunerService.class).removeTunable(this);
+        super.onDetachedFromWindow();
+    }
+
+    public void onTuningChanged(String key, String newValue) {
+        switch (key) {
+            case QSPANEL_BG_SETTING:
+                mQsBackGroundAlpha = (newValue == null ? 216 : Integer.parseInt(newValue));
+                break;
+            default:
+                break;
+        }
+
+        updateSettings();
+    }
+
+    private void updateSettings() {
+        mQsBackGround.setAlpha(mQsBackGroundAlpha);
+        setBackground(mQsBackGround);
     }
 
     @Override

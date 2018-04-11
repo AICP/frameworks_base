@@ -5144,6 +5144,12 @@ public final class Settings {
         public static final String QS_CARRIER_TEXT = "qs_carrier_text";
 
         /**
+        * Whether to change the transparency of the qs panel
+        * @hide
+        */
+        public static final String QS_PANEL_BG_ALPHA = "qs_panel_bg_alpha";
+
+        /**
          * --- AICP System settings end
          *  Add new system settings above this comment
          */

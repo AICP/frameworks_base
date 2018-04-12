@@ -3372,21 +3372,8 @@ public class StatusBar extends SystemUI implements DemoMode,
                 for (MediaController aController : sessions) {
                     if (PlaybackState.STATE_PLAYING ==
                             getMediaControllerPlaybackState(aController)) {
-                        long when = SystemClock.uptimeMillis();
-                        final KeyEvent evDown = new KeyEvent(when, when, KeyEvent.ACTION_DOWN, key, 0);
-                        final KeyEvent evUp = KeyEvent.changeAction(evDown, KeyEvent.ACTION_UP);
-                        mHandler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                aController.dispatchMediaButtonEvent(evDown);
-                            }
-                        });
-                        mHandler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                aController.dispatchMediaButtonEvent(evUp);
-                            }
-                        }, 20);
+                        triggerKeyEvents(key, aController);
+                        break;
                     }
                 }
             }
@@ -3424,6 +3411,24 @@ public class StatusBar extends SystemUI implements DemoMode,
                 clearAllNotifications(KeyEvent.KEYCODE_SYSTEM_NAVIGATION_LEFT == key ? true : false);
             }
         }
+    }
+
+    private void triggerKeyEvents(int key, MediaController controller) {
+        long when = SystemClock.uptimeMillis();
+        final KeyEvent evDown = new KeyEvent(when, when, KeyEvent.ACTION_DOWN, key, 0);
+        final KeyEvent evUp = KeyEvent.changeAction(evDown, KeyEvent.ACTION_UP);
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                controller.dispatchMediaButtonEvent(evDown);
+            }
+        });
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                controller.dispatchMediaButtonEvent(evUp);
+            }
+        }, 20);
     }
 
     boolean panelsEnabled() {

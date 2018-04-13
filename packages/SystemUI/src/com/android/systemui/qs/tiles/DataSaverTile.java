@@ -48,6 +48,7 @@ public class DataSaverTile extends QSTileImpl<BooleanState> implements
 
     @Override
     public void handleSetListening(boolean listening) {
+        if (mDataSaverController == null) return;
         if (listening) {
             mDataSaverController.addCallback(this);
         } else {
@@ -92,6 +93,7 @@ public class DataSaverTile extends QSTileImpl<BooleanState> implements
 
     @Override
     protected void handleUpdateState(BooleanState state, Object arg) {
+        if (mDataSaverController == null) return;
         if (state.slash == null) {
             state.slash = new SlashState();
         }

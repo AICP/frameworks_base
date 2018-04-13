@@ -110,6 +110,7 @@ public class LiveDisplayTile extends QSTileImpl<LiveDisplayState> {
         if (mListening == listening)
             return;
         mListening = listening;
+        if (mObserver == null) return;
         if (listening) {
             mObserver.startObserving();
         } else {

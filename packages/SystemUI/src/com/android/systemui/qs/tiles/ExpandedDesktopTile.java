@@ -130,6 +130,7 @@ public class ExpandedDesktopTile extends QSTileImpl<BooleanState> {
     @Override
     public void handleSetListening(boolean listening) {
         if (mListening == listening) return;
+        if (mObserver == null) return;
         if (listening) {
             mObserver.startObserving();
         } else {

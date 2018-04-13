@@ -49,6 +49,7 @@ public class WorkModeTile extends QSTileImpl<BooleanState> implements
 
     @Override
     public void handleSetListening(boolean listening) {
+        if (mProfileController == null) return;
         if (listening) {
             mProfileController.addCallback(this);
         } else {
@@ -91,7 +92,7 @@ public class WorkModeTile extends QSTileImpl<BooleanState> implements
         if (state.slash == null) {
             state.slash = new SlashState();
         }
-
+        if (mProfileController == null) return;
         if (arg instanceof Boolean) {
             state.value = (Boolean) arg;
         } else {

@@ -95,6 +95,7 @@ public class CompassTile extends QSTileImpl<BooleanState> implements SensorEvent
     private void setListeningSensors(boolean listening) {
         if (listening == mListeningSensors) return;
         mListeningSensors = listening;
+        if (mSensorManager == null) return;
         if (mListeningSensors) {
             mSensorManager.registerListener(
                     this, mAccelerationSensor, SensorManager.SENSOR_DELAY_GAME);

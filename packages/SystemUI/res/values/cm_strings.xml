@@ -67,4 +67,7 @@
     <string name="global_action_restart_bootloader_progress">Restarting to bootloader mode\u2026</string>
     <!-- Restart to download mode progress dialog. This is shown if the user chooses to restart the device. -->
     <string name="global_action_restart_download_progress">Restarting to download mode\u2026</string>
+
+    <!-- SysUI Tuner: Button that controls inversion of layout of navigation bar [CHAR LIMIT=60] -->
+    <string name="nav_bar_layout_inverse">Invert button layout</string>
 </resources>

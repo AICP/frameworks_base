@@ -1291,9 +1291,7 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener {
 
     private boolean isWakeAndUnlockEnabled() {
         return (Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.FP_WAKE_AND_UNLOCK, 1) != 0 &&
-                mContext.getResources().getBoolean(
-                    com.android.keyguard.R.bool.config_fingerprintWakeAndUnlock));
+                Settings.System.FP_WAKE_AND_UNLOCK, 1) != 0);
     }
 
     private void watchForDeviceProvisioning() {

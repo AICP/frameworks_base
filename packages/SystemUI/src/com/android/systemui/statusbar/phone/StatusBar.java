@@ -2031,7 +2031,7 @@ public class StatusBar extends SystemUI implements DemoMode,
                 if (icon != null) {
                     drawable = icon.loadDrawable(mContext);
                 }
-                mSlimRecents.setMediaColors(n.isColorizedMedia(), colors, drawable, mMediaMetadata);
+                mSlimRecents.setMedia(n.isColorizedMedia(), colors, drawable, mMediaMetadata, title, text);
             }
         }
     }

@@ -71,8 +71,19 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
     private static final String TAG = "QSFooterImpl";
     public static final String QS_SHOW_AUTO_BRIGHTNESS_BUTTON = "qs_show_auto_brightness_button";
     public static final String SCREEN_BRIGHTNESS_MODE = "screen_brightness_mode";
-    public static final String AICP_FOOTER_TEXT_SHOW = "footer_text_show";
-    public static final String AICP_FOOTER_TEXT_STRING = "footer_text_string";
+
+    public static final String AICP_FOOTER_TEXT_SHOW =
+            "system:" + Settings.System.AICP_FOOTER_TEXT_SHOW;
+    public static final String AICP_FOOTER_TEXT_STRING =
+            "system:" + Settings.System.AICP_FOOTER_TEXT_STRING;
+    public static final String QS_FOOTER_SHOW_SETTINGS =
+            "system:" + Settings.System.QS_FOOTER_SHOW_SETTINGS;
+    public static final String QS_FOOTER_SHOW_SERVICES =
+            "system:" + Settings.System.QS_FOOTER_SHOW_SERVICES;
+    public static final String QS_FOOTER_SHOW_EDIT =
+            "system:" + Settings.System.QS_FOOTER_SHOW_EDIT;
+    public static final String QS_FOOTER_SHOW_USER =
+            "system:" + Settings.System.QS_FOOTER_SHOW_USER;
 
     private final ActivityStarter mActivityStarter;
     private final UserInfoController mUserInfoController;
@@ -83,6 +94,7 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
     private TextView mBuildText;
     private boolean mShouldShowFooterText;
     private View mRunningServicesButton;
+    private View mEditButton;
 
     private boolean mQsDisabled;
     private QSPanel mQsPanel;
@@ -110,6 +122,10 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
     protected View mAutoBrightnessContainer;
     private boolean mShowAutoBrightnessButton;
     private boolean mAutoBrightOn;
+    private boolean mShowSettingsIcon;
+    private boolean mShowServicesIcon;
+    private boolean mShowEditIcon;
+    private boolean mShowUserIcon;
 
     @Inject
     public QSFooterImpl(@Named(VIEW_CONTEXT) Context context, AttributeSet attrs,
@@ -152,6 +168,7 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
         mActionsContainer = findViewById(R.id.qs_footer_actions_container);
         mEditContainer = findViewById(R.id.qs_footer_actions_edit_container);
         mBuildText = findViewById(R.id.build);
+        mEditButton = findViewById(com.android.internal.R.id.edit);
 
         mAutoBrightnessContainer = findViewById(R.id.brightness_icon_container);
         mAutoBrightnessIcon = findViewById(R.id.brightness_icon);
@@ -173,9 +190,6 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
 
     private void setFooterText() {
         if (mBuildText == null) return;
-        mShouldShowFooterText = Settings.System.getIntForUser(mContext.getContentResolver(),
-                        Settings.System.AICP_FOOTER_TEXT_SHOW, 0,
-                        UserHandle.USER_CURRENT) == 1;
         String footerText = Settings.System.getStringForUser(mContext.getContentResolver(),
                         Settings.System.AICP_FOOTER_TEXT_STRING, UserHandle.USER_CURRENT);
         mBuildText.setText((footerText != null && !footerText.isEmpty()) ? footerText :
@@ -274,7 +288,11 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
                 QS_SHOW_AUTO_BRIGHTNESS_BUTTON,
                 SCREEN_BRIGHTNESS_MODE,
                 AICP_FOOTER_TEXT_SHOW,
-                AICP_FOOTER_TEXT_STRING);
+                AICP_FOOTER_TEXT_STRING,
+                QS_FOOTER_SHOW_SETTINGS,
+                QS_FOOTER_SHOW_SERVICES,
+                QS_FOOTER_SHOW_EDIT,
+                QS_FOOTER_SHOW_USER);
     }
 
     @Override
@@ -287,15 +305,41 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
 
     @Override
     public void onTuningChanged(String key, String newValue) {
-        if (QS_SHOW_AUTO_BRIGHTNESS_BUTTON.equals(key)) {
-            setHideAutoBright(newValue != null && Integer.parseInt(newValue) == 0);
+        switch (key) {
+            case QS_SHOW_AUTO_BRIGHTNESS_BUTTON:
+                setHideAutoBright(newValue != null && Integer.parseInt(newValue) == 0);
+                break;
+            case SCREEN_BRIGHTNESS_MODE:
+                setAutoBrightnessIcon(newValue != null && Integer.parseInt(newValue) != 0);
+                break;
+            case AICP_FOOTER_TEXT_SHOW:
+                mShouldShowFooterText =
+                        TunerService.parseIntegerSwitch(newValue, false);
+                setFooterText();
+                break;
+            case AICP_FOOTER_TEXT_STRING:
+                setFooterText();
+                break;
+            case QS_FOOTER_SHOW_SETTINGS:
+                mShowSettingsIcon =
+                        TunerService.parseIntegerSwitch(newValue, true);
+                break;
+            case QS_FOOTER_SHOW_SERVICES:
+                mShowServicesIcon =
+                        TunerService.parseIntegerSwitch(newValue, true);
+                break;
+            case QS_FOOTER_SHOW_EDIT:
+                mShowEditIcon =
+                        TunerService.parseIntegerSwitch(newValue, true);
+                break;
+            case QS_FOOTER_SHOW_USER:
+                mShowUserIcon =
+                        TunerService.parseIntegerSwitch(newValue, false);
+                break;
+            default:
+                break;
         }
-        if (SCREEN_BRIGHTNESS_MODE.equals(key)) {
-            setAutoBrightnessIcon(newValue != null && Integer.parseInt(newValue) != 0);
-        }
-        if (AICP_FOOTER_TEXT_SHOW.equals(key) || AICP_FOOTER_TEXT_STRING.equals(key)) {
-            setFooterText();
-        }
+        updateVisibilities();
     }
 
     @Override
@@ -353,19 +397,18 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
     }
 
     private void updateVisibilities() {
-        mSettingsContainer.setVisibility(mQsDisabled ? View.GONE : View.VISIBLE);
+        mSettingsContainer.setVisibility(!mShowSettingsIcon || mQsDisabled ? View.GONE : View.VISIBLE);
         mAutoBrightnessContainer.setVisibility(mShowAutoBrightnessButton ? View.GONE : View.VISIBLE);
         final boolean isDemo = UserManager.isDeviceInDemoMode(mContext);
-        mMultiUserSwitch.setVisibility(showUserSwitcher() ? View.VISIBLE : View.INVISIBLE);
-        mEditContainer.setVisibility(isDemo || !mExpanded ? View.INVISIBLE : View.VISIBLE);
-        mSettingsButton.setVisibility(isDemo || !mExpanded ? View.INVISIBLE : View.VISIBLE);
-        mRunningServicesButton.setVisibility(!isDemo && mExpanded ? View.VISIBLE : View.INVISIBLE);
-
+        mMultiUserSwitch.setVisibility(showUserSwitcher() ? View.VISIBLE : View.GONE);
+        mEditButton.setVisibility(!mShowEditIcon || isDemo || !mExpanded ? View.GONE : View.VISIBLE);
+        mSettingsButton.setVisibility(!mShowSettingsIcon || isDemo || !mExpanded ? View.GONE : View.VISIBLE);
+        mRunningServicesButton.setVisibility(!mShowServicesIcon || isDemo || !mExpanded ? View.GONE : View.VISIBLE);
         mBuildText.setVisibility(mExpanded && mShouldShowFooterText ? View.VISIBLE : View.GONE);
     }
 
     private boolean showUserSwitcher() {
-        return mExpanded && mMultiUserSwitch.isMultiUserEnabled();
+        return mShowUserIcon && mExpanded && mMultiUserSwitch.isMultiUserEnabled();
     }
 
     private void updateListeners() {

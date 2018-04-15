@@ -6906,6 +6906,30 @@ public final class Settings {
         */
         public static final String LOCKSCREEN_ALBUM_ART_FILTER = "lockscreen_album_art_filter";
 
+        /**
+         * Show Settings icon in QS Footer
+         * @hide
+         */
+        public static final String QS_FOOTER_SHOW_SETTINGS = "qs_footer_show_settings";
+
+        /**
+         * Show Running Services icon in QS Footer.
+         * @hide
+         */
+        public static final String QS_FOOTER_SHOW_SERVICES = "qs_footer_show_services";
+
+        /**
+         * Show Edit icon in QS Footer.
+         * @hide
+         */
+        public static final String QS_FOOTER_SHOW_EDIT = "qs_footer_show_edit";
+
+        /**
+         * Show User switcher icon in QS Footer.
+         * @hide
+         */
+        public static final String QS_FOOTER_SHOW_USER = "qs_footer_show_user";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7148,6 +7172,10 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(LOCKSCREEN_BATTERY_INFO_TEMP_UNIT, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(OMNI_USE_OLD_MOBILETYPE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(LOCKSCREEN_ALBUM_ART_FILTER, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(QS_FOOTER_SHOW_SETTINGS, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(QS_FOOTER_SHOW_SERVICES, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(QS_FOOTER_SHOW_EDIT, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(QS_FOOTER_SHOW_USER, BOOLEAN_VALIDATOR);
         }
 
         /**

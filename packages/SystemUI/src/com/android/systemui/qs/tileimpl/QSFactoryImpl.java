@@ -25,6 +25,7 @@ import com.android.systemui.plugins.qs.QSTileView;
 import com.android.systemui.qs.external.CustomTile;
 import com.android.systemui.qs.tiles.AicpExtrasTile;
 import com.android.systemui.qs.tiles.AirplaneModeTile;
+import com.android.systemui.qs.tiles.AODTile;
 import com.android.systemui.qs.tiles.BatterySaverTile;
 import com.android.systemui.qs.tiles.BluetoothTile;
 import com.android.systemui.qs.tiles.CaffeineTile;
@@ -114,6 +115,9 @@ public class QSFactoryImpl implements QSFactory {
                 return new UsbTetherTile(mHost);
             case "caffeine":
                 return new CaffeineTile(mHost);
+            // Omni tiles
+            case "aod":
+                return new AODTile(mHost);
         }
         // Intent tiles.
         if (tileSpec.startsWith(IntentTile.PREFIX)) return IntentTile.create(mHost, tileSpec);

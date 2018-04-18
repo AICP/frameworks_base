@@ -298,15 +298,6 @@
               <action android:name="android.intent.action.BOOT_COMPLETED" />
           </intent-filter>
       </receiver>
-              
-        <!-- Smart Pixels -->
-        <service android:name=".smartpixels.SmartPixelsService"
-            android:enabled="true" />
-        <receiver android:name=".smartpixels.SmartPixelsReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
 
         <!-- started from PhoneWindowManager
              TODO: Should have an android:permission attribute -->

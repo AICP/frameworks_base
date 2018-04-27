@@ -177,11 +177,11 @@ public class QSFooterImpl extends FrameLayout implements QSFooter, Tunable,
         switch (key) {
             case QS_FOOTER_SHOW_SETTINGS:
                 mSettingsButtonVisible =
-                          newValue != null && Integer.parseInt(newValue) != 0;
+                          newValue == null || Integer.parseInt(newValue) != 0;
                 break;
             case QS_FOOTER_SHOW_SERVICES:
                 mServicesButtonVisible =
-                          newValue != null && Integer.parseInt(newValue) != 0;
+                          newValue == null || Integer.parseInt(newValue) != 0;
                 break;
             default:
                 break;

@@ -182,5 +182,11 @@ public class SystemSettings {
         Settings.System.TORCH_LONG_PRESS_POWER_TIMEOUT,
         Settings.System.VOLUME_ROCKER_WAKE,
         Settings.System.VOLUME_BUTTON_MUSIC_CONTROL,
+        Settings.System.HOME_WAKE_SCREEN,
+        Settings.System.BACK_WAKE_SCREEN,
+        Settings.System.MENU_WAKE_SCREEN,
+        Settings.System.ASSIST_WAKE_SCREEN,
+        Settings.System.APP_SWITCH_WAKE_SCREEN,
+        Settings.System.CAMERA_WAKE_SCREEN,
     };
 }

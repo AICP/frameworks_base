@@ -5133,6 +5133,12 @@ public final class Settings {
         public static final String STATUS_BAR_NOTIF_COUNT = "status_bar_notif_count";
 
         /**
+         * Apps to hide in the ChooserActivity
+         * @hide
+         */
+        public static final String CHOOSER_ACTIVITY_BLACKLIST = "chooser_activity_blacklist";
+
+        /**
          * --- AICP System settings end
          *  Add new system settings above this comment
          */

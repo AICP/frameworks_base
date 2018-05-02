@@ -55,4 +55,7 @@
     <!-- Defines the sysfs attribute path used by pocket bridge
         to communicate pocket state to the pocket judge kernel driver. -->
     <string name="config_pocketBridgeSysfsInpocket"></string>
+
+    <!-- App Blacklist -->
+    <string name="app_blacklist">Blacklist app</string>
 </resources>

@@ -18,6 +18,7 @@ package com.android.systemui.qs;
 
 import static android.app.StatusBarManager.DISABLE2_QUICK_SETTINGS;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.UserInfo;
@@ -35,6 +36,7 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -64,7 +66,7 @@ import com.android.systemui.statusbar.policy.UserInfoController.OnUserInfoChange
 import com.android.systemui.tuner.TunerService;
 
 public class QSFooterImpl extends FrameLayout implements QSFooter,
-        OnClickListener, OnUserInfoChangedListener, EmergencyListener, SignalCallback {
+        OnClickListener, OnLongClickListener, OnUserInfoChangedListener, EmergencyListener, SignalCallback {
 
     private ActivityStarter mActivityStarter;
     private UserInfoController mUserInfoController;
@@ -121,6 +123,7 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
         mSettingsButton = findViewById(R.id.settings_button);
         mSettingsContainer = findViewById(R.id.settings_button_container);
         mSettingsButton.setOnClickListener(this);
+        mSettingsButton.setOnLongClickListener(this);
 
         mRunningServicesButton = findViewById(R.id.running_services_button);
         mRunningServicesButton.setOnClickListener(this);
@@ -363,6 +366,22 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
         intent.setClassName("com.android.settings",
                 "com.android.settings.Settings$DevRunningServicesActivity");
         mActivityStarter.startActivity(intent, true /* dismissShade */);
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        if (v == mSettingsButton) {
+            startAicpDashboardActivity();
+        }
+        return false;
+    }
+
+    private ComponentName AICP_DASHBOARD_FRAGMENT = new ComponentName(
+            "com.aicp.extras", "com.aicp.extras.SettingsActivity");
+
+    private void startAicpDashboardActivity() {
+        mActivityStarter.startActivity(new Intent().setComponent(AICP_DASHBOARD_FRAGMENT),
+                true /* dismissShade */);
     }
 
     private void startSettingsActivity() {

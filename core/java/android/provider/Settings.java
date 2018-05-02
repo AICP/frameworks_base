@@ -6017,6 +6017,42 @@ public final class Settings {
          */
         public static final String VOLUME_BUTTON_MUSIC_CONTROL = "volume_button_music_control";
 
+        /**
+         * Whether to wake the screen with the home key, the value is boolean.
+         * @hide
+         */
+        public static final String HOME_WAKE_SCREEN = "home_wake_screen";
+
+        /**
+         * Whether to wake the screen with the back key, the value is boolean.
+         * @hide
+         */
+        public static final String BACK_WAKE_SCREEN = "back_wake_screen";
+
+        /**
+         * Whether to wake the screen with the menu key, the value is boolean.
+         * @hide
+         */
+        public static final String MENU_WAKE_SCREEN = "menu_wake_screen";
+
+        /**
+         * Whether to wake the screen with the assist key, the value is boolean.
+         * @hide
+         */
+        public static final String ASSIST_WAKE_SCREEN = "assist_wake_screen";
+
+        /**
+         * Whether to wake the screen with the app switch key, the value is boolean.
+         * @hide
+         */
+        public static final String APP_SWITCH_WAKE_SCREEN = "app_switch_wake_screen";
+
+        /**
+         * Whether to wake the screen with the camera key, the value is boolean.
+         * @hide
+         */
+        public static final String CAMERA_WAKE_SCREEN = "assist_wake_screen";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6164,6 +6200,12 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(BUTTON_BACKLIGHT_ON_TOUCH_ONLY, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(VOLUME_ROCKER_WAKE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(VOLUME_BUTTON_MUSIC_CONTROL, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(HOME_WAKE_SCREEN, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(BACK_WAKE_SCREEN, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(MENU_WAKE_SCREEN, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(ASSIST_WAKE_SCREEN, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(APP_SWITCH_WAKE_SCREEN, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(CAMERA_WAKE_SCREEN, BOOLEAN_VALIDATOR);
         }
 
         /**

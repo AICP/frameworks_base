@@ -4139,6 +4139,12 @@ public final class Settings {
         */
         public static final String ENABLE_PEOPLE_LOOKUP = "enable_people_lookup";
 
+        /**
+         * Volume rocker wake
+         * @hide
+         */
+        public static final String VOLUME_ROCKER_WAKE = "volume_rocker_wake";
+
         /** @hide */
         private static final Validator ENABLE_PEOPLE_LOOKUP_VALIDATOR = BOOLEAN_VALIDATOR;
 

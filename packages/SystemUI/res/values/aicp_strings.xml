@@ -44,9 +44,10 @@
     <!-- Screenshoot tile -->
     <string name="quick_settings_screenshot_label">Screenshot</string>
 
-    <!-- Reboot/Recovery QS Tile -->
+    <!-- Reboot/Recovery/PowerOff QS tile -->
     <string name="quick_settings_reboot_label">Reboot</string>
     <string name="quick_settings_reboot_recovery_label">Recovery</string>
+    <string name="quick_settings_poweroff_label">Power off</string>
 
     <!-- USB Tethering tile -->
     <string name="accessibility_quick_settings_usb_tether_off">USB tethering off</string>

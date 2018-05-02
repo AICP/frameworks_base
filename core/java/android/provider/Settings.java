@@ -5757,6 +5757,12 @@ public final class Settings {
         private static final Validator LOCK_HIDE_STATUS_BAR_VALIDATOR =
                BOOLEAN_VALIDATOR;
 
+        /**
+        * Apps to hide in the ChooserActivity
+        * @hide
+        */
+        public static final String CHOOSER_ACTIVITY_BLACKLIST = "chooser_activity_blacklist";
+
         /***************************
          * AICP System Settings end
          ***************************/

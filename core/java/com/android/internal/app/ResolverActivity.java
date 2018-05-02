@@ -475,6 +475,9 @@ public class ResolverActivity extends Activity {
 
     Drawable loadIconForResolveInfo(ResolveInfo ri) {
         Drawable dr;
+        if (mIconFactory == null) {
+            mIconFactory = IconDrawableFactory.newInstance(ResolverActivity.this, true);
+        }
         try {
             if (ri.resolvePackageName != null && ri.icon != 0) {
                 dr = getIcon(mPm.getResourcesForApplication(ri.resolvePackageName), ri.icon);
@@ -905,7 +908,7 @@ public class ResolverActivity extends Activity {
         // to handle.
         mAdapter = createAdapter(this, payloadIntents, initialIntents, rList,
                 mLaunchedFromUid, mSupportsAlwaysUseOption && !isVoiceInteraction());
-        boolean rebuildCompleted = mAdapter.rebuildList();
+        boolean rebuildCompleted = mAdapter.rebuildList(false);
 
         if (useLayoutWithDefault()) {
             mLayoutId = R.layout.resolver_list_with_default;
@@ -919,29 +922,45 @@ public class ResolverActivity extends Activity {
         // We only rebuild asynchronously when we have multiple elements to sort. In the case where
         // we're already done, we can check if we should auto-launch immediately.
         if (rebuildCompleted) {
-            if (count == 1 && mAdapter.getOtherProfile() == null) {
-                // Only one target, so we're a candidate to auto-launch!
-                final TargetInfo target = mAdapter.targetInfoForPosition(0, false);
-                if (shouldAutoLaunchSingleChoice(target)) {
-                    safelyStartActivity(target);
-                    mPackageMonitor.unregister();
-                    mRegistered = false;
-                    finish();
-                    return true;
-                }
+            if (oneTargetAutoLaunch(count)) {
+                return true;
             }
         }
 
-
         mAdapterView = findViewById(R.id.resolver_list);
 
-        if (count == 0 && mAdapter.mPlaceholderCount == 0) {
+        if (!useLayoutWithDefault() && count == 0 && mAdapter.mPlaceholderCount == 0) {
             final TextView emptyView = findViewById(R.id.empty);
             emptyView.setVisibility(View.VISIBLE);
             mAdapterView.setVisibility(View.GONE);
         } else {
+            if (useLayoutWithDefault() && count == 0) {
+                // rebuild the list again without skipping blacklisted apps
+                rebuildCompleted = mAdapter.rebuildList(true);
+                count = mAdapter.getUnfilteredCount();
+                if (rebuildCompleted) {
+                    if (oneTargetAutoLaunch(count)) {
+                        return true;
+                    }
+                }
+            }
             mAdapterView.setVisibility(View.VISIBLE);
             onPrepareAdapterView(mAdapterView, mAdapter);
+        }
+        return false;
+    }
+
+    private boolean oneTargetAutoLaunch(int count) {
+        if (count == 1 && mAdapter.getOtherProfile() == null) {
+            // Only one target, so we're a candidate to auto-launch!
+            final TargetInfo target = mAdapter.targetInfoForPosition(0, false);
+            if (shouldAutoLaunchSingleChoice(target)) {
+                safelyStartActivity(target);
+                mPackageMonitor.unregister();
+                mRegistered = false;
+                finish();
+                return true;
+            }
         }
         return false;
     }
@@ -1341,7 +1360,7 @@ public class ResolverActivity extends Activity {
         }
 
         public void handlePackagesChanged() {
-            rebuildList();
+            rebuildList(false);
             if (getCount() == 0) {
                 // We no longer have any items...  just finish the activity.
                 finish();
@@ -1396,7 +1415,7 @@ public class ResolverActivity extends Activity {
          *
          * @return Whether or not the list building is completed.
          */
-        protected boolean rebuildList() {
+        protected boolean rebuildList(boolean skipBlacklistedApps) {
             List<ResolvedComponentInfo> currentResolveList = null;
             // Clear the value of mOtherProfile from previous call.
             mOtherProfile = null;
@@ -1412,7 +1431,7 @@ public class ResolverActivity extends Activity {
                 currentResolveList = mUnfilteredResolveList =
                         mResolverListController.getResolversForIntent(shouldGetResolvedFilter(),
                                 shouldGetActivityMetadata(),
-                                mIntents);
+                                mIntents, skipBlacklistedApps);
                 if (currentResolveList == null) {
                     processSortedList(currentResolveList);
                     return true;

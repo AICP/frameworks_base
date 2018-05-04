@@ -4660,6 +4660,12 @@ public final class Settings {
          */
         public static final String FP_UNLOCK_KEYSTORE = "fp_unlock_keystore";
 
+        /**
+         * FP unlock only with screen on
+         * @hide
+         */
+        public static final String FP_ONLY_SCREEN_ON = "fp_only_screen_on";
+
          /**
          * Force an Ambient notification when a new media track is being played
          * 0 - disabled

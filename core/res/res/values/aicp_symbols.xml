@@ -135,9 +135,6 @@
   <java-symbol type="integer" name="config_LTE_antenna_bar_quantity_metric" />
   <java-symbol type="integer" name="config_LTE_RSRP_threshold_type" />
 
-  <!-- Whether device has wake and unlock support on fingerprint -->
-  <java-symbol type="bool" name="config_fingerprintWakeAndUnlock" />
-
   <!-- Whether the device supports Smart Pixels -->
   <java-symbol type="bool" name="config_enableSmartPixels" />
 </resources>

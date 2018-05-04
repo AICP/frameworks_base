@@ -5040,13 +5040,6 @@ public final class Settings {
         public static final String QSFOOTER_SHOW_SERVICES = "qs_footer_show_services";
 
         /**
-         * Fingerprint Wake-and-Unlock
-         *
-         * @hide
-         */
-        public static final String FP_WAKE_AND_UNLOCK = "fp_wake_and_unlock";
-
-        /**
          * Whether to enable Smart Pixels
          * @hide
          */

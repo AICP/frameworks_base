@@ -78,10 +78,8 @@ import com.android.internal.telephony.IccCardConstants.State;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.TelephonyIntents;
 import com.android.internal.widget.LockPatternUtils;
-import com.android.systemui.Dependency;
 import com.android.systemui.recents.misc.SystemServicesProxy;
 import com.android.systemui.recents.misc.SystemServicesProxy.TaskStackListener;
-import com.android.systemui.tuner.TunerService;
 
 import com.google.android.collect.Lists;
 
@@ -103,8 +101,7 @@ import java.util.Map.Entry;
  * the device, and {@link #getFailedUnlockAttempts()}, {@link #reportFailedAttempt()}
  * and {@link #clearFailedUnlockAttempts()}.  Maybe we should rename this 'KeyguardContext'...
  */
-public class KeyguardUpdateMonitor implements TrustManager.TrustListener,
-        TunerService.Tunable {
+public class KeyguardUpdateMonitor implements TrustManager.TrustListener {
 
     private static final String TAG = "KeyguardUpdateMonitor";
     private static final boolean DEBUG = KeyguardConstants.DEBUG;
@@ -228,6 +225,7 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener,
     private LockPatternUtils mLockPatternUtils;
     private final IDreamManager mDreamManager;
     private boolean mIsDreaming;
+    private final boolean mFingerprintWakeAndUnlock;
 
     /**
      * Short delay before restarting fingerprint authentication after a successful try
@@ -240,10 +238,6 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener,
     private int mHardwareUnavailableRetryCount = 0;
     private static final int HW_UNAVAILABLE_TIMEOUT = 3000; // ms
     private static final int HW_UNAVAILABLE_RETRY_MAX = 3;
-    private boolean mFpWakeAndUnlock;
-
-    private static final String FP_WAKE_AND_UNLOCK =
-            "system:" + Settings.System.FP_WAKE_AND_UNLOCK;
 
     private final Handler mHandler = new Handler() {
         @Override
@@ -1141,6 +1135,8 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener,
         mSubscriptionManager = SubscriptionManager.from(context);
         mDeviceProvisioned = isDeviceProvisionedInSettingsDb();
         mStrongAuthTracker = new StrongAuthTracker(context);
+        mFingerprintWakeAndUnlock = mContext.getResources().getBoolean(
+                com.android.keyguard.R.bool.config_fingerprintWakeAndUnlock);
 
         // Since device can't be un-provisioned, we only need to register a content observer
         // to update mDeviceProvisioned when we are...
@@ -1216,27 +1212,6 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener,
 
         SystemServicesProxy.getInstance(mContext).registerTaskStackListener(mTaskStackListener);
         mUserManager = context.getSystemService(UserManager.class);
-
-        Dependency.get(TunerService.class).addTunable(this,
-                FP_WAKE_AND_UNLOCK);
-    }
-
-    @Override
-    public void onTuningChanged(String key, String newValue) {
-        switch (key) {
-            case FP_WAKE_AND_UNLOCK:
-                mFpWakeAndUnlock =
-                        newValue == null ? isWakeAndUnlockEnabled() : Integer.parseInt(newValue) != 0;
-                handleFingerprintLockoutReset();
-                break;
-            default:
-                break;
-        }
-    }
-
-    private boolean isWakeAndUnlockEnabled() {
-        return mContext.getResources().getBoolean(
-                    com.android.internal.R.bool.config_fingerprintWakeAndUnlock);
     }
 
     private void updateFingerprintListeningState() {
@@ -1262,7 +1237,7 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener,
     }
 
     private boolean shouldListenForFingerprint() {
-        if (!mFpWakeAndUnlock) {
+        if (!mFingerprintWakeAndUnlock) {
             return (mKeyguardIsVisible || mBouncer || shouldListenForFingerprintAssistant() ||
                     (mKeyguardOccluded && mIsDreaming)) && mDeviceInteractive && !mGoingToSleep
                     && !mSwitchingUser && !isFingerprintDisabled(getCurrentUser())

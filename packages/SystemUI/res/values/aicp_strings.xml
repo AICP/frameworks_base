@@ -159,4 +159,7 @@
 
     <!-- Label for item that screenrecords in power menu options dialog -->
     <string name="global_action_screenrecord">Screenrecord</string>
+
+    <!-- CPUInfo tile -->
+    <string name="quick_settings_cpuinfo_label">CPU Info</string>
 </resources>

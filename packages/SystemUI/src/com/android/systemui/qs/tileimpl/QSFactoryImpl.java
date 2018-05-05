@@ -43,6 +43,7 @@ import com.android.systemui.qs.tiles.GoogleNowTile;
 import com.android.systemui.qs.tiles.GoogleVoiceAssistTile;
 import com.android.systemui.qs.tiles.HeadsUpTile;
 import com.android.systemui.qs.tiles.HotspotTile;
+import com.android.systemui.qs.tiles.HWKeysTile;
 import com.android.systemui.qs.tiles.IntentTile;
 import com.android.systemui.qs.tiles.LocaleTile;
 import com.android.systemui.qs.tiles.LiveDisplayTile;
@@ -115,6 +116,7 @@ public class QSFactoryImpl implements QSFactory {
         else if (tileSpec.equals("expanded_desktop")) return new ExpandedDesktopTile(mHost);
         else if (tileSpec.equals("smartpixels")) return new SmartPixelsTile(mHost);
         else if (tileSpec.equals("cpuinfo")) return new CPUInfoTile(mHost);
+        else if (tileSpec.equals("hw_keys")) return new HWKeysTile(mHost);
         // Intent tiles.
         else if (tileSpec.startsWith(IntentTile.PREFIX)) return IntentTile.create(mHost, tileSpec);
         else if (tileSpec.startsWith(CustomTile.PREFIX)) return CustomTile.create(mHost, tileSpec);

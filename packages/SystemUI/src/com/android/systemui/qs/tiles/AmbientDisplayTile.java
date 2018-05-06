@@ -23,6 +23,7 @@ import android.os.Build;
 import android.os.SystemProperties;
 import android.provider.Settings;
 import android.provider.Settings.Secure;
+import android.service.quicksettings.Tile;
 import android.text.TextUtils;
 
 import com.android.internal.logging.MetricsLogger;
@@ -37,6 +38,7 @@ import com.android.systemui.qs.tileimpl.QSTileImpl;
 public class AmbientDisplayTile extends QSTileImpl<BooleanState> {
 
     private final SecureSetting mSetting;
+    private final Icon mIcon = ResourceIcon.get(R.drawable.ic_qs_ambientdisplay_on);
 
     public AmbientDisplayTile(QSHost host) {
         super(host);
@@ -65,7 +67,7 @@ public class AmbientDisplayTile extends QSTileImpl<BooleanState> {
 
     @Override
     public void handleClick() {
-        setEnabled(!mState.value);
+        mSetting.setValue(mState.value ? 0 : 1);
         refreshState();
     }
 
@@ -80,15 +82,8 @@ public class AmbientDisplayTile extends QSTileImpl<BooleanState> {
         return mContext.getString(R.string.quick_settings_ambient_display_label);
     }
 
-    private void setEnabled(boolean enabled) {
-        Settings.Secure.putInt(mContext.getContentResolver(),
-                Settings.Secure.DOZE_ENABLED,
-                enabled ? 1 : 0);
-    }
-
     private boolean isAmbientDisplayEnabled() {
-        return Settings.Secure.getInt(mContext.getContentResolver(),
-                Settings.Secure.DOZE_ENABLED, 0) == 1;
+        return mSetting.getValue() != 0;
     }
 
     @Override
@@ -96,16 +91,21 @@ public class AmbientDisplayTile extends QSTileImpl<BooleanState> {
         if (mSetting == null) return;
         final int value = arg instanceof Integer ? (Integer)arg : mSetting.getValue();
         final boolean enable = value != 0;
+        if (state.slash == null) {
+            state.slash = new SlashState();
+        }
         state.value = enable;
         state.label = mContext.getString(R.string.quick_settings_ambient_display_label);
+        state.icon = mIcon;
+        state.slash.isSlashed = !state.value;
         if (enable) {
-            state.icon = ResourceIcon.get(R.drawable.ic_qs_ambientdisplay_on);
             state.contentDescription =  mContext.getString(
                     R.string.accessibility_quick_settings_ambient_display_on);
+            state.state = Tile.STATE_ACTIVE;
         } else {
-            state.icon = ResourceIcon.get(R.drawable.ic_qs_ambientdisplay_off);
             state.contentDescription =  mContext.getString(
                     R.string.accessibility_quick_settings_ambient_display_off);
+            state.state = Tile.STATE_INACTIVE;
         }
     }
 

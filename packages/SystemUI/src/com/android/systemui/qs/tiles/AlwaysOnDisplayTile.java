@@ -22,6 +22,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.provider.Settings;
 import android.provider.Settings.Secure;
+import android.service.quicksettings.Tile;
 
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 
@@ -34,6 +35,7 @@ import com.android.systemui.qs.tileimpl.QSTileImpl;
 public class AlwaysOnDisplayTile extends QSTileImpl<BooleanState> {
 
     private final SecureSetting mSetting;
+    private final Icon mIcon = ResourceIcon.get(R.drawable.ic_qs_alwaysondisplay_on);
 
     public AlwaysOnDisplayTile(QSHost host) {
         super(host);
@@ -59,7 +61,7 @@ public class AlwaysOnDisplayTile extends QSTileImpl<BooleanState> {
 
     @Override
     public void handleClick() {
-        setEnabled(!mState.value);
+        mSetting.setValue(mState.value ? 0 : 1);
         refreshState();
     }
 
@@ -74,27 +76,26 @@ public class AlwaysOnDisplayTile extends QSTileImpl<BooleanState> {
         return mContext.getString(R.string.quick_settings_always_on_display_label);
     }
 
-    private void setEnabled(boolean enabled) {
-        Settings.Secure.putInt(mContext.getContentResolver(),
-                Settings.Secure.DOZE_ALWAYS_ON,
-                enabled ? 1 : 0);
-    }
-
     @Override
     protected void handleUpdateState(BooleanState state, Object arg) {
         if (mSetting == null) return;
         final int value = arg instanceof Integer ? (Integer)arg : mSetting.getValue();
         final boolean enable = value != 0;
+        if (state.slash == null) {
+            state.slash = new SlashState();
+        }
         state.value = enable;
         state.label = mContext.getString(R.string.quick_settings_always_on_display_label);
+        state.icon = mIcon;
+        state.slash.isSlashed = !state.value;
         if (enable) {
-            state.icon = ResourceIcon.get(R.drawable.ic_qs_alwaysondisplay_on);
             state.contentDescription =  mContext.getString(
                     R.string.accessibility_quick_settings_always_on_display_on);
+            state.state = Tile.STATE_ACTIVE;
         } else {
-            state.icon = ResourceIcon.get(R.drawable.ic_qs_alwaysondisplay_off);
             state.contentDescription =  mContext.getString(
                     R.string.accessibility_quick_settings_always_on_display_off);
+            state.state = Tile.STATE_INACTIVE;
         }
     }
 

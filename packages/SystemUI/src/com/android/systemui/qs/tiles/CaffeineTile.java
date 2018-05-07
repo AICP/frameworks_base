@@ -47,6 +47,7 @@ public class CaffeineTile extends QSTileImpl<BooleanState> {
         30 * 60,  // 30 min
         -1,       // infinity
     };
+    private static int mDurationEgg = 5 * 60 + 45; // 5 min 45 secs. Perfect.
     private CountDownTimer mCountdownTimer = null;
     public long mLastClickTime = -1;
     private final Receiver mReceiver = new Receiver();
@@ -88,7 +89,7 @@ public class CaffeineTile extends QSTileImpl<BooleanState> {
             // cycle duration
             mDuration++;
             if (mDuration >= DURATIONS.length) {
-                // all durations cycled, turn if off
+                // all durations cycled, turn it off
                 mDuration = -1;
                 stopCountDown();
                 if (mWakeLock.isHeld()) {
@@ -111,6 +112,21 @@ public class CaffeineTile extends QSTileImpl<BooleanState> {
                 mDuration = 0;
                 startCountDown(DURATIONS[mDuration]);
             }
+        }
+        mLastClickTime = SystemClock.elapsedRealtime();
+        refreshState();
+    }
+
+    @Override
+    protected void handleLongClick() {
+        if (!mWakeLock.isHeld()) {
+            mWakeLock.acquire();
+            startCountDown(mDurationEgg);
+        } else {
+            mWakeLock.release();
+            stopCountDown();
+            // turn it off
+            mDuration = -1;
         }
         mLastClickTime = SystemClock.elapsedRealtime();
         refreshState();

@@ -1390,6 +1390,7 @@ interface ITelephony {
      */
      void toggle2G(boolean on);
 
+    /**
      * Get ATR (Answer To Reset; as per ISO/IEC 7816-4) from SIM card
      */
     byte[] getAtr();

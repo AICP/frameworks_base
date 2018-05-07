@@ -99,6 +99,9 @@ public class NotificationSnooze extends LinearLayout
             R.id.action_snooze_short,
             R.id.action_snooze_long,
             R.id.action_snooze_longer,
+            R.id.action_snooze_longerr,
+            R.id.action_snooze_longerrr,
+            R.id.action_snooze_longerrrr,
     };
 
     private MetricsLogger mMetricsLogger = new MetricsLogger();

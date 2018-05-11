@@ -6833,7 +6833,7 @@ public class StatusBar extends SystemUI implements DemoMode,
             String currentIconPack = Settings.System.getStringForUser(mContext.getContentResolver(),
                 Settings.System.RECENTS_ICON_PACK, mCurrentUserId);
             mRecents.resetIconCache();
-            mRecents.getIconsHandler().updatePrefs(currentIconPack);
+            mRecents.setCurrentIconPack(currentIconPack);
         }
     }
 

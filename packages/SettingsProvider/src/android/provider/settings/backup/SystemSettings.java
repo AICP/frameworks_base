@@ -189,5 +189,7 @@ public class SystemSettings {
         Settings.System.STATUS_BAR_LOGO_STYLE,
         Settings.System.STATUS_BAR_LOGO_COLOR_ACCENT,
         Settings.System.SCREENSHOT_SHUTTER_SOUND,
+        Settings.System.AICP_ASPECT_RATIO_APPS_LIST,
+        Settings.System.AICP_ASPECT_RATIO_APPS_ENABLED,
     };
 }

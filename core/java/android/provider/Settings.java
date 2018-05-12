@@ -4571,11 +4571,7 @@ public final class Settings {
         private static final Validator STATUSBAR_BATTERY_BAR_ANIMATE_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
-        /***************************
-         * AICP System Settings end
-         ***************************/
-
-	/**
+	      /**
         * Whether to show the battery info on the lockscreen while charging
         * @hide
         */
@@ -4603,6 +4599,35 @@ public final class Settings {
                 BOOLEAN_VALIDATOR;
 
         /**
+         * Wheter to play notification sound and vibration if screen is on
+         * @hide
+         */
+        public static final String NOTIFICATION_SOUND_VIB_SCREEN_ON = "notification_sound_vib_screen_on";
+
+        /** @hide */
+        private static final Validator NOTIFICATION_SOUND_VIB_SCREEN_ON_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
+         * Whether to mute annoying notifications
+         * @hide
+         */
+        public static final String MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD = "mute_annoying_notifications_threshold";
+
+        /** @hide */
+        private static final Validator MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD_VALIDATOR =
+              new SettingsValidators.InclusiveIntegerRangeValidator(0, 120000);
+
+        /**
+        * Whether to scramble a pin unlock layout
+        * @hide
+        */
+        public static final String LOCKSCREEN_PIN_SCRAMBLE_LAYOUT = "lockscreen_scramble_pin_layout";
+
+        /** @hide */
+        private static final Validator LOCKSCREEN_PIN_SCRAMBLE_LAYOUT_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
          * Three Finger Gesture from Oppo
          * @hide
          */
@@ -4611,6 +4636,28 @@ public final class Settings {
         /** @hide */
         private static final Validator THREE_FINGER_GESTURE_VALIDATOR =
                 BOOLEAN_VALIDATOR;
+
+        /**
+         * @hide
+         */
+        public static final String AICP_ASPECT_RATIO_APPS_LIST = "aspect_ratio_apps_list";
+
+        /** @hide */
+        private static final Validator AICP_ASPECT_RATIO_APPS_LIST_VALIDATOR =
+                ANY_STRING_VALIDATOR;
+
+        /**
+         * @hide
+         */
+        public static final String AICP_ASPECT_RATIO_APPS_ENABLED = "aspect_ratio_apps_enabled";
+
+        /** @hide */
+        private static final Validator AICP_ASPECT_RATIO_APPS_ENABLED_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /***************************
+         * AICP System Settings end
+         ***************************/
 
         /**
          * IMPORTANT: If you add a new public settings you also have to add it to
@@ -4697,6 +4744,8 @@ public final class Settings {
             AICP_DOUBLE_TAP_SLEEP_GESTURE,
             AICP_DOUBLE_TAP_SLEEP_LOCKSCREEN,
             THREE_FINGER_GESTURE,
+            AICP_ASPECT_RATIO_APPS_LIST,
+            AICP_ASPECT_RATIO_APPS_ENABLED,
             // AICP Settings end
         };
 
@@ -4711,35 +4760,6 @@ public final class Settings {
          */
         public static final String[] LEGACY_RESTORE_SETTINGS = {
         };
-
-        /**
-         * Wheter to play notification sound and vibration if screen is on
-         * @hide
-         */
-        public static final String NOTIFICATION_SOUND_VIB_SCREEN_ON = "notification_sound_vib_screen_on";
-
-        /** @hide */
-        private static final Validator NOTIFICATION_SOUND_VIB_SCREEN_ON_VALIDATOR =
-                BOOLEAN_VALIDATOR;
-
-        /**
-         * Whether to mute annoying notifications
-         * @hide
-         */
-        public static final String MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD = "mute_annoying_notifications_threshold";
-
-        /** @hide */
-        private static final Validator MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD_VALIDATOR =
-              new SettingsValidators.InclusiveIntegerRangeValidator(0, 120000);
-
-        /**
-        * Whether to scramble a pin unlock layout
-        * @hide
-        */
-        public static final String LOCKSCREEN_PIN_SCRAMBLE_LAYOUT = "lockscreen_scramble_pin_layout";
-
-        /** @hide */
-        private static final Validator LOCKSCREEN_PIN_SCRAMBLE_LAYOUT_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
          * These are all public system settings
@@ -4862,6 +4882,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(AICP_DOUBLE_TAP_SLEEP_GESTURE);
             PRIVATE_SETTINGS.add(AICP_DOUBLE_TAP_SLEEP_LOCKSCREEN);
             PRIVATE_SETTINGS.add(THREE_FINGER_GESTURE);
+            PRIVATE_SETTINGS.add(AICP_ASPECT_RATIO_APPS_ENABLED);
+            PRIVATE_SETTINGS.add(AICP_ASPECT_RATIO_APPS_LIST);
             // AICP Settings end
         }
 
@@ -4977,6 +4999,10 @@ public final class Settings {
             VALIDATORS.put(AICP_DOUBLE_TAP_SLEEP_LOCKSCREEN,
                     AICP_DOUBLE_TAP_SLEEP_LOCKSCREEN_VALIDATOR);
             VALIDATORS.put(THREE_FINGER_GESTURE, THREE_FINGER_GESTURE_VALIDATOR);
+            VALIDATORS.put(AICP_ASPECT_RATIO_APPS_ENABLED,
+                    AICP_ASPECT_RATIO_APPS_ENABLED_VALIDATOR);
+            VALIDATORS.put(AICP_ASPECT_RATIO_APPS_LIST,
+                    AICP_ASPECT_RATIO_APPS_LIST_VALIDATOR);
             // AICP Settings end
         }
 

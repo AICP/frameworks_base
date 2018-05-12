@@ -411,7 +411,9 @@ final class ActivityRecord extends ConfigurationContainer {
 
     // Full screen aspect ratio
     private final float mFullScreenAspectRatio = Resources.getSystem().getFloat(
-                    com.android.internal.R.dimen.config_screenAspectRatio);
+            com.android.internal.R.dimen.config_screenAspectRatio);
+    private final boolean higherAspectRatio = Resources.getSystem().getBoolean(
+            com.android.internal.R.bool.config_haveHigherAspectRatioScreen);
 
     /**
      * Current sequencing integer of the configuration, for skipping old activity configurations.
@@ -3077,9 +3079,16 @@ final class ActivityRecord extends ConfigurationContainer {
     // TODO(b/36505427): Consider moving this method and similar ones to ConfigurationContainer.
     private void computeBounds(Rect outBounds, Rect containingAppBounds) {
         outBounds.setEmpty();
-        final boolean higherAspectRatio = Resources.getSystem().getBoolean(
-                com.android.internal.R.bool.config_haveHigherAspectRatioScreen);
-        final float maxAspectRatio = higherAspectRatio ? mFullScreenAspectRatio : info.maxAspectRatio;
+        float maxAspectRatio = info.maxAspectRatio;
+        if (maxAspectRatio != 0.0f && higherAspectRatio && mAtmService.getAspectRatioApps() != null) {
+            if (mAtmService.getAspectRatioApps().contains(packageName)) {
+                if (ActivityTaskManagerService.DEBUG_ASPECT_RATIO) {
+                    Log.d(ActivityTaskManagerService.TAG_DEBUG_ASPECT_RATIO,
+                            "Force aspect ratio for " + packageName + " " + maxAspectRatio);
+                }
+                maxAspectRatio = mFullScreenAspectRatio;
+            }
+        }
         final ActivityStack stack = getActivityStack();
         final float minAspectRatio = info.minAspectRatio;
 

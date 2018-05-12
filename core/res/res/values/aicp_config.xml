@@ -86,4 +86,8 @@
         <item>lockdown</item>
         <item>torch</item>
     </string-array>
+
+    <!-- Full screen aspect ratio -->
+    <bool name="config_haveHigherAspectRatioScreen">false</bool>
+    <item name="config_screenAspectRatio" format="float" type="dimen">2.1</item>
 </resources>

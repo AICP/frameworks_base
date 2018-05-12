@@ -177,6 +177,7 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.ApplicationInfo;
 import android.content.res.CompatibilityInfo;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.GraphicBuffer;
 import android.graphics.Rect;
@@ -407,6 +408,10 @@ final class ActivityRecord extends ConfigurationContainer {
     private boolean mShowWhenLocked;
     private boolean mInheritShownWhenLocked;
     private boolean mTurnScreenOn;
+
+    // Full screen aspect ratio
+    private final float mFullScreenAspectRatio = Resources.getSystem().getFloat(
+                    com.android.internal.R.dimen.config_screenAspectRatio);
 
     /**
      * Current sequencing integer of the configuration, for skipping old activity configurations.
@@ -3072,7 +3077,9 @@ final class ActivityRecord extends ConfigurationContainer {
     // TODO(b/36505427): Consider moving this method and similar ones to ConfigurationContainer.
     private void computeBounds(Rect outBounds, Rect containingAppBounds) {
         outBounds.setEmpty();
-        final float maxAspectRatio = info.maxAspectRatio;
+        final boolean higherAspectRatio = Resources.getSystem().getBoolean(
+                com.android.internal.R.bool.config_haveHigherAspectRatioScreen);
+        final float maxAspectRatio = higherAspectRatio ? mFullScreenAspectRatio : info.maxAspectRatio;
         final ActivityStack stack = getActivityStack();
         final float minAspectRatio = info.minAspectRatio;
 

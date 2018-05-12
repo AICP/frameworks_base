@@ -5465,6 +5465,16 @@ public final class Settings {
          */
         public static final String LOCKSCREEN_SMALL_CLOCK = "lockscreen_small_clock";
 
+        /**
+         * @hide
+         */
+        public static final String AICP_ASPECT_RATIO_APPS_LIST = "aspect_ratio_apps_list";
+
+        /**
+         * @hide
+         */
+        public static final String AICP_ASPECT_RATIO_APPS_ENABLED = "aspect_ratio_apps_enabled";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5643,6 +5653,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(QS_TILE_LABEL_HIDE);
             PRIVATE_SETTINGS.add(NAVIGATION_BAR_ARROW_KEYS);
             PRIVATE_SETTINGS.add(LOCKSCREEN_SMALL_CLOCK);
+            PRIVATE_SETTINGS.add(AICP_ASPECT_RATIO_APPS_LIST);
+            PRIVATE_SETTINGS.add(AICP_ASPECT_RATIO_APPS_ENABLED);
         }
 
         /**

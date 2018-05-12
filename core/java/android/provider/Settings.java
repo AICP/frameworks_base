@@ -6482,6 +6482,16 @@ public final class Settings {
         @SuppressLint("NoSettingsProvider")
         public static final String VOLUME_ANSWER_CALL = "volume_answer_call";
 
+        /**
+         * @hide
+         */
+        public static final String AICP_ASPECT_RATIO_APPS_LIST = "aspect_ratio_apps_list";
+
+        /**
+         * @hide
+         */
+        public static final String AICP_ASPECT_RATIO_APPS_ENABLED = "aspect_ratio_apps_enabled";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6729,6 +6739,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(VOLUME_ROCKER_WAKE);
             PRIVATE_SETTINGS.add(VOLUME_KEYS_CONTROL_RING_TONE);
             PRIVATE_SETTINGS.add(VOLUME_ANSWER_CALL);
+            PRIVATE_SETTINGS.add(AICP_ASPECT_RATIO_APPS_LIST);
+            PRIVATE_SETTINGS.add(AICP_ASPECT_RATIO_APPS_ENABLED);
         }
 
         /**

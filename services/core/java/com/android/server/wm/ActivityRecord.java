@@ -816,7 +816,9 @@ final class ActivityRecord extends WindowToken implements WindowManagerService.A
 
     // Full screen aspect ratio
     private final float mFullScreenAspectRatio = Resources.getSystem().getFloat(
-                    com.android.internal.R.dimen.config_screenAspectRatio);
+            com.android.internal.R.dimen.config_screenAspectRatio);
+    private final boolean higherAspectRatio = Resources.getSystem().getBoolean(
+            com.android.internal.R.bool.config_haveHigherAspectRatioScreen);
 
     /**
      * Current sequencing integer of the configuration, for skipping old activity configurations.
@@ -8207,9 +8209,16 @@ final class ActivityRecord extends WindowToken implements WindowManagerService.A
     // TODO(b/36505427): Consider moving this method and similar ones to ConfigurationContainer.
     private boolean applyAspectRatio(Rect outBounds, Rect containingAppBounds,
             Rect containingBounds, float desiredAspectRatio, boolean fixedOrientationLetterboxed) {
-        final boolean higherAspectRatio = Resources.getSystem().getBoolean(
-                com.android.internal.R.bool.config_haveHigherAspectRatioScreen);
-        final float maxAspectRatio = higherAspectRatio ? mFullScreenAspectRatio : info.getMaxAspectRatio();
+        float maxAspectRatio = info.getMaxAspectRatio();
+        if (maxAspectRatio != 0.0f && higherAspectRatio && mAtmService.getAspectRatioApps() != null) {
+            if (mAtmService.getAspectRatioApps().contains(packageName)) {
+                if (ActivityTaskManagerService.DEBUG_ASPECT_RATIO) {
+                    Log.d(ActivityTaskManagerService.TAG_DEBUG_ASPECT_RATIO,
+                            "Force aspect ratio for " + packageName + " " + maxAspectRatio);
+                }
+                maxAspectRatio = mFullScreenAspectRatio;
+            }
+        }
         final Task rootTask = getRootTask();
         final float minAspectRatio = getMinAspectRatio();
         // Not using ActivityRecord#isResizeable() directly because app compatibility testing

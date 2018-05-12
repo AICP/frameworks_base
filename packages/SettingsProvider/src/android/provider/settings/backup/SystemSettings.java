@@ -207,5 +207,7 @@ public class SystemSettings {
         Settings.System.VOLUME_ROCKER_WAKE,
         Settings.System.VOLUME_KEYS_CONTROL_RING_TONE,
         Settings.System.VOLUME_ANSWER_CALL,
+        Settings.System.AICP_ASPECT_RATIO_APPS_LIST,
+        Settings.System.AICP_ASPECT_RATIO_APPS_ENABLED,
     };
 }

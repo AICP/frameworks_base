@@ -131,5 +131,7 @@ public class SystemSettings {
         Settings.System.QS_TILE_LABEL_HIDE,
         Settings.System.NAVIGATION_BAR_ARROW_KEYS,
         Settings.System.LOCKSCREEN_SMALL_CLOCK,
+        Settings.System.AICP_ASPECT_RATIO_APPS_LIST,
+        Settings.System.AICP_ASPECT_RATIO_APPS_ENABLED,
     };
 }

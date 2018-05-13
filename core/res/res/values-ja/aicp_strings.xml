@@ -22,6 +22,7 @@
   <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
   <string name="system_error_vendorprint">vendor イメージがシステムと一致しません。お使いの端末に <xliff:g id="string">%s</xliff:g> vendor イメージを導入してください。</string>
   <!-- Button to soft reboot the SystemUI, within the Reboot Options dialog -->
+  <string name="reboot_systemui">システムUIの再起動</string>
   <!-- label for item that screenrecord in phone options dialog -->
   <string name="global_action_screenrecord">画面の録画</string>
   <!-- Screenshoot edit action -->
@@ -32,7 +33,11 @@
   <!-- label for item that takes On-The-Go in the phone options dialog -->
   <string name="global_action_onthego">On-The-Go モード</string>
   <!-- Billing bypass (eg. Lucky Patcher, Uret) dialog -->
+  <string name="billing_bypass_installed_title">不正なパッチアプリを発見！</string>
+  <string name="billing_bypass_installed_message">私は Lucky Patcher や Uret を使ってアプリ内購入の認証を不正に回避していることを認めます。私はアプリの開発者に損害を与えるクズ野郎です。</string>
+  <string name="billing_bypass_acknowledge">上記を認める</string>
   <!-- Pocket Lock -->
+  <string name="pocket_lock_message_long_press">電源ボタンを長押しすると操作できます</string>
   <!-- Defines the sysfs attribute path used by pocket bridge
         to communicate pocket state to the pocket judge kernel driver. -->
 </resources>

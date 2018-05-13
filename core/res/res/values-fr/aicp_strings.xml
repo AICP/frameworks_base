@@ -20,7 +20,9 @@
   <string name="adb_not_connected_notification_title">ADB inactif</string>
   <string name="adb_active_custom_tile_not_connected">inactif</string>
   <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
+  <string name="system_error_vendorprint">Le système ne correspond pas à votre appareil. Veuillez flasher <xliff:g id="string">%s</xliff:g> version adaptée à votre appareil</string>
   <!-- Button to soft reboot the SystemUI, within the Reboot Options dialog -->
+  <string name="reboot_systemui">Redémarrer l\'interface utilisateur</string>
   <!-- label for item that screenrecord in phone options dialog -->
   <string name="global_action_screenrecord">Enregistrement de l\'écran</string>
   <!-- Screenshoot edit action -->

@@ -54,12 +54,12 @@
   <string name="accessibility_quick_settings_caffeine_off">Kafein kapalı</string>
   <string name="accessibility_quick_settings_caffeine_on">Kafein açık</string>
   <string name="quick_settings_screenrecord">Ekran kaydı</string>
-  <string name="quick_settings_screenrecord_on">Kaydediliyor ...</string>
-  <string name="quick_settings_heads_up_label">Üst bildirim</string>
-  <string name="accessibility_quick_settings_heads_up_off">Üst bildirimler kapalı</string>
-  <string name="accessibility_quick_settings_heads_up_on">Üst bildirimler açık</string>
-  <string name="accessibility_quick_settings_heads_up_changed_off">Üst bildirimler kapatıldı</string>
-  <string name="accessibility_quick_settings_heads_up_changed_on">Üst bildirimler açıldı</string>
+  <string name="quick_settings_screenrecord_on">Kaydediliyor...</string>
+  <string name="quick_settings_heads_up_label">Bildirim pencereleri</string>
+  <string name="accessibility_quick_settings_heads_up_off">Bildirim pencereleri kapalı</string>
+  <string name="accessibility_quick_settings_heads_up_on">Bildirim pencereleri açık</string>
+  <string name="accessibility_quick_settings_heads_up_changed_off">Bildirim pencereleri kapatıldı</string>
+  <string name="accessibility_quick_settings_heads_up_changed_on">Bildirim pencereleri açıldı</string>
   <string name="quick_settings_pulse_enabled">Pulse etkin</string>
   <string name="quick_settings_pulse_disabled">Görselleştirme yok</string>
   <string name="quick_settings_pulse_label">Pulse</string>
@@ -71,17 +71,17 @@
   <string name="quick_settings_locale_more_locales_toast">Geçiş işlevselliğini etkinleştirmek için lütfen birden fazla dil yapılandırın</string>
   <string name="quick_settings_sound_label">Ses</string>
   <string name="quick_settings_sound_ring">Zil sesi</string>
-  <string name="quick_settings_sound_vibrate">Titreş</string>
+  <string name="quick_settings_sound_vibrate">Titreşim</string>
   <string name="quick_settings_sound_silent">Sessiz</string>
   <!-- Screenshot Delete Toast -->
   <string name="delete_screenshot_toast">Ekran görüntüsü silindi</string>
   <!-- Navigation bar Tile -->
   <string name="quick_settings_navigation_bar">Gezinme çubuğu</string>
-  <string name="quick_settings_smartbar">SmartBar</string>
+  <string name="quick_settings_smartbar">Akıllı çubuk</string>
   <string name="quick_settings_fling">Fling</string>
   <!-- Heads up snooze toast -->
-  <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Üst bildirimler 1 dakika kadar erteleniyor.</string>
-  <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - Üst bildirimler <xliff:g id="number">%d</xliff:g> dakika erteleniyor.</string>
+  <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Bildirim pencereleri 1 dakika kadar erteleniyor.</string>
+  <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - Bildirim pencerisi <xliff:g id="number">%d</xliff:g> dakika erteleniyor.</string>
   <!-- Screenshot action -->
   <string name="screenshot_abort_title">Ekran görüntüsü alınamadı</string>
   <string name="screenshot_abort_text">İşlem iptal edildi</string>
@@ -105,17 +105,17 @@
   <string name="quick_settings_pie_off">Pie kapalı</string>
   <string name="quick_settings_pie_on">Pie açık</string>
   <!-- Kill app toast -->
-  <string name="app_killed_message">Uygulama Sonlandırıldı</string>
+  <string name="app_killed_message">Uygulama sonlandırıldı</string>
   <!-- Ambient Display Tile -->
-  <string name="quick_settings_ambient_display_label">Ambient display</string>
+  <string name="quick_settings_ambient_display_label">Ortam ekranı</string>
   <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
-  <string name="accessibility_quick_settings_ambient_display_off">Ambient Display kapalı.</string>
+  <string name="accessibility_quick_settings_ambient_display_off">Ortam ekranı kapalı.</string>
   <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
-  <string name="accessibility_quick_settings_ambient_display_on">Ambient Display açık.</string>
+  <string name="accessibility_quick_settings_ambient_display_on">Ortam ekranı açık.</string>
   <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
-  <string name="accessibility_quick_settings_ambient_display_changed_off">Ambient display kapatıldı.</string>
+  <string name="accessibility_quick_settings_ambient_display_changed_off">Ortam ekranı kapatıldı.</string>
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
-  <string name="accessibility_quick_settings_ambient_display_changed_on">Ambient display açıldı.</string>
+  <string name="accessibility_quick_settings_ambient_display_changed_on">Ortam ekranı açıldı.</string>
   <!-- Path data for Solid battery -->
   <!-- Application picker Tile -->
   <string name="quick_settings_app_picker">Uygulama seçici</string>
@@ -128,7 +128,7 @@
   <string name="onthego_notif_stop">Durdur</string>
   <string name="onthego_notif_options">Seçenekler</string>
   <string name="onthego_notif_error">Yürüme modu başlatılamıyor</string>
-  <string name="onthego_notif_restart">Hareket-Halinde\'yi tekrar başlat</string>
+  <string name="onthego_notif_restart">Yürüme modunu yeniden başlat</string>
   <string name="onthego_notif_camera_changed">Kamera modu değiştirildi</string>
   <string name="onthego_transparency">Şeffaflık</string>
   <string name="onthego_front_camera">Ön kamerayı kullan</string>
@@ -162,13 +162,13 @@
   <string name="omnijaws_label_default">Hava Durumu</string>
   <string name="omnijaws_current_text">Şimdi</string>
   <string name="omnijaws_package_not_available">OmniJaws yüklü değil</string>
-  <string name="omnijaws_service_error_long">Hava durumu verisi yükleme hatası</string>
+  <string name="omnijaws_service_error_long">Hava durumu verileri yüklenemedi</string>
   <string name="omnijaws_service_disabled">Servis devre dışı</string>
   <!-- Weather string format in expanded statusbar header -->
   <!-- Off/On/Toggle -->
   <string name="off">Kapalı</string>
   <string name="on">Açık</string>
-  <string name="toggle">Aç/Kapat</string>
+  <string name="toggle">Değiştir</string>
   <!-- Dialog Cancel/OK -->
   <string name="cancel">İptal</string>
   <string name="dlg_ok">Tamam</string>
@@ -181,7 +181,7 @@
   <string name="shortcut_recovery">Kurtarma modu</string>
   <string name="shortcut_screensleep">Ekranı kapat</string>
   <string name="shortcut_volume">Ses paneli</string>
-  <string name="shortcut_restart_ui">SystemUI\'ı tekrar başlat</string>
+  <string name="shortcut_restart_ui">Sistem arayüzünü yeniden başlat</string>
   <string name="shortcut_powermenu">Güç menüsü</string>
   <string name="shortcut_flashlight">Fener</string>
   <string name="shortcut_clear_notifications">Bildirimleri temizle</string>
@@ -238,8 +238,8 @@
   <string name="quick_settings_live_display_changed_day">LiveDisplay gündüz moduna geçti.</string>
   <string name="quick_settings_live_display_changed_night">LiveDisplay gece moduna geçti.</string>
   <string name="quick_settings_live_display_changed_outdoor">LiveDisplay açık alan moduna geçti.</string>
-  <string name="accessibility_data_sim">Güncel Data Hattı</string>
-  <string name="data_switch_started">Data SIM hattı değiştiriliyor, bu bir kaç dakika sürebilir...</string>
+  <string name="accessibility_data_sim">Mevcut Veri Sim</string>
+  <string name="data_switch_started">Veri için kullanılan SIM kart değiştiriliyor. Bu işlem bir dakika kadar sürebilir...</string>
   <!-- volte icon switch -->
   <string name="status_bar_volte">VoLTE</string>
 </resources>

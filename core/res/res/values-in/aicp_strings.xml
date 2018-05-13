@@ -20,16 +20,22 @@
   <string name="adb_not_connected_notification_title">ADB tidak aktif</string>
   <string name="adb_active_custom_tile_not_connected">tidak aktif</string>
   <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
+  <string name="system_error_vendorprint">Gambar vendor Anda tidak sesuai dengan sistem. Silahkan flash gambar vendor <xliff:g id="string">%s</xliff:g> untuk perangkat Anda</string>
   <!-- Button to soft reboot the SystemUI, within the Reboot Options dialog -->
   <string name="reboot_systemui">Mulai ulang SystemUI</string>
   <!-- label for item that screenrecord in phone options dialog -->
+  <string name="global_action_screenrecord">Rekam Layar</string>
   <!-- Screenshoot edit action -->
   <string name="edit">Sunting</string>
   <!-- Singlehanded Mode -->
+  <string name="singlehandmode_click_hint_message">Sentuh bagian luar layar untuk keluar dari tampilan layar mini</string>
   <!-- Powermenu Torch -->
   <string name="global_action_torch">Senter</string>
   <!-- label for item that takes On-The-Go in the phone options dialog -->
+  <string name="global_action_onthego">Mode On-The-Go</string>
   <!-- Billing bypass (eg. Lucky Patcher, Uret) dialog -->
+  <string name="billing_bypass_installed_title">Penagihan Patcher ditemukan!</string>
+  <string name="billing_bypass_installed_message">Dengan ini saya mengakui bahwa sistem ini menjalankan tambalan bypass penagihan aplikasi seperti Lucky Patcher atau Uret. Saya secara aktif melukai pengembang aplikasi dengan menggunakan perangkat lunak tersebut.</string>
   <string name="billing_bypass_acknowledge">Saya mengakui.</string>
   <!-- Pocket Lock -->
   <string name="pocket_lock_message_long_press">Tekan lama tombol daya untuk berinteraksi</string>

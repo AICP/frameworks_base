@@ -18,17 +18,26 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- ADB enabled, but not connected notification title -->
   <string name="adb_not_connected_notification_title">ADB غير نشط</string>
+  <string name="adb_active_custom_tile_not_connected">غير فعال</string>
   <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
+  <string name="system_error_vendorprint">صورة المورد الخاص بك لا يتطابق مع هذا النظام. الرجاء تنصيب <xliff:g id="string">%s</xliff:g> صورة المورد لجهازك</string>
   <!-- Button to soft reboot the SystemUI, within the Reboot Options dialog -->
+  <string name="reboot_systemui">اعادة تشغيل واجهة النظام</string>
   <!-- label for item that screenrecord in phone options dialog -->
+  <string name="global_action_screenrecord">تسجيل الشاشة</string>
   <!-- Screenshoot edit action -->
+  <string name="edit">تحرير</string>
   <!-- Singlehanded Mode -->
   <!-- Powermenu Torch -->
+  <string name="global_action_torch">المصباح</string>
   <!-- label for item that takes On-The-Go in the phone options dialog -->
+  <string name="global_action_onthego">نمط الخروج</string>
   <!-- Billing bypass (eg. Lucky Patcher, Uret) dialog -->
   <string name="billing_bypass_installed_title">العثور على \'Billing Patcher\'</string>
+  <string name="billing_bypass_installed_message">أقر بموجب هذا بأن هذا النظام يشغل تطبيق لتجاوز الفواتير مثل Lucky Patcher أو Uret. إنني أضر بشكل فعال بمطوري التطبيقات باستخدام البرنامج المذكور.</string>
   <string name="billing_bypass_acknowledge">أعترف</string>
   <!-- Pocket Lock -->
+  <string name="pocket_lock_message_long_press">اضغط زر الطاقة مطولا للتفاعل</string>
   <!-- Defines the sysfs attribute path used by pocket bridge
         to communicate pocket state to the pocket judge kernel driver. -->
 </resources>

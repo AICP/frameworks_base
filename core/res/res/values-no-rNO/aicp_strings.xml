@@ -17,15 +17,27 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- ADB enabled, but not connected notification title -->
+  <string name="adb_not_connected_notification_title">ADB inaktiv</string>
+  <string name="adb_active_custom_tile_not_connected">inaktiv</string>
   <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
+  <string name="system_error_vendorprint">Produktinstallasjonsfilen stemmer ikke med systemet. Vennligst installer <xliff:g id="string">%s</xliff:g> produktinstallasjonsfil for din enhet</string>
   <!-- Button to soft reboot the SystemUI, within the Reboot Options dialog -->
+  <string name="reboot_systemui">Restart systemgrensesnittet</string>
   <!-- label for item that screenrecord in phone options dialog -->
+  <string name="global_action_screenrecord">Skjermopptak</string>
   <!-- Screenshoot edit action -->
+  <string name="edit">Rediger</string>
   <!-- Singlehanded Mode -->
   <!-- Powermenu Torch -->
+  <string name="global_action_torch">Lommelykt</string>
   <!-- label for item that takes On-The-Go in the phone options dialog -->
+  <string name="global_action_onthego">\"På farten\"-modus</string>
   <!-- Billing bypass (eg. Lucky Patcher, Uret) dialog -->
+  <string name="billing_bypass_installed_title">App-betaling Patcher funnet!</string>
+  <string name="billing_bypass_installed_message">Jeg bekrefter hermed at dette systemet omgår appfakturering ved å kjøre en patcher som Lucky Patcher eller Uret. Jeg skader apputviklerne ved å bruke nevnte programvare.</string>
+  <string name="billing_bypass_acknowledge">Jeg godkjenner.</string>
   <!-- Pocket Lock -->
+  <string name="pocket_lock_message_long_press">Langtrykk på strømknappen for å samhandle</string>
   <!-- Defines the sysfs attribute path used by pocket bridge
         to communicate pocket state to the pocket judge kernel driver. -->
 </resources>

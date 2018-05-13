@@ -17,15 +17,27 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- ADB enabled, but not connected notification title -->
+  <string name="adb_not_connected_notification_title">ADB 未启用</string>
+  <string name="adb_active_custom_tile_not_connected">未启用</string>
   <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
+  <string name="system_error_vendorprint">您的初始设备制造商镜像与系统不匹配。请为您的设备刷入 <xliff:g id="string">%s </xliff:g> 初始设备制造商镜像</string>
   <!-- Button to soft reboot the SystemUI, within the Reboot Options dialog -->
+  <string name="reboot_systemui">重启系统界面</string>
   <!-- label for item that screenrecord in phone options dialog -->
+  <string name="global_action_screenrecord">屏幕录像</string>
   <!-- Screenshoot edit action -->
+  <string name="edit">编辑</string>
   <!-- Singlehanded Mode -->
   <!-- Powermenu Torch -->
+  <string name="global_action_torch">手电筒</string>
   <!-- label for item that takes On-The-Go in the phone options dialog -->
+  <string name="global_action_onthego">行走模式 (On-The-go)</string>
   <!-- Billing bypass (eg. Lucky Patcher, Uret) dialog -->
+  <string name="billing_bypass_installed_title">账单补丁找到了</string>
+  <string name="billing_bypass_installed_message">我特此承认, 这个系统运行一个应用程序计费旁路补丁像幸运补丁或 Uret。我通过使用所说的软件来积极伤害应用程序的开发者。</string>
+  <string name="billing_bypass_acknowledge">我承认。</string>
   <!-- Pocket Lock -->
+  <string name="pocket_lock_message_long_press">长按电源键来交互</string>
   <!-- Defines the sysfs attribute path used by pocket bridge
         to communicate pocket state to the pocket judge kernel driver. -->
 </resources>

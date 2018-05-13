@@ -17,35 +17,97 @@
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Screenrecord Notification Ticker -->
+  <string name="screenrecord_notif_ticker">يتم تسجيل الشاشة</string>
   <!-- Screenrecord notification title -->
+  <string name="screenrecord_notif_title">جارٍ تسجيل الشاشة</string>
   <!-- Screenrecord notification action: Stop -->
+  <string name="screenrecord_notif_stop">إيقاف</string>
   <!-- Screenrecord notification action: show/hide pointer -->
+  <string name="screenrecord_notif_pointer_on">إظهار المؤشر</string>
+  <string name="screenrecord_notif_pointer_off">إخفاء المؤشر</string>
   <!-- Screen record notification error title -->
+  <string name="screenrecord_notif_error">لا يمكن تسجيل الشاشة</string>
   <!-- Quick Settings tiles -->
+  <string name="quick_settings_screenshot_label">تصوير الشاشة</string>
+  <string name="quick_settings_region_screenshot_label">صورة جزئية للشاشة</string>
   <string name="quick_settings_network_adb_label">ADB عبر الشبكة</string>
+  <string name="quick_settings_sync_label">مزامنة</string>
+  <string name="accessibility_quick_settings_sync_off">إيقاف المزامنة</string>
+  <string name="accessibility_quick_settings_sync_on">تفعيل المزامنة</string>
+  <string name="accessibility_quick_settings_sync_changed_off">تم إيقاف المزامنة</string>
+  <string name="accessibility_quick_settings_sync_changed_on">تم تشغيل المزامنة</string>
+  <string name="quick_settings_expanded_desktop_label">سطح المكتب الموسع</string>
+  <string name="quick_settings_expanded_desktop">توسيع</string>
+  <string name="quick_settings_expanded_desktop_off">عادي</string>
+  <string name="quick_settings_reboot_label">إعادة التشغيل</string>
   <string name="quick_settings_reboot_recovery_label">الإسترداد (ريكفري)</string>
   <string name="accessibility_quick_settings_usb_tether_off">الإنترنت عبر USB لا يعمل</string>
   <string name="accessibility_quick_settings_usb_tether_on">الانترنت عبر USB يعمل</string>
   <string name="accessibility_quick_settings_usb_tether_changed_off">تم إيقاف الانترنت عبر USB</string>
   <string name="accessibility_quick_settings_usb_tether_changed_on">تم تشغيل الانترنت عبر USB</string>
   <string name="quick_settings_usb_tether_label">الانترنت عبر USB</string>
+  <string name="quick_settings_music_label">موسيقى</string>
+  <string name="quick_settings_music_play">تشغيل</string>
+  <string name="quick_settings_music_pause">إيقاف مؤقت</string>
+  <string name="quick_settings_ime_tile_label">طريقة الإدخال</string>
+  <string name="quick_settings_caffeine_label">وضع الكافيين</string>
+  <string name="accessibility_quick_settings_caffeine_off">كافيين معطل</string>
+  <string name="accessibility_quick_settings_caffeine_on">كافيين مفعل</string>
+  <string name="quick_settings_screenrecord">تسجيل الشاشة</string>
+  <string name="quick_settings_screenrecord_on">جار التسجيل...</string>
+  <string name="quick_settings_heads_up_label">الإشعارات العائمة</string>
+  <string name="accessibility_quick_settings_heads_up_off">إيقاف الإشعارات العائمة</string>
+  <string name="accessibility_quick_settings_heads_up_on">تشغيل الإشعارات العائمة</string>
+  <string name="accessibility_quick_settings_heads_up_changed_off">الإشعارات العائمة معطلة</string>
+  <string name="accessibility_quick_settings_heads_up_changed_on">الإشعارات العائمة مفعلة</string>
   <string name="quick_settings_pulse_enabled">خاصية Pulse تعمل</string>
+  <string name="quick_settings_pulse_disabled">لا مؤثرات بصرية</string>
+  <string name="quick_settings_pulse_label">النبض</string>
+  <string name="accessibility_quick_settings_pulse_off">النبض لا يعمل</string>
+  <string name="accessibility_quick_settings_pulse_on">النبض يعمل</string>
+  <string name="accessibility_quick_settings_pulse_changed_off">النبض معطل</string>
+  <string name="accessibility_quick_settings_pulse_changed_on">النبض مفعل</string>
+  <string name="quick_settings_locale_label">اللّغة</string>
+  <string name="quick_settings_locale_more_locales_toast">قم بإعداد أكثر من لغة لتمكين مفتاح التبديل</string>
+  <string name="quick_settings_sound_label">الصوت</string>
+  <string name="quick_settings_sound_ring">رنين</string>
   <string name="quick_settings_sound_vibrate">إهتزاز</string>
+  <string name="quick_settings_sound_silent">صامت</string>
   <!-- Screenshot Delete Toast -->
+  <string name="delete_screenshot_toast">تم حذف لقطة الشاشة</string>
   <!-- Navigation bar Tile -->
+  <string name="quick_settings_navigation_bar">شريط التنقل</string>
+  <string name="quick_settings_smartbar">الشريط الذكي</string>
   <string name="quick_settings_fling">الإندفاع</string>
   <!-- Heads up snooze toast -->
+  <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - الاشعارات العائمة غافية لدقيقة واحدة.</string>
+  <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - الاشعارات العائمة غافية ل <xliff:g id="number">%d</xliff:g> دقائق.</string>
   <!-- Screenshot action -->
+  <string name="screenshot_abort_title">لم يتم تصوير الشاشة</string>
+  <string name="screenshot_abort_text">تم قطع العملية</string>
   <!-- Aicp Extras Tile -->
   <string name="quick_aicp_extras_label">إضافات Aicp</string>
   <string name="quick_aicp_extras_toast">ههه, هل ظننت أن الضغط مطولا قد يأخذك لخيارات أخرى!!!</string>
   <!-- App sidebar -->
+  <string name="default_folder_text">مجلد</string>
   <string name="title_activity_sidebar_configuration">إعدادات محتوى Appbar</string>
+  <string name="action_save">حفظ</string>
+  <string name="toast_items_saved">تمّ حفظ عناصر شريط التّطبيقات.</string>
+  <string name="content_setup_instructions">يمكن إضافة العناصر إلى شريط التّطبيقات عن طريق الضغط طويلا ً على العنصر من الجهة اليمنى وسحبه إلى شريط التّطبيقات. \n\n يمكن جمع العناصر في مجلّدات عن طريق إسقاط العنصر فوق عنصر آخر موجود في شريط التّطبيقات. \n\n لإزالة عنصر، قم بسحبه خارج الـ \@appbar.</string>
+  <string name="content_setup_dismiss">متابعة</string>
+  <string name="toast_not_installed">التطبيق غير مثبّت</string>
   <!-- PA Pie controls -->
+  <string name="pie_hour_format_12">hh:mm</string>
+  <string name="pie_hour_format_24">HH:mm</string>
+  <string name="pie_am_pm">أ</string>
   <!-- PA Pie Tile -->
+  <string name="quick_settings_pie">نمط الدائرة</string>
+  <string name="quick_settings_pie_off">نمط الدائرة مقفل</string>
+  <string name="quick_settings_pie_on">نمط الدائرة مفعل</string>
   <!-- Kill app toast -->
   <string name="app_killed_message">التطبيق اوقف</string>
   <!-- Ambient Display Tile -->
+  <string name="quick_settings_ambient_display_label">إضاءة الشاشة عند وصول إشعار</string>
   <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_ambient_display_off">إضاءة الشاشة عند وصول إشعار موقف</string>
   <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
@@ -56,40 +118,128 @@
   <string name="accessibility_quick_settings_ambient_display_changed_on">تم تفعيل اضاءة الاشعارات.</string>
   <!-- Path data for Solid battery -->
   <!-- Application picker Tile -->
+  <string name="quick_settings_app_picker">اختيار التطبيقات</string>
   <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_running_services">فتح شاشة الخدمات المشغلة في الخلفية.</string>
   <!-- Path data for Aicp battery -->
   <!-- On The Go -->
   <string name="onthego_notif_ticker">وضع On-The-Go مفعل</string>
+  <string name="onthego_notif_title">تم تفعيل وضع On-The-Go</string>
+  <string name="onthego_notif_stop">إيقاف</string>
+  <string name="onthego_notif_options">الخيارات</string>
+  <string name="onthego_notif_error">فشل في تشغيل On-The-Go</string>
+  <string name="onthego_notif_restart">إعادة تشغيل On-The-Go</string>
+  <string name="onthego_notif_camera_changed">وضع الكاميرا تم تغييره</string>
+  <string name="onthego_transparency">الشفافية</string>
+  <string name="onthego_front_camera">استخدام الكاميرا الأمامية</string>
+  <string name="onthego_service_toggle">إعادة تشغيل الخدمة تلقائيا</string>
   <!-- To do: Add QS OnTheGo
     <string name="quick_settings_onthego_back">Rear Camera</string>
     <string name="quick_settings_onthego_front">Front Camera</string>-->
   <!-- Slim Recents -->
+  <string name="recents_multiwin_warning">جلسة النوافذ المتعددة نشطة حالياً.\n قم بالضغط على أحد التطبيقات لإرساءه الآن.</string>
+  <string name="recents_multiwin_nolastapp">لقد قمت بإغلاق كل التطبيقات الحديثة، الرجاء إختيار تطبيق من المُشغل أو من درج التطبيقات.</string>
+  <string name="slim_recent_keyguard">قم بفك قفل جهازك لعرض التطبيقات الحديثة</string>
+  <string name="slim_recent_pinned">قم بإلغاء تثبيت الشاشة لعرض التطبيقات الحديثة</string>
   <!-- Slim recents app sidebar queue app toast -->
+  <string name="toast_recents_queue_app">شغل %s بعد إغلاق التطبيقات الحديثة</string>
+  <string name="toast_recents_cancel_queued_app">إلغاء تشغيل التطبيق</string>
   <!-- Kill button in notification guts -->
+  <string name="force_stop_dlg_title">إيقاف بالقوة؟</string>
+  <string name="force_stop_dlg_text">في حالة فرض إيقاف التطبيق، ربما لا يعمل بشكل صحيح.</string>
+  <string name="dlg_cancel">إلغاء</string>
+  <string name="kill">إنهاء التطبيق</string>
   <!-- App circle sidebar -->
+  <string name="app_float_maximize_item_title">تكبير</string>
+  <string name="app_float_item_title">عرض عائم</string>
+  <string name="app_stop_item_title">إنهاء التطبيق</string>
   <!-- recents membar -->
+  <string name="recents_free_ram">الذاكرة المتبقية - %1$d ميجابايت</string>
   <!-- OmniJAWS -->
+  <string name="omnijaws_service_error">خطأ</string>
+  <string name="omnijaws_service_unkown">لا يوجد بيانات الطقس</string>
+  <string name="omnijaws_detail_header">الطقس</string>
+  <string name="omnijaws_label_default">الطقس</string>
+  <string name="omnijaws_current_text">الآن</string>
+  <string name="omnijaws_package_not_available">OmniJaws غير متاح</string>
+  <string name="omnijaws_service_error_long">خطأ في تحميل بيانات الطقس</string>
+  <string name="omnijaws_service_disabled">تم تعطيل الخدمة</string>
   <!-- Weather string format in expanded statusbar header -->
   <!-- Off/On/Toggle -->
+  <string name="off">مغلق</string>
+  <string name="on">مفعل</string>
+  <string name="toggle">تبديل</string>
   <!-- Dialog Cancel/OK -->
+  <string name="cancel">إلغاء</string>
+  <string name="dlg_ok">موافق</string>
+  <string name="yes">نعم</string>
+  <string name="no">لا</string>
   <!-- Aicp Shortcut Actions -->
+  <string name="shortcut_picker">اختصارات Aicp</string>
+  <string name="shortcut_rotation">الدوران</string>
+  <string name="shortcut_reboot">إعادة التشغيل</string>
   <string name="shortcut_recovery">الريكفري</string>
+  <string name="shortcut_screensleep">شاشة النوم</string>
+  <string name="shortcut_volume">لوحة تحكم الصوت</string>
   <string name="shortcut_restart_ui">اعادة تشغيل واجهة النظام</string>
+  <string name="shortcut_powermenu">قائمة التشغيل</string>
+  <string name="shortcut_flashlight">المصباح</string>
+  <string name="shortcut_clear_notifications">مسح التنبيهات</string>
+  <string name="shortcut_toggle_title">لتنفيذ إجراء</string>
   <!-- MagiskManager QS Tile -->
   <string name="quick_magiskmanager_label">Magisk</string>
   <string name="quick_magiskmanager_na">لم يتم تثبيت Magisk! قم بتثبيت أولاً.</string>
   <!-- Compass QS Tile -->
+  <string name="quick_settings_compass_label">البوصلة</string>
+  <string name="quick_settings_compass_init">تهيئة/u2026</string>
+  <string name="accessibility_quick_settings_compass_off">البوصلة لا تعمل.</string>
+  <string name="accessibility_quick_settings_compass_on">البوصلة تعمل.</string>
+  <string name="accessibility_quick_settings_compass_changed_off">تم تعطيل البوصلة.</string>
+  <string name="accessibility_quick_settings_compass_changed_on">تم تفعيل البوصلة.</string>
+  <string name="quick_settings_compass_N">الشمال</string>
+  <string name="quick_settings_compass_NE">الشمال الشرقي</string>
+  <string name="quick_settings_compass_E">شرق</string>
+  <string name="quick_settings_compass_SE">الجنوب الشرقي</string>
+  <string name="quick_settings_compass_S">الجنوب</string>
+  <string name="quick_settings_compass_SW">الجنوب الغربي</string>
+  <string name="quick_settings_compass_W">الغرب</string>
+  <string name="quick_settings_compass_NW">الشمال الغربي</string>
   <!-- Perf Profile Tile -->
+  <string name="qs_tile_performance">نمط البطارية</string>
   <!-- Content description of the battery mode tile in quick settings when on, power save mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_pwrsv">نمط البطارية: وضعية توفير الطاقة.</string>
   <!-- Content description of the battery mode tile in quick settings when on, balanced mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_bal">نمط البطارية: الوضعية المتوازنة.</string>
   <!-- Content description of the battery mode tile in quick settings when on, performance mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_perf">نمط البطارية: وضعية الأداء.</string>
   <!-- Content description of the battery mode tile in quick settings when on, efficiency mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_bias_power">نمط البطارية: وضعية الكفاءة.</string>
   <!-- Content description of the battery mode tile in quick settings when on, quick mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_bias_perf">نمط البطارية: وضعية السرعة.</string>
   <!-- Announcement made when the battery mode tile changes to power save (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_changed_pwrsv">نمط البطارية تغير لوضعية توفير الطاقة.</string>
   <!-- Announcement made when the battery mode tile changes to balanced (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_changed_bal">نمط البطارية تغير لوضعية التوازن.</string>
   <!-- Announcement made when the battery mode tile changes to performance (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_changed_perf">نمط البطارية تغير لوضعية الأداء.</string>
   <!-- Announcement made when the battery mode tile changes to efficiency (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_changed_bias_power">نمط البطارية تغير لوضعية الكفاءة.</string>
   <!-- Announcement made when the battery mode tile changes to quick (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_changed_bias_perf">نمط البطارية تغير لوضعية السرعة.</string>
+  <string name="quick_settings_performance_profile_detail_title">نمط البطارية</string>
   <!-- Live display tile -->
+  <string name="quick_settings_live_display_off">إيقاف تشغيل LiveDisplay.</string>
+  <string name="quick_settings_live_display_auto">LiveDisplay: الوضع التلقائي.</string>
+  <string name="quick_settings_live_display_day">LiveDisplay: الوضع النهاري.</string>
+  <string name="quick_settings_live_display_night">LiveDisplay: الوضع الليلي.</string>
+  <string name="quick_settings_live_display_outdoor">LiveDisplay: وضع الأماكن المفتوحة.</string>
+  <string name="quick_settings_live_display_changed_off">تم إيقاف تشغيل LiveDisplay.</string>
+  <string name="quick_settings_live_display_changed_auto">تم تغيير LiveDisplay إلى الوضع التلقائي.</string>
+  <string name="quick_settings_live_display_changed_day">تم تغيير LiveDisplay إلى الوضع النهاري.</string>
+  <string name="quick_settings_live_display_changed_night">تم تغيير LiveDisplay إلى الوضع الليلي.</string>
+  <string name="quick_settings_live_display_changed_outdoor">تم تغيير LiveDisplay إلى وضع الأماكن المفتوحة.</string>
+  <string name="accessibility_data_sim">شريحة البيانات الحالية</string>
+  <string name="data_switch_started">جارٍ تبديل شريحة SIM للبيانات، قد يستغرق هذا مدة تصل إلى دقيقة...</string>
   <!-- volte icon switch -->
+  <string name="status_bar_volte">VoLTE</string>
 </resources>

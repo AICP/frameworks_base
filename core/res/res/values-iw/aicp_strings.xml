@@ -17,15 +17,20 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- ADB enabled, but not connected notification title -->
+  <string name="adb_active_custom_tile_not_connected">לא פעיל</string>
   <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
   <!-- Button to soft reboot the SystemUI, within the Reboot Options dialog -->
   <!-- label for item that screenrecord in phone options dialog -->
+  <string name="global_action_screenrecord">הקלטת מסך</string>
   <!-- Screenshoot edit action -->
   <!-- Singlehanded Mode -->
   <!-- Powermenu Torch -->
+  <string name="global_action_torch">פנס</string>
   <!-- label for item that takes On-The-Go in the phone options dialog -->
   <!-- Billing bypass (eg. Lucky Patcher, Uret) dialog -->
+  <string name="billing_bypass_acknowledge">אני מסכים.</string>
   <!-- Pocket Lock -->
+  <string name="pocket_lock_message_long_press">לחיצה ארוכה על כפתור ההפעלה ליצירת אינטראקציה</string>
   <!-- Defines the sysfs attribute path used by pocket bridge
         to communicate pocket state to the pocket judge kernel driver. -->
 </resources>

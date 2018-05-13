@@ -17,15 +17,28 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- ADB enabled, but not connected notification title -->
+  <string name="adb_not_connected_notification_title">ADB inaktív</string>
+  <string name="adb_active_custom_tile_not_connected">inaktív</string>
   <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
+  <string name="system_error_vendorprint">Úgy tűnik a gyártói képe elavult, nem egyezik a rendszerrel. Kérjük, frissítse a <xliff:g id="string">%s</xliff:g> gyártói képre a készülékét</string>
   <!-- Button to soft reboot the SystemUI, within the Reboot Options dialog -->
+  <string name="reboot_systemui">Rendszer felhasználói felület újraindítása</string>
   <!-- label for item that screenrecord in phone options dialog -->
+  <string name="global_action_screenrecord">Képernyőfelvétel</string>
   <!-- Screenshoot edit action -->
+  <string name="edit">Szerkesztés</string>
   <!-- Singlehanded Mode -->
+  <string name="singlehandmode_click_hint_message">Koppintson a képernyőn kívülre a mini képernyőnézetből való kilépéshez</string>
   <!-- Powermenu Torch -->
+  <string name="global_action_torch">Zseblámpa</string>
   <!-- label for item that takes On-The-Go in the phone options dialog -->
+  <string name="global_action_onthego">Menet közben mód</string>
   <!-- Billing bypass (eg. Lucky Patcher, Uret) dialog -->
+  <string name="billing_bypass_installed_title">Fizetés- és reklámelkerülő alkalmazás észlelve!</string>
+  <string name="billing_bypass_installed_message">Ezúton tudomásul veszem, hogy a készülékemen fizetés- és reklámelkerülő alkalmazás fut, mint például Lucky Patcher vagy Uret. Az említett alkalmazás használatával aktívan károkat okozok a szoftverek fejlesztőinek.</string>
+  <string name="billing_bypass_acknowledge">Tudomásul veszem.</string>
   <!-- Pocket Lock -->
+  <string name="pocket_lock_message_long_press">Feloldáshoz nyomja hosszan a bekapcsoló gombot</string>
   <!-- Defines the sysfs attribute path used by pocket bridge
         to communicate pocket state to the pocket judge kernel driver. -->
 </resources>

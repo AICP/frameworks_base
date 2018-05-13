@@ -17,48 +17,11 @@
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Screenrecord Notification Ticker -->
-  <string name="screenrecord_notif_ticker">המסך מוקלט</string>
   <!-- Screenrecord notification title -->
-  <string name="screenrecord_notif_title">מקליט מסך</string>
   <!-- Screenrecord notification action: Stop -->
-  <string name="screenrecord_notif_stop">עצור</string>
   <!-- Screenrecord notification action: show/hide pointer -->
-  <string name="screenrecord_notif_pointer_on">הראה עצה</string>
-  <string name="screenrecord_notif_pointer_off">הסתר עצה</string>
   <!-- Screen record notification error title -->
-  <string name="screenrecord_notif_error">לא ניתן להקליט מסך</string>
   <!-- Quick Settings tiles -->
-  <string name="quick_settings_screenshot_label">צילום מסך</string>
-  <string name="quick_settings_region_screenshot_label">צילום מסך חלקי</string>
-  <string name="quick_settings_network_adb_label">ADB ברשת</string>
-  <string name="quick_settings_sync_label">סנכרון</string>
-  <string name="accessibility_quick_settings_sync_off">סנכרון כבוי</string>
-  <string name="accessibility_quick_settings_sync_on">סנכרון פעיל</string>
-  <string name="accessibility_quick_settings_sync_changed_off">סנכרון כובה</string>
-  <string name="accessibility_quick_settings_sync_changed_on">סנכון הופעל</string>
-  <string name="quick_settings_expanded_desktop_label">שולחן עבודה מורחב</string>
-  <string name="quick_settings_expanded_desktop">מורחב</string>
-  <string name="quick_settings_expanded_desktop_off">רגיל</string>
-  <string name="quick_settings_reboot_label">אתחול</string>
-  <string name="quick_settings_reboot_recovery_label">שחזור</string>
-  <string name="quick_settings_music_label">מוזיקה</string>
-  <string name="quick_settings_music_play">נגן</string>
-  <string name="quick_settings_music_pause">עצור</string>
-  <string name="quick_settings_ime_tile_label">שיטת קלט</string>
-  <string name="quick_settings_caffeine_label">קפאין</string>
-  <string name="accessibility_quick_settings_caffeine_off">קפאין כבוי</string>
-  <string name="accessibility_quick_settings_caffeine_on">קפאין פועל</string>
-  <string name="quick_settings_screenrecord">הקלטת מסך</string>
-  <string name="quick_settings_screenrecord_on">מקליט ...</string>
-  <string name="quick_settings_heads_up_label">התראה</string>
-  <string name="accessibility_quick_settings_heads_up_off">התראה כבויה</string>
-  <string name="accessibility_quick_settings_heads_up_on">התראה פועלת</string>
-  <string name="accessibility_quick_settings_heads_up_changed_off">התראה כובתה</string>
-  <string name="accessibility_quick_settings_heads_up_changed_on">התראה הודלקה</string>
-  <string name="quick_settings_pulse_enabled">דופק מאופשר</string>
-  <string name="quick_settings_sound_label">צליל</string>
-  <string name="quick_settings_sound_ring">צלצול</string>
-  <string name="quick_settings_sound_vibrate">רטט</string>
   <!-- Screenshot Delete Toast -->
   <!-- Navigation bar Tile -->
   <!-- Heads up snooze toast -->
@@ -93,19 +56,7 @@
   <!-- Aicp Shortcut Actions -->
   <!-- MagiskManager QS Tile -->
   <!-- Compass QS Tile -->
-  <string name="accessibility_quick_settings_compass_off">מצפן כבוי.</string>
-  <string name="accessibility_quick_settings_compass_changed_off">מצפן כובה.</string>
-  <string name="accessibility_quick_settings_compass_changed_on">מצפן הודלק.</string>
-  <string name="quick_settings_compass_N">צ</string>
-  <string name="quick_settings_compass_NE">צ.מז.</string>
-  <string name="quick_settings_compass_E">מז</string>
-  <string name="quick_settings_compass_SE">ד.מז</string>
-  <string name="quick_settings_compass_S">ד</string>
-  <string name="quick_settings_compass_SW">ד.מע</string>
-  <string name="quick_settings_compass_W">מע</string>
-  <string name="quick_settings_compass_NW">צ.מע</string>
   <!-- Perf Profile Tile -->
-  <string name="qs_tile_performance">מצב סוללה</string>
   <!-- Content description of the battery mode tile in quick settings when on, power save mode (not shown on the screen). [CHAR LIMIT=NONE] -->
   <!-- Content description of the battery mode tile in quick settings when on, balanced mode (not shown on the screen). [CHAR LIMIT=NONE] -->
   <!-- Content description of the battery mode tile in quick settings when on, performance mode (not shown on the screen). [CHAR LIMIT=NONE] -->

@@ -76,8 +76,8 @@
   <!-- Screenshot Delete Toast -->
   <string name="delete_screenshot_toast">Snímek obrazovky odstraněn</string>
   <!-- Navigation bar Tile -->
-  <string name="quick_settings_navigation_bar">Navigační lišta</string>
-  <string name="quick_settings_smartbar">Chytrá lišta</string>
+  <string name="quick_settings_navigation_bar">Navigační panel</string>
+  <string name="quick_settings_smartbar">SmartBar</string>
   <string name="quick_settings_fling">Fling</string>
   <!-- Heads up snooze toast -->
   <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Plovoucí oznámení bylo odloženo po dobu 1 minuty.</string>

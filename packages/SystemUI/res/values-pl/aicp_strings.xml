@@ -17,71 +17,185 @@
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Screenrecord Notification Ticker -->
+  <string name="screenrecord_notif_ticker">Ekran jest nagrywany</string>
   <!-- Screenrecord notification title -->
+  <string name="screenrecord_notif_title">Nagrywanie ekranu</string>
   <!-- Screenrecord notification action: Stop -->
+  <string name="screenrecord_notif_stop">Stop</string>
   <!-- Screenrecord notification action: show/hide pointer -->
+  <string name="screenrecord_notif_pointer_on">Pokaż wskaźnik</string>
+  <string name="screenrecord_notif_pointer_off">Ukryj wskaźnik</string>
   <!-- Screen record notification error title -->
+  <string name="screenrecord_notif_error">Nie można nagrać ekranu</string>
   <!-- Quick Settings tiles -->
+  <string name="quick_settings_screenshot_label">Zrzut ekranu</string>
+  <string name="quick_settings_region_screenshot_label">Częściowy zrzut ekranu</string>
   <string name="quick_settings_network_adb_label">ADB przez sieć</string>
+  <string name="quick_settings_sync_label">Synchronizacja</string>
+  <string name="accessibility_quick_settings_sync_off">Synchronizacja wył</string>
+  <string name="accessibility_quick_settings_sync_on">Synchronizacja wł</string>
+  <string name="accessibility_quick_settings_sync_changed_off">Synchronizacja została wyłączona</string>
+  <string name="accessibility_quick_settings_sync_changed_on">Synchronizacja została włączona</string>
+  <string name="quick_settings_expanded_desktop_label">Tryb rozszerzonego pulpitu</string>
+  <string name="quick_settings_expanded_desktop">Rozszerzony</string>
+  <string name="quick_settings_expanded_desktop_off">Normalny</string>
+  <string name="quick_settings_reboot_label">Uruchom ponownie</string>
   <string name="quick_settings_reboot_recovery_label">Recovery</string>
   <string name="accessibility_quick_settings_usb_tether_off">Tethering przez USB wył</string>
   <string name="accessibility_quick_settings_usb_tether_on">Tethering przez USB wł</string>
   <string name="accessibility_quick_settings_usb_tether_changed_off">Tethering przez USB został wył.</string>
   <string name="accessibility_quick_settings_usb_tether_changed_on">Tethering przez USB został wł.</string>
   <string name="quick_settings_usb_tether_label">Tethering przez USB</string>
+  <string name="quick_settings_music_label">Muzyka</string>
+  <string name="quick_settings_music_play">Odtwórz</string>
+  <string name="quick_settings_music_pause">Zatrzymaj</string>
+  <string name="quick_settings_ime_tile_label">Metoda wprowadzania</string>
+  <string name="quick_settings_caffeine_label">Timer</string>
+  <string name="accessibility_quick_settings_caffeine_off">Timer wył</string>
+  <string name="accessibility_quick_settings_caffeine_on">Timer wł</string>
+  <string name="quick_settings_screenrecord">Nagrywanie ekranu</string>
+  <string name="quick_settings_screenrecord_on">Nagrywanie...</string>
+  <string name="quick_settings_heads_up_label">Wyskakujące powiadomienia</string>
+  <string name="accessibility_quick_settings_heads_up_off">Wyskakujące powiadomienia wył</string>
+  <string name="accessibility_quick_settings_heads_up_on">Wyskakujące powiadomienia wł</string>
+  <string name="accessibility_quick_settings_heads_up_changed_off">Wyskakujące powiadomienia zostały wyłączone</string>
+  <string name="accessibility_quick_settings_heads_up_changed_on">Wyskakujące powiadomienia włączone</string>
   <string name="quick_settings_pulse_enabled">Pulse włączony</string>
+  <string name="quick_settings_pulse_disabled">Brak wizualizacji</string>
   <string name="quick_settings_pulse_label">Pulse</string>
   <string name="accessibility_quick_settings_pulse_off">Pulse wyłączony</string>
   <string name="accessibility_quick_settings_pulse_on">Pulse włączony</string>
   <string name="accessibility_quick_settings_pulse_changed_off">Pulse wyłączony</string>
   <string name="accessibility_quick_settings_pulse_changed_on">Pulse włączony</string>
+  <string name="quick_settings_locale_label">Język</string>
+  <string name="quick_settings_locale_more_locales_toast">Należy skonfigurować wiele języków, aby włączyć funkcję przełączania</string>
+  <string name="quick_settings_sound_label">Dźwięk</string>
+  <string name="quick_settings_sound_ring">Dzwonek</string>
+  <string name="quick_settings_sound_vibrate">Wibracje</string>
+  <string name="quick_settings_sound_silent">Tryb cichy</string>
   <!-- Screenshot Delete Toast -->
+  <string name="delete_screenshot_toast">Zrzut ekranu usunięty</string>
   <!-- Navigation bar Tile -->
+  <string name="quick_settings_navigation_bar">Pasek nawigacji</string>
   <string name="quick_settings_smartbar">SmartBar</string>
   <string name="quick_settings_fling">Fling</string>
   <!-- Heads up snooze toast -->
+  <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s </xliff:g> - Powiadomienia z podglądem w trybie drzemki przez 1 minutę.</string>
+  <string name="heads_up_snooze_message"><xliff:g id="string">%s </xliff:g> - Wyskakujące powiadomienia są uśpione na <xliff:g id="number">%d </xliff:g> minut.</string>
   <!-- Screenshot action -->
+  <string name="screenshot_abort_title">Nie wykonano zrzutu ekranu</string>
+  <string name="screenshot_abort_text">Operacja przerwana</string>
   <!-- Aicp Extras Tile -->
   <string name="quick_aicp_extras_label">Dodatki AICP</string>
   <string name="quick_aicp_extras_toast">LOL, czy ty naprawdę myślałeś, że długie kliknięcie przeniesie Cię?!</string>
   <!-- App sidebar -->
+  <string name="default_folder_text">Folder</string>
+  <string name="title_activity_sidebar_configuration">Zawartość paska aplikacji</string>
+  <string name="action_save">Zapisz</string>
+  <string name="toast_items_saved">Elementy paska aplikacji zostały zapisane.</string>
+  <string name="content_setup_instructions">Dodaj elementy poprzez długie przytrzymanie danej aplikacji po prawej stronie i przeciągnięcie jej do paska aplikacji.\n\nTwórz foldery poprzez przeciąganie jednej aplikacji na drugą.\n\nAby usunąć dany element, po prostu przeciągnij go poza obszar paska aplikacji.</string>
+  <string name="content_setup_dismiss">Dalej</string>
+  <string name="toast_not_installed">Aplikacja nie została zainstalowana</string>
   <!-- PA Pie controls -->
+  <string name="pie_hour_format_12">hh:mm</string>
+  <string name="pie_hour_format_24">HH:mm</string>
+  <string name="pie_am_pm">a</string>
   <!-- PA Pie Tile -->
+  <string name="quick_settings_pie">Pie</string>
+  <string name="quick_settings_pie_off">Pie off</string>
+  <string name="quick_settings_pie_on">Pie on</string>
   <!-- Kill app toast -->
+  <string name="app_killed_message">Aplikacja została zabita</string>
   <!-- Ambient Display Tile -->
+  <string name="quick_settings_ambient_display_label">Aktywny ekran</string>
   <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_ambient_display_off">Aktywny ekran wył.</string>
   <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_ambient_display_on">Aktywny ekran wł.</string>
   <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_ambient_display_changed_off">Ambient display wyłączony.</string>
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_ambient_display_changed_on">Ambient display włączony.</string>
   <!-- Path data for Solid battery -->
   <!-- Application picker Tile -->
+  <string name="quick_settings_app_picker">Wybór aplikacji</string>
   <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_running_services">Otwórz ekran Działających Usług.</string>
   <!-- Path data for Aicp battery -->
   <!-- On The Go -->
+  <string name="onthego_notif_ticker">Tryb \"W ruchu\" aktywowany</string>
+  <string name="onthego_notif_title">Tryb \"W ruchu\" jest aktywny</string>
+  <string name="onthego_notif_stop">Stop</string>
+  <string name="onthego_notif_options">Opcje</string>
+  <string name="onthego_notif_error">Nie można uruchomić trybu \"W ruchu\"</string>
+  <string name="onthego_notif_restart">Uruchom ponownie tryb \"W ruchu\"</string>
+  <string name="onthego_notif_camera_changed">Zmieniono tryb pracy kamery</string>
+  <string name="onthego_transparency">Przezroczystość</string>
+  <string name="onthego_front_camera">Użyj przedniej kamery</string>
+  <string name="onthego_service_toggle">Automatycznie restartuj usługę</string>
   <!-- To do: Add QS OnTheGo
     <string name="quick_settings_onthego_back">Rear Camera</string>
     <string name="quick_settings_onthego_front">Front Camera</string>-->
   <!-- Slim Recents -->
   <string name="recents_multiwin_warning">Sesja multi-okien jest już aktywna.\nPoprostu kliknij na aplikację, którą chcesz teraz zadokować.</string>
+  <string name="recents_multiwin_nolastapp">Usunąłeś wszystkie ostatnio otwierane aplikacje, proszę wybrać aplikację z ekranu startowego lub szuflady aplikacji.</string>
+  <string name="slim_recent_keyguard">Odblokuj urządzenie by zobaczyć ostatnie aplikacje</string>
+  <string name="slim_recent_pinned">Odepnij ekran by wyświetlić ostatnio uruchomione</string>
   <!-- Slim recents app sidebar queue app toast -->
+  <string name="toast_recents_queue_app">Uruchom %s po zamknięciu ostatnich</string>
+  <string name="toast_recents_cancel_queued_app">Anulowane uruchamianie aplikacji</string>
   <!-- Kill button in notification guts -->
+  <string name="force_stop_dlg_title">Wymusić zatrzymanie?</string>
+  <string name="force_stop_dlg_text">Jeśli wymusisz zatrzymanie aplikacji, może ona działać nieprawidłowo.</string>
+  <string name="dlg_cancel">Anuluj</string>
+  <string name="kill">Zabij aplikację</string>
   <!-- App circle sidebar -->
+  <string name="app_float_maximize_item_title">Powiększ</string>
+  <string name="app_float_item_title">Widok float</string>
+  <string name="app_stop_item_title">Zabij aplikację</string>
   <!-- recents membar -->
   <string name="recents_free_ram">%1$d MB wolnego RAMu</string>
   <!-- OmniJAWS -->
+  <string name="omnijaws_service_error">Błąd</string>
+  <string name="omnijaws_service_unkown">Brak danych o pogodzie</string>
+  <string name="omnijaws_detail_header">Pogoda</string>
+  <string name="omnijaws_label_default">Pogoda</string>
+  <string name="omnijaws_current_text">Teraz</string>
   <string name="omnijaws_package_not_available">OmniJaws jest nie dostępny</string>
+  <string name="omnijaws_service_error_long">Błąd podczas ładowania danych o pogodzie</string>
+  <string name="omnijaws_service_disabled">Usługa wyłączona</string>
   <!-- Weather string format in expanded statusbar header -->
   <!-- Off/On/Toggle -->
+  <string name="off">Wył</string>
+  <string name="on">Wł</string>
+  <string name="toggle">Przełącznik</string>
   <!-- Dialog Cancel/OK -->
+  <string name="cancel">Anuluj</string>
   <string name="dlg_ok">OK</string>
+  <string name="yes">Tak</string>
+  <string name="no">Nie</string>
   <!-- Aicp Shortcut Actions -->
   <string name="shortcut_picker">Skróty Aicp</string>
+  <string name="shortcut_rotation">Obrót</string>
+  <string name="shortcut_reboot">Uruchom ponownie</string>
   <string name="shortcut_recovery">Recovery</string>
+  <string name="shortcut_screensleep">Wyłącz ekran</string>
+  <string name="shortcut_volume">Panel głośności</string>
   <string name="shortcut_restart_ui">Zresetuj SystemUI</string>
+  <string name="shortcut_powermenu">Menu zasilania</string>
+  <string name="shortcut_flashlight">Latarka</string>
+  <string name="shortcut_clear_notifications">Wyczyść powiadomienia</string>
+  <string name="shortcut_toggle_title">Akcja do wykonania</string>
   <!-- MagiskManager QS Tile -->
   <string name="quick_magiskmanager_label">Magisk</string>
   <string name="quick_magiskmanager_na">Nie znaleziono Magisk Manager, proszę zainstalować.</string>
   <!-- Compass QS Tile -->
+  <string name="quick_settings_compass_label">Kompas</string>
+  <string name="quick_settings_compass_init">Inicjowanie</string>
+  <string name="accessibility_quick_settings_compass_off">Kompas wył.</string>
+  <string name="accessibility_quick_settings_compass_on">Kompas wł.</string>
+  <string name="accessibility_quick_settings_compass_changed_off">Kompas wyłączony.</string>
+  <string name="accessibility_quick_settings_compass_changed_on">Kompas włączony.</string>
   <string name="quick_settings_compass_N">płn</string>
   <string name="quick_settings_compass_NE">płn-wsch</string>
   <string name="quick_settings_compass_E">wsch</string>
@@ -91,16 +205,28 @@
   <string name="quick_settings_compass_W">zach</string>
   <string name="quick_settings_compass_NW">płn-zach</string>
   <!-- Perf Profile Tile -->
+  <string name="qs_tile_performance">Tryb baterii</string>
   <!-- Content description of the battery mode tile in quick settings when on, power save mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_pwrsv">Tryb baterii: oszczędzanie energii.</string>
   <!-- Content description of the battery mode tile in quick settings when on, balanced mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_bal">Tryb baterii: zrównoważony.</string>
   <!-- Content description of the battery mode tile in quick settings when on, performance mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_perf">Tryb baterii: wydajność.</string>
   <!-- Content description of the battery mode tile in quick settings when on, efficiency mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_bias_power">Tryb baterii: efektywność.</string>
   <!-- Content description of the battery mode tile in quick settings when on, quick mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_bias_perf">Tryb baterii: szybki.</string>
   <!-- Announcement made when the battery mode tile changes to power save (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_changed_pwrsv">Tryb baterii zmieniono na tryb oszczędzania energii.</string>
   <!-- Announcement made when the battery mode tile changes to balanced (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_changed_bal">Tryb baterii zmieniono na tryb zrównoważony.</string>
   <!-- Announcement made when the battery mode tile changes to performance (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_changed_perf">Tryb baterii zmieniono na tryb wydajności.</string>
   <!-- Announcement made when the battery mode tile changes to efficiency (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_changed_bias_power">Tryb baterii zmieniono na tryb efektywny.</string>
   <!-- Announcement made when the battery mode tile changes to quick (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_changed_bias_perf">Tryb baterii zmieniono na tryb szybki.</string>
+  <string name="quick_settings_performance_profile_detail_title">Tryb baterii</string>
   <!-- Live display tile -->
   <string name="quick_settings_live_display_off">LiveDisplay wyłączony.</string>
   <string name="quick_settings_live_display_auto">LiveDisplay: tryb automatyczny</string>
@@ -113,6 +239,7 @@
   <string name="quick_settings_live_display_changed_night">LiveDisplay zmieniony na tryb nocny</string>
   <string name="quick_settings_live_display_changed_outdoor">LiveDisplay przełączono na tryb na zewnątrz</string>
   <string name="accessibility_data_sim">Wybrana karta SIM do danych komórkowych</string>
+  <string name="data_switch_started">Przełączanie karty SIM do danych komórkowych, może potrwać to minutę...</string>
   <!-- volte icon switch -->
   <string name="status_bar_volte">VoLTE</string>
 </resources>

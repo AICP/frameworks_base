@@ -17,10 +17,16 @@
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Screenrecord Notification Ticker -->
+  <string name="screenrecord_notif_ticker">画面を録画中です</string>
   <!-- Screenrecord notification title -->
+  <string name="screenrecord_notif_title">画面を録画中</string>
   <!-- Screenrecord notification action: Stop -->
+  <string name="screenrecord_notif_stop">終了</string>
   <!-- Screenrecord notification action: show/hide pointer -->
+  <string name="screenrecord_notif_pointer_on">ポインタを表示</string>
+  <string name="screenrecord_notif_pointer_off">ポインタを隠す</string>
   <!-- Screen record notification error title -->
+  <string name="screenrecord_notif_error">スクリーンレコードを実行できません</string>
   <!-- Quick Settings tiles -->
   <string name="quick_settings_screenshot_label">スクリーンショット</string>
   <string name="quick_settings_region_screenshot_label">部分的なスクリーンショット</string>
@@ -91,6 +97,9 @@
   <string name="content_setup_dismiss">続ける</string>
   <string name="toast_not_installed">アプリがインストールされていません</string>
   <!-- PA Pie controls -->
+  <string name="pie_hour_format_12">hh:mm</string>
+  <string name="pie_hour_format_24">HH:mm</string>
+  <string name="pie_am_pm">a</string>
   <!-- PA Pie Tile -->
   <string name="quick_settings_pie">Pie</string>
   <string name="quick_settings_pie_off">Pie OFF</string>
@@ -128,6 +137,8 @@
     <string name="quick_settings_onthego_back">Rear Camera</string>
     <string name="quick_settings_onthego_front">Front Camera</string>-->
   <!-- Slim Recents -->
+  <string name="recents_multiwin_warning">マルチウィンドウセッションは既に有効になっています。\nアプリをタップするとドッキングします</string>
+  <string name="recents_multiwin_nolastapp">アプリ履歴がありません。ホームアプリかドロワーからアプリを起動してください</string>
   <string name="slim_recent_keyguard">履歴を表示するには端末をロック解除してください</string>
   <string name="slim_recent_pinned">履歴を表示するには画面の固定を解除してください</string>
   <!-- Slim recents app sidebar queue app toast -->
@@ -151,7 +162,10 @@
   <string name="omnijaws_label_default">天気</string>
   <string name="omnijaws_current_text">現在</string>
   <string name="omnijaws_package_not_available">OmniJaws がありません</string>
+  <string name="omnijaws_service_error_long">気象データの読み込みエラー</string>
+  <string name="omnijaws_service_disabled">サービスは無効です</string>
   <!-- Weather string format in expanded statusbar header -->
+  <string name="status_bar_weather_format"><xliff:g id="temp">%1$s</xliff:g></string>
   <!-- Off/On/Toggle -->
   <string name="off">OFF</string>
   <string name="on">ON</string>
@@ -174,28 +188,60 @@
   <string name="shortcut_clear_notifications">通知を消去</string>
   <string name="shortcut_toggle_title">実行するアクション</string>
   <!-- MagiskManager QS Tile -->
+  <string name="quick_magiskmanager_label">Magisk</string>
   <string name="quick_magiskmanager_na">Magisk Manager はインストールされていません！まずはインストールしてください</string>
   <!-- Compass QS Tile -->
   <string name="quick_settings_compass_label">コンパス</string>
+  <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
   <string name="quick_settings_compass_init">初期化中...</string>
   <string name="accessibility_quick_settings_compass_off">コンパスは OFF です。</string>
   <string name="accessibility_quick_settings_compass_on">コンパスは ON です。</string>
   <string name="accessibility_quick_settings_compass_changed_off">コンパスを OFF にしました。</string>
   <string name="accessibility_quick_settings_compass_changed_on">コンパスを ON にしました。</string>
+  <string name="quick_settings_compass_N">北</string>
+  <string name="quick_settings_compass_NE">北東</string>
+  <string name="quick_settings_compass_E">東</string>
+  <string name="quick_settings_compass_SE">南東</string>
+  <string name="quick_settings_compass_S">南</string>
+  <string name="quick_settings_compass_SW">南西</string>
+  <string name="quick_settings_compass_W">西</string>
+  <string name="quick_settings_compass_NW">北西</string>
   <!-- Perf Profile Tile -->
+  <string name="qs_tile_performance">バッテリーモード</string>
   <!-- Content description of the battery mode tile in quick settings when on, power save mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_pwrsv">バッテリーモード：省電力モード</string>
   <!-- Content description of the battery mode tile in quick settings when on, balanced mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_bal">バッテリーモード：バランスモード</string>
   <!-- Content description of the battery mode tile in quick settings when on, performance mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_perf">バッテリーモード：パフォーマンスモード</string>
   <!-- Content description of the battery mode tile in quick settings when on, efficiency mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_bias_power">バッテリーモード：効率モード</string>
   <!-- Content description of the battery mode tile in quick settings when on, quick mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_bias_perf">バッテリーモード：クイックモード</string>
   <!-- Announcement made when the battery mode tile changes to power save (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_changed_pwrsv">バッテリーモードは省電力モードに変更されました。</string>
   <!-- Announcement made when the battery mode tile changes to balanced (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_changed_bal">バッテリーモードはバランスモードに変更されました。</string>
   <!-- Announcement made when the battery mode tile changes to performance (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_changed_perf">バッテリーモードはパフォーマンスモードに変更されました。</string>
   <!-- Announcement made when the battery mode tile changes to efficiency (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_changed_bias_power">バッテリーモードは効率モードに変更されました。</string>
   <!-- Announcement made when the battery mode tile changes to quick (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_changed_bias_perf">バッテリーモードはクイックモードに変更されました。</string>
+  <string name="quick_settings_performance_profile_detail_title">バッテリーモード</string>
   <!-- Live display tile -->
   <string name="quick_settings_live_display_off">LiveDisplay は OFF です</string>
+  <string name="quick_settings_live_display_auto">LiveDisplay：自動モード</string>
+  <string name="quick_settings_live_display_day">LiveDisplay：昼モード</string>
+  <string name="quick_settings_live_display_night">LiveDisplay：夜間モード</string>
+  <string name="quick_settings_live_display_outdoor">LiveDisplay：屋外モード</string>
+  <string name="quick_settings_live_display_changed_off">LiveDisplay をオフにしました</string>
+  <string name="quick_settings_live_display_changed_auto">LiveDisplay を自動モードに変更しました</string>
+  <string name="quick_settings_live_display_changed_day">LiveDisplay を昼モードに変更しました</string>
+  <string name="quick_settings_live_display_changed_night">LiveDisplay を夜間モードに変更しました</string>
+  <string name="quick_settings_live_display_changed_outdoor">LiveDisplay を屋外モードに変更しました</string>
   <string name="accessibility_data_sim">現在のデータSIM</string>
   <string name="data_switch_started">データSIMの切り替え中です、しばらくお待ちください…</string>
   <!-- volte icon switch -->
+  <string name="status_bar_volte">VoLTE</string>
 </resources>

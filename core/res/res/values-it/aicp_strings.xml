@@ -28,6 +28,7 @@
   <!-- Screenshoot edit action -->
   <string name="edit">Modifica</string>
   <!-- Singlehanded Mode -->
+  <string name="singlehandmode_click_hint_message">Tocca al di fuori dello schermo per uscire dalla visualizzazione ridotta</string>
   <!-- Powermenu Torch -->
   <string name="global_action_torch">Torcia</string>
   <!-- label for item that takes On-The-Go in the phone options dialog -->

@@ -17,15 +17,27 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- ADB enabled, but not connected notification title -->
+  <string name="adb_not_connected_notification_title">ADB 비활성화</string>
+  <string name="adb_active_custom_tile_not_connected">비활성화됨</string>
   <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
+  <string name="system_error_vendorprint">제조사 이미지가 시스템과 일치하지 않습니다. 해당 기기에 맞는 <xliff:g id="string">%s</xliff:g> 제조사 이미지를 플래싱해 주십시오.</string>
   <!-- Button to soft reboot the SystemUI, within the Reboot Options dialog -->
+  <string name="reboot_systemui">시스템UI 다시 시작</string>
   <!-- label for item that screenrecord in phone options dialog -->
+  <string name="global_action_screenrecord">화면 녹화</string>
   <!-- Screenshoot edit action -->
+  <string name="edit">편집</string>
   <!-- Singlehanded Mode -->
   <!-- Powermenu Torch -->
+  <string name="global_action_torch">손전등</string>
   <!-- label for item that takes On-The-Go in the phone options dialog -->
+  <string name="global_action_onthego">On-The-Go 모드</string>
   <!-- Billing bypass (eg. Lucky Patcher, Uret) dialog -->
+  <string name="billing_bypass_installed_title">결제 패치 어플리케이션 발견!</string>
+  <string name="billing_bypass_installed_message">이 시스템은 Lucky Patcher나 Uret 같은 결제 우회 앱을 사용하고 있습니다. 이러한 소프트웨어를 사용하는 것으로 개발자들이 피해를 받고 있습니다.</string>
+  <string name="billing_bypass_acknowledge">확인</string>
   <!-- Pocket Lock -->
+  <string name="pocket_lock_message_long_press">전원 버튼을 길게 눌러 사용</string>
   <!-- Defines the sysfs attribute path used by pocket bridge
         to communicate pocket state to the pocket judge kernel driver. -->
 </resources>

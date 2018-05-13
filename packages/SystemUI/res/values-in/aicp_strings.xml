@@ -21,62 +21,225 @@
   <!-- Screenrecord notification title -->
   <string name="screenrecord_notif_title">Merekam layar</string>
   <!-- Screenrecord notification action: Stop -->
+  <string name="screenrecord_notif_stop">Hentikan</string>
   <!-- Screenrecord notification action: show/hide pointer -->
-  <string name="screenrecord_notif_pointer_on">Tampilkan pointer</string>
-  <string name="screenrecord_notif_pointer_off">Sembunyikan pointer</string>
+  <string name="screenrecord_notif_pointer_on">Tampilkan penunjuk</string>
+  <string name="screenrecord_notif_pointer_off">Sembunyikan penunjuk</string>
   <!-- Screen record notification error title -->
-  <string name="screenrecord_notif_error">Tidak dapat merekam tampilan layar</string>
+  <string name="screenrecord_notif_error">Tidak dapat merekam layar</string>
   <!-- Quick Settings tiles -->
+  <string name="quick_settings_screenshot_label">Tangkapan Layar</string>
+  <string name="quick_settings_region_screenshot_label">Tangkapan layar sebagian</string>
+  <string name="quick_settings_network_adb_label">ADB melalui Jaringan</string>
+  <string name="quick_settings_sync_label">Sinkronisasi</string>
+  <string name="accessibility_quick_settings_sync_off">Sinkronisasi mati</string>
+  <string name="accessibility_quick_settings_sync_on">Sinkronisasi hidup</string>
+  <string name="accessibility_quick_settings_sync_changed_off">Sinkronisasi dimatikan</string>
+  <string name="accessibility_quick_settings_sync_changed_on">Sinkronisasi dihidupkan</string>
+  <string name="quick_settings_expanded_desktop_label">Desktop diperluas</string>
+  <string name="quick_settings_expanded_desktop">Diperluas</string>
+  <string name="quick_settings_expanded_desktop_off">Normal</string>
+  <string name="quick_settings_reboot_label">Mulai ulang</string>
+  <string name="quick_settings_reboot_recovery_label">Recovery</string>
+  <string name="accessibility_quick_settings_usb_tether_off">Penambatan USB mati</string>
+  <string name="accessibility_quick_settings_usb_tether_on">Penambatan USB hidup</string>
+  <string name="accessibility_quick_settings_usb_tether_changed_off">Penambatan USB dimatikan</string>
+  <string name="accessibility_quick_settings_usb_tether_changed_on">Penambatan USB dihidupkan</string>
+  <string name="quick_settings_usb_tether_label">Penambatan USB</string>
+  <string name="quick_settings_music_label">Musik</string>
+  <string name="quick_settings_music_play">Putar</string>
+  <string name="quick_settings_music_pause">Jeda</string>
+  <string name="quick_settings_ime_tile_label">Metode masukan</string>
+  <string name="quick_settings_caffeine_label">Kafein</string>
+  <string name="accessibility_quick_settings_caffeine_off">Kafein mati</string>
+  <string name="accessibility_quick_settings_caffeine_on">Kafein hidup</string>
+  <string name="quick_settings_screenrecord">Rekam layar</string>
   <string name="quick_settings_screenrecord_on">Merekam ...</string>
+  <string name="quick_settings_heads_up_label">Heads up</string>
+  <string name="accessibility_quick_settings_heads_up_off">Heads up mati</string>
+  <string name="accessibility_quick_settings_heads_up_on">Heads up hidup</string>
+  <string name="accessibility_quick_settings_heads_up_changed_off">Heads up dimatikan</string>
+  <string name="accessibility_quick_settings_heads_up_changed_on">Heads up dihidupkan</string>
+  <string name="quick_settings_pulse_enabled">Pulse Dihidupkan</string>
+  <string name="quick_settings_pulse_disabled">Tidak ada Visualizer</string>
+  <string name="quick_settings_pulse_label">Pulse</string>
+  <string name="accessibility_quick_settings_pulse_off">Pulse mati</string>
+  <string name="accessibility_quick_settings_pulse_on">Pulse hidup</string>
+  <string name="accessibility_quick_settings_pulse_changed_off">Pulse dimatikan</string>
+  <string name="accessibility_quick_settings_pulse_changed_on">Pulse dihidupkan</string>
+  <string name="quick_settings_locale_label">Bahasa</string>
+  <string name="quick_settings_locale_more_locales_toast">Silakan konfigurasikan beberapa bahasa untuk mengaktifkan fungsi tombol</string>
+  <string name="quick_settings_sound_label">Suara</string>
+  <string name="quick_settings_sound_ring">Dering</string>
+  <string name="quick_settings_sound_vibrate">Getar</string>
+  <string name="quick_settings_sound_silent">Senyap</string>
   <!-- Screenshot Delete Toast -->
+  <string name="delete_screenshot_toast">Tangkapan layar Dihapus</string>
   <!-- Navigation bar Tile -->
+  <string name="quick_settings_navigation_bar">Bilah navigasi</string>
+  <string name="quick_settings_smartbar">SmartBar</string>
+  <string name="quick_settings_fling">Fling</string>
   <!-- Heads up snooze toast -->
+  <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Pemberitahuan heads up selama 1 menit.</string>
+  <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - Pemberitahuan heads up ditunda untuk <xliff:g id="number">%d</xliff:g> menit.</string>
   <!-- Screenshot action -->
+  <string name="screenshot_abort_title">Tidak ada tangkapan layar yang diambil</string>
+  <string name="screenshot_abort_text">Proses dibatalkan</string>
   <!-- Aicp Extras Tile -->
+  <string name="quick_aicp_extras_label">Aicp Extras</string>
+  <string name="quick_aicp_extras_toast">LOL, Anda benar-benar berpikir bahwa dengan menekan lama akan membawa Anda ke suatu tempat!!!</string>
   <!-- App sidebar -->
+  <string name="default_folder_text">Folder</string>
+  <string name="title_activity_sidebar_configuration">Setelan konten bilah aplikasi</string>
+  <string name="action_save">Simpan</string>
+  <string name="toast_items_saved">Item bilah aplikasi telah disimpan.</string>
+  <string name="content_setup_instructions">Tambahkan item ke bilah aplikasi dengan menekan lama item di sebelah kanan dan seret ke bilah aplikasi.\n\n Kombinasikan item ke dalam folder dengan menjatuhkan item ke item yang ada di bilah aplikasi.\n\nUntuk menghapus item cukup seret dari \@appbar.</string>
+  <string name="content_setup_dismiss">Lanjutkan</string>
+  <string name="toast_not_installed">Aplikasi tidak terpasang</string>
   <!-- PA Pie controls -->
+  <string name="pie_hour_format_12">hh:mm</string>
+  <string name="pie_hour_format_24">HH:mm</string>
+  <string name="pie_am_pm">a</string>
   <!-- PA Pie Tile -->
+  <string name="quick_settings_pie">Pie</string>
+  <string name="quick_settings_pie_off">Pie mati</string>
+  <string name="quick_settings_pie_on">Pie hidup</string>
   <!-- Kill app toast -->
+  <string name="app_killed_message">Aplikasi Dimatikan</string>
   <!-- Ambient Display Tile -->
+  <string name="quick_settings_ambient_display_label">Tampilan ambien</string>
   <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_ambient_display_off">Tampilan ambien mati.</string>
   <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_ambient_display_on">Tampilan ambien hidup.</string>
   <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_ambient_display_changed_off">Tampilan ambien dimatikan.</string>
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_ambient_display_changed_on">Tampilan ambien dihidupkan.</string>
   <!-- Path data for Solid battery -->
   <!-- Application picker Tile -->
+  <string name="quick_settings_app_picker">Pemilih aplikasi</string>
   <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_running_services">Buka layar layanan yang sedang berjalan.</string>
   <!-- Path data for Aicp battery -->
   <!-- On The Go -->
+  <string name="onthego_notif_ticker">On-The-Go diaktifkan</string>
+  <string name="onthego_notif_title">On-The-Go aktif</string>
+  <string name="onthego_notif_stop">Hentikan</string>
+  <string name="onthego_notif_options">Pilihan</string>
+  <string name="onthego_notif_error">Tidak dapat memulai On-The-Go</string>
+  <string name="onthego_notif_restart">Mulai ulang On-The-Go</string>
+  <string name="onthego_notif_camera_changed">Modus kamera berubah</string>
+  <string name="onthego_transparency">Transparansi</string>
+  <string name="onthego_front_camera">Gunakan kamera depan</string>
+  <string name="onthego_service_toggle">Otomatis mulai ulang layanan</string>
   <!-- To do: Add QS OnTheGo
     <string name="quick_settings_onthego_back">Rear Camera</string>
     <string name="quick_settings_onthego_front">Front Camera</string>-->
   <!-- Slim Recents -->
+  <string name="recents_multiwin_warning">Sesi multi jendela sudah aktif.\nKetuk aplikasi jika Anda ingin memasangnya sekarang.</string>
+  <string name="recents_multiwin_nolastapp">Anda menghapus semua recent, pilih aplikasi dari peluncur atau laci.</string>
+  <string name="slim_recent_keyguard">Buka kunci perangkat Anda untuk melihat recent</string>
+  <string name="slim_recent_pinned">Lepas sematan layar untuk melihat recent</string>
   <!-- Slim recents app sidebar queue app toast -->
+  <string name="toast_recents_queue_app">Jalankan %s setelah keluar dari recent</string>
+  <string name="toast_recents_cancel_queued_app">Menjalankan aplikasi dibatalkan</string>
   <!-- Kill button in notification guts -->
+  <string name="force_stop_dlg_title">Paksa berhenti?</string>
+  <string name="force_stop_dlg_text">Jika anda menghentikan aplikasi secara paksa, akan menyebabkan gagal fungsi.</string>
+  <string name="dlg_cancel">Batal</string>
+  <string name="kill">Tutup Aplikasi</string>
   <!-- App circle sidebar -->
+  <string name="app_float_maximize_item_title">Maksimalkan</string>
+  <string name="app_float_item_title">Tampilan mengambang</string>
+  <string name="app_stop_item_title">Matikan aplikasi</string>
   <!-- recents membar -->
+  <string name="recents_free_ram">RAM TERSEDIA: %1$d MB</string>
   <!-- OmniJAWS -->
+  <string name="omnijaws_service_error">Kesalahan</string>
+  <string name="omnijaws_service_unkown">Tidak ada data cuaca</string>
   <string name="omnijaws_detail_header">Cuaca</string>
+  <string name="omnijaws_label_default">Cuaca</string>
+  <string name="omnijaws_current_text">Sekarang</string>
+  <string name="omnijaws_package_not_available">OmniJaws tidak tersedia</string>
+  <string name="omnijaws_service_error_long">Kesalahan saat memuat data cuaca</string>
+  <string name="omnijaws_service_disabled">Layanan dimatikan</string>
   <!-- Weather string format in expanded statusbar header -->
   <!-- Off/On/Toggle -->
+  <string name="off">Mati</string>
+  <string name="on">Hidup</string>
+  <string name="toggle">Hidupkan/matikan</string>
   <!-- Dialog Cancel/OK -->
+  <string name="cancel">Batal</string>
+  <string name="dlg_ok">Ok</string>
+  <string name="yes">Ya</string>
+  <string name="no">Tidak</string>
   <!-- Aicp Shortcut Actions -->
+  <string name="shortcut_picker">Pintasan Aicp</string>
   <string name="shortcut_rotation">Rotasi</string>
   <string name="shortcut_reboot">Mulai ulang</string>
+  <string name="shortcut_recovery">Recovery</string>
+  <string name="shortcut_screensleep">Matikan layar</string>
+  <string name="shortcut_volume">Panel volume</string>
   <string name="shortcut_restart_ui">Mulai ulang SystemUI</string>
+  <string name="shortcut_powermenu">Menu daya</string>
+  <string name="shortcut_flashlight">Senter</string>
+  <string name="shortcut_clear_notifications">Bersihkan pemberitahuan</string>
+  <string name="shortcut_toggle_title">Tindakan menjalankan</string>
   <!-- MagiskManager QS Tile -->
+  <string name="quick_magiskmanager_label">Magisk</string>
+  <string name="quick_magiskmanager_na">Magisk Manager tidak terpasang! Pasang dulu.</string>
   <!-- Compass QS Tile -->
+  <string name="quick_settings_compass_label">Kompas</string>
+  <string name="quick_settings_compass_init">Memulai\u2026</string>
+  <string name="accessibility_quick_settings_compass_off">Kompas mati</string>
+  <string name="accessibility_quick_settings_compass_on">Kompas hidup</string>
+  <string name="accessibility_quick_settings_compass_changed_off">Kompas dimatikan.</string>
+  <string name="accessibility_quick_settings_compass_changed_on">Kompas dihidupkan.</string>
+  <string name="quick_settings_compass_N">U</string>
+  <string name="quick_settings_compass_NE">TL</string>
+  <string name="quick_settings_compass_E">T</string>
+  <string name="quick_settings_compass_SE">TG</string>
+  <string name="quick_settings_compass_S">S</string>
+  <string name="quick_settings_compass_SW">BD</string>
+  <string name="quick_settings_compass_W">B</string>
+  <string name="quick_settings_compass_NW">BL</string>
   <!-- Perf Profile Tile -->
+  <string name="qs_tile_performance">Modus baterai</string>
   <!-- Content description of the battery mode tile in quick settings when on, power save mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_pwrsv">Modus baterai: modus hemat daya.</string>
   <!-- Content description of the battery mode tile in quick settings when on, balanced mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_bal">Modus baterai: modus seimbang.</string>
   <!-- Content description of the battery mode tile in quick settings when on, performance mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_perf">Modus baterai: modus performa.</string>
   <!-- Content description of the battery mode tile in quick settings when on, efficiency mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_bias_power">Modus baterai: modus efisiensi.</string>
   <!-- Content description of the battery mode tile in quick settings when on, quick mode (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_bias_perf">Modus baterai: modus cepat.</string>
   <!-- Announcement made when the battery mode tile changes to power save (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_changed_pwrsv">Modus baterai diubah menjadi modus hemat daya.</string>
   <!-- Announcement made when the battery mode tile changes to balanced (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_changed_bal">Modus baterai diubah menjadi modus seimbang.</string>
   <!-- Announcement made when the battery mode tile changes to performance (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_changed_perf">Modus baterai diubah menjadi modus performa.</string>
   <!-- Announcement made when the battery mode tile changes to efficiency (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_changed_bias_power">Modus baterai berubah menjadi mode efisiensi.</string>
   <!-- Announcement made when the battery mode tile changes to quick (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_perf_profile_changed_bias_perf">Modus baterai berubah menjadi mode cepat.</string>
+  <string name="quick_settings_performance_profile_detail_title">Mode baterai</string>
   <!-- Live display tile -->
+  <string name="quick_settings_live_display_off">LiveDisplay mati.</string>
+  <string name="quick_settings_live_display_auto">LiveDisplay: modus otomatis.</string>
+  <string name="quick_settings_live_display_day">LiveDisplay: modus siang.</string>
+  <string name="quick_settings_live_display_night">LiveDisplay: mode malam</string>
+  <string name="quick_settings_live_display_outdoor">LiveDisplay: modus luar ruangan.</string>
+  <string name="quick_settings_live_display_changed_off">LiveDisplay dimatikan.</string>
+  <string name="quick_settings_live_display_changed_auto">LiveDisplay diubah menjadi modus otomatis.</string>
+  <string name="quick_settings_live_display_changed_day">LiveDisplay diubah menjadi modus siang.</string>
+  <string name="quick_settings_live_display_changed_night">LiveDisplay diubah menjadi modus malam.</string>
+  <string name="quick_settings_live_display_changed_outdoor">LiveDisplay diubah menjadi modus luar ruangan.</string>
+  <string name="accessibility_data_sim">Kartu Sim saat ini</string>
+  <string name="data_switch_started">Mengganti kartu SIM, dibutuhkan beberapa saat...</string>
   <!-- volte icon switch -->
+  <string name="status_bar_volte">VoLTE</string>
 </resources>

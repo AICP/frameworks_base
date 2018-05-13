@@ -17,36 +17,120 @@
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Aicp Extras Tile -->
+  <string name="quick_aicp_extras_label">Aicp 추가설정</string>
+  <string name="quick_aicp_extras_toast">하하, 정말로 길게 누르는 행동이 너를 어디론가 데러다 줄거라고 생각하는거야!!</string>
   <!-- Screenshot Delete Toast -->
+  <string name="delete_screenshot_toast">스크린샷이 삭제되었습니다</string>
   <!-- Advanced Reboot in Power Menu -->
+  <string name="global_action_restart_advanced">다시 시작 고급 메뉴</string>
+  <string name="global_action_restart_recovery">복구 모드로 이동</string>
+  <string name="global_action_restart_bootloader">부트 로더로 이동</string>
   <!-- Partial Screenshot -->
+  <string name="screenshot_abort_title">저장된 스크린샷이 없음</string>
+  <string name="screenshot_abort_text">작업이 중단됨.</string>
   <!-- Reboot/Recovery QS Tile -->
+  <string name="quick_settings_reboot_label">다시 시작</string>
+  <string name="quick_settings_reboot_recovery_label">복구 모드</string>
   <!-- Compass QS Tile -->
+  <string name="quick_settings_compass_label">나침반</string>
+  <string name="quick_settings_compass_init">초기화중\u2026</string>
+  <string name="accessibility_quick_settings_compass_off">나침반 끄기.</string>
+  <string name="accessibility_quick_settings_compass_on">나침반 켜기.</string>
+  <string name="accessibility_quick_settings_compass_changed_off">나침반 꺼짐.</string>
+  <string name="accessibility_quick_settings_compass_changed_on">나침반 켜짐.</string>
+  <string name="quick_settings_compass_N">N</string>
+  <string name="quick_settings_compass_NE">NE</string>
+  <string name="quick_settings_compass_E">E</string>
+  <string name="quick_settings_compass_SE">SE</string>
+  <string name="quick_settings_compass_S">S</string>
+  <string name="quick_settings_compass_SW">SW</string>
+  <string name="quick_settings_compass_W">W</string>
+  <string name="quick_settings_compass_NW">NW</string>
   <!-- Screenshoot tile -->
+  <string name="quick_settings_screenshot_label">스크린샷</string>
+  <string name="quick_settings_region_screenshot_label">부분 스크린샷</string>
   <!-- USB Tethering tile -->
+  <string name="accessibility_quick_settings_usb_tether_off">USB 테더링 끄기</string>
+  <string name="accessibility_quick_settings_usb_tether_on">USB 테더링 켜기</string>
+  <string name="accessibility_quick_settings_usb_tether_changed_off">USB 테더링 꺼짐</string>
+  <string name="accessibility_quick_settings_usb_tether_changed_on">USB 테더링 켜짐</string>
+  <string name="quick_settings_usb_tether_label">USB 테더링</string>
   <!-- IME selector tile -->
+  <string name="quick_settings_ime_label">키보드</string>
   <!-- Language toggle tile -->
+  <string name="quick_settings_locale_label">언어</string>
+  <string name="quick_settings_locale_more_locales_toast">토글 기능을 활성화 하려면 다중 언어를 설정하시기 바랍니다</string>
   <!-- Music tile -->
+  <string name="quick_settings_music_label">음악</string>
+  <string name="quick_settings_music_play">재생</string>
+  <string name="quick_settings_music_pause">일시중지</string>
   <!-- Sound tile -->
+  <string name="quick_settings_sound_label">소리</string>
+  <string name="quick_settings_sound_ring">벨소리</string>
+  <string name="quick_settings_sound_vibrate">진동</string>
+  <string name="quick_settings_sound_silent">무음</string>
   <!-- Ambient Display Tile -->
+  <string name="quick_settings_ambient_display_label">앰비언트 디스플레이</string>
   <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_ambient_display_off">앰비언트 디스플레이 끄기.</string>
   <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_ambient_display_on">앰비언트 디스플레이 켜기.</string>
   <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_ambient_display_changed_off">앰비언트 디스플레이 꺼짐.</string>
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_ambient_display_changed_on">앰비언트 디스플레이 켜짐.</string>
   <!-- Caffeine QS Tile -->
+  <string name="quick_settings_caffeine_label">카페인</string>
+  <string name="accessibility_quick_settings_caffeine_off">카페인 꺼짐</string>
+  <string name="accessibility_quick_settings_caffeine_on">카페인 켜짐</string>
   <!-- Sync QS Tile -->
+  <string name="quick_settings_sync_label">동기화</string>
+  <string name="accessibility_quick_settings_sync_off">동기화 끄기</string>
+  <string name="accessibility_quick_settings_sync_on">동기화 켜기</string>
+  <string name="accessibility_quick_settings_sync_changed_off">동기화 꺼짐</string>
+  <string name="accessibility_quick_settings_sync_changed_on">동기화 켜짐.</string>
   <!-- Volume QS Tile -->
+  <string name="accessibility_quick_settings_volume_panel">볼륨</string>
+  <string name="quick_settings_volume_panel_label">볼륨</string>
   <!-- PiP Tile -->
+  <string name="quick_settings_pip_tile_app_na">애플리케이션은 PiP를 지원 하지 않습니다</string>
   <!-- Screenrecord tile -->
+  <string name="quick_settings_screenrecord">화면 녹화</string>
+  <string name="quick_settings_screenrecord_on">녹화 중...</string>
   <!-- Recents -->
+  <string name="recents_app_killed">애플리케이션 종료됨</string>
   <!-- Advance location quick setting tile -->
+  <string name="accessibility_quick_settings_location_battery_saving">위치 확인: 배터리 절약 모드.</string>
+  <string name="accessibility_quick_settings_location_gps_only">위치 확인: 센서 전용 모드.</string>
+  <string name="accessibility_quick_settings_location_high_accuracy">위치 모드: 높은 정확도 모드</string>
   <!-- Screenrecord Notification Ticker -->
+  <string name="screenrecord_notif_ticker">화면이 녹화되고 있습니다.</string>
   <!-- Screenrecord notification title -->
+  <string name="screenrecord_notif_title">화면 녹화 중</string>
   <!-- Screenrecord notification action: Stop -->
+  <string name="screenrecord_notif_stop">정지</string>
   <!-- Screenrecord notification action: show/hide pointer -->
+  <string name="screenrecord_notif_pointer_on">터치 표시</string>
+  <string name="screenrecord_notif_pointer_off">터치 숨기기</string>
   <!-- Screen record notification error title -->
+  <string name="screenrecord_notif_error">화면을 녹화할 수 없습니다</string>
+  <string name="notification_channel_screenrecord">화면 녹화</string>
+  <string name="lockscreen_default">기본</string>
+  <string name="lockscreen_hidden">없음</string>
+  <string name="omnijaws_service_error">오류</string>
+  <string name="omnijaws_service_unkown">날씨 정보 없음</string>
+  <string name="omnijaws_service_error_long">날씨 정보 불러오기 오류</string>
+  <string name="omnijaws_service_disabled">서비스 사용 중지됨</string>
+  <string name="omnijaws_detail_header">날씨</string>
+  <string name="omnijaws_label_default">날씨</string>
+  <string name="omnijaws_current_text">현재</string>
+  <string name="omnijaws_package_not_available">OmniJaws를 사용할 수 없음</string>
+  <string name="omnijaws_service_last_update">최근 업데이트:</string>
   <!-- Weather string format in expanded statusbar header -->
   <!-- Notification: Menu row: Snooze options: 12 and 24 hour option. [CHAR LIMIT=50]-->
+  <string name="snooze_option_12_hour">12 시간</string>
+  <string name="snooze_option_24_hour">24 시간</string>
   <!-- SystemUI Tuner Parts -->
+  <string name="custom_hint">실행하려면 아이콘에서 스와이프하세요.</string>
   <!-- DUI -->
 </resources>

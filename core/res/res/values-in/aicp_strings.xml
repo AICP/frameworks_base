@@ -20,14 +20,14 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="reboot_to_recovery_title">Recovery</string>
-  <string name="reboot_to_recovery_message">Menyalakan ulang ke recovery</string>
+  <string name="reboot_to_recovery_message">Memulai ulang ke recovery</string>
   <string name="reboot_to_bootloader_title">Bootloader</string>
-  <string name="reboot_to_bootloader_message">Menyalakan ulang ke bootloader</string>
-  <string name="reboot_title">Nyalakan Ulang</string>
-  <string name="reboot_message">Menyalakan ulang sistem</string>
+  <string name="reboot_to_bootloader_message">Memulai ulang ke bootloader</string>
+  <string name="reboot_title">Mulai ulang</string>
+  <string name="reboot_message">Memulai ulang sistem</string>
   <!-- DUI -->
   <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permlab_toggleNavigationEditor">mulai editor navigasi</string>
+  <string name="permlab_toggleNavigationEditor">mengontrol penyunting navigasi</string>
   <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permdesc_toggleNavigationEditor">Izinkan sebuah aplikasi mengontrol navigasi bar editor.</string>
+  <string name="permdesc_toggleNavigationEditor">Mengizinkan aplikasi untuk mengontrol penyunting bilah navigasi.</string>
 </resources>

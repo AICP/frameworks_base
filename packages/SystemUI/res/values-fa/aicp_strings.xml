@@ -21,60 +21,28 @@
   <!-- Advanced Reboot in Power Menu -->
   <!-- Partial Screenshot -->
   <!-- Reboot/Recovery QS Tile -->
-  <string name="quick_settings_reboot_label">אתחול</string>
-  <string name="quick_settings_reboot_recovery_label">שחזור</string>
   <!-- Compass QS Tile -->
-  <string name="accessibility_quick_settings_compass_off">מצפן כבוי.</string>
-  <string name="accessibility_quick_settings_compass_changed_off">מצפן כובה.</string>
-  <string name="accessibility_quick_settings_compass_changed_on">מצפן הודלק.</string>
-  <string name="quick_settings_compass_N">צ</string>
-  <string name="quick_settings_compass_NE">צ.מז.</string>
-  <string name="quick_settings_compass_E">מז</string>
-  <string name="quick_settings_compass_SE">ד.מז</string>
-  <string name="quick_settings_compass_S">ד</string>
-  <string name="quick_settings_compass_SW">ד.מע</string>
-  <string name="quick_settings_compass_W">מע</string>
-  <string name="quick_settings_compass_NW">צ.מע</string>
   <!-- Screenshoot tile -->
-  <string name="quick_settings_screenshot_label">צילום מסך</string>
-  <string name="quick_settings_region_screenshot_label">צילום מסך חלקי</string>
   <!-- USB Tethering tile -->
   <!-- IME selector tile -->
   <!-- Language toggle tile -->
   <!-- Music tile -->
-  <string name="quick_settings_music_label">מוזיקה</string>
-  <string name="quick_settings_music_play">נגן</string>
-  <string name="quick_settings_music_pause">עצור</string>
   <!-- Sound tile -->
-  <string name="quick_settings_sound_label">צליל</string>
-  <string name="quick_settings_sound_ring">צלצול</string>
-  <string name="quick_settings_sound_vibrate">רטט</string>
   <!-- Ambient Display Tile -->
   <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
   <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <!-- Caffeine QS Tile -->
-  <string name="quick_settings_caffeine_label">קפאין</string>
-  <string name="accessibility_quick_settings_caffeine_off">קפאין כבוי</string>
-  <string name="accessibility_quick_settings_caffeine_on">קפאין פועל</string>
   <!-- Sync QS Tile -->
-  <string name="quick_settings_sync_label">סנכרון</string>
-  <string name="accessibility_quick_settings_sync_off">סנכרון כבוי</string>
-  <string name="accessibility_quick_settings_sync_on">סנכרון פעיל</string>
-  <string name="accessibility_quick_settings_sync_changed_off">סנכרון כובה</string>
-  <string name="accessibility_quick_settings_sync_changed_on">סנכון הופעל</string>
   <!-- Volume QS Tile -->
   <!-- PiP Tile -->
   <!-- Screenrecord tile -->
-  <string name="quick_settings_screenrecord">הקלטת מסך</string>
-  <string name="quick_settings_screenrecord_on">מקליט ...</string>
   <!-- Recents -->
   <!-- Advance location quick setting tile -->
   <!-- Screenrecord Notification Ticker -->
   <!-- Screenrecord notification title -->
   <!-- Screenrecord notification action: Stop -->
-  <string name="screenrecord_notif_stop">עצור</string>
   <!-- Screenrecord notification action: show/hide pointer -->
   <!-- Screen record notification error title -->
   <!-- Weather string format in expanded statusbar header -->

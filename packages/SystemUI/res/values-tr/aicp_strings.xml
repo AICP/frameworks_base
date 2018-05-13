@@ -22,6 +22,7 @@
   <!-- Screenshot Delete Toast -->
   <string name="delete_screenshot_toast">Ekran görüntüsü silindi</string>
   <!-- Advanced Reboot in Power Menu -->
+  <string name="global_action_restart_advanced">Gelişmiş yeniden başlatma</string>
   <string name="global_action_restart_recovery">Kurtarma moduna git</string>
   <string name="global_action_restart_bootloader">Önyükleme moduna git</string>
   <!-- Partial Screenshot -->
@@ -55,6 +56,7 @@
   <string name="accessibility_quick_settings_usb_tether_changed_on">USB internet paylaşımı açıldı</string>
   <string name="quick_settings_usb_tether_label">USB internet paylaşımı</string>
   <!-- IME selector tile -->
+  <string name="quick_settings_ime_label">IME</string>
   <!-- Language toggle tile -->
   <string name="quick_settings_locale_label">Dil</string>
   <string name="quick_settings_locale_more_locales_toast">Geçiş işlevselliğini etkinleştirmek için lütfen birden fazla dil yapılandırın</string>
@@ -65,18 +67,18 @@
   <!-- Sound tile -->
   <string name="quick_settings_sound_label">Ses</string>
   <string name="quick_settings_sound_ring">Zil sesi</string>
-  <string name="quick_settings_sound_vibrate">Titreş</string>
+  <string name="quick_settings_sound_vibrate">Titreşim</string>
   <string name="quick_settings_sound_silent">Sessiz</string>
   <!-- Ambient Display Tile -->
-  <string name="quick_settings_ambient_display_label">Ambient display</string>
+  <string name="quick_settings_ambient_display_label">Ortam ekranı</string>
   <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
-  <string name="accessibility_quick_settings_ambient_display_off">Ambient Display kapalı.</string>
+  <string name="accessibility_quick_settings_ambient_display_off">Ortam ekranı kapalı.</string>
   <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
-  <string name="accessibility_quick_settings_ambient_display_on">Ambient Display açık.</string>
+  <string name="accessibility_quick_settings_ambient_display_on">Ortam ekranı açık.</string>
   <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
-  <string name="accessibility_quick_settings_ambient_display_changed_off">Ambient display kapatıldı.</string>
+  <string name="accessibility_quick_settings_ambient_display_changed_off">Ortam ekranı kapatıldı.</string>
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
-  <string name="accessibility_quick_settings_ambient_display_changed_on">Ambient display açıldı.</string>
+  <string name="accessibility_quick_settings_ambient_display_changed_on">Ortam ekranı açıldı.</string>
   <!-- Caffeine QS Tile -->
   <string name="quick_settings_caffeine_label">Kafein</string>
   <string name="accessibility_quick_settings_caffeine_off">Kafein kapalı</string>
@@ -89,11 +91,15 @@
   <string name="accessibility_quick_settings_sync_changed_on">Eşitleme açıldı</string>
   <!-- Volume QS Tile -->
   <string name="accessibility_quick_settings_volume_panel">Ses</string>
+  <string name="quick_settings_volume_panel_label">Ses</string>
   <!-- PiP Tile -->
+  <string name="quick_settings_pip_label">PiP</string>
+  <string name="quick_settings_pip_tile_app_na">Uygulama PiP\'i desteklemiyor</string>
   <!-- Screenrecord tile -->
   <string name="quick_settings_screenrecord">Ekran kaydı</string>
-  <string name="quick_settings_screenrecord_on">Kaydediliyor ...</string>
+  <string name="quick_settings_screenrecord_on">Kaydediliyor...</string>
   <!-- Recents -->
+  <string name="recents_app_killed">Uygulama sonlandırıldı</string>
   <!-- Advance location quick setting tile -->
   <string name="accessibility_quick_settings_location_battery_saving">Konum bildirimi: pil tasarrufu modu.</string>
   <string name="accessibility_quick_settings_location_gps_only">Konum bildirimi: yalnızca sensörler modu.</string>
@@ -109,16 +115,24 @@
   <string name="screenrecord_notif_pointer_off">İşaretçiyi gizle</string>
   <!-- Screen record notification error title -->
   <string name="screenrecord_notif_error">Ekran görüntüsü kaydedilemiyor</string>
+  <string name="notification_channel_screenrecord">Ekran kayıtları</string>
+  <string name="lockscreen_default">Varsayılan</string>
+  <string name="lockscreen_hidden">Hiçbiri</string>
   <string name="omnijaws_service_error">Hata</string>
   <string name="omnijaws_service_unkown">Hava durumu verisi yok</string>
-  <string name="omnijaws_service_error_long">Hava durumu verisi yükleme hatası</string>
+  <string name="omnijaws_service_error_long">Hava durumu verileri yüklenemedi</string>
+  <string name="omnijaws_service_disabled">Servis devre dışı</string>
   <string name="omnijaws_detail_header">Hava Durumu</string>
   <string name="omnijaws_label_default">Hava Durumu</string>
   <string name="omnijaws_current_text">Şimdi</string>
   <string name="omnijaws_package_not_available">OmniJaws yüklü değil</string>
+  <string name="omnijaws_service_last_update">Son güncelleme:</string>
   <!-- Weather string format in expanded statusbar header -->
   <!-- Notification: Menu row: Snooze options: 12 and 24 hour option. [CHAR LIMIT=50]-->
+  <string name="snooze_option_12_hour">12 saat</string>
+  <string name="snooze_option_24_hour">24 saat</string>
   <!-- SystemUI Tuner Parts -->
+  <string name="custom_hint">Başlatmak için simgeyi kaydırın</string>
   <!-- DUI -->
   <string name="systemui_tuner_navbar_title">Varsayılan ayarlar</string>
 </resources>

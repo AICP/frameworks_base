@@ -33,6 +33,7 @@
   <string name="quick_settings_reboot_recovery_label">Récupération</string>
   <!-- Compass QS Tile -->
   <string name="quick_settings_compass_label">Boussole</string>
+  <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
   <string name="quick_settings_compass_init">Initialisation\u2026</string>
   <string name="accessibility_quick_settings_compass_off">Boussole désactivée.</string>
   <string name="accessibility_quick_settings_compass_on">Boussole activée.</string>
@@ -115,6 +116,7 @@
   <!-- Screen record notification error title -->
   <string name="screenrecord_notif_error">Impossible d\'enregistrer l\'écran</string>
   <string name="notification_channel_screenrecord">Enregistrement de l\'écran</string>
+  <string name="lockscreen_default">Par défaut</string>
   <string name="omnijaws_service_error">Erreur</string>
   <string name="omnijaws_service_unkown">Donnée météo indisponible</string>
   <string name="omnijaws_service_error_long">Erreur lors du chargement des données météo</string>

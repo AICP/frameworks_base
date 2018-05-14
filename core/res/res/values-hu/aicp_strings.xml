@@ -27,8 +27,6 @@
   <string name="global_action_screenrecord">Képernyőfelvétel</string>
   <!-- Screenshoot edit action -->
   <string name="edit">Szerkesztés</string>
-  <!-- Singlehanded Mode -->
-  <string name="singlehandmode_click_hint_message">Koppintson a képernyőn kívülre a mini képernyőnézetből való kilépéshez</string>
   <!-- Powermenu Torch -->
   <string name="global_action_torch">Zseblámpa</string>
   <!-- label for item that takes On-The-Go in the phone options dialog -->

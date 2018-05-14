@@ -27,8 +27,6 @@
   <string name="global_action_screenrecord">Rekam Layar</string>
   <!-- Screenshoot edit action -->
   <string name="edit">Sunting</string>
-  <!-- Singlehanded Mode -->
-  <string name="singlehandmode_click_hint_message">Sentuh bagian luar layar untuk keluar dari tampilan layar mini</string>
   <!-- Powermenu Torch -->
   <string name="global_action_torch">Senter</string>
   <!-- label for item that takes On-The-Go in the phone options dialog -->

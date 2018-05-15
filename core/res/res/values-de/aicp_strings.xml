@@ -42,4 +42,8 @@
   <string name="action_null">Leer</string>
   <!-- Label for item that screenrecords in power menu options dialog -->
   <string name="global_action_screenrecord">Bildschirmaufnahme</string>
+  <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permlab_fakePackageSignature">Paketsignatur imitieren</string>
+  <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permdesc_fakePackageSignature">Erlaubt einer App, eine andere App nachzuahmen. Böswillige Anwendungen erhalten hierdurch möglicherweise ihre persönlichen Daten. Erteilen Sie diese Berechtigung mit extremer Vorsicht!</string>
 </resources>

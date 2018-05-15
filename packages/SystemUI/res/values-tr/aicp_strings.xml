@@ -48,10 +48,10 @@
   <string name="accessibility_quick_settings_usb_tether_on">USB internet paylaşımı açık</string>
   <string name="accessibility_quick_settings_usb_tether_changed_off">USB internet paylaşımı kapatıldı</string>
   <string name="accessibility_quick_settings_usb_tether_changed_on">USB internet paylaşımı açıldı</string>
-  <string name="quick_settings_usb_tether_label">USB internet paylaşımı</string>
+  <string name="quick_settings_usb_tether_label">USB paylaşımı</string>
   <!-- Language toggle tile -->
   <string name="quick_settings_locale_label">Dil</string>
-  <string name="quick_settings_locale_more_locales_toast">Geçiş işlevselliğini etkinleştirmek için lütfen birden fazla dil yapılandırın</string>
+  <string name="quick_settings_locale_more_locales_toast">Geçiş işlevselliğinin etkin olması için lütfen birden fazla dil ekleyin</string>
   <!-- Music tile -->
   <string name="quick_settings_music_label">Müzik</string>
   <string name="quick_settings_music_play">Oynat</string>
@@ -82,7 +82,7 @@
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_always_on_display_changed_on">Always on ekran açıldı.</string>
   <!-- Expanded desktop QS Tile -->
-  <string name="quick_settings_expanded_desktop_label">Genişletilmiş masaüstü</string>
+  <string name="quick_settings_expanded_desktop_label">Genişletilmiş ekran</string>
   <string name="quick_settings_expanded_desktop">Genişletilmiş</string>
   <string name="quick_settings_expanded_desktop_off">Normal</string>
   <!-- Caffeine QS Tile -->
@@ -104,14 +104,14 @@
   <string name="quick_settings_screenrecord">Ekran kaydı</string>
   <string name="quick_settings_screenrecord_on">Kaydediliyor...</string>
   <!-- Advance location quick setting tile -->
-  <string name="accessibility_quick_settings_location_battery_saving">Konum bildirimi: pil tasarrufu modu.</string>
+  <string name="accessibility_quick_settings_location_battery_saving">Konum bildirimi: pil tasarruf modu.</string>
   <string name="accessibility_quick_settings_location_gps_only">Konum bildirimi: yalnızca sensör modu.</string>
   <string name="accessibility_quick_settings_location_high_accuracy">Konum bildirimi: yüksek doğruluk modu.</string>
   <!-- Screenrecord Notification Ticker -->
   <string name="screenrecord_notif_ticker">Ekran kaydediliyor</string>
   <string name="screenrecord_notif_final_ticker">Ekran başarıyla kaydedildi</string>
   <!-- Screenrecord notification title -->
-  <string name="screenrecord_notif_title">Kayıt ekranı</string>
+  <string name="screenrecord_notif_title">Ekran kaydediliyor</string>
   <!-- Screenrecord notification action: Stop -->
   <string name="screenrecord_notif_stop">Durdur</string>
   <string name="screenrecord_notif_completed">Ekran başarıyla kaydedildi</string>
@@ -119,15 +119,15 @@
   <string name="screenrecord_notif_pointer_on">İşaretçiyi göster</string>
   <string name="screenrecord_notif_pointer_off">İşaretçiyi gizle</string>
   <!-- Screen record notification error title -->
-  <string name="screenrecord_notif_error">Ekran kaydı yapılamıyor</string>
+  <string name="screenrecord_notif_error">Ekran kaydedilemiyor</string>
   <string name="notification_channel_screenrecord">Ekran kayıtları</string>
   <string name="screenrecord_hide_hint">İpuçlarını gizle</string>
   <string name="screenrecord_show_hint">İpuçlarını göster</string>
   <!-- Screenshot QS tile -->
   <string name="quick_settings_screenrecord_label">Ekran kaydı</string>
-  <string name="quick_settings_screenrecord_lq_label">Ekran Kaydı 480p</string>
-  <string name="quick_settings_screenrecord_mq_label">Ekran Kaydı 720p</string>
-  <string name="quick_settings_screenrecord_hq_label">Ekran Kaydı 720p+</string>
+  <string name="quick_settings_screenrecord_lq_label">Ekran kaydı 480p</string>
+  <string name="quick_settings_screenrecord_mq_label">Ekran kaydı 720p</string>
+  <string name="quick_settings_screenrecord_hq_label">Ekran kaydı 720p+</string>
   <string name="lockscreen_default">Varsayılan</string>
   <string name="lockscreen_hidden">Yok</string>
   <string name="omnijaws_service_error">Hata</string>
@@ -137,7 +137,7 @@
   <string name="omnijaws_detail_header">Hava durumu</string>
   <string name="omnijaws_label_default">Hava durumu</string>
   <string name="omnijaws_current_text">Şimdi</string>
-  <string name="omnijaws_package_not_available">OmniJaws yüklü değil</string>
+  <string name="omnijaws_package_not_available">OmniJaws mevcut değil</string>
   <string name="omnijaws_service_last_update">Son güncelleme:</string>
   <!-- Weather string format in expanded statusbar header -->
   <string name="status_bar_weather_format"><xliff:g id="temp">%1$s</xliff:g></string>
@@ -170,7 +170,19 @@
   <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_running_services">Çalışan hizmetler ekranını aç.</string>
   <!-- The contents of the Ambient Weather bottom view -->
+  <string name="ambient_weather_info">%1$s &amp; %2$s</string>
   <string name="quick_settings_google_assist_label">Asistan</string>
   <string name="quick_settings_google_voice_assist_label">Sesli asistan</string>
   <string name="quick_settings_google_now_label">Google now</string>
+  <!-- Smart pixels QS tile -->
+  <string name="quick_settings_smart_pixels">Akıllı pikseller</string>
+  <string name="quick_settings_smart_pixels_on_power_save">Otomatik olarak akıllı pikselleri etkinleştir</string>
+  <!-- CPUInfo tile -->
+  <string name="quick_settings_cpuinfo_label">İşlemci bilgisi</string>
+  <!-- HW Keys Tile -->
+  <string name="quick_settings_hw_keys_label">Donanım tuşları</string>
+  <!-- Content description of the HW keys tile in quick settings when disabled (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_hw_keys_disabled">Donanım tuşları devre dışı.</string>
+  <!-- Content description of the HW keys tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_hw_keys_enabled">Donanım tuşları etkin.</string>
 </resources>

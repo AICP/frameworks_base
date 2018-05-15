@@ -47,17 +47,27 @@
   <!-- Screenrecord notification action: Stop -->
   <!-- Screenrecord notification action: show/hide pointer -->
   <!-- Screen record notification error title -->
+  <string name="screenrecord_hide_hint">مخفی کردن نکات</string>
+  <string name="screenrecord_show_hint">نمایش راهنما</string>
   <!-- Screenshot QS tile -->
   <!-- Weather string format in expanded statusbar header -->
   <!-- SystemUI Tuner Parts -->
   <!-- DUI -->
   <!-- Battery saver tile -->
+  <string name="battery_saver_qs_tile_fully_charged">شارژ کامل</string>
   <!-- Caffeine tile -->
   <string name="caffeine_info_title">این چیست؟</string>
   <!-- Navigation bar Tile -->
+  <string name="quick_settings_navigation_default">معمولی</string>
+  <string name="quick_settings_navigation_disabled">غیرفعال</string>
   <!-- Kill button in notification guts -->
   <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
   <!-- Indication on the keyguard that is shown when the device is charging with a turbo power charger. Should match keyguard_plugged_in_turbo_power_charging [CHAR LIMIT=40]-->
   <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
   <!-- The contents of the Ambient Weather bottom view -->
+  <!-- Smart pixels QS tile -->
+  <!-- CPUInfo tile -->
+  <!-- HW Keys Tile -->
+  <!-- Content description of the HW keys tile in quick settings when disabled (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <!-- Content description of the HW keys tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
 </resources>

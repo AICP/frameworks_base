@@ -23,7 +23,7 @@
   <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permlab_toggleNavigationEditor">gezinme çubuğu düzenleyicisini kontrol et</string>
   <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permdesc_toggleNavigationEditor">Bir uygulamanın gezinme çubuğunu değiştirmesine izin ver.</string>
+  <string name="permdesc_toggleNavigationEditor">Bir uygulamanın gezinme çubuğu düzenleyicisini kontrol etmesine izin verir.</string>
   <!-- AOKP custom system animations -->
   <string name="animation_fade">Karart</string>
   <string name="animation_slide_right">Sağa kaydır</string>
@@ -42,4 +42,8 @@
   <string name="action_null">Boş</string>
   <!-- Label for item that screenrecords in power menu options dialog -->
   <string name="global_action_screenrecord">Ekran kaydı</string>
+  <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permlab_fakePackageSignature">Sahte paket imzası</string>
+  <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permdesc_fakePackageSignature">Uygulamanın farklı bir uygulama gibi davranmasına izin verir. Zararlı uygulamalar bu özelliği kullanarak özel içerikli bilgilere ulaşabilir. Bu izni verirken dikkatli olun!</string>
 </resources>

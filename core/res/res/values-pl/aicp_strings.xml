@@ -23,5 +23,23 @@
   <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <!-- AOKP custom system animations -->
+  <string name="animation_fade">Przenikanie</string>
+  <string name="animation_slide_right">Przesunięcie w prawo</string>
+  <string name="animation_slide_left">Przesunięcie w lewo</string>
+  <string name="animation_slide_right_no_fade">Przesunięcie w prawo (bez zanikania)</string>
+  <string name="animation_slide_left_no_fade">Przesunięcie w lewo (bez zanikania)</string>
+  <string name="animation_slide_up">Przesunięcie w dół</string>
+  <string name="animation_slide_down">Przesunięcie w górę</string>
+  <string name="animation_default">Domyślne</string>
+  <string name="animation_translucent">Prześwitywanie</string>
+  <string name="animation_grow_shrink">Powiększenie (od góry)</string>
+  <string name="animation_grow_shrink_center">Powiększenie (do środka)</string>
+  <string name="animation_grow_shrink_bottom">Powiększenie (do dołu)</string>
+  <string name="animation_grow_shrink_left">Powiększenie (w lewo)</string>
+  <string name="animation_grow_shrink_right">Powiększenie (w prawo)</string>
+  <string name="action_null">Pusto</string>
   <!-- Label for item that screenrecords in power menu options dialog -->
+  <string name="global_action_screenrecord">Nagrywanie ekranu</string>
+  <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
 </resources>

@@ -72,6 +72,7 @@
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_ambient_display_changed_on">Affichage en mode veille activé.</string>
   <!-- Always on Display Tile -->
+  <string name="quick_settings_always_on_display_label">Toujours affiché</string>
   <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
   <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
@@ -116,6 +117,10 @@
   <string name="notification_channel_screenrecord">Enregistrement de l\'écran</string>
   <!-- Screenshot QS tile -->
   <string name="quick_settings_screenrecord_label">Enregistrement de l\'écran</string>
+  <string name="quick_settings_screenrecord_lq_label">Enregistrement d\'écran 480p</string>
+  <string name="quick_settings_screenrecord_mq_label">Enregistrement d\'écran 720p</string>
+  <string name="quick_settings_screenrecord_hq_label">Enregistrement d\'écran 720p+</string>
+  <string name="lockscreen_default">Par défaut</string>
   <string name="omnijaws_service_error">Erreur</string>
   <string name="omnijaws_service_unkown">Donnée météo indisponible</string>
   <string name="omnijaws_service_error_long">Erreur lors du chargement des données météo</string>
@@ -128,10 +133,12 @@
   <!-- SystemUI Tuner Parts -->
   <!-- DUI -->
   <!-- Battery saver tile -->
+  <string name="battery_saver_qs_tile_fully_charged">Chargé</string>
   <!-- Caffeine tile -->
   <!-- Navigation bar Tile -->
   <string name="quick_settings_navigation_bar">Barre de navigation</string>
   <string name="quick_settings_smartbar">SmartBar</string>
+  <string name="quick_settings_fling">Fling</string>
   <!-- Kill button in notification guts -->
   <string name="force_stop_dlg_title">Forcer l\'arrêt ?</string>
   <string name="force_stop_dlg_text">Si vous forcez l\'arrêt d\'une application, cela peut provoquer son dysfonctionnement.</string>
@@ -139,5 +146,11 @@
   <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
   <!-- Indication on the keyguard that is shown when the device is charging with a turbo power charger. Should match keyguard_plugged_in_turbo_power_charging [CHAR LIMIT=40]-->
   <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_running_services">Afficher les services en cours.</string>
   <!-- The contents of the Ambient Weather bottom view -->
+  <!-- Smart pixels QS tile -->
+  <!-- CPUInfo tile -->
+  <!-- HW Keys Tile -->
+  <!-- Content description of the HW keys tile in quick settings when disabled (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <!-- Content description of the HW keys tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
 </resources>

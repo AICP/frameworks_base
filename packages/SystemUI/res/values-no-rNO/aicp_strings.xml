@@ -18,21 +18,57 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Aicp Extras Tile -->
   <string name="quick_aicp_extras_label">AICP tillegg</string>
+  <string name="quick_aicp_extras_toast">HA-HA, du trodde et langt trykk skulle hjelpe deg!!!</string>
   <!-- Screenshot Delete Toast -->
+  <string name="delete_screenshot_toast">Skjermbilde slettet</string>
   <!-- Partial Screenshot -->
+  <string name="screenshot_abort_title">Ingen skjermbilde tatt</string>
   <!-- Compass QS Tile -->
+  <string name="quick_settings_compass_label">Kompass</string>
+  <string name="quick_settings_compass_init">Initialiserer\u2026</string>
+  <string name="accessibility_quick_settings_compass_off">Kompass av.</string>
+  <string name="accessibility_quick_settings_compass_on">Kompass på.</string>
+  <string name="accessibility_quick_settings_compass_changed_off">Kompass deaktivert.</string>
+  <string name="accessibility_quick_settings_compass_changed_on">Kompass aktivert.</string>
+  <string name="quick_settings_compass_N">N</string>
+  <string name="quick_settings_compass_NE">NØ</string>
+  <string name="quick_settings_compass_E">Ø</string>
+  <string name="quick_settings_compass_SE">SØ</string>
+  <string name="quick_settings_compass_S">S</string>
+  <string name="quick_settings_compass_SW">SV</string>
+  <string name="quick_settings_compass_W">V</string>
+  <string name="quick_settings_compass_NW">NV</string>
   <!-- Screenshoot tile -->
   <string name="quick_settings_screenshot_label">Skjermdump</string>
   <string name="quick_settings_region_screenshot_label">Delvis skjermdump</string>
   <!-- USB Tethering tile -->
+  <string name="accessibility_quick_settings_usb_tether_off">USB nettdeling av</string>
+  <string name="accessibility_quick_settings_usb_tether_on">USB nettdeling på</string>
+  <string name="accessibility_quick_settings_usb_tether_changed_off">USB nettdeling deaktivert</string>
+  <string name="accessibility_quick_settings_usb_tether_changed_on">USB nettdeling aktivert</string>
+  <string name="quick_settings_usb_tether_label">USB nettdeling</string>
   <!-- Language toggle tile -->
+  <string name="quick_settings_locale_label">Språk</string>
+  <string name="quick_settings_locale_more_locales_toast">Vennligst konfigurer flere språk for å aktivere byttefunksjonalitet</string>
   <!-- Music tile -->
+  <string name="quick_settings_music_label">Musikk</string>
+  <string name="quick_settings_music_play">Spill av</string>
+  <string name="quick_settings_music_pause">Paus</string>
   <!-- Sound tile -->
+  <string name="quick_settings_sound_label">Lyd</string>
+  <string name="quick_settings_sound_ring">Ring</string>
+  <string name="quick_settings_sound_vibrate">Vibrer</string>
+  <string name="quick_settings_sound_silent">Stille</string>
   <!-- Ambient Display Tile -->
+  <string name="quick_settings_ambient_display_label">Ambient skjerm</string>
   <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_ambient_display_off">Ambient skjerm av.</string>
   <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_ambient_display_on">Ambient skjerm på.</string>
   <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_ambient_display_changed_off">Ambient skjerm skrudd av.</string>
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_ambient_display_changed_on">Ambient skjerm skrudd på.</string>
   <!-- Always on Display Tile -->
   <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
   <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
@@ -43,6 +79,9 @@
   <string name="quick_settings_expanded_desktop">Utvidet</string>
   <string name="quick_settings_expanded_desktop_off">Normal</string>
   <!-- Caffeine QS Tile -->
+  <string name="quick_settings_caffeine_label">Koffein</string>
+  <string name="accessibility_quick_settings_caffeine_off">Koffein av</string>
+  <string name="accessibility_quick_settings_caffeine_on">Koffein på</string>
   <!-- Sync QS Tile -->
   <string name="quick_settings_sync_label">Synkronisering</string>
   <string name="accessibility_quick_settings_sync_off">Synkronisering av</string>
@@ -52,6 +91,8 @@
   <!-- Volume QS Tile -->
   <!-- PiP Tile -->
   <!-- Screenrecord tile -->
+  <string name="quick_settings_screenrecord">Skjermopptak</string>
+  <string name="quick_settings_screenrecord_on">Opptak...</string>
   <!-- Advance location quick setting tile -->
   <!-- Screenrecord Notification Ticker -->
   <!-- Screenrecord notification title -->
@@ -60,15 +101,34 @@
   <!-- Screenrecord notification action: show/hide pointer -->
   <!-- Screen record notification error title -->
   <!-- Screenshot QS tile -->
+  <string name="quick_settings_screenrecord_label">Skjermopptak</string>
+  <string name="omnijaws_service_error">Feil</string>
+  <string name="omnijaws_service_unkown">Ingen værdata</string>
+  <string name="omnijaws_service_error_long">Feil ved lasting av værdata</string>
+  <string name="omnijaws_detail_header">Vær</string>
+  <string name="omnijaws_label_default">Vær</string>
+  <string name="omnijaws_current_text">Nå</string>
+  <string name="omnijaws_package_not_available">OmniJaws ikke tilgjengelig</string>
   <!-- Weather string format in expanded statusbar header -->
   <!-- SystemUI Tuner Parts -->
   <!-- DUI -->
   <!-- Battery saver tile -->
   <!-- Caffeine tile -->
   <!-- Navigation bar Tile -->
+  <string name="quick_settings_navigation_bar">Navigasjonsfelt</string>
+  <string name="quick_settings_smartbar">SmartBar</string>
+  <string name="quick_settings_fling">Fling</string>
   <!-- Kill button in notification guts -->
+  <string name="force_stop_dlg_title">Vil du tvinge avslutning?</string>
+  <string name="force_stop_dlg_text">Hvis du tvangsstopper en app, kan den oppføre seg uventet.</string>
+  <string name="kill">Steng app</string>
   <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
   <!-- Indication on the keyguard that is shown when the device is charging with a turbo power charger. Should match keyguard_plugged_in_turbo_power_charging [CHAR LIMIT=40]-->
   <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
   <!-- The contents of the Ambient Weather bottom view -->
+  <!-- Smart pixels QS tile -->
+  <!-- CPUInfo tile -->
+  <!-- HW Keys Tile -->
+  <!-- Content description of the HW keys tile in quick settings when disabled (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <!-- Content description of the HW keys tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
 </resources>

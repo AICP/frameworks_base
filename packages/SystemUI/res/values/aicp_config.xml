@@ -6,6 +6,6 @@
 <resources>
     <!-- The extra quick settings tiles to display in QuickSettings -->
     <string name="quick_settings_tiles_extra" translatable="false">
-      livedisplay
+      livedisplay,reading_mode
     </string>
 </resources>

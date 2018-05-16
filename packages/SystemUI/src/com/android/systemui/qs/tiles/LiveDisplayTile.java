@@ -170,7 +170,7 @@ public class LiveDisplayTile extends QSTileImpl<LiveDisplayState> {
 
     @Override
     public int getMetricsCategory() {
-            return VIEW_UNKNOWN;
+        return VIEW_UNKNOWN;
     }
 
     @Override

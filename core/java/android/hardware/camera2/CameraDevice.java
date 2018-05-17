@@ -959,6 +959,11 @@ public abstract class CameraDevice implements AutoCloseable {
         throw new UnsupportedOperationException("No default implementation");
     }
 
+
+    /** @hide */
+    public abstract void setVendorStreamConfigMode(int index)
+            throws CameraAccessException;
+
     /**
      * <p>Create a {@link CaptureRequest.Builder} for new capture requests,
      * initialized with template for a target use case. The settings are chosen

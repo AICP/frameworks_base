@@ -25,18 +25,17 @@ import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
+import android.graphics.Typeface;
+import android.database.ContentObserver;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.VectorDrawable;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.UserHandle;
 import android.provider.Settings;
 import android.support.v4.graphics.ColorUtils;
-import android.database.ContentObserver;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.os.Handler;
-import android.provider.Settings;
+import android.text.Html;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.util.AttributeSet;
@@ -45,8 +44,11 @@ import android.util.Slog;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CustomAnalogClock;
+import android.widget.DeadPoolAnalogClock;
 import android.widget.GridLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextClock;
 import android.widget.TextView;
 
@@ -71,6 +73,8 @@ public class KeyguardStatusView extends GridLayout implements
 
     private TextView mAlarmStatusView;
     private DateView mDateView;
+    private CustomAnalogClock mAnalogClockView;
+    private DeadPoolAnalogClock mDeadPoolClockView;
     private TextClock mClockView;
     private TextView mOwnerInfo;
     private ViewGroup mClockContainer;
@@ -107,6 +111,8 @@ public class KeyguardStatusView extends GridLayout implements
     private boolean mShowAlarm;
     private boolean mShowClock;
     private boolean mShowDate;
+    private int mClockSelection;
+    private int mDateSelection;
     private int mIconNameValue = -1;
 
     private boolean mForcedMediaDoze;
@@ -199,12 +205,14 @@ public class KeyguardStatusView extends GridLayout implements
         mClockContainer = findViewById(R.id.keyguard_clock_container);
         mAlarmStatusView = findViewById(R.id.alarm_status);
         mDateView = findViewById(R.id.date_view);
+        mAnalogClockView = findViewById(R.id.analog_clock_view);
+        mDeadPoolClockView = findViewById(R.id.deadpool_clock_view);
         mClockView = findViewById(R.id.clock_view);
         mClockView.setShowCurrentUserTime(true);
         mOwnerInfo = findViewById(R.id.owner_info);
         //mBatteryDoze = findViewById(R.id.battery_doze);
         mKeyguardStatusArea = findViewById(R.id.keyguard_status_area);
-        mVisibleInDoze = new View[]{/*mBatteryDoze, */mClockView, mKeyguardStatusArea};
+        mVisibleInDoze = new View[]{/*mBatteryDoze, */mClockView, mAnalogClockView, mDeadPoolClockView, mKeyguardStatusArea};
         mTextColor = mClockView.getCurrentTextColor();
         mDateTextColor = mDateView.getCurrentTextColor();
         mAlarmTextColor = mAlarmStatusView.getCurrentTextColor();
@@ -213,6 +221,8 @@ public class KeyguardStatusView extends GridLayout implements
         mWeatherConditionImage = (ImageView) findViewById(R.id.weather_image);
         mWeatherCurrentTemp = (TextView) findViewById(R.id.current_temp);
         mWeatherConditionText = (TextView) findViewById(R.id.condition);
+        mAnalogClockView = (CustomAnalogClock) findViewById(R.id.analog_clock_view);
+        mDeadPoolClockView = (DeadPoolAnalogClock) findViewById(R.id.deadpool_clock_view);
 
         boolean shouldMarquee = KeyguardUpdateMonitor.getInstance(mContext).isDeviceInteractive();
         setEnableMarquee(shouldMarquee);
@@ -225,6 +235,8 @@ public class KeyguardStatusView extends GridLayout implements
     @Override
     protected void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+
+        // ClockView
         mClockView.setTextSize(TypedValue.COMPLEX_UNIT_PX,
                 getResources().getDimensionPixelSize(R.dimen.widget_big_font_size));
         // Some layouts like burmese have a different margin for the clock
@@ -232,8 +244,24 @@ public class KeyguardStatusView extends GridLayout implements
         layoutParams.bottomMargin = getResources().getDimensionPixelSize(
                 R.dimen.bottom_text_spacing_digital);
         mClockView.setLayoutParams(layoutParams);
+
+        // Custom analog clock
+        MarginLayoutParams customlayoutParams = (MarginLayoutParams) mAnalogClockView.getLayoutParams();
+        customlayoutParams.bottomMargin = getResources().getDimensionPixelSize(
+                R.dimen.bottom_text_spacing_digital);
+        mAnalogClockView.setLayoutParams(customlayoutParams);
+
+        // DeadPool analog clock
+        MarginLayoutParams deadpoollayoutParams = (MarginLayoutParams) mDeadPoolClockView.getLayoutParams();
+        deadpoollayoutParams.bottomMargin = getResources().getDimensionPixelSize(
+                R.dimen.bottom_text_spacing_digital);
+        mDeadPoolClockView.setLayoutParams(deadpoollayoutParams);
+
+        // DateView
         mDateView.setTextSize(TypedValue.COMPLEX_UNIT_PX,
                 getResources().getDimensionPixelSize(R.dimen.widget_label_font_size));
+
+        // OwnerInfo
         if (mOwnerInfo != null) {
             mOwnerInfo.setTextSize(TypedValue.COMPLEX_UNIT_PX,
                     getResources().getDimensionPixelSize(R.dimen.widget_label_font_size));
@@ -243,8 +271,19 @@ public class KeyguardStatusView extends GridLayout implements
     public void refreshTime() {
         mDateView.setDatePattern(Patterns.dateViewSkel);
 
-        mClockView.setFormat12Hour(Patterns.clockView12);
-        mClockView.setFormat24Hour(Patterns.clockView24);
+        if (mClockSelection == 0) {
+            mClockView.setFormat12Hour(Patterns.clockView12);
+            mClockView.setFormat24Hour(Patterns.clockView24);
+        } else if (mClockSelection == 1) {
+            mClockView.setFormat12Hour(Html.fromHtml("<strong>hh</strong>mm"));
+            mClockView.setFormat24Hour(Html.fromHtml("<strong>kk</strong>mm"));
+        } else if (mClockSelection == 5) {
+            mClockView.setFormat12Hour(Html.fromHtml("<strong>hh</strong><br>mm"));
+            mClockView.setFormat24Hour(Html.fromHtml("<strong>kk</strong><br>mm"));
+        } else {
+            mClockView.setFormat12Hour("hh\nmm");
+            mClockView.setFormat24Hour("kk\nmm");
+        }
     }
 
     private void refresh() {
@@ -263,7 +302,7 @@ public class KeyguardStatusView extends GridLayout implements
             mAlarmStatusView.setText(alarm);
             mAlarmStatusView.setContentDescription(
                     getResources().getString(R.string.keyguard_accessibility_next_alarm, alarm));
-            mAlarmStatusView.setVisibility(View.VISIBLE);
+            mAlarmStatusView.setVisibility(mShowAlarm ? View.VISIBLE : View.GONE);
         } else {
             mAlarmStatusView.setVisibility(View.GONE);
         }
@@ -422,26 +461,82 @@ public class KeyguardStatusView extends GridLayout implements
             }
         }
 
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) mKeyguardStatusArea.getLayoutParams();
+        RelativeLayout.LayoutParams paramsWeather = (RelativeLayout.LayoutParams) mWeatherView.getLayoutParams();
+        switch (mClockSelection) {
+            case 0: // default digital
+            default:
+                mClockView.setVisibility(mShowClock ? (forceHide ? View.GONE : View.VISIBLE) : View.GONE);
+                mAnalogClockView.setVisibility(View.GONE);
+                mDeadPoolClockView.setVisibility(View.GONE);
+                params.addRule(RelativeLayout.BELOW, R.id.clock_view);
+                paramsWeather.addRule(RelativeLayout.BELOW, R.id.clock_view);
+                mClockView.setSingleLine(true);
+                break;
+            case 1: // digital (bold)
+                mClockView.setVisibility(mShowClock ? (forceHide ? View.GONE : View.VISIBLE) : View.GONE);
+                mAnalogClockView.setVisibility(View.GONE);
+                mDeadPoolClockView.setVisibility(View.GONE);
+                params.addRule(RelativeLayout.BELOW, R.id.clock_view);
+                paramsWeather.addRule(RelativeLayout.BELOW, R.id.clock_view);
+                mClockView.setSingleLine(true);
+                break;
+            case 2: // analog
+                mAnalogClockView.setVisibility(mShowClock ? (forceHide ? View.GONE : View.VISIBLE) : View.GONE);
+                mClockView.setVisibility(View.GONE);
+                mDeadPoolClockView.setVisibility(View.GONE);
+                params.addRule(RelativeLayout.BELOW, R.id.analog_clock_view);
+                paramsWeather.addRule(RelativeLayout.BELOW, R.id.analog_clock_view);
+                break;
+            case 3: // analog (deadpool)
+                mDeadPoolClockView.setVisibility(mShowClock ? (forceHide ? View.GONE : View.VISIBLE) : View.GONE);
+                mAnalogClockView.setVisibility(View.GONE);
+                mClockView.setVisibility(View.GONE);
+                params.addRule(RelativeLayout.BELOW, R.id.deadpool_clock_view);
+                paramsWeather.addRule(RelativeLayout.BELOW, R.id.deadpool_clock_view);
+                break;
+            case 4: // sammy
+                mClockView.setVisibility(mShowClock ? (forceHide ? View.GONE : View.VISIBLE) : View.GONE);
+                mAnalogClockView.setVisibility(View.GONE);
+                mDeadPoolClockView.setVisibility(View.GONE);
+                params.addRule(RelativeLayout.BELOW, R.id.clock_view);
+                paramsWeather.addRule(RelativeLayout.BELOW, R.id.clock_view);
+                mClockView.setSingleLine(false);
+                break;
+            case 5: // sammy (bold)
+                mClockView.setVisibility(mShowClock ? (forceHide ? View.GONE : View.VISIBLE) : View.GONE);
+                mAnalogClockView.setVisibility(View.GONE);
+                mDeadPoolClockView.setVisibility(View.GONE);
+                params.addRule(RelativeLayout.BELOW, R.id.clock_view);
+                paramsWeather.addRule(RelativeLayout.BELOW, R.id.clock_view);
+                mClockView.setSingleLine(false);
+                break;
+        }
+
+        switch (mDateSelection) {
+            case 0: // default
+            default:
+                mDateView.setVisibility(mShowDate ? (forceHide ? View.GONE : View.VISIBLE) : View.GONE);
+                mDateView.setBackgroundResource(0);
+                mDateView.setTypeface(Typeface.DEFAULT);
+                mDateView.setPadding(0,0,0,0);
+                break;
+            case 1: // semi-transparent box
+                mDateView.setVisibility(mShowDate ? (forceHide ? View.GONE : View.VISIBLE) : View.GONE);
+                mDateView.setBackground(getResources().getDrawable(R.drawable.date_box_str_border));
+                mDateView.setTypeface(Typeface.DEFAULT_BOLD);
+                mDateView.setPadding(40,20,40,20);
+                break;
+            case 2: // semi-transparent box (round)
+                mDateView.setVisibility(mShowDate ? (forceHide ? View.GONE : View.VISIBLE) : View.GONE);
+                mDateView.setBackground(getResources().getDrawable(R.drawable.date_str_border));
+                mDateView.setTypeface(Typeface.DEFAULT_BOLD);
+                mDateView.setPadding(40,20,40,20);
+                break;
+        }
+
         AlarmManager.AlarmClockInfo nextAlarm =
                 mAlarmManager.getNextAlarmClock(UserHandle.USER_CURRENT);
-
-        if (mClockView != null) {
-            if (mShowClock){
-                mClockView.setVisibility(forceHide ?
-                    View.GONE : View.VISIBLE);
-            } else {
-                mClockView.setVisibility(View.GONE);
-            }
-        }
-
-        if (mDateView != null) {
-            if (mShowDate){
-                mDateView.setVisibility(forceHide ?
-                    View.GONE : View.VISIBLE);
-            } else {
-                mDateView.setVisibility(View.GONE);
-            }
-        }
 
         if (mAlarmStatusView != null) {
             if (mShowAlarm && nextAlarm != null){
@@ -527,6 +622,9 @@ public class KeyguardStatusView extends GridLayout implements
         int blendedAlarmColor = ColorUtils.blendARGB(mAlarmTextColor, Color.WHITE, darkAmount);
         mAlarmStatusView.setTextColor(blendedAlarmColor);
         mAlarmStatusView.setCompoundDrawableTintList(ColorStateList.valueOf(blendedAlarmColor));
+        mAnalogClockView.setDark(dark);
+        mDeadPoolClockView.setDark(dark);
+        refresh();
     }
 
     public void setPulsing(boolean pulsing) {
@@ -547,6 +645,7 @@ public class KeyguardStatusView extends GridLayout implements
                 child.setAlpha(mDarkAmount == 1 ? 0 : 1);
             }
         }
+        refreshTime();
     }
 
     class SettingsObserver extends ContentObserver {
@@ -570,6 +669,10 @@ public class KeyguardStatusView extends GridLayout implements
                   Settings.System.SHOW_LOCKSCREEN_CLOCK), false, this, UserHandle.USER_ALL);
            resolver.registerContentObserver(Settings.System.getUriFor(
                   Settings.System.SHOW_LOCKSCREEN_DATE), false, this, UserHandle.USER_ALL);
+           resolver.registerContentObserver(Settings.System.getUriFor(
+                  Settings.System.LOCKSCREEN_CLOCK_SELECTION), false, this, UserHandle.USER_ALL);
+           resolver.registerContentObserver(Settings.System.getUriFor(
+                  Settings.System.LOCKSCREEN_DATE_SELECTION), false, this, UserHandle.USER_ALL);
 
            update();
         }
@@ -598,23 +701,27 @@ public class KeyguardStatusView extends GridLayout implements
         }
 
          public void update() {
-           ContentResolver resolver = mContext.getContentResolver();
-           int currentUserId = ActivityManager.getCurrentUser();
+            ContentResolver resolver = mContext.getContentResolver();
+            int currentUserId = ActivityManager.getCurrentUser();
 
-           mShowWeather = Settings.System.getInt(resolver,
+            mShowWeather = Settings.System.getInt(resolver,
                 Settings.System.LOCK_SCREEN_SHOW_WEATHER, 0) == 1;
-           mShowConditionIcon = Settings.System.getInt(resolver,
+            mShowConditionIcon = Settings.System.getInt(resolver,
                 Settings.System.LOCK_SCREEN_WEATHER_CONDITION_ICON, 1) == 1;
-           mShowLocation = Settings.System.getInt(resolver,
+            mShowLocation = Settings.System.getInt(resolver,
                 Settings.System.LOCK_SCREEN_SHOW_WEATHER_LOCATION, 1) == 1;
-           mShowAlarm = Settings.System.getIntForUser(resolver,
+            mShowAlarm = Settings.System.getIntForUser(resolver,
                     Settings.System.SHOW_LOCKSCREEN_ALARM, 1, UserHandle.USER_CURRENT) == 1;
-           mShowClock = Settings.System.getIntForUser(resolver,
+            mShowClock = Settings.System.getIntForUser(resolver,
                     Settings.System.SHOW_LOCKSCREEN_CLOCK, 1, UserHandle.USER_CURRENT) == 1;
-           mShowDate = Settings.System.getIntForUser(resolver,
+            mShowDate = Settings.System.getIntForUser(resolver,
                     Settings.System.SHOW_LOCKSCREEN_DATE, 1, UserHandle.USER_CURRENT) == 1;
+            mClockSelection = Settings.System.getIntForUser(resolver,
+                    Settings.System.LOCKSCREEN_CLOCK_SELECTION, 0, UserHandle.USER_CURRENT);
+            mDateSelection = Settings.System.getIntForUser(resolver,
+                    Settings.System.LOCKSCREEN_DATE_SELECTION, 0, UserHandle.USER_CURRENT);
 
-           updateSettings(false);
+            updateSettings(false);
          }
     }
 }

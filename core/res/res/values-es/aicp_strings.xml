@@ -42,4 +42,8 @@
   <string name="action_null">Vacío</string>
   <!-- Label for item that screenrecords in power menu options dialog -->
   <string name="global_action_screenrecord">Grabar pantalla</string>
+  <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permlab_fakePackageSignature">Falsear firma del paquete</string>
+  <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permdesc_fakePackageSignature">Permite que la aplicación se ejecute como una aplicación diferente. Las aplicaciones maliciosas pueden usar esto para acceder a datos personales. Conceda este permiso con cuidado!</string>
 </resources>

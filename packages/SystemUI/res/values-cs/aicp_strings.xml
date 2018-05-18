@@ -151,8 +151,8 @@
   <string name="caffeine_info_title">Co to je?</string>
   <string name="caffeine_info_message">Dlaždice Kofein je jednoduchá dlaždice, kterou můžete zapnout, aby vaše obrazovka zůstala zapnutá.\n\nVezměte na vědomí, že stav dlaždice se po vypnutí obrazovky obnoví.</string>
   <!-- Navigation bar Tile -->
-  <string name="quick_settings_navigation_bar">Navigační lišta</string>
-  <string name="quick_settings_smartbar">Chytrá lišta</string>
+  <string name="quick_settings_navigation_bar">Navigační panel</string>
+  <string name="quick_settings_smartbar">SmartBar</string>
   <string name="quick_settings_fling">Fling</string>
   <string name="quick_settings_navigation_default">Stock</string>
   <string name="quick_settings_navigation_disabled">Zakázáno</string>
@@ -173,4 +173,15 @@
   <string name="quick_settings_google_assist_label">Asistent</string>
   <string name="quick_settings_google_voice_assist_label">Hlasová asistence</string>
   <string name="quick_settings_google_now_label">Google Feed</string>
+  <!-- Smart pixels QS tile -->
+  <string name="quick_settings_smart_pixels">Smart Pixels</string>
+  <string name="quick_settings_smart_pixels_on_power_save">Automaticky povolit Smart Pixels</string>
+  <!-- CPUInfo tile -->
+  <string name="quick_settings_cpuinfo_label">Informace o CPU</string>
+  <!-- HW Keys Tile -->
+  <string name="quick_settings_hw_keys_label">Hardvarová tlačítka</string>
+  <!-- Content description of the HW keys tile in quick settings when disabled (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_hw_keys_disabled">HW tlačítka jsou zakázána.</string>
+  <!-- Content description of the HW keys tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_hw_keys_enabled">HW tlačítka jsou povolena.</string>
 </resources>

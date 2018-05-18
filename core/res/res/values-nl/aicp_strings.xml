@@ -42,4 +42,8 @@
   <string name="action_null">Leeg</string>
   <!-- Label for item that screenrecords in power menu options dialog -->
   <string name="global_action_screenrecord">Schermopname</string>
+  <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permlab_fakePackageSignature">Pakkethandtekening nabootsen</string>
+  <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permdesc_fakePackageSignature">De app toestaan zich voor te doen als een andere app. Schadelijke apps kunnen dit mogelijk gebruiken om toegang te krijgen tot persoonlijke toepassingsgegevens. Verleen deze toestemming met de nodige voorzichtigheid!</string>
 </resources>

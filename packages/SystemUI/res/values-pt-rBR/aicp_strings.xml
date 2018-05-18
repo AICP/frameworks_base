@@ -170,4 +170,9 @@
   <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_running_services">Tela de Serviços Abertos em Execução.</string>
   <!-- The contents of the Ambient Weather bottom view -->
+  <!-- Smart pixels QS tile -->
+  <!-- CPUInfo tile -->
+  <!-- HW Keys Tile -->
+  <!-- Content description of the HW keys tile in quick settings when disabled (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <!-- Content description of the HW keys tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
 </resources>

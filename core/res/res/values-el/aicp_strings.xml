@@ -40,4 +40,6 @@
   <string name="action_null">Κενό</string>
   <!-- Label for item that screenrecords in power menu options dialog -->
   <string name="global_action_screenrecord">Καταγραφή Οθόνης</string>
+  <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
 </resources>

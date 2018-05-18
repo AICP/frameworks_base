@@ -23,13 +23,23 @@
   <string name="delete_screenshot_toast">スクリーンショットを削除しました</string>
   <!-- Partial Screenshot -->
   <string name="screenshot_abort_title">スクリーンショットは撮影されていません</string>
+  <string name="screenshot_abort_text">操作を中止しました</string>
   <!-- Compass QS Tile -->
   <string name="quick_settings_compass_label">コンパス</string>
+  <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
   <string name="quick_settings_compass_init">初期化中...</string>
   <string name="accessibility_quick_settings_compass_off">コンパスは OFF です。</string>
   <string name="accessibility_quick_settings_compass_on">コンパスは ON です。</string>
   <string name="accessibility_quick_settings_compass_changed_off">コンパスを OFF にしました。</string>
   <string name="accessibility_quick_settings_compass_changed_on">コンパスを ON にしました。</string>
+  <string name="quick_settings_compass_N">北</string>
+  <string name="quick_settings_compass_NE">北東</string>
+  <string name="quick_settings_compass_E">東</string>
+  <string name="quick_settings_compass_SE">南東</string>
+  <string name="quick_settings_compass_S">南</string>
+  <string name="quick_settings_compass_SW">南西</string>
+  <string name="quick_settings_compass_W">西</string>
+  <string name="quick_settings_compass_NW">北西</string>
   <!-- Screenshoot tile -->
   <string name="quick_settings_screenshot_label">スクリーンショット</string>
   <string name="quick_settings_region_screenshot_label">部分的なスクリーンショット</string>
@@ -81,26 +91,41 @@
   <string name="accessibility_quick_settings_sync_changed_off">同期が OFF になりました</string>
   <string name="accessibility_quick_settings_sync_changed_on">同期が ON になりました</string>
   <!-- Volume QS Tile -->
+  <string name="accessibility_quick_settings_volume_panel">音量</string>
+  <string name="quick_settings_volume_panel_label">音量</string>
   <!-- PiP Tile -->
   <!-- Screenrecord tile -->
   <string name="quick_settings_screenrecord">スクリーンレコード</string>
   <string name="quick_settings_screenrecord_on">録画中...</string>
   <!-- Advance location quick setting tile -->
+  <string name="accessibility_quick_settings_location_battery_saving">位置情報：バッテリー節約モード</string>
+  <string name="accessibility_quick_settings_location_gps_only">位置情報：端末のみモード</string>
+  <string name="accessibility_quick_settings_location_high_accuracy">位置情報：高精度モード</string>
   <!-- Screenrecord Notification Ticker -->
+  <string name="screenrecord_notif_ticker">画面を録画中です</string>
   <!-- Screenrecord notification title -->
+  <string name="screenrecord_notif_title">画面を録画中</string>
   <!-- Screenrecord notification action: Stop -->
+  <string name="screenrecord_notif_stop">終了</string>
   <!-- Screenrecord notification action: show/hide pointer -->
+  <string name="screenrecord_notif_pointer_on">ポインタを表示</string>
+  <string name="screenrecord_notif_pointer_off">ポインタを隠す</string>
   <!-- Screen record notification error title -->
+  <string name="screenrecord_notif_error">スクリーンレコードを実行できません</string>
+  <string name="notification_channel_screenrecord">スクリーンレコード</string>
   <!-- Screenshot QS tile -->
   <string name="quick_settings_screenrecord_label">スクリーンレコード</string>
   <string name="omnijaws_service_error">エラー</string>
   <string name="omnijaws_service_unkown">天気データがありません</string>
+  <string name="omnijaws_service_error_long">気象データの読み込みエラー</string>
   <string name="omnijaws_detail_header">天気</string>
   <string name="omnijaws_label_default">天気</string>
   <string name="omnijaws_current_text">現在</string>
   <string name="omnijaws_package_not_available">OmniJaws がありません</string>
   <!-- Weather string format in expanded statusbar header -->
+  <string name="status_bar_weather_format"><xliff:g id="temp">%1$s</xliff:g></string>
   <!-- SystemUI Tuner Parts -->
+  <string name="custom_hint">アイコンをスワイプして起動します</string>
   <!-- DUI -->
   <!-- Battery saver tile -->
   <!-- Caffeine tile -->
@@ -117,4 +142,9 @@
   <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_running_services">実行中のサービス画面を開きます。</string>
   <!-- The contents of the Ambient Weather bottom view -->
+  <!-- Smart pixels QS tile -->
+  <!-- CPUInfo tile -->
+  <!-- HW Keys Tile -->
+  <!-- Content description of the HW keys tile in quick settings when disabled (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <!-- Content description of the HW keys tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
 </resources>

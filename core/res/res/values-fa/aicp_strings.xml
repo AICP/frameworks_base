@@ -23,5 +23,22 @@
   <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <!-- AOKP custom system animations -->
+  <string name="animation_fade">محو شدن</string>
+  <string name="animation_slide_right">انیمیشن کشیدن به راست</string>
+  <string name="animation_slide_left">انیمیشن کشیدن به چپ</string>
+  <string name="animation_slide_right_no_fade">انیمیشن کشیدن به راست (بدون انیمیشن محو شونده)</string>
+  <string name="animation_slide_left_no_fade">انیمیشن کشیدن به چپ (بدون انیمیشن محو شونده)</string>
+  <string name="animation_slide_up">انیمیشن کشیدن به پایین</string>
+  <string name="animation_slide_down">انیمیشن کشیدن به بالا</string>
+  <string name="animation_default">پیش‌فرض</string>
+  <string name="animation_translucent">شفافیت</string>
+  <string name="animation_grow_shrink">انیمیشن بزرگ شدن (از بالا)</string>
+  <string name="animation_grow_shrink_center">انیمیشن بزرگ شدن (از مرکز صفحه)</string>
+  <string name="animation_grow_shrink_bottom">انیمیشن بزرگ شدن (از پایین)</string>
+  <string name="animation_grow_shrink_left">انیمیشن بزرگ شدن (از چپ)</string>
+  <string name="animation_grow_shrink_right">انیمیشن بزرگ شدن (از راست)</string>
+  <string name="action_null">خالی</string>
   <!-- Label for item that screenrecords in power menu options dialog -->
+  <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
 </resources>

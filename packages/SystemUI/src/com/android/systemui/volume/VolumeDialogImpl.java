@@ -1383,7 +1383,7 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
         mVolumeDialogStroke = Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.VOLUME_DIALOG_STROKE, 0);
         mCustomStrokeColor = Settings.System.getInt(mContext.getContentResolver(),
-                    Settings.System.VOLUME_DIALOG_STROKE_COLOR, mContext.getResources().getColor(R.color.system_accent_color));
+                    Settings.System.VOLUME_DIALOG_STROKE_COLOR, Utils.getColorAccent(mContext));
         mCustomStrokeThickness = Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.VOLUME_DIALOG_STROKE_THICKNESS, 4);
         mCustomCornerRadius = Settings.System.getInt(mContext.getContentResolver(),
@@ -1397,12 +1397,12 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
 
         if (mVolumeDialogStroke == 0) { // Disable by setting border thickness to 0
             volumeDialogGd.setColor(mContext.getResources().getColor(R.color.system_primary_color));
-            volumeDialogGd.setStroke(0, mContext.getResources().getColor(R.color.system_accent_color));
+            volumeDialogGd.setStroke(0, Utils.getColorAccent(mContext));
             volumeDialogGd.setCornerRadius(mCustomCornerRadius);
             mDialogView.setBackground(volumeDialogGd);
         } else if (mVolumeDialogStroke == 1) { // use accent color for border
             volumeDialogGd.setColor(mContext.getResources().getColor(R.color.system_primary_color));
-            volumeDialogGd.setStroke(mCustomStrokeThickness, mContext.getResources().getColor(R.color.system_accent_color),
+            volumeDialogGd.setStroke(mCustomStrokeThickness, Utils.getColorAccent(mContext),
                     mCustomDashWidth, mCustomDashGap);
         } else if (mVolumeDialogStroke == 2) { // use custom border color
             volumeDialogGd.setColor(mContext.getResources().getColor(R.color.system_primary_color));

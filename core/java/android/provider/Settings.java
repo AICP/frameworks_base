@@ -4756,12 +4756,11 @@ public final class Settings {
         public static final String STATUS_BAR_FILE_HEADER_IMAGE = "status_bar_file_header_image";
 
         /**
-        * Wheter to play notification sound and vibration if screen is ON
-        * 0 - never
-        * 1 - always
-        * 2 - if media playing
-        * @hide
-        */
+         * Whether to play notification sound and vibration if screen is ON
+         * 0 - never
+         * 1 - always
+         * @hide
+         */
         public static final String NOTIFICATION_SOUND_VIB_SCREEN_ON = "notification_sound_vib_screen_on";
 
         /**

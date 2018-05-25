@@ -25,6 +25,7 @@ import android.content.IntentFilter;
 import android.hardware.usb.UsbManager;
 import android.provider.Settings;
 import android.net.ConnectivityManager;
+import android.service.quicksettings.Tile;
 
 import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
@@ -44,6 +45,7 @@ public class UsbTetherTile extends QSTileImpl<BooleanState> {
 
     private boolean mUsbTethered = false;
     private boolean mUsbConnected = false;
+    private final Icon mIcon = ResourceIcon.get(R.drawable.ic_qs_usb_tether_on);
 
     public UsbTetherTile(QSHost host) {
         super(host);
@@ -122,14 +124,18 @@ public class UsbTetherTile extends QSTileImpl<BooleanState> {
 
     @Override
     protected void handleUpdateState(BooleanState state, Object arg) {
+        if (state.slash == null) {
+            state.slash = new SlashState();
+        }
         state.value = mUsbTethered;
         state.label = mContext.getString(R.string.quick_settings_usb_tether_label);
+        state.icon = mIcon;
+        state.slash.isSlashed = !state.value;
+        state.state = mUsbTethered ? Tile.STATE_ACTIVE : Tile.STATE_INACTIVE;
         if (mUsbTethered) {
-            state.icon = ResourceIcon.get(R.drawable.ic_qs_usb_tether_on);
             state.contentDescription = mContext.getString(
                     R.string.accessibility_quick_settings_usb_tether_on);
         } else {
-            state.icon = ResourceIcon.get(R.drawable.ic_qs_usb_tether_off);
             state.contentDescription = mContext.getString(
                     R.string.accessibility_quick_settings_usb_tether_off);
         }

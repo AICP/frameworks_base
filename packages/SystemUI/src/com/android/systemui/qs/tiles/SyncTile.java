@@ -52,14 +52,10 @@ public class SyncTile extends QSTileImpl<BooleanState> {
     }
 
     @Override
-    public void handleLongClick() {
-        ContentResolver.setMasterSyncAutomatically(!mState.value);
-        refreshState();
-    }
-
-    @Override
     public Intent getLongClickIntent() {
-        return null;
+        Intent intent = new Intent("android.settings.SYNC_SETTINGS");
+        intent.addCategory(Intent.CATEGORY_DEFAULT);
+        return intent;
     }
 
     @Override

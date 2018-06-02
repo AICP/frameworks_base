@@ -153,7 +153,7 @@ public class RoundedCorners extends SystemUI implements Tunable {
             }
             if (qsPadding != 0) {
                 fragmentHostManager.addTagListener(QS.TAG,
-                        new TunablePaddingTagListener(qsPadding, R.id.header));
+                        new TunablePaddingTagListener(qsPadding, R.id.qs_header));
             }
         }
     }

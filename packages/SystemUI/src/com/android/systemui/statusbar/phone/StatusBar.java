@@ -6395,7 +6395,7 @@ public class StatusBar extends SystemUI implements DemoMode,
 
         @Override
         public void onDoubleTap(float screenX, float screenY) {
-            if (screenX > 0 && screenY > 0 && mAmbientIndicationContainer != null
+            /*if (screenX > 0 && screenY > 0 && mAmbientIndicationContainer != null
                 && mAmbientIndicationContainer.getVisibility() == View.VISIBLE) {
                 mAmbientIndicationContainer.getLocationOnScreen(mTmpInt2);
                 float viewX = screenX - mTmpInt2[0];
@@ -6404,7 +6404,7 @@ public class StatusBar extends SystemUI implements DemoMode,
                         && 0 <= viewY && viewY <= mAmbientIndicationContainer.getHeight()) {
                     dispatchDoubleTap(viewX, viewY);
                 }
-            }
+            }*/
         }
 
         @Override
@@ -6441,6 +6441,23 @@ public class StatusBar extends SystemUI implements DemoMode,
 
     public boolean shouldIgnoreTouch() {
         return isDozing() && mDozeServiceHost.mIgnoreTouchWhilePulsing;
+    }
+
+    public boolean isDoubleTapOnMusicTicker(float eventX, float eventY) {
+        if (eventX <= 0 || eventY <= 0 || mAmbientIndicationContainer == null
+                || mAmbientIndicationContainer.getVisibility() != View.VISIBLE) {
+            return false;
+        }
+        final View indication = ((AmbientIndicationContainer)mAmbientIndicationContainer).getIndication();
+        indication.getLocationOnScreen(mTmpInt2);
+        float viewX = eventX - mTmpInt2[0];
+        float viewY = eventY - mTmpInt2[1];
+        if (0 <= viewX && viewX <= indication.getWidth()
+                && 0 <= viewY && viewY <= indication.getHeight()) {
+            handleSystemKey(KeyEvent.KEYCODE_MEDIA_NEXT);
+            return true;
+        }
+        return false;
     }
 
     // Begin Extra BaseStatusBar methods.

@@ -204,7 +204,7 @@ public abstract class ActivatableNotificationView extends ExpandableOutlineView 
             } else {
                 makeInactive(true /* animate */);
             }
-        }, this::performClick, this::handleSlideBack, mFalsingManager::onNotificationDoubleTap);
+        }, (event) -> performClick(), this::handleSlideBack, mFalsingManager::onNotificationDoubleTap);
     }
 
     @Override

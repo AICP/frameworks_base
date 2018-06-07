@@ -41,6 +41,7 @@ import java.util.TimeZone;
  * @attr ref android.R.styleable#DeadPoolAnalogClock_hand_hour
  * @attr ref android.R.styleable#DeadPoolAnalogClock_hand_minute
  * @deprecated This widget is no longer supported.
+ * @hide
  */
 @RemoteView
 @Deprecated

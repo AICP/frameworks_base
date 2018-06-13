@@ -5139,6 +5139,12 @@ public final class Settings {
         public static final String CHOOSER_ACTIVITY_BLACKLIST = "chooser_activity_blacklist";
 
         /**
+         * Which recents style to use
+         * @hide
+         */
+        public static final String RECENTS_LAYOUT_STYLE = "recents_layout_style";
+
+        /**
          * --- AICP System settings end
          *  Add new system settings above this comment
          */

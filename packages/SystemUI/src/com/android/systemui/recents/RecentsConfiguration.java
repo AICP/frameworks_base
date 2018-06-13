@@ -20,9 +20,12 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.database.ContentObserver;
 import android.graphics.Rect;
 
 import android.os.SystemProperties;
+import android.os.UserHandle;
+import android.provider.Settings;
 
 import com.android.systemui.R;
 import com.android.systemui.recents.misc.SystemServicesProxy;
@@ -81,10 +84,11 @@ public class RecentsConfiguration {
     /** Misc **/
     public boolean fakeShadows;
     public int svelteLevel;
+    private Context mContext;
 
     // Whether this product supports Grid-based Recents. If this is field is set to true, then
     // Recents will layout task views in a grid mode when there's enough space in the screen.
-    public boolean isGridEnabled;
+    private boolean isGridEnabled;
 
     // Support for Android Recents for low ram devices. If this field is set to true, then Recents
     // will use the alternative layout.
@@ -105,6 +109,7 @@ public class RecentsConfiguration {
         SystemServicesProxy ssp = Recents.getSystemServices();
         mAppContext = context.getApplicationContext();
         Resources res = mAppContext.getResources();
+        mContext = mAppContext;
         fakeShadows = res.getBoolean(R.bool.config_recents_fake_shadows);
         svelteLevel = res.getInteger(R.integer.recents_svelte_level);
         isGridEnabled = SystemProperties.getBoolean("ro.recents.grid", false);
@@ -147,4 +152,8 @@ public class RecentsConfiguration {
         }
     }
 
+    public boolean isGridEnabled() {
+        return Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.RECENTS_LAYOUT_STYLE, isGridEnabled ? 1 : 0, UserHandle.USER_CURRENT) == 1;
+    }
 }

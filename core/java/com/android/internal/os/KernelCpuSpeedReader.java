@@ -15,6 +15,8 @@
  */
 package com.android.internal.os;
 
+import android.content.Context;
+import android.content.res.Resources;
 import android.text.TextUtils;
 import android.os.StrictMode;
 import android.system.OsConstants;
@@ -54,8 +56,8 @@ public class KernelCpuSpeedReader {
      * @param cpuNumber The cpu (cpu0, cpu1, etc) whose state to read.
      */
     public KernelCpuSpeedReader(int cpuNumber, int numSpeedSteps) {
-        mProcFileStats = String.format("/sys/devices/system/cpu/cpu%d/cpufreq/stats/time_in_state",
-                cpuNumber);
+        mProcFileStats = String.format(Resources.getSystem().getString(
+                com.android.internal.R.string.config_kernelProcFileStats, cpuNumber));
         mProcFileOnline = String.format("/sys/devices/system/cpu/cpu%d/online",
                 cpuNumber);
         mLastSpeedTimesMs = new long[numSpeedSteps];

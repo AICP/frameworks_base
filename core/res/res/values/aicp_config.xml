@@ -103,4 +103,7 @@
     <integer name="config_flashlightProximityTimeout">300</integer>
 
     <bool name="config_dozeAlwaysOnDisplayEnabledDefault">false</bool>
+
+    <!-- Kernel Proc File Stats Path -->
+    <string name="config_kernelProcFileStats" translatable="false">/sys/devices/system/cpu/cpu%d/cpufreq/stats/time_in_state</string>
 </resources>

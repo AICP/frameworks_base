@@ -5145,6 +5145,12 @@ public final class Settings {
         public static final String RECENTS_LAYOUT_STYLE = "recents_layout_style";
 
         /**
+         * Whether to show carrier text in quick settings header
+         * @hide
+         */
+        public static final String QS_CARRIER_TEXT = "qs_carrier_text";
+
+        /**
          * --- AICP System settings end
          *  Add new system settings above this comment
          */

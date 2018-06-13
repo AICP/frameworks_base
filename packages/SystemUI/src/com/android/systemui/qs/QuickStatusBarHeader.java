@@ -54,6 +54,8 @@ public class QuickStatusBarHeader extends FrameLayout implements
     private static final String TAG = "QuickStatusBarHeader";
     private static final String QS_SHOW_MINI =
             "system:" + Settings.System.QS_SHOW_MINI;
+    private static final String QS_CARRIER_TEXT =
+            "system:" + Settings.System.QS_CARRIER_TEXT;
 
     private ActivityStarter mActivityStarter;
 
@@ -180,13 +182,14 @@ public class QuickStatusBarHeader extends FrameLayout implements
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        Dependency.get(TunerService.class).addTunable(this, QS_SHOW_MINI);
+        Dependency.get(TunerService.class).addTunable(this, QS_SHOW_MINI, QS_CARRIER_TEXT);
     }
 
     @Override
     @VisibleForTesting
     public void onDetachedFromWindow() {
         setListening(false);
+        Dependency.get(TunerService.class).removeTunable(this);
         super.onDetachedFromWindow();
     }
 
@@ -352,6 +355,9 @@ public class QuickStatusBarHeader extends FrameLayout implements
             updateHeaderLayout();
             updateQsPanelLayout();
             updateQuickBarLayout();
+        } else if (QS_CARRIER_TEXT.equals(key)) {
+            final boolean qsCarrierText = newValue != null && Integer.parseInt(newValue) == 1;
+            findViewById(R.id.qs_carrier_text).setVisibility(qsCarrierText ? INVISIBLE : VISIBLE);
         }
     }
 }

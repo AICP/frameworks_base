@@ -34,6 +34,7 @@ import android.widget.RemoteViews.RemoteView;
  * @attr ref android.R.styleable#SpideyAnalogClock_hand_hour
  * @attr ref android.R.styleable#SpideyAnalogClock_hand_minute
  * @deprecated This widget is no longer supported.
+ * @hide
  */
 @RemoteView
 @Deprecated

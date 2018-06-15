@@ -173,8 +173,19 @@
   <string name="quick_settings_google_voice_assist_label">語音助理</string>
   <string name="quick_settings_google_now_label">Google feed</string>
   <!-- Smart pixels QS tile -->
+  <string name="quick_settings_smart_pixels">智慧 Pixels</string>
+  <string name="quick_settings_smart_pixels_on_power_save">自動啟用智慧 Pixels</string>
   <!-- CPUInfo tile -->
+  <string name="quick_settings_cpuinfo_label">CPU 資訊</string>
   <!-- HW Keys Tile -->
+  <string name="quick_settings_hw_keys_label">實體按鍵</string>
   <!-- Content description of the HW keys tile in quick settings when disabled (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_hw_keys_disabled">實體按鍵已停用。</string>
   <!-- Content description of the HW keys tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_hw_keys_enabled">實體按鍵已啟用。</string>
+  <!-- Heads up snooze toast -->
+  <!-- Text to use when the number in a notification info is too large
+         (greater than status_bar_notification_info_maxnum, defined in
+         values/config.xml) and must be truncated.
+         [CHAR LIMIT=4] -->
 </resources>

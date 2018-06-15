@@ -182,4 +182,9 @@
   <string name="accessibility_quick_settings_hw_keys_disabled">A gombok letiltásra kerültek.</string>
   <!-- Content description of the HW keys tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_hw_keys_enabled">A gombok engedélyezettek.</string>
+  <!-- Heads up snooze toast -->
+  <!-- Text to use when the number in a notification info is too large
+         (greater than status_bar_notification_info_maxnum, defined in
+         values/config.xml) and must be truncated.
+         [CHAR LIMIT=4] -->
 </resources>

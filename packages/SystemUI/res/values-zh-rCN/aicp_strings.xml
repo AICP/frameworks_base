@@ -17,7 +17,7 @@
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Aicp Extras Tile -->
-  <string name="quick_aicp_extras_label">Aicp额外设置</string>
+  <string name="quick_aicp_extras_label">Aicp 额外设置</string>
   <string name="quick_aicp_extras_toast">你真的认为长按会打开什么！？（笑</string>
   <!-- Screenshot Delete Toast -->
   <string name="delete_screenshot_toast">屏幕截图已删除</string>
@@ -45,8 +45,8 @@
   <!-- USB Tethering tile -->
   <string name="accessibility_quick_settings_usb_tether_off">USB网络共享关闭</string>
   <string name="accessibility_quick_settings_usb_tether_on">USB网络共享开启</string>
-  <string name="accessibility_quick_settings_usb_tether_changed_off">USB网络共享关闭</string>
-  <string name="accessibility_quick_settings_usb_tether_changed_on">USB网络共享开启</string>
+  <string name="accessibility_quick_settings_usb_tether_changed_off">USB网络共享已关闭</string>
+  <string name="accessibility_quick_settings_usb_tether_changed_on">USB网络共享已开启</string>
   <string name="quick_settings_usb_tether_label">USB网络共享</string>
   <!-- Language toggle tile -->
   <string name="quick_settings_locale_label">语音</string>
@@ -150,8 +150,8 @@
   <string name="caffeine_info_message">保持亮屏瓷块是一个简单的瓷块，你可以打开它以保持屏幕长亮。\n\n请注意，磁块状态将在屏幕关闭后重置。</string>
   <!-- Navigation bar Tile -->
   <string name="quick_settings_navigation_bar">导航栏</string>
-  <string name="quick_settings_smartbar">SmartBar</string>
-  <string name="quick_settings_fling">Fling</string>
+  <string name="quick_settings_smartbar">智能导航栏</string>
+  <string name="quick_settings_fling">扫动</string>
   <string name="quick_settings_navigation_default">原生</string>
   <string name="quick_settings_navigation_disabled">禁用</string>
   <!-- Kill button in notification guts -->
@@ -172,8 +172,19 @@
   <string name="quick_settings_google_voice_assist_label">语音助手</string>
   <string name="quick_settings_google_now_label">谷歌 feed</string>
   <!-- Smart pixels QS tile -->
+  <string name="quick_settings_smart_pixels">智能像素</string>
+  <string name="quick_settings_smart_pixels_on_power_save">自动启用智能像素</string>
   <!-- CPUInfo tile -->
+  <string name="quick_settings_cpuinfo_label">CPU 信息</string>
   <!-- HW Keys Tile -->
+  <string name="quick_settings_hw_keys_label">实体按键</string>
   <!-- Content description of the HW keys tile in quick settings when disabled (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_hw_keys_disabled">实体按键已禁用</string>
   <!-- Content description of the HW keys tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_hw_keys_enabled">实体按键已启用</string>
+  <!-- Heads up snooze toast -->
+  <!-- Text to use when the number in a notification info is too large
+         (greater than status_bar_notification_info_maxnum, defined in
+         values/config.xml) and must be truncated.
+         [CHAR LIMIT=4] -->
 </resources>

@@ -1265,9 +1265,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             resolver.registerContentObserver(LineageSettings.System.getUriFor(
                     LineageSettings.System.CAMERA_LAUNCH), false, this,
                     UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.RECENTS_LAYOUT_STYLE), false, this,
-                    UserHandle.USER_ALL);
             updateSettings();
         }
 

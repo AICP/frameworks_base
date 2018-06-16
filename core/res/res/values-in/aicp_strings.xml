@@ -23,7 +23,7 @@
   <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permlab_toggleNavigationEditor">mengontrol penyunting navigasi</string>
   <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permdesc_toggleNavigationEditor">Mengizinkan aplikasi untuk mengontrol penyunting bilah navigasi.</string>
+  <string name="permdesc_toggleNavigationEditor">Izinkan aplikasi untuk mengontrol penyunting bilah navigasi.</string>
   <!-- AOKP custom system animations -->
   <string name="animation_fade">Pudar</string>
   <string name="animation_slide_right">Meluncur masuk kanan</string>
@@ -43,5 +43,11 @@
   <!-- Label for item that screenrecords in power menu options dialog -->
   <string name="global_action_screenrecord">Rekam layar</string>
   <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permlab_fakePackageSignature">Palsukan tanda tangan paket</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permdesc_fakePackageSignature">Izinkan aplikasi berpura-pura menjadi aplikasi yang berbeda. Aplikasi jahat mungkin dapat menggunakan ini untuk mengakses data aplikasi pribadi. Berikan izin ini hanya dengan hati-hati!</string>
+  <!-- Pocket Lock -->
+  <!-- Defines the sysfs attribute path used by pocket bridge
+        to communicate pocket state to the pocket judge kernel driver. -->
+  <!-- App Blacklist -->
 </resources>

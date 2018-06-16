@@ -46,4 +46,10 @@
   <string name="permlab_fakePackageSignature">Paketsignatur imitieren</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_fakePackageSignature">Erlaubt einer App, eine andere App nachzuahmen. Böswillige Anwendungen erhalten hierdurch möglicherweise ihre persönlichen Daten. Erteilen Sie diese Berechtigung mit extremer Vorsicht!</string>
+  <!-- Pocket Lock -->
+  <string name="pocket_lock_message_long_press">Ein-/Aus-Taste lange drücken, um mit dem Gerät zu interagieren</string>
+  <!-- Defines the sysfs attribute path used by pocket bridge
+        to communicate pocket state to the pocket judge kernel driver. -->
+  <!-- App Blacklist -->
+  <string name="app_blacklist">Unberücksichtigte App</string>
 </resources>

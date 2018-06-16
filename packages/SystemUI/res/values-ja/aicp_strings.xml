@@ -103,6 +103,7 @@
   <string name="accessibility_quick_settings_location_high_accuracy">位置情報：高精度モード</string>
   <!-- Screenrecord Notification Ticker -->
   <string name="screenrecord_notif_ticker">画面を録画中です</string>
+  <string name="screenrecord_notif_final_ticker">画面を録画しました</string>
   <!-- Screenrecord notification title -->
   <string name="screenrecord_notif_title">画面を録画中</string>
   <!-- Screenrecord notification action: Stop -->
@@ -127,6 +128,7 @@
   <!-- SystemUI Tuner Parts -->
   <string name="custom_hint">アイコンをスワイプして起動します</string>
   <!-- DUI -->
+  <string name="systemui_tuner_navbar_title">標準の設定</string>
   <!-- Battery saver tile -->
   <!-- Caffeine tile -->
   <!-- Navigation bar Tile -->
@@ -147,4 +149,9 @@
   <!-- HW Keys Tile -->
   <!-- Content description of the HW keys tile in quick settings when disabled (not shown on the screen). [CHAR LIMIT=NONE] -->
   <!-- Content description of the HW keys tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <!-- Heads up snooze toast -->
+  <!-- Text to use when the number in a notification info is too large
+         (greater than status_bar_notification_info_maxnum, defined in
+         values/config.xml) and must be truncated.
+         [CHAR LIMIT=4] -->
 </resources>

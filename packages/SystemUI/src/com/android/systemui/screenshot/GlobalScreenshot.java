@@ -32,14 +32,12 @@ import android.app.Notification;
 import android.app.Notification.BigPictureStyle;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.ComponentName;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
@@ -56,7 +54,6 @@ import android.media.MediaActionSound;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.provider.Settings;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -81,7 +78,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.internal.messages.nano.SystemMessageProto.SystemMessage;
-import com.android.internal.util.aicp.AicpUtils;
 import com.android.systemui.R;
 import com.android.systemui.SystemUI;
 import com.android.systemui.util.NotificationChannels;
@@ -89,9 +85,11 @@ import com.android.systemui.util.NotificationChannels;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * POD used in the AsyncTask which saves an image in the background.
@@ -132,7 +130,7 @@ class SaveImageInBackgroundTask extends AsyncTask<Void, Void, Void> {
     private final NotificationManager mNotificationManager;
     private final Notification.Builder mNotificationBuilder, mPublicNotificationBuilder;
     private final File mScreenshotDir;
-    private String mImageFileName;
+    private final String mImageFileName;
     private final String mImageFilePath;
     private final long mImageTime;
     private final BigPictureStyle mNotificationStyle;
@@ -146,6 +144,23 @@ class SaveImageInBackgroundTask extends AsyncTask<Void, Void, Void> {
     // necessary.
     private static boolean mTickerAddSpace;
 
+    private static CharSequence getRunningActivityName(Context context) {
+        final ActivityManager am =
+                (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        final PackageManager pm = context.getPackageManager();
+
+        List<ActivityManager.RunningTaskInfo> tasks = am.getRunningTasks(1);
+        if (tasks != null && !tasks.isEmpty()) {
+            ActivityManager.RunningTaskInfo top = tasks.get(0);
+            try {
+                ActivityInfo info = pm.getActivityInfo(top.topActivity, 0);
+                return pm.getApplicationLabel(info.applicationInfo);
+            } catch (PackageManager.NameNotFoundException e) {
+            }
+        }
+        return null;
+    }
+
     SaveImageInBackgroundTask(Context context, SaveImageInBackgroundData data,
             NotificationManager nManager) {
         Resources r = context.getResources();
@@ -154,21 +169,25 @@ class SaveImageInBackgroundTask extends AsyncTask<Void, Void, Void> {
         mParams = data;
         mImageTime = System.currentTimeMillis();
         String imageDate = new SimpleDateFormat("yyyyMMdd-HHmmss").format(new Date(mImageTime));
-        mImageFileName = String.format(SCREENSHOT_FILE_NAME_TEMPLATE, imageDate);
-        final PackageManager pm = context.getPackageManager();
-        ActivityInfo info = AicpUtils.getRunningActivityInfo(context);
+        CharSequence appName = getRunningActivityName(context);
         boolean onKeyguard = context.getSystemService(KeyguardManager.class).isKeyguardLocked();
-        if (info != null && !onKeyguard) {
-            CharSequence appName = pm.getApplicationLabel(info.applicationInfo);
-            if (!onKeyguard && appName != null) {
-                // replace all spaces and special chars with an underscore
-                String appNameString = appName.toString().replaceAll("[\\\\/:*?\"<>|\\s]+", "_");
-                mImageFileName = String.format(SCREENSHOT_FILE_NAME_TEMPLATE_APPNAME,
-                        imageDate, appNameString);
-             } else {
-                 mImageFileName = String.format(SCREENSHOT_FILE_NAME_TEMPLATE, imageDate);
-             }
-
+        if (!onKeyguard && appName != null) {
+            String appNameString = appName.toString();
+            try {
+                // With some languages like Virgin Islands English, the Settings app gets a weird
+                // long name and some special voodoo chars, so we convert the string to utf-8 to get
+                // a  char instead, easy to remove it then
+                final String temp = new String(appNameString.getBytes("ISO-8859-15"), "UTF-8");
+                appNameString = temp.replaceAll("[]+", "");
+            } catch (UnsupportedEncodingException e) {
+                // Do nothing
+            }
+            // Now replace all spaces and special chars with an underscore
+            appNameString = appNameString.replaceAll("[\\\\/:*?\"<>|\\s]+", "_");
+            mImageFileName = String.format(SCREENSHOT_FILE_NAME_TEMPLATE_APPNAME,
+                    imageDate, appNameString);
+        } else {
+            mImageFileName = String.format(SCREENSHOT_FILE_NAME_TEMPLATE, imageDate);
         }
 
         mScreenshotDir = new File(Environment.getExternalStoragePublicDirectory(

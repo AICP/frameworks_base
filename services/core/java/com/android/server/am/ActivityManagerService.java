@@ -24849,4 +24849,8 @@ public class ActivityManagerService extends IActivityManager.Stub
     public boolean shouldForceLongScreen(String packageName) {
         return mLineageActivityManager.shouldForceLongScreen(packageName);
     }
+
+    // AICP additions start
+    public static final boolean DEBUG_ASPECT_RATIO = DEBUG_ALL || false;
+    public static final String TAG_DEBUG_ASPECT_RATIO = TAG + "_MaxAspectRatio";
 }

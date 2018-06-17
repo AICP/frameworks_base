@@ -202,6 +202,10 @@ public class TaskViewHeader extends FrameLayout
     // Used in grid layout.
     private boolean mShouldDarkenBackgroundColor = false;
 
+    // Use to determine if Kill icon needs to be visible
+    // and clickable on the AppOverlay view
+    private boolean mNeedKillIcon = true;
+
     private CountDownTimer mFocusTimerCountDown;
 
     public TaskViewHeader(Context context) {
@@ -734,8 +738,10 @@ public class TaskViewHeader extends FrameLayout
         } else if (v == mLockTaskButton) {
             if (Recents.sLockedTasks.contains(mTask)) {
                Recents.sLockedTasks.remove(mTask);
+               mNeedKillIcon = true;
             } else {
                Recents.sLockedTasks.add(mTask);
+               mNeedKillIcon = false;
             }
             updateLockTaskDrawable();
         }
@@ -819,6 +825,8 @@ public class TaskViewHeader extends FrameLayout
         mKillButton.setImageDrawable(mTask.useLightOnPrimaryColor
                 ? mLightKillDrawable
                 : mDarkKillDrawable);
+        mKillButton.setVisibility(mNeedKillIcon ? View.VISIBLE : View.INVISIBLE);
+        mKillButton.setClickable(mNeedKillIcon);
         mAppOverlayView.setVisibility(View.VISIBLE);
 
         mAppInfoView.setImageDrawable(mTask.useLightOnPrimaryColor

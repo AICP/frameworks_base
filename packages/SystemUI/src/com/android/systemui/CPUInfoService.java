@@ -52,20 +52,21 @@ public class CPUInfoService extends Service {
     private String[] mCurrGov=null;
 
     private static final String NUM_OF_CPUS_PATH = "/sys/devices/system/cpu/present";
+    private int CPU_TEMP_DIVIDER = 1;
+    private String CPU_TEMP_SENSOR = "";
 
     private class CPUView extends View {
         private Paint mOnlinePaint;
         private Paint mOfflinePaint;
-        private Paint mLpPaint;
         private float mAscent;
         private int mFH;
         private int mMaxWidth;
 
         private int mNeededWidth;
         private int mNeededHeight;
+        private String mCpuTemp;
+        private boolean mCpuTempAvail;
 
-        private boolean mLpMode;
-        private String mCPUTemp;
         private String mPowerProfile;
         private boolean mDataAvail;
 
@@ -78,10 +79,9 @@ public class CPUInfoService extends Service {
                     String msgData = (String) msg.obj;
                     try {
                         String[] parts=msgData.split(";");
-                        mCPUTemp=parts[0];
-                        mLpMode = parts[1].equals("1");
+                        mCpuTemp=parts[0];
 
-                        String[] cpuParts=parts[2].split("\\|");
+                        String[] cpuParts=parts[1].split("\\|");
                         for(int i=0; i<cpuParts.length; i++){
                             String cpuInfo=cpuParts[i];
                             String cpuInfoParts[]=cpuInfo.split(":");
@@ -125,11 +125,6 @@ public class CPUInfoService extends Service {
             mOfflinePaint.setTextSize(textSize);
             mOfflinePaint.setColor(Color.RED);
 
-            mLpPaint = new Paint();
-            mLpPaint.setAntiAlias(true);
-            mLpPaint.setTextSize(textSize);
-            mLpPaint.setColor(Color.GREEN);
-
             mAscent = mOnlinePaint.ascent();
             float descent = mOnlinePaint.descent();
             mFH = (int)(descent - mAscent + .5f);
@@ -160,7 +155,16 @@ public class CPUInfoService extends Service {
         private String getCPUInfoString(int i) {
             String freq=mCurrFreq[i];
             String gov=mCurrGov[i];
-            return "cpu:"+i+" "+gov+":"+freq;
+            return "cpu" + i + " " + gov + " " + String.format("%7s", freq);
+        }
+
+        private String getCpuTemp(String cpuTemp) {
+            if (CPU_TEMP_DIVIDER > 1) {
+                return String.format("%s",
+                        Integer.parseInt(cpuTemp) / CPU_TEMP_DIVIDER);
+            } else {
+                return cpuTemp;
+            }
         }
 
         @Override
@@ -179,21 +183,19 @@ public class CPUInfoService extends Service {
 
             int y = mPaddingTop - (int)mAscent;
 
-            canvas.drawText("Temp:"+mCPUTemp, RIGHT-mPaddingRight-mMaxWidth,
-                y-1, mOnlinePaint);
+            if(!mCpuTemp.equals("0")) {
+                canvas.drawText("Temp " + getCpuTemp(mCpuTemp) + "°C",
+                        RIGHT-mPaddingRight-mMaxWidth, y-1, mOnlinePaint);
+                mCpuTempAvail = true;
+            }
             y += mFH;
 
             for(int i=0; i<mCurrFreq.length; i++){
                 String s=getCPUInfoString(i);
                 String freq=mCurrFreq[i];
                 if(!freq.equals("0")){
-                    if(i==0 && mLpMode){
-                        canvas.drawText(s, RIGHT-mPaddingRight-mMaxWidth,
-                            y-1, mLpPaint);
-                    } else {
                         canvas.drawText(s, RIGHT-mPaddingRight-mMaxWidth,
                             y-1, mOnlinePaint);
-                    }
                 } else {
                     canvas.drawText(s, RIGHT-mPaddingRight-mMaxWidth,
                         y-1, mOfflinePaint);
@@ -209,7 +211,7 @@ public class CPUInfoService extends Service {
             final int NW = mPowerProfilesSupported ? (mNumCpus + 1) : mNumCpus;
 
             int neededWidth = mPaddingLeft + mPaddingRight + mMaxWidth;
-            int neededHeight = mPaddingTop + mPaddingBottom + (mFH*(1+NW));
+            int neededHeight = mPaddingTop + mPaddingBottom + (mFH*((mCpuTempAvail?1:0)+NW));
             if (neededWidth != mNeededWidth || neededHeight != mNeededHeight) {
                 mNeededWidth = neededWidth;
                 mNeededHeight = neededHeight;
@@ -235,10 +237,7 @@ public class CPUInfoService extends Service {
         private static final String CURRENT_CPU = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq";
         private static final String CPU_ROOT = "/sys/devices/system/cpu/cpu";
         private static final String CPU_CUR_TAIL = "/cpufreq/scaling_cur_freq";
-        private static final String CPU_LP_MODE = "/sys/kernel/debug/clock/cpu_lp/state";
         private static final String CPU_GOV_TAIL = "/cpufreq/scaling_governor";
-        private static final String CPU_TEMP_HTC = "/sys/htc/cpu_temp";
-        private static final String CPU_TEMP_OPPO = "/sys/class/thermal/thermal_zone0/temp";
 
         public CurCPUThread(Handler handler, int numCpus){
             mHandler=handler;
@@ -255,14 +254,8 @@ public class CPUInfoService extends Service {
                 while (!mInterrupt) {
                     sleep(500);
                     StringBuffer sb=new StringBuffer();
-                    String cpuTemp = CPUInfoService.readOneLine(CPU_TEMP_HTC);
-                    if (cpuTemp == null){
-                        cpuTemp = CPUInfoService.readOneLine(CPU_TEMP_OPPO);
-                    }
-                    sb.append(cpuTemp == null?"0":cpuTemp);
-                    sb.append(";");
-                    String lpMode = CPUInfoService.readOneLine(CPU_LP_MODE);
-                    sb.append(lpMode == null?"0":lpMode);
+                    String cpuTemp = CPUInfoService.readOneLine(CPU_TEMP_SENSOR);
+                    sb.append(cpuTemp == null ? "0" : cpuTemp);
                     sb.append(";");
 
                     for(int i=0; i<mNumCpus; i++){
@@ -293,6 +286,9 @@ public class CPUInfoService extends Service {
         mNumCpus = getNumOfCpus();
         mCurrFreq = new String[mNumCpus];
         mCurrGov = new String[mNumCpus];
+
+        CPU_TEMP_DIVIDER = getResources().getInteger(R.integer.config_cpuTempDivider);
+        CPU_TEMP_SENSOR = getResources().getString(R.string.config_cpuTempSensor);
 
         mView = new CPUView(this);
         WindowManager.LayoutParams params = new WindowManager.LayoutParams(

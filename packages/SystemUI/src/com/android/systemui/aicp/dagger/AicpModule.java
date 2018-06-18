@@ -31,6 +31,7 @@ import com.android.systemui.qs.tiles.ScreenshotTile;
 import com.android.systemui.qs.tiles.HeadsUpTile;
 import com.android.systemui.qs.tiles.MusicTile;
 import com.android.systemui.qs.tiles.VolumeTile;
+import com.android.systemui.qs.tiles.OnTheGoTile;
 
 import com.android.systemui.qs.tileimpl.QSTileImpl;
 
@@ -94,6 +95,11 @@ public interface AicpModule {
     @IntoMap
     @StringKey(VolumeTile.TILE_SPEC)
     public abstract QSTileImpl<?> bindVolumeTile(VolumeTile volumeTile);
+
+    @Binds
+    @IntoMap
+    @StringKey(OnTheGoTile.TILE_SPEC)
+    public abstract QSTileImpl<?> bindOnTheGoTile(OnTheGoTile onthegoTile);
 
     /** */
     @Binds

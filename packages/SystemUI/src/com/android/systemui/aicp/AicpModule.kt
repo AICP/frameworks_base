@@ -25,6 +25,7 @@ import com.android.systemui.qs.tiles.CellularTile
 import com.android.systemui.qs.tiles.CompassTile;
 import com.android.systemui.qs.tiles.HeadsUpTile
 import com.android.systemui.qs.tiles.MusicTile
+import com.android.systemui.qs.tiles.OnTheGoTile;
 import com.android.systemui.qs.tiles.PowerShareTile
 import com.android.systemui.qs.tiles.ProfilesTile
 import com.android.systemui.qs.tiles.ReadingModeTile
@@ -94,6 +95,12 @@ interface AicpModule {
     @IntoMap
     @StringKey(PowerShareTile.TILE_SPEC)
     fun bindPowerShareTile(powerShareTile: PowerShareTile): QSTileImpl<*>
+
+    /** Inject OnthGoTile into tileMap in QSModule */
+    @Binds
+    @IntoMap
+    @StringKey(OnTheGoTile.TILE_SPEC)
+    fun bindOnTheGoTile(onthegoTile: OnTheGoTile): QSTileImpl<*>
 
     /** Inject ProfilesTile into tileMap in QSModule */
     @Binds

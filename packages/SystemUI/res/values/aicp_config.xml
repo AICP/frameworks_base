@@ -32,6 +32,6 @@
     <bool name="config_alternateFastchargeInfoUpdate">false</bool>
     <!-- The default tiles to display in QuickSettings -->
     <string name="quick_settings_tiles_extra" translatable="false">
-        compass,music,aicp_extras,volume_panel
+        compass,music,aicp_extras,volume_panel,onthego
     </string>
 </resources>

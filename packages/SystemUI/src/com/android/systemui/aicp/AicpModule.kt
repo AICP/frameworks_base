@@ -26,6 +26,7 @@ import com.android.systemui.qs.tiles.AODTile
 import com.android.systemui.qs.tiles.CaffeineTile
 import com.android.systemui.qs.tiles.HeadsUpTile
 import com.android.systemui.qs.tiles.MusicTile
+import com.android.systemui.qs.tiles.OnTheGoTile;
 import com.android.systemui.qs.tiles.PowerShareTile
 import com.android.systemui.qs.tiles.ProfilesTile
 import com.android.systemui.qs.tiles.ReadingModeTile
@@ -87,6 +88,12 @@ interface AicpModule {
     @StringKey(PowerShareTile.TILE_SPEC)
     fun bindPowerShareTile(powerShareTile: PowerShareTile): QSTileImpl<*>
 
+    /** Inject OnthGoTile into tileMap in QSModule */
+    @Binds
+    @IntoMap
+    @StringKey(OnTheGoTile.TILE_SPEC)
+    fun bindOnTheGoTile(onthegoTile: OnTheGoTile): QSTileImpl<*>
+
     /** Inject ProfilesTile into tileMap in QSModule */
     @Binds
     @IntoMap
@@ -130,6 +137,7 @@ interface AicpModule {
         const val CAFFEINE_TILE_SPEC = "caffeine"
         const val HEADS_UP_TILE_SPEC = "heads_up"
         const val MUSIC_TILE_SPEC = "music"
+        const val ONTHEGO_TILE_SPEC = "onthego"
         const val POWERSHARE_TILE_SPEC = "powershare"
         const val PROFILES_TILE_SPEC = "profiles"
         const val READING_MODE_TILE_SPEC = "reading_mode"
@@ -223,6 +231,21 @@ interface AicpModule {
                     QSTileUIConfig.Resource(
                         iconRes = R.drawable.ic_qs_media_play,
                         labelRes = R.string.quick_settings_music_label
+                    ),
+                instanceId = uiEventLogger.getNewInstanceId(),
+                category = TileCategory.UTILITIES,
+            )
+
+        @Provides
+        @IntoMap
+        @StringKey(ONTHEGO_TILE_SPEC)
+        fun provideOnTheGoTileConfig(uiEventLogger: QsEventLogger): QSTileConfig =
+            QSTileConfig(
+                tileSpec = TileSpec.create(ONTHEGO_TILE_SPEC),
+                uiConfig =
+                    QSTileUIConfig.Resource(
+                        iconRes = R.drawable.ic_qs_onthego,
+                        labelRes = R.string.quick_settings_onthego_label
                     ),
                 instanceId = uiEventLogger.getNewInstanceId(),
                 category = TileCategory.UTILITIES,

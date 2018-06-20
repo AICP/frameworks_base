@@ -6781,6 +6781,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         final boolean down = event.getAction() == KeyEvent.ACTION_DOWN;
         final boolean canceled = event.isCanceled();
         final int keyCode = event.getKeyCode();
+        final int source = event.getSource();
 
         final boolean isInjected = (policyFlags & WindowManagerPolicy.FLAG_INJECTED) != 0;
 
@@ -6788,6 +6789,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         final boolean homeKey = keyCode == KeyEvent.KEYCODE_HOME;
         final boolean menuKey = keyCode == KeyEvent.KEYCODE_MENU;
         final boolean backKey = keyCode == KeyEvent.KEYCODE_BACK;
+        final boolean navBarKey = source == InputDevice.SOURCE_NAVIGATION_BAR;
 
         // If screen is off then we treat the case where the keyguard is open but hidden
         // the same as if it were open and in front.
@@ -6805,7 +6807,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         }
 
         if (mANBIHandler != null && mANBIEnabled && mANBIHandler.isScreenTouched()
-                && (appSwitchKey || homeKey || menuKey || backKey)) {
+                && !navBarKey && (appSwitchKey || homeKey || menuKey || backKey)) {
             return 0;
         }
 

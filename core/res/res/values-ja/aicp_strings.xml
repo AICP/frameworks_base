@@ -46,7 +46,9 @@
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_fakePackageSignature">アプリが別のアプリになりすます事を許可します。 悪意のあるアプリケーションがこれを利用してアプリの個人情報にアクセスする可能性があります。 慎重にこの許可を与えてください！</string>
   <!-- Pocket Lock -->
+  <string name="pocket_lock_message_long_press">電源ボタンを長押しすると操作できます</string>
   <!-- Defines the sysfs attribute path used by pocket bridge
         to communicate pocket state to the pocket judge kernel driver. -->
   <!-- App Blacklist -->
+  <string name="app_blacklist">アプリのブラックリスト</string>
 </resources>

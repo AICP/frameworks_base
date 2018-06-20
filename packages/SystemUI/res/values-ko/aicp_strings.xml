@@ -98,6 +98,7 @@
   <string name="accessibility_quick_settings_volume_panel">볼륨</string>
   <string name="quick_settings_volume_panel_label">볼륨</string>
   <!-- PiP Tile -->
+  <string name="quick_settings_pip_label">PiP</string>
   <!-- Screenrecord tile -->
   <string name="quick_settings_screenrecord">화면 녹화</string>
   <string name="quick_settings_screenrecord_on">녹화 중...</string>
@@ -141,6 +142,7 @@
   <!-- SystemUI Tuner Parts -->
   <string name="custom_hint">실행하려면 아이콘에서 스와이프하세요.</string>
   <!-- DUI -->
+  <string name="systemui_tuner_navbar_title">기본 설정</string>
   <!-- Battery saver tile -->
   <string name="battery_saver_qs_tile_fully_charged">충전 완료</string>
   <!-- Caffeine tile -->
@@ -150,21 +152,39 @@
   <string name="quick_settings_navigation_bar">내비게이션 바</string>
   <string name="quick_settings_smartbar">스마트 바</string>
   <string name="quick_settings_fling">Fling 제스처 인터페이스</string>
+  <string name="quick_settings_navigation_default">기본</string>
+  <string name="quick_settings_navigation_disabled">비활성화됨</string>
   <!-- Kill button in notification guts -->
   <string name="force_stop_dlg_title">강제로 종료하시겠습니까?</string>
   <string name="force_stop_dlg_text">강제로 앱을 종료하면 예기치 않은 오류가 발생할 수 있습니다.</string>
   <string name="kill">앱 종료</string>
   <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
+  <string name="keyguard_indication_dash_charging_time">고속 충전중 (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%s</xliff:g> 후 충전 완료)</string>
+  <string name="keyguard_plugged_in_dash_charging">고속 충전중</string>
   <!-- Indication on the keyguard that is shown when the device is charging with a turbo power charger. Should match keyguard_plugged_in_turbo_power_charging [CHAR LIMIT=40]-->
+  <string name="keyguard_indication_turbo_power_time">TurboPower 연결됨 (풀 충전까지 <xliff:g id="charging_time_left">%s</xliff:g> 남음)</string>
+  <string name="keyguard_plugged_in_turbo_power_charging">TurboPower 연결됨</string>
+  <string name="keyguard_plugged_in_turbo_charging">터보 충전</string>
   <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_running_services">실행중인 서비스 보기</string>
   <!-- The contents of the Ambient Weather bottom view -->
+  <string name="quick_settings_google_assist_label">어시스턴트</string>
+  <string name="quick_settings_google_voice_assist_label">음성 지원</string>
+  <string name="quick_settings_google_now_label">구글 피드</string>
   <!-- Smart pixels QS tile -->
+  <string name="quick_settings_smart_pixels">스마트 픽셀</string>
+  <string name="quick_settings_smart_pixels_on_power_save">스마트 픽셀 자동으로 켜기</string>
   <!-- CPUInfo tile -->
+  <string name="quick_settings_cpuinfo_label">CPU 정보</string>
   <!-- HW Keys Tile -->
+  <string name="quick_settings_hw_keys_label">하드웨어 버튼</string>
   <!-- Content description of the HW keys tile in quick settings when disabled (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_hw_keys_disabled">하드웨어 버튼 비활성화됨</string>
   <!-- Content description of the HW keys tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_hw_keys_enabled">하드웨어 버튼 활성화됨</string>
   <!-- Heads up snooze toast -->
+  <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - 꺼내기 알람을 1분간 중지 시킵니다.</string>
+  <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - 꺼내기를 알람을 <xliff:g id="number">%d</xliff:g> 분간 중지 시킵니다.</string>
   <!-- Text to use when the number in a notification info is too large
          (greater than status_bar_notification_info_maxnum, defined in
          values/config.xml) and must be truncated.

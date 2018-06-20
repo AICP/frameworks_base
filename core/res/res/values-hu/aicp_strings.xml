@@ -47,7 +47,9 @@
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_fakePackageSignature">Engedélyezi az alkalmazás számára, hogy más alkalmazásnak tettesse magát. A kártékony alkalmazások ezt személyes adatok elérésére használhatják. Kellő elővigyázatossággal adja meg ezt az engedélyt!</string>
   <!-- Pocket Lock -->
+  <string name="pocket_lock_message_long_press">A hatás eléréséhez nyomja hosszan a bekapcsoló gombot</string>
   <!-- Defines the sysfs attribute path used by pocket bridge
         to communicate pocket state to the pocket judge kernel driver. -->
   <!-- App Blacklist -->
+  <string name="app_blacklist">Kizárt alkalmazások</string>
 </resources>

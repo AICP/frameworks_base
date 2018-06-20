@@ -47,7 +47,9 @@
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_fakePackageSignature">Umožňuje aplikácii vydávať sa sa inú aplikáciu. Škodlivé aplikácie by mohli použiť túto možnosť pre prístup k dátam súkromných aplikácií. Udeľujte toto oprávnenie s opatrnosťou!</string>
   <!-- Pocket Lock -->
+  <string name="pocket_lock_message_long_press">Pre interakciu dlho stlačte tlačidlo Napájanie</string>
   <!-- Defines the sysfs attribute path used by pocket bridge
         to communicate pocket state to the pocket judge kernel driver. -->
   <!-- App Blacklist -->
+  <string name="app_blacklist">Zakázané aplikácie (čierna listina)</string>
 </resources>

@@ -145,11 +145,19 @@
   <string name="accessibility_quick_settings_running_services">実行中のサービス画面を開きます。</string>
   <!-- The contents of the Ambient Weather bottom view -->
   <!-- Smart pixels QS tile -->
+  <string name="quick_settings_smart_pixels">スマートピクセル</string>
+  <string name="quick_settings_smart_pixels_on_power_save">スマートピクセルを自動的に有効にする</string>
   <!-- CPUInfo tile -->
+  <string name="quick_settings_cpuinfo_label">CPU 情報</string>
   <!-- HW Keys Tile -->
+  <string name="quick_settings_hw_keys_label">ハードウェアキー</string>
   <!-- Content description of the HW keys tile in quick settings when disabled (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_hw_keys_disabled">ハードウェアキーは無効です。</string>
   <!-- Content description of the HW keys tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_hw_keys_enabled">ハードウェアキーは有効です。</string>
   <!-- Heads up snooze toast -->
+  <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - ヘッドアップ通知は1分間一時停止します</string>
+  <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - ヘッドアップ通知は<xliff:g id="number">%d</xliff:g>分間一時停止します。</string>
   <!-- Text to use when the number in a notification info is too large
          (greater than status_bar_notification_info_maxnum, defined in
          values/config.xml) and must be truncated.

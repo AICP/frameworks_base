@@ -18,7 +18,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Aicp Extras Tile -->
   <string name="quick_aicp_extras_label">Aicp 额外设置</string>
-  <string name="quick_aicp_extras_toast">你真的认为长按会打开什么！？（笑</string>
+  <string name="quick_aicp_extras_toast">你真的认为长按会打开什么!? (大声笑)</string>
   <!-- Screenshot Delete Toast -->
   <string name="delete_screenshot_toast">屏幕截图已删除</string>
   <!-- Partial Screenshot -->
@@ -43,11 +43,11 @@
   <string name="quick_settings_screenshot_label">截图</string>
   <string name="quick_settings_region_screenshot_label">部分截图</string>
   <!-- USB Tethering tile -->
-  <string name="accessibility_quick_settings_usb_tether_off">USB网络共享关闭</string>
-  <string name="accessibility_quick_settings_usb_tether_on">USB网络共享开启</string>
-  <string name="accessibility_quick_settings_usb_tether_changed_off">USB网络共享已关闭</string>
-  <string name="accessibility_quick_settings_usb_tether_changed_on">USB网络共享已开启</string>
-  <string name="quick_settings_usb_tether_label">USB网络共享</string>
+  <string name="accessibility_quick_settings_usb_tether_off">USB 网络共享关闭</string>
+  <string name="accessibility_quick_settings_usb_tether_on">USB 网络共享开启</string>
+  <string name="accessibility_quick_settings_usb_tether_changed_off">USB 网络共享已关闭</string>
+  <string name="accessibility_quick_settings_usb_tether_changed_on">USB 网络共享已开启</string>
+  <string name="quick_settings_usb_tether_label">USB 网络共享</string>
   <!-- Language toggle tile -->
   <string name="quick_settings_locale_label">语音</string>
   <string name="quick_settings_locale_more_locales_toast">请配置多种语言以启用切换功能</string>
@@ -183,6 +183,8 @@
   <!-- Content description of the HW keys tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_hw_keys_enabled">实体按键已启用</string>
   <!-- Heads up snooze toast -->
+  <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - 浮动通知暂停1分钟。</string>
+  <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - 浮动通知暂停<xliff:g id="number">%d</xliff:g>分钟。</string>
   <!-- Text to use when the number in a notification info is too large
          (greater than status_bar_notification_info_maxnum, defined in
          values/config.xml) and must be truncated.

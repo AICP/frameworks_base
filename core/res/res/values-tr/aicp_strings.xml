@@ -47,7 +47,9 @@
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_fakePackageSignature">Uygulamanın farklı bir uygulama gibi davranmasına izin verir. Zararlı uygulamalar bu özelliği kullanarak özel içerikli bilgilere ulaşabilir. Bu izni verirken dikkatli olun!</string>
   <!-- Pocket Lock -->
+  <string name="pocket_lock_message_long_press">Etkileşim için güç tuşuna uzun basın</string>
   <!-- Defines the sysfs attribute path used by pocket bridge
         to communicate pocket state to the pocket judge kernel driver. -->
   <!-- App Blacklist -->
+  <string name="app_blacklist">Uygulama kara listesi</string>
 </resources>

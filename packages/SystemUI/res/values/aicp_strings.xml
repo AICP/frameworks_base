@@ -236,4 +236,11 @@
     <string name="status_bar_notification_info_overflow" translatable="false">\u221E</string>
 
     <string name="recents_app_killed">App killed</string>
+
+    <!-- Immersive Tile -->
+    <string name="quick_settings_immersive_tile">Immersive mode</string>
+    <string name="quick_settings_immersive_tile_off">Immersive off</string>
+    <string name="quick_settings_immersive_tile_statusbar">Immersive statusbar</string>
+    <string name="quick_settings_immersive_tile_navbar">Immersive navbar</string>
+    <string name="quick_settings_immersive_tile_full">Immersive full</string>
 </resources>

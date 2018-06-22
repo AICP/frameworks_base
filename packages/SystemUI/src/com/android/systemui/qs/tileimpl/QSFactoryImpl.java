@@ -44,6 +44,7 @@ import com.android.systemui.qs.tiles.FlashlightTile;
 import com.android.systemui.qs.tiles.HeadsUpTile;
 import com.android.systemui.qs.tiles.HotspotTile;
 import com.android.systemui.qs.tiles.HWKeysTile;
+import com.android.systemui.qs.tiles.ImmersiveTile;
 import com.android.systemui.qs.tiles.IntentTile;
 import com.android.systemui.qs.tiles.LocaleTile;
 import com.android.systemui.qs.tiles.LocationTile;
@@ -246,6 +247,8 @@ public class QSFactoryImpl implements QSFactory {
                 return mDataSwitchTileProvider.get();
             case "hwkeys":
                 return new HWKeysTile(mHost);
+            case "immersive":
+                return new ImmersiveTile(mHost);
         }
 
         // Intent tiles.

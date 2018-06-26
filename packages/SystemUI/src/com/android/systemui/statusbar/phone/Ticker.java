@@ -48,7 +48,6 @@ import com.android.systemui.statusbar.StatusBarIconView;
 import java.util.ArrayList;
 
 public abstract class Ticker implements DarkReceiver {
-    private static final int TICKER_SEGMENT_DELAY = 3000;
 
     private Context mContext;
     private Handler mHandler = new Handler();
@@ -59,6 +58,7 @@ public abstract class Ticker implements DarkReceiver {
     private float mIconScale;
     private int mIconTint =  0xffffffff;
     private int mTextColor = 0xffffffff;
+    private int mTickerSegmentDelay = 3000;
 
     private MediaMetadata mShowingMediaMetadata;
     private String mShowingNotificationText;
@@ -179,7 +179,7 @@ public abstract class Ticker implements DarkReceiver {
         }
     };
 
-    public Ticker(Context context, View tickerLayout, int animationMode) {
+    public Ticker(Context context, View tickerLayout, int animationMode, int tickDuration) {
         mContext = context;
         final Resources res = context.getResources();
         final int outerBounds = res.getDimensionPixelSize(R.dimen.status_bar_icon_size);
@@ -187,6 +187,7 @@ public abstract class Ticker implements DarkReceiver {
         mIconScale = (float)imageBounds / (float)outerBounds;
 
         updateAnimation(animationMode);
+        updateTickDuration(tickDuration);
 
         mNotificationColorUtil = NotificationColorUtil.getInstance(mContext);
 
@@ -215,6 +216,10 @@ public abstract class Ticker implements DarkReceiver {
         if (mTextSwitcher != null && mIconSwitcher != null) {
             setViewAnimations();
         }
+    }
+
+    public void updateTickDuration(int duration) {
+        mTickerSegmentDelay = duration;
     }
 
 
@@ -392,7 +397,7 @@ public abstract class Ticker implements DarkReceiver {
     };
 
     private void scheduleAdvance() {
-        mHandler.postDelayed(mAdvanceTicker, TICKER_SEGMENT_DELAY);
+        mHandler.postDelayed(mAdvanceTicker, mTickerSegmentDelay);
     }
 
     public abstract void tickerStarting();

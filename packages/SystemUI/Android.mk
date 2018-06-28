@@ -29,7 +29,7 @@ LOCAL_MODULE_TAGS := optional
 
 LOCAL_SRC_FILES := $(call all-java-files-under, src) $(call all-Iaidl-files-under, src)
 
-LOCAL_SRC_FILES += $(call all-java-files-under, ../../../../packages/apps/DUI/src)
+LOCAL_SRC_FILES += $(call all-java-files-under, ../../../../external/DUI/src/com/android/systemui/navigation)
 
 LOCAL_STATIC_ANDROID_LIBRARIES := \
     SystemUIPluginLib \
@@ -61,7 +61,7 @@ LOCAL_PRIVILEGED_MODULE := true
 
 LOCAL_PROGUARD_FLAG_FILES := proguard.flags
 LOCAL_RESOURCE_DIR := $(LOCAL_PATH)/res-keyguard $(LOCAL_PATH)/res
-LOCAL_RESOURCE_DIR += packages/apps/DUI/res
+LOCAL_RESOURCE_DIR += external/DUI/res
 
 ifndef LOCAL_JACK_ENABLED
 LOCAL_PROGUARD_ENABLED := disabled

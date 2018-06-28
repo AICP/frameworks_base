@@ -16,10 +16,10 @@
 <com.android.systemui.volume.ZenFooter xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/volume_zen_footer"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
     android:orientation="vertical"
-    android:paddingBottom="8dp" > <!-- extends LinearLayout -->
+    android:visibility="gone"> <!-- extends LinearLayout -->
 
     <View
         android:id="@+id/zen_embedded_divider"

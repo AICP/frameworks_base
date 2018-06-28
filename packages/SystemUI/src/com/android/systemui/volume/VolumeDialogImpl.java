@@ -226,10 +226,8 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
         lp.type = mWindowType;
         lp.format = PixelFormat.TRANSLUCENT;
         lp.setTitle(VolumeDialogImpl.class.getSimpleName());
-        lp.gravity = Gravity.TOP | Gravity.CENTER_HORIZONTAL;
+        lp.gravity = Gravity.TOP | Gravity.END;
         lp.y = res.getDimensionPixelSize(R.dimen.volume_offset_top);
-        lp.gravity = Gravity.TOP;
-        lp.windowAnimations = -1;
         mWindow.setAttributes(lp);
         mWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
 
@@ -316,15 +314,7 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
 
     private void updateWindowWidthH() {
         final ViewGroup.LayoutParams lp = mDialogView.getLayoutParams();
-        final DisplayMetrics dm = mContext.getResources().getDisplayMetrics();
-        if (D.BUG) Log.d(TAG, "updateWindowWidth dm.w=" + dm.widthPixels);
-        int w = dm.widthPixels;
-        final int max = mContext.getResources()
-                .getDimensionPixelSize(R.dimen.volume_dialog_panel_width);
-        if (w > max) {
-            w = max;
-        }
-        lp.width = w;
+        lp.width = ViewGroup.LayoutParams.WRAP_CONTENT;
         mDialogView.setLayoutParams(lp);
     }
 
@@ -559,6 +549,7 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
             @Override
             public void run() {
                 updateExpandedH(false /* expanding */, true /* dismissing */);
+                rotate(mExpandButton, 180, 0);
             }
         });
         if (mAccessibilityMgr.isEnabled()) {
@@ -611,12 +602,12 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
         if (D.BUG) Log.d(TAG, "updateExpandedH " + expanded);
         updateExpandButtonH();
         updateFooterH();
-        TransitionManager.endTransitions(mDialogView);
+        //TransitionManager.endTransitions(mDialogView);
         final VolumeRow activeRow = getActiveRow();
-        if (!dismissing) {
-            mWindow.setLayout(mWindow.getAttributes().width, ViewGroup.LayoutParams.MATCH_PARENT);
-            TransitionManager.beginDelayedTransition(mDialogView, getTransition());
-        }
+        //if (!dismissing) {
+        //    mWindow.setLayout(mWindow.getAttributes().width, ViewGroup.LayoutParams.MATCH_PARENT);
+        //    TransitionManager.beginDelayedTransition(mDialogView, getTransition());
+        //}
         updateRowsH(activeRow);
         rescheduleTimeoutH();
     }
@@ -625,8 +616,7 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
         if (D.BUG) Log.d(TAG, "updateExpandButtonH");
         mExpandButton.setClickable(!mExpandButtonAnimationRunning);
         if (!(mExpandButtonAnimationRunning && isAttached())) {
-            final int res = mExpanded ? R.drawable.ic_volume_collapse_animation
-                    : R.drawable.ic_volume_expand_animation;
+            final int res = R.drawable.ic_volume_expand;
             if (hasTouchFeature()) {
                 mExpandButton.setImageResource(res);
             } else {
@@ -638,23 +628,26 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
                     R.string.accessibility_volume_collapse : R.string.accessibility_volume_expand));
         }
         if (mExpandButtonAnimationRunning) {
-            final Drawable d = mExpandButton.getDrawable();
-            if (d instanceof AnimatedVectorDrawable) {
-                // workaround to reset drawable
-                final AnimatedVectorDrawable avd = (AnimatedVectorDrawable) d.getConstantState()
-                        .newDrawable();
-                mExpandButton.setImageDrawable(avd);
-                avd.start();
-                mHandler.postDelayed(new Runnable() {
+            if (mExpandButton.getContentDescription().toString() == mContext.getString(R.string.accessibility_volume_collapse)) {
+                rotate(mExpandButton, 180, 0);
+            } else if (mExpandButton.getContentDescription().toString() == mContext.getString(R.string.accessibility_volume_expand)) {
+                rotate(mExpandButton, 0, 180);
+            }
+            mHandler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         mExpandButtonAnimationRunning = false;
                         updateExpandButtonH();
                         rescheduleTimeoutH();
                     }
-                }, mExpandButtonAnimationDuration);
-            }
+            }, mExpandButtonAnimationDuration);
         }
+    }
+
+    public static void rotate(View v, float from, float to) {
+        android.animation.ObjectAnimator mover = android.animation.ObjectAnimator.ofFloat(v, "rotation", from, to);
+        mover.setDuration(200);
+        mover.start();
     }
 
     private boolean shouldBeVisibleH(VolumeRow row, VolumeRow activeRow) {
@@ -752,8 +745,8 @@ public class VolumeDialogImpl implements VolumeDialog, TunerService.Tunable {
                 && (mAudioManager.isStreamAffectedByRingerMode(mActiveStream) || mExpanded)
                 && !mZenPanel.isEditing();
 
-        TransitionManager.endTransitions(mDialogView);
-        TransitionManager.beginDelayedTransition(mDialogView, getTransition());
+        //TransitionManager.endTransitions(mDialogView);
+        //TransitionManager.beginDelayedTransition(mDialogView, getTransition());
         if (wasVisible != visible && !visible) {
             prepareForCollapse();
         }

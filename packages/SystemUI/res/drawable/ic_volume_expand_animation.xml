@@ -17,9 +17,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:drawable="@drawable/ic_volume_expand" >
     <target
-        android:name="right"
+        android:name="expand"
         android:animation="@anim/ic_caret_up_right_animation" />
-    <target
-        android:name="left"
-        android:animation="@anim/ic_caret_up_left_animation" />
 </animated-vector>

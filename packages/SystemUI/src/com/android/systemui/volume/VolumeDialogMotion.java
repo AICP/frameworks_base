@@ -69,7 +69,6 @@ public class VolumeDialogMotion {
             public void onShow(DialogInterface dialog) {
                 if (D.BUG) Log.d(TAG, "mDialog.onShow");
                 final int h = mDialogView.getHeight();
-                mDialogView.setTranslationY(-h);
                 startShowAnimation();
             }
         });
@@ -129,7 +128,7 @@ public class VolumeDialogMotion {
     private void startShowAnimation() {
         if (D.BUG) Log.d(TAG, "startShowAnimation");
         mDialogView.animate()
-                .translationY(0)
+                .translationX(0)
                 .setDuration(scaledDuration(300))
                 .setInterpolator(new LogDecelerateInterpolator())
                 .setListener(null)
@@ -137,18 +136,12 @@ public class VolumeDialogMotion {
                     if (mChevronPositionAnimator != null) {
                         final float v = (Float) mChevronPositionAnimator.getAnimatedValue();
                         if (mChevronPositionAnimator == null) return;
-                        // reposition chevron
-                        final int posY = chevronPosY();
-                        mChevron.setTranslationY(posY + v + -mDialogView.getTranslationY());
                     }
                 })
                 .withEndAction(new Runnable() {
                     @Override
                     public void run() {
                         if (mChevronPositionAnimator == null) return;
-                        // reposition chevron
-                        final int posY = chevronPosY();
-                        mChevron.setTranslationY(posY + -mDialogView.getTranslationY());
                     }
                 })
                 .start();
@@ -174,7 +167,7 @@ public class VolumeDialogMotion {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 float v = (Float) animation.getAnimatedValue();
-                mContents.setTranslationY(v + -mDialogView.getTranslationY());
+                //mContents.setTranslationY(v + -mDialogView.getTranslationY());
             }
         });
         mContentsPositionAnimator.setInterpolator(new LogDecelerateInterpolator());
@@ -185,19 +178,6 @@ public class VolumeDialogMotion {
                 .alpha(1)
                 .setDuration(scaledDuration(150))
                 .setInterpolator(new PathInterpolator(0f, 0f, .2f, 1f))
-                .start();
-
-        mChevronPositionAnimator = ValueAnimator.ofFloat(-chevronDistance(), 0)
-                .setDuration(scaledDuration(250));
-        mChevronPositionAnimator.setInterpolator(new PathInterpolator(.4f, 0f, .2f, 1f));
-        mChevronPositionAnimator.start();
-
-        mChevron.setAlpha(0);
-        mChevron.animate()
-                .alpha(1)
-                .setStartDelay(scaledDuration(50))
-                .setDuration(scaledDuration(150))
-                .setInterpolator(new PathInterpolator(.4f, 0f, 1f, 1f))
                 .start();
     }
 
@@ -214,19 +194,18 @@ public class VolumeDialogMotion {
             if (mChevronPositionAnimator != null) {
                 mChevronPositionAnimator.cancel();
             }
-            mChevron.animate().cancel();
             setShowing(false);
         }
         mDialogView.animate()
-                .translationY(-mDialogView.getHeight())
+                .translationX(mDialogView.getHeight())
                 .setDuration(scaledDuration(250))
                 .setInterpolator(new LogAccelerateInterpolator())
                 .setUpdateListener(new AnimatorUpdateListener() {
                     @Override
                     public void onAnimationUpdate(ValueAnimator animation) {
-                        mContents.setTranslationY(-mDialogView.getTranslationY());
+                        //mContents.setTranslationY(-mDialogView.getTranslationY());
                         final int posY = chevronPosY();
-                        mChevron.setTranslationY(posY + -mDialogView.getTranslationY());
+                        //mChevron.setTranslationY(posY + -mDialogView.getTranslationY());
                     }
                 })
                 .setListener(new AnimatorListenerAdapter() {

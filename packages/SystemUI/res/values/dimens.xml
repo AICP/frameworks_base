@@ -653,7 +653,7 @@
     <dimen name="volume_slider_interspacing">8dp</dimen>
 
     <!-- Volume dialog vertical offset from the top of the screen -->
-    <dimen name="volume_offset_top">0dp</dimen>
+    <dimen name="volume_offset_top">120dp</dimen>
 
     <!-- Standard image button size for volume dialog buttons -->
     <dimen name="volume_button_size">48dp</dimen>

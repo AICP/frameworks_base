@@ -162,8 +162,10 @@ public class BatteryMeterView extends LinearLayout implements
     }
 
     private boolean forcePercentageQsHeader() {
-        return mQsHeaderOrKeyguard && mForceQSHeaderPercent && (mStyle != BatteryMeterDrawableBase.BATTERY_STYLE_CIRCLE
-                && mStyle != BatteryMeterDrawableBase.BATTERY_STYLE_DOTTED_CIRCLE);
+        return mQsHeaderOrKeyguard && mForceQSHeaderPercent &&
+                (mStyle != BatteryMeterDrawableBase.BATTERY_STYLE_CIRCLE
+                && mStyle != BatteryMeterDrawableBase.BATTERY_STYLE_DOTTED_CIRCLE
+                && mStyle != BatteryMeterDrawableBase.BATTERY_STYLE_SQUARE);
     }
 
     private boolean isHiddenButQsOrKeyguard() {
@@ -199,8 +201,7 @@ public class BatteryMeterView extends LinearLayout implements
 
     @Override
     public void onBatteryLevelChanged(int level, boolean pluggedIn, boolean charging) {
-        if (isCircleBattery()
-                || mStyle == BatteryMeterDrawableBase.BATTERY_STYLE_PORTRAIT) {
+        if (isCircleBattery() || isRectangularBattery()) {
             setForceShowPercent(pluggedIn);
             // mDrawable.setCharging(pluggedIn) will invalidate the view
         }
@@ -209,6 +210,7 @@ public class BatteryMeterView extends LinearLayout implements
         mDrawable.setCharging(pluggedIn);
         mLevel = level;
         updatePercentText();
+        updateShowPercent();
         setContentDescription(
                 getContext().getString(charging ? R.string.accessibility_battery_level_charging
                         : R.string.accessibility_battery_level, level));
@@ -217,6 +219,11 @@ public class BatteryMeterView extends LinearLayout implements
     private boolean isCircleBattery() {
         return mStyle == BatteryMeterDrawableBase.BATTERY_STYLE_CIRCLE
                 || mStyle == BatteryMeterDrawableBase.BATTERY_STYLE_DOTTED_CIRCLE;
+    }
+
+    private boolean isRectangularBattery() {
+        return mStyle == BatteryMeterDrawableBase.BATTERY_STYLE_PORTRAIT
+                || mStyle == BatteryMeterDrawableBase.BATTERY_STYLE_SQUARE;
     }
 
     private boolean isRightClock() {
@@ -278,7 +285,7 @@ public class BatteryMeterView extends LinearLayout implements
                     ? (isRightClock() ? mEndPadding : 0) : mEndPadding, 0);
         }
 
-        mDrawable.showPercentInsideCircle(!mShowPercentText);
+        mDrawable.showPercentInside(!mShowPercentText);
     }
 
     @Override

@@ -108,7 +108,7 @@ public class BatteryMeterDrawableBase extends Drawable {
 
     private DashPathEffect mPathEffect;
 
-    private boolean mCircleShowPercentInside;
+    private boolean mShowPercentInside;
 
     public BatteryMeterDrawableBase(Context context, int frameColor) {
         mContext = context;
@@ -638,7 +638,7 @@ public class BatteryMeterDrawableBase extends Drawable {
                     (SINGLE_DIGIT_PERCENT ? single
                             : (mLevel == 100 ? full : nofull)));
             mTextHeight = -mTextPaint.getFontMetrics().ascent;
-            pctText = level > mCriticalLevel ? (String.valueOf(SINGLE_DIGIT_PERCENT ? (level / 10) : (level != 100 && mCircleShowPercentInside ? level : "")))
+            pctText = level > mCriticalLevel ? (String.valueOf(SINGLE_DIGIT_PERCENT ? (level / 10) : (level != 100 && mShowPercentInside ? level : "")))
                     : mWarningString;
             pctX = mWidth * 0.5f;
             pctY = (mHeight + mTextHeight) * 0.47f;
@@ -734,7 +734,6 @@ public class BatteryMeterDrawableBase extends Drawable {
                         mBoltFrame.left + mBoltPoints[0] * mBoltFrame.width(),
                         mBoltFrame.top + mBoltPoints[1] * mBoltFrame.height());
             }
-
         } else if (mPowerSaveEnabled) {
             // define the plus shape
             final float pw = mFrame.width() * 2 / 3;
@@ -778,9 +777,9 @@ public class BatteryMeterDrawableBase extends Drawable {
         } else {
             // draw the percentage text
             if (!mCharging && !mPowerSaveEnabled && level > mCriticalLevel
-                    && (mShowPercent && !(mLevel == 100))) {
-                mTextPaint.setColor(mBatteryPaint.getColor());
-                pctText = String.valueOf(SINGLE_DIGIT_PERCENT ? (level/10) : level);
+                    && mShowPercentInside && !(mLevel == 100)) {
+                mTextPaint.setColor(getColorForLevel(level));
+                pctText = String.valueOf(SINGLE_DIGIT_PERCENT ? (level / 10) : level);
                 c.drawText(pctText, x, y, mTextPaint);
             } else if (!mCharging && !mPowerSaveEnabled) {
                 if (level <= mCriticalLevel) {
@@ -796,8 +795,8 @@ public class BatteryMeterDrawableBase extends Drawable {
     public void setAlpha(int alpha) {
     }
 
-    public void showPercentInsideCircle(boolean show) {
-        mCircleShowPercentInside = show;
+    public void showPercentInside(boolean show) {
+        mShowPercentInside = show;
     }
 
     @Override

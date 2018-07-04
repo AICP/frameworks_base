@@ -114,6 +114,7 @@
   <!-- Screenrecord notification action: Stop -->
   <string name="screenrecord_notif_stop">Hentikan</string>
   <string name="screenrecord_notif_completed">Layar berhasil direkam</string>
+  <string name="screenrecord_notif_description">Ketuk untuk melihat rekaman layar Anda</string>
   <!-- Screenrecord notification action: show/hide pointer -->
   <string name="screenrecord_notif_pointer_on">Tampilkan penunjuk</string>
   <string name="screenrecord_notif_pointer_off">Sembunyikan penunjuk</string>
@@ -189,4 +190,20 @@
          (greater than status_bar_notification_info_maxnum, defined in
          values/config.xml) and must be truncated.
          [CHAR LIMIT=4] -->
+  <string name="recents_app_killed">Aplikasi dimatikan</string>
+  <!-- On The Go -->
+  <string name="global_action_onthego">Modus On-The-Go</string>
+  <string name="onthego_notif_ticker">On-The-Go diaktifkan</string>
+  <string name="onthego_notif_title">On-The-Go aktif</string>
+  <string name="onthego_notif_stop">Hentikan</string>
+  <string name="onthego_notif_options">Pilihan</string>
+  <string name="onthego_notif_error">Tidak dapat memulai On-The-Go</string>
+  <string name="onthego_notif_restart">Mulai ulang On-The-Go</string>
+  <string name="onthego_notif_camera_changed">Modus kamera berubah</string>
+  <string name="onthego_transparency">Transparansi</string>
+  <string name="onthego_front_camera">Gunakan kamera depan</string>
+  <string name="onthego_service_toggle">Otomatis mulai ulang layanan</string>
+  <string name="onthego_channel_name">Utama</string>
+  <!-- OnTheGo Tile -->
+  <string name="quick_settings_onthego_label">On-The-Go</string>
 </resources>

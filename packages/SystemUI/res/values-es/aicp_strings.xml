@@ -115,6 +115,7 @@
   <!-- Screenrecord notification action: Stop -->
   <string name="screenrecord_notif_stop">Detener</string>
   <string name="screenrecord_notif_completed">Grabación realizada con éxito</string>
+  <string name="screenrecord_notif_description">Pulse para ver la grabación de pantalla</string>
   <!-- Screenrecord notification action: show/hide pointer -->
   <string name="screenrecord_notif_pointer_on">Mostrar cursor</string>
   <string name="screenrecord_notif_pointer_off">Ocultar cursor</string>
@@ -191,4 +192,20 @@
          (greater than status_bar_notification_info_maxnum, defined in
          values/config.xml) and must be truncated.
          [CHAR LIMIT=4] -->
+  <string name="recents_app_killed">Aplicación cerrada</string>
+  <!-- On The Go -->
+  <string name="global_action_onthego">Modo En-Marcha</string>
+  <string name="onthego_notif_ticker">Modo En-Marcha activado</string>
+  <string name="onthego_notif_title">El modo En-Marcha está activado</string>
+  <string name="onthego_notif_stop">Detener</string>
+  <string name="onthego_notif_options">Opciones</string>
+  <string name="onthego_notif_error">No se pudo iniciar el modo En-Marcha</string>
+  <string name="onthego_notif_restart">Reiniciar modo En-Marcha</string>
+  <string name="onthego_notif_camera_changed">Modo de cámara cambiado</string>
+  <string name="onthego_transparency">Transparencia</string>
+  <string name="onthego_front_camera">Utilizar la cámara frontal</string>
+  <string name="onthego_service_toggle">Reiniciar el servicio automáticamente</string>
+  <string name="onthego_channel_name">Principal</string>
+  <!-- OnTheGo Tile -->
+  <string name="quick_settings_onthego_label">En-marcha</string>
 </resources>

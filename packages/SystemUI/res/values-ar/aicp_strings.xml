@@ -181,4 +181,6 @@
          (greater than status_bar_notification_info_maxnum, defined in
          values/config.xml) and must be truncated.
          [CHAR LIMIT=4] -->
+  <!-- On The Go -->
+  <!-- OnTheGo Tile -->
 </resources>

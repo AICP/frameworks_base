@@ -115,6 +115,7 @@
   <!-- Screenrecord notification action: Stop -->
   <string name="screenrecord_notif_stop">Stop</string>
   <string name="screenrecord_notif_completed">Schermo registrato con successo</string>
+  <string name="screenrecord_notif_description">Tocca per visualizzare la schermata di registrazione</string>
   <!-- Screenrecord notification action: show/hide pointer -->
   <string name="screenrecord_notif_pointer_on">Mostra puntatore</string>
   <string name="screenrecord_notif_pointer_off">Nascondi puntatore</string>
@@ -191,4 +192,20 @@
          (greater than status_bar_notification_info_maxnum, defined in
          values/config.xml) and must be truncated.
          [CHAR LIMIT=4] -->
+  <string name="recents_app_killed">Termina app</string>
+  <!-- On The Go -->
+  <string name="global_action_onthego">Modalità On-The-Go</string>
+  <string name="onthego_notif_ticker">On-The-Go attivato</string>
+  <string name="onthego_notif_title">On-The-Go è attivo</string>
+  <string name="onthego_notif_stop">Stop</string>
+  <string name="onthego_notif_options">Opzioni</string>
+  <string name="onthego_notif_error">Impossibile avviare On-The-Go</string>
+  <string name="onthego_notif_restart">Riavvia On-The-Go</string>
+  <string name="onthego_notif_camera_changed">Modalità fotocamera cambiata</string>
+  <string name="onthego_transparency">Trasparenza</string>
+  <string name="onthego_front_camera">Usa la fotocamera frontale</string>
+  <string name="onthego_service_toggle">Riavvia automaticamente il servizio</string>
+  <string name="onthego_channel_name">Principale</string>
+  <!-- OnTheGo Tile -->
+  <string name="quick_settings_onthego_label">On-The-Go</string>
 </resources>

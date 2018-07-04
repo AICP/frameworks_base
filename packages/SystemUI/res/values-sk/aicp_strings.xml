@@ -114,6 +114,7 @@
   <!-- Screenrecord notification action: Stop -->
   <string name="screenrecord_notif_stop">Zastavit</string>
   <string name="screenrecord_notif_completed">Obrazovka bola úspešne nahraná</string>
+  <string name="screenrecord_notif_description">Vaše nahrávky obrazovky zobrazíte kliknutím</string>
   <!-- Screenrecord notification action: show/hide pointer -->
   <string name="screenrecord_notif_pointer_on">Zobraziť ukazovateľ</string>
   <string name="screenrecord_notif_pointer_off">Skryť ukazovateľ</string>
@@ -189,4 +190,20 @@
          (greater than status_bar_notification_info_maxnum, defined in
          values/config.xml) and must be truncated.
          [CHAR LIMIT=4] -->
+  <string name="recents_app_killed">Aplikácia bola ukončená</string>
+  <!-- On The Go -->
+  <string name="global_action_onthego">Režim na cestách</string>
+  <string name="onthego_notif_ticker">Režim na cestách je aktivovaný</string>
+  <string name="onthego_notif_title">Režim na cestách je aktívny</string>
+  <string name="onthego_notif_stop">Zastavit</string>
+  <string name="onthego_notif_options">Možnosti</string>
+  <string name="onthego_notif_error">Nepodarilo sa spustiť režim na cestách</string>
+  <string name="onthego_notif_restart">Reštartovať režim na cestách</string>
+  <string name="onthego_notif_camera_changed">Režim fotoaparátu bol zmenený</string>
+  <string name="onthego_transparency">Priehľadnosť</string>
+  <string name="onthego_front_camera">Použiť prednú kameru</string>
+  <string name="onthego_service_toggle">Automaticky reštartovať službu</string>
+  <string name="onthego_channel_name">Hlavný</string>
+  <!-- OnTheGo Tile -->
+  <string name="quick_settings_onthego_label">Režim na cestách</string>
 </resources>

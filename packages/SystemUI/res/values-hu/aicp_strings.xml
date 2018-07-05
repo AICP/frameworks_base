@@ -114,6 +114,7 @@
   <!-- Screenrecord notification action: Stop -->
   <string name="screenrecord_notif_stop">Megállítás</string>
   <string name="screenrecord_notif_completed">Képernyőfelvétel elkészítve</string>
+  <string name="screenrecord_notif_description">Érintse meg a képernyőfelvétel megtekintéséhez</string>
   <!-- Screenrecord notification action: show/hide pointer -->
   <string name="screenrecord_notif_pointer_on">Mutató megjelenítése</string>
   <string name="screenrecord_notif_pointer_off">Mutató elrejtése</string>
@@ -189,4 +190,20 @@
          (greater than status_bar_notification_info_maxnum, defined in
          values/config.xml) and must be truncated.
          [CHAR LIMIT=4] -->
+  <string name="recents_app_killed">Alkalmazás leállítva</string>
+  <!-- On The Go -->
+  <string name="global_action_onthego">Menet közben mód</string>
+  <string name="onthego_notif_ticker">Menet közben mód aktiválva</string>
+  <string name="onthego_notif_title">A Menet közben mód aktív</string>
+  <string name="onthego_notif_stop">Megállítás</string>
+  <string name="onthego_notif_options">Beállítások</string>
+  <string name="onthego_notif_error">Nem lehet elindítani a Menet közben módot</string>
+  <string name="onthego_notif_restart">A Menet közben mód újraindítása</string>
+  <string name="onthego_notif_camera_changed">A Kameramód megváltoztatva</string>
+  <string name="onthego_transparency">Átlátszóság</string>
+  <string name="onthego_front_camera">Előlapi kamera használata</string>
+  <string name="onthego_service_toggle">Szolgáltatás automatikus újraindítása</string>
+  <string name="onthego_channel_name">Fő</string>
+  <!-- OnTheGo Tile -->
+  <string name="quick_settings_onthego_label">Menet közben</string>
 </resources>

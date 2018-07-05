@@ -115,6 +115,7 @@
   <!-- Screenrecord notification action: Stop -->
   <string name="screenrecord_notif_stop">Стоп</string>
   <string name="screenrecord_notif_completed">Экран записан успешно</string>
+  <string name="screenrecord_notif_description">Нажмите, чтобы просмотреть запись экрана</string>
   <!-- Screenrecord notification action: show/hide pointer -->
   <string name="screenrecord_notif_pointer_on">Показать указатель</string>
   <string name="screenrecord_notif_pointer_off">Скрыть указатель</string>
@@ -191,4 +192,20 @@
          (greater than status_bar_notification_info_maxnum, defined in
          values/config.xml) and must be truncated.
          [CHAR LIMIT=4] -->
+  <string name="recents_app_killed">Приложение закрыто</string>
+  <!-- On The Go -->
+  <string name="global_action_onthego">Режим \"На ходу\"</string>
+  <string name="onthego_notif_ticker">Режим \"На ходу\" активирован</string>
+  <string name="onthego_notif_title">Режим \"На ходу\" активен</string>
+  <string name="onthego_notif_stop">Стоп</string>
+  <string name="onthego_notif_options">Настройки</string>
+  <string name="onthego_notif_error">Не удаётся включить режим \"На ходу\"</string>
+  <string name="onthego_notif_restart">Перезапустить режим \"На ходу\"</string>
+  <string name="onthego_notif_camera_changed">Изменён режим камеры</string>
+  <string name="onthego_transparency">Прозрачность</string>
+  <string name="onthego_front_camera">Использовать переднюю камеру</string>
+  <string name="onthego_service_toggle">Автоматически перезапустить службу</string>
+  <string name="onthego_channel_name">Главный</string>
+  <!-- OnTheGo Tile -->
+  <string name="quick_settings_onthego_label">Режим \"На ходу\"</string>
 </resources>

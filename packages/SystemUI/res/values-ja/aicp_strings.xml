@@ -72,10 +72,15 @@
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_ambient_display_changed_on">アンビエント表示を ON にしました。</string>
   <!-- Always on Display Tile -->
+  <string name="quick_settings_always_on_display_label">Always On Display</string>
   <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_off">Always On Display は OFF です。</string>
   <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_on">Always On Display は ON です。</string>
   <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_changed_off">Always On Display をオフにしました</string>
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_changed_on">Always On Display をオンにしました</string>
   <!-- Expanded desktop QS Tile -->
   <string name="quick_settings_expanded_desktop_label">拡張デスクトップ</string>
   <string name="quick_settings_expanded_desktop">展開中</string>
@@ -94,6 +99,7 @@
   <string name="accessibility_quick_settings_volume_panel">音量</string>
   <string name="quick_settings_volume_panel_label">音量</string>
   <!-- PiP Tile -->
+  <string name="quick_settings_pip_label">PiP</string>
   <!-- Screenrecord tile -->
   <string name="quick_settings_screenrecord">スクリーンレコード</string>
   <string name="quick_settings_screenrecord_on">録画中...</string>
@@ -108,21 +114,32 @@
   <string name="screenrecord_notif_title">画面を録画中</string>
   <!-- Screenrecord notification action: Stop -->
   <string name="screenrecord_notif_stop">終了</string>
+  <string name="screenrecord_notif_completed">画面を録画しました</string>
+  <string name="screenrecord_notif_description">タップすると録画が表示されます</string>
   <!-- Screenrecord notification action: show/hide pointer -->
   <string name="screenrecord_notif_pointer_on">ポインタを表示</string>
   <string name="screenrecord_notif_pointer_off">ポインタを隠す</string>
   <!-- Screen record notification error title -->
   <string name="screenrecord_notif_error">スクリーンレコードを実行できません</string>
   <string name="notification_channel_screenrecord">スクリーンレコード</string>
+  <string name="screenrecord_hide_hint">ヒントを隠す</string>
+  <string name="screenrecord_show_hint">ヒントを表示</string>
   <!-- Screenshot QS tile -->
   <string name="quick_settings_screenrecord_label">スクリーンレコード</string>
+  <string name="quick_settings_screenrecord_lq_label">画面録画 480p</string>
+  <string name="quick_settings_screenrecord_mq_label">画面録画 720p</string>
+  <string name="quick_settings_screenrecord_hq_label">画面録画 720p+</string>
+  <string name="lockscreen_default">デフォルト</string>
+  <string name="lockscreen_hidden">なし</string>
   <string name="omnijaws_service_error">エラー</string>
   <string name="omnijaws_service_unkown">天気データがありません</string>
   <string name="omnijaws_service_error_long">気象データの読み込みエラー</string>
+  <string name="omnijaws_service_disabled">サービスは無効です</string>
   <string name="omnijaws_detail_header">天気</string>
   <string name="omnijaws_label_default">天気</string>
   <string name="omnijaws_current_text">現在</string>
   <string name="omnijaws_package_not_available">OmniJaws がありません</string>
+  <string name="omnijaws_service_last_update">最終更新：</string>
   <!-- Weather string format in expanded statusbar header -->
   <string name="status_bar_weather_format"><xliff:g id="temp">%1$s</xliff:g></string>
   <!-- SystemUI Tuner Parts -->
@@ -130,20 +147,33 @@
   <!-- DUI -->
   <string name="systemui_tuner_navbar_title">標準の設定</string>
   <!-- Battery saver tile -->
+  <string name="battery_saver_qs_tile_fully_charged">充電完了</string>
   <!-- Caffeine tile -->
+  <string name="caffeine_info_title">これは何ですか?</string>
+  <string name="caffeine_info_message">カフェインタイルは、画面を常に表示させたままにできるタイルです。\n\n画面をオフにするとタイルの状態がリセットされることにご注意ください。</string>
   <!-- Navigation bar Tile -->
   <string name="quick_settings_navigation_bar">ナビゲーションバー</string>
   <string name="quick_settings_smartbar">ナビゲーションバー</string>
   <string name="quick_settings_fling">Fling</string>
+  <string name="quick_settings_navigation_default">標準</string>
+  <string name="quick_settings_navigation_disabled">無効</string>
   <!-- Kill button in notification guts -->
   <string name="force_stop_dlg_title">強制停止しますか？</string>
   <string name="force_stop_dlg_text">アプリを強制停止すると、アプリが正常に機能しないことがあります。</string>
   <string name="kill">アプリの終了</string>
   <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
+  <string name="keyguard_indication_dash_charging_time">急速充電中（充電完了まで(<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%s</xliff:g> 完全になるまで)</string>
+  <string name="keyguard_plugged_in_dash_charging">急速充電中</string>
   <!-- Indication on the keyguard that is shown when the device is charging with a turbo power charger. Should match keyguard_plugged_in_turbo_power_charging [CHAR LIMIT=40]-->
+  <string name="keyguard_indication_turbo_power_time">急速充電中（充電完了まで<xliff:g id="charging_time_left">%s</xliff:g>）</string>
+  <string name="keyguard_plugged_in_turbo_power_charging">急速充電中</string>
+  <string name="keyguard_plugged_in_turbo_charging">急速充電中</string>
   <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_running_services">実行中のサービス画面を開きます。</string>
   <!-- The contents of the Ambient Weather bottom view -->
+  <string name="quick_settings_google_assist_label">アシスタント</string>
+  <string name="quick_settings_google_voice_assist_label">音声アシスト</string>
+  <string name="quick_settings_google_now_label">Google フィード</string>
   <!-- Smart pixels QS tile -->
   <string name="quick_settings_smart_pixels">スマートピクセル</string>
   <string name="quick_settings_smart_pixels_on_power_save">スマートピクセルを自動的に有効にする</string>
@@ -162,4 +192,20 @@
          (greater than status_bar_notification_info_maxnum, defined in
          values/config.xml) and must be truncated.
          [CHAR LIMIT=4] -->
+  <string name="recents_app_killed">アプリを終了しました</string>
+  <!-- On The Go -->
+  <string name="global_action_onthego">On-The-Go モード</string>
+  <string name="onthego_notif_ticker">On-The-Go モードを有効化しました</string>
+  <string name="onthego_notif_title">On-The-Go が有効です</string>
+  <string name="onthego_notif_stop">停止</string>
+  <string name="onthego_notif_options">オプション</string>
+  <string name="onthego_notif_error">On-The-Go を開始できません</string>
+  <string name="onthego_notif_restart">On-The-Go を再起動</string>
+  <string name="onthego_notif_camera_changed">カメラモードを変更しました</string>
+  <string name="onthego_transparency">透過度</string>
+  <string name="onthego_front_camera">フロントカメラを使用</string>
+  <string name="onthego_service_toggle">サービスを自動的に再起動する</string>
+  <string name="onthego_channel_name">メイン</string>
+  <!-- OnTheGo Tile -->
+  <string name="quick_settings_onthego_label">On-The-Go</string>
 </resources>

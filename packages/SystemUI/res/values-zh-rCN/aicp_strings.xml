@@ -17,7 +17,7 @@
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Aicp Extras Tile -->
-  <string name="quick_aicp_extras_label">Aicp 额外设置</string>
+  <string name="quick_aicp_extras_label">Aicp 附加设置</string>
   <string name="quick_aicp_extras_toast">你真的认为长按会打开什么!? (大声笑)</string>
   <!-- Screenshot Delete Toast -->
   <string name="delete_screenshot_toast">屏幕截图已删除</string>
@@ -114,6 +114,7 @@
   <!-- Screenrecord notification action: Stop -->
   <string name="screenrecord_notif_stop">停止</string>
   <string name="screenrecord_notif_completed">屏幕录制完成</string>
+  <string name="screenrecord_notif_description">点击即可查看您的屏幕录制</string>
   <!-- Screenrecord notification action: show/hide pointer -->
   <string name="screenrecord_notif_pointer_on">显示触摸点</string>
   <string name="screenrecord_notif_pointer_off">隐藏触摸点</string>
@@ -189,4 +190,20 @@
          (greater than status_bar_notification_info_maxnum, defined in
          values/config.xml) and must be truncated.
          [CHAR LIMIT=4] -->
+  <string name="recents_app_killed">应用程序已终止</string>
+  <!-- On The Go -->
+  <string name="global_action_onthego">行走模式</string>
+  <string name="onthego_notif_ticker">行走模式已启用</string>
+  <string name="onthego_notif_title">行走模式正在运行</string>
+  <string name="onthego_notif_stop">停止</string>
+  <string name="onthego_notif_options">选项</string>
+  <string name="onthego_notif_error">无法启动行走模式</string>
+  <string name="onthego_notif_restart">重新启动行走模式</string>
+  <string name="onthego_notif_camera_changed">相机模式已更改</string>
+  <string name="onthego_transparency">透明度</string>
+  <string name="onthego_front_camera">使用前置摄像头</string>
+  <string name="onthego_service_toggle">自动重启服务</string>
+  <string name="onthego_channel_name">主要</string>
+  <!-- OnTheGo Tile -->
+  <string name="quick_settings_onthego_label">行走</string>
 </resources>

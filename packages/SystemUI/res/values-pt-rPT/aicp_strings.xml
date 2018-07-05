@@ -189,4 +189,7 @@
          (greater than status_bar_notification_info_maxnum, defined in
          values/config.xml) and must be truncated.
          [CHAR LIMIT=4] -->
+  <!-- On The Go -->
+  <string name="onthego_notif_camera_changed">Modo de câmera alterado</string>
+  <!-- OnTheGo Tile -->
 </resources>

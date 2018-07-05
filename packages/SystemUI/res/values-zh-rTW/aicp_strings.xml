@@ -114,6 +114,7 @@
   <!-- Screenrecord notification action: Stop -->
   <string name="screenrecord_notif_stop">停止</string>
   <string name="screenrecord_notif_completed">螢幕錄製成功</string>
+  <string name="screenrecord_notif_description">輕觸即可查看螢幕錄製</string>
   <!-- Screenrecord notification action: show/hide pointer -->
   <string name="screenrecord_notif_pointer_on">顯示指標</string>
   <string name="screenrecord_notif_pointer_off">隱藏指標</string>
@@ -184,8 +185,26 @@
   <!-- Content description of the HW keys tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_hw_keys_enabled">實體按鍵已啟用。</string>
   <!-- Heads up snooze toast -->
+  <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - 顯示預覽通知會暫停 1 分鐘。</string>
+  <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - 顯示預覽通知會暫停 <xliff:g id="number">%d</xliff:g> 分鐘。</string>
   <!-- Text to use when the number in a notification info is too large
          (greater than status_bar_notification_info_maxnum, defined in
          values/config.xml) and must be truncated.
          [CHAR LIMIT=4] -->
+  <string name="recents_app_killed">應用程式已終止</string>
+  <!-- On The Go -->
+  <string name="global_action_onthego">On-The-Go 模式</string>
+  <string name="onthego_notif_ticker">On-The-Go 已啟動</string>
+  <string name="onthego_notif_title">On-The-Go 處於啟動狀態</string>
+  <string name="onthego_notif_stop">停止</string>
+  <string name="onthego_notif_options">選項</string>
+  <string name="onthego_notif_error">無法啟動 On-The-Go</string>
+  <string name="onthego_notif_restart">重新啟動 On-The-Go</string>
+  <string name="onthego_notif_camera_changed">相機模式已變更</string>
+  <string name="onthego_transparency">透明度</string>
+  <string name="onthego_front_camera">使用前置鏡頭</string>
+  <string name="onthego_service_toggle">自動重新啟動服務</string>
+  <string name="onthego_channel_name">主要</string>
+  <!-- OnTheGo Tile -->
+  <string name="quick_settings_onthego_label">On-The-Go</string>
 </resources>

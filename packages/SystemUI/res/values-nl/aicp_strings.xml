@@ -115,6 +115,7 @@
   <!-- Screenrecord notification action: Stop -->
   <string name="screenrecord_notif_stop">Stop</string>
   <string name="screenrecord_notif_completed">Schermopname succesvol</string>
+  <string name="screenrecord_notif_description">Tik om je schermopname te bekijken</string>
   <!-- Screenrecord notification action: show/hide pointer -->
   <string name="screenrecord_notif_pointer_on">Toon aanwijzer</string>
   <string name="screenrecord_notif_pointer_off">Verberg aanwijzer</string>
@@ -191,4 +192,20 @@
          (greater than status_bar_notification_info_maxnum, defined in
          values/config.xml) and must be truncated.
          [CHAR LIMIT=4] -->
+  <string name="recents_app_killed">App afgesloten</string>
+  <!-- On The Go -->
+  <string name="global_action_onthego">On-The-Go modus</string>
+  <string name="onthego_notif_ticker">On-The-Go geactiveerd</string>
+  <string name="onthego_notif_title">On-The-Go is actief</string>
+  <string name="onthego_notif_stop">Stop</string>
+  <string name="onthego_notif_options">Opties</string>
+  <string name="onthego_notif_error">Kan On-The-Go niet starten</string>
+  <string name="onthego_notif_restart">Herstart On-The-Go</string>
+  <string name="onthego_notif_camera_changed">Cameramodus gewijzigd</string>
+  <string name="onthego_transparency">Transparantie</string>
+  <string name="onthego_front_camera">Gebruik camera aan de voorzijde</string>
+  <string name="onthego_service_toggle">Service automatisch herstarten</string>
+  <string name="onthego_channel_name">Hoofdkanaal</string>
+  <!-- OnTheGo Tile -->
+  <string name="quick_settings_onthego_label">On-The-Go</string>
 </resources>

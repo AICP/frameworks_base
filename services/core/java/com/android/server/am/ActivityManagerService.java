@@ -84,7 +84,6 @@ import static android.os.Process.removeAllProcessGroups;
 import static android.os.Process.sendSignal;
 import static android.os.Process.setProcessGroup;
 import static android.os.Process.setThreadPriority;
-import static android.os.Process.setThreadScheduler;
 import static android.os.Process.startWebView;
 import static android.os.Process.zygoteProcess;
 import static android.provider.Settings.Global.ALWAYS_FINISH_ACTIVITIES;
@@ -462,6 +461,9 @@ public class ActivityManagerService extends IActivityManager.Stub
      * Priority we boost main thread and RT of top app to.
      */
     public static final int TOP_APP_PRIORITY_BOOST = -10;
+
+    // indexed by SCHED_GROUP_* values
+    static final int[] CGROUP_CPU_SHARES = new int[] {512, 1024, 4096, 2048};
 
     private static final String TAG = TAG_WITH_CLASS_NAME ? "ActivityManagerService" : TAG_AM;
     private static final String TAG_BACKUP = TAG + POSTFIX_BACKUP;
@@ -6822,6 +6824,23 @@ public class ActivityManagerService extends IActivityManager.Stub
         return didSomething;
     }
 
+    private final void updateCgroupPrioLocked(final UidRecord uidRec) {
+        int sg = ProcessList.SCHED_GROUP_DEFAULT;
+        if (uidRec.numSchedGroup[ProcessList.SCHED_GROUP_TOP_APP] > 0) {
+            sg = ProcessList.SCHED_GROUP_TOP_APP;
+        } else if (uidRec.numSchedGroup[ProcessList.SCHED_GROUP_TOP_APP_BOUND] > 0) {
+            sg = ProcessList.SCHED_GROUP_TOP_APP_BOUND;
+        } else if (uidRec.numSchedGroup[ProcessList.SCHED_GROUP_BACKGROUND] == uidRec.numProcs) {
+            sg = ProcessList.SCHED_GROUP_BACKGROUND;
+        }
+        if (sg != uidRec.setSchedGroup) {
+            uidRec.setSchedGroup = sg;
+            if (UserHandle.isApp(uidRec.uid) || UserHandle.isIsolated(uidRec.uid)) {
+                Cgroups.uidPrio(uidRec.uid, CGROUP_CPU_SHARES[sg]);
+            }
+        }
+    }
+
     private final ProcessRecord removeProcessNameLocked(final String name, final int uid) {
         return removeProcessNameLocked(name, uid, null);
     }
@@ -6836,6 +6855,10 @@ public class ActivityManagerService extends IActivityManager.Stub
             mProcessNames.remove(name, uid);
         }
         if (old != null && old.uidRecord != null) {
+            int decremented = --old.uidRecord.numSchedGroup[old.setSchedGroup];
+            if (decremented == 0) { // only need to update if this made a group empty
+                updateCgroupPrioLocked(old.uidRecord);
+            }
             old.uidRecord.numProcs--;
             if (old.uidRecord.numProcs == 0) {
                 // No more processes using this uid, tell clients it is gone.
@@ -6882,6 +6905,7 @@ public class ActivityManagerService extends IActivityManager.Stub
         // Reset render thread tid if it was already set, so new process can set it again.
         proc.renderThreadTid = 0;
         uidRec.numProcs++;
+        uidRec.numSchedGroup[ProcessList.SCHED_GROUP_DEFAULT]++;
         mProcessNames.put(proc.processName, proc.uid, proc);
         if (proc.isolated) {
             mIsolatedProcesses.put(proc.uid, proc);
@@ -7037,6 +7061,11 @@ public class ActivityManagerService extends IActivityManager.Stub
         // process, clean it up now.
         if (app.thread != null) {
             handleAppDiedLocked(app, true, true);
+        }
+
+        if (UserHandle.isApp(app.uid) || UserHandle.isIsolated(app.uid)) {
+            setThreadPriority(app.pid, TOP_APP_PRIORITY_BOOST); // boost inside own cgroup
+            Cgroups.putProc(app.pid, app.uid);
         }
 
         // Tell the process all about itself.
@@ -13587,6 +13616,10 @@ public class ActivityManagerService extends IActivityManager.Stub
     static boolean scheduleAsRegularPriority(int tid, boolean suppressLogs) {
         try {
             Process.setThreadScheduler(tid, Process.SCHED_OTHER, 0);
+            int uid = Process.getUidForPid(tid);
+            if (UserHandle.isApp(uid) || UserHandle.isIsolated(uid)) {
+                Cgroups.putProc(tid, uid);
+            }
             return true;
         } catch (IllegalArgumentException e) {
             if (!suppressLogs) {
@@ -13608,9 +13641,10 @@ public class ActivityManagerService extends IActivityManager.Stub
      *
      * @return {@code true} if this succeeded.
      */
-    static boolean scheduleAsFifoPriority(int tid, boolean suppressLogs) {
+    public static boolean scheduleAsFifoPriority(int tid, int prio, boolean suppressLogs) {
         try {
-            Process.setThreadScheduler(tid, Process.SCHED_FIFO | Process.SCHED_RESET_ON_FORK, 1);
+            Cgroups.putThreadInRoot(tid);
+            Process.setThreadScheduler(tid, Process.SCHED_FIFO | Process.SCHED_RESET_ON_FORK, prio);
             return true;
         } catch (IllegalArgumentException e) {
             if (!suppressLogs) {
@@ -13659,12 +13693,10 @@ public class ActivityManagerService extends IActivityManager.Stub
                     if (proc.curSchedGroup == ProcessList.SCHED_GROUP_TOP_APP) {
                         if (DEBUG_OOM_ADJ) Slog.d("UI_FIFO", "Promoting " + tid + "out of band");
                         if (mUseFifoUiScheduling) {
-                            setThreadScheduler(proc.renderThreadTid,
-                                SCHED_FIFO | SCHED_RESET_ON_FORK, 1);
-                        } else {
-                            setThreadPriority(proc.renderThreadTid, TOP_APP_PRIORITY_BOOST);
+                            scheduleAsFifoPriority(proc.renderThreadTid, /*prio*/1, /*noLogs*/true);
                         }
                     }
+                    setThreadPriority(proc.renderThreadTid, TOP_APP_PRIORITY_BOOST);
                 } else {
                     if (DEBUG_OOM_ADJ) {
                         Slog.d("UI_FIFO", "Didn't set thread from setRenderThread? " +
@@ -22170,6 +22202,13 @@ public class ActivityManagerService extends IActivityManager.Stub
                 long oldId = Binder.clearCallingIdentity();
                 try {
                     setProcessGroup(app.pid, processGroup);
+                    if (oldSchedGroup != app.curSchedGroup) {
+                        int decremented = --app.uidRecord.numSchedGroup[oldSchedGroup];
+                        int incremented = ++app.uidRecord.numSchedGroup[app.curSchedGroup];
+                        if (decremented == 0 || incremented == 1) {
+                            updateCgroupPrioLocked(app.uidRecord);
+                        }
+                    }
                     if (app.curSchedGroup == ProcessList.SCHED_GROUP_TOP_APP) {
                         // do nothing if we already switched to RT
                         if (oldSchedGroup != ProcessList.SCHED_GROUP_TOP_APP) {
@@ -22177,10 +22216,9 @@ public class ActivityManagerService extends IActivityManager.Stub
                             if (mUseFifoUiScheduling) {
                                 // Switch UI pipeline for app to SCHED_FIFO
                                 app.savedPriority = Process.getThreadPriority(app.pid);
-                                scheduleAsFifoPriority(app.pid, /* suppressLogs */true);
+                                scheduleAsFifoPriority(app.pid, /*prio*/1, /*suppressLogs*/true);
                                 if (app.renderThreadTid != 0) {
-                                    scheduleAsFifoPriority(app.renderThreadTid,
-                                        /* suppressLogs */true);
+                                    scheduleAsFifoPriority(app.renderThreadTid, 1, true);
                                     if (DEBUG_OOM_ADJ) {
                                         Slog.d("UI_FIFO", "Set RenderThread (TID " +
                                             app.renderThreadTid + ") to FIFO");
@@ -22188,17 +22226,6 @@ public class ActivityManagerService extends IActivityManager.Stub
                                 } else {
                                     if (DEBUG_OOM_ADJ) {
                                         Slog.d("UI_FIFO", "Not setting RenderThread TID");
-                                    }
-                                }
-                            } else {
-                                // Boost priority for top app UI and render threads
-                                setThreadPriority(app.pid, TOP_APP_PRIORITY_BOOST);
-                                if (app.renderThreadTid != 0) {
-                                    try {
-                                        setThreadPriority(app.renderThreadTid,
-                                                TOP_APP_PRIORITY_BOOST);
-                                    } catch (IllegalArgumentException e) {
-                                        // thread died, ignore
                                     }
                                 }
                             }
@@ -22209,11 +22236,10 @@ public class ActivityManagerService extends IActivityManager.Stub
                         if (mUseFifoUiScheduling) {
                             try {
                                 // Reset UI pipeline to SCHED_OTHER
-                                setThreadScheduler(app.pid, SCHED_OTHER, 0);
+                                scheduleAsRegularPriority(app.pid, /* suppressLogs */ true);
                                 setThreadPriority(app.pid, app.savedPriority);
                                 if (app.renderThreadTid != 0) {
-                                    setThreadScheduler(app.renderThreadTid,
-                                        SCHED_OTHER, 0);
+                                    scheduleAsRegularPriority(app.renderThreadTid, true);
                                     setThreadPriority(app.renderThreadTid, -4);
                                 }
                             } catch (IllegalArgumentException e) {
@@ -22222,12 +22248,6 @@ public class ActivityManagerService extends IActivityManager.Stub
                                                 + e);
                             } catch (SecurityException e) {
                                 Slog.w(TAG, "Failed to set scheduling policy, not allowed:\n" + e);
-                            }
-                        } else {
-                            // Reset priority for top app UI and render threads
-                            setThreadPriority(app.pid, 0);
-                            if (app.renderThreadTid != 0) {
-                                setThreadPriority(app.renderThreadTid, 0);
                             }
                         }
                     }

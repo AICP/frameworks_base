@@ -14,6 +14,7 @@ LOCAL_SRC_FILES += \
     $(LOCAL_REL_DIR)/BroadcastRadio/regions.cpp \
     $(LOCAL_REL_DIR)/com_android_server_AlarmManagerService.cpp \
     $(LOCAL_REL_DIR)/com_android_server_am_BatteryStatsService.cpp \
+    $(LOCAL_REL_DIR)/com_android_server_am_Cgroups.cpp \
     $(LOCAL_REL_DIR)/com_android_server_connectivity_Vpn.cpp \
     $(LOCAL_REL_DIR)/com_android_server_connectivity_tethering_OffloadHardwareInterface.cpp \
     $(LOCAL_REL_DIR)/com_android_server_ConsumerIrService.cpp \

@@ -146,5 +146,7 @@ public class SystemSettings {
         Settings.System.OMNI_VIBRATE_ON_DISCONNECT,
         Settings.System.OMNI_LOCKSCREEN_ALARM_ENABLED,
         Settings.System.OMNI_LOCKSCREEN_DND_ENABLED,
+        Settings.System.STATUS_BAR_CLOCK,
+        Settings.System.STATUS_BAR_CLOCK_POSITION,
     };
 }

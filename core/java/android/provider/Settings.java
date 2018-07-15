@@ -6330,6 +6330,22 @@ public final class Settings {
          */
         public static final String PROXIMITY_ON_WAKE = "proximity_on_wake";
 
+        /**
+         * Show or hide clock
+         * 0 - hide
+         * 1 - show (default)
+         * @hide
+         */
+        public static final String STATUS_BAR_CLOCK = "status_bar_clock";
+         /**
+         * Show or hide clock
+         * 0 - right
+         * 1 - center
+         * 2 - left (default)
+         * @hide
+         */
+        public static final String STATUS_BAR_CLOCK_POSITION = "status_bar_clock_position";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6512,6 +6528,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(OMNI_VIBRATE_ON_DISCONNECT);
             PRIVATE_SETTINGS.add(OMNI_LOCKSCREEN_ALARM_ENABLED);
             PRIVATE_SETTINGS.add(OMNI_LOCKSCREEN_DND_ENABLED);
+            PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK);
+            PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK_POSITION);
         }
 
         /**

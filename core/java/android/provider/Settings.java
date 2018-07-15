@@ -5872,6 +5872,16 @@ public final class Settings {
          */
         public static final String STATUS_BAR_CLOCK_POSITION = "status_bar_clock_position";
 
+        /**
+         * Display style of AM/PM next to clock in status bar
+         * 0: Normal display (Eclair stock)
+         * 1: Small display (Froyo stock)
+         * 2: No display (Gingerbread/ICS stock)
+         * default: 2
+         * @hide
+         */
+        public static final String STATUS_BAR_AM_PM = "status_bar_am_pm";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6033,6 +6043,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(QS_FOOTER_TEXT_SHOW);
             PRIVATE_SETTINGS.add(QS_FOOTER_TEXT_STRING);
             PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK_POSITION);
+            PRIVATE_SETTINGS.add(STATUS_BAR_AM_PM);
         }
 
         /**

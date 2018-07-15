@@ -70,4 +70,6 @@
     <!-- Default value for led color when fast charging is active -->
     <integer name="config_notificationsFastBatteryARGB">0xFF0000FF</integer>
 
+    <!-- Whether device has a notch -->
+    <bool name="config_haveNotch">false</bool>
 </resources>

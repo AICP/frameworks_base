@@ -2852,10 +2852,16 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             final boolean navBarEnabled = Settings.System.getIntForUser(resolver,
                     Settings.System.NAVIGATION_BAR_ENABLED, defaultToNavigationBar ? 1 : 0,
                             UserHandle.USER_CURRENT) == 1;
+            final boolean buttonBrightnessEnabled = Settings.System.getIntForUser(resolver,
+                    Settings.System.BUTTON_BRIGHTNESS_ENABLED, 0, UserHandle.USER_CURRENT) == 1;
             if (navBarEnabled != mNavBarEnabled) {
                 mNavBarEnabled = navBarEnabled;
                 if (mDeviceHardwareKeys != 0) {
                     SystemProperties.set("qemu.hw.mainkeys", mNavBarEnabled ? "0" : "1");
+                    if (!mNavBarEnabled && buttonBrightnessEnabled) {
+                        Settings.System.putInt(resolver,
+                                Settings.System.BUTTON_BRIGHTNESS_ENABLED, 0);
+                    }
                 }
             }
 

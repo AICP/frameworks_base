@@ -21,6 +21,7 @@ import android.compat.annotation.UnsupportedAppUsage;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.PersistableBundle;
+import android.content.res.Resources;
 
 import com.android.telephony.Rlog;
 
@@ -279,7 +280,9 @@ public final class CellSignalStrengthLte extends CellSignalStrength implements P
 
         int rsrp = inRangeOrUnavailable(mRsrp + rsrpBoost, MIN_LTE_RSRP, MAX_LTE_RSRP);
 
-        if (rsrpOnly) {
+        boolean rssnrIgnored = Resources.getSystem().getBoolean(
+                com.android.internal.R.bool.config_ignoreRssnrSignalLevel);
+        if (rssnrIgnored) {
             int level = updateLevelWithMeasure(rsrp, rsrpThresholds);
             if (DBG) log("updateLevel() - rsrp = " + level);
             if (level != SignalStrength.INVALID) {

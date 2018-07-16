@@ -74,4 +74,6 @@
   <!-- Whether the device supports Smart Pixels -->
   <java-symbol type="bool" name="config_enableSmartPixels" />
 
+  <!-- Whether device ignores the RSSNR signal implementation -->
+  <java-symbol type="bool" name="config_ignoreRssnrSignalLevel" />
 </resources>

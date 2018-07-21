@@ -5255,6 +5255,11 @@ public final class Settings {
         public static final String WHITELIST_APP_CIRCLE_BAR = "whitelist_app_circle_bar";
 
         /**
+         * @hide
+         */
+        public static final String USE_BOTTOM_GESTURE_NAVIGATION = "use_bottom_gesture_navigation";
+
+        /**
          * --- AICP System settings end
          *  Add new system settings above this comment
          */
@@ -5464,6 +5469,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(BUTTON_BACKLIGHT_TIMEOUT);
             PRIVATE_SETTINGS.add(BUTTON_BACKLIGHT_ON_TOUCH_ONLY);
             PRIVATE_SETTINGS.add(RECENTS_OMNI_SWITCH_ENABLED);
+            PRIVATE_SETTINGS.add(USE_BOTTOM_GESTURE_NAVIGATION);
 
             // Pocket mode handler.
             PRIVATE_SETTINGS.add(POCKET_JUDGE);

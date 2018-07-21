@@ -891,6 +891,11 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private SensorEventListener mProximityListener;
     private android.os.PowerManager.WakeLock mProximityWakeLock;
 
+    // omni gestures
+    private boolean mUseGestureButton;
+    private GestureButton mGestureButton;
+    private boolean mGestureButtonRegistered;
+
     // Fallback actions by key code.
     private final SparseArray<KeyCharacterMap.FallbackAction> mFallbackActions =
             new SparseArray<KeyCharacterMap.FallbackAction>();
@@ -1297,6 +1302,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.CARBON_CUSTOM_GESTURE_PACKAGE_DOWN), false, this,
                     UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.USE_BOTTOM_GESTURE_NAVIGATION), false, this,
+                    UserHandle.USER_ALL);
+
             updateSettings();
         }
 
@@ -3105,6 +3114,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             mOmniSwitchRecents = Settings.System.getIntForUser(resolver,
                     Settings.System.RECENTS_OMNI_SWITCH_ENABLED, 0,
                     UserHandle.USER_CURRENT) == 1;
+            mUseGestureButton = Settings.System.getIntForUser(resolver,
+                    Settings.System.USE_BOTTOM_GESTURE_NAVIGATION, 0,
+                    UserHandle.USER_CURRENT) != 0;
         }
 
         synchronized (mWindowManagerFuncs.getWindowManagerLock()) {
@@ -3112,6 +3124,16 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         }
         if (updateRotation) {
             updateRotation(true);
+        }
+
+        if (mUseGestureButton && !mNavbarVisible && !mGestureButtonRegistered) {
+            mGestureButton = new GestureButton(mContext, this);
+            mWindowManagerFuncs.registerPointerEventListener(mGestureButton);
+            mGestureButtonRegistered = true;
+        }
+        if (mGestureButtonRegistered && !mUseGestureButton) {
+            mWindowManagerFuncs.unregisterPointerEventListener(mGestureButton);
+            mGestureButtonRegistered = false;
         }
     }
 
@@ -4965,7 +4987,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         return mSearchManager;
     }
 
-    private void preloadRecentApps() {
+    protected void preloadRecentApps() {
         if (mOmniSwitchRecents) {
             OmniSwitchConstants.preloadOmniSwitchRecents(mContext, UserHandle.CURRENT);
             return;
@@ -4977,7 +4999,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         }
     }
 
-    private void cancelPreloadRecentApps() {
+    protected void cancelPreloadRecentApps() {
         if (mOmniSwitchRecents) {
             return;
         }
@@ -4990,7 +5012,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         }
     }
 
-    private void toggleRecentApps() {
+    protected void toggleRecentApps() {
         if (mOmniSwitchRecents) {
             OmniSwitchConstants.toggleOmniSwitchRecents(mContext, UserHandle.CURRENT);
         } else {
@@ -5414,6 +5436,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             updateSysUiVisibility |= layoutStatusBar(pf, df, of, vf, dcf, sysui, isKeyguardShowing);
             if (updateSysUiVisibility) {
                 updateSystemUiVisibilityLw();
+            }
+
+            if (!mNavbarVisible && mUseGestureButton && mGestureButton != null) {
+                mGestureButton.navigationBarPosition(displayWidth, displayHeight, displayRotation);
             }
         }
     }
@@ -9957,5 +9983,16 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             mTorchEnabled = false;
             cancelTorchOff();
         }
+    }
+
+    public boolean isGestureButtonRegion(int x, int y) {
+        if (!mUseGestureButton || mGestureButton == null) {
+            return false;
+        }
+        return mGestureButton.isGestureButtonRegion(x, y);
+    }
+
+    public boolean isGestureButtonEnabled() {
+        return mUseGestureButton;
     }
 }

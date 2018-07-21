@@ -4406,6 +4406,16 @@ public final class Settings {
 
 
         /**
+         * @hide
+         */
+        public static final String OMNI_USE_BOTTOM_GESTURE_NAVIGATION =
+                "use_bottom_gesture_navigation";
+
+        /** @hide */
+        private static final Validator OMNI_USE_BOTTOM_GESTURE_NAVIGATION_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
          * IMPORTANT: If you add a new public settings you also have to add it to
          * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
          * it to PRIVATE_SETTINGS below. Also add a validator that can validate
@@ -4542,6 +4552,7 @@ public final class Settings {
             STATUSBAR_BATTERY_BAR_BLEND_DARK_COLORS_REVERSE,
             THEMING_BASE,
             THEMING_ACCENT,
+            OMNI_USE_BOTTOM_GESTURE_NAVIGATION,
             // AICP Settings end
         };
 
@@ -4688,6 +4699,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_BLEND_DARK_COLORS_REVERSE);
             PRIVATE_SETTINGS.add(THEMING_BASE);
             PRIVATE_SETTINGS.add(THEMING_ACCENT);
+            PRIVATE_SETTINGS.add(OMNI_USE_BOTTOM_GESTURE_NAVIGATION);
             // AICP Settings end
         }
 
@@ -4818,6 +4830,8 @@ public final class Settings {
                     STATUSBAR_BATTERY_BAR_BLEND_DARK_COLORS_REVERSE_VALIDATOR);
             VALIDATORS.put(THEMING_BASE, THEMING_BASE_VALIDATOR);
             VALIDATORS.put(THEMING_ACCENT, THEMING_ACCENT_VALIDATOR);
+            VALIDATORS.put(OMNI_USE_BOTTOM_GESTURE_NAVIGATION,
+                    OMNI_USE_BOTTOM_GESTURE_NAVIGATION_VALIDATOR);
             // AICP Settings end
         }
 

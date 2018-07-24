@@ -4466,12 +4466,6 @@ public final class Settings {
         public static final String CUSTOM_CARRIER_LABEL = "custom_carrier_label";
 
         /**
-         * Three Finger Gesture from Oppo
-         * @hide
-         */
-        public static final String THREE_FINGER_GESTURE = "three_finger_gesture";
-
-        /**
          * Whether or not to allow quick settings expansion with one swipe on the fingerprint sensor.
          * @hide
          */

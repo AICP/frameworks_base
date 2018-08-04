@@ -174,6 +174,12 @@ public class Clock extends TextView implements
                         handleTaskStackListener(
                                 Settings.System.getInt(mContext.getContentResolver(),
                                         Settings.System.STATUS_BAR_CLOCK_AUTO_HIDE, 0) != 0);
+                    } else if (Settings.System.getUriFor(
+                            Settings.System.STATUS_BAR_CLOCK_SECONDS).equals(uri)) {
+                        mShowSeconds = Settings.System.getInt(
+                                mContext.getContentResolver(),
+                                Settings.System.STATUS_BAR_CLOCK_SECONDS, 0) != 0;
+                        updateShowSeconds();
                     }
                 }
             };
@@ -240,13 +246,17 @@ public class Clock extends TextView implements
             // The receiver will return immediately if the view does not have a Handler yet.
             mBroadcastDispatcher.registerReceiverWithHandler(mIntentReceiver, filter,
                     Dependency.get(Dependency.TIME_TICK_HANDLER), UserHandle.ALL);
-            Dependency.get(TunerService.class).addTunable(this, CLOCK_SECONDS);
+            Dependency.get(TunerService.class).addTunable(this);
             mContext.getContentResolver().registerContentObserver(
                     Settings.System.getUriFor(Settings.System.STATUS_BAR_AM_PM),
                     false, mContentObserver);
             mContext.getContentResolver().registerContentObserver(
                     Settings.System.getUriFor(
                             Settings.System.STATUS_BAR_CLOCK_AUTO_HIDE),
+                    false, mContentObserver);
+            mContext.getContentResolver().registerContentObserver(
+                    Settings.System.getUriFor(
+                            Settings.System.STATUS_BAR_CLOCK_SECONDS),
                     false, mContentObserver);
             mContentObserver.onChange(false, Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_CLOCK_AUTO_HIDE));
@@ -409,10 +419,10 @@ public class Clock extends TextView implements
 
     @Override
     public void onTuningChanged(String key, String newValue) {
-        if (CLOCK_SECONDS.equals(key)) {
+        /* if (CLOCK_SECONDS.equals(key)) {
             mShowSeconds = TunerService.parseIntegerSwitch(newValue, false);
             updateShowSeconds();
-        }
+        } */
     }
 
     @Override

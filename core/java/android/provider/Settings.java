@@ -5242,12 +5242,6 @@ public final class Settings {
         public static final String DISABLE_FC_NOTIFICATIONS = "disable_fc_notifications";
 
         /**
-         * Use EdgeGesture Service for system gestures in PhoneWindowManager
-         * @hide
-         */
-        public static final String USE_EDGE_SERVICE_FOR_GESTURES = "edge_service_for_gestures";
-
-        /**
          * Whether to display app circle sidebar
          * @hide
          */
@@ -5259,34 +5253,6 @@ public final class Settings {
          * @hide
          */
         public static final String WHITELIST_APP_CIRCLE_BAR = "whitelist_app_circle_bar";
-
-      	/**
-      	 * Width of the app circle bar trigger
-      	 *
-      	 * @hide
-      	 */
-        public static final String APP_CIRCLE_BAR_TRIGGER_WIDTH = "app_circle_bar_trigger_width";
-
-        /**
-      	 * Position of app circle bar trigger
-      	 *
-      	 * @hide
-         */
-        public static final String APP_CIRCLE_BAR_TRIGGER_TOP = "app_circle_bar_trigger_top";
-
-        /**
-      	 * Height of the app circle bar trigger
-      	 *
-      	 * @hide
-      	 */
-      	public static final String APP_CIRCLE_BAR_TRIGGER_HEIGHT = "app_circle_bar_trigger_height";
-
-      	/**
-      	 * Whether to display the trigger region or not
-      	 *
-      	 * @hide
-         */
-        public static final String APP_CIRCLE_BAR_SHOW_TRIGGER = "app_circle_bar_show_trigger";
 
         /**
          * --- AICP System settings end
@@ -8898,54 +8864,6 @@ public final class Settings {
          * @hide
          */
         public static final String DEVICE_HOSTNAME = "device_hostname";
-
-        /**
-         * Whether to use edge gestures to navigate.
-         * @hide
-         */
-        public static final String EDGE_GESTURES_ENABLED = "edge_gestures_enabled";
-
-        /**
-         * Haptic feedback duration on edge gesture navigation.
-         * @hide
-         */
-        public static final String EDGE_GESTURES_FEEDBACK_DURATION = "edge_gestures_feedback_duration";
-
-        /**
-         * Long press duration on edge gesture navigation.
-         * @hide
-         */
-        public static final String EDGE_GESTURES_LONG_PRESS_DURATION = "edge_gestures_long_press_duration";
-
-        /**
-         * Back gesture active on this edges.
-         * @hide
-         */
-        public static final String EDGE_GESTURES_BACK_EDGES = "edge_gestures_back_edges";
-
-        /**
-         * Back gesture active on this edges when on landscape.
-         * @hide
-         */
-        public static final String EDGE_GESTURES_LANDSCAPE_BACK_EDGES = "edge_gestures_landscape_back_edges";
-
-        /**
-         * Activate back gestures only when Y position > than this % of screen.
-         * @hide
-         */
-        public static final String EDGE_GESTURES_BACK_SCREEN_PERCENT = "edge_gestures_back_screen_percent";
-
-        /**
-         * Show UI feedback when using back gesture.
-         * @hide
-         */
-        public static final String EDGE_GESTURES_BACK_SHOW_UI_FEEDBACK = "edge_gestures_back_show_ui_feedback";
-
-        /**
-         * Use black arrow theme instead of the white version.
-         * @hide
-         */
-        public static final String EDGE_GESTURES_BACK_USE_BLACK_ARROW = "edge_gestures_back_use_black_arrow";
 
         /**
          * This are the settings to be backed up.

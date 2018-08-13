@@ -637,6 +637,12 @@ public class BatteryMeterDrawableBase extends Drawable {
                 c.drawText(mWarningString, x, y, mWarningTextPaint);
             }
         }
+        // Draw the powersave outline last
+        if (!mCharging && mPowerSaveEnabled && mPowerSaveAsColorError) {
+            if (level > 0) {
+                c.drawArc(mFrame, 270, 3.6f * level, false, mPowersavePaint);
+            }
+        }
     }
 
     // Some stuff required by Drawable.

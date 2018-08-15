@@ -23,6 +23,14 @@
     <string-array name="config_deviceKeyHandlerClasses" translatable="false">
     </string-array>
 
+    <!-- Path to the a single custom key handler library -->
+    <string name="config_customKeyHandlerLib" translatable="false">
+    </string>
+
+    <!-- Name of the key handler class in the custom key handler library -->
+    <string name="config_customKeyHandlerClass" translatable="false">
+    </string>
+
     <!-- Whether device has dash charging support -->
     <bool name="config_hasDashCharger">false</bool>
 
@@ -185,4 +193,8 @@
 
     <!-- Whether key handler sends intent when changing slider position -->
     <string name="config_alertSliderIntent"></string>
+
+    <!-- make sure you enable this only if your device supports deep slepp
+    with active proximity sensor event listener -->
+    <bool name="config_proxiSensorWakupCheck">false</bool>
 </resources>

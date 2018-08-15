@@ -18,6 +18,8 @@
   <!-- Device keyhandlers -->
   <java-symbol type="array" name="config_deviceKeyHandlerLibs" />
   <java-symbol type="array" name="config_deviceKeyHandlerClasses" />
+  <java-symbol type="string" name="config_customKeyHandlerLib" />
+  <java-symbol type="string" name="config_customKeyHandlerClass" />
 
   <!-- Power Menu -->
   <java-symbol type="string" name="reboot_to_recovery_title" />
@@ -174,4 +176,6 @@
 
   <!-- Whether key handler sends intent when changing slider position -->
   <java-symbol type="string" name="config_alertSliderIntent" />
+
+  <java-symbol type="bool" name="config_proxiSensorWakupCheck" />
 </resources>

@@ -23,6 +23,14 @@
     <string-array name="config_deviceKeyHandlerClasses" translatable="false">
     </string-array>
 
+    <!-- Path to the a single custom key handler library -->
+    <string name="config_customKeyHandlerLib" translatable="false">
+    </string>
+
+    <!-- Name of the key handler class in the custom key handler library -->
+    <string name="config_customKeyHandlerClass" translatable="false">
+    </string>
+
     <!-- Name of a font family to use as light font. For theming purpose. -->
     <string name="config_lightFontFamily" translatable="false">sans-serif-light</string>
 
@@ -32,4 +40,9 @@
     <!-- Whether device supports sensor based doze customizations -->
     <bool name="config_dozePulseTilt">false</bool>
     <bool name="config_dozePulseProximity">false</bool>
+
+    <!-- make sure you enable this only if your device supports deep slepp
+    with active proximity sensor event listener -->
+    <bool name="config_proxiSensorWakupCheck">false</bool>
+
 </resources>

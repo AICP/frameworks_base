@@ -5253,6 +5253,31 @@ public final class Settings {
          */
         public static final String DOZE_POCKET_GESTURE = "doze_pocket_gesture";
 
+        /**
+         * Enable proxi check for wake keys - must be implemented in a device
+         * KeyHandler
+         * @hide
+         */
+        public static final String OMNI_DEVICE_PROXI_CHECK_ENABLED = "device_proxi_check_enabled";
+
+        /*
+         * @hide
+         */
+        public static final String OMNI_DEVICE_FEATURE_SETTINGS = "device_feature_settings";
+
+        /**
+         * some devices have a extra hw button e.g. n3 on the back on the
+         * fingerprint sensor. allow mapping button to key
+         *
+         * @hide
+         */
+        public static final String OMNI_BUTTON_EXTRA_KEY_MAPPING = "button_extra_mapping";
+
+        /**
+	* @hide
+         */
+        public static final String OMNI_SYSTEM_PROXI_CHECK_ENABLED = "system_proxi_check_enabled";
+
 	/***************************
          * AICP System Settings end
          ***************************/
@@ -5268,6 +5293,10 @@ public final class Settings {
             DOZE_HANDWAVE_GESTURE,
             DOZE_POCKET_GESTURE,
             DOZE_TILT_GESTURE,
+            OMNI_DEVICE_PROXI_CHECK_ENABLED,
+            OMNI_DEVICE_FEATURE_SETTINGS,
+            OMNI_BUTTON_EXTRA_KEY_MAPPING,
+            OMNI_SYSTEM_PROXI_CHECK_ENABLED,
         };
 
         /**
@@ -5286,6 +5315,10 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(DOZE_HANDWAVE_GESTURE, 0);
             AICP_SETTINGS_VALIDATORS.put(DOZE_POCKET_GESTURE, 0);
             AICP_SETTINGS_VALIDATORS.put(DOZE_TILT_GESTURE, 0);
+            AICP_SETTINGS_VALIDATORS.put(OMNI_DEVICE_PROXI_CHECK_ENABLED, 0);
+            AICP_SETTINGS_VALIDATORS.put(OMNI_DEVICE_FEATURE_SETTINGS, 0);
+            AICP_SETTINGS_VALIDATORS.put(OMNI_BUTTON_EXTRA_KEY_MAPPING, 0);
+            AICP_SETTINGS_VALIDATORS.put(OMNI_SYSTEM_PROXI_CHECK_ENABLED, 0);
         }
     }
 

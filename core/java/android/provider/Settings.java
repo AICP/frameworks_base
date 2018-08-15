@@ -5342,6 +5342,32 @@ public final class Settings {
          */
         public static final String DOZE_POCKET_GESTURE = "doze_pocket_gesture";
 
+        /**
+         * Enable proxi check for wake keys - must be implemented in a device
+         * KeyHandler
+         * @hide
+         */
+        public static final String OMNI_DEVICE_PROXI_CHECK_ENABLED = "device_proxi_check_enabled";
+
+        /*
+         * @hide
+         */
+        @SuppressLint("NoSettingsProvider")
+        public static final String OMNI_DEVICE_FEATURE_SETTINGS = "device_feature_settings";
+
+        /**
+         * some devices have a extra hw button e.g. n3 on the back on the
+         * fingerprint sensor. allow mapping button to key
+         *
+         * @hide
+         */
+        public static final String OMNI_BUTTON_EXTRA_KEY_MAPPING = "button_extra_mapping";
+
+        /**
+         * @hide
+         */
+        public static final String OMNI_SYSTEM_PROXI_CHECK_ENABLED = "system_proxi_check_enabled";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5493,6 +5519,10 @@ public final class Settings {
             PRIVATE_SETTINGS.add(DOZE_TILT_GESTURE);
             PRIVATE_SETTINGS.add(DOZE_HANDWAVE_GESTURE);
             PRIVATE_SETTINGS.add(DOZE_POCKET_GESTURE);
+            PRIVATE_SETTINGS.add(OMNI_DEVICE_PROXI_CHECK_ENABLED);
+            PRIVATE_SETTINGS.add(OMNI_DEVICE_FEATURE_SETTINGS);
+            PRIVATE_SETTINGS.add(OMNI_BUTTON_EXTRA_KEY_MAPPING);
+            PRIVATE_SETTINGS.add(OMNI_SYSTEM_PROXI_CHECK_ENABLED);
         }
 
         /**

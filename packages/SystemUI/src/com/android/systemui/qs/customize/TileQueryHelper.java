@@ -98,7 +98,8 @@ public class TileQueryHelper {
     }
 
     private void addCurrentAndStockTiles(QSTileHost host) {
-        String stock = mContext.getString(R.string.quick_settings_tiles_stock);
+        String stock = mContext.getString(R.string.quick_settings_tiles_stock)
+                + "," + mContext.getString(R.string.quick_settings_tiles_extra);
         String current = Settings.Secure.getString(mContext.getContentResolver(),
                 Settings.Secure.QS_TILES);
         final ArrayList<String> possibleTiles = new ArrayList<>();

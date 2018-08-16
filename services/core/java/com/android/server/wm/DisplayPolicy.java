@@ -160,6 +160,7 @@ import com.android.internal.policy.GestureNavigationSettingsObserver;
 import com.android.internal.policy.ScreenDecorationsUtils;
 import com.android.internal.protolog.common.ProtoLog;
 import com.android.internal.util.ScreenshotHelper;
+import com.android.internal.util.aicp.DeviceUtils;
 import com.android.internal.util.function.TriConsumer;
 import com.android.internal.view.AppearanceRegion;
 import com.android.internal.widget.PointerLocationView;
@@ -625,16 +626,7 @@ public class DisplayPolicy {
 
         if (mDisplayContent.isDefaultDisplay) {
             mHasStatusBar = true;
-            mHasNavigationBar = mContext.getResources().getBoolean(R.bool.config_showNavigationBar);
-
-            // Allow a system property to override this. Used by the emulator.
-            // See also hasNavigationBar().
-            String navBarOverride = SystemProperties.get("qemu.hw.mainkeys");
-            if ("1".equals(navBarOverride)) {
-                mHasNavigationBar = false;
-            } else if ("0".equals(navBarOverride)) {
-                mHasNavigationBar = true;
-            }
+            mHasNavigationBar = DeviceUtils.deviceSupportNavigationBar(mContext);
         } else {
             mHasStatusBar = false;
             mHasNavigationBar = mDisplayContent.supportsSystemDecorations();
@@ -726,6 +718,15 @@ public class DisplayPolicy {
 
     public boolean hasNavigationBar() {
         return mHasNavigationBar;
+    }
+
+    /**
+     * @hide
+     */
+    public void updatehasNavigationBar() {
+        if (mDisplayContent.isDefaultDisplay) {
+            mHasNavigationBar = DeviceUtils.deviceSupportNavigationBar(mContext);
+        }
     }
 
     public boolean hasStatusBar() {

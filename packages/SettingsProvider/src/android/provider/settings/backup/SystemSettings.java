@@ -196,5 +196,6 @@ public class SystemSettings {
         Settings.System.BUTTON_BACKLIGHT_TIMEOUT,
         Settings.System.BUTTON_BRIGHTNESS,
         Settings.System.BUTTON_BACKLIGHT_ONLY_WHEN_PRESSED,
+        Settings.System.FORCE_SHOW_NAVBAR,
     };
 }

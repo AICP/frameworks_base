@@ -6767,6 +6767,15 @@ public final class Settings {
             }
         };
 
+        /**
+         * @hide
+         */
+        public static final String FORCE_SHOW_NAVBAR = "navigation_bar_show_new";
+
+        /** @hide */
+        private static final Validator FORCE_SHOW_NAVBAR_VALIDATOR =
+                ANY_INTEGER_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7012,6 +7021,7 @@ public final class Settings {
             GAMING_MODE_NOTIFICATIONS,
             GAMING_MODE_MANUAL_BRIGHTNESS_TOGGLE,
             GAMING_MODE_DYNAMIC_STATE,
+            FORCE_SHOW_NAVBAR,
             NAVIGATION_BAR_ARROW_KEYS,
             BACK_GESTURE_BLOCK_IME,
             PULSE_AMBIENT_LIGHT_REPEAT_COUNT,
@@ -7331,6 +7341,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(GAMING_MODE_NOTIFICATIONS);
             PRIVATE_SETTINGS.add(GAMING_MODE_MANUAL_BRIGHTNESS_TOGGLE);
             PRIVATE_SETTINGS.add(GAMING_MODE_DYNAMIC_STATE);
+            PRIVATE_SETTINGS.add(FORCE_SHOW_NAVBAR);
             PRIVATE_SETTINGS.add(NAVIGATION_BAR_ARROW_KEYS);
             PRIVATE_SETTINGS.add(BACK_GESTURE_BLOCK_IME);
             PRIVATE_SETTINGS.add(PULSE_AMBIENT_LIGHT_REPEAT_COUNT);
@@ -7653,6 +7664,7 @@ public final class Settings {
             VALIDATORS.put(GAMING_MODE_NOTIFICATIONS, GAMING_MODE_NOTIFICATIONS_VALIDATOR);
             VALIDATORS.put(GAMING_MODE_MANUAL_BRIGHTNESS_TOGGLE, GAMING_MODE_MANUAL_BRIGHTNESS_TOGGLE_VALIDATOR);
             VALIDATORS.put(GAMING_MODE_DYNAMIC_STATE, GAMING_MODE_DYNAMIC_STATE_VALIDATOR);
+            VALIDATORS.put(FORCE_SHOW_NAVBAR, FORCE_SHOW_NAVBAR_VALIDATOR);
             VALIDATORS.put(NAVIGATION_BAR_ARROW_KEYS,
                     NAVIGATION_BAR_ARROW_KEYS_VALIDATOR);
             VALIDATORS.put(BACK_GESTURE_BLOCK_IME, BACK_GESTURE_BLOCK_IME_VALIDATOR);

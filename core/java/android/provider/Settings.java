@@ -6288,6 +6288,11 @@ public final class Settings {
         public static final String BUTTON_BACKLIGHT_ONLY_WHEN_PRESSED =
                 "button_backlight_only_when_pressed";
 
+        /**
+         * @hide
+         */
+        public static final String FORCE_SHOW_NAVBAR = "navigation_bar_show_new";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6469,6 +6474,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(BUTTON_BACKLIGHT_TIMEOUT, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(BUTTON_BRIGHTNESS, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(BUTTON_BACKLIGHT_ONLY_WHEN_PRESSED, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(FORCE_SHOW_NAVBAR, BOOLEAN_VALIDATOR);
         }
 
         /**

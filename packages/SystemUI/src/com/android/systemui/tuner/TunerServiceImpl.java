@@ -127,6 +127,7 @@ public class TunerServiceImpl extends TunerService {
         };
         mUserTracker.addCallback(mCurrentUserTracker,
                 new HandlerExecutor(mainHandler));
+        setTunerEnabled(true);
     }
 
     @Override

@@ -44,8 +44,6 @@ import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
 import android.view.WindowManagerGlobal;
 
-import com.android.internal.policy.IKeyguardDismissCallback;
-
 import java.net.URISyntaxException;
 
 public class Action {
@@ -257,11 +255,6 @@ public class Action {
     private static void startActivity(Context context, Intent intent) {
         if (intent == null) {
             return;
-        }
-        try {
-            WindowManagerGlobal.getWindowManagerService().dismissKeyguard(null /* callback */);
-        } catch (RemoteException e) {
-            Log.w("Action", "Error dismissing keyguard", e);
         }
         intent.addFlags(
                 Intent.FLAG_ACTIVITY_NEW_TASK

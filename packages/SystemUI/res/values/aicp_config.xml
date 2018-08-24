@@ -26,4 +26,7 @@
       ambient_display,aod,caffeine,heads_up,sync,usb_tether
     </string>
 
+    <!-- Max visible notification icons -->
+    <integer name="config_maxVisibleNotificationIcons">4</integer>
+    <integer name="config_maxVisibleNotificationIconsOnLock">5</integer>
 </resources>

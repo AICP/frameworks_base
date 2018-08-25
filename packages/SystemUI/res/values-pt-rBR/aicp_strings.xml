@@ -194,4 +194,8 @@
   <!-- On The Go -->
   <string name="onthego_notif_camera_changed">Modo de câmera alterado</string>
   <!-- OnTheGo Tile -->
+  <!-- Recents Memory Bar -->
+  <!-- LTE QS Tile -->
+  <string name="lte_on">LTE Ligado</string>
+  <!-- App circle sidebar -->
 </resources>

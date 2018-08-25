@@ -48,7 +48,7 @@
   <string name="accessibility_quick_settings_usb_tether_on">USB internet paylaşımı açık</string>
   <string name="accessibility_quick_settings_usb_tether_changed_off">USB internet paylaşımı kapatıldı</string>
   <string name="accessibility_quick_settings_usb_tether_changed_on">USB internet paylaşımı açıldı</string>
-  <string name="quick_settings_usb_tether_label">USB paylaşımı</string>
+  <string name="quick_settings_usb_tether_label">USB internet paylaşımı</string>
   <!-- Language toggle tile -->
   <string name="quick_settings_locale_label">Dil</string>
   <string name="quick_settings_locale_more_locales_toast">Geçiş işlevselliğinin etkin olması için lütfen birden fazla dil ekleyin</string>
@@ -209,4 +209,14 @@
   <string name="onthego_channel_name">Ana</string>
   <!-- OnTheGo Tile -->
   <string name="quick_settings_onthego_label">Yürüme modu</string>
+  <!-- Recents Memory Bar -->
+  <string name="recents_free_ram">BOŞ RAM: %1$d MB</string>
+  <!-- LTE QS Tile -->
+  <string name="qs_lte_label">LTE</string>
+  <string name="lte_on">LTE AÇIK </string>
+  <string name="lte_off">LTE KAPALI</string>
+  <!-- App circle sidebar -->
+  <string name="app_float_maximize_item_title">Büyüt</string>
+  <string name="app_float_item_title">Yüzer görünüm</string>
+  <string name="app_stop_item_title">Uygulamayı sonlandır</string>
 </resources>

@@ -162,7 +162,7 @@
   <string name="force_stop_dlg_text">アプリを強制停止すると、アプリが正常に機能しないことがあります。</string>
   <string name="kill">アプリの終了</string>
   <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
-  <string name="keyguard_indication_dash_charging_time">急速充電中（充電完了まで(<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%s</xliff:g> 完全になるまで)</string>
+  <string name="keyguard_indication_dash_charging_time">急速充電中（充電完了まで<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%s</xliff:g>）</string>
   <string name="keyguard_plugged_in_dash_charging">急速充電中</string>
   <!-- Indication on the keyguard that is shown when the device is charging with a turbo power charger. Should match keyguard_plugged_in_turbo_power_charging [CHAR LIMIT=40]-->
   <string name="keyguard_indication_turbo_power_time">急速充電中（充電完了まで<xliff:g id="charging_time_left">%s</xliff:g>）</string>
@@ -208,4 +208,14 @@
   <string name="onthego_channel_name">メイン</string>
   <!-- OnTheGo Tile -->
   <string name="quick_settings_onthego_label">On-The-Go</string>
+  <!-- Recents Memory Bar -->
+  <string name="recents_free_ram">RAM: %1$d MB 空き</string>
+  <!-- LTE QS Tile -->
+  <string name="qs_lte_label">LTE</string>
+  <string name="lte_on">LTE オン</string>
+  <string name="lte_off">LTE オフ</string>
+  <!-- App circle sidebar -->
+  <string name="app_float_maximize_item_title">最大化</string>
+  <string name="app_float_item_title">フロートビュー</string>
+  <string name="app_stop_item_title">アプリを終了</string>
 </resources>

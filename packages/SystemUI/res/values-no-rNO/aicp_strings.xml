@@ -118,6 +118,7 @@
   <string name="quick_settings_navigation_bar">Navigasjonsfelt</string>
   <string name="quick_settings_smartbar">SmartBar</string>
   <string name="quick_settings_fling">Fling</string>
+  <string name="quick_settings_navigation_disabled">Deativert</string>
   <!-- Kill button in notification guts -->
   <string name="force_stop_dlg_title">Vil du tvinge avslutning?</string>
   <string name="force_stop_dlg_text">Hvis du tvangsstopper en app, kan den oppføre seg uventet.</string>
@@ -138,4 +139,7 @@
          [CHAR LIMIT=4] -->
   <!-- On The Go -->
   <!-- OnTheGo Tile -->
+  <!-- Recents Memory Bar -->
+  <!-- LTE QS Tile -->
+  <!-- App circle sidebar -->
 </resources>

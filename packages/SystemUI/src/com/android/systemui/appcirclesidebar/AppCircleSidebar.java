@@ -25,13 +25,12 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.*;
 
-import com.android.systemui.chaos.TriggerOverlayView;
 import com.android.systemui.R;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class AppCircleSidebar extends TriggerOverlayView implements PackageAdapter.OnCircleItemClickListener,
+public class AppCircleSidebar extends FrameLayout implements PackageAdapter.OnCircleItemClickListener,
                             CircleListView.OnItemCenteredListener {
     private static final String TAG = "AppCircleSidebar";
     private static final boolean DEBUG_LAYOUT = false;
@@ -130,14 +129,6 @@ public class AppCircleSidebar extends TriggerOverlayView implements PackageAdapt
                     Settings.System.ENABLE_APP_CIRCLE_BAR), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.WHITELIST_APP_CIRCLE_BAR), false, this);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.APP_CIRCLE_BAR_TRIGGER_WIDTH), false, this);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.APP_CIRCLE_BAR_TRIGGER_TOP), false, this);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.APP_CIRCLE_BAR_TRIGGER_HEIGHT), false, this);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.APP_CIRCLE_BAR_SHOW_TRIGGER), false, this);
             update();
         }
 
@@ -162,20 +153,6 @@ public class AppCircleSidebar extends TriggerOverlayView implements PackageAdapt
                 mPackageAdapter.createIncludedAppsSet(includedApps);
                 mPackageAdapter.reloadApplications();
             }
-
-            int width = Settings.System.getInt(
-                    resolver, Settings.System.APP_CIRCLE_BAR_TRIGGER_WIDTH, 25);
-            if (mTriggerWidth != width)
-                setTriggerWidth(width);
-            setTopPercentage(Settings.System.getInt(
-                    resolver, Settings.System.APP_CIRCLE_BAR_TRIGGER_TOP, 0) / 100f);
-            setBottomPercentage(Settings.System.getInt(
-                    resolver, Settings.System.APP_CIRCLE_BAR_TRIGGER_HEIGHT, 100) / 100f);
-            if (Settings.System.getInt(
-                    resolver, Settings.System.APP_CIRCLE_BAR_SHOW_TRIGGER, 0) == 1)
-                showTriggerRegion();
-            else
-                hideTriggerRegion();
         }
     }
 
@@ -246,6 +223,28 @@ public class AppCircleSidebar extends TriggerOverlayView implements PackageAdapt
         return super.dispatchKeyEventPreIme(event);
     }
 
+    private int enableKeyEvents() {
+        return (0
+                | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
+                | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH
+                | WindowManager.LayoutParams.FLAG_SPLIT_TOUCH);
+    }
+
+    private int disableKeyEvents() {
+        return (0
+                | WindowManager.LayoutParams.FLAG_TOUCHABLE_WHEN_WAKING
+                | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
+                | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH
+                | WindowManager.LayoutParams.FLAG_SPLIT_TOUCH);
+    }
+
+    private int getWindowHeight() {
+        Rect r = new Rect();
+        getWindowVisibleDisplayFrame(r);
+        return r.bottom - r.top;
+    }
+
     private void expandFromRegion() {
         WindowManager.LayoutParams params = (WindowManager.LayoutParams) getLayoutParams();
         params.y = 0;
@@ -253,6 +252,15 @@ public class AppCircleSidebar extends TriggerOverlayView implements PackageAdapt
         params.width = LayoutParams.WRAP_CONTENT;
         params.flags = enableKeyEvents();
         mWM.updateViewLayout(this, params);
+    }
+
+    private void reduceToRegion() {
+        WindowManager.LayoutParams params = (WindowManager.LayoutParams) getLayoutParams();
+        params.y = 0;
+        params.height = (getWindowHeight() / 2);
+        params.width = mTriggerWidth;
+        params.flags = disableKeyEvents();
+        mWM.updateViewLayout(this, mLayoutParams);
     }
 
     private TranslateAnimation mSlideOut = new TranslateAnimation(
@@ -301,7 +309,7 @@ public class AppCircleSidebar extends TriggerOverlayView implements PackageAdapt
                 case CLOSING:
                     mState = SIDEBAR_STATE.CLOSED;
                     mCircleListView.setVisibility(View.GONE);
-                    reduceToTriggerRegion();
+                    reduceToRegion();
                     break;
                 case OPENING:
                     mState = SIDEBAR_STATE.OPENED;
@@ -314,6 +322,11 @@ public class AppCircleSidebar extends TriggerOverlayView implements PackageAdapt
         public void onAnimationRepeat(Animation animation) {
         }
     };
+
+    private boolean isKeyguardEnabled() {
+        KeyguardManager km = (KeyguardManager)mContext.getSystemService(Context.KEYGUARD_SERVICE);
+        return km.inKeyguardRestrictedInputMode();
+    }
 
     private void updateAutoHideTimer(long delay) {
         Intent i = new Intent(ACTION_HIDE_APP_CONTAINER);

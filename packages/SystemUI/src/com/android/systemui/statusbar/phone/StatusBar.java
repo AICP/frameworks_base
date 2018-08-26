@@ -275,7 +275,6 @@ import com.android.systemui.statusbar.policy.RemoteInputView;
 import com.android.systemui.statusbar.policy.UserInfoController;
 import com.android.systemui.statusbar.policy.UserInfoControllerImpl;
 import com.android.systemui.statusbar.policy.UserSwitcherController;
-import com.android.systemui.statusbar.screen_gestures.ScreenGesturesController;
 import com.android.systemui.statusbar.stack.NotificationStackScrollLayout;
 import com.android.systemui.statusbar.stack.NotificationStackScrollLayout
         .OnChildLocationsChangedListener;
@@ -431,9 +430,6 @@ public class StatusBar extends SystemUI implements DemoMode,
     private static final String NAVBAR_DYNAMIC =
             "system:" + Settings.System.NAVBAR_DYNAMIC;
 
-    private static final String EDGE_GESTURES_ENABLED =
-            Settings.Secure.EDGE_GESTURES_ENABLED;
-
     private static final String[] DARK_OVERLAYS = {
             "com.aicp.overlay.defaultdark.android",
             "com.aicp.overlay.defaultdark.com.android.systemui",
@@ -562,10 +558,6 @@ public class StatusBar extends SystemUI implements DemoMode,
     private int mTickerTickDuration;
 
     private int mAmbientMediaPlaying;
-
-    // Full Screen Gestures
-    protected ScreenGesturesController gesturesController;
-    private boolean mEdgeGesturesEnabled;
 
     protected AppCircleSidebar mAppCircleSidebar;
 
@@ -6716,9 +6708,6 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.HEADS_UP_BLACKLIST_VALUES),
                     false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.Secure.getUriFor(
-                    Settings.Secure.EDGE_GESTURES_ENABLED),
-                    false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -6792,9 +6781,6 @@ public class StatusBar extends SystemUI implements DemoMode,
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.HEADS_UP_BLACKLIST_VALUES))) {
                 updateHeadsUpBlackList();
-            } else if (uri.equals(Settings.Secure.getUriFor(
-                    Settings.Secure.EDGE_GESTURES_ENABLED))) {
-                updateEdgeGestures();
             }
         }
 
@@ -6816,7 +6802,6 @@ public class StatusBar extends SystemUI implements DemoMode,
             setFpToDismissNotifications();
             updateBatterySettings();
             updateHeadsUpBlackList();
-            updateEdgeGestures();
         }
     }
 
@@ -8745,21 +8730,6 @@ public class StatusBar extends SystemUI implements DemoMode,
         }
     };
 
-    public void updateEdgeGestures() {
-        Log.d(TAG, "updateEdgeGestures: Updating edge gestures");
-        boolean enabled = Settings.Secure.getIntForUser(mContext.getContentResolver(),
-                Settings.Secure.EDGE_GESTURES_ENABLED, 0, mCurrentUserId) == 1;
-        if (enabled) {
-            if (gesturesController == null) {
-                gesturesController = new ScreenGesturesController(mContext, mWindowManager, this);
-            }
-            gesturesController.reorient();
-        } else if (!enabled && gesturesController != null) {
-            gesturesController.stop();
-            gesturesController = null;
-        }
-    }
-
     private void updateRecentsMode() {
         boolean slimRecents = Settings.System.getIntForUser(mContext.getContentResolver(),
                 Settings.System.USE_SLIM_RECENTS, 0, mCurrentUserId) == 1;
@@ -8839,7 +8809,7 @@ public class StatusBar extends SystemUI implements DemoMode,
         } // else Recents does it from its callback
     }
 
-   protected void addAppCircleSidebar() {
+    protected void addAppCircleSidebar() {
         if (mAppCircleSidebar == null) {
             mAppCircleSidebar = (AppCircleSidebar) View.inflate(mContext, R.layout.app_circle_sidebar, null);
             mWindowManager.addView(mAppCircleSidebar, getAppCircleSidebarLayoutParams());
@@ -8850,7 +8820,7 @@ public class StatusBar extends SystemUI implements DemoMode,
          if (mAppCircleSidebar != null) {
              mWindowManager.removeView(mAppCircleSidebar);
          }
-     }
+    }
 
     protected WindowManager.LayoutParams getAppCircleSidebarLayoutParams() {
          int maxWidth =
@@ -8872,5 +8842,5 @@ public class StatusBar extends SystemUI implements DemoMode,
          lp.setTitle("AppCircleSidebar");
 
          return lp;
-     }
+    }
 }

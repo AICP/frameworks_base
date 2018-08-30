@@ -5833,6 +5833,11 @@ public final class Settings {
          */
         public static final String QS_SMART_PULLDOWN = "qs_smart_pulldown";
 
+         /**
+          * @hide
+          */
+         public static final String OMNIJAWS_WEATHER_ICON_PACK = "omnijaws_weather_icon_pack";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5988,6 +5993,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(POWERMENU_LOGOUT);
             PRIVATE_SETTINGS.add(POWERMENU_EMERGENCY);
             PRIVATE_SETTINGS.add(POWERMENU_TORCH);
+            PRIVATE_SETTINGS.add(OMNIJAWS_WEATHER_ICON_PACK);
         }
 
         /**

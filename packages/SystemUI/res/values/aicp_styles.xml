@@ -13,4 +13,18 @@
     <style name="ExTunerSettings" parent="@android:style/Theme.DeviceDefault.Settings">
         <item name="preferenceTheme">@style/TunerPreferenceTheme</item>
     </style>
+
+    <!-- OmniJaws weather -->
+    <style name="TextAppearance.StatusBar.Expanded.Weather">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+
+    <style name="TextAppearance.StatusBar.Expanded.Weather.Detailed">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+
 </resources>

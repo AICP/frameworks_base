@@ -121,5 +121,6 @@ public class SystemSettings {
         Settings.System.POWERMENU_LOGOUT,
         Settings.System.POWERMENU_EMERGENCY,
         Settings.System.POWERMENU_TORCH,
+        Settings.System.OMNIJAWS_WEATHER_ICON_PACK,
     };
 }

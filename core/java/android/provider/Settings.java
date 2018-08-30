@@ -6518,6 +6518,11 @@ public final class Settings {
          */
         public static final String HEADS_UP_TIMEOUT = "heads_up_timeout";
 
+        /**
+        * @hide
+        */
+        public static final String OMNIJAWS_WEATHER_ICON_PACK = "omnijaws_weather_icon_pack";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6836,6 +6841,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(RIGHT_VERTICAL_BACK_SWIPE_APP_ACTIVITY_ACTION);
             PRIVATE_SETTINGS.add(HEADS_UP_NOTIFICATION_SNOOZE);
             PRIVATE_SETTINGS.add(HEADS_UP_TIMEOUT);
+            PRIVATE_SETTINGS.add(OMNIJAWS_WEATHER_ICON_PACK);
         }
 
         /**

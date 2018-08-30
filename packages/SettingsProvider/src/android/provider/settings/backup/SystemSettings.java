@@ -258,5 +258,6 @@ public class SystemSettings {
         Settings.System.AUTO_BRIGHTNESS_ONE_SHOT,
         Settings.System.DATA_DISABLED_ICON,
         Settings.System.VOLUME_DIALOG_TIMEOUT,
+        Settings.System.OMNIJAWS_WEATHER_ICON_PACK,
     };
 }

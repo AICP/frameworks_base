@@ -4467,6 +4467,34 @@ public final class Settings {
         /**
          * @hide
          */
+        public static final String OMNI_QS_LAYOUT_ROWS_LANDSCAPE = "qs_layout_rows_landscape";
+
+        /** @hide */
+        private static final Validator OMNI_QS_LAYOUT_ROWS_LANDSCAPE_VALIDATOR =
+                ANY_INTEGER_VALIDATOR;
+
+        /**
+         * @hide
+         */
+        public static final String OMNI_QS_QUICKBAR_COLUMNS = "qs_quickbar_columns";
+
+        /** @hide */
+        private static final Validator OMNI_QS_QUICKBAR_COLUMNS_VALIDATOR =
+                ANY_INTEGER_VALIDATOR;
+
+        /**
+         * Whether to change the transparency of the qs panel
+         * @hide
+         */
+        public static final String OMNI_QS_PANEL_BG_ALPHA = "qs_panel_bg_alpha";
+
+        /** @hide */
+        private static final Validator OMNI_QS_PANEL_BG_ALPHA_VALIDATOR =
+                ANY_INTEGER_VALIDATOR;
+
+        /**
+         * @hide
+         */
         public static final String AICP_ASPECT_RATIO_APPS_LIST = "aspect_ratio_apps_list";
 
         /** @hide */
@@ -4807,6 +4835,8 @@ public final class Settings {
             OMNI_QS_LAYOUT_ROWS,
             AICP_ASPECT_RATIO_APPS_ENABLED,
             AICP_ASPECT_RATIO_APPS_LIST,
+            OMNI_QS_LAYOUT_ROWS_LANDSCAPE,
+            OMNI_QS_QUICKBAR_COLUMNS,
             // AICP Settings end
         };
 
@@ -4978,6 +5008,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(OMNI_QS_LAYOUT_ROWS);
             PRIVATE_SETTINGS.add(AICP_ASPECT_RATIO_APPS_ENABLED);
             PRIVATE_SETTINGS.add(AICP_ASPECT_RATIO_APPS_LIST);
+            PRIVATE_SETTINGS.add(OMNI_QS_LAYOUT_ROWS_LANDSCAPE);
+            PRIVATE_SETTINGS.add(OMNI_QS_QUICKBAR_COLUMNS);
             // AICP Settings end
         }
 
@@ -5125,6 +5157,8 @@ public final class Settings {
                     AICP_ASPECT_RATIO_APPS_ENABLED_VALIDATOR);
             VALIDATORS.put(AICP_ASPECT_RATIO_APPS_LIST,
                     AICP_ASPECT_RATIO_APPS_LIST_VALIDATOR);
+            VALIDATORS.put(OMNI_QS_LAYOUT_ROWS_LANDSCAPE, OMNI_QS_LAYOUT_ROWS_LANDSCAPE_VALIDATOR);
+            VALIDATORS.put(OMNI_QS_QUICKBAR_COLUMNS, OMNI_QS_QUICKBAR_COLUMNS_VALIDATOR);
             // AICP Settings end
         }
 

@@ -254,6 +254,7 @@ public class KeyguardStatusViewController extends ViewController<KeyguardStatusV
             if (showing) {
                 if (DEBUG) Slog.v(TAG, "refresh statusview showing:" + showing);
                 refreshTime();
+                mView.updateSettings();
             }
         }
 

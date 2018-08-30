@@ -103,5 +103,6 @@ public class SystemSettings {
         Settings.System.HEADS_UP_NOTIFICATIONS_THRESHOLD,
         Settings.System.TOAST_ANIMATION,
         Settings.System.THREE_FINGER_GESTURE,
+        Settings.System.OMNIJAWS_WEATHER_ICON_PACK,
     };
 }

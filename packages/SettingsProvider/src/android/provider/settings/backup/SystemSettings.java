@@ -287,5 +287,6 @@ public class SystemSettings {
         Settings.System.HEADS_UP_TIMEOUT,
         Settings.System.HEADS_UP_BLACKLIST_VALUES,
         Settings.System.OMNIJAWS_WEATHER_ICON_PACK,
+        Settings.System.OMNI_LOCKSCREEN_WEATHER_ENABLED,
     };
 }

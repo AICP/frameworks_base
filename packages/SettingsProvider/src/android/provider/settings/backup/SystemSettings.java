@@ -260,5 +260,6 @@ public class SystemSettings {
         Settings.System.DATA_DISABLED_ICON,
         Settings.System.VOLUME_DIALOG_TIMEOUT,
         Settings.System.OMNIJAWS_WEATHER_ICON_PACK,
+        Settings.System.OMNI_LOCKSCREEN_WEATHER_ENABLED,
     };
 }

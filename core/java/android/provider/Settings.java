@@ -5347,6 +5347,15 @@ public final class Settings {
         private static final Validator HEADS_UP_BLACKLIST_VALUES_VALIDATOR =
               ANY_STRING_VALIDATOR;
 
+        /**
+        * @hide
+        */
+        public static final String OMNIJAWS_WEATHER_ICON_PACK = "omnijaws_weather_icon_pack";
+
+        /** @hide */
+        private static final Validator OMNIJAWS_WEATHER_ICON_PACK_VALIDATOR =
+               ANY_STRING_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5501,6 +5510,7 @@ public final class Settings {
             SCREENSHOT_SOUND,
             CHOOSER_ACTIVITY_BLACKLIST,
             HEADS_UP_BLACKLIST_VALUES,
+            OMNIJAWS_WEATHER_ICON_PACK,
             // AICP Settings end
         };
 
@@ -5703,6 +5713,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SCREENSHOT_SOUND);
             PRIVATE_SETTINGS.add(CHOOSER_ACTIVITY_BLACKLIST);
             PRIVATE_SETTINGS.add(HEADS_UP_BLACKLIST_VALUES);
+            PRIVATE_SETTINGS.add(OMNIJAWS_WEATHER_ICON_PACK);
             // AICP Settings end
         }
 
@@ -5895,6 +5906,7 @@ public final class Settings {
             VALIDATORS.put(SCREENSHOT_SOUND,SCREENSHOT_SOUND_VALIDATOR);
             VALIDATORS.put(CHOOSER_ACTIVITY_BLACKLIST, CHOOSER_ACTIVITY_BLACKLIST_VALIDATOR);
             VALIDATORS.put(HEADS_UP_BLACKLIST_VALUES, HEADS_UP_BLACKLIST_VALUES_VALIDATOR);
+            VALIDATORS.put(OMNIJAWS_WEATHER_ICON_PACK,OMNIJAWS_WEATHER_ICON_PACK_VALIDATOR);
             // AICP Settings end
         }
 

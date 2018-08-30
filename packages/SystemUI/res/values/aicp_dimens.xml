@@ -27,4 +27,7 @@
 
     <!-- Network traffic monitor on quick statusbar header starting padding-->
     <dimen name="net_traffic_starting_padding">2dp</dimen>
+
+    <!-- OmniWeather image size -->
+    <dimen name="current_weather_image_size">42dp</dimen>
 </resources>

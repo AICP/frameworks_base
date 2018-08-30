@@ -18,8 +18,12 @@ package com.android.keyguard;
 
 import android.app.ActivityManager;
 import android.app.IActivityManager;
+import android.content.ContentResolver;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +33,7 @@ import androidx.core.graphics.ColorUtils;
 
 import com.android.internal.widget.LockPatternUtils;
 import com.android.systemui.R;
+import com.android.systemui.omni.CurrentWeatherView;
 import com.android.systemui.statusbar.CrossFadeHelper;
 
 import java.io.FileDescriptor;
@@ -51,6 +56,7 @@ public class KeyguardStatusView extends GridLayout {
     private KeyguardClockSwitch mClockView;
     private KeyguardSliceView mKeyguardSlice;
     private View mMediaHostContainer;
+    private CurrentWeatherView mWeatherView;
 
     private float mDarkAmount = 0;
     private int mTextColor;
@@ -89,6 +95,9 @@ public class KeyguardStatusView extends GridLayout {
         }
 
         mKeyguardSlice = findViewById(R.id.keyguard_slice_view);
+
+        mWeatherView = (CurrentWeatherView) findViewById(R.id.weather_container);
+
         mTextColor = mClockView.getCurrentTextColor();
 
         mKeyguardSlice.setContentChangeListener(this::onSliceContentChanged);
@@ -163,5 +172,24 @@ public class KeyguardStatusView extends GridLayout {
         mIconTopMargin = getResources().getDimensionPixelSize(R.dimen.widget_vertical_padding);
         mIconTopMarginWithHeader = getResources().getDimensionPixelSize(
                 R.dimen.widget_vertical_padding_with_header);
+    }
+
+    protected void updateSettings() {
+        final ContentResolver resolver = getContext().getContentResolver();
+        final Resources res = getContext().getResources();
+        boolean showWeather = Settings.System.getIntForUser(resolver,
+                Settings.System.OMNI_LOCKSCREEN_WEATHER_ENABLED, 0,
+                UserHandle.USER_CURRENT) == 1;
+
+        if (mWeatherView != null) {
+            if (showWeather) {
+                mWeatherView.setVisibility(View.VISIBLE);
+                mWeatherView.enableUpdates();
+            }
+            if (!showWeather) {
+                mWeatherView.setVisibility(View.GONE);
+                mWeatherView.disableUpdates();
+            }
+        }
     }
 }

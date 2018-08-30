@@ -5907,6 +5907,11 @@ public final class Settings {
         */
         public static final String OMNIJAWS_WEATHER_ICON_PACK = "omnijaws_weather_icon_pack";
 
+        /**
+        * @hide
+        */
+        public static final String OMNI_LOCKSCREEN_WEATHER_ENABLED = "lockscreen_weather_enabled";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6036,6 +6041,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(HEADS_UP_BLACKLIST_VALUES, ANY_STRING_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(CHOOSER_ACTIVITY_BLACKLIST, ANY_STRING_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(OMNIJAWS_WEATHER_ICON_PACK, ANY_STRING_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(OMNI_LOCKSCREEN_WEATHER_ENABLED, BOOLEAN_VALIDATOR);
         }
 
         /**

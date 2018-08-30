@@ -6392,6 +6392,11 @@ public final class Settings {
           */
          public static final String OMNIJAWS_WEATHER_ICON_PACK = "omnijaws_weather_icon_pack";
 
+        /**
+        * @hide
+        */
+        public static final String OMNI_LOCKSCREEN_WEATHER_ENABLED = "lockscreen_weather_enabled";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6688,6 +6693,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(DATA_DISABLED_ICON);
             PRIVATE_SETTINGS.add(VOLUME_DIALOG_TIMEOUT);
             PRIVATE_SETTINGS.add(OMNIJAWS_WEATHER_ICON_PACK);
+            PRIVATE_SETTINGS.add(OMNI_LOCKSCREEN_WEATHER_ENABLED);
         }
 
         /**

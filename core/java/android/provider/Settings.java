@@ -5693,6 +5693,15 @@ public final class Settings {
         /** @hide */
         private static final Validator SHOW_LTE_FOURGEE_VALIDATOR = BOOLEAN_VALIDATOR;
 
+        /**
+        * @hide
+        */
+        public static final String OMNIJAWS_WEATHER_ICON_PACK = "omnijaws_weather_icon_pack";
+
+        /** @hide */
+        private static final Validator OMNIJAWS_WEATHER_ICON_PACK_VALIDATOR =
+               ANY_STRING_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5893,6 +5902,7 @@ public final class Settings {
             ROAMING_INDICATOR_ICON,
             SHOW_VOLTE_ICON,
             SHOW_LTE_FOURGEE,
+            OMNIJAWS_WEATHER_ICON_PACK,
             // AICP Settings end
         };
 
@@ -6157,6 +6167,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(ROAMING_INDICATOR_ICON);
             PRIVATE_SETTINGS.add(SHOW_VOLTE_ICON);
             PRIVATE_SETTINGS.add(SHOW_LTE_FOURGEE);
+            PRIVATE_SETTINGS.add(OMNIJAWS_WEATHER_ICON_PACK);
             // AICP Settings end
         }
 
@@ -6411,6 +6422,7 @@ public final class Settings {
             VALIDATORS.put(ROAMING_INDICATOR_ICON,ROAMING_INDICATOR_ICON_VALIDATOR);
             VALIDATORS.put(SHOW_VOLTE_ICON,SHOW_VOLTE_ICON_VALIDATOR);
             VALIDATORS.put(SHOW_LTE_FOURGEE,SHOW_LTE_FOURGEE_VALIDATOR);
+            VALIDATORS.put(OMNIJAWS_WEATHER_ICON_PACK,OMNIJAWS_WEATHER_ICON_PACK_VALIDATOR);
             // AICP Settings end
         }
 

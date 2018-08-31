@@ -126,6 +126,7 @@ public class CameraServiceProxy extends SystemService
 
     private final @NfcNotifyState int mNotifyNfc;
     private boolean mLastNfcPollState = true;
+    private final boolean mAllowMediaUid;
 
     private final boolean mSendCameraStatusIntent;
 
@@ -199,7 +200,8 @@ public class CameraServiceProxy extends SystemService
     private final ICameraServiceProxy.Stub mCameraServiceProxy = new ICameraServiceProxy.Stub() {
         @Override
         public void pingForUserUpdate() {
-            if (Binder.getCallingUid() != Process.CAMERASERVER_UID) {
+            if (Binder.getCallingUid() != Process.CAMERASERVER_UID
+                    && (!mAllowMediaUid || Binder.getCallingUid() != Process.MEDIA_UID)) {
                 Slog.e(TAG, "Calling UID: " + Binder.getCallingUid() + " doesn't match expected " +
                         " camera service UID!");
                 return;
@@ -210,7 +212,8 @@ public class CameraServiceProxy extends SystemService
         @Override
         public void notifyCameraState(String cameraId, int newCameraState, int facing,
                 String clientName, int apiLevel) {
-            if (Binder.getCallingUid() != Process.CAMERASERVER_UID) {
+            if (Binder.getCallingUid() != Process.CAMERASERVER_UID
+                    && (!mAllowMediaUid || Binder.getCallingUid() != Process.MEDIA_UID)) {
                 Slog.e(TAG, "Calling UID: " + Binder.getCallingUid() + " doesn't match expected " +
                         " camera service UID!");
                 return;
@@ -255,6 +258,8 @@ public class CameraServiceProxy extends SystemService
         }
         mNotifyNfc = notifyNfc;
         if (DEBUG) Slog.v(TAG, "Notify NFC state is " + nfcNotifyToString(mNotifyNfc));
+        mAllowMediaUid = mContext.getResources().getBoolean(
+                com.android.internal.R.bool.config_allowMediaUidForCameraServiceProxy);
     }
 
     @Override

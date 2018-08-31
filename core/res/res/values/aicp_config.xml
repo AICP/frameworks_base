@@ -72,4 +72,7 @@
 
     <!-- Whether device has a notch -->
     <bool name="config_haveNotch">false</bool>
+
+    <!-- Whether to allow process with media UID to access CameraServiceProxy -->
+    <bool name="config_allowMediaUidForCameraServiceProxy">false</bool>
 </resources>

@@ -1138,7 +1138,7 @@ public class DisplayRotation {
         int sensorRotation = mOrientationListener != null
                 ? mOrientationListener.getProposedRotation() // may be -1
                 : -1;
-        if ((sensorRotation < 0 ) || (sensorRotation > 3)) {
+        if (sensorRotation < 0  || sensorRotation > 3) {
             sensorRotation = lastRotation;
         }
 

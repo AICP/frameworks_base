@@ -19,6 +19,8 @@ package com.android.systemui.qs.tiles;
 import android.content.Context;
 import android.content.Intent;
 import android.database.ContentObserver;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.NetworkUtils;
 import android.net.Uri;
 import android.net.wifi.WifiInfo;
@@ -35,6 +37,9 @@ import com.android.systemui.plugins.qs.QSTile;
 import com.android.systemui.plugins.qs.QSTile.BooleanState;
 import com.android.systemui.qs.QSHost;
 import com.android.systemui.qs.tileimpl.QSTileImpl;
+import com.android.systemui.statusbar.policy.NetworkController;
+import com.android.systemui.statusbar.policy.NetworkController.IconState;
+import com.android.systemui.statusbar.policy.NetworkController.SignalCallback;
 
 import java.net.InetAddress;
 
@@ -44,8 +49,14 @@ public class AdbOverNetworkTile extends QSTileImpl<BooleanState> {
     private boolean mListening;
     private final Icon mIcon = ResourceIcon.get(R.drawable.ic_qs_network_adb);
 
+    private final NetworkController mController;
+    private final WifiSignalCallback mSignalCallback = new WifiSignalCallback();
+    private final WifiManager mWifiManager;
+
     public AdbOverNetworkTile(QSHost host) {
         super(host);
+        mController = Dependency.get(NetworkController.class);
+        mWifiManager = mContext.getSystemService(WifiManager.class);
     }
 
     @Override
@@ -78,45 +89,43 @@ public class AdbOverNetworkTile extends QSTileImpl<BooleanState> {
     @Override
     protected void handleUpdateState(BooleanState state, Object arg) {
         mActive = isAdbEnabled();
-        if (state.slash == null) {
-            state.slash = new SlashState();
-        }
         state.icon = mIcon;
-        state.slash.isSlashed = !mActive;
+        state.label = mContext.getString(R.string.quick_settings_network_adb_label);
 
         if (!mActive) {
-            state.label = mContext.getString(R.string.quick_settings_network_adb_label);
             state.state = Tile.STATE_INACTIVE;
             return;
         }
         mActive = isAdbNetworkEnabled();
-        state.slash.isSlashed = !mActive;
 
         if (mActive) {
-            WifiManager wifiManager = (WifiManager) mContext.getSystemService(Context.WIFI_SERVICE);
-            WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-
+            WifiInfo wifiInfo = mWifiManager.getConnectionInfo();
             if (wifiInfo != null) {
-                // if wifiInfo is not null, set the label to "hostAddress"
                 InetAddress address = NetworkUtils.intToInetAddress(wifiInfo.getIpAddress());
-                state.label = address.getHostAddress();
-            } else {
-                // if wifiInfo is null, set the label without host address
-                state.label = mContext.getString(R.string.quick_settings_network_adb_label);
+                state.secondaryLabel = address.getHostAddress();
+                state.value = true;
+                state.state = Tile.STATE_ACTIVE;
             }
-            state.value = true;
-            state.state = Tile.STATE_ACTIVE;
         } else {
-            // Otherwise set the disabled label and icon
-            state.label = mContext.getString(R.string.quick_settings_network_adb_label);
+            state.secondaryLabel = null;
             state.value = false;
-            state.state = Tile.STATE_INACTIVE;
+            state.state = canEnableAdbNetwork() ? Tile.STATE_INACTIVE : Tile.STATE_UNAVAILABLE;
         }
     }
 
     @Override
     public int getMetricsCategory() {
         return MetricsEvent.CUSTOM_QUICK_TILES;
+    }
+
+    private boolean isWifiConnected() {
+        ConnectivityManager connMgr = mContext.getSystemService(ConnectivityManager.class);
+        NetworkInfo networkInfo = connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        return networkInfo != null && networkInfo.isConnected();
+    }
+
+    private boolean canEnableAdbNetwork() {
+        return isAdbEnabled() && isWifiConnected();
     }
 
     private boolean isAdbEnabled() {
@@ -150,9 +159,20 @@ public class AdbOverNetworkTile extends QSTileImpl<BooleanState> {
                 mContext.getContentResolver().registerContentObserver(
                         Settings.Global.getUriFor(Settings.Global.ADB_ENABLED),
                         false, mObserver);
+                mController.addCallback(mSignalCallback);
             } else {
                 mContext.getContentResolver().unregisterContentObserver(mObserver);
+                mController.removeCallback(mSignalCallback);
             }
+        }
+    }
+
+    private class WifiSignalCallback implements SignalCallback {
+        @Override
+        public void setWifiIndicators(boolean enabled, IconState statusIcon, IconState qsIcon,
+                boolean activityIn, boolean activityOut, String description, boolean isTransient,
+                String statusLabel) {
+            refreshState();
         }
     }
 }

@@ -277,11 +277,10 @@ public class QSAnimator implements Callback, PageListener, Listener, OnLayoutCha
             mAllViews.add(tileView);
             count++;
         }
-
+        View brightness = mQsPanel.getBrightnessView();
         if (mAllowFancy) {
             // Make brightness appear static position and alpha in through second half.
-            View brightness = mQsPanel.getBrightnessView();
-            if (brightness != null) {
+            if (brightness != null && !mQsPanel.isBrightnessViewBottom()) {
                 firstPageBuilder.addFloat(brightness, "translationY", heightDiff, 0);
                 mBrightnessAnimator = new TouchAnimator.Builder()
                         .addFloat(brightness, "alpha", 0, 1)
@@ -298,6 +297,9 @@ public class QSAnimator implements Callback, PageListener, Listener, OnLayoutCha
             Builder builder = new Builder()
                     .setStartDelay(EXPANDED_TILE_DELAY)
                     .addFloat(tileLayout, "alpha", 0, 1);
+            if (brightness != null && mQsPanel.isBrightnessViewBottom()) {
+                builder.addFloat(brightness, "alpha", 0, 1);
+            }
             mFirstPageDelayedAnimator = builder.build();
 
             // Fade in the security footer and the divider as we reach the final position
@@ -309,6 +311,9 @@ public class QSAnimator implements Callback, PageListener, Listener, OnLayoutCha
                 builder.addFloat(mQsPanel.getDivider(), "alpha", 0, 1);
             }
             mAllPagesDelayedAnimator = builder.build();
+            if (brightness != null && mQsPanel.isBrightnessViewBottom()) {
+                mAllViews.add(brightness);
+            }
             if (mQsPanel.getSecurityFooter() != null) {
                 mAllViews.add(mQsPanel.getSecurityFooter().getView());
             }
@@ -329,11 +334,14 @@ public class QSAnimator implements Callback, PageListener, Listener, OnLayoutCha
             mTranslationXAnimator = translationXBuilder.build();
             mTranslationYAnimator = translationYBuilder.build();
         }
-        mNonfirstPageAnimator = new TouchAnimator.Builder()
+        TouchAnimator.Builder animationBuilder = new TouchAnimator.Builder()
                 .addFloat(mQuickQsPanel, "alpha", 1, 0)
                 .setListener(mNonFirstPageListener)
-                .setEndDelay(.5f)
-                .build();
+                .setEndDelay(.5f);
+        if (brightness != null && mQsPanel.isBrightnessViewBottom()) {
+            animationBuilder.addFloat(brightness, "alpha", 0, 1);
+        }
+        mNonfirstPageAnimator = animationBuilder.build();
         mNonfirstPageDelayedAnimator = new TouchAnimator.Builder()
                 .setStartDelay(.14f)
                 .addFloat(tileLayout, "alpha", 0, 1).build();

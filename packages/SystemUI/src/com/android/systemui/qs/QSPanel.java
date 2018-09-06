@@ -152,6 +152,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     // omni
     private View mBrightnessPlaceholder;
     private int mFooterMargin;
+    private boolean mBrightnessBottom;
 
     @Inject
     public QSPanel(
@@ -388,9 +389,11 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
             if (newValue == null || Integer.parseInt(newValue) == 0) {
                 removeView(mBrightnessView);
                 addView(mBrightnessView, 0);
+                mBrightnessBottom = false;
             } else {
                 removeView(mBrightnessView);
                 addView(mBrightnessView, getBrightnessViewPositionBottom());
+                mBrightnessBottom = true;
             }
         }
     }
@@ -1244,5 +1247,9 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
         if (mTileLayout != null) {
             mTileLayout.updateSettings();
         }
+    }
+
+    public boolean isBrightnessViewBottom() {
+        return mBrightnessBottom;
     }
 }

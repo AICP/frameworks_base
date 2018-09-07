@@ -85,6 +85,8 @@ public class KeyguardStatusView extends GridLayout {
         mMediaHostContainer = findViewById(R.id.status_view_media_container);
 
         updateDark();
+        updateSettings();
+
     }
 
     void setDarkAmount(float darkAmount) {

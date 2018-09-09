@@ -85,5 +85,7 @@ public class GlobalSettings {
         Settings.Global.RINGTONE_FOCUS_MODE_V2,
         Settings.Global.WAKELOCK_BLOCKING_ENABLED,
         Settings.Global.WAKELOCK_BLOCKING_LIST,
+        Settings.Global.ALARM_BLOCKING_ENABLED,
+        Settings.Global.ALARM_BLOCKING_LIST,
     };
 }

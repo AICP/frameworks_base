@@ -72,6 +72,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManagerInternal;
+import android.database.ContentObserver;
 import android.net.Uri;
 import android.os.BatteryManager;
 import android.os.Binder;
@@ -155,6 +156,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Locale;
 import java.util.Set;
 import java.util.TimeZone;
@@ -279,6 +282,9 @@ public class AlarmManagerService extends SystemService {
      * At boot we use SYSTEM_UI_SELF_PERMISSION to look up the definer's uid.
      */
     int mSystemUiUid;
+    private Set<String> mSeenAlarms = new HashSet<String>();
+    private Set<String> mBlockedAlarms = new HashSet<String>();
+    private int mAlarmsBlockingEnabled;
 
     static boolean isTimeTickAlarm(Alarm a) {
         return a.uid == Process.SYSTEM_UID && TIME_TICK_TAG.equals(a.listenerTag);
@@ -687,6 +693,33 @@ public class AlarmManagerService extends SystemService {
         public void start() {
             mInjector.registerDeviceConfigListener(this);
             onPropertiesChanged(DeviceConfig.getProperties(DeviceConfig.NAMESPACE_ALARM_MANAGER));
+            getContext().getContentResolver().registerContentObserver(
+                    Settings.Global.getUriFor(Settings.Global.ALARM_BLOCKING_ENABLED),
+                    false,
+                    new ContentObserver(mHandler) {
+                        @Override
+                        public void onChange(boolean selfChange) {
+                            super.onChange(selfChange);
+                            mAlarmsBlockingEnabled = Settings.Global.getInt(
+                                    getContext().getContentResolver(),
+                                    Settings.Global.ALARM_BLOCKING_ENABLED, 0);
+                        }
+                    }
+            );
+            getContext().getContentResolver().registerContentObserver(
+                    Settings.Global.getUriFor(Settings.Global.ALARM_BLOCKING_LIST),
+                    false,
+                    new ContentObserver(mHandler) {
+                        @Override
+                        public void onChange(boolean selfChange) {
+                            super.onChange(selfChange);
+                            String blockedAlarmList = Settings.Global.getString(
+                                    getContext().getContentResolver(),
+                                    Settings.Global.ALARM_BLOCKING_LIST);
+                            setBlockedAlarms(blockedAlarmList);
+                        }
+                    }
+            );
         }
 
         public void updateAllowWhileIdleWhitelistDurationLocked() {
@@ -855,6 +888,13 @@ public class AlarmManagerService extends SystemService {
                             break;
                     }
                 }
+                mAlarmsBlockingEnabled = Settings.Global.getInt(
+                        getContext().getContentResolver(),
+                        Settings.Global.ALARM_BLOCKING_ENABLED, 0);
+                String blockedAlarmList = Settings.Global.getString(
+                        getContext().getContentResolver(),
+                        Settings.Global.ALARM_BLOCKING_LIST);
+                setBlockedAlarms(blockedAlarmList);
             }
         }
 
@@ -2018,6 +2058,37 @@ public class AlarmManagerService extends SystemService {
             }
             maxElapsed = triggerElapsed + windowLength;
         }
+
+        boolean blockAlarm = false;
+        if (operation != null) {
+            String tag = operation.getTag("");
+
+            if (type == AlarmManager.RTC_WAKEUP || type == AlarmManager.ELAPSED_REALTIME_WAKEUP){
+
+                if (tag.startsWith("CONTEXT_MANAGER_ALARM_WAKEUP")){
+                    tag = tag.substring(0,28);
+                } else if (tag.startsWith("ALARM_ACTION")){
+                    tag = tag.substring(0,12);
+                } else if (tag.startsWith("Thread")){
+                    tag = tag.substring(0,6);
+                }
+
+                //Slog.e(TAG, "RTC Alarm: " + type + " " + listenerTag + " " + callingPackage + " " + tag);
+
+                if (!mSeenAlarms.contains(tag)) {
+                    mSeenAlarms.add(tag);
+                }
+                if (mAlarmsBlockingEnabled == 1 && mBlockedAlarms.contains(tag)) {
+                        if (type == AlarmManager.RTC_WAKEUP) {
+                            type = AlarmManager.RTC;
+                        } else {
+                            type = AlarmManager.ELAPSED_REALTIME;
+                        }
+                    blockAlarm = true;
+                }
+            }
+        }
+
         synchronized (mLock) {
             if (DEBUG_BATCH) {
                 Slog.v(TAG, "set(" + operation + ") : type=" + type
@@ -2036,6 +2107,16 @@ public class AlarmManagerService extends SystemService {
             setImplLocked(type, triggerAtTime, triggerElapsed, windowLength, interval, operation,
                     directReceiver, listenerTag, flags, workSource, alarmClock, callingUid,
                     callingPackage, idleOptions, exactAllowReason);
+        }
+    }
+
+    private void setBlockedAlarms(String AlarmTagsString) {
+        mBlockedAlarms = new HashSet<String>();
+        if (AlarmTagsString != null && AlarmTagsString.length() != 0) {
+            String[] parts = AlarmTagsString.split("\\|");
+            for (int i = 0; i < parts.length; i++) {
+                mBlockedAlarms.add(parts[i]);
+            }
         }
     }
 
@@ -2645,6 +2726,23 @@ public class AlarmManagerService extends SystemService {
         @Override
         public long getNextWakeFromIdleTime() {
             return getNextWakeFromIdleTimeImpl();
+        }
+
+        @Override
+        public String getSeenAlarms() {
+            StringBuffer buffer = new StringBuffer();
+            Iterator<String> nextAlarm = mSeenAlarms.iterator();
+
+            while (nextAlarm.hasNext()) {
+                String alarmTag = nextAlarm.next();
+                buffer.append(alarmTag + "|");
+            }
+
+            if (buffer.length() > 0) {
+                buffer.deleteCharAt(buffer.length() - 1);
+            }
+
+            return buffer.toString();
         }
 
         @Override

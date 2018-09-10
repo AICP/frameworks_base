@@ -769,7 +769,7 @@ public class MLand extends FrameLayout {
                     .setDuration(250);
             mObstaclesInPlay.add(s1);
 
-            final Obstacle p1 = new Pop(getContext(), PARAMS.OBSTACLE_WIDTH);
+            final Obstacle p1 = new AicpHead(getContext(), PARAMS.OBSTACLE_WIDTH);
             addView(p1, new LayoutParams(
                     PARAMS.OBSTACLE_WIDTH,
                     PARAMS.OBSTACLE_WIDTH,
@@ -804,7 +804,7 @@ public class MLand extends FrameLayout {
                     .setDuration(400);
             mObstaclesInPlay.add(s2);
 
-            final Obstacle p2 = new Pop(getContext(), PARAMS.OBSTACLE_WIDTH);
+            final Obstacle p2 = new AicpHead(getContext(), PARAMS.OBSTACLE_WIDTH);
             addView(p2, new LayoutParams(
                     PARAMS.OBSTACLE_WIDTH,
                     PARAMS.OBSTACLE_WIDTH,
@@ -1297,6 +1297,50 @@ public class MLand extends FrameLayout {
                 mouth.setBounds(0, 0, c.getWidth(), c.getHeight());
                 mouth.draw(c);
             }
+        }
+    }
+    private class AicpHead extends Obstacle {
+        int mRotate;
+        int cx, cy, r;
+
+        public AicpHead(Context context, float h) {
+            super(context, h);
+            if (frand() > 0.8f) {
+                setBackgroundResource(R.drawable.aicp_head_2);
+            } else if (frand() > 0.8f) {
+                setBackgroundResource(R.drawable.aicp_head_3);
+            } else {
+                setBackgroundResource(R.drawable.aicp_head_1);
+            }
+            setOutlineProvider(new ViewOutlineProvider() {
+                @Override
+                public void getOutline(View view, Outline outline) {
+                    final int pad = (int) (getWidth() * 1f/6);
+                    outline.setOval(pad, pad, getWidth()-pad, getHeight()-pad);
+                }
+            });
+        }
+
+        public boolean intersects(Player p) {
+            final int N = p.corners.length/2;
+            for (int i=0; i<N; i++) {
+                final int x = (int) p.corners[i*2];
+                final int y = (int) p.corners[i*2+1];
+                if (Math.hypot(x-cx, y-cy) <= r) return true;
+            }
+            return false;
+        }
+
+        @Override
+        public void step(long t_ms, long dt_ms, float t, float dt) {
+            super.step(t_ms, dt_ms, t, dt);
+            if (mRotate != 0) {
+                setRotation(getRotation() + dt * 45 * mRotate);
+            }
+
+            cx = (hitRect.left + hitRect.right)/2;
+            cy = (hitRect.top + hitRect.bottom)/2;
+            r = getWidth() / 3; // see above re 2/3 container size
         }
     }
 

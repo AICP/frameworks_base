@@ -6503,6 +6503,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
         final boolean isInjected = (policyFlags & WindowManagerPolicy.FLAG_INJECTED) != 0;
 
+        final boolean virtualKey = event.getDeviceId() == KeyCharacterMap.VIRTUAL_KEYBOARD;
+
         // If screen is off then we treat the case where the keyguard is open but hidden
         // the same as if it were open and in front.
         // This will prevent any keys other than the power button from waking the screen
@@ -6575,9 +6577,13 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         boolean useHapticFeedback = down
                 && (policyFlags & WindowManagerPolicy.FLAG_VIRTUAL) != 0
                 && (!isNavBarVirtKey || mNavBarVirtualKeyHapticFeedbackEnabled)
-                && event.getRepeatCount() == 0
-                && !isHwKeysDisabled()
-                && !keyguardOn();
+                && event.getRepeatCount() == 0;
+
+        if (!virtualKey) {
+            if (isHwKeysDisabled() || keyguardOn()) {
+                useHapticFeedback = false;
+            }
+        }
 
         // Specific device key handling
         if (mDeviceKeyHandler != null) {

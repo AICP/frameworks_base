@@ -37,6 +37,7 @@ import com.android.systemui.plugins.statusbar.StatusBarStateController;
 import com.android.systemui.statusbar.CommandQueue;
 import com.android.systemui.statusbar.StatusBarState;
 import com.android.systemui.statusbar.phone.StatusBarIconController.DarkIconManager;
+import com.android.systemui.statusbar.policy.Clock;
 import com.android.systemui.statusbar.policy.EncryptionHelper;
 import com.android.systemui.statusbar.policy.KeyguardMonitor;
 import com.android.systemui.statusbar.policy.NetworkController;
@@ -60,7 +61,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
     private KeyguardMonitor mKeyguardMonitor;
     private NetworkController mNetworkController;
     private LinearLayout mSystemIconArea;
-    private View mClockView;
+    private Clock mClockView;
     private View mNotificationIconAreaInner;
     private View mCenteredIconArea;
     private int mDisabled1;
@@ -107,7 +108,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
         mDarkIconManager.setShouldLog(true);
         Dependency.get(StatusBarIconController.class).addIconGroup(mDarkIconManager);
         mSystemIconArea = mStatusBar.findViewById(R.id.system_icon_area);
-        mClockView = mStatusBar.findViewById(R.id.clock);
+        mClockView = (Clock) mStatusBar.findViewById(R.id.clock);
         mBatteryBars[0] = mStatusBar.findViewById(R.id.battery_bar);
         mBatteryBars[1] = mStatusBar.findViewById(R.id.battery_bar_1);
         showSystemIconArea(false);
@@ -267,11 +268,15 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
     }
 
     public void hideClock(boolean animate) {
-        animateHiddenState(mClockView, clockHiddenMode(), animate);
+        if (mClockView.isClockVisible()) {
+            animateHiddenState(mClockView, clockHiddenMode(), animate);
+        }
     }
 
     public void showClock(boolean animate) {
-        animateShow(mClockView, animate);
+        if (mClockView.isClockVisible()) {
+            animateShow(mClockView, animate);
+        }
     }
 
     /**

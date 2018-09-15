@@ -5892,6 +5892,16 @@ public final class Settings {
         public static final Validator RECENTS_COMPONENT_VALIDATOR =
                 new SettingsValidators.InclusiveIntegerRangeValidator(0, 1);
 
+        /**
+         * Whether to enable gaming mode or not
+         *
+         * @hide
+         */
+        public static final String ENABLE_GAMING_MODE = "enable_gaming_mode";
+
+        private static final Validator ENABLE_GAMING_MODE_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6115,6 +6125,7 @@ public final class Settings {
             SCREENRECORD_QUALITY_MODE,
             RECENTS_COMPONENT,
             FORCE_EXPANDED_NOTIFICATIONS,
+            ENABLE_GAMING_MODE,
             // AICP Settings end
         };
 
@@ -6386,6 +6397,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SCREENRECORD_QUALITY_MODE);
             PRIVATE_SETTINGS.add(RECENTS_COMPONENT);
             PRIVATE_SETTINGS.add(FORCE_EXPANDED_NOTIFICATIONS);
+            PRIVATE_SETTINGS.add(ENABLE_GAMING_MODE);
             // AICP Settings end
         }
 
@@ -6658,6 +6670,7 @@ public final class Settings {
             VALIDATORS.put(SCREENRECORD_QUALITY_MODE,SCREENRECORD_QUALITY_MODE_VALIDATOR);
             VALIDATORS.put(RECENTS_COMPONENT,RECENTS_COMPONENT_VALIDATOR);
             VALIDATORS.put(FORCE_EXPANDED_NOTIFICATIONS,FORCE_EXPANDED_NOTIFICATIONS_VALIDATOR);
+            VALIDATORS.put(ENABLE_GAMING_MODE,ENABLE_GAMING_MODE_VALIDATOR);
             // AICP Settings end
         }
 

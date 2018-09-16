@@ -347,6 +347,10 @@ public class NotificationPanelViewController extends PanelViewController {
     private int mOneFingerQuickSettingsIntercept;
     private int mQsSmartPullDown;
 
+    //Lockscreen Notifications
+    private int mMaxKeyguardNotifConfig;
+    private boolean mCustomMaxKeyguard;
+
     /**
      * If set, the ongoing touch gesture might both trigger the expansion in {@link PanelView} and
      * the expansion for quick settings.
@@ -1205,13 +1209,16 @@ public class NotificationPanelViewController extends PanelViewController {
     }
 
     private void updateMaxDisplayedNotifications(boolean recompute) {
+        mCustomMaxKeyguard = Settings.System.getIntForUser(mView.getContext().getContentResolver(),
+            Settings.System.LOCK_SCREEN_CUSTOM_NOTIF, 0, UserHandle.USER_CURRENT) != 0;
         if (recompute) {
-            mMaxAllowedKeyguardNotifications = Math.max(computeMaxKeyguardNotifications(), 1);
+            mMaxAllowedKeyguardNotifications =
+                mCustomMaxKeyguard ? mMaxKeyguardNotifConfig
+                        : Math.max(computeMaxKeyguardNotifications(), 1);
         }
-
         if (mKeyguardShowing && !mKeyguardBypassController.getBypassEnabled()) {
             mNotificationStackScrollLayoutController.setMaxDisplayedNotifications(
-                    mMaxAllowedKeyguardNotifications);
+                    mCustomMaxKeyguard ? mMaxKeyguardNotifConfig : mMaxAllowedKeyguardNotifications);
             mNotificationStackScrollLayoutController.setKeyguardBottomPadding(
                     mKeyguardNotificationBottomPadding);
         } else {
@@ -1219,6 +1226,10 @@ public class NotificationPanelViewController extends PanelViewController {
             mNotificationStackScrollLayoutController.setMaxDisplayedNotifications(-1);
             mNotificationStackScrollLayoutController.setKeyguardBottomPadding(-1f);
         }
+    }
+
+    public void setMaxAllowedNotifUser(int maxAllowedNotifUser) {
+        mMaxKeyguardNotifConfig = maxAllowedNotifUser;
     }
 
     public void setKeyguardIndicationController(KeyguardIndicationController indicationController) {

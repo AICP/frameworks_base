@@ -6084,6 +6084,12 @@ public final class Settings {
         public static final String CONVERSATION_GUTS_KILL_APP_BUTTON =
                 "conversation_guts_kill_app_button";
 
+        /**
+         * custom lockscreen max notification config
+         * @hide
+         */
+        public static final String LOCKSCREEN_MAX_NOTIF_CONFIG = "lockscreen_max_notif_config";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6241,6 +6247,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(POCKET_JUDGE, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(NOTIFICATION_GUTS_KILL_APP_BUTTON, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(CONVERSATION_GUTS_KILL_APP_BUTTON, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(LOCKSCREEN_MAX_NOTIF_CONFIG, ANY_INTEGER_VALIDATOR);
         }
 
         /**

@@ -91,4 +91,8 @@
 
   <!-- Whether or not swipe up gesture's opt-in setting is available on this device -->
   <java-symbol type="bool" name="config_custom_swipe_up_gesture_setting_available" />
+
+  <!-- Smartnav animations -->
+  <java-symbol type="anim" name="inv_app_in" />
+  <java-symbol type="anim" name="inv_app_out" />
 </resources>

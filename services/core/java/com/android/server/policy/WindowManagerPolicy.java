@@ -69,6 +69,7 @@ import android.annotation.IntDef;
 import android.annotation.Nullable;
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.CompatibilityInfo;
 import android.content.res.Configuration;
@@ -1584,7 +1585,7 @@ public interface WindowManagerPolicy extends WindowManagerPolicyConstants {
      * Specifies whether the device needs a navigation bar separate from the status bar.
      */
     public boolean hasNavigationBar();
-  
+
     /**
      * Specifies whether there is an on-screen navigation bar separate from the status bar.
      */
@@ -1805,4 +1806,9 @@ public interface WindowManagerPolicy extends WindowManagerPolicyConstants {
      * @return true if enable; false otherwise.
      */
     boolean isGestureButtonRegion(int i, int i2);
+
+    /**
+     * Send some ActionHandler commands to WindowManager.
+     */
+    public void sendCustomAction(Intent intent);
 }

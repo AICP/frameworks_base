@@ -6394,6 +6394,18 @@ public final class Settings {
         */
         public static final String AICP_LOCKSCREEN_WEATHER_STYLE = "lockscreen_weather_style";
 
+        /**
+         * custom lockscreen max notification config
+         * @hide
+         */
+        public static final String LOCK_SCREEN_CUSTOM_NOTIF = "lock_screen_custom_notif";
+
+        /**
+         * custom lockscreen max notification config
+         * @hide
+         */
+        public static final String LOCKSCREEN_MAX_NOTIF_CONFIG = "lockscreen_max_notif_config";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6691,6 +6703,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(OMNIJAWS_WEATHER_ICON_PACK);
             PRIVATE_SETTINGS.add(OMNI_LOCKSCREEN_WEATHER_ENABLED);
             PRIVATE_SETTINGS.add(AICP_LOCKSCREEN_WEATHER_STYLE);
+            PRIVATE_SETTINGS.add(LOCKSCREEN_MAX_NOTIF_CONFIG);
+            PRIVATE_SETTINGS.add(LOCK_SCREEN_CUSTOM_NOTIF);
         }
 
         /**

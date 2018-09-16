@@ -461,6 +461,9 @@ public class StatusBar extends SystemUI implements DemoMode,
     private boolean mBrightnessChanged;
     private boolean mJustPeeked;
 
+    //Lockscreen Notifications
+    private int mMaxKeyguardNotifConfig;
+
     // for disabling the status bar
     private int mDisabled1 = 0;
     private int mDisabled2 = 0;
@@ -716,6 +719,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.PULSE_ON_NEW_TRACKS),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                          Settings.System.LOCKSCREEN_MAX_NOTIF_CONFIG),
+                          false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -739,6 +745,7 @@ public class StatusBar extends SystemUI implements DemoMode,
             setLockscreenMediaArt();
             setFpToDismissNotifications();
             setPulseOnNewTracks();
+            setMaxKeyguardNotifConfig();
         }
     }
 
@@ -4954,5 +4961,11 @@ public class StatusBar extends SystemUI implements DemoMode,
                     Settings.System.PULSE_ON_NEW_TRACKS, 1,
                     UserHandle.USER_CURRENT) == 1);
         }
+    }
+
+    private void setMaxKeyguardNotifConfig() {
+        mMaxKeyguardNotifConfig = Settings.System.getIntForUser(mContext.getContentResolver(),
+                 Settings.System.LOCKSCREEN_MAX_NOTIF_CONFIG, 3, UserHandle.USER_CURRENT);
+        mPresenter.setMaxAllowedNotifUser(mMaxKeyguardNotifConfig);
     }
 }

@@ -4043,6 +4043,9 @@ public class StatusBar extends SystemUI implements
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.PULSE_ON_NEW_TRACKS),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                          Settings.System.LOCKSCREEN_MAX_NOTIF_CONFIG),
+                          false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -4668,11 +4671,14 @@ public class StatusBar extends SystemUI implements
         boolean lessBoringHeadsUp = Settings.System.getIntForUser(
                 mContext.getContentResolver(), Settings.System.LESS_BORING_HEADS_UP, 0,
                 UserHandle.USER_CURRENT) != 0;
+        int maxKeyguardNotifConfig = Settings.System.getIntForUser(mContext.getContentResolver(),
+                 Settings.System.LOCKSCREEN_MAX_NOTIF_CONFIG, 3, UserHandle.USER_CURRENT);
         if (mNotificationPanelViewController != null) {
             mNotificationPanelViewController.setDoubleTapToSleep(doubleTapToSleepEnabled);
             mNotificationPanelViewController.setLockscreenDoubleTapToSleep(lsDoubleTapToSleepEnabled);
             mNotificationPanelViewController.setOneFingerQuickSettingsIntercept(onefingerQuickSettingsintercept);
             mNotificationPanelViewController.setQsSmartPullDown(qsSmartPulldown);
+            mNotificationPanelViewController.setMaxAllowedNotifUser(maxKeyguardNotifConfig);
         }
         if (mNotificationShadeWindowViewController != null) {
             mNotificationShadeWindowViewController.setDoubleTapToSleep(doubleTapToSleepEnabled);

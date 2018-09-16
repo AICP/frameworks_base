@@ -371,6 +371,9 @@ public class NotificationPanelViewController extends PanelViewController {
     private int mQsSmartPullDown;
     private LockPatternUtils mLockPatternUtils;
     private boolean mQsSecureExpandDisabled;
+    //Lockscreen Notifications
+    private int mMaxKeyguardNotifConfig;
+    private boolean mCustomMaxKeyguard;
 
     /**
      * If set, the ongoing touch gesture might both trigger the expansion in {@link PanelView} and
@@ -1221,17 +1224,24 @@ public class NotificationPanelViewController extends PanelViewController {
     }
 
     private void updateMaxDisplayedNotifications(boolean recompute) {
+        mCustomMaxKeyguard = Settings.System.getIntForUser(mView.getContext().getContentResolver(),
+            Settings.System.LOCK_SCREEN_CUSTOM_NOTIF, 0, UserHandle.USER_CURRENT) != 0;
         if (recompute) {
-            mMaxAllowedKeyguardNotifications = Math.max(computeMaxKeyguardNotifications(), 1);
+            mMaxAllowedKeyguardNotifications =
+                mCustomMaxKeyguard ? mMaxKeyguardNotifConfig
+                        : Math.max(computeMaxKeyguardNotifications(), 1);
         }
-
         if (mKeyguardShowing && !mKeyguardBypassController.getBypassEnabled()) {
             mNotificationStackScrollLayoutController.setMaxDisplayedNotifications(
-                    mMaxAllowedKeyguardNotifications);
+                    mCustomMaxKeyguard ? mMaxKeyguardNotifConfig : mMaxAllowedKeyguardNotifications);
         } else {
             // no max when not on the keyguard
             mNotificationStackScrollLayoutController.setMaxDisplayedNotifications(-1);
         }
+    }
+
+    public void setMaxAllowedNotifUser(int maxAllowedNotifUser) {
+        mMaxKeyguardNotifConfig = maxAllowedNotifUser;
     }
 
     public void setKeyguardIndicationController(KeyguardIndicationController indicationController) {

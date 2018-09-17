@@ -190,5 +190,7 @@ public class SystemSettings {
         Settings.System.STATUS_BAR_LOGO_COLOR_ACCENT,
         Settings.System.SCREENSHOT_SHUTTER_SOUND,
         Settings.System.BUTTON_BACKLIGHT_ONLY_WHEN_PRESSED,
+        Settings.System.NAVIGATION_BAR_SHOW,
+        Settings.System.NAVIGATION_BAR_MODE_OVERLAY,
     };
 }

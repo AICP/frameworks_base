@@ -194,5 +194,7 @@ public class SystemSettings {
         Settings.System.LOCKSCREEN_PIN_SCRAMBLE_LAYOUT,
         Settings.System.LOCKSCREEN_QUICK_UNLOCK_CONTROL,
         Settings.System.BUTTON_BACKLIGHT_ONLY_WHEN_PRESSED,
+        Settings.System.NAVIGATION_BAR_SHOW,
+        Settings.System.NAVIGATION_BAR_MODE_OVERLAY,
     };
 }

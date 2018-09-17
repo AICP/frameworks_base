@@ -185,5 +185,7 @@ public class SystemSettings {
         Settings.System.ON_THE_GO_SERVICE_RESTART,
         Settings.System.ON_THE_GO_CAMERA,
         Settings.System.BUTTON_BACKLIGHT_ONLY_WHEN_PRESSED,
+        Settings.System.NAVIGATION_BAR_SHOW,
+        Settings.System.NAVIGATION_BAR_MODE_OVERLAY,
     };
 }

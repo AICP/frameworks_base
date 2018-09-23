@@ -62,6 +62,7 @@ public class CellularTile extends QSTileImpl<SignalState> {
     private final CellSignalCallback mSignalCallback = new CellSignalCallback();
     private final ActivityStarter mActivityStarter;
     private final KeyguardMonitor mKeyguardMonitor;
+    private final KeyguardCallback mKeyguardCallback = new KeyguardCallback();
 
     public CellularTile(QSHost host) {
         super(host);
@@ -91,8 +92,10 @@ public class CellularTile extends QSTileImpl<SignalState> {
     public void handleSetListening(boolean listening) {
         if (listening) {
             mController.addCallback(mSignalCallback);
+            mKeyguardMonitor.addCallback(mKeyguardCallback);
         } else {
             mController.removeCallback(mSignalCallback);
+            mKeyguardMonitor.removeCallback(mKeyguardCallback);
         }
     }
 
@@ -112,12 +115,20 @@ public class CellularTile extends QSTileImpl<SignalState> {
             return;
         }
         if (mDataController.isMobileDataEnabled()) {
-            if (mKeyguardMonitor.isSecure() && !mKeyguardMonitor.canSkipBouncer()) {
+            if (mKeyguardMonitor.isSecure() && !mKeyguardMonitor.canSkipBouncer() &&
+                mKeyguardMonitor.isShowing()) {
                 mActivityStarter.postQSRunnableDismissingKeyguard(this::maybeShowDisableDialog);
             } else {
                 mUiHandler.post(this::maybeShowDisableDialog);
             }
         } else {
+            if (mKeyguardMonitor.isSecure() && mKeyguardMonitor.isShowing()) {
+                Dependency.get(ActivityStarter.class).postQSRunnableDismissingKeyguard(() -> {
+                    mHost.openPanels();
+                    mDataController.setMobileDataEnabled(true);
+                });
+                return;
+            }
             mDataController.setMobileDataEnabled(true);
         }
     }
@@ -153,6 +164,13 @@ public class CellularTile extends QSTileImpl<SignalState> {
     @Override
     protected void handleSecondaryClick() {
         if (mDataController.isMobileDataSupported()) {
+            if (mKeyguardMonitor.isSecure() && mKeyguardMonitor.isShowing()) {
+                Dependency.get(ActivityStarter.class).postQSRunnableDismissingKeyguard(() -> {
+                    mHost.openPanels();
+                    showDetail(true);
+                });
+                return;
+            }
             showDetail(true);
         } else {
             mActivityStarter
@@ -334,4 +352,11 @@ public class CellularTile extends QSTileImpl<SignalState> {
             fireToggleStateChanged(enabled);
         }
     }
+
+    private final class KeyguardCallback implements KeyguardMonitor.Callback {
+        @Override
+        public void onKeyguardShowingChanged() {
+            refreshState();
+        }
+    };
 }

@@ -4092,6 +4092,27 @@ public final class Settings {
         /** @hide */
         private static final Validator SHOW_BATTERY_PERCENT_VALIDATOR = BOOLEAN_VALIDATOR;
 
+
+        /*****************************
+         * AICP System Settings start
+         *****************************/
+
+
+        /**
+         * Theme of AicpExtras.
+         * @hide
+         */
+        public static final String AE_THEME = "ae_theme";
+
+        /** @hide */
+        private static final Validator AE_THEME_VALIDATOR = ANY_INTEGER_VALIDATOR;
+
+
+        /***************************
+         * AICP System Settings end
+         ***************************/
+
+
         /**
          * IMPORTANT: If you add a new public settings you also have to add it to
          * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
@@ -4163,7 +4184,9 @@ public final class Settings {
             SHOW_BATTERY_PERCENT,
             NOTIFICATION_VIBRATION_INTENSITY,
             HAPTIC_FEEDBACK_INTENSITY,
-            DISPLAY_COLOR_MODE
+            DISPLAY_COLOR_MODE,
+            // AICP Settings
+            AE_THEME,
         };
 
         /**
@@ -4278,10 +4301,12 @@ public final class Settings {
             PRIVATE_SETTINGS.add(EGG_MODE);
             PRIVATE_SETTINGS.add(SHOW_BATTERY_PERCENT);
             PRIVATE_SETTINGS.add(DISPLAY_COLOR_MODE);
+            // AICP Settings
+            PRIVATE_SETTINGS.add(AE_THEME);
         }
 
         /**
-         * These are all public system settings
+         * These are all public system and private AICP settings
          *
          * All settings in {@link SETTINGS_TO_BACKUP} array *must* have a non-null validator,
          * otherwise they won't be restored.
@@ -4366,6 +4391,7 @@ public final class Settings {
             VALIDATORS.put(WIFI_STATIC_DNS1, WIFI_STATIC_DNS1_VALIDATOR);
             VALIDATORS.put(WIFI_STATIC_DNS2, WIFI_STATIC_DNS2_VALIDATOR);
             VALIDATORS.put(SHOW_BATTERY_PERCENT, SHOW_BATTERY_PERCENT_VALIDATOR);
+            VALIDATORS.put(AE_THEME, AE_THEME_VALIDATOR);
         }
 
         /**

@@ -23,6 +23,11 @@
   <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <!-- AOKP custom system animations -->
+  <string name="animation_fade">Затухання</string>
+  <string name="animation_slide_right">Слайд вправо</string>
+  <string name="animation_slide_left">Слайд вліво</string>
+  <string name="animation_default">За замовчуванням</string>
+  <string name="animation_translucent">Напівпрозорий</string>
   <!-- Label for item that screenrecords in power menu options dialog -->
   <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->

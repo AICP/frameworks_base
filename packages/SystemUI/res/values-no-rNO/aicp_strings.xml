@@ -23,6 +23,7 @@
   <string name="delete_screenshot_toast">Skjermbilde slettet</string>
   <!-- Partial Screenshot -->
   <string name="screenshot_abort_title">Ingen skjermbilde tatt</string>
+  <string name="screenshot_abort_text">Operasjonen avbrutt.</string>
   <!-- Compass QS Tile -->
   <string name="quick_settings_compass_label">Kompass</string>
   <string name="quick_settings_compass_init">Initialiserer\u2026</string>
@@ -89,6 +90,8 @@
   <string name="accessibility_quick_settings_sync_changed_off">Synkronisering avslått</string>
   <string name="accessibility_quick_settings_sync_changed_on">Synkronisering påslått</string>
   <!-- Volume QS Tile -->
+  <string name="accessibility_quick_settings_volume_panel">Volum</string>
+  <string name="quick_settings_volume_panel_label">Volum</string>
   <!-- PiP Tile -->
   <!-- Screenrecord tile -->
   <string name="quick_settings_screenrecord">Skjermopptak</string>
@@ -118,6 +121,7 @@
   <string name="quick_settings_navigation_bar">Navigasjonsfelt</string>
   <string name="quick_settings_smartbar">SmartBar</string>
   <string name="quick_settings_fling">Fling</string>
+  <string name="quick_settings_navigation_default">Standard</string>
   <string name="quick_settings_navigation_disabled">Deativert</string>
   <!-- Kill button in notification guts -->
   <string name="force_stop_dlg_title">Vil du tvinge avslutning?</string>

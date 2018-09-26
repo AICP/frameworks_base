@@ -114,6 +114,7 @@
   <!-- Screenrecord notification action: Stop -->
   <string name="screenrecord_notif_stop">Stop</string>
   <string name="screenrecord_notif_completed">Nagrywanie ekranu zakończone powodzeniem</string>
+  <string name="screenrecord_notif_description">Kliknij, by zobaczyć nagranie ekranu</string>
   <!-- Screenrecord notification action: show/hide pointer -->
   <string name="screenrecord_notif_pointer_on">Pokaż wskaźnik</string>
   <string name="screenrecord_notif_pointer_off">Ukryj wskaźnik</string>
@@ -127,6 +128,7 @@
   <string name="quick_settings_screenrecord_lq_label">Nagrywanie ekranu 480p</string>
   <string name="quick_settings_screenrecord_mq_label">Nagrywanie ekranu 720p</string>
   <string name="quick_settings_screenrecord_hq_label">Nagrywanie ekranu 720p+</string>
+  <string name="lockscreen_default">Domyślne</string>
   <string name="lockscreen_hidden">Brak</string>
   <string name="omnijaws_service_error">Błąd</string>
   <string name="omnijaws_service_unkown">Brak danych o pogodzie</string>
@@ -139,30 +141,40 @@
   <string name="omnijaws_service_last_update">Ostatnia aktualizacja:</string>
   <!-- Weather string format in expanded statusbar header -->
   <!-- SystemUI Tuner Parts -->
+  <string name="custom_hint">Przesuń palcem od ikony, aby uruchomić</string>
   <!-- DUI -->
+  <string name="systemui_tuner_navbar_title">Ustawienia domyślne</string>
   <!-- Battery saver tile -->
   <string name="battery_saver_qs_tile_fully_charged">Bateria w pełni naładowana</string>
   <!-- Caffeine tile -->
   <string name="caffeine_info_title">Co to jest?</string>
+  <string name="caffeine_info_message">Kofeina to kafelek szybkich ustawień, który pozwala pozostawić ekran włączony.\n\nPamiętaj, że stan kafelka zostanie zresetowany, gdy ekran zostanie zablokowany.</string>
   <!-- Navigation bar Tile -->
   <string name="quick_settings_navigation_bar">Pasek nawigacji</string>
   <string name="quick_settings_smartbar">SmartBar</string>
   <string name="quick_settings_fling">Fling</string>
+  <string name="quick_settings_navigation_default">Standardowy</string>
   <string name="quick_settings_navigation_disabled">Wyłączone</string>
   <!-- Kill button in notification guts -->
   <string name="force_stop_dlg_title">Wymusić zatrzymanie?</string>
   <string name="force_stop_dlg_text">Jeśli wymusisz zatrzymanie aplikacji, może ona działać nieprawidłowo.</string>
   <string name="kill">Zabij aplikację</string>
   <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
+  <string name="keyguard_indication_dash_charging_time">Szybkie ładowanie (<xliff:g id="pozostały_czas" example="4 godziny i 2 minuty">%s</xliff:g> do pełnego naładowania)</string>
   <string name="keyguard_plugged_in_dash_charging">Ładowanie Dash</string>
   <!-- Indication on the keyguard that is shown when the device is charging with a turbo power charger. Should match keyguard_plugged_in_turbo_power_charging [CHAR LIMIT=40]-->
+  <string name="keyguard_indication_turbo_power_time">TurboPower podłączony (<xliff:g id="charging_time_left">%s</xliff:g> do pełnego naładowania)</string>
+  <string name="keyguard_plugged_in_turbo_power_charging">TurboPower podłączony</string>
   <string name="keyguard_plugged_in_turbo_charging">Ładowanie Turbo</string>
   <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_running_services">Otwórz ekran Działających Usług.</string>
   <!-- The contents of the Ambient Weather bottom view -->
   <string name="quick_settings_google_assist_label">Asystent</string>
   <string name="quick_settings_google_voice_assist_label">Asystent głosowy</string>
+  <string name="quick_settings_google_now_label">Google Feed</string>
   <!-- Smart pixels QS tile -->
+  <string name="quick_settings_smart_pixels">Inteligentne pixele</string>
+  <string name="quick_settings_smart_pixels_on_power_save">Automatyczne włączanie inteligentnych pikseli</string>
   <!-- CPUInfo tile -->
   <string name="quick_settings_cpuinfo_label">Informacje o CPU</string>
   <!-- HW Keys Tile -->
@@ -172,13 +184,36 @@
   <!-- Content description of the HW keys tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_hw_keys_enabled">Klawisze sprzętowe włączone.</string>
   <!-- Heads up snooze toast -->
+  <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Powiadomienia z podglądem są odkładane na 1 minutę.</string>
+  <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> Powiadomienia z podglądem w trybie drzemki znajdują się tam <xliff:g id="number">%d</xliff:g> minut.</string>
   <!-- Text to use when the number in a notification info is too large
          (greater than status_bar_notification_info_maxnum, defined in
          values/config.xml) and must be truncated.
          [CHAR LIMIT=4] -->
+  <string name="recents_app_killed">Aplikacja została zabita</string>
   <!-- On The Go -->
+  <string name="global_action_onthego">Tryb „W ruchu”</string>
+  <string name="onthego_notif_ticker">Tryb „W ruchu” aktywowany</string>
+  <string name="onthego_notif_title">Tryb „W ruchu” jest aktywny</string>
+  <string name="onthego_notif_stop">Zatrzymaj</string>
+  <string name="onthego_notif_options">Opcje</string>
+  <string name="onthego_notif_error">Nie można uruchomić trybu „W ruchu”</string>
+  <string name="onthego_notif_restart">Uruchom ponownie tryb tryb „W ruchu”</string>
+  <string name="onthego_notif_camera_changed">Zmieniono tryb pracy kamery</string>
+  <string name="onthego_transparency">Przezroczystość</string>
+  <string name="onthego_front_camera">Użyj przedniej kamery</string>
+  <string name="onthego_service_toggle">Automatycznie uruchom ponownie usługę</string>
+  <string name="onthego_channel_name">Główny</string>
   <!-- OnTheGo Tile -->
+  <string name="quick_settings_onthego_label">W ruchu</string>
   <!-- Recents Memory Bar -->
+  <string name="recents_free_ram">Wolna pamięć RAM: %1$d MB</string>
   <!-- LTE QS Tile -->
+  <string name="qs_lte_label">LTE</string>
+  <string name="lte_on">LTE włączone </string>
+  <string name="lte_off">LTE wyłączone</string>
   <!-- App circle sidebar -->
+  <string name="app_float_maximize_item_title">Maksymalizuj</string>
+  <string name="app_float_item_title">Pływające okno</string>
+  <string name="app_stop_item_title">Zabij aplikację</string>
 </resources>

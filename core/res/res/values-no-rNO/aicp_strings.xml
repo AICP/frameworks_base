@@ -25,14 +25,29 @@
   <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_toggleNavigationEditor">Tillater en applikasjon å kontrollere navigasjonsbaren.</string>
   <!-- AOKP custom system animations -->
+  <string name="animation_fade">Demp</string>
+  <string name="animation_slide_right">Gli høyre</string>
+  <string name="animation_slide_left">Gli venstre</string>
+  <string name="animation_slide_right_no_fade">Gli høyre (ingen demping)</string>
+  <string name="animation_slide_left_no_fade">Gli venstre (ingen demping)</string>
+  <string name="animation_slide_up">Gli nedover</string>
+  <string name="animation_slide_down">Gli oppover</string>
   <string name="animation_default">Standard</string>
   <string name="animation_translucent">Gjennomsiktig</string>
+  <string name="animation_grow_shrink">Voks inn (topp)</string>
+  <string name="animation_grow_shrink_center">Voks inn (midten)</string>
+  <string name="animation_grow_shrink_bottom">Voks inn (bunn)</string>
+  <string name="animation_grow_shrink_left">Voks inn (venstre)</string>
+  <string name="animation_grow_shrink_right">Voks inn (høyre)</string>
+  <string name="action_null">Tom</string>
   <!-- Label for item that screenrecords in power menu options dialog -->
   <string name="global_action_screenrecord">Skjermopptak</string>
   <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+  <string name="permlab_fakePackageSignature">Falsk pakkesignatur</string>
   <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
   <string name="permdesc_fakePackageSignature">Lar programmet late som det er en annen app. Ondsinnede programmer kan bruke dette til å få tilgang til privat programdata. Tillat dette med forsiktighet!</string>
   <!-- Pocket Lock -->
+  <string name="pocket_lock_message_long_press">Langtrykk på strømknappen for å samhandle</string>
   <!-- Defines the sysfs attribute path used by pocket bridge
         to communicate pocket state to the pocket judge kernel driver. -->
   <!-- App Blacklist -->

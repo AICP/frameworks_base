@@ -74,7 +74,9 @@
   <!-- Always on Display Tile -->
   <string name="quick_settings_always_on_display_label">Toujours affiché</string>
   <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_off">Écran toujours allumé désactivé.</string>
   <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_always_on_display_on">Écran toujours allumé activé.</string>
   <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
   <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
   <!-- Expanded desktop QS Tile -->
@@ -105,40 +107,51 @@
   <string name="accessibility_quick_settings_location_high_accuracy">Localisation : mode haute précision.</string>
   <!-- Screenrecord Notification Ticker -->
   <string name="screenrecord_notif_ticker">Enregistrement en cours de l\'écran</string>
+  <string name="screenrecord_notif_final_ticker">Enregistrement d\'écran réussi</string>
   <!-- Screenrecord notification title -->
   <string name="screenrecord_notif_title">Enregistrement de l\'écran</string>
   <!-- Screenrecord notification action: Stop -->
   <string name="screenrecord_notif_stop">Arrêter</string>
+  <string name="screenrecord_notif_completed">Enregistrement d\'écran réussi</string>
+  <string name="screenrecord_notif_description">Appuyez pour visualiser votre enregistrement d\'écran</string>
   <!-- Screenrecord notification action: show/hide pointer -->
   <string name="screenrecord_notif_pointer_on">Afficher le pointeur</string>
   <string name="screenrecord_notif_pointer_off">Masquer le pointeur</string>
   <!-- Screen record notification error title -->
   <string name="screenrecord_notif_error">Impossible d\'enregistrer l\'écran</string>
   <string name="notification_channel_screenrecord">Enregistrement de l\'écran</string>
+  <string name="screenrecord_hide_hint">Masquer les conseils</string>
+  <string name="screenrecord_show_hint">Afficher les conseils</string>
   <!-- Screenshot QS tile -->
   <string name="quick_settings_screenrecord_label">Enregistrement de l\'écran</string>
   <string name="quick_settings_screenrecord_lq_label">Enregistrement d\'écran 480p</string>
   <string name="quick_settings_screenrecord_mq_label">Enregistrement d\'écran 720p</string>
   <string name="quick_settings_screenrecord_hq_label">Enregistrement d\'écran 720p+</string>
   <string name="lockscreen_default">Par défaut</string>
+  <string name="lockscreen_hidden">Aucun</string>
   <string name="omnijaws_service_error">Erreur</string>
   <string name="omnijaws_service_unkown">Donnée météo indisponible</string>
   <string name="omnijaws_service_error_long">Erreur lors du chargement des données météo</string>
+  <string name="omnijaws_service_disabled">Service désactivé</string>
   <string name="omnijaws_detail_header">Météo</string>
   <string name="omnijaws_label_default">Météo</string>
   <string name="omnijaws_current_text">Maintenant</string>
   <string name="omnijaws_package_not_available">OmniJaws indisponible</string>
+  <string name="omnijaws_service_last_update">Dernière mise à jour :</string>
   <!-- Weather string format in expanded statusbar header -->
   <string name="status_bar_weather_format"><xliff:g id="temp">%1$s</xliff:g></string>
   <!-- SystemUI Tuner Parts -->
   <!-- DUI -->
+  <string name="systemui_tuner_navbar_title">Configuration d\'origine</string>
   <!-- Battery saver tile -->
   <string name="battery_saver_qs_tile_fully_charged">Chargé</string>
   <!-- Caffeine tile -->
+  <string name="caffeine_info_title">Qu\'est-ce que c\'est ?</string>
   <!-- Navigation bar Tile -->
   <string name="quick_settings_navigation_bar">Barre de navigation</string>
   <string name="quick_settings_smartbar">SmartBar</string>
   <string name="quick_settings_fling">Fling</string>
+  <string name="quick_settings_navigation_disabled">Désactivé</string>
   <!-- Kill button in notification guts -->
   <string name="force_stop_dlg_title">Forcer l\'arrêt ?</string>
   <string name="force_stop_dlg_text">Si vous forcez l\'arrêt d\'une application, cela peut provoquer son dysfonctionnement.</string>
@@ -148,19 +161,44 @@
   <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
   <string name="accessibility_quick_settings_running_services">Afficher les services en cours.</string>
   <!-- The contents of the Ambient Weather bottom view -->
+  <string name="quick_settings_google_assist_label">Assistant</string>
+  <string name="quick_settings_google_voice_assist_label">Assistance vocale</string>
   <!-- Smart pixels QS tile -->
   <!-- CPUInfo tile -->
+  <string name="quick_settings_cpuinfo_label">Infos CPU</string>
   <!-- HW Keys Tile -->
+  <string name="quick_settings_hw_keys_label">Boutons physiques</string>
   <!-- Content description of the HW keys tile in quick settings when disabled (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_hw_keys_disabled">Btn. physiques désactivés.</string>
   <!-- Content description of the HW keys tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
+  <string name="accessibility_quick_settings_hw_keys_enabled">Btn. physiques activés.</string>
   <!-- Heads up snooze toast -->
   <!-- Text to use when the number in a notification info is too large
          (greater than status_bar_notification_info_maxnum, defined in
          values/config.xml) and must be truncated.
          [CHAR LIMIT=4] -->
+  <string name="recents_app_killed">Application arrêtée</string>
   <!-- On The Go -->
+  <string name="global_action_onthego">Mode On-The-Go</string>
+  <string name="onthego_notif_ticker">Mode On-The-Go activé</string>
+  <string name="onthego_notif_title">Le mode On-The-Go est activé</string>
+  <string name="onthego_notif_stop">Stop</string>
+  <string name="onthego_notif_options">Options</string>
+  <string name="onthego_notif_error">Impossible de démarrer le mode On-The-Go</string>
+  <string name="onthego_notif_restart">Redémarrer le mode On-The-Go</string>
+  <string name="onthego_notif_camera_changed">Mode de caméra modifié</string>
+  <string name="onthego_transparency">Opacité</string>
+  <string name="onthego_front_camera">Utiliser la caméra frontale</string>
+  <string name="onthego_service_toggle">Redémarrer automatiquement le service</string>
+  <string name="onthego_channel_name">Principal</string>
   <!-- OnTheGo Tile -->
+  <string name="quick_settings_onthego_label">On-The-Go</string>
   <!-- Recents Memory Bar -->
+  <string name="recents_free_ram">RAM disponible: %1$d MB</string>
   <!-- LTE QS Tile -->
+  <string name="qs_lte_label">LTE</string>
+  <string name="lte_on">LTE activée </string>
+  <string name="lte_off">LTE désactivée</string>
   <!-- App circle sidebar -->
+  <string name="app_stop_item_title">Tuer l\'application</string>
 </resources>

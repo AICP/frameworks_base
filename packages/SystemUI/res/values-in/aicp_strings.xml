@@ -207,6 +207,7 @@
   <!-- OnTheGo Tile -->
   <string name="quick_settings_onthego_label">On-The-Go</string>
   <!-- Recents Memory Bar -->
+  <string name="recents_free_ram">RAM TERSEDIA: %1$d MB</string>
   <!-- LTE QS Tile -->
   <string name="qs_lte_label">LTE</string>
   <string name="lte_on">LTE Hidup</string>

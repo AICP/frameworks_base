@@ -114,6 +114,7 @@
   <!-- Screenrecord notification action: Stop -->
   <string name="screenrecord_notif_stop">정지</string>
   <string name="screenrecord_notif_completed">화면이 성공적으로 녹화되었습니다</string>
+  <string name="screenrecord_notif_description">화면 녹화를 보려면 누르십시오.</string>
   <!-- Screenrecord notification action: show/hide pointer -->
   <string name="screenrecord_notif_pointer_on">터치 표시</string>
   <string name="screenrecord_notif_pointer_off">터치 숨기기</string>
@@ -189,9 +190,30 @@
          (greater than status_bar_notification_info_maxnum, defined in
          values/config.xml) and must be truncated.
          [CHAR LIMIT=4] -->
+  <string name="recents_app_killed">애플리케이션 종료됨</string>
   <!-- On The Go -->
+  <string name="global_action_onthego">On-The-Go 모드</string>
+  <string name="onthego_notif_ticker">On-The-Go 모드 활성화됨</string>
+  <string name="onthego_notif_title">On-The-Go 모드가 활성화 되었습니다</string>
+  <string name="onthego_notif_stop">정지</string>
+  <string name="onthego_notif_options">설정</string>
+  <string name="onthego_notif_error">On-The-Go 모드를 시작할 수 없습니다.</string>
+  <string name="onthego_notif_restart">On-The-Go 모드 다시 시작</string>
+  <string name="onthego_notif_camera_changed">카메라 모드 변경됨</string>
+  <string name="onthego_transparency">투명도</string>
+  <string name="onthego_front_camera">전면 카메라 사용</string>
+  <string name="onthego_service_toggle">자동 다시 시작 서비스</string>
+  <string name="onthego_channel_name">메인</string>
   <!-- OnTheGo Tile -->
+  <string name="quick_settings_onthego_label">On-The-Go</string>
   <!-- Recents Memory Bar -->
+  <string name="recents_free_ram">사용가능한 RAM: %1$d MB</string>
   <!-- LTE QS Tile -->
+  <string name="qs_lte_label">LTE</string>
+  <string name="lte_on">LTE 켜기</string>
+  <string name="lte_off">LTE 꺼짐</string>
   <!-- App circle sidebar -->
+  <string name="app_float_maximize_item_title">최대화</string>
+  <string name="app_float_item_title">플로팅 뷰</string>
+  <string name="app_stop_item_title">앱 종료</string>
 </resources>

@@ -5888,6 +5888,15 @@ public final class Settings {
          */
         public static final String LOCK_SCREEN_VISUALIZER_CUSTOM_COLOR = "lock_screen_visualizer_custom_color";
 
+        /**
+         * @hide
+         */
+        public static final String STATUSBAR_HIDE_NOTCH = "statusbar_hide_notch";
+
+        /** @hide */
+        private static final Validator STATUSBAR_HIDE_NOTCH_VALIDATOR = BOOLEAN_VALIDATOR;
+
+
 
         /***************************
          * AICP System Settings end
@@ -6094,6 +6103,7 @@ public final class Settings {
             STATUS_BAR_BRIGHTNESS_CONTROL,
             ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER,
             LOCK_SCREEN_VISUALIZER_USE_CUSTOM_COLOR,
+            STATUSBAR_HIDE_NOTCH,
             // AICP Settings end
         };
 
@@ -6353,6 +6363,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(LOCKSCREEN_MEDIA_METADATA);
             PRIVATE_SETTINGS.add(ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER);
             PRIVATE_SETTINGS.add(LOCK_SCREEN_VISUALIZER_USE_CUSTOM_COLOR);
+            PRIVATE_SETTINGS.add(STATUSBAR_HIDE_NOTCH);
             // AICP Settings end
         }
 
@@ -6599,6 +6610,7 @@ public final class Settings {
             VALIDATORS.put(ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER,ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER_VALIDATOR);
             VALIDATORS.put(LOCK_SCREEN_VISUALIZER_USE_CUSTOM_COLOR,
                     LOCK_SCREEN_VISUALIZER_USE_CUSTOM_COLOR_VALIDATOR);
+            VALIDATORS.put(STATUSBAR_HIDE_NOTCH,STATUSBAR_HIDE_NOTCH_VALIDATOR);
             // AICP Settings end
         }
 

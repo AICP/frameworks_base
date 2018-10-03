@@ -742,6 +742,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private int mTorchTimeout;
     private PendingIntent mTorchOffPendingIntent;
 
+    private boolean mHideNotch;
+
     private class PolicyHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
@@ -946,6 +948,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER), false, this,
+                    UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUSBAR_HIDE_NOTCH), false, this,
                     UserHandle.USER_ALL);
             updateSettings();
         }
@@ -2363,6 +2368,12 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     Settings.System.ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER, 0,
                     UserHandle.USER_CURRENT) != 0);
 
+            // "never" mode for display cutout
+            mHideNotch = Settings.System.getIntForUser(resolver,
+                    Settings.System.STATUSBAR_HIDE_NOTCH, 0,
+                    UserHandle.USER_CURRENT) != 0;
+            updateNotchDisplayPolicy();
+
             // Configure wake gesture.
             boolean wakeGestureEnabledSetting = Settings.Secure.getIntForUser(resolver,
                     Settings.Secure.WAKE_GESTURE_ENABLED, 0,
@@ -2413,6 +2424,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         if (updateRotation) {
             updateRotation(true);
         }
+    }
+
+    private void updateNotchDisplayPolicy() {
+        mDefaultDisplayPolicy.setHideNotch(mHideNotch);
     }
 
     private void updateWakeGestureListenerLp() {

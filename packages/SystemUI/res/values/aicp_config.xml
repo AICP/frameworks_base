@@ -26,4 +26,7 @@
         aicp_extras,screenshot,usb_tether,caffeine,adb_network,aod,locale,music,assist,voiceassist,google,sound,compass,reboot,onthego,screenrecord
     </string>
 
+    <!-- Max visible notification icons -->
+    <integer name="config_maxVisibleNotificationIcons">6</integer>
+    <integer name="config_maxVisibleNotificationIconsWhenDark">7</integer>
 </resources>

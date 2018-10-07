@@ -47,4 +47,7 @@
 
     <!-- Screenshoot tile -->
     <string name="quick_settings_screenshot_label">Screenshot</string>
+
+    <!-- Screenrecord tile -->
+    <string name="quick_settings_screenrecord_label">Screenrecord</string>
 </resources>

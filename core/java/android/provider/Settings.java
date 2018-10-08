@@ -5865,6 +5865,18 @@ public final class Settings {
         public static final String RECENTS_LAYOUT_STYLE = "recents_layout_style";
 
         /**
+         * Which component to use for Recents UI
+         * 0 - Pie Recents (Quickstep)
+         * 1 - Oreo Recents (SystemUI)
+         * @hide
+         */
+        public static final String RECENTS_COMPONENT = "recents_component";
+
+        /** @hide */
+        public static final Validator RECENTS_COMPONENT_VALIDATOR =
+                new SettingsValidators.InclusiveIntegerRangeValidator(0, 1);
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -6069,6 +6081,7 @@ public final class Settings {
             OMNI_DOZE_ON_CHARGE,
             USE_EDGE_SERVICE_FOR_GESTURES,
             SCREENRECORD_QUALITY_MODE,
+            RECENTS_COMPONENT
             // AICP Settings end
         };
 
@@ -6338,6 +6351,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(OMNI_DOZE_ON_CHARGE);
             PRIVATE_SETTINGS.add(USE_EDGE_SERVICE_FOR_GESTURES);
             PRIVATE_SETTINGS.add(SCREENRECORD_QUALITY_MODE);
+            PRIVATE_SETTINGS.add(RECENTS_COMPONENT);
             // AICP Settings end
         }
 
@@ -6608,6 +6622,7 @@ public final class Settings {
             VALIDATORS.put(OMNI_DOZE_ON_CHARGE,OMNI_DOZE_ON_CHARGE_VALIDATOR);
             VALIDATORS.put(USE_EDGE_SERVICE_FOR_GESTURES,USE_EDGE_SERVICE_FOR_GESTURES_VALIDATOR);
             VALIDATORS.put(SCREENRECORD_QUALITY_MODE,SCREENRECORD_QUALITY_MODE_VALIDATOR);
+            VALIDATORS.put(RECENTS_COMPONENT,RECENTS_COMPONENT_VALIDATOR);
             // AICP Settings end
         }
 

@@ -20,9 +20,23 @@
     android:layout_height="match_parent"
     android:gravity="center_vertical">
 
-    <com.android.systemui.statusbar.phone.StatusIconContainer android:id="@+id/statusIcons"
+    <android.widget.Space
         android:layout_width="0dp"
+        android:layout_height="match_parent"
         android:layout_weight="1"
+        android:gravity="center_vertical"/>
+
+    <com.android.systemui.statusbar.policy.NetworkTraffic
+        android:id="@+id/networkTraffic"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:maxLines="2"
+        android:gravity="center_vertical"/>
+
+    <com.android.systemui.statusbar.phone.StatusIconContainer android:id="@+id/statusIcons"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:paddingEnd="@dimen/signal_cluster_battery_padding"
         android:gravity="center_vertical"

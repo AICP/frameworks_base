@@ -4154,6 +4154,85 @@ public final class Settings {
         /** @hide */
         private static final Validator BUTTON_BACKLIGHT_ON_TOUCH_ONLY_VALIDATOR = BOOLEAN_VALIDATOR;
 
+        /**
+          * Enable looking up of phone numbers of nearby places
+          *
+          * @hide
+          */
+        public static final String ENABLE_FORWARD_LOOKUP = "enable_forward_lookup";
+
+        /** @hide */
+        private static final Validator ENABLE_FORWARD_LOOKUP_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
+        * Enable looking up of phone numbers of people
+        *
+        * @hide
+        */
+        public static final String ENABLE_PEOPLE_LOOKUP = "enable_people_lookup";
+
+        /** @hide */
+        private static final Validator ENABLE_PEOPLE_LOOKUP_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
+        * Enable looking up of information of phone numbers not in the contacts
+        *
+        * @hide
+        */
+        public static final String ENABLE_REVERSE_LOOKUP = "enable_reverse_lookup";
+
+        /** @hide */
+        private static final Validator ENABLE_REVERSE_LOOKUP_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
+        * The forward lookup provider
+        *
+        * @hide
+        */
+        public static final String FORWARD_LOOKUP_PROVIDER = "forward_lookup_provider";
+
+        /** @hide */
+        private static final Validator FORWARD_LOOKUP_PROVIDER_VALIDATOR = ANY_STRING_VALIDATOR;
+
+        /**
+        * The people lookup provider
+        *
+        * @hide
+        */
+        public static final String PEOPLE_LOOKUP_PROVIDER = "people_lookup_provider";
+
+        /** @hide */
+        private static final Validator PEOPLE_LOOKUP_PROVIDER_VALIDATOR = ANY_STRING_VALIDATOR;
+
+        /**
+        * The reverse lookup provider
+        *
+        * @hide
+        */
+        public static final String REVERSE_LOOKUP_PROVIDER = "reverse_lookup_provider";
+
+        /** @hide */
+        private static final Validator REVERSE_LOOKUP_PROVIDER_VALIDATOR = ANY_STRING_VALIDATOR;
+
+        /**
+        * The OpenCNAM paid account ID
+        *
+        * @hide
+        */
+        public static final String DIALER_OPENCNAM_ACCOUNT_SID = "dialer_opencnam_account_sid";
+
+        /** @hide */
+        private static final Validator DIALER_OPENCNAM_ACCOUNT_SID_VALIDATOR = ANY_STRING_VALIDATOR;
+
+        /**
+        * The OpenCNAM authentication token
+        *
+        * @hide
+        */
+        public static final String DIALER_OPENCNAM_AUTH_TOKEN = "dialer_opencnam_auth_token";
+
+        /** @hide */
+        private static final Validator DIALER_OPENCNAM_AUTH_TOKEN_VALIDATOR = ANY_STRING_VALIDATOR;
 
         /***************************
          * AICP System Settings end
@@ -4238,7 +4317,15 @@ public final class Settings {
             CUSTOM_BUTTON_USE_SCREEN_BRIGHTNESS,
             BUTTON_BACKLIGHT_ENABLE,
             BUTTON_BACKLIGHT_TIMEOUT,
-            BUTTON_BACKLIGHT_ON_TOUCH_ONLY
+            BUTTON_BACKLIGHT_ON_TOUCH_ONLY,
+            ENABLE_FORWARD_LOOKUP,
+            ENABLE_PEOPLE_LOOKUP,
+            ENABLE_REVERSE_LOOKUP,
+            FORWARD_LOOKUP_PROVIDER,
+            PEOPLE_LOOKUP_PROVIDER,
+            REVERSE_LOOKUP_PROVIDER,
+            DIALER_OPENCNAM_ACCOUNT_SID,
+            DIALER_OPENCNAM_AUTH_TOKEN
         };
 
         /**
@@ -4360,6 +4447,14 @@ public final class Settings {
             PRIVATE_SETTINGS.add(BUTTON_BACKLIGHT_ENABLE);
             PRIVATE_SETTINGS.add(BUTTON_BACKLIGHT_TIMEOUT);
             PRIVATE_SETTINGS.add(BUTTON_BACKLIGHT_ON_TOUCH_ONLY);
+            PRIVATE_SETTINGS.add(ENABLE_FORWARD_LOOKUP);
+            PRIVATE_SETTINGS.add(ENABLE_PEOPLE_LOOKUP);
+            PRIVATE_SETTINGS.add(ENABLE_REVERSE_LOOKUP);
+            PRIVATE_SETTINGS.add(FORWARD_LOOKUP_PROVIDER);
+            PRIVATE_SETTINGS.add(PEOPLE_LOOKUP_PROVIDER);
+            PRIVATE_SETTINGS.add(REVERSE_LOOKUP_PROVIDER);
+            PRIVATE_SETTINGS.add(DIALER_OPENCNAM_ACCOUNT_SID);
+            PRIVATE_SETTINGS.add(DIALER_OPENCNAM_AUTH_TOKEN);
         }
 
         /**
@@ -4448,6 +4543,7 @@ public final class Settings {
             VALIDATORS.put(WIFI_STATIC_DNS1, WIFI_STATIC_DNS1_VALIDATOR);
             VALIDATORS.put(WIFI_STATIC_DNS2, WIFI_STATIC_DNS2_VALIDATOR);
             VALIDATORS.put(SHOW_BATTERY_PERCENT, SHOW_BATTERY_PERCENT_VALIDATOR);
+            // AICP Settings
             VALIDATORS.put(AE_THEME, AE_THEME_VALIDATOR);
             VALIDATORS.put(CUSTOM_BUTTON_BRIGHTNESS, CUSTOM_BUTTON_BRIGHTNESS_VALIDATOR);
             VALIDATORS.put(CUSTOM_BUTTON_USE_SCREEN_BRIGHTNESS,
@@ -4455,6 +4551,14 @@ public final class Settings {
             VALIDATORS.put(BUTTON_BACKLIGHT_ENABLE, BUTTON_BACKLIGHT_ENABLE_VALIDATOR);
             VALIDATORS.put(BUTTON_BACKLIGHT_TIMEOUT, BUTTON_BACKLIGHT_TIMEOUT_VALIDATOR);
             VALIDATORS.put(BUTTON_BACKLIGHT_ON_TOUCH_ONLY, BUTTON_BACKLIGHT_ON_TOUCH_ONLY_VALIDATOR);
+            VALIDATORS.put(ENABLE_FORWARD_LOOKUP, ENABLE_FORWARD_LOOKUP_VALIDATOR);
+            VALIDATORS.put(ENABLE_PEOPLE_LOOKUP, ENABLE_PEOPLE_LOOKUP_VALIDATOR);
+            VALIDATORS.put(ENABLE_REVERSE_LOOKUP, ENABLE_REVERSE_LOOKUP_VALIDATOR);
+            VALIDATORS.put(FORWARD_LOOKUP_PROVIDER, FORWARD_LOOKUP_PROVIDER_VALIDATOR);
+            VALIDATORS.put(PEOPLE_LOOKUP_PROVIDER, PEOPLE_LOOKUP_PROVIDER_VALIDATOR);
+            VALIDATORS.put(REVERSE_LOOKUP_PROVIDER, REVERSE_LOOKUP_PROVIDER_VALIDATOR);
+            VALIDATORS.put(DIALER_OPENCNAM_ACCOUNT_SID, DIALER_OPENCNAM_ACCOUNT_SID_VALIDATOR);
+            VALIDATORS.put(DIALER_OPENCNAM_AUTH_TOKEN, DIALER_OPENCNAM_AUTH_TOKEN_VALIDATOR);
         }
 
         /**
@@ -13275,7 +13379,7 @@ public final class Settings {
      */
     public static String getGTalkDeviceId(long androidId) {
         return "android-" + Long.toHexString(androidId);
-    }
+    };
 
     private static final String[] PM_WRITE_SETTINGS = {
         android.Manifest.permission.WRITE_SETTINGS

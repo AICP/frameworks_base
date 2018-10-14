@@ -98,4 +98,7 @@
 
   <!-- Whether or not ambient media display opt-in setting is available on this device -->
   <java-symbol type="bool" name="config_canForceDozeNotifications" />
+
+  <!-- Screen off delay -->
+  <java-symbol type="integer" name="config_screen_off_delay" />
 </resources>

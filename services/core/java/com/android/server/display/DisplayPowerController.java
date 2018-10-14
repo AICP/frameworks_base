@@ -99,8 +99,6 @@ final class DisplayPowerController implements AutomaticBrightnessController.Call
     private static final int COLOR_FADE_ON_ANIMATION_DURATION_MILLIS = 250;
     private static final int COLOR_FADE_OFF_ANIMATION_DURATION_MILLIS = 400;
 
-    private static final int SCREEN_OFF_DELAY_MILLIS = 1000;
-
     private static final int MSG_UPDATE_POWER_STATE = 1;
     private static final int MSG_PROXIMITY_SENSOR_DEBOUNCED = 2;
     private static final int MSG_SCREEN_ON_UNBLOCKED = 3;
@@ -185,6 +183,9 @@ final class DisplayPowerController implements AutomaticBrightnessController.Call
 
     // The default screen brightness for VR.
     private final int mScreenBrightnessForVrDefault;
+
+    // The screen off delay
+    private final int mScreenOffDelayConfig;
 
     // True if auto-brightness should be used.
     private boolean mUseSoftwareAutoBrightnessConfig;
@@ -425,6 +426,9 @@ final class DisplayPowerController implements AutomaticBrightnessController.Call
                 com.android.internal.R.integer.config_brightness_ramp_rate_slow);
         mSkipScreenOnBrightnessRamp = resources.getBoolean(
                 com.android.internal.R.bool.config_skipScreenOnBrightnessRamp);
+
+        mScreenOffDelayConfig = resources.getInteger(
+                com.android.internal.R.integer.config_screen_off_delay);
 
         if (mUseSoftwareAutoBrightnessConfig) {
             final float dozeScaleFactor = resources.getFraction(
@@ -1218,7 +1222,7 @@ final class DisplayPowerController implements AutomaticBrightnessController.Call
 
     private void setScreenOffDelayed() {
         cancelDelayedScreenOff();
-        mHandler.postDelayed(mScreenOffTask, SCREEN_OFF_DELAY_MILLIS);
+        mHandler.postDelayed(mScreenOffTask, mScreenOffDelayConfig);
     }
 
     private void cancelDelayedScreenOff() {

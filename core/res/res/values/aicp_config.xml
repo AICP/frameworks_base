@@ -50,4 +50,7 @@
 
     <!-- Whether or not ambient media display opt-in setting is available on this device -->
     <bool name="config_canForceDozeNotifications">true</bool>
+
+    <!-- Screen off delay -->
+    <integer name="config_screen_off_delay">1000</integer>
 </resources>

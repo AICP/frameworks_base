@@ -114,4 +114,7 @@ interface IStatusBarService
     void toggleFlashlight();
     void toggleNavigationEditor();
     void dispatchNavigationEditorResults(in Intent intent);
+
+    // Start PI PIE 3.0
+    void toggleOrientationListener(boolean enable);
 }

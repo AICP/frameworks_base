@@ -87,7 +87,9 @@ import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.Icon;
 import android.hardware.display.DisplayManager;
+import android.hardware.SensorManager;
 import android.media.AudioAttributes;
 import android.media.MediaMetadata;
 import android.media.session.MediaController;
@@ -119,6 +121,12 @@ import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.EventLog;
 import android.util.Log;
+import android.util.Pair;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.Interpolator;
 import android.util.Slog;
 import android.util.SparseArray;
 import android.view.animation.AccelerateInterpolator;
@@ -134,6 +142,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.RemoteAnimationAdapter;
+import android.view.OrientationEventListener;
 import android.view.ThreadedRenderer;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -268,6 +277,7 @@ import com.android.systemui.statusbar.policy.KeyguardMonitor;
 import com.android.systemui.statusbar.policy.KeyguardMonitorImpl;
 import com.android.systemui.statusbar.policy.KeyguardUserSwitcher;
 import com.android.systemui.statusbar.policy.NetworkController;
+import com.android.systemui.statusbar.pie.PieController;
 import com.android.systemui.statusbar.policy.OnHeadsUpChangedListener;
 import com.android.systemui.statusbar.policy.PreviewInflater;
 import com.android.systemui.statusbar.policy.RemoteInputQuickSettingsDisabler;
@@ -510,6 +520,11 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
     private boolean mTicking;
     private int mTickerAnimationMode;
     private int mTickerTickDuration;
+
+    // Pie controls
+    public int mOrientation = 0;
+    protected PieController mPieController;
+    private OrientationEventListener mOrientationListener;
 
     // for disabling the status bar
     private int mDisabled1 = 0;
@@ -900,6 +915,12 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
         }
 
         // end old BaseStatusBar.start().
+
+        mPieSettingsObserver.onChange(false);
+        mContext.getContentResolver().registerContentObserver(Settings.Secure.getUriFor(
+                Settings.Secure.PIE_STATE), false, mPieSettingsObserver);
+        mContext.getContentResolver().registerContentObserver(Settings.Secure.getUriFor(
+                Settings.Secure.PIE_GRAVITY), false, mPieSettingsObserver);
 
         // Lastly, call to the icon policy to install/update all the icons.
         mIconPolicy = new PhoneStatusBarPolicy(mContext, mIconController);
@@ -1296,6 +1317,10 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
         mNotificationShelf.setStatusBarState(mState);
     }
 
+    public NetworkController getNetworkController() {
+        return mNetworkController;
+    }
+
     public void onDensityOrFontScaleChanged() {
         MessagingMessage.dropCache();
         MessagingGroup.dropCache();
@@ -1322,6 +1347,10 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
         mHeadsUpManager.onDensityOrFontScaleChanged();
 
         reevaluateStyles();
+
+        boolean pieEnabled = Settings.Secure.getIntForUser(mContext.getContentResolver(),
+                Settings.Secure.PIE_STATE, 0, UserHandle.USER_CURRENT) == 1;
+        updatePieControls(!pieEnabled);
     }
 
     private void onThemeChanged() {
@@ -1608,6 +1637,10 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
             // We were showing a pulse for a notification, but no notifications are pulsing anymore.
             // Finish the pulse.
             mDozeScrimController.pulseOutNow();
+        }
+
+        if (mPieController != null) {
+            mPieController.updateNotifications();
         }
     }
 
@@ -3621,6 +3654,8 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
                 mScreenOn = false;
                 finishBarAnimations();
                 resetUserExpandedStates();
+                // detach pie when screen is turned off
+                if (mPieController != null) mPieController.detachPie();
             }
             else if (Intent.ACTION_SCREEN_ON.equals(action)) {
                 mScreenOn = true;
@@ -3714,6 +3749,12 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
 
         if (mSlimRecents != null) {
             mSlimRecents.onConfigurationChanged(newConfig);
+        }
+
+        int rotation = mDisplay.getRotation();
+        if (rotation != mOrientation) {
+            if (mPieController != null) mPieController.detachPie();
+            mOrientation = rotation;
         }
     }
 
@@ -5688,6 +5729,26 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
 
     private ArrayList<String> mBlacklist = new ArrayList<String>();
 
+    public ArrayList<Pair<StatusBarNotification, Icon>> getNotifications() {
+        ArrayList<Pair<StatusBarNotification, Icon>> notifs
+                = new ArrayList<Pair<StatusBarNotification, Icon>>();
+        for (Entry entry : mNotificationData.getActiveNotifications()) {
+            StatusBarNotification sbn = entry.notification;
+            Icon icon = entry.notification.getNotification().getSmallIcon();
+            notifs.add(new Pair<StatusBarNotification, Icon>(sbn, icon));
+        }
+        return notifs;
+    }
+
+    private final ContentObserver mPieSettingsObserver = new ContentObserver(mHandler) {
+         @Override
+         public void onChange(boolean selfChange) {
+            boolean pieEnabled = Settings.Secure.getIntForUser(mContext.getContentResolver(),
+                    Settings.Secure.PIE_STATE, 0, UserHandle.USER_CURRENT) == 1;
+            updatePieControls(!pieEnabled);
+        }
+    };
+
     @Override  // NotificationData.Environment
     public boolean isDeviceProvisioned() {
         return mDeviceProvisionedController.isDeviceProvisioned();
@@ -6295,7 +6356,7 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
         return true;
     }
 
-    protected Bundle getActivityOptions(@Nullable RemoteAnimationAdapter animationAdapter) {
+    public Bundle getActivityOptions(@Nullable RemoteAnimationAdapter animationAdapter) {
         ActivityOptions options;
         if (animationAdapter != null) {
             options = ActivityOptions.makeRemoteAnimation(animationAdapter);
@@ -6608,5 +6669,42 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
         lp.setTitle("AppCircleSidebar");
 
         return lp;
+    }
+
+    public void updatePieControls(boolean reset) {
+        ContentResolver resolver = mContext.getContentResolver();
+
+        if (reset) {
+            Settings.Secure.putIntForUser(resolver,
+                    Settings.Secure.PIE_GRAVITY, 0, UserHandle.USER_CURRENT);
+            toggleOrientationListener(false);
+        } else {
+            getOrientationListener();
+            toggleOrientationListener(true);
+        }
+
+        if (mPieController == null) {
+            mPieController = PieController.getInstance();
+            mPieController.init(mContext, mWindowManager, this);
+        }
+
+        int gravity = Settings.Secure.getInt(resolver,
+                Settings.Secure.PIE_GRAVITY, 0);
+        mPieController.resetPie(!reset, gravity);
+    }
+
+    private void getOrientationListener() {
+        if (mOrientationListener == null)
+            mOrientationListener = new OrientationEventListener(mContext,
+                    SensorManager.SENSOR_DELAY_NORMAL) {
+                @Override
+                public void onOrientationChanged(int orientation) {
+                    int rotation = mDisplay.getRotation();
+                    if (rotation != mOrientation) {
+                        if (mPieController != null) mPieController.detachPie();
+                        mOrientation = rotation;
+                    }
+                }
+            };
     }
 }

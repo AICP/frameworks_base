@@ -36,6 +36,7 @@ import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.Rect;
+import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
@@ -407,6 +408,14 @@ public class RecentsView extends FrameLayout {
     public void showEmptyView(int msgResId) {
         mTaskStackView.setVisibility(View.INVISIBLE);
         mEmptyView.setText(msgResId);
+        // AICP animated empty recents view
+        Drawable[] emptyDrawables = mEmptyView.getCompoundDrawables();
+        Log.d(TAG," showEmptyB4if");
+        if (emptyDrawables[1] instanceof AnimatedVectorDrawable) {
+            Log.d(TAG," showEmptyINif");
+            ((AnimatedVectorDrawable) emptyDrawables[1]).start();
+        }
+        Log.d(TAG," showEmptyAFTERif");
         mEmptyView.setVisibility(View.VISIBLE);
         mEmptyView.bringToFront();
         mStackActionButton.bringToFront();
@@ -426,6 +435,15 @@ public class RecentsView extends FrameLayout {
      * Shows the task stack and hides the empty view.
      */
     public void hideEmptyView() {
+        // AICP animated empty recents view
+        Log.d(TAG," hideEmptyB4if");
+        Drawable[] emptyDrawables = mEmptyView.getCompoundDrawables();
+        if (emptyDrawables[1] instanceof AnimatedVectorDrawable) {
+                Log.d(TAG," hideEmptyINif");
+                ((AnimatedVectorDrawable) emptyDrawables[1]).stop();
+        }
+
+        Log.d(TAG," hideEmptyAFTERif");
         mEmptyView.setVisibility(View.INVISIBLE);
         mTaskStackView.setVisibility(View.VISIBLE);
         mTaskStackView.bringToFront();

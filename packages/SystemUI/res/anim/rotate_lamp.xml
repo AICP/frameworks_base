@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <objectAnimator
+        android:duration="4000"
+        android:valueFrom="5"
+        android:valueTo="-10"
+        android:repeatCount="infinite"
+        android:repeatMode="reverse">
+        <propertyValuesHolder android:propertyName="rotation" >
+            <keyframe android:fraction="0"
+                android:interpolator="@android:anim/linear_interpolator"
+                android:value="5" />
+            <keyframe android:fraction="0.2"
+                android:interpolator="@android:anim/linear_interpolator"
+                android:value="5" />
+            <keyframe android:fraction="0.8"
+                android:interpolator="@android:anim/linear_interpolator"
+                android:value="-10" />
+            <keyframe android:fraction="1"
+                android:interpolator="@android:anim/linear_interpolator"
+                android:value="-10" />
+        </propertyValuesHolder>
+    </objectAnimator>
+</set>

@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# AICP does not need SystemUI test targets
+ifeq (0,)
+
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
@@ -56,4 +59,6 @@ LOCAL_CERTIFICATE := platform
 
 ifeq ($(EXCLUDE_SYSTEMUI_TESTS),)
     include $(BUILD_PACKAGE)
+endif
+
 endif

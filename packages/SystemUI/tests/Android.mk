@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# AICP does not need SystemUI test targets
+ifeq (0,)
+
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
@@ -124,3 +127,5 @@ local_classes :=
 local_comma :=
 local_space :=
 jacoco_exclude :=
+
+endif

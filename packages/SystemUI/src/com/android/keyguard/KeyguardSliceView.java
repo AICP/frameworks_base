@@ -33,6 +33,7 @@ import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -298,6 +299,16 @@ public class KeyguardSliceView extends LinearLayout implements View.OnClickListe
         mDarkAmount = darkAmount;
         mRow.setDarkAmount(darkAmount);
         updateTextColors();
+    }
+
+    public void setViewsTextSize(int scale, float size) {
+        int childCount = mRow.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View v = mRow.getChildAt(i);
+            if (v instanceof Button) {
+                ((Button) v).setTextSize(scale, size);
+            }
+        }
     }
 
     private void updateTextColors() {

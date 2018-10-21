@@ -6002,6 +6002,28 @@ public final class Settings {
         private static final Validator NOTIFICATION_GUTS_KILL_APP_BUTTON_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
+        /**
+         * Change font size for the system lockscreen date
+         *
+         * @hide
+         */
+        public static final String LOCKDATE_FONT_SIZE = "lockdate_font_size";
+
+        /** @hide */
+        private static final Validator LOCKDATE_FONT_SIZE_VALIDATOR =
+              new SettingsValidators.InclusiveIntegerRangeValidator(8, 25);
+
+        /**
+         * Change font size for the system lockscreen clock widget
+         *
+         * @hide
+         */
+        public static final String LOCKCLOCK_FONT_SIZE = "lockclock_font_size";
+
+        /** @hide */
+        private static final Validator LOCKCLOCK_FONT_SIZE_VALIDATOR =
+              new SettingsValidators.InclusiveIntegerRangeValidator(50, 108);
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6236,6 +6258,8 @@ public final class Settings {
             CAMERA_SLEEP_ON_RELEASE,
             CAMERA_LAUNCH,
             NOTIFICATION_GUTS_KILL_APP_BUTTON,
+            LOCKDATE_FONT_SIZE,
+            LOCKCLOCK_FONT_SIZE,
             // AICP Settings end
         };
 
@@ -6518,6 +6542,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(CAMERA_SLEEP_ON_RELEASE);
             PRIVATE_SETTINGS.add(CAMERA_LAUNCH);
             PRIVATE_SETTINGS.add(NOTIFICATION_GUTS_KILL_APP_BUTTON);
+            PRIVATE_SETTINGS.add(LOCKDATE_FONT_SIZE);
+            PRIVATE_SETTINGS.add(LOCKCLOCK_FONT_SIZE);
             // AICP Settings end
         }
 
@@ -6802,6 +6828,8 @@ public final class Settings {
             VALIDATORS.put(CAMERA_LAUNCH, CAMERA_LAUNCH_VALIDATOR);
             VALIDATORS.put(NOTIFICATION_GUTS_KILL_APP_BUTTON,
                     NOTIFICATION_GUTS_KILL_APP_BUTTON_VALIDATOR);
+            VALIDATORS.put(LOCKDATE_FONT_SIZE, LOCKDATE_FONT_SIZE_VALIDATOR);
+            VALIDATORS.put(LOCKCLOCK_FONT_SIZE, LOCKCLOCK_FONT_SIZE_VALIDATOR);
             // AICP Settings end
         }
 

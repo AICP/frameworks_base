@@ -267,5 +267,6 @@ public class SystemSettings {
         Settings.System.LOCKSCREEN_BATTERY_INFO_TEMP_UNIT,
         Settings.System.ADAPTIVE_PLAYBACK_ENABLED,
         Settings.System.ADAPTIVE_PLAYBACK_TIMEOUT,
+        Settings.System.SHOW_VOLTE_ICON,
     };
 }

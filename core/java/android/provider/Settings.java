@@ -5622,6 +5622,14 @@ public final class Settings {
         /** @hide */
         private static final Validator SLIM_RECENT_ENTER_EXIT_ANIMATION_VALIDATOR = ANY_INTEGER_VALIDATOR;
 
+        /**
+        * Whether to show VoLTE icon or not
+        * @hide
+        */
+        public static final String SHOW_VOLTE_ICON = "volte_icon";
+
+        /** @hide */
+        private static final Validator SHOW_VOLTE_ICON_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /***************************
          * AICP System Settings end
@@ -5805,6 +5813,7 @@ public final class Settings {
             SLIM_RECENTS_CORNER_RADIUS,
             SLIM_RECENTS_BLACKLIST_VALUES,
             SLIM_RECENT_ENTER_EXIT_ANIMATION,
+            SHOW_VOLTE_ICON,
             // AICP Settings end
         };
 
@@ -6035,6 +6044,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SLIM_RECENTS_CORNER_RADIUS);
             PRIVATE_SETTINGS.add(SLIM_RECENTS_BLACKLIST_VALUES);
             PRIVATE_SETTINGS.add(SLIM_RECENT_ENTER_EXIT_ANIMATION);
+            PRIVATE_SETTINGS.add(SHOW_VOLTE_ICON);
             // AICP Settings end
         }
 
@@ -6255,6 +6265,7 @@ public final class Settings {
             VALIDATORS.put(SLIM_RECENTS_CORNER_RADIUS, SLIM_RECENTS_CORNER_RADIUS_VALIDATOR);
             VALIDATORS.put(SLIM_RECENTS_BLACKLIST_VALUES, SLIM_RECENTS_BLACKLIST_VALUES_VALIDATOR);
             VALIDATORS.put(SLIM_RECENT_ENTER_EXIT_ANIMATION, SLIM_RECENT_ENTER_EXIT_ANIMATION_VALIDATOR);
+            VALIDATORS.put(SHOW_VOLTE_ICON,SHOW_VOLTE_ICON_VALIDATOR);
             // AICP Settings end
         }
 

@@ -6259,6 +6259,12 @@ public final class Settings {
         public static final String LOCKSCREEN_QUICK_UNLOCK_CONTROL =
                 "lockscreen_quick_unlock_control";
 
+        /**
+         * Whether to show VoLTE icon or not
+         * @hide
+         */
+        public static final String SHOW_VOLTE_ICON = "volte_icon";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6543,6 +6549,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(ROAMING_INDICATOR_ICON);
             PRIVATE_SETTINGS.add(SHOW_LTE_FOURGEE);
             PRIVATE_SETTINGS.add(LOCKSCREEN_QUICK_UNLOCK_CONTROL);
+            PRIVATE_SETTINGS.add(SHOW_VOLTE_ICON);
         }
 
         /**

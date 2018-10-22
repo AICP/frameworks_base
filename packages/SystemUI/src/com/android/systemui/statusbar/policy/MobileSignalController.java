@@ -141,6 +141,7 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
 
     private boolean mRoamingIconAllowed;
     private boolean mShowLteFourGee;
+    private boolean mVolteIcon;
 
     private ImsManager mImsManager;
     private FeatureConnector<ImsManager> mFeatureConnector;
@@ -329,6 +330,9 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
             resolver.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.SHOW_LTE_FOURGEE), false,
                     this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.SHOW_VOLTE_ICON), false,
+                    this, UserHandle.USER_ALL);
         }
 
         /*
@@ -349,6 +353,9 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
 
         mShowLteFourGee = Settings.System.getIntForUser(resolver,
                 Settings.System.SHOW_LTE_FOURGEE, 0,
+                UserHandle.USER_CURRENT) == 1;
+        mVolteIcon = Settings.System.getIntForUser(resolver,
+                Settings.System.SHOW_VOLTE_ICON, 1,
                 UserHandle.USER_CURRENT) == 1;
 
         mNetworkToIconLookup = mapIconSets(mConfig, mShowLteFourGee);
@@ -486,16 +493,6 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
         return mImsManager != null && mImsManager.isEnhanced4gLteModeSettingEnabledByUser();
     }
 
-    private int getVolteResId() {
-        int resId = 0;
-
-        if ( (mCurrentState.voiceCapable || mCurrentState.videoCapable)
-                &&  mCurrentState.imsRegistered ) {
-            resId = R.drawable.ic_volte;
-        }
-        return resId;
-    }
-
     private void setListeners() {
         if (mImsManager == null) {
             Log.e(mTag, "setListeners mImsManager is null");
@@ -525,7 +522,7 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
             Log.d(mTag, "queryImsState tm=" + tm + " phone=" + mPhone
                     + " voiceCapable=" + mCurrentState.voiceCapable
                     + " videoCapable=" + mCurrentState.videoCapable
-                    + " imsResitered=" + mCurrentState.imsRegistered);
+                    + " imsRegistered=" + mCurrentState.imsRegistered);
         }
         notifyListenersIfNecessary();
     }
@@ -568,7 +565,12 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
                 || (mCurrentState.iconGroup == TelephonyIcons.NOT_DEFAULT_DATA))
                 && mCurrentState.userSetup;
 
-        int volteId = mShowVolteIcon && isVolteSwitchOn() ? getVolteResId() : 0;
+        int resId = 0;
+        if (mCurrentState.imsRegistered && mVolteIcon) {
+            resId = R.drawable.ic_volte;
+        }
+
+        int volteId = mShowVolteIcon && isVolteSwitchOn() && mVolteIcon ? resId : 0;
 
         if (mProviderModelBehavior) {
             // Show icon in QS when we are connected or data is disabled.

@@ -5,7 +5,4 @@
   <java-symbol type="bool" name="config_button_brightness_support" />
   <java-symbol type="integer" name="config_button_brightness_default" />
 
-  <!-- Whether device supports an alt. ambient display -->
-  <java-symbol type="bool" name="config_alt_ambient_display"/>
-
 </resources>

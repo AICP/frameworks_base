@@ -12824,7 +12824,7 @@ public final class Settings {
          * The TCP/IP port to run ADB on, or 0 for USB
          * @hide
          */
-        public static final String OMNI_ADB_PORT = "omni_adb_port";
+        public static final String AICP_ADB_PORT = "aicp_adb_port";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings

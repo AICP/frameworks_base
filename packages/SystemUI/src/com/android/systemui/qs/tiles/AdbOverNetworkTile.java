@@ -60,7 +60,7 @@ public class AdbOverNetworkTile extends QSTileImpl<BooleanState> {
                     R.string.quick_settings_network_adb_toast), Toast.LENGTH_LONG).show();
         } else {
             Settings.Global.putInt(mContext.getContentResolver(),
-                    Settings.Global.OMNI_ADB_PORT, isAdbNetworkEnabled() ? 0 : 5555);
+                    Settings.Global.AICP_ADB_PORT, isAdbNetworkEnabled() ? 0 : 5555);
         }
         refreshState();
     }
@@ -126,7 +126,7 @@ public class AdbOverNetworkTile extends QSTileImpl<BooleanState> {
 
     private boolean isAdbNetworkEnabled() {
         return Settings.Global.getInt(mContext.getContentResolver(),
-                Settings.Global.OMNI_ADB_PORT, 0) > 0;
+                Settings.Global.AICP_ADB_PORT, 0) > 0;
     }
 
     private ContentObserver mObserver = new ContentObserver(mHandler) {
@@ -145,7 +145,7 @@ public class AdbOverNetworkTile extends QSTileImpl<BooleanState> {
             mListening = listening;
             if (listening) {
                 mContext.getContentResolver().registerContentObserver(
-                        Settings.Global.getUriFor(Settings.Global.OMNI_ADB_PORT),
+                        Settings.Global.getUriFor(Settings.Global.AICP_ADB_PORT),
                         false, mObserver);
                 mContext.getContentResolver().registerContentObserver(
                         Settings.Global.getUriFor(Settings.Global.ADB_ENABLED),

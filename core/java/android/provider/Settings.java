@@ -4484,6 +4484,14 @@ public final class Settings {
         /** @hide */
         private static final Validator AE_THEME_VALIDATOR = ANY_INTEGER_VALIDATOR;
 
+        /**
+         * @hide
+         */
+        public static final String TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK = "touchscreen_gesture_haptic_feedback";
+
+        /** @hide */
+        private static final Validator TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK_VALIDATOR =
+                BOOLEAN_VALIDATOR;
 
         /***************************
          * AICP System Settings end
@@ -4564,6 +4572,7 @@ public final class Settings {
             NOTIFICATION_LIGHT_PULSE,
             // AICP Settings
             AE_THEME,
+            TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK,
             // AICP Settings end
         };
 
@@ -4686,6 +4695,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(DISPLAY_COLOR_MODE);
             // AICP Settings
             PRIVATE_SETTINGS.add(AE_THEME);
+            PRIVATE_SETTINGS.add(TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK);
             // AICP Settings end
         }
 
@@ -4782,6 +4792,7 @@ public final class Settings {
             VALIDATORS.put(NOTIFICATION_LIGHT_PULSE, BOOLEAN_VALIDATOR);
             // AICP Settings
             VALIDATORS.put(AE_THEME, AE_THEME_VALIDATOR);
+            VALIDATORS.put(TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK, TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK_VALIDATOR);
             // AICP Settings end
         }
 

@@ -21,7 +21,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 
 public class PackageUtils {
 
-    public static boolean isAppInstalled(Context context, String appUri) {
+    public static boolean isPackageInstalled(Context context, String appUri) {
         try {
             PackageManager pm = context.getPackageManager();
             pm.getPackageInfo(appUri, PackageManager.GET_ACTIVITIES);
@@ -31,9 +31,8 @@ public class PackageUtils {
         }
     }
 
-    public static boolean isAvailableApp(String packageName, Context context) {
-        Context mContext = context;
-        final PackageManager pm = mContext.getPackageManager();
+    public static boolean isPackageAvailable(Context context, String packageName) {
+        final PackageManager pm = context.getPackageManager();
         try {
             pm.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES);
             int enabled = pm.getApplicationEnabledSetting(packageName);

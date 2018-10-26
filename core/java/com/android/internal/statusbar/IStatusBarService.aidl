@@ -85,6 +85,9 @@ interface IStatusBarService
     void clickTile(in ComponentName tile);
     void handleSystemKey(in int key);
 
+    // Start DU methods
+    void startAssist(in Bundle args);
+
     /**
      * Methods to show toast messages for screen pinning
      */

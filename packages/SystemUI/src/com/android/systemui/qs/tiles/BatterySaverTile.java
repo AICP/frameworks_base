@@ -60,11 +60,6 @@ public class BatterySaverTile extends QSTileImpl<BooleanState> implements
     }
 
     @Override
-    public boolean isDualTarget() {
-        return true;
-    }
-
-    @Override
     public DetailAdapter getDetailAdapter() {
         return mBatteryDetail;
     }
@@ -110,7 +105,7 @@ public class BatterySaverTile extends QSTileImpl<BooleanState> implements
 
     @Override
     protected void handleSecondaryClick() {
-        showDetail(true);
+        //showDetail(true);
     }
 
     @Override
@@ -120,7 +115,7 @@ public class BatterySaverTile extends QSTileImpl<BooleanState> implements
 
     @Override
     protected void handleUpdateState(BooleanState state, Object arg) {
-        state.dualTarget = true;
+        state.dualTarget = false;
         state.state = mPowerSave ? Tile.STATE_ACTIVE : Tile.STATE_INACTIVE;
         if (mCharging) {
             state.icon = ResourceIcon.get(R.drawable.ic_qs_battery_saver_charging);

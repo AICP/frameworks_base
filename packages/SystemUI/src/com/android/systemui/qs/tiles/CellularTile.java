@@ -76,6 +76,11 @@ public class CellularTile extends QSTileImpl<SignalState> {
     }
 
     @Override
+    public boolean isDualTarget() {
+        return true;
+    }
+
+    @Override
     public SignalState newTileState() {
         return new SignalState();
     }
@@ -162,6 +167,7 @@ public class CellularTile extends QSTileImpl<SignalState> {
         }
 
         final Resources r = mContext.getResources();
+        state.dualTarget = true;
         state.label = r.getString(R.string.mobile_data);
         boolean mobileDataEnabled = mDataController.isMobileDataSupported()
                 && mDataController.isMobileDataEnabled();

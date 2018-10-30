@@ -10022,7 +10022,7 @@ public final class Settings {
 
         /**
          * What behavior should be invoked when the volume hush gesture is triggered
-         * One of VOLUME_HUSH_OFF, VOLUME_HUSH_VIBRATE, VOLUME_HUSH_MUTE.
+         * One of VOLUME_HUSH_OFF, VOLUME_HUSH_VIBRATE, VOLUME_HUSH_MUTE, VOLUME_HUSH_MUTE_NO_MEDIA.
          *
          * @hide
          */
@@ -10038,6 +10038,9 @@ public final class Settings {
         /** @hide */
         @SystemApi
         public static final int VOLUME_HUSH_MUTE = 2;
+        /** @hide */
+        @SystemApi
+        public static final int VOLUME_HUSH_MUTE_NO_MEDIA = 3;
 
         private static final Validator VOLUME_HUSH_GESTURE_VALIDATOR =
                 NON_NEGATIVE_INTEGER_VALIDATOR;
@@ -10191,6 +10194,7 @@ public final class Settings {
         public static final String LOCK_QS_DISABLED = "lockscreen_qs_disabled";
 
         private static final Validator LOCK_QS_DISABLED_VALIDATOR = BOOLEAN_VALIDATOR;
+
 
         /*****************************
          * AICP Secure Settings end

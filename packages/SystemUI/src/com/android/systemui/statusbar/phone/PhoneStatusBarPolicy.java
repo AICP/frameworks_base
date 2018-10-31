@@ -203,6 +203,7 @@ public class PhoneStatusBarPolicy implements Callback, Callbacks,
         filter.addAction(AudioManager.RINGER_MODE_CHANGED_ACTION);
         filter.addAction(AudioManager.INTERNAL_RINGER_MODE_CHANGED_ACTION);
         filter.addAction(AudioManager.ACTION_HEADSET_PLUG);
+        filter.addAction(BluetoothDevice.ACTION_BATTERY_LEVEL_CHANGED);
         filter.addAction(TelephonyIntents.ACTION_SIM_STATE_CHANGED);
         filter.addAction(TelecomManager.ACTION_CURRENT_TTY_MODE_CHANGED);
         filter.addAction(Intent.ACTION_MANAGED_PROFILE_AVAILABLE);
@@ -562,16 +563,28 @@ public class PhoneStatusBarPolicy implements Callback, Callbacks,
     }
 
     private int getBtLevelIconRes(int level) {
-        if (level <= 15) {
-            return R.drawable.stat_sys_data_bluetooth_connected_battery_1;
-        } else if (level <= 40) {
-            return R.drawable.stat_sys_data_bluetooth_connected_battery_2;
-        } else if (level <= 60) {
-            return R.drawable.stat_sys_data_bluetooth_connected_battery_3;
-        } else if (level <= 85) {
-            return R.drawable.stat_sys_data_bluetooth_connected_battery_4;
-        } else {
+        if (level == 100) {
+            return R.drawable.stat_sys_data_bluetooth_connected_battery_9;
+        } else if (level >= 90) {
+            return R.drawable.stat_sys_data_bluetooth_connected_battery_8;
+        } else if (level >= 80) {
+            return R.drawable.stat_sys_data_bluetooth_connected_battery_7;
+        } else if (level >= 70) {
+            return R.drawable.stat_sys_data_bluetooth_connected_battery_6;
+        } else if (level >= 60) {
             return R.drawable.stat_sys_data_bluetooth_connected_battery_5;
+        } else if (level >= 50) {
+            return R.drawable.stat_sys_data_bluetooth_connected_battery_4;
+        } else if (level >= 40) {
+            return R.drawable.stat_sys_data_bluetooth_connected_battery_3;
+        } else if (level >= 30) {
+            return R.drawable.stat_sys_data_bluetooth_connected_battery_2;
+        } else if (level >= 20) {
+            return R.drawable.stat_sys_data_bluetooth_connected_battery_1;
+        } else if (level >= 10) {
+            return R.drawable.stat_sys_data_bluetooth_connected_battery_0;
+        } else {
+            return R.drawable.stat_sys_data_bluetooth_connected;
         }
      }
 

@@ -4381,6 +4381,24 @@ public final class Settings {
         private static final Validator STATUSBAR_BATTERY_BAR_BLEND_DARK_COLORS_REVERSE_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
+       /**
+         * Base theme
+         * @hide
+         */
+        public static final String THEMING_BASE = "theming_base";
+
+        /** @hide */
+        public static final Validator THEMING_BASE_VALIDATOR = ANY_INTEGER_VALIDATOR;
+
+        /**
+         * Base theme
+         * @hide
+         */
+        public static final String THEMING_ACCENT = "theming_accent";
+
+        /** @hide */
+        public static final Validator THEMING_ACCENT_VALIDATOR = ANY_INTEGER_VALIDATOR;
+
 
         /***************************
          * AICP System Settings end
@@ -4521,7 +4539,9 @@ public final class Settings {
             STATUSBAR_BATTERY_BAR_BATTERY_LOW_DARK_COLOR,
             STATUSBAR_BATTERY_BAR_ENABLE_CHARGING_COLOR,
             STATUSBAR_BATTERY_BAR_BLEND_COLORS_REVERSE,
-            STATUSBAR_BATTERY_BAR_BLEND_DARK_COLORS_REVERSE
+            STATUSBAR_BATTERY_BAR_BLEND_DARK_COLORS_REVERSE,
+            THEMING_BASE,
+            THEMING_ACCENT,
             // AICP Settings end
         };
 
@@ -4666,6 +4686,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_ENABLE_CHARGING_COLOR);
             PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_BLEND_COLORS_REVERSE);
             PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_BLEND_DARK_COLORS_REVERSE);
+            PRIVATE_SETTINGS.add(THEMING_BASE);
+            PRIVATE_SETTINGS.add(THEMING_ACCENT);
             // AICP Settings end
         }
 
@@ -4794,6 +4816,8 @@ public final class Settings {
                     STATUSBAR_BATTERY_BAR_BLEND_COLORS_REVERSE_VALIDATOR);
             VALIDATORS.put(STATUSBAR_BATTERY_BAR_BLEND_DARK_COLORS_REVERSE,
                     STATUSBAR_BATTERY_BAR_BLEND_DARK_COLORS_REVERSE_VALIDATOR);
+            VALIDATORS.put(THEMING_BASE, THEMING_BASE_VALIDATOR);
+            VALIDATORS.put(THEMING_ACCENT, THEMING_ACCENT_VALIDATOR);
             // AICP Settings end
         }
 

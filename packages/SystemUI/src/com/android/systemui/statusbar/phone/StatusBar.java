@@ -253,6 +253,8 @@ import com.android.systemui.statusbar.policy.ZenModeController;
 import com.android.systemui.statusbar.stack.NotificationStackScrollLayout;
 import com.android.systemui.volume.VolumeComponent;
 
+import com.aicp.gear.util.ThemeOverlayHelper;
+
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -2120,6 +2122,7 @@ public class StatusBar extends SystemUI implements DemoMode,
     }
 
     public boolean isUsingDarkTheme() {
+        /*
         OverlayInfo themeInfo = null;
         try {
             themeInfo = mOverlayManager.getOverlayInfo("com.android.systemui.theme.dark",
@@ -2128,6 +2131,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             e.printStackTrace();
         }
         return themeInfo != null && themeInfo.isEnabled();
+        */
+        return ThemeOverlayHelper.isUsingDarkTheme(mOverlayManager,
+                mLockscreenUserManager.getCurrentUserId());
     }
 
     @Nullable
@@ -4059,6 +4065,7 @@ public class StatusBar extends SystemUI implements DemoMode,
 
         haltTicker();
 
+        /*
         // The system wallpaper defines if QS should be light or dark.
         WallpaperColors systemColors = mColorExtractor
                 .getWallpaperColors(WallpaperManager.FLAG_SYSTEM);
@@ -4074,6 +4081,13 @@ public class StatusBar extends SystemUI implements DemoMode,
                 }
             });
         }
+        */
+
+        // AICP theming
+        mUiOffloadThread.submit(() -> {
+            ThemeOverlayHelper.updateOverlays(mContext, mOverlayManager,
+                    mLockscreenUserManager.getCurrentUserId());
+        });
 
         // Lock wallpaper defines the color of the majority of the views, hence we'll use it
         // to set our default theme.
@@ -5259,6 +5273,12 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_TICKER_TICK_DURATION),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.THEMING_BASE),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.THEMING_ACCENT),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
         @Override
@@ -5269,7 +5289,11 @@ public class StatusBar extends SystemUI implements DemoMode,
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_TICKER_TICK_DURATION))) {
                 updateTickerTickDuration();
-             }
+            } else if (uri.equals(Settings.System.getUriFor(Settings.System.THEMING_BASE)) ||
+                    uri.equals(Settings.System.getUriFor(Settings.System.THEMING_ACCENT))) {
+                ThemeOverlayHelper.updateOverlays(mContext, mOverlayManager,
+                        mLockscreenUserManager.getCurrentUserId());
+            }
         }
 
         public void update() {

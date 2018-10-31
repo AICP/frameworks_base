@@ -946,7 +946,9 @@ public class PhoneStatusBarPolicy implements Callback, Callbacks,
                 case NfcAdapter.ACTION_ADAPTER_STATE_CHANGED:
                     updateNfc();
                     break;
-
+                case BluetoothDevice.ACTION_BATTERY_LEVEL_CHANGED:
+                    updateBluetooth();
+                    break;
             }
         }
     };

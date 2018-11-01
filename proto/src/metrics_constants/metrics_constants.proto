@@ -4197,6 +4197,7 @@ message MetricsEvent {
 
     // ACTION: Custom AICP metrics
     AICP_METRICS = 10000;
+    CUSTOM_QUICK_TILES = 9001;
 
     // meta-event: a reader has checkpointed the log here.
     METRICS_CHECKPOINT = 920;

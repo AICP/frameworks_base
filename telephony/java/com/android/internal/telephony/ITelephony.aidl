@@ -2310,4 +2310,11 @@ interface ITelephony {
      * Whether device can connect to 5G network when two SIMs are active.
      */
     boolean canConnectTo5GInDsdsMode();
+
+    /**
+     * Toggle between 2G and 3G (NT_MODE_GSM, NT_MODE_WCDMA_PREF)
+     * @param boolean to turn on and off 2G
+     * @hide
+     */
+     void toggle2G(boolean on);
 }

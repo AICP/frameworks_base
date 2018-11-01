@@ -6119,6 +6119,8 @@ message MetricsEvent {
     // ACTION: Custom AICP metrics
     AICP_METRICS = 10000;
 
+    CUSTOM_QUICK_TILES = 9001;
+
     // ---- End P Constants, all P constants go above this line ----
     // Add new aosp constants above this line.
     // END OF AOSP CONSTANTS

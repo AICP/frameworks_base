@@ -274,7 +274,7 @@ public class NetworkPolicyManager {
                     final Range<ZonedDateTime> r = it.next();
                     return Pair.create(r.getLower(), r.getUpper());
                 } else {
-                    return Pair.create(null, null);
+                    return Pair.create(ZonedDateTime.now(), ZonedDateTime.now());
                 }
             }
         };

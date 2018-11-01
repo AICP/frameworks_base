@@ -6492,7 +6492,7 @@ public final class Settings {
                 ANY_STRING_VALIDATOR;
 
         /**
-	* @hide
+         * @hide
          */
         public static final String OMNI_SYSTEM_PROXI_CHECK_ENABLED = "system_proxi_check_enabled";
 
@@ -6945,7 +6945,32 @@ public final class Settings {
          */
         public static final String NOTIFICATION_HEADERS = "notification_headers";
 
+        /** @hide */
         private static final Validator NOTIFICATION_HEADERS_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
+         * @hide
+         */
+        public static final String SCREEN_STATE_TWOG = "screen_state_twog";
+
+        /** @hide */
+        private static final Validator SCREEN_STATE_TWOG_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
+         * @hide
+         */
+        public static final String SCREEN_STATE_GPS = "screen_state_gps";
+
+        /** @hide */
+        private static final Validator SCREEN_STATE_GPS_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
+         * @hide
+         */
+        public static final String SCREEN_STATE_MOBILE_DATA = "screen_state_mobile_data";
+
+        /** @hide */
+        private static final Validator SCREEN_STATE_MOBILE_DATA_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /***************************
          * AICP System Settings end
@@ -7216,6 +7241,9 @@ public final class Settings {
             FOD_ANIM,
             ADAPTIVE_PLAYBACK_ENABLED,
             NOTIFICATION_HEADERS,
+            SCREEN_STATE_GPS,
+            SCREEN_STATE_MOBILE_DATA,
+            SCREEN_STATE_TWOG,
             // AICP Settings end
         };
 
@@ -7562,6 +7590,9 @@ public final class Settings {
             PRIVATE_SETTINGS.add(DISPLAY_COLOR_ADJUSTMENT);
             PRIVATE_SETTINGS.add(DISPLAY_PICTURE_ADJUSTMENT);
             PRIVATE_SETTINGS.add(LIVE_DISPLAY_HINTED);
+            PRIVATE_SETTINGS.add(SCREEN_STATE_GPS);
+            PRIVATE_SETTINGS.add(SCREEN_STATE_MOBILE_DATA);
+            PRIVATE_SETTINGS.add(SCREEN_STATE_TWOG);
             // AICP Settings end
         }
 
@@ -7895,6 +7926,9 @@ public final class Settings {
             VALIDATORS.put(DISPLAY_PICTURE_ADJUSTMENT, DISPLAY_PICTURE_ADJUSTMENT_VALIDATOR);
             VALIDATORS.put(LIVE_DISPLAY_HINTED, LIVE_DISPLAY_HINTED_VALIDATOR);
             VALIDATORS.put(NOTIFICATION_HEADERS, NOTIFICATION_HEADERS_VALIDATOR);
+            VALIDATORS.put(SCREEN_STATE_GPS, SCREEN_STATE_GPS_VALIDATOR);
+            VALIDATORS.put(SCREEN_STATE_MOBILE_DATA, SCREEN_STATE_MOBILE_DATA_VALIDATOR);
+            VALIDATORS.put(SCREEN_STATE_TWOG, SCREEN_STATE_TWOG_VALIDATOR);
             // AICP Settings end
         }
 
@@ -17374,6 +17408,31 @@ public final class Settings {
         public static final String RINGTONE_FOCUS_MODE = "ringtone_focus_mode";
 
         /**
+         * @hide
+         */
+        public static final String START_SCREEN_STATE_SERVICE = "start_screen_state_service";
+
+        private static final Validator START_SCREEN_STATE_SERVICE_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
+         * @hide
+         */
+        public static final String SCREEN_STATE_OFF_DELAY = "screen_state_off_delay";
+
+        /** @hide */
+        public static final Validator SCREEN_STATE_OFF_DELAY_VALIDATOR =
+                new SettingsValidators.InclusiveIntegerRangeValidator(0, 30);
+
+        /**
+         * @hide
+         */
+        public static final String SCREEN_STATE_ON_DELAY = "screen_state_on_delay";
+
+        /** @hide */
+        public static final Validator SCREEN_STATE_ON_DELAY_VALIDATOR =
+                new SettingsValidators.InclusiveIntegerRangeValidator(0, 30);
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -17425,6 +17484,9 @@ public final class Settings {
             NOTIFICATION_BUBBLES,
             LOCKSCREEN_ENABLE_POWER_MENU,
             SHOW_FPS_OVERLAY,
+            START_SCREEN_STATE_SERVICE,
+            SCREEN_STATE_OFF_DELAY,
+            SCREEN_STATE_ON_DELAY,
         };
 
         /**
@@ -17495,6 +17557,9 @@ public final class Settings {
             VALIDATORS.put(NOTIFICATION_BUBBLES, NOTIFICATION_BUBBLES_VALIDATOR);
             VALIDATORS.put(LOCKSCREEN_ENABLE_POWER_MENU,LOCKSCREEN_ENABLE_POWER_MENU_VALIDATOR);
             VALIDATORS.put(SHOW_FPS_OVERLAY, SHOW_FPS_OVERLAY_VALIDATOR);
+            VALIDATORS.put(START_SCREEN_STATE_SERVICE, START_SCREEN_STATE_SERVICE_VALIDATOR);
+            VALIDATORS.put(SCREEN_STATE_OFF_DELAY, SCREEN_STATE_OFF_DELAY_VALIDATOR);
+            VALIDATORS.put(SCREEN_STATE_ON_DELAY, SCREEN_STATE_ON_DELAY_VALIDATOR);
         }
 
         /**

@@ -7068,6 +7068,21 @@ public final class Settings {
          */
         public static final String SENSOR_BLOCKED_APP = "sensor_blocked_app";
 
+        /**
+         * @hide
+         */
+        public static final String SCREEN_STATE_GPS = "screen_state_gps";
+
+        /**
+         * @hide
+         */
+        public static final String SCREEN_STATE_MOBILE_DATA = "screen_state_mobile_data";
+
+        /**
+         * @hide
+         */
+        public static final String SCREEN_STATE_TWOG = "screen_state_twog";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7324,6 +7339,9 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(NETWORK_TRAFFIC_INDICATOR_MODE, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(APP_LOCK_SHOW_ONLY_ON_WAKE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(SENSOR_BLOCKED_APP, ANY_STRING_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(SCREEN_STATE_GPS, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(SCREEN_STATE_MOBILE_DATA, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(SCREEN_STATE_TWOG, BOOLEAN_VALIDATOR);
         }
 
         /**
@@ -15900,6 +15918,21 @@ public final class Settings {
          * @hide
          */
         public static final String ANIMATION_CONTROLS_DURATION = "animation_controls_duration";
+
+        /**
+         * @hide
+         */
+        public static final String START_SCREEN_STATE_SERVICE = "start_screen_state_service";
+
+        /**
+         * @hide
+         */
+        public static final String SCREEN_STATE_OFF_DELAY = "screen_state_off_delay";
+
+        /**
+         * @hide
+         */
+        public static final String SCREEN_STATE_ON_DELAY = "screen_state_on_delay";
 
         /***************************
          * AICP Global Settings end

@@ -321,6 +321,8 @@
     <uses-permission android:name="android.permission.MAINLINE_NETWORK_STACK" />
     <uses-permission android:name="android.permission.NETWORK_STACK" />
 
+    <protected-broadcast android:name="android.intent.action.SCREEN_STATE_SERVICE_UPDATE" />
+
     <application
         android:name=".SystemUIApplication"
         android:persistent="true"
@@ -404,15 +406,16 @@
         <service android:name="com.android.systemui.CPUInfoService"
                 android:exported="false" />
 
-        <receiver android:name=".BootReceiver" androidprv:systemUserOnly="true">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
-
         <!-- FPS Info -->
         <service android:name="com.android.systemui.FPSInfoService"
                 android:exported="false" />
+
+        <service android:name=".screenstate.ScreenStateService"
+                android:exported="false" >
+            <intent-filter>
+               <action android:name="android.intent.action.SCREEN_STATE_SERVICE_UPDATE"/>
+            </intent-filter>
+        </service>
 
         <receiver android:name=".BootReceiver" androidprv:systemUserOnly="true">
             <intent-filter>

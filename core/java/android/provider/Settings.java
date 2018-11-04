@@ -5623,6 +5623,16 @@ public final class Settings {
         /** @hide */
         private static final Validator BATTERY_LIGHT_BLEND_REVERSE_VALIDATOR = BOOLEAN_VALIDATOR;
 
+        /**
+        * Apps to skip for Pulse
+        * @hide
+        */
+        public static final String PULSE_APPS_BLACKLIST = "pulse_apps_blacklist";
+
+        /** @hide */
+        private static final Validator PULSE_APPS_BLACKLIST_VALIDATOR =
+                ANY_STRING_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5816,6 +5826,7 @@ public final class Settings {
             BATTERY_LIGHT_BLEND_EMPTY_COLOR,
             BATTERY_LIGHT_BLEND_REVERSE,
             NETWORK_TRAFFIC_EXPANDED_STATUS_BAR_STATE,
+            PULSE_APPS_BLACKLIST,
             // AICP Settings end
         };
 
@@ -6073,6 +6084,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(BATTERY_LIGHT_BLEND_EMPTY_COLOR);
             PRIVATE_SETTINGS.add(BATTERY_LIGHT_BLEND_REVERSE);
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_EXPANDED_STATUS_BAR_STATE);
+            PRIVATE_SETTINGS.add(PULSE_APPS_BLACKLIST);
             // AICP Settings end
         }
 
@@ -6320,6 +6332,7 @@ public final class Settings {
             VALIDATORS.put(BATTERY_LIGHT_BLEND_EMPTY_COLOR, BATTERY_LIGHT_BLEND_EMPTY_COLOR_VALIDATOR);
             VALIDATORS.put(BATTERY_LIGHT_BLEND_REVERSE, BATTERY_LIGHT_BLEND_REVERSE_VALIDATOR);
             VALIDATORS.put(NETWORK_TRAFFIC_EXPANDED_STATUS_BAR_STATE, NETWORK_TRAFFIC_EXPANDED_STATUS_BAR_STATE_VALIDATOR);
+            VALIDATORS.put(PULSE_APPS_BLACKLIST,PULSE_APPS_BLACKLIST_VALIDATOR);
             // AICP Settings end
         }
 

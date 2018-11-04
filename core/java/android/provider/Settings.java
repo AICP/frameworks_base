@@ -4556,13 +4556,6 @@ public final class Settings {
         };
 
         /**
-         * IMPORTANT: If you add a new public settings you also have to add it to
-         * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
-         * it to PRIVATE_SETTINGS below. Also add a validator that can validate
-         * the setting value. See an example above.
-         */
-
-        /**
          * Three Finger Gesture from Oppo
          * @hide
          */
@@ -4623,6 +4616,13 @@ public final class Settings {
         /** @hide */
         private static final Validator OMNI_SHOW_BATTERY_IMAGE_VALIDATOR =
                 BOOLEAN_VALIDATOR;
+
+        /**
+         * IMPORTANT: If you add a new public settings you also have to add it to
+         * PUBLIC_SETTINGS below. If the new setting is hidden you have to add   
+         * it to PRIVATE_SETTINGS below. Also add a validator that can validate
+         * the setting value. See an example above.
+         */
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings

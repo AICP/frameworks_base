@@ -65,6 +65,7 @@
           7 - Launch last app
           8 - Split screen
           9 - Force-close app
+          10 - Screenshot
        This needs to match the constants in
        services/core/java/com/android/server/policy/PhoneWindowManager.java -->
 

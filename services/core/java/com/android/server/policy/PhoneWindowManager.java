@@ -395,6 +395,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private static final int KEY_ACTION_LAST_APP = 7;
     private static final int KEY_ACTION_SPLIT_SCREEN = 8;
     private static final int KEY_ACTION_FORCE_CLOSE_APP = 9;
+    private static final int KEY_ACTION_SCREENSHOT = 10;
 
     // Special values, used internal only.
     private static final int KEY_ACTION_HOME = 100;
@@ -2045,6 +2046,12 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         }
     };
 
+    private void takeScreenshot() {
+        mHandler.removeCallbacks(mScreenshotRunnable);
+        mScreenshotRunnable.setScreenshotType(TAKE_SCREENSHOT_FULLSCREEN);
+        mHandler.post(mScreenshotRunnable);
+    }
+
     @Override
     public void showGlobalActions() {
         mHandler.removeMessages(MSG_DISPATCH_SHOW_GLOBAL_ACTIONS);
@@ -2382,7 +2389,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         mOPGestures = new OPGesturesListener(context, new OPGesturesListener.Callbacks() {
             @Override
             public void onSwipeThreeFinger() {
-                mHandler.post(mScreenshotRunnable);
+                takeScreenshot();
             }
         });
 
@@ -4166,7 +4173,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             KEY_ACTION_CAMERA,
             KEY_ACTION_LAST_APP,
             KEY_ACTION_SPLIT_SCREEN,
-            KEY_ACTION_FORCE_CLOSE_APP
+            KEY_ACTION_FORCE_CLOSE_APP,
+            KEY_ACTION_SCREENSHOT
         };
 
     /**
@@ -4384,6 +4392,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 break;
             case KEY_ACTION_FORCE_CLOSE_APP:
                 forceCloseApp();
+                break;
+            case KEY_ACTION_SCREENSHOT:
+                takeScreenshot();
                 break;
         }
     }
@@ -7227,13 +7238,13 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     result &= ~ACTION_PASS_TO_USER;
                 }
                 if (!interactive && isWakeKey && down) {
-                    mVolumeWakeActive = true;
+                    mVolumeWakeScreen = true;
                     break;
                 }
-                if (!down && mVolumeWakeActive) {
+                if (!down && mVolumeWakeScreen) {
                     isWakeKey = false;
                     result &= ~ACTION_PASS_TO_USER;
-                    mVolumeWakeActive = false;
+                    mVolumeWakeScreen = false;
                     break;
                 }
                 // we come back from a handled music control event - ignore the up event

@@ -13,4 +13,9 @@
     <dimen name="ticker_icon_end_margin">4dp</dimen>
     <dimen name="ticker_text_top_padding">2dp</dimen>
     <dimen name="ticker_text_end_padding">10dp</dimen>
+
+    <!-- Extra margins for quick_qs_status_icons for better design on devices
+        without round display corners -->
+    <dimen name="quick_status_bar_system_icons_margin_start">14dp</dimen>
+    <dimen name="quick_status_bar_system_icons_margin_end">14dp</dimen>
 </resources>

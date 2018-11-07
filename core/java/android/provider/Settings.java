@@ -5929,6 +5929,12 @@ public final class Settings {
          */
         public static final String STATUSBAR_BATTERY_BAR_ANIMATE = "statusbar_battery_bar_animate";
 
+	/**
+         * Location of the battery bar
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_LOCATION = "statusbar_battery_bar_location";
+
         /**
          * Whether to show seconds next to clock in status bar
          * 0 - hide (default)

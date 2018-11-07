@@ -4262,7 +4262,16 @@ public final class Settings {
         public static final String STATUSBAR_BATTERY_BAR = "statusbar_battery_bar";
 
         /** @hide */
-        private static final Validator STATUSBAR_BATTERY_BAR_VALIDATOR = ANY_INTEGER_VALIDATOR;
+        private static final Validator STATUSBAR_BATTERY_BAR_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
+         * Location of the battery bar
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_LOCATION = "statusbar_battery_bar_location";
+
+        /** @hide */
+        private static final Validator STATUSBAR_BATTERY_BAR_LOCATION_VALIDATOR = ANY_INTEGER_VALIDATOR;
 
         /**
          * @hide
@@ -4698,6 +4707,7 @@ public final class Settings {
             STATUS_BAR_TICKER_ANIMATION_MODE,
             STATUS_BAR_TICKER_TICK_DURATION,
             STATUSBAR_BATTERY_BAR,
+            STATUSBAR_BATTERY_BAR_LOCATION,
             STATUSBAR_BATTERY_BAR_COLOR,
             STATUSBAR_BATTERY_BAR_DARK_COLOR,
             STATUSBAR_BATTERY_BAR_THICKNESS,
@@ -4846,6 +4856,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUS_BAR_TICKER_ANIMATION_MODE);
             PRIVATE_SETTINGS.add(STATUS_BAR_TICKER_TICK_DURATION);
             PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR);
+            PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_LOCATION);
             PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_COLOR);
             PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_DARK_COLOR);
             PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_THICKNESS);
@@ -4984,6 +4995,7 @@ public final class Settings {
             VALIDATORS.put(STATUS_BAR_TICKER_TICK_DURATION,
                     STATUS_BAR_TICKER_TICK_DURATION_VALIDATOR);
             VALIDATORS.put(STATUSBAR_BATTERY_BAR, STATUSBAR_BATTERY_BAR_VALIDATOR);
+            VALIDATORS.put(STATUSBAR_BATTERY_BAR_LOCATION, STATUSBAR_BATTERY_BAR_LOCATION_VALIDATOR);
             VALIDATORS.put(STATUSBAR_BATTERY_BAR_COLOR, STATUSBAR_BATTERY_BAR_COLOR_VALIDATOR);
             VALIDATORS.put(STATUSBAR_BATTERY_BAR_DARK_COLOR,
                     STATUSBAR_BATTERY_BAR_DARK_COLOR_VALIDATOR);

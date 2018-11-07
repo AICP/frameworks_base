@@ -211,7 +211,7 @@ public class PhoneStatusBarPolicy
         updateTTY();
 
         // bluetooth status
-        updateBluetooth();
+        updateSettings();
 
         // Alarm clock
         mIconController.setIcon(mSlotAlarmClock, R.drawable.stat_sys_alarm, null);
@@ -436,12 +436,12 @@ public class PhoneStatusBarPolicy
 
     @Override
     public void onBluetoothDevicesChanged() {
-        updateBluetooth();
+        updateSettings();
     }
 
     @Override
     public void onBluetoothStateChange(boolean enabled) {
-        updateBluetooth();
+        updateSettings();
     }
 
     private final void updateBluetooth() {
@@ -460,7 +460,8 @@ public class PhoneStatusBarPolicy
                     if (state == BluetoothProfile.STATE_CONNECTED) {
                         int batteryLevel = device.getBatteryLevel();
                         BluetoothClass type = device.getBtClass();
-                        if (batteryLevel != BluetoothDevice.BATTERY_LEVEL_UNKNOWN && showBatteryForThis(type)) {
+                        if (batteryLevel != BluetoothDevice.BATTERY_LEVEL_UNKNOWN && showBatteryForThis(type)
+                              && mShowBluetoothBattery) {
                             iconId = getBtLevelIconRes(batteryLevel);
                         } else {
                             iconId = R.drawable.stat_sys_data_bluetooth_connected;

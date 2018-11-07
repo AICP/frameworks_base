@@ -142,7 +142,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
     private List<String> mBlockedIcons = new ArrayList<>();
 
     // AICP additions
-    private View mBatteryBar;
+    private View mBatteryBars[] = new View[2];
 
     private SignalCallback mSignalCallback = new SignalCallback() {
         @Override
@@ -257,7 +257,8 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
         mClockView = mStatusBar.findViewById(R.id.clock);
         mCenterClockView = mStatusBar.findViewById(R.id.clock_center);
         mRightClockView = mStatusBar.findViewById(R.id.clock_right);
-        mBatteryBar = mStatusBar.findViewById(R.id.battery_bar);
+        mBatteryBars[0] = mStatusBar.findViewById(R.id.battery_bar);
+        mBatteryBars[1] = mStatusBar.findViewById(R.id.battery_bar_1);
         showSystemIconArea(false);
         showClock(false);
         initEmergencyCryptkeeperText();
@@ -547,7 +548,9 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
 
     private void hideSystemIconArea(boolean animate) {
         animateHide(mSystemIconArea, animate);
-        animateHide(mBatteryBar, animate);
+        for (View batteryBar: mBatteryBars) {
+            animateHide(batteryBar, animate);
+        }
     }
 
     public void showSystemIconArea(boolean animate) {
@@ -555,7 +558,9 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
         int state = mAnimationScheduler.getAnimationState();
         if (state == IDLE || state == SHOWING_PERSISTENT_DOT) {
             animateShow(mSystemIconArea, animate);
-            animateShow(mBatteryBar, animate);
+           for (View batteryBar: mBatteryBars) {
+               animateShow(batteryBar, animate);
+           }
         } else {
             // We are in the middle of a system status event animation, which will animate the
             // alpha (but not the visibility). Allow the view to become visible again

@@ -6615,6 +6615,12 @@ public final class Settings {
          */
         public static final String STATUSBAR_BATTERY_BAR_ANIMATE = "statusbar_battery_bar_animate";
 
+        /**
+         * Location of the battery bar
+         * @hide
+         */
+        public static final String STATUSBAR_BATTERY_BAR_LOCATION = "statusbar_battery_bar_location";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6826,6 +6832,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_THICKNESS);
             PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_STYLE);
             PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_ANIMATE);
+            PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_LOCATION);
         }
 
         /**

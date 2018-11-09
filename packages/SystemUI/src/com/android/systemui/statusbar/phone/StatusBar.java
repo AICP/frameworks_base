@@ -5335,6 +5335,21 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.OMNI_QS_TILE_TITLE_VISIBILITY),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.OMNI_QS_LAYOUT_ROWS),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.OMNI_QS_LAYOUT_ROWS_LANDSCAPE),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.OMNI_QS_LAYOUT_COLUMNS),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.OMNI_QS_QUICKBAR_COLUMNS),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
         @Override
@@ -5350,15 +5365,20 @@ public class StatusBar extends SystemUI implements DemoMode,
                 ThemeOverlayHelper.updateOverlays(mContext, mOverlayManager,
                         mLockscreenUserManager.getCurrentUserId());
             } else if (uri.equals(Settings.System.getUriFor(
-                    Settings.System.OMNI_QS_TILE_TITLE_VISIBILITY))) {
-                updateTileTitleVisibility();
+                    Settings.System.OMNI_QS_TILE_TITLE_VISIBILITY)) ||
+                    uri.equals(Settings.System.getUriFor(Settings.System.OMNI_QS_LAYOUT_ROWS)) ||
+                    uri.equals(Settings.System.getUriFor(Settings.System.OMNI_QS_LAYOUT_ROWS_LANDSCAPE)) ||
+                    uri.equals(Settings.System.getUriFor(Settings.System.OMNI_QS_LAYOUT_COLUMNS)) ||
+                    uri.equals(Settings.System.getUriFor(Settings.System.OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE) ||
+                    uri.equals(Settings.System.getUriFor(Settings.System.OMNI_QS_QUICKBAR_COLUMNS))) {
+                updateTileLayouts();
             }
         }
 
         public void update() {
             updateTickerAnimation();
             updateTickerTickDuration();
-            updateTileTitleVisibility();
+            updateTileLayouts();
         }
     }
 
@@ -5378,7 +5398,7 @@ public class StatusBar extends SystemUI implements DemoMode,
         }
     }
 
-    private void updateTileTitleVisibility() {
+    private void updateTileLayouts() {
         int showTileTitles = Settings.System.getIntForUser(
                 mContext.getContentResolver(), Settings.System.OMNI_QS_TILE_TITLE_VISIBILITY,
                 1, UserHandle.USER_CURRENT);
@@ -6029,6 +6049,9 @@ public class StatusBar extends SystemUI implements DemoMode,
 
         if (mQSPanel != null) {
           mQSPanel.updateSettings();
+        }
+        if (mQuickQSPanel != null) {
+          mQuickQSPanel.updateResources();
         }
     }
 }

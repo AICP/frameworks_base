@@ -5418,35 +5418,6 @@ public class StatusBar extends SystemUI implements DemoMode,
         }
     }
 
-    private void updateTickerAnimation() {
-        mTickerAnimationMode = Settings.System.getIntForUser(mContext.getContentResolver(),
-                Settings.System.STATUS_BAR_TICKER_ANIMATION_MODE, 0, UserHandle.USER_CURRENT);
-        if (mTicker != null) {
-            mTicker.updateAnimation(mTickerAnimationMode);
-        }
-    }
-
-    private void updateTickerTickDuration() {
-        mTickerTickDuration = Settings.System.getIntForUser(mContext.getContentResolver(),
-                Settings.System.STATUS_BAR_TICKER_TICK_DURATION, 3000, UserHandle.USER_CURRENT);
-        if (mTicker != null) {
-            mTicker.updateTickDuration(mTickerTickDuration);
-        }
-    }
-
-    private void updateTileLayouts() {
-        int showTileTitles = Settings.System.getIntForUser(
-                mContext.getContentResolver(), Settings.System.AICP_QS_TILE_TITLE_VISIBILITY,
-                1, UserHandle.USER_CURRENT);
-        if (showTileTitles != -1){
-            boolean showTileTitlesBool = showTileTitles == 1;
-            if (showTileTitlesBool !=  mShowTileTitles){
-                mShowTileTitles = showTileTitlesBool;
-            }
-            updateTiles();
-        }
-    }
-
     private final BroadcastReceiver mBannerActionBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -6081,6 +6052,35 @@ public class StatusBar extends SystemUI implements DemoMode,
             };
 
     // aicp additions start
+    private void updateTickerAnimation() {
+        mTickerAnimationMode = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.STATUS_BAR_TICKER_ANIMATION_MODE, 0, UserHandle.USER_CURRENT);
+        if (mTicker != null) {
+            mTicker.updateAnimation(mTickerAnimationMode);
+        }
+    }
+
+    private void updateTickerTickDuration() {
+        mTickerTickDuration = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.STATUS_BAR_TICKER_TICK_DURATION, 3000, UserHandle.USER_CURRENT);
+        if (mTicker != null) {
+            mTicker.updateTickDuration(mTickerTickDuration);
+        }
+    }
+
+    private void updateTileLayouts() {
+        int showTileTitles = Settings.System.getIntForUser(
+                mContext.getContentResolver(), Settings.System.AICP_QS_TILE_TITLE_VISIBILITY,
+                1, UserHandle.USER_CURRENT);
+        if (showTileTitles != -1){
+            boolean showTileTitlesBool = showTileTitles == 1;
+            if (showTileTitlesBool !=  mShowTileTitles){
+                mShowTileTitles = showTileTitlesBool;
+            }
+            updateTiles();
+        }
+    }
+
     private void updateTiles() {
         if (DEBUG) Log.v(TAG, "showTileTitles=" + mShowTileTitles);
 

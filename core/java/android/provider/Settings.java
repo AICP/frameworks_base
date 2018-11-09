@@ -4693,6 +4693,10 @@ public final class Settings {
          */
         public static final String THREE_FINGER_GESTURE = "three_finger_gesture";
 
+        /** @hide */
+        private static final Validator THREE_FINGER_GESTURE_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
         /**
          * @hide
          */
@@ -4862,6 +4866,7 @@ public final class Settings {
             OMNI_QS_QUICKBAR_COLUMNS,
             TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK,
             MUSIC_TILE_TITLE,
+            THREE_FINGER_GESTURE,
             // AICP Settings end
         };
 
@@ -5037,6 +5042,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(OMNI_QS_QUICKBAR_COLUMNS);
             PRIVATE_SETTINGS.add(TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK);
             PRIVATE_SETTINGS.add(MUSIC_TILE_TITLE);
+            PRIVATE_SETTINGS.add(THREE_FINGER_GESTURE);
             // AICP Settings end
         }
 
@@ -5188,6 +5194,7 @@ public final class Settings {
             VALIDATORS.put(OMNI_QS_QUICKBAR_COLUMNS, OMNI_QS_QUICKBAR_COLUMNS_VALIDATOR);
             VALIDATORS.put(TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK, TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK_VALIDATOR);
             VALIDATORS.put(MUSIC_TILE_TITLE, MUSIC_TILE_TITLE_VALIDATOR);
+            VALIDATORS.put(THREE_FINGER_GESTURE,THREE_FINGER_GESTURE_VALIDATOR);
             // AICP Settings end
         }
 

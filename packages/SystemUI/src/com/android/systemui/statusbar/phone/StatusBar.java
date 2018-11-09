@@ -822,6 +822,7 @@ public class StatusBar extends SystemUI implements DemoMode,
         Dependency.get(ConfigurationController.class).addCallback(this);
 
         mAicpSettingsObserver.observe();
+        mAicpSettingsObserver.update();
     }
 
     // ================================================================================
@@ -3385,6 +3386,7 @@ public class StatusBar extends SystemUI implements DemoMode,
         updateNotificationViews();
         mMediaManager.clearCurrentMediaNotification();
         setLockscreenUser(newUserId);
+        mAicpSettingsObserver.update();
     }
 
     @Override
@@ -5309,6 +5311,7 @@ public class StatusBar extends SystemUI implements DemoMode,
         return mVrMode;
     }
 
+    private boolean mShowTileTitles;
     private AicpSettingsObserver mAicpSettingsObserver = new AicpSettingsObserver(mHandler);
     private class AicpSettingsObserver extends ContentObserver {
         AicpSettingsObserver(Handler handler) {
@@ -5329,6 +5332,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.THEMING_ACCENT),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.OMNI_QS_TILE_TITLE_VISIBILITY),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
         @Override
@@ -5343,12 +5349,16 @@ public class StatusBar extends SystemUI implements DemoMode,
                     uri.equals(Settings.System.getUriFor(Settings.System.THEMING_ACCENT))) {
                 ThemeOverlayHelper.updateOverlays(mContext, mOverlayManager,
                         mLockscreenUserManager.getCurrentUserId());
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.OMNI_QS_TILE_TITLE_VISIBILITY))) {
+                updateTileTitleVisibility();
             }
         }
 
         public void update() {
             updateTickerAnimation();
             updateTickerTickDuration();
+            updateTileTitleVisibility();
         }
     }
 
@@ -5368,6 +5378,18 @@ public class StatusBar extends SystemUI implements DemoMode,
         }
     }
 
+    private void updateTileTitleVisibility() {
+        int showTileTitles = Settings.System.getIntForUser(
+                mContext.getContentResolver(), Settings.System.OMNI_QS_TILE_TITLE_VISIBILITY,
+                1, UserHandle.USER_CURRENT);
+        if (showTileTitles != -1){
+            boolean showTileTitlesBool = showTileTitles == 1;
+            if (showTileTitlesBool !=  mShowTileTitles){
+                mShowTileTitles = showTileTitlesBool;
+            }
+            updateTiles();
+        }
+    }
     private final BroadcastReceiver mBannerActionBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -5971,7 +5993,7 @@ public class StatusBar extends SystemUI implements DemoMode,
         checkBarModes();
         notifyUiVisibilityChanged(mSystemUiVisibility);
     }
-	
+
     public NotificationGutsManager getGutsManager() {
         return mGutsManager;
     }
@@ -6001,4 +6023,12 @@ public class StatusBar extends SystemUI implements DemoMode,
                 }
             };
 
+    // aicp additions start
+    private void updateTiles() {
+        if (DEBUG) Log.v(TAG, "showTileTitles=" + mShowTileTitles);
+
+        if (mQSPanel != null) {
+          mQSPanel.updateSettings();
+        }
+    }
 }

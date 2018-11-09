@@ -5333,22 +5333,22 @@ public class StatusBar extends SystemUI implements DemoMode,
                     Settings.System.THEMING_ACCENT),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.OMNI_QS_TILE_TITLE_VISIBILITY),
+                    Settings.System.AICP_QS_TILE_TITLE_VISIBILITY),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.OMNI_QS_LAYOUT_ROWS),
+                    Settings.System.AICP_QS_LAYOUT_ROWS),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.OMNI_QS_LAYOUT_ROWS_LANDSCAPE),
+                    Settings.System.AICP_QS_LAYOUT_ROWS_LANDSCAPE),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.OMNI_QS_LAYOUT_COLUMNS),
+                    Settings.System.AICP_QS_LAYOUT_COLUMNS),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE),
+                    Settings.System.AICP_QS_LAYOUT_COLUMNS_LANDSCAPE),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.OMNI_QS_QUICKBAR_COLUMNS),
+                    Settings.System.AICP_QS_QUICKBAR_COLUMNS),
                     false, this, UserHandle.USER_ALL);
             update();
         }
@@ -5365,12 +5365,12 @@ public class StatusBar extends SystemUI implements DemoMode,
                 ThemeOverlayHelper.updateOverlays(mContext, mOverlayManager,
                         mLockscreenUserManager.getCurrentUserId());
             } else if (uri.equals(Settings.System.getUriFor(
-                    Settings.System.OMNI_QS_TILE_TITLE_VISIBILITY)) ||
-                    uri.equals(Settings.System.getUriFor(Settings.System.OMNI_QS_LAYOUT_ROWS)) ||
-                    uri.equals(Settings.System.getUriFor(Settings.System.OMNI_QS_LAYOUT_ROWS_LANDSCAPE)) ||
-                    uri.equals(Settings.System.getUriFor(Settings.System.OMNI_QS_LAYOUT_COLUMNS)) ||
-                    uri.equals(Settings.System.getUriFor(Settings.System.OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE) ||
-                    uri.equals(Settings.System.getUriFor(Settings.System.OMNI_QS_QUICKBAR_COLUMNS))) {
+                    Settings.System.AICP_QS_TILE_TITLE_VISIBILITY)) ||
+                    uri.equals(Settings.System.getUriFor(Settings.System.AICP_QS_LAYOUT_ROWS)) ||
+                    uri.equals(Settings.System.getUriFor(Settings.System.AICP_QS_LAYOUT_ROWS_LANDSCAPE)) ||
+                    uri.equals(Settings.System.getUriFor(Settings.System.AICP_QS_LAYOUT_COLUMNS)) ||
+                    uri.equals(Settings.System.getUriFor(Settings.System.AICP_QS_LAYOUT_COLUMNS_LANDSCAPE) ||
+                    uri.equals(Settings.System.getUriFor(Settings.System.AICP_QS_QUICKBAR_COLUMNS))) {
                 updateTileLayouts();
             }
         }
@@ -5400,7 +5400,7 @@ public class StatusBar extends SystemUI implements DemoMode,
 
     private void updateTileLayouts() {
         int showTileTitles = Settings.System.getIntForUser(
-                mContext.getContentResolver(), Settings.System.OMNI_QS_TILE_TITLE_VISIBILITY,
+                mContext.getContentResolver(), Settings.System.AICP_QS_TILE_TITLE_VISIBILITY,
                 1, UserHandle.USER_CURRENT);
         if (showTileTitles != -1){
             boolean showTileTitlesBool = showTileTitles == 1;

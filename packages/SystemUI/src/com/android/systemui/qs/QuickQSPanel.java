@@ -181,7 +181,7 @@ public class QuickQSPanel extends QSPanel {
 
     public void updateSettings() {
         int qsColumns = Settings.System.getIntForUser(
-                mContext.getContentResolver(), Settings.System.OMNI_QS_QUICKBAR_COLUMNS,
+                mContext.getContentResolver(), Settings.System.AICP_QS_QUICKBAR_COLUMNS,
                 NUM_QUICK_TILES_DEFAULT, UserHandle.USER_CURRENT);
         if (qsColumns == -1) {
             setMaxTiles(Math.max(NUM_QUICK_TILES_DEFAULT, getNumColumns()));

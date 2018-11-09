@@ -1083,7 +1083,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     Settings.System.THREE_FINGER_GESTURE), false, this,
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.OMNI_USE_BOTTOM_GESTURE_NAVIGATION), false, this,
+                    Settings.System.AICP_USE_BOTTOM_GESTURE_NAVIGATION), false, this,
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.NAVIGATION_BAR_ENABLED), false, this,
@@ -2909,7 +2909,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 mImmersiveModeConfirmation.loadSetting(mCurrentUserId);
             }
             mUseGestureButton = Settings.System.getIntForUser(resolver,
-                    Settings.System.OMNI_USE_BOTTOM_GESTURE_NAVIGATION, 0,
+                    Settings.System.AICP_USE_BOTTOM_GESTURE_NAVIGATION, 0,
                     UserHandle.USER_CURRENT) != 0;
         }
         synchronized (mWindowManagerFuncs.getWindowManagerLock()) {

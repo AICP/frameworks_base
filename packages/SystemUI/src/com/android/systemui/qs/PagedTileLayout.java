@@ -386,7 +386,7 @@ public class PagedTileLayout extends ViewPager implements QSTileLayout {
             final Resources res = getContext().getResources();
             int defaultRows = Math.max(1, res.getInteger(R.integer.quick_settings_num_rows));
             return Settings.System.getIntForUser(
-                    mContext.getContentResolver(), Settings.System.OMNI_QS_LAYOUT_ROWS, defaultRows,
+                    mContext.getContentResolver(), Settings.System.AICP_QS_LAYOUT_ROWS, defaultRows,
                     UserHandle.USER_CURRENT);
         }
 

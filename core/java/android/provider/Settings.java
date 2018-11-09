@@ -4433,63 +4433,63 @@ public final class Settings {
         * Number of qs columns on landscape orientation
         * @hide
         */
-        public static final String OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE = "qs_layout_columns_landscape";
+        public static final String AICP_QS_LAYOUT_COLUMNS_LANDSCAPE = "qs_layout_columns_landscape";
         /** @hide */
-        private static final Validator OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE_VALIDATOR =
+        private static final Validator AICP_QS_LAYOUT_COLUMNS_LANDSCAPE_VALIDATOR =
                ANY_INTEGER_VALIDATOR;
         /**
         * @hide
         */
-        public static final String OMNI_QS_LAYOUT_COLUMNS = "qs_layout_columns";
+        public static final String AICP_QS_LAYOUT_COLUMNS = "qs_layout_columns";
         /** @hide */
-        private static final Validator OMNI_QS_LAYOUT_COLUMNS_VALIDATOR =
+        private static final Validator AICP_QS_LAYOUT_COLUMNS_VALIDATOR =
                 ANY_INTEGER_VALIDATOR;
 
         /**
          * Whether to display qs tile titles in the qs panel
          * @hide
          */
-        public static final String OMNI_QS_TILE_TITLE_VISIBILITY = "qs_tile_title_visibility";
+        public static final String AICP_QS_TILE_TITLE_VISIBILITY = "qs_tile_title_visibility";
 
         /** @hide */
-        private static final Validator OMNI_QS_TILE_TITLE_VISIBILITY_VALIDATOR =
+        private static final Validator AICP_QS_TILE_TITLE_VISIBILITY_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
         /**
          * @hide
          */
-        public static final String OMNI_QS_LAYOUT_ROWS = "qs_layout_rows";
+        public static final String AICP_QS_LAYOUT_ROWS = "qs_layout_rows";
 
         /** @hide */
-        private static final Validator OMNI_QS_LAYOUT_ROWS_VALIDATOR =
+        private static final Validator AICP_QS_LAYOUT_ROWS_VALIDATOR =
                 ANY_INTEGER_VALIDATOR;
 
         /**
          * @hide
          */
-        public static final String OMNI_QS_LAYOUT_ROWS_LANDSCAPE = "qs_layout_rows_landscape";
+        public static final String AICP_QS_LAYOUT_ROWS_LANDSCAPE = "qs_layout_rows_landscape";
 
         /** @hide */
-        private static final Validator OMNI_QS_LAYOUT_ROWS_LANDSCAPE_VALIDATOR =
+        private static final Validator AICP_QS_LAYOUT_ROWS_LANDSCAPE_VALIDATOR =
                 ANY_INTEGER_VALIDATOR;
 
         /**
          * @hide
          */
-        public static final String OMNI_QS_QUICKBAR_COLUMNS = "qs_quickbar_columns";
+        public static final String AICP_QS_QUICKBAR_COLUMNS = "qs_quickbar_columns";
 
         /** @hide */
-        private static final Validator OMNI_QS_QUICKBAR_COLUMNS_VALIDATOR =
+        private static final Validator AICP_QS_QUICKBAR_COLUMNS_VALIDATOR =
                 ANY_INTEGER_VALIDATOR;
 
         /**
          * Whether to change the transparency of the qs panel
          * @hide
          */
-        public static final String OMNI_QS_PANEL_BG_ALPHA = "qs_panel_bg_alpha";
+        public static final String AICP_QS_PANEL_BG_ALPHA = "qs_panel_bg_alpha";
 
         /** @hide */
-        private static final Validator OMNI_QS_PANEL_BG_ALPHA_VALIDATOR =
+        private static final Validator AICP_QS_PANEL_BG_ALPHA_VALIDATOR =
                 ANY_INTEGER_VALIDATOR;
 
         /**
@@ -4540,11 +4540,11 @@ public final class Settings {
          * the setting value. See an example above.
          * @hide
          */
-        public static final String OMNI_USE_BOTTOM_GESTURE_NAVIGATION =
+        public static final String AICP_USE_BOTTOM_GESTURE_NAVIGATION =
                 "use_bottom_gesture_navigation";
 
         /** @hide */
-        private static final Validator OMNI_USE_BOTTOM_GESTURE_NAVIGATION_VALIDATOR =
+        private static final Validator AICP_USE_BOTTOM_GESTURE_NAVIGATION_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
         /**
@@ -4747,10 +4747,10 @@ public final class Settings {
         /**
          * @hide
          */
-        public static final String OMNI_SHOW_BATTERY_IMAGE = "status_bar_show_battery_image";
+        public static final String AICP_SHOW_BATTERY_IMAGE = "status_bar_show_battery_image";
 
         /** @hide */
-        private static final Validator OMNI_SHOW_BATTERY_IMAGE_VALIDATOR =
+        private static final Validator AICP_SHOW_BATTERY_IMAGE_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
         /***************************
@@ -4854,16 +4854,16 @@ public final class Settings {
             STATUSBAR_BATTERY_BAR_BLEND_DARK_COLORS_REVERSE,
             THEMING_BASE,
             THEMING_ACCENT,
-            OMNI_USE_BOTTOM_GESTURE_NAVIGATION,
-            OMNI_SHOW_BATTERY_IMAGE,
-            OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE,
-            OMNI_QS_LAYOUT_COLUMNS,
-            OMNI_QS_TILE_TITLE_VISIBILITY,
-            OMNI_QS_LAYOUT_ROWS,
+            AICP_USE_BOTTOM_GESTURE_NAVIGATION,
+            AICP_SHOW_BATTERY_IMAGE,
+            AICP_QS_LAYOUT_COLUMNS_LANDSCAPE,
+            AICP_QS_LAYOUT_COLUMNS,
+            AICP_QS_TILE_TITLE_VISIBILITY,
+            AICP_QS_LAYOUT_ROWS,
             AICP_ASPECT_RATIO_APPS_ENABLED,
             AICP_ASPECT_RATIO_APPS_LIST,
-            OMNI_QS_LAYOUT_ROWS_LANDSCAPE,
-            OMNI_QS_QUICKBAR_COLUMNS,
+            AICP_QS_LAYOUT_ROWS_LANDSCAPE,
+            AICP_QS_QUICKBAR_COLUMNS,
             TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK,
             MUSIC_TILE_TITLE,
             THREE_FINGER_GESTURE,
@@ -5015,7 +5015,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_BLEND_DARK_COLORS_REVERSE);
             PRIVATE_SETTINGS.add(THEMING_BASE);
             PRIVATE_SETTINGS.add(THEMING_ACCENT);
-            PRIVATE_SETTINGS.add(OMNI_USE_BOTTOM_GESTURE_NAVIGATION);
+            PRIVATE_SETTINGS.add(AICP_USE_BOTTOM_GESTURE_NAVIGATION);
             PRIVATE_SETTINGS.add(NAVIGATION_BAR_ENABLED);
             PRIVATE_SETTINGS.add(BUTTON_BRIGHTNESS);
             PRIVATE_SETTINGS.add(BUTTON_BRIGHTNESS_ENABLED);
@@ -5031,15 +5031,15 @@ public final class Settings {
             PRIVATE_SETTINGS.add(KEY_APP_SWITCH_DOUBLE_TAP_ACTION);
             PRIVATE_SETTINGS.add(KEY_CAMERA_LONG_PRESS_ACTION);
             PRIVATE_SETTINGS.add(KEY_CAMERA_DOUBLE_TAP_ACTION);
-            PRIVATE_SETTINGS.add(OMNI_SHOW_BATTERY_IMAGE);
-            PRIVATE_SETTINGS.add(OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE);
-            PRIVATE_SETTINGS.add(OMNI_QS_LAYOUT_COLUMNS);
-            PRIVATE_SETTINGS.add(OMNI_QS_TILE_TITLE_VISIBILITY);
-            PRIVATE_SETTINGS.add(OMNI_QS_LAYOUT_ROWS);
+            PRIVATE_SETTINGS.add(AICP_SHOW_BATTERY_IMAGE);
+            PRIVATE_SETTINGS.add(AICP_QS_LAYOUT_COLUMNS_LANDSCAPE);
+            PRIVATE_SETTINGS.add(AICP_QS_LAYOUT_COLUMNS);
+            PRIVATE_SETTINGS.add(AICP_QS_TILE_TITLE_VISIBILITY);
+            PRIVATE_SETTINGS.add(AICP_QS_LAYOUT_ROWS);
             PRIVATE_SETTINGS.add(AICP_ASPECT_RATIO_APPS_ENABLED);
             PRIVATE_SETTINGS.add(AICP_ASPECT_RATIO_APPS_LIST);
-            PRIVATE_SETTINGS.add(OMNI_QS_LAYOUT_ROWS_LANDSCAPE);
-            PRIVATE_SETTINGS.add(OMNI_QS_QUICKBAR_COLUMNS);
+            PRIVATE_SETTINGS.add(AICP_QS_LAYOUT_ROWS_LANDSCAPE);
+            PRIVATE_SETTINGS.add(AICP_QS_QUICKBAR_COLUMNS);
             PRIVATE_SETTINGS.add(TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK);
             PRIVATE_SETTINGS.add(MUSIC_TILE_TITLE);
             PRIVATE_SETTINGS.add(THREE_FINGER_GESTURE);
@@ -5175,23 +5175,23 @@ public final class Settings {
                     STATUSBAR_BATTERY_BAR_BLEND_DARK_COLORS_REVERSE_VALIDATOR);
             VALIDATORS.put(THEMING_BASE, THEMING_BASE_VALIDATOR);
             VALIDATORS.put(THEMING_ACCENT, THEMING_ACCENT_VALIDATOR);
-            VALIDATORS.put(OMNI_USE_BOTTOM_GESTURE_NAVIGATION,
-                    OMNI_USE_BOTTOM_GESTURE_NAVIGATION_VALIDATOR);
+            VALIDATORS.put(AICP_USE_BOTTOM_GESTURE_NAVIGATION,
+                    AICP_USE_BOTTOM_GESTURE_NAVIGATION_VALIDATOR);
             VALIDATORS.put(NAVIGATION_BAR_ENABLED, NAVIGATION_BAR_ENABLED_VALIDATOR);
             VALIDATORS.put(BUTTON_BRIGHTNESS, BUTTON_BRIGHTNESS_VALIDATOR);
             VALIDATORS.put(BUTTON_BRIGHTNESS_ENABLED, BUTTON_BRIGHTNESS_ENABLED_VALIDATOR);
-            VALIDATORS.put(OMNI_SHOW_BATTERY_IMAGE, OMNI_SHOW_BATTERY_IMAGE_VALIDATOR);
-            VALIDATORS.put(OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE,
-                    OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE_VALIDATOR);
-            VALIDATORS.put(OMNI_QS_LAYOUT_COLUMNS, OMNI_QS_LAYOUT_COLUMNS_VALIDATOR);
-            VALIDATORS.put(OMNI_QS_TILE_TITLE_VISIBILITY, OMNI_QS_TILE_TITLE_VISIBILITY_VALIDATOR);
-            VALIDATORS.put(OMNI_QS_LAYOUT_ROWS, OMNI_QS_LAYOUT_ROWS_VALIDATOR);
+            VALIDATORS.put(AICP_SHOW_BATTERY_IMAGE, AICP_SHOW_BATTERY_IMAGE_VALIDATOR);
+            VALIDATORS.put(AICP_QS_LAYOUT_COLUMNS_LANDSCAPE,
+                    AICP_QS_LAYOUT_COLUMNS_LANDSCAPE_VALIDATOR);
+            VALIDATORS.put(AICP_QS_LAYOUT_COLUMNS, AICP_QS_LAYOUT_COLUMNS_VALIDATOR);
+            VALIDATORS.put(AICP_QS_TILE_TITLE_VISIBILITY, AICP_QS_TILE_TITLE_VISIBILITY_VALIDATOR);
+            VALIDATORS.put(AICP_QS_LAYOUT_ROWS, AICP_QS_LAYOUT_ROWS_VALIDATOR);
             VALIDATORS.put(AICP_ASPECT_RATIO_APPS_ENABLED,
                     AICP_ASPECT_RATIO_APPS_ENABLED_VALIDATOR);
             VALIDATORS.put(AICP_ASPECT_RATIO_APPS_LIST,
                     AICP_ASPECT_RATIO_APPS_LIST_VALIDATOR);
-            VALIDATORS.put(OMNI_QS_LAYOUT_ROWS_LANDSCAPE, OMNI_QS_LAYOUT_ROWS_LANDSCAPE_VALIDATOR);
-            VALIDATORS.put(OMNI_QS_QUICKBAR_COLUMNS, OMNI_QS_QUICKBAR_COLUMNS_VALIDATOR);
+            VALIDATORS.put(AICP_QS_LAYOUT_ROWS_LANDSCAPE, AICP_QS_LAYOUT_ROWS_LANDSCAPE_VALIDATOR);
+            VALIDATORS.put(AICP_QS_QUICKBAR_COLUMNS, AICP_QS_QUICKBAR_COLUMNS_VALIDATOR);
             VALIDATORS.put(TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK, TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK_VALIDATOR);
             VALIDATORS.put(MUSIC_TILE_TITLE, MUSIC_TILE_TITLE_VALIDATOR);
             VALIDATORS.put(THREE_FINGER_GESTURE,THREE_FINGER_GESTURE_VALIDATOR);

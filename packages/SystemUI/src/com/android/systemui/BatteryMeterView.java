@@ -18,7 +18,7 @@ package com.android.systemui;
 import static android.app.StatusBarManager.DISABLE2_SYSTEM_ICONS;
 import static android.app.StatusBarManager.DISABLE_NONE;
 import static android.provider.Settings.System.SHOW_BATTERY_PERCENT;
-import static android.provider.Settings.System.OMNI_SHOW_BATTERY_IMAGE;
+import static android.provider.Settings.System.AICP_SHOW_BATTERY_IMAGE;
 
 import android.animation.ArgbEvaluator;
 import android.app.ActivityManager;
@@ -235,7 +235,7 @@ public class BatteryMeterView extends LinearLayout implements
                 Settings.System.getUriFor(SHOW_BATTERY_PERCENT), false, mSettingObserver, mUser);
         updateShowPercent();
         getContext().getContentResolver().registerContentObserver(
-                Settings.System.getUriFor(OMNI_SHOW_BATTERY_IMAGE), false, mSettingObserver);
+                Settings.System.getUriFor(AICP_SHOW_BATTERY_IMAGE), false, mSettingObserver);
         updateShowImage();
         Dependency.get(ConfigurationController.class).addCallback(this);
         mUserTracker.startTracking();
@@ -289,7 +289,7 @@ public class BatteryMeterView extends LinearLayout implements
 
     private void updateShowImage() {
         mShowBatteryImage = Settings.System.getInt(getContext().getContentResolver(),
-                OMNI_SHOW_BATTERY_IMAGE, 1) == 1;
+                AICP_SHOW_BATTERY_IMAGE, 1) == 1;
         mBatteryIconView.setVisibility(mShowBatteryImage ? View.VISIBLE : View.GONE);
         mBatteryPercentView.setPadding(mShowBatteryImage ? mBatteryPercentPadding : 0, 0, 0, 0);
     }

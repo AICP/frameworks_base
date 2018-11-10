@@ -5151,7 +5151,7 @@ public final class Settings {
 
         /** @hide */
         private static final Validator ANIM_TILE_DURATION_VALIDATOR =
-              new SettingsValidators.InclusiveIntegerRangeValidator(1500, 2500);
+              new SettingsValidators.InclusiveIntegerRangeValidator(500, 2500);
 
         /***************************
          * AICP System Settings end

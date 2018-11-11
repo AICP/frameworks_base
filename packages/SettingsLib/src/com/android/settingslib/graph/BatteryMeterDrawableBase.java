@@ -350,22 +350,16 @@ public class BatteryMeterDrawableBase extends Drawable {
 
         if (level == -1) return;
 
-        mBoltPoints = loadPoints(mContext.getResources(), R.array.batterymeter_bolt_points);
-
         float drawFrac = (float) level / 100f;
-        final int height;
-        final int width;
-        final int top;
-
-        height = mHeight;
-        width = (int) (getAspectRatio() * mHeight);
-        top = bounds.bottom - mPadding.bottom - height;
-
+        final int height = mHeight;
+        final int width = (int) (getAspectRatio() * mHeight);
+        final int px = (mWidth - width) / 2;
+        final int buttonHeight = Math.round(height * mButtonHeightFraction);
         final int left = mPadding.left + bounds.left;
-        mFrame.set(left, top, width + left, height + top);
-        mFrame.offset(((mWidth - width) / 2), 0);
+        final int top = bounds.bottom - mPadding.bottom - height;
 
-        final int buttonHeight = Math.round((height) * mButtonHeightFraction);
+        mFrame.set(left, top, width + left, height + top);
+        mFrame.offset(px, 0);
 
         mFramePaint.setStrokeWidth(0);
         mFramePaint.setStyle(Paint.Style.FILL_AND_STROKE);
@@ -391,12 +385,8 @@ public class BatteryMeterDrawableBase extends Drawable {
             drawFrac = 0f;
         }
 
-        final float levelTop;
-        if (drawFrac == 1f) {
-            levelTop = mButtonFrame.top;
-        } else {
-            levelTop = (mFrame.top + (mFrame.height() * (1f - drawFrac)));
-        }
+        final float levelTop = drawFrac == 1f ? mButtonFrame.top
+                : (mFrame.top + (mFrame.height() * (1f - drawFrac)));
 
         // define the battery shape
         mShapePath.reset();
@@ -413,10 +403,10 @@ public class BatteryMeterDrawableBase extends Drawable {
         if (mCharging) {
             // define the bolt shape
             // Shift right by 1px for maximal bolt-goodness
-            final float bl = mFrame.left + (mFrame.width() / (4f)) + (1);
-            final float bt = mFrame.top + (mFrame.height() /  (6f)) + (0);
-            final float br = mFrame.right - (mFrame.width() / (4f)) + (1);
-            final float bb = mFrame.bottom - (mFrame.height() / (10f));
+            final float bl = mFrame.left + mFrame.width() / 4f + 1;
+            final float bt = mFrame.top + mFrame.height() / 6f;
+            final float br = mFrame.right - mFrame.width() / 4f + 1;
+            final float bb = mFrame.bottom - mFrame.height() / 10f;
 
             if (mBoltFrame.left != bl || mBoltFrame.top != bt
                     || mBoltFrame.right != br || mBoltFrame.bottom != bb) {
@@ -473,13 +463,6 @@ public class BatteryMeterDrawableBase extends Drawable {
             if (mPowerSaveAsColorError) {
                 c.drawPath(mPlusPath, mPlusPaint);
             }
-
-            float boltPct = (mPlusFrame.bottom - levelTop) / (mPlusFrame.bottom - mPlusFrame.top);
-            boltPct = Math.min(Math.max(boltPct, 0), 1);
-            if (boltPct <= BOLT_LEVEL_THRESHOLD) {
-                // draw the bolt if opaque
-                c.drawPath(mPlusPath, mPlusPaint);
-            }
         }
 
         // compute percentage text
@@ -512,11 +495,11 @@ public class BatteryMeterDrawableBase extends Drawable {
         c.drawPath(mShapePath, mFramePaint);
 
         // draw the battery shape, clipped to charging level
+        mFrame.top = levelTop;
         c.save();
         c.clipRect(mFrame);
         c.drawPath(mShapePath, mBatteryPaint);
         c.restore();
-        mFrame.top = levelTop;
 
         mClipPath.reset();
         mClipPath.addRect(mFrame, Path.Direction.CCW);
@@ -548,8 +531,6 @@ public class BatteryMeterDrawableBase extends Drawable {
 
         final int circleSize = Math.min(mWidth, mHeight);
         float strokeWidth = circleSize / 6.5f;
-
-        mBoltPoints = loadPoints(mContext.getResources(), R.array.batterymeter_bolt_points);
 
         mFramePaint.setStrokeWidth(strokeWidth);
         mFramePaint.setStyle(Paint.Style.STROKE);

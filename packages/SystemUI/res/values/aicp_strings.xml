@@ -136,4 +136,7 @@
     <!-- NavBar Tuner -->
     <string name="menu_ime_always_show">Menu / Keyboard Switcher (always show)</string>
     <string name="search">Search</string>
+
+    <!-- Stock Navbar -->
+    <string name="systemui_tuner_navbar_title">Stock settings</string>
 </resources>

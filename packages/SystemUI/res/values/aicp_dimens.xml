@@ -20,4 +20,9 @@
         without round display corners -->
     <dimen name="quick_status_bar_system_icons_margin_start">14dp</dimen>
     <dimen name="quick_status_bar_system_icons_margin_end">14dp</dimen>
+
+    <!-- Height of tbhe big battery circle icon in the status bar. -->
+    <dimen name="status_bar_battery_bigcircle_icon_height">20.5dp</dimen>
+     <!-- Width of the big battery circle icon in the status bar. -->
+    <dimen name="status_bar_battery_bigcircle_icon_width">20.5dp</dimen>
 </resources>

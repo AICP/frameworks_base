@@ -176,5 +176,6 @@ public class SystemSettings {
         Settings.System.ADAPTIVE_PLAYBACK_TIMEOUT,
         Settings.System.TRANSPARENT_POWER_MENU,
         Settings.System.TRANSPARENT_POWER_DIALOG_DIM,
+        Settings.System.POWER_MENU_ANIMATIONS,
     };
 }

@@ -4421,7 +4421,7 @@ public final class Settings {
         public static final Validator THEMING_BASE_VALIDATOR = ANY_INTEGER_VALIDATOR;
 
         /**
-         * Base theme
+         * Theme accent
          * @hide
          */
         public static final String THEMING_ACCENT = "theming_accent";
@@ -4434,9 +4434,20 @@ public final class Settings {
         * @hide
         */
         public static final String AICP_QS_LAYOUT_COLUMNS_LANDSCAPE = "qs_layout_columns_landscape";
+
         /** @hide */
         private static final Validator AICP_QS_LAYOUT_COLUMNS_LANDSCAPE_VALIDATOR =
                ANY_INTEGER_VALIDATOR;
+
+        /**
+         * Corner style
+         * @hide
+         */
+        public static final String THEMING_CORNERS = "theming_corners";
+
+        /** @hide */
+        public static final Validator THEMING_CORNERS_VALIDATOR = ANY_INTEGER_VALIDATOR;
+
         /**
         * @hide
         */
@@ -5225,6 +5236,7 @@ public final class Settings {
             ON_THE_GO_SERVICE_RESTART,
             ON_THE_GO_CAMERA,
             GLOBAL_ACTIONS_SCREENRECORD,
+            THEMING_CORNERS,
             // AICP Settings end
         };
 
@@ -5374,6 +5386,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(THEMING_BASE);
             PRIVATE_SETTINGS.add(THEMING_ACCENT);
             PRIVATE_SETTINGS.add(AICP_USE_BOTTOM_GESTURE_NAVIGATION);
+            PRIVATE_SETTINGS.add(THEMING_CORNERS);
             PRIVATE_SETTINGS.add(NAVIGATION_BAR_ENABLED);
             PRIVATE_SETTINGS.add(BUTTON_BRIGHTNESS);
             PRIVATE_SETTINGS.add(BUTTON_BRIGHTNESS_ENABLED);
@@ -5567,6 +5580,7 @@ public final class Settings {
             VALIDATORS.put(THEMING_ACCENT, THEMING_ACCENT_VALIDATOR);
             VALIDATORS.put(AICP_USE_BOTTOM_GESTURE_NAVIGATION,
                     AICP_USE_BOTTOM_GESTURE_NAVIGATION_VALIDATOR);
+            VALIDATORS.put(THEMING_CORNERS, THEMING_CORNERS_VALIDATOR);
             VALIDATORS.put(NAVIGATION_BAR_ENABLED, NAVIGATION_BAR_ENABLED_VALIDATOR);
             VALIDATORS.put(BUTTON_BRIGHTNESS, BUTTON_BRIGHTNESS_VALIDATOR);
             VALIDATORS.put(BUTTON_BRIGHTNESS_ENABLED, BUTTON_BRIGHTNESS_ENABLED_VALIDATOR);

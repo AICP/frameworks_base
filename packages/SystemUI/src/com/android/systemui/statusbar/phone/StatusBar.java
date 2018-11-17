@@ -5381,6 +5381,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.Secure.getUriFor(
                     Settings.Secure.LOCK_QS_DISABLED),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.THEMING_CORNERS),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
         @Override
@@ -5392,7 +5395,8 @@ public class StatusBar extends SystemUI implements DemoMode,
                     Settings.System.STATUS_BAR_TICKER_TICK_DURATION))) {
                 updateTickerTickDuration();
             } else if (uri.equals(Settings.System.getUriFor(Settings.System.THEMING_BASE)) ||
-                    uri.equals(Settings.System.getUriFor(Settings.System.THEMING_ACCENT))) {
+                    uri.equals(Settings.System.getUriFor(Settings.System.THEMING_ACCENT)) ||
+                    uri.equals(Settings.System.getUriFor(Settings.System.THEMING_CORNERS))) {
                 ThemeOverlayHelper.updateOverlays(mContext, mOverlayManager,
                         mLockscreenUserManager.getCurrentUserId());
             } else if (uri.equals(Settings.System.getUriFor(Settings.System.AICP_QS_TILE_TITLE_VISIBILITY)) ||

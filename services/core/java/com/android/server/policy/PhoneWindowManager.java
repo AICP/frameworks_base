@@ -3091,7 +3091,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 mNavBarEnabled = navBarEnabled;
                 if (mDeviceHardwareKeys != 0) {
                     SystemProperties.set("qemu.hw.mainkeys", mNavBarEnabled ? "0" : "1");
-                    if (!mNavBarEnabled && buttonBrightnessEnabled) {
+                    if (mNavBarEnabled && buttonBrightnessEnabled) {
                         Settings.System.putInt(resolver,
                                 Settings.System.BUTTON_BRIGHTNESS_ENABLED, 0);
                     }

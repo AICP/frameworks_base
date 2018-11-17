@@ -200,7 +200,8 @@ public class SystemSettings {
                 Settings.System.LOCK_SCREEN_CUSTOM_NOTIF,
                 Settings.System.LOCKSCREEN_MAX_NOTIF_CONFIG,
                 Settings.System.TRANSPARENT_POWER_MENU,
-                Settings.System.TRANSPARENT_POWER_DIALOG_DIM
+                Settings.System.TRANSPARENT_POWER_DIALOG_DIM,
+                Settings.System.POWER_MENU_ANIMATIONS
 
         ));
         if (Flags.backUpSmoothDisplayAndForcePeakRefreshRate()) {

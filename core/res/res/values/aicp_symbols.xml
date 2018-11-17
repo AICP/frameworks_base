@@ -32,6 +32,11 @@
     <java-symbol type="array" name="config_rebootActionsList" />
     <java-symbol type="array" name="custom_config_globalActionsList" />
 
+    <!-- Powermenu animations -->
+    <java-symbol type="style" name="GlobalActionsAnimation" />
+    <java-symbol type="style" name="GlobalActionsAnimationTop" />
+    <java-symbol type="style" name="GlobalActionsAnimationEnter" />
+
     <!-- Whether device can force navbar disabling -->
     <java-symbol type="bool" name="config_canForceDisableNavigationBar" />
 

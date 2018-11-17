@@ -177,5 +177,6 @@ public class SystemSettings {
         Settings.System.HIDE_LOCKSCREEN_STATUS_BAR,
         Settings.System.TRANSPARENT_POWER_MENU,
         Settings.System.TRANSPARENT_POWER_DIALOG_DIM,
+        Settings.System.POWER_MENU_ANIMATIONS,
     };
 }

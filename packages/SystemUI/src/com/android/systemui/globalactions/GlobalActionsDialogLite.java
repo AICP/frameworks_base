@@ -527,6 +527,34 @@ public class GlobalActionsDialogLite implements DialogInterface.OnDismissListene
               attrs.windowAnimations = R.style.GlobalActionsAnimationTop;
               attrs.gravity = Gravity.TOP|Gravity.CENTER_HORIZONTAL;
            break;
+           case 3:
+              attrs.windowAnimations = R.style.GlobalActionsAnimationFly;
+              attrs.gravity = Gravity.CENTER_VERTICAL|Gravity.CENTER_HORIZONTAL;
+           break;
+           case 4:
+              attrs.windowAnimations = R.style.GlobalActionsAnimationTn;
+              attrs.gravity = Gravity.CENTER_VERTICAL|Gravity.CENTER_HORIZONTAL;
+           break;
+           case 5:
+              attrs.windowAnimations = R.style.GlobalActionsAnimationTranslucent;
+              attrs.gravity = Gravity.CENTER_VERTICAL|Gravity.CENTER_HORIZONTAL;
+           break;
+           case 6:
+              attrs.windowAnimations = R.style.GlobalActionsAnimationXylon;
+              attrs.gravity = Gravity.CENTER_VERTICAL|Gravity.CENTER_HORIZONTAL;
+           break;
+           case 7:
+              attrs.windowAnimations = R.style.GlobalActionsAnimationCard;
+              attrs.gravity = Gravity.CENTER_VERTICAL|Gravity.CENTER_HORIZONTAL;
+           break;
+           case 8:
+              attrs.windowAnimations = R.style.GlobalActionsAnimationTranslucent;
+              attrs.gravity = Gravity.TOP|Gravity.CENTER_HORIZONTAL;
+           break;
+           case 9:
+              attrs.windowAnimations = R.style.GlobalActionsAnimationTranslucent;
+              attrs.gravity = Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL;
+           break;
         }
 
         attrs.setTitle("ActionsDialog");

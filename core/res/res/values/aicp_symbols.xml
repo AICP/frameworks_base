@@ -89,4 +89,6 @@
   <java-symbol type="anim" name="slide_in_left_no_fade" />
   <java-symbol type="anim" name="slide_out_right_no_fade" />
 
+  <!-- Whether or not swipe up gesture's opt-in setting is available on this device -->
+  <java-symbol type="bool" name="config_custom_swipe_up_gesture_setting_available" />
 </resources>

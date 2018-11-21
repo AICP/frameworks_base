@@ -265,8 +265,6 @@ public class BatteryMeterDrawableBase extends Drawable {
 
         mHeight = (bounds.bottom - mPadding.bottom) - (bounds.top + mPadding.top);
         mWidth = (bounds.right - mPadding.right) - (bounds.left + mPadding.left);
-        mWarningTextPaint.setTextSize(mHeight * 0.75f);
-        mWarningTextHeight = -mWarningTextPaint.getFontMetrics().ascent;
 
         switch (mMeterStyle) {
             case BATTERY_STYLE_PORTRAIT:
@@ -511,6 +509,8 @@ public class BatteryMeterDrawableBase extends Drawable {
 
         if (!mCharging && !mPowerSaveEnabled) {
             if (level <= mCriticalLevel) {
+                mWarningTextPaint.setTextSize(mHeight * 0.75f);
+                mWarningTextHeight = -mWarningTextPaint.getFontMetrics().ascent;
                 // draw the warning text
                 final float x = mWidth * 0.5f;
                 final float y = (mHeight + mWarningTextHeight) * 0.48f + top;
@@ -593,7 +593,7 @@ public class BatteryMeterDrawableBase extends Drawable {
             c.drawPath(mBoltPath, mBoltPaint);
         } else if (mPowerSaveEnabled) {
             // define the plus shape
-            final float pw = mFrame.width() * 2 / 3;
+            final float pw = mFrame.width() * 2 / 4;
             final float pl = mFrame.left + (mFrame.width() - pw) / 2;
             final float pt = mFrame.top + (mFrame.height() - pw) / 2;
             final float pr = mFrame.right - (mFrame.width() - pw) / 2;
@@ -636,10 +636,11 @@ public class BatteryMeterDrawableBase extends Drawable {
         if (!mCharging && !mPowerSaveEnabled) {
             if (level <= mCriticalLevel) {
                 // draw the warning text
-               float x = circleSize / 2.0f + mPadding.left;
-               float y = circleSize / 2.0f + (bounds.bottom - bounds.top) / 2.0f
-                    - strokeWidth / 2.0f + mContext.getResources().getDisplayMetrics().density;
-                c.drawText(mWarningString, x, y, mWarningTextPaint);
+                mWarningTextHeight = -mWarningTextPaint.getFontMetrics().ascent;
+                pctX = mWidth * 0.5f;
+                pctY = (mHeight + mWarningTextHeight) * 0.47f;
+                mWarningTextPaint.setTextSize(mHeight * 0.5f);
+                c.drawText(mWarningString, pctX, pctY, mWarningTextPaint);
             }
         }
         // Draw the powersave outline last

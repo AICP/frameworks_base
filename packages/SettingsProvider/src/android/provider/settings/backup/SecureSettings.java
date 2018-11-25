@@ -237,5 +237,12 @@ public class SecureSettings {
         Settings.Secure.PULSE_SOLID_UNITS_ROUNDED,
         Settings.Secure.ALLOW_SIGNATURE_FAKE,
         Settings.Secure.LAUNCHER_HIDDEN_APPS,
+        Settings.Secure.STATUSBAR_CLOCK_SECONDS,
+        Settings.Secure.STATUS_BAR_CLOCK,
+        Settings.Secure.STATUSBAR_CLOCK_AM_PM_STYLE,
+        Settings.Secure.STATUSBAR_CLOCK_DATE_DISPLAY,
+        Settings.Secure.STATUSBAR_CLOCK_DATE_STYLE,
+        Settings.Secure.STATUSBAR_CLOCK_DATE_FORMAT,
+        Settings.Secure.STATUSBAR_CLOCK_DATE_POSITION,
     };
 }

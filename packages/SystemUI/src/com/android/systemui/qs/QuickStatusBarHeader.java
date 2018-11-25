@@ -195,6 +195,7 @@ public class QuickStatusBarHeader extends FrameLayout implements
         mClockView.setOnClickListener(this);
         mClockView.setOnLongClickListener(this);
         mDatePrivacySeparator = findViewById(R.id.space);
+        mClockView.setQsHeader();
         mDataUsageLayout = findViewById(R.id.daily_data_usage_layout);
         mDataUsageImage = findViewById(R.id.daily_data_usage_icon);
         mDataUsageView = findViewById(R.id.data_sim_usage);
@@ -589,6 +590,7 @@ public class QuickStatusBarHeader extends FrameLayout implements
         if (mExpanded == expanded) return;
         mExpanded = expanded;
         quickQSPanelController.setExpanded(expanded);
+        mDateView.setVisibility(mClockView.isClockDateEnabled() ? View.INVISIBLE : View.VISIBLE);
         updateSystemInfoText();
         updateEverything();
         updateDataUsageView();

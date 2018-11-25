@@ -37,6 +37,7 @@ import com.android.systemui.statusbar.notification.collection.NotificationEntry;
 import com.android.systemui.statusbar.notification.row.ExpandableNotificationRow;
 import com.android.systemui.statusbar.notification.stack.NotificationStackScrollLayoutController;
 import com.android.systemui.statusbar.phone.fragment.dagger.StatusBarFragmentScope;
+import com.android.systemui.statusbar.policy.Clock;
 import com.android.systemui.statusbar.policy.KeyguardStateController;
 import com.android.systemui.statusbar.policy.OnHeadsUpChangedListener;
 import com.android.systemui.util.ViewController;
@@ -234,7 +235,9 @@ public class HeadsUpAppearanceController extends ViewController<HeadsUpStatusBar
                 updateParentClipping(false /* shouldClip */);
                 mView.setVisibility(View.VISIBLE);
                 show(mView);
-                hide(mClockView, View.INVISIBLE);
+                if (((Clock)mClockView).shouldBeVisible()) {
+                    hide(mClockView, View.INVISIBLE);
+                }
                 if (mCenteredIconView.getVisibility() != View.GONE) {
                     hide(mCenteredIconView, View.INVISIBLE);
                 }
@@ -242,7 +245,9 @@ public class HeadsUpAppearanceController extends ViewController<HeadsUpStatusBar
                     hide(mOperatorNameView, View.INVISIBLE);
                 }
             } else {
-                show(mClockView);
+                if (((Clock)mClockView).shouldBeVisible()) {
+                    show(mClockView);
+                }
                 if (mCenteredIconView.getVisibility() != View.GONE) {
                     show(mCenteredIconView);
                 }

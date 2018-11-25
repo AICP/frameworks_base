@@ -19,37 +19,37 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <!-- DUI -->
-  <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permlab_toggleNavigationEditor">Navigációs sáv szerkesztő kezelése</string>
-  <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permdesc_toggleNavigationEditor">Lehetővé teszi egy alkalmazás számára, hogy a navigációs sáv szerkesztőt kezelje.</string>
-  <!-- AOKP custom system animations -->
-  <string name="animation_fade">Áttűnés</string>
-  <string name="animation_slide_right">Beúszás jobbról</string>
-  <string name="animation_slide_left">Beúszás balról</string>
-  <string name="animation_slide_right_no_fade">Beúszás jobbról (nincs áttűnés)</string>
-  <string name="animation_slide_left_no_fade">Beúszás balról (nincs áttűnés)</string>
-  <string name="animation_slide_up">Beúszás alulról</string>
-  <string name="animation_slide_down">Beúszás felülről</string>
-  <string name="animation_default">Alapértelmezett</string>
-  <string name="animation_translucent">Áttetsző</string>
-  <string name="animation_grow_shrink">Nyúlás (Felülről)</string>
-  <string name="animation_grow_shrink_center">Nyúlás (Középről)</string>
-  <string name="animation_grow_shrink_bottom">Növekvő (lent)</string>
-  <string name="animation_grow_shrink_left">Nyúlás (Balról)</string>
-  <string name="animation_grow_shrink_right">Nyúlás (Jobbról)</string>
-  <string name="action_null">Üres</string>
-  <!-- Label for item that screenrecords in power menu options dialog -->
-  <string name="global_action_screenrecord">Képernyőfelvétel</string>
-  <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permlab_fakePackageSignature">Hamis csomagaláírás</string>
-  <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permdesc_fakePackageSignature">Engedélyezi az alkalmazás számára, hogy más alkalmazásnak tettesse magát. A kártékony alkalmazások ezt személyes adatok elérésére használhatják. Kellő elővigyázatossággal adja meg ezt az engedélyt!</string>
-  <!-- Pocket Lock -->
-  <string name="pocket_lock_message_long_press">A hatás eléréséhez nyomja hosszan a bekapcsoló gombot</string>
-  <!-- Defines the sysfs attribute path used by pocket bridge
+    <!-- DUI -->
+    <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_toggleNavigationEditor">Navigációs sáv-szerkesztő kezelése</string>
+    <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_toggleNavigationEditor">Lehetővé teszi egy alkalmazás számára, hogy a navigációs sáv szerkesztőt kezelje.</string>
+    <!-- AOKP custom system animations -->
+    <string name="animation_fade">Áttűnés</string>
+    <string name="animation_slide_right">Beúszás jobbról</string>
+    <string name="animation_slide_left">Beúszás balról</string>
+    <string name="animation_slide_right_no_fade">Beúszás jobbról (nincs áttűnés)</string>
+    <string name="animation_slide_left_no_fade">Beúszás balról (nincs áttűnés)</string>
+    <string name="animation_slide_up">Beúszás alulról</string>
+    <string name="animation_slide_down">Beúszás felülről</string>
+    <string name="animation_default">Alapértelmezett</string>
+    <string name="animation_translucent">Áttetsző</string>
+    <string name="animation_grow_shrink">Nyúlás (Felülről)</string>
+    <string name="animation_grow_shrink_center">Nyúlás (Középről)</string>
+    <string name="animation_grow_shrink_bottom">Növekvő (lent)</string>
+    <string name="animation_grow_shrink_left">Nyúlás (Balról)</string>
+    <string name="animation_grow_shrink_right">Nyúlás (Jobbról)</string>
+    <string name="action_null">Üres</string>
+    <!-- Label for item that screenrecords in power menu options dialog -->
+    <string name="global_action_screenrecord">Képernyőfelvétel</string>
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_fakePackageSignature">Hamis csomagaláírás</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_fakePackageSignature">Engedélyezi az alkalmazás számára, hogy más alkalmazásnak tettesse magát. A kártékony alkalmazások ezt személyes adatok elérésére használhatják. Kellő elővigyázatossággal adja meg ezt az engedélyt!</string>
+    <!-- Pocket Lock -->
+    <string name="pocket_lock_message_long_press">A hatás eléréséhez nyomja hosszan a bekapcsoló gombot</string>
+    <!-- Defines the sysfs attribute path used by pocket bridge
         to communicate pocket state to the pocket judge kernel driver. -->
-  <!-- App Blacklist -->
-  <string name="app_blacklist">Kizárt alkalmazások</string>
+    <!-- App Blacklist -->
+    <string name="app_blacklist">Kizárt alkalmazások</string>
 </resources>

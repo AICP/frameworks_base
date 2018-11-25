@@ -19,37 +19,37 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <!-- DUI -->
-  <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permlab_toggleNavigationEditor">controllo editor di navigazione</string>
-  <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permdesc_toggleNavigationEditor">Consenti ad un\'app di controllare l\'editor della barra di navigazione.</string>
-  <!-- AOKP custom system animations -->
-  <string name="animation_fade">Dissolvenza</string>
-  <string name="animation_slide_right">Scorrimento da destra</string>
-  <string name="animation_slide_left">Scorrimento da sinistra</string>
-  <string name="animation_slide_right_no_fade">Scorrimento da destra (senza dissolvenza)</string>
-  <string name="animation_slide_left_no_fade">Scorrimento da sinistra (senza dissolvenza)</string>
-  <string name="animation_slide_up">Scorrimento dal basso</string>
-  <string name="animation_slide_down">Scorrimento dall\'alto</string>
-  <string name="animation_default">Predefinito</string>
-  <string name="animation_translucent">Trasparenza</string>
-  <string name="animation_grow_shrink">Espandi (Verso l\'alto)</string>
-  <string name="animation_grow_shrink_center">Espandi (Centro)</string>
-  <string name="animation_grow_shrink_bottom">Espandi (Verso il basso)</string>
-  <string name="animation_grow_shrink_left">Espandi (Da sinistra)</string>
-  <string name="animation_grow_shrink_right">Espandi (Da destra)</string>
-  <string name="action_null">Vuoto</string>
-  <!-- Label for item that screenrecords in power menu options dialog -->
-  <string name="global_action_screenrecord">Registratore schermo</string>
-  <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permlab_fakePackageSignature">Imitazione firma del pacchetto</string>
-  <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permdesc_fakePackageSignature">Consente all\'applicazione di fingere di essere un\'altra app. Le applicazioni dannose potrebbero essere in grado di utilizzarlo per accedere ai dati delle applicazioni private. Concedi queste autorizzazioni con attenzione!</string>
-  <!-- Pocket Lock -->
-  <string name="pocket_lock_message_long_press">Pressione prolungata del pulsante per interagire</string>
-  <!-- Defines the sysfs attribute path used by pocket bridge
+    <!-- DUI -->
+    <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_toggleNavigationEditor">controllo editor di navigazione</string>
+    <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_toggleNavigationEditor">Consenti ad un\'app di controllare l\'editor della barra di navigazione.</string>
+    <!-- AOKP custom system animations -->
+    <string name="animation_fade">Dissolvenza</string>
+    <string name="animation_slide_right">Scorrimento da destra</string>
+    <string name="animation_slide_left">Scorrimento da sinistra</string>
+    <string name="animation_slide_right_no_fade">Scorrimento da destra (senza dissolvenza)</string>
+    <string name="animation_slide_left_no_fade">Scorrimento da sinistra (senza dissolvenza)</string>
+    <string name="animation_slide_up">Scorrimento dal basso</string>
+    <string name="animation_slide_down">Scorrimento dall\'alto</string>
+    <string name="animation_default">Predefinito</string>
+    <string name="animation_translucent">Trasparenza</string>
+    <string name="animation_grow_shrink">Espandi (Verso l\'alto)</string>
+    <string name="animation_grow_shrink_center">Espandi (Centro)</string>
+    <string name="animation_grow_shrink_bottom">Espandi (Verso il basso)</string>
+    <string name="animation_grow_shrink_left">Espandi (Da sinistra)</string>
+    <string name="animation_grow_shrink_right">Espandi (Da destra)</string>
+    <string name="action_null">Vuoto</string>
+    <!-- Label for item that screenrecords in power menu options dialog -->
+    <string name="global_action_screenrecord">Registratore schermo</string>
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_fakePackageSignature">Imitazione firma del pacchetto</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_fakePackageSignature">Consente all\'applicazione di fingere di essere un\'altra app. Le applicazioni dannose potrebbero essere in grado di utilizzarlo per accedere ai dati delle applicazioni private. Concedi queste autorizzazioni con attenzione!</string>
+    <!-- Pocket Lock -->
+    <string name="pocket_lock_message_long_press">Pressione prolungata del pulsante per interagire</string>
+    <!-- Defines the sysfs attribute path used by pocket bridge
         to communicate pocket state to the pocket judge kernel driver. -->
-  <!-- App Blacklist -->
-  <string name="app_blacklist">Lista nera delle applicazioni</string>
+    <!-- App Blacklist -->
+    <string name="app_blacklist">Lista nera delle applicazioni</string>
 </resources>

@@ -16,204 +16,204 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <!-- Aicp Extras Tile -->
-  <string name="quick_aicp_extras_label">AICP Rozšírenia</string>
-  <string name="quick_aicp_extras_toast">LOL, naozaj ste si mysleli, že toto dlhé kliknutie vás niekam dostane?</string>
-  <!-- Screenshot Delete Toast -->
-  <string name="delete_screenshot_toast">Snímka obrazovky bola odstránena</string>
-  <!-- Partial Screenshot -->
-  <string name="screenshot_abort_title">Žiadna snímka obrazovky</string>
-  <string name="screenshot_abort_text">Operácia bola prerušená.</string>
-  <!-- Compass QS Tile -->
-  <string name="quick_settings_compass_label">Kompas</string>
-  <string name="quick_settings_compass_init">Inicializácia\u2026</string>
-  <string name="accessibility_quick_settings_compass_off">Kompas vyp.</string>
-  <string name="accessibility_quick_settings_compass_on">Kompas zap.</string>
-  <string name="accessibility_quick_settings_compass_changed_off">Kompas je vypnutý.</string>
-  <string name="accessibility_quick_settings_compass_changed_on">Kompas je zapnutý.</string>
-  <string name="quick_settings_compass_N">S</string>
-  <string name="quick_settings_compass_NE">SV</string>
-  <string name="quick_settings_compass_E">V</string>
-  <string name="quick_settings_compass_SE">JV</string>
-  <string name="quick_settings_compass_S">J</string>
-  <string name="quick_settings_compass_SW">JZ</string>
-  <string name="quick_settings_compass_W">Z</string>
-  <string name="quick_settings_compass_NW">SZ</string>
-  <!-- Screenshoot tile -->
-  <string name="quick_settings_screenshot_label">Snímka obrazovky</string>
-  <string name="quick_settings_region_screenshot_label">Čiastočná snímka obrazovky</string>
-  <!-- USB Tethering tile -->
-  <string name="accessibility_quick_settings_usb_tether_off">USB Tethering vyp.</string>
-  <string name="accessibility_quick_settings_usb_tether_on">USB Tethering zap.</string>
-  <string name="accessibility_quick_settings_usb_tether_changed_off">USB Tethering je vypnutý</string>
-  <string name="accessibility_quick_settings_usb_tether_changed_on">USB Tethering je zapnutý</string>
-  <string name="quick_settings_usb_tether_label">USB Tethering</string>
-  <!-- Language toggle tile -->
-  <string name="quick_settings_locale_label">Jazyk</string>
-  <string name="quick_settings_locale_more_locales_toast">Aby ste povolili funkciu prepínania, prosím nastavte viacero jazykov</string>
-  <!-- Music tile -->
-  <string name="quick_settings_music_label">Hudba</string>
-  <string name="quick_settings_music_play">Prehrať</string>
-  <string name="quick_settings_music_pause">Pozastaviť</string>
-  <!-- Sound tile -->
-  <string name="quick_settings_sound_label">Zvuk</string>
-  <string name="quick_settings_sound_ring">Zvonenie</string>
-  <string name="quick_settings_sound_vibrate">Vibrácie</string>
-  <string name="quick_settings_sound_silent">Tichý režim</string>
-  <!-- Ambient Display Tile -->
-  <string name="quick_settings_ambient_display_label">Ambientne zobrazenie</string>
-  <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
-  <string name="accessibility_quick_settings_ambient_display_off">Amb. zobr. vyp.</string>
-  <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
-  <string name="accessibility_quick_settings_ambient_display_on">Amb. zobr. zap.</string>
-  <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
-  <string name="accessibility_quick_settings_ambient_display_changed_off">Ambientne zobrazenie je vypnuté.</string>
-  <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
-  <string name="accessibility_quick_settings_ambient_display_changed_on">Ambientne zobrazenie je zapnuté.</string>
-  <!-- Always on Display Tile -->
-  <string name="quick_settings_always_on_display_label">Vždy na obrazovke</string>
-  <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
-  <string name="accessibility_quick_settings_always_on_display_off">Vždy na obrazovke vypnuté.</string>
-  <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
-  <string name="accessibility_quick_settings_always_on_display_on">Vždy na obrazovke zapnuté.</string>
-  <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
-  <string name="accessibility_quick_settings_always_on_display_changed_off">Vždy na obrazovke bolo vypnuté.</string>
-  <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
-  <string name="accessibility_quick_settings_always_on_display_changed_on">Vždy na obrazovke bolo zapnuté.</string>
-  <!-- Expanded desktop QS Tile -->
-  <string name="quick_settings_expanded_desktop_label">Rozšírená plocha</string>
-  <string name="quick_settings_expanded_desktop">Rozšírená</string>
-  <string name="quick_settings_expanded_desktop_off">Normalna</string>
-  <!-- Caffeine QS Tile -->
-  <string name="quick_settings_caffeine_label">Kofeín</string>
-  <string name="accessibility_quick_settings_caffeine_off">Kofeín vyp.</string>
-  <string name="accessibility_quick_settings_caffeine_on">Kofeín zap.</string>
-  <!-- Sync QS Tile -->
-  <string name="quick_settings_sync_label">Synchronizácia</string>
-  <string name="accessibility_quick_settings_sync_off">Synch. vyp.</string>
-  <string name="accessibility_quick_settings_sync_on">Synch. zap.</string>
-  <string name="accessibility_quick_settings_sync_changed_off">Synchronizácia je vypnutá</string>
-  <string name="accessibility_quick_settings_sync_changed_on">Synchronizácia je zapnutá</string>
-  <!-- Volume QS Tile -->
-  <string name="accessibility_quick_settings_volume_panel">Hlasitosť</string>
-  <string name="quick_settings_volume_panel_label">Hlasitosť</string>
-  <!-- PiP Tile -->
-  <string name="quick_settings_pip_label">PiP</string>
-  <!-- Screenrecord tile -->
-  <string name="quick_settings_screenrecord">Nahrávanie obrazovky</string>
-  <string name="quick_settings_screenrecord_on">Nahrávanie ...</string>
-  <!-- Advance location quick setting tile -->
-  <string name="accessibility_quick_settings_location_battery_saving">Hlásenie polohy: režim šetrenia batérie.</string>
-  <string name="accessibility_quick_settings_location_gps_only">Hlásenie polohy: iba GPS.</string>
-  <string name="accessibility_quick_settings_location_high_accuracy">Hlásenie polohy: vysoká presnosť.</string>
-  <!-- Screenrecord Notification Ticker -->
-  <string name="screenrecord_notif_ticker">Obrazovka sa nahráva</string>
-  <string name="screenrecord_notif_final_ticker">Obrazovka bola úspešne nahraná</string>
-  <!-- Screenrecord notification title -->
-  <string name="screenrecord_notif_title">Nahrávanie obrazovky</string>
-  <!-- Screenrecord notification action: Stop -->
-  <string name="screenrecord_notif_stop">Zastavit</string>
-  <string name="screenrecord_notif_completed">Obrazovka bola úspešne nahraná</string>
-  <string name="screenrecord_notif_description">Vaše nahrávky obrazovky zobrazíte kliknutím</string>
-  <!-- Screenrecord notification action: show/hide pointer -->
-  <string name="screenrecord_notif_pointer_on">Zobraziť ukazovateľ</string>
-  <string name="screenrecord_notif_pointer_off">Skryť ukazovateľ</string>
-  <!-- Screen record notification error title -->
-  <string name="screenrecord_notif_error">Nepodarilo sa nahrať obrazovku</string>
-  <string name="notification_channel_screenrecord">Záznamy obrazovky</string>
-  <string name="screenrecord_hide_hint">Skryť nápovedu</string>
-  <string name="screenrecord_show_hint">Zobraziť nápovedu</string>
-  <!-- Screenshot QS tile -->
-  <string name="quick_settings_screenrecord_label">Nahrávanie obrazovky</string>
-  <string name="quick_settings_screenrecord_lq_label">Záznam obrazovky 480p</string>
-  <string name="quick_settings_screenrecord_mq_label">Záznam obrazovky 720p</string>
-  <string name="quick_settings_screenrecord_hq_label">Záznam obrazovky 720p+</string>
-  <string name="lockscreen_default">Predvolená</string>
-  <string name="lockscreen_hidden">Žiadna</string>
-  <string name="omnijaws_service_error">Chyba</string>
-  <string name="omnijaws_service_unkown">Žiadne údaje o počasí</string>
-  <string name="omnijaws_service_error_long">Chyba pri načítavaní údajov o počasí</string>
-  <string name="omnijaws_service_disabled">Služba je vypnutá</string>
-  <string name="omnijaws_detail_header">Počasie</string>
-  <string name="omnijaws_label_default">Počasie</string>
-  <string name="omnijaws_current_text">Teraz</string>
-  <string name="omnijaws_package_not_available">OmniJaws nie je k dispozícii</string>
-  <string name="omnijaws_service_last_update">Posledná aktualizácia:</string>
-  <!-- Weather string format in expanded statusbar header -->
-  <!-- SystemUI Tuner Parts -->
-  <string name="custom_hint">Spustiť potiahnutím prstom od ikony</string>
-  <!-- DUI -->
-  <string name="systemui_tuner_navbar_title">Predvolené nastavenia</string>
-  <!-- Battery saver tile -->
-  <string name="battery_saver_qs_tile_fully_charged">Úplne nabitá</string>
-  <!-- Caffeine tile -->
-  <string name="caffeine_info_title">Čo je to?</string>
-  <string name="caffeine_info_message">Dlaždica Kofeín je jednoduchá dlaždica, ktorú môžete zapnúť, aby vaša obrazovka zostala zapnutá.\n\nZoberte na vedomie, že stav dlaždice sa po vypnutí obrazovky obnoví.</string>
-  <!-- Navigation bar Tile -->
-  <string name="quick_settings_navigation_bar">Navigačný panel</string>
-  <string name="quick_settings_smartbar">Smartbar</string>
-  <string name="quick_settings_fling">Fling</string>
-  <string name="quick_settings_navigation_default">Stock</string>
-  <string name="quick_settings_navigation_disabled">Vypnuté</string>
-  <!-- Kill button in notification guts -->
-  <string name="force_stop_dlg_title">Vynútiť zastavenie?</string>
-  <string name="force_stop_dlg_text">Ak vynútite zastavenie aplikácie, môže sa správať zvláštne.</string>
-  <string name="kill">Ukončiť aplikáciu</string>
-  <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
-  <string name="keyguard_indication_dash_charging_time">Dash nabíjanie (úplne nabité za <xliff:g id="charging_time_left" example="4 hours and 2 minutes">%s</xliff:g>)</string>
-  <string name="keyguard_plugged_in_dash_charging">Dash nabíjanie</string>
-  <!-- Indication on the keyguard that is shown when the device is charging with a turbo power charger. Should match keyguard_plugged_in_turbo_power_charging [CHAR LIMIT=40]-->
-  <string name="keyguard_indication_turbo_power_time">Turbo-Power je pripojený (<xliff:g id="charging_time_left">%s</xliff:g> až do plna)</string>
-  <string name="keyguard_plugged_in_turbo_power_charging">TurboPower je pripojený</string>
-  <string name="keyguard_plugged_in_turbo_charging">Turbo nabíjanie</string>
-  <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
-  <string name="accessibility_quick_settings_running_services">Otvoriť obrazovku spustených služieb.</string>
-  <!-- The contents of the Ambient Weather bottom view -->
-  <string name="quick_settings_google_assist_label">Asistent</string>
-  <string name="quick_settings_google_voice_assist_label">Hlasový asistent</string>
-  <string name="quick_settings_google_now_label">Google Feed</string>
-  <!-- Smart pixels QS tile -->
-  <string name="quick_settings_smart_pixels">Smart Pixels</string>
-  <string name="quick_settings_smart_pixels_on_power_save">Povoliť Smart Pixels automaticky</string>
-  <!-- CPUInfo tile -->
-  <string name="quick_settings_cpuinfo_label">Informácie o CPU</string>
-  <!-- HW Keys Tile -->
-  <string name="quick_settings_hw_keys_label">Hardvérové tlačidlá</string>
-  <!-- Content description of the HW keys tile in quick settings when disabled (not shown on the screen). [CHAR LIMIT=NONE] -->
-  <string name="accessibility_quick_settings_hw_keys_disabled">Hardvérové tlačidlá vypnuté.</string>
-  <!-- Content description of the HW keys tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
-  <string name="accessibility_quick_settings_hw_keys_enabled">Hardvérové tlačidlá zapnuté.</string>
-  <!-- Heads up snooze toast -->
-  <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> • Plávajúce upozornenia sú odložené na 1 minútu.</string>
-  <string name="heads_up_snooze_message"><xliff:g id="string">%s </xliff:g> • Plávajúce upozornenia sú odložené na <xliff:g id="number">%d </xliff:g> minút.</string>
-  <!-- Text to use when the number in a notification info is too large
+    <!-- Aicp Extras Tile -->
+    <string name="quick_aicp_extras_label">AICP Rozšírenia</string>
+    <string name="quick_aicp_extras_toast">LOL, naozaj ste si mysleli, že toto dlhé kliknutie vás niekam dostane?</string>
+    <!-- Screenshot Delete Toast -->
+    <string name="delete_screenshot_toast">Snímka obrazovky bola odstránena</string>
+    <!-- Partial Screenshot -->
+    <string name="screenshot_abort_title">Žiadna snímka obrazovky</string>
+    <string name="screenshot_abort_text">Operácia bola prerušená.</string>
+    <!-- Compass QS Tile -->
+    <string name="quick_settings_compass_label">Kompas</string>
+    <string name="quick_settings_compass_init">Inicializácia\u2026</string>
+    <string name="accessibility_quick_settings_compass_off">Kompas vyp.</string>
+    <string name="accessibility_quick_settings_compass_on">Kompas zap.</string>
+    <string name="accessibility_quick_settings_compass_changed_off">Kompas je vypnutý.</string>
+    <string name="accessibility_quick_settings_compass_changed_on">Kompas je zapnutý.</string>
+    <string name="quick_settings_compass_N">S</string>
+    <string name="quick_settings_compass_NE">SV</string>
+    <string name="quick_settings_compass_E">V</string>
+    <string name="quick_settings_compass_SE">JV</string>
+    <string name="quick_settings_compass_S">J</string>
+    <string name="quick_settings_compass_SW">JZ</string>
+    <string name="quick_settings_compass_W">Z</string>
+    <string name="quick_settings_compass_NW">SZ</string>
+    <!-- Screenshoot tile -->
+    <string name="quick_settings_screenshot_label">Snímka obrazovky</string>
+    <string name="quick_settings_region_screenshot_label">Čiastočná snímka obrazovky</string>
+    <!-- USB Tethering tile -->
+    <string name="accessibility_quick_settings_usb_tether_off">USB Tethering vyp.</string>
+    <string name="accessibility_quick_settings_usb_tether_on">USB Tethering zap.</string>
+    <string name="accessibility_quick_settings_usb_tether_changed_off">USB Tethering je vypnutý</string>
+    <string name="accessibility_quick_settings_usb_tether_changed_on">USB Tethering je zapnutý</string>
+    <string name="quick_settings_usb_tether_label">USB Tethering</string>
+    <!-- Language toggle tile -->
+    <string name="quick_settings_locale_label">Jazyk</string>
+    <string name="quick_settings_locale_more_locales_toast">Aby ste povolili funkciu prepínania, prosím nastavte viacero jazykov</string>
+    <!-- Music tile -->
+    <string name="quick_settings_music_label">Hudba</string>
+    <string name="quick_settings_music_play">Prehrať</string>
+    <string name="quick_settings_music_pause">Pozastaviť</string>
+    <!-- Sound tile -->
+    <string name="quick_settings_sound_label">Zvuk</string>
+    <string name="quick_settings_sound_ring">Zvonenie</string>
+    <string name="quick_settings_sound_vibrate">Vibrácie</string>
+    <string name="quick_settings_sound_silent">Tichý režim</string>
+    <!-- Ambient Display Tile -->
+    <string name="quick_settings_ambient_display_label">Ambientne zobrazenie</string>
+    <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_ambient_display_off">Amb. zobr. vyp.</string>
+    <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_ambient_display_on">Amb. zobr. zap.</string>
+    <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_ambient_display_changed_off">Ambientne zobrazenie je vypnuté.</string>
+    <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_ambient_display_changed_on">Ambientne zobrazenie je zapnuté.</string>
+    <!-- Always on Display Tile -->
+    <string name="quick_settings_always_on_display_label">Vždy na obrazovke</string>
+    <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_always_on_display_off">Vždy na obrazovke vypnuté.</string>
+    <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_always_on_display_on">Vždy na obrazovke zapnuté.</string>
+    <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_always_on_display_changed_off">Vždy na obrazovke bolo vypnuté.</string>
+    <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_always_on_display_changed_on">Vždy na obrazovke bolo zapnuté.</string>
+    <!-- Expanded desktop QS Tile -->
+    <string name="quick_settings_expanded_desktop_label">Rozšírená plocha</string>
+    <string name="quick_settings_expanded_desktop">Rozšírená</string>
+    <string name="quick_settings_expanded_desktop_off">Normalna</string>
+    <!-- Caffeine QS Tile -->
+    <string name="quick_settings_caffeine_label">Kofeín</string>
+    <string name="accessibility_quick_settings_caffeine_off">Kofeín vyp.</string>
+    <string name="accessibility_quick_settings_caffeine_on">Kofeín zap.</string>
+    <!-- Sync QS Tile -->
+    <string name="quick_settings_sync_label">Synchronizácia</string>
+    <string name="accessibility_quick_settings_sync_off">Synch. vyp.</string>
+    <string name="accessibility_quick_settings_sync_on">Synch. zap.</string>
+    <string name="accessibility_quick_settings_sync_changed_off">Synchronizácia je vypnutá</string>
+    <string name="accessibility_quick_settings_sync_changed_on">Synchronizácia je zapnutá</string>
+    <!-- Volume QS Tile -->
+    <string name="accessibility_quick_settings_volume_panel">Hlasitosť</string>
+    <string name="quick_settings_volume_panel_label">Hlasitosť</string>
+    <!-- PiP Tile -->
+    <string name="quick_settings_pip_label">PiP</string>
+    <!-- Screenrecord tile -->
+    <string name="quick_settings_screenrecord">Nahrávanie obrazovky</string>
+    <string name="quick_settings_screenrecord_on">Nahrávanie ...</string>
+    <!-- Advance location quick setting tile -->
+    <string name="accessibility_quick_settings_location_battery_saving">Hlásenie polohy: režim šetrenia batérie.</string>
+    <string name="accessibility_quick_settings_location_gps_only">Hlásenie polohy: iba GPS.</string>
+    <string name="accessibility_quick_settings_location_high_accuracy">Hlásenie polohy: vysoká presnosť.</string>
+    <!-- Screenrecord Notification Ticker -->
+    <string name="screenrecord_notif_ticker">Obrazovka sa nahráva</string>
+    <string name="screenrecord_notif_final_ticker">Obrazovka bola úspešne nahraná</string>
+    <!-- Screenrecord notification title -->
+    <string name="screenrecord_notif_title">Nahrávanie obrazovky</string>
+    <!-- Screenrecord notification action: Stop -->
+    <string name="screenrecord_notif_stop">Zastavit</string>
+    <string name="screenrecord_notif_completed">Obrazovka bola úspešne nahraná</string>
+    <string name="screenrecord_notif_description">Vaše nahrávky obrazovky zobrazíte kliknutím</string>
+    <!-- Screenrecord notification action: show/hide pointer -->
+    <string name="screenrecord_notif_pointer_on">Zobraziť ukazovateľ</string>
+    <string name="screenrecord_notif_pointer_off">Skryť ukazovateľ</string>
+    <!-- Screen record notification error title -->
+    <string name="screenrecord_notif_error">Nepodarilo sa nahrať obrazovku</string>
+    <string name="notification_channel_screenrecord">Záznamy obrazovky</string>
+    <string name="screenrecord_hide_hint">Skryť nápovedu</string>
+    <string name="screenrecord_show_hint">Zobraziť nápovedu</string>
+    <!-- Screenshot QS tile -->
+    <string name="quick_settings_screenrecord_label">Nahrávanie obrazovky</string>
+    <string name="quick_settings_screenrecord_lq_label">Záznam obrazovky 480p</string>
+    <string name="quick_settings_screenrecord_mq_label">Záznam obrazovky 720p</string>
+    <string name="quick_settings_screenrecord_hq_label">Záznam obrazovky 720p+</string>
+    <string name="lockscreen_default">Predvolená</string>
+    <string name="lockscreen_hidden">Žiadna</string>
+    <string name="omnijaws_service_error">Chyba</string>
+    <string name="omnijaws_service_unkown">Žiadne údaje o počasí</string>
+    <string name="omnijaws_service_error_long">Chyba pri načítavaní údajov o počasí</string>
+    <string name="omnijaws_service_disabled">Služba je vypnutá</string>
+    <string name="omnijaws_detail_header">Počasie</string>
+    <string name="omnijaws_label_default">Počasie</string>
+    <string name="omnijaws_current_text">Teraz</string>
+    <string name="omnijaws_package_not_available">OmniJaws nie je k dispozícii</string>
+    <string name="omnijaws_service_last_update">Posledná aktualizácia:</string>
+    <!-- Weather string format in expanded statusbar header -->
+    <!-- SystemUI Tuner Parts -->
+    <string name="custom_hint">Spustiť potiahnutím prstom od ikony</string>
+    <!-- DUI -->
+    <string name="systemui_tuner_navbar_title">Predvolené nastavenia</string>
+    <!-- Battery saver tile -->
+    <string name="battery_saver_qs_tile_fully_charged">Úplne nabitá</string>
+    <!-- Caffeine tile -->
+    <string name="caffeine_info_title">Čo je to?</string>
+    <string name="caffeine_info_message">Dlaždica Kofeín je jednoduchá dlaždica, ktorú môžete zapnúť, aby vaša obrazovka zostala zapnutá.\n\nZoberte na vedomie, že stav dlaždice sa po vypnutí obrazovky obnoví.</string>
+    <!-- Navigation bar Tile -->
+    <string name="quick_settings_navigation_bar">Navigačný panel</string>
+    <string name="quick_settings_smartbar">Smartbar</string>
+    <string name="quick_settings_fling">Fling</string>
+    <string name="quick_settings_navigation_default">Stock</string>
+    <string name="quick_settings_navigation_disabled">Vypnuté</string>
+    <!-- Kill button in notification guts -->
+    <string name="force_stop_dlg_title">Vynútiť zastavenie?</string>
+    <string name="force_stop_dlg_text">Ak vynútite zastavenie aplikácie, môže sa správať zvláštne.</string>
+    <string name="kill">Ukončiť aplikáciu</string>
+    <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
+    <string name="keyguard_indication_dash_charging_time">Dash nabíjanie (úplne nabité za <xliff:g id="charging_time_left" example="4 hours and 2 minutes">%s</xliff:g>)</string>
+    <string name="keyguard_plugged_in_dash_charging">Dash nabíjanie</string>
+    <!-- Indication on the keyguard that is shown when the device is charging with a turbo power charger. Should match keyguard_plugged_in_turbo_power_charging [CHAR LIMIT=40]-->
+    <string name="keyguard_indication_turbo_power_time">Turbo-Power je pripojený (<xliff:g id="charging_time_left">%s</xliff:g> až do plna)</string>
+    <string name="keyguard_plugged_in_turbo_power_charging">TurboPower je pripojený</string>
+    <string name="keyguard_plugged_in_turbo_charging">Turbo nabíjanie</string>
+    <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_running_services">Otvoriť obrazovku spustených služieb.</string>
+    <!-- The contents of the Ambient Weather bottom view -->
+    <string name="quick_settings_google_assist_label">Asistent</string>
+    <string name="quick_settings_google_voice_assist_label">Hlasový asistent</string>
+    <string name="quick_settings_google_now_label">Google Feed</string>
+    <!-- Smart pixels QS tile -->
+    <string name="quick_settings_smart_pixels">Smart Pixels</string>
+    <string name="quick_settings_smart_pixels_on_power_save">Povoliť Smart Pixels automaticky</string>
+    <!-- CPUInfo tile -->
+    <string name="quick_settings_cpuinfo_label">Informácie o CPU</string>
+    <!-- HW Keys Tile -->
+    <string name="quick_settings_hw_keys_label">Hardvérové tlačidlá</string>
+    <!-- Content description of the HW keys tile in quick settings when disabled (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_hw_keys_disabled">Hardvérové tlačidlá vypnuté.</string>
+    <!-- Content description of the HW keys tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_hw_keys_enabled">Hardvérové tlačidlá zapnuté.</string>
+    <!-- Heads up snooze toast -->
+    <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> • Plávajúce upozornenia sú odložené na 1 minútu.</string>
+    <string name="heads_up_snooze_message"><xliff:g id="string">%s </xliff:g> • Plávajúce upozornenia sú odložené na <xliff:g id="number">%d </xliff:g> minút.</string>
+    <!-- Text to use when the number in a notification info is too large
          (greater than status_bar_notification_info_maxnum, defined in
          values/config.xml) and must be truncated.
          [CHAR LIMIT=4] -->
-  <string name="recents_app_killed">Aplikácia bola ukončená</string>
-  <!-- On The Go -->
-  <string name="global_action_onthego">Režim na cestách</string>
-  <string name="onthego_notif_ticker">Režim na cestách je aktivovaný</string>
-  <string name="onthego_notif_title">Režim na cestách je aktívny</string>
-  <string name="onthego_notif_stop">Zastavit</string>
-  <string name="onthego_notif_options">Možnosti</string>
-  <string name="onthego_notif_error">Nepodarilo sa spustiť režim na cestách</string>
-  <string name="onthego_notif_restart">Reštartovať režim na cestách</string>
-  <string name="onthego_notif_camera_changed">Režim fotoaparátu bol zmenený</string>
-  <string name="onthego_transparency">Priehľadnosť</string>
-  <string name="onthego_front_camera">Použiť prednú kameru</string>
-  <string name="onthego_service_toggle">Automaticky reštartovať službu</string>
-  <string name="onthego_channel_name">Hlavný</string>
-  <!-- OnTheGo Tile -->
-  <string name="quick_settings_onthego_label">Režim na cestách</string>
-  <!-- Recents Memory Bar -->
-  <string name="recents_free_ram">Voľná pamäť RAM: %1$d MB</string>
-  <!-- LTE QS Tile -->
-  <string name="qs_lte_label">LTE</string>
-  <string name="lte_on">LTE zap,</string>
-  <string name="lte_off">LTE vyp,</string>
-  <!-- App circle sidebar -->
-  <string name="app_float_maximize_item_title">Maximalizovať</string>
-  <string name="app_float_item_title">Plávajúce zobrazenie</string>
-  <string name="app_stop_item_title">Ukončiť aplikáciu</string>
+    <string name="recents_app_killed">Aplikácia bola ukončená</string>
+    <!-- On The Go -->
+    <string name="global_action_onthego">Režim na cestách</string>
+    <string name="onthego_notif_ticker">Režim na cestách je aktivovaný</string>
+    <string name="onthego_notif_title">Režim na cestách je aktívny</string>
+    <string name="onthego_notif_stop">Zastavit</string>
+    <string name="onthego_notif_options">Možnosti</string>
+    <string name="onthego_notif_error">Nepodarilo sa spustiť režim na cestách</string>
+    <string name="onthego_notif_restart">Reštartovať režim na cestách</string>
+    <string name="onthego_notif_camera_changed">Režim fotoaparátu bol zmenený</string>
+    <string name="onthego_transparency">Priehľadnosť</string>
+    <string name="onthego_front_camera">Použiť prednú kameru</string>
+    <string name="onthego_service_toggle">Automaticky reštartovať službu</string>
+    <string name="onthego_channel_name">Hlavný</string>
+    <!-- OnTheGo Tile -->
+    <string name="quick_settings_onthego_label">Režim na cestách</string>
+    <!-- Recents Memory Bar -->
+    <string name="recents_free_ram">Voľná pamäť RAM: %1$d MB</string>
+    <!-- LTE QS Tile -->
+    <string name="qs_lte_label">LTE</string>
+    <string name="lte_on">LTE zap,</string>
+    <string name="lte_off">LTE vyp,</string>
+    <!-- App circle sidebar -->
+    <string name="app_float_maximize_item_title">Maximalizovať</string>
+    <string name="app_float_item_title">Plávajúce zobrazenie</string>
+    <string name="app_stop_item_title">Ukončiť aplikáciu</string>
 </resources>

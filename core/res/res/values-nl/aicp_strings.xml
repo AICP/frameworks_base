@@ -19,37 +19,37 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <!-- DUI -->
-  <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permlab_toggleNavigationEditor">navigatiebalk-editor beheren</string>
-  <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permdesc_toggleNavigationEditor">Een app toestaan om de navigitiebalk-editor te beheren.</string>
-  <!-- AOKP custom system animations -->
-  <string name="animation_fade">Vervagen</string>
-  <string name="animation_slide_right">Rechts inschuiven</string>
-  <string name="animation_slide_left">Links inschuiven</string>
-  <string name="animation_slide_right_no_fade">Rechts inschuiven (zonder vervagen)</string>
-  <string name="animation_slide_left_no_fade">Links inschuiven (zonder vervagen)</string>
-  <string name="animation_slide_up">Van onder inschuiven</string>
-  <string name="animation_slide_down">Van boven inschuiven</string>
-  <string name="animation_default">Standaard</string>
-  <string name="animation_translucent">Doorzichtig</string>
-  <string name="animation_grow_shrink">Ingroeien (boven)</string>
-  <string name="animation_grow_shrink_center">Ingroeien (vanuit het midden)</string>
-  <string name="animation_grow_shrink_bottom">Ingroeien (van onder)</string>
-  <string name="animation_grow_shrink_left">Ingroeien (van links)</string>
-  <string name="animation_grow_shrink_right">Ingroeien (van rechts)</string>
-  <string name="action_null">Leeg</string>
-  <!-- Label for item that screenrecords in power menu options dialog -->
-  <string name="global_action_screenrecord">Schermopname</string>
-  <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permlab_fakePackageSignature">Pakkethandtekening nabootsen</string>
-  <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permdesc_fakePackageSignature">De app toestaan zich voor te doen als een andere app. Schadelijke apps kunnen dit mogelijk gebruiken om toegang te krijgen tot persoonlijke toepassingsgegevens. Verleen deze toestemming met de nodige voorzichtigheid!</string>
-  <!-- Pocket Lock -->
-  <string name="pocket_lock_message_long_press">Aan/uit-knop lang indrukken voor interactie</string>
-  <!-- Defines the sysfs attribute path used by pocket bridge
+    <!-- DUI -->
+    <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_toggleNavigationEditor">navigatiebalk-editor beheren</string>
+    <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_toggleNavigationEditor">Een app toestaan om de navigitiebalk-editor te beheren.</string>
+    <!-- AOKP custom system animations -->
+    <string name="animation_fade">Vervagen</string>
+    <string name="animation_slide_right">Rechts inschuiven</string>
+    <string name="animation_slide_left">Links inschuiven</string>
+    <string name="animation_slide_right_no_fade">Rechts inschuiven (zonder vervagen)</string>
+    <string name="animation_slide_left_no_fade">Links inschuiven (zonder vervagen)</string>
+    <string name="animation_slide_up">Van onder inschuiven</string>
+    <string name="animation_slide_down">Van boven inschuiven</string>
+    <string name="animation_default">Standaard</string>
+    <string name="animation_translucent">Doorzichtig</string>
+    <string name="animation_grow_shrink">Ingroeien (boven)</string>
+    <string name="animation_grow_shrink_center">Ingroeien (vanuit het midden)</string>
+    <string name="animation_grow_shrink_bottom">Ingroeien (van onder)</string>
+    <string name="animation_grow_shrink_left">Ingroeien (van links)</string>
+    <string name="animation_grow_shrink_right">Ingroeien (van rechts)</string>
+    <string name="action_null">Leeg</string>
+    <!-- Label for item that screenrecords in power menu options dialog -->
+    <string name="global_action_screenrecord">Schermopname</string>
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_fakePackageSignature">Pakkethandtekening nabootsen</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_fakePackageSignature">De app toestaan zich voor te doen als een andere app. Schadelijke apps kunnen dit mogelijk gebruiken om toegang te krijgen tot persoonlijke toepassingsgegevens. Verleen deze toestemming met de nodige voorzichtigheid!</string>
+    <!-- Pocket Lock -->
+    <string name="pocket_lock_message_long_press">Aan/uit-knop lang indrukken voor interactie</string>
+    <!-- Defines the sysfs attribute path used by pocket bridge
         to communicate pocket state to the pocket judge kernel driver. -->
-  <!-- App Blacklist -->
-  <string name="app_blacklist">App op zwarte lijst</string>
+    <!-- App Blacklist -->
+    <string name="app_blacklist">App op zwarte lijst</string>
 </resources>

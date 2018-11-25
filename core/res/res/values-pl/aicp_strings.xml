@@ -19,37 +19,37 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <!-- DUI -->
-  <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permlab_toggleNavigationEditor">edytor paska nawigacji</string>
-  <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permdesc_toggleNavigationEditor">Zezwól aplikacji na używanie edytora paska nawigacji.</string>
-  <!-- AOKP custom system animations -->
-  <string name="animation_fade">Przenikanie</string>
-  <string name="animation_slide_right">Przesunięcie w prawo</string>
-  <string name="animation_slide_left">Przesunięcie w lewo</string>
-  <string name="animation_slide_right_no_fade">Przesunięcie w prawo (bez zanikania)</string>
-  <string name="animation_slide_left_no_fade">Przesunięcie w lewo (bez zanikania)</string>
-  <string name="animation_slide_up">Przesunięcie w dół</string>
-  <string name="animation_slide_down">Przesunięcie w górę</string>
-  <string name="animation_default">Domyślne</string>
-  <string name="animation_translucent">Prześwitywanie</string>
-  <string name="animation_grow_shrink">Powiększenie (od góry)</string>
-  <string name="animation_grow_shrink_center">Powiększenie (do środka)</string>
-  <string name="animation_grow_shrink_bottom">Powiększenie (do dołu)</string>
-  <string name="animation_grow_shrink_left">Powiększenie (w lewo)</string>
-  <string name="animation_grow_shrink_right">Powiększenie (w prawo)</string>
-  <string name="action_null">Pusto</string>
-  <!-- Label for item that screenrecords in power menu options dialog -->
-  <string name="global_action_screenrecord">Nagrywanie ekranu</string>
-  <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permlab_fakePackageSignature">Fałszowanie podpisu pakietu</string>
-  <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permdesc_fakePackageSignature">Pozwala aplikacji na udawanie innej aplikacji. Złośliwe aplikacje mogą wykorzystać to w celu uzyskania dostępu do prywatnych danych. Zachowaj ostrożność udzielając to uprawnienie!</string>
-  <!-- Pocket Lock -->
-  <string name="pocket_lock_message_long_press">Przytrzymaj przycisk zasilania w celu interakcji</string>
-  <!-- Defines the sysfs attribute path used by pocket bridge
+    <!-- DUI -->
+    <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_toggleNavigationEditor">edytor paska nawigacji</string>
+    <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_toggleNavigationEditor">Zezwól aplikacji na używanie edytora paska nawigacji.</string>
+    <!-- AOKP custom system animations -->
+    <string name="animation_fade">Przenikanie</string>
+    <string name="animation_slide_right">Przesunięcie w prawo</string>
+    <string name="animation_slide_left">Przesunięcie w lewo</string>
+    <string name="animation_slide_right_no_fade">Przesunięcie w prawo (bez zanikania)</string>
+    <string name="animation_slide_left_no_fade">Przesunięcie w lewo (bez zanikania)</string>
+    <string name="animation_slide_up">Przesunięcie w dół</string>
+    <string name="animation_slide_down">Przesunięcie w górę</string>
+    <string name="animation_default">Domyślne</string>
+    <string name="animation_translucent">Prześwitywanie</string>
+    <string name="animation_grow_shrink">Powiększenie (od góry)</string>
+    <string name="animation_grow_shrink_center">Powiększenie (do środka)</string>
+    <string name="animation_grow_shrink_bottom">Powiększenie (do dołu)</string>
+    <string name="animation_grow_shrink_left">Powiększenie (w lewo)</string>
+    <string name="animation_grow_shrink_right">Powiększenie (w prawo)</string>
+    <string name="action_null">Pusto</string>
+    <!-- Label for item that screenrecords in power menu options dialog -->
+    <string name="global_action_screenrecord">Nagrywanie ekranu</string>
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_fakePackageSignature">Fałszowanie podpisu pakietu</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_fakePackageSignature">Pozwala aplikacji na udawanie innej aplikacji. Złośliwe aplikacje mogą wykorzystać to w celu uzyskania dostępu do prywatnych danych. Zachowaj ostrożność udzielając to uprawnienie!</string>
+    <!-- Pocket Lock -->
+    <string name="pocket_lock_message_long_press">Przytrzymaj przycisk zasilania w celu interakcji</string>
+    <!-- Defines the sysfs attribute path used by pocket bridge
         to communicate pocket state to the pocket judge kernel driver. -->
-  <!-- App Blacklist -->
-  <string name="app_blacklist">Czarna lista aplikacji</string>
+    <!-- App Blacklist -->
+    <string name="app_blacklist">Czarna lista aplikacji</string>
 </resources>

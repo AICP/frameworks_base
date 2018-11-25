@@ -16,206 +16,206 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <!-- Aicp Extras Tile -->
-  <string name="quick_aicp_extras_label">Aicp Extras</string>
-  <string name="quick_aicp_extras_toast">Jajaja, esperabas que la pulsación larga mostrara algo!!!</string>
-  <!-- Screenshot Delete Toast -->
-  <string name="delete_screenshot_toast">Captura de pantalla eliminada</string>
-  <!-- Partial Screenshot -->
-  <string name="screenshot_abort_title">No se capturó la pantalla</string>
-  <string name="screenshot_abort_text">Operación cancelada.</string>
-  <!-- Compass QS Tile -->
-  <string name="quick_settings_compass_label">Brújula</string>
-  <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
-  <string name="quick_settings_compass_init">Iniciando\u2026</string>
-  <string name="accessibility_quick_settings_compass_off">Brújula deshabilitada.</string>
-  <string name="accessibility_quick_settings_compass_on">Brújula habilitada.</string>
-  <string name="accessibility_quick_settings_compass_changed_off">Brújula apagada.</string>
-  <string name="accessibility_quick_settings_compass_changed_on">Brujula encendida.</string>
-  <string name="quick_settings_compass_N">N</string>
-  <string name="quick_settings_compass_NE">NE</string>
-  <string name="quick_settings_compass_E">E</string>
-  <string name="quick_settings_compass_SE">SE</string>
-  <string name="quick_settings_compass_S">S</string>
-  <string name="quick_settings_compass_SW">SO</string>
-  <string name="quick_settings_compass_W">O</string>
-  <string name="quick_settings_compass_NW">NO</string>
-  <!-- Screenshoot tile -->
-  <string name="quick_settings_screenshot_label">Captura de pantalla</string>
-  <string name="quick_settings_region_screenshot_label">Captura de pantalla parcial</string>
-  <!-- USB Tethering tile -->
-  <string name="accessibility_quick_settings_usb_tether_off">Anclaje USB desactivado</string>
-  <string name="accessibility_quick_settings_usb_tether_on">Anclaje USB activado</string>
-  <string name="accessibility_quick_settings_usb_tether_changed_off">Anclaje USB desactivado</string>
-  <string name="accessibility_quick_settings_usb_tether_changed_on">Anclaje USB activado</string>
-  <string name="quick_settings_usb_tether_label">Anclaje USB</string>
-  <!-- Language toggle tile -->
-  <string name="quick_settings_locale_label">Idioma</string>
-  <string name="quick_settings_locale_more_locales_toast">Es necesario configurar múltiples idiomas para que este interruptor funcione</string>
-  <!-- Music tile -->
-  <string name="quick_settings_music_label">Música</string>
-  <string name="quick_settings_music_play">Reproducir</string>
-  <string name="quick_settings_music_pause">Pausar</string>
-  <!-- Sound tile -->
-  <string name="quick_settings_sound_label">Sonido</string>
-  <string name="quick_settings_sound_ring">Sonar</string>
-  <string name="quick_settings_sound_vibrate">Vibrar</string>
-  <string name="quick_settings_sound_silent">Silencio</string>
-  <!-- Ambient Display Tile -->
-  <string name="quick_settings_ambient_display_label">Pantalla ambiente</string>
-  <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
-  <string name="accessibility_quick_settings_ambient_display_off">Pantalla ambiente desactivada.</string>
-  <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
-  <string name="accessibility_quick_settings_ambient_display_on">Pantalla ambiente activada.</string>
-  <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
-  <string name="accessibility_quick_settings_ambient_display_changed_off">Pantalla ambiente desactivada.</string>
-  <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
-  <string name="accessibility_quick_settings_ambient_display_changed_on">Pantalla ambiente activada.</string>
-  <!-- Always on Display Tile -->
-  <string name="quick_settings_always_on_display_label">Pantalla siempre encendida</string>
-  <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
-  <string name="accessibility_quick_settings_always_on_display_off">Pantalla siempre encendida desactivada.</string>
-  <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
-  <string name="accessibility_quick_settings_always_on_display_on">Pantalla siempre encendida activada.</string>
-  <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
-  <string name="accessibility_quick_settings_always_on_display_changed_off">Se ha activado la pantalla siempre encendida.</string>
-  <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
-  <string name="accessibility_quick_settings_always_on_display_changed_on">Se ha desactivado la pantalla siempre encendida.</string>
-  <!-- Expanded desktop QS Tile -->
-  <string name="quick_settings_expanded_desktop_label">Escritorio expandido</string>
-  <string name="quick_settings_expanded_desktop">Expandido</string>
-  <string name="quick_settings_expanded_desktop_off">Normal</string>
-  <!-- Caffeine QS Tile -->
-  <string name="quick_settings_caffeine_label">Cafeína</string>
-  <string name="accessibility_quick_settings_caffeine_off">Cafeína off</string>
-  <string name="accessibility_quick_settings_caffeine_on">Cafeína on</string>
-  <!-- Sync QS Tile -->
-  <string name="quick_settings_sync_label">Sinc</string>
-  <string name="accessibility_quick_settings_sync_off">Sinc off</string>
-  <string name="accessibility_quick_settings_sync_on">Sinc on</string>
-  <string name="accessibility_quick_settings_sync_changed_off">Sinc desactivada</string>
-  <string name="accessibility_quick_settings_sync_changed_on">Sinc activada</string>
-  <!-- Volume QS Tile -->
-  <string name="accessibility_quick_settings_volume_panel">Volumen</string>
-  <string name="quick_settings_volume_panel_label">Volumen</string>
-  <!-- PiP Tile -->
-  <string name="quick_settings_pip_label">PiP</string>
-  <!-- Screenrecord tile -->
-  <string name="quick_settings_screenrecord">Grabar pantalla</string>
-  <string name="quick_settings_screenrecord_on">Grabando...</string>
-  <!-- Advance location quick setting tile -->
-  <string name="accessibility_quick_settings_location_battery_saving">Informe de ubicación: modo de ahorro de batería.</string>
-  <string name="accessibility_quick_settings_location_gps_only">Informe de ubicación: modo sólo sensores.</string>
-  <string name="accessibility_quick_settings_location_high_accuracy">Informe de ubicación: modo alta precisión.</string>
-  <!-- Screenrecord Notification Ticker -->
-  <string name="screenrecord_notif_ticker">Grabando pantalla</string>
-  <string name="screenrecord_notif_final_ticker">Grabación realizada con éxito</string>
-  <!-- Screenrecord notification title -->
-  <string name="screenrecord_notif_title">Grabando la pantalla</string>
-  <!-- Screenrecord notification action: Stop -->
-  <string name="screenrecord_notif_stop">Detener</string>
-  <string name="screenrecord_notif_completed">Grabación realizada con éxito</string>
-  <string name="screenrecord_notif_description">Pulse para ver la grabación de pantalla</string>
-  <!-- Screenrecord notification action: show/hide pointer -->
-  <string name="screenrecord_notif_pointer_on">Mostrar cursor</string>
-  <string name="screenrecord_notif_pointer_off">Ocultar cursor</string>
-  <!-- Screen record notification error title -->
-  <string name="screenrecord_notif_error">No se pudo grabar la pantalla</string>
-  <string name="notification_channel_screenrecord">Grabaciones de pantalla</string>
-  <string name="screenrecord_hide_hint">Ocultar sugerencia</string>
-  <string name="screenrecord_show_hint">Mostrar sugerencia</string>
-  <!-- Screenshot QS tile -->
-  <string name="quick_settings_screenrecord_label">Grabar pantalla</string>
-  <string name="quick_settings_screenrecord_lq_label">Grabación de pantalla 480p</string>
-  <string name="quick_settings_screenrecord_mq_label">Grabación de pantalla 720p</string>
-  <string name="quick_settings_screenrecord_hq_label">Grabación de pantalla 720p+</string>
-  <string name="lockscreen_default">Predeterminado</string>
-  <string name="lockscreen_hidden">Ninguno</string>
-  <string name="omnijaws_service_error">Error</string>
-  <string name="omnijaws_service_unkown">No hay datos metereológicos</string>
-  <string name="omnijaws_service_error_long">Error al cargar datos meteorológicos</string>
-  <string name="omnijaws_service_disabled">Servicio deshabilitado</string>
-  <string name="omnijaws_detail_header">Clima</string>
-  <string name="omnijaws_label_default">Clima</string>
-  <string name="omnijaws_current_text">Ahora</string>
-  <string name="omnijaws_package_not_available">OmniJaws no disponible</string>
-  <string name="omnijaws_service_last_update">Última actualización:</string>
-  <!-- Weather string format in expanded statusbar header -->
-  <string name="status_bar_weather_format"><xliff:g id="temp">%1$s</xliff:g></string>
-  <!-- SystemUI Tuner Parts -->
-  <string name="custom_hint">Deslizar desde el icono para abrir</string>
-  <!-- DUI -->
-  <string name="systemui_tuner_navbar_title">Configuración predeterminada</string>
-  <!-- Battery saver tile -->
-  <string name="battery_saver_qs_tile_fully_charged">Cargado</string>
-  <!-- Caffeine tile -->
-  <string name="caffeine_info_title">¿Qué es esto?</string>
-  <string name="caffeine_info_message">El ajuste Cafeína es un acceso directo que se puede activar para mantener la pantalla encendida.\n\nEl estado del ajuste se reseteará al apagar la pantalla.</string>
-  <!-- Navigation bar Tile -->
-  <string name="quick_settings_navigation_bar">Barra de navegación</string>
-  <string name="quick_settings_smartbar">SmartBar</string>
-  <string name="quick_settings_fling">Fling</string>
-  <string name="quick_settings_navigation_default">Predeterminado</string>
-  <string name="quick_settings_navigation_disabled">Deshabilitado</string>
-  <!-- Kill button in notification guts -->
-  <string name="force_stop_dlg_title">¿Forzar detención?</string>
-  <string name="force_stop_dlg_text">Si se detiene una aplicación, es posible que no funcione correctamente.</string>
-  <string name="kill">Cerrar Aplicación</string>
-  <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
-  <string name="keyguard_indication_dash_charging_time">Carga Dash (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%s</xliff:g> hasta completar)</string>
-  <string name="keyguard_plugged_in_dash_charging">Carga Dash</string>
-  <!-- Indication on the keyguard that is shown when the device is charging with a turbo power charger. Should match keyguard_plugged_in_turbo_power_charging [CHAR LIMIT=40]-->
-  <string name="keyguard_indication_turbo_power_time">TurboPower conectado (<xliff:g id="charging_time_left">%s</xliff:g> hasta completar)</string>
-  <string name="keyguard_plugged_in_turbo_power_charging">TurboPower conectado</string>
-  <string name="keyguard_plugged_in_turbo_charging">Carga Turbo</string>
-  <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
-  <string name="accessibility_quick_settings_running_services">Abrir la pantalla de servicios en ejecución.</string>
-  <!-- The contents of the Ambient Weather bottom view -->
-  <string name="quick_settings_google_assist_label">Asistente</string>
-  <string name="quick_settings_google_voice_assist_label">Asistente de voz</string>
-  <string name="quick_settings_google_now_label">Feed de Google</string>
-  <!-- Smart pixels QS tile -->
-  <string name="quick_settings_smart_pixels">Píxeles inteligentes</string>
-  <string name="quick_settings_smart_pixels_on_power_save">Habilitar píxeles inteligentes automáticamente</string>
-  <!-- CPUInfo tile -->
-  <string name="quick_settings_cpuinfo_label">Información de la CPU</string>
-  <!-- HW Keys Tile -->
-  <string name="quick_settings_hw_keys_label">Botones físicos</string>
-  <!-- Content description of the HW keys tile in quick settings when disabled (not shown on the screen). [CHAR LIMIT=NONE] -->
-  <string name="accessibility_quick_settings_hw_keys_disabled">Botones físicos deshabilitados.</string>
-  <!-- Content description of the HW keys tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
-  <string name="accessibility_quick_settings_hw_keys_enabled">Botones físicos habilitados.</string>
-  <!-- Heads up snooze toast -->
-  <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Notificaciones emergentes pospuestas 1 minuto.</string>
-  <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - Notificaciones emergentes pospuestas durante <xliff:g id="number">%d</xliff:g> minutos.</string>
-  <!-- Text to use when the number in a notification info is too large
+    <!-- Aicp Extras Tile -->
+    <string name="quick_aicp_extras_label">Aicp Extras</string>
+    <string name="quick_aicp_extras_toast">Jajaja, esperabas que la pulsación larga mostrara algo!!!</string>
+    <!-- Screenshot Delete Toast -->
+    <string name="delete_screenshot_toast">Captura de pantalla eliminada</string>
+    <!-- Partial Screenshot -->
+    <string name="screenshot_abort_title">No se capturó la pantalla</string>
+    <string name="screenshot_abort_text">Operación cancelada.</string>
+    <!-- Compass QS Tile -->
+    <string name="quick_settings_compass_label">Brújula</string>
+    <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
+    <string name="quick_settings_compass_init">Iniciando\u2026</string>
+    <string name="accessibility_quick_settings_compass_off">Brújula deshabilitada.</string>
+    <string name="accessibility_quick_settings_compass_on">Brújula habilitada.</string>
+    <string name="accessibility_quick_settings_compass_changed_off">Brújula apagada.</string>
+    <string name="accessibility_quick_settings_compass_changed_on">Brujula encendida.</string>
+    <string name="quick_settings_compass_N">N</string>
+    <string name="quick_settings_compass_NE">NE</string>
+    <string name="quick_settings_compass_E">E</string>
+    <string name="quick_settings_compass_SE">SE</string>
+    <string name="quick_settings_compass_S">S</string>
+    <string name="quick_settings_compass_SW">SO</string>
+    <string name="quick_settings_compass_W">O</string>
+    <string name="quick_settings_compass_NW">NO</string>
+    <!-- Screenshoot tile -->
+    <string name="quick_settings_screenshot_label">Captura de pantalla</string>
+    <string name="quick_settings_region_screenshot_label">Captura de pantalla parcial</string>
+    <!-- USB Tethering tile -->
+    <string name="accessibility_quick_settings_usb_tether_off">Anclaje USB desactivado</string>
+    <string name="accessibility_quick_settings_usb_tether_on">Anclaje USB activado</string>
+    <string name="accessibility_quick_settings_usb_tether_changed_off">Anclaje USB desactivado</string>
+    <string name="accessibility_quick_settings_usb_tether_changed_on">Anclaje USB activado</string>
+    <string name="quick_settings_usb_tether_label">Anclaje USB</string>
+    <!-- Language toggle tile -->
+    <string name="quick_settings_locale_label">Idioma</string>
+    <string name="quick_settings_locale_more_locales_toast">Es necesario configurar múltiples idiomas para que este interruptor funcione</string>
+    <!-- Music tile -->
+    <string name="quick_settings_music_label">Música</string>
+    <string name="quick_settings_music_play">Reproducir</string>
+    <string name="quick_settings_music_pause">Pausar</string>
+    <!-- Sound tile -->
+    <string name="quick_settings_sound_label">Sonido</string>
+    <string name="quick_settings_sound_ring">Sonar</string>
+    <string name="quick_settings_sound_vibrate">Vibrar</string>
+    <string name="quick_settings_sound_silent">Silencio</string>
+    <!-- Ambient Display Tile -->
+    <string name="quick_settings_ambient_display_label">Pantalla ambiente</string>
+    <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_ambient_display_off">Pantalla ambiente desactivada.</string>
+    <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_ambient_display_on">Pantalla ambiente activada.</string>
+    <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_ambient_display_changed_off">Pantalla ambiente desactivada.</string>
+    <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_ambient_display_changed_on">Pantalla ambiente activada.</string>
+    <!-- Always on Display Tile -->
+    <string name="quick_settings_always_on_display_label">Pantalla siempre encendida</string>
+    <!-- Content description of the ambient display tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_always_on_display_off">Pantalla siempre encendida desactivada.</string>
+    <!-- Content description of the ambient display tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_always_on_display_on">Pantalla siempre encendida activada.</string>
+    <!-- Announcement made when ambient display changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_always_on_display_changed_off">Se ha activado la pantalla siempre encendida.</string>
+    <!-- Announcement made when ambient display changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_always_on_display_changed_on">Se ha desactivado la pantalla siempre encendida.</string>
+    <!-- Expanded desktop QS Tile -->
+    <string name="quick_settings_expanded_desktop_label">Escritorio expandido</string>
+    <string name="quick_settings_expanded_desktop">Expandido</string>
+    <string name="quick_settings_expanded_desktop_off">Normal</string>
+    <!-- Caffeine QS Tile -->
+    <string name="quick_settings_caffeine_label">Cafeína</string>
+    <string name="accessibility_quick_settings_caffeine_off">Cafeína off</string>
+    <string name="accessibility_quick_settings_caffeine_on">Cafeína on</string>
+    <!-- Sync QS Tile -->
+    <string name="quick_settings_sync_label">Sinc</string>
+    <string name="accessibility_quick_settings_sync_off">Sinc off</string>
+    <string name="accessibility_quick_settings_sync_on">Sinc on</string>
+    <string name="accessibility_quick_settings_sync_changed_off">Sinc desactivada</string>
+    <string name="accessibility_quick_settings_sync_changed_on">Sinc activada</string>
+    <!-- Volume QS Tile -->
+    <string name="accessibility_quick_settings_volume_panel">Volumen</string>
+    <string name="quick_settings_volume_panel_label">Volumen</string>
+    <!-- PiP Tile -->
+    <string name="quick_settings_pip_label">PiP</string>
+    <!-- Screenrecord tile -->
+    <string name="quick_settings_screenrecord">Grabar pantalla</string>
+    <string name="quick_settings_screenrecord_on">Grabando...</string>
+    <!-- Advance location quick setting tile -->
+    <string name="accessibility_quick_settings_location_battery_saving">Informe de ubicación: modo de ahorro de batería.</string>
+    <string name="accessibility_quick_settings_location_gps_only">Informe de ubicación: modo sólo sensores.</string>
+    <string name="accessibility_quick_settings_location_high_accuracy">Informe de ubicación: modo alta precisión.</string>
+    <!-- Screenrecord Notification Ticker -->
+    <string name="screenrecord_notif_ticker">Grabando pantalla</string>
+    <string name="screenrecord_notif_final_ticker">Grabación realizada con éxito</string>
+    <!-- Screenrecord notification title -->
+    <string name="screenrecord_notif_title">Grabando la pantalla</string>
+    <!-- Screenrecord notification action: Stop -->
+    <string name="screenrecord_notif_stop">Detener</string>
+    <string name="screenrecord_notif_completed">Grabación realizada con éxito</string>
+    <string name="screenrecord_notif_description">Pulse para ver la grabación de pantalla</string>
+    <!-- Screenrecord notification action: show/hide pointer -->
+    <string name="screenrecord_notif_pointer_on">Mostrar cursor</string>
+    <string name="screenrecord_notif_pointer_off">Ocultar cursor</string>
+    <!-- Screen record notification error title -->
+    <string name="screenrecord_notif_error">No se pudo grabar la pantalla</string>
+    <string name="notification_channel_screenrecord">Grabaciones de pantalla</string>
+    <string name="screenrecord_hide_hint">Ocultar sugerencia</string>
+    <string name="screenrecord_show_hint">Mostrar sugerencia</string>
+    <!-- Screenshot QS tile -->
+    <string name="quick_settings_screenrecord_label">Grabar pantalla</string>
+    <string name="quick_settings_screenrecord_lq_label">Grabación de pantalla 480p</string>
+    <string name="quick_settings_screenrecord_mq_label">Grabación de pantalla 720p</string>
+    <string name="quick_settings_screenrecord_hq_label">Grabación de pantalla 720p+</string>
+    <string name="lockscreen_default">Predeterminado</string>
+    <string name="lockscreen_hidden">Ninguno</string>
+    <string name="omnijaws_service_error">Error</string>
+    <string name="omnijaws_service_unkown">No hay datos metereológicos</string>
+    <string name="omnijaws_service_error_long">Error al cargar datos meteorológicos</string>
+    <string name="omnijaws_service_disabled">Servicio deshabilitado</string>
+    <string name="omnijaws_detail_header">Clima</string>
+    <string name="omnijaws_label_default">Clima</string>
+    <string name="omnijaws_current_text">Ahora</string>
+    <string name="omnijaws_package_not_available">OmniJaws no disponible</string>
+    <string name="omnijaws_service_last_update">Última actualización:</string>
+    <!-- Weather string format in expanded statusbar header -->
+    <string name="status_bar_weather_format"><xliff:g id="temp">%1$s</xliff:g></string>
+    <!-- SystemUI Tuner Parts -->
+    <string name="custom_hint">Deslizar desde el icono para abrir</string>
+    <!-- DUI -->
+    <string name="systemui_tuner_navbar_title">Configuración predeterminada</string>
+    <!-- Battery saver tile -->
+    <string name="battery_saver_qs_tile_fully_charged">Cargado</string>
+    <!-- Caffeine tile -->
+    <string name="caffeine_info_title">¿Qué es esto?</string>
+    <string name="caffeine_info_message">El ajuste Cafeína es un acceso directo que se puede activar para mantener la pantalla encendida.\n\nEl estado del ajuste se reseteará al apagar la pantalla.</string>
+    <!-- Navigation bar Tile -->
+    <string name="quick_settings_navigation_bar">Barra de navegación</string>
+    <string name="quick_settings_smartbar">SmartBar</string>
+    <string name="quick_settings_fling">Fling</string>
+    <string name="quick_settings_navigation_default">Predeterminado</string>
+    <string name="quick_settings_navigation_disabled">Deshabilitado</string>
+    <!-- Kill button in notification guts -->
+    <string name="force_stop_dlg_title">¿Forzar detención?</string>
+    <string name="force_stop_dlg_text">Si se detiene una aplicación, es posible que no funcione correctamente.</string>
+    <string name="kill">Cerrar Aplicación</string>
+    <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
+    <string name="keyguard_indication_dash_charging_time">Carga Dash (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%s</xliff:g> hasta completar)</string>
+    <string name="keyguard_plugged_in_dash_charging">Carga Dash</string>
+    <!-- Indication on the keyguard that is shown when the device is charging with a turbo power charger. Should match keyguard_plugged_in_turbo_power_charging [CHAR LIMIT=40]-->
+    <string name="keyguard_indication_turbo_power_time">TurboPower conectado (<xliff:g id="charging_time_left">%s</xliff:g> hasta completar)</string>
+    <string name="keyguard_plugged_in_turbo_power_charging">TurboPower conectado</string>
+    <string name="keyguard_plugged_in_turbo_charging">Carga Turbo</string>
+    <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_running_services">Abrir la pantalla de servicios en ejecución.</string>
+    <!-- The contents of the Ambient Weather bottom view -->
+    <string name="quick_settings_google_assist_label">Asistente</string>
+    <string name="quick_settings_google_voice_assist_label">Asistente de voz</string>
+    <string name="quick_settings_google_now_label">Feed de Google</string>
+    <!-- Smart pixels QS tile -->
+    <string name="quick_settings_smart_pixels">Píxeles inteligentes</string>
+    <string name="quick_settings_smart_pixels_on_power_save">Habilitar píxeles inteligentes automáticamente</string>
+    <!-- CPUInfo tile -->
+    <string name="quick_settings_cpuinfo_label">Información de la CPU</string>
+    <!-- HW Keys Tile -->
+    <string name="quick_settings_hw_keys_label">Botones físicos</string>
+    <!-- Content description of the HW keys tile in quick settings when disabled (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_hw_keys_disabled">Botones físicos deshabilitados.</string>
+    <!-- Content description of the HW keys tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_hw_keys_enabled">Botones físicos habilitados.</string>
+    <!-- Heads up snooze toast -->
+    <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Notificaciones emergentes pospuestas 1 minuto.</string>
+    <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - Notificaciones emergentes pospuestas durante <xliff:g id="number">%d</xliff:g> minutos.</string>
+    <!-- Text to use when the number in a notification info is too large
          (greater than status_bar_notification_info_maxnum, defined in
          values/config.xml) and must be truncated.
          [CHAR LIMIT=4] -->
-  <string name="recents_app_killed">Aplicación cerrada</string>
-  <!-- On The Go -->
-  <string name="global_action_onthego">Modo En-Marcha</string>
-  <string name="onthego_notif_ticker">Modo En-Marcha activado</string>
-  <string name="onthego_notif_title">El modo En-Marcha está activado</string>
-  <string name="onthego_notif_stop">Detener</string>
-  <string name="onthego_notif_options">Opciones</string>
-  <string name="onthego_notif_error">No se pudo iniciar el modo En-Marcha</string>
-  <string name="onthego_notif_restart">Reiniciar modo En-Marcha</string>
-  <string name="onthego_notif_camera_changed">Modo de cámara cambiado</string>
-  <string name="onthego_transparency">Transparencia</string>
-  <string name="onthego_front_camera">Utilizar la cámara frontal</string>
-  <string name="onthego_service_toggle">Reiniciar el servicio automáticamente</string>
-  <string name="onthego_channel_name">Principal</string>
-  <!-- OnTheGo Tile -->
-  <string name="quick_settings_onthego_label">En-marcha</string>
-  <!-- Recents Memory Bar -->
-  <string name="recents_free_ram">RAM libre: %1$d MB</string>
-  <!-- LTE QS Tile -->
-  <string name="qs_lte_label">LTE</string>
-  <string name="lte_on">LTE Encendido </string>
-  <string name="lte_off">LTE Apagado</string>
-  <!-- App circle sidebar -->
-  <string name="app_float_maximize_item_title">Maximizar</string>
-  <string name="app_float_item_title">Vista flotante</string>
-  <string name="app_stop_item_title">Cerrar aplicación</string>
+    <string name="recents_app_killed">Aplicación cerrada</string>
+    <!-- On The Go -->
+    <string name="global_action_onthego">Modo En-Marcha</string>
+    <string name="onthego_notif_ticker">Modo En-Marcha activado</string>
+    <string name="onthego_notif_title">El modo En-Marcha está activado</string>
+    <string name="onthego_notif_stop">Detener</string>
+    <string name="onthego_notif_options">Opciones</string>
+    <string name="onthego_notif_error">No se pudo iniciar el modo En-Marcha</string>
+    <string name="onthego_notif_restart">Reiniciar modo En-Marcha</string>
+    <string name="onthego_notif_camera_changed">Modo de cámara cambiado</string>
+    <string name="onthego_transparency">Transparencia</string>
+    <string name="onthego_front_camera">Utilizar la cámara frontal</string>
+    <string name="onthego_service_toggle">Reiniciar el servicio automáticamente</string>
+    <string name="onthego_channel_name">Principal</string>
+    <!-- OnTheGo Tile -->
+    <string name="quick_settings_onthego_label">En-marcha</string>
+    <!-- Recents Memory Bar -->
+    <string name="recents_free_ram">RAM libre: %1$d MB</string>
+    <!-- LTE QS Tile -->
+    <string name="qs_lte_label">LTE</string>
+    <string name="lte_on">LTE Encendido </string>
+    <string name="lte_off">LTE Apagado</string>
+    <!-- App circle sidebar -->
+    <string name="app_float_maximize_item_title">Maximizar</string>
+    <string name="app_float_item_title">Vista flotante</string>
+    <string name="app_stop_item_title">Cerrar aplicación</string>
 </resources>

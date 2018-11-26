@@ -164,4 +164,9 @@
     <string name="quick_settings_screenrecord_label">Screenrecord</string>
     <!-- CPUInfo tile -->
     <string name="quick_settings_cpuinfo_label">CPU Info</string>
+
+    <!-- Brigntess tuning -->
+    <string name="tuner_show_auto_brightness">Adaptive brightness button</string>
+    <string name="tuner_auto_brightness_right">Right position for adaptive brightness button</string>
+    <string name="tuner_show_brightness_buttons">Brightness control buttons</string>
 </resources>

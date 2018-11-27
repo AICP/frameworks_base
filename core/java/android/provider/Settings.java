@@ -5990,6 +5990,18 @@ public final class Settings {
         /** @hide */
         private static final Validator CAMERA_LAUNCH_VALIDATOR = BOOLEAN_VALIDATOR;
 
+        /**
+         * Whether to show the kill app button in notification guts
+         *
+         * @hide
+         */
+        public static final String NOTIFICATION_GUTS_KILL_APP_BUTTON =
+                "notification_guts_kill_app_button";
+
+        /** @hide */
+        private static final Validator NOTIFICATION_GUTS_KILL_APP_BUTTON_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6223,6 +6235,7 @@ public final class Settings {
             CAMERA_WAKE_SCREEN,
             CAMERA_SLEEP_ON_RELEASE,
             CAMERA_LAUNCH,
+            NOTIFICATION_GUTS_KILL_APP_BUTTON,
             // AICP Settings end
         };
 
@@ -6504,6 +6517,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(CAMERA_WAKE_SCREEN);
             PRIVATE_SETTINGS.add(CAMERA_SLEEP_ON_RELEASE);
             PRIVATE_SETTINGS.add(CAMERA_LAUNCH);
+            PRIVATE_SETTINGS.add(NOTIFICATION_GUTS_KILL_APP_BUTTON);
             // AICP Settings end
         }
 
@@ -6786,6 +6800,8 @@ public final class Settings {
             VALIDATORS.put(CAMERA_WAKE_SCREEN, CAMERA_WAKE_SCREEN_VALIDATOR);
             VALIDATORS.put(CAMERA_SLEEP_ON_RELEASE, CAMERA_SLEEP_ON_RELEASE_VALIDATOR);
             VALIDATORS.put(CAMERA_LAUNCH, CAMERA_LAUNCH_VALIDATOR);
+            VALIDATORS.put(NOTIFICATION_GUTS_KILL_APP_BUTTON,
+                    NOTIFICATION_GUTS_KILL_APP_BUTTON_VALIDATOR);
             // AICP Settings end
         }
 

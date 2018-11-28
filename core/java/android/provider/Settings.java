@@ -5430,30 +5430,45 @@ public final class Settings {
         private static final Validator ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
-          /**
-          * Status bar carrier label
-          * 0: Hide
-          * 1: Display on keyguard status bar
-          * 2: Display on Normal status bar
-          * 3: Enabled for both
-          * @hide
-          */
-         public static final String STATUS_BAR_SHOW_CARRIER = "status_bar_show_carrier";
+        /**
+        * Status bar carrier label
+        * 0: Hide
+        * 1: Display on keyguard status bar
+        * 2: Display on Normal status bar
+        * 3: Enabled for both
+        * @hide
+        */
+        public static final String STATUS_BAR_SHOW_CARRIER = "status_bar_show_carrier";
 
-         /** @hide */
-         private static final Validator STATUS_BAR_SHOW_CARRIER_VALIDATOR =
+        /** @hide */
+        private static final Validator STATUS_BAR_SHOW_CARRIER_VALIDATOR =
                 new SettingsValidators.InclusiveIntegerRangeValidator(0, 3);
 
-         /**
-          * custom carrier label. The value is
-          * String.
-          * @hide
-          */
-         public static final String CUSTOM_CARRIER_LABEL = "custom_carrier_label";
+        /**
+        * custom carrier label. The value is
+        * String.
+        * @hide
+        */
+        public static final String CUSTOM_CARRIER_LABEL = "custom_carrier_label";
 
-         /** @hide */
-         private static final Validator CUSTOM_CARRIER_LABEL_VALIDATOR =
-                 ANY_STRING_VALIDATOR;
+        /** @hide */
+        private static final Validator CUSTOM_CARRIER_LABEL_VALIDATOR =
+               ANY_STRING_VALIDATOR;
+
+        /**
+        * @hide
+        * Whether to set a lower brightness level when enabling night mode
+        * 0: Disabled
+        * 1: Set the brightness to a very low value
+        * 2: Set the brightness to a low value
+        * 3: Set the brightness to a medium value
+        * @hide
+        */
+        public static final String NIGHT_BRIGHTNESS_VALUE = "night_brightness_value";
+
+        /** @hide */
+        private static final Validator NIGHT_BRIGHTNESS_VALUE_VALIDATOR =
+                new SettingsValidators.InclusiveIntegerRangeValidator(0, 3);
 
         /***************************
          * AICP System Settings end
@@ -5632,6 +5647,7 @@ public final class Settings {
             ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER,
             STATUS_BAR_SHOW_CARRIER,
             CUSTOM_CARRIER_LABEL,
+            NIGHT_BRIGHTNESS_VALUE,
             // AICP Settings end
         };
 
@@ -5873,6 +5889,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER);
             PRIVATE_SETTINGS.add(STATUS_BAR_SHOW_CARRIER);
             PRIVATE_SETTINGS.add(CUSTOM_CARRIER_LABEL);
+            PRIVATE_SETTINGS.add(NIGHT_BRIGHTNESS_VALUE);
             // AICP Settings end
         }
 
@@ -6096,6 +6113,7 @@ public final class Settings {
             VALIDATORS.put(ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER,ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER_VALIDATOR);
             VALIDATORS.put(STATUS_BAR_SHOW_CARRIER,STATUS_BAR_SHOW_CARRIER_VALIDATOR);
             VALIDATORS.put(CUSTOM_CARRIER_LABEL,CUSTOM_CARRIER_LABEL_VALIDATOR);
+            VALIDATORS.put(NIGHT_BRIGHTNESS_VALUE,NIGHT_BRIGHTNESS_VALUE_VALIDATOR);
             // AICP Settings end
         }
 

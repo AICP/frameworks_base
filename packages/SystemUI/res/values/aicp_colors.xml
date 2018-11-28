@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <!-- Helper color for our theming overlays. Not used directly in here. -->
+    <color name="qs_fg_for_transparent_primary">@*android:color/primary_text_default_material_light</color>
+    <color name="qs_fg_for_transparent_secondary">@*android:color/secondary_text_default_material_light</color>
+    <color name="qs_fg_for_transparent_tertiary">#80000000</color>
+    <color name="qs_fg_for_transparent_accent">@*android:color/accent_device_default_light</color>
+
+</resources>

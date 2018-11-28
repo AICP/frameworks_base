@@ -5205,6 +5205,15 @@ public final class Settings {
          */
         public static final String PULSE_AUTO_COLOR = "pulse_auto_color";
 
+        /**
+         * QS shape
+         * @hide
+         */
+        public static final String THEMING_QS_SHAPE = "theming_qs_shape";
+
+        /** @hide */
+        public static final Validator THEMING_QS_SHAPE_VALIDATOR = ANY_INTEGER_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5350,6 +5359,7 @@ public final class Settings {
             ON_THE_GO_CAMERA,
             GLOBAL_ACTIONS_SCREENRECORD,
             THEMING_CORNERS,
+            THEMING_QS_SHAPE,
             // AICP Settings end
         };
 
@@ -5559,6 +5569,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(ON_THE_GO_ALPHA);
             PRIVATE_SETTINGS.add(ON_THE_GO_CAMERA);
             PRIVATE_SETTINGS.add(GLOBAL_ACTIONS_SCREENRECORD);
+            PRIVATE_SETTINGS.add(THEMING_QS_SHAPE);
             // AICP Settings end
         }
 
@@ -5747,6 +5758,7 @@ public final class Settings {
             VALIDATORS.put(ON_THE_GO_SERVICE_RESTART,ON_THE_GO_SERVICE_RESTART_VALIDATOR);
             VALIDATORS.put(ON_THE_GO_CAMERA,ON_THE_GO_CAMERA_VALIDATOR);
             VALIDATORS.put(GLOBAL_ACTIONS_SCREENRECORD,GLOBAL_ACTIONS_SCREENRECORD_VALIDATOR);
+            VALIDATORS.put(THEMING_QS_SHAPE, THEMING_QS_SHAPE_VALIDATOR);
             // AICP Settings end
         }
 

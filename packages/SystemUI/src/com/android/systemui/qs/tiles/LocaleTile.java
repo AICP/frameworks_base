@@ -123,10 +123,10 @@ public class LocaleTile extends QSTileImpl<State> {
 
     @Override
     protected void handleUpdateState(State state, Object arg) {
-        state.icon = ResourceIcon.get(
-                currentLocaleBackup == null || currentLocaleBackup.equals(mLocaleList.get(0)) ?
-                        R.drawable.ic_qs_locale :
-                        R.drawable.ic_qs_locale_pending);
+        state.icon = ResourceIcon.get(R.drawable.ic_qs_locale);
+        state.state = currentLocaleBackup == null || currentLocaleBackup.equals(mLocaleList.get(0))
+                ? Tile.STATE_ACTIVE
+                : Tile.STATE_INACTIVE;
         state.label = mLocaleList.get(0).getDisplayLanguage();
         state.state = Tile.STATE_INACTIVE;
     }

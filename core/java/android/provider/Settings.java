@@ -5822,6 +5822,16 @@ public final class Settings {
         private static final Validator CAMERA_WAKE_SCREEN_VALIDATOR =
                BOOLEAN_VALIDATOR;
 
+        /**
+         * Settings dashboard icon style
+         * @hide
+         */
+        public static final String THEMING_SETTINGS_DASHBOARD_ICONS =
+                "theming_settings_dashboard_icons";
+
+        /** @hide */
+        private static final Validator THEMING_SETTINGS_DASHBOARD_ICONS_VALIDATOR = ANY_INTEGER_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6022,6 +6032,7 @@ public final class Settings {
             ASSIST_WAKE_SCREEN,
             APP_SWITCH_WAKE_SCREEN,
             CAMERA_WAKE_SCREEN,
+            THEMING_SETTINGS_DASHBOARD_ICONS,
             // AICP Settings end
         };
 
@@ -6275,6 +6286,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(ASSIST_WAKE_SCREEN);
             PRIVATE_SETTINGS.add(APP_SWITCH_WAKE_SCREEN);
             PRIVATE_SETTINGS.add(CAMERA_WAKE_SCREEN);
+            PRIVATE_SETTINGS.add(THEMING_SETTINGS_DASHBOARD_ICONS);
             // AICP Settings end
         }
 
@@ -6514,6 +6526,7 @@ public final class Settings {
             VALIDATORS.put(ASSIST_WAKE_SCREEN, ASSIST_WAKE_SCREEN_VALIDATOR);
             VALIDATORS.put(APP_SWITCH_WAKE_SCREEN, APP_SWITCH_WAKE_SCREEN_VALIDATOR);
             VALIDATORS.put(CAMERA_WAKE_SCREEN, CAMERA_WAKE_SCREEN_VALIDATOR);
+            VALIDATORS.put(THEMING_SETTINGS_DASHBOARD_ICONS, THEMING_SETTINGS_DASHBOARD_ICONS_VALIDATOR);
             // AICP Settings end
         }
 

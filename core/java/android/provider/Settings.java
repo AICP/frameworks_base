@@ -5214,6 +5214,17 @@ public final class Settings {
         /** @hide */
         public static final Validator THEMING_QS_SHAPE_VALIDATOR = ANY_INTEGER_VALIDATOR;
 
+        /**
+         * Settings dashboard icon style
+         * @hide
+         */
+        public static final String THEMING_SETTINGS_DASHBOARD_ICONS =
+                "theming_settings_dashboard_icons";
+
+        /** @hide */
+        public static final Validator THEMING_SETTINGS_DASHBOARD_ICONS_VALIDATOR =
+                ANY_INTEGER_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5360,6 +5371,7 @@ public final class Settings {
             GLOBAL_ACTIONS_SCREENRECORD,
             THEMING_CORNERS,
             THEMING_QS_SHAPE,
+            THEMING_SETTINGS_DASHBOARD_ICONS,
             // AICP Settings end
         };
 
@@ -5570,6 +5582,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(ON_THE_GO_CAMERA);
             PRIVATE_SETTINGS.add(GLOBAL_ACTIONS_SCREENRECORD);
             PRIVATE_SETTINGS.add(THEMING_QS_SHAPE);
+            PRIVATE_SETTINGS.add(THEMING_SETTINGS_DASHBOARD_ICONS);
             // AICP Settings end
         }
 
@@ -5759,6 +5772,8 @@ public final class Settings {
             VALIDATORS.put(ON_THE_GO_CAMERA,ON_THE_GO_CAMERA_VALIDATOR);
             VALIDATORS.put(GLOBAL_ACTIONS_SCREENRECORD,GLOBAL_ACTIONS_SCREENRECORD_VALIDATOR);
             VALIDATORS.put(THEMING_QS_SHAPE, THEMING_QS_SHAPE_VALIDATOR);
+            VALIDATORS.put(THEMING_SETTINGS_DASHBOARD_ICONS,
+                    THEMING_SETTINGS_DASHBOARD_ICONS_VALIDATOR);
             // AICP Settings end
         }
 

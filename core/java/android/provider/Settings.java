@@ -5365,6 +5365,13 @@ public final class Settings {
           */
          public static final String QS_TILES_VIBRATE = "qs_vibrate";
 
+        /**
+         * Settings dashboard icon style
+         * @hide
+         */
+        public static final String THEMING_SETTINGS_DASHBOARD_ICONS =
+                "theming_settings_dashboard_icons";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5408,6 +5415,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(STATUSBAR_BATTERY_BAR_LOCATION, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(ENABLE_CONDITIONS, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(ENABLE_SUGGESTIONS, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(THEMING_SETTINGS_DASHBOARD_ICONS, ANY_INTEGER_VALIDATOR);
         }
 
         /**

@@ -1183,10 +1183,6 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
         mNavigationBarViewAttached = true;
     }
 
-    public NotificationMediaManager getMediaManager() {
-        return mMediaManager;
-    }
-
     /**
      * Returns the {@link android.view.View.OnTouchListener} that will be invoked when the
      * background window of the status bar is clicked.

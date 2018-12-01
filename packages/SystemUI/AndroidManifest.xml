@@ -227,10 +227,8 @@
     <uses-permission android:name="android.permission.REBOOT" />
     <uses-permission android:name="android.permission.RECOVERY" />
 
-    <!--Custom -->
+    <!-- screenrecord -->
     <uses-permission android:name="android.permission.ACCESS_SURFACE_FLINGER" />
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <!-- Kill app from slim recents -->
     <uses-permission android:name="android.permission.FORCE_STOP_PACKAGES" />

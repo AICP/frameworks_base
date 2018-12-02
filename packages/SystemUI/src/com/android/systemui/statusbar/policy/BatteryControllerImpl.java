@@ -20,14 +20,20 @@ import static android.os.BatteryManager.EXTRA_PRESENT;
 
 import android.annotation.WorkerThread;
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.BatteryManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.PowerManager;
 import android.os.PowerSaveState;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 
@@ -88,6 +94,7 @@ public class BatteryControllerImpl extends BroadcastReceiver implements BatteryC
     boolean mHasReceivedBattery = false;
     private Estimate mEstimate;
     private boolean mFetchingEstimate = false;
+    private int mLastLevel = 0;
 
     // Use AtomicReference because we may request it from a different thread
     // Use WeakReference because we are keeping a reference to a View that's not as long lived
@@ -218,6 +225,10 @@ public class BatteryControllerImpl extends BroadcastReceiver implements BatteryC
             }
 
             fireBatteryLevelChanged();
+
+            if (mCharging) {
+                notificationBatteryChargeLevel();
+            }
         } else if (action.equals(PowerManager.ACTION_POWER_SAVE_MODE_CHANGED)) {
             updatePowerSave();
         } else if (action.equals(ACTION_LEVEL_TEST)) {
@@ -395,6 +406,27 @@ public class BatteryControllerImpl extends BroadcastReceiver implements BatteryC
                 mChangeCallbacks.get(i).onPowerSaveChanged(mPowerSave);
             }
         }
+    }
+
+    private void notificationBatteryChargeLevel() {
+        boolean enabled = Settings.System.getIntForUser(mContext.getContentResolver(),
+                            Settings.System.BATTERY_LEVEL_CHARGE_ALARM_ENABLED, 0,
+                            UserHandle.USER_CURRENT) == 1;
+        if (!enabled) return;
+        int level = Settings.System.getIntForUser(mContext.getContentResolver(),
+                        Settings.System.SEEK_BAR_BATTERY_CHARGE_LEVEL_SOUND, 100,
+                        UserHandle.USER_CURRENT);
+        if (level == mLevel && mLevel != mLastLevel) {
+            String alarmSound = Settings.Global.getString(mContext.getContentResolver(),
+                                    Settings.Global.BATTERY_LEVEL_CHARGE_SOUND_ALARM);
+            if (alarmSound != null && !alarmSound.equals("silent")) {
+                Ringtone batteryChargeLevelAlarm = RingtoneManager.getRingtone(mContext, Uri.parse(alarmSound));
+                if (batteryChargeLevelAlarm != null) {
+                    batteryChargeLevelAlarm.play();
+                }
+            }
+        }
+        mLastLevel = mLevel;
     }
 
     @Override

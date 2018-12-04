@@ -1298,6 +1298,10 @@ public class LockSettingsService extends ILockSettings.Stub {
                 && mLockPatternUtils.isSeparateProfileChallengeEnabled(userId);
     }
 
+    public byte getLockPatternSize(int userId) {
+        return mStorage.getLockPatternSize(userId);
+    }
+
     // This method should be called by LockPatternUtil only, all internal methods in this class
     // should call setLockCredentialInternal.
     @Override
@@ -2125,7 +2129,11 @@ public class LockSettingsService extends ILockSettings.Stub {
             Secure.LOCK_PATTERN_ENABLED,
             Secure.LOCK_BIOMETRIC_WEAK_FLAGS,
             Secure.LOCK_PATTERN_VISIBLE,
-            Secure.LOCK_PATTERN_TACTILE_FEEDBACK_ENABLED
+            Secure.LOCK_PATTERN_TACTILE_FEEDBACK_ENABLED,
+            Secure.LOCK_PATTERN_SIZE,
+            Secure.LOCK_DOTS_VISIBLE,
+            Secure.LOCK_SHOW_ERROR_PATH,
+            Settings.Secure.LOCK_PASS_TO_SECURITY_VIEW
     };
 
     // Reading these settings needs the contacts permission

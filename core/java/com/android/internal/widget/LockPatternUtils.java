@@ -112,6 +112,11 @@ public class LockPatternUtils {
      */
     public static final int MIN_LOCK_PASSWORD_SIZE = 4;
 
+    /*
+     * The default size of the pattern lockscreen. Ex: 3x3
+     */
+    public static final byte PATTERN_SIZE_DEFAULT = 3;
+
     /**
      * The minimum number of dots the user must include in a wrong pattern
      * attempt for it to be counted against the counts that affect
@@ -1185,6 +1190,17 @@ public class LockPatternUtils {
     }
 
     /**
+     * @return the pattern lockscreen size
+     */
+    public byte getLockPatternSize(int userId) {
+        long size = getLong(Settings.Secure.LOCK_PATTERN_SIZE, -1, userId);
+        if (size > 0 && size < 128) {
+            return (byte) size;
+        }
+        return LockPatternUtils.PATTERN_SIZE_DEFAULT;
+    }
+
+    /**
      * @param userId the user for which to report the value
      * @return Whether the lock screen is secured.
      */
@@ -1330,7 +1346,8 @@ public class LockPatternUtils {
         return deadline;
     }
 
-    private boolean getBoolean(String secureSettingKey, boolean defaultValue, int userId) {
+    /** @hide */
+    protected boolean getBoolean(String secureSettingKey, boolean defaultValue, int userId) {
         try {
             return getLockSettings().getBoolean(secureSettingKey, defaultValue, userId);
         } catch (RemoteException re) {
@@ -1338,7 +1355,8 @@ public class LockPatternUtils {
         }
     }
 
-    private void setBoolean(String secureSettingKey, boolean enabled, int userId) {
+    /** @hide */
+    protected void setBoolean(String secureSettingKey, boolean enabled, int userId) {
         try {
             getLockSettings().setBoolean(secureSettingKey, enabled, userId);
         } catch (RemoteException re) {

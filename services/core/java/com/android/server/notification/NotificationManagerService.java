@@ -6066,7 +6066,7 @@ public class NotificationManagerService extends SystemService {
         }
         if (buzz || beep || blink) {
             // Ignore summary updates because we don't display most of the information.
-            if (record.sbn.isGroup() && record.sbn.getNotification().isGroupSummary()) {
+            if (!blink && record.sbn.isGroup() && record.sbn.getNotification().isGroupSummary()) {
                 if (DEBUG_INTERRUPTIVENESS) {
                     Slog.v(TAG, "INTERRUPTIVENESS: "
                             + record.getKey() + " is not interruptive: summary");
@@ -6118,18 +6118,18 @@ public class NotificationManagerService extends SystemService {
             return false;
         }
         // Suppressed because it's a silent update
-        final Notification notification = record.getNotification();
+        /*final Notification notification = record.getNotification();
         if (record.isUpdate && (notification.flags & FLAG_ONLY_ALERT_ONCE) != 0) {
             return false;
         }
         // Suppressed because another notification in its group handles alerting
         if (record.sbn.isGroup() && record.getNotification().suppressAlertingDueToGrouping()) {
             return false;
-        }
-        // not if in call or the screen's on
-        if (isInCall() || mScreenOn) {
+        }*/
+        // not if the screen's on
+        /*if (isInCall() || mScreenOn) {
             return false;
-        }
+        }*/
         // Check for phone missed calls
         if (record.getChannel().getId().equals("phone_missed_call")) {
             if (DBG) Slog.w(TAG, "canShowLightsLocked phone_missed_call return true!!!");

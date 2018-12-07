@@ -37,8 +37,9 @@
     <java-symbol type="bool" name="config_notifyClientOnFingerprintCancelSuccess" />
 
     <!-- OpGestures -->
-    <java-symbol type="dimen" name="nav_gesture_swipe_min_length" />
-    <java-symbol type="dimen" name="nav_gesture_long_press_max_length" />
+    <java-symbol type="integer" name="config_navgestureswipeminlength" />
+    <java-symbol type="integer" name="config_navgestureswipetimout" />
+    <java-symbol type="integer" name="config_navgesturemovethreshold" />
 
     <!-- Button Brightness -->
     <java-symbol type="integer" name="config_buttonBrightnessSettingMinimum" />

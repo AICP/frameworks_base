@@ -5711,6 +5711,26 @@ public final class Settings {
         private static final Validator OMNI_LOCKSCREEN_WEATHER_ENABLED_VALIDATOR =
                BOOLEAN_VALIDATOR;
 
+        /**
+        * @hide
+        */
+        public static final String OMNI_BOTTOM_GESTURE_TRIGGER_TIMEOUT =
+                "bottom_gesture_navigation_trigger_timeout";
+
+        /** @hide */
+        private static final Validator OMNI_BOTTOM_GESTURE_TRIGGER_TIMEOUT_VALIDATOR =
+                ANY_INTEGER_VALIDATOR;
+
+        /**
+         * @hide
+         */
+        public static final String OMNI_BOTTOM_GESTURE_SWIPE_LIMIT =
+                "bottom_gesture_navigation_swipe_limit";
+
+        /** @hide */
+        private static final Validator OMNI_BOTTOM_GESTURE_SWIPE_LIMIT_VALIDATOR =
+                ANY_INTEGER_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5913,6 +5933,8 @@ public final class Settings {
             SHOW_LTE_FOURGEE,
             OMNIJAWS_WEATHER_ICON_PACK,
             OMNI_LOCKSCREEN_WEATHER_ENABLED,
+            OMNI_BOTTOM_GESTURE_TRIGGER_TIMEOUT,
+            OMNI_BOTTOM_GESTURE_SWIPE_LIMIT,
             // AICP Settings end
         };
 
@@ -6179,6 +6201,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SHOW_LTE_FOURGEE);
             PRIVATE_SETTINGS.add(OMNIJAWS_WEATHER_ICON_PACK);
             PRIVATE_SETTINGS.add(OMNI_LOCKSCREEN_WEATHER_ENABLED);
+            PRIVATE_SETTINGS.add(OMNI_BOTTOM_GESTURE_TRIGGER_TIMEOUT);
+            PRIVATE_SETTINGS.add(OMNI_BOTTOM_GESTURE_SWIPE_LIMIT);
             // AICP Settings end
         }
 
@@ -6435,6 +6459,10 @@ public final class Settings {
             VALIDATORS.put(SHOW_LTE_FOURGEE,SHOW_LTE_FOURGEE_VALIDATOR);
             VALIDATORS.put(OMNIJAWS_WEATHER_ICON_PACK,OMNIJAWS_WEATHER_ICON_PACK_VALIDATOR);
             VALIDATORS.put(OMNI_LOCKSCREEN_WEATHER_ENABLED,OMNI_LOCKSCREEN_WEATHER_ENABLED_VALIDATOR);
+            VALIDATORS.put(OMNI_BOTTOM_GESTURE_TRIGGER_TIMEOUT,
+                    OMNI_BOTTOM_GESTURE_TRIGGER_TIMEOUT_VALIDATOR);
+            VALIDATORS.put(OMNI_BOTTOM_GESTURE_SWIPE_LIMIT,
+                    OMNI_BOTTOM_GESTURE_SWIPE_LIMIT_VALIDATOR);
             // AICP Settings end
         }
 

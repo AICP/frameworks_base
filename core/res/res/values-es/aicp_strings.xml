@@ -19,37 +19,37 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <!-- DUI -->
-  <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permlab_toggleNavigationEditor">activar editor de barra de navegación</string>
-  <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permdesc_toggleNavigationEditor">Permite a una aplicación controlar el editor de la barra de navegación.</string>
-  <!-- AOKP custom system animations -->
-  <string name="animation_fade">Transición</string>
-  <string name="animation_slide_right">Deslizar a la derecha</string>
-  <string name="animation_slide_left">Deslizar a la izquierda</string>
-  <string name="animation_slide_right_no_fade">Deslizar a la derecha (Sin transición)</string>
-  <string name="animation_slide_left_no_fade">Deslizar a la izquieda (sin transición)</string>
-  <string name="animation_slide_up">Deslizar desde abajo</string>
-  <string name="animation_slide_down">Deslizar desde arriba</string>
-  <string name="animation_default">Predeterminado</string>
-  <string name="animation_translucent">Translúcido</string>
-  <string name="animation_grow_shrink">Crecer (Arriba)</string>
-  <string name="animation_grow_shrink_center">Crecer (Centro)</string>
-  <string name="animation_grow_shrink_bottom">Crecer (Abajo)</string>
-  <string name="animation_grow_shrink_left">Crecer (Izquierda)</string>
-  <string name="animation_grow_shrink_right">Crecer (Derecha)</string>
-  <string name="action_null">Vacío</string>
-  <!-- Label for item that screenrecords in power menu options dialog -->
-  <string name="global_action_screenrecord">Grabar pantalla</string>
-  <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permlab_fakePackageSignature">Falsear firma del paquete</string>
-  <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permdesc_fakePackageSignature">Permite que la aplicación se ejecute como una aplicación diferente. Las aplicaciones maliciosas pueden usar esto para acceder a datos personales. Conceda este permiso con cuidado!</string>
-  <!-- Pocket Lock -->
-  <string name="pocket_lock_message_long_press">Mantenga presionado el botón de encendido para interactuar</string>
-  <!-- Defines the sysfs attribute path used by pocket bridge
+    <!-- DUI -->
+    <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_toggleNavigationEditor">activar editor de barra de navegación</string>
+    <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_toggleNavigationEditor">Permite a una aplicación controlar el editor de la barra de navegación.</string>
+    <!-- AOKP custom system animations -->
+    <string name="animation_fade">Transición</string>
+    <string name="animation_slide_right">Deslizar a la derecha</string>
+    <string name="animation_slide_left">Deslizar a la izquierda</string>
+    <string name="animation_slide_right_no_fade">Deslizar a la derecha (Sin transición)</string>
+    <string name="animation_slide_left_no_fade">Deslizar a la izquieda (sin transición)</string>
+    <string name="animation_slide_up">Deslizar desde abajo</string>
+    <string name="animation_slide_down">Deslizar desde arriba</string>
+    <string name="animation_default">Predeterminado</string>
+    <string name="animation_translucent">Translúcido</string>
+    <string name="animation_grow_shrink">Crecer (Arriba)</string>
+    <string name="animation_grow_shrink_center">Crecer (Centro)</string>
+    <string name="animation_grow_shrink_bottom">Crecer (Abajo)</string>
+    <string name="animation_grow_shrink_left">Crecer (Izquierda)</string>
+    <string name="animation_grow_shrink_right">Crecer (Derecha)</string>
+    <string name="action_null">Vacío</string>
+    <!-- Label for item that screenrecords in power menu options dialog -->
+    <string name="global_action_screenrecord">Grabar pantalla</string>
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_fakePackageSignature">Falsear firma del paquete</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_fakePackageSignature">Permite que la aplicación se ejecute como una aplicación diferente. Las aplicaciones maliciosas pueden usar esto para acceder a datos personales. Conceda este permiso con cuidado!</string>
+    <!-- Pocket Lock -->
+    <string name="pocket_lock_message_long_press">Mantenga presionado el botón de encendido para interactuar</string>
+    <!-- Defines the sysfs attribute path used by pocket bridge
         to communicate pocket state to the pocket judge kernel driver. -->
-  <!-- App Blacklist -->
-  <string name="app_blacklist">Añadir aplicación a la lista negra</string>
+    <!-- App Blacklist -->
+    <string name="app_blacklist">Añadir aplicación a la lista negra</string>
 </resources>

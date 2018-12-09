@@ -19,37 +19,37 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <!-- DUI -->
-  <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permlab_toggleNavigationEditor">mengontrol penyunting navigasi</string>
-  <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permdesc_toggleNavigationEditor">Izinkan aplikasi untuk mengontrol penyunting bilah navigasi.</string>
-  <!-- AOKP custom system animations -->
-  <string name="animation_fade">Pudar</string>
-  <string name="animation_slide_right">Meluncur masuk kanan</string>
-  <string name="animation_slide_left">Meluncur masuk kiri</string>
-  <string name="animation_slide_right_no_fade">Meluncur masuk kanan (tanpa pudar)</string>
-  <string name="animation_slide_left_no_fade">Meluncur masuk kiri (tanpa pudar)</string>
-  <string name="animation_slide_up">Meluncur masuk bawah</string>
-  <string name="animation_slide_down">Meluncur masuk atas</string>
-  <string name="animation_default">Standar</string>
-  <string name="animation_translucent">Tembus</string>
-  <string name="animation_grow_shrink">Tumbuh (Atas)</string>
-  <string name="animation_grow_shrink_center">Tumbuh (Tengah)</string>
-  <string name="animation_grow_shrink_bottom">Tumbuh (Bawah)</string>
-  <string name="animation_grow_shrink_left">Tumbuh (Kiri)</string>
-  <string name="animation_grow_shrink_right">Tumbuh (Kanan)</string>
-  <string name="action_null">Tidak ada</string>
-  <!-- Label for item that screenrecords in power menu options dialog -->
-  <string name="global_action_screenrecord">Rekam layar</string>
-  <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permlab_fakePackageSignature">Palsukan tanda tangan paket</string>
-  <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-  <string name="permdesc_fakePackageSignature">Izinkan aplikasi berpura-pura menjadi aplikasi yang berbeda. Aplikasi jahat mungkin dapat menggunakan ini untuk mengakses data aplikasi pribadi. Berikan izin ini hanya dengan hati-hati!</string>
-  <!-- Pocket Lock -->
-  <string name="pocket_lock_message_long_press">Tekan lama tombol daya untuk berinteraksi</string>
-  <!-- Defines the sysfs attribute path used by pocket bridge
+    <!-- DUI -->
+    <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_toggleNavigationEditor">mengontrol penyunting navigasi</string>
+    <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_toggleNavigationEditor">Izinkan aplikasi untuk mengontrol penyunting bilah navigasi.</string>
+    <!-- AOKP custom system animations -->
+    <string name="animation_fade">Pudar</string>
+    <string name="animation_slide_right">Meluncur masuk kanan</string>
+    <string name="animation_slide_left">Meluncur masuk kiri</string>
+    <string name="animation_slide_right_no_fade">Meluncur masuk kanan (tanpa pudar)</string>
+    <string name="animation_slide_left_no_fade">Meluncur masuk kiri (tanpa pudar)</string>
+    <string name="animation_slide_up">Meluncur masuk bawah</string>
+    <string name="animation_slide_down">Meluncur masuk atas</string>
+    <string name="animation_default">Standar</string>
+    <string name="animation_translucent">Tembus</string>
+    <string name="animation_grow_shrink">Tumbuh (Atas)</string>
+    <string name="animation_grow_shrink_center">Tumbuh (Tengah)</string>
+    <string name="animation_grow_shrink_bottom">Tumbuh (Bawah)</string>
+    <string name="animation_grow_shrink_left">Tumbuh (Kiri)</string>
+    <string name="animation_grow_shrink_right">Tumbuh (Kanan)</string>
+    <string name="action_null">Tidak ada</string>
+    <!-- Label for item that screenrecords in power menu options dialog -->
+    <string name="global_action_screenrecord">Rekam layar</string>
+    <!-- Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permlab_fakePackageSignature">Palsukan tanda tangan paket</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_fakePackageSignature">Izinkan aplikasi berpura-pura menjadi aplikasi yang berbeda. Aplikasi jahat mungkin dapat menggunakan ini untuk mengakses data aplikasi pribadi. Berikan izin ini hanya dengan hati-hati!</string>
+    <!-- Pocket Lock -->
+    <string name="pocket_lock_message_long_press">Tekan lama tombol daya untuk berinteraksi</string>
+    <!-- Defines the sysfs attribute path used by pocket bridge
         to communicate pocket state to the pocket judge kernel driver. -->
-  <!-- App Blacklist -->
-  <string name="app_blacklist">Aplikasi terblokir</string>
+    <!-- App Blacklist -->
+    <string name="app_blacklist">Aplikasi terblokir</string>
 </resources>

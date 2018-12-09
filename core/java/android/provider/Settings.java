@@ -5727,6 +5727,13 @@ public final class Settings {
          */
         public static final String SENSOR_BLOCK = "sensor_block";
 
+        /**
+         * Wheter to show network traffic indicator in statusbar
+         * @hide
+         */
+        public static final String NETWORK_TRAFFIC_EXPANDED_STATUS_BAR_STATE =
+                "network_traffic_expanded_status_bar_state";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5826,6 +5833,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(NETWORK_TRAFFIC_STATE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(SENSOR_BLOCK, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(NETWORK_TRAFFIC_EXPANDED_STATUS_BAR_STATE, BOOLEAN_VALIDATOR);
         }
 
         /**

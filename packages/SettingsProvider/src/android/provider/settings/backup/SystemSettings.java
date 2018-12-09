@@ -94,5 +94,6 @@ public class SystemSettings {
         Settings.System.LOCKSCREEN_ROTATION,
         Settings.System.NETWORK_TRAFFIC_STATE,
         Settings.System.NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD,
+        Settings.System.NETWORK_TRAFFIC_EXPANDED_STATUS_BAR_STATE,
     };
 }

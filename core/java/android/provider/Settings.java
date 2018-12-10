@@ -11096,6 +11096,12 @@ public final class Settings {
         };
 
         /**
+         * Whether to wake when device is connected to a charger.
+         * @hide
+         */
+        public static final String WAKE_WHEN_PLUGGED_OR_UNPLUGGED = "wake_when_plugged_or_unplugged";
+
+        /**
          * When the user has enable the option to have a "bug report" command
          * in the power menu.
          * @hide

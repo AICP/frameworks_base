@@ -15453,6 +15453,20 @@ public final class Settings {
          */
         public static final String HYBRID_SYSUI_BATTERY_WARNING_FLAGS = "hybrid_sysui_battery_warning_flags";
 
+        /*****************************
+         * AICP Global Settings start
+         *****************************/
+
+        /**
+         * Whether to wake when device is connected to a charger.
+         * @hide
+         */
+        public static final String WAKE_WHEN_PLUGGED_OR_UNPLUGGED = "wake_when_plugged_or_unplugged";
+
+        /*****************************
+         * AICP Global Settings end
+         *****************************/
+
         /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.

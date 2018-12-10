@@ -3130,15 +3130,20 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     Settings.Secure.NAVIGATION_BAR_VISIBLE,
                     ActionUtils.hasNavbarByDefault(mContext) ? 1 : 0,
                     UserHandle.USER_CURRENT) == 1;
-            final boolean buttonBrightnessEnabled = Settings.System.getIntForUser(resolver,
-                    Settings.System.BUTTON_BRIGHTNESS_ENABLED, 0, UserHandle.USER_CURRENT) == 1;
+            final int buttonBrightnessEnabled = Settings.System.getIntForUser(resolver,
+                    Settings.System.BUTTON_BRIGHTNESS_ENABLED, 1, UserHandle.USER_CURRENT);
             if (doShowNavbar != mNavbarVisible) {
                 mNavbarVisible = doShowNavbar;
                 if (mDeviceHardwareKeys != 0) {
                     SystemProperties.set("qemu.hw.mainkeys", mNavbarVisible ? "0" : "1");
-                    if (mNavbarVisible && buttonBrightnessEnabled) {
+                    if (mNavbarVisible && buttonBrightnessEnabled == 1) {
+                        // Temporarily disabled
                         Settings.System.putInt(resolver,
-                                Settings.System.BUTTON_BRIGHTNESS_ENABLED, 0);
+                                Settings.System.BUTTON_BRIGHTNESS_ENABLED, 2);
+                    } else if (!mNavbarVisible && buttonBrightnessEnabled == 2) {
+                        // Enabled again after temporarily disabled
+                        Settings.System.putInt(resolver,
+                                Settings.System.BUTTON_BRIGHTNESS_ENABLED, 1);
                     }
                 }
             }

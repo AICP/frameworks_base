@@ -4561,7 +4561,7 @@ public final class Settings {
         public static final String BUTTON_BRIGHTNESS_ENABLED = "button_brightness_enabled";
 
         /** @hide */
-        private static final Validator BUTTON_BRIGHTNESS_ENABLED_VALIDATOR = BOOLEAN_VALIDATOR;
+        private static final Validator BUTTON_BRIGHTNESS_ENABLED_VALIDATOR = ANY_INTEGER_VALIDATOR;
 
         /** Action to perform when the home key is long-pressed.
          * (Default can be configured via config_longPressOnHardwareHomeBehavior)

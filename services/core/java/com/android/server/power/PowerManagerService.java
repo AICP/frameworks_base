@@ -1033,7 +1033,7 @@ public final class PowerManagerService extends SystemService
         }
 
         final boolean buttonBrightnessEnabled = Settings.System.getIntForUser(resolver,
-                Settings.System.BUTTON_BRIGHTNESS_ENABLED, 1, UserHandle.USER_CURRENT) != 0;
+                Settings.System.BUTTON_BRIGHTNESS_ENABLED, 1, UserHandle.USER_CURRENT) == 1;
         if (buttonBrightnessEnabled != mButtonBrightnessEnabled) {
             mButtonBrightnessEnabled = buttonBrightnessEnabled;
         }

@@ -71,6 +71,7 @@ import android.util.proto.ProtoOutputStream;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.internal.app.IBatteryStats;
 import com.android.internal.logging.MetricsLogger;
+import com.android.internal.util.aicp.AicpUtils;
 import com.android.internal.util.DumpUtils;
 import com.android.server.am.BatteryStatsService;
 import com.android.server.lights.LightsManager;
@@ -221,6 +222,10 @@ public final class BatteryService extends SystemService {
     private int mBatteryMediumARGB;
     private int mBatteryFullARGB;
     private int mBatteryReallyFullARGB;
+    private boolean mBatteryBlend = false;
+    private int mBatteryBlendFullColor = 0xff00ff00;
+    private int mBatteryBlendEmptyColor = 0xffff0000;
+    private boolean mBatteryBlendReverse = false;
 
     private boolean mSentLowBatteryBroadcast = false;
 
@@ -370,6 +375,18 @@ public final class BatteryService extends SystemService {
                 resolver.registerContentObserver(Settings.System.getUriFor(
                         Settings.System.BATTERY_LIGHT_REALLYFULL_COLOR),
                         false, this, UserHandle.USER_ALL);
+                resolver.registerContentObserver(Settings.System.getUriFor(
+                        Settings.System.BATTERY_LIGHT_BLEND),
+                        false, this, UserHandle.USER_ALL);
+                resolver.registerContentObserver(Settings.System.getUriFor(
+                        Settings.System.BATTERY_LIGHT_BLEND_FULL_COLOR),
+                        false, this, UserHandle.USER_ALL);
+                resolver.registerContentObserver(Settings.System.getUriFor(
+                        Settings.System.BATTERY_LIGHT_BLEND_EMPTY_COLOR),
+                        false, this, UserHandle.USER_ALL);
+                resolver.registerContentObserver(Settings.System.getUriFor(
+                        Settings.System.BATTERY_LIGHT_BLEND_REVERSE),
+                        false, this, UserHandle.USER_ALL);
             }
             update();
         }
@@ -406,7 +423,19 @@ public final class BatteryService extends SystemService {
                     Settings.System.BATTERY_LIGHT_REALLYFULL_COLOR, mMultiColorLed ? 0xFF00FF00:
                     res.getInteger(
                     com.android.internal.R.integer.config_notificationsBatteryFullARGB));
-             updateLed();
+            mBatteryBlend = Settings.System.getIntForUser(resolver,
+                    Settings.System.BATTERY_LIGHT_BLEND, 0,
+                    UserHandle.USER_CURRENT) != 0;
+            mBatteryBlendFullColor = Settings.System.getIntForUser(resolver,
+                    Settings.System.BATTERY_LIGHT_BLEND_FULL_COLOR, 0xff00ff00,
+                    UserHandle.USER_CURRENT);
+            mBatteryBlendEmptyColor = Settings.System.getIntForUser(resolver,
+                    Settings.System.BATTERY_LIGHT_BLEND_EMPTY_COLOR, 0xffff0000,
+                    UserHandle.USER_CURRENT);
+            mBatteryBlendReverse = Settings.System.getIntForUser(resolver,
+                    Settings.System.BATTERY_LIGHT_BLEND_REVERSE, 0,
+                    UserHandle.USER_CURRENT) != 0;
+            updateLed();
         }
     }
 
@@ -1449,6 +1478,19 @@ public final class BatteryService extends SystemService {
             final int status = mHealthInfo.batteryStatus;
             if (!mLightEnabled || (mIsDndActive && !mAllowBatteryLightOnDnd)) {
                 mBatteryLight.turnOff();
+            } else if (mBatteryBlend && (status == BatteryManager.BATTERY_STATUS_CHARGING
+                        || status == BatteryManager.BATTERY_STATUS_FULL
+                        || (mLowBatteryBlinking && level < mLowBatteryWarningLevel))) {
+                int lightColor = AicpUtils.getBlendColorForPercent(mBatteryBlendFullColor,
+                        mBatteryBlendEmptyColor, mBatteryBlendReverse, level);
+                if (mLowBatteryBlinking && status != BatteryManager.BATTERY_STATUS_CHARGING &&
+                        level < mLowBatteryWarningLevel) {
+                    // Flash when battery is low and not charging
+                    mBatteryLight.setFlashing(lightColor, LogicalLight.LIGHT_FLASH_TIMED,
+                            mBatteryLedOn, mBatteryLedOff);
+                } else {
+                    mBatteryLight.setColor(lightColor);
+                }
             } else if (level < mLowBatteryWarningLevel) {
                 if (status == BatteryManager.BATTERY_STATUS_CHARGING) {
                     // Battery is charging and low

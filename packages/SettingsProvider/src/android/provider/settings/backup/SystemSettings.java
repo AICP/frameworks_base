@@ -237,5 +237,9 @@ public class SystemSettings {
         Settings.System.BATTERY_LIGHT_FULL_COLOR,
         Settings.System.BATTERY_LIGHT_REALLYFULL_COLOR,
         Settings.System.BATTERY_LIGHT_ENABLED,
+        Settings.System.BATTERY_LIGHT_BLEND,
+        Settings.System.BATTERY_LIGHT_BLEND_FULL_COLOR,
+        Settings.System.BATTERY_LIGHT_BLEND_EMPTY_COLOR,
+        Settings.System.BATTERY_LIGHT_BLEND_REVERSE,
     };
 }

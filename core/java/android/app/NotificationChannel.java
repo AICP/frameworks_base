@@ -163,6 +163,9 @@ public final class NotificationChannel implements Parcelable {
     // If this is a blockable system notification channel.
     private boolean mBlockableSystem = false;
 
+    // AICP extra
+    private int mUnmodifiedLightColor = mLightColor;
+
     /**
      * Creates a notification channel.
      *
@@ -222,6 +225,7 @@ public final class NotificationChannel implements Parcelable {
         }
         mAudioAttributes = in.readInt() > 0 ? AudioAttributes.CREATOR.createFromParcel(in) : null;
         mLightColor = in.readInt();
+        mUnmodifiedLightColor = in.readInt();
         mLightOnTime = in.readInt();
         mLightOffTime = in.readInt();
         mLightOnZen = in.readBoolean();
@@ -277,6 +281,7 @@ public final class NotificationChannel implements Parcelable {
             dest.writeInt(0);
         }
         dest.writeInt(mLightColor);
+        dest.writeInt(mUnmodifiedLightColor);
         dest.writeInt(mLightOnTime);
         dest.writeInt(mLightOffTime);
         dest.writeBoolean(mLightOnZen);
@@ -409,6 +414,11 @@ public final class NotificationChannel implements Parcelable {
      * {@link NotificationManager#createNotificationChannel(NotificationChannel)}.
      */
     public void setLightColor(int argb) {
+        this.mUnmodifiedLightColor = this.mLightColor = argb;
+    }
+
+    /** @hide */
+    public void setModifiedLightColor(int argb) {
         this.mLightColor = argb;
     }
 
@@ -573,6 +583,11 @@ public final class NotificationChannel implements Parcelable {
      */
     public int getLightColor() {
         return mLightColor;
+    }
+
+    /** @hide */
+    public int getUnmodifiedLightColor() {
+        return mUnmodifiedLightColor;
     }
 
     /**
@@ -1050,6 +1065,7 @@ public final class NotificationChannel implements Parcelable {
                 + ", mSound=" + mSound
                 + ", mLights=" + mLights
                 + ", mLightColor=" + mLightColor
+                + ", mUnmodifiedLightColor=" + mUnmodifiedLightColor
                 + ", mLightOnTime=" + mLightOnTime
                 + ", mLightOffTime=" + mLightOffTime
                 + ", mLightOnZen=" + mLightOnZen

@@ -6262,6 +6262,32 @@ public final class Settings {
         */
        public static final String BATTERY_LIGHT_REALLYFULL_COLOR = "battery_light_reallyfull_color";
 
+        /**
+         * Whether to blend battery light colors between full and empty value.
+         * @hide
+         */
+        public static final String BATTERY_LIGHT_BLEND = "battery_light_blend";
+
+        /**
+         * Battery light blend full color.
+         * @hide
+         */
+        public static final String BATTERY_LIGHT_BLEND_FULL_COLOR =
+                "battery_light_blend_full_color";
+
+        /**
+         * Battery light blend empty color.
+         * @hide
+         */
+        public static final String BATTERY_LIGHT_BLEND_EMPTY_COLOR =
+                "battery_light_blend_empty_color";
+
+        /**
+         * Battery light blend color direction.
+         * @hide
+         */
+        public static final String BATTERY_LIGHT_BLEND_REVERSE = "battery_light_blend_reverse";
+
         /***************************
          * AICP System Settings end
          ***************************/

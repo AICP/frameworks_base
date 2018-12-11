@@ -6945,6 +6945,33 @@ public final class Settings {
         /** @hide */
         public static final String AUDIO_PANEL_VIEW_BT_SCO = "audio_panel_view_bt_sco";
 
+        /**
+         * Whether to blend battery light colors between full and empty value.
+         * @hide
+         */
+        public static final String BATTERY_LIGHT_BLEND = "battery_light_blend";
+
+        /**
+         * Battery light blend full color.
+         * @hide
+         */
+        public static final String BATTERY_LIGHT_BLEND_FULL_COLOR =
+                "battery_light_blend_full_color";
+
+        /**
+         * Battery light blend empty color.
+         * @hide
+         */
+        public static final String BATTERY_LIGHT_BLEND_EMPTY_COLOR =
+                "battery_light_blend_empty_color";
+
+        /**
+         * Battery light blend color direction.
+         * @hide
+         */
+        public static final String BATTERY_LIGHT_BLEND_REVERSE = "battery_light_blend_reverse";
+
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7191,6 +7218,10 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(QS_FOOTER_SHOW_SERVICES, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(QS_FOOTER_SHOW_EDIT, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(QS_FOOTER_SHOW_USER, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(BATTERY_LIGHT_BLEND, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(BATTERY_LIGHT_BLEND_FULL_COLOR, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(BATTERY_LIGHT_BLEND_EMPTY_COLOR, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(BATTERY_LIGHT_BLEND_REVERSE, BOOLEAN_VALIDATOR);
         }
 
         /**

@@ -21,6 +21,7 @@ public class StatusBarNetworkTraffic extends NetworkTraffic implements StatusIco
 
     private int mVisibleState = -1;
     private boolean mSystemIconVisible = true;
+    private boolean mColorIsStatic = false;
 
     public StatusBarNetworkTraffic(Context context) {
         super(context);
@@ -53,6 +54,9 @@ public class StatusBarNetworkTraffic extends NetworkTraffic implements StatusIco
 
     @Override
     public void onDarkChanged(Rect area, float darkIntensity, int tint) {
+        if (mColorIsStatic) {
+            return;
+        }
         mTintColor = DarkIconDispatcher.getTint(area, this, tint);
         setTextColor(mTintColor);
         updateTrafficDrawable();
@@ -60,6 +64,7 @@ public class StatusBarNetworkTraffic extends NetworkTraffic implements StatusIco
 
     @Override
     public void setStaticDrawableColor(int color) {
+        mColorIsStatic = true;
         mTintColor = color;
         setTextColor(mTintColor);
         updateTrafficDrawable();

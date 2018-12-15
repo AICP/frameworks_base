@@ -406,7 +406,7 @@ public class MobileSignalController extends SignalController<
         showDataIcon &= mCurrentState.isDefault || dataDisabled;
 
         int typeIcon = (showDataIcon || mConfig.alwaysShowDataRatIcon) ? icons.mDataType : 0;
-        int volteIcon = mConfig.showVolteIcon && isEnhanced4gLteModeSettingEnabled()
+        int volteIcon = mVoLTEicon && isEnhanced4gLteModeSettingEnabled()
                 ? getVolteResId() : 0;
         callback.setMobileDataIndicators(statusIcon, qsIcon, typeIcon, qsTypeIcon,
                 activityIn, activityOut, volteIcon, dataContentDescription, description, icons.mIsWide,
@@ -698,7 +698,7 @@ public class MobileSignalController extends SignalController<
     private final BroadcastReceiver mVolteSwitchObserver = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
             Log.d(mTag, "action=" + intent.getAction());
-            if ( mConfig.showVolteIcon ) {
+            if ( mVoLTEicon ) {
                 notifyListeners();
             }
         }

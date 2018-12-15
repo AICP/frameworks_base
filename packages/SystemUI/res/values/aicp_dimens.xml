@@ -45,5 +45,5 @@
     <dimen name="net_traffic_txt_img_padding">2dp</dimen>
 
     <!-- OmniWeather image size -->
-    <dimen name="current_weather_image_size">42dp</dimen>
+    <dimen name="current_weather_image_size">30dp</dimen>
 </resources>

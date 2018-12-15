@@ -31,16 +31,17 @@ import com.android.systemui.plugins.qs.QSTile.BooleanState;
 import com.android.systemui.qs.GlobalSetting;
 import com.android.systemui.qs.QSHost;
 import com.android.systemui.qs.tileimpl.QSTileImpl;
+import com.android.systemui.plugins.ActivityStarter;
 import com.android.systemui.R;
 import com.android.systemui.statusbar.policy.BatteryController;
 
 public class SmartPixelsTile extends QSTileImpl<BooleanState> implements
         BatteryController.BatteryStateChangeCallback {
-    private static final ComponentName SMART_PIXELS_SETTING_COMPONENT = new ComponentName(
-            "com.aicp.extras", "com.aicp.extras.fragments.SmartPixelsActivity");
 
-    private static final Intent SMART_PIXELS_SETTINGS =
-            new Intent().setComponent(SMART_PIXELS_SETTING_COMPONENT);
+    private static final String AE_EXTRA_FRAGMENT_CLASS = "com.aicp.extras.extra.preference_fragment";
+    private static final String AE_SETTINGSACTIVITY = "com.aicp.extras.SettingsActivity";
+    private static final String SETTINGS_PACKAGE_NAME = "com.aicp.extras";
+    private static final String SMARTPIXEL_SETTINGS = "com.aicp.extras.fragments.SmartPixels";
 
     private final BatteryController mBatteryController;
 
@@ -102,8 +103,17 @@ public class SmartPixelsTile extends QSTileImpl<BooleanState> implements
     }
 
     @Override
+    protected void handleLongClick() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.setClassName(SETTINGS_PACKAGE_NAME, AE_SETTINGSACTIVITY);
+        intent.putExtra(AE_EXTRA_FRAGMENT_CLASS, SMARTPIXEL_SETTINGS);
+        Dependency.get(ActivityStarter.class).postStartActivityDismissingKeyguard(
+        intent, 0);
+    }
+
+    @Override
     public Intent getLongClickIntent() {
-        return SMART_PIXELS_SETTINGS;
+        return null;
     }
 
     @Override

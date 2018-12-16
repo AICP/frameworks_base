@@ -75,9 +75,10 @@ public class TunerFragment extends PreferenceFragment {
         if (!PluginPrefs.hasPlugins(getContext())) {
             getPreferenceScreen().removePreference(findPreference(KEY_PLUGINS));
         }
-        if (!alwaysOnAvailable()) {
+        /*if (!alwaysOnAvailable()) {
             getPreferenceScreen().removePreference(findPreference(KEY_DOZE));
         }
+        }*/
         if (!DeviceUtils.deviceSupportsNfc(getContext())) {
             getPreferenceScreen().removePreference(findPreference(KEY_NFC));
         }

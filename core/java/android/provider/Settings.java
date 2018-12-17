@@ -4819,6 +4819,24 @@ public final class Settings {
         private static final Validator SCREEN_OFF_ANIMATION_VALIDATOR =
                 ANY_INTEGER_VALIDATOR;
 
+        /** @hide */
+        public static final String AUDIO_PANEL_VIEW_MEDIA = "audio_panel_view_media";
+
+        /** @hide */
+        public static final String AUDIO_PANEL_VIEW_RINGER = "audio_panel_view_ringer";
+
+        /** @hide */
+        public static final String AUDIO_PANEL_VIEW_NOTIFICATION = "audio_panel_view_notification";
+
+        /** @hide */
+        public static final String AUDIO_PANEL_VIEW_ALARM = "audio_panel_view_alarm";
+
+        /** @hide */
+        public static final String AUDIO_PANEL_VIEW_VOICE = "audio_panel_view_voice";
+
+        /** @hide */
+        public static final String AUDIO_PANEL_VIEW_BT_SCO = "audio_panel_view_bt_sco";
+
         /**
          * @hide
          */

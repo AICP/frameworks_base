@@ -10493,6 +10493,13 @@ public final class Settings {
          */
         public static final String GESTURE_HANDLE_HIDE = "navbar_gesture_handle_hide";
 
+        /*
+         * Boolean value whether to display volume panel on the display left
+         * @hide
+         */
+        @SuppressLint("NoSettingsProvider")
+        public static final String VOLUME_PANEL_ON_LEFT = "volume_panel_on_left";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

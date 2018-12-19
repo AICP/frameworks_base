@@ -9210,6 +9210,14 @@ public final class Settings {
 
         private static final Validator FACE_AUTO_UNLOCK_VALIDATOR = BOOLEAN_VALIDATOR;
 
+        /*
+         * Boolean value whether to display volume panel on the display left
+         * @hide
+         */
+        public static final String VOLUME_PANEL_ON_LEFT = "volume_panel_on_left";
+
+        private static final Validator VOLUME_PANEL_ON_LEFT_VALIDATOR = BOOLEAN_VALIDATOR;
+
         /*****************************
          * AICP System Settings end
          *****************************/
@@ -9357,7 +9365,8 @@ public final class Settings {
             DARK_MODE_DIALOG_SEEN,
             GLOBAL_ACTIONS_PANEL_ENABLED,
             AWARE_LOCK_ENABLED,
-            FACE_AUTO_UNLOCK
+            FACE_AUTO_UNLOCK,
+            VOLUME_PANEL_ON_LEFT
         };
 
         /**
@@ -9553,6 +9562,7 @@ public final class Settings {
             VALIDATORS.put(GLOBAL_ACTIONS_PANEL_ENABLED, GLOBAL_ACTIONS_PANEL_ENABLED_VALIDATOR);
             VALIDATORS.put(AWARE_LOCK_ENABLED, AWARE_LOCK_ENABLED_VALIDATOR);
             VALIDATORS.put(FACE_AUTO_UNLOCK, FACE_AUTO_UNLOCK_VALIDATOR);
+            VALIDATORS.put(VOLUME_PANEL_ON_LEFT, VOLUME_PANEL_ON_LEFT_VALIDATOR);
         }
 
         /**

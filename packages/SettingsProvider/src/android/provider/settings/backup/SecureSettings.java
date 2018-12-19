@@ -270,6 +270,7 @@ public class SecureSettings {
         Settings.Secure.VISUAL_QUERY_ACCESSIBILITY_DETECTION_ENABLED,
         Settings.Secure.WINDOW_IGNORE_SECURE,
         Settings.Secure.SHOW_CPU_OVERLAY,
-        Settings.Secure.SECURE_LOCKSCREEN_QS_DISABLED
+        Settings.Secure.SECURE_LOCKSCREEN_QS_DISABLED,
+        Settings.Secure.VOLUME_PANEL_ON_LEFT
     };
 }

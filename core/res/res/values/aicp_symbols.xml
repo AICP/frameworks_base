@@ -68,4 +68,7 @@
   <!-- Whether notify fingerprint client of successful cancelled authentication -->
   <java-symbol type="bool" name="config_notifyClientOnFingerprintCancelSuccess" />
 
+  <!-- Whether device supports displaying volume panel on the left side-->
+  <java-symbol type="bool" name="config_audioPanelOnLeftSide" />
+
 </resources>

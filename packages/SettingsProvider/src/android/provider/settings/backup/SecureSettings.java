@@ -203,5 +203,6 @@ public class SecureSettings {
         Settings.Secure.BACK_GESTURE_HEIGHT,
         Settings.Secure.SHOW_BACK_ARROW_GESTURE,
         Settings.Secure.GESTURE_HANDLE_HIDE,
+        Settings.Secure.VOLUME_PANEL_ON_LEFT,
     };
 }

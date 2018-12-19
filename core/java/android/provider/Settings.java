@@ -10831,6 +10831,14 @@ public final class Settings {
          */
         public static final String SWAP_CAPACITIVE_KEYS = "swap_capacitive_keys";
 
+        /**
+        /*
+         * Boolean value whether to display volume panel on the display left
+         * @hide
+         */
+        @SuppressLint("NoSettingsProvider")
+        public static final String VOLUME_PANEL_ON_LEFT = "volume_panel_on_left";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

@@ -52,4 +52,7 @@
     <java-symbol type="bool" name="config_filterDisplayModes" />
     <java-symbol type="array" name="config_displayModeMappings" />
     <java-symbol type="bool" name="config_defaultAntiFlicker" />
+
+    <!-- Whether device supports displaying volume panel on the left side-->
+    <java-symbol type="bool" name="config_audioPanelOnLeftSide" />
 </resources>

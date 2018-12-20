@@ -39,8 +39,10 @@ import android.graphics.Rect;
 import android.graphics.Region;
 import android.graphics.Shader;
 import android.graphics.Shader.TileMode;
+import android.os.SystemProperties;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.PathParser;
 
 import com.android.internal.R;
@@ -104,6 +106,10 @@ public class AdaptiveIconDrawable extends Drawable implements Drawable.Callback 
      */
     private static Path sMask;
 
+    // Icon shape setting
+    public static final String MASK_SETTING_PROP = "persist.aicp.iconshape";
+    private static String mMaskPath = null;
+
     /**
      * Scaled mask based on the view bounds.
      */
@@ -152,12 +158,24 @@ public class AdaptiveIconDrawable extends Drawable implements Drawable.Callback 
     AdaptiveIconDrawable(@Nullable LayerState state, @Nullable Resources res) {
         mLayerState = createConstantState(state, res);
 
-        if (sMask == null) {
-            sMask = PathParser.createPathFromPathData(
-                Resources.getSystem().getString(R.string.config_icon_mask));
+        if (mMaskPath == null) {
+            // Load custom mask setting only once for better performance.
+            // Reboot will be needed either way for changes to fully take effect.
+            String[] availableMasks =
+                    Resources.getSystem().getStringArray(R.array.system_icon_masks);
+            int shapeSetting = SystemProperties.getInt(MASK_SETTING_PROP, 0);
+            if (shapeSetting < 0 || shapeSetting >= availableMasks.length) {
+                Log.e("AdaptiveIconDrawable", "Invalid shape setting: " + shapeSetting);
+                // Fall back to system default
+                mMaskPath = Resources.getSystem().getString(R.string.config_icon_mask);
+            } else {
+                mMaskPath = availableMasks[shapeSetting];
+            }
         }
-        mMask = PathParser.createPathFromPathData(
-            Resources.getSystem().getString(R.string.config_icon_mask));
+        if (sMask == null) {
+            sMask = PathParser.createPathFromPathData(mMaskPath);
+        }
+        mMask = PathParser.createPathFromPathData(mMaskPath);
         mMaskMatrix = new Matrix();
         mCanvas = new Canvas();
         mTransparentRegion = new Region();

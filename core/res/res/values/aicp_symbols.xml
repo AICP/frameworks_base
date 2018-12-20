@@ -138,4 +138,7 @@
   <!-- Allow devices override audio panel location to the left side -->
   <java-symbol type="bool" name="config_audioPanelOnLeftSide" />
 
+  <!-- Available icon mask paths for the adaptive icon shape setting -->
+  <java-symbol type="array" name="system_icon_masks" />
+
 </resources>

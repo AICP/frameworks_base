@@ -24,4 +24,17 @@
     <string-array name="config_fontPackages" translatable="false">
     </string-array>
 
+    <!-- Available icon mask paths for the adaptive icon shape setting. 0 is system default. -->
+    <string-array translatable="false" name="system_icon_masks">
+        <item>@string/config_icon_mask</item>
+        <item>M50,0L100,0 100,100 0,100 0,0z</item>
+        <item>M50,0L70,0 A30,30,0,0 1 100,30 L100,70 A30,30,0,0 1 70,100 L30,100 A30,30,0,0 1 0,70 L 0,30 A30,30,0,0 1 30,0z</item>
+        <item>M50,0 C10,0 0,10 0,50 0,90 10,100 50,100 90,100 100,90 100,50 100,10 90,0 50,0 Z</item>
+        <item>M50 0A50 50,0,1,1,50 100A50 50,0,1,1,50 0</item>
+        <item>M50,0A50,50,0,0 1 100,50 L100,85 A15,15,0,0 1 85,100 L50,100 A50,50,0,0 1 50,0z</item>
+        <item>M 50,0 L 6.699,25 L 6.699,75 L 50,100 L 93.301,75 L 93.301,25 Z</item>
+        <!-- Always add new entries at the bottom to not break previous user settings.
+        Order can still be changed for display in settings. -->
+    </string-array>
+
 </resources>

@@ -25,7 +25,9 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.ContentObserver;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.icu.text.DateFormat;
 import android.icu.text.DisplayContext;
@@ -34,10 +36,12 @@ import android.media.session.PlaybackState;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Trace;
+import android.os.UserHandle;
 import android.provider.Settings;
 import android.service.notification.ZenModeConfig;
 import android.text.TextUtils;
 import android.text.style.StyleSpan;
+import android.util.Log;
 
 import androidx.core.graphics.drawable.IconCompat;
 import androidx.slice.Slice;
@@ -68,6 +72,8 @@ import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
+import com.android.systemui.omni.OmniJawsClient;
+
 /**
  * Simple Slice provider that shows the current date.
  *
@@ -77,7 +83,9 @@ import javax.inject.Inject;
 public class KeyguardSliceProvider extends SliceProvider implements
         NextAlarmController.NextAlarmChangeCallback, ZenModeController.Callback,
         NotificationMediaManager.MediaListener, StatusBarStateController.StateListener,
-        SystemUIAppComponentFactory.ContextInitializer {
+        SystemUIAppComponentFactory.ContextInitializer, OmniJawsClient.OmniJawsObserver {
+
+    private static final boolean DEBUG = false;
 
     private static final String TAG = "KgdSliceProvider";
 
@@ -86,6 +94,7 @@ public class KeyguardSliceProvider extends SliceProvider implements
     private static final String KEYGUARD_HEADER_URI =
             "content://com.android.systemui.keyguard/header";
     public static final String KEYGUARD_DATE_URI = "content://com.android.systemui.keyguard/date";
+    public static final String KEYGUARD_WEATHER_URI = "content://com.android.systemui.keyguard/weather";
     public static final String KEYGUARD_NEXT_ALARM_URI =
             "content://com.android.systemui.keyguard/alarm";
     public static final String KEYGUARD_DND_URI = "content://com.android.systemui.keyguard/dnd";
@@ -106,6 +115,7 @@ public class KeyguardSliceProvider extends SliceProvider implements
     protected final Uri mSliceUri;
     protected final Uri mHeaderUri;
     protected final Uri mDateUri;
+    protected final Uri mWeatherUri;
     protected final Uri mAlarmUri;
     protected final Uri mDndUri;
     protected final Uri mMediaUri;
@@ -146,6 +156,12 @@ public class KeyguardSliceProvider extends SliceProvider implements
     private int mStatusBarState;
     private boolean mMediaIsVisible;
     private SystemUIAppComponentFactory.ContextAvailableCallback mContextAvailableCallback;
+
+    private OmniJawsClient mWeatherClient;
+    private OmniJawsClient.WeatherInfo mWeatherInfo;
+    private OmniJawsClient.PackageInfo mPackageInfo;
+    private boolean mServiceEnabled;
+    private boolean mWeatherEnabled;
 
     /**
      * Receiver responsible for time ticking and updating the date format.
@@ -195,6 +211,7 @@ public class KeyguardSliceProvider extends SliceProvider implements
         mSliceUri = Uri.parse(KEYGUARD_SLICE_URI);
         mHeaderUri = Uri.parse(KEYGUARD_HEADER_URI);
         mDateUri = Uri.parse(KEYGUARD_DATE_URI);
+        mWeatherUri = Uri.parse(KEYGUARD_WEATHER_URI);
         mAlarmUri = Uri.parse(KEYGUARD_NEXT_ALARM_URI);
         mDndUri = Uri.parse(KEYGUARD_DND_URI);
         mMediaUri = Uri.parse(KEYGUARD_MEDIA_URI);
@@ -212,6 +229,7 @@ public class KeyguardSliceProvider extends SliceProvider implements
             } else {
                 builder.addRow(new RowBuilder(mDateUri).setTitle(mLastText));
             }
+            addWeather(builder);
             addNextAlarmLocked(builder);
             addZenModeLocked(builder);
             addPrimaryActionLocked(builder);
@@ -300,6 +318,86 @@ public class KeyguardSliceProvider extends SliceProvider implements
         return mZenModeController.getZen() != Settings.Global.ZEN_MODE_OFF;
     }
 
+    protected void addWeather(ListBuilder builder) {
+        if (!mWeatherClient.isOmniJawsSetupDone()) return;
+        if (!mWeatherEnabled || mWeatherInfo == null || mPackageInfo == null) {
+            return;
+        }
+        String temperatureText = mWeatherInfo.temp + " " + mWeatherInfo.tempUnits;
+        Icon conditionIcon = Icon.createWithResource(mPackageInfo.packageName, mPackageInfo.resourceID);
+        RowBuilder weatherRowBuilder = new RowBuilder(mWeatherUri)
+                .setTitle(temperatureText)
+                .addEndItem(IconCompat.createFromIcon(conditionIcon), ListBuilder.ICON_IMAGE);
+        builder.addRow(weatherRowBuilder);
+    }
+
+    @Override
+    public void weatherUpdated() {
+        queryAndUpdateWeather();
+        mContentResolver.notifyChange(mSliceUri, null /* observer */);
+    }
+
+    @Override
+    public void weatherError(int errorReason) {
+        if (DEBUG) Log.d(TAG, "weatherError " + errorReason);
+    }
+
+    private void queryAndUpdateWeather() {
+        try {
+            if (DEBUG) Log.d(TAG, "queryAndUpdateWeather.isOmniJawsSetupDone " + mWeatherClient.isOmniJawsSetupDone());
+            if (mWeatherClient.isOmniJawsSetupDone()) {
+                mWeatherClient.queryWeather();
+                mWeatherInfo = mWeatherClient.getWeatherInfo();
+                setPackageInfo();
+                if (DEBUG) Log.w(TAG, "queryAndUpdateWeather mPackageName: " + mPackageInfo.packageName);
+                if (DEBUG) Log.w(TAG, "queryAndUpdateWeather mDrawableResID: " + mPackageInfo.resourceID);
+            }
+        } catch(Exception e) {
+            // Do nothing
+        }
+    }
+
+    private void setPackageInfo() {
+        mPackageInfo = null;
+        if (mWeatherClient != null && mWeatherInfo != null){
+              Drawable conditionImage = mWeatherClient.getWeatherConditionImage(mWeatherInfo.conditionCode);
+              mPackageInfo = mWeatherClient.getPackageInfo();
+        }
+    }
+    private WeatherSettingsObserver mWeatherSettingsObserver;
+
+    private class WeatherSettingsObserver extends ContentObserver {
+        WeatherSettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        void observe() {
+            mContentResolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.OMNI_LOCKSCREEN_WEATHER_ENABLED),
+                    false, this, UserHandle.USER_ALL);
+
+            mContentResolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.OMNIJAWS_WEATHER_ICON_PACK),
+                    false, this, UserHandle.USER_ALL);
+        }
+
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
+            super.onChange(selfChange, uri);
+            if (uri.equals(Settings.System.getUriFor(Settings.System.OMNI_LOCKSCREEN_WEATHER_ENABLED))) {
+                updateLockscreenWeather();
+                mContentResolver.notifyChange(mSliceUri, null /* observer */);
+            } else if (uri.equals(Settings.System.getUriFor(Settings.System.OMNIJAWS_WEATHER_ICON_PACK))) {
+                setPackageInfo();
+                mContentResolver.notifyChange(mSliceUri, null /* observer */);
+            }
+        }
+
+        public void updateLockscreenWeather() {
+            mWeatherEnabled = Settings.System.getIntForUser(mContentResolver, Settings.System.OMNI_LOCKSCREEN_WEATHER_ENABLED, 0, UserHandle.USER_CURRENT) != 0;
+        }
+    }
+
     @Override
     public boolean onCreateSliceProvider() {
         mContextAvailableCallback.onContextAvailable(getContext());
@@ -318,6 +416,16 @@ public class KeyguardSliceProvider extends SliceProvider implements
             mStatusBarStateController.addCallback(this);
             mNextAlarmController.addCallback(this);
             mZenModeController.addCallback(this);
+            mWeatherSettingsObserver = new WeatherSettingsObserver(mHandler);
+            mWeatherSettingsObserver.observe();
+            mWeatherClient = new OmniJawsClient(getContext());
+            mServiceEnabled = mWeatherClient.isOmniJawsEnabled();
+            Log.w(TAG, "onCreateSliceProvider:  mServiceEnabled = " + mServiceEnabled);
+            if (mServiceEnabled) {
+                mWeatherClient.addSettingsObserver();
+                mWeatherClient.addObserver(this);
+                queryAndUpdateWeather();
+            }
             KeyguardSliceProvider.sInstance = this;
             registerClockUpdate();
             updateClockLocked();
@@ -332,6 +440,8 @@ public class KeyguardSliceProvider extends SliceProvider implements
             mZenModeController.removeCallback(this);
             mMediaWakeLock.setAcquired(false);
             mAlarmManager.cancel(mUpdateNextAlarm);
+            mWeatherClient.cleanupObserver();
+            mWeatherClient.removeObserver(this);
             if (mRegistered) {
                 mRegistered = false;
                 mKeyguardUpdateMonitor.removeCallback(mKeyguardUpdateMonitorCallback);

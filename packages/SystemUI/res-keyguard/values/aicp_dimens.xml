@@ -2,4 +2,7 @@
 <resources>
     <!-- The minimum bottom margin of the keyguard security container -->
     <dimen name="kg_security_container_min_bottom_margin">0dp</dimen>
+
+    <!-- Weather condition icon  -->
+    <dimen name="weather_icon_size">24dp</dimen>
 </resources>

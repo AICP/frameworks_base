@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Weather condition icon  -->
+    <dimen name="weather_icon_size">24dp</dimen>
+    <dimen name="date_owner_info_margin">4dp</dimen>
+</resources>

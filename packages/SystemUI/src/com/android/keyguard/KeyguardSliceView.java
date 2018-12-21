@@ -79,6 +79,7 @@ public class KeyguardSliceView extends LinearLayout implements View.OnClickListe
 
     private int mIconSize;
     private int mIconSizeWithHeader;
+    private int mWeatherIconSize;
     /**
      * Runnable called whenever the view contents change.
      */
@@ -198,14 +199,18 @@ public class KeyguardSliceView extends LinearLayout implements View.OnClickListe
             RowContent rc = (RowContent) subItems.get(i);
             SliceItem item = rc.getSliceItem();
             final Uri itemTag = item.getSlice().getUri();
+            final boolean isWeatherSlice = itemTag.toString().equals(KeyguardSliceProvider.KEYGUARD_WEATHER_URI);
             // Try to reuse the view if already exists in the layout
             KeyguardSliceTextView button = mRow.findViewWithTag(itemTag);
             if (button == null) {
                 button = new KeyguardSliceTextView(mContext);
+                button.setShouldTintDrawable(!isWeatherSlice);
                 button.setTextColor(blendedColor);
                 button.setTag(itemTag);
                 final int viewIndex = i - (mHasHeader ? 1 : 0);
                 mRow.addView(button, viewIndex);
+            } else {
+                button.setShouldTintDrawable(!isWeatherSlice);
             }
 
             PendingIntent pendingIntent = null;
@@ -232,8 +237,8 @@ public class KeyguardSliceView extends LinearLayout implements View.OnClickListe
                         iconDrawable = ((InsetDrawable) iconDrawable).getDrawable();
                     }
                     final int width = (int) (iconDrawable.getIntrinsicWidth()
-                            / (float) iconDrawable.getIntrinsicHeight() * iconSize);
-                    iconDrawable.setBounds(0, 0, Math.max(width, 1), iconSize);
+                        / (float) iconDrawable.getIntrinsicHeight() * (isWeatherSlice ? mWeatherIconSize : iconSize));
+                    iconDrawable.setBounds(0, 0, Math.max(width, 1), (isWeatherSlice ? mWeatherIconSize : iconSize));
                 }
             }
             button.setCompoundDrawablesRelative(iconDrawable, null, null, null);
@@ -311,6 +316,7 @@ public class KeyguardSliceView extends LinearLayout implements View.OnClickListe
     void onDensityOrFontScaleChanged() {
         mIconSize = mContext.getResources().getDimensionPixelSize(R.dimen.widget_icon_size);
         mIconSizeWithHeader = (int) mContext.getResources().getDimension(R.dimen.header_icon_size);
+        mWeatherIconSize = mContext.getResources().getDimensionPixelSize(R.dimen.weather_icon_size);
 
         for (int i = 0; i < mRow.getChildCount(); i++) {
             View child = mRow.getChildAt(i);
@@ -493,10 +499,15 @@ public class KeyguardSliceView extends LinearLayout implements View.OnClickListe
         @StyleRes
         private static int sStyleId = R.style.TextAppearance_Keyguard_Secondary;
 
+        private boolean shouldTintDrawable = true;
         KeyguardSliceTextView(Context context) {
             super(context, null /* attrs */, 0 /* styleAttr */, sStyleId);
             onDensityOrFontScaleChanged();
             setEllipsize(TruncateAt.END);
+        }
+
+        public void setShouldTintDrawable(boolean shouldTintDrawable){
+            this.shouldTintDrawable = shouldTintDrawable;
         }
 
         public void onDensityOrFontScaleChanged() {
@@ -544,6 +555,9 @@ public class KeyguardSliceView extends LinearLayout implements View.OnClickListe
         }
 
         private void updateDrawableColors() {
+            if (!shouldTintDrawable){
+                return;
+            }
             final int color = getCurrentTextColor();
             for (Drawable drawable : getCompoundDrawables()) {
                 if (drawable != null) {

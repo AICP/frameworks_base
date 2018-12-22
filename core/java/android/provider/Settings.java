@@ -5843,6 +5843,13 @@ public final class Settings {
         */
         public static final String OMNI_LOCKSCREEN_WEATHER_ENABLED = "lockscreen_weather_enabled";
 
+        /**
+        * 0: OmniJaws Style
+        * 1: KeyguardSlice Style
+        * @hide
+        */
+        public static final String AICP_LOCKSCREEN_WEATHER_STYLE = "lockscreen_weather_style";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6000,6 +6007,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(POWERMENU_TORCH);
             PRIVATE_SETTINGS.add(OMNIJAWS_WEATHER_ICON_PACK);
             PRIVATE_SETTINGS.add(OMNI_LOCKSCREEN_WEATHER_ENABLED);
+            PRIVATE_SETTINGS.add(AICP_LOCKSCREEN_WEATHER_STYLE);
         }
 
         /**

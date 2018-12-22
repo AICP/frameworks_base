@@ -123,5 +123,6 @@ public class SystemSettings {
         Settings.System.POWERMENU_TORCH,
         Settings.System.OMNIJAWS_WEATHER_ICON_PACK,
         Settings.System.OMNI_LOCKSCREEN_WEATHER_ENABLED,
+        Settings.System.AICP_LOCKSCREEN_WEATHER_STYLE,
     };
 }

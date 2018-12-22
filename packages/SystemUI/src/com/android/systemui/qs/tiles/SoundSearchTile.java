@@ -54,16 +54,19 @@ public class SoundSearchTile extends QSTileImpl<BooleanState> {
         // Shazam
         if (PackageUtils.isPackageInstalled(mContext, "com.shazam.android") || PackageUtils.isPackageInstalled(mContext, "com.shazam.encore.android")) {
             Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             intent.setAction("com.shazam.android.intent.actions.START_TAGGING");
             mContext.startActivity(intent);
         // Soundhound
         } else if (PackageUtils.isPackageInstalled(mContext, "com.melodis.midomiMusicIdentifier.freemium") || PackageUtils.isPackageInstalled(mContext, "com.melodis.midomiMusicIdentifier")) {
             Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             intent.setAction("com.soundhound.android.ID_NOW_EXTERNAL");
             mContext.startActivity(intent);
         // Google Search Music
         } else if (PackageUtils.isPackageInstalled(mContext, "com.google.android.googlequicksearchbox")) {
             Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             intent.setAction("com.google.android.googlequicksearchbox.MUSIC_SEARCH");
             mContext.startActivity(intent);
         } else {

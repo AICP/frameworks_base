@@ -5912,6 +5912,13 @@ public final class Settings {
         */
         public static final String OMNI_LOCKSCREEN_WEATHER_ENABLED = "lockscreen_weather_enabled";
 
+        /**
+        * 0: OmniJaws Style
+        * 1: KeyguardSlice Style
+        * @hide
+        */
+        public static final String AICP_LOCKSCREEN_WEATHER_STYLE = "lockscreen_weather_style";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6042,6 +6049,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(CHOOSER_ACTIVITY_BLACKLIST, ANY_STRING_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(OMNIJAWS_WEATHER_ICON_PACK, ANY_STRING_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(OMNI_LOCKSCREEN_WEATHER_ENABLED, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(AICP_LOCKSCREEN_WEATHER_STYLE, ANY_INTEGER_VALIDATOR);
         }
 
         /**

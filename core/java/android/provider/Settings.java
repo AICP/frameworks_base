@@ -5737,6 +5737,18 @@ public final class Settings {
          */
         public static final String DATA_DISABLED_ICON = "data_disabled_icon";
 
+        /**
+        * 0: OmniJaws Style
+        * 1: KeyguardSlice Style
+        * @hide
+        */
+        public static final String AICP_LOCKSCREEN_WEATHER_STYLE = "lockscreen_weather_style";
+
+        /** @hide */
+        private static final Validator AICP_LOCKSCREEN_WEATHER_STYLE_VALIDATOR =
+               new SettingsValidators.InclusiveIntegerRangeValidator(0, 1);;
+
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5941,6 +5953,7 @@ public final class Settings {
             OMNI_LOCKSCREEN_WEATHER_ENABLED,
             OMNI_BOTTOM_GESTURE_TRIGGER_TIMEOUT,
             OMNI_BOTTOM_GESTURE_SWIPE_LIMIT,
+            AICP_LOCKSCREEN_WEATHER_STYLE,
             // AICP Settings end
         };
 
@@ -6209,6 +6222,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(OMNI_LOCKSCREEN_WEATHER_ENABLED);
             PRIVATE_SETTINGS.add(OMNI_BOTTOM_GESTURE_TRIGGER_TIMEOUT);
             PRIVATE_SETTINGS.add(OMNI_BOTTOM_GESTURE_SWIPE_LIMIT);
+            PRIVATE_SETTINGS.add(AICP_LOCKSCREEN_WEATHER_STYLE);
             // AICP Settings end
         }
 
@@ -6469,6 +6483,7 @@ public final class Settings {
                     OMNI_BOTTOM_GESTURE_TRIGGER_TIMEOUT_VALIDATOR);
             VALIDATORS.put(OMNI_BOTTOM_GESTURE_SWIPE_LIMIT,
                     OMNI_BOTTOM_GESTURE_SWIPE_LIMIT_VALIDATOR);
+            VALIDATORS.put(AICP_LOCKSCREEN_WEATHER_STYLE,AICP_LOCKSCREEN_WEATHER_STYLE_VALIDATOR);
             // AICP Settings end
         }
 

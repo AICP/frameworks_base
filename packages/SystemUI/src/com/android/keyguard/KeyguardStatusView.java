@@ -79,6 +79,7 @@ public class KeyguardStatusView extends GridLayout {
         mKeyguardSlice = findViewById(R.id.keyguard_slice_view);
 
         mWeatherView = (CurrentWeatherView) findViewById(R.id.weather_container);
+        updateSettings();
 
         mTextColor = mClockView.getCurrentTextColor();
 
@@ -143,12 +144,16 @@ public class KeyguardStatusView extends GridLayout {
                 Settings.System.OMNI_LOCKSCREEN_WEATHER_ENABLED, 0,
                 UserHandle.USER_CURRENT) == 1;
 
+        boolean omniStyle = Settings.System.getIntForUser(resolver,
+                Settings.System.AICP_LOCKSCREEN_WEATHER_STYLE, 0,
+                UserHandle.USER_CURRENT) == 0;
+
         if (mWeatherView != null) {
-            if (showWeather) {
+            if (showWeather && omniStyle) {
                 mWeatherView.setVisibility(View.VISIBLE);
                 mWeatherView.enableUpdates();
             }
-            if (!showWeather) {
+            if (!showWeather || !omniStyle) {
                 mWeatherView.setVisibility(View.GONE);
                 mWeatherView.disableUpdates();
             }

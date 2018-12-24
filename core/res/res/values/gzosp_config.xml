@@ -91,4 +91,11 @@
     <!-- Internal default to navigation bar value -->
     <bool name="config_defaultToNavigationBar">true</bool>
 
+    <!-- minimal way before long swipe will get accepted - in dp -->
+    <integer name="config_navgestureswipeminlength">60</integer>
+    <!-- time in ms that needs to pass before trigger the action -->
+    <integer name="config_navgestureswipetimout">250</integer>
+    <!-- signification move threshold - if stays below will trigger action -->
+    <integer name="config_navgesturemovethreshold">4</integer>
+
 </resources>

@@ -93,6 +93,7 @@ import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 import com.android.internal.os.BackgroundThread;
 import com.android.internal.util.ArrayUtils;
 import com.android.internal.util.DumpUtils;
+import com.android.internal.utils.ActionUtils;
 import com.android.server.EventLogTags;
 import com.android.server.LockGuard;
 import com.android.server.RescueParty;
@@ -233,7 +234,7 @@ public final class PowerManagerService extends SystemService
 
     // Persistent property for last reboot reason
     private static final String LAST_REBOOT_PROPERTY = "persist.sys.boot.reason";
-    
+
     private static final float PROXIMITY_NEAR_THRESHOLD = 5.0f;
 
     private final Context mContext;
@@ -1048,12 +1049,11 @@ public final class PowerManagerService extends SystemService
             mButtonBrightnessEnabled = buttonBrightnessEnabled;
         }
 
-        final boolean defaultToNavigationBar = resources
-                .getBoolean(com.android.internal.R.bool.config_defaultToNavigationBar);
-        final boolean navBarEnabled = Settings.System.getIntForUser(resolver,
-                Settings.System.NAVIGATION_BAR_ENABLED, defaultToNavigationBar ? 1 : 0,
-                        UserHandle.USER_CURRENT) != 0;
-        mButtonBrightnessEnabled &= !navBarEnabled;
+        boolean doShowNavbar = Settings.Secure.getIntForUser(resolver,
+                Settings.Secure.NAVIGATION_BAR_VISIBLE,
+                ActionUtils.hasNavbarByDefault(mContext) ? 1 : 0,
+                UserHandle.USER_CURRENT) != 0;
+        mButtonBrightnessEnabled &= !doShowNavbar;
 
         mDirty |= DIRTY_SETTINGS;
     }

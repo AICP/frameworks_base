@@ -5887,7 +5887,7 @@ public final class Settings {
          * default: false
          * @hide
          */
-        public static final String STATUS_BAR_CLOCK_AUTO_HIDE = "status_bar_clock_auto_hide";
+        public static final String STATUS_BAR_CLOCK_AUTO_HIDE_LAUNCHER = "status_bar_clock_auto_hide_launcher";
 
         /**
          * Whether to show seconds next to clock in status bar
@@ -5928,6 +5928,18 @@ public final class Settings {
          * @hide
          */
         public static final String STATUS_BAR_CLOCK_DATE_FORMAT = "status_bar_clock_date_format";
+
+        /**
+         * Whether to auto hide clock
+         * @hide
+         */
+        public static final String STATUS_BAR_CLOCK_AUTO_HIDE = "status_bar_clock_auto_hide";
+
+        /** @hide */
+        public static final String STATUS_BAR_CLOCK_AUTO_HIDE_HDURATION = "status_bar_clock_auto_hide_hduration";
+
+        /** @hide */
+        public static final String STATUS_BAR_CLOCK_AUTO_HIDE_SDURATION = "status_bar_clock_auto_hide_sduration";
 
         /***************************
          * AICP System Settings end
@@ -6091,12 +6103,15 @@ public final class Settings {
             PRIVATE_SETTINGS.add(QS_FOOTER_TEXT_STRING);
             PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK_POSITION);
             PRIVATE_SETTINGS.add(STATUS_BAR_AM_PM);
-            PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK_AUTO_HIDE);
+            PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK_AUTO_HIDE_LAUNCHER);
             PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK_SECONDS);
             PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK_DATE_DISPLAY);
             PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK_DATE_STYLE);
             PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK_DATE_POSITION);
             PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK_DATE_FORMAT);
+            PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK_AUTO_HIDE);
+            PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK_AUTO_HIDE_HDURATION);
+            PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK_AUTO_HIDE_SDURATION);
         }
 
         /**

@@ -129,11 +129,14 @@ public class SystemSettings {
         Settings.System.DOUBLE_TAP_SLEEP_LOCKSCREEN,
         Settings.System.STATUS_BAR_CLOCK_POSITION,
         Settings.System.STATUS_BAR_AM_PM,
-        Settings.System.STATUS_BAR_CLOCK_AUTO_HIDE,
+        Settings.System.STATUS_BAR_CLOCK_AUTO_HIDE_LAUNCHER,
         Settings.System.STATUS_BAR_CLOCK_SECONDS,
         Settings.System.STATUS_BAR_CLOCK_DATE_DISPLAY,
         Settings.System.STATUS_BAR_CLOCK_DATE_STYLE,
         Settings.System.STATUS_BAR_CLOCK_DATE_POSITION,
         Settings.System.STATUS_BAR_CLOCK_DATE_FORMAT,
+        Settings.System.STATUS_BAR_CLOCK_AUTO_HIDE,
+        Settings.System.STATUS_BAR_CLOCK_AUTO_HIDE_HDURATION,
+        Settings.System.STATUS_BAR_CLOCK_AUTO_HIDE_SDURATION,
     };
 }

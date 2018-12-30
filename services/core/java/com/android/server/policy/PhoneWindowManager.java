@@ -404,6 +404,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private static final int KEY_ACTION_SPLIT_SCREEN = 8;
     private static final int KEY_ACTION_FORCE_CLOSE_APP = 9;
     private static final int KEY_ACTION_SCREENSHOT = 10;
+    private static final int KEY_ACTION_SCREEN_OFF = 11;
+    private static final int KEY_ACTION_POWER_MENU = 12;
 
     // Special values, used internal only.
     private static final int KEY_ACTION_HOME = 100;
@@ -4325,7 +4327,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             KEY_ACTION_LAST_APP,
             KEY_ACTION_SPLIT_SCREEN,
             KEY_ACTION_FORCE_CLOSE_APP,
-            KEY_ACTION_SCREENSHOT
+            KEY_ACTION_SCREENSHOT,
+            KEY_ACTION_SCREEN_OFF,
+            KEY_ACTION_POWER_MENU,
         };
 
     /**
@@ -4546,6 +4550,13 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 break;
             case KEY_ACTION_SCREENSHOT:
                 takeScreenshot();
+                break;
+            case KEY_ACTION_SCREEN_OFF:
+                goToSleep(SystemClock.uptimeMillis(), PowerManager.GO_TO_SLEEP_REASON_POWER_BUTTON,
+                        0);
+                break;
+            case KEY_ACTION_POWER_MENU:
+                showGlobalActions();
                 break;
         }
     }

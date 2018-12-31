@@ -5866,6 +5866,17 @@ public final class Settings {
         /** @hide */
         private static final Validator INCREASING_RING_RAMP_UP_TIME_VALIDATOR = ANY_INTEGER_VALIDATOR;
 
+        /**
+         * Select which lockscreen clock style to display
+         * @hide
+         */
+        public static final String LOCKSCREEN_CLOCK_SELECTION = "lockscreen_clock_selection";
+
+        /** @hide */
+        private static final Validator LOCKSCREEN_CLOCK_SELECTION_VALIDATOR =
+               new SettingsValidators.InclusiveIntegerRangeValidator(0, 4);;
+
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6078,6 +6089,7 @@ public final class Settings {
             INCREASING_RING,
             INCREASING_RING_START_VOLUME,
             INCREASING_RING_RAMP_UP_TIME,
+            LOCKSCREEN_CLOCK_SELECTION,
             // AICP Settings end
         };
 
@@ -6354,6 +6366,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(INCREASING_RING);
             PRIVATE_SETTINGS.add(INCREASING_RING_START_VOLUME);
             PRIVATE_SETTINGS.add(INCREASING_RING_RAMP_UP_TIME);
+            PRIVATE_SETTINGS.add(LOCKSCREEN_CLOCK_SELECTION);
             // AICP Settings end
         }
 
@@ -6623,6 +6636,7 @@ public final class Settings {
             VALIDATORS.put(INCREASING_RING,INCREASING_RING_VALIDATOR);
             VALIDATORS.put(INCREASING_RING_START_VOLUME, INCREASING_RING_START_VOLUME_VALIDATOR);
             VALIDATORS.put(INCREASING_RING_RAMP_UP_TIME,INCREASING_RING_RAMP_UP_TIME_VALIDATOR);
+            VALIDATORS.put(LOCKSCREEN_CLOCK_SELECTION,LOCKSCREEN_CLOCK_SELECTION_VALIDATOR);
             // AICP Settings end
         }
 

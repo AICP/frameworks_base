@@ -72,6 +72,7 @@ public class NotificationInterruptStateProviderImpl implements NotificationInter
     protected boolean mUseHeadsUp = false;
 
     private boolean mLessBoringHeadsUp;
+    private ArrayList<String> mHeadsUpBlacklist = new ArrayList<String>();
 
     @Inject
     public NotificationInterruptStateProviderImpl(
@@ -313,6 +314,11 @@ public class NotificationInterruptStateProviderImpl implements NotificationInter
     private boolean canAlertCommon(NotificationEntry entry) {
         StatusBarNotification sbn = entry.getSbn();
 
+        // check if package is blacklisted first
+        if (isPackageBlacklisted(sbn.getPackageName())) {
+            return false;
+        }
+
         if (mNotificationFilter.shouldFilterOut(entry) || shouldSkipHeadsUp(sbn)) {
             if (DEBUG || DEBUG_HEADS_UP) {
                 Log.d(TAG, "No alerting: filtered notification or less boring headsup enabled: " + sbn.getKey());
@@ -378,6 +384,11 @@ public class NotificationInterruptStateProviderImpl implements NotificationInter
         mLessBoringHeadsUp = lessBoring;
     }
 
+    @Override
+    public void setHeadsUpBlacklist(ArrayList<String> arrayList) {
+            mHeadsUpBlacklist = arrayList;
+    }
+
     private boolean shouldSkipHeadsUp(StatusBarNotification sbn) {
         boolean isImportantHeadsUp = false;
         String notificationPackageName = sbn.getPackageName().toLowerCase();
@@ -386,4 +397,9 @@ public class NotificationInterruptStateProviderImpl implements NotificationInter
                 notificationPackageName.contains("clock");
         return mLessBoringHeadsUp && !isImportantHeadsUp;
     }
+
+    private boolean isPackageBlacklisted(String packageName) {
+        return mHeadsUpBlacklist.contains(packageName);
+    }
+
 }

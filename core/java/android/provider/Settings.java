@@ -5326,6 +5326,27 @@ public final class Settings {
         private static final Validator SCREENSHOT_SOUND_VALIDATOR =
                BOOLEAN_VALIDATOR;
 
+       /**
+        * Apps to hide in the ChooserActivity
+        * @hide
+        */
+        public static final String CHOOSER_ACTIVITY_BLACKLIST = "chooser_activity_blacklist";
+
+        /** @hide */
+        private static final Validator CHOOSER_ACTIVITY_BLACKLIST_VALIDATOR =
+              ANY_STRING_VALIDATOR;
+
+        /**
+         * Which applications to disable heads up notifications for
+         *
+         * @hide
+         */
+        public static final String HEADS_UP_BLACKLIST_VALUES = "heads_up_blacklist_values";
+
+        /** @hide */
+        private static final Validator HEADS_UP_BLACKLIST_VALUES_VALIDATOR =
+              ANY_STRING_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5478,6 +5499,8 @@ public final class Settings {
             HEADS_UP_TIMEOUT,
             LESS_BORING_HEADS_UP,
             SCREENSHOT_SOUND,
+            CHOOSER_ACTIVITY_BLACKLIST,
+            HEADS_UP_BLACKLIST_VALUES,
             // AICP Settings end
         };
 
@@ -5678,6 +5701,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(HEADS_UP_TIMEOUT);
             PRIVATE_SETTINGS.add(LESS_BORING_HEADS_UP);
             PRIVATE_SETTINGS.add(SCREENSHOT_SOUND);
+            PRIVATE_SETTINGS.add(CHOOSER_ACTIVITY_BLACKLIST);
+            PRIVATE_SETTINGS.add(HEADS_UP_BLACKLIST_VALUES);
             // AICP Settings end
         }
 
@@ -5868,6 +5893,8 @@ public final class Settings {
             VALIDATORS.put(HEADS_UP_TIMEOUT,HEADS_UP_TIMEOUT_VALIDATOR);
             VALIDATORS.put(LESS_BORING_HEADS_UP, LESS_BORING_HEADS_UP_VALIDATOR);
             VALIDATORS.put(SCREENSHOT_SOUND,SCREENSHOT_SOUND_VALIDATOR);
+            VALIDATORS.put(CHOOSER_ACTIVITY_BLACKLIST, CHOOSER_ACTIVITY_BLACKLIST_VALIDATOR);
+            VALIDATORS.put(HEADS_UP_BLACKLIST_VALUES, HEADS_UP_BLACKLIST_VALUES_VALIDATOR);
             // AICP Settings end
         }
 

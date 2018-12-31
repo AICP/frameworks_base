@@ -5888,6 +5888,20 @@ public final class Settings {
          */
         public static final String LESS_BORING_HEADS_UP = "less_boring_heads_up";
 
+        /**
+         * Which applications to disable heads up notifications for
+         *
+         * @hide
+         */
+        public static final String HEADS_UP_BLACKLIST_VALUES = "heads_up_blacklist_values";
+
+        /**
+         * Which applications to disable heads up notifications for
+         *
+         * @hide
+         */
+        public static final String CHOOSER_ACTIVITY_BLACKLIST = "chooser_activity_blacklist";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6014,6 +6028,8 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(HEADS_UP_NOTIFICATION_SNOOZE, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(HEADS_UP_TIMEOUT, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(LESS_BORING_HEADS_UP, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(HEADS_UP_BLACKLIST_VALUES, ANY_STRING_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(CHOOSER_ACTIVITY_BLACKLIST, ANY_STRING_VALIDATOR);
         }
 
         /**

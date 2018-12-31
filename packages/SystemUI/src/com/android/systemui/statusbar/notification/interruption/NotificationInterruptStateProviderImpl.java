@@ -76,6 +76,7 @@ public class NotificationInterruptStateProviderImpl implements NotificationInter
     protected boolean mUseHeadsUp = false;
 
     private boolean mLessBoringHeadsUp = false;
+    private ArrayList<String> mHeadsUpBlacklist = new ArrayList<String>();
     private TelecomManager mTm;
     private Context mContext;
 
@@ -335,6 +336,15 @@ public class NotificationInterruptStateProviderImpl implements NotificationInter
         return !mStatusBarStateController.isDozing() && mLessBoringHeadsUp && !isLessBoring;
     }
 
+    @Override
+    public void setHeadsUpBlacklist(ArrayList<String> arrayList) {
+            mHeadsUpBlacklist = arrayList;
+    }
+
+    private boolean isPackageBlacklisted(String packageName) {
+        return mHeadsUpBlacklist.contains(packageName);
+    }
+
     private static String getDefaultSmsPackage(Context ctx) {
         // for reference, there's also a new RoleManager api with getDefaultSmsPackage(context, userid)
         return Sms.getDefaultSmsPackage(ctx);
@@ -352,6 +362,11 @@ public class NotificationInterruptStateProviderImpl implements NotificationInter
      */
     private boolean canAlertCommon(NotificationEntry entry) {
         StatusBarNotification sbn = entry.getSbn();
+
+        // check if package is blacklisted first
+        if (isPackageBlacklisted(sbn.getPackageName())) {
+            return false;
+        }
 
         if (mNotificationFilter.shouldFilterOut(entry)) {
             if (DEBUG || DEBUG_HEADS_UP) {

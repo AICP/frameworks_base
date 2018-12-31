@@ -4819,6 +4819,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.Secure.getUriFor(
                     Settings.Secure.LOCK_QS_DISABLED),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.HEADS_UP_BLACKLIST_VALUES),
+                    false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -5275,6 +5278,7 @@ public class StatusBar extends SystemUI implements DemoMode,
         setScreenBrightnessMode();
         updateNavigationBar(false);
         setPulseOnNewTracks();
+        updateHeadsUpBlackList();
     }
 
     private void adjustBrightness(int x) {
@@ -5394,6 +5398,27 @@ public class StatusBar extends SystemUI implements DemoMode,
             KeyguardSliceProvider.getAttachedInstance().setPulseOnNewTracks(Settings.System.getIntForUser(mContext.getContentResolver(),
                     Settings.System.PULSE_ON_NEW_TRACKS, 1,
                     UserHandle.USER_CURRENT) == 1);
+        }
+    }
+
+    private void updateHeadsUpBlackList() {
+        final String blackString = Settings.System.getString(mContext.getContentResolver(),
+              Settings.System.HEADS_UP_BLACKLIST_VALUES);
+        if (DEBUG) Log.v(TAG, "blackString: " + blackString);
+        final ArrayList<String> blackList = new ArrayList<String>();
+        splitAndAddToArrayList(blackList, blackString, "\\|");
+        mNotificationInterruptStateProvider.setHeadsUpBlacklist(blackList);
+    }
+
+    private void splitAndAddToArrayList(ArrayList<String> arrayList,
+            String baseString, String separator) {
+        // clear first
+        arrayList.clear();
+        if (baseString != null) {
+            final String[] array = TextUtils.split(baseString, separator);
+            for (String item : array) {
+                arrayList.add(item.trim());
+            }
         }
     }
 }

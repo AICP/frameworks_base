@@ -99,6 +99,7 @@ import android.provider.Settings;
 import android.service.dreams.DreamService;
 import android.service.dreams.IDreamManager;
 import android.service.notification.StatusBarNotification;
+import android.text.TextUtils;
 import android.util.ArraySet;
 import android.util.DisplayMetrics;
 import android.util.EventLog;
@@ -714,6 +715,9 @@ public class StatusBar extends SystemUI implements DemoMode,
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.LESS_BORING_HEADS_UP),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.HEADS_UP_BLACKLIST_VALUES),
                     false, this, UserHandle.USER_ALL);
         }
 
@@ -4577,6 +4581,7 @@ public class StatusBar extends SystemUI implements DemoMode,
         }
         setScreenBrightnessMode();
         setUseLessBoringHeadsUp();
+        updateHeadsUpBlackList();
     }
 
     private void adjustBrightness(int x) {
@@ -4678,5 +4683,26 @@ public class StatusBar extends SystemUI implements DemoMode,
                 Settings.System.LESS_BORING_HEADS_UP, 0,
                 UserHandle.USER_CURRENT) == 1;
         mNotificationInterruptStateProvider.setUseLessBoringHeadsUp(lessBoringHeadsUp);
+    }
+
+    private void updateHeadsUpBlackList() {
+        final String blackString = Settings.System.getString(mContext.getContentResolver(),
+              Settings.System.HEADS_UP_BLACKLIST_VALUES);
+        if (DEBUG) Log.v(TAG, "blackString: " + blackString);
+        final ArrayList<String> blackList = new ArrayList<String>();
+        splitAndAddToArrayList(blackList, blackString, "\\|");
+        mNotificationInterruptStateProvider.setHeadsUpBlacklist(blackList);
+    }
+
+    private void splitAndAddToArrayList(ArrayList<String> arrayList,
+            String baseString, String separator) {
+        // clear first
+        arrayList.clear();
+        if (baseString != null) {
+            final String[] array = TextUtils.split(baseString, separator);
+            for (String item : array) {
+                arrayList.add(item.trim());
+            }
+        }
     }
 }

@@ -295,5 +295,6 @@ public class SystemSettings {
         Settings.System.RIGHT_VERTICAL_BACK_SWIPE_APP_ACTIVITY_ACTION,
         Settings.System.HEADS_UP_NOTIFICATION_SNOOZE,
         Settings.System.HEADS_UP_TIMEOUT,
+        Settings.System.HEADS_UP_BLACKLIST_VALUES,
     };
 }

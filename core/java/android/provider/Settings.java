@@ -10646,6 +10646,24 @@ public final class Settings {
         public static final String DEVICE_HOSTNAME = "device_hostname";
 
         /**
+         * Whether the Reboot button should be shown in the power menu.
+         * @hide
+         */
+        public static final String REBOOT_IN_POWER_MENU = "reboot_in_power_menu";
+
+        /**
+         * Whether the Advanced reboot button should be shown in the power menu.
+         * @hide
+         */
+        public static final String ADVANCED_REBOOT_IN_POWER_MENU = "advanced_reboot_in_power_menu";
+
+        /**
+         * Whether the Screenshot button should be shown in the power menu.
+         * @hide
+         */
+        public static final String SCREENSHOT_IN_POWER_MENU = "screenshot_in_power_menu";
+
+        /**
          * This are the settings to be backed up.
          *
          * NOTE: Settings are backed up and restored in the order they appear

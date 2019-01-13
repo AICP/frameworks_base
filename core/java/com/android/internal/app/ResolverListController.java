@@ -29,9 +29,6 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.RemoteException;
-import android.os.UserHandle;
-import android.provider.Settings;
-import android.text.TextUtils;
 import android.util.Log;
 import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
@@ -97,7 +94,7 @@ public class ResolverListController {
     public List<ResolverActivity.ResolvedComponentInfo> getResolversForIntent(
             boolean shouldGetResolvedFilter,
             boolean shouldGetActivityMetadata,
-            List<Intent> intents, boolean skipBlacklistedApps) {
+            List<Intent> intents) {
         List<ResolverActivity.ResolvedComponentInfo> resolvedComponents = null;
         for (int i = 0, N = intents.size(); i < N; i++) {
             final Intent intent = intents.get(i);
@@ -113,11 +110,7 @@ public class ResolverListController {
             int totalSize = infos.size();
             for (int j = totalSize - 1; j >= 0 ; j--) {
                 ResolveInfo info = infos.get(j);
-                final String blacklist = Settings.System.getStringForUser(
-                        mContext.getContentResolver(), Settings.System.CHOOSER_ACTIVITY_BLACKLIST,
-                        UserHandle.USER_CURRENT);
-                if (info.activityInfo != null && (!info.activityInfo.exported
-                        || (!skipBlacklistedApps && !TextUtils.isEmpty(blacklist) && blacklist.toLowerCase().contains(info.activityInfo.packageName.toLowerCase())))) {
+                if (info.activityInfo != null && !info.activityInfo.exported) {
                     infos.remove(j);
                 }
             }

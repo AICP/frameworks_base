@@ -5746,7 +5746,7 @@ public final class Settings {
 
         /** @hide */
         private static final Validator LOCKSCREEN_CLOCK_SELECTION_VALIDATOR =
-               new SettingsValidators.InclusiveIntegerRangeValidator(0, 6);
+               new SettingsValidators.InclusiveIntegerRangeValidator(0, 11);
 
        /**
          * Blur personalization settings

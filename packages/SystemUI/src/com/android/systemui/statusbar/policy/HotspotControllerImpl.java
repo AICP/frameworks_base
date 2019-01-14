@@ -113,14 +113,12 @@ public class HotspotControllerImpl implements HotspotController, WifiManager.Sof
      */
     private void updateWifiStateListeners(boolean shouldListen) {
         mWifiStateReceiver.setListening(shouldListen);
-        if (mWifiManager != null) {
-            if (shouldListen) {
-                mWifiManager.registerSoftApCallback(
-                        this,
-                        Dependency.get(Dependency.MAIN_HANDLER));
-            } else {
-                mWifiManager.unregisterSoftApCallback(this);
-            }
+        if (shouldListen) {
+            mWifiManager.registerSoftApCallback(
+                    this,
+                    Dependency.get(Dependency.MAIN_HANDLER));
+        } else {
+            mWifiManager.unregisterSoftApCallback(this);
         }
     }
 

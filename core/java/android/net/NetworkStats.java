@@ -201,22 +201,6 @@ public class NetworkStats implements Parcelable {
             this.txBytes += another.txBytes;
             this.txPackets += another.txPackets;
             this.operations += another.operations;
-
-            if (this.rxBytes < 0) {
-                this.rxBytes = Math.max(this.rxBytes, Long.MAX_VALUE);
-            }
-            if (this.rxPackets < 0) {
-                this.rxPackets = Math.max(this.rxPackets, Long.MAX_VALUE);
-            }
-            if (this.txBytes < 0) {
-                this.txBytes = Math.max(this.txBytes, Long.MAX_VALUE);
-            }
-            if (this.txPackets < 0 ) {
-                this.txPackets = Math.max(this.txPackets, Long.MAX_VALUE);
-            }
-            if (this.operations < 0) {
-                this.operations = Math.max(this.operations, Long.MAX_VALUE);
-            }
         }
 
         @Override
@@ -488,22 +472,6 @@ public class NetworkStats implements Parcelable {
             txBytes[i] += entry.txBytes;
             txPackets[i] += entry.txPackets;
             operations[i] += entry.operations;
-
-            if (rxBytes[i] < 0) {
-                rxBytes[i] = Math.max(rxBytes[i], Long.MAX_VALUE);
-            }
-            if (rxPackets[i] < 0) {
-                rxPackets[i] = Math.max(rxPackets[i], Long.MAX_VALUE);
-            }
-            if (txBytes[i] < 0) {
-                txBytes[i] = Math.max(txBytes[i], Long.MAX_VALUE);
-            }
-            if (txPackets[i] < 0 ) {
-                txPackets[i] = Math.max(txPackets[i], Long.MAX_VALUE);
-            }
-            if (operations[i] < 0) {
-                operations[i] = Math.max(operations[i], Long.MAX_VALUE);
-            }
         }
         return this;
     }
@@ -616,11 +584,7 @@ public class NetworkStats implements Parcelable {
      */
     public long getTotalBytes() {
         final Entry entry = getTotal(null);
-        long total = entry.rxBytes + entry.txBytes;
-        if (total < 0) {
-            total = Math.max(total, Long.MAX_VALUE);
-        }
-        return total;
+        return entry.rxBytes + entry.txBytes;
     }
 
     /**
@@ -688,23 +652,9 @@ public class NetworkStats implements Parcelable {
                 entry.txPackets += txPackets[i];
                 entry.operations += operations[i];
 
-                if (entry.rxBytes < 0) {
-                    entry.rxBytes = Math.max(entry.rxBytes, Long.MAX_VALUE);
-                }
-                if (entry.rxPackets < 0) {
-                    entry.rxPackets = Math.max(entry.rxPackets, Long.MAX_VALUE);
-                }
-                if (entry.txBytes < 0) {
-                    entry.txBytes = Math.max(entry.txBytes, Long.MAX_VALUE);
-                }
-                if (entry.txPackets < 0 ) {
-                    entry.txPackets = Math.max(entry.txPackets, Long.MAX_VALUE);
-                }
-                if (entry.operations < 0) {
-                    entry.operations = Math.max(entry.operations, Long.MAX_VALUE);
-                }
             }
         }
+
         return entry;
     }
 
@@ -715,9 +665,6 @@ public class NetworkStats implements Parcelable {
         long total = 0;
         for (int i = size-1; i >= 0; i--) {
             total += rxPackets[i] + txPackets[i];
-        }
-        if (total < 0) {
-            total = Math.max(total, Long.MAX_VALUE);
         }
         return total;
     }

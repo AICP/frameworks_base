@@ -90,7 +90,7 @@ public class Clock extends TextView implements
     private int mCurrentUserId;
 
     private boolean mClockVisibleByPolicy = true;
-    private boolean mClockVisibleByUser = true;
+    private boolean mClockVisibleByUser = getVisibility() == View.VISIBLE;
 
     private boolean mAttached;
     private boolean mScreenReceiverRegistered;

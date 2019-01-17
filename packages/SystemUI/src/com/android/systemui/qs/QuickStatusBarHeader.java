@@ -503,7 +503,8 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         requestApplyInsets();
 
         final TunerService tunerService = Dependency.get(TunerService.class);
-        tunerService.addTunable(this, QSFooterImpl.QS_SHOW_DRAG_HANDLE);
+        tunerService.addTunable(this, QSFooterImpl.QS_SHOW_DRAG_HANDLE,
+                                      StatusBarIconController.ICON_BLACKLIST);
     }
 
     @Override
@@ -679,6 +680,9 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         if (QSFooterImpl.QS_SHOW_DRAG_HANDLE.equals(key)) {
             mHideDragHandle = newValue != null && Integer.parseInt(newValue) == 0;
             updateResources();
+        } else if (StatusBarIconController.ICON_BLACKLIST.equals(key)) {
+            mClockView.setClockVisibleByUser(!StatusBarIconController.getIconBlacklist(newValue)
+                    .contains("clock"));
         }
     }
 }

@@ -10097,6 +10097,15 @@ public final class Settings {
          */
         public static final String STATUS_BAR_CLOCK = "status_bar_clock";
 
+         /**
+         * Show or hide clock
+         * 0 - right
+         * 1 - center
+         * 2 - left (default)
+         * @hide
+         */
+        public static final String STATUSBAR_CLOCK_POSITION = "status_bar_clock_position";
+
         /**
          * AM/PM Style for clock options
          * 0 - Normal AM/PM

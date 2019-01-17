@@ -397,7 +397,8 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         Dependency.get(StatusBarIconController.class).addIconGroup(mIconManager);
         requestApplyInsets();
         final TunerService tunerService = Dependency.get(TunerService.class);
-        tunerService.addTunable(this, QS_SHOW_INFO_HEADER);
+        tunerService.addTunable(this, QS_SHOW_INFO_HEADER,
+                                      StatusBarIconController.ICON_BLACKLIST);
     }
 
     @Override
@@ -644,6 +645,9 @@ public class QuickStatusBarHeader extends RelativeLayout implements
     public void onTuningChanged(String key, String newValue) {
         if (QS_SHOW_INFO_HEADER.equals(key)) {
             mHeaderTextContainerView.setVisibility(newValue == null || Integer.parseInt(newValue) != 0 ? VISIBLE : GONE);
+        } else if (StatusBarIconController.ICON_BLACKLIST.equals(key)) {
+            mClockView.setClockVisibleByUser(!StatusBarIconController.getIconBlacklist(newValue)
+                    .contains("clock"));
         }
     }
 }

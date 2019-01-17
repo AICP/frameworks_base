@@ -237,6 +237,7 @@ public class SecureSettings {
         Settings.Secure.PULSE_SOLID_UNITS_ROUNDED,
         Settings.Secure.STATUSBAR_CLOCK_SECONDS,
         Settings.Secure.STATUS_BAR_CLOCK,
+        Settings.Secure.STATUSBAR_CLOCK_POSITION,
         Settings.Secure.STATUSBAR_CLOCK_AM_PM_STYLE,
         Settings.Secure.STATUSBAR_CLOCK_DATE_DISPLAY,
         Settings.Secure.STATUSBAR_CLOCK_DATE_STYLE,

@@ -24,10 +24,12 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.UserHandle;
 import android.hardware.input.InputManager;
+import android.media.AudioManager;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.PowerManager;
 import android.os.RemoteException;
+import android.os.ServiceManager;
 import android.os.SystemClock;
 import android.util.DisplayMetrics;
 import android.view.InputDevice;
@@ -35,6 +37,8 @@ import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
 import android.view.IWindowManager;
 import android.view.WindowManagerGlobal;
+
+import com.android.internal.statusbar.IStatusBarService;
 
 import java.util.List;
 import java.util.Locale;
@@ -106,6 +110,60 @@ public class AicpUtils {
         PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
         if (pm == null) return;
         pm.wakeUp(SystemClock.uptimeMillis(), "com.android.systemui:CAMERA_GESTURE_PREVENT_LOCK");
+    }
+
+    // Volume panel
+    public static void toggleVolumePanel(Context context) {
+        AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+        am.adjustVolume(AudioManager.ADJUST_SAME, AudioManager.FLAG_SHOW_UI);
+    }
+
+    // Toggle flashlight
+    public static void toggleCameraFlash() {
+        IStatusBarService service = getStatusBarService();
+        if (service != null) {
+            try {
+                service.toggleFlashlight();
+            } catch (RemoteException e) {
+                // do nothing.
+            }
+        }
+    }
+
+    // Clear notifications
+    public static void clearAllNotifications() {
+        IStatusBarService service = getStatusBarService();
+        if (service != null) {
+            try {
+                service.onClearAllNotifications(ActivityManager.getCurrentUser());
+            } catch (RemoteException e) {
+                // do nothing.
+            }
+        }
+    }
+
+    // Toggle notifications panel
+    public static void toggleNotifications() {
+        IStatusBarService service = getStatusBarService();
+        if (service != null) {
+            try {
+                service.togglePanel();
+            } catch (RemoteException e) {
+                // do nothing.
+            }
+        }
+    }
+
+    // Toggle qs panel
+    public static void toggleQsPanel() {
+        IStatusBarService service = getStatusBarService();
+        if (service != null) {
+            try {
+                service.toggleSettingsPanel();
+            } catch (RemoteException e) {
+                // do nothing.
+            }
+        }
     }
 
     // Check for Chinese language
@@ -201,5 +259,17 @@ public class AicpUtils {
         }
 
         return false;
+    }
+
+    private static IStatusBarService mStatusBarService = null;
+
+    private static IStatusBarService getStatusBarService() {
+        synchronized (AicpUtils.class) {
+            if (mStatusBarService == null) {
+                mStatusBarService = IStatusBarService.Stub.asInterface(
+                        ServiceManager.getService("statusbar"));
+            }
+            return mStatusBarService;
+        }
     }
 }

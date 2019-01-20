@@ -116,7 +116,7 @@ public class NetworkTraffic extends TextView {
             if (speed < KB) {
                 return decimalFormat.format(speed) + symbol;
             } else if (speed < MB) {
-                return decimalFormat.format(speed / (float)KB) + 'k' + symbol;
+                return decimalFormat.format(speed / (float)KB) + 'K' + symbol;
             } else if (speed < GB) {
                 return decimalFormat.format(speed / (float)MB) + 'M' + symbol;
             }

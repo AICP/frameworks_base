@@ -85,7 +85,7 @@ class GlobalScreenrecord {
     private static final int MSG_TASK_ERROR = 2;
 
     private static final String TMP_PATH = Environment.getExternalStorageDirectory()
-            + File.separator + "__tmp_screenrecord.mp4";
+            + File.separator + "._tmp_screenrecord.mp4";
 
     private static final String SCREENRECORD_SHARE_SUBJECT_TEMPLATE = "Screenrecord (%s)";
     private static final String SCREENRECORD_URI_ID = "android:screenrecord_uri_id";
@@ -110,6 +110,8 @@ class GlobalScreenrecord {
     private long mRecordingStartTime = 0;
     private long mRecordingTotalTime = 0;
     private long mFileSize = 0;
+
+    private MediaScannerConnectionClient mClient;
 
     private void setFinisher(Runnable finisher) {
         mFinisher = finisher;
@@ -219,6 +221,8 @@ class GlobalScreenrecord {
         mWindowManager =
                 (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        mClient = new MediaScanner(mContext);
     }
 
     public boolean isRecording() {
@@ -444,18 +448,17 @@ class GlobalScreenrecord {
 
             // Make it appear in gallery, run MediaScanner
             // also make sure to tell media scanner that the tmp file got deleted
-            MediaScannerConnectionClient client =
-                    new MediaScanner(mContext);
-            ((MediaScanner)client).connectAndScan(input.getAbsolutePath(), null);
-            ((MediaScanner)client).connectAndScan(output.getAbsolutePath(), date);
+            ((MediaScanner)mClient).connectAndScan(input.getAbsolutePath(), output.getAbsolutePath(), date);
         } }, 2000);
     }
 
     private final class MediaScanner implements MediaScannerConnectionClient {
 
-        private String mFileName;
+        private String mInputFileName;
+        private String mOutputFileName;
         private String mDate;
         private MediaScannerConnection mConnection;
+        private boolean isInputFile = false;
 
         public MediaScanner(Context ctx) {
             mConnection = new MediaScannerConnection(ctx, this);
@@ -463,21 +466,25 @@ class GlobalScreenrecord {
 
         @Override
         public void onMediaScannerConnected() {
-            mConnection.scanFile(mFileName, null);
+            isInputFile = true;
+            mConnection.scanFile(mInputFileName, null);
         }
 
         @Override
         public void onScanCompleted(String path, Uri uri) {
-            Log.i(TAG, "MediaScanner done scanning " + path);
-            if (mDate != null) {
-                showFinalNotification(uri, mDate);
+            if (isInputFile) {
+                isInputFile = false;
+                mConnection.scanFile(mOutputFileName, null);
+            } else {
+                if (mDate != null) showFinalNotification(uri, mDate);
+                // disconnect the service to avoid leaks
+                mConnection.disconnect();
             }
-            // disconnect the service to avoid leaks
-            mConnection.disconnect();
         }
 
-        public void connectAndScan(String fileName, String date) {
-            this.mFileName = fileName;
+        public void connectAndScan(String input, String output, String date) {
+            this.mInputFileName = input;
+            this.mOutputFileName = output;
             this.mDate = date;
             mConnection.connect();
         }

@@ -416,6 +416,7 @@ public class AppCircleSidebar extends TriggerOverlayView implements PackageAdapt
         if (v.equals(mCircleListView.findViewAtCenter())) {
             if (info != null) {
                 launchApplication(info.activityInfo.packageName, info.activityInfo.name);
+                showAppContainer(false);
             }
         } else {
             mCircleListView.smoothScrollToView(v);

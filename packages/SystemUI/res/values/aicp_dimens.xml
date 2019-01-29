@@ -91,9 +91,6 @@
     <dimen name="right_tri_state_up_top_left_radius">24.0dip</dimen>
     <dimen name="right_tri_state_up_top_right_radius">24.0dip</dimen>
 
-    <dimen name="qs_header_image_offset">0dp</dimen>
-    <dimen name="qs_header_image_side_margin">0dp</dimen>
-
     <!-- FOD recognizing animation -->
     <dimen name="fod_animation_size">280dp</dimen>
 
@@ -104,7 +101,7 @@
     <!-- Custom padding size on biometric dialog when fingerprint in display is active -->
     <dimen name="fp_dialog_error_padding_top_fingerprint_in_display">@dimen/fp_dialog_error_padding_top</dimen>
     <dimen name="fp_dialog_error_padding_bottom_fingerprint_in_display">72dp</dimen>
-    
+
 <!-- Custom cutout overlay view sizes -->
     <dimen name="config_customCutoutTopWidth">0.0px</dimen>
     <dimen name="config_customCutoutTopHeight">0.0px</dimen>
@@ -118,4 +115,8 @@
     <dimen name="dismiss_all_button_margin_top">30dp</dimen>
     <dimen name="dismiss_all_button_width">55dp</dimen>
     <dimen name="dismiss_all_fab_src_size">24dp</dimen>
+
+    <dimen name="qs_header_image_offset">25dp</dimen>
+    <dimen name="qs_header_image_side_margin">4dp</dimen>
+    <dimen name="qs_header_image_bottom_margin">4dp</dimen>
 </resources>

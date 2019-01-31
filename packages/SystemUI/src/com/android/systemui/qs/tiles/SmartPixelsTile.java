@@ -22,6 +22,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.PowerManager;
 import android.os.UserHandle;
+import android.preference.PreferenceActivity;
 import android.provider.Settings;
 import android.service.quicksettings.Tile;
 
@@ -38,7 +39,6 @@ import com.android.systemui.statusbar.policy.BatteryController;
 public class SmartPixelsTile extends QSTileImpl<BooleanState> implements
         BatteryController.BatteryStateChangeCallback {
 
-    private static final String AE_EXTRA_FRAGMENT_CLASS = "com.aicp.extras.extra.preference_fragment";
     private static final String AE_SETTINGSACTIVITY = "com.aicp.extras.SettingsActivity";
     private static final String SETTINGS_PACKAGE_NAME = "com.aicp.extras";
     private static final String SMARTPIXEL_SETTINGS = "com.aicp.extras.fragments.SmartPixels";
@@ -106,7 +106,7 @@ public class SmartPixelsTile extends QSTileImpl<BooleanState> implements
     protected void handleLongClick() {
         Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.setClassName(SETTINGS_PACKAGE_NAME, AE_SETTINGSACTIVITY);
-        intent.putExtra(AE_EXTRA_FRAGMENT_CLASS, SMARTPIXEL_SETTINGS);
+        intent.putExtra(PreferenceActivity.EXTRA_SHOW_FRAGMENT, SMARTPIXEL_SETTINGS);
         Dependency.get(ActivityStarter.class).postStartActivityDismissingKeyguard(
         intent, 0);
     }

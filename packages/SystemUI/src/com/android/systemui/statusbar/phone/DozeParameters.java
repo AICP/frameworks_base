@@ -39,7 +39,7 @@ import javax.inject.Singleton;
  * Retrieve doze information
  */
 @Singleton
-public class DozeParameters implements TunerService.Tunable,
+public class DozeParameters implements
         com.android.systemui.plugins.statusbar.DozeParameters {
     private static final int MAX_DURATION = 60 * 1000;
     public static final boolean FORCE_NO_BLANKING =
@@ -53,7 +53,6 @@ public class DozeParameters implements TunerService.Tunable,
     private final AlwaysOnDisplayPolicy mAlwaysOnPolicy;
     private final Resources mResources;
 
-    private boolean mDozeAlwaysOn;
     private boolean mControlScreenOffAnimation;
 
     @Inject
@@ -70,11 +69,6 @@ public class DozeParameters implements TunerService.Tunable,
         mControlScreenOffAnimation = !getDisplayNeedsBlanking();
         mPowerManager = powerManager;
         mPowerManager.setDozeAfterScreenOff(!mControlScreenOffAnimation);
-
-        tunerService.addTunable(
-                this,
-                Settings.Secure.DOZE_ALWAYS_ON,
-                Settings.Secure.ACCESSIBILITY_DISPLAY_INVERSION_ENABLED);
     }
 
     public void dump(PrintWriter pw) {
@@ -164,7 +158,7 @@ public class DozeParameters implements TunerService.Tunable,
      * @return {@code true} if enabled and available.
      */
     public boolean getAlwaysOn() {
-        return mDozeAlwaysOn;
+        return mAmbientDisplayConfiguration.alwaysOnEnabled(UserHandle.USER_CURRENT);
     }
 
     /**
@@ -205,11 +199,6 @@ public class DozeParameters implements TunerService.Tunable,
 
     public boolean doubleTapReportsTouchCoordinates() {
         return mResources.getBoolean(R.bool.doze_double_tap_reports_touch_coordinates);
-    }
-
-    @Override
-    public void onTuningChanged(String key, String newValue) {
-        mDozeAlwaysOn = mAmbientDisplayConfiguration.alwaysOnEnabled(UserHandle.USER_CURRENT);
     }
 
     public AlwaysOnDisplayPolicy getPolicy() {

@@ -136,5 +136,7 @@ public class SystemSettings {
         Settings.System.LOCK_HIDE_STATUS_BAR,
         Settings.System.MUSIC_TILE_TITLE,
         Settings.System.CHARGING_ANIMATION,
+        Settings.System.DOZE_ON_CHARGE,
+        Settings.System.DOZE_ON_CHARGE_NOW,
     };
 }

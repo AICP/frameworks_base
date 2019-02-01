@@ -5823,6 +5823,18 @@ public final class Settings {
          */
         public static final String CHARGING_ANIMATION = "charging_animation";
 
+         /**
+         * Whether to enable DOZE only when charging
+         * @hide
+         */
+        public static final String OMNI_DOZE_ON_CHARGE = "doze_on_charge";
+
+        /**
+         * hidden stting of the current atate of DOZE only when charging
+         * @hide
+         */
+        public static final String OMNI_DOZE_ON_CHARGE_NOW = "doze_on_charge_now";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5938,6 +5950,8 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(TOAST_ICON, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(BLUETOOTH_SHOW_BATTERY, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(CHARGING_ANIMATION, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(OMNI_DOZE_ON_CHARGE, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(OMNI_DOZE_ON_CHARGE_NOW, BOOLEAN_VALIDATOR);
         }
 
         /**

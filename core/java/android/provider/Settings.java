@@ -5232,6 +5232,21 @@ public final class Settings {
         private static final Validator WIRELESS_CHARGING_ANIMATION_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
+         /**
+         * Whether to enable DOZE only when charging
+         * @hide
+         */
+        public static final String OMNI_DOZE_ON_CHARGE = "doze_on_charge";
+
+        private static final Validator OMNI_DOZE_ON_CHARGE_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
+         * hidden stting of the current atate of DOZE only when charging
+         * @hide
+         */
+        public static final String OMNI_DOZE_ON_CHARGE_NOW = "doze_on_charge_now";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5377,6 +5392,7 @@ public final class Settings {
             STATUS_BAR_LOGO_STYLE,
             TOAST_ICON,
             WIRELESS_CHARGING_ANIMATION,
+            OMNI_DOZE_ON_CHARGE,
             // AICP Settings end
         };
 
@@ -5570,6 +5586,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUS_BAR_LOGO_STYLE);
             PRIVATE_SETTINGS.add(TOAST_ICON);
             PRIVATE_SETTINGS.add(WIRELESS_CHARGING_ANIMATION);
+            PRIVATE_SETTINGS.add(OMNI_DOZE_ON_CHARGE);
             // AICP Settings end
         }
 
@@ -5753,6 +5770,7 @@ public final class Settings {
             VALIDATORS.put(STATUS_BAR_LOGO_STYLE, STATUS_BAR_LOGO_STYLE_VALIDATOR);
             VALIDATORS.put(TOAST_ICON,TOAST_ICON_VALIDATOR);
             VALIDATORS.put(WIRELESS_CHARGING_ANIMATION, WIRELESS_CHARGING_ANIMATION_VALIDATOR);
+            VALIDATORS.put(OMNI_DOZE_ON_CHARGE, OMNI_DOZE_ON_CHARGE_VALIDATOR);
             // AICP Settings end
         }
 

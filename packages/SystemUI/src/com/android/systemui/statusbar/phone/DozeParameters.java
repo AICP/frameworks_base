@@ -48,7 +48,7 @@ import javax.inject.Inject;
  * Retrieve doze information
  */
 @SysUISingleton
-public class DozeParameters implements TunerService.Tunable,
+public class DozeParameters implements
         com.android.systemui.plugins.statusbar.DozeParameters, Dumpable {
     private static final int MAX_DURATION = 60 * 1000;
     public static final boolean FORCE_NO_BLANKING =
@@ -67,7 +67,6 @@ public class DozeParameters implements TunerService.Tunable,
 
     private final Set<Callback> mCallbacks = new HashSet<>();
 
-    private boolean mDozeAlwaysOn;
     private boolean mControlScreenOffAnimation;
 
     @Inject
@@ -92,11 +91,6 @@ public class DozeParameters implements TunerService.Tunable,
         mPowerManager.setDozeAfterScreenOff(!mControlScreenOffAnimation);
         mFeatureFlags = featureFlags;
         mUnlockedScreenOffAnimationController = unlockedScreenOffAnimationController;
-
-        tunerService.addTunable(
-                this,
-                Settings.Secure.DOZE_ALWAYS_ON,
-                Settings.Secure.ACCESSIBILITY_DISPLAY_INVERSION_ENABLED);
     }
 
     public boolean getDisplayStateSupported() {
@@ -187,7 +181,8 @@ public class DozeParameters implements TunerService.Tunable,
      * @return {@code true} if enabled and available.
      */
     public boolean getAlwaysOn() {
-        return mDozeAlwaysOn && !mBatteryController.isAodPowerSave();
+        return mAmbientDisplayConfiguration.alwaysOnEnabled(UserHandle.USER_CURRENT)
+                && !mBatteryController.isAodPowerSave();
     }
 
     public boolean isQuickPickupEnabled() {
@@ -279,14 +274,6 @@ public class DozeParameters implements TunerService.Tunable,
      */
     public void removeCallback(Callback callback) {
         mCallbacks.remove(callback);
-    }
-
-    @Override
-    public void onTuningChanged(String key, String newValue) {
-        mDozeAlwaysOn = mAmbientDisplayConfiguration.alwaysOnEnabled(UserHandle.USER_CURRENT);
-        for (Callback callback : mCallbacks) {
-            callback.onAlwaysOnChange();
-        }
     }
 
     @Override

@@ -5794,6 +5794,21 @@ public final class Settings {
          */
         public static final String SWAP_NAVIGATION_KEYS = "swap_navigation_keys";
 
+         /**
+         * Whether to enable DOZE only when charging
+         * @hide
+         */
+        public static final String OMNI_DOZE_ON_CHARGE = "doze_on_charge";
+
+        private static final Validator OMNI_DOZE_ON_CHARGE_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
+         * hidden stting of the current atate of DOZE only when charging
+         * @hide
+         */
+        public static final String OMNI_DOZE_ON_CHARGE_NOW = "doze_on_charge_now";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6021,6 +6036,7 @@ public final class Settings {
             TRANSPARENT_POWER_MENU,
             TRANSPARENT_POWER_DIALOG_DIM,
             VOLUME_BUTTON_MUSIC_CONTROL,
+            OMNI_DOZE_ON_CHARGE,
             // AICP Settings end
         };
 
@@ -6287,6 +6303,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(BUTTON_BACKLIGHT_TIMEOUT);
             PRIVATE_SETTINGS.add(BUTTON_BACKLIGHT_ON_TOUCH_ONLY);
             PRIVATE_SETTINGS.add(VOLUME_BUTTON_MUSIC_CONTROL);
+            PRIVATE_SETTINGS.add(OMNI_DOZE_ON_CHARGE);
             // AICP Settings end
         }
 
@@ -6554,6 +6571,7 @@ public final class Settings {
             VALIDATORS.put(TRANSPARENT_POWER_MENU,TRANSPARENT_POWER_MENU_VALIDATOR);
             VALIDATORS.put(TRANSPARENT_POWER_DIALOG_DIM,TRANSPARENT_POWER_DIALOG_DIM_VALIDATOR);
             VALIDATORS.put(VOLUME_BUTTON_MUSIC_CONTROL,VOLUME_BUTTON_MUSIC_CONTROL_VALIDATOR);
+            VALIDATORS.put(OMNI_DOZE_ON_CHARGE,OMNI_DOZE_ON_CHARGE_VALIDATOR);
             // AICP Settings end
         }
 

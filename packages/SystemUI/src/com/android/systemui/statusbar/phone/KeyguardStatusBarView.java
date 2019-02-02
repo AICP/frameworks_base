@@ -222,8 +222,10 @@ public class KeyguardStatusBarView extends RelativeLayout
         if (mCarrierLabel != null) {
             if (mShowCarrierLabel == 1 || mShowCarrierLabel == 3) {
                 mCarrierLabel.setVisibility(mHideContents ? View.INVISIBLE : View.VISIBLE);
+                mCarrierLabel.setSelected(mHideContents ? false : true);
             } else {
                 mCarrierLabel.setVisibility(View.GONE);
+                mCarrierLabel.setSelected(false);
             }
         }
     }

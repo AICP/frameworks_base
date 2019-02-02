@@ -17,35 +17,25 @@
 package com.android.systemui.carrierlabel;
 
 import android.content.BroadcastReceiver;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.database.ContentObserver;
 import android.graphics.Rect;
-import android.os.Handler;
 import android.os.UserHandle;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
 import com.android.internal.util.aicp.AicpUtils;
 import com.android.internal.telephony.TelephonyIntents;
 
 import com.android.systemui.Dependency;
+import com.android.systemui.R;
 import com.android.systemui.carrierlabel.SpnOverride;
 import com.android.systemui.statusbar.policy.DarkIconDispatcher;
 import com.android.systemui.statusbar.policy.DarkIconDispatcher.DarkReceiver;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.TimeZone;
-
-import com.android.systemui.R;
 
 public class CarrierLabel extends TextView implements DarkReceiver {
 
@@ -65,6 +55,14 @@ public class CarrierLabel extends TextView implements DarkReceiver {
         super(context, attrs, defStyle);
         mContext = context;
         updateNetworkName(true, null, false, null);
+
+        /*Force carrier label to the lockscreen. This helps us avoid
+        the carrier label on the statusbar if for whatever reason
+        the user changes notch overlays*/
+        if (AicpUtils.hasNotch(mContext)) {
+            Settings.System.putInt(mContext.getContentResolver(),
+                    Settings.System.STATUS_BAR_SHOW_CARRIER, 1);
+        }
     }
 
     @Override

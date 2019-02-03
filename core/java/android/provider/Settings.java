@@ -5897,6 +5897,18 @@ public final class Settings {
         private static final Validator BLUR_QUICKSETTINGS_PERCENTAGE_VALIDATOR =
                new SettingsValidators.InclusiveIntegerRangeValidator(0, 100);
 
+       /**
+         * MediaScanner behavior on boot.
+         * 0 = enabled
+         * 1 = ask (notification)
+         * 2 = disabled
+         * @hide
+         */
+        public static final String MEDIA_SCANNER_ON_BOOT = "media_scanner_on_boot";
+
+        /** @hide */
+        private static final Validator MEDIA_SCANNER_ON_BOOT_VALIDATOR =
+               new SettingsValidators.InclusiveIntegerRangeValidator(0, 2);
 
         /***************************
          * AICP System Settings end
@@ -6113,6 +6125,7 @@ public final class Settings {
             LOCKSCREEN_CLOCK_SELECTION,
             BLUR_QUICKSETTINGS_ENABLED,
             BLUR_QUICKSETTINGS_PERCENTAGE,
+            MEDIA_SCANNER_ON_BOOT,
             // AICP Settings end
         };
 
@@ -6392,6 +6405,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(LOCKSCREEN_CLOCK_SELECTION);
             PRIVATE_SETTINGS.add(BLUR_QUICKSETTINGS_ENABLED);
             PRIVATE_SETTINGS.add(BLUR_QUICKSETTINGS_PERCENTAGE);
+            PRIVATE_SETTINGS.add(MEDIA_SCANNER_ON_BOOT);
             // AICP Settings end
         }
 
@@ -6664,6 +6678,7 @@ public final class Settings {
             VALIDATORS.put(LOCKSCREEN_CLOCK_SELECTION,LOCKSCREEN_CLOCK_SELECTION_VALIDATOR);
             VALIDATORS.put(BLUR_QUICKSETTINGS_ENABLED,BLUR_QUICKSETTINGS_ENABLED_VALIDATOR);
             VALIDATORS.put(BLUR_QUICKSETTINGS_PERCENTAGE,BLUR_QUICKSETTINGS_PERCENTAGE_VALIDATOR);
+            VALIDATORS.put(MEDIA_SCANNER_ON_BOOT,MEDIA_SCANNER_ON_BOOT_VALIDATOR);
             // AICP Settings end
         }
 

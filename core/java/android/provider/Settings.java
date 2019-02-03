@@ -5874,7 +5874,28 @@ public final class Settings {
 
         /** @hide */
         private static final Validator LOCKSCREEN_CLOCK_SELECTION_VALIDATOR =
-               new SettingsValidators.InclusiveIntegerRangeValidator(0, 4);;
+               new SettingsValidators.InclusiveIntegerRangeValidator(0, 4);
+
+       /**
+         * Blur personalization settings
+         * Enable QS background blur
+         * @hide
+         */
+        public static final String BLUR_QUICKSETTINGS_ENABLED = "blur_quicksettings_enabled";
+
+        /** @hide */
+        private static final Validator BLUR_QUICKSETTINGS_ENABLED_VALIDATOR = BOOLEAN_VALIDATOR;
+
+       /**
+         * Blur personalization settings
+         * QS background blur percentage
+         * @hide
+         */
+        public static final String BLUR_QUICKSETTINGS_PERCENTAGE = "blur_quicksettings_percentage";
+
+        /** @hide */
+        private static final Validator BLUR_QUICKSETTINGS_PERCENTAGE_VALIDATOR =
+               new SettingsValidators.InclusiveIntegerRangeValidator(0, 100);
 
 
         /***************************
@@ -6090,6 +6111,8 @@ public final class Settings {
             INCREASING_RING_START_VOLUME,
             INCREASING_RING_RAMP_UP_TIME,
             LOCKSCREEN_CLOCK_SELECTION,
+            BLUR_QUICKSETTINGS_ENABLED,
+            BLUR_QUICKSETTINGS_PERCENTAGE,
             // AICP Settings end
         };
 
@@ -6367,6 +6390,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(INCREASING_RING_START_VOLUME);
             PRIVATE_SETTINGS.add(INCREASING_RING_RAMP_UP_TIME);
             PRIVATE_SETTINGS.add(LOCKSCREEN_CLOCK_SELECTION);
+            PRIVATE_SETTINGS.add(BLUR_QUICKSETTINGS_ENABLED);
+            PRIVATE_SETTINGS.add(BLUR_QUICKSETTINGS_PERCENTAGE);
             // AICP Settings end
         }
 
@@ -6637,6 +6662,8 @@ public final class Settings {
             VALIDATORS.put(INCREASING_RING_START_VOLUME, INCREASING_RING_START_VOLUME_VALIDATOR);
             VALIDATORS.put(INCREASING_RING_RAMP_UP_TIME,INCREASING_RING_RAMP_UP_TIME_VALIDATOR);
             VALIDATORS.put(LOCKSCREEN_CLOCK_SELECTION,LOCKSCREEN_CLOCK_SELECTION_VALIDATOR);
+            VALIDATORS.put(BLUR_QUICKSETTINGS_ENABLED,BLUR_QUICKSETTINGS_ENABLED_VALIDATOR);
+            VALIDATORS.put(BLUR_QUICKSETTINGS_PERCENTAGE,BLUR_QUICKSETTINGS_PERCENTAGE_VALIDATOR);
             // AICP Settings end
         }
 

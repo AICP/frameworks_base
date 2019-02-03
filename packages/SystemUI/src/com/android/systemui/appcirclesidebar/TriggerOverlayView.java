@@ -120,10 +120,7 @@ public abstract class TriggerOverlayView extends FrameLayout {
     protected void expandFromTriggerRegion() {
         mLayoutParams = (WindowManager.LayoutParams) getLayoutParams();
         mLayoutParams.y = 0;
-        Rect r = new Rect();
-        getWindowVisibleDisplayFrame(r);
-        mViewHeight = r.bottom - r.top;
-        mLayoutParams.height = mViewHeight;
+        mLayoutParams.height = getWindowHeight();
         mLayoutParams.width = LayoutParams.MATCH_PARENT;
         mLayoutParams.flags = enableKeyEvents();
         mWM.updateViewLayout(this, mLayoutParams);

@@ -5910,6 +5910,15 @@ public final class Settings {
         private static final Validator MEDIA_SCANNER_ON_BOOT_VALIDATOR =
                new SettingsValidators.InclusiveIntegerRangeValidator(0, 2);
 
+        /**
+         * Whether to show or hide the running services icon
+         * @hide
+         */
+        public static final String QS_RUNNING_SERVICES_TOGGLE = "qs_running_services_toggle";
+
+        /** @hide */
+        private static final Validator QS_RUNNING_SERVICES_TOGGLE_VALIDATOR = BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6126,6 +6135,7 @@ public final class Settings {
             BLUR_QUICKSETTINGS_ENABLED,
             BLUR_QUICKSETTINGS_PERCENTAGE,
             MEDIA_SCANNER_ON_BOOT,
+            QS_RUNNING_SERVICES_TOGGLE,
             // AICP Settings end
         };
 
@@ -6406,6 +6416,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(BLUR_QUICKSETTINGS_ENABLED);
             PRIVATE_SETTINGS.add(BLUR_QUICKSETTINGS_PERCENTAGE);
             PRIVATE_SETTINGS.add(MEDIA_SCANNER_ON_BOOT);
+            PRIVATE_SETTINGS.add(QS_RUNNING_SERVICES_TOGGLE);
             // AICP Settings end
         }
 
@@ -6679,6 +6690,7 @@ public final class Settings {
             VALIDATORS.put(BLUR_QUICKSETTINGS_ENABLED,BLUR_QUICKSETTINGS_ENABLED_VALIDATOR);
             VALIDATORS.put(BLUR_QUICKSETTINGS_PERCENTAGE,BLUR_QUICKSETTINGS_PERCENTAGE_VALIDATOR);
             VALIDATORS.put(MEDIA_SCANNER_ON_BOOT,MEDIA_SCANNER_ON_BOOT_VALIDATOR);
+            VALIDATORS.put(QS_RUNNING_SERVICES_TOGGLE,QS_RUNNING_SERVICES_TOGGLE_VALIDATOR);
             // AICP Settings end
         }
 

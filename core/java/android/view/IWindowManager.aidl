@@ -304,11 +304,6 @@ interface IWindowManager
     boolean hasNavigationBar();
 
     /**
-     * Device needs a software navigation bar (separate from the status bar).
-     */
-    boolean needsNavigationBar();
-
-    /**
      * Get the position of the nav bar
      */
     int getNavBarPosition();

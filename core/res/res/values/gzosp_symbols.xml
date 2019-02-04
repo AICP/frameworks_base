@@ -41,27 +41,4 @@
     <java-symbol type="integer" name="config_navgestureswipetimout" />
     <java-symbol type="integer" name="config_navgesturemovethreshold" />
 
-    <!-- Button Brightness -->
-    <java-symbol type="integer" name="config_buttonBrightnessSettingMinimum" />
-    <java-symbol type="integer" name="config_buttonBrightnessSettingMaximum" />
-    <java-symbol type="integer" name="config_buttonBrightnessSettingDefault" />
-
-    <!-- Input policy constants  -->
-    <java-symbol type="integer" name="config_deviceHardwareKeys" />
-    <java-symbol type="integer" name="config_doubleTapOnHomeKeyBehavior" />
-    <java-symbol type="integer" name="config_doubleTapOnMenuKeyBehavior" />
-    <java-symbol type="integer" name="config_doubleTapOnBackKeyBehavior" />
-    <java-symbol type="integer" name="config_doubleTapOnAssistKeyBehavior" />
-    <java-symbol type="integer" name="config_doubleTapOnAppSwitchKeyBehavior" />
-    <java-symbol type="integer" name="config_doubleTapOnCameraKeyBehavior" />
-    <java-symbol type="integer" name="config_longPressOnHomeKeyBehavior" />
-    <java-symbol type="integer" name="config_longPressOnMenuKeyBehavior" />
-    <java-symbol type="integer" name="config_longPressOnBackKeyBehavior" />
-    <java-symbol type="integer" name="config_longPressOnAssistKeyBehavior" />
-    <java-symbol type="integer" name="config_longPressOnAppSwitchKeyBehavior" />
-    <java-symbol type="integer" name="config_longPressOnCameraKeyBehavior" />
-
-    <!-- Internal default to navigation bar value -->
-    <java-symbol type="bool" name="config_defaultToNavigationBar" />
-
 </resources>

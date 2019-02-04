@@ -4549,146 +4549,6 @@ public final class Settings {
                 BOOLEAN_VALIDATOR;
 
         /**
-         * Value for button brightness.
-         * This is an integer value in a range between 0 and 255.
-         *      0 = off
-         *    255 = default
-         *    255 = max
-         * @hide
-         */
-        public static final String BUTTON_BRIGHTNESS = "button_brightness";
-
-        /** @hide */
-        public static final Validator BUTTON_BRIGHTNESS_VALIDATOR =
-            new SettingsValidators.InclusiveIntegerRangeValidator(0, 255);
-
-        /**
-         * Whether user can enable/disable button brightness.
-         * <p>
-         * Type: int (0 for false, 1 for true)
-         * @hide
-         */
-        public static final String BUTTON_BRIGHTNESS_ENABLED = "button_brightness_enabled";
-
-        /** @hide */
-        private static final Validator BUTTON_BRIGHTNESS_ENABLED_VALIDATOR = ANY_INTEGER_VALIDATOR;
-
-        /** Action to perform when the home key is long-pressed.
-         * (Default can be configured via config_longPressOnHardwareHomeBehavior)
-         * 0 - Nothing
-         * 1 - Menu
-         * 2 - App-switch
-         * 3 - Search
-         * 4 - Voice search
-         * 5 - In-app search
-         * 6 - Launch Camera
-         * 7 - Laucnh last app
-         * @hide
-         */
-        public static final String KEY_HOME_LONG_PRESS_ACTION = "key_home_long_press_action";
-
-        /**
-         * Action to perform when the home key is double-tapped.
-         * (Default can be configured via config_doubleTapOnHardwareHomeBehavior)
-         * (See KEY_HOME_LONG_PRESS_ACTION for valid values)
-         * @hide
-         */
-        public static final String KEY_HOME_DOUBLE_TAP_ACTION = "key_home_double_tap_action";
-
-
-        /**
-         * Action to perform when the menu key is long-pressed.
-         * (Default can be configured via config_longPressOnHardwareMenuBehavior)
-         * (See KEY_HOME_LONG_PRESS_ACTION for valid values)
-         * @hide
-         */
-        public static final String KEY_MENU_LONG_PRESS_ACTION = "key_menu_long_press_action";
-
-        /**
-         * Action to perform when the menu key is double-tapped.
-         * (Default can be configured via config_doubleTapOnHardwareMenuBehavior)
-         * (See KEY_HOME_LONG_PRESS_ACTION for valid values)
-         * @hide
-         */
-        public static final String KEY_MENU_DOUBLE_TAP_ACTION = "key_menu_double_tap_action";
-
-        /**
-         * Action to perform when the back key is long-pressed.
-         * (Default can be configured via config_longPressOnHardwareBackBehavior)
-         * (See KEY_HOME_LONG_PRESS_ACTION for valid values)
-         * @hide
-         */
-        public static final String KEY_BACK_LONG_PRESS_ACTION = "key_back_long_press_action";
-
-        /**
-         * Action to perform when the back key is double-tapped.
-         * (Default can be configured via config_doubleTapOnHardwareBackBehavior)
-         * (See KEY_HOME_LONG_PRESS_ACTION for valid values)
-         * @hide
-         */
-        public static final String KEY_BACK_DOUBLE_TAP_ACTION = "key_back_double_tap_action";
-
-        /**
-         * Action to perform when the assist key is long-pressed.
-         * (Default can be configured via config_longPressOnHardwareAssistBehavior)
-         * (See KEY_HOME_LONG_PRESS_ACTION for valid values)
-         * @hide
-         */
-        public static final String KEY_ASSIST_LONG_PRESS_ACTION = "key_assist_long_press_action";
-
-        /**
-         * Action to perform when the assist key is double-tapped.
-         * (Default can be configured via config_doubleTapOnHardwareAssistBehavior)
-         * (See KEY_HOME_LONG_PRESS_ACTION for valid values)
-         * @hide
-         */
-        public static final String KEY_ASSIST_DOUBLE_TAP_ACTION = "key_assist_double_tap_action";
-
-        /**
-         * Action to perform when the app switch key is long-pressed.
-         * (Default can be configured via config_longPressOnHardwareAppSwitchBehavior)
-         * (See KEY_HOME_LONG_PRESS_ACTION for valid values)
-         * @hide
-         */
-        public static final String KEY_APP_SWITCH_LONG_PRESS_ACTION = "key_app_switch_long_press_action";
-
-        /**
-         * Action to perform when the app switch key is double-tapped.
-         * (Default can be configured via config_doubleTapOnHardwareAppSwitchBehavior)
-         * (See KEY_HOME_LONG_PRESS_ACTION for valid values)
-         * @hide
-         */
-        public static final String KEY_APP_SWITCH_DOUBLE_TAP_ACTION = "key_app_switch_double_tap_action";
-
-        /**
-         * Action to perform when the app switch key is long-pressed.
-         * (Default can be configured via config_longPressOnHardwareCameraBehavior)
-         * (See KEY_HOME_LONG_PRESS_ACTION for valid values)
-         * @hide
-         */
-        public static final String KEY_CAMERA_LONG_PRESS_ACTION = "key_camera_long_press_action";
-
-        /**
-         * Action to perform when the camera key is double-tapped.
-         * (Default can be configured via config_doubleTapOnHardwareCameraBehavior)
-         * (See KEY_HOME_LONG_PRESS_ACTION for valid values)
-         * @hide
-         */
-        public static final String KEY_CAMERA_DOUBLE_TAP_ACTION = "key_camera_double_tap_action";
-
-        /** @hide */
-        public static final Validator KEY_VALIDATOR = new Validator() {
-            @Override
-            public boolean validate(String value) {
-                try {
-                    return Long.parseLong(value) >= 0;
-                } catch (NumberFormatException e) {
-                    return false;
-                }
-            }
-        };
-
-        /**
          * Three Finger Gesture from Oppo
          * @hide
          */
@@ -4733,17 +4593,6 @@ public final class Settings {
          * @hide
          */
         public static final String SENSOR_BLOCK = "sensor_block";
-
-        /**
-         * Whether user can enable/disable navigation bar.
-         * <p>
-         * Type: int (0 for false, 1 for true)
-         * @hide
-         */
-        public static final String NAVIGATION_BAR_ENABLED = "navigation_bar_enabled";
-
-        /** @hide */
-        private static final Validator NAVIGATION_BAR_ENABLED_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
          * @hide
@@ -6235,21 +6084,6 @@ public final class Settings {
             PRIVATE_SETTINGS.add(THEMING_ACCENT);
             PRIVATE_SETTINGS.add(AICP_USE_BOTTOM_GESTURE_NAVIGATION);
             PRIVATE_SETTINGS.add(THEMING_CORNERS);
-            PRIVATE_SETTINGS.add(NAVIGATION_BAR_ENABLED);
-            PRIVATE_SETTINGS.add(BUTTON_BRIGHTNESS);
-            PRIVATE_SETTINGS.add(BUTTON_BRIGHTNESS_ENABLED);
-            PRIVATE_SETTINGS.add(KEY_HOME_LONG_PRESS_ACTION);
-            PRIVATE_SETTINGS.add(KEY_HOME_DOUBLE_TAP_ACTION);
-            PRIVATE_SETTINGS.add(KEY_MENU_LONG_PRESS_ACTION);
-            PRIVATE_SETTINGS.add(KEY_MENU_DOUBLE_TAP_ACTION);
-            PRIVATE_SETTINGS.add(KEY_BACK_LONG_PRESS_ACTION);
-            PRIVATE_SETTINGS.add(KEY_BACK_DOUBLE_TAP_ACTION);
-            PRIVATE_SETTINGS.add(KEY_ASSIST_LONG_PRESS_ACTION);
-            PRIVATE_SETTINGS.add(KEY_ASSIST_DOUBLE_TAP_ACTION);
-            PRIVATE_SETTINGS.add(KEY_APP_SWITCH_LONG_PRESS_ACTION);
-            PRIVATE_SETTINGS.add(KEY_APP_SWITCH_DOUBLE_TAP_ACTION);
-            PRIVATE_SETTINGS.add(KEY_CAMERA_LONG_PRESS_ACTION);
-            PRIVATE_SETTINGS.add(KEY_CAMERA_DOUBLE_TAP_ACTION);
             PRIVATE_SETTINGS.add(AICP_SHOW_BATTERY_IMAGE);
             PRIVATE_SETTINGS.add(AICP_QS_LAYOUT_COLUMNS_LANDSCAPE);
             PRIVATE_SETTINGS.add(AICP_QS_LAYOUT_COLUMNS);
@@ -6496,9 +6330,6 @@ public final class Settings {
             VALIDATORS.put(AICP_USE_BOTTOM_GESTURE_NAVIGATION,
                     AICP_USE_BOTTOM_GESTURE_NAVIGATION_VALIDATOR);
             VALIDATORS.put(THEMING_CORNERS, THEMING_CORNERS_VALIDATOR);
-            VALIDATORS.put(NAVIGATION_BAR_ENABLED, NAVIGATION_BAR_ENABLED_VALIDATOR);
-            VALIDATORS.put(BUTTON_BRIGHTNESS, BUTTON_BRIGHTNESS_VALIDATOR);
-            VALIDATORS.put(BUTTON_BRIGHTNESS_ENABLED, BUTTON_BRIGHTNESS_ENABLED_VALIDATOR);
             VALIDATORS.put(AICP_SHOW_BATTERY_IMAGE, AICP_SHOW_BATTERY_IMAGE_VALIDATOR);
             VALIDATORS.put(AICP_QS_LAYOUT_COLUMNS_LANDSCAPE,
                     AICP_QS_LAYOUT_COLUMNS_LANDSCAPE_VALIDATOR);

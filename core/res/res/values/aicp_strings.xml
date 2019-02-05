@@ -16,8 +16,6 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <string name="app_killed_message">Active app is killed.</string>
-
     <!-- AOKP custom system animations -->
     <string name="animation_fade">Fade</string>
     <string name="animation_slide_right">Slide in right</string>

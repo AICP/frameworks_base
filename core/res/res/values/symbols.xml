@@ -3424,4 +3424,6 @@
   <java-symbol type="integer" name="db_wal_truncate_size" />
 
   <java-symbol type="string" name="config_defaultAssistantComponentName" />
+
+  <java-symbol type="string" name="aicp_vendor_security_patch" />
 </resources>

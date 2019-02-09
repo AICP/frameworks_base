@@ -45,4 +45,6 @@
     <string name="permdesc_accessFontManager">Allows an application to access the font manager.</string>
     <!-- [CHAR LIMIT=NONE] Error when a package is installed but got the missing fonts.xml file, notifying the user why it isn't showing up. -->
     <string name="fontservice_incompatible_font">The font package you\'ve installed is not compatible due to missing fonts.xml on their files. Please contact the package developer for support.</string>
+    <!-- About device screen, vendor security patch -->
+    <string name="aicp_vendor_security_patch">Vendor security patch level</string>
 </resources>

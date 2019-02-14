@@ -56,13 +56,32 @@ public class CarrierLabel extends TextView implements DarkReceiver {
         mContext = context;
         updateNetworkName(true, null, false, null);
 
-        /*Force carrier label to the lockscreen. This helps us avoid
+        /*Force carrier label while using a notch. This helps us avoid
         the carrier label on the statusbar if for whatever reason
         the user changes notch overlays*/
+        int carrierLabel = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.STATUS_BAR_SHOW_CARRIER, 1, UserHandle.USER_CURRENT);
         if (AicpUtils.hasNotch(mContext)) {
-            Settings.System.putInt(mContext.getContentResolver(),
-                    Settings.System.STATUS_BAR_SHOW_CARRIER, 1);
+            switch (carrierLabel) {
+                case 0:
+                    setCarrierLabel("0");
+                    break;
+                case 1:
+                    setCarrierLabel("1");
+                    break;
+                case 2:
+                    setCarrierLabel("1");
+                    break;
+                case 3:
+                    setCarrierLabel("1");
+                    break;
+            }
         }
+    }
+
+    private void setCarrierLabel(String value) {
+        Settings.System.putInt(mContext.getContentResolver(),
+                Settings.System.STATUS_BAR_SHOW_CARRIER, Integer.parseInt(value));
     }
 
     @Override

@@ -289,4 +289,7 @@
 
   <!-- Wheter device supports an gaming mode profiles -->
   <java-symbol type="bool" name="config_gamingmode_performance" />
+
+  <!-- Whether to enable OnePlus Camera hack -->
+  <java-symbol type="bool" name="config_enableOnePlusCameraHack" />
 </resources>

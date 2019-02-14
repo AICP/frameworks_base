@@ -203,4 +203,6 @@
   <java-symbol type="layout" name="permission_confirmation_dialog" />
   <java-symbol type="array" name="app_ops_labels" />
 
+  <!-- Whether to enable oneplus cam hack -->
+  <java-symbol type="bool" name="config_enableOPcamhack" />
 </resources>

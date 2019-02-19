@@ -52,6 +52,7 @@
     <style name="widget_big_thin">
         <item name="android:textSize">@dimen/widget_big_font_size</item>
         <item name="android:paddingBottom">@dimen/bottom_text_spacing_digital</item>
+        <item name="android:fontFeatureSettings">ss03</item>
     </style>
 
     <style name="BouncerSecurityContainer">

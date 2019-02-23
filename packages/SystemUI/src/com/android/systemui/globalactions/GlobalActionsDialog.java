@@ -493,7 +493,8 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
                     mItems.add(mShowAdvancedToggles);
                 }
             } else if (GLOBAL_ACTION_KEY_EMERGENCY.equals(actionKey)) {
-                if (mSeparatedEmergencyButtonEnabled
+                if (Settings.Secure.getIntForUser(mContext.getContentResolver(),
+                        Settings.Secure.EMERGENCY_IN_POWER_MENU, 0, getCurrentUser().id) != 0
                         && !mEmergencyAffordanceManager.needsEmergencyAffordance()) {
                     mItems.add(new EmergencyDialerAction());
                 }

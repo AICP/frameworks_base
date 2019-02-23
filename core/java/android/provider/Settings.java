@@ -5827,7 +5827,6 @@ public final class Settings {
         private static final Validator SCREENRECORD_QUALITY_MODE_VALIDATOR =
                new SettingsValidators.InclusiveIntegerRangeValidator(0, 2);
 
-
         /***************************
          * AICP System Settings end
          ***************************/
@@ -10706,6 +10705,12 @@ public final class Settings {
         public static final String PIE_STATUS_INDICATOR = "pie_status_indicator";
 
         /**
+         * Whether the Emergency button should be shown in the power menu.
+         * @hide
+         */
+        public static final String EMERGENCY_IN_POWER_MENU = "emergency_in_power_menu";
+
+        /**
          * Setting to record how the look and feel of the system should be tweaked. This
          * should be used in combination with magic.
          *
@@ -10724,7 +10729,6 @@ public final class Settings {
             PIE_STATE,
             PIE_GRAVITY
         };
-
 
         /**
          * This are the settings to be backed up.
@@ -10829,6 +10833,7 @@ public final class Settings {
             MANUAL_RINGER_TOGGLE_COUNT,
             HUSH_GESTURE_USED,
             PIE_STATE,
+            EMERGENCY_IN_POWER_MENU,
         };
 
         /**
@@ -10987,6 +10992,7 @@ public final class Settings {
             VALIDATORS.put(LOCK_SCREEN_ALLOW_PRIVATE_NOTIFICATIONS, BOOLEAN_VALIDATOR);
             VALIDATORS.put(LOCK_SCREEN_SHOW_NOTIFICATIONS, BOOLEAN_VALIDATOR);
             VALIDATORS.put(PIE_STATE,PIE_STATE_VALIDATOR);
+            VALIDATORS.put(EMERGENCY_IN_POWER_MENU, BOOLEAN_VALIDATOR);
         }
 
         /**

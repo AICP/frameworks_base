@@ -9838,7 +9838,13 @@ public final class Settings {
         public static final String REBOOT_IN_POWER_MENU = "reboot_in_power_menu";
 
         /**
-         * Whether the Advanced reboot button should be shown in the power menu.
+         * Whether the Emergency button should be shown in the power menu.
+         * @hide
+         */
+        public static final String EMERGENCY_IN_POWER_MENU = "emergency_in_power_menu";
+
+        /**
+	 * Whether the Advanced reboot button should be shown in the power menu.
          * @hide
          */
         public static final String ADVANCED_REBOOT_IN_POWER_MENU = "advanced_reboot_in_power_menu";
@@ -9995,7 +10001,8 @@ public final class Settings {
             FACE_AUTO_UNLOCK,
             VOLUME_PANEL_ON_LEFT,
             VOLUME_LINK_NOTIFICATION,
-            LOCK_QS_DISABLED
+            LOCK_QS_DISABLED,
+            EMERGENCY_IN_POWER_MENU,
         };
 
         /**
@@ -10194,6 +10201,7 @@ public final class Settings {
             VALIDATORS.put(VOLUME_PANEL_ON_LEFT, VOLUME_PANEL_ON_LEFT_VALIDATOR);
             VALIDATORS.put(VOLUME_LINK_NOTIFICATION, VOLUME_LINK_NOTIFICATION_VALIDATOR);
             VALIDATORS.put(LOCK_QS_DISABLED, LOCK_QS_DISABLED_VALIDATOR);
+            VALIDATORS.put(EMERGENCY_IN_POWER_MENU, BOOLEAN_VALIDATOR);
         }
 
         /**

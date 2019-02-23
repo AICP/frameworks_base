@@ -503,7 +503,9 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
                     mItems.add(new ScreenshotAction());
                 }
             } else if (GLOBAL_ACTION_KEY_EMERGENCY.equals(actionKey)) {
-                if (!mEmergencyAffordanceManager.needsEmergencyAffordance()) {
+                if (Settings.Secure.getIntForUser(mContext.getContentResolver(),
+                        Settings.Secure.EMERGENCY_IN_POWER_MENU, 0, getCurrentUser().id) != 0
+                        && !mEmergencyAffordanceManager.needsEmergencyAffordance()) {
                     mItems.add(new EmergencyDialerAction());
                 }
             } else if (GLOBAL_ACTION_KEY_ONTHEGO.equals(actionKey)) {

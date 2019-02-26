@@ -21,8 +21,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.provider.Settings.Global;
+import android.service.quicksettings.Tile;
 
-import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 import com.android.systemui.R;
 import com.android.systemui.plugins.qs.QSTile;
@@ -106,14 +106,17 @@ public class SoundTile extends QSTileImpl<State> {
             case AudioManager.RINGER_MODE_NORMAL:
                 state.icon = ResourceIcon.get(R.drawable.ic_qs_ringer_audible);
                 state.label = mContext.getString(R.string.quick_settings_sound_ring);
+                state.state = Tile.STATE_INACTIVE;
                 break;
             case AudioManager.RINGER_MODE_VIBRATE:
                 state.icon = ResourceIcon.get(R.drawable.ic_qs_ringer_vibrate);
                 state.label = mContext.getString(R.string.quick_settings_sound_vibrate);
+                state.state = Tile.STATE_ACTIVE;
                 break;
             case AudioManager.RINGER_MODE_SILENT:
                 state.icon = ResourceIcon.get(R.drawable.ic_qs_ringer_silent);
                 state.label = mContext.getString(R.string.quick_settings_sound_silent);
+                state.state = Tile.STATE_ACTIVE;
                 break;
             default:
                 break;

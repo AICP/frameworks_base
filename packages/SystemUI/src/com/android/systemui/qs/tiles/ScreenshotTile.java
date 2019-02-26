@@ -28,19 +28,24 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
+import android.service.quicksettings.Tile;
 import android.view.View;
 
+import com.android.internal.util.aicp.AicpUtils;
 import com.android.systemui.R;
 import com.android.systemui.plugins.qs.QSTile.BooleanState;
 import com.android.systemui.screenshot.TakeScreenshotService;
 import com.android.systemui.qs.QSHost;
 import com.android.systemui.qs.tileimpl.QSTileImpl;
 
-import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 
 /** Quick settings tile: Screenshot **/
 public class ScreenshotTile extends QSTileImpl<BooleanState> {
+
+    private static final String SERVICE_NAME = "com.android.systemui.screenshot.TakeScreenshotService";
+
+    private final Icon mIcon = ResourceIcon.get(R.drawable.ic_qs_screenshot);
 
     private final Object mScreenshotLock = new Object();
     private ServiceConnection mScreenshotConnection = null;
@@ -78,8 +83,10 @@ public class ScreenshotTile extends QSTileImpl<BooleanState> {
 
     @Override
     protected void handleUpdateState(BooleanState state, Object arg) {
+        state.value = AicpUtils.isServiceRunning(mContext, SERVICE_NAME);
+        state.state = state.value ? Tile.STATE_ACTIVE : Tile.STATE_INACTIVE;
         state.label = mContext.getString(R.string.quick_settings_screenshot_label);
-        state.icon = ResourceIcon.get(R.drawable.ic_qs_screenshot);
+        state.icon = mIcon;
     }
 
     @Override
@@ -99,6 +106,7 @@ public class ScreenshotTile extends QSTileImpl<BooleanState> {
                 if (mScreenshotConnection != null) {
                     mContext.unbindService(mScreenshotConnection);
                     mScreenshotConnection = null;
+                    refreshState();
                 }
             }
         }
@@ -114,6 +122,7 @@ public class ScreenshotTile extends QSTileImpl<BooleanState> {
             ServiceConnection conn = new ServiceConnection() {
                 @Override
                 public void onServiceConnected(ComponentName name, IBinder service) {
+                    refreshState();
                     synchronized (mScreenshotLock) {
                         if (mScreenshotConnection != this) {
                             return;
@@ -148,6 +157,7 @@ public class ScreenshotTile extends QSTileImpl<BooleanState> {
 
                 @Override
                 public void onServiceDisconnected(ComponentName name) {
+                    refreshState();
                     // Do nothing here
                 }
             };

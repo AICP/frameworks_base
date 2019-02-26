@@ -25,11 +25,14 @@ import com.android.systemui.qs.QSHost;
 import com.android.systemui.qs.tileimpl.QSTileImpl;
 
 
+import com.android.internal.util.aicp.AicpUtils;
 import com.android.internal.util.aicp.OnTheGoActions;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 
 /** Quick settings tile: OnTheGo Mode **/
 public class OnTheGoTile extends QSTileImpl<BooleanState> {
+
+    private static final String SERVICE_NAME = "com.android.systemui.aicp.onthego.OnTheGoService";
 
     private final Icon mIcon = ResourceIcon.get(R.drawable.ic_qs_onthego);
 
@@ -56,8 +59,13 @@ public class OnTheGoTile extends QSTileImpl<BooleanState> {
 
     @Override
     protected void handleClick() {
-        refreshState();
+        mHost.collapsePanels();
+        //finish collapsing the panel
+        try {
+             Thread.sleep(1000); //1s
+        } catch (InterruptedException ie) {}
         toggleState();
+        refreshState();
     }
 
     @Override
@@ -72,10 +80,12 @@ public class OnTheGoTile extends QSTileImpl<BooleanState> {
 
     @Override
     protected void handleUpdateState(BooleanState state, Object arg) {
+        state.icon = mIcon;
         state.contentDescription =  mContext.getString(
                 R.string.quick_settings_onthego_label);
         state.label = mContext.getString(R.string.quick_settings_onthego_label);
-        state.icon = ResourceIcon.get(R.drawable.ic_qs_onthego);
+        state.value = AicpUtils.isServiceRunning(mContext, SERVICE_NAME);
+        state.state = state.value ? Tile.STATE_ACTIVE : Tile.STATE_INACTIVE;
     }
 
     @Override

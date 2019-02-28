@@ -2582,6 +2582,15 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
         setInteracting(StatusBarManager.WINDOW_STATUS_BAR, true);
     }
 
+    @Override
+    public void toggleSettingsPanel() {
+        if (mPanelExpanded) {
+            animateCollapsePanels();
+        } else {
+            animateExpandSettingsPanel(null);
+        }
+    }
+
     public void animateCollapsePanels() {
         animateCollapsePanels(CommandQueue.FLAG_EXCLUDE_NONE);
     }

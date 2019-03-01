@@ -159,6 +159,7 @@ public class ActionHandler {
     static {
         sDisabledActions.add(SYSTEMUI_TASK_EXPANDED_DESKTOP);
         sDisabledActions.add(SYSTEMUI_TASK_SCREENRECORD);
+        sDisabledActions.add(SYSTEMUI_TASK_APP_SEARCH);
     }
 
     static enum SystemAction {
@@ -320,6 +321,11 @@ public class ActionHandler {
                 if (Settings.Secure.getIntForUser(context.getContentResolver(),
                         Settings.Secure.NAVIGATION_BAR_MODE, 0,
                         UserHandle.USER_CURRENT) != 1) {
+                    continue;
+                }
+            } else if (TextUtils.equals(action, SYSTEMUI_TASK_ASSISTANT_SOUND_SEARCH)) {
+                if (!ActionUtils.isPackageInstalled(context,
+                        "com.google.android.googlequicksearchbox")) {
                     continue;
                 }
             }
@@ -1153,6 +1159,7 @@ public class ActionHandler {
     public static void startAssistantSoundSearch(Context context) {
         Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.setAction("com.google.android.googlequicksearchbox.MUSIC_SEARCH");
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(intent);
     }
 }

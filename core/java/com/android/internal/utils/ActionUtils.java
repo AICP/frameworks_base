@@ -24,6 +24,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -638,6 +639,16 @@ public final class ActionUtils {
             }
         }
         return uri;
+    }
+
+    public static boolean isPackageInstalled(Context ctx, String packageName) {
+        try {
+            PackageInfo info = ctx.getPackageManager()
+                    .getPackageInfo(packageName, PackageManager.GET_META_DATA);
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
+        return true;
     }
 
     /**

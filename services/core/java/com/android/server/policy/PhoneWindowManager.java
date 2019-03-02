@@ -7360,6 +7360,12 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             case NavbarUtilities.KEY_ACTION_KILL_APP:
                 AicpUtils.killForegroundApp();
                 break;
+            case NavbarUtilities.KEY_ACTION_SKIP_TRACK:
+                AicpUtils.sendSystemKeyToStatusBar(KeyEvent.KEYCODE_MEDIA_NEXT);
+                break;
+            case NavbarUtilities.KEY_ACTION_PREVIOUS_TRACK:
+                AicpUtils.sendSystemKeyToStatusBar(KeyEvent.KEYCODE_MEDIA_PREVIOUS);
+                break;
         }
     }
 
@@ -7448,6 +7454,12 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 break;
             case NavbarUtilities.KEY_ACTION_KILL_APP:
                 AicpUtils.killForegroundApp();
+                break;
+            case NavbarUtilities.KEY_ACTION_SKIP_TRACK:
+                AicpUtils.sendSystemKeyToStatusBar(KeyEvent.KEYCODE_MEDIA_NEXT);
+                break;
+            case NavbarUtilities.KEY_ACTION_PREVIOUS_TRACK:
+                AicpUtils.sendSystemKeyToStatusBar(KeyEvent.KEYCODE_MEDIA_PREVIOUS);
                 break;
         }
     }

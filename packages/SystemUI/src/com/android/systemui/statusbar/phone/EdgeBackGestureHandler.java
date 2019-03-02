@@ -757,6 +757,12 @@ public class EdgeBackGestureHandler implements DisplayListener {
             case 13: // Kill app
                 AicpUtils.killForegroundApp();
                 break;
+            case 14: // Skip song
+                AicpUtils.sendSystemKeyToStatusBar(KeyEvent.KEYCODE_MEDIA_NEXT);
+                break;
+            case 15: // Previous song
+                AicpUtils.sendSystemKeyToStatusBar(KeyEvent.KEYCODE_MEDIA_PREVIOUS);
+                break;
         }
     }
 

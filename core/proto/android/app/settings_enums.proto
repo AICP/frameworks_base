@@ -1628,6 +1628,12 @@ enum PageId {
     // OPEN: Settings > Wifi > Edit AP dialog
     DIALOG_WIFI_AP_EDIT = 603;
 
+    // OPEN: Settings > Wifi > PBC Config dialog
+    DIALOG_WIFI_PBC = 604;
+
+    // OPEN: Settings > Wifi > Display pin dialog
+    DIALOG_WIFI_PIN = 605;
+
     // OPEN: Settings > Wifi > Write config to NFC dialog
     DIALOG_WIFI_WRITE_NFC = 606;
 

@@ -10070,11 +10070,11 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 mHandler.removeCallbacks(mScreenshotRunnable);
                 mScreenshotRunnable.setScreenshotType(TAKE_SCREENSHOT_SELECTED_REGION);
                 mHandler.post(mScreenshotRunnable);
-            }/* else if (ActionHandler.INTENT_TOGGLE_SCREENRECORD.equals(action)) {
+            } else if (ActionHandler.INTENT_TOGGLE_SCREENRECORD.equals(action)) {
                 mContext.enforceCallingOrSelfPermission(Manifest.permission.ACCESS_SURFACE_FLINGER, TAG + "sendCustomAction permission denied");
                 mHandler.removeCallbacks(mScreenrecordRunnable);
                 mHandler.post(mScreenrecordRunnable);
-            }*/
+            }
         }
     }
 }

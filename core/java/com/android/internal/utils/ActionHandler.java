@@ -158,7 +158,6 @@ public class ActionHandler {
     static final Set<String> sDisabledActions = new HashSet<String>();
     static {
         sDisabledActions.add(SYSTEMUI_TASK_EXPANDED_DESKTOP);
-        sDisabledActions.add(SYSTEMUI_TASK_SCREENRECORD);
         sDisabledActions.add(SYSTEMUI_TASK_APP_SEARCH);
     }
 

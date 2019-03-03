@@ -92,16 +92,22 @@
     <string name="quick_settings_reboot_recovery_label">Recovery indítása</string>
     <!-- Screenrecord Notification Ticker -->
     <string name="screenrecord_notif_ticker">Képernyőfelvétel folyamatban</string>
+    <string name="screenrecord_notif_final_ticker">Képernyőfelvétel elkészítve</string>
     <!-- Screenrecord notification title -->
     <string name="screenrecord_notif_title">Képernyőfelvétel elindítva</string>
     <!-- Screenrecord notification action: Stop -->
     <string name="screenrecord_notif_stop">Megállítás</string>
+    <string name="screenrecord_notif_completed">Képernyőfelvétel elkészítve</string>
     <!-- Screenrecord notification action: show/hide pointer -->
     <string name="screenrecord_notif_pointer_on">Mutató megjelenítése</string>
     <string name="screenrecord_notif_pointer_off">Mutató elrejtése</string>
     <!-- Screen record notification error title -->
     <string name="screenrecord_notif_error">Képernyőfelvétel nem lehetséges</string>
     <string name="notification_channel_screenrecord">Képernyőfelvételek</string>
+    <string name="screenrecord_hide_hint">Tipp elrejtése</string>
+    <string name="screenrecord_show_hint">Tipp megjelenítése</string>
+    <!-- Screenrecord QS tile -->
+    <string name="quick_settings_screenrecord_label">Képernyővideó</string>
     <!-- Heads up snooze toast -->
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - lebegő értesítései 1 percig elhalasztásra kerülnek.</string>
     <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - lebegő értesítései <xliff:g id="number">%d</xliff:g> percig elhalasztásra kerülnek.</string>
@@ -127,8 +133,6 @@
     <string name="quick_settings_onthego_label">Menet közben</string>
     <!-- Label for item that screenrecords in power menu options dialog -->
     <string name="global_action_screenrecord">Képernyővideó</string>
-    <!-- Screenrecord tile -->
-    <string name="quick_settings_screenrecord_label">Képernyővideó</string>
     <!-- CPUInfo tile -->
     <string name="quick_settings_cpuinfo_label">CPU-adatok</string>
     <!-- Brigntess tuning -->
@@ -160,4 +164,23 @@
     <string name="app_float_item_title">Lebegő nézet</string>
     <string name="app_stop_item_title">Alkalmazás kilövése</string>
     <!-- Ambient Display Pixel-Like string -->
+    <string name="ambientmusic_songinfo">%s ,  %s</string>
+    <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_running_services">Futó szolgálatások képernyő megnyitása.</string>
+    <string name="tuner_hide_disabled_sim">A letiltott SIM-kártyákat rejtse el</string>
+    <!-- Pie controls -->
+    <string name="pie_date_format">yyyy MMMM dd., EEEE</string>
+    <string name="pie_hour_format_12">hh:mm</string>
+    <string name="pie_hour_format_24">HH:mm</string>
+    <string name="pie_am_pm">a</string>
+    <string name="pie_state_name">Pie-vezérlés</string>
+    <string name="pie_state_summary">Pie vezérlő használata teljes képernyős üzemmódban</string>
+    <string name="pie_battery_level">"AKKUMULÁTORSZINT "</string>
+    <string name="quick_settings_pie">Pie-vezérlés</string>
+    <!-- Sync QS Tile -->
+    <string name="quick_settings_sync_label">Szinkronizálás</string>
+    <string name="accessibility_quick_settings_sync_off">Szinkronizálás ki</string>
+    <string name="accessibility_quick_settings_sync_on">Szinkronizálás be</string>
+    <string name="accessibility_quick_settings_sync_changed_off">Szinkronizálás kikapcsolva</string>
+    <string name="accessibility_quick_settings_sync_changed_on">Szinkronizálás bekapcsolva</string>
 </resources>

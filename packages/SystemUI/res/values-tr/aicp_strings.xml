@@ -93,16 +93,22 @@
     <string name="quick_settings_reboot_recovery_label">Kurtarma modu (Recovery)</string>
     <!-- Screenrecord Notification Ticker -->
     <string name="screenrecord_notif_ticker">Ekran kaydediliyor</string>
+    <string name="screenrecord_notif_final_ticker">Ekran başarıyla kaydedildi</string>
     <!-- Screenrecord notification title -->
     <string name="screenrecord_notif_title">Ekran kaydediliyor</string>
     <!-- Screenrecord notification action: Stop -->
     <string name="screenrecord_notif_stop">Durdur</string>
+    <string name="screenrecord_notif_completed">Ekran başarıyla kaydedildi</string>
     <!-- Screenrecord notification action: show/hide pointer -->
     <string name="screenrecord_notif_pointer_on">İşaretçiyi göster</string>
     <string name="screenrecord_notif_pointer_off">İşaretçiyi gizle</string>
     <!-- Screen record notification error title -->
     <string name="screenrecord_notif_error">Ekran kaydedilemiyor</string>
     <string name="notification_channel_screenrecord">Ekran kayıtları</string>
+    <string name="screenrecord_hide_hint">İpuçlarını gizle</string>
+    <string name="screenrecord_show_hint">İpuçlarını göster</string>
+    <!-- Screenrecord QS tile -->
+    <string name="quick_settings_screenrecord_label">Ekran kaydı</string>
     <!-- Heads up snooze toast -->
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Bildirim pencereleri 1 dakika kadar erteleniyor.</string>
     <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - Bildirim pencereleri <xliff:g id="number">%d</xliff:g> dakika erteleniyor.</string>
@@ -128,8 +134,6 @@
     <string name="quick_settings_onthego_label">Yürüme modu</string>
     <!-- Label for item that screenrecords in power menu options dialog -->
     <string name="global_action_screenrecord">Ekran kaydı</string>
-    <!-- Screenrecord tile -->
-    <string name="quick_settings_screenrecord_label">Ekran kaydı</string>
     <!-- CPUInfo tile -->
     <string name="quick_settings_cpuinfo_label">İşlemci bilgisi</string>
     <!-- Brigntess tuning -->
@@ -161,4 +165,23 @@
     <string name="app_float_item_title">Yüzer görünüm</string>
     <string name="app_stop_item_title">Uygulamayı sonlandır</string>
     <!-- Ambient Display Pixel-Like string -->
+    <string name="ambientmusic_songinfo">%s by %s</string>
+    <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_running_services">Çalışan hizmetler ekranını aç.</string>
+    <string name="tuner_hide_disabled_sim">Devre dışı SIM kartları gizle</string>
+    <!-- Pie controls -->
+    <string name="pie_date_format">EEEE, gg AAAA yyyy</string>
+    <string name="pie_hour_format_12">ss:dd</string>
+    <string name="pie_hour_format_24">SS:dd</string>
+    <string name="pie_am_pm">a</string>
+    <string name="pie_state_name">Pie kontrolü</string>
+    <string name="pie_state_summary">Tam ekran modundayken pie kontrolünü kullanın</string>
+    <string name="pie_battery_level">"PİL SEVİYESİ "</string>
+    <string name="quick_settings_pie">Pie kontrolü</string>
+    <!-- Sync QS Tile -->
+    <string name="quick_settings_sync_label">Eşitleme</string>
+    <string name="accessibility_quick_settings_sync_off">Eşitleme kapalı</string>
+    <string name="accessibility_quick_settings_sync_on">Eşitleme açık</string>
+    <string name="accessibility_quick_settings_sync_changed_off">Eşitleme kapatıldı</string>
+    <string name="accessibility_quick_settings_sync_changed_on">Eşitleme açıldı</string>
 </resources>

@@ -73,16 +73,22 @@
     <!-- Reboot/Recovery QS Tile -->
     <!-- Screenrecord Notification Ticker -->
     <string name="screenrecord_notif_ticker">يتم تسجيل الشاشة</string>
+    <string name="screenrecord_notif_final_ticker">تم تسجيل الشاشة بنجاح</string>
     <!-- Screenrecord notification title -->
     <string name="screenrecord_notif_title">جارٍ تسجيل الشاشة</string>
     <!-- Screenrecord notification action: Stop -->
     <string name="screenrecord_notif_stop">إيقاف</string>
+    <string name="screenrecord_notif_completed">تم تسجيل الشاشة بنجاح</string>
     <!-- Screenrecord notification action: show/hide pointer -->
     <string name="screenrecord_notif_pointer_on">إظهار المؤشر</string>
     <string name="screenrecord_notif_pointer_off">إخفاء المؤشر</string>
     <!-- Screen record notification error title -->
     <string name="screenrecord_notif_error">لا يمكن تسجيل الشاشة</string>
     <string name="notification_channel_screenrecord">تسجيل الشاشة</string>
+    <string name="screenrecord_hide_hint">إخفاء التلميح</string>
+    <string name="screenrecord_show_hint">إظهار التلميح</string>
+    <!-- Screenrecord QS tile -->
+    <string name="quick_settings_screenrecord_label">تسجيل الشاشة</string>
     <!-- Heads up snooze toast -->
     <!-- NavBar Tuner -->
     <!-- Stock Navbar -->
@@ -91,8 +97,6 @@
     <!-- OnTheGo Tile -->
     <!-- Label for item that screenrecords in power menu options dialog -->
     <string name="global_action_screenrecord">تسجيل الشاشة</string>
-    <!-- Screenrecord tile -->
-    <string name="quick_settings_screenrecord_label">تسجيل الشاشة</string>
     <!-- CPUInfo tile -->
     <!-- Brigntess tuning -->
     <!-- Smart Pixels QS Tile -->
@@ -110,4 +114,13 @@
     <string name="omnijaws_service_last_update">آخر تحديث:</string>
     <!-- App circle sidebar -->
     <!-- Ambient Display Pixel-Like string -->
+    <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_running_services">فتح شاشة الخدمات المشغلة في الخلفية.</string>
+    <!-- Pie controls -->
+    <!-- Sync QS Tile -->
+    <string name="quick_settings_sync_label">مزامنة</string>
+    <string name="accessibility_quick_settings_sync_off">إيقاف المزامنة</string>
+    <string name="accessibility_quick_settings_sync_on">تفعيل المزامنة</string>
+    <string name="accessibility_quick_settings_sync_changed_off">تم إيقاف المزامنة</string>
+    <string name="accessibility_quick_settings_sync_changed_on">تم تشغيل المزامنة</string>
 </resources>

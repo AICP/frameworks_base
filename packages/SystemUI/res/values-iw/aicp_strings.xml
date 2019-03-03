@@ -60,6 +60,8 @@
     <string name="screenrecord_notif_stop">עצור</string>
     <!-- Screenrecord notification action: show/hide pointer -->
     <!-- Screen record notification error title -->
+    <!-- Screenrecord QS tile -->
+    <string name="quick_settings_screenrecord_label">הקלטת מסך</string>
     <!-- Heads up snooze toast -->
     <!-- NavBar Tuner -->
     <!-- Stock Navbar -->
@@ -67,8 +69,6 @@
     <!-- OnTheGo Tile -->
     <!-- Label for item that screenrecords in power menu options dialog -->
     <string name="global_action_screenrecord">הקלטת מסך</string>
-    <!-- Screenrecord tile -->
-    <string name="quick_settings_screenrecord_label">הקלטת מסך</string>
     <!-- CPUInfo tile -->
     <!-- Brigntess tuning -->
     <!-- Smart Pixels QS Tile -->
@@ -77,4 +77,12 @@
     <!-- Omnijaws Weather -->
     <!-- App circle sidebar -->
     <!-- Ambient Display Pixel-Like string -->
+    <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
+    <!-- Pie controls -->
+    <!-- Sync QS Tile -->
+    <string name="quick_settings_sync_label">סנכרון</string>
+    <string name="accessibility_quick_settings_sync_off">סנכרון כבוי</string>
+    <string name="accessibility_quick_settings_sync_on">סנכרון פעיל</string>
+    <string name="accessibility_quick_settings_sync_changed_off">סנכרון כובה</string>
+    <string name="accessibility_quick_settings_sync_changed_on">סנכון הופעל</string>
 </resources>

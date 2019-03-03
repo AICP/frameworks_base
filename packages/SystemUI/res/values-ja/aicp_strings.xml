@@ -74,16 +74,22 @@
     <!-- Reboot/Recovery QS Tile -->
     <!-- Screenrecord Notification Ticker -->
     <string name="screenrecord_notif_ticker">画面を録画中です</string>
+    <string name="screenrecord_notif_final_ticker">画面を録画しました</string>
     <!-- Screenrecord notification title -->
     <string name="screenrecord_notif_title">画面を録画中</string>
     <!-- Screenrecord notification action: Stop -->
     <string name="screenrecord_notif_stop">終了</string>
+    <string name="screenrecord_notif_completed">画面を録画しました</string>
     <!-- Screenrecord notification action: show/hide pointer -->
     <string name="screenrecord_notif_pointer_on">ポインタを表示</string>
     <string name="screenrecord_notif_pointer_off">ポインタを隠す</string>
     <!-- Screen record notification error title -->
     <string name="screenrecord_notif_error">スクリーンレコードを実行できません</string>
     <string name="notification_channel_screenrecord">スクリーンレコード</string>
+    <string name="screenrecord_hide_hint">ヒントを隠す</string>
+    <string name="screenrecord_show_hint">ヒントを表示</string>
+    <!-- Screenrecord QS tile -->
+    <string name="quick_settings_screenrecord_label">スクリーンレコード</string>
     <!-- Heads up snooze toast -->
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - ヘッドアップ通知は1分間一時停止します</string>
     <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - ヘッドアップ通知は<xliff:g id="number">%d</xliff:g>分間一時停止します。</string>
@@ -107,8 +113,6 @@
     <string name="quick_settings_onthego_label">On-The-Go</string>
     <!-- Label for item that screenrecords in power menu options dialog -->
     <string name="global_action_screenrecord">スクリーンレコード</string>
-    <!-- Screenrecord tile -->
-    <string name="quick_settings_screenrecord_label">スクリーンレコード</string>
     <!-- CPUInfo tile -->
     <string name="quick_settings_cpuinfo_label">CPU 情報</string>
     <!-- Brigntess tuning -->
@@ -130,4 +134,13 @@
     <string name="app_float_item_title">フロートビュー</string>
     <string name="app_stop_item_title">アプリを終了</string>
     <!-- Ambient Display Pixel-Like string -->
+    <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_running_services">実行中のサービス画面を開きます。</string>
+    <!-- Pie controls -->
+    <!-- Sync QS Tile -->
+    <string name="quick_settings_sync_label">同期</string>
+    <string name="accessibility_quick_settings_sync_off">同期 OFF</string>
+    <string name="accessibility_quick_settings_sync_on">同期 ON</string>
+    <string name="accessibility_quick_settings_sync_changed_off">同期が OFF になりました</string>
+    <string name="accessibility_quick_settings_sync_changed_on">同期が ON になりました</string>
 </resources>

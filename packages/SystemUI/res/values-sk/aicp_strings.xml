@@ -73,16 +73,22 @@
     <!-- Reboot/Recovery QS Tile -->
     <!-- Screenrecord Notification Ticker -->
     <string name="screenrecord_notif_ticker">Obrazovka sa nahráva</string>
+    <string name="screenrecord_notif_final_ticker">Obrazovka bola úspešne nahraná</string>
     <!-- Screenrecord notification title -->
     <string name="screenrecord_notif_title">Nahrávanie obrazovky</string>
     <!-- Screenrecord notification action: Stop -->
     <string name="screenrecord_notif_stop">Zastavit</string>
+    <string name="screenrecord_notif_completed">Obrazovka bola úspešne nahraná</string>
     <!-- Screenrecord notification action: show/hide pointer -->
     <string name="screenrecord_notif_pointer_on">Zobraziť ukazovateľ</string>
     <string name="screenrecord_notif_pointer_off">Skryť ukazovateľ</string>
     <!-- Screen record notification error title -->
     <string name="screenrecord_notif_error">Nepodarilo sa nahrať obrazovku</string>
     <string name="notification_channel_screenrecord">Záznamy obrazovky</string>
+    <string name="screenrecord_hide_hint">Skryť nápovedu</string>
+    <string name="screenrecord_show_hint">Zobraziť nápovedu</string>
+    <!-- Screenrecord QS tile -->
+    <string name="quick_settings_screenrecord_label">Nahrávanie obrazovky</string>
     <!-- Heads up snooze toast -->
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> • Plávajúce upozornenia sú odložené na 1 minútu.</string>
     <string name="heads_up_snooze_message"><xliff:g id="string">%s </xliff:g> • Plávajúce upozornenia sú odložené na <xliff:g id="number">%d </xliff:g> minút.</string>
@@ -106,8 +112,6 @@
     <string name="quick_settings_onthego_label">Režim na cestách</string>
     <!-- Label for item that screenrecords in power menu options dialog -->
     <string name="global_action_screenrecord">Nahrávanie obrazovky</string>
-    <!-- Screenrecord tile -->
-    <string name="quick_settings_screenrecord_label">Nahrávanie obrazovky</string>
     <!-- CPUInfo tile -->
     <string name="quick_settings_cpuinfo_label">Informácie o CPU</string>
     <!-- Brigntess tuning -->
@@ -129,4 +133,13 @@
     <string name="app_float_item_title">Plávajúce zobrazenie</string>
     <string name="app_stop_item_title">Ukončiť aplikáciu</string>
     <!-- Ambient Display Pixel-Like string -->
+    <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_running_services">Otvoriť obrazovku spustených služieb.</string>
+    <!-- Pie controls -->
+    <!-- Sync QS Tile -->
+    <string name="quick_settings_sync_label">Synchronizácia</string>
+    <string name="accessibility_quick_settings_sync_off">Synch. vyp.</string>
+    <string name="accessibility_quick_settings_sync_on">Synch. zap.</string>
+    <string name="accessibility_quick_settings_sync_changed_off">Synchronizácia je vypnutá</string>
+    <string name="accessibility_quick_settings_sync_changed_on">Synchronizácia je zapnutá</string>
 </resources>

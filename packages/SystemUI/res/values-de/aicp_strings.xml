@@ -93,16 +93,22 @@
     <string name="quick_settings_reboot_recovery_label">Recovery</string>
     <!-- Screenrecord Notification Ticker -->
     <string name="screenrecord_notif_ticker">Bildschirminhalt wird aufgezeichnet</string>
+    <string name="screenrecord_notif_final_ticker">Bildschirmaufzeichnung erfolgreich</string>
     <!-- Screenrecord notification title -->
     <string name="screenrecord_notif_title">Bildschirmaufnahme läuft</string>
     <!-- Screenrecord notification action: Stop -->
     <string name="screenrecord_notif_stop">Stop</string>
+    <string name="screenrecord_notif_completed">Bildschirmaufzeichnung erfolgreich</string>
     <!-- Screenrecord notification action: show/hide pointer -->
     <string name="screenrecord_notif_pointer_on">Zeiger anzeigen</string>
     <string name="screenrecord_notif_pointer_off">Zeiger verstecken</string>
     <!-- Screen record notification error title -->
     <string name="screenrecord_notif_error">Bildschirmaufnahme nicht möglich</string>
     <string name="notification_channel_screenrecord">Bildschirmaufnahme</string>
+    <string name="screenrecord_hide_hint">Hinweise ausblenden</string>
+    <string name="screenrecord_show_hint">Hinweise anzeigen</string>
+    <!-- Screenrecord QS tile -->
+    <string name="quick_settings_screenrecord_label">Bildschirmaufnahme</string>
     <!-- Heads up snooze toast -->
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Pop-Up Benachrichtigungen sind für 1 Minute deaktiviert.</string>
     <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - Pop-Up Benachrichtigungen sind für <xliff:g id="number">%d</xliff:g> Minuten deaktiviert.</string>
@@ -128,8 +134,6 @@
     <string name="quick_settings_onthego_label">On-The-Go</string>
     <!-- Label for item that screenrecords in power menu options dialog -->
     <string name="global_action_screenrecord">Bildschirmaufnahme</string>
-    <!-- Screenrecord tile -->
-    <string name="quick_settings_screenrecord_label">Bildschirmaufnahme</string>
     <!-- CPUInfo tile -->
     <string name="quick_settings_cpuinfo_label">CPU-Info</string>
     <!-- Brigntess tuning -->
@@ -162,4 +166,22 @@
     <string name="app_stop_item_title">App beenden</string>
     <!-- Ambient Display Pixel-Like string -->
     <string name="ambientmusic_songinfo">%s von %s</string>
+    <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_running_services">Übersicht der laufenden Anwendungen öffnen.</string>
+    <string name="tuner_hide_disabled_sim">Deaktivierte SIM-Karten ausblenden</string>
+    <!-- Pie controls -->
+    <string name="pie_date_format">EEEE, tt MMMM jjjj</string>
+    <string name="pie_hour_format_12">hh:mm</string>
+    <string name="pie_hour_format_24">HH:mm</string>
+    <string name="pie_am_pm">a</string>
+    <string name="pie_state_name">PIE Displaynavigation</string>
+    <string name="pie_state_summary">PIE Navigation bei \"Erweitertem Desktop\" verwenden</string>
+    <string name="pie_battery_level">"AKKUSTAND "</string>
+    <string name="quick_settings_pie">PIE Navigation</string>
+    <!-- Sync QS Tile -->
+    <string name="quick_settings_sync_label">Sync</string>
+    <string name="accessibility_quick_settings_sync_off">Sync AUS</string>
+    <string name="accessibility_quick_settings_sync_on">Sync AN</string>
+    <string name="accessibility_quick_settings_sync_changed_off">Sync deaktiviert</string>
+    <string name="accessibility_quick_settings_sync_changed_on">Sync aktiviert</string>
 </resources>

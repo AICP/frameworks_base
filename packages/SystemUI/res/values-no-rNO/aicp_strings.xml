@@ -74,6 +74,8 @@
     <string name="screenrecord_notif_stop">Stopp</string>
     <!-- Screenrecord notification action: show/hide pointer -->
     <!-- Screen record notification error title -->
+    <!-- Screenrecord QS tile -->
+    <string name="quick_settings_screenrecord_label">Skjermopptak</string>
     <!-- Heads up snooze toast -->
     <!-- NavBar Tuner -->
     <!-- Stock Navbar -->
@@ -81,8 +83,6 @@
     <!-- OnTheGo Tile -->
     <!-- Label for item that screenrecords in power menu options dialog -->
     <string name="global_action_screenrecord">Skjermopptak</string>
-    <!-- Screenrecord tile -->
-    <string name="quick_settings_screenrecord_label">Skjermopptak</string>
     <!-- CPUInfo tile -->
     <!-- Brigntess tuning -->
     <!-- Smart Pixels QS Tile -->
@@ -98,4 +98,12 @@
     <string name="omnijaws_package_not_available">OmniJaws ikke tilgjengelig</string>
     <!-- App circle sidebar -->
     <!-- Ambient Display Pixel-Like string -->
+    <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
+    <!-- Pie controls -->
+    <!-- Sync QS Tile -->
+    <string name="quick_settings_sync_label">Synkronisering</string>
+    <string name="accessibility_quick_settings_sync_off">Synkronisering av</string>
+    <string name="accessibility_quick_settings_sync_on">Synkronisering på</string>
+    <string name="accessibility_quick_settings_sync_changed_off">Synkronisering avslått</string>
+    <string name="accessibility_quick_settings_sync_changed_on">Synkronisering påslått</string>
 </resources>

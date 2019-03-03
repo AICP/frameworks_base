@@ -93,16 +93,22 @@
     <string name="quick_settings_reboot_recovery_label">Recovery</string>
     <!-- Screenrecord Notification Ticker -->
     <string name="screenrecord_notif_ticker">Obrazovka je nahrávána</string>
+    <string name="screenrecord_notif_final_ticker">Obrazovka byla úspěšně zaznamenána</string>
     <!-- Screenrecord notification title -->
     <string name="screenrecord_notif_title">Záznam obrazovky</string>
     <!-- Screenrecord notification action: Stop -->
     <string name="screenrecord_notif_stop">Zastavit</string>
+    <string name="screenrecord_notif_completed">Obrazovka byla úspěšně zaznamenána</string>
     <!-- Screenrecord notification action: show/hide pointer -->
     <string name="screenrecord_notif_pointer_on">Zobrazit ukazatel</string>
     <string name="screenrecord_notif_pointer_off">Skrýt ukazatel</string>
     <!-- Screen record notification error title -->
     <string name="screenrecord_notif_error">Nahrávání obrazovky není možné</string>
     <string name="notification_channel_screenrecord">Záznamy obrazovky</string>
+    <string name="screenrecord_hide_hint">Skrýt nápovědu</string>
+    <string name="screenrecord_show_hint">Zobrazit nápovědu</string>
+    <!-- Screenrecord QS tile -->
+    <string name="quick_settings_screenrecord_label">Záznam obrazovky</string>
     <!-- Heads up snooze toast -->
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Plovoucí oznámení jsou odložena na dobu 1 minuty.</string>
     <string name="heads_up_snooze_message"><xliff:g id="string">%s </xliff:g> - Plovoucí oznámení jsou odložena na dobu <xliff:g id="number">%d </xliff:g> minut.</string>
@@ -128,8 +134,6 @@
     <string name="quick_settings_onthego_label">On-The-Go</string>
     <!-- Label for item that screenrecords in power menu options dialog -->
     <string name="global_action_screenrecord">Záznam obrazovky</string>
-    <!-- Screenrecord tile -->
-    <string name="quick_settings_screenrecord_label">Záznam obrazovky</string>
     <!-- CPUInfo tile -->
     <string name="quick_settings_cpuinfo_label">Informace o CPU</string>
     <!-- Brigntess tuning -->
@@ -161,4 +165,23 @@
     <string name="app_float_item_title">Plovoucí zobrazení</string>
     <string name="app_stop_item_title">Ukončit aplikaci</string>
     <!-- Ambient Display Pixel-Like string -->
+    <string name="ambientmusic_songinfo">%s od %s</string>
+    <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_running_services">Otevřít obrazovku spuštěných služeb.</string>
+    <string name="tuner_hide_disabled_sim">Skrýt odpojené SIM karty</string>
+    <!-- Pie controls -->
+    <string name="pie_date_format">EEEE, dd MMMM yyyy</string>
+    <string name="pie_hour_format_12">hh:mm</string>
+    <string name="pie_hour_format_24">HH:mm</string>
+    <string name="pie_am_pm">a</string>
+    <string name="pie_state_name">Pie ovládání</string>
+    <string name="pie_state_summary">Použít prvky Pie v režimu přes celou obrazovku</string>
+    <string name="pie_battery_level">"ÚROVEŇ NABITÍ BATERIE "</string>
+    <string name="quick_settings_pie">Pie ovládání</string>
+    <!-- Sync QS Tile -->
+    <string name="quick_settings_sync_label">Synchronizace</string>
+    <string name="accessibility_quick_settings_sync_off">Vypnout synchronizaci</string>
+    <string name="accessibility_quick_settings_sync_on">Zapnout synchronizaci</string>
+    <string name="accessibility_quick_settings_sync_changed_off">Synchronizace vypnuta</string>
+    <string name="accessibility_quick_settings_sync_changed_on">Synchronizace zapnuta</string>
 </resources>

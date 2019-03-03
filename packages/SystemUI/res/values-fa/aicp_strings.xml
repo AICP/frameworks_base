@@ -39,13 +39,15 @@
     <!-- Screenrecord notification action: Stop -->
     <!-- Screenrecord notification action: show/hide pointer -->
     <!-- Screen record notification error title -->
+    <string name="screenrecord_hide_hint">مخفی کردن نکات</string>
+    <string name="screenrecord_show_hint">نمایش راهنما</string>
+    <!-- Screenrecord QS tile -->
     <!-- Heads up snooze toast -->
     <!-- NavBar Tuner -->
     <!-- Stock Navbar -->
     <!-- On The Go -->
     <!-- OnTheGo Tile -->
     <!-- Label for item that screenrecords in power menu options dialog -->
-    <!-- Screenrecord tile -->
     <!-- CPUInfo tile -->
     <!-- Brigntess tuning -->
     <!-- Smart Pixels QS Tile -->
@@ -54,4 +56,7 @@
     <!-- Omnijaws Weather -->
     <!-- App circle sidebar -->
     <!-- Ambient Display Pixel-Like string -->
+    <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
+    <!-- Pie controls -->
+    <!-- Sync QS Tile -->
 </resources>

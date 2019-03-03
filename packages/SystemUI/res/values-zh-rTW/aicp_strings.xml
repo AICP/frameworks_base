@@ -73,16 +73,22 @@
     <!-- Reboot/Recovery QS Tile -->
     <!-- Screenrecord Notification Ticker -->
     <string name="screenrecord_notif_ticker">正在錄製螢幕</string>
+    <string name="screenrecord_notif_final_ticker">螢幕錄製成功</string>
     <!-- Screenrecord notification title -->
     <string name="screenrecord_notif_title">正在錄製螢幕</string>
     <!-- Screenrecord notification action: Stop -->
     <string name="screenrecord_notif_stop">停止</string>
+    <string name="screenrecord_notif_completed">螢幕錄製成功</string>
     <!-- Screenrecord notification action: show/hide pointer -->
     <string name="screenrecord_notif_pointer_on">顯示指標</string>
     <string name="screenrecord_notif_pointer_off">隱藏指標</string>
     <!-- Screen record notification error title -->
     <string name="screenrecord_notif_error">無法錄製螢幕</string>
     <string name="notification_channel_screenrecord">螢幕錄製</string>
+    <string name="screenrecord_hide_hint">隱藏提示</string>
+    <string name="screenrecord_show_hint">顯示提示</string>
+    <!-- Screenrecord QS tile -->
+    <string name="quick_settings_screenrecord_label">螢幕錄製</string>
     <!-- Heads up snooze toast -->
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - 顯示預覽通知會暫停 1 分鐘。</string>
     <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - 顯示預覽通知會暫停 <xliff:g id="number">%d</xliff:g> 分鐘。</string>
@@ -106,8 +112,6 @@
     <string name="quick_settings_onthego_label">On-The-Go</string>
     <!-- Label for item that screenrecords in power menu options dialog -->
     <string name="global_action_screenrecord">螢幕錄製</string>
-    <!-- Screenrecord tile -->
-    <string name="quick_settings_screenrecord_label">螢幕錄製</string>
     <!-- CPUInfo tile -->
     <string name="quick_settings_cpuinfo_label">CPU 資訊</string>
     <!-- Brigntess tuning -->
@@ -129,4 +133,13 @@
     <string name="app_float_item_title">懸浮視窗</string>
     <string name="app_stop_item_title">終止應用程式</string>
     <!-- Ambient Display Pixel-Like string -->
+    <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_running_services">開啟執行服務的螢幕。</string>
+    <!-- Pie controls -->
+    <!-- Sync QS Tile -->
+    <string name="quick_settings_sync_label">同步處理</string>
+    <string name="accessibility_quick_settings_sync_off">同步處理關閉</string>
+    <string name="accessibility_quick_settings_sync_on">同步處理開啟</string>
+    <string name="accessibility_quick_settings_sync_changed_off">同步處理已關閉</string>
+    <string name="accessibility_quick_settings_sync_changed_on">同步處理已開啟</string>
 </resources>

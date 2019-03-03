@@ -18,7 +18,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Power menu advanced restart -->
     <string name="global_action_restart_system">再起動</string>
-    <string name="global_action_restart_advanced">高度な設定</string>
+    <string name="global_action_restart_advanced">高度な再起動</string>
     <string name="global_action_restart_recovery">リカバリー</string>
     <string name="global_action_restart_bootloader">ブートローダー</string>
     <string name="global_action_restart_ui">システム UI</string>

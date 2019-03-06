@@ -251,7 +251,7 @@ public class GestureButton implements PointerEventListener {
                         }
                         long deltaSinceDown = event.getEventTime() - mDownTime;
                         if (mPreparedKeycode == KeyEvent.KEYCODE_HOME && moveDistanceSinceDown < mSwipeMinLength) {
-                            if (moveDistanceSinceLast < mMoveTolerance) {
+                            if (( moveDistanceSinceDown > 20) && (moveDistanceSinceLast < mMoveTolerance)) {
                                 if (DEBUG) Slog.i(TAG, "long click: moveDistanceSinceLast = " + moveDistanceSinceLast);
                                 mGestureButtonHandler.removeMessages(MSG_SEND_LONG_PRESS);
                                 mGestureButtonHandler.sendEmptyMessageDelayed(MSG_SEND_LONG_PRESS, mSwipeTriggerTimeout);

@@ -5860,17 +5860,6 @@ public final class Settings {
         private static final Validator FORCE_EXPANDED_NOTIFICATIONS_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
-        /***************************
-         * AICP System Settings end
-         ***************************/
-
-        /**
-         * IMPORTANT: If you add a new public settings you also have to add it to
-         * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
-         * it to PRIVATE_SETTINGS below. Also add a validator that can validate
-         * the setting value. See an example above.
-         */
-
         /**
          * Hold current font name and name of the originating package Uses "|" as a delimiter
          *
@@ -5902,6 +5891,17 @@ public final class Settings {
         /** @hide */
         public static final Validator RECENTS_COMPONENT_VALIDATOR =
                 new SettingsValidators.InclusiveIntegerRangeValidator(0, 1);
+
+        /***************************
+         * AICP System Settings end
+         ***************************/
+
+        /**
+         * IMPORTANT: If you add a new public settings you also have to add it to
+         * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
+         * it to PRIVATE_SETTINGS below. Also add a validator that can validate
+         * the setting value. See an example above.
+         */
 
         /*
          * @hide

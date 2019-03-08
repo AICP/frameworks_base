@@ -5902,6 +5902,19 @@ public final class Settings {
         private static final Validator ENABLE_GAMING_MODE_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
+        /**
+         * Position of audio panel
+         * 0 - Right side
+         * 1 - Left side
+         *
+         * @hide
+         */
+        public static final String AUDIO_PANEL_VIEW_POSITION = "audio_panel_view_position";
+
+        private static final Validator AUDIO_PANEL_VIEW_POSITION_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6126,6 +6139,7 @@ public final class Settings {
             RECENTS_COMPONENT,
             FORCE_EXPANDED_NOTIFICATIONS,
             ENABLE_GAMING_MODE,
+            AUDIO_PANEL_VIEW_POSITION,
             // AICP Settings end
         };
 
@@ -6398,6 +6412,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(RECENTS_COMPONENT);
             PRIVATE_SETTINGS.add(FORCE_EXPANDED_NOTIFICATIONS);
             PRIVATE_SETTINGS.add(ENABLE_GAMING_MODE);
+            PRIVATE_SETTINGS.add(AUDIO_PANEL_VIEW_POSITION);
             // AICP Settings end
         }
 
@@ -6671,6 +6686,7 @@ public final class Settings {
             VALIDATORS.put(RECENTS_COMPONENT,RECENTS_COMPONENT_VALIDATOR);
             VALIDATORS.put(FORCE_EXPANDED_NOTIFICATIONS,FORCE_EXPANDED_NOTIFICATIONS_VALIDATOR);
             VALIDATORS.put(ENABLE_GAMING_MODE,ENABLE_GAMING_MODE_VALIDATOR);
+            VALIDATORS.put(AUDIO_PANEL_VIEW_POSITION,AUDIO_PANEL_VIEW_POSITION_VALIDATOR);
             // AICP Settings end
         }
 

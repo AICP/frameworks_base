@@ -16,7 +16,6 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- AOKP custom system animations -->
     <string name="animation_fade">Ausblenden</string>
     <string name="animation_slide_right">Gleiten von rechts</string>
     <string name="animation_slide_left">Gleiten von links</string>
@@ -32,17 +31,10 @@
     <string name="animation_grow_shrink_left">Einblenden (von links)</string>
     <string name="animation_grow_shrink_right">Einblenden (von rechts)</string>
     <string name="action_null">Leer</string>
-    <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permlab_toggleNavigationEditor">Navigationsleisten-Editor kontrollieren</string>
-    <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_toggleNavigationEditor">Ermöglicht einer App die Kontrolle des Navigationsleisten-Editors.</string>
-    <!-- Font service -->
-    <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permlab_accessFontManager">Zugriff auf Schriftarten-Manager</string>
-    <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_accessFontManager">Erlaubt einer App den Zugriff auf den Schriftarten-Manager.</string>
-    <!-- [CHAR LIMIT=NONE] Error when a package is installed but got the missing fonts.xml file, notifying the user why it isn't showing up. -->
     <string name="fontservice_incompatible_font">Das Schriftpaket, welches Sie installiert haben, ist aufgrund fehlender fonts.xml Dateien nicht kompatibel. Bitte kontaktieren Sie den Entwickler des Schriftpakets.</string>
-    <!-- About device screen, vendor security patch -->
     <string name="aicp_vendor_security_patch">Hersteller-Sicherheitspatch-Level</string>
 </resources>

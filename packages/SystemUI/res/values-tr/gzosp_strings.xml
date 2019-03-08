@@ -16,16 +16,13 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- Power menu advanced restart -->
     <string name="global_action_restart_system">Yeniden başlat</string>
     <string name="global_action_restart_advanced">Gelişmiş</string>
     <string name="global_action_restart_recovery">Kurtarma</string>
     <string name="global_action_restart_bootloader">Ön yükleyici</string>
     <string name="global_action_restart_ui">Arayüz</string>
-    <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
     <string name="keyguard_indication_dash_charging_time">Dash Şarj oluyor (tam dolmasına <xliff:g id="charging_time_left" example="4 hours and 2 minutes">%s</xliff:g> kaldı)</string>
     <string name="keyguard_plugged_in_dash_charging">Dash Şarj oluyor</string>
-    <!-- Tuner -->
     <string name="preview">Ön izleme</string>
     <string name="keycode">Tuş kodu</string>
     <string name="no_home_title">Ana ekran tuşu bulunamadı</string>
@@ -49,7 +46,6 @@
     <string name="navbar_activity_title">Gezinme çubuğu</string>
     <string name="lockscreen_default">Varsayılan</string>
     <string name="lockscreen_hidden">Yok</string>
-    <!-- Shows when people have clicked on the custom lockscreen shortcut [CHAR LIMIT=60] -->
     <string name="custom_hint">Başlatmak için simgeyi kaydırın</string>
     <string name="status_bar_vpn">VPN</string>
     <string name="quick_settings_roaming_title">Dolaşım göstergesi</string>

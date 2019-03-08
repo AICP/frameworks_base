@@ -16,16 +16,13 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- Power menu advanced restart -->
     <string name="global_action_restart_system">重启</string>
     <string name="global_action_restart_advanced">高级</string>
     <string name="global_action_restart_recovery">恢复模式</string>
     <string name="global_action_restart_bootloader">引导模式</string>
     <string name="global_action_restart_ui">系统界面</string>
-    <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
     <string name="keyguard_indication_dash_charging_time">Dash 闪充 (还需 <xliff:g id="charging_time_left" example="4 hours and 2 minutes">%s</xliff:g> 充满)</string>
     <string name="keyguard_plugged_in_dash_charging">Dash 闪充</string>
-    <!-- Tuner -->
     <string name="preview">预览</string>
     <string name="keycode">键码</string>
     <string name="no_home_title">找不到主页按钮</string>
@@ -49,7 +46,6 @@
     <string name="navbar_activity_title">导航栏</string>
     <string name="lockscreen_default">默认</string>
     <string name="lockscreen_hidden">无</string>
-    <!-- Shows when people have clicked on the custom lockscreen shortcut [CHAR LIMIT=60] -->
     <string name="custom_hint">滑动图标以启动</string>
     <string name="status_bar_vpn">VPN</string>
     <string name="quick_settings_roaming_title">漫游标志</string>

@@ -19,43 +19,30 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- Heads up QS tile -->
-    <!-- Aicp Extras Tile -->
     <string name="quick_aicp_extras_label">Aicp 추가설정</string>
     <string name="quick_aicp_extras_toast">하하, 정말로 길게 누르는 행동이 너를 어디론가 데러다 줄거라고 생각하는거야!!</string>
-    <!-- Screenshoot tile -->
     <string name="quick_settings_screenshot_label">스크린샷</string>
-    <!-- USB Tethering tile -->
     <string name="accessibility_quick_settings_usb_tether_off">USB 테더링 끄기</string>
     <string name="accessibility_quick_settings_usb_tether_on">USB 테더링 켜기</string>
     <string name="accessibility_quick_settings_usb_tether_changed_off">USB 테더링 꺼짐</string>
     <string name="accessibility_quick_settings_usb_tether_changed_on">USB 테더링 켜짐</string>
     <string name="quick_settings_usb_tether_label">USB 테더링</string>
-    <!-- Caffeine tile -->
     <string name="quick_settings_caffeine_label">카페인</string>
     <string name="accessibility_quick_settings_caffeine_off">카페인 꺼짐</string>
     <string name="accessibility_quick_settings_caffeine_on">카페인 켜짐</string>
-    <!-- AOD QS tile -->
-    <!-- ADB over network tile -->
     <string name="quick_settings_network_adb_disabled_label">비활성화됨</string>
-    <!-- QS Config -->
-    <!-- Language toggle tile -->
     <string name="quick_settings_locale_label">언어</string>
     <string name="quick_settings_locale_more_locales_toast">토글 기능을 활성화 하려면 다중 언어를 설정하시기 바랍니다</string>
-    <!-- Music tile -->
     <string name="quick_settings_music_label">음악</string>
     <string name="quick_settings_music_play">재생</string>
     <string name="quick_settings_music_pause">일시중지</string>
-    <!-- Google tiles -->
     <string name="quick_settings_google_assist_label">어시스턴트</string>
     <string name="quick_settings_google_voice_assist_label">음성 지원</string>
     <string name="quick_settings_google_now_label">구글 피드</string>
-    <!-- Sound tile -->
     <string name="quick_settings_sound_label">소리</string>
     <string name="quick_settings_sound_ring">벨소리</string>
     <string name="quick_settings_sound_vibrate">진동</string>
     <string name="quick_settings_sound_silent">무음</string>
-    <!-- Compass QS Tile -->
     <string name="quick_settings_compass_label">나침반</string>
     <string name="quick_settings_compass_init">초기화중\u2026</string>
     <string name="accessibility_quick_settings_compass_off">나침반 끄기.</string>
@@ -70,32 +57,21 @@
     <string name="quick_settings_compass_SW">SW</string>
     <string name="quick_settings_compass_W">W</string>
     <string name="quick_settings_compass_NW">NW</string>
-    <!-- Reboot/Recovery QS Tile -->
-    <!-- Screenrecord Notification Ticker -->
     <string name="screenrecord_notif_ticker">화면이 녹화되고 있습니다.</string>
     <string name="screenrecord_notif_final_ticker">화면이 성공적으로 녹화되었습니다</string>
-    <!-- Screenrecord notification title -->
     <string name="screenrecord_notif_title">화면 녹화 중</string>
-    <!-- Screenrecord notification action: Stop -->
     <string name="screenrecord_notif_stop">정지</string>
     <string name="screenrecord_notif_completed">화면이 성공적으로 녹화되었습니다</string>
-    <!-- Screenrecord notification action: show/hide pointer -->
     <string name="screenrecord_notif_pointer_on">터치 표시</string>
     <string name="screenrecord_notif_pointer_off">터치 숨기기</string>
-    <!-- Screen record notification error title -->
     <string name="screenrecord_notif_error">화면을 녹화할 수 없습니다</string>
     <string name="notification_channel_screenrecord">화면 녹화</string>
     <string name="screenrecord_hide_hint">힌트 숨기기</string>
     <string name="screenrecord_show_hint">힌트 보기</string>
-    <!-- Screenrecord QS tile -->
     <string name="quick_settings_screenrecord_label">화면 녹화</string>
-    <!-- Heads up snooze toast -->
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - 꺼내기 알람을 1분간 중지 시킵니다.</string>
     <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - 꺼내기를 알람을 <xliff:g id="number">%d</xliff:g> 분간 중지 시킵니다.</string>
-    <!-- NavBar Tuner -->
-    <!-- Stock Navbar -->
     <string name="systemui_tuner_navbar_title">기본 설정</string>
-    <!-- On The Go -->
     <string name="onthego_notif_ticker">On-The-Go 모드 활성화됨</string>
     <string name="onthego_notif_title">On-The-Go 모드가 활성화 되었습니다</string>
     <string name="onthego_notif_stop">정지</string>
@@ -108,17 +84,9 @@
     <string name="onthego_service_toggle">자동 다시 시작 서비스</string>
     <string name="onthego_channel_name">메인</string>
     <string name="global_action_onthego">On-The-Go</string>
-    <!-- OnTheGo Tile -->
     <string name="quick_settings_onthego_label">On-The-Go</string>
-    <!-- Label for item that screenrecords in power menu options dialog -->
     <string name="global_action_screenrecord">화면 녹화</string>
-    <!-- CPUInfo tile -->
     <string name="quick_settings_cpuinfo_label">CPU 정보</string>
-    <!-- Brigntess tuning -->
-    <!-- Smart Pixels QS Tile -->
-    <!-- QS customizer -->
-    <!-- Immersive tile -->
-    <!-- Omnijaws Weather -->
     <string name="omnijaws_service_error">오류</string>
     <string name="omnijaws_service_unkown">날씨 정보 없음</string>
     <string name="omnijaws_service_error_long">날씨 정보 불러오기 오류</string>
@@ -128,15 +96,10 @@
     <string name="omnijaws_current_text">현재</string>
     <string name="omnijaws_package_not_available">OmniJaws를 사용할 수 없음</string>
     <string name="omnijaws_service_last_update">최근 업데이트:</string>
-    <!-- App circle sidebar -->
     <string name="app_float_maximize_item_title">최대화</string>
     <string name="app_float_item_title">플로팅 뷰</string>
     <string name="app_stop_item_title">앱 종료</string>
-    <!-- Ambient Display Pixel-Like string -->
-    <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_running_services">실행중인 서비스 보기</string>
-    <!-- Pie controls -->
-    <!-- Sync QS Tile -->
     <string name="quick_settings_sync_label">동기화</string>
     <string name="accessibility_quick_settings_sync_off">동기화 끄기</string>
     <string name="accessibility_quick_settings_sync_on">동기화 켜기</string>

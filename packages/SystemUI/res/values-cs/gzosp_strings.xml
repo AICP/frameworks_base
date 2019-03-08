@@ -16,16 +16,13 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- Power menu advanced restart -->
     <string name="global_action_restart_system">Restartovat</string>
     <string name="global_action_restart_advanced">Rozšířené</string>
     <string name="global_action_restart_recovery">Recovery</string>
     <string name="global_action_restart_bootloader">Bootloader</string>
     <string name="global_action_restart_ui">SystemUI</string>
-    <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
     <string name="keyguard_indication_dash_charging_time">DASH nabíjení (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%s</xliff:g> do plného nabití)</string>
     <string name="keyguard_plugged_in_dash_charging">DASH nabíjení</string>
-    <!-- Tuner -->
     <string name="preview">Náhled</string>
     <string name="keycode">Klávesa</string>
     <string name="no_home_title">Nebylo nalezeno tlačítko plochy</string>
@@ -49,7 +46,6 @@
     <string name="navbar_activity_title">Navigační panel</string>
     <string name="lockscreen_default">Výchozí</string>
     <string name="lockscreen_hidden">Nic</string>
-    <!-- Shows when people have clicked on the custom lockscreen shortcut [CHAR LIMIT=60] -->
     <string name="custom_hint">Spustit přejetím prstem od ikony</string>
     <string name="status_bar_vpn">VPN</string>
     <string name="quick_settings_roaming_title">Indikátor roamingu</string>

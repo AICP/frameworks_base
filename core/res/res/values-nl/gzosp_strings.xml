@@ -18,8 +18,6 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="reboot_title">Opnieuw opstarten</string>
     <string name="reboot_message">Systeem wordt opnieuw gestart</string>
-    <!-- MicroG -->
     <string name="permlab_fakePackageSignature">Pakkethandtekening nabootsen</string>
-    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_fakePackageSignature">De app toestaan zich voor te doen als een andere app. Schadelijke apps kunnen dit mogelijk gebruiken om toegang te krijgen tot persoonlijke toepassingsgegevens. Legitieme toepassingen bevatten een emulator die pretendeert te zijn wat het emuleert. Verleen deze toestemming met de nodige voorzichtigheid!</string>
 </resources>

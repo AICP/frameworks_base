@@ -16,7 +16,6 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- AOKP custom system animations -->
     <string name="animation_fade">Vervagen</string>
     <string name="animation_slide_right">Rechts inschuiven</string>
     <string name="animation_slide_left">Links inschuiven</string>
@@ -32,17 +31,10 @@
     <string name="animation_grow_shrink_left">Ingroeien (van links)</string>
     <string name="animation_grow_shrink_right">Ingroeien (van rechts)</string>
     <string name="action_null">Leeg</string>
-    <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permlab_toggleNavigationEditor">navigatiebalk-editor beheren</string>
-    <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_toggleNavigationEditor">Een app toestaan om de navigitiebalk-editor te beheren.</string>
-    <!-- Font service -->
-    <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permlab_accessFontManager">toegang tot lettertype beheerder</string>
-    <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_accessFontManager">Staat een app toegang tot de lettertype beheerder toe.</string>
-    <!-- [CHAR LIMIT=NONE] Error when a package is installed but got the missing fonts.xml file, notifying the user why it isn't showing up. -->
     <string name="fontservice_incompatible_font">Het lettertype-pakket dat u hebt geïnstalleerd is niet compatibel vanwege ontbrekend bestand fonts.xml in de bestanden. Neem contact op met de pakketontwikkelaar voor ondersteuning.</string>
-    <!-- About device screen, vendor security patch -->
     <string name="aicp_vendor_security_patch">Niveau van leveranciers-beveiligingspatch</string>
 </resources>

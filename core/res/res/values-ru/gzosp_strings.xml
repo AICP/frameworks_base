@@ -18,8 +18,6 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="reboot_title">Перезагрузка</string>
     <string name="reboot_message">Перезагрузка системы</string>
-    <!-- MicroG -->
     <string name="permlab_fakePackageSignature">Разрешить подмену подписи</string>
-    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_fakePackageSignature">Разрешить приложению выдавать себя за другое. Вредоносное приложение может получить доступ к вашим данным. Легитимное использовение включает в себя эмулятор, притворяющийся тем, что он эмулирует. Используйте только на свой страх и риск!</string>
 </resources>

@@ -16,16 +16,13 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- Power menu advanced restart -->
     <string name="global_action_restart_system">Reniciar</string>
     <string name="global_action_restart_advanced">Avanzado</string>
     <string name="global_action_restart_recovery">Recuperación</string>
     <string name="global_action_restart_bootloader">Bootloader</string>
     <string name="global_action_restart_ui">Interfaz de Usuario</string>
-    <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
     <string name="keyguard_indication_dash_charging_time">Carga Dash (<xliff:g id="charging_time_left" ejemplo="4 horas y 2 minutos">%s</xliff:g> hasta completar)</string>
     <string name="keyguard_plugged_in_dash_charging">Carga Dash</string>
-    <!-- Tuner -->
     <string name="preview">Vista previa</string>
     <string name="keycode">KeyCode</string>
     <string name="no_home_title">Botón de inicio no encontrado</string>
@@ -49,7 +46,6 @@
     <string name="navbar_activity_title">Barra de navegación</string>
     <string name="lockscreen_default">Predeterminado</string>
     <string name="lockscreen_hidden">Ninguno</string>
-    <!-- Shows when people have clicked on the custom lockscreen shortcut [CHAR LIMIT=60] -->
     <string name="custom_hint">Deslizar desde el icono para abrir</string>
     <string name="status_bar_vpn">VPN</string>
     <string name="quick_settings_roaming_title">Indicador de roaming</string>

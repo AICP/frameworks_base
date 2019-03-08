@@ -19,43 +19,30 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- Heads up QS tile -->
-    <!-- Aicp Extras Tile -->
     <string name="quick_aicp_extras_label">إضافات Aicp</string>
     <string name="quick_aicp_extras_toast">ههه, هل ظننت أن الضغط مطولا قد يأخذك لخيارات أخرى!!!</string>
-    <!-- Screenshoot tile -->
     <string name="quick_settings_screenshot_label">تصوير الشاشة</string>
-    <!-- USB Tethering tile -->
     <string name="accessibility_quick_settings_usb_tether_off">الإنترنت عبر USB لا يعمل</string>
     <string name="accessibility_quick_settings_usb_tether_on">الانترنت عبر USB يعمل</string>
     <string name="accessibility_quick_settings_usb_tether_changed_off">تم إيقاف الانترنت عبر USB</string>
     <string name="accessibility_quick_settings_usb_tether_changed_on">تم تشغيل الانترنت عبر USB</string>
     <string name="quick_settings_usb_tether_label">الانترنت عبر USB</string>
-    <!-- Caffeine tile -->
     <string name="quick_settings_caffeine_label">وضع الكافيين</string>
     <string name="accessibility_quick_settings_caffeine_off">كافيين معطل</string>
     <string name="accessibility_quick_settings_caffeine_on">كافيين مفعل</string>
-    <!-- AOD QS tile -->
-    <!-- ADB over network tile -->
     <string name="quick_settings_network_adb_disabled_label">معطل</string>
-    <!-- QS Config -->
-    <!-- Language toggle tile -->
     <string name="quick_settings_locale_label">اللّغة</string>
     <string name="quick_settings_locale_more_locales_toast">قم بإعداد أكثر من لغة لتمكين مفتاح التبديل</string>
-    <!-- Music tile -->
     <string name="quick_settings_music_label">موسيقى</string>
     <string name="quick_settings_music_play">تشغيل</string>
     <string name="quick_settings_music_pause">إيقاف مؤقت</string>
-    <!-- Google tiles -->
     <string name="quick_settings_google_assist_label">المساعد</string>
     <string name="quick_settings_google_voice_assist_label">المساعد الصوتي</string>
     <string name="quick_settings_google_now_label">تغذية جوجل</string>
-    <!-- Sound tile -->
     <string name="quick_settings_sound_label">الصوت</string>
     <string name="quick_settings_sound_ring">رنين</string>
     <string name="quick_settings_sound_vibrate">إهتزاز</string>
     <string name="quick_settings_sound_silent">صامت</string>
-    <!-- Compass QS Tile -->
     <string name="quick_settings_compass_label">البوصلة</string>
     <string name="quick_settings_compass_init">تهيئة/u2026</string>
     <string name="accessibility_quick_settings_compass_off">البوصلة لا تعمل.</string>
@@ -70,39 +57,20 @@
     <string name="quick_settings_compass_SW">الجنوب الغربي</string>
     <string name="quick_settings_compass_W">الغرب</string>
     <string name="quick_settings_compass_NW">الشمال الغربي</string>
-    <!-- Reboot/Recovery QS Tile -->
-    <!-- Screenrecord Notification Ticker -->
     <string name="screenrecord_notif_ticker">يتم تسجيل الشاشة</string>
     <string name="screenrecord_notif_final_ticker">تم تسجيل الشاشة بنجاح</string>
-    <!-- Screenrecord notification title -->
     <string name="screenrecord_notif_title">جارٍ تسجيل الشاشة</string>
-    <!-- Screenrecord notification action: Stop -->
     <string name="screenrecord_notif_stop">إيقاف</string>
     <string name="screenrecord_notif_completed">تم تسجيل الشاشة بنجاح</string>
-    <!-- Screenrecord notification action: show/hide pointer -->
     <string name="screenrecord_notif_pointer_on">إظهار المؤشر</string>
     <string name="screenrecord_notif_pointer_off">إخفاء المؤشر</string>
-    <!-- Screen record notification error title -->
     <string name="screenrecord_notif_error">لا يمكن تسجيل الشاشة</string>
     <string name="notification_channel_screenrecord">تسجيل الشاشة</string>
     <string name="screenrecord_hide_hint">إخفاء التلميح</string>
     <string name="screenrecord_show_hint">إظهار التلميح</string>
-    <!-- Screenrecord QS tile -->
     <string name="quick_settings_screenrecord_label">تسجيل الشاشة</string>
-    <!-- Heads up snooze toast -->
-    <!-- NavBar Tuner -->
-    <!-- Stock Navbar -->
     <string name="systemui_tuner_navbar_title">الإعدادات الإفتراضية</string>
-    <!-- On The Go -->
-    <!-- OnTheGo Tile -->
-    <!-- Label for item that screenrecords in power menu options dialog -->
     <string name="global_action_screenrecord">تسجيل الشاشة</string>
-    <!-- CPUInfo tile -->
-    <!-- Brigntess tuning -->
-    <!-- Smart Pixels QS Tile -->
-    <!-- QS customizer -->
-    <!-- Immersive tile -->
-    <!-- Omnijaws Weather -->
     <string name="omnijaws_service_error">خطأ</string>
     <string name="omnijaws_service_unkown">لا يوجد بيانات الطقس</string>
     <string name="omnijaws_service_error_long">خطأ في تحميل بيانات الطقس</string>
@@ -112,12 +80,7 @@
     <string name="omnijaws_current_text">الآن</string>
     <string name="omnijaws_package_not_available">OmniJaws غير متاح</string>
     <string name="omnijaws_service_last_update">آخر تحديث:</string>
-    <!-- App circle sidebar -->
-    <!-- Ambient Display Pixel-Like string -->
-    <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_running_services">فتح شاشة الخدمات المشغلة في الخلفية.</string>
-    <!-- Pie controls -->
-    <!-- Sync QS Tile -->
     <string name="quick_settings_sync_label">مزامنة</string>
     <string name="accessibility_quick_settings_sync_off">إيقاف المزامنة</string>
     <string name="accessibility_quick_settings_sync_on">تفعيل المزامنة</string>

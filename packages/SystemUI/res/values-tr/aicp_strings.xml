@@ -19,35 +19,27 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- Heads up QS tile -->
     <string name="quick_settings_heads_up_label">Bildirim pencereleri</string>
     <string name="accessibility_quick_settings_heads_up_off">Bildirim pencereleri kapalı.</string>
     <string name="accessibility_quick_settings_heads_up_on">Bildirim pencereleri açık.</string>
     <string name="accessibility_quick_settings_heads_up_changed_off">Bildirim pencereleri kapatıldı.</string>
     <string name="accessibility_quick_settings_heads_up_changed_on">Bildirim pencereleri açıldı.</string>
-    <!-- Aicp Extras Tile -->
     <string name="quick_aicp_extras_label">Aicp Extras</string>
     <string name="quick_aicp_extras_toast">LOL, gerçekten uzun basmanın bir işe yarayacağına inandın mı!!!</string>
-    <!-- Screenshoot tile -->
     <string name="quick_settings_screenshot_label">Ekran görüntüsü</string>
-    <!-- USB Tethering tile -->
     <string name="accessibility_quick_settings_usb_tether_off">USB internet paylaşımı kapalı</string>
     <string name="accessibility_quick_settings_usb_tether_on">USB internet paylaşımı açık</string>
     <string name="accessibility_quick_settings_usb_tether_changed_off">USB internet paylaşımı kapatıldı</string>
     <string name="accessibility_quick_settings_usb_tether_changed_on">USB internet paylaşımı açıldı</string>
     <string name="quick_settings_usb_tether_label">USB internet paylaşımı</string>
-    <!-- Caffeine tile -->
     <string name="quick_settings_caffeine_label">Kafein</string>
     <string name="accessibility_quick_settings_caffeine_off">Kafein kapalı</string>
     <string name="accessibility_quick_settings_caffeine_on">Kafein açık</string>
-    <!-- AOD QS tile -->
     <string name="quick_settings_aod_label">AOD</string>
-    <!-- ADB over network tile -->
     <string name="quick_settings_network_adb_enabled_label">Etkin</string>
     <string name="quick_settings_network_adb_disabled_label">Devre dışı</string>
     <string name="quick_settings_network_adb_label">Ağ üzerinden ADB</string>
     <string name="quick_settings_network_adb_toast">USB hata ayıklama etkin değil</string>
-    <!-- QS Config -->
     <string name="qs_menu_item_columns">Sütunlar</string>
     <string name="qs_menu_item_columns_landscape">Yatay sütunlar</string>
     <string name="qs_menu_item_reset">Sıfırla</string>
@@ -56,23 +48,18 @@
     <string name="qs_menu_item_rows_landscape">Yatay satırlar</string>
     <string name="qs_menu_item_qs_columns">Hızlı ayarlar sütunları</string>
     <string name="qs_menu_item_columns_auto">Otomatik</string>
-    <!-- Language toggle tile -->
     <string name="quick_settings_locale_label">Dil</string>
     <string name="quick_settings_locale_more_locales_toast">Geçiş işlevselliğinin etkin olması için lütfen birden fazla dil ekleyin</string>
-    <!-- Music tile -->
     <string name="quick_settings_music_label">Müzik</string>
     <string name="quick_settings_music_play">Oynat</string>
     <string name="quick_settings_music_pause">Duraklat</string>
-    <!-- Google tiles -->
     <string name="quick_settings_google_assist_label">Asistan</string>
     <string name="quick_settings_google_voice_assist_label">Sesli asistan</string>
     <string name="quick_settings_google_now_label">Google now</string>
-    <!-- Sound tile -->
     <string name="quick_settings_sound_label">Ses</string>
     <string name="quick_settings_sound_ring">Zil sesi</string>
     <string name="quick_settings_sound_vibrate">Titreşim</string>
     <string name="quick_settings_sound_silent">Sessiz</string>
-    <!-- Compass QS Tile -->
     <string name="quick_settings_compass_label">Pusula</string>
     <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
     <string name="quick_settings_compass_init">Başlatılıyor\u2026</string>
@@ -88,36 +75,25 @@
     <string name="quick_settings_compass_SW">SW</string>
     <string name="quick_settings_compass_W">W</string>
     <string name="quick_settings_compass_NW">NW</string>
-    <!-- Reboot/Recovery QS Tile -->
     <string name="quick_settings_reboot_label">Yeniden başlat</string>
     <string name="quick_settings_reboot_recovery_label">Kurtarma modu (Recovery)</string>
-    <!-- Screenrecord Notification Ticker -->
     <string name="screenrecord_notif_ticker">Ekran kaydediliyor</string>
     <string name="screenrecord_notif_final_ticker">Ekran başarıyla kaydedildi</string>
-    <!-- Screenrecord notification title -->
     <string name="screenrecord_notif_title">Ekran kaydediliyor</string>
-    <!-- Screenrecord notification action: Stop -->
     <string name="screenrecord_notif_stop">Durdur</string>
     <string name="screenrecord_notif_completed">Ekran başarıyla kaydedildi</string>
-    <!-- Screenrecord notification action: show/hide pointer -->
     <string name="screenrecord_notif_pointer_on">İşaretçiyi göster</string>
     <string name="screenrecord_notif_pointer_off">İşaretçiyi gizle</string>
-    <!-- Screen record notification error title -->
     <string name="screenrecord_notif_error">Ekran kaydedilemiyor</string>
     <string name="notification_channel_screenrecord">Ekran kayıtları</string>
     <string name="screenrecord_hide_hint">İpuçlarını gizle</string>
     <string name="screenrecord_show_hint">İpuçlarını göster</string>
-    <!-- Screenrecord QS tile -->
     <string name="quick_settings_screenrecord_label">Ekran kaydı</string>
-    <!-- Heads up snooze toast -->
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Bildirim pencereleri 1 dakika kadar erteleniyor.</string>
     <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - Bildirim pencereleri <xliff:g id="number">%d</xliff:g> dakika erteleniyor.</string>
-    <!-- NavBar Tuner -->
     <string name="menu_ime_always_show">Menü / Klavye Değiştirici (her zaman göster)</string>
     <string name="search">Arama</string>
-    <!-- Stock Navbar -->
     <string name="systemui_tuner_navbar_title">Standart ayarlar</string>
-    <!-- On The Go -->
     <string name="onthego_notif_ticker">Yürüme modu etkinleştirildi</string>
     <string name="onthego_notif_title">Yürüme modu aktif</string>
     <string name="onthego_notif_stop">Durdur</string>
@@ -130,27 +106,19 @@
     <string name="onthego_service_toggle">Servisi otomatik yeniden başlat</string>
     <string name="onthego_channel_name">Ana</string>
     <string name="global_action_onthego">Yürüme modu</string>
-    <!-- OnTheGo Tile -->
     <string name="quick_settings_onthego_label">Yürüme modu</string>
-    <!-- Label for item that screenrecords in power menu options dialog -->
     <string name="global_action_screenrecord">Ekran kaydı</string>
-    <!-- CPUInfo tile -->
     <string name="quick_settings_cpuinfo_label">İşlemci bilgisi</string>
-    <!-- Brigntess tuning -->
     <string name="tuner_show_auto_brightness">Uyarlanabilir parlaklık tuşu</string>
     <string name="tuner_auto_brightness_right">Uyarlanabilir parlaklık tuşu için doğru konum</string>
     <string name="tuner_show_brightness_buttons">Parlaklık kontrol tuşları</string>
-    <!-- Smart Pixels QS Tile -->
     <string name="quick_settings_smart_pixels">Akıllı pikseller</string>
     <string name="quick_settings_smart_pixels_on_power_save">Otomatik olarak akıllı pikselleri etkinleştir</string>
-    <!-- QS customizer -->
     <string name="drag_or_tap_to_add_tiles">Kare eklemek için sürükleyin veya dokunun</string>
-    <!-- Immersive tile -->
     <string name="quick_settings_immersive_tile">Tam ekran modu</string>
     <string name="quick_settings_immersive_tile_statusbar">Tam ekran durum çubuğu</string>
     <string name="quick_settings_immersive_tile_navbar">Tam ekran gezinme çubuğu</string>
     <string name="quick_settings_immersive_tile_full">Tam ekran full</string>
-    <!-- Omnijaws Weather -->
     <string name="omnijaws_service_error">Hata</string>
     <string name="omnijaws_service_unkown">Hava durumu verileri yok</string>
     <string name="omnijaws_service_error_long">Hava durumu verileri yüklenemedi</string>
@@ -160,21 +128,16 @@
     <string name="omnijaws_current_text">Şimdi</string>
     <string name="omnijaws_package_not_available">OmniJaws mevcut değil</string>
     <string name="omnijaws_service_last_update">Son güncelleme:</string>
-    <!-- App circle sidebar -->
     <string name="app_float_maximize_item_title">Büyüt</string>
     <string name="app_float_item_title">Yüzer görünüm</string>
     <string name="app_stop_item_title">Uygulamayı sonlandır</string>
-    <!-- Ambient Display Pixel-Like string -->
     <string name="ambientmusic_songinfo">%s by %s</string>
-    <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_running_services">Çalışan hizmetler ekranını aç.</string>
     <string name="tuner_hide_disabled_sim">Devre dışı SIM kartları gizle</string>
-    <!-- Pie controls -->
     <string name="pie_state_name">Pie kontrolü</string>
     <string name="pie_state_summary">Tam ekran modundayken pie kontrolünü kullanın</string>
     <string name="pie_battery_level">"PİL SEVİYESİ "</string>
     <string name="quick_settings_pie">Pie kontrolü</string>
-    <!-- Sync QS Tile -->
     <string name="quick_settings_sync_label">Eşitleme</string>
     <string name="accessibility_quick_settings_sync_off">Eşitleme kapalı</string>
     <string name="accessibility_quick_settings_sync_on">Eşitleme açık</string>

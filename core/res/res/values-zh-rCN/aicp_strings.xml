@@ -16,7 +16,6 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- AOKP custom system animations -->
     <string name="animation_fade">淡出</string>
     <string name="animation_slide_right">向右滑动</string>
     <string name="animation_slide_left">向左滑动</string>
@@ -32,17 +31,10 @@
     <string name="animation_grow_shrink_left">缩放 (左侧)</string>
     <string name="animation_grow_shrink_right">缩放 (右侧)</string>
     <string name="action_null">空白</string>
-    <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permlab_toggleNavigationEditor">控制导航编辑器</string>
-    <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_toggleNavigationEditor">允许应用程序控制导航栏编辑器</string>
-    <!-- Font service -->
-    <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permlab_accessFontManager">访问字体管理器</string>
-    <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_accessFontManager">允许应用访问字体管理器。</string>
-    <!-- [CHAR LIMIT=NONE] Error when a package is installed but got the missing fonts.xml file, notifying the user why it isn't showing up. -->
     <string name="fontservice_incompatible_font">由于文件上缺少字体.xml，您安装的字体包不兼容。请联系软件包开发人员支持。</string>
-    <!-- About device screen, vendor security patch -->
     <string name="aicp_vendor_security_patch">供应商安全补丁</string>
 </resources>

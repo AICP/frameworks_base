@@ -16,16 +16,13 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- Power menu advanced restart -->
     <string name="global_action_restart_system">Перезагрузка</string>
     <string name="global_action_restart_advanced">Расширенная перезагрузка</string>
     <string name="global_action_restart_recovery">Режим восстановления</string>
     <string name="global_action_restart_bootloader">Загрузчик</string>
     <string name="global_action_restart_ui">Интерфейс системы</string>
-    <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
     <string name="keyguard_indication_dash_charging_time">Быстрая зарядка (<xliff:g id="charging_time_left" example="4 часа и 2 минуты">%s</xliff:g> до полной зарядки)</string>
     <string name="keyguard_plugged_in_dash_charging">Быстрая зарядка</string>
-    <!-- Tuner -->
     <string name="preview">Предварительный просмотр</string>
     <string name="keycode">Код клавиши</string>
     <string name="no_home_title">Кнопка \"Домой\" не найдена</string>
@@ -49,7 +46,6 @@
     <string name="navbar_activity_title">Панель навигации</string>
     <string name="lockscreen_default">По умолчанию</string>
     <string name="lockscreen_hidden">Отсутствует</string>
-    <!-- Shows when people have clicked on the custom lockscreen shortcut [CHAR LIMIT=60] -->
     <string name="custom_hint">Свайп со значка для запуска</string>
     <string name="status_bar_vpn">VPN</string>
     <string name="quick_settings_roaming_title">Индикатор роуминга</string>

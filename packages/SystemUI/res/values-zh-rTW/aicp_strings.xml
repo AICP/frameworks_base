@@ -19,43 +19,30 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- Heads up QS tile -->
-    <!-- Aicp Extras Tile -->
     <string name="quick_aicp_extras_label">Aicp 額外功能</string>
     <string name="quick_aicp_extras_toast">哈哈哈，真的以為長按有東西可以用！！！</string>
-    <!-- Screenshoot tile -->
     <string name="quick_settings_screenshot_label">擷取螢幕畫面</string>
-    <!-- USB Tethering tile -->
     <string name="accessibility_quick_settings_usb_tether_off">USB 網路共用關閉</string>
     <string name="accessibility_quick_settings_usb_tether_on">USB 網路共用開啟</string>
     <string name="accessibility_quick_settings_usb_tether_changed_off">USB 網路共用已關閉</string>
     <string name="accessibility_quick_settings_usb_tether_changed_on">USB 網路共用已開啟</string>
     <string name="quick_settings_usb_tether_label">USB 網路共用</string>
-    <!-- Caffeine tile -->
     <string name="quick_settings_caffeine_label">暫停休眠</string>
     <string name="accessibility_quick_settings_caffeine_off">暫停休眠關閉</string>
     <string name="accessibility_quick_settings_caffeine_on">暫停休眠開啟</string>
-    <!-- AOD QS tile -->
-    <!-- ADB over network tile -->
     <string name="quick_settings_network_adb_disabled_label">已停用</string>
-    <!-- QS Config -->
-    <!-- Language toggle tile -->
     <string name="quick_settings_locale_label">語言</string>
     <string name="quick_settings_locale_more_locales_toast">請配置多種語言以啟用切換功能</string>
-    <!-- Music tile -->
     <string name="quick_settings_music_label">音樂</string>
     <string name="quick_settings_music_play">播放</string>
     <string name="quick_settings_music_pause">暫停</string>
-    <!-- Google tiles -->
     <string name="quick_settings_google_assist_label">助理</string>
     <string name="quick_settings_google_voice_assist_label">語音助理</string>
     <string name="quick_settings_google_now_label">Google feed</string>
-    <!-- Sound tile -->
     <string name="quick_settings_sound_label">音效</string>
     <string name="quick_settings_sound_ring">鈴聲</string>
     <string name="quick_settings_sound_vibrate">震動</string>
     <string name="quick_settings_sound_silent">靜音</string>
-    <!-- Compass QS Tile -->
     <string name="quick_settings_compass_label">指南針</string>
     <string name="quick_settings_compass_init">初始化中\u2026</string>
     <string name="accessibility_quick_settings_compass_off">指南針關閉。</string>
@@ -70,32 +57,21 @@
     <string name="quick_settings_compass_SW">西南</string>
     <string name="quick_settings_compass_W">西</string>
     <string name="quick_settings_compass_NW">西北</string>
-    <!-- Reboot/Recovery QS Tile -->
-    <!-- Screenrecord Notification Ticker -->
     <string name="screenrecord_notif_ticker">正在錄製螢幕</string>
     <string name="screenrecord_notif_final_ticker">螢幕錄製成功</string>
-    <!-- Screenrecord notification title -->
     <string name="screenrecord_notif_title">正在錄製螢幕</string>
-    <!-- Screenrecord notification action: Stop -->
     <string name="screenrecord_notif_stop">停止</string>
     <string name="screenrecord_notif_completed">螢幕錄製成功</string>
-    <!-- Screenrecord notification action: show/hide pointer -->
     <string name="screenrecord_notif_pointer_on">顯示指標</string>
     <string name="screenrecord_notif_pointer_off">隱藏指標</string>
-    <!-- Screen record notification error title -->
     <string name="screenrecord_notif_error">無法錄製螢幕</string>
     <string name="notification_channel_screenrecord">螢幕錄製</string>
     <string name="screenrecord_hide_hint">隱藏提示</string>
     <string name="screenrecord_show_hint">顯示提示</string>
-    <!-- Screenrecord QS tile -->
     <string name="quick_settings_screenrecord_label">螢幕錄製</string>
-    <!-- Heads up snooze toast -->
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - 顯示預覽通知會暫停 1 分鐘。</string>
     <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - 顯示預覽通知會暫停 <xliff:g id="number">%d</xliff:g> 分鐘。</string>
-    <!-- NavBar Tuner -->
-    <!-- Stock Navbar -->
     <string name="systemui_tuner_navbar_title">原始設定</string>
-    <!-- On The Go -->
     <string name="onthego_notif_ticker">On-The-Go 已啟動</string>
     <string name="onthego_notif_title">On-The-Go 處於啟動狀態</string>
     <string name="onthego_notif_stop">停止</string>
@@ -108,17 +84,9 @@
     <string name="onthego_service_toggle">自動重新啟動服務</string>
     <string name="onthego_channel_name">主要</string>
     <string name="global_action_onthego">On-The-Go</string>
-    <!-- OnTheGo Tile -->
     <string name="quick_settings_onthego_label">On-The-Go</string>
-    <!-- Label for item that screenrecords in power menu options dialog -->
     <string name="global_action_screenrecord">螢幕錄製</string>
-    <!-- CPUInfo tile -->
     <string name="quick_settings_cpuinfo_label">CPU 資訊</string>
-    <!-- Brigntess tuning -->
-    <!-- Smart Pixels QS Tile -->
-    <!-- QS customizer -->
-    <!-- Immersive tile -->
-    <!-- Omnijaws Weather -->
     <string name="omnijaws_service_error">錯誤</string>
     <string name="omnijaws_service_unkown">無天氣資料</string>
     <string name="omnijaws_service_error_long">載入天氣資料錯誤</string>
@@ -128,15 +96,10 @@
     <string name="omnijaws_current_text">立刻</string>
     <string name="omnijaws_package_not_available">OmniJaws 不可用</string>
     <string name="omnijaws_service_last_update">上次更新：</string>
-    <!-- App circle sidebar -->
     <string name="app_float_maximize_item_title">最大化</string>
     <string name="app_float_item_title">懸浮視窗</string>
     <string name="app_stop_item_title">終止應用程式</string>
-    <!-- Ambient Display Pixel-Like string -->
-    <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_running_services">開啟執行服務的螢幕。</string>
-    <!-- Pie controls -->
-    <!-- Sync QS Tile -->
     <string name="quick_settings_sync_label">同步處理</string>
     <string name="accessibility_quick_settings_sync_off">同步處理關閉</string>
     <string name="accessibility_quick_settings_sync_on">同步處理開啟</string>

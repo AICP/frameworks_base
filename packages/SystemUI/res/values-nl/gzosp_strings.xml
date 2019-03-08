@@ -16,16 +16,13 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- Power menu advanced restart -->
     <string name="global_action_restart_system">Opnieuw opstarten</string>
     <string name="global_action_restart_advanced">Geavanceerd</string>
     <string name="global_action_restart_recovery">Recovery</string>
     <string name="global_action_restart_bootloader">Bootloader</string>
     <string name="global_action_restart_ui">SystemUI</string>
-    <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
     <string name="keyguard_indication_dash_charging_time">Dash Opladen (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%s</xliff:g> tot volledig opgeladen)</string>
     <string name="keyguard_plugged_in_dash_charging">Snelladen middels Dash</string>
-    <!-- Tuner -->
     <string name="preview">Voorbeeld</string>
     <string name="keycode">Toetscode</string>
     <string name="no_home_title">Geen Home-toets gevonden</string>
@@ -49,7 +46,6 @@
     <string name="navbar_activity_title">Navigatiebalk</string>
     <string name="lockscreen_default">Standaard</string>
     <string name="lockscreen_hidden">Geen</string>
-    <!-- Shows when people have clicked on the custom lockscreen shortcut [CHAR LIMIT=60] -->
     <string name="custom_hint">Veeg vanaf icoon om te starten</string>
     <string name="status_bar_vpn">VPN</string>
     <string name="quick_settings_roaming_title">Roaming indicator</string>

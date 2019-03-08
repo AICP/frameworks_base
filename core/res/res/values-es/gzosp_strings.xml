@@ -18,8 +18,6 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="reboot_title">Reiniciar</string>
     <string name="reboot_message">Reiniciando el sistema</string>
-    <!-- MicroG -->
     <string name="permlab_fakePackageSignature">Falsear firma del paquete</string>
-    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_fakePackageSignature">Permite que la aplicación se ejecute como una aplicación diferente. Las aplicaciones maliciosas pueden usar esto para acceder a datos personales. Conceda este permiso con cuidado!</string>
 </resources>

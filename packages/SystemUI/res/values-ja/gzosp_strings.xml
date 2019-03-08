@@ -16,15 +16,11 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- Power menu advanced restart -->
     <string name="global_action_restart_system">再起動</string>
     <string name="global_action_restart_advanced">高度な再起動</string>
     <string name="global_action_restart_recovery">リカバリー</string>
     <string name="global_action_restart_bootloader">ブートローダー</string>
     <string name="global_action_restart_ui">システム UI</string>
-    <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
     <string name="keyguard_indication_dash_charging_time">Dash Charge 中（充電完了まで<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%s</xliff:g>）</string>
     <string name="keyguard_plugged_in_dash_charging">Dash Charge 中</string>
-    <!-- Tuner -->
-    <!-- Shows when people have clicked on the custom lockscreen shortcut [CHAR LIMIT=60] -->
 </resources>

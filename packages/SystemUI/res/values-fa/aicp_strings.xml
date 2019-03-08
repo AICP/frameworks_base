@@ -19,44 +19,7 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- Heads up QS tile -->
-    <!-- Aicp Extras Tile -->
-    <!-- Screenshoot tile -->
-    <!-- USB Tethering tile -->
-    <!-- Caffeine tile -->
-    <!-- AOD QS tile -->
-    <!-- ADB over network tile -->
     <string name="quick_settings_network_adb_disabled_label">غیرفعال</string>
-    <!-- QS Config -->
-    <!-- Language toggle tile -->
-    <!-- Music tile -->
-    <!-- Google tiles -->
-    <!-- Sound tile -->
-    <!-- Compass QS Tile -->
-    <!-- Reboot/Recovery QS Tile -->
-    <!-- Screenrecord Notification Ticker -->
-    <!-- Screenrecord notification title -->
-    <!-- Screenrecord notification action: Stop -->
-    <!-- Screenrecord notification action: show/hide pointer -->
-    <!-- Screen record notification error title -->
     <string name="screenrecord_hide_hint">مخفی کردن نکات</string>
     <string name="screenrecord_show_hint">نمایش راهنما</string>
-    <!-- Screenrecord QS tile -->
-    <!-- Heads up snooze toast -->
-    <!-- NavBar Tuner -->
-    <!-- Stock Navbar -->
-    <!-- On The Go -->
-    <!-- OnTheGo Tile -->
-    <!-- Label for item that screenrecords in power menu options dialog -->
-    <!-- CPUInfo tile -->
-    <!-- Brigntess tuning -->
-    <!-- Smart Pixels QS Tile -->
-    <!-- QS customizer -->
-    <!-- Immersive tile -->
-    <!-- Omnijaws Weather -->
-    <!-- App circle sidebar -->
-    <!-- Ambient Display Pixel-Like string -->
-    <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
-    <!-- Pie controls -->
-    <!-- Sync QS Tile -->
 </resources>

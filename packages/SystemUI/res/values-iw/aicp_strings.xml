@@ -19,29 +19,16 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- Heads up QS tile -->
-    <!-- Aicp Extras Tile -->
-    <!-- Screenshoot tile -->
     <string name="quick_settings_screenshot_label">צילום מסך</string>
-    <!-- USB Tethering tile -->
-    <!-- Caffeine tile -->
     <string name="quick_settings_caffeine_label">קפאין</string>
     <string name="accessibility_quick_settings_caffeine_off">קפאין כבוי</string>
     <string name="accessibility_quick_settings_caffeine_on">קפאין פועל</string>
-    <!-- AOD QS tile -->
-    <!-- ADB over network tile -->
-    <!-- QS Config -->
-    <!-- Language toggle tile -->
-    <!-- Music tile -->
     <string name="quick_settings_music_label">מוזיקה</string>
     <string name="quick_settings_music_play">נגן</string>
     <string name="quick_settings_music_pause">עצור</string>
-    <!-- Google tiles -->
-    <!-- Sound tile -->
     <string name="quick_settings_sound_label">צליל</string>
     <string name="quick_settings_sound_ring">צלצול</string>
     <string name="quick_settings_sound_vibrate">רטט</string>
-    <!-- Compass QS Tile -->
     <string name="accessibility_quick_settings_compass_off">מצפן כבוי.</string>
     <string name="accessibility_quick_settings_compass_changed_off">מצפן כובה.</string>
     <string name="accessibility_quick_settings_compass_changed_on">מצפן הודלק.</string>
@@ -53,33 +40,9 @@
     <string name="quick_settings_compass_SW">ד.מע</string>
     <string name="quick_settings_compass_W">מע</string>
     <string name="quick_settings_compass_NW">צ.מע</string>
-    <!-- Reboot/Recovery QS Tile -->
-    <!-- Screenrecord Notification Ticker -->
-    <!-- Screenrecord notification title -->
-    <!-- Screenrecord notification action: Stop -->
     <string name="screenrecord_notif_stop">עצור</string>
-    <!-- Screenrecord notification action: show/hide pointer -->
-    <!-- Screen record notification error title -->
-    <!-- Screenrecord QS tile -->
     <string name="quick_settings_screenrecord_label">הקלטת מסך</string>
-    <!-- Heads up snooze toast -->
-    <!-- NavBar Tuner -->
-    <!-- Stock Navbar -->
-    <!-- On The Go -->
-    <!-- OnTheGo Tile -->
-    <!-- Label for item that screenrecords in power menu options dialog -->
     <string name="global_action_screenrecord">הקלטת מסך</string>
-    <!-- CPUInfo tile -->
-    <!-- Brigntess tuning -->
-    <!-- Smart Pixels QS Tile -->
-    <!-- QS customizer -->
-    <!-- Immersive tile -->
-    <!-- Omnijaws Weather -->
-    <!-- App circle sidebar -->
-    <!-- Ambient Display Pixel-Like string -->
-    <!-- accessibility label for button to open running apps prefscreen [CHAR LIMIT=NONE] -->
-    <!-- Pie controls -->
-    <!-- Sync QS Tile -->
     <string name="quick_settings_sync_label">סנכרון</string>
     <string name="accessibility_quick_settings_sync_off">סנכרון כבוי</string>
     <string name="accessibility_quick_settings_sync_on">סנכרון פעיל</string>

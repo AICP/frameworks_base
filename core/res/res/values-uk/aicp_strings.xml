@@ -16,17 +16,9 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- AOKP custom system animations -->
     <string name="animation_fade">Затухання</string>
     <string name="animation_slide_right">Слайд вправо</string>
     <string name="animation_slide_left">Слайд вліво</string>
     <string name="animation_default">За замовчуванням</string>
     <string name="animation_translucent">Напівпрозорий</string>
-    <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <!-- Font service -->
-    <!-- [CHAR LIMIT=NONE] Title of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <!-- [CHAR LIMIT=NONE] Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <!-- [CHAR LIMIT=NONE] Error when a package is installed but got the missing fonts.xml file, notifying the user why it isn't showing up. -->
-    <!-- About device screen, vendor security patch -->
 </resources>

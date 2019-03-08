@@ -16,16 +16,13 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- Power menu advanced restart -->
     <string name="global_action_restart_system">Újraindítás</string>
     <string name="global_action_restart_advanced">Speciális</string>
     <string name="global_action_restart_recovery">Recovery</string>
     <string name="global_action_restart_bootloader">Bootloader</string>
     <string name="global_action_restart_ui">Felhasználói felület</string>
-    <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
     <string name="keyguard_indication_dash_charging_time">Gyorstöltés (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%s</xliff:g> a teljes töltöttségig)</string>
     <string name="keyguard_plugged_in_dash_charging">Gyorstöltés</string>
-    <!-- Tuner -->
     <string name="preview">Előnézet</string>
     <string name="keycode">Billentyűkód</string>
     <string name="no_home_title">Nem található a Kezdőoldal-gomb</string>
@@ -49,7 +46,6 @@
     <string name="navbar_activity_title">Navigációs sáv</string>
     <string name="lockscreen_default">Alapértelmezett</string>
     <string name="lockscreen_hidden">Nincs</string>
-    <!-- Shows when people have clicked on the custom lockscreen shortcut [CHAR LIMIT=60] -->
     <string name="custom_hint">Indításhoz csúsztasson az ikonról</string>
     <string name="status_bar_vpn">VPN</string>
     <string name="quick_settings_roaming_title">Barangoláskijelző</string>

@@ -170,10 +170,6 @@
     <string name="accessibility_quick_settings_running_services">Übersicht der laufenden Anwendungen öffnen.</string>
     <string name="tuner_hide_disabled_sim">Deaktivierte SIM-Karten ausblenden</string>
     <!-- Pie controls -->
-    <string name="pie_date_format">EEEE, tt MMMM jjjj</string>
-    <string name="pie_hour_format_12">hh:mm</string>
-    <string name="pie_hour_format_24">HH:mm</string>
-    <string name="pie_am_pm">a</string>
     <string name="pie_state_name">PIE Displaynavigation</string>
     <string name="pie_state_summary">PIE Navigation bei \"Erweitertem Desktop\" verwenden</string>
     <string name="pie_battery_level">"AKKUSTAND "</string>

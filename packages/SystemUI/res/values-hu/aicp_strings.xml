@@ -169,10 +169,6 @@
     <string name="accessibility_quick_settings_running_services">Futó szolgálatások képernyő megnyitása.</string>
     <string name="tuner_hide_disabled_sim">A letiltott SIM-kártyákat rejtse el</string>
     <!-- Pie controls -->
-    <string name="pie_date_format">yyyy MMMM dd., EEEE</string>
-    <string name="pie_hour_format_12">hh:mm</string>
-    <string name="pie_hour_format_24">HH:mm</string>
-    <string name="pie_am_pm">a</string>
     <string name="pie_state_name">Pie-vezérlés</string>
     <string name="pie_state_summary">Pie vezérlő használata teljes képernyős üzemmódban</string>
     <string name="pie_battery_level">"AKKUMULÁTORSZINT "</string>

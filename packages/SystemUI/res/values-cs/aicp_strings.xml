@@ -170,10 +170,6 @@
     <string name="accessibility_quick_settings_running_services">Otevřít obrazovku spuštěných služeb.</string>
     <string name="tuner_hide_disabled_sim">Skrýt odpojené SIM karty</string>
     <!-- Pie controls -->
-    <string name="pie_date_format">EEEE, dd MMMM yyyy</string>
-    <string name="pie_hour_format_12">hh:mm</string>
-    <string name="pie_hour_format_24">HH:mm</string>
-    <string name="pie_am_pm">a</string>
     <string name="pie_state_name">Pie ovládání</string>
     <string name="pie_state_summary">Použít prvky Pie v režimu přes celou obrazovku</string>
     <string name="pie_battery_level">"ÚROVEŇ NABITÍ BATERIE "</string>

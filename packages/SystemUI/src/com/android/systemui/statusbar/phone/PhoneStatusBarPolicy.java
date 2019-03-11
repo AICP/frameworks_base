@@ -162,6 +162,7 @@ public class PhoneStatusBarPolicy implements Callback, Callbacks,
     private boolean mManagedProfileIconVisible = false;
 
     private boolean mShowBluetoothBattery;
+    private boolean mShowLocationIcon;
 
     private BluetoothController mBluetooth;
     private AlarmManager.AlarmClockInfo mNextAlarm;
@@ -302,9 +303,12 @@ public class PhoneStatusBarPolicy implements Callback, Callbacks,
 
         void observe() {
             ContentResolver resolver = mContext.getContentResolver();
-            Uri uri = Settings.System.getUriFor(Settings.System.BLUETOOTH_SHOW_BATTERY);
-            resolver.registerContentObserver(uri, false,
-                    this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.BLUETOOTH_SHOW_BATTERY),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUSBAR_LOCATION_ICON),
+                    false, this, UserHandle.USER_ALL);
             updateSettings();
         }
 
@@ -312,8 +316,14 @@ public class PhoneStatusBarPolicy implements Callback, Callbacks,
          *  @hide
          */
         @Override
-        public void onChange(boolean selfChange) {
-            updateSettings();
+        public void onChange(boolean selfChange, Uri uri) {
+            if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.BLUETOOTH_SHOW_BATTERY))) {
+                updateSettings();
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.STATUSBAR_LOCATION_ICON))) {
+                updateSettings();
+            }
         }
     }
 
@@ -324,7 +334,12 @@ public class PhoneStatusBarPolicy implements Callback, Callbacks,
                 Settings.System.BLUETOOTH_SHOW_BATTERY, 0,
                 UserHandle.USER_CURRENT) == 1;
 
+        mShowLocationIcon = Settings.System.getIntForUser(resolver,
+                Settings.System.STATUSBAR_LOCATION_ICON, 1,
+                UserHandle.USER_CURRENT) == 1;
+
         updateBluetooth();
+        updateLocation();
     }
 
     public void destroy() {
@@ -363,7 +378,7 @@ public class PhoneStatusBarPolicy implements Callback, Callbacks,
 
     // Updates the status view based on the current state of location requests.
     private void updateLocation() {
-        if (mLocationController.isLocationActive()) {
+        if (mLocationController.isLocationActive() && mShowLocationIcon) {
             mIconController.setIcon(mSlotLocation, LOCATION_STATUS_ICON_ID,
                     mContext.getString(R.string.accessibility_location_active));
         } else {

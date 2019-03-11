@@ -4815,6 +4815,12 @@ public final class Settings {
               BOOLEAN_VALIDATOR;
 
         /**
+         * Whether to show location icon in statusbar.
+         * @hide
+         */
+        public static final String STATUSBAR_LOCATION_ICON = "statusbar_location_icon";
+
+        /**
         * Quick Settings Smart Pulldown
         * @hide
         */

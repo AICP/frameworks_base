@@ -3106,7 +3106,7 @@ public final class ActivityThread extends ClientTransactionHandler {
 
     private void reportSizeConfigurations(ActivityClientRecord r) {
         Configuration[] configurations = r.activity.getResources().getSizeConfigurations();
-        if (configurations == null) {
+        if (configurations == null || r.activity.mFinished) {
             return;
         }
         SparseIntArray horizontal = new SparseIntArray();

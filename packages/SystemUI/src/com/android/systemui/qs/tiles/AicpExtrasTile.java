@@ -40,14 +40,14 @@ public class AicpExtrasTile extends QSTileImpl<BooleanState> {
     private static final String TAG = "AicpExtrasTile";
 
     private static final String AE_PKG_NAME = "com.aicp.extras";
-    private static final String OTA_PKG_NAME = "com.aicp.updater";
+    private static final String OTA_PKG_NAME = "com.aicp.updater3";
 
     private static final Intent AICP_EXTRAS = new Intent()
         .setComponent(new ComponentName(AE_PKG_NAME,
         "com.aicp.extras.SettingsActivity"));
     private static final Intent OTA_INTENT = new Intent()
         .setComponent(new ComponentName(OTA_PKG_NAME,
-        "com.aicp.updater.Settings"));
+        "org.lineageos.updater.UpdatesActivity"));
 
     public AicpExtrasTile(QSHost host) {
         super(host);

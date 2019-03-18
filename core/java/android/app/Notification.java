@@ -4459,7 +4459,7 @@ public class Notification implements Parcelable
             if (hasForegroundColor()) {
                 return NotificationColorUtil.clearColorSpans(text);
             } else if (mContext.getResources()
-                .getBoolean(R.bool.config_useDarkBgNotificationIconTinting)) {
+                .getBoolean(R.bool.config_useDarkBgNotificationIconTextTinting)) {
                 // Some notifications have color spans, assuming a dark background,
                 // so let's remove them
                 return NotificationColorUtil.clearColorSpans(text);
@@ -5497,7 +5497,7 @@ public class Notification implements Parcelable
                 color = NotificationColorUtil.resolveDefaultColor(mContext, background);
             } else {
                 boolean isDark = mInNightMode || mContext.getResources()
-                        .getBoolean(R.bool.config_useDarkBgNotificationIconTinting);
+                        .getBoolean(R.bool.config_useDarkBgNotificationIconTextTinting);
                 color = NotificationColorUtil.resolveContrastColor(mContext, mN.color,
                         background, isDark);
             }

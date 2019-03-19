@@ -159,7 +159,16 @@ public class ImageHelper {
         int height = Math.round(image.getHeight() * BITMAP_SCALE);
 
         Bitmap inputBitmap = Bitmap.createScaledBitmap(image, width, height, false);
-        Bitmap outputBitmap = Bitmap.createBitmap(inputBitmap);
+
+        try {
+            inputBitmap = RGB565toARGB888(image);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Bitmap outputBitmap = Bitmap.createBitmap(
+                image.getWidth(), image.getHeight(),
+                Bitmap.Config.ARGB_8888);
 
         RenderScript rs = RenderScript.create(context);
         ScriptIntrinsicBlur theIntrinsic = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
@@ -169,7 +178,23 @@ public class ImageHelper {
         theIntrinsic.setInput(tmpIn);
         theIntrinsic.forEach(tmpOut);
         tmpOut.copyTo(outputBitmap);
+        rs.destroy();
         return outputBitmap;
    }
+
+   private static Bitmap RGB565toARGB888(Bitmap img) throws Exception {
+        int numPixels = img.getWidth() * img.getHeight();
+        int[] pixels = new int[numPixels];
+
+        //Get JPEG pixels.  Each int is the color values for one pixel.
+        img.getPixels(pixels, 0, img.getWidth(), 0, 0, img.getWidth(), img.getHeight());
+
+        //Create a Bitmap of the appropriate format.
+        Bitmap result = Bitmap.createBitmap(img.getWidth(), img.getHeight(), Bitmap.Config.ARGB_8888);
+
+        //Set RGB pixels.
+        result.setPixels(pixels, 0, result.getWidth(), 0, 0, result.getWidth(), result.getHeight());
+        return result;
+    }
 
 }

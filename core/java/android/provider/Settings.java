@@ -6162,6 +6162,18 @@ public final class Settings {
          */
         public static final String OMNI_LOCKSCREEN_MEDIA_BLUR = "lockscreen_media_blur";
 
+        /**
+        * modify how the album art shows up on lockscreen
+        * 0 - normal
+        * 1 - grayscale
+        * 2 - accent tint
+        * 3 - blurry
+        * 4 - grayscale and blurry
+        * 5 - gradient blur (default)
+        * @hide
+        */
+        public static final String LOCKSCREEN_ALBUMART_FILTER = "lockscreen_albumart_filter";
+
         /***************************
          * AICP System Settings end
          ***************************/

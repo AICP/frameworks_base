@@ -3145,12 +3145,12 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             updateRotation(true);
         }
 
-        if (mUseGestureButton && !mGestureButtonRegistered) {
+        if ((mUseGestureButton || !mNavbarVisible) && !mGestureButtonRegistered) {
             mGestureButton = new GestureButton(mContext, this);
             mWindowManagerFuncs.registerPointerEventListener(mGestureButton);
             mGestureButtonRegistered = true;
         }
-        if (mGestureButtonRegistered && !mUseGestureButton) {
+        if ((!mUseGestureButton || mNavbarVisible) && mGestureButtonRegistered) {
             mWindowManagerFuncs.unregisterPointerEventListener(mGestureButton);
             mGestureButtonRegistered = false;
         }
@@ -5457,7 +5457,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 updateSystemUiVisibilityLw();
             }
 
-            if (!mNavbarVisible && mUseGestureButton && mGestureButton != null) {
+            if (mUseGestureButton && mGestureButton != null) {
                 mGestureButton.navigationBarPosition(displayWidth, displayHeight, displayRotation);
             }
         }

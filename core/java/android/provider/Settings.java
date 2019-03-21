@@ -5920,6 +5920,15 @@ public final class Settings {
         private static final Validator AUDIO_PANEL_VIEW_POSITION_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
+        /**
+         * Alternative base theme (compare THEMING_BASE), for fast toggle with qs.
+         * @hide
+         */
+        public static final String THEMING_BASE_ALT1 = "theming_base_alt1";
+
+        /** @hide */
+        private static final Validator THEMING_BASE_ALT1_VALIDATOR = ANY_INTEGER_VALIDATOR;
+
 
         /***************************
          * AICP System Settings end
@@ -6146,6 +6155,7 @@ public final class Settings {
             FORCE_EXPANDED_NOTIFICATIONS,
             ENABLE_GAMING_MODE,
             AUDIO_PANEL_VIEW_POSITION,
+            THEMING_BASE_ALT1,
             // AICP Settings end
         };
 
@@ -6419,6 +6429,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(FORCE_EXPANDED_NOTIFICATIONS);
             PRIVATE_SETTINGS.add(ENABLE_GAMING_MODE);
             PRIVATE_SETTINGS.add(AUDIO_PANEL_VIEW_POSITION);
+            PRIVATE_SETTINGS.add(THEMING_BASE_ALT1);
             // AICP Settings end
         }
 
@@ -6693,6 +6704,7 @@ public final class Settings {
             VALIDATORS.put(FORCE_EXPANDED_NOTIFICATIONS,FORCE_EXPANDED_NOTIFICATIONS_VALIDATOR);
             VALIDATORS.put(ENABLE_GAMING_MODE,ENABLE_GAMING_MODE_VALIDATOR);
             VALIDATORS.put(AUDIO_PANEL_VIEW_POSITION,AUDIO_PANEL_VIEW_POSITION_VALIDATOR);
+            VALIDATORS.put(THEMING_BASE_ALT1, THEMING_BASE_ALT1_VALIDATOR);
             // AICP Settings end
         }
 

@@ -238,4 +238,9 @@
     <string name="gaming_mode_dialog_message">When gaming mode is enabled, your ringer mode will change to vibrate mode, all heads-up messages will be disabled and hardware keys will be turned off. Media volume will be increased to the maximum value. All the disabled settings will be reset to default once you exit Gaming Mode.</string>
     <string name="accessibility_quick_settings_gaming_mode_on">Gaming mode on</string>
     <string name="accessibility_quick_settings_gaming_mode_off">Gaming mode off</string>
+
+    <!-- Theming QS tile -->
+    <string name="theming_tile_title">Light/dark theme</string>
+    <string name="theming_tile_light_title">Light theme</string>
+    <string name="theming_tile_dark_title">Dark theme</string>
 </resources>

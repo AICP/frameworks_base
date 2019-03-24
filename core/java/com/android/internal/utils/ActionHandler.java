@@ -202,7 +202,8 @@ public class ActionHandler {
         MediaArrowRight(SYSTEMUI_TASK_MEDIA_NEXT, SYSTEMUI, "label_action_media_right", "ic_skip_next"),
         AssistantSoundSearch(SYSTEMUI_TASK_ASSISTANT_SOUND_SEARCH, SYSTEMUI, "label_action_assistant_sound_search", "ic_assistant_sound_search"),
         PlayPause(SYSTEMUI_TASK_MEDIA_PLAY_PAUSE, SYSTEMUI, "label_action_play_pause", "ic_sysbar_play_pause"),
-        RingVibeSilent(SYSTEMUI_TASK_SOUNDMODE_VIB_SILENT, SYSTEMUI, "label_action_ring_vibe_silent", "ic_sysbar_ring_vibe_silent");
+        RingVibeSilent(SYSTEMUI_TASK_SOUNDMODE_VIB_SILENT, SYSTEMUI, "label_action_ring_vibe_silent", "ic_sysbar_ring_vibe_silent"),
+        Camera(SYSTEMUI_TASK_CAMERA, SYSTEMUI, "label_action_camera", "ic_sysbar_camera");
 
         String mAction;
         String mResPackage;
@@ -246,8 +247,8 @@ public class ActionHandler {
             SystemAction.RegionScreenshot, SystemAction.OneHandedModeLeft,
             SystemAction.OneHandedModeRight, SystemAction.MediaArrowLeft,
             SystemAction.MediaArrowRight, SystemAction.AssistantSoundSearch,
-            SystemAction.PlayPause,
-            SystemAction.RingVibeSilent
+            SystemAction.PlayPause, SystemAction.RingVibeSilent,
+            SystemAction.Camera
     };
 
     public static class ActionIconResources {
@@ -316,7 +317,7 @@ public class ActionHandler {
                  && !ActionUtils.deviceSupportsFlashLight(context)) {
                 continue;
             } else if (TextUtils.equals(action, SYSTEMUI_TASK_CAMERA)
-                    && context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
+                    && !context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
                 continue;
             } else if (TextUtils.equals(action, SYSTEMUI_TASK_EDITING_SMARTBAR)) {
                 // don't allow smartbar editor on Fling
@@ -800,6 +801,7 @@ public class ActionHandler {
         sendCloseSystemWindows("assist");
         // launch the search activity
         Intent intent = new Intent(Intent.ACTION_SEARCH_LONG_PRESS);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         try {
             // TODO: This only stops the factory-installed search manager.
             // Need to formalize an API to handle others
@@ -863,7 +865,7 @@ public class ActionHandler {
     }
 
     private static void launchCamera(Context context) {
-        Intent i = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        Intent i = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE_SECURE);
         PackageManager pm = context.getPackageManager();
         final ResolveInfo mInfo = pm.resolveActivity(i, 0);
         Intent intent = new Intent().setComponent(new ComponentName(mInfo.activityInfo.packageName,

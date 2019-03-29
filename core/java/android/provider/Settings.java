@@ -5954,15 +5954,6 @@ public final class Settings {
         private static final Validator SLIM_RECENT_ENTER_EXIT_ANIMATION_VALIDATOR =
                 ANY_INTEGER_VALIDATOR;
 
-        /**
-         * Check the proximity sensor during wakeup
-         * 0 = 0ff, 1 = on
-         * @hide
-         */
-        public static final String PROXIMITY_ON_WAKE = "proximity_on_wake";
-
-        private static final Validator PROXIMITY_ON_WAKE_VALIDATOR =
-                BOOLEAN_VALIDATOR;
 
         /**
           * enable or disable single handed mode
@@ -6465,7 +6456,6 @@ public final class Settings {
             THEMING_BASE_ALT1,
             THEMING_CONTROL_NIGHT_MODE,
             SLIM_RECENT_ENTER_EXIT_ANIMATION,
-            PROXIMITY_ON_WAKE,
             ONE_HAND_MODE_ENABLED,
             CAMERA_WAKE_SCREEN,
             CAMERA_SLEEP_ON_RELEASE,
@@ -6766,7 +6756,6 @@ public final class Settings {
             PRIVATE_SETTINGS.add(THEMING_BASE_ALT1);
             PRIVATE_SETTINGS.add(THEMING_CONTROL_NIGHT_MODE);
             PRIVATE_SETTINGS.add(SLIM_RECENT_ENTER_EXIT_ANIMATION);
-            PRIVATE_SETTINGS.add(PROXIMITY_ON_WAKE);
             PRIVATE_SETTINGS.add(ONE_HAND_MODE_ENABLED);
             PRIVATE_SETTINGS.add(CAMERA_WAKE_SCREEN);
             PRIVATE_SETTINGS.add(CAMERA_SLEEP_ON_RELEASE);
@@ -7068,7 +7057,6 @@ public final class Settings {
             VALIDATORS.put(THEMING_BASE_ALT1, THEMING_BASE_ALT1_VALIDATOR);
             VALIDATORS.put(THEMING_CONTROL_NIGHT_MODE, THEMING_CONTROL_NIGHT_MODE_VALIDATOR);
             VALIDATORS.put(SLIM_RECENT_ENTER_EXIT_ANIMATION, SLIM_RECENT_ENTER_EXIT_ANIMATION_VALIDATOR);
-            VALIDATORS.put(PROXIMITY_ON_WAKE,PROXIMITY_ON_WAKE_VALIDATOR);
             VALIDATORS.put(ONE_HAND_MODE_ENABLED,ONE_HAND_MODE_ENABLED_VALIDATOR);
             VALIDATORS.put(CAMERA_WAKE_SCREEN, CAMERA_WAKE_SCREEN_VALIDATOR);
             VALIDATORS.put(CAMERA_SLEEP_ON_RELEASE, CAMERA_SLEEP_ON_RELEASE_VALIDATOR);

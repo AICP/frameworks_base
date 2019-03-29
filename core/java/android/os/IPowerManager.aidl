@@ -42,6 +42,7 @@ interface IPowerManager
 
     void userActivity(long time, int event, int flags);
     void wakeUp(long time, String reason, String opPackageName);
+    void wakeUpWithProximityCheck(long time, String reason, String opPackageName);
     void goToSleep(long time, int reason, int flags);
     void nap(long time);
     boolean isInteractive();
@@ -69,7 +70,6 @@ interface IPowerManager
     // controls whether PowerManager should doze after the screen turns off or not
     void setDozeAfterScreenOff(boolean on);
 
-    void wakeUpWithProximityCheck(long time, String reason, String opPackageName);
     // update the uids being synchronized by network socket request manager
     void updateBlockedUids(int uid, boolean isBlocked);
 

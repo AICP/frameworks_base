@@ -3929,11 +3929,6 @@ public final class Settings {
         public static final String DOCK_SOUNDS_ENABLED = Global.DOCK_SOUNDS_ENABLED;
 
         private static final Validator DOCK_SOUNDS_ENABLED_VALIDATOR = BOOLEAN_VALIDATOR;
-	/**
-         * Check the proximity sensor during wakeup
-         * @hide
-         */
-        public static final String PROXIMITY_ON_WAKE = "proximity_on_wake";
 
         /**
          * Whether to play sounds when the keyguard is shown and dismissed.
@@ -5949,6 +5944,15 @@ public final class Settings {
         private static final Validator SLIM_RECENT_ENTER_EXIT_ANIMATION_VALIDATOR =
                 ANY_INTEGER_VALIDATOR;
 
+        /**
+         * Check the proximity sensor during wakeup
+         * 0 = 0ff, 1 = on
+         * @hide
+         */
+        public static final String PROXIMITY_ON_WAKE = "proximity_on_wake";
+
+        private static final Validator PROXIMITY_ON_WAKE_VALIDATOR =
+                BOOLEAN_VALIDATOR;
 
         /***************************
          * AICP System Settings end
@@ -6178,6 +6182,7 @@ public final class Settings {
             THEMING_BASE_ALT1,
             THEMING_CONTROL_NIGHT_MODE,
             SLIM_RECENT_ENTER_EXIT_ANIMATION,
+            PROXIMITY_ON_WAKE,
             // AICP Settings end
         };
 
@@ -6454,6 +6459,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(THEMING_BASE_ALT1);
             PRIVATE_SETTINGS.add(THEMING_CONTROL_NIGHT_MODE);
             PRIVATE_SETTINGS.add(SLIM_RECENT_ENTER_EXIT_ANIMATION);
+            PRIVATE_SETTINGS.add(PROXIMITY_ON_WAKE);
             // AICP Settings end
         }
 
@@ -6731,6 +6737,7 @@ public final class Settings {
             VALIDATORS.put(THEMING_BASE_ALT1, THEMING_BASE_ALT1_VALIDATOR);
             VALIDATORS.put(THEMING_CONTROL_NIGHT_MODE, THEMING_CONTROL_NIGHT_MODE_VALIDATOR);
             VALIDATORS.put(SLIM_RECENT_ENTER_EXIT_ANIMATION, SLIM_RECENT_ENTER_EXIT_ANIMATION_VALIDATOR);
+            VALIDATORS.put(PROXIMITY_ON_WAKE,PROXIMITY_ON_WAKE_VALIDATOR);
             // AICP Settings end
         }
 

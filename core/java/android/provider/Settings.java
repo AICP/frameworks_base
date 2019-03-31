@@ -5929,6 +5929,15 @@ public final class Settings {
         /** @hide */
         private static final Validator THEMING_BASE_ALT1_VALIDATOR = ANY_INTEGER_VALIDATOR;
 
+        /**
+         * Whether to control night mode with our theme selection.
+         * @hide
+         */
+        public static final String THEMING_CONTROL_NIGHT_MODE = "theming_control_night_mode";
+
+        /** @hide */
+        private static final Validator THEMING_CONTROL_NIGHT_MODE_VALIDATOR = BOOLEAN_VALIDATOR;
+
 
         /***************************
          * AICP System Settings end
@@ -6156,6 +6165,7 @@ public final class Settings {
             ENABLE_GAMING_MODE,
             AUDIO_PANEL_VIEW_POSITION,
             THEMING_BASE_ALT1,
+            THEMING_CONTROL_NIGHT_MODE,
             // AICP Settings end
         };
 
@@ -6430,6 +6440,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(ENABLE_GAMING_MODE);
             PRIVATE_SETTINGS.add(AUDIO_PANEL_VIEW_POSITION);
             PRIVATE_SETTINGS.add(THEMING_BASE_ALT1);
+            PRIVATE_SETTINGS.add(THEMING_CONTROL_NIGHT_MODE);
             // AICP Settings end
         }
 
@@ -6705,6 +6716,7 @@ public final class Settings {
             VALIDATORS.put(ENABLE_GAMING_MODE,ENABLE_GAMING_MODE_VALIDATOR);
             VALIDATORS.put(AUDIO_PANEL_VIEW_POSITION,AUDIO_PANEL_VIEW_POSITION_VALIDATOR);
             VALIDATORS.put(THEMING_BASE_ALT1, THEMING_BASE_ALT1_VALIDATOR);
+            VALIDATORS.put(THEMING_CONTROL_NIGHT_MODE, THEMING_CONTROL_NIGHT_MODE_VALIDATOR);
             // AICP Settings end
         }
 

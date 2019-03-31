@@ -5866,6 +5866,9 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.LOCKSCREEN_CLOCK_SELECTION),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.THEMING_CONTROL_NIGHT_MODE),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
         @Override
@@ -5879,7 +5882,9 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
             } else if (uri.equals(Settings.System.getUriFor(Settings.System.THEMING_BASE)) ||
                     uri.equals(Settings.System.getUriFor(Settings.System.THEMING_ACCENT)) ||
                     uri.equals(Settings.System.getUriFor(Settings.System.THEMING_CORNERS)) ||
-                    uri.equals(Settings.System.getUriFor(Settings.System.THEMING_QS_SHAPE))) {
+                    uri.equals(Settings.System.getUriFor(Settings.System.THEMING_QS_SHAPE)) ||
+                    uri.equals(Settings.System.getUriFor(
+                            Settings.System.THEMING_CONTROL_NIGHT_MODE))) {
                 ThemeOverlayHelper.updateOverlays(mContext, mOverlayManager,
                         mLockscreenUserManager.getCurrentUserId());
             } else if (uri.equals(Settings.System.getUriFor(Settings.System.AICP_QS_TILE_TITLE_VISIBILITY)) ||

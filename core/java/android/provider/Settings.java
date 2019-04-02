@@ -5938,6 +5938,17 @@ public final class Settings {
         /** @hide */
         private static final Validator THEMING_CONTROL_NIGHT_MODE_VALIDATOR = BOOLEAN_VALIDATOR;
 
+        /**
+         * Slim recents enter/exit animation
+         * @hide
+         */
+        public static final String SLIM_RECENT_ENTER_EXIT_ANIMATION =
+                "slim_recent_enter_exit_animation";
+
+        /** @hide */
+        private static final Validator SLIM_RECENT_ENTER_EXIT_ANIMATION_VALIDATOR =
+                ANY_INTEGER_VALIDATOR;
+
 
         /***************************
          * AICP System Settings end
@@ -6166,6 +6177,7 @@ public final class Settings {
             AUDIO_PANEL_VIEW_POSITION,
             THEMING_BASE_ALT1,
             THEMING_CONTROL_NIGHT_MODE,
+            SLIM_RECENT_ENTER_EXIT_ANIMATION,
             // AICP Settings end
         };
 
@@ -6441,6 +6453,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(AUDIO_PANEL_VIEW_POSITION);
             PRIVATE_SETTINGS.add(THEMING_BASE_ALT1);
             PRIVATE_SETTINGS.add(THEMING_CONTROL_NIGHT_MODE);
+            PRIVATE_SETTINGS.add(SLIM_RECENT_ENTER_EXIT_ANIMATION);
             // AICP Settings end
         }
 
@@ -6717,6 +6730,7 @@ public final class Settings {
             VALIDATORS.put(AUDIO_PANEL_VIEW_POSITION,AUDIO_PANEL_VIEW_POSITION_VALIDATOR);
             VALIDATORS.put(THEMING_BASE_ALT1, THEMING_BASE_ALT1_VALIDATOR);
             VALIDATORS.put(THEMING_CONTROL_NIGHT_MODE, THEMING_CONTROL_NIGHT_MODE_VALIDATOR);
+            VALIDATORS.put(SLIM_RECENT_ENTER_EXIT_ANIMATION, SLIM_RECENT_ENTER_EXIT_ANIMATION_VALIDATOR);
             // AICP Settings end
         }
 

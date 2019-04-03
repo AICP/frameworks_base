@@ -63,6 +63,11 @@ public class ImageHelper {
         int width, height;
         height = bmpOriginal.getHeight();
         width = bmpOriginal.getWidth();
+        try {
+            bmpOriginal = RGB565toARGB888(bmpOriginal);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         Bitmap bmpGrayscale = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         Canvas c = new Canvas(bmpGrayscale);

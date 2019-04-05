@@ -148,4 +148,8 @@
     <!-- Whether device supports sensor based doze customizations -->
     <bool name="config_dozePulseTilt">false</bool>
     <bool name="config_dozePulseProximity">false</bool>
+
+    <!-- Whether to show a custom view for FOD -->
+    <bool name="config_needCustomFODView">false</bool>
+
 </resources>

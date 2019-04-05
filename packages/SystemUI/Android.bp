@@ -68,7 +68,8 @@ android_library {
         "SystemUI-proto",
         "dagger2-2.19",
         "jsr330",
-        "AicpGear-util"
+        "AicpGear-util",
+        "vendor.lineage.biometrics.fingerprint.inscreen-V1.0-java",
     ],
     manifest: "AndroidManifest.xml",
     additional_manifests: ["AicpManifest.xml"],

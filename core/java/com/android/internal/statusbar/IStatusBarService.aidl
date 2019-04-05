@@ -159,4 +159,10 @@ interface IStatusBarService
      * Slim recents
      */
     void showScreenPinningRequest(int taskId);
+
+    /**
+     * Used to show or hide in display fingerprint view.
+     */
+    void showInDisplayFingerprintView();
+    void hideInDisplayFingerprintView();
 }

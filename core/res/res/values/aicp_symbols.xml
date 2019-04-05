@@ -23,4 +23,7 @@
   <java-symbol type="string" name="config_lightFontFamily" />
   <java-symbol type="string" name="config_regularFontFamily" />
 
+  <!-- In-display Fingerprint -->
+  <java-symbol type="bool" name="config_supportsInDisplayFingerprint" />
+
 </resources>

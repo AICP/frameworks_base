@@ -238,4 +238,10 @@ oneway interface IStatusBar
      * Used to block or unblock usage of gestural navigation
      */
     void setBlockedGesturalNavigation(boolean blocked);
+
+    /**
+     *  Used to show or hide in display fingerprint view.
+     */
+    void showInDisplayFingerprintView();
+    void hideInDisplayFingerprintView();
 }

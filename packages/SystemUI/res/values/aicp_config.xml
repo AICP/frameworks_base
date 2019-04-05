@@ -31,4 +31,9 @@
 
     <!-- The CPU temperature divider, if needed -->
     <integer name="config_cpuTempDivider" translatable="false">1</integer>
+
+    <!-- Color of the FOD view -->
+    <color name="config_fodColor">#00ff00</color>
+    <color name="config_fodColorBackground">#20000000</color>
+
 </resources>

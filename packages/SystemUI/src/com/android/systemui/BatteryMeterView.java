@@ -394,7 +394,9 @@ public class BatteryMeterView extends LinearLayout implements
                     new ViewGroup.LayoutParams(
                             LayoutParams.WRAP_CONTENT,
                             LayoutParams.MATCH_PARENT));
+            return;
         }
+        updatePercentText();
     }
 
     @Override

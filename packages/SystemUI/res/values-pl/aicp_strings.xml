@@ -19,6 +19,11 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="quick_settings_heads_up_label">Wyskakujące powiadomienia</string>
+    <string name="accessibility_quick_settings_heads_up_off">Wyskakujące powiadomienia wyłączone</string>
+    <string name="accessibility_quick_settings_heads_up_on">Wyskakujące powiadomienia włączone</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">Wyskakujące powiadomienia wyłączone.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">Wyskakujące powiadomienia włączone.</string>
     <string name="quick_aicp_extras_label">Dodatki AICP</string>
     <string name="quick_aicp_extras_toast">LOL, czy ty naprawdę myślałeś, że długie kliknięcie przeniesie Cię?!</string>
     <string name="quick_settings_screenshot_label">Zrzut ekranu</string>
@@ -30,7 +35,19 @@
     <string name="quick_settings_caffeine_label">Timer</string>
     <string name="accessibility_quick_settings_caffeine_off">Timer wył</string>
     <string name="accessibility_quick_settings_caffeine_on">Timer wł</string>
+    <string name="quick_settings_aod_label">Tryb Always-On-Display</string>
+    <string name="quick_settings_network_adb_enabled_label">Włączono</string>
     <string name="quick_settings_network_adb_disabled_label">Wyłączone</string>
+    <string name="quick_settings_network_adb_label">ADB przez sieć</string>
+    <string name="quick_settings_network_adb_toast">Debugowanie USB jest wyłączone</string>
+    <string name="qs_menu_item_columns">Kolumny</string>
+    <string name="qs_menu_item_columns_landscape">Kolumny (poziomo)</string>
+    <string name="qs_menu_item_reset">Resetuj</string>
+    <string name="qs_menu_item_titles">Pokaż etykiety</string>
+    <string name="qs_menu_item_rows">Wiersze</string>
+    <string name="qs_menu_item_rows_landscape">Wiersze (poziomo)</string>
+    <string name="qs_menu_item_qs_columns">Kolumny na Pasku Podręcznym</string>
+    <string name="qs_menu_item_columns_auto">Automatycznie</string>
     <string name="quick_settings_locale_label">Język</string>
     <string name="quick_settings_locale_more_locales_toast">Należy skonfigurować wiele języków, aby włączyć funkcję przełączania</string>
     <string name="quick_settings_music_label">Muzyka</string>
@@ -57,6 +74,8 @@
     <string name="quick_settings_compass_SW">płd-zach</string>
     <string name="quick_settings_compass_W">zach</string>
     <string name="quick_settings_compass_NW">płn-zach</string>
+    <string name="quick_settings_reboot_label">Uruchom ponownie</string>
+    <string name="quick_settings_reboot_recovery_label">Recovery</string>
     <string name="screenrecord_notif_ticker">Ekran jest nagrywany</string>
     <string name="screenrecord_notif_final_ticker">Nagrywanie ekranu zakończone powodzeniem</string>
     <string name="screenrecord_notif_title">Nagrywanie ekranu</string>
@@ -71,6 +90,8 @@
     <string name="quick_settings_screenrecord_label">Nagrywanie ekranu</string>
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Powiadomienia z podglądem są odkładane na 1 minutę.</string>
     <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> Powiadomienia z podglądem w trybie drzemki znajdują się tam <xliff:g id="number">%d</xliff:g> minut.</string>
+    <string name="menu_ime_always_show">Przełącznik Menu / Klawiatura (zawsze pokazuj)</string>
+    <string name="search">Szukaj</string>
     <string name="systemui_tuner_navbar_title">Ustawienia domyślne</string>
     <string name="onthego_notif_ticker">Tryb „W ruchu” aktywowany</string>
     <string name="onthego_notif_title">Tryb „W ruchu” jest aktywny</string>
@@ -87,6 +108,16 @@
     <string name="quick_settings_onthego_label">W ruchu</string>
     <string name="global_action_screenrecord">Nagrywanie ekranu</string>
     <string name="quick_settings_cpuinfo_label">Informacje o CPU</string>
+    <string name="tuner_show_auto_brightness">Przycisk automatycznej jasności</string>
+    <string name="tuner_auto_brightness_right">Przycisk automatycznej jasności po prawej stronie</string>
+    <string name="tuner_show_brightness_buttons">Przyciski sterowania jasnością</string>
+    <string name="quick_settings_smart_pixels">Inteligentne piksele</string>
+    <string name="quick_settings_smart_pixels_on_power_save">Automatyczne włączanie Inteligentnych pikseli</string>
+    <string name="drag_or_tap_to_add_tiles">Przeciągnij lub dotknij aby dodać/usunąć kafelki</string>
+    <string name="quick_settings_immersive_tile">Tryb pełnoekranowy</string>
+    <string name="quick_settings_immersive_tile_statusbar">Schowaj pasek statusu</string>
+    <string name="quick_settings_immersive_tile_navbar">Schowaj pasek nawigacyjny</string>
+    <string name="quick_settings_immersive_tile_full">Tryb pełnoekranowy</string>
     <string name="omnijaws_service_error">Błąd</string>
     <string name="omnijaws_service_unkown">Brak danych o pogodzie</string>
     <string name="omnijaws_service_error_long">Błąd podczas ładowania danych o pogodzie</string>
@@ -99,10 +130,24 @@
     <string name="app_float_maximize_item_title">Maksymalizuj</string>
     <string name="app_float_item_title">Pływające okno</string>
     <string name="app_stop_item_title">Zabij aplikację</string>
+    <string name="ambientmusic_songinfo">%s grany przez %s</string>
     <string name="accessibility_quick_settings_running_services">Otwórz ekran Działających Usług.</string>
+    <string name="tuner_hide_disabled_sim">Ukryj wyłączone karty SIM</string>
+    <string name="pie_state_name">Kontrola Pie</string>
+    <string name="pie_state_summary">Używaj interfejsu Pie w trybie pełnoekranowym</string>
+    <string name="pie_battery_level">"POZIOM BATERII "</string>
+    <string name="quick_settings_pie">Kontrola Pie</string>
     <string name="quick_settings_sync_label">Synchronizacja</string>
     <string name="accessibility_quick_settings_sync_off">Synchronizacja wył</string>
     <string name="accessibility_quick_settings_sync_on">Synchronizacja wł</string>
     <string name="accessibility_quick_settings_sync_changed_off">Synchronizacja została wyłączona</string>
     <string name="accessibility_quick_settings_sync_changed_on">Synchronizacja została włączona</string>
+    <string name="recents_free_ram">Ilość wolnego RAMu: %1$d MB</string>
+    <string name="gaming_mode_tile_title">Tryb grania</string>
+    <string name="gaming_mode_tile_toast">Włączono Tryb grania</string>
+    <string name="gaming_mode_tile_toast_disabled">Wyłączono Tryb grania</string>
+    <string name="gaming_mode_dialog_title">Tryb grania</string>
+    <string name="gaming_mode_dialog_message">Gdy tryb grania jest włączony, tryb dzwonka zostanie zmieniony na tryb wibracji, zostaną wyłączone wszystkie wyskakujące powiadomienia, a klawisze zostaną wyłączone. Głośność multimediów zostanie zwiększona do maksymalnej wartości. Wszystkie wyłączone ustawienia zostaną zresetowane do domyślnych wartości po wyłączeniu trybu grania.</string>
+    <string name="accessibility_quick_settings_gaming_mode_on">Tryb grania włączony</string>
+    <string name="accessibility_quick_settings_gaming_mode_off">Tryb grania wyłączony</string>
 </resources>

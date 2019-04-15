@@ -143,4 +143,15 @@
     <string name="accessibility_quick_settings_sync_on">Синхронизация вкл.</string>
     <string name="accessibility_quick_settings_sync_changed_off">Синхронизация выключена</string>
     <string name="accessibility_quick_settings_sync_changed_on">Синхронизация включена</string>
+    <string name="recents_free_ram">Свободно ОЗУ: %1$d МБ</string>
+    <string name="gaming_mode_tile_title">Игровой режим</string>
+    <string name="gaming_mode_tile_toast">Игровой режим включен</string>
+    <string name="gaming_mode_tile_toast_disabled">Игровой режим выключен</string>
+    <string name="gaming_mode_dialog_title">Игровой режим</string>
+    <string name="gaming_mode_dialog_message">Когда Игровой режим будет включен, ваш режим звонка переключится в режим вибрации, все уведомления и аппаратные клавиши будут отключены. Громкость медиа будет увеличена до максимального уровня. Все отключенные настройки будут восстановлены после выхода из Игрового режима.</string>
+    <string name="accessibility_quick_settings_gaming_mode_on">Включить Игровой режим</string>
+    <string name="accessibility_quick_settings_gaming_mode_off">Выключить Игровой режим</string>
+    <string name="theming_tile_title">Светлая/тёмная тема</string>
+    <string name="theming_tile_light_title">Светлая тема</string>
+    <string name="theming_tile_dark_title">Тёмная тема</string>
 </resources>

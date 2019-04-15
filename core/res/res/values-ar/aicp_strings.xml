@@ -29,8 +29,12 @@
     <string name="animation_grow_shrink_center">تنمو في (الوسط)</string>
     <string name="animation_grow_shrink_bottom">تنمو في (أسفل)</string>
     <string name="animation_grow_shrink_left">تنمو في (اليسار)</string>
-    <string name="animation_grow_shrink_right">تنمو في (اليمين)</string>
+    <string name="animation_grow_shrink_right">نمو للداخل (اليمين)</string>
     <string name="action_null">فارغ</string>
     <string name="permlab_toggleNavigationEditor">التحكم فى محرر التنقل</string>
     <string name="permdesc_toggleNavigationEditor">يسمح لتطبيق ما بالتحكم في محرر شريط التنقل.</string>
+    <string name="permlab_accessFontManager">الوصول لإدارة الخطوط</string>
+    <string name="permdesc_accessFontManager">يسمح لتطبيق ما بالوصول إلى مدير الخطوط.</string>
+    <string name="fontservice_incompatible_font">حزمة الخط التي ثبتها غير متوافقة بسبب عدم وجود fonts.xml في ملفاتها. يرجى الاتصال بمطور الحزمة للحصول على الدعم.</string>
+    <string name="aicp_vendor_security_patch">‏مستوى رمز تصحيح أمان المورد</string>
 </resources>

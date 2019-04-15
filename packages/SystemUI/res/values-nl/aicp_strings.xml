@@ -144,4 +144,11 @@
     <string name="accessibility_quick_settings_sync_changed_off">Synchronisatie uitgeschakeld</string>
     <string name="accessibility_quick_settings_sync_changed_on">Synchronisatie ingeschakeld</string>
     <string name="recents_free_ram">Vrij RAM-geheugen: %1$d MB</string>
+    <string name="gaming_mode_tile_title">Game modus</string>
+    <string name="gaming_mode_tile_toast">Game modus ingeschakeld</string>
+    <string name="gaming_mode_tile_toast_disabled">Game modus uitgeschakeld</string>
+    <string name="gaming_mode_dialog_title">Game modus</string>
+    <string name="gaming_mode_dialog_message">Wanneer de game modus is ingeschakeld zal de beltoon worden omgezet naar een trilsignaal, verschijnen er geen pop-up notificaties en zullen de fysieke knoppen worden uitgeschakeld. Het mediavolume zal op de hoogste stand gezet worden. Alle uitgeschakelde instellingen zullen weer worden teruggezet naar de normale stand wanneer je de Game modus verlaat.</string>
+    <string name="accessibility_quick_settings_gaming_mode_on">Game modus aan</string>
+    <string name="accessibility_quick_settings_gaming_mode_off">Game modus uit</string>
 </resources>

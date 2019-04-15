@@ -33,4 +33,8 @@
     <string name="action_null">Pusto</string>
     <string name="permlab_toggleNavigationEditor">edytor paska nawigacji</string>
     <string name="permdesc_toggleNavigationEditor">Zezwól aplikacji na używanie edytora paska nawigacji.</string>
+    <string name="permlab_accessFontManager">dostęp do menadżera czcionek</string>
+    <string name="permdesc_accessFontManager">Zezwól aplikacjom na dostęp do menadżera czcionek.</string>
+    <string name="fontservice_incompatible_font">Zainstalowany pakiet czcionek nie jest zgodny ze względu na brak pliku fonts.xml. W celu uzyskania pomocy skontaktuj się z twórcą pakietu.</string>
+    <string name="aicp_vendor_security_patch">Poziom poprawek zabezpieczeń producenta</string>
 </resources>

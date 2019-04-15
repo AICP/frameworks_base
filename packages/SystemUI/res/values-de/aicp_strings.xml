@@ -144,4 +144,14 @@
     <string name="accessibility_quick_settings_sync_changed_off">Sync deaktiviert</string>
     <string name="accessibility_quick_settings_sync_changed_on">Sync aktiviert</string>
     <string name="recents_free_ram">RAM: %1$d MB frei</string>
+    <string name="gaming_mode_tile_title">Spielmodus</string>
+    <string name="gaming_mode_tile_toast">Spielmodus aktiviert</string>
+    <string name="gaming_mode_tile_toast_disabled">Spielmodus deaktiviert</string>
+    <string name="gaming_mode_dialog_title">Spielmodus</string>
+    <string name="gaming_mode_dialog_message">Bei Aktivierung des Spielmodus wird der Klingelton auf Vibration geändert, alle Heads-Up Nachrichten und die Hardware-Tasten werden abgeschaltet. Die Medien-Lautstärke wird auf den Maximalwert erhöht. Alle abgeschalteten Einstellungen werden nach Abschalten des Spielmodus zurückgesetzt.</string>
+    <string name="accessibility_quick_settings_gaming_mode_on">Spielmodus AN</string>
+    <string name="accessibility_quick_settings_gaming_mode_off">Spielmodus AUS</string>
+    <string name="theming_tile_title">Helles/Dunkles Design</string>
+    <string name="theming_tile_light_title">Helles Design</string>
+    <string name="theming_tile_dark_title">Dunkles Design</string>
 </resources>

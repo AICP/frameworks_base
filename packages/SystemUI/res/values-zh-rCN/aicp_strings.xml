@@ -64,7 +64,7 @@
     <string name="quick_settings_compass_init">正在初始化\u2026</string>
     <string name="accessibility_quick_settings_compass_off">指南针关闭</string>
     <string name="accessibility_quick_settings_compass_on">指南针开启</string>
-    <string name="accessibility_quick_settings_compass_changed_off">指南针已关闭。</string>
+    <string name="accessibility_quick_settings_compass_changed_off">指南针已关闭</string>
     <string name="accessibility_quick_settings_compass_changed_on">指南针已开启</string>
     <string name="quick_settings_compass_N">北</string>
     <string name="quick_settings_compass_NE">东北</string>
@@ -125,7 +125,7 @@
     <string name="omnijaws_detail_header">天气</string>
     <string name="omnijaws_label_default">天气</string>
     <string name="omnijaws_current_text">现在</string>
-    <string name="omnijaws_package_not_available">OmniJaws不可用</string>
+    <string name="omnijaws_package_not_available">OmniJaws 不可用</string>
     <string name="omnijaws_service_last_update">上次更新：</string>
     <string name="app_float_maximize_item_title">最大化</string>
     <string name="app_float_item_title">悬浮视图</string>
@@ -142,4 +142,12 @@
     <string name="accessibility_quick_settings_sync_on">同步已开启</string>
     <string name="accessibility_quick_settings_sync_changed_off">同步关闭</string>
     <string name="accessibility_quick_settings_sync_changed_on">同步开启</string>
+    <string name="recents_free_ram">空闲内存：%1$d MB</string>
+    <string name="gaming_mode_tile_title">游戏模式</string>
+    <string name="gaming_mode_tile_toast">游戏模式已启用</string>
+    <string name="gaming_mode_tile_toast_disabled">游戏模式已禁用</string>
+    <string name="gaming_mode_dialog_title">游戏模式</string>
+    <string name="gaming_mode_dialog_message">启用游戏模式后，您的铃声模式将变为振动模式，所有浮动消息将被禁用，硬件按键将被关闭。媒体音量将增加到最大值。退出游戏模式后，所有禁用的设置将重置为默认值。</string>
+    <string name="accessibility_quick_settings_gaming_mode_on">游戏模式开启</string>
+    <string name="accessibility_quick_settings_gaming_mode_off">游戏模式关闭</string>
 </resources>

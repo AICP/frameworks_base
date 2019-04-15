@@ -144,4 +144,14 @@
     <string name="accessibility_quick_settings_sync_changed_off">Sinc desactivada</string>
     <string name="accessibility_quick_settings_sync_changed_on">Sinc activada</string>
     <string name="recents_free_ram">RAM libre: %1$d MB</string>
+    <string name="gaming_mode_tile_title">Modo Juego</string>
+    <string name="gaming_mode_tile_toast">Modo juego activado</string>
+    <string name="gaming_mode_tile_toast_disabled">Modo juego desactivado</string>
+    <string name="gaming_mode_dialog_title">Modo Juego</string>
+    <string name="gaming_mode_dialog_message">Cuando se activa el Modo Juego, el tono de llamada cambia a vibración, las notificaciones flotantes se desactivan y los botones físicos se deshabilitan. El volumen multimedia se aumentará hasta su valor máximo. Todos los ajustes modificados volverán a su valor predeterminado una vez que salgas del Modo Juego.</string>
+    <string name="accessibility_quick_settings_gaming_mode_on">Modo juego activado</string>
+    <string name="accessibility_quick_settings_gaming_mode_off">Modo juego desactivado</string>
+    <string name="theming_tile_title">Tema claro/oscuro</string>
+    <string name="theming_tile_light_title">Tema claro</string>
+    <string name="theming_tile_dark_title">Tema oscuro</string>
 </resources>

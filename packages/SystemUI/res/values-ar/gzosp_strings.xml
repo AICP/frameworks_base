@@ -16,4 +16,43 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="global_action_restart_system">إعادة التشغيل</string>
+    <string name="global_action_restart_advanced">متقدم</string>
+    <string name="global_action_restart_recovery">الإسترداد</string>
+    <string name="global_action_restart_bootloader">محمل التمهيد</string>
+    <string name="global_action_restart_ui">واجهة النظام</string>
+    <string name="keyguard_indication_dash_charging_time">الشحن السريع (<xliff:g id="charging_time_left" example="4 ساعة و 2 دقيقة">%s</xliff:g> حتى الإمتلاء)</string>
+    <string name="keyguard_plugged_in_dash_charging">الشحن السريع</string>
+    <string name="preview">معاينة</string>
+    <string name="keycode">رمز المفتاح</string>
+    <string name="no_home_title">لم يُعثر على زر صفحة رئيسية</string>
+    <string name="no_home_message">زر الصفحة الرئيسية مطلوب لكي تتمكن من التنقل في هذا الجهاز، الرجاء إضافة زر صفحة رئيسية قبل الحفظ.</string>
+    <string name="clipboard_description">تتيح الحافظة إمكانية سحب العناصر مباشرة إلى الحافظة، وكذلك يمكن سحب العناصر مباشرة خارج الحافظة عند وجودها.</string>
+    <string name="keycode_description">تتيح أزرار رموز المفاتيح إمكانية إضافة أزرار لوحة المفاتيح إلى شريط التنقل. وعند الضغط عليها، تحاكي الأزرار مفتاح لوحة المفاتيح المحدد. ويجب أولاً تحديد المفتاح للزر، وبعد ذلك تحديد صورة لكي يتم عرضها على الزر.</string>
+    <string name="start">البداية</string>
+    <string name="center">الوسط</string>
+    <string name="end">النهاية</string>
+    <string name="space">الفاصل</string>
+    <string name="menu_ime">مبدّل القائمة/ لوحة المفاتيح</string>
+    <string name="select_button">حدد الزر للإضافة</string>
+    <string name="add_button">إضافة زر</string>
+    <string name="save">حفظ</string>
+    <string name="reset">إعادة تعيين</string>
+    <string name="select_keycode">تحديد زر لوحة المفاتيح</string>
+    <string name="left">الـيسار</string>
+    <string name="right">اليمين</string>
+    <string name="navbar_editor_title">المحرر</string>
+    <string name="navbar_editor_summary">تهيئة شريط التنقل</string>
+    <string name="navbar_activity_title">شريط التنقل</string>
+    <string name="lockscreen_default">الافتراضي</string>
+    <string name="lockscreen_hidden">لا شيء</string>
+    <string name="custom_hint">تمرير من الأيقونة للتشغيل</string>
+    <string name="status_bar_vpn">الشبكة الظاهرية VPN</string>
+    <string name="quick_settings_roaming_title">مؤشر التجوال</string>
+    <string name="tuner_quick_settings">الإعدادات السريعة</string>
+    <string name="tuner_show_brightness_new">إظهار شريط تمرير السطوع</string>
+    <string name="tuner_brightness_position_bottom">شريط تمرير السطوع في الأسفل</string>
+    <string name="tuner_show_info_header_title">إظهار معلومات الرأس</string>
+    <string name="tuner_cellular_title">الجوّال</string>
+    <string name="tuner_show_secure_title">عرض تنبيه الآمان السفلي</string>
 </resources>

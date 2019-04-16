@@ -154,4 +154,7 @@
     <string name="theming_tile_title">Tema claro/oscuro</string>
     <string name="theming_tile_light_title">Tema claro</string>
     <string name="theming_tile_dark_title">Tema oscuro</string>
+    <string name="force_stop_dlg_title">¿Forzar detención?</string>
+    <string name="force_stop_dlg_text">Si se detiene una aplicación, es posible que no funcione correctamente.</string>
+    <string name="guts_force_close_app">Cerrar aplicación</string>
 </resources>

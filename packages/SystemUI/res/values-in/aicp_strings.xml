@@ -106,4 +106,6 @@
     <string name="accessibility_quick_settings_sync_on">Sinkronisasi hidup</string>
     <string name="accessibility_quick_settings_sync_changed_off">Sinkronisasi dimatikan</string>
     <string name="accessibility_quick_settings_sync_changed_on">Sinkronisasi dihidupkan</string>
+    <string name="force_stop_dlg_title">Paksa berhenti?</string>
+    <string name="force_stop_dlg_text">Jika anda menghentikan aplikasi secara paksa, akan menyebabkan gagal fungsi.</string>
 </resources>

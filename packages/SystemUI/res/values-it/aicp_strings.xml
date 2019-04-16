@@ -106,4 +106,6 @@
     <string name="accessibility_quick_settings_sync_on">Sincronizzazione attivata</string>
     <string name="accessibility_quick_settings_sync_changed_off">Sincronizzazione disattivata</string>
     <string name="accessibility_quick_settings_sync_changed_on">Sincronizzazione attivata</string>
+    <string name="force_stop_dlg_title">Forzare la chiusura?</string>
+    <string name="force_stop_dlg_text">Se forzi la chiusura di un\'app, tale app potrebbe funzionare in modo anomalo.</string>
 </resources>

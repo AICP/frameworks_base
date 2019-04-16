@@ -154,4 +154,7 @@
     <string name="theming_tile_title">Светлая/тёмная тема</string>
     <string name="theming_tile_light_title">Светлая тема</string>
     <string name="theming_tile_dark_title">Тёмная тема</string>
+    <string name="force_stop_dlg_title">Остановить принудительно?</string>
+    <string name="force_stop_dlg_text">Принудительная остановка приложения может отразиться на его работоспособности.</string>
+    <string name="guts_force_close_app">Закрыть приложение</string>
 </resources>

@@ -154,4 +154,6 @@
     <string name="theming_tile_title">Světlý/tmavý motiv</string>
     <string name="theming_tile_light_title">Světlý motiv</string>
     <string name="theming_tile_dark_title">Tmavý motiv</string>
+    <string name="force_stop_dlg_title">Vynutit ukončení?</string>
+    <string name="force_stop_dlg_text">Vynucené zastavení může způsobit nepředvídatelné chování aplikace.</string>
 </resources>

@@ -154,4 +154,7 @@
     <string name="theming_tile_title">Helles/Dunkles Design</string>
     <string name="theming_tile_light_title">Helles Design</string>
     <string name="theming_tile_dark_title">Dunkles Design</string>
+    <string name="force_stop_dlg_title">Stopp erzwingen?</string>
+    <string name="force_stop_dlg_text">Das erzwungene Beenden einer App kann zu abnormalem Verhalten führen.</string>
+    <string name="guts_force_close_app">App schließen</string>
 </resources>

@@ -153,4 +153,7 @@
     <string name="theming_tile_title">Világos/sötét téma</string>
     <string name="theming_tile_light_title">Világos téma</string>
     <string name="theming_tile_dark_title">Sötét téma</string>
+    <string name="force_stop_dlg_title">Kényszeríti a leállítást?</string>
+    <string name="force_stop_dlg_text">Ha egy alkalmazást leállásra kényszerít, az hibásan működhet.</string>
+    <string name="guts_force_close_app">Alkalmazás bezárása</string>
 </resources>

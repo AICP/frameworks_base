@@ -106,4 +106,6 @@
     <string name="accessibility_quick_settings_sync_on">Sincronização ativada</string>
     <string name="accessibility_quick_settings_sync_changed_off">A sincronização foi desativada</string>
     <string name="accessibility_quick_settings_sync_changed_on">A sincronização foi ativada</string>
+    <string name="force_stop_dlg_title">Forçar interrupção?</string>
+    <string name="force_stop_dlg_text">Se você forçar a interrupção de um aplicativo, ele pode apresentar mau funcionamento.</string>
 </resources>

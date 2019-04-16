@@ -154,4 +154,6 @@
     <string name="theming_tile_title">Aydınlık/karanlık tema</string>
     <string name="theming_tile_light_title">Aydınlık tema</string>
     <string name="theming_tile_dark_title">Karanlık tema</string>
+    <string name="force_stop_dlg_title">Zorla durdurulsun mu?</string>
+    <string name="force_stop_dlg_text">Uygulamayı zorla durdurursanız, hatalı davranabilir.</string>
 </resources>

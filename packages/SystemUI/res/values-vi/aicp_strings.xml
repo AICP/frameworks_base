@@ -69,4 +69,6 @@
     <string name="accessibility_quick_settings_sync_on">Bật đồng bộ</string>
     <string name="accessibility_quick_settings_sync_changed_off">Đồng bộ đã tắt</string>
     <string name="accessibility_quick_settings_sync_changed_on">Đồng bộ đã bật</string>
+    <string name="force_stop_dlg_title">Buộc dừng?</string>
+    <string name="force_stop_dlg_text">Nếu bạn buộc dừng một ứng dụng, ứng dụng đó có thể hoạt động sai.</string>
 </resources>

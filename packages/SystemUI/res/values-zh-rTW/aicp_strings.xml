@@ -105,4 +105,6 @@
     <string name="accessibility_quick_settings_sync_on">同步處理開啟</string>
     <string name="accessibility_quick_settings_sync_changed_off">同步處理已關閉</string>
     <string name="accessibility_quick_settings_sync_changed_on">同步處理已開啟</string>
+    <string name="force_stop_dlg_title">強制停止嗎？</string>
+    <string name="force_stop_dlg_text">如果您強制停止應用程式，應用程式可能無法正常運作。</string>
 </resources>

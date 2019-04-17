@@ -151,4 +151,9 @@
     <string name="gaming_mode_dialog_message">Wanneer de game modus is ingeschakeld zal de beltoon worden omgezet naar een trilsignaal, verschijnen er geen pop-up notificaties en zullen de fysieke knoppen worden uitgeschakeld. Het mediavolume zal op de hoogste stand gezet worden. Alle uitgeschakelde instellingen zullen weer worden teruggezet naar de normale stand wanneer je de Game modus verlaat.</string>
     <string name="accessibility_quick_settings_gaming_mode_on">Game modus aan</string>
     <string name="accessibility_quick_settings_gaming_mode_off">Game modus uit</string>
+    <string name="theming_tile_title">Licht/donker thema</string>
+    <string name="theming_tile_light_title">Licht thema</string>
+    <string name="theming_tile_dark_title">Donker thema</string>
+    <string name="force_stop_dlg_title">Nu gedwongen stoppen?</string>
+    <string name="force_stop_dlg_text">Als je een app gedwongen stopt, kan deze onverwacht gedrag vertonen.</string>
 </resources>

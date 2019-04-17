@@ -101,4 +101,6 @@
     <string name="accessibility_quick_settings_sync_on">Synchronisation activée</string>
     <string name="accessibility_quick_settings_sync_changed_off">La synchronisation est désactivée</string>
     <string name="accessibility_quick_settings_sync_changed_on">La synchronisation est activée</string>
+    <string name="force_stop_dlg_title">Forcer l\'arrêt ?</string>
+    <string name="force_stop_dlg_text">Si vous forcez l\'arrêt d\'une application, cela peut provoquer son dysfonctionnement.</string>
 </resources>

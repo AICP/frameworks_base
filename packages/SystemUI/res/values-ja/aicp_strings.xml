@@ -106,4 +106,6 @@
     <string name="accessibility_quick_settings_sync_on">同期 ON</string>
     <string name="accessibility_quick_settings_sync_changed_off">同期が OFF になりました</string>
     <string name="accessibility_quick_settings_sync_changed_on">同期が ON になりました</string>
+    <string name="force_stop_dlg_title">強制停止しますか？</string>
+    <string name="force_stop_dlg_text">アプリを強制停止すると、アプリが正常に機能しないことがあります。</string>
 </resources>

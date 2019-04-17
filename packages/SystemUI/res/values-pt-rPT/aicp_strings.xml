@@ -105,4 +105,6 @@
     <string name="accessibility_quick_settings_sync_on">Sincronização ativada</string>
     <string name="accessibility_quick_settings_sync_changed_off">Sincronização desligada</string>
     <string name="accessibility_quick_settings_sync_changed_on">Sincronização ativada</string>
+    <string name="force_stop_dlg_title">Forçar paragem?</string>
+    <string name="force_stop_dlg_text">Se forçar a paragem de uma aplicação, esta poderá apresentar um comportamento anormal.</string>
 </resources>

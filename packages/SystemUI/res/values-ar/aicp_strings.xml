@@ -153,4 +153,6 @@
     <string name="theming_tile_title">السمة الفاتحة/الداكنة</string>
     <string name="theming_tile_light_title">سمة فاتحة</string>
     <string name="theming_tile_dark_title">سمة داكنة</string>
+    <string name="force_stop_dlg_title">إيقاف بالقوة؟</string>
+    <string name="force_stop_dlg_text">في حالة فرض إيقاف التطبيق، ربما لا يعمل بشكل صحيح.</string>
 </resources>

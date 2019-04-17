@@ -150,4 +150,6 @@
     <string name="gaming_mode_dialog_message">启用游戏模式后，您的铃声模式将变为振动模式，所有浮动消息将被禁用，硬件按键将被关闭。媒体音量将增加到最大值。退出游戏模式后，所有禁用的设置将重置为默认值。</string>
     <string name="accessibility_quick_settings_gaming_mode_on">游戏模式开启</string>
     <string name="accessibility_quick_settings_gaming_mode_off">游戏模式关闭</string>
+    <string name="force_stop_dlg_title">强制停止？</string>
+    <string name="force_stop_dlg_text">如果你强制停止一个应用程序，它可能会失败。</string>
 </resources>

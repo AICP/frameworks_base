@@ -6113,6 +6113,12 @@ public final class Settings {
          */
         public static final String CUSTOM_CARRIER_LABEL = "custom_carrier_label";
 
+        /**
+        * Quick Settings Right/Left Quick Pulldown.
+        * @hide
+        */
+        public static final String STATUS_BAR_QUICK_QS_PULLDOWN = "status_bar_quick_qs_pulldown";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6274,6 +6280,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(LOCKSCREEN_MAX_NOTIF_CONFIG, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(STATUS_BAR_SHOW_CARRIER, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(CUSTOM_CARRIER_LABEL, ANY_STRING_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(STATUS_BAR_QUICK_QS_PULLDOWN, ANY_INTEGER_VALIDATOR);
         }
 
         /**

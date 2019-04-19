@@ -913,12 +913,16 @@ public class StatusBarWindowView extends FrameLayout implements Tunable {
         boolean isDoubleTapEnabled = Settings.System.getIntForUser(
                 mContext.getContentResolver(), Settings.System.AICP_DOUBLE_TAP_SLEEP_LOCKSCREEN, 0,
                 UserHandle.USER_CURRENT) == 1;
+        int onefingerQuickSettingsintercept = Settings.System.getIntForUser(
+                mContext.getContentResolver(), Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN, 0,
+                UserHandle.USER_CURRENT);
         boolean isQsSecureExpandDisabled = Settings.Secure.getIntForUser(
                 mContext.getContentResolver(), Settings.Secure.LOCK_QS_DISABLED, 0,
                 UserHandle.USER_CURRENT) != 0;
         if (mNotificationPanel != null) {
             mNotificationPanel.updateDoubleTapToSleep(doubleTapToSleepEnabled);
             mNotificationPanel.setLockscreenDoubleTapToSleep(isDoubleTapEnabled);
+            mNotificationPanel.setOneFingerQuickSettingsIntercept(onefingerQuickSettingsintercept);
             mNotificationPanel.setQsSecureExpandDisabled(isQsSecureExpandDisabled);
         }
         if (mDragDownHelper != null) {

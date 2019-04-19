@@ -5973,6 +5973,16 @@ public final class Settings {
          private static final Validator CUSTOM_CARRIER_LABEL_VALIDATOR =
                  ANY_STRING_VALIDATOR;
 
+        /**
+        * Quick Settings Right/Left Quick Pulldown.
+        * @hide
+        */
+        public static final String STATUS_BAR_QUICK_QS_PULLDOWN = "status_bar_quick_qs_pulldown";
+
+        /** @hide */
+        private static final Validator STATUS_BAR_QUICK_QS_PULLDOWN_VALIDATOR =
+              new SettingsValidators.InclusiveIntegerRangeValidator(0, 3);
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6187,6 +6197,7 @@ public final class Settings {
             LOCKSCREEN_MAX_NOTIF_CONFIG,
             STATUS_BAR_SHOW_CARRIER,
             CUSTOM_CARRIER_LABEL,
+            STATUS_BAR_QUICK_QS_PULLDOWN,
             // AICP Settings end
         };
 
@@ -6455,6 +6466,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(LOCKSCREEN_MAX_NOTIF_CONFIG);
             PRIVATE_SETTINGS.add(STATUS_BAR_SHOW_CARRIER);
             PRIVATE_SETTINGS.add(CUSTOM_CARRIER_LABEL);
+            PRIVATE_SETTINGS.add(STATUS_BAR_QUICK_QS_PULLDOWN);
             // AICP Settings end
         }
 
@@ -6710,6 +6722,7 @@ public final class Settings {
             VALIDATORS.put(LOCKSCREEN_MAX_NOTIF_CONFIG, LOCKSCREEN_MAX_NOTIF_CONFIG_VALIDATOR);
             VALIDATORS.put(STATUS_BAR_SHOW_CARRIER,STATUS_BAR_SHOW_CARRIER_VALIDATOR);
             VALIDATORS.put(CUSTOM_CARRIER_LABEL,CUSTOM_CARRIER_LABEL_VALIDATOR);
+            VALIDATORS.put(STATUS_BAR_QUICK_QS_PULLDOWN,STATUS_BAR_QUICK_QS_PULLDOWN_VALIDATOR);
             // AICP Settings end
         }
 

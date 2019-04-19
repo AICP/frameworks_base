@@ -359,10 +359,12 @@ public class NotificationPanelViewController extends PanelViewController {
     private VelocityTracker mQsVelocityTracker;
     private boolean mQsTracking;
 
+    /* aicp additions */
     private GestureDetector mDoubleTapToSleepGesture;
     private boolean mDoubleTapToSleepEnabled;
     private boolean mIsLockscreenDoubleTapEnabled;
     private int mStatusBarHeaderHeight;
+    private int mOneFingerQuickSettingsIntercept;
 
     /**
      * If set, the ongoing touch gesture might both trigger the expansion in {@link PanelView} and
@@ -1945,7 +1947,26 @@ public class NotificationPanelViewController extends PanelViewController {
                         MotionEvent.BUTTON_SECONDARY) || event.isButtonPressed(
                         MotionEvent.BUTTON_TERTIARY));
 
-        return twoFingerDrag || stylusButtonClickDrag || mouseButtonClickDrag;
+        final float w = mView.getMeasuredWidth();;
+        final float x = event.getX();
+        float region = (w * (1.f/4.f)); // TODO overlay region fraction?
+        boolean showQsOverride = false;
+
+        switch (mOneFingerQuickSettingsIntercept) {
+            case 1: // Right side pulldown
+                showQsOverride = mView.isLayoutRtl() ? (x < region) : (w - region < x);
+                break;
+            case 2: // Left side pulldown
+                showQsOverride = mView.isLayoutRtl() ? (w - region < x) : (x < region);
+                break;
+            case 3: // pull down anywhere
+                showQsOverride = true;
+                break;
+        }
+
+        showQsOverride &= mBarState == StatusBarState.SHADE;
+
+        return showQsOverride || twoFingerDrag || stylusButtonClickDrag || mouseButtonClickDrag;
     }
 
     private void handleQsDown(MotionEvent event) {
@@ -4723,5 +4744,9 @@ public class NotificationPanelViewController extends PanelViewController {
 
     public void setLockscreenDoubleTapToSleep(boolean enabled) {
         mIsLockscreenDoubleTapEnabled = enabled;
+    }
+
+    public void setOneFingerQuickSettingsIntercept(int onefingerQuickSettingsintercept) {
+        mOneFingerQuickSettingsIntercept = onefingerQuickSettingsintercept;
     }
 }

@@ -5839,6 +5839,9 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.QS_SMART_PULLDOWN),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN),
+                    false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.Secure.getUriFor(
                     Settings.Secure.LOCK_QS_DISABLED),
                     false, this, UserHandle.USER_ALL);
@@ -5897,6 +5900,7 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
             } else if (uri.equals(Settings.System.getUriFor(Settings.System.AICP_DOUBLE_TAP_SLEEP_GESTURE)) ||
                     uri.equals(Settings.System.getUriFor(Settings.System.AICP_DOUBLE_TAP_SLEEP_LOCKSCREEN)) ||
                     uri.equals(Settings.System.getUriFor(Settings.System.QS_SMART_PULLDOWN)) ||
+                    uri.equals(Settings.System.getUriFor(Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN)) ||
                     uri.equals(Settings.Secure.getUriFor(Settings.Secure.LOCK_QS_DISABLED))) {
                 setStatusBarWindowViewOptions();
             } else if (uri.equals(Settings.System.getUriFor(Settings.System.LOCKSCREEN_MEDIA_METADATA))) {

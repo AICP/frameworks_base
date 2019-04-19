@@ -4826,6 +4826,16 @@ public final class Settings {
               new SettingsValidators.InclusiveIntegerRangeValidator(0, 3);
 
         /**
+        * Quick Settings Right/Left Quick Pulldown.
+        * @hide
+        */
+        public static final String STATUS_BAR_QUICK_QS_PULLDOWN = "status_bar_quick_qs_pulldown";
+
+        /** @hide */
+        private static final Validator STATUS_BAR_QUICK_QS_PULLDOWN_VALIDATOR =
+              new SettingsValidators.InclusiveIntegerRangeValidator(0, 3);
+
+        /**
          * Change quick settings tiles animation style
          *
          * @hide
@@ -6197,6 +6207,7 @@ public final class Settings {
             VOLUME_DIALOG_TIMEOUT,
             BLUETOOTH_SHOW_BATTERY,
             QS_SMART_PULLDOWN,
+            STATUS_BAR_QUICK_QS_PULLDOWN,
             ANIM_TILE_STYLE,
             ANIM_TILE_DURATION,
             ANIM_TILE_INTERPOLATOR,
@@ -6480,6 +6491,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(LOCKSCREEN_MEDIA_METADATA);
             PRIVATE_SETTINGS.add(BLUETOOTH_SHOW_BATTERY);
             PRIVATE_SETTINGS.add(QS_SMART_PULLDOWN);
+            PRIVATE_SETTINGS.add(STATUS_BAR_QUICK_QS_PULLDOWN);
             PRIVATE_SETTINGS.add(ANIM_TILE_STYLE);
             PRIVATE_SETTINGS.add(ANIM_TILE_DURATION);
             PRIVATE_SETTINGS.add(ANIM_TILE_INTERPOLATOR);
@@ -6761,6 +6773,7 @@ public final class Settings {
             VALIDATORS.put(LOCKSCREEN_MEDIA_METADATA,LOCKSCREEN_MEDIA_METADATA_VALIDATOR);
             VALIDATORS.put(BLUETOOTH_SHOW_BATTERY,BLUETOOTH_SHOW_BATTERY_VALIDATOR);
             VALIDATORS.put(QS_SMART_PULLDOWN,QS_SMART_PULLDOWN_VALIDATOR);
+            VALIDATORS.put(STATUS_BAR_QUICK_QS_PULLDOWN,STATUS_BAR_QUICK_QS_PULLDOWN_VALIDATOR);
             VALIDATORS.put(ANIM_TILE_STYLE,ANIM_TILE_STYLE_VALIDATOR);
             VALIDATORS.put(ANIM_TILE_DURATION,ANIM_TILE_DURATION_VALIDATOR);
             VALIDATORS.put(ANIM_TILE_INTERPOLATOR,ANIM_TILE_INTERPOLATOR_VALIDATOR);

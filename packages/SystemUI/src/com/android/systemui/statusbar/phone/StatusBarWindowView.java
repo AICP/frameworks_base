@@ -835,6 +835,9 @@ public class StatusBarWindowView extends FrameLayout {
         int qsSmartPullDown = Settings.System.getIntForUser(
                 mContext.getContentResolver(), Settings.System.QS_SMART_PULLDOWN, 0,
                 UserHandle.USER_CURRENT);
+        int onefingerQuickSettingsintercept = Settings.System.getIntForUser(
+                mContext.getContentResolver(), Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN, 0,
+                UserHandle.USER_CURRENT);
         boolean isQsSecureExpandDisabled = Settings.Secure.getIntForUser(
                 mContext.getContentResolver(), Settings.Secure.LOCK_QS_DISABLED, 0,
                 UserHandle.USER_CURRENT) != 0;
@@ -842,6 +845,7 @@ public class StatusBarWindowView extends FrameLayout {
             mNotificationPanel.updateDoubleTapToSleep(doubleTapToSleepEnabled);
             mNotificationPanel.setLockscreenDoubleTapToSleep(isDoubleTapEnabled);
             mNotificationPanel.setQsSmartPulldown(qsSmartPullDown);
+            mNotificationPanel.setOneFingerQuickSettingsIntercept(onefingerQuickSettingsintercept);
             mNotificationPanel.setQsSecureExpandDisabled(isQsSecureExpandDisabled);
         }
         if (mDragDownHelper != null) {

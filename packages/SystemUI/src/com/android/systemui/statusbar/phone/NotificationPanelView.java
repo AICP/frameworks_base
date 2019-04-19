@@ -37,6 +37,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.os.PowerManager;
+import android.os.UserHandle;
 import android.util.AttributeSet;
 import android.util.FloatProperty;
 import android.util.Log;
@@ -198,6 +199,7 @@ public class NotificationPanelView extends PanelView implements
     private boolean mTwoFingerQsExpandPossible;
 
     private int mQsSmartPullDown;
+    private int mOneFingerQuickSettingsIntercept;
 
     /**
      * If we are in a panel collapsing motion, we reset scrollY of our scroll view but still
@@ -986,7 +988,8 @@ public class NotificationPanelView extends PanelView implements
             mTwoFingerQsExpandPossible = true;
         }
         if (mTwoFingerQsExpandPossible && isOpenQsEvent(event)
-                && event.getY(event.getActionIndex()) < mStatusBarMinHeight) {
+                && event.getY(event.getActionIndex()) < mStatusBarMinHeight
+                && mExpandedHeight <= mQsPeekHeight) {
             MetricsLogger.count(mContext, COUNTER_PANEL_OPEN_QS, 1);
             mQsExpandImmediate = true;
             mNotificationStackScroller.setShouldShowShelfOnly(true);
@@ -1021,7 +1024,23 @@ public class NotificationPanelView extends PanelView implements
                 && (event.isButtonPressed(MotionEvent.BUTTON_SECONDARY)
                         || event.isButtonPressed(MotionEvent.BUTTON_TERTIARY));
 
+        final float w = getMeasuredWidth();
+        final float x = event.getX();
+        float region = (w * (1.f/4.f)); // TODO overlay region fraction?
         boolean showQsOverride = false;
+
+        switch (mOneFingerQuickSettingsIntercept) {
+            case 1: // Right side pulldown
+                showQsOverride = isLayoutRtl() ? (x < region) : (w - region < x);
+                break;
+            case 2: // Left side pulldown
+                showQsOverride = isLayoutRtl() ? (w - region < x) : (x < region);
+                break;
+            case 3: // pull down anywhere
+                showQsOverride = true;
+                break;
+        }
+        showQsOverride &= mStatusBarState == StatusBarState.SHADE;
 
         if (mQsSmartPullDown == 1 && !mStatusBar.hasActiveClearableNotificationsQS()
                 || mQsSmartPullDown == 2 && !mStatusBar.hasActiveOngoingNotifications()
@@ -2949,6 +2968,10 @@ public class NotificationPanelView extends PanelView implements
 
     public void setQsSmartPulldown(int qsSmartPulldown) {
         mQsSmartPullDown = qsSmartPulldown;
+    }
+
+    public void setOneFingerQuickSettingsIntercept(int onefingerQuickSettingsintercept) {
+        mOneFingerQuickSettingsIntercept = onefingerQuickSettingsintercept;
     }
 
     public void setQsSecureExpandDisabled(boolean isQsSecureExDisabled) {

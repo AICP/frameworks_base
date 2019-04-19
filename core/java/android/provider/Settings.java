@@ -5380,6 +5380,12 @@ public final class Settings {
          */
         public static final String STATUSBAR_BATTERY_BAR_LOCATION = "statusbar_battery_bar_location";
 
+        /**
+        * Quick Settings Right/Left Quick Pulldown.
+        * @hide
+        */
+        public static final String STATUS_BAR_QUICK_QS_PULLDOWN = "status_bar_quick_qs_pulldown";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5543,6 +5549,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_STYLE);
             PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_ANIMATE);
             PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_LOCATION);
+            PRIVATE_SETTINGS.add(STATUS_BAR_QUICK_QS_PULLDOWN);
         }
 
         /**

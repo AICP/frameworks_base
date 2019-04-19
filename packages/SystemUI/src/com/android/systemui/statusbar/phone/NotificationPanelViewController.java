@@ -427,6 +427,8 @@ public class NotificationPanelViewController extends PanelViewController {
     private LockPatternUtils mLockPatternUtils;
     private boolean mIsLockscreenDoubleTapEnabled;
     private boolean mQsSecureExpandDisabled;
+    private int mOneFingerQuickSettingsIntercept;
+
     /**
      * Cache the resource id of the theme to avoid unnecessary work in onThemeChanged.
      *
@@ -1309,7 +1311,7 @@ public class NotificationPanelViewController extends PanelViewController {
             mTwoFingerQsExpandPossible = true;
         }
         if (mTwoFingerQsExpandPossible && isOpenQsEvent(event) && event.getY(event.getActionIndex())
-                < mStatusBarMinHeight) {
+                < mStatusBarMinHeight && mExpandedHeight <= mQsPeekHeight) {
             mMetricsLogger.count(COUNTER_PANEL_OPEN_QS, 1);
             mQsExpandImmediate = true;
             mNotificationStackScroller.setShouldShowShelfOnly(true);
@@ -1348,7 +1350,25 @@ public class NotificationPanelViewController extends PanelViewController {
                         MotionEvent.BUTTON_SECONDARY) || event.isButtonPressed(
                         MotionEvent.BUTTON_TERTIARY));
 
-        return !isQsSecureExpandDisabled() && (twoFingerDrag || stylusButtonClickDrag || mouseButtonClickDrag);
+        final float w = mQs.getView().getMeasuredWidth();
+        final float x = event.getX();
+        float region = (w * (1.f/4.f)); // TODO overlay region fraction?
+        boolean showQsOverride = false;
+
+        switch (mOneFingerQuickSettingsIntercept) {
+            case 1: // Right side pulldown
+                showQsOverride = mNotificationStackScroller.isLayoutRtl() ? (x < region) : (w - region < x);
+                break;
+            case 2: // Left side pulldown
+                showQsOverride = mNotificationStackScroller.isLayoutRtl() ? (w - region < x) : (x < region);
+                break;
+            case 3: // pull down anywhere
+                showQsOverride = true;
+                break;
+        }
+        showQsOverride &= mBarState == StatusBarState.SHADE;
+
+        return !isQsSecureExpandDisabled() && (showQsOverride || twoFingerDrag || stylusButtonClickDrag || mouseButtonClickDrag);
     }
 
     private void handleQsDown(MotionEvent event) {
@@ -3827,5 +3847,9 @@ public class NotificationPanelViewController extends PanelViewController {
                 || mBarState == StatusBarState.SHADE_LOCKED;
         return mLockPatternUtils.isSecure(KeyguardUpdateMonitor.getCurrentUser()) && mQsSecureExpandDisabled &&
                 keyguardOrShadeShowing;
+    }
+
+    public void setOneFingerQuickSettingsIntercept(int onefingerQuickSettingsintercept) {
+        mOneFingerQuickSettingsIntercept = onefingerQuickSettingsintercept;
     }
 }

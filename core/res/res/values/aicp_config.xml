@@ -99,9 +99,6 @@
     <string-array name="config_deviceKeyHandlerClasses" translatable="false">
     </string-array>
 
-     <!-- Component name for the activity that will be presenting the Oreo's Recents UI -->
-    <string name="config_recentsComponentNameOreo" translatable="false">com.android.systemui/.recents.RecentsActivity</string>
-
     <!-- Allow devices override audio panel location to the left side -->
     <bool name="config_audioPanelOnLeftSide">false</bool>
 

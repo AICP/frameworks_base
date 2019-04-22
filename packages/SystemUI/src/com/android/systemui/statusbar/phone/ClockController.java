@@ -81,7 +81,7 @@ public class ClockController implements TunerService.Tunable {
         }
     }
 
-    private void updateActiveClock() {
+    public void updateActiveClock() {
         if (mShowClock) {
             mActiveClock.setClockVisibleByUser(false);
             mActiveClock = getClock();

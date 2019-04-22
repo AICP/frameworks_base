@@ -250,6 +250,7 @@ public class HeadsUpAppearanceController implements OnHeadsUpChangedListener,
                 if (!isRightClock) {
                     CrossFadeHelper.fadeIn(clockView, CONTENT_FADE_DURATION /* duration */,
                             CONTENT_FADE_DELAY /* delay */);
+                    mClockController.updateActiveClock();
                 }
                 CrossFadeHelper.fadeIn(mCustomIconArea, CONTENT_FADE_DURATION /* duration */,
                         CONTENT_FADE_DELAY /* delay */);

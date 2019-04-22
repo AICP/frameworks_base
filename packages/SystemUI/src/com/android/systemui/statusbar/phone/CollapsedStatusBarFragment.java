@@ -65,6 +65,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
     private KeyguardStateController mKeyguardStateController;
     private NetworkController mNetworkController;
     private LinearLayout mSystemIconArea;
+    private LinearLayout mCustomIconArea;
     private View mStatusBarLogo, mStatusBarLogoRight;
     private View mNotificationIconAreaInner;
     private View mCenteredIconArea;
@@ -141,6 +142,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
         mDarkIconManager.setShouldLog(true);
         Dependency.get(StatusBarIconController.class).addIconGroup(mDarkIconManager);
         mSystemIconArea = mStatusBar.findViewById(R.id.system_icon_area);
+        mCustomIconArea = mStatusBar.findViewById(R.id.left_icon_area);
         mClockController = new ClockController(mStatusBar);
         mBatteryBars[0] = mStatusBar.findViewById(R.id.battery_bar);
         mBatteryBars[1] = mStatusBar.findViewById(R.id.battery_bar_1);
@@ -339,14 +341,14 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
     public void hideNotificationIconArea(boolean animate) {
         animateHide(mNotificationIconAreaInner, animate);
         animateHide(mCenteredIconArea, animate);
-        animateHide(mStatusBarLogo, animate);
+        animateHide(mCustomIconArea, animate);
         animateHide(mClockController.getClockLayout(), animate);
     }
 
     public void showNotificationIconArea(boolean animate) {
         animateShow(mNotificationIconAreaInner, animate);
         animateShow(mCenteredIconArea, animate);
-        animateShow(mStatusBarLogo, animate);
+        animateShow(mCustomIconArea, animate);
         animateShow(mClockController.getClockLayout(), animate);
     }
 

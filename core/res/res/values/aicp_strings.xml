@@ -47,4 +47,9 @@
     <string name="fontservice_incompatible_font">The font package you\'ve installed is not compatible due to missing fonts.xml on their files. Please contact the package developer for support.</string>
     <!-- About device screen, vendor security patch -->
     <string name="aicp_vendor_security_patch">Vendor security patch level</string>
+
+    <!-- Button that copies the url to the log of a crashed application -->
+    <string name="aerr_copy">Copy crash log URL</string>
+    <string name="url_copy_success">URL copied successfully</string>
+    <string name="url_copy_failed">An error occured while uploading the log to aicp haste</string>
 </resources>

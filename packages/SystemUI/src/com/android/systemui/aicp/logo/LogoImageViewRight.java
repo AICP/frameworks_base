@@ -117,71 +117,71 @@ public class LogoImageViewRight extends ImageView implements
         }
 
         if (mLogoStyle == 0) {
-            drawable = mContext.getResources().getDrawable(R.drawable.ic_aicp_logo);
+            drawable = mContext.getDrawable(R.drawable.ic_aicp_logo);
         } else if (mLogoStyle == 1) {
-           drawable = mContext.getResources().getDrawable(R.drawable.ic_android_logo);
+           drawable = mContext.getDrawable(R.drawable.ic_android_logo);
         } else if (mLogoStyle == 2) {
-            drawable = mContext.getResources().getDrawable(R.drawable.ic_apple_logo);
+            drawable = mContext.getDrawable(R.drawable.ic_apple_logo);
         } else if (mLogoStyle == 3) {
-            drawable = mContext.getResources().getDrawable(R.drawable.ic_ios_logo);
+            drawable = mContext.getDrawable(R.drawable.ic_ios_logo);
         } else if (mLogoStyle == 4) {
-            drawable = mContext.getResources().getDrawable(R.drawable.ic_emoticon);
+            drawable = mContext.getDrawable(R.drawable.ic_emoticon);
         } else if (mLogoStyle == 5) {
-            drawable = mContext.getResources().getDrawable(R.drawable.ic_emoticon_cool);
+            drawable = mContext.getDrawable(R.drawable.ic_emoticon_cool);
         } else if (mLogoStyle == 6) {
-            drawable = mContext.getResources().getDrawable(R.drawable.ic_emoticon_dead);
+            drawable = mContext.getDrawable(R.drawable.ic_emoticon_dead);
         } else if (mLogoStyle == 7) {
-            drawable = mContext.getResources().getDrawable(R.drawable.ic_emoticon_devil);
+            drawable = mContext.getDrawable(R.drawable.ic_emoticon_devil);
         } else if (mLogoStyle == 8) {
-            drawable = mContext.getResources().getDrawable(R.drawable.ic_emoticon_happy);
+            drawable = mContext.getDrawable(R.drawable.ic_emoticon_happy);
         } else if (mLogoStyle == 9) {
-            drawable = mContext.getResources().getDrawable(R.drawable.ic_emoticon_neutral);
+            drawable = mContext.getDrawable(R.drawable.ic_emoticon_neutral);
         } else if (mLogoStyle == 10) {
-            drawable = mContext.getResources().getDrawable(R.drawable.ic_emoticon_poop);
+            drawable = mContext.getDrawable(R.drawable.ic_emoticon_poop);
         } else if (mLogoStyle == 11) {
-            drawable = mContext.getResources().getDrawable(R.drawable.ic_emoticon_sad);
+            drawable = mContext.getDrawable(R.drawable.ic_emoticon_sad);
         } else if (mLogoStyle == 12) {
-            drawable = mContext.getResources().getDrawable(R.drawable.ic_emoticon_tongue);
+            drawable = mContext.getDrawable(R.drawable.ic_emoticon_tongue);
         } else if (mLogoStyle == 13) {
-            drawable = mContext.getResources().getDrawable(R.drawable.ic_blackberry);
+            drawable = mContext.getDrawable(R.drawable.ic_blackberry);
         } else if (mLogoStyle == 14) {
-            drawable = mContext.getResources().getDrawable(R.drawable.ic_cake);
+            drawable = mContext.getDrawable(R.drawable.ic_cake);
         } else if (mLogoStyle == 15) {
-            drawable = mContext.getResources().getDrawable(R.drawable.ic_blogger);
+            drawable = mContext.getDrawable(R.drawable.ic_blogger);
         } else if (mLogoStyle == 16) {
-            drawable = mContext.getResources().getDrawable(R.drawable.ic_biohazard);
+            drawable = mContext.getDrawable(R.drawable.ic_biohazard);
         } else if (mLogoStyle == 17) {
-            drawable = mContext.getResources().getDrawable(R.drawable.ic_linux);
+            drawable = mContext.getDrawable(R.drawable.ic_linux);
         } else if (mLogoStyle == 18) {
-            drawable = mContext.getResources().getDrawable(R.drawable.ic_yin_yang);
+            drawable = mContext.getDrawable(R.drawable.ic_yin_yang);
         } else if (mLogoStyle == 19) {
-            drawable = mContext.getResources().getDrawable(R.drawable.ic_windows);
+            drawable = mContext.getDrawable(R.drawable.ic_windows);
         } else if (mLogoStyle == 20) {
-            drawable = mContext.getResources().getDrawable(R.drawable.ic_robot);
+            drawable = mContext.getDrawable(R.drawable.ic_robot);
         } else if (mLogoStyle == 21) {
-            drawable = mContext.getResources().getDrawable(R.drawable.ic_ninja);
+            drawable = mContext.getDrawable(R.drawable.ic_ninja);
         } else if (mLogoStyle == 22) {
-            drawable = mContext.getResources().getDrawable(R.drawable.ic_heart);
+            drawable = mContext.getDrawable(R.drawable.ic_heart);
         } else if (mLogoStyle == 23) {
-            drawable = mContext.getResources().getDrawable(R.drawable.ic_flower);
+            drawable = mContext.getDrawable(R.drawable.ic_flower);
         } else if (mLogoStyle == 24) {
-            drawable = mContext.getResources().getDrawable(R.drawable.ic_ghost);
+            drawable = mContext.getDrawable(R.drawable.ic_ghost);
         } else if (mLogoStyle == 25) {
-            drawable = mContext.getResources().getDrawable(R.drawable.ic_google);
+            drawable = mContext.getDrawable(R.drawable.ic_google);
         } else if (mLogoStyle == 26) {
-            drawable = mContext.getResources().getDrawable(R.drawable.ic_human_male);
+            drawable = mContext.getDrawable(R.drawable.ic_human_male);
         } else if (mLogoStyle == 27) {
-            drawable = mContext.getResources().getDrawable(R.drawable.ic_human_female);
+            drawable = mContext.getDrawable(R.drawable.ic_human_female);
         } else if (mLogoStyle == 28) {
-            drawable = mContext.getResources().getDrawable(R.drawable.ic_human_male_female);
+            drawable = mContext.getDrawable(R.drawable.ic_human_male_female);
         } else if (mLogoStyle == 29) {
-            drawable = mContext.getResources().getDrawable(R.drawable.ic_gender_male);
+            drawable = mContext.getDrawable(R.drawable.ic_gender_male);
         } else if (mLogoStyle == 30) {
-            drawable = mContext.getResources().getDrawable(R.drawable.ic_gender_female);
+            drawable = mContext.getDrawable(R.drawable.ic_gender_female);
         } else if (mLogoStyle == 31) {
-            drawable = mContext.getResources().getDrawable(R.drawable.ic_gender_male_female);
+            drawable = mContext.getDrawable(R.drawable.ic_gender_male_female);
         } else if (mLogoStyle == 32) {
-            drawable = mContext.getResources().getDrawable(R.drawable.ic_guitar_electric);
+            drawable = mContext.getDrawable(R.drawable.ic_guitar_electric);
         }
 
         setImageDrawable(null);

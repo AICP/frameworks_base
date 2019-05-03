@@ -6076,6 +6076,151 @@ public final class Settings {
         private static final Validator STATUS_BAR_LOGO_STYLE_VALIDATOR =
               ANY_STRING_VALIDATOR;
 
+        /**
+         * Color temperature of the display during the day
+         * @hide
+         */
+        public static final String DISPLAY_TEMPERATURE_DAY = "display_temperature_day";
+
+        /** @hide */
+        private static final Validator DISPLAY_TEMPERATURE_DAY_VALIDATOR =
+                new SettingsValidators.InclusiveIntegerRangeValidator(0, 100000);
+
+        /**
+         * Color temperature of the display at night
+         * @hide
+         */
+        public static final String DISPLAY_TEMPERATURE_NIGHT = "display_temperature_night";
+
+        /** @hide */
+        private static final Validator DISPLAY_TEMPERATURE_NIGHT_VALIDATOR =
+                new SettingsValidators.InclusiveIntegerRangeValidator(0, 100000);
+
+        /**
+         * Display color temperature adjustment mode, one of DAY (default), NIGHT, or AUTO.
+         * @hide
+         */
+        public static final String DISPLAY_TEMPERATURE_MODE = "display_temperature_mode";
+
+        /** @hide */
+        private static final Validator DISPLAY_TEMPERATURE_MODE_VALIDATOR =
+                new SettingsValidators.InclusiveIntegerRangeValidator(0, 4);
+
+        /**
+         * Automatic outdoor mode
+         * 0 = 0ff, 1 = on
+         * @hide
+         */
+        public static final String DISPLAY_AUTO_OUTDOOR_MODE = "display_auto_outdoor_mode";
+
+        /** @hide */
+        private static final Validator DISPLAY_AUTO_OUTDOOR_MODE_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
+         * Reader mode
+         * 0 = 0ff, 1 = on
+         * @hide
+         */
+        public static final String DISPLAY_READING_MODE = "display_reading_mode";
+
+        /** @hide */
+        private static final Validator DISPLAY_READING_MODE_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
+         * Use display power saving features such as CABC or CABL
+         * 0 = 0ff, 1 = on
+         * @hide
+         */
+        public static final String DISPLAY_CABC = "display_low_power";
+
+        /** @hide */
+        private static final Validator DISPLAY_CABC_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
+         * Use color enhancement feature of display
+         * 0 = 0ff, 1 = on
+         * @hide
+         */
+        public static final String DISPLAY_COLOR_ENHANCE = "display_color_enhance";
+
+        /** @hide */
+        private static final Validator DISPLAY_COLOR_ENHANCE_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
+         * Use auto contrast optimization feature of display
+         * 0 = 0ff, 1 = on
+         * @hide
+         */
+        public static final String DISPLAY_AUTO_CONTRAST = "display_auto_contrast";
+
+        /** @hide */
+        private static final Validator DISPLAY_AUTO_CONTRAST_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
+         * Manual display color adjustments (RGB values as floats, separated by spaces)
+         * @hide
+         */
+        public static final String DISPLAY_COLOR_ADJUSTMENT = "display_color_adjustment";
+
+        /** @hide */
+        private static final Validator DISPLAY_COLOR_ADJUSTMENT_VALIDATOR =
+                new Validator() {
+                    @Override
+                    public boolean validate(String value) {
+                        String[] colorAdjustment = value == null ?
+                                null : value.split(" ");
+                        if (colorAdjustment != null && colorAdjustment.length != 3) {
+                            return false;
+                        }
+                        Validator floatValidator = new SettingsValidators.InclusiveFloatRangeValidator(0, 1);
+                        return colorAdjustment == null ||
+                                floatValidator.validate(colorAdjustment[0]) &&
+                                floatValidator.validate(colorAdjustment[1]) &&
+                                floatValidator.validate(colorAdjustment[2]);
+                    }
+                };
+
+        /**
+         * The current custom picture adjustment values as a delimited string
+         * @hide
+         */
+        public static final String DISPLAY_PICTURE_ADJUSTMENT =
+                "display_picture_adjustment";
+
+        /** @hide */
+        private static final Validator DISPLAY_PICTURE_ADJUSTMENT_VALIDATOR =
+                new Validator() {
+                    @Override
+                    public boolean validate(String value) {
+                        if (TextUtils.isEmpty(value)) {
+                            return true;
+                        }
+                        final String[] sp = TextUtils.split(value, ",");
+                        for (String s : sp) {
+                            final String[] sp2 = TextUtils.split(s, ":");
+                            if (sp2.length != 2) {
+                                return false;
+                            }
+                        }
+                        return true;
+                    }
+                };
+
+        /**
+         * Did we tell about how they can stop breaking their eyes?
+         * @hide
+         */
+        public static final String LIVE_DISPLAY_HINTED = "live_display_hinted";
+
+        /** @hide */
+        private static final Validator LIVE_DISPLAY_HINTED_VALIDATOR =
+                new SettingsValidators.InclusiveIntegerRangeValidator(-3, 1);
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6317,6 +6462,17 @@ public final class Settings {
             STATUS_BAR_LOGO_COLOR,
             STATUS_BAR_LOGO_POSITION,
             STATUS_BAR_LOGO_STYLE,
+            DISPLAY_TEMPERATURE_DAY,
+            DISPLAY_TEMPERATURE_NIGHT,
+            DISPLAY_TEMPERATURE_MODE,
+            DISPLAY_AUTO_OUTDOOR_MODE,
+            DISPLAY_READING_MODE,
+            DISPLAY_CABC,
+            DISPLAY_COLOR_ENHANCE,
+            DISPLAY_AUTO_CONTRAST,
+            DISPLAY_COLOR_ADJUSTMENT,
+            DISPLAY_PICTURE_ADJUSTMENT,
+            LIVE_DISPLAY_HINTED,
             // AICP Settings end
         };
 
@@ -6606,6 +6762,17 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUS_BAR_LOGO_COLOR);
             PRIVATE_SETTINGS.add(STATUS_BAR_LOGO_POSITION);
             PRIVATE_SETTINGS.add(STATUS_BAR_LOGO_STYLE);
+            PRIVATE_SETTINGS.add(DISPLAY_TEMPERATURE_DAY);
+            PRIVATE_SETTINGS.add(DISPLAY_TEMPERATURE_NIGHT);
+            PRIVATE_SETTINGS.add(DISPLAY_TEMPERATURE_MODE);
+            PRIVATE_SETTINGS.add(DISPLAY_AUTO_OUTDOOR_MODE);
+            PRIVATE_SETTINGS.add(DISPLAY_READING_MODE);
+            PRIVATE_SETTINGS.add(DISPLAY_CABC);
+            PRIVATE_SETTINGS.add(DISPLAY_COLOR_ENHANCE);
+            PRIVATE_SETTINGS.add(DISPLAY_AUTO_CONTRAST);
+            PRIVATE_SETTINGS.add(DISPLAY_COLOR_ADJUSTMENT);
+            PRIVATE_SETTINGS.add(DISPLAY_PICTURE_ADJUSTMENT);
+            PRIVATE_SETTINGS.add(LIVE_DISPLAY_HINTED);
             // AICP Settings end
         }
 
@@ -6897,6 +7064,17 @@ public final class Settings {
             VALIDATORS.put(STATUS_BAR_LOGO_COLOR, STATUS_BAR_LOGO_COLOR_VALIDATOR);
             VALIDATORS.put(STATUS_BAR_LOGO_POSITION, STATUS_BAR_LOGO_POSITION_VALIDATOR);
             VALIDATORS.put(STATUS_BAR_LOGO_STYLE, STATUS_BAR_LOGO_STYLE_VALIDATOR);
+            VALIDATORS.put(DISPLAY_TEMPERATURE_DAY, DISPLAY_TEMPERATURE_DAY_VALIDATOR);
+            VALIDATORS.put(DISPLAY_TEMPERATURE_NIGHT, DISPLAY_TEMPERATURE_NIGHT_VALIDATOR);
+            VALIDATORS.put(DISPLAY_TEMPERATURE_MODE, DISPLAY_TEMPERATURE_MODE_VALIDATOR);
+            VALIDATORS.put(DISPLAY_AUTO_OUTDOOR_MODE, DISPLAY_AUTO_OUTDOOR_MODE_VALIDATOR);
+            VALIDATORS.put(DISPLAY_READING_MODE, DISPLAY_READING_MODE_VALIDATOR);
+            VALIDATORS.put(DISPLAY_CABC, DISPLAY_CABC_VALIDATOR);
+            VALIDATORS.put(DISPLAY_COLOR_ENHANCE, DISPLAY_COLOR_ENHANCE_VALIDATOR);
+            VALIDATORS.put(DISPLAY_AUTO_CONTRAST, DISPLAY_AUTO_CONTRAST_VALIDATOR);
+            VALIDATORS.put(DISPLAY_COLOR_ADJUSTMENT, DISPLAY_COLOR_ADJUSTMENT_VALIDATOR);
+            VALIDATORS.put(DISPLAY_PICTURE_ADJUSTMENT, DISPLAY_PICTURE_ADJUSTMENT_VALIDATOR);
+            VALIDATORS.put(LIVE_DISPLAY_HINTED, LIVE_DISPLAY_HINTED_VALIDATOR);
             // AICP Settings end
         }
 

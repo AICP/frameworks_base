@@ -5085,6 +5085,13 @@
     <permission android:name="lineage.permission.PREVENT_POWER_KEY"
                 android:protectionLevel="signature|privileged" />
 
+    <!-- @hide  -->
+    <permission android:name="lineageos.permission.HARDWARE_ABSTRACTION_ACCESS"
+                android:protectionLevel="signature|privileged" />
+    <!-- @hide  -->
+    <permission android:name="lineageos.permission.MANAGE_LIVEDISPLAY"
+                android:protectionLevel="signature|privileged" />
+
     <!-- Attribution for Country Detector. -->
     <attribution android:tag="CountryDetector" android:label="@string/country_detector"/>
     <!-- Attribution for Location service. -->
@@ -5094,6 +5101,11 @@
              android:label="@string/sensor_notification_service"/>
     <!-- Feature Id for Twilight service. -->
     <attribution android:tag="TwilightService" android:label="@string/twilight_service"/>
+
+    <!-- LineageOS additions -->
+    <!-- Live display -->
+    <protected-broadcast android:name="lineageos.intent.action.INITIALIZE_LINEAGE_HARDWARE" />
+    <protected-broadcast android:name="lineageos.platform.intent.action.UPDATE_TWILIGHT_STATE" />
 
     <application android:process="system"
                  android:persistent="true"

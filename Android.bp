@@ -696,6 +696,10 @@ java_defaults {
         ":platform-properties",
 
         ":framework-statslog-gen",
+
+        // LiveDisplay
+        "core/java/com/android/internal/custom/hardware/ILineageHardwareService.aidl",
+        "core/java/com/android/internal/custom/hardware/ILiveDisplayService.aidl",
     ],
 
     aidl: {
@@ -783,6 +787,7 @@ java_defaults {
         "android.hardware.wifi-V1.0-java-constants",
         "devicepolicyprotosnano",
         "vendor.lineage.touch-V1.0-java",
+        "vendor.lineage.livedisplay-V2.0-java",
     ],
 
     required: [

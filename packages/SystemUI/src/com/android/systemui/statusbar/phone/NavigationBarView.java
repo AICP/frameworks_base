@@ -1104,13 +1104,6 @@ public class NavigationBarView extends FrameLayout implements Navigator, PulseOb
     }
 
     @Override
-    public final void notifyInflateFromUser() {
-        if (mPulse != null) {
-            mPulse.notifyScreenOn(true);
-        }
-    }
-
-    @Override
     public void setLeftInLandscape(boolean leftInLandscape) {
         if (mPulse != null) {
             mPulse.setLeftInLandscape(leftInLandscape);

@@ -37,6 +37,7 @@ import com.android.systemui.colorextraction.SysuiColorExtractor;
 import com.android.systemui.fragments.FragmentService;
 import com.android.systemui.keyguard.ScreenLifecycle;
 import com.android.systemui.keyguard.WakefulnessLifecycle;
+import com.android.systemui.navigation.pulse.PulseController;
 import com.android.systemui.plugins.ActivityStarter;
 import com.android.systemui.plugins.PluginDependencyProvider;
 import com.android.systemui.plugins.PluginManager;
@@ -327,6 +328,9 @@ public class Dependency extends SystemUI {
 
         mProviders.put(IStatusBarService.class, () -> IStatusBarService.Stub.asInterface(
                 ServiceManager.getService(Context.STATUS_BAR_SERVICE)));
+
+        mProviders.put(PulseController.class,
+                () -> new PulseController(mContext, getDependency(MAIN_HANDLER)));
 
         // Put all dependencies above here so the factory can override them if it wants.
         SystemUIFactory.getInstance().injectDependencies(mProviders, mContext);

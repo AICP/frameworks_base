@@ -203,6 +203,7 @@
     <java-symbol type="bool" name="config_fpCancelIfNotIdle" />
 
     <!-- LiveDisplay -->
+    <java-symbol type="bool" name="config_liveDisplayAvailable" />
     <java-symbol type="string" name="live_display_title" />
     <java-symbol type="string" name="live_display_hint" />
     <java-symbol type="string" name="live_display_auto" />

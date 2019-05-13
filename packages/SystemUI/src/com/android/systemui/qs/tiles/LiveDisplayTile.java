@@ -138,6 +138,12 @@ public class LiveDisplayTile extends QSTileImpl<LiveDisplayState> {
     }
 
     @Override
+    public boolean isAvailable() {
+        return mContext.getResources().getBoolean(R.bool.config_liveDisplayAvailable) &&
+                    !mNightDisplayAvailable || mOutdoorModeAvailable;
+    }
+
+    @Override
     public LiveDisplayState newTileState() {
         return new LiveDisplayState();
     }

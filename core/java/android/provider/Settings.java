@@ -6221,6 +6221,15 @@ public final class Settings {
         private static final Validator LIVE_DISPLAY_HINTED_VALIDATOR =
                 new SettingsValidators.InclusiveIntegerRangeValidator(-3, 1);
 
+        /**
+         * @hide
+         */
+        public static final String SHOW_BATTERY_ESTIMATE_QQS = "show_battery_estimate_qqs";
+
+        /** @hide */
+        private static final Validator SHOW_BATTERY_ESTIMATE_QQS_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6473,6 +6482,7 @@ public final class Settings {
             DISPLAY_COLOR_ADJUSTMENT,
             DISPLAY_PICTURE_ADJUSTMENT,
             LIVE_DISPLAY_HINTED,
+            SHOW_BATTERY_ESTIMATE_QQS,
             // AICP Settings end
         };
 
@@ -6773,6 +6783,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(DISPLAY_COLOR_ADJUSTMENT);
             PRIVATE_SETTINGS.add(DISPLAY_PICTURE_ADJUSTMENT);
             PRIVATE_SETTINGS.add(LIVE_DISPLAY_HINTED);
+            PRIVATE_SETTINGS.add(SHOW_BATTERY_ESTIMATE_QQS);
             // AICP Settings end
         }
 
@@ -7075,6 +7086,7 @@ public final class Settings {
             VALIDATORS.put(DISPLAY_COLOR_ADJUSTMENT, DISPLAY_COLOR_ADJUSTMENT_VALIDATOR);
             VALIDATORS.put(DISPLAY_PICTURE_ADJUSTMENT, DISPLAY_PICTURE_ADJUSTMENT_VALIDATOR);
             VALIDATORS.put(LIVE_DISPLAY_HINTED, LIVE_DISPLAY_HINTED_VALIDATOR);
+            VALIDATORS.put(SHOW_BATTERY_ESTIMATE_QQS, SHOW_BATTERY_ESTIMATE_QQS_VALIDATOR);
             // AICP Settings end
         }
 

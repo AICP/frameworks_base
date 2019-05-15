@@ -185,7 +185,8 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         mIconManager.setTint(fillColor);
 
         mBatteryRemainingIcon = (BatteryMeterView) findViewById(R.id.batteryRemainingIcon);
-        mBatteryRemainingIcon.setShowEstimate(true);
+        mBatteryRemainingIcon.isQsbHeader();
+        mBatteryRemainingIcon.setShowEstimate();
         mBatteryRemainingIcon.setForceShowPercent(true);
         mBatteryRemainingIcon.setOnClickListener(this);
 

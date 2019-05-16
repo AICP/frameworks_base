@@ -187,6 +187,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         mBatteryRemainingIcon = (BatteryMeterView) findViewById(R.id.batteryRemainingIcon);
         mBatteryRemainingIcon.setShowEstimate(true);
         mBatteryRemainingIcon.setForceShowPercent(true);
+        mBatteryRemainingIcon.setOnClickListener(this);
 
         mClockView = findViewById(R.id.clock);
         mClockView.setOnClickListener(this);
@@ -452,6 +453,9 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         if (v == mClockView || v == mNextAlarmTextView) {
             Dependency.get(ActivityStarter.class).postStartActivityDismissingKeyguard(new Intent(
                     AlarmClock.ACTION_SHOW_ALARMS),0);
+        } else if (v == mBatteryRemainingIcon) {
+            Dependency.get(ActivityStarter.class).postStartActivityDismissingKeyguard(new Intent(
+                    Intent.ACTION_POWER_USAGE_SUMMARY),0);
         } else if (v == mDateView) {
             Uri.Builder builder = CalendarContract.CONTENT_URI.buildUpon();
             builder.appendPath("time");

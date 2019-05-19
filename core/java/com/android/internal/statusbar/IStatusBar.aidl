@@ -110,6 +110,7 @@ oneway interface IStatusBar
     void startAssist(in Bundle args);
     void restartUI();
     void toggleCameraFlash();
+    void toggleCameraFlashState(boolean enable);
 
     /**
      * Notifies the status bar that a camera launch gesture has been detected.

@@ -49,6 +49,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.internal.util.aicp.OmniJawsClient;
 import com.android.systemui.R;
 import com.android.settingslib.Utils;
 
@@ -148,7 +149,7 @@ public class CurrentWeatherView extends FrameLayout implements OmniJawsClient.Om
     public void weatherError(int errorReason) {
         if (DEBUG) Log.d(TAG, "weatherError " + errorReason);
         // since this is shown in ambient and lock screen
-        // it would look bad to show every error since the 
+        // it would look bad to show every error since the
         // screen-on revovery of the service had no chance
         // to run fast enough
         // so only show the disabled state

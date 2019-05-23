@@ -55,7 +55,7 @@ import androidx.slice.builders.ListBuilder;
 import androidx.slice.builders.ListBuilder.RowBuilder;
 import androidx.slice.builders.SliceAction;
 
-import com.android.systemui.omni.OmniJawsClient;
+import com.android.internal.util.aicp.OmniJawsClient;
 
 /**
  * Simple Slice provider that shows the current date.

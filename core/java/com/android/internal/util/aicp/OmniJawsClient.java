@@ -15,7 +15,7 @@
 * along with this program. If not, see <http://www.gnu.org/licenses/>.
 *
 */
-package com.android.systemui.omni;
+package com.android.internal.util.aicp;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -41,8 +41,6 @@ import android.os.UserHandle;
 import android.preference.PreferenceActivity;
 import android.provider.Settings;
 import android.util.Log;
-
-import com.android.systemui.R;
 
 public class OmniJawsClient {
     private static final String TAG = "SystemUI:OmniJawsClient";

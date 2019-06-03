@@ -23,16 +23,19 @@ import android.annotation.ColorInt;
 import android.app.PendingIntent;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.UserHandle;
 import android.provider.Settings;
 import android.text.Layout;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.Gravity;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -158,6 +161,11 @@ public class KeyguardSliceView extends LinearLayout implements View.OnClickListe
             return;
         }
 
+        final ContentResolver resolver = mContext.getContentResolver();
+        boolean mClockSelection = Settings.System.getIntForUser(resolver,
+                Settings.System.LOCKSCREEN_CLOCK_SELECTION, 0, UserHandle.USER_CURRENT) == 14;
+
+
         ListContent lc = new ListContent(getContext(), mSlice);
         mHasHeader = lc.hasHeader();
         List<SliceItem> subItems = new ArrayList<SliceItem>();
@@ -186,6 +194,14 @@ public class KeyguardSliceView extends LinearLayout implements View.OnClickListe
         final int subItemsCount = subItems.size();
         final int blendedColor = getTextColor();
         final int startIndex = mHasHeader ? 1 : 0; // First item is header; skip it
+        if (mClockSelection) {
+            mRow.setPaddingRelative((int) mContext.getResources().getDimension(R.dimen.custom_clock_left_padding), 0, 0, 0);
+            mRow.setGravity(Gravity.START);
+        }
+        else {
+            mRow.setPaddingRelative(0, 0, 0, 0);
+            mRow.setGravity(Gravity.CENTER);
+        }
         mRow.setVisibility(subItemsCount > 0 ? VISIBLE : GONE);
         for (int i = startIndex; i < subItemsCount; i++) {
             SliceItem item = subItems.get(i);

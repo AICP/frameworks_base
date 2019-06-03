@@ -83,4 +83,9 @@
     <dimen name="lock_clock_font_size_106">106dp</dimen>
     <dimen name="lock_clock_font_size_107">107dp</dimen>
     <dimen name="lock_clock_font_size_108">108dp</dimen>
+
+    <!-- Custom text clock -->
+    <dimen name="customtextclock_fontsize">32dp</dimen>
+    <dimen name="custom_clock_left_padding">55dp</dimen>
+    <dimen name="custom_clock_top_margin">62dp</dimen>
 </resources>

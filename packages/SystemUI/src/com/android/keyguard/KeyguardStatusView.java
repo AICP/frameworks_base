@@ -44,12 +44,14 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.TextClock;
 import android.widget.TextView;
 
 import com.android.internal.widget.LockPatternUtils;
 import com.android.internal.widget.ViewClippingUtil;
 import com.android.keyguard.clocks.CustomAnalogClock;
+import com.android.keyguard.clocks.CustomTextClock;
 import com.android.systemui.Dependency;
 import com.android.systemui.Interpolators;
 import com.android.systemui.doze.DozeLog;
@@ -76,6 +78,7 @@ public class KeyguardStatusView extends GridLayout implements
 
     private TextView mLogoutView;
     private CustomAnalogClock mCustomClockView;
+    private LinearLayout mTextClock;
     private TextClock mClockView;
     private View mClockSeparator;
     private TextView mOwnerInfo;
@@ -198,6 +201,8 @@ public class KeyguardStatusView extends GridLayout implements
         mClockView = findViewById(R.id.clock_view);
         mClockView.setShowCurrentUserTime(true);
         mCustomClockView = findViewById(R.id.custom_clock_view);
+        mTextClock = findViewById(R.id.custom_textclock_view);
+
         mOwnerInfo = findViewById(R.id.owner_info);
         mKeyguardSlice = findViewById(R.id.keyguard_status_area);
         mClockSeparator = findViewById(R.id.clock_separator);
@@ -217,6 +222,10 @@ public class KeyguardStatusView extends GridLayout implements
 
         if (mCustomClockView != null) {
             mVisibleInDoze.add(mCustomClockView);
+        }
+
+        if (mTextClock != null) {
+            mVisibleInDoze.add(mTextClock);
         }
 
         mTextColor = mClockView.getCurrentTextColor();
@@ -258,6 +267,13 @@ public class KeyguardStatusView extends GridLayout implements
         customlayoutParams.bottomMargin = getResources().getDimensionPixelSize(
                 R.dimen.keyguard_security_view_top_margin);
         mCustomClockView.setLayoutParams(customlayoutParams);
+
+        //Custom Text clock
+        RelativeLayout.LayoutParams textlayoutParams =
+                (RelativeLayout.LayoutParams) mTextClock.getLayoutParams();
+        textlayoutParams.bottomMargin = getResources().getDimensionPixelSize(
+                R.dimen.keyguard_security_view_top_margin);
+        mTextClock.setLayoutParams(textlayoutParams);
 
         layoutParams = (RelativeLayout.LayoutParams) mClockSeparator.getLayoutParams();
         layoutParams.topMargin = smallClock ? (int) mWidgetPadding : 0;
@@ -469,6 +485,7 @@ public class KeyguardStatusView extends GridLayout implements
             default:
                 mClockView.setVisibility(View.VISIBLE);
                 mCustomClockView.setVisibility(View.GONE);
+                mTextClock.setVisibility(View.GONE);
                 break;
             case 1: // digital (bold)
             case 9: // digital (accent full)
@@ -476,10 +493,12 @@ public class KeyguardStatusView extends GridLayout implements
             case 11: // digital (accent minutes)
                 mClockView.setVisibility(View.VISIBLE);
                 mCustomClockView.setVisibility(View.GONE);
+                mTextClock.setVisibility(View.GONE);
                 break;
             case 2: // custom analog
                 mCustomClockView.setVisibility(View.VISIBLE);
                 mClockView.setVisibility(View.GONE);
+                mTextClock.setVisibility(View.GONE);
                 break;
             case 3: // sammy
             case 4: // sammy (bold)
@@ -488,6 +507,12 @@ public class KeyguardStatusView extends GridLayout implements
             case 12: // sammy (bold) accent hour
             case 13: // sammy (bold) accent min
                 mClockView.setVisibility(View.VISIBLE);
+                mCustomClockView.setVisibility(View.GONE);
+                mTextClock.setVisibility(View.GONE);
+                break;
+            case 14: // custom text clock
+                mTextClock.setVisibility(View.VISIBLE);
+                mClockView.setVisibility(View.GONE);
                 mCustomClockView.setVisibility(View.GONE);
                 break;
         }
@@ -501,9 +526,11 @@ public class KeyguardStatusView extends GridLayout implements
                     mKeyguardSlice.getLayoutParams();
             params.addRule(RelativeLayout.BELOW, R.id.clock_view);
             mClockView.setSingleLine(true);
+            mClockView.setBackgroundResource(0);
             mClockView.setGravity(Gravity.CENTER);
             mClockView.setVisibility(View.VISIBLE);
             mCustomClockView.setVisibility(View.GONE);
+            mTextClock.setVisibility(View.GONE);
         } else {
             setStyle();
             refreshTime();
@@ -951,7 +978,7 @@ public class KeyguardStatusView extends GridLayout implements
                break;
            case 2: // custom analog
                params.addRule(RelativeLayout.BELOW, R.id.custom_clock_view);
-              break;
+               break;
            case 3: // sammys
            case 4: // sammy (bold)
            case 5: // sammy accent
@@ -961,6 +988,9 @@ public class KeyguardStatusView extends GridLayout implements
                params.addRule(RelativeLayout.BELOW, R.id.clock_view);
                mClockView.setSingleLine(false);
                mClockView.setGravity(Gravity.CENTER);
+               break;
+           case 14: // custom text clock
+               params.addRule(RelativeLayout.BELOW, R.id.custom_textclock_view);
                break;
         }
 

@@ -32,6 +32,7 @@ import android.os.UserHandle;
 import android.provider.Settings;
 import android.service.quicksettings.Tile;
 
+import com.android.internal.app.ColorDisplayController;
 import com.android.internal.util.ArrayUtils;
 import com.android.systemui.plugins.qs.QSTile.LiveDisplayState;
 import com.android.systemui.qs.QSHost;
@@ -138,7 +139,9 @@ public class LiveDisplayTile extends QSTileImpl<LiveDisplayState> {
 
     @Override
     public boolean isAvailable() {
-        return mContext.getResources().getBoolean(R.bool.config_liveDisplayAvailable);
+        return mContext.getResources().getBoolean(R.bool.config_liveDisplayAvailable) &&
+                    !ColorDisplayController.isAvailable(mContext);
+
     }
 
     @Override

@@ -19,6 +19,11 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="quick_settings_heads_up_label">Heads up</string>
+    <string name="accessibility_quick_settings_heads_up_off">Heads up mati.</string>
+    <string name="accessibility_quick_settings_heads_up_on">Heads up hidup.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">Heads up dimatikan.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">Heads up dihidupkan.</string>
     <string name="quick_aicp_extras_label">Aicp Extras</string>
     <string name="quick_aicp_extras_toast">LOL, Anda benar-benar berpikir bahwa dengan menekan lama akan membawa Anda ke suatu tempat!!!</string>
     <string name="quick_settings_screenshot_label">Tangkapan layar</string>
@@ -31,7 +36,18 @@
     <string name="accessibility_quick_settings_caffeine_off">Kafein mati</string>
     <string name="accessibility_quick_settings_caffeine_on">Kafein hidup</string>
     <string name="quick_settings_aod_label">AOD</string>
+    <string name="quick_settings_network_adb_enabled_label">Dihidupkan</string>
     <string name="quick_settings_network_adb_disabled_label">Dimatikan</string>
+    <string name="quick_settings_network_adb_label">ADB melalui Jaringan</string>
+    <string name="quick_settings_network_adb_toast">USB debugging tidak dihidupkan</string>
+    <string name="qs_menu_item_columns">Kolom</string>
+    <string name="qs_menu_item_columns_landscape">Kolom mendatar</string>
+    <string name="qs_menu_item_reset">Setel ulang</string>
+    <string name="qs_menu_item_titles">Tampilkan label</string>
+    <string name="qs_menu_item_rows">Baris</string>
+    <string name="qs_menu_item_rows_landscape">Baris mendatar</string>
+    <string name="qs_menu_item_qs_columns">Kolom bilah cepat</string>
+    <string name="qs_menu_item_columns_auto">Otomatis</string>
     <string name="quick_settings_locale_label">Bahasa</string>
     <string name="quick_settings_locale_more_locales_toast">Silakan konfigurasikan beberapa bahasa untuk mengaktifkan fungsi tombol</string>
     <string name="quick_settings_music_label">Musik</string>
@@ -58,6 +74,8 @@
     <string name="quick_settings_compass_SW">BD</string>
     <string name="quick_settings_compass_W">B</string>
     <string name="quick_settings_compass_NW">BL</string>
+    <string name="quick_settings_reboot_label">Mulai ulang</string>
+    <string name="quick_settings_reboot_recovery_label">Recovery</string>
     <string name="screenrecord_notif_ticker">Layar sedang direkam</string>
     <string name="screenrecord_notif_final_ticker">Layar berhasil direkam</string>
     <string name="screenrecord_notif_title">Merekam layar</string>
@@ -72,6 +90,8 @@
     <string name="quick_settings_screenrecord_label">Rekam layar</string>
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Pemberitahuan tertunda selama 1 menit.</string>
     <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - Pemberitahuan mengintip tertidur selama <xliff:g id="number">%d </xliff:g> menit.</string>
+    <string name="menu_ime_always_show">Menu / Pengganti Papan Ketik (selalu terlihat)</string>
+    <string name="search">Cari</string>
     <string name="systemui_tuner_navbar_title">Setelan bawaan</string>
     <string name="onthego_notif_ticker">On-The-Go diaktifkan</string>
     <string name="onthego_notif_title">On-The-Go aktif</string>
@@ -88,6 +108,14 @@
     <string name="quick_settings_onthego_label">On-The-Go</string>
     <string name="global_action_screenrecord">Rekam layar</string>
     <string name="quick_settings_cpuinfo_label">Info CPU</string>
+    <string name="tuner_show_auto_brightness">Tombol kecerahan adaptif</string>
+    <string name="tuner_auto_brightness_right">Posisi di kanan untuk tombol kecerahan adaptif</string>
+    <string name="tuner_show_brightness_buttons">Tombol kontrol kecerahan</string>
+    <string name="quick_settings_smart_pixels">Smart Pixels</string>
+    <string name="quick_settings_immersive_tile">Modus layar penuh</string>
+    <string name="quick_settings_immersive_tile_statusbar">Layar penuh bilah status</string>
+    <string name="quick_settings_immersive_tile_navbar">Layar penuh bilah navigasi</string>
+    <string name="quick_settings_immersive_tile_full">Layar penuh semua</string>
     <string name="omnijaws_service_error">Kesalahan</string>
     <string name="omnijaws_service_unkown">Tidak ada data cuaca</string>
     <string name="omnijaws_service_error_long">Kesalahan saat memuat data cuaca</string>
@@ -100,12 +128,33 @@
     <string name="app_float_maximize_item_title">Maksimalkan</string>
     <string name="app_float_item_title">Tampilan mengambang</string>
     <string name="app_stop_item_title">Matikan aplikasi</string>
+    <string name="ambientmusic_songinfo">%s oleh %s</string>
     <string name="accessibility_quick_settings_running_services">Buka layar layanan yang sedang berjalan.</string>
+    <string name="pie_battery_level">"TINGKAT BATERAI "</string>
     <string name="quick_settings_sync_label">Sinkronisasi</string>
     <string name="accessibility_quick_settings_sync_off">Sinkronisasi mati</string>
     <string name="accessibility_quick_settings_sync_on">Sinkronisasi hidup</string>
     <string name="accessibility_quick_settings_sync_changed_off">Sinkronisasi dimatikan</string>
     <string name="accessibility_quick_settings_sync_changed_on">Sinkronisasi dihidupkan</string>
+    <string name="recents_free_ram">RAM Tersedia: %1$d MB</string>
+    <string name="gaming_mode_tile_title">Mode permainan</string>
+    <string name="gaming_mode_tile_toast">Mode permainan dihidupkan</string>
+    <string name="gaming_mode_tile_toast_disabled">Mode permainan dimatikan</string>
+    <string name="gaming_mode_dialog_title">Mode permainan</string>
+    <string name="accessibility_quick_settings_gaming_mode_on">Mode permainan hidup</string>
+    <string name="accessibility_quick_settings_gaming_mode_off">Mode permainan mati</string>
+    <string name="theming_tile_title">Tema terang/gelap</string>
+    <string name="theming_tile_light_title">Tema terang</string>
+    <string name="theming_tile_dark_title">Tema gelap</string>
     <string name="force_stop_dlg_title">Paksa berhenti?</string>
     <string name="force_stop_dlg_text">Jika anda menghentikan aplikasi secara paksa, akan menyebabkan gagal fungsi.</string>
+    <string name="guts_force_close_app">Tutup Aplikasi</string>
+    <string name="quick_settings_reading_mode">Mode membaca</string>
+    <string name="accessibility_quick_settings_reading_mode_on">Mode membaca hidup.</string>
+    <string name="accessibility_quick_settings_reading_mode_off">Mode membaca mati.</string>
+    <string name="accessibility_quick_settings_reading_mode_changed_on">Mode membaca dihidupkan.</string>
+    <string name="accessibility_quick_settings_reading_mode_changed_off">Mode membaca dimatikan.</string>
+    <string name="accessibility_quick_settings_location_battery_saving">Pelaporan lokasi: modus hemat baterai.</string>
+    <string name="accessibility_quick_settings_location_gps_only">Pelaporan lokasi: modus sensor saja.</string>
+    <string name="accessibility_quick_settings_location_high_accuracy">Pelaporan lokasi: modus akurasi tinggi.</string>
 </resources>

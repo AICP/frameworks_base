@@ -23,12 +23,28 @@
     <string name="global_action_restart_ui">SystemUI</string>
     <string name="keyguard_indication_dash_charging_time">Pengisian Cepat (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%s</xliff:g> sampai penuh)</string>
     <string name="keyguard_plugged_in_dash_charging">Pengisian Cepat</string>
+    <string name="preview">Pratinjau</string>
+    <string name="no_home_title">Tombol beranda tidak ditemukan</string>
+    <string name="start">Mulai</string>
+    <string name="center">Tengah</string>
+    <string name="end">Akhir</string>
+    <string name="space">Jarak</string>
+    <string name="select_button">Pilih tombol untuk ditambahkan</string>
+    <string name="add_button">Tambah tombol</string>
     <string name="save">Simpan</string>
     <string name="reset">Setel ulang</string>
+    <string name="select_keycode">Pilih Tombol Papan ketik</string>
     <string name="left">Kiri</string>
     <string name="right">Kanan</string>
     <string name="navbar_editor_title">Penyunting</string>
+    <string name="navbar_activity_title">Bilah navigasi</string>
+    <string name="lockscreen_default">Standar</string>
     <string name="lockscreen_hidden">Tidak ada</string>
+    <string name="custom_hint">Usap dari ikon untuk menjalankan</string>
     <string name="status_bar_vpn">VPN</string>
+    <string name="quick_settings_roaming_title">Penanda roaming</string>
     <string name="tuner_quick_settings">Setelan cepat</string>
+    <string name="tuner_show_brightness_new">Tampilkan panel geser kecerahan</string>
+    <string name="tuner_brightness_position_bottom">Penggeser kecerahan di bawah</string>
+    <string name="tuner_cellular_title">Seluler</string>
 </resources>

@@ -107,4 +107,7 @@
     <string name="accessibility_quick_settings_sync_changed_on">동기화 켜짐.</string>
     <string name="force_stop_dlg_title">강제로 종료하시겠습니까?</string>
     <string name="force_stop_dlg_text">강제로 앱을 종료하면 예기치 않은 오류가 발생할 수 있습니다.</string>
+    <string name="accessibility_quick_settings_location_battery_saving">위치 확인: 배터리 절약 모드.</string>
+    <string name="accessibility_quick_settings_location_gps_only">위치 확인: 센서 전용 모드.</string>
+    <string name="accessibility_quick_settings_location_high_accuracy">위치 모드: 높은 정확도 모드</string>
 </resources>

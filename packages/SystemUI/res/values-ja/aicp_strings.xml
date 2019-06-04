@@ -108,4 +108,7 @@
     <string name="accessibility_quick_settings_sync_changed_on">同期が ON になりました</string>
     <string name="force_stop_dlg_title">強制停止しますか？</string>
     <string name="force_stop_dlg_text">アプリを強制停止すると、アプリが正常に機能しないことがあります。</string>
+    <string name="accessibility_quick_settings_location_battery_saving">位置情報：バッテリー節約モード</string>
+    <string name="accessibility_quick_settings_location_gps_only">位置情報：端末のみモード</string>
+    <string name="accessibility_quick_settings_location_high_accuracy">位置情報：高精度モード</string>
 </resources>

@@ -107,4 +107,7 @@
     <string name="accessibility_quick_settings_sync_changed_on">Sincronização ativada</string>
     <string name="force_stop_dlg_title">Forçar paragem?</string>
     <string name="force_stop_dlg_text">Se forçar a paragem de uma aplicação, esta poderá apresentar um comportamento anormal.</string>
+    <string name="accessibility_quick_settings_location_battery_saving">Localização: poupança de bateria.</string>
+    <string name="accessibility_quick_settings_location_gps_only">Localização: modo de sensores apenas.</string>
+    <string name="accessibility_quick_settings_location_high_accuracy">Modo de localização: alta precisão.</string>
 </resources>

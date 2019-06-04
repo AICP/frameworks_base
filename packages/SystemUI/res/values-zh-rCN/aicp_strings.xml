@@ -109,7 +109,7 @@
     <string name="global_action_screenrecord">屏幕录像</string>
     <string name="quick_settings_cpuinfo_label">CPU 信息</string>
     <string name="tuner_show_auto_brightness">自适应亮度按钮</string>
-    <string name="tuner_auto_brightness_right">自适应亮度按钮的正确位置</string>
+    <string name="tuner_auto_brightness_right">在右侧显示自动调节亮度按钮</string>
     <string name="tuner_show_brightness_buttons">亮度控制按钮</string>
     <string name="quick_settings_smart_pixels">智能像素</string>
     <string name="quick_settings_smart_pixels_on_power_save">自动启用智能像素</string>
@@ -147,9 +147,16 @@
     <string name="gaming_mode_tile_toast">游戏模式已启用</string>
     <string name="gaming_mode_tile_toast_disabled">游戏模式已禁用</string>
     <string name="gaming_mode_dialog_title">游戏模式</string>
-    <string name="gaming_mode_dialog_message">启用游戏模式后，您的铃声模式将变为振动模式，所有浮动消息将被禁用，硬件按键将被关闭。媒体音量将增加到最大值。退出游戏模式后，所有禁用的设置将重置为默认值。</string>
+    <string name="gaming_mode_dialog_message">当启用游戏模式时，所有浮动消息将被禁用，实体按键将被屏蔽。所有禁用的设置将在退出游戏模式后重置为默认设置。</string>
     <string name="accessibility_quick_settings_gaming_mode_on">游戏模式开启</string>
     <string name="accessibility_quick_settings_gaming_mode_off">游戏模式关闭</string>
+    <string name="theming_tile_title">亮色/暗色主题</string>
+    <string name="theming_tile_light_title">亮色主题</string>
+    <string name="theming_tile_dark_title">暗色主题</string>
     <string name="force_stop_dlg_title">强制停止？</string>
     <string name="force_stop_dlg_text">如果你强制停止一个应用程序，它可能会失败。</string>
+    <string name="guts_force_close_app">关闭应用</string>
+    <string name="accessibility_quick_settings_location_battery_saving">位置报告：耗电量低</string>
+    <string name="accessibility_quick_settings_location_gps_only">位置报告：仅限设备</string>
+    <string name="accessibility_quick_settings_location_high_accuracy">位置报告：高精准度</string>
 </resources>

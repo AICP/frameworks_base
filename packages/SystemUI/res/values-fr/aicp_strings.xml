@@ -103,4 +103,7 @@
     <string name="accessibility_quick_settings_sync_changed_on">La synchronisation est activée</string>
     <string name="force_stop_dlg_title">Forcer l\'arrêt ?</string>
     <string name="force_stop_dlg_text">Si vous forcez l\'arrêt d\'une application, cela peut provoquer son dysfonctionnement.</string>
+    <string name="accessibility_quick_settings_location_battery_saving">Localisation : mode économie de batterie.</string>
+    <string name="accessibility_quick_settings_location_gps_only">Localisation : mode appareil uniquement.</string>
+    <string name="accessibility_quick_settings_location_high_accuracy">Localisation : mode haute précision.</string>
 </resources>

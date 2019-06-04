@@ -107,4 +107,7 @@
     <string name="accessibility_quick_settings_sync_changed_on">Synchronizácia je zapnutá</string>
     <string name="force_stop_dlg_title">Vynútiť zastavenie?</string>
     <string name="force_stop_dlg_text">Ak vynútite zastavenie aplikácie, môže sa správať zvláštne.</string>
+    <string name="accessibility_quick_settings_location_battery_saving">Hlásenie polohy: režim šetrenia batérie.</string>
+    <string name="accessibility_quick_settings_location_gps_only">Hlásenie polohy: iba GPS.</string>
+    <string name="accessibility_quick_settings_location_high_accuracy">Hlásenie polohy: vysoká presnosť.</string>
 </resources>

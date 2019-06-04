@@ -107,4 +107,7 @@
     <string name="accessibility_quick_settings_sync_changed_on">同步處理已開啟</string>
     <string name="force_stop_dlg_title">強制停止嗎？</string>
     <string name="force_stop_dlg_text">如果您強制停止應用程式，應用程式可能無法正常運作。</string>
+    <string name="accessibility_quick_settings_location_battery_saving">位置回報：省電模式。</string>
+    <string name="accessibility_quick_settings_location_gps_only">位置回報：僅限感應器模式。</string>
+    <string name="accessibility_quick_settings_location_high_accuracy">位置回報：高精度模式。</string>
 </resources>

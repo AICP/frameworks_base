@@ -148,7 +148,7 @@
     <string name="gaming_mode_tile_toast">Spielmodus aktiviert</string>
     <string name="gaming_mode_tile_toast_disabled">Spielmodus deaktiviert</string>
     <string name="gaming_mode_dialog_title">Spielmodus</string>
-    <string name="gaming_mode_dialog_message">Bei Aktivierung des Spielmodus wird der Klingelton auf Vibration geändert, alle Heads-Up Nachrichten und die Hardware-Tasten werden abgeschaltet. Die Medien-Lautstärke wird auf den Maximalwert erhöht. Alle abgeschalteten Einstellungen werden nach Abschalten des Spielmodus zurückgesetzt.</string>
+    <string name="gaming_mode_dialog_message">Wenn der Spielmodus aktiviert ist, werden alle Heads-up Nachrichten und die Hardwaretasten deaktiviert. Alle Einstellungen werden nach dem Beenden des Spielmodus auf Standard zurückgesetzt.</string>
     <string name="accessibility_quick_settings_gaming_mode_on">Spielmodus AN</string>
     <string name="accessibility_quick_settings_gaming_mode_off">Spielmodus AUS</string>
     <string name="theming_tile_title">Helles/Dunkles Design</string>
@@ -157,4 +157,12 @@
     <string name="force_stop_dlg_title">Stopp erzwingen?</string>
     <string name="force_stop_dlg_text">Das erzwungene Beenden einer App kann zu abnormalem Verhalten führen.</string>
     <string name="guts_force_close_app">App schließen</string>
+    <string name="quick_settings_reading_mode">Lese-Modus</string>
+    <string name="accessibility_quick_settings_reading_mode_on">Lese-Modus AN</string>
+    <string name="accessibility_quick_settings_reading_mode_off">Lese-Modus AUS</string>
+    <string name="accessibility_quick_settings_reading_mode_changed_on">Lese-Modus aktiviert</string>
+    <string name="accessibility_quick_settings_reading_mode_changed_off">Lese-Modus deaktiviert</string>
+    <string name="accessibility_quick_settings_location_battery_saving">Standort: Energiesparmodus</string>
+    <string name="accessibility_quick_settings_location_gps_only">Standort: Nur Gerät.</string>
+    <string name="accessibility_quick_settings_location_high_accuracy">Standort: Hohe Genauigkeit</string>
 </resources>

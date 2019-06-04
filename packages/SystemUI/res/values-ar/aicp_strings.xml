@@ -147,7 +147,7 @@
     <string name="gaming_mode_tile_toast">وضع الألعاب مفعل</string>
     <string name="gaming_mode_tile_toast_disabled">وضع الألعاب معطل</string>
     <string name="gaming_mode_dialog_title">وضع الألعاب</string>
-    <string name="gaming_mode_dialog_message">عندما يتم تمكين وضع الألعاب، سيتم تغيير صوت الجهاز الخاص بك لوضع الاهتزاز فقط، سيتم إيقاف كافة التنبيهات المنبثقة وسيتم إيقاف أزرار الجهاز. سيتم زيادة صوت الوسائط إلى الحد الأقصى. سيتم إعادة تعيين كافة الإعدادات المذكورة أعلاه بمجرد الخروج من \"وضع الألعاب\".</string>
+    <string name="gaming_mode_dialog_message">عند تمكين وضع الألعاب ، سيتم تعطيل جميع الرسائل العلوية وسيتم إيقاف تشغيل مفاتيح الجهاز. سيتم إعادة تعيين جميع الإعدادات المعطلة إلى الوضع الافتراضي بمجرد خروجك من وضع الألعاب.</string>
     <string name="accessibility_quick_settings_gaming_mode_on">وضع الألعاب مفعل</string>
     <string name="accessibility_quick_settings_gaming_mode_off">وضع الألعاب معطل</string>
     <string name="theming_tile_title">السمة الفاتحة/الداكنة</string>
@@ -155,4 +155,13 @@
     <string name="theming_tile_dark_title">سمة داكنة</string>
     <string name="force_stop_dlg_title">إيقاف بالقوة؟</string>
     <string name="force_stop_dlg_text">في حالة فرض إيقاف التطبيق، ربما لا يعمل بشكل صحيح.</string>
+    <string name="guts_force_close_app">إغلاق التطبيق</string>
+    <string name="quick_settings_reading_mode">وضع القراءة</string>
+    <string name="accessibility_quick_settings_reading_mode_on">وضع القراءة مفعل.</string>
+    <string name="accessibility_quick_settings_reading_mode_off">وضع القراءة معطل.</string>
+    <string name="accessibility_quick_settings_reading_mode_changed_on">تم تشغيل وضع القراءة.</string>
+    <string name="accessibility_quick_settings_reading_mode_changed_off">تم إيقاف وضع القراءة.</string>
+    <string name="accessibility_quick_settings_location_battery_saving">تحديد الموقع: وضع توفير البطارية.</string>
+    <string name="accessibility_quick_settings_location_gps_only">تحديد الموقع: وضع الجهاز فقط.</string>
+    <string name="accessibility_quick_settings_location_high_accuracy">تحديد الموقع: وضع الدقة العالية.</string>
 </resources>

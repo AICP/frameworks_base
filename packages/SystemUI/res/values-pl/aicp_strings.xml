@@ -147,9 +147,21 @@
     <string name="gaming_mode_tile_toast">Włączono Tryb grania</string>
     <string name="gaming_mode_tile_toast_disabled">Wyłączono Tryb grania</string>
     <string name="gaming_mode_dialog_title">Tryb grania</string>
-    <string name="gaming_mode_dialog_message">Gdy tryb grania jest włączony, tryb dzwonka zostanie zmieniony na tryb wibracji, zostaną wyłączone wszystkie wyskakujące powiadomienia, a klawisze zostaną wyłączone. Głośność multimediów zostanie zwiększona do maksymalnej wartości. Wszystkie wyłączone ustawienia zostaną zresetowane do domyślnych wartości po wyłączeniu trybu grania.</string>
+    <string name="gaming_mode_dialog_message">Kiedy tryb gry jest włączony, powiadomienia heads-up i klawisze sprzętowe zostaną wyłączone. Wszystkie wyłączone ustawienia będą przywrócone do domyślnych po wyłączeniu trybu gry.</string>
     <string name="accessibility_quick_settings_gaming_mode_on">Tryb grania włączony</string>
     <string name="accessibility_quick_settings_gaming_mode_off">Tryb grania wyłączony</string>
+    <string name="theming_tile_title">Jasny/ciemny motyw</string>
+    <string name="theming_tile_light_title">Jasny motyw</string>
+    <string name="theming_tile_dark_title">Ciemny motyw</string>
     <string name="force_stop_dlg_title">Wymusić zatrzymanie?</string>
     <string name="force_stop_dlg_text">Jeśli wymusisz zatrzymanie aplikacji, może ona działać nieprawidłowo.</string>
+    <string name="guts_force_close_app">Zamknij aplikację</string>
+    <string name="quick_settings_reading_mode">Tryb czytania</string>
+    <string name="accessibility_quick_settings_reading_mode_on">Włącz tryb czytania.</string>
+    <string name="accessibility_quick_settings_reading_mode_off">Wyłącz tryb czytania.</string>
+    <string name="accessibility_quick_settings_reading_mode_changed_on">Tryb czytania włączony.</string>
+    <string name="accessibility_quick_settings_reading_mode_changed_off">Tryb czytania wyłączony.</string>
+    <string name="accessibility_quick_settings_location_battery_saving">Raportowanie lokalizacji: tryb oszczędzania baterii.</string>
+    <string name="accessibility_quick_settings_location_gps_only">Raportowanie lokalizacji: tylko czujniki.</string>
+    <string name="accessibility_quick_settings_location_high_accuracy">Raportowanie lokalizacji: wysoka dokładność</string>
 </resources>

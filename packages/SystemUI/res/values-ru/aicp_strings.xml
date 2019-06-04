@@ -148,7 +148,7 @@
     <string name="gaming_mode_tile_toast">Игровой режим включен</string>
     <string name="gaming_mode_tile_toast_disabled">Игровой режим выключен</string>
     <string name="gaming_mode_dialog_title">Игровой режим</string>
-    <string name="gaming_mode_dialog_message">Когда Игровой режим будет включен, ваш режим звонка переключится в режим вибрации, все уведомления и аппаратные клавиши будут отключены. Громкость медиа будет увеличена до максимального уровня. Все отключенные настройки будут восстановлены после выхода из Игрового режима.</string>
+    <string name="gaming_mode_dialog_message">При включении игрового режима все всплывающие уведомления будут заблокированы, а кнопки под экраном выключены. После выхода из игрового режима все отключенные настройки будут возвращены в состояние по умолчанию.</string>
     <string name="accessibility_quick_settings_gaming_mode_on">Включить Игровой режим</string>
     <string name="accessibility_quick_settings_gaming_mode_off">Выключить Игровой режим</string>
     <string name="theming_tile_title">Светлая/тёмная тема</string>
@@ -157,4 +157,12 @@
     <string name="force_stop_dlg_title">Остановить принудительно?</string>
     <string name="force_stop_dlg_text">Принудительная остановка приложения может отразиться на его работоспособности.</string>
     <string name="guts_force_close_app">Закрыть приложение</string>
+    <string name="quick_settings_reading_mode">Режим чтения</string>
+    <string name="accessibility_quick_settings_reading_mode_on">Режим чтения включен.</string>
+    <string name="accessibility_quick_settings_reading_mode_off">Режим чтения выключен.</string>
+    <string name="accessibility_quick_settings_reading_mode_changed_on">Режим чтения активирован.</string>
+    <string name="accessibility_quick_settings_reading_mode_changed_off">Режим чтения деактивирован.</string>
+    <string name="accessibility_quick_settings_location_battery_saving">Местоположение: по координатам сети.</string>
+    <string name="accessibility_quick_settings_location_gps_only">Местоположение: по спутникам GPS.</string>
+    <string name="accessibility_quick_settings_location_high_accuracy">Местоположение: по всем источникам.</string>
 </resources>

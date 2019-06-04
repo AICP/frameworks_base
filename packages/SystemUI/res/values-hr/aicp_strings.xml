@@ -19,4 +19,10 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="quick_aicp_extras_label">Dodatne Aicp opcije</string>
+    <string name="accessibility_quick_settings_usb_tether_off">Dijeljenje veze preko USB-a isključeno</string>
+    <string name="accessibility_quick_settings_usb_tether_on">Dijeljenje veze preko USB-a uključeno</string>
+    <string name="quick_settings_network_adb_disabled_label">Onemogućeno</string>
+    <string name="screenrecord_hide_hint">Sakrij savjet</string>
+    <string name="omnijaws_package_not_available">OmniJaws nije dostupan</string>
 </resources>

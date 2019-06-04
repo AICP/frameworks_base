@@ -108,4 +108,7 @@
     <string name="accessibility_quick_settings_sync_changed_on">A sincronização foi ativada</string>
     <string name="force_stop_dlg_title">Forçar interrupção?</string>
     <string name="force_stop_dlg_text">Se você forçar a interrupção de um aplicativo, ele pode apresentar mau funcionamento.</string>
+    <string name="accessibility_quick_settings_location_battery_saving">Relatório de localização: modo economia de bateria.</string>
+    <string name="accessibility_quick_settings_location_gps_only">Relatório de localização: modo apenas sensores.</string>
+    <string name="accessibility_quick_settings_location_high_accuracy">Relatório de localização: modo de alta precisão.</string>
 </resources>

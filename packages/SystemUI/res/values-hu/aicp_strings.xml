@@ -147,7 +147,7 @@
     <string name="gaming_mode_tile_toast">A Játékmód engedélyezve</string>
     <string name="gaming_mode_tile_toast_disabled">A Játékmód letiltva</string>
     <string name="gaming_mode_dialog_title">Játékmód</string>
-    <string name="gaming_mode_dialog_message">Amikor a Játékmód engedélyezett, a készülék csengésről rezgő hivásjelzésre vált, az összes felugró értesítés letiltásra kerül és a hardvergombok kikapcsolódnak. A média hangereje a maximumra állítódik. Minden beállítás gyári állapotba áll vissza, amint kilép a Játékmódból.</string>
+    <string name="gaming_mode_dialog_message">Amikor a Játékmód be van kapcsolva, minden felugró értesítés letiltásra kerül és a hardveres gombok kikapcsolódnak. Természetesen a letiltott beállítások újra alaphelyzetbe állnak, amint kilép a Játékmódból.</string>
     <string name="accessibility_quick_settings_gaming_mode_on">Játékmód be</string>
     <string name="accessibility_quick_settings_gaming_mode_off">Játékmód ki</string>
     <string name="theming_tile_title">Világos/sötét téma</string>
@@ -156,4 +156,12 @@
     <string name="force_stop_dlg_title">Kényszeríti a leállítást?</string>
     <string name="force_stop_dlg_text">Ha egy alkalmazást leállásra kényszerít, az hibásan működhet.</string>
     <string name="guts_force_close_app">Alkalmazás bezárása</string>
+    <string name="quick_settings_reading_mode">Olvasómód</string>
+    <string name="accessibility_quick_settings_reading_mode_on">Olvasómód be.</string>
+    <string name="accessibility_quick_settings_reading_mode_off">Olvasómód ki.</string>
+    <string name="accessibility_quick_settings_reading_mode_changed_on">Olvasómód bekapcsolva.</string>
+    <string name="accessibility_quick_settings_reading_mode_changed_off">Olvasómód kikapcsolva.</string>
+    <string name="accessibility_quick_settings_location_battery_saving">Helymeghatározás: energiatakarékos mód.</string>
+    <string name="accessibility_quick_settings_location_gps_only">Helymeghatározás: csak Gps.</string>
+    <string name="accessibility_quick_settings_location_high_accuracy">Helymeghatározás: nagy pontosságú mód.</string>
 </resources>

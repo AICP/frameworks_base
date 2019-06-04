@@ -16,4 +16,8 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="animation_slide_right_no_fade">Klizanje udesno (bez blijeđenja)</string>
+    <string name="animation_slide_left_no_fade">Klizanje ulijevo (bez blijeđenja)</string>
+    <string name="animation_default">Zadano</string>
+    <string name="permlab_toggleNavigationEditor">upravljati uređivačem navigacije</string>
 </resources>

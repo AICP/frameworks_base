@@ -1777,7 +1777,7 @@ public class AppStandbyController {
 
         // Aggressive standby
         private boolean mAggressiveStandby = false;
-        private static final long AGGRESSIVE_WEIGHT = 3;
+        private static final long AGGRESSIVE_WEIGHT = 5;
 
         private final KeyValueListParser mParser = new KeyValueListParser(',');
 

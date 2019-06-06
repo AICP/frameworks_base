@@ -231,5 +231,6 @@ public class SystemSettings {
         Settings.System.STATUS_BAR_BATTERY_TEXT_CHARGING,
         Settings.System.QS_DATA_USAGE_PANEL,
         Settings.System.FORCE_FULLSCREEN_CUTOUT_APPS,
+        Settings.System.CHARGING_ANIMATION,
     };
 }

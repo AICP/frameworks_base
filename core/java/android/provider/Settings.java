@@ -5817,6 +5817,12 @@ public final class Settings {
          */
         public static final String BLUETOOTH_SHOW_BATTERY = "bluetooth_show_battery";
 
+        /**
+         * Whether to show charging animation
+         * @hide
+         */
+        public static final String CHARGING_ANIMATION = "charging_animation";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5931,6 +5937,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(VOLUME_DIALOG_TIMEOUT, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(TOAST_ICON, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(BLUETOOTH_SHOW_BATTERY, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(CHARGING_ANIMATION, BOOLEAN_VALIDATOR);
         }
 
         /**

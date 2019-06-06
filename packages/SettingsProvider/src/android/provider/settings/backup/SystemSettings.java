@@ -223,5 +223,6 @@ public class SystemSettings {
         Settings.System.STATUSBAR_BATTERY_BAR_ANIMATE,
         Settings.System.STATUSBAR_BATTERY_BAR_LOCATION,
         Settings.System.FORCE_FULLSCREEN_CUTOUT_APPS,
+        Settings.System.CHARGING_ANIMATION,
     };
 }

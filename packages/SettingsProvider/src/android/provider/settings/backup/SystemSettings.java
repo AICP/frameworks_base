@@ -225,5 +225,6 @@ public class SystemSettings {
         Settings.System.HIDE_IME_SPACE_ENABLE,
         Settings.System.FORCE_FULLSCREEN_CUTOUT_APPS,
         Settings.System.QS_DATA_USAGE_PANEL,
+        Settings.System.CHARGING_ANIMATION,
     };
 }

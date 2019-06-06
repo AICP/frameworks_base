@@ -136,7 +136,8 @@ public class SystemSettings {
                 Settings.System.ON_THE_GO_ALPHA,
                 Settings.System.ON_THE_GO_SERVICE_RESTART,
                 Settings.System.ON_THE_GO_CAMERA,
-                Settings.System.VOLUME_DIALOG_TIMEOUT
+                Settings.System.VOLUME_DIALOG_TIMEOUT,
+                Settings.System.CHARGING_ANIMATION
         ));
         if (Flags.backUpSmoothDisplayAndForcePeakRefreshRate()) {
             settings.add(Settings.System.PEAK_REFRESH_RATE);

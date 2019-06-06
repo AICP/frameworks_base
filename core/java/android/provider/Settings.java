@@ -6736,6 +6736,12 @@ public final class Settings {
           */
          public static final String VOLUME_DIALOG_TIMEOUT = "volume_dialog_timeout";
 
+        /**
+         * Whether to show charging animation
+         * @hide
+         */
+        public static final String CHARGING_ANIMATION = "charging_animation";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6979,6 +6985,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(DOUBLE_TAP_SLEEP_GESTURE);
             PRIVATE_SETTINGS.add(DOUBLE_TAP_SLEEP_LOCKSCREEN);
             PRIVATE_SETTINGS.add(VOLUME_DIALOG_TIMEOUT);
+            PRIVATE_SETTINGS.add(CHARGING_ANIMATION);
         }
 
         /**

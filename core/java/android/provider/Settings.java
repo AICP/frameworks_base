@@ -6626,6 +6626,12 @@ public final class Settings {
          */
         public static final String QS_DATA_USAGE_PANEL = "qs_data_usage_panel";
 
+        /**
+         * Whether to show charging animation
+         * @hide
+         */
+        public static final String CHARGING_ANIMATION = "charging_animation";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6886,6 +6892,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(HIDE_IME_SPACE_ENABLE);
             PRIVATE_SETTINGS.add(FORCE_FULLSCREEN_CUTOUT_APPS);
             PRIVATE_SETTINGS.add(QS_DATA_USAGE_PANEL);
+            PRIVATE_SETTINGS.add(CHARGING_ANIMATION);
         }
 
         /**

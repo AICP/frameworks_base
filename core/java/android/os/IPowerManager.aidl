@@ -69,7 +69,6 @@ interface IPowerManager
     // controls whether PowerManager should doze after the screen turns off or not
     void setDozeAfterScreenOff(boolean on);
 
-    void wakeUpWithProximityCheck(long time, String reason, String opPackageName);
     // update the uids being synchronized by network socket request manager
     void updateBlockedUids(int uid, boolean isBlocked);
 

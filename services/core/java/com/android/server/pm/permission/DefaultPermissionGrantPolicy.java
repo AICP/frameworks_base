@@ -63,6 +63,7 @@ import android.util.Slog;
 import android.util.Xml;
 
 import com.android.internal.util.XmlUtils;
+import com.android.internal.util.aicp.OmniJawsClient;
 import com.android.server.LocalServices;
 import com.android.server.pm.PackageManagerService;
 
@@ -891,6 +892,12 @@ public final class DefaultPermissionGrantPolicy {
                 "com.android.providers.media.MediaProvider", userId);
         if (mediascannerPackage != null) {
             grantRuntimePermissions(mediascannerPackage, STORAGE_PERMISSIONS, true, userId);
+        }
+
+        // Weather client
+        PackageParser.Package weatherClientPackage = getSystemPackage(OmniJawsClient.SERVICE_PACKAGE);
+        if (weatherClientPackage != null && doesPackageSupportRuntimePermissions(weatherClientPackage)) {
+            grantRuntimePermissions(weatherClientPackage, LOCATION_PERMISSIONS, userId);
         }
     }
 

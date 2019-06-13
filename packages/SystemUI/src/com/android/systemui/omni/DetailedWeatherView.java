@@ -46,8 +46,8 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.internal.util.aicp.OmniJawsClient;
 import com.android.systemui.R;
-import com.android.systemui.omni.OmniJawsClient;
 import com.android.systemui.statusbar.phone.SettingsButton;
 import com.android.systemui.plugins.ActivityStarter;
 

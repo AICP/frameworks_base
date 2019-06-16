@@ -40,7 +40,7 @@ import com.android.systemui.qs.tileimpl.QSTileImpl;
 public class UsbTetherTile extends QSTileImpl<BooleanState> {
 
     private final ConnectivityManager mConnectivityManager;
-
+    private final Icon mIcon = ResourceIcon.get(R.drawable.ic_qs_usb_tether_on);
     private boolean mListening;
 
     private boolean mUsbTethered = false;
@@ -125,16 +125,14 @@ public class UsbTetherTile extends QSTileImpl<BooleanState> {
 
     @Override
     protected void handleUpdateState(BooleanState state, Object arg) {
-        state.dualTarget = true;
-        state.state = mUsbTethered ? Tile.STATE_ACTIVE : Tile.STATE_INACTIVE;
-        state.value = mUsbTethered;
+        state.icon = mIcon;
         state.label = mContext.getString(R.string.quick_settings_usb_tether_label);
+        state.value = mUsbTethered;
+        state.state = mUsbTethered ? Tile.STATE_ACTIVE : Tile.STATE_INACTIVE;
         if (mUsbTethered) {
-            state.icon = ResourceIcon.get(R.drawable.ic_qs_usb_tether_on);
             state.contentDescription = mContext.getString(
                     R.string.accessibility_quick_settings_usb_tether_on);
         } else {
-            state.icon = ResourceIcon.get(R.drawable.ic_qs_usb_tether_off);
             state.contentDescription = mContext.getString(
                     R.string.accessibility_quick_settings_usb_tether_off);
         }

@@ -6234,17 +6234,6 @@ public final class Settings {
         private static final Validator POCKET_JUDGE_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
-        /***************************
-         * AICP System Settings end
-         ***************************/
-
-        /**
-         * IMPORTANT: If you add a new public settings you also have to add it to
-         * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
-         * it to PRIVATE_SETTINGS below. Also add a validator that can validate
-         * the setting value. See an example above.
-         */
-
         /*
          * @hide
          */
@@ -6255,6 +6244,17 @@ public final class Settings {
          * @hide
          */
         public static final String DOZE_TRIGGER_DOUBLETAP = "doze_trigger_doubletap";
+
+        /***************************
+         * AICP System Settings end
+         ***************************/
+
+        /**
+         * IMPORTANT: If you add a new public settings you also have to add it to
+         * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
+         * it to PRIVATE_SETTINGS below. Also add a validator that can validate
+         * the setting value. See an example above.
+         */
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings

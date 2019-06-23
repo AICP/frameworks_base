@@ -32,11 +32,13 @@ import android.widget.Toast;
 
 import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
+import com.android.systemui.Dependency;
 import com.android.systemui.R;
-import com.android.systemui.plugins.qs.QSTile;
+import com.android.systemui.plugins.ActivityStarter;
 import com.android.systemui.plugins.qs.QSTile.BooleanState;
 import com.android.systemui.qs.QSHost;
 import com.android.systemui.qs.tileimpl.QSTileImpl;
+import com.android.systemui.statusbar.policy.KeyguardMonitor;
 import com.android.systemui.statusbar.policy.NetworkController;
 import com.android.systemui.statusbar.policy.NetworkController.IconState;
 import com.android.systemui.statusbar.policy.NetworkController.SignalCallback;
@@ -49,12 +51,15 @@ public class AdbOverNetworkTile extends QSTileImpl<BooleanState> {
     private boolean mListening;
     private final Icon mIcon = ResourceIcon.get(R.drawable.ic_qs_network_adb);
 
+    private final KeyguardMonitor mKeyguardMonitor;
+    private final KeyguardMonitorCallback mCallback = new KeyguardMonitorCallback();
     private final NetworkController mController;
     private final WifiSignalCallback mSignalCallback = new WifiSignalCallback();
     private final WifiManager mWifiManager;
 
     public AdbOverNetworkTile(QSHost host) {
         super(host);
+        mKeyguardMonitor = Dependency.get(KeyguardMonitor.class);
         mController = Dependency.get(NetworkController.class);
         mWifiManager = mContext.getSystemService(WifiManager.class);
     }
@@ -69,11 +74,14 @@ public class AdbOverNetworkTile extends QSTileImpl<BooleanState> {
         if (!isAdbEnabled()) {
            Toast.makeText(mContext, mContext.getString(
                     R.string.quick_settings_network_adb_toast), Toast.LENGTH_LONG).show();
-        } else {
-            Settings.Global.putInt(mContext.getContentResolver(),
-                    Settings.Global.AICP_ADB_PORT, isAdbNetworkEnabled() ? 0 : 5555);
+          return;
         }
-        refreshState();
+        if (mKeyguardMonitor.isSecure() && !mKeyguardMonitor.canSkipBouncer()) {
+            Dependency.get(ActivityStarter.class)
+                    .postQSRunnableDismissingKeyguard(this::toggleAction);
+        } else {
+            toggleAction();
+        }
     }
 
     @Override
@@ -118,6 +126,12 @@ public class AdbOverNetworkTile extends QSTileImpl<BooleanState> {
         return MetricsEvent.CUSTOM_QUICK_TILES;
     }
 
+    private void toggleAction() {
+        Settings.Global.putInt(mContext.getContentResolver(),
+                Settings.Global.AICP_ADB_PORT, isAdbNetworkEnabled() ? -1 : 5555);
+        refreshState();
+    }
+
     private boolean isWifiConnected() {
         ConnectivityManager connMgr = mContext.getSystemService(ConnectivityManager.class);
         NetworkInfo networkInfo = connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
@@ -159,11 +173,20 @@ public class AdbOverNetworkTile extends QSTileImpl<BooleanState> {
                 mContext.getContentResolver().registerContentObserver(
                         Settings.Global.getUriFor(Settings.Global.ADB_ENABLED),
                         false, mObserver);
+                mKeyguardMonitor.addCallback(mCallback);
                 mController.addCallback(mSignalCallback);
             } else {
                 mContext.getContentResolver().unregisterContentObserver(mObserver);
+                mKeyguardMonitor.removeCallback(mCallback);
                 mController.removeCallback(mSignalCallback);
             }
+        }
+    }
+
+    private class KeyguardMonitorCallback implements KeyguardMonitor.Callback {
+        @Override
+        public void onKeyguardShowingChanged() {
+            refreshState();
         }
     }
 

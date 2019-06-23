@@ -94,4 +94,7 @@
     <!-- Burn-in protection -->
     <dimen name="horizontal_max_swift">3.0dp</dimen>
     <dimen name="vertical_max_swift">1.0dp</dimen>
+
+    <!-- Bottom margin of the ambient music ticker -->
+    <dimen name="ambient_indication_margin_bottom">71dp</dimen>
 </resources>

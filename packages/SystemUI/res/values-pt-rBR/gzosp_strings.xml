@@ -16,5 +16,43 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="global_action_restart_system">Reiniciar</string>
+    <string name="global_action_restart_advanced">Avançado</string>
+    <string name="global_action_restart_recovery">Recuperação</string>
     <string name="global_action_restart_bootloader">Bootloader</string>
+    <string name="global_action_restart_ui">Interface do sistema</string>
+    <string name="keyguard_indication_dash_charging_time">Carregamento Dash (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%s</xliff:g> até concluir)</string>
+    <string name="keyguard_plugged_in_dash_charging">Carregamento Dash</string>
+    <string name="preview">Pré-visualizar</string>
+    <string name="keycode">Código chave</string>
+    <string name="no_home_title">Nenhum botão de início encontrado</string>
+    <string name="no_home_message">É necessário um botão de início para navegar neste dispositivo. Adicione um botão de início antes de salvar.</string>
+    <string name="clipboard_description">A área de transferência permite que ítens sejam arrastados diretamente para a área de transferência. Os ítens também podem ser arrastados diretamente para fora da área de transferência quando estiverem presentes.</string>
+    <string name="keycode_description">O código chave permite que os botões do teclado sejam adicionadas à barra de navegação.</string>
+    <string name="start">Iniciar</string>
+    <string name="center">Centro</string>
+    <string name="end">Fim</string>
+    <string name="space">Espaçador</string>
+    <string name="menu_ime">Menu/Alternador de teclado</string>
+    <string name="select_button">Selecionar o botão a adicionar</string>
+    <string name="add_button">Adicionar botão</string>
+    <string name="save">Salvar</string>
+    <string name="reset">Redefinir</string>
+    <string name="select_keycode">Selecionar botão do teclado</string>
+    <string name="left">Esquerda</string>
+    <string name="right">Direita</string>
+    <string name="navbar_editor_title">Editor</string>
+    <string name="navbar_editor_summary">Configurar barra de navegação</string>
+    <string name="navbar_activity_title">Barra de navegação</string>
+    <string name="lockscreen_default">Padrão</string>
+    <string name="lockscreen_hidden">Nenhum</string>
+    <string name="custom_hint">Deslize a partir do ícone para iniciar</string>
+    <string name="status_bar_vpn">VPN</string>
+    <string name="quick_settings_roaming_title">Indicador de Roaming</string>
+    <string name="tuner_quick_settings">Configurações rápidas</string>
+    <string name="tuner_show_brightness_new">Mostrar o controle deslizante de brilho</string>
+    <string name="tuner_brightness_position_bottom">Mostrar controle de brilho em baixo</string>
+    <string name="tuner_show_info_header_title">Mostrar Informações do cabeçalho</string>
+    <string name="tuner_cellular_title">Móvel</string>
+    <string name="tuner_show_secure_title">Mostrar rodapé de segurança</string>
 </resources>

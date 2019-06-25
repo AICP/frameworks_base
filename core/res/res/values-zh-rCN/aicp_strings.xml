@@ -40,4 +40,5 @@
     <string name="aerr_copy">复制崩溃日志链接</string>
     <string name="url_copy_success">已成功复制链接</string>
     <string name="url_copy_failed">上传日志到 aicp haste 时发生错误</string>
+    <string name="pocket_lock_message_long_press">长按电源键来交互</string>
 </resources>

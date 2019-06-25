@@ -61,4 +61,5 @@
     <string name="accessibility_quick_settings_live_display_changed_day">A LiveDisplay nappali módra változtatva.</string>
     <string name="accessibility_quick_settings_live_display_changed_night">A LiveDisplay éjszakai módra változtatva.</string>
     <string name="accessibility_quick_settings_live_display_changed_outdoor">A LiveDisplay szabadtéri módra változtatva.</string>
+    <string name="pocket_lock_message_long_press">A hatás eléréséhez nyomja hosszan a bekapcsoló gombot</string>
 </resources>

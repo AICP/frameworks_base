@@ -33,4 +33,5 @@
     <string name="action_null">空白</string>
     <string name="permlab_toggleNavigationEditor">控制導覽列編輯器</string>
     <string name="permdesc_toggleNavigationEditor">允許應用程式控制導覽列編輯器。</string>
+    <string name="pocket_lock_message_long_press">長按電源鍵進行交互</string>
 </resources>

@@ -16,4 +16,8 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="reboot_title">Reinicialização</string>
+    <string name="reboot_message">Reiniciando o sistema</string>
+    <string name="permlab_fakePackageSignature">Assinatura de pacote Spoof</string>
+    <string name="permdesc_fakePackageSignature">Permite que a aplicação finja ser uma aplicação diferente. Aplicações maliciosas podem ser capazes de usar isto para aceder a dados das aplicações. Conceda essa permissão com cautela!</string>
 </resources>

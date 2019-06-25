@@ -33,4 +33,9 @@
     <string name="action_null">Vazio</string>
     <string name="permlab_toggleNavigationEditor">editor do controlo de navegação</string>
     <string name="permdesc_toggleNavigationEditor">Permite que uma aplicação controle o editor da barra de navegação.</string>
+    <string name="permlab_accessFontManager">aceda aos tipos de fonte</string>
+    <string name="permdesc_accessFontManager">Permite que um aplicativo acesse o gerenciador de fontes.</string>
+    <string name="fontservice_incompatible_font">O tipo de letra que instalou não é compatível devido à inexistência do ficheiro fonts.xml nos seus ficheiros. Por favor, contacte o criador do pacote para obter ajuda.</string>
+    <string name="aicp_vendor_security_patch">Nível do patch de segurança do fabricante</string>
+    <string name="pocket_lock_message_long_press">Toque longo no botão de ligar/desligar para interagir</string>
 </resources>

@@ -61,4 +61,5 @@
     <string name="accessibility_quick_settings_live_display_changed_day">LiveDisplay auf Tag-Modus geändert.</string>
     <string name="accessibility_quick_settings_live_display_changed_night">LiveDisplay auf Nacht-Modus geändert.</string>
     <string name="accessibility_quick_settings_live_display_changed_outdoor">LiveDisplay auf Draußen-Modus geändert.</string>
+    <string name="pocket_lock_message_long_press">Ein-/Aus-Taste lange drücken, um mit dem Gerät zu interagieren</string>
 </resources>

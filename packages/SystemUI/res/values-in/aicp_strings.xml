@@ -112,6 +112,7 @@
     <string name="tuner_auto_brightness_right">Posisi di kanan untuk tombol kecerahan adaptif</string>
     <string name="tuner_show_brightness_buttons">Tombol kontrol kecerahan</string>
     <string name="quick_settings_smart_pixels">Smart Pixels</string>
+    <string name="quick_settings_smart_pixels_on_power_save">Hidupkan otomatis Smart Pixels</string>
     <string name="quick_settings_immersive_tile">Modus layar penuh</string>
     <string name="quick_settings_immersive_tile_statusbar">Layar penuh bilah status</string>
     <string name="quick_settings_immersive_tile_navbar">Layar penuh bilah navigasi</string>
@@ -131,6 +132,7 @@
     <string name="ambientmusic_songinfo">%s oleh %s</string>
     <string name="accessibility_quick_settings_running_services">Buka layar layanan yang sedang berjalan.</string>
     <string name="pie_battery_level">"TINGKAT BATERAI "</string>
+    <string name="quick_settings_pie">Kontrol Pie</string>
     <string name="quick_settings_sync_label">Sinkronisasi</string>
     <string name="accessibility_quick_settings_sync_off">Sinkronisasi mati</string>
     <string name="accessibility_quick_settings_sync_on">Sinkronisasi hidup</string>

@@ -18,4 +18,5 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="screen_zoom_summary_smaller">Lebih kecil</string>
     <string name="screen_zoom_summary_smallest">Paling kecil</string>
+    <string name="power_discharge_by_only_short">Sampai %1$s</string>
 </resources>

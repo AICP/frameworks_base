@@ -33,4 +33,5 @@
     <string name="action_null">空白</string>
     <string name="permlab_toggleNavigationEditor">ナビゲーションバーエディターの制御</string>
     <string name="permdesc_toggleNavigationEditor">ナビゲーションバーエディターの制御を許可する</string>
+    <string name="pocket_lock_message_long_press">電源ボタンを長押しすると操作できます</string>
 </resources>

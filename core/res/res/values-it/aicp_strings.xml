@@ -33,4 +33,5 @@
     <string name="action_null">Vuoto</string>
     <string name="permlab_toggleNavigationEditor">controllo editor di navigazione</string>
     <string name="permdesc_toggleNavigationEditor">Consenti ad un\'app di controllare l\'editor della barra di navigazione.</string>
+    <string name="pocket_lock_message_long_press">Pressione prolungata del pulsante per interagire</string>
 </resources>

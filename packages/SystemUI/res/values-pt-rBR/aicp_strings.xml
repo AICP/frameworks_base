@@ -19,6 +19,11 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="quick_settings_heads_up_label">Notificações flutuantes</string>
+    <string name="accessibility_quick_settings_heads_up_off">Notificação flutuante desativada.</string>
+    <string name="accessibility_quick_settings_heads_up_on">Notificação flutuante ativada.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">As notificações flutuantes foram desativadas.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">As notificações flutuantes foram ativadas.</string>
     <string name="quick_aicp_extras_label">Aicp Extras</string>
     <string name="quick_aicp_extras_toast">LOL, você realmente pensou que o clique longo o levaria para algum lugar!!!</string>
     <string name="quick_settings_screenshot_label">Captura de Tela</string>
@@ -30,7 +35,19 @@
     <string name="quick_settings_caffeine_label">Cafeína</string>
     <string name="accessibility_quick_settings_caffeine_off">Cafeína desligada</string>
     <string name="accessibility_quick_settings_caffeine_on">Cafeína ligada</string>
+    <string name="quick_settings_aod_label">AOD</string>
+    <string name="quick_settings_network_adb_enabled_label">Ativado</string>
     <string name="quick_settings_network_adb_disabled_label">Desativado</string>
+    <string name="quick_settings_network_adb_label">ADB pela rede</string>
+    <string name="quick_settings_network_adb_toast">A depuração USB não está ativada</string>
+    <string name="qs_menu_item_columns">Colunas</string>
+    <string name="qs_menu_item_columns_landscape">Colunas (paisagem)</string>
+    <string name="qs_menu_item_reset">Redefinir</string>
+    <string name="qs_menu_item_titles">Mostrar rótulos</string>
+    <string name="qs_menu_item_rows">Linhas</string>
+    <string name="qs_menu_item_rows_landscape">Linhas (paisagem)</string>
+    <string name="qs_menu_item_qs_columns">Colunas da barra rápida</string>
+    <string name="qs_menu_item_columns_auto">Automático</string>
     <string name="quick_settings_locale_label">Idioma</string>
     <string name="quick_settings_locale_more_locales_toast">Por favor, configure vários idiomas para usar essa função</string>
     <string name="quick_settings_music_label">Música</string>
@@ -58,6 +75,8 @@
     <string name="quick_settings_compass_SW">SO</string>
     <string name="quick_settings_compass_W">O</string>
     <string name="quick_settings_compass_NW">NO</string>
+    <string name="quick_settings_reboot_label">Reiniciar</string>
+    <string name="quick_settings_reboot_recovery_label">Recuperação</string>
     <string name="screenrecord_notif_ticker">A tela está sendo gravada</string>
     <string name="screenrecord_notif_final_ticker">Tela gravada com sucesso</string>
     <string name="screenrecord_notif_title">Gravando a tela</string>
@@ -72,6 +91,8 @@
     <string name="quick_settings_screenrecord_label">Gravar a tela</string>
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - as notificações flutuantes vão parar por 1 minuto.</string>
     <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - as notificações flutuantes vão parar por <xliff:g id="number">%d</xliff:g> minutos.</string>
+    <string name="menu_ime_always_show">Menu/Alternador de teclado (sempre mostrar)</string>
+    <string name="search">Pesquisar</string>
     <string name="systemui_tuner_navbar_title">Configurações padrão</string>
     <string name="onthego_notif_ticker">Em movimento ativado</string>
     <string name="onthego_notif_title">Em movimento ativo</string>
@@ -88,6 +109,16 @@
     <string name="quick_settings_onthego_label">Em movimento</string>
     <string name="global_action_screenrecord">Gravar a tela</string>
     <string name="quick_settings_cpuinfo_label">Informação do dispositivo</string>
+    <string name="tuner_show_auto_brightness">Botão de brilho adaptável</string>
+    <string name="tuner_auto_brightness_right">Botão de brilho adaptável à direita</string>
+    <string name="tuner_show_brightness_buttons">Botões de controle de brilho</string>
+    <string name="quick_settings_smart_pixels">Pixels inteligentes</string>
+    <string name="quick_settings_smart_pixels_on_power_save">Ativação automática dos pixels inteligentes</string>
+    <string name="drag_or_tap_to_add_tiles">Arraste ou toque para adicionar/remover atalhos</string>
+    <string name="quick_settings_immersive_tile">Modo imersivo</string>
+    <string name="quick_settings_immersive_tile_statusbar">Barra de navegação imersiva</string>
+    <string name="quick_settings_immersive_tile_navbar">Barra de navegação imersiva</string>
+    <string name="quick_settings_immersive_tile_full">Modo imersivo</string>
     <string name="omnijaws_service_error">Erro</string>
     <string name="omnijaws_service_unkown">Sem informações meteorológicas</string>
     <string name="omnijaws_service_error_long">Erro ao carregar as informações meteorológicas</string>
@@ -100,14 +131,37 @@
     <string name="app_float_maximize_item_title">Maximizar</string>
     <string name="app_float_item_title">Visão flutuante</string>
     <string name="app_stop_item_title">Encerrar aplicativo</string>
+    <string name="ambientmusic_songinfo">%s por %s</string>
     <string name="accessibility_quick_settings_running_services">Tela de Serviços Abertos em Execução.</string>
+    <string name="tuner_hide_disabled_sim">Ocultar cartões SIM desativados</string>
+    <string name="pie_state_name">Controle Pie</string>
+    <string name="pie_state_summary">Use os controles Pie durante o modo imersivo</string>
+    <string name="pie_battery_level">"NÍVEL DA BATERIA "</string>
+    <string name="quick_settings_pie">Controle Pie</string>
     <string name="quick_settings_sync_label">Sincronizar</string>
     <string name="accessibility_quick_settings_sync_off">Sincronização desativada</string>
     <string name="accessibility_quick_settings_sync_on">Sincronização ativada</string>
     <string name="accessibility_quick_settings_sync_changed_off">A sincronização foi desativada</string>
     <string name="accessibility_quick_settings_sync_changed_on">A sincronização foi ativada</string>
+    <string name="recents_free_ram">RAM livre: %1$d MB</string>
+    <string name="gaming_mode_tile_title">Modo de jogo</string>
+    <string name="gaming_mode_tile_toast">Modo de jogo ativado</string>
+    <string name="gaming_mode_tile_toast_disabled">Modo de jogo desativado</string>
+    <string name="gaming_mode_dialog_title">Modo de jogo</string>
+    <string name="gaming_mode_dialog_message">Quando o modo de jogo estiver ativado, todas as mensagens flutuantes serão desativadas e os botões físicos serão desativados. Todas as configurações desativadas serão redefinidas para o padrão quando você sair do \"Modo jogo\".</string>
+    <string name="accessibility_quick_settings_gaming_mode_on">Modo de jogo ativado</string>
+    <string name="accessibility_quick_settings_gaming_mode_off">Modo de jogo desativado</string>
+    <string name="theming_tile_title">Tema claro/escuro</string>
+    <string name="theming_tile_light_title">Tema claro</string>
+    <string name="theming_tile_dark_title">Tema escuro</string>
     <string name="force_stop_dlg_title">Forçar interrupção?</string>
     <string name="force_stop_dlg_text">Se você forçar a interrupção de um aplicativo, ele pode apresentar mau funcionamento.</string>
+    <string name="guts_force_close_app">Fechar aplicativo</string>
+    <string name="quick_settings_reading_mode">Modo de leitura</string>
+    <string name="accessibility_quick_settings_reading_mode_on">Modo de leitura ligado.</string>
+    <string name="accessibility_quick_settings_reading_mode_off">Modo de leitura desligado.</string>
+    <string name="accessibility_quick_settings_reading_mode_changed_on">O modo de leitura foi ligado.</string>
+    <string name="accessibility_quick_settings_reading_mode_changed_off">O modo de leitura foi desligado.</string>
     <string name="accessibility_quick_settings_location_battery_saving">Relatório de localização: modo economia de bateria.</string>
     <string name="accessibility_quick_settings_location_gps_only">Relatório de localização: modo apenas sensores.</string>
     <string name="accessibility_quick_settings_location_high_accuracy">Relatório de localização: modo de alta precisão.</string>

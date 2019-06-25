@@ -61,4 +61,5 @@
     <string name="accessibility_quick_settings_live_display_changed_day">LiveDisplay cambiado a modo día.</string>
     <string name="accessibility_quick_settings_live_display_changed_night">LiveDisplay cambiado a modo noche.</string>
     <string name="accessibility_quick_settings_live_display_changed_outdoor">LiveDisplay cambiado a modo al aire libre.</string>
+    <string name="pocket_lock_message_long_press">Mantenga presionado el botón de encendido para interactuar</string>
 </resources>

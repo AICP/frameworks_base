@@ -61,4 +61,5 @@
     <string name="accessibility_quick_settings_live_display_changed_day">LiveDisplay zmieniony na tryb dzienny.</string>
     <string name="accessibility_quick_settings_live_display_changed_night">LiveDisplay zmieniony na tryb nocny.</string>
     <string name="accessibility_quick_settings_live_display_changed_outdoor">LiveDisplay przełączono na tryb na zewnątrz.</string>
+    <string name="pocket_lock_message_long_press">Przytrzymaj przycisk zasilania w celu interakcji</string>
 </resources>

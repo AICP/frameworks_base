@@ -33,4 +33,5 @@
     <string name="action_null">Vierge</string>
     <string name="permlab_toggleNavigationEditor">éditeur des contrôles de navigation</string>
     <string name="permdesc_toggleNavigationEditor">Autoriser une application à éditer les contrôles de navigation.</string>
+    <string name="pocket_lock_message_long_press">Appui long sur le bouton d\'alimentation pour interagir</string>
 </resources>

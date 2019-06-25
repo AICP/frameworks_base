@@ -61,4 +61,5 @@
     <string name="accessibility_quick_settings_live_display_changed_day">Режим LiveDisplay изменен на дневной.</string>
     <string name="accessibility_quick_settings_live_display_changed_night">Режим LiveDisplay изменен на ночной.</string>
     <string name="accessibility_quick_settings_live_display_changed_outdoor">Режим LiveDisplay изменен на уличный.</string>
+    <string name="pocket_lock_message_long_press">Нажмите и удерживайте кнопку питания для взаимодействия</string>
 </resources>

@@ -46,6 +46,7 @@ import com.android.systemui.qs.tiles.DeviceControlsTile;
 import com.android.systemui.qs.tiles.DndTile;
 import com.android.systemui.qs.tiles.FlashlightTile;
 import com.android.systemui.qs.tiles.FPSInfoTile;
+import com.android.systemui.qs.tiles.GamingModeTile;
 import com.android.systemui.qs.tiles.HeadsUpTile;
 import com.android.systemui.qs.tiles.HotspotTile;
 import com.android.systemui.qs.tiles.InternetTile;
@@ -132,6 +133,8 @@ public class QSFactoryImpl implements QSFactory {
     private final Provider<ScreenshotTile> mScreenshotTileProvider;
     private final Provider<OnTheGoTile> mOnTheGoTileProvider;
 
+    private final Provider<GamingModeTile> mGamingModeTileProvider;
+
     private final Lazy<QSHost> mQsHostLazy;
     private final Provider<CustomTile.Builder> mCustomTileBuilderProvider;
 
@@ -185,7 +188,8 @@ public class QSFactoryImpl implements QSFactory {
             Provider<AicpExtrasTile> aicpExtrasTileProvider,
             Provider<SoundSearchTile> soundSearchTileProvider,
             Provider<ScreenshotTile> screenshotTileProvider,
-            Provider<OnTheGoTile> onTheGoTileProvider) {
+            Provider<OnTheGoTile> onTheGoTileProvider,
+            Provider<GamingModeTile> gamingModeTileProvider) {
         mQsHostLazy = qsHostLazy;
         mCustomTileBuilderProvider = customTileBuilderProvider;
 
@@ -236,6 +240,7 @@ public class QSFactoryImpl implements QSFactory {
         mSoundSearchTileProvider = soundSearchTileProvider;
         mScreenshotTileProvider = screenshotTileProvider;
         mOnTheGoTileProvider = onTheGoTileProvider;
+        mGamingModeTileProvider = gamingModeTileProvider;
     }
 
     public QSTile createTile(String tileSpec) {
@@ -343,6 +348,8 @@ public class QSFactoryImpl implements QSFactory {
                 return mScreenshotTileProvider.get();
             case "onthego":
                 return mOnTheGoTileProvider.get();
+            case "gamingmode":
+                return mGamingModeTileProvider.get();
         }
 
         // Custom tiles

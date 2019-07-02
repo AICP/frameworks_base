@@ -148,9 +148,7 @@ public class PieController extends EdgeGestureManager.EdgeGestureActivationListe
     }
 
     private boolean showPie() {
-        final boolean pieEnabled = Settings.Secure.getIntForUser(mContext.getContentResolver(),
-                Settings.Secure.PIE_STATE, 0, UserHandle.USER_CURRENT) == 1;
-        return pieEnabled;
+        return mBar.pieControlsEnabled();
     }
 
     public void attachPie(int gravity) {

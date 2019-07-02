@@ -1362,9 +1362,7 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
 
         reevaluateStyles();
 
-        boolean pieEnabled = Settings.Secure.getIntForUser(mContext.getContentResolver(),
-                Settings.Secure.PIE_STATE, 0, UserHandle.USER_CURRENT) == 1;
-        updatePieControls(!pieEnabled);
+        updatePieControls(!pieControlsEnabled());
     }
 
     private void onThemeChanged() {
@@ -5783,9 +5781,7 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
     private final ContentObserver mPieSettingsObserver = new ContentObserver(mHandler) {
          @Override
          public void onChange(boolean selfChange) {
-            boolean pieEnabled = Settings.Secure.getIntForUser(mContext.getContentResolver(),
-                    Settings.Secure.PIE_STATE, 0, UserHandle.USER_CURRENT) == 1;
-            updatePieControls(!pieEnabled);
+            updatePieControls(!pieControlsEnabled());
         }
     };
 
@@ -6717,6 +6713,11 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
         lp.setTitle("AppCircleSidebar");
 
         return lp;
+    }
+
+    public boolean pieControlsEnabled() {
+        return Settings.Secure.getIntForUser(mContext.getContentResolver(),
+              Settings.Secure.PIE_STATE, 0, UserHandle.USER_CURRENT) == 1;
     }
 
     public void updatePieControls(boolean reset) {

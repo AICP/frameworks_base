@@ -376,6 +376,19 @@ public class VpnManager {
     }
 
     /**
+     * Return profile list of all legacy VPNs.
+     * @hide
+     */
+    @RequiresPermission(android.Manifest.permission.NETWORK_STACK)
+    public VpnProfile[] getAllLegacyVpns() {
+        try {
+            return mService.getAllLegacyVpns();
+        } catch (RemoteException e) {
+            throw e.rethrowFromSystemServer();
+        }
+    }
+
+    /**
      * Return the legacy VPN information for the specified user ID.
      * @hide
      */

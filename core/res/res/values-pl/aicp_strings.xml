@@ -62,4 +62,20 @@
     <string name="accessibility_quick_settings_live_display_changed_night">LiveDisplay zmieniony na tryb nocny.</string>
     <string name="accessibility_quick_settings_live_display_changed_outdoor">LiveDisplay przełączono na tryb na zewnątrz.</string>
     <string name="pocket_lock_message_long_press">Przytrzymaj przycisk zasilania w celu interakcji</string>
+    <string name="app_ops_picture_in_picture">użyj obrazu w obrazie</string>
+    <string name="app_ops_play_audio">odtwarzanie dźwięków</string>
+    <string name="app_ops_post_notification">opublikuj powiadomienie</string>
+    <string name="app_ops_project_media">wyświetlanie multimediów</string>
+    <string name="app_ops_read_calendar">odczytywanie kalendarza</string>
+    <string name="app_ops_read_call_log">odczytywanie rejestru połączeń</string>
+    <string name="app_ops_read_cell_broadcasts">odczyt wiadomości sieciowych</string>
+    <string name="app_ops_read_clipboard">odczytywanie schowka</string>
+    <string name="app_ops_read_contacts">odczytywanie kontaktów</string>
+    <string name="app_ops_read_external_storage">odczyt pamięci zewnętrznej</string>
+    <string name="app_ops_read_mms">odczytywanie MMS-ów</string>
+    <string name="app_ops_read_phone_numbers">odczytywanie numerów telefonów</string>
+    <string name="privacy_guard_notification_detail"><xliff:g id="app">%1$s</xliff:g> nie będzie mieć dostępu do osobistych danych</string>
+    <string name="privacy_guard_dialog_title">Ochrona prywatności</string>
+    <string name="privacy_guard_dialog_summary"><xliff:g id="app">%1$s</xliff:g> czy chciałbyś <xliff:g id="op">%2$s</xliff:g>.</string>
+    <string name="permission_remember_choice">Zapamiętaj mój wybór</string>
 </resources>

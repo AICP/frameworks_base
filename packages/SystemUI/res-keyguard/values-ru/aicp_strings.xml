@@ -3,7 +3,7 @@
 <resources>
     <string name="text_clock_header_singular">Сейчас</string>
     <string name="text_clock_header_plural">Сейчас</string>
-    <string name="text_clock_hours_midnight">Полночь</string>
+    <string name="text_clock_hours_midnight">Ноль</string>
     <string name="text_clock_hours_one">Один</string>
     <string name="text_clock_hours_two">Два</string>
     <string name="text_clock_hours_three">Три</string>

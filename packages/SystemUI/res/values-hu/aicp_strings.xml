@@ -40,6 +40,7 @@
     <string name="quick_settings_network_adb_disabled_label">Letiltva</string>
     <string name="quick_settings_network_adb_label">ADB a hálózaton keresztül</string>
     <string name="quick_settings_network_adb_toast">Az USB hibakeresés nem engedélyezett</string>
+    <string name="quick_settings_network_adb_no_network">nincs hálózat</string>
     <string name="qs_menu_item_columns">Oszlopok</string>
     <string name="qs_menu_item_columns_landscape">Oszlopok (fekvő módban)</string>
     <string name="qs_menu_item_reset">Visszaállítás</string>

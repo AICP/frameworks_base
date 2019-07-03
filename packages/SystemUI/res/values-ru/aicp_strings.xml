@@ -40,6 +40,7 @@
     <string name="quick_settings_network_adb_disabled_label">Отключено</string>
     <string name="quick_settings_network_adb_label">ADB по сети</string>
     <string name="quick_settings_network_adb_toast">Отладка по USB не включена</string>
+    <string name="quick_settings_network_adb_no_network">нет сети</string>
     <string name="qs_menu_item_columns">Колонки</string>
     <string name="qs_menu_item_columns_landscape">Колонки (ландшафт)</string>
     <string name="qs_menu_item_reset">Сбросить</string>

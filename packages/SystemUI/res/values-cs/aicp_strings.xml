@@ -40,6 +40,7 @@
     <string name="quick_settings_network_adb_disabled_label">Zakázáno</string>
     <string name="quick_settings_network_adb_label">ADB přes síť</string>
     <string name="quick_settings_network_adb_toast">Ladění USB není povoleno</string>
+    <string name="quick_settings_network_adb_no_network">žádná síť</string>
     <string name="qs_menu_item_columns">Sloupce</string>
     <string name="qs_menu_item_columns_landscape">Sloupce (na šířku)</string>
     <string name="qs_menu_item_reset">Obnovit</string>

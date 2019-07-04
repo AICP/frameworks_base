@@ -5274,7 +5274,7 @@ public final class Settings {
 
         /** @hide */
         private static final Validator MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD_VALIDATOR =
-              new SettingsValidators.InclusiveIntegerRangeValidator(0, 120000);
+              new SettingsValidators.InclusiveIntegerRangeValidator(0, 1800000);
 
         /**
          * Force an Ambient notification when a new media track is being played

@@ -40,6 +40,7 @@
     <string name="quick_settings_network_adb_disabled_label">Wyłączone</string>
     <string name="quick_settings_network_adb_label">ADB przez sieć</string>
     <string name="quick_settings_network_adb_toast">Debugowanie USB jest wyłączone</string>
+    <string name="quick_settings_network_adb_no_network">brak sieci</string>
     <string name="qs_menu_item_columns">Kolumny</string>
     <string name="qs_menu_item_columns_landscape">Kolumny (poziomo)</string>
     <string name="qs_menu_item_reset">Resetuj</string>

@@ -142,4 +142,7 @@
 
     <!-- Whether to enable oneplus cam hack -->
     <bool name="config_enableOPcamhack">false</bool>
+
+    <!-- min height for gesture action start -->
+    <integer name="config_navgestureswipestart">20</integer>
 </resources>

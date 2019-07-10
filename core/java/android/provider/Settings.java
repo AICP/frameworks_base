@@ -6300,6 +6300,15 @@ public final class Settings {
         private static final Validator LESS_BORING_HEADS_UP_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
+        /**
+         * @hide
+         */
+        public static final String BOTTOM_GESTURE_SWIPE_START =
+                "bottom_gesture_navigation_swipe_start";
+
+        private static final Validator BOTTOM_GESTURE_SWIPE_START_VALIDATOR =
+                ANY_INTEGER_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6499,6 +6508,7 @@ public final class Settings {
             OMNI_BOTTOM_GESTURE_TRIGGER_TIMEOUT,
             OMNI_BOTTOM_GESTURE_SWIPE_LIMIT,
             BOTTOM_GESTURE_FEEDBACK_DURATION,
+            BOTTOM_GESTURE_SWIPE_START,
             AICP_LOCKSCREEN_WEATHER_STYLE,
             LOCK_HIDE_STATUS_BAR,
             ENABLE_APP_CIRCLE_BAR,
@@ -6799,6 +6809,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(OMNI_BOTTOM_GESTURE_TRIGGER_TIMEOUT);
             PRIVATE_SETTINGS.add(OMNI_BOTTOM_GESTURE_SWIPE_LIMIT);
             PRIVATE_SETTINGS.add(BOTTOM_GESTURE_FEEDBACK_DURATION);
+            PRIVATE_SETTINGS.add(BOTTOM_GESTURE_SWIPE_START);
             PRIVATE_SETTINGS.add(AICP_LOCKSCREEN_WEATHER_STYLE);
             PRIVATE_SETTINGS.add(LOCK_HIDE_STATUS_BAR);
             PRIVATE_SETTINGS.add(ENABLE_APP_CIRCLE_BAR);
@@ -7109,6 +7120,7 @@ public final class Settings {
             VALIDATORS.put(OMNI_BOTTOM_GESTURE_SWIPE_LIMIT,
                     OMNI_BOTTOM_GESTURE_SWIPE_LIMIT_VALIDATOR);
             VALIDATORS.put(BOTTOM_GESTURE_FEEDBACK_DURATION, BOTTOM_GESTURE_FEEDBACK_DURATION_VALIDATOR);
+            VALIDATORS.put(BOTTOM_GESTURE_SWIPE_START, BOTTOM_GESTURE_SWIPE_START_VALIDATOR);
             VALIDATORS.put(AICP_LOCKSCREEN_WEATHER_STYLE,AICP_LOCKSCREEN_WEATHER_STYLE_VALIDATOR);
             VALIDATORS.put(LOCK_HIDE_STATUS_BAR,LOCK_HIDE_STATUS_BAR_VALIDATOR);
             VALIDATORS.put(ENABLE_APP_CIRCLE_BAR,ENABLE_APP_CIRCLE_BAR_VALIDATOR);

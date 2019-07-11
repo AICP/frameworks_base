@@ -129,11 +129,14 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
     private boolean mShowVolteIcon;
     private boolean mIsVowifiAvailable;
     private boolean mRoamingIconAllowed;
+    private boolean mDataDisabledIcon;
 
     private static final String ROAMING_INDICATOR_ICON =
             "system:" + Settings.System.ROAMING_INDICATOR_ICON;
     private static final String SHOW_FOURG_ICON =
             "system:" + Settings.System.SHOW_FOURG_ICON;
+    private static final String DATA_DISABLED_ICON =
+            "system:" + Settings.System.DATA_DISABLED_ICON;
 
     private final MobileStatusTracker.Callback mMobileCallback =
             new MobileStatusTracker.Callback() {
@@ -303,6 +306,7 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
 
         Dependency.get(TunerService.class).addTunable(this, ROAMING_INDICATOR_ICON);
         Dependency.get(TunerService.class).addTunable(this, SHOW_FOURG_ICON);
+        Dependency.get(TunerService.class).addTunable(this, DATA_DISABLED_ICON);
     }
 
     @Override
@@ -317,6 +321,11 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
                 mConfig = Config.readConfig(mContext);
                 setConfiguration(mConfig);
                 notifyListeners();
+                break;
+            case DATA_DISABLED_ICON:
+                mDataDisabledIcon =
+                    TunerService.parseIntegerSwitch(newValue, true);
+                updateTelephony();
                 break;
             default:
                 break;
@@ -912,7 +921,7 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
         mCurrentState.roaming = isRoaming() && mRoamingIconAllowed;
         if (isCarrierNetworkChangeActive()) {
             mCurrentState.iconGroup = TelephonyIcons.CARRIER_NETWORK_CHANGE;
-        } else if (isDataDisabled() && !mConfig.alwaysShowDataRatIcon) {
+        } else if (isDataDisabled() && mDataDisabledIcon) {
             if (mSubscriptionInfo.getSubscriptionId() != mDefaults.getDefaultDataSubId()) {
                 mCurrentState.iconGroup = TelephonyIcons.NOT_DEFAULT_DATA;
             } else {

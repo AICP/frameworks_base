@@ -7291,8 +7291,14 @@ public final class Settings {
 
         /**
          * @hide
-         */
+        */
         public static final String QQS_TILES_ROWS = "qqs_tiles_rows";
+
+        /**
+         * Whether to display cross sign for a data disabled connection
+         * @hide
+         */
+        public static final String DATA_DISABLED_ICON = "data_disabled_icon";
 
         /**
          * Double tap on lockscreen to sleep

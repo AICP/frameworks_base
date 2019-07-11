@@ -5982,6 +5982,12 @@ public final class Settings {
          */
         public static final String SHOW_FOURG_ICON = "show_fourg_icon";
 
+        /**
+         * Whether to display cross sign for a data disabled connection
+         * @hide
+         */
+        public static final String DATA_DISABLED_ICON = "data_disabled_icon";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6159,6 +6165,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(QS_HEADER_CLOCK_SIZE);
             PRIVATE_SETTINGS.add(USE_OLD_MOBILETYPE);
             PRIVATE_SETTINGS.add(ROAMING_INDICATOR_ICON);
+            PRIVATE_SETTINGS.add(DATA_DISABLED_ICON);
         }
 
         /**

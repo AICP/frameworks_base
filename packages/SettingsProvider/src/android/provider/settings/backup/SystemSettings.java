@@ -143,5 +143,6 @@ public class SystemSettings {
         Settings.System.QS_HEADER_CLOCK_SIZE,
         Settings.System.USE_OLD_MOBILETYPE,
         Settings.System.ROAMING_INDICATOR_ICON,
+        Settings.System.DATA_DISABLED_ICON,
     };
 }

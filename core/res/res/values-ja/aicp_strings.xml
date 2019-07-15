@@ -19,17 +19,9 @@
     <string name="animation_fade">フェード</string>
     <string name="animation_slide_right">右からスライド</string>
     <string name="animation_slide_left">左からスライド</string>
-    <string name="animation_slide_right_no_fade">右からスライド（フェードなし）</string>
-    <string name="animation_slide_left_no_fade">左からスライド（フェードなし）</string>
     <string name="animation_slide_up">下からスライド</string>
     <string name="animation_slide_down">上からスライド</string>
-    <string name="animation_default">デフォルト</string>
     <string name="animation_translucent">半透明</string>
-    <string name="animation_grow_shrink">拡大縮小（上）</string>
-    <string name="animation_grow_shrink_center">拡大縮小（中央）</string>
-    <string name="animation_grow_shrink_bottom">拡大縮小（下）</string>
-    <string name="animation_grow_shrink_left">拡大縮小（左）</string>
-    <string name="animation_grow_shrink_right">拡大縮小（右）</string>
     <string name="action_null">空白</string>
     <string name="permlab_toggleNavigationEditor">ナビゲーションバーエディターの制御</string>
     <string name="permdesc_toggleNavigationEditor">ナビゲーションバーエディターの制御を許可する</string>

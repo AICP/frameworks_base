@@ -52,6 +52,7 @@ public class DiskInfo implements Parcelable {
     public static final int FLAG_USB = 1 << 3;
     public static final int FLAG_EMMC = 1 << 4;
     public static final int FLAG_NON_REMOVABLE = 1 << 5;
+    public static final int FLAG_UFS_CARD = 1 << 6;
 
     public final String id;
     @UnsupportedAppUsage

@@ -33,15 +33,15 @@
 
     <!-- Minutes. -->
     <string name="text_clock_minutes_zero">O\' clock</string>
-    <string name="text_clock_minutes_one">One</string>
-    <string name="text_clock_minutes_two">Two</string>
-    <string name="text_clock_minutes_three">Three</string>
-    <string name="text_clock_minutes_four">Four</string>
-    <string name="text_clock_minutes_five">Five</string>
-    <string name="text_clock_minutes_six">Six</string>
-    <string name="text_clock_minutes_seven">Seven</string>
-    <string name="text_clock_minutes_eight">Eight</string>
-    <string name="text_clock_minutes_nine">Nine</string>
+    <string name="text_clock_minutes_one">O\' One</string>
+    <string name="text_clock_minutes_two">O\' Two</string>
+    <string name="text_clock_minutes_three">O\' Three</string>
+    <string name="text_clock_minutes_four">O\' Four</string>
+    <string name="text_clock_minutes_five">O\' Five</string>
+    <string name="text_clock_minutes_six">O\' Six</string>
+    <string name="text_clock_minutes_seven">O\' Seven</string>
+    <string name="text_clock_minutes_eight">O\' Eight</string>
+    <string name="text_clock_minutes_nine">O\' Nine</string>
     <string name="text_clock_minutes_ten">Ten</string>
     <string name="text_clock_minutes_eleven">Eleven</string>
     <string name="text_clock_minutes_twelve">Twelve</string>

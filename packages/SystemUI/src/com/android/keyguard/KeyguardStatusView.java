@@ -447,11 +447,11 @@ public class KeyguardStatusView extends GridLayout implements
         if (info == null) {
 
             final ContentResolver resolver = mContext.getContentResolver();
-            boolean mClockSelection = Settings.System.getIntForUser(resolver,
-                    Settings.System.LOCKSCREEN_CLOCK_SELECTION, 0, UserHandle.USER_CURRENT) == 15;
+            boolean ClockSelection = Settings.System.getIntForUser(resolver,
+                    Settings.System.LOCKSCREEN_CLOCK_SELECTION, 0, UserHandle.USER_CURRENT) == 14;
 
             // If text style clock, align the textView to start else keep it center.
-            if (mClockSelection) {
+            if (ClockSelection) {
                 mOwnerInfo.setPaddingRelative((int) mContext.getResources()
                     .getDimension(R.dimen.custom_clock_left_padding) + 8, 0, 0, 0);
                 mOwnerInfo.setGravity(Gravity.START);

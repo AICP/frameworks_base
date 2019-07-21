@@ -21,6 +21,4 @@
     <string name="global_action_restart_recovery">リカバリー</string>
     <string name="global_action_restart_bootloader">ブートローダー</string>
     <string name="global_action_restart_ui">システム UI</string>
-    <string name="keyguard_indication_dash_charging_time">Dash Charge 中（充電完了まで<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%s</xliff:g>）</string>
-    <string name="keyguard_plugged_in_dash_charging">Dash Charge 中</string>
 </resources>

@@ -5288,6 +5288,16 @@ public final class Settings {
         private static final Validator HEADS_UP_TIMEOUT_VALIDATOR =
               new SettingsValidators.InclusiveIntegerRangeValidator(0, 10000);
 
+        /**
+         * Whether to show heads up only for dialer and sms apps
+         * @hide
+         */
+        public static final String LESS_BORING_HEADS_UP = "less_boring_heads_up";
+
+        /** @hide */
+        private static final Validator LESS_BORING_HEADS_UP_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5438,6 +5448,7 @@ public final class Settings {
             LOCK_HIDE_STATUS_BAR,
             HEADS_UP_NOTIFICATION_SNOOZE,
             HEADS_UP_TIMEOUT,
+            LESS_BORING_HEADS_UP,
             // AICP Settings end
         };
 
@@ -5636,6 +5647,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(LOCK_HIDE_STATUS_BAR);
             PRIVATE_SETTINGS.add(HEADS_UP_NOTIFICATION_SNOOZE);
             PRIVATE_SETTINGS.add(HEADS_UP_TIMEOUT);
+            PRIVATE_SETTINGS.add(LESS_BORING_HEADS_UP);
             // AICP Settings end
         }
 
@@ -5824,6 +5836,7 @@ public final class Settings {
             VALIDATORS.put(LOCK_HIDE_STATUS_BAR,LOCK_HIDE_STATUS_BAR_VALIDATOR);
             VALIDATORS.put(HEADS_UP_NOTIFICATION_SNOOZE,HEADS_UP_NOTIFICATION_SNOOZE_VALIDATOR);
             VALIDATORS.put(HEADS_UP_TIMEOUT,HEADS_UP_TIMEOUT_VALIDATOR);
+            VALIDATORS.put(LESS_BORING_HEADS_UP, LESS_BORING_HEADS_UP_VALIDATOR);
             // AICP Settings end
         }
 

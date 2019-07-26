@@ -426,6 +426,7 @@ public class CentralSurfacesImplTest extends SysuiTestCase {
 
         mVisualInterruptionDecisionProvider =
                 VisualInterruptionDecisionProviderTestUtil.INSTANCE.createProviderByFlag(
+                        mContext,
                         mAmbientDisplayConfiguration,
                         mBatteryController,
                         mDeviceProvisionedController,

@@ -291,7 +291,8 @@ public class StatusBarTest extends SysuiTestCase {
                 Handler.createAsync(Looper.myLooper()));
 
         mNotificationInterruptStateProvider =
-                new TestableNotificationInterruptStateProviderImpl(mContext.getContentResolver(),
+                new TestableNotificationInterruptStateProviderImpl(mContext,
+                        mContext.getContentResolver(),
                         mPowerManager,
                         mDreamManager, mAmbientDisplayConfiguration, mNotificationFilter,
                         mStatusBarStateController, mBatteryController, mHeadsUpManager,
@@ -977,6 +978,7 @@ public class StatusBarTest extends SysuiTestCase {
             NotificationInterruptStateProviderImpl {
 
         TestableNotificationInterruptStateProviderImpl(
+                Context context,
                 ContentResolver contentResolver,
                 PowerManager powerManager,
                 IDreamManager dreamManager,
@@ -986,8 +988,8 @@ public class StatusBarTest extends SysuiTestCase {
                 BatteryController batteryController,
                 HeadsUpManager headsUpManager,
                 Handler mainHandler) {
-            super(contentResolver, powerManager, dreamManager, ambientDisplayConfiguration, filter,
-                    batteryController, controller, headsUpManager, mainHandler);
+            super(context, contentResolver, powerManager, dreamManager, ambientDisplayConfiguration,
+                    filter, batteryController, controller, headsUpManager, mainHandler);
             mUseHeadsUp = true;
         }
     }

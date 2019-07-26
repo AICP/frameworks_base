@@ -3902,6 +3902,9 @@ public class StatusBar extends SystemUI implements
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.QS_SMART_PULLDOWN),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.LESS_BORING_HEADS_UP),
+                    false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -4523,6 +4526,9 @@ public class StatusBar extends SystemUI implements
         int qsSmartPulldown = Settings.System.getIntForUser(
                 mContext.getContentResolver(), Settings.System.QS_SMART_PULLDOWN, 0,
                 UserHandle.USER_CURRENT);
+        boolean lessBoringHeadsUp = Settings.System.getIntForUser(
+                mContext.getContentResolver(), Settings.System.LESS_BORING_HEADS_UP, 0,
+                UserHandle.USER_CURRENT) != 0;
         if (mNotificationPanelViewController != null) {
             mNotificationPanelViewController.setDoubleTapToSleep(doubleTapToSleepEnabled);
             mNotificationPanelViewController.setLockscreenDoubleTapToSleep(lsDoubleTapToSleepEnabled);
@@ -4531,6 +4537,9 @@ public class StatusBar extends SystemUI implements
         }
         if (mNotificationShadeWindowViewController != null) {
             mNotificationShadeWindowViewController.setDoubleTapToSleep(doubleTapToSleepEnabled);
+        }
+        if (mNotificationInterruptStateProvider != null) {
+            mNotificationInterruptStateProvider.setUseLessBoringHeadsUp(lessBoringHeadsUp);
         }
     }
 }

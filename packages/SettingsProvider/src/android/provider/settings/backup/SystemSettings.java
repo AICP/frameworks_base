@@ -121,5 +121,6 @@ public class SystemSettings {
         Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD,
         Settings.System.LOCKSCREEN_PIN_SCRAMBLE_LAYOUT,
         Settings.System.QS_SMART_PULLDOWN,
+        Settings.System.LESS_BORING_HEADS_UP,
     };
 }

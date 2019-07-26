@@ -5804,6 +5804,12 @@ public final class Settings {
          */
         public static final String BACK_GESTURE_HAPTIC = "back_gesture_haptic";
 
+        /**
+         * Whether to show heads up only for dialer and sms apps
+         * @hide
+         */
+        public static final String LESS_BORING_HEADS_UP = "less_boring_heads_up";
+
         /***************************
          * AICP System Settings end
          ***************************/

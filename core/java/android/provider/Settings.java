@@ -5882,6 +5882,12 @@ public final class Settings {
          */
         public static final String HEADS_UP_TIMEOUT = "heads_up_timeout";
 
+        /**
+         * Whether to show heads up only for dialer and sms apps
+         * @hide
+         */
+        public static final String LESS_BORING_HEADS_UP = "less_boring_heads_up";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6007,6 +6013,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(VOLTE_VOWIFI_OVERRIDE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(HEADS_UP_NOTIFICATION_SNOOZE, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(HEADS_UP_TIMEOUT, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(LESS_BORING_HEADS_UP, BOOLEAN_VALIDATOR);
         }
 
         /**
@@ -14255,7 +14262,7 @@ public final class Settings {
         public static final String LOCKSCREEN_ENABLE_POWER_MENU = "lockscreen_enable_power_menu";
 
         /***************************
-         * AICP System Settings end
+         * AICP Global Settings end
          ***************************/
 
         /**

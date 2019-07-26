@@ -56,4 +56,9 @@ public interface NotificationInterruptStateProvider {
      * Add a component that can suppress visual interruptions.
      */
     void addSuppressor(NotificationInterruptSuppressor suppressor);
+
+    /**
+     * Whether to limit notifications to dialer, messaging and clock.
+     */
+    void setUseLessBoringHeadsUp(boolean lessBoring);
 }

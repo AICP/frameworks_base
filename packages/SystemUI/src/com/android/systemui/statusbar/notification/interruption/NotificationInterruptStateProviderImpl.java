@@ -71,6 +71,8 @@ public class NotificationInterruptStateProviderImpl implements NotificationInter
     @VisibleForTesting
     protected boolean mUseHeadsUp = false;
 
+    private boolean mLessBoringHeadsUp;
+
     @Inject
     public NotificationInterruptStateProviderImpl(
             ContentResolver contentResolver,
@@ -311,9 +313,9 @@ public class NotificationInterruptStateProviderImpl implements NotificationInter
     private boolean canAlertCommon(NotificationEntry entry) {
         StatusBarNotification sbn = entry.getSbn();
 
-        if (mNotificationFilter.shouldFilterOut(entry)) {
+        if (mNotificationFilter.shouldFilterOut(entry) || shouldSkipHeadsUp(sbn)) {
             if (DEBUG || DEBUG_HEADS_UP) {
-                Log.d(TAG, "No alerting: filtered notification: " + sbn.getKey());
+                Log.d(TAG, "No alerting: filtered notification or less boring headsup enabled: " + sbn.getKey());
             }
             return false;
         }
@@ -369,5 +371,19 @@ public class NotificationInterruptStateProviderImpl implements NotificationInter
 
     private boolean isSnoozedPackage(StatusBarNotification sbn) {
         return mHeadsUpManager.isSnoozed(sbn.getPackageName());
+    }
+
+    @Override
+    public void setUseLessBoringHeadsUp(boolean lessBoring) {
+        mLessBoringHeadsUp = lessBoring;
+    }
+
+    private boolean shouldSkipHeadsUp(StatusBarNotification sbn) {
+        boolean isImportantHeadsUp = false;
+        String notificationPackageName = sbn.getPackageName().toLowerCase();
+        isImportantHeadsUp = notificationPackageName.contains("dialer") ||
+                notificationPackageName.contains("messaging") ||
+                notificationPackageName.contains("clock");
+        return mLessBoringHeadsUp && !isImportantHeadsUp;
     }
 }

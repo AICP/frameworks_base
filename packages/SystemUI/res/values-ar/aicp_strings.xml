@@ -165,4 +165,10 @@
     <string name="accessibility_quick_settings_location_battery_saving">تحديد الموقع: وضع توفير البطارية.</string>
     <string name="accessibility_quick_settings_location_gps_only">تحديد الموقع: وضع الجهاز فقط.</string>
     <string name="accessibility_quick_settings_location_high_accuracy">تحديد الموقع: وضع الدقة العالية.</string>
+    <string name="quick_settings_vpn_label">الشبكة الظاهرية VPN</string>
+    <string name="quick_settings_vpn_connect_dialog_title">الاتصال بـ</string>
+    <string name="vpn_credentials_hint">الرجاء إدخال بيانات الاعتماد الخاصة بك للاتصال ب <xliff:g id="name">%s</xliff:g></string>
+    <string name="vpn_credentials_username">اسم المستخدم</string>
+    <string name="vpn_credentials_password">كلمة المرور</string>
+    <string name="vpn_credentials_dialog_connect">اتصال</string>
 </resources>

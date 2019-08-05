@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <!-- Expose attrs for our theming overlays -->
+    <public type="attr" name="backgroundColor"/>
+    <public type="attr" name="fillColor"/>
+    <public type="attr" name="singleToneColor"/>
+</resources>

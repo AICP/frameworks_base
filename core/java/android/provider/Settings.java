@@ -6309,6 +6309,15 @@ public final class Settings {
         private static final Validator BOTTOM_GESTURE_SWIPE_START_VALIDATOR =
                 ANY_INTEGER_VALIDATOR;
 
+        /**
+         * @hide
+         */
+        public static final String THEMING_SYSTEM_ICONS_STYLE =
+                "theming_system_icons_style";
+
+        /** @hide */
+        private static final Validator THEMING_SYSTEM_ICONS_STYLE_VALIDATOR = ANY_INTEGER_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6562,6 +6571,7 @@ public final class Settings {
             WIRELESS_CHARGING_ANIMATION,
             DISABLE_INCALL_HOME,
             LESS_BORING_HEADS_UP,
+            THEMING_SYSTEM_ICONS_STYLE,
             // AICP Settings end
         };
 
@@ -6868,6 +6878,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(WIRELESS_CHARGING_ANIMATION);
             PRIVATE_SETTINGS.add(DISABLE_INCALL_HOME);
             PRIVATE_SETTINGS.add(LESS_BORING_HEADS_UP);
+            PRIVATE_SETTINGS.add(THEMING_SYSTEM_ICONS_STYLE);
             // AICP Settings end
         }
 
@@ -7176,6 +7187,7 @@ public final class Settings {
             VALIDATORS.put(WIRELESS_CHARGING_ANIMATION, WIRELESS_CHARGING_ANIMATION_VALIDATOR);
             VALIDATORS.put(DISABLE_INCALL_HOME,DISABLE_INCALL_HOME_VALIDATOR);
             VALIDATORS.put(LESS_BORING_HEADS_UP,LESS_BORING_HEADS_UP_VALIDATOR);
+            VALIDATORS.put(THEMING_SYSTEM_ICONS_STYLE, THEMING_SYSTEM_ICONS_STYLE_VALIDATOR);
             // AICP Settings end
         }
 

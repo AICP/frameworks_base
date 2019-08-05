@@ -5908,7 +5908,9 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
                     uri.equals(Settings.System.getUriFor(Settings.System.THEMING_CORNERS)) ||
                     uri.equals(Settings.System.getUriFor(Settings.System.THEMING_QS_SHAPE)) ||
                     uri.equals(Settings.System.getUriFor(
-                            Settings.System.THEMING_CONTROL_NIGHT_MODE))) {
+                            Settings.System.THEMING_CONTROL_NIGHT_MODE)) ||
+                    uri.equals(Settings.System.getUriFor(
+                            Settings.System.THEMING_SYSTEM_ICONS_STYLE))) {
                 ThemeOverlayHelper.updateOverlays(mContext, mOverlayManager,
                         mLockscreenUserManager.getCurrentUserId());
             } else if (uri.equals(Settings.System.getUriFor(Settings.System.AICP_QS_TILE_TITLE_VISIBILITY)) ||

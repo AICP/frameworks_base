@@ -471,4 +471,9 @@ public class PagedTileLayout extends ViewPager implements QSTileLayout {
     public boolean isShowTitles() {
         return mPages.get(0).isShowTitles();
     }
+
+    @Override
+    public boolean hideExpandIndicator() {
+        return mPages.get(0).hideExpandIndicator();
+    }
 }

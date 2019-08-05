@@ -28,6 +28,7 @@ public class TileLayout extends ViewGroup implements QSTileLayout {
     protected int mCellMarginVertical;
     protected int mSidePadding;
     protected boolean mShowTitles = true;
+    protected boolean mHideExpandIndicator = false;
 
     protected final ArrayList<TileRecord> mRecords = new ArrayList<>();
     private int mCellMarginTop;
@@ -170,6 +171,9 @@ public class TileLayout extends ViewGroup implements QSTileLayout {
         boolean showTitles = Settings.System.getIntForUser(
                 mContext.getContentResolver(), Settings.System.AICP_QS_TILE_TITLE_VISIBILITY, 1,
                 UserHandle.USER_CURRENT) == 1;
+        mHideExpandIndicator = Settings.System.getIntForUser(
+                mContext.getContentResolver(), Settings.System.AICP_QS_HIDE_TILE_EXPAND_INDICATOR, 0,
+                UserHandle.USER_CURRENT) == 1;
          if (showTitles) {
             mCellHeight = mContext.getResources().getDimensionPixelSize(R.dimen.qs_tile_height);
         } else {
@@ -190,5 +194,10 @@ public class TileLayout extends ViewGroup implements QSTileLayout {
     @Override
     public boolean isShowTitles() {
         return mShowTitles;
+    }
+
+    @Override
+    public boolean hideExpandIndicator() {
+        return mHideExpandIndicator;
     }
 }

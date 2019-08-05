@@ -87,8 +87,6 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     public static final String QS_SHOW_BRIGHTNESS_BUTTONS = "qs_show_brightness_buttons";
     public static final String QS_SHOW_SECURITY = "qs_show_secure";
 
-    private static final int QS_HIDE_EXPAND_INDICATOR_COLS = 5;
-
     protected final Context mContext;
     protected final ArrayList<TileRecord> mRecords = new ArrayList<>();
     protected final View mBrightnessView;
@@ -806,6 +804,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
         void updateSettings();
         int getNumColumns();
         boolean isShowTitles();
+        boolean hideExpandIndicator();
 
         void setListening(boolean listening);
 
@@ -871,8 +870,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
                     setAnimationTile(v);
             });
             if (t.isDualTarget()) {
-                v.setHideExpandIndicator(
-                      mTileLayout.getNumColumns() > QS_HIDE_EXPAND_INDICATOR_COLS);
+                v.setHideExpandIndicator(mTileLayout.hideExpandIndicator());
                 if (!mTileLayout.isShowTitles()) {
                     v.setOnLongClickListener(view -> {
                         t.secondaryClick();

@@ -58,4 +58,8 @@ public abstract class QSTileView extends LinearLayout {
     public void setHideExpandIndicator(boolean value) {
         // empty by default
     }
+
+    public boolean hideExpandIndicator() {
+        return false;
+    }
 }

@@ -5903,14 +5903,7 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_TICKER_TICK_DURATION))) {
                 updateTickerTickDuration();
-            } else if (uri.equals(Settings.System.getUriFor(Settings.System.THEMING_BASE)) ||
-                    uri.equals(Settings.System.getUriFor(Settings.System.THEMING_ACCENT)) ||
-                    uri.equals(Settings.System.getUriFor(Settings.System.THEMING_CORNERS)) ||
-                    uri.equals(Settings.System.getUriFor(Settings.System.THEMING_QS_SHAPE)) ||
-                    uri.equals(Settings.System.getUriFor(
-                            Settings.System.THEMING_CONTROL_NIGHT_MODE)) ||
-                    uri.equals(Settings.System.getUriFor(
-                            Settings.System.THEMING_SYSTEM_ICONS_STYLE))) {
+            } else if (ThemeOverlayHelper.isThemeSystemSetting(uri)) {
                 ThemeOverlayHelper.updateOverlays(mContext, mOverlayManager,
                         mLockscreenUserManager.getCurrentUserId());
             } else if (uri.equals(Settings.System.getUriFor(Settings.System.AICP_QS_TILE_TITLE_VISIBILITY)) ||

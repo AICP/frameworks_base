@@ -47,6 +47,7 @@ public class QSTileView extends QSTileBaseView {
     private ViewGroup mLabelContainer;
     private View mExpandIndicator;
     private View mExpandSpace;
+    private boolean mHideExpandIndicator;
 
     public QSTileView(Context context, QSIconView icon) {
         this(context, icon, false);
@@ -127,8 +128,8 @@ public class QSTileView extends QSTileBaseView {
                     : View.VISIBLE);
         }
         boolean dualTarget = DUAL_TARGET_ALLOWED && state.dualTarget;
-        mExpandIndicator.setVisibility(dualTarget ? View.VISIBLE : View.GONE);
-        mExpandSpace.setVisibility(dualTarget ? View.VISIBLE : View.GONE);
+        mExpandIndicator.setVisibility((dualTarget && !mHideExpandIndicator) ? View.VISIBLE : View.GONE);
+        mExpandSpace.setVisibility((dualTarget && !mHideExpandIndicator) ? View.VISIBLE : View.GONE);
         mLabelContainer.setContentDescription(dualTarget ? state.dualLabelContentDescription
                 : null);
         if (dualTarget != mLabelContainer.isClickable()) {
@@ -152,5 +153,9 @@ public class QSTileView extends QSTileBaseView {
 
     public void setHideLabel(boolean value) {
         mLabelContainer.setVisibility(value ? View.GONE : View.VISIBLE);
+    }
+
+    public void setHideExpandIndicator(boolean value) {
+        mHideExpandIndicator = value;
     }
 }

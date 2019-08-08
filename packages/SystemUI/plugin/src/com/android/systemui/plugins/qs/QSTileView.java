@@ -54,4 +54,12 @@ public abstract class QSTileView extends LinearLayout {
     public void setHideLabel(boolean value) {
         // empty by default
     }
+
+    public void setHideExpandIndicator(boolean value) {
+        // empty by default
+    }
+
+    public boolean hideExpandIndicator() {
+        return false;
+    }
 }

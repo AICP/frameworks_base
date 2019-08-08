@@ -5238,6 +5238,7 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
 
         @Override
         public void onScreenTurnedOff() {
+            updateDozing();
             mFalsingManager.onScreenOff();
             mScrimController.onScreenTurnedOff();
             mVisualizerView.setVisible(false);
@@ -5515,6 +5516,8 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
                 DozeLog.traceDozing(mContext, mDozing);
                 updateDozing();
                 updateIsKeyguard();
+            }else{
+                mDozingRequested = true;
             }
         }
 
@@ -5846,6 +5849,9 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
                     Settings.System.AICP_QS_QUICKBAR_COLUMNS),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.AICP_QS_HIDE_TILE_EXPAND_INDICATOR),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.AICP_DOUBLE_TAP_SLEEP_GESTURE),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
@@ -5911,7 +5917,8 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
                     uri.equals(Settings.System.getUriFor(Settings.System.AICP_QS_LAYOUT_ROWS_LANDSCAPE)) ||
                     uri.equals(Settings.System.getUriFor(Settings.System.AICP_QS_LAYOUT_COLUMNS)) ||
                     uri.equals(Settings.System.getUriFor(Settings.System.AICP_QS_LAYOUT_COLUMNS_LANDSCAPE)) ||
-                    uri.equals(Settings.System.getUriFor(Settings.System.AICP_QS_QUICKBAR_COLUMNS))) {
+                    uri.equals(Settings.System.getUriFor(Settings.System.AICP_QS_QUICKBAR_COLUMNS)) ||
+                    uri.equals(Settings.System.getUriFor(Settings.System.AICP_QS_HIDE_TILE_EXPAND_INDICATOR))) {
                 updateTileLayouts();
             } else if (uri.equals(Settings.System.getUriFor(Settings.System.AICP_DOUBLE_TAP_SLEEP_GESTURE)) ||
                     uri.equals(Settings.System.getUriFor(Settings.System.AICP_DOUBLE_TAP_SLEEP_LOCKSCREEN)) ||
@@ -6624,8 +6631,8 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
             if (showTileTitlesBool !=  mShowTileTitles){
                 mShowTileTitles = showTileTitlesBool;
             }
-            updateTiles();
         }
+        updateTiles();
     }
 
     private void updateTiles() {
@@ -6633,6 +6640,7 @@ public class StatusBar extends SystemUI implements DemoMode, TunerService.Tunabl
 
         if (mQSPanel != null) {
           mQSPanel.updateSettings();
+          mQSPanel.onTilesChanged();
         }
         if (mQuickQSPanel != null) {
           mQuickQSPanel.updateResources();

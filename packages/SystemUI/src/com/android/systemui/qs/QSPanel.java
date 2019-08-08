@@ -804,6 +804,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
         void updateSettings();
         int getNumColumns();
         boolean isShowTitles();
+        boolean hideExpandIndicator();
 
         void setListening(boolean listening);
 
@@ -869,6 +870,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
                     setAnimationTile(v);
             });
             if (t.isDualTarget()) {
+                v.setHideExpandIndicator(mTileLayout.hideExpandIndicator());
                 if (!mTileLayout.isShowTitles()) {
                     v.setOnLongClickListener(view -> {
                         t.secondaryClick();

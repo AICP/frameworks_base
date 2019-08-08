@@ -352,5 +352,10 @@ public class QuickQSPanel extends QSPanel {
         public boolean isShowTitles() {
             return false;
         }
+
+        @Override
+        public boolean hideExpandIndicator() {
+            return true;
+        }
     }
 }

@@ -1815,4 +1815,11 @@ public interface WindowManagerPolicy extends WindowManagerPolicyConstants {
      * Call screen record from WindowManager.
      */
     public void screenRecordAction(int mode);
+
+    /**
+     * Long screenshot
+     * @hide
+     */
+    public void takeOPScreenshot(int type, int reason);
+    public void stopLongshotConnection();
 }

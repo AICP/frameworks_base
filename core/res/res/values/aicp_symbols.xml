@@ -68,4 +68,7 @@
   <!-- Whether device supports displaying volume panel on the left side-->
   <java-symbol type="bool" name="config_audioPanelOnLeftSide" />
 
+  <!-- Whether device supports internal audio recording -->
+  <java-symbol type="bool" name="config_hasInternalAudioRecordingSupport" />
+
 </resources>

@@ -392,7 +392,7 @@ public class VolumeDialogControllerImpl implements VolumeDialogController, Dumpa
     }
 
     private void onNotifyVisibleW(boolean visible) {
-        if (mDestroyed) return; 
+        if (mDestroyed) return;
         mAudio.notifyVolumeControllerVisible(mVolumeController, visible);
         if (!visible) {
             if (updateActiveStreamW(-1)) {
@@ -1121,10 +1121,23 @@ public class VolumeDialogControllerImpl implements VolumeDialogController, Dumpa
                         .getIntExtra(AudioManager.EXTRA_VOLUME_STREAM_DEVICES, -1);
                 final int oldDevices = intent
                         .getIntExtra(AudioManager.EXTRA_PREV_VOLUME_STREAM_DEVICES, -1);
+                final boolean routedToSubmixAndEarphone = (mAudio.getDevicesForStream(AudioManager.STREAM_MUSIC) &
+                    AudioManager.DEVICE_OUT_REMOTE_SUBMIX) != 0 &&
+                    (mAudio.getDevicesForStream(AudioManager.STREAM_MUSIC) &
+                            (AudioManager.DEVICE_OUT_BLUETOOTH_A2DP |
+                            AudioManager.DEVICE_OUT_BLUETOOTH_A2DP_HEADPHONES |
+                            AudioManager.DEVICE_OUT_BLUETOOTH_A2DP_SPEAKER |
+                            AudioManager.DEVICE_OUT_WIRED_HEADSET |
+                            AudioManager.DEVICE_OUT_WIRED_HEADPHONE |
+                            AudioManager.DEVICE_OUT_USB_HEADSET)) != 0;
                 if (D.BUG) Log.d(TAG, "onReceive STREAM_DEVICES_CHANGED_ACTION stream="
                         + stream + " devices=" + devices + " oldDevices=" + oldDevices);
                 changed = checkRoutedToBluetoothW(stream);
                 changed |= onVolumeChangedW(stream, 0);
+                if (routedToSubmixAndEarphone != mState.routedToSubmixAndEarphone){
+                    mState.routedToSubmixAndEarphone = routedToSubmixAndEarphone;
+                    changed = true;
+                }
             } else if (action.equals(AudioManager.STREAM_MUTE_CHANGED_ACTION)) {
                 final int stream = intent.getIntExtra(AudioManager.EXTRA_VOLUME_STREAM_TYPE, -1);
                 final boolean muted = intent

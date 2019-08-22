@@ -1707,6 +1707,7 @@ public class VolumeDialogImpl implements VolumeDialog,
                         (isSystemStream && mState.disallowSystem))
                 : isVibrate ? isNotificationStream
                 : false;
+        final boolean routedToSubmixAndEarphone = isMusicStream && mState.routedToSubmixAndEarphone;
 
         // update slider max
         final int max = ss.levelMax * 100;
@@ -1726,11 +1727,11 @@ public class VolumeDialogImpl implements VolumeDialog,
         mConfigurableTexts.add(row.header, ss.name);
 
         // update icon
-        final boolean iconEnabled = (mAutomute || ss.muteSupported) && !zenMuted;
+        final boolean iconEnabled = (mAutomute || ss.muteSupported) && !zenMuted && !routedToSubmixAndEarphone;
         final int iconRes;
         if (isRingVibrate) {
             iconRes = R.drawable.ic_volume_ringer_vibrate;
-        } else if (isRingSilent || zenMuted) {
+        } else if (isRingSilent || zenMuted || routedToSubmixAndEarphone) {
             iconRes = row.iconMuteRes;
         } else if (ss.routedToBluetooth) {
             iconRes = isStreamMuted(ss) ? R.drawable.ic_volume_media_bt_mute
@@ -1794,15 +1795,15 @@ public class VolumeDialogImpl implements VolumeDialog,
             }
         }
 
-        // ensure tracking is disabled if zenMuted
-        if (zenMuted) {
+        // ensure tracking is disabled if zenMuted or routedToSubmixAndEarphone
+        if (zenMuted || routedToSubmixAndEarphone) {
             row.tracking = false;
         }
         enableVolumeRowViewsH(row, !zenMuted);
 
         // update slider
-        final boolean enableSlider = !zenMuted;
-        final int vlevel = row.ss.muted && (!isRingStream && !zenMuted) ? 0
+        final boolean enableSlider = !zenMuted && !routedToSubmixAndEarphone;
+        final int vlevel = routedToSubmixAndEarphone ? max : row.ss.muted && (!isRingStream && !zenMuted) ? 0
                 : row.ss.level;
         updateVolumeRowSliderH(row, enableSlider, vlevel, maxChanged);
         if (row.number != null) row.number.setText(Integer.toString(vlevel));

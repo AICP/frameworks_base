@@ -910,6 +910,9 @@ public final class DefaultPermissionGrantPolicy {
         // Google dialer
         grantSystemFixedPermissionsToSystemPackage("com.google.android.dialer", userId, PHONE_PERMISSIONS,
                 CONTACTS_PERMISSIONS, SMS_PERMISSIONS);
+
+        // Google Markup
+        grantSystemFixedPermissionsToSystemPackage("com.google.android.markup", userId, STORAGE_PERMISSIONS);
     }
 
     private String getDefaultSystemHandlerActivityPackageForCategory(PackageManagerWrapper pm,

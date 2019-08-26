@@ -6328,6 +6328,15 @@ public final class Settings {
         private static final Validator AICP_QS_HIDE_TILE_EXPAND_INDICATOR_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
+        /**
+         * Whether to enable dark theme during night light
+         * @hide
+         */
+        public static final String NIGHT_DISPLAY_THEME = "night_display_theme";
+
+        /** @hide */
+        private static final Validator NIGHT_DISPLAY_THEME_VALIDATOR = BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6583,6 +6592,7 @@ public final class Settings {
             LESS_BORING_HEADS_UP,
             THEMING_SYSTEM_ICONS_STYLE,
             AICP_QS_HIDE_TILE_EXPAND_INDICATOR,
+            NIGHT_DISPLAY_THEME,
             // AICP Settings end
         };
 
@@ -6891,6 +6901,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(LESS_BORING_HEADS_UP);
             PRIVATE_SETTINGS.add(THEMING_SYSTEM_ICONS_STYLE);
             PRIVATE_SETTINGS.add(AICP_QS_HIDE_TILE_EXPAND_INDICATOR);
+            PRIVATE_SETTINGS.add(NIGHT_DISPLAY_THEME);
             // AICP Settings end
         }
 
@@ -7201,6 +7212,7 @@ public final class Settings {
             VALIDATORS.put(LESS_BORING_HEADS_UP,LESS_BORING_HEADS_UP_VALIDATOR);
             VALIDATORS.put(THEMING_SYSTEM_ICONS_STYLE, THEMING_SYSTEM_ICONS_STYLE_VALIDATOR);
             VALIDATORS.put(AICP_QS_HIDE_TILE_EXPAND_INDICATOR, AICP_QS_HIDE_TILE_EXPAND_INDICATOR_VALIDATOR);
+            VALIDATORS.put(NIGHT_DISPLAY_THEME, NIGHT_DISPLAY_THEME_VALIDATOR);
             // AICP Settings end
         }
 

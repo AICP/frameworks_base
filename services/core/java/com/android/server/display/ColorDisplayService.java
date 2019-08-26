@@ -56,6 +56,9 @@ import com.android.internal.R;
 
 import static com.android.server.display.DisplayTransformManager.LEVEL_COLOR_MATRIX_NIGHT_DISPLAY;
 
+import com.aicp.gear.util.AicpUtils;
+import com.aicp.gear.util.ThemeOverlayHelper;
+
 /**
  * Tints the display at night.
  */
@@ -104,6 +107,10 @@ public final class ColorDisplayService extends SystemService
     private int mNightLowerBrightnessMode;
     private boolean mIsAdaptiveBrightness;
     private PowerManager mPm;
+
+    private boolean mIsNightDisplayTheme;
+    private static final int DEFAULT_LIGHT_BASE_THEME = 0;
+    private static final int DEFAULT_DARK_BASE_THEME = 3;
 
     public ColorDisplayService(Context context) {
         super(context);
@@ -258,6 +265,7 @@ public final class ColorDisplayService extends SystemService
             applyTint(false);
 
             setBrightness(mIsActivated);
+            setNightLightTheme(mIsActivated);
         }
     }
 
@@ -342,6 +350,41 @@ public final class ColorDisplayService extends SystemService
             default: // disabled
                 break;
         }
+    }
+
+    private void setNightLightTheme(Boolean activated) {
+        final ContentResolver cr = getContext().getContentResolver();
+        mIsNightDisplayTheme = Settings.System.getInt(cr,
+                Settings.System.NIGHT_DISPLAY_THEME, 0) == 1;
+        if (activated == null || !mIsNightDisplayTheme) {
+            return;
+        }
+        if (activated) {
+            Settings.System.putIntForUser(cr,
+                Settings.System.THEMING_BASE,
+                DEFAULT_DARK_BASE_THEME, UserHandle.USER_CURRENT);
+            if (ThemeOverlayHelper.doesThemeChangeRequireSystemUIRestart(getContext(),
+                    Settings.System.THEMING_BASE, DEFAULT_LIGHT_BASE_THEME, DEFAULT_DARK_BASE_THEME)) {
+                postRestartSystemUi();
+            }
+        } else {
+            Settings.System.putIntForUser(cr,
+                Settings.System.THEMING_BASE,
+                DEFAULT_LIGHT_BASE_THEME, UserHandle.USER_CURRENT);
+            if (ThemeOverlayHelper.doesThemeChangeRequireSystemUIRestart(getContext(),
+                    Settings.System.THEMING_BASE, DEFAULT_DARK_BASE_THEME, DEFAULT_LIGHT_BASE_THEME)) {
+                postRestartSystemUi();
+            }
+        }
+    }
+
+    private void postRestartSystemUi() {
+        mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    AicpUtils.restartSystemUi(getContext());
+                }
+        }, 200);
     }
 
     @Override

@@ -4229,12 +4229,6 @@ public abstract class Context {
     public static final String POCKET_SERVICE = "pocket";
 
     /**
-     * Long screenshot
-     * @hide
-     */
-    public static final String LONGSCREENSHOT_SERVICE = "longshot";
-
-    /**
      * Determine whether the given permission is allowed for a particular
      * process and user ID running in the system.
      *

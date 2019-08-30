@@ -150,4 +150,7 @@
   <java-symbol type="string" name="config_sysGPULoad" />
   <java-symbol type="integer" name="config_sysCPUTempMultiplier" />
   <java-symbol type="integer" name="config_sysBatteryTempMultiplier" />
+
+  <!-- Whether to send camera status intent -->
+  <java-symbol type="bool" name="config_sendCameraStatusIntent" />
 </resources>

@@ -139,6 +139,9 @@
     <integer name="config_sysCPUTempMultiplier">1</integer>
     <integer name="config_sysBatteryTempMultiplier">1</integer>
 
+    <!-- Whether to send camera status intent -->
+    <bool name="config_sendCameraStatusIntent">false</bool>
+
     <!-- Whether to cleanup fingerprints upon connection to the daemon and when user switches -->
     <bool name="config_cleanupUnusedFingerprints">true</bool>
 </resources>

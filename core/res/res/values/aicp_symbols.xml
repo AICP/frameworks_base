@@ -134,4 +134,7 @@
     <java-symbol type="style" name="Animation.Toast.Translucent" />
     <java-symbol type="style" name="Animation.Toast.SlideRightLeft" />
     <java-symbol type="style" name="Animation.Toast.SlideLeftRight" />
+
+    <!-- Whether to send camera status intent -->
+    <java-symbol type="bool" name="config_sendCameraStatusIntent" />
 </resources>

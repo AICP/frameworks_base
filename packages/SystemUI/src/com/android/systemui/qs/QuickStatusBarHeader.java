@@ -265,6 +265,8 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         DeviceConfig.addOnPropertyChangedListener(DeviceConfig.NAMESPACE_PRIVACY,
                 mContext.getMainExecutor(), mPropertyListener);
 
+        Dependency.get(TunerService.class).addTunable(this,
+                StatusBarIconController.ICON_BLACKLIST);
     }
 
     private List<String> getIgnoredIconSlots() {

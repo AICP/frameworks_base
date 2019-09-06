@@ -702,7 +702,6 @@
         <provider
             android:name="com.android.keyguard.clock.ClockOptionsProvider"
             android:authorities="com.android.keyguard.clock"
-            android:enabled="true"
             android:exported="true"
             android:grantUriPermissions="true">
         </provider>

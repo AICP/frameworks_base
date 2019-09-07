@@ -182,8 +182,6 @@ public final class Choreographer {
     private boolean mConsumedMove = false;
     private boolean mConsumedDown = false;
     private boolean mIsVsyncScheduled = false;
-    private boolean mSoftwareRendered;
-
     /**
      * Contains information about the current frame for jank-tracking,
      * mainly timings of key events along with a bit of metadata about
@@ -253,7 +251,6 @@ public final class Choreographer {
         for (int i = 0; i <= CALLBACK_LAST; i++) {
             mCallbackQueues[i] = new CallbackQueue();
         }
-        mSoftwareRendered = false;
         // b/68769804: For low FPS experiments.
         setFPSDivisor(SystemProperties.getInt(ThreadedRenderer.DEBUG_FPS_DIVISOR, 1));
     }
@@ -283,21 +280,21 @@ public final class Choreographer {
     }
 
     /**
-     * @return The Choreographer of the main thread, if it exists, or {@code null} otherwise.
      * @hide
-     */
-    public static Choreographer getMainThreadInstance() {
-        return mMainInstance;
-    }
-
-    /**
-     * {@hide}
      */
     public void setMotionEventInfo(int motionEventType, int touchMoveNum) {
         synchronized(this) {
             mTouchMoveNum = touchMoveNum;
             mMotionEventType = motionEventType;
         }
+    }
+
+    /**
+     * @return The Choreographer of the main thread, if it exists, or {@code null} otherwise.
+     * @hide
+     */
+    public static Choreographer getMainThreadInstance() {
+        return mMainInstance;
     }
 
     /** Destroys the calling thread's choreographer
@@ -395,10 +392,6 @@ public final class Choreographer {
                 writer.println(mFrameScheduled);
         writer.print(innerPrefix); writer.print("mLastFrameTime=");
                 writer.println(TimeUtils.formatUptime(mLastFrameTimeNanos / 1000000));
-    }
-
-    void setSoftwareRendering(boolean softRendered) {
-        mSoftwareRendered = softRendered;
     }
 
     /**
@@ -661,7 +654,7 @@ public final class Choreographer {
                     }
                 }
             }
-            if (USE_VSYNC && !mSoftwareRendered) {
+            if (USE_VSYNC) {
                 if (DEBUG_FRAMES) {
                     Log.d(TAG, "Scheduling next frame on vsync.");
                 }

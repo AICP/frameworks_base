@@ -34,6 +34,7 @@ import android.os.Handler;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.StrictMode;
+import android.os.SystemProperties;
 import android.os.Trace;
 import android.text.Editable;
 import android.text.InputType;
@@ -114,6 +115,11 @@ public abstract class AbsListView extends AdapterView<ListAdapter> implements Te
     private static final double MOVE_TOUCH_SLOP = 0.6;
     private static final double TOUCH_SLOP_MIN = 0.6;
     private static final double TOUCH_SLOP_MAX = 1.0;
+
+    /**
+     * Property to enable/disable pre-obtain view
+     */
+    private final boolean PREOBTAIN_ENABLE = SystemProperties.getBoolean("ro.vendor.scroll.preobtain.enable", false);
 
     /**
      * Disables the transcript mode.
@@ -243,6 +249,11 @@ public abstract class AbsListView extends AdapterView<ListAdapter> implements Te
      * The thread that created this view.
      */
     private final Thread mOwnerThread;
+
+    /**
+     * Absolute incremental delta Y value from the previous choreographer action
+     */
+    int mOldIncrementalDeltaY;
 
     /**
      * Controls if/how the user may choose/check items in the list
@@ -5327,6 +5338,10 @@ public abstract class AbsListView extends AdapterView<ListAdapter> implements Te
             fillGap(down);
         }
 
+        if(PREOBTAIN_ENABLE) {
+            mOldIncrementalDeltaY = absIncrementalDeltaY;
+            findNextGap(down);
+        }
         mRecycler.fullyDetachScrapViews();
         boolean selectorOnScreen = false;
         if (!inTouchMode && mSelectedPosition != INVALID_POSITION) {
@@ -5382,6 +5397,15 @@ public abstract class AbsListView extends AdapterView<ListAdapter> implements Te
      * @param down true if the scroll is going down, false if it is going up
      */
     abstract void fillGap(boolean down);
+
+    /**
+     * Find if the next choreographer frame would have an obtain view call.
+     *
+     * @param down true if the scroll is going down, false if it is going up
+     */
+    void findNextGap(boolean down) {
+
+    }
 
     void hideSelector() {
         if (mSelectedPosition != INVALID_POSITION) {

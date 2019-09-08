@@ -39,7 +39,7 @@ import javax.inject.Inject;
 /** Quick settings tile: Enable/Disable NFC **/
 public class NfcTile extends QSTileImpl<BooleanState> {
 
-    private final Icon mIcon = ResourceIcon.get(R.drawable.ic_qs_nfc_enabled);
+    private final Icon mIcon = ResourceIcon.get(R.drawable.ic_qs_nfc);
 
     private NfcAdapter mAdapter;
     private BroadcastDispatcher mBroadcastDispatcher;

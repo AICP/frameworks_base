@@ -20,6 +20,7 @@ import static com.android.internal.util.Preconditions.checkNotNull;
 
 import android.annotation.NonNull;
 import android.annotation.Nullable;
+import android.os.Build;
 import android.os.StrictMode;
 import android.util.IntArray;
 import android.util.Slog;
@@ -310,7 +311,7 @@ public abstract class KernelCpuUidTimeReader<T> {
          * @param endUid   the last uid to remove
          */
         private void removeUidsFromKernelModule(int startUid, int endUid) {
-            Slog.d(mTag, "Removing uids " + startUid + "-" + endUid);
+            if (DEBUG) Slog.d(mTag, "Removing uids " + startUid + "-" + endUid);
             final int oldMask = StrictMode.allowThreadDiskWritesMask();
             try (FileWriter writer = new FileWriter(REMOVE_UID_PROC_FILE)) {
                 writer.write(startUid + "-" + endUid);
@@ -445,7 +446,7 @@ public abstract class KernelCpuUidTimeReader<T> {
             } else {
                 mPerClusterTimesAvailable = false;
             }
-            Slog.i(mTag, "mPerClusterTimesAvailable=" + mPerClusterTimesAvailable);
+            if (DEBUG) Slog.i(mTag, "mPerClusterTimesAvailable=" + mPerClusterTimesAvailable);
             return mCpuFreqs;
         }
 
@@ -530,7 +531,8 @@ public abstract class KernelCpuUidTimeReader<T> {
                 CharBuffer buf;
                 while ((buf = iter.nextLine()) != null) {
                     if (asLongs(buf, mBuffer) != mBuffer.length) {
-                        Slog.wtf(mTag, "Invalid line: " + buf.toString());
+                         if (Build.IS_ENG)
+                            Slog.wtf(mTag, "Invalid line: " + buf.toString());
                         continue;
                     }
                     processUidDelta(cb);

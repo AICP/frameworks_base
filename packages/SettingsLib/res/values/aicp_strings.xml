@@ -47,4 +47,6 @@
 
     <!-- Battery use screen. Battery status shown in chart label when charging from a TurboPower source.  -->
     <string name="battery_info_status_turbo_charging">Turbo charging</string>
+
+    <string name="status_deep_sleep">(Deep sleep: %1$d%2$s)</string>
 </resources>

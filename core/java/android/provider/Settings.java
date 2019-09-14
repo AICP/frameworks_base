@@ -5674,6 +5674,15 @@ public final class Settings {
          */
 
         /**
+         * Whether the Home button works during call
+         * @hide
+         */
+        public static final String ALLOW_INCALL_HOME = "allow_incall_home";
+        /** @hide */
+        private static final Validator ALLOW_INCALL_HOME_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -5848,6 +5857,7 @@ public final class Settings {
             OMNI_LOCKSCREEN_MEDIA_BLUR,
             NOTIFICATION_GUTS_KILL_APP_BUTTON,
             ANBI_ENABLED_OPTION,
+            ALLOW_INCALL_HOME,
             // AICP Settings end
         };
 
@@ -6082,6 +6092,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(OMNI_LOCKSCREEN_MEDIA_BLUR);
             PRIVATE_SETTINGS.add(NOTIFICATION_GUTS_KILL_APP_BUTTON);
             PRIVATE_SETTINGS.add(ANBI_ENABLED_OPTION);
+            PRIVATE_SETTINGS.add(ALLOW_INCALL_HOME);
             // AICP Settings end
         }
 
@@ -6307,6 +6318,7 @@ public final class Settings {
             VALIDATORS.put(NOTIFICATION_GUTS_KILL_APP_BUTTON,
                     NOTIFICATION_GUTS_KILL_APP_BUTTON_VALIDATOR);
             VALIDATORS.put(ANBI_ENABLED_OPTION, ANBI_ENABLED_OPTION_VALIDATOR);
+            VALIDATORS.put(ALLOW_INCALL_HOME, ALLOW_INCALL_HOME_VALIDATOR);
             // AICP Settings end
         }
 

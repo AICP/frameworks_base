@@ -84,9 +84,8 @@ public class HardkeyActionHandler {
     private HardKeyButton mMenuButton;
     private HardKeyButton mAssistButton;
 
-    // Behavior of HOME button during incomming call ring.
-    // (See Settings.Secure.RING_HOME_BUTTON_BEHAVIOR.)
-//    int mRingHomeBehavior;
+    // Behavior of Home button while in-call and screen on
+    boolean mIncallHomeBehavior;
 
     private ActionReceiver mActionReceiver = new ActionReceiver() {
         @Override
@@ -169,29 +168,12 @@ public class HardkeyActionHandler {
                 if (canceled) {
                     return true;
                 }
-/*
-                // If an incoming call is ringing, HOME is totally disabled.
-                // (The user is already on the InCallUI at this point,
-                // and his ONLY options are to answer or reject the call.)
-                TelecomManager telecomManager = getTelecommService();
-                if (telecomManager != null && telecomManager.isRinging()) {
-                    if ((mRingHomeBehavior
-                            & Settings.Secure.RING_HOME_BUTTON_BEHAVIOR_ANSWER) != 0) {
-                        Log.i(TAG, "Answering with HOME button.");
-                        telecomManager.acceptRingingCall();
-                        return true;
-                    } else {
-                        Log.i(TAG, "Ignoring HOME; there's a ringing incoming call.");
-                        return true;
-                    }
-                }
-*/
 
                 // If an incoming call is ringing, HOME is totally disabled.
                 // (The user is already on the InCallUI at this point,
                 // and his ONLY options are to answer or reject the call.)
                 TelecomManager telecomManager = getTelecommService();
-                if (telecomManager != null && telecomManager.isRinging()) {
+                if (telecomManager != null && telecomManager.isRinging() && !mIncallHomeBehavior) {
                     Log.i(TAG, "Ignoring HOME; there's a ringing incoming call.");
                     return true;
                 }
@@ -663,9 +645,9 @@ public class HardkeyActionHandler {
                     Settings.Secure.getUriFor(ActionConstants.getDefaults(ActionConstants.HWKEYS)
                             .getUri()), false,
                     this, UserHandle.USER_ALL);
-//            resolver.registerContentObserver(Settings.System.getUriFor(
-//                    Settings.Secure.RING_HOME_BUTTON_BEHAVIOR), false, this,
-//                    UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.ALLOW_INCALL_HOME), false, this,
+                    UserHandle.USER_ALL);
             resolver.registerContentObserver(
                     Settings.Secure.getUriFor(Settings.Secure.HARDWARE_KEYS_DISABLE), false, this,
                     UserHandle.USER_ALL);
@@ -730,10 +712,8 @@ public class HardkeyActionHandler {
             msg.arg1 = hasMenuKeyEnabled ? 1 : 0;
             mHandler.sendMessage(msg);
 
-//            mRingHomeBehavior = Settings.Secure.getIntForUser(cr,
-//                    Settings.Secure.RING_HOME_BUTTON_BEHAVIOR,
-//                    Settings.Secure.RING_HOME_BUTTON_BEHAVIOR_DEFAULT,
-//                    UserHandle.USER_CURRENT);
+            mIncallHomeBehavior = (Settings.System.getIntForUser(cr,
+                    Settings.System.ALLOW_INCALL_HOME, 1, UserHandle.USER_CURRENT) == 1);
         }
     }
 }

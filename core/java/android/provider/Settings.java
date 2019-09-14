@@ -5932,11 +5932,17 @@ public final class Settings {
          */
         public static final String OMNI_LOCKSCREEN_MEDIA_BLUR = "lockscreen_media_blur";
 
-          /**
+        /**
           * Whether to show media art on lockscreen
           * @hide
           */
          public static final String LOCKSCREEN_MEDIA_METADATA = "lockscreen_media_metadata";
+
+        /**
+         * Whether the Home button works during call
+         * @hide
+         */
+        public static final String ALLOW_INCALL_HOME = "allow_incall_home";
 
         /***************************
          * AICP System Settings end
@@ -6072,6 +6078,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(TOAST_ANIMATION, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(OMNI_LOCKSCREEN_MEDIA_BLUR, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(LOCKSCREEN_MEDIA_METADATA, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(ALLOW_INCALL_HOME, BOOLEAN_VALIDATOR);
         }
 
         /**

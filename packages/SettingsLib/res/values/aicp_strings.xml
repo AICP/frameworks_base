@@ -27,4 +27,6 @@
     <string name="background_processes_settings_title">Cached processes</string>
     <!-- Services settings screen, setting option summary for the user to go to the screen to view running services  -->
     <string name="background_processes_settings_summary">View and control cached processes</string>
+
+    <string name="status_deep_sleep">(Deep sleep: %1$d%2$s)</string>
 </resources>

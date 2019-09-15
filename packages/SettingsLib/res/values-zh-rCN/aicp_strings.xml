@@ -18,4 +18,5 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="screen_zoom_summary_smaller">非常小</string>
     <string name="screen_zoom_summary_smallest">最小</string>
+    <string name="power_discharge_by_only_short">直到 %1$s</string>
 </resources>

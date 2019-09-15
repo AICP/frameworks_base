@@ -172,4 +172,7 @@
     <string name="vpn_credentials_username">Имя пользователя</string>
     <string name="vpn_credentials_password">Пароль</string>
     <string name="vpn_credentials_dialog_connect">Подключить</string>
+    <string name="accessibility_quick_settings_hwkeys_on">Аппаратные кнопки включены</string>
+    <string name="accessibility_quick_settings_hwkeys_off">Аппаратные кнопки выключены</string>
+    <string name="quick_settings_hwkeys_label">Аппаратные кнопки</string>
 </resources>

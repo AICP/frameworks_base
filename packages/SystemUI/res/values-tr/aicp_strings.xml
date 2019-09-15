@@ -172,4 +172,7 @@
     <string name="vpn_credentials_username">Kullanıcı adı</string>
     <string name="vpn_credentials_password">Şifre</string>
     <string name="vpn_credentials_dialog_connect">Bağlan</string>
+    <string name="accessibility_quick_settings_hwkeys_on">Donanım tuşları açık</string>
+    <string name="accessibility_quick_settings_hwkeys_off">Donanım tuşları kapalı</string>
+    <string name="quick_settings_hwkeys_label">Donanım tuşları</string>
 </resources>

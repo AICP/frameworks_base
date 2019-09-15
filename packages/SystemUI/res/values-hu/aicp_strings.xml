@@ -165,4 +165,10 @@
     <string name="accessibility_quick_settings_location_battery_saving">Helymeghatározás: energiatakarékos mód.</string>
     <string name="accessibility_quick_settings_location_gps_only">Helymeghatározás: csak Gps.</string>
     <string name="accessibility_quick_settings_location_high_accuracy">Helymeghatározás: nagy pontosságú mód.</string>
+    <string name="quick_settings_vpn_label">VPN</string>
+    <string name="quick_settings_vpn_connect_dialog_title">Csatlakozás a következőhöz\u2026</string>
+    <string name="vpn_credentials_hint">Kérjük, adja meg a hitelesítőadatait, hogy csatlakozhasson a következőhöz: <xliff:g id="name">%s</xliff:g></string>
+    <string name="vpn_credentials_username">Felhasználónév</string>
+    <string name="vpn_credentials_password">Jelszó</string>
+    <string name="vpn_credentials_dialog_connect">Csatlakozás</string>
 </resources>

@@ -19,6 +19,11 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="quick_settings_heads_up_label">헤드업 알림</string>
+    <string name="accessibility_quick_settings_heads_up_off">헤드 업 알림 끄기.</string>
+    <string name="accessibility_quick_settings_heads_up_on">헤드 업 알림 켜기.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">헤드 업 알림 꺼짐</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">헤드 업 켜짐.</string>
     <string name="quick_aicp_extras_label">Aicp 추가설정</string>
     <string name="quick_aicp_extras_toast">하하, 정말로 길게 누르는 행동이 너를 어디론가 데러다 줄거라고 생각하는거야!!</string>
     <string name="quick_settings_screenshot_label">스크린샷</string>
@@ -30,7 +35,20 @@
     <string name="quick_settings_caffeine_label">카페인</string>
     <string name="accessibility_quick_settings_caffeine_off">카페인 꺼짐</string>
     <string name="accessibility_quick_settings_caffeine_on">카페인 켜짐</string>
+    <string name="quick_settings_aod_label">Always On Display</string>
+    <string name="quick_settings_network_adb_enabled_label">활성화됨</string>
     <string name="quick_settings_network_adb_disabled_label">비활성화됨</string>
+    <string name="quick_settings_network_adb_label">네트워크를 통한 ADB</string>
+    <string name="quick_settings_network_adb_toast">USB 디버깅이 허용되지 않음</string>
+    <string name="quick_settings_network_adb_no_network">네트워크 없음</string>
+    <string name="qs_menu_item_columns">열</string>
+    <string name="qs_menu_item_columns_landscape">열 개수 (가로 모드)</string>
+    <string name="qs_menu_item_reset">재설정</string>
+    <string name="qs_menu_item_titles">라벨 표시</string>
+    <string name="qs_menu_item_rows">행</string>
+    <string name="qs_menu_item_rows_landscape">행 개수 (가로 모드)</string>
+    <string name="qs_menu_item_qs_columns">퀵 바 개수</string>
+    <string name="qs_menu_item_columns_auto">자동</string>
     <string name="quick_settings_locale_label">언어</string>
     <string name="quick_settings_locale_more_locales_toast">토글 기능을 활성화 하려면 다중 언어를 설정하시기 바랍니다</string>
     <string name="quick_settings_music_label">음악</string>
@@ -57,6 +75,8 @@
     <string name="quick_settings_compass_SW">SW</string>
     <string name="quick_settings_compass_W">W</string>
     <string name="quick_settings_compass_NW">NW</string>
+    <string name="quick_settings_reboot_label">다시 시작</string>
+    <string name="quick_settings_reboot_recovery_label">복구 모드</string>
     <string name="screenrecord_notif_ticker">화면이 녹화되고 있습니다.</string>
     <string name="screenrecord_notif_final_ticker">화면이 성공적으로 녹화되었습니다</string>
     <string name="screenrecord_notif_title">화면 녹화 중</string>
@@ -71,6 +91,8 @@
     <string name="quick_settings_screenrecord_label">화면 녹화</string>
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - 꺼내기 알람을 1분간 중지 시킵니다.</string>
     <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - 꺼내기를 알람을 <xliff:g id="number">%d</xliff:g> 분간 중지 시킵니다.</string>
+    <string name="menu_ime_always_show">메뉴 / 키보드 선택기 (항상 표시)</string>
+    <string name="search">검색</string>
     <string name="systemui_tuner_navbar_title">기본 설정</string>
     <string name="onthego_notif_ticker">On-The-Go 모드 활성화됨</string>
     <string name="onthego_notif_title">On-The-Go 모드가 활성화 되었습니다</string>
@@ -87,6 +109,16 @@
     <string name="quick_settings_onthego_label">On-The-Go</string>
     <string name="global_action_screenrecord">화면 녹화</string>
     <string name="quick_settings_cpuinfo_label">CPU 정보</string>
+    <string name="tuner_show_auto_brightness">밝기 자동 조절 버튼</string>
+    <string name="tuner_auto_brightness_right">자동  밝기 버튼을 오른쪽에 놓습니다</string>
+    <string name="tuner_show_brightness_buttons">밝기 조정 버튼</string>
+    <string name="quick_settings_smart_pixels">스마트 픽셀</string>
+    <string name="quick_settings_smart_pixels_on_power_save">스마트 픽셀 자동으로 켜기</string>
+    <string name="drag_or_tap_to_add_tiles">끌거나 눌러서 타일 추가/삭제</string>
+    <string name="quick_settings_immersive_tile">몰입 모드</string>
+    <string name="quick_settings_immersive_tile_statusbar">전체 화면 상태바</string>
+    <string name="quick_settings_immersive_tile_navbar">전체 화면 내비게이션 바</string>
+    <string name="quick_settings_immersive_tile_full">전체화면 꽉차게</string>
     <string name="omnijaws_service_error">오류</string>
     <string name="omnijaws_service_unkown">날씨 정보 없음</string>
     <string name="omnijaws_service_error_long">날씨 정보 불러오기 오류</string>
@@ -99,15 +131,44 @@
     <string name="app_float_maximize_item_title">최대화</string>
     <string name="app_float_item_title">플로팅 뷰</string>
     <string name="app_stop_item_title">앱 종료</string>
+    <string name="ambientmusic_songinfo">%s에 의한 %s</string>
     <string name="accessibility_quick_settings_running_services">실행중인 서비스 보기</string>
+    <string name="tuner_hide_disabled_sim">사용 중지 된 SIM 카드 숨기기</string>
+    <string name="pie_state_name">Pie 컨트롤</string>
+    <string name="pie_state_summary">몰입 모드에서 파이 컨트롤 사용</string>
+    <string name="pie_battery_level">"배터리 잔량 "</string>
+    <string name="quick_settings_pie">Pie 컨트롤</string>
     <string name="quick_settings_sync_label">동기화</string>
     <string name="accessibility_quick_settings_sync_off">동기화 끄기</string>
     <string name="accessibility_quick_settings_sync_on">동기화 켜기</string>
     <string name="accessibility_quick_settings_sync_changed_off">동기화 꺼짐</string>
     <string name="accessibility_quick_settings_sync_changed_on">동기화 켜짐.</string>
+    <string name="recents_free_ram">사용가능한 RAM: %1$d MB</string>
+    <string name="gaming_mode_tile_title">게이밍 모드</string>
+    <string name="gaming_mode_tile_toast">게이밍 모드 활성화됨</string>
+    <string name="gaming_mode_tile_toast_disabled">게이밍 모드 비활성화됨</string>
+    <string name="gaming_mode_dialog_title">게이밍 모드</string>
+    <string name="gaming_mode_dialog_message">게이밍 모드가 켜져 있을 경우 모든 헤드업 알림이 꺼지며 하드웨어 키가 비활성화 됩니다. 게이밍 모드를 끄면 위 옵션들은 다시 켜집니다.</string>
+    <string name="accessibility_quick_settings_gaming_mode_on">게이밍 모드 사용</string>
+    <string name="accessibility_quick_settings_gaming_mode_off">게이밍 모드 사용 안함</string>
+    <string name="theming_tile_title">밝은 / 어두운 테마</string>
+    <string name="theming_tile_light_title">밝은 테마</string>
+    <string name="theming_tile_dark_title">어두운 테마</string>
     <string name="force_stop_dlg_title">강제로 종료하시겠습니까?</string>
     <string name="force_stop_dlg_text">강제로 앱을 종료하면 예기치 않은 오류가 발생할 수 있습니다.</string>
+    <string name="guts_force_close_app">어플리케이션 닫기</string>
+    <string name="quick_settings_reading_mode">독서 모드</string>
+    <string name="accessibility_quick_settings_reading_mode_on">독서 모드를 켭니다.</string>
+    <string name="accessibility_quick_settings_reading_mode_off">독서 모드를 끕니다.</string>
+    <string name="accessibility_quick_settings_reading_mode_changed_on">독서 모드가 켜졌습니다.</string>
+    <string name="accessibility_quick_settings_reading_mode_changed_off">독서 모드가 꺼졌습니다.</string>
     <string name="accessibility_quick_settings_location_battery_saving">위치 확인: 배터리 절약 모드.</string>
     <string name="accessibility_quick_settings_location_gps_only">위치 확인: 센서 전용 모드.</string>
     <string name="accessibility_quick_settings_location_high_accuracy">위치 모드: 높은 정확도 모드</string>
+    <string name="quick_settings_vpn_label">VPN</string>
+    <string name="quick_settings_vpn_connect_dialog_title">연결 중…</string>
+    <string name="vpn_credentials_hint">Please enter your credentials for connecting to <xliff:g id="name">%s</xliff:g></string>
+    <string name="vpn_credentials_username">사용자이름</string>
+    <string name="vpn_credentials_password">패스워드/암호</string>
+    <string name="vpn_credentials_dialog_connect">연결</string>
 </resources>

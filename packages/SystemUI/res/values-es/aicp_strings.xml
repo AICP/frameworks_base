@@ -172,4 +172,7 @@
     <string name="vpn_credentials_username">Usuario</string>
     <string name="vpn_credentials_password">Contraseña</string>
     <string name="vpn_credentials_dialog_connect">Conectar</string>
+    <string name="accessibility_quick_settings_hwkeys_on">Botones físicos activados</string>
+    <string name="accessibility_quick_settings_hwkeys_off">Botones físicos desactivados</string>
+    <string name="quick_settings_hwkeys_label">Botones físicos</string>
 </resources>

@@ -172,4 +172,7 @@
     <string name="vpn_credentials_username">Benutzername</string>
     <string name="vpn_credentials_password">Passwort</string>
     <string name="vpn_credentials_dialog_connect">Verbinden</string>
+    <string name="accessibility_quick_settings_hwkeys_on">Hw-Tasten AN</string>
+    <string name="accessibility_quick_settings_hwkeys_off">Hw-Tasten AUS</string>
+    <string name="quick_settings_hwkeys_label">Hw-Tasten</string>
 </resources>

@@ -16,4 +16,8 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="reboot_title">Riavvia</string>
+    <string name="reboot_message">Riavvio del sistema</string>
+    <string name="permlab_fakePackageSignature">Imitazione firma pacchetto</string>
+    <string name="permdesc_fakePackageSignature">Consente all\'applicazione di fingere di essere un\'app diversa. Le applicazioni dannose potrebbero essere in grado di utilizzarlo per accedere ai dati delle applicazioni private. Gli usi legittimi includono un emulatore che finge di essere ciò che emula. Concedi questo permesso con molta cautela!</string>
 </resources>

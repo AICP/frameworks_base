@@ -40,6 +40,7 @@
     <string name="quick_settings_network_adb_disabled_label">Dimatikan</string>
     <string name="quick_settings_network_adb_label">ADB melalui Jaringan</string>
     <string name="quick_settings_network_adb_toast">USB debugging tidak dihidupkan</string>
+    <string name="quick_settings_network_adb_no_network">tidak ada jaringan</string>
     <string name="qs_menu_item_columns">Kolom</string>
     <string name="qs_menu_item_columns_landscape">Kolom mendatar</string>
     <string name="qs_menu_item_reset">Setel ulang</string>
@@ -159,4 +160,7 @@
     <string name="accessibility_quick_settings_location_battery_saving">Pelaporan lokasi: modus hemat baterai.</string>
     <string name="accessibility_quick_settings_location_gps_only">Pelaporan lokasi: modus sensor saja.</string>
     <string name="accessibility_quick_settings_location_high_accuracy">Pelaporan lokasi: modus akurasi tinggi.</string>
+    <string name="quick_settings_vpn_label">VPN</string>
+    <string name="vpn_credentials_username">Nama pengguna</string>
+    <string name="vpn_credentials_password">Kata sandi</string>
 </resources>

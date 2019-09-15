@@ -172,4 +172,7 @@
     <string name="vpn_credentials_username">Uživatelské jméno</string>
     <string name="vpn_credentials_password">Heslo</string>
     <string name="vpn_credentials_dialog_connect">Připojit</string>
+    <string name="accessibility_quick_settings_hwkeys_on">HW tlačítka zapnuta</string>
+    <string name="accessibility_quick_settings_hwkeys_off">HW tlačítka vypnuta</string>
+    <string name="quick_settings_hwkeys_label">HW tlačítka</string>
 </resources>

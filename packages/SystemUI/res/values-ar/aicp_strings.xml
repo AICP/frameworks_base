@@ -171,4 +171,7 @@
     <string name="vpn_credentials_username">اسم المستخدم</string>
     <string name="vpn_credentials_password">كلمة المرور</string>
     <string name="vpn_credentials_dialog_connect">اتصال</string>
+    <string name="accessibility_quick_settings_hwkeys_on">أزرار الجهاز مفعلة</string>
+    <string name="accessibility_quick_settings_hwkeys_off">أزرار الجهاز معّطلة</string>
+    <string name="quick_settings_hwkeys_label">أزرار الجهاز</string>
 </resources>

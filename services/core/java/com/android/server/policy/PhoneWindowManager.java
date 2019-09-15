@@ -73,6 +73,7 @@ import static com.android.internal.config.sysui.SystemUiDeviceConfigFlags.SCREEN
 import static com.android.server.policy.WindowManagerPolicy.WindowManagerFuncs.CAMERA_LENS_COVERED;
 import static com.android.server.policy.WindowManagerPolicy.WindowManagerFuncs.CAMERA_LENS_COVER_ABSENT;
 import static com.android.server.policy.WindowManagerPolicy.WindowManagerFuncs.CAMERA_LENS_UNCOVERED;
+import static com.android.server.policy.WindowManagerPolicy.WindowManagerFuncs.LID_ABSENT;
 import static com.android.server.policy.WindowManagerPolicy.WindowManagerFuncs.LID_BEHAVIOR_LOCK;
 import static com.android.server.policy.WindowManagerPolicy.WindowManagerFuncs.LID_BEHAVIOR_NONE;
 import static com.android.server.policy.WindowManagerPolicy.WindowManagerFuncs.LID_BEHAVIOR_SLEEP;
@@ -536,6 +537,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     // Whether system navigation keys are enabled
     boolean mSystemNavigationKeysEnabled;
 
+    int mLidState = LID_ABSENT;
     // TODO(b/111361251): Remove default when the dependencies are multi-display ready.
     Display mDefaultDisplay;
     DisplayRotation mDefaultDisplayRotation;

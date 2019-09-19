@@ -5293,6 +5293,28 @@ public final class Settings {
          */
         public static final String LOCKSCREEN_LOCK_ICON = "lockscreen_lock_icon";
 
+        /**
+         * Number of qs columns on landscape orientation
+         * @hide
+         */
+        public static final String OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE = "qs_layout_columns_landscape";
+
+         /**
+         * @hide
+         */
+        public static final String OMNI_QS_LAYOUT_COLUMNS = "qs_layout_columns";
+
+        /**
+         * Whether to display qs tile titles in the qs panel
+         * @hide
+         */
+        public static final String OMNI_QS_TILE_TITLE_VISIBILITY = "qs_tile_title_visibility";
+
+        /**
+         * @hide
+         */
+        public static final String OMNI_QS_LAYOUT_ROWS = "qs_layout_rows";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5315,6 +5337,10 @@ public final class Settings {
             ALERT_SLIDER_NOTIFICATIONS,
             BACK_GESTURE_HAPTIC,
             LOCKSCREEN_LOCK_ICON,
+            OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE,
+            OMNI_QS_LAYOUT_COLUMNS,
+            OMNI_QS_TILE_TITLE_VISIBILITY,
+            OMNI_QS_LAYOUT_ROWS,
         };
 
         /**
@@ -5340,6 +5366,10 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(ALERT_SLIDER_NOTIFICATIONS, 2);
             AICP_SETTINGS_VALIDATORS.put(BACK_GESTURE_HAPTIC, 0);
             AICP_SETTINGS_VALIDATORS.put(LOCKSCREEN_LOCK_ICON, 0);
+            AICP_SETTINGS_VALIDATORS.put(OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE, 1);
+            AICP_SETTINGS_VALIDATORS.put(OMNI_QS_LAYOUT_COLUMNS, 1);
+            AICP_SETTINGS_VALIDATORS.put(OMNI_QS_TILE_TITLE_VISIBILITY, 0);
+            AICP_SETTINGS_VALIDATORS.put(OMNI_QS_LAYOUT_ROWS, 1);
         }
     }
 

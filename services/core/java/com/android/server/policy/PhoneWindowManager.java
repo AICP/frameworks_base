@@ -236,6 +236,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.lang.reflect.Constructor;
 
@@ -359,8 +360,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
     /** Amount of time (in milliseconds) a toast window can be shown. */
     public static final int TOAST_WINDOW_TIMEOUT = 3500; // 3.5 seconds
-
-    private DeviceKeyHandler mDeviceKeyHandler;
 
     /**
      * Lock protecting internal state.  Must not call out into window
@@ -627,6 +626,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private volatile int mTopFocusedDisplayId = INVALID_DISPLAY;
 
     private int mPowerButtonSuppressionDelayMillis = POWER_BUTTON_SUPPRESSION_DELAY_DEFAULT_MILLIS;
+    private final List<DeviceKeyHandler> mDeviceKeyHandlers = new ArrayList<>();
 
     private static final int MSG_DISPATCH_MEDIA_KEY_WITH_WAKE_LOCK = 3;
     private static final int MSG_DISPATCH_MEDIA_KEY_REPEAT_WITH_WAKE_LOCK = 4;
@@ -1975,26 +1975,28 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     }
                 });
 
-        String deviceKeyHandlerLib = mContext.getResources().getString(
-                com.android.internal.R.string.config_deviceKeyHandlerLib);
+        final Resources res = mContext.getResources();
+        final String[] deviceKeyHandlerLibs = res.getStringArray(
+                com.android.internal.R.array.config_deviceKeyHandlerLibs);
+        final String[] deviceKeyHandlerClasses = res.getStringArray(
+                com.android.internal.R.array.config_deviceKeyHandlerClasses);
 
-        String deviceKeyHandlerClass = mContext.getResources().getString(
-                com.android.internal.R.string.config_deviceKeyHandlerClass);
-
-        if (!deviceKeyHandlerLib.isEmpty() && !deviceKeyHandlerClass.isEmpty()) {
-            PathClassLoader loader =  new PathClassLoader(deviceKeyHandlerLib,
-                    getClass().getClassLoader());
+        for (int i = 0;
+                i < deviceKeyHandlerLibs.length && i < deviceKeyHandlerClasses.length; i++) {
             try {
-                Class<?> klass = loader.loadClass(deviceKeyHandlerClass);
+                PathClassLoader loader = new PathClassLoader(
+                        deviceKeyHandlerLibs[i], getClass().getClassLoader());
+                Class<?> klass = loader.loadClass(deviceKeyHandlerClasses[i]);
                 Constructor<?> constructor = klass.getConstructor(Context.class);
-                mDeviceKeyHandler = (DeviceKeyHandler) constructor.newInstance(
-                        mContext);
-                if(DEBUG) Slog.d(TAG, "Device key handler loaded");
+                mDeviceKeyHandlers.add((DeviceKeyHandler) constructor.newInstance(mContext));
             } catch (Exception e) {
                 Slog.w(TAG, "Could not instantiate device key handler "
-                        + deviceKeyHandlerClass + " from class "
-                        + deviceKeyHandlerLib, e);
+                        + deviceKeyHandlerLibs[i] + " from class "
+                        + deviceKeyHandlerClasses[i], e);
             }
+        }
+        if (DEBUG_INPUT) {
+            Slog.d(TAG, "" + mDeviceKeyHandlers.size() + " device key handlers loaded");
         }
     }
 
@@ -3055,15 +3057,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         }
 
         // Specific device key handling
-        if (mDeviceKeyHandler != null) {
-            try {
-                // The device only should consume known keys.
-                if (mDeviceKeyHandler.handleKeyEvent(event)) {
-                    return -1;
-                }
-            } catch (Exception e) {
-                Slog.w(TAG, "Could not dispatch event to device key handler", e);
-            }
+        if (dispatchKeyToKeyHandlers(event)) {
+            return -1;
         }
 
         if (down) {
@@ -3171,7 +3166,23 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         }
     }
 
-    // TODO(b/117479243): handle it in InputPolicy
+    private boolean dispatchKeyToKeyHandlers(KeyEvent event) {
+        for (DeviceKeyHandler handler : mDeviceKeyHandlers) {
+            try {
+                if (DEBUG_INPUT) {
+                    Log.d(TAG, "Dispatching key event " + event + " to handler " + handler);
+                }
+                event = handler.handleKeyEvent(event);
+                if (event == null) {
+                    return true;
+                }
+            } catch (Exception e) {
+                Slog.w(TAG, "Could not dispatch event to device key handler", e);
+            }
+        }
+        return false;
+    }
+
     /** {@inheritDoc} */
     @Override
     public KeyEvent dispatchUnhandledKey(WindowState win, KeyEvent event, int policyFlags) {
@@ -3793,15 +3804,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 && event.getRepeatCount() == 0;
 
         // Specific device key handling
-        if (mDeviceKeyHandler != null) {
-            try {
-                // The device only should consume known keys.
-                if (mDeviceKeyHandler.handleKeyEvent(event)) {
-                    return 0;
-                }
-            } catch (Exception e) {
-                Slog.w(TAG, "Could not dispatch event to device key handler", e);
-            }
+        if (dispatchKeyToKeyHandlers(event)) {
+            return 0;
         }
 
         // Handle special keys.

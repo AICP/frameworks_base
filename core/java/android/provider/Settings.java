@@ -6102,6 +6102,13 @@ public final class Settings {
          */
         public static final String NOTIFICATION_MATERIAL_DISMISS_BGSTYLE = "notification_material_dismiss_bgstyle";
 
+        /**
+         * Whether to inverse keys in navigation bar
+         * Default 0
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_INVERSE = "navigation_bar_inverse";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6297,6 +6304,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(NOTIFICATION_MATERIAL_DISMISS);
             PRIVATE_SETTINGS.add(NOTIFICATION_MATERIAL_DISMISS_STYLE);
             PRIVATE_SETTINGS.add(NOTIFICATION_MATERIAL_DISMISS_BGSTYLE);
+            PRIVATE_SETTINGS.add(NAVIGATION_BAR_INVERSE);
         }
 
         /**

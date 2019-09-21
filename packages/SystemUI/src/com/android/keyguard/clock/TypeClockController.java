@@ -52,6 +52,11 @@ public class TypeClockController implements ClockPlugin {
     private final SysuiColorExtractor mColorExtractor;
 
     /**
+     * Computes preferred position of clock.
+     */
+    private final SmallClockPosition mClockPosition;
+
+    /**
      * Renders preview from clock view.
      */
     private final ViewPreviewer mRenderer = new ViewPreviewer();
@@ -84,6 +89,7 @@ public class TypeClockController implements ClockPlugin {
         mResources = res;
         mLayoutInflater = inflater;
         mColorExtractor = colorExtractor;
+        mClockPosition = new SmallClockPosition(res);
     }
 
     private void createViews() {
@@ -156,7 +162,7 @@ public class TypeClockController implements ClockPlugin {
 
     @Override
     public int getPreferredY(int totalHeight) {
-        return totalHeight / 2;
+        return mClockPosition.getPreferredY();
     }
 
     @Override
@@ -189,6 +195,7 @@ public class TypeClockController implements ClockPlugin {
         if (mDarkController != null) {
             mDarkController.setDarkAmount(darkAmount);
         }
+        mClockPosition.setDarkAmount(darkAmount);
     }
 
     @Override

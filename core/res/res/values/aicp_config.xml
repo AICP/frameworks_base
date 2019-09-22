@@ -145,4 +145,7 @@
 
     <!-- min height for gesture action start -->
     <integer name="config_navgestureswipestart">20</integer>
+
+    <!-- Whether to show a custom view for FOD -->
+    <bool name="config_needCustomFODView">false</bool>
 </resources>

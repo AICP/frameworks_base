@@ -151,6 +151,9 @@ public abstract class PanelViewController {
     protected final KeyguardStateController mKeyguardStateController;
     protected final SysuiStatusBarStateController mStatusBarStateController;
 
+    // omni additions start
+    protected boolean mDoubleTapToSleepEnabled;
+
     protected void onExpandingFinished() {
         mBar.onExpandingFinished();
     }
@@ -407,7 +410,7 @@ public abstract class PanelViewController {
                 && !mStatusBar.isBouncerShowing()
                 && !mKeyguardStateController.isKeyguardFadingAway()) {
             long timePassed = SystemClock.uptimeMillis() - mDownTime;
-            if (timePassed < ViewConfiguration.getLongPressTimeout()) {
+            if (timePassed < ViewConfiguration.getLongPressTimeout() && !mDoubleTapToSleepEnabled) {
                 // Lets show the user that he can actually expand the panel
                 runPeekAnimation(
                         PEEK_ANIMATION_DURATION, getPeekHeight(), true /* collapseWhenFinished */);
@@ -1244,7 +1247,7 @@ public abstract class PanelViewController {
                         onTrackingStarted();
                     }
                     if (isFullyCollapsed() && !mHeadsUpManager.hasPinnedHeadsUp()
-                            && !mStatusBar.isBouncerShowing()) {
+                            && !mStatusBar.isBouncerShowing() && !mDoubleTapToSleepEnabled) {
                         startOpening(event);
                     }
                     break;

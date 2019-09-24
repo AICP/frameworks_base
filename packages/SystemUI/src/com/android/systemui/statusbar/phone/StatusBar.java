@@ -69,6 +69,7 @@ import android.content.pm.IPackageManager;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
+import android.database.ContentObserver;
 import android.graphics.Point;
 import android.graphics.PointF;
 import android.media.AudioAttributes;
@@ -640,6 +641,30 @@ public class StatusBar extends SystemUI implements DemoMode,
 
     private ActivityIntentHelper mActivityIntentHelper;
 
+    // aicp additions start
+    private class AicpSettingsObserver extends ContentObserver {
+        AicpSettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        void observe() {
+            mContext.getContentResolver().registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.AICP_DOUBLE_TAP_SLEEP_GESTURE),
+                    false, this, UserHandle.USER_ALL);
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            update();
+        }
+
+        public void update() {
+            updateSettings();
+        }
+    }
+
+    private AicpSettingsObserver mAicpSettingsObserver;
+
     /**
      * Public constructor for StatusBar.
      *
@@ -943,6 +968,10 @@ public class StatusBar extends SystemUI implements DemoMode,
         int disabledFlags2 = result.mDisabledFlags2;
         mInitController.addPostInitTask(
                 () -> setUpDisableFlags(disabledFlags1, disabledFlags2));
+
+        mAicpSettingsObserver = new AicpSettingsObserver(mHandler);
+        mAicpSettingsObserver.observe();
+        mAicpSettingsObserver.update();
 
         mPluginManager.addPluginListener(
                 new PluginListener<OverlayPlugin>() {
@@ -4409,5 +4438,17 @@ public class StatusBar extends SystemUI implements DemoMode,
     @Override
     public void suppressAmbientDisplay(boolean suppressed) {
         mDozeServiceHost.setDozeSuppressed(suppressed);
+    }
+
+    public void updateSettings() {
+        boolean doubleTapToSleepEnabled = Settings.System.getIntForUser(
+                mContext.getContentResolver(), Settings.System.AICP_DOUBLE_TAP_SLEEP_GESTURE, 0,
+                UserHandle.USER_CURRENT) == 1;
+        if (mNotificationPanelViewController != null) {
+            mNotificationPanelViewController.updateDoubleTapToSleep(doubleTapToSleepEnabled);
+        }
+        if (mNotificationShadeWindowViewController != null) {
+            mNotificationShadeWindowViewController.updateDoubleTapToSleep(doubleTapToSleepEnabled);
+        }
     }
 }

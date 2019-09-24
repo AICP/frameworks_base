@@ -5632,6 +5632,12 @@ public final class Settings {
          */
         public static final String LOCKSCREEN_PIN_SCRAMBLE_LAYOUT = "lockscreen_scramble_pin_layout";
 
+        /**
+         *  Enable statusbar double tap gesture on to put device to sleep
+         * @hide
+         */
+        public static final String AICP_DOUBLE_TAP_SLEEP_GESTURE = "double_tap_sleep_gesture";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5716,6 +5722,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(LOCKSCREEN_BATTERY_INFO, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(LOCKSCREEN_PIN_SCRAMBLE_LAYOUT, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(AICP_DOUBLE_TAP_SLEEP_GESTURE, BOOLEAN_VALIDATOR);
         }
 
         /**

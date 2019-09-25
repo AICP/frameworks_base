@@ -177,4 +177,17 @@
 
     <!-- Whether to send camera status intent -->
     <bool name="config_sendCameraStatusIntent">false</bool>
+
+    <!-- Back navigation gesture height
+        edgeHeightSettings can be in range 0 - 3
+        0 means full height
+        1 means half of the screen
+        2 means lower third of the screen
+        3 means lower sixth of the screen -->
+    <array name="config_backRegionScales">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </array>
 </resources>

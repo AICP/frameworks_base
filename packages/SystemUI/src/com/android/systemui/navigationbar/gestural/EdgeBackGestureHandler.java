@@ -35,9 +35,11 @@ import android.os.Looper;
 import android.os.RemoteException;
 import android.os.SystemClock;
 import android.os.SystemProperties;
+import android.os.UserHandle;
 import android.os.Vibrator;
 import android.os.VibrationEffect;
 import android.provider.DeviceConfig;
+import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
@@ -303,6 +305,8 @@ public class EdgeBackGestureHandler extends CurrentUserTracker
         }
     };
 
+    // aicp additions start
+    private int mEdgeHeight;
 
     EdgeBackGestureHandler(Context context, OverviewProxyService overviewProxyService,
             SysUiState sysUiState, PluginManager pluginManager, @Main Executor executor,
@@ -408,6 +412,28 @@ public class EdgeBackGestureHandler extends CurrentUserTracker
         updateCurrentUserResources();
     }
 
+    private void updateEdgeHeightValue() {
+        if (mDisplaySize == null) {
+            return;
+        }
+        int edgeHeightSetting = Settings.Secure.getIntForUser(mContext.getContentResolver(),
+                Settings.Secure.BACK_GESTURE_HEIGHT, 0, UserHandle.USER_CURRENT);
+        // edgeHeigthSettings cant be range 0 - 3
+        // 0 means full height
+        // 1 measns half of the screen
+        // 2 means lower third of the screen
+        // 3 means lower sixth of the screen
+        if (edgeHeightSetting == 0) {
+            mEdgeHeight = mDisplaySize.y;
+        } else if (edgeHeightSetting == 1) {
+            mEdgeHeight = mDisplaySize.y / 2;
+        } else if (edgeHeightSetting == 2) {
+            mEdgeHeight = mDisplaySize.y / 3;
+        } else {
+            mEdgeHeight = mDisplaySize.y / 6;
+        }
+    }
+
     /**
      * @see NavigationBarView#onAttachedToWindow()
      */
@@ -443,6 +469,10 @@ public class EdgeBackGestureHandler extends CurrentUserTracker
 
     public void onNavBarTransientStateChanged(boolean isTransient) {
         mIsNavBarShownTransiently = isTransient;
+    }
+
+    public void onSettingsChanged() {
+        updateEdgeHeightValue();
     }
 
     private void vibrateTick() {
@@ -653,6 +683,12 @@ public class EdgeBackGestureHandler extends CurrentUserTracker
         if (y >= (mDisplaySize.y - mBottomGestureHeight)) {
             return false;
         }
+        if (mEdgeHeight != 0) {
+            if (y < (mDisplaySize.y - mBottomGestureHeight - mEdgeHeight)) {
+                return false;
+            }
+        }
+
         // If the point is way too far (twice the margin), it is
         // not interesting to us for logging purposes, nor we
         // should process it.  Simply return false and keep
@@ -883,6 +919,7 @@ public class EdgeBackGestureHandler extends CurrentUserTracker
         if (mEdgeBackPlugin != null) {
             mEdgeBackPlugin.setDisplaySize(mDisplaySize);
         }
+        updateEdgeHeightValue();
     }
 
     private boolean sendEvent(int action, int code) {

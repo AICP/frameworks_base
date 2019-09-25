@@ -153,4 +153,7 @@
 
   <!-- Whether to send camera status intent -->
   <java-symbol type="bool" name="config_sendCameraStatusIntent" />
+
+  <!-- Back navigation gesture height -->
+  <java-symbol type="array" name="config_backRegionScales" />
 </resources>

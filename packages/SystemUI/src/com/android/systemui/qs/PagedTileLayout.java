@@ -245,12 +245,7 @@ public class PagedTileLayout extends ViewPager implements QSTileLayout {
     private void emptyAndInflateOrRemovePages() {
         final int nTiles = mTiles.size();
         // We should always have at least one page, even if it's empty.
-        int numPages = Math.max(nTiles / mPages.get(0).maxTiles(), 1);
-
-        // Add one more not full page if needed
-        if (nTiles > numPages * mPages.get(0).maxTiles()) {
-            numPages++;
-        }
+        int numPages = Math.max((int) Math.ceil((double) nTiles / mPages.get(0).maxTiles()), 1);
 
         final int NP = mPages.size();
         for (int i = 0; i < NP; i++) {

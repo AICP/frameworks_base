@@ -17,14 +17,19 @@
 package com.android.systemui.navigationbar;
 
 import static android.content.Intent.ACTION_OVERLAY_CHANGED;
+import static android.provider.Settings.Secure.BACK_GESTURE_HEIGHT;
 
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.om.IOverlayManager;
 import android.content.pm.PackageManager;
 import android.content.res.ApkAssets;
+import android.database.ContentObserver;
+import android.net.Uri;
+import android.os.Handler;
 import android.os.PatternMatcher;
 import android.os.RemoteException;
 import android.os.ServiceManager;
@@ -33,6 +38,7 @@ import android.provider.Settings;
 import android.provider.Settings.Secure;
 import android.util.Log;
 
+import com.android.systemui.Dependency;
 import com.android.systemui.Dumpable;
 import com.android.systemui.dagger.SysUISingleton;
 import com.android.systemui.dagger.qualifiers.UiBackground;
@@ -59,6 +65,7 @@ public class NavigationModeController implements Dumpable {
 
     public interface ModeChangedListener {
         void onNavigationModeChanged(int mode);
+        default void onSettingsChanged() {}
     }
 
     private final Context mContext;
@@ -95,6 +102,20 @@ public class NavigationModeController implements Dumpable {
         }
     };
 
+    private final class AicpSettingsObserver extends ContentObserver {
+        public AicpSettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
+            for (int i = 0; i < mListeners.size(); i++) {
+                mListeners.get(i).onSettingsChanged();
+            }
+        }
+    }
+
+    private AicpSettingsObserver mAicpSettingsObserver;
 
     @Inject
     public NavigationModeController(Context context,
@@ -115,6 +136,11 @@ public class NavigationModeController implements Dumpable {
         overlayFilter.addDataScheme("package");
         overlayFilter.addDataSchemeSpecificPart("android", PatternMatcher.PATTERN_LITERAL);
         mContext.registerReceiverAsUser(mReceiver, UserHandle.ALL, overlayFilter, null, null);
+
+        mAicpSettingsObserver = new AicpSettingsObserver(new Handler());
+        mContext.getContentResolver().registerContentObserver(Settings.Secure.getUriFor(
+                Settings.Secure.BACK_GESTURE_HEIGHT),
+                false, mAicpSettingsObserver, UserHandle.USER_ALL);
 
         configurationController.addCallback(new ConfigurationController.ConfigurationListener() {
             @Override

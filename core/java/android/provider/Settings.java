@@ -10466,6 +10466,9 @@ public final class Settings {
           */
          public static final String QS_TILES_VIBRATE = "qs_vibrate";
 
+        /** @hide */
+        public static final String BACK_GESTURE_HEIGHT = "back_gesture_height";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

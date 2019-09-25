@@ -195,5 +195,6 @@ public class SecureSettings {
         Settings.Secure.VOLUME_LINK_NOTIFICATION,
         Settings.Secure.NAV_BAR_INVERSE,
         Settings.Secure.QS_TILES_VIBRATE,
+        Settings.Secure.BACK_GESTURE_HEIGHT,
     };
 }

@@ -6123,6 +6123,11 @@ public final class Settings {
          */
         public static final String NAVIGATION_BAR_IME_SPACE = "navigation_bar_ime_space";
 
+        /**
+         * @hide
+         */
+        public static final String BACK_GESTURE_HEIGHT = "back_gesture_height";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6321,6 +6326,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(NAVIGATION_BAR_INVERSE);
             PRIVATE_SETTINGS.add(NAV_BAR_COMPACT_LAYOUT);
             PRIVATE_SETTINGS.add(NAVIGATION_BAR_IME_SPACE);
+            PRIVATE_SETTINGS.add(BACK_GESTURE_HEIGHT);
         }
 
         /**

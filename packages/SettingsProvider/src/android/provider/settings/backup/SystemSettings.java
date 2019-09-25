@@ -164,5 +164,6 @@ public class SystemSettings {
         Settings.System.NAVIGATION_BAR_INVERSE,
         Settings.System.NAV_BAR_COMPACT_LAYOUT,
         Settings.System.NAVIGATION_BAR_IME_SPACE,
+        Settings.System.BACK_GESTURE_HEIGHT,
     };
 }

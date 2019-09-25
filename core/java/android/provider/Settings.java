@@ -6000,6 +6000,13 @@ public final class Settings {
         private static final Validator QS_SYSTEM_INFO_VALIDATOR =
               new SettingsValidators.InclusiveIntegerRangeValidator(0, 4);
 
+
+        /** @hide */
+        public static final String BACK_GESTURE_HEIGHT = "back_gesture_height";
+
+        /** @hide */
+        private static final Validator BACK_GESTURE_HEIGHT_VALIDATOR = ANY_INTEGER_VALIDATOR;
+
         /**
          * Control the type of rotation which can be performed using the accelerometer
          * if ACCELEROMETER_ROTATION is enabled.
@@ -6255,6 +6262,7 @@ public final class Settings {
             ACCELEROMETER_ROTATION_ANGLES,
             AICP_FOOTER_TEXT_SHOW,
             AICP_FOOTER_TEXT_STRING,
+            BACK_GESTURE_HEIGHT,
             // AICP Settings end
         };
 
@@ -6529,6 +6537,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(ACCELEROMETER_ROTATION_ANGLES);
             PRIVATE_SETTINGS.add(AICP_FOOTER_TEXT_SHOW);
             PRIVATE_SETTINGS.add(AICP_FOOTER_TEXT_STRING);
+            PRIVATE_SETTINGS.add(BACK_GESTURE_HEIGHT);
             // AICP Settings end
         }
 
@@ -6791,6 +6800,7 @@ public final class Settings {
                     ACCELEROMETER_ROTATION_ANGLES_VALIDATOR);
             VALIDATORS.put(AICP_FOOTER_TEXT_SHOW, AICP_FOOTER_TEXT_SHOW_VALIDATOR);
             VALIDATORS.put(AICP_FOOTER_TEXT_STRING, AICP_FOOTER_TEXT_STRING_VALIDATOR);
+            VALIDATORS.put(BACK_GESTURE_HEIGHT, BACK_GESTURE_HEIGHT_VALIDATOR);
             // AICP Settings end
         }
 

@@ -522,5 +522,6 @@ public class SecureSettingsValidators {
         VALIDATORS.put(Secure.IDENTITY_CHECK_NOTIFICATION_VIEW_DETAILS_CLICKED,
                 new InclusiveIntegerRangeValidator(0, 1));
         VALIDATORS.put(Secure.WINDOW_IGNORE_SECURE, BOOLEAN_VALIDATOR);
+        VALIDATORS.put(Secure.SHOW_CPU_OVERLAY, ANY_STRING_VALIDATOR);
     }
 }

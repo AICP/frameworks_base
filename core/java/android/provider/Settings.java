@@ -10552,6 +10552,12 @@ public final class Settings {
         @SuppressLint("NoSettingsProvider")
         public static final String VOLUME_PANEL_ON_LEFT = "volume_panel_on_left";
 
+        /**
+         * Control whether the process CPU info meter should be shown.
+         * @hide
+         */
+        public static final String SHOW_CPU_OVERLAY = "show_cpu_overlay";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

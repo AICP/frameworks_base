@@ -204,5 +204,6 @@ public class SecureSettings {
         Settings.Secure.SHOW_BACK_ARROW_GESTURE,
         Settings.Secure.GESTURE_HANDLE_HIDE,
         Settings.Secure.VOLUME_PANEL_ON_LEFT,
+        Settings.Secure.SHOW_CPU_OVERLAY,
     };
 }

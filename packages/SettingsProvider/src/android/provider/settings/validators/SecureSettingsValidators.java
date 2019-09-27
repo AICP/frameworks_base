@@ -453,5 +453,6 @@ public class SecureSettingsValidators {
                 new InclusiveIntegerRangeValidator(0, 1));
         VALIDATORS.put(Secure.ADVANCED_PROTECTION_MODE, BOOLEAN_VALIDATOR);
         VALIDATORS.put(Secure.WINDOW_IGNORE_SECURE, BOOLEAN_VALIDATOR);
+        VALIDATORS.put(Secure.SHOW_CPU_OVERLAY, ANY_STRING_VALIDATOR);
     }
 }

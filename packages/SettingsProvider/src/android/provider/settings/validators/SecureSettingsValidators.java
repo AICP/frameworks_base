@@ -518,5 +518,6 @@ public class SecureSettingsValidators {
         VALIDATORS.put(Secure.HDR_BRIGHTNESS_BOOST_LEVEL, new InclusiveFloatRangeValidator(0, 1));
         VALIDATORS.put(Secure.APP_FUNCTION_AGENT_ALLOWLIST_ENABLED, BOOLEAN_VALIDATOR);
         VALIDATORS.put(Secure.WINDOW_IGNORE_SECURE, BOOLEAN_VALIDATOR);
+        VALIDATORS.put(Secure.SHOW_CPU_OVERLAY, ANY_STRING_VALIDATOR);
     }
 }

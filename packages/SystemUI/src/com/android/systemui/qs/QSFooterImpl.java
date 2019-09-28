@@ -155,7 +155,12 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
         // TODO keeping this here - maybe we find some more useful use for that space
         TextView v = findViewById(R.id.build);
         if (v == null) return;
-        v.setVisibility(View.GONE);
+        if (DevelopmentSettingsEnabler.isDevelopmentSettingsEnabled(mContext)) {
+            v.setText("#AICP");
+            v.setVisibility(View.VISIBLE);
+        } else {
+            v.setVisibility(View.GONE);
+        }
     }
 
     private void updateAnimator(int width) {

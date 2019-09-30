@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/* //device/apps/common/assets/res/any/strings.xml
+**
+** Copyright 2006, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- Tri-state UI -->
+    <dimen name="tri_state_down_dialog_padding_edge">8.0dip</dimen>
+    <dimen name="tri_state_down_dialog_padding_edge_deep">21.0px</dimen>
+    <dimen name="tri_state_down_dialog_position">423.0px</dimen>
+    <dimen name="tri_state_down_dialog_position_l">270.375px</dimen>
+    <dimen name="tri_state_middle_dialog_position">296.0px</dimen>
+    <dimen name="tri_state_middle_dialog_position_l">270.375px</dimen>
+    <dimen name="tri_state_up_dialog_position">165.0px</dimen>
+    <item type="dimen" name="tri_state_up_dialog_position_deep">@dimen/tri_state_down_dialog_padding_edge_deep</item>
+    <item type="dimen" name="tri_state_up_dialog_position_deep_land">@dimen/tri_state_down_dialog_padding_edge_deep</item>
+    <dimen name="tri_state_up_dialog_position_l">270.375px</dimen>
+    <dimen name="tri_state_dialog_elevation">2.0dip</dimen>
+    <dimen name="tri_state_dialog_icon_out_width">126.0px</dimen>
+    <dimen name="tri_state_dialog_icon_size">63.0px</dimen>
+    <dimen name="tri_state_dialog_inner_height">126.0px</dimen>
+    <dimen name="tri_state_dialog_padding">14.0px</dimen>
+    <dimen name="tri_state_dialog_text_size">34.125px</dimen>
+    <dimen name="tri_state_dialog_triangle_long">189.0px</dimen>
+    <dimen name="tri_state_dialog_triangle_short">63.0px</dimen>
+    <dimen name="tri_state_down_bottom_left_radius">63.0px</dimen>
+    <dimen name="tri_state_down_bottom_right_radius">63.0px</dimen>
+    <dimen name="tri_state_down_top_left_radius">63.0px</dimen>
+    <dimen name="tri_state_down_top_right_radius">0.0px</dimen>
+    <dimen name="tri_state_mid_bottom_left_radius">63.0px</dimen>
+    <dimen name="tri_state_mid_bottom_right_radius">63.0px</dimen>
+    <dimen name="tri_state_mid_top_left_radius">63.0px</dimen>
+    <dimen name="tri_state_mid_top_right_radius">63.0px</dimen>
+    <dimen name="tri_state_up_bottom_left_radius">63.0px</dimen>
+    <dimen name="tri_state_up_bottom_right_radius">0.0px</dimen>
+    <dimen name="tri_state_up_top_left_radius">63.0px</dimen>
+    <dimen name="tri_state_up_top_right_radius">63.0px</dimen>
+</resources>

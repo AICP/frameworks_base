@@ -66,4 +66,10 @@
     <!-- make sure you enable this only if your device supports deep slepp
     with active proximity sensor event listener -->
     <java-symbol type="bool" name="config_proxiSensorWakupCheck" />
+
+    <!-- Whether device has physical tri state switch -->
+    <java-symbol type="bool" name="config_hasAlertSlider" />
+
+    <!-- The location of the devices physical tri state switch -->
+    <java-symbol type="integer" name="config_alertSliderLocation" />
 </resources>

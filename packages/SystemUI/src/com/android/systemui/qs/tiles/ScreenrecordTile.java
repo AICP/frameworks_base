@@ -58,7 +58,7 @@ public class ScreenrecordTile extends QSTileImpl<BooleanState> {
 
     @Override
     public boolean isAvailable() {
-        return PackageUtils.isAvailableApp(OMNIRECORD_PACKAGE_NAME, mContext);
+        return PackageUtils.isPackageAvailable(mContext, OMNIRECORD_PACKAGE_NAME);
     }
 
     @Override

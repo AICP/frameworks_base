@@ -114,8 +114,8 @@ public class AicpExtrasTile extends QSTileImpl<BooleanState> {
     private boolean isAEAvailable(){
         boolean isInstalled = false;
         boolean isNotHidden = false;
-        isInstalled = PackageUtils.isAppInstalled(mContext, AE_PKG_NAME);
-        isNotHidden = PackageUtils.isAvailableApp(AE_PKG_NAME, mContext);
+        isInstalled = PackageUtils.isPackageInstalled(mContext, AE_PKG_NAME);
+        isNotHidden = PackageUtils.isPackageAvailable(mContext, AE_PKG_NAME);
         return isInstalled || isNotHidden;
     }
 

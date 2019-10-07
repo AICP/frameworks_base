@@ -704,6 +704,14 @@ public final class DefaultPermissionGrantPolicy {
         String wpPickerPackageName = "com.android.wallpaper.livepicker";
         grantPermissionsToSystemPackage(pm, wpPickerPackageName, userId, WALLPAPER_PERMISSIONS);
 
+        // Chrome
+        String chromePackage = "org.chromium.chrome";
+        PackageInfo pkg = pm.getPackageInfo(chromePackage);
+        if (pkg != null) {
+            grantPermissionsToPackage(pm, chromePackage, userId, false /* ignoreSystemPackage */,
+                    true /*whitelistRestrictedPermissions*/, CONTACTS_PERMISSIONS, STORAGE_PERMISSIONS);
+        }
+
         // Voice interaction
         if (voiceInteractPackageNames != null) {
             for (String voiceInteractPackageName : voiceInteractPackageNames) {

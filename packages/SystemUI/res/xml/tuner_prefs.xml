@@ -36,7 +36,7 @@
             sysui:metricsAction="315" />
 
     </PreferenceScreen>
-
+<!--
     <PreferenceScreen
       android:key="doze"
       android:title="@string/tuner_doze">
@@ -47,7 +47,7 @@
           sysui:defValue="true" />
 
     </PreferenceScreen>
-
+-->
     <Preference
         android:key="nav_bar"
         android:title="@string/nav_bar"

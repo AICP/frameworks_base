@@ -6186,6 +6186,19 @@ public final class Settings {
          */
         public static final String AICP_FOOTER_TEXT_STRING = "footer_text_string";
 
+        /**
+         * Whether to enable Ambient edge light
+         * @hide
+         */
+        public static final String PULSE_AMBIENT_LIGHT = "pulse_ambient_light";
+
+        /**
+        /**
+         * What color to use for Ambient edge light
+         * @hide
+         */
+        public static final String PULSE_AMBIENT_LIGHT_COLOR = "pulse_ambient_light_color";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6358,6 +6371,8 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(INCREASING_RING_RAMP_UP_TIME, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(AICP_FOOTER_TEXT_SHOW, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(AICP_FOOTER_TEXT_STRING, ANY_STRING_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(PULSE_AMBIENT_LIGHT, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(PULSE_AMBIENT_LIGHT_COLOR, ANY_INTEGER_VALIDATOR);
         }
 
         /**

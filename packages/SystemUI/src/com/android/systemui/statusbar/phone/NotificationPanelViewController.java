@@ -45,6 +45,8 @@ import android.hardware.biometrics.BiometricSourceType;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.os.SystemClock;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.util.Log;
 import android.util.MathUtils;
 import android.view.GestureDetector;
@@ -74,6 +76,7 @@ import com.android.keyguard.KeyguardUpdateMonitorCallback;
 import com.android.systemui.DejankUtils;
 import com.android.systemui.Interpolators;
 import com.android.systemui.R;
+import com.android.systemui.aicp.NotificationLightsView;
 import com.android.systemui.dagger.qualifiers.DisplayId;
 import com.android.systemui.doze.DozeLog;
 import com.android.systemui.fragments.FragmentHostManager;
@@ -351,6 +354,7 @@ public class NotificationPanelViewController extends PanelViewController {
     private boolean mAffordanceHasPreview;
     private FalsingManager mFalsingManager;
     private String mLastCameraLaunchSource = KeyguardBottomAreaView.CAMERA_LAUNCH_SOURCE_AFFORDANCE;
+    private NotificationLightsView mPulseLightsView;
 
     private Runnable mHeadsUpExistenceChangedRunnable = () -> {
         setHeadsUpAnimatingAway(false);
@@ -624,6 +628,7 @@ public class NotificationPanelViewController extends PanelViewController {
         mKeyguardBottomArea = mView.findViewById(R.id.keyguard_bottom_area);
         mQsNavbarScrim = mView.findViewById(R.id.qs_navbar_scrim);
         mLastOrientation = mResources.getConfiguration().orientation;
+        mPulseLightsView = (NotificationLightsView) mView.findViewById(R.id.lights_container);
 
         initBottomArea();
 
@@ -2935,6 +2940,8 @@ public class NotificationPanelViewController extends PanelViewController {
         final boolean
                 animatePulse =
                 !mDozeParameters.getDisplayNeedsBlanking() && mDozeParameters.getAlwaysOn();
+        boolean pulseLights = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.PULSE_AMBIENT_LIGHT, 0, UserHandle.USER_CURRENT) != 0;
         if (animatePulse) {
             mAnimateNextPositionUpdate = true;
         }
@@ -2942,6 +2949,13 @@ public class NotificationPanelViewController extends PanelViewController {
         // The height callback will take care of pushing the clock to the right position.
         if (!mPulsing && !mDozing) {
             mAnimateNextPositionUpdate = false;
+        }
+        if ((mPulseLightsView != null) && pulseLights) {
+            mPulseLightsView.setVisibility(mPulsing ? View.VISIBLE : View.GONE);
+            if (mPulsing) {
+                mPulseLightsView.animateNotification();
+                mPulseLightsView.setPulsing(pulsing);
+            }
         }
         mNotificationStackScroller.setPulsing(pulsing, animatePulse);
         mKeyguardStatusView.setPulsing(pulsing);

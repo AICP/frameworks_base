@@ -11091,6 +11091,18 @@ public final class Settings {
          */
         public static final String MONET_ENGINE_WHITE_LUMINANCE = "monet_engine_white_luminance";
 
+        /**
+         * Whether to enable Ambient edge light
+         * @hide
+         */
+        public static final String PULSE_AMBIENT_LIGHT = "pulse_ambient_light";
+
+        /**
+         * What color to use for Ambient edge light
+         * @hide
+         */
+        public static final String PULSE_AMBIENT_LIGHT_COLOR = "pulse_ambient_light_color";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

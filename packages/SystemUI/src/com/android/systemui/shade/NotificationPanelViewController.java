@@ -67,7 +67,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.PowerManager;
+import android.provider.Settings;
 import android.os.Trace;
+import android.os.UserHandle;
 import android.util.IndentingPrintWriter;
 import android.util.Log;
 import android.util.MathUtils;
@@ -135,6 +137,7 @@ import com.android.systemui.model.SysUiState;
 import com.android.systemui.navigationbar.NavigationBarController;
 import com.android.systemui.navigationbar.NavigationModeController;
 import com.android.systemui.navigationbar.views.NavigationBarView;
+import com.android.systemui.aicp.NotificationLightsView;
 import com.android.systemui.plugins.ActivityStarter;
 import com.android.systemui.plugins.FalsingManager;
 import com.android.systemui.plugins.FalsingManager.FalsingTapListener;
@@ -405,6 +408,8 @@ public final class NotificationPanelViewController implements
     private final FalsingCollector mFalsingCollector;
     private final ShadeHeadsUpTrackerImpl mShadeHeadsUpTracker = new ShadeHeadsUpTrackerImpl();
     private final ShadeFoldAnimatorImpl mShadeFoldAnimator = new ShadeFoldAnimatorImpl();
+
+    private NotificationLightsView mPulseLightsView;
 
     @VisibleForTesting
     Set<Animator> mTestSetOfAnimatorsUsed;
@@ -923,6 +928,8 @@ public final class NotificationPanelViewController implements
         mQsController.init();
         mShadeHeadsUpTracker.addTrackingHeadsUpListener(
                 mNotificationStackScrollLayoutController::setTrackingHeadsUp);
+        mPulseLightsView = (NotificationLightsView) mView.findViewById(R.id.lights_container);
+
         mWakeUpCoordinator.setStackScroller(mNotificationStackScrollLayoutController);
         mWakeUpCoordinator.addListener(new NotificationWakeUpCoordinator.WakeUpListener() {
             @Override
@@ -2474,6 +2481,8 @@ public final class NotificationPanelViewController implements
         final boolean
                 animatePulse =
                 !mDozeParameters.getDisplayNeedsBlanking() && mDozeParameters.getAlwaysOn();
+        boolean pulseLights = Settings.Secure.getIntForUser(mView.getContext().getContentResolver(),
+                Settings.Secure.PULSE_AMBIENT_LIGHT, 0, UserHandle.USER_CURRENT) != 0;
         if (animatePulse) {
             mAnimateNextPositionUpdate = true;
         }
@@ -2481,6 +2490,13 @@ public final class NotificationPanelViewController implements
         // The height callback will take care of pushing the clock to the right position.
         if (!mPulsing && !mDozing) {
             mAnimateNextPositionUpdate = false;
+        }
+                if ((mPulseLightsView != null) && pulseLights) {
+            mPulseLightsView.setVisibility(mPulsing ? View.VISIBLE : View.GONE);
+            if (mPulsing) {
+                mPulseLightsView.animateNotification();
+                mPulseLightsView.setPulsing(pulsing);
+            }
         }
         mNotificationStackScrollLayoutController.setPulsing(pulsing, animatePulse);
 

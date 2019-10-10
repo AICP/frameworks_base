@@ -10677,6 +10677,18 @@ public final class Settings {
         @SuppressLint("NoSettingsProvider")
         public static final String TETHERING_ALLOW_VPN_UPSTREAMS = "tethering_allow_vpn_upstreams";
 
+        /**
+         * Whether to enable Ambient edge light
+         * @hide
+         */
+        public static final String PULSE_AMBIENT_LIGHT = "pulse_ambient_light";
+
+        /**
+         * What color to use for Ambient edge light
+         * @hide
+         */
+        public static final String PULSE_AMBIENT_LIGHT_COLOR = "pulse_ambient_light_color";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

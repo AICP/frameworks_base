@@ -330,21 +330,6 @@ public class QuickQSPanel extends QSPanel {
         }
 
         @Override
-        public void updateSettings() {
-            if (mPanel != null) {
-                mPanel.updateSettings();
-            }
-        }
-
-        @Override
-        public int getNumColumns() {
-            if (mPanel != null) {
-                return mPanel.getNumQuickTiles();
-            }
-            return super.getNumColumns();
-        }
-
-        @Override
         public boolean isShowTitles() {
             return false;
         }

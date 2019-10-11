@@ -998,6 +998,9 @@ final class DefaultPermissionGrantPolicy {
         String clockAppPackage = getDefaultSystemHandlerActivityPackage(pm, AlarmClock.ACTION_SET_ALARM, userId);
         grantPermissionsToSystemPackage(pm, clockAppPackage, userId, NOTIFICATION_PERMISSIONS);
 
+        // ThemePicker
+        grantSystemFixedPermissionsToSystemPackage(pm, "com.android.wallpaper", userId, STORAGE_PERMISSIONS);
+
         String[] notifPackages = {
             "com.android.camera2",
             "com.google.android.apps.safetyhub",

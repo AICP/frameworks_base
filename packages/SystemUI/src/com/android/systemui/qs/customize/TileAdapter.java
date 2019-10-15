@@ -602,6 +602,7 @@ public class TileAdapter extends RecyclerView.Adapter<Holder> implements TileSta
 
     private class OmniSpanSizeLookup extends SpanSizeLookup {
         private int mColumns = 3;
+        private int mRows = 3;
         @Override
         public int getSpanSize(int position) {
             final int type = getItemViewType(position);
@@ -609,6 +610,9 @@ public class TileAdapter extends RecyclerView.Adapter<Holder> implements TileSta
         }
         public void setColumnCount(int columns) {
             mColumns = columns;
+        }
+        public void setRowsCount(int rows) {
+            mRows = rows;
         }
     }
     private final OmniSpanSizeLookup mSizeLookup = new OmniSpanSizeLookup();
@@ -734,6 +738,10 @@ public class TileAdapter extends RecyclerView.Adapter<Holder> implements TileSta
 
     public void setColumnCount(int columns) {
         mSizeLookup.setColumnCount(columns);
+    }
+
+    public void setRowsCount(int rows) {
+        mSizeLookup.setRowsCount(rows);
     }
 
     public void setHideLabel(boolean value) {

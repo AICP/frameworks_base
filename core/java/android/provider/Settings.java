@@ -5359,6 +5359,12 @@ public final class Settings {
                 "statusbar_battery_bar_enable_charging_color";
 
         /**
+        * Number of qs rows on landscape orientation
+        * @hide
+        */
+        public static final String OMNI_QS_LAYOUT_ROWS_LANDSCAPE = "qs_layout_rows_landscape";
+
+        /**
          * @hide
          */
         public static final String STATUSBAR_BATTERY_BAR_BLEND_COLORS_REVERSE =
@@ -6200,6 +6206,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(OMNI_QS_LAYOUT_COLUMNS, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(OMNI_QS_TILE_TITLE_VISIBILITY, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(OMNI_QS_LAYOUT_ROWS, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(OMNI_QS_LAYOUT_ROWS_LANDSCAPE, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(STATUSBAR_BATTERY_BAR, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(STATUSBAR_BATTERY_BAR_COLOR, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(STATUSBAR_BATTERY_BAR_DARK_COLOR, ANY_INTEGER_VALIDATOR);

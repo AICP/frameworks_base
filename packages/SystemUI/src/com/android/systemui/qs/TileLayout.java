@@ -3,6 +3,7 @@ package com.android.systemui.qs;
 import static com.android.systemui.util.Utils.useQsMediaPlayer;
 
 import android.content.Context;
+import android.content.ContentResolver;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.UserHandle;
@@ -171,15 +172,23 @@ public class TileLayout extends ViewGroup implements QSTileLayout {
      * @param tilesCount Upper limit on the number of tiles to show. to prevent empty rows.
      */
     public boolean updateMaxRows(int allowedHeight, int tilesCount) {
+        final Resources res = getContext().getResources();
+        final ContentResolver resolver = mContext.getContentResolver();
         final int availableHeight =  allowedHeight - mCellMarginTop
                 // Add the cell margin in order to divide easily by the height + the margin below
                 + mCellMarginVertical;
         final int previousRows = mRows;
-        mRows = availableHeight / (mCellHeight + mCellMarginVertical);
+        if (res.getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            mRows = Settings.System.getIntForUser(resolver,
+                    Settings.System.AICP_QS_LAYOUT_ROWS, 3,
+                    UserHandle.USER_CURRENT);
+        } else {
+            mRows = Settings.System.getIntForUser(resolver,
+                    Settings.System.AICP_QS_LAYOUT_ROWS_LANDSCAPE, 2,
+                    UserHandle.USER_CURRENT);
+        }
         if (mRows < mMinRows) {
             mRows = mMinRows;
-        } else if (mRows >= mMaxAllowedRows) {
-            mRows = mMaxAllowedRows;
         }
         if (mRows > (tilesCount + mColumns - 1) / mColumns) {
             mRows = (tilesCount + mColumns - 1) / mColumns;
@@ -233,8 +242,14 @@ public class TileLayout extends ViewGroup implements QSTileLayout {
                 column *  (mCellWidth + mCellMarginHorizontal);
     }
 
+    @Override
     public int getNumColumns() {
         return mColumns;
+    }
+
+    @Override
+    public int getNumRows() {
+        return mRows;
     }
 
     @Override
@@ -245,6 +260,8 @@ public class TileLayout extends ViewGroup implements QSTileLayout {
     public void updateSettings() {
         final Resources res = mContext.getResources();
         mDefaultColumns = Math.max(1, res.getInteger(R.integer.quick_settings_num_columns));
+        int defaultRows = Math.max(1, res.getInteger(R.integer.quick_settings_num_columns));
+        int defaultRowsLandscape = Math.min(2, res.getInteger(R.integer.quick_settings_max_rows));
         boolean isPortrait = res.getConfiguration().orientation
                 == Configuration.ORIENTATION_PORTRAIT;
         int columns = Settings.System.getIntForUser(
@@ -253,16 +270,27 @@ public class TileLayout extends ViewGroup implements QSTileLayout {
         int columnsLandscape = Settings.System.getIntForUser(
                 mContext.getContentResolver(), Settings.System.OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE, mDefaultColumns,
                 UserHandle.USER_CURRENT);
+        int rows = Settings.System.getIntForUser(
+                mContext.getContentResolver(), Settings.System.OMNI_QS_LAYOUT_ROWS, defaultRows,
+                UserHandle.USER_CURRENT);
+        int rowsLandscape = Settings.System.getIntForUser(
+                mContext.getContentResolver(), Settings.System.OMNI_QS_LAYOUT_ROWS_LANDSCAPE, defaultRowsLandscape,
+                UserHandle.USER_CURRENT);
         boolean showTitles = Settings.System.getIntForUser(
                 mContext.getContentResolver(), Settings.System.OMNI_QS_TILE_TITLE_VISIBILITY, 1,
                 UserHandle.USER_CURRENT) == 1;
-         if (showTitles) {
+        if (showTitles) {
             mCellHeight = mContext.getResources().getDimensionPixelSize(R.dimen.qs_tile_height);
         } else {
             mCellHeight = mContext.getResources().getDimensionPixelSize(R.dimen.qs_tile_height_wo_label);
         }
         if (mColumns != (isPortrait ? columns : columnsLandscape) || mShowTitles != showTitles) {
             mColumns = isPortrait ? columns : columnsLandscape;
+            mShowTitles = showTitles;
+            requestLayout();
+        }
+        if (mRows != (isPortrait ? rows : rowsLandscape) || mShowTitles != showTitles) {
+            mRows = isPortrait ? rows : rowsLandscape;
             mShowTitles = showTitles;
             requestLayout();
         }

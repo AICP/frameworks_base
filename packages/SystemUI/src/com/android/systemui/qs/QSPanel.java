@@ -1328,6 +1328,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
 
         boolean updateResources();
         int getNumColumns();
+        int getNumRows();
         void updateSettings();
         boolean isShowTitles();
 

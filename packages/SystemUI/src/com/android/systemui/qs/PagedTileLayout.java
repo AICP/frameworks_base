@@ -504,6 +504,11 @@ public class PagedTileLayout extends ViewPager implements QSTileLayout {
     }
 
     @Override
+    public int getNumRows() {
+        return mPages.get(0).getNumRows();
+    }
+
+    @Override
     public boolean isShowTitles() {
         return mPages.get(0).isShowTitles();
     }

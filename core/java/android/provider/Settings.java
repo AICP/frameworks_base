@@ -4723,6 +4723,15 @@ public final class Settings {
                 ANY_INTEGER_VALIDATOR;
 
         /**
+        * Number of qs rows on landscape orientation
+        * @hide
+        */
+        public static final String AICP_QS_LAYOUT_ROWS_LANDSCAPE = "qs_layout_rows_landscape";
+        /** @hide */
+        private static final Validator AICP_QS_LAYOUT_ROWS_LANDSCAPE_VALIDATOR =
+                ANY_INTEGER_VALIDATOR;
+
+        /**
          * @hide
          */
         public static final String AICP_QS_QUICKBAR_COLUMNS = "qs_quickbar_columns";
@@ -6008,7 +6017,6 @@ public final class Settings {
         private static final Validator ACCELEROMETER_ROTATION_ANGLES_VALIDATOR =
                 NON_NEGATIVE_INTEGER_VALIDATOR;
 
-
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6104,6 +6112,7 @@ public final class Settings {
             AICP_QS_LAYOUT_COLUMNS,
             AICP_QS_TILE_TITLE_VISIBILITY,
             AICP_QS_LAYOUT_ROWS,
+            AICP_QS_LAYOUT_ROWS_LANDSCAPE,
             AICP_QS_QUICKBAR_COLUMNS,
             MUSIC_TILE_TITLE,
             ENABLE_CONDITIONS,
@@ -6368,6 +6377,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(AICP_QS_LAYOUT_COLUMNS);
             PRIVATE_SETTINGS.add(AICP_QS_TILE_TITLE_VISIBILITY);
             PRIVATE_SETTINGS.add(AICP_QS_LAYOUT_ROWS);
+            PRIVATE_SETTINGS.add(AICP_QS_LAYOUT_ROWS_LANDSCAPE);
             PRIVATE_SETTINGS.add(AICP_QS_QUICKBAR_COLUMNS);
             PRIVATE_SETTINGS.add(MUSIC_TILE_TITLE);
             PRIVATE_SETTINGS.add(ENABLE_CONDITIONS);
@@ -6621,6 +6631,7 @@ public final class Settings {
             VALIDATORS.put(AICP_QS_LAYOUT_COLUMNS, AICP_QS_LAYOUT_COLUMNS_VALIDATOR);
             VALIDATORS.put(AICP_QS_TILE_TITLE_VISIBILITY, AICP_QS_TILE_TITLE_VISIBILITY_VALIDATOR);
             VALIDATORS.put(AICP_QS_LAYOUT_ROWS, AICP_QS_LAYOUT_ROWS_VALIDATOR);
+            VALIDATORS.put(AICP_QS_LAYOUT_ROWS_LANDSCAPE, AICP_QS_LAYOUT_ROWS_LANDSCAPE_VALIDATOR);
             VALIDATORS.put(AICP_QS_QUICKBAR_COLUMNS, AICP_QS_QUICKBAR_COLUMNS_VALIDATOR);
             VALIDATORS.put(MUSIC_TILE_TITLE, MUSIC_TILE_TITLE_VALIDATOR);
             VALIDATORS.put(ENABLE_CONDITIONS, ENABLE_CONDITIONS_VALIDATOR);

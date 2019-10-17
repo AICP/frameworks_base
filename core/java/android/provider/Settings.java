@@ -6173,6 +6173,11 @@ public final class Settings {
          */
         public static final String PARTIAL_SCREENSHOT_AS_DEFAULT = "partial_screenshot_as_default";
 
+        /**
+         * @hide
+         */
+        public static final String FLASHLIGHT_ON_CALL_WAITING = "flashlight_on_call_waiting";
+
         /***************************
          * AICP System Settings end
          ***************************/

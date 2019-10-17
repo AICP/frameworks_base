@@ -6017,6 +6017,15 @@ public final class Settings {
         private static final Validator ACCELEROMETER_ROTATION_ANGLES_VALIDATOR =
                 NON_NEGATIVE_INTEGER_VALIDATOR;
 
+        /**
+         * Whether footer text shows #AICP
+         * @hide
+         */
+        public static final String AICP_FOOTER_TEXT_SHOW = "footer_text_show";
+         /** @hide */
+        private static final Validator AICP_FOOTER_TEXT_SHOW_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6235,6 +6244,7 @@ public final class Settings {
             STATUS_BAR_QUICK_QS_PULLDOWN,
             QS_SYSTEM_INFO,
             ACCELEROMETER_ROTATION_ANGLES,
+            AICP_FOOTER_TEXT_SHOW,
             // AICP Settings end
         };
 
@@ -6507,6 +6517,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUS_BAR_QUICK_QS_PULLDOWN);
             PRIVATE_SETTINGS.add(QS_SYSTEM_INFO);
             PRIVATE_SETTINGS.add(ACCELEROMETER_ROTATION_ANGLES);
+            PRIVATE_SETTINGS.add(AICP_FOOTER_TEXT_SHOW);
             // AICP Settings end
         }
 
@@ -6767,6 +6778,7 @@ public final class Settings {
             VALIDATORS.put(QS_SYSTEM_INFO, QS_SYSTEM_INFO_VALIDATOR);
             VALIDATORS.put(ACCELEROMETER_ROTATION_ANGLES,
                     ACCELEROMETER_ROTATION_ANGLES_VALIDATOR);
+            VALIDATORS.put(AICP_FOOTER_TEXT_SHOW, AICP_FOOTER_TEXT_SHOW_VALIDATOR);
             // AICP Settings end
         }
 

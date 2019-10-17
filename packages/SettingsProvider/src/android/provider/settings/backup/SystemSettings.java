@@ -160,7 +160,10 @@ public class SystemSettings {
                 Settings.System.STATUS_BAR_LOGO_POSITION,
                 Settings.System.STATUS_BAR_LOGO_STYLE,
                 Settings.System.STATUS_BAR_LOGO_COLOR_ACCENT,
-                Settings.System.SENSOR_BLOCK
+                Settings.System.SENSOR_BLOCK,
+                Settings.System.QS_FOOTER_TEXT_SHOW,
+                Settings.System.QS_FOOTER_TEXT_STRING,
+                Settings.System.QS_FOOTER_TEXT_FONT_WEIGHT
         ));
         if (Flags.backUpSmoothDisplayAndForcePeakRefreshRate()) {
             settings.add(Settings.System.PEAK_REFRESH_RATE);

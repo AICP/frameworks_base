@@ -23,7 +23,6 @@ import static com.android.systemui.util.InjectionInflationController.VIEW_CONTEX
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.database.ContentObserver;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
@@ -50,7 +49,6 @@ import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.keyguard.KeyguardUpdateMonitor;
 import com.android.settingslib.Utils;
-import com.android.settingslib.development.DevelopmentSettingsEnabler;
 import com.android.settingslib.drawable.UserIconDrawable;
 import com.android.systemui.Dependency;
 import com.android.systemui.R;
@@ -73,6 +71,7 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
     private static final String TAG = "QSFooterImpl";
     public static final String QS_SHOW_AUTO_BRIGHTNESS_BUTTON = "qs_show_auto_brightness_button";
     public static final String SCREEN_BRIGHTNESS_MODE = "screen_brightness_mode";
+    public static final String AICP_FOOTER_TEXT_SHOW = "footer_text_show";
 
     private final ActivityStarter mActivityStarter;
     private final UserInfoController mUserInfoController;
@@ -81,7 +80,7 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
     protected View mSettingsContainer;
     private PageIndicator mPageIndicator;
     private TextView mBuildText;
-    private boolean mShouldShowBuildText;
+    private boolean mShouldShowFooterText;
 
     private boolean mQsDisabled;
     private QSPanel mQsPanel;
@@ -109,15 +108,6 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
     protected View mAutoBrightnessContainer;
     private boolean mShowAutoBrightnessButton;
     private boolean mAutoBrightOn;
-
-    private final ContentObserver mDeveloperSettingsObserver = new ContentObserver(
-            new Handler(mContext.getMainLooper())) {
-        @Override
-        public void onChange(boolean selfChange, Uri uri) {
-            super.onChange(selfChange, uri);
-            setBuildText();
-        }
-    };
 
     @Inject
     public QSFooterImpl(@Named(VIEW_CONTEXT) Context context, AttributeSet attrs,
@@ -171,22 +161,20 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
                 oldBottom) -> updateAnimator(right - left));
         setImportantForAccessibility(IMPORTANT_FOR_ACCESSIBILITY_YES);
         updateEverything();
-        setBuildText();
+        setFooterText();
     }
 
-    private void setBuildText() {
+    private void setFooterText() {
         if (mBuildText == null) return;
-        if (DevelopmentSettingsEnabler.isDevelopmentSettingsEnabled(mContext)) {
-            mBuildText.setText(mContext.getString(
-                    com.android.internal.R.string.bugreport_status,
-                    Build.VERSION.RELEASE_OR_CODENAME,
-                    Build.ID));
+        mShouldShowFooterText = Settings.System.getIntForUser(mContext.getContentResolver(),
+                        Settings.System.AICP_FOOTER_TEXT_SHOW, 0,
+                        UserHandle.USER_CURRENT) == 1;
+        mBuildText.setText(mContext.getResources().getString(R.string.qs_footer_aicp_text));
+        if (mShouldShowFooterText) {
             // Set as selected for marquee before its made visible, then it won't be announced when
             // it's made visible.
             mBuildText.setSelected(true);
-            mShouldShowBuildText = true;
         } else {
-            mShouldShowBuildText = false;
             mBuildText.setSelected(false);
         }
     }
@@ -270,13 +258,11 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
+
         final TunerService tunerService = Dependency.get(TunerService.class);
         tunerService.addTunable(this, QS_SHOW_AUTO_BRIGHTNESS_BUTTON);
         tunerService.addTunable(this, SCREEN_BRIGHTNESS_MODE);
-
-        mContext.getContentResolver().registerContentObserver(
-                Settings.Global.getUriFor(Settings.Global.DEVELOPMENT_SETTINGS_ENABLED), false,
-                mDeveloperSettingsObserver, UserHandle.USER_ALL);
+        tunerService.addTunable(this, AICP_FOOTER_TEXT_SHOW);
     }
 
     @Override
@@ -284,7 +270,6 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
     public void onDetachedFromWindow() {
         Dependency.get(TunerService.class).removeTunable(this);
         setListening(false);
-        mContext.getContentResolver().unregisterContentObserver(mDeveloperSettingsObserver);
         super.onDetachedFromWindow();
     }
 
@@ -295,6 +280,9 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
         }
         if (SCREEN_BRIGHTNESS_MODE.equals(key)) {
             setAutoBrightnessIcon(newValue != null && Integer.parseInt(newValue) != 0);
+        }
+        if (AICP_FOOTER_TEXT_SHOW.equals(key)) {
+            setFooterText();
         }
     }
 
@@ -360,7 +348,7 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
         mEditContainer.setVisibility(isDemo || !mExpanded ? View.INVISIBLE : View.VISIBLE);
         mSettingsButton.setVisibility(isDemo || !mExpanded ? View.INVISIBLE : View.VISIBLE);
 
-        mBuildText.setVisibility(mExpanded && mShouldShowBuildText ? View.VISIBLE : View.GONE);
+        mBuildText.setVisibility(mExpanded && mShouldShowFooterText ? View.VISIBLE : View.GONE);
     }
 
     private boolean showUserSwitcher() {

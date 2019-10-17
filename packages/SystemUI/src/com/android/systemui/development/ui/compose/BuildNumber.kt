@@ -16,11 +16,14 @@
 
 package com.android.systemui.development.ui.compose
 
+import android.content.Context
+import android.provider.Settings
 import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.CornerSize
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.minimumInteractiveComponentSize
@@ -40,6 +43,22 @@ import com.android.systemui.lifecycle.rememberViewModel
 import com.android.systemui.qs.ui.compose.borderOnFocus
 import com.android.systemui.res.R
 
+
+fun getQsFooterTextShow(context: Context): Int {
+    return Settings.System.getInt(
+        context.contentResolver,
+        Settings.System.QS_FOOTER_TEXT_SHOW,
+        0
+    )
+}
+
+fun getQsFooterTextString(context: Context): String {
+    return Settings.System.getString(
+        context.contentResolver,
+        Settings.System.QS_FOOTER_TEXT_STRING
+    ) ?: ""
+}
+
 @Composable
 fun BuildNumber(
     viewModelFactory: BuildNumberViewModel.Factory,
@@ -47,15 +66,14 @@ fun BuildNumber(
     textColor: Color = MaterialTheme.colorScheme.onSurface,
 ) {
     val viewModel = rememberViewModel(traceName = "BuildNumber") { viewModelFactory.create() }
-
-    val buildNumber = viewModel.buildNumber
-
-    if (buildNumber != null) {
+    val context = LocalContext.current
+    val QsFooterTextenabled = getQsFooterTextShow(context)
+    if (QsFooterTextenabled == 1) {
         val haptics = LocalHapticFeedback.current
         val copyToClipboardActionLabel = stringResource(id = R.string.copy_to_clipboard_a11y_action)
 
         Text(
-            text = buildNumber.value,
+            text = getQsFooterTextString(context),
             style = MaterialTheme.typography.bodySmall,
             modifier =
                 modifier

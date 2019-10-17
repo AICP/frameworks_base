@@ -16,6 +16,8 @@
 
 package com.android.systemui.development.ui.compose
 
+import android.content.Context
+import android.provider.Settings
 import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Spacer
@@ -29,16 +31,41 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.onLongClick
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.android.systemui.communal.ui.compose.extensions.detectLongPressGesture
 import com.android.systemui.development.ui.viewmodel.BuildNumberViewModel
 import com.android.systemui.lifecycle.rememberViewModel
 import com.android.systemui.qs.ui.compose.borderOnFocus
 import com.android.systemui.res.R
+
+fun getQsFooterTextShow(context: Context): Int {
+    return Settings.System.getInt(
+        context.contentResolver,
+        Settings.System.QS_FOOTER_TEXT_SHOW,
+        0
+    )
+}
+
+fun getQsFooterTextString(context: Context): String {
+    return Settings.System.getString(
+        context.contentResolver,
+        Settings.System.QS_FOOTER_TEXT_STRING
+    ) ?: ""
+}
+
+fun getQsFooterTextFontWeight(context: Context): Int {
+    return Settings.System.getInt(
+        context.contentResolver,
+        Settings.System.QS_FOOTER_TEXT_FONT_WEIGHT,
+        0
+    )
+}
 
 @Composable
 fun BuildNumber(
@@ -47,16 +74,25 @@ fun BuildNumber(
     textColor: Color = MaterialTheme.colorScheme.onSurface,
 ) {
     val viewModel = rememberViewModel(traceName = "BuildNumber") { viewModelFactory.create() }
+    val context = LocalContext.current
 
-    val buildNumber = viewModel.buildNumber
+    val footerFontWeight: FontWeight =
+    if (getQsFooterTextFontWeight(context) == 1) {
+        FontWeight.Bold
+    } else {
+        FontWeight.Normal
+    }
 
-    if (buildNumber != null) {
+    val QsFooterTextenabled = getQsFooterTextShow(context)
+    if (QsFooterTextenabled == 1) {
         val haptics = LocalHapticFeedback.current
         val copyToClipboardActionLabel = stringResource(id = R.string.copy_to_clipboard_a11y_action)
 
         Text(
-            text = buildNumber.value,
-            style = MaterialTheme.typography.bodySmall,
+            text = getQsFooterTextString(context),
+//            style = MaterialTheme.typography.bodySmall,
+            style = MaterialTheme.typography.bodyMedium,
+            fontWeight = footerFontWeight,
             modifier =
                 modifier
                     .borderOnFocus(

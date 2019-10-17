@@ -7134,6 +7134,24 @@ public final class Settings {
         public static final String STATUSBAR_CLOCK_CHIP = "statusbar_clock_chip";
 
         /**
+         * Whether to show qs footer text
+         * @hide
+         */
+        public static final String QS_FOOTER_TEXT_SHOW = "qs_footer_text_show";
+
+        /**
+         * QS footer text
+         * @hide
+         */
+        public static final String QS_FOOTER_TEXT_STRING = "qs_footer_text_string";
+
+	/**
+         * QS footer text font weight
+         * @hide
+         */
+        public static final String QS_FOOTER_TEXT_FONT_WEIGHT = "qs_footer_text_font_weight";
+
+        /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.
          *
@@ -7336,6 +7354,9 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SLIM_RECENTS_BLACKLIST_VALUES);
             PRIVATE_SETTINGS.add(SLIM_RECENT_ENTER_EXIT_ANIMATION);
             // SLIM RECENTS END
+            PRIVATE_SETTINGS.add(QS_FOOTER_TEXT_SHOW);
+            PRIVATE_SETTINGS.add(QS_FOOTER_TEXT_STRING);
+            PRIVATE_SETTINGS.add(QS_FOOTER_TEXT_FONT_WEIGHT);
         }
 
         /**

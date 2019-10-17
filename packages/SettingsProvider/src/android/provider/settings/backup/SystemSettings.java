@@ -187,7 +187,10 @@ public class SystemSettings {
                 Settings.System.SLIM_RECENTS_BLACKLIST_VALUES,
                 Settings.System.SLIM_RECENT_ENTER_EXIT_ANIMATION,
                 // SLIM RECENTS END
-                Settings.System.SCREEN_OFF_ANIMATION
+                Settings.System.SCREEN_OFF_ANIMATION,
+                Settings.System.QS_FOOTER_TEXT_SHOW,
+                Settings.System.QS_FOOTER_TEXT_STRING,
+                Settings.System.QS_FOOTER_TEXT_FONT_WEIGHT
         ));
         if (Flags.backUpSmoothDisplayAndForcePeakRefreshRate()) {
             settings.add(Settings.System.PEAK_REFRESH_RATE);

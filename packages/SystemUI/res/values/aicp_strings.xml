@@ -238,4 +238,6 @@
     <!-- Stock Navbar -->
     <string name="systemui_tuner_navbar_title">Stock settings</string>
     <string name="navbar_activity_title">Navigation bar</string>
+
+    <string name="qs_footer_aicp_text" translatable="false">#Aicp</string>
 </resources>

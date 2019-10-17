@@ -151,5 +151,6 @@ public class SystemSettings {
         Settings.System.INCREASING_RING_START_VOLUME,
         Settings.System.INCREASING_RING_RAMP_UP_TIME,
         Settings.System.FLASHLIGHT_ON_CALL,
+        Settings.System.FLASHLIGHT_ON_CALL_WAITING,
     };
 }

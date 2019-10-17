@@ -6791,6 +6791,12 @@ public final class Settings {
          */
         public static final String OPTIMIZED_CHARGE_FLOOR = "optimized_charge_floor";
 
+        /**
+         * Whether to show qs footer text
+         * @hide
+         */
+        public static final String QS_FOOTER_TEXT_SHOW = "qs_footer_text_show";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7146,6 +7152,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(OPTIMIZED_CHARGE_ENABLED);
             PRIVATE_SETTINGS.add(OPTIMIZED_CHARGE_CEILING);
             PRIVATE_SETTINGS.add(OPTIMIZED_CHARGE_FLOOR);
+            PRIVATE_SETTINGS.add(QS_FOOTER_TEXT_SHOW);
         }
 
         /**

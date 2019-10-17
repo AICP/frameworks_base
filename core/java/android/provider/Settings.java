@@ -5804,6 +5804,12 @@ public final class Settings {
          */
         public static final String BACK_GESTURE_HAPTIC = "back_gesture_haptic";
 
+        /**
+         * Whether to show qs footer text
+         * @hide
+         */
+        public static final String QS_FOOTER_TEXT_SHOW = "qs_footer_text_show";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5948,6 +5954,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SCREEN_OFF_ANIMATION);
             PRIVATE_SETTINGS.add(VOLUME_KEY_CURSOR_CONTROL);
             PRIVATE_SETTINGS.add(BACK_GESTURE_HAPTIC);
+            PRIVATE_SETTINGS.add(QS_FOOTER_TEXT_SHOW);
         }
 
         /**

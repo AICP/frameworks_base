@@ -36,7 +36,7 @@ import com.android.systemui.plugins.DarkIconDispatcher.DarkReceiver;
 
 import com.android.systemui.tuner.TunerService;
 
-public class LogoImageViewRight extends ImageView implements
+public class LogoImageViewQuickRight extends ImageView implements
         TunerService.Tunable {
 
     private Context mContext;
@@ -57,15 +57,15 @@ public class LogoImageViewRight extends ImageView implements
     private static final String STATUS_BAR_LOGO_STYLE =
             "system:" + Settings.System.STATUS_BAR_LOGO_STYLE;
 
-    public LogoImageViewRight(Context context) {
+    public LogoImageViewQuickRight(Context context) {
         this(context, null);
     }
 
-    public LogoImageViewRight(Context context, AttributeSet attrs) {
+    public LogoImageViewQuickRight(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public LogoImageViewRight(Context context, AttributeSet attrs, int defStyle) {
+    public LogoImageViewQuickRight(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         final Resources resources = getResources();
         mContext = context;
@@ -101,7 +101,7 @@ public class LogoImageViewRight extends ImageView implements
 
     public void onDarkChanged(Rect area, float darkIntensity, int tint) {
         mTintColor = DarkIconDispatcher.getTint(area, this, tint);
-        if (mLogo && (mLogoPosition == 1 || mLogoPosition == 3) &&
+        if (mLogo && mLogoPosition == 3 &&
                 mLogoColor == 0xFFFFFFFF) {
             updateLogo();
         }
@@ -110,7 +110,7 @@ public class LogoImageViewRight extends ImageView implements
     public void updateLogo() {
         Drawable drawable = null;
 
-	if (!mLogo || (mLogoPosition == 0 || mLogoPosition == 2)) {
+        if (!mLogo || mLogoPosition != 3) {
             setImageDrawable(null);
             setVisibility(View.GONE);
             return;

@@ -22,6 +22,13 @@
     android:visibility="invisible"
     android:theme="@style/QSHeaderTheme"
     android:forceHasOverlappingRendering="false">
+    <com.android.systemui.aicp.logo.LogoImageViewQuick
+        android:id="@+id/statusbar_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingEnd="1dip"
+        android:scaleType="center"
+        android:visibility="gone" />
 
         <com.android.systemui.qs.QSHeaderInfoLayout
             android:id="@+id/status_container"
@@ -97,5 +104,14 @@
                  android:layout_marginStart="@dimen/qs_status_separator"
                  android:layout_gravity="end|center_vertical"
                  android:focusable="false"/>
+
+        <com.android.systemui.aicp.logo.LogoImageViewQuickRight
+            android:id="@+id/statusbar_logo_right"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingStart="2dip"
+            android:scaleType="center"
+            android:gravity="center_vertical"
+            android:visibility="gone" />
 
 </LinearLayout>

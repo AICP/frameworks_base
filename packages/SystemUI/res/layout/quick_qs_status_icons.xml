@@ -26,6 +26,14 @@
     android:focusable="true"
     android:theme="@style/QSHeaderTheme">
 
+    <com.android.systemui.aicp.logo.LogoImageViewQuick
+        android:id="@+id/statusbar_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingEnd="1dip"
+        android:scaleType="center"
+        android:visibility="gone" />
+
     <com.android.systemui.statusbar.policy.DateView
         android:id="@+id/date"
         android:layout_width="wrap_content"
@@ -50,4 +58,12 @@
         systemui:textAppearance="@style/TextAppearance.QS.Status"
         android:paddingEnd="2dp" />
 
+    <com.android.systemui.aicp.logo.LogoImageViewQuickRight
+        android:id="@+id/statusbar_logo_right"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingStart="2dip"
+        android:scaleType="center"
+        android:gravity="center_vertical"
+        android:visibility="gone" />
 </LinearLayout>

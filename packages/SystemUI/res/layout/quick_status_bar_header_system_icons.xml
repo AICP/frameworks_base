@@ -27,6 +27,14 @@
     android:clickable="true"
     android:paddingTop="@dimen/status_bar_padding_top" >
 
+    <com.android.systemui.aicp.logo.LogoImageViewQuick
+        android:id="@+id/statusbar_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingEnd="1dip"
+        android:scaleType="center"
+        android:visibility="gone" />
+
     <com.android.systemui.statusbar.policy.Clock
         android:id="@+id/clock"
         android:layout_width="wrap_content"
@@ -38,5 +46,14 @@
         android:singleLine="true"
         android:textAppearance="@style/TextAppearance.StatusBar.Clock"
         systemui:showDark="false" />
+
+    <com.android.systemui.aicp.logo.LogoImageViewQuickRight
+        android:id="@+id/statusbar_logo_right"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingStart="2dip"
+        android:scaleType="center"
+        android:gravity="center_vertical"
+        android:visibility="gone" />
 
 </FrameLayout>

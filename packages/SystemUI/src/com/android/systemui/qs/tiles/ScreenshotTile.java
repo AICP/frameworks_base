@@ -87,16 +87,16 @@ public class ScreenshotTile extends QSTileImpl<BooleanState> {
 
     @Override
     protected void handleUpdateState(BooleanState state, Object arg) {
+        state.label = mContext.getString(R.string.quick_settings_screenshot_label);
+        state.icon = ResourceIcon.get(R.drawable.ic_qs_screenshot);
         if (mRegion) {
-            state.label = mContext.getString(R.string.quick_settings_region_screenshot_label);
-            state.icon = ResourceIcon.get(R.drawable.ic_qs_region_screenshot);
-            state.contentDescription =  mContext.getString(
+            state.secondaryLabel = mContext.getString(R.string.quick_settings_region_screenshot_label);
+            state.contentDescription = mContext.getString(
                     R.string.quick_settings_region_screenshot_label);
         } else {
-            state.label = mContext.getString(R.string.quick_settings_screenshot_label);
-            state.icon = ResourceIcon.get(R.drawable.ic_qs_screenshot);
-            state.contentDescription =  mContext.getString(
-                    R.string.quick_settings_screenshot_label);
+            state.secondaryLabel = mContext.getString(R.string.quick_settings_full_screenshot_label);
+            state.contentDescription = mContext.getString(
+                    R.string.quick_settings_full_screenshot_label);
         }
     }
 }

@@ -5602,6 +5602,12 @@ public final class Settings {
          */
         public static final String STATUS_BAR_LOGO_STYLE = "status_bar_logo_style";
 
+        /**
+         * Statusbar AICP logo accent color setting
+         * @hide
+         */
+        public static final String STATUS_BAR_LOGO_COLOR_ACCENT = "status_bar_logo_color_accent";
+
 
         /***************************
          * AICP System Settings end
@@ -5682,6 +5688,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(STATUS_BAR_LOGO_COLOR, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(STATUS_BAR_LOGO_POSITION, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(STATUS_BAR_LOGO_STYLE, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(STATUS_BAR_LOGO_COLOR_ACCENT, BOOLEAN_VALIDATOR);
         }
 
         /**

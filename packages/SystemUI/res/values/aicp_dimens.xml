@@ -69,4 +69,7 @@
     <dimen name="status_bar_battery_bigcircle_icon_height">20.5dp</dimen>
      <!-- Width of the big battery circle icon in the status bar. -->
     <dimen name="status_bar_battery_bigcircle_icon_width">20.5dp</dimen>
+
+    <!-- QS System Info -->
+    <dimen name="qs_temperatur_icon_size">16sp</dimen>
 </resources>

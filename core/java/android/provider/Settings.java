@@ -5983,6 +5983,14 @@ public final class Settings {
         private static final Validator STATUS_BAR_QUICK_QS_PULLDOWN_VALIDATOR =
               new SettingsValidators.InclusiveIntegerRangeValidator(0, 3);
 
+        /**
+         * Shows system info in QS OFF:0, CPU temp:1, battery temp:2, gpu freq: 3, gpu load: 4
+         */
+        public static final String QS_SYSTEM_INFO = "qs_system_info";
+        /** @hide */
+        private static final Validator QS_SYSTEM_INFO_VALIDATOR =
+              new SettingsValidators.InclusiveIntegerRangeValidator(0, 4);
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6198,6 +6206,7 @@ public final class Settings {
             STATUS_BAR_SHOW_CARRIER,
             CUSTOM_CARRIER_LABEL,
             STATUS_BAR_QUICK_QS_PULLDOWN,
+            QS_SYSTEM_INFO,
             // AICP Settings end
         };
 
@@ -6467,6 +6476,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUS_BAR_SHOW_CARRIER);
             PRIVATE_SETTINGS.add(CUSTOM_CARRIER_LABEL);
             PRIVATE_SETTINGS.add(STATUS_BAR_QUICK_QS_PULLDOWN);
+            PRIVATE_SETTINGS.add(QS_SYSTEM_INFO);
             // AICP Settings end
         }
 
@@ -6723,6 +6733,7 @@ public final class Settings {
             VALIDATORS.put(STATUS_BAR_SHOW_CARRIER,STATUS_BAR_SHOW_CARRIER_VALIDATOR);
             VALIDATORS.put(CUSTOM_CARRIER_LABEL,CUSTOM_CARRIER_LABEL_VALIDATOR);
             VALIDATORS.put(STATUS_BAR_QUICK_QS_PULLDOWN,STATUS_BAR_QUICK_QS_PULLDOWN_VALIDATOR);
+            VALIDATORS.put(QS_SYSTEM_INFO, QS_SYSTEM_INFO_VALIDATOR);
             // AICP Settings end
         }
 

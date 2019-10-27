@@ -33,4 +33,6 @@
 
     <!-- Custom Carrier Label -->
     <dimen name="status_bar_carrier_height">14dp</dimen>
+
+    <dimen name="qs_temperatur_icon_size">16sp</dimen>
 </resources>

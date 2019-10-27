@@ -17,17 +17,21 @@ package com.android.systemui.qs;
 import static android.app.StatusBarManager.DISABLE2_QUICK_SETTINGS;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.database.ContentObserver;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.net.Uri;
+import android.os.UserHandle;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.provider.AlarmClock;
 import android.provider.CalendarContract;
+import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.Pair;
 import android.view.DisplayCutout;
@@ -35,8 +39,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowInsets;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Space;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
@@ -54,6 +60,9 @@ import com.android.systemui.statusbar.policy.Clock;
 import com.android.systemui.statusbar.policy.NetworkTraffic;
 import com.android.systemui.statusbar.policy.VariableDateView;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+
 import java.util.List;
 
 /**
@@ -62,6 +71,12 @@ import java.util.List;
  */
 public class QuickStatusBarHeader extends FrameLayout implements
         View.OnClickListener, View.OnLongClickListener {
+
+    public static final String QS_SHOW_INFO_HEADER = "qs_show_info_header";
+    private static final String CPU_TEMP_PATH = "/sys/class/thermal/thermal_zone0/temp";
+    private static final String BATTERY_TEMP_PATH = "/sys/class/power_supply/battery/temp";
+    private static final String GPU_CLOCK_PATH = "/sys/kernel/gpu/gpu_clock";
+    private static final String GPU_BUSY_PATH = "/sys/kernel/gpu/gpu_busy";
 
     private boolean mExpanded;
     private boolean mQsDisabled;
@@ -99,6 +114,31 @@ public class QuickStatusBarHeader extends FrameLayout implements
     private QSExpansionPathInterpolator mQSExpansionPathInterpolator;
     private StatusBarContentInsetsProvider mInsetsProvider;
 
+    private TextView mSystemInfoText;
+    private int mSystemInfoMode;
+    private ImageView mSystemInfoIcon;
+    private View mSystemInfoLayout;
+
+    protected ContentResolver mContentResolver;
+
+    private class SettingsObserver extends ContentObserver {
+        SettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        void observe() {
+            ContentResolver resolver = getContext().getContentResolver();
+            resolver.registerContentObserver(Settings.System
+                    .getUriFor(Settings.System.QS_SYSTEM_INFO), false,
+                    this, UserHandle.USER_ALL);
+            }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            updateSettings();
+        }
+    }
+    private SettingsObserver mSettingsObserver = new SettingsObserver(mHandler);
     private int mRoundedCornerPadding = 0;
     private int mWaterfallTopInset;
     private int mCutOutPaddingLeft;
@@ -123,7 +163,10 @@ public class QuickStatusBarHeader extends FrameLayout implements
         super(context, attrs);
         mActivityStarter = Dependency.get(ActivityStarter.class);
         mVibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
-    }
+        mSystemInfoMode = getQsSystemInfoMode();
+        mContentResolver = context.getContentResolver();
+        mSettingsObserver.observe();
+     }
 
     /**
      * How much the view containing the clock and QQS will translate down when QS is fully expanded.
@@ -155,6 +198,9 @@ public class QuickStatusBarHeader extends FrameLayout implements
         mDateContainer = findViewById(R.id.date_container);
         mPrivacyContainer = findViewById(R.id.privacy_container);
         mNetworkTraffic = findViewById(R.id.networkTraffic);
+        mSystemInfoLayout = findViewById(R.id.system_info_layout);
+        mSystemInfoIcon = findViewById(R.id.system_info_icon);
+        mSystemInfoText = findViewById(R.id.system_info_text);
 
         mClockContainer = findViewById(R.id.clock_container);
         mClockView = findViewById(R.id.clock);
@@ -174,6 +220,7 @@ public class QuickStatusBarHeader extends FrameLayout implements
         // QS will always show the estimate, and BatteryMeterView handles the case where
         // it's unavailable or charging
         mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_ESTIMATE);
+        updateSettings();
 
         mIconsAlphaAnimatorFixed = new TouchAnimator.Builder()
                 .addFloat(mIconContainer, "alpha", 0, 1)
@@ -198,6 +245,81 @@ public class QuickStatusBarHeader extends FrameLayout implements
 
         mQSExpansionPathInterpolator = qsExpansionPathInterpolator;
         updateAnimators();
+    }
+
+    private int getQsSystemInfoMode() {
+        return Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.QS_SYSTEM_INFO, 0);
+    }
+
+    private void updateSystemInfoText() {
+        if (mSystemInfoMode == 0) {
+            mSystemInfoText.setVisibility(View.GONE);
+            mSystemInfoIcon.setVisibility(View.GONE);
+            return;
+        } else {
+            mSystemInfoText.setVisibility(View.VISIBLE);
+            mSystemInfoIcon.setVisibility(View.VISIBLE);
+        }
+
+        switch (mSystemInfoMode) {
+            case 1:
+                mSystemInfoIcon.setImageDrawable(getContext().getDrawable(R.drawable.ic_thermometer));
+                mSystemInfoText.setText(getCPUTemp());
+                break;
+            case 2:
+                mSystemInfoIcon.setImageDrawable(getContext().getDrawable(R.drawable.ic_thermometer));
+                mSystemInfoText.setText(getBatteryTemp());
+                break;
+            case 3:
+                mSystemInfoIcon.setImageDrawable(getContext().getDrawable(R.drawable.ic_gpu));
+                mSystemInfoText.setText(getGPUClock());
+                break;
+            case 4:
+                mSystemInfoIcon.setImageDrawable(getContext().getDrawable(R.drawable.ic_gpu));
+                mSystemInfoText.setText(getGPUBusy());
+                break;
+            default:
+                mSystemInfoText.setVisibility(View.GONE);
+                mSystemInfoIcon.setVisibility(View.GONE);
+            break;
+            }
+    }
+
+    private String getBatteryTemp() {
+        String value = readOneLine(BATTERY_TEMP_PATH);
+        return String.format("%s", Integer.parseInt(value) / 10) + "\u2103";
+    }
+
+    private String getCPUTemp() {
+        String value = readOneLine(CPU_TEMP_PATH);
+        return String.format("%s", Integer.parseInt(value) / 1000) + "\u2103";
+    }
+
+    private String getGPUBusy() {
+        String value = readOneLine(GPU_BUSY_PATH);
+        return value;
+    }
+
+    private String getGPUClock() {
+        String value = readOneLine(GPU_CLOCK_PATH);
+        return String.format("%s", Integer.parseInt(value)) + "Mhz";
+    }
+
+    private static String readOneLine(String fname) {
+        BufferedReader br;
+        String line = null;
+        try {
+            br = new BufferedReader(new FileReader(fname), 512);
+            try {
+                line = br.readLine();
+            } finally {
+                br.close();
+            }
+        } catch (Exception e) {
+            return null;
+        }
+        return line;
     }
 
     void setIsSingleCarrier(boolean isSingleCarrier) {
@@ -286,6 +408,12 @@ public class QuickStatusBarHeader extends FrameLayout implements
             mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_ON);
         }
     }
+
+    private void updateSettings() {
+      mSystemInfoMode = getQsSystemInfoMode();
+      updateSystemInfoText();
+      updateResources();
+   }
 
     void updateResources() {
         Resources resources = mContext.getResources();
@@ -447,6 +575,7 @@ public class QuickStatusBarHeader extends FrameLayout implements
         mExpanded = expanded;
         quickQSPanelController.setExpanded(expanded);
         mDateView.setVisibility(mClockView.isClockDateEnabled() ? View.INVISIBLE : View.VISIBLE);
+        updateSystemInfoText();
         updateEverything();
     }
 
@@ -483,6 +612,7 @@ public class QuickStatusBarHeader extends FrameLayout implements
         }
 
         mKeyguardExpansionFraction = keyguardExpansionFraction;
+        updateSystemInfoText();
     }
 
     public void disable(int state1, int state2, boolean animate) {

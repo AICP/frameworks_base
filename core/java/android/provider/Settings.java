@@ -5190,6 +5190,18 @@ public final class Settings {
         private static final Validator STATUS_BAR_LOGO_COLOR_VALIDATOR =
                 ANY_STRING_VALIDATOR;
 
+	/**
+         * Statusbar AICP logo accent color setting
+         * @hide
+         */
+        public static final String STATUS_BAR_LOGO_COLOR_ACCENT = "status_bar_logo_color_accent";
+
+        /** @hide */
+        private static final Validator STATUS_BAR_LOGO_COLOR_ACCENT_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+
+
         /**
          * Position of Status bar AICP logo
          * 0 - Left (default)
@@ -5417,6 +5429,7 @@ public final class Settings {
             VOLUME_DIALOG_TIMEOUT,
             STATUS_BAR_LOGO,
             STATUS_BAR_LOGO_COLOR,
+            STATUS_BAR_LOGO_COLOR_ACCENT,
             STATUS_BAR_LOGO_POSITION,
             STATUS_BAR_LOGO_STYLE,
             TOAST_ICON,
@@ -5614,6 +5627,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(VOLUME_DIALOG_TIMEOUT);
             PRIVATE_SETTINGS.add(STATUS_BAR_LOGO);
             PRIVATE_SETTINGS.add(STATUS_BAR_LOGO_COLOR);
+            PRIVATE_SETTINGS.add(STATUS_BAR_LOGO_COLOR_ACCENT);
             PRIVATE_SETTINGS.add(STATUS_BAR_LOGO_POSITION);
             PRIVATE_SETTINGS.add(STATUS_BAR_LOGO_STYLE);
             PRIVATE_SETTINGS.add(TOAST_ICON);
@@ -5801,6 +5815,7 @@ public final class Settings {
             VALIDATORS.put(VOLUME_DIALOG_TIMEOUT,VOLUME_DIALOG_TIMEOUT_VALIDATOR);
             VALIDATORS.put(STATUS_BAR_LOGO, STATUS_BAR_LOGO_VALIDATOR);
             VALIDATORS.put(STATUS_BAR_LOGO_COLOR, STATUS_BAR_LOGO_COLOR_VALIDATOR);
+            VALIDATORS.put(STATUS_BAR_LOGO_COLOR_ACCENT, STATUS_BAR_LOGO_COLOR_ACCENT_VALIDATOR);
             VALIDATORS.put(STATUS_BAR_LOGO_POSITION, STATUS_BAR_LOGO_POSITION_VALIDATOR);
             VALIDATORS.put(STATUS_BAR_LOGO_STYLE, STATUS_BAR_LOGO_STYLE_VALIDATOR);
             VALIDATORS.put(TOAST_ICON,TOAST_ICON_VALIDATOR);

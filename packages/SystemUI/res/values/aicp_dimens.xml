@@ -50,4 +50,7 @@
     <dimen name="status_bar_battery_bigcircle_icon_height">20.5dp</dimen>
      <!-- Width of the big battery circle icon in the status bar. -->
     <dimen name="status_bar_battery_bigcircle_icon_width">20.5dp</dimen>
+
+    <!-- Screenrecord stop dot size -->
+    <dimen name="screenrecord_dot_size">48dp</dimen>
 </resources>

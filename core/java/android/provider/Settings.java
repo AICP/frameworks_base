@@ -6131,6 +6131,11 @@ public final class Settings {
          */
         public static final String SCREENSHOT_DEFAULT_MODE = "screenshot_default_mode";
 
+        /**
+         * Shows system info in QS OFF:0, CPU temp:1, battery temp:2, gpu freq: 3, gpu load: 4
+         */
+        public static final String QS_SYSTEM_INFO = "qs_system_info";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6295,6 +6300,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(STATUS_BAR_QUICK_QS_PULLDOWN, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(AICP_SHOW_BATTERY_IMAGE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(SCREENSHOT_DEFAULT_MODE, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(QS_SYSTEM_INFO, ANY_INTEGER_VALIDATOR);
         }
 
         /**

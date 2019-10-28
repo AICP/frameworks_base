@@ -56,12 +56,14 @@ android_library {
         "src/**/*.kt",
         "src/**/*.java",
         "src/**/I*.aidl",
+        "slimrecent/src/**/*.java",
     ],
     resource_dirs: [
         "res-product",
         "res-keyguard",
         "res",
         "res-hwkeys",
+        "slimrecent/res",
     ],
     static_libs: [
         "WindowManager-Shell",
@@ -87,6 +89,7 @@ android_library {
         "androidx.lifecycle_lifecycle-extensions",
         "androidx.dynamicanimation_dynamicanimation",
         "androidx-constraintlayout_constraintlayout",
+        "androidx.cardview_cardview",
         "androidx.exifinterface_exifinterface",
         "kotlinx_coroutines_android",
         "kotlinx_coroutines",

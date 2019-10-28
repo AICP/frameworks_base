@@ -242,4 +242,9 @@ interface IStatusBarService
      * Starts the default assistant app.
      */
     void startAssist(in Bundle args);
+
+    /**
+     * Slim recents
+     */
+    void showScreenPinningRequest(int taskId);
 }

@@ -75,6 +75,7 @@ android_library {
         "res-product",
         "res-keyguard",
         "res",
+        "slimrecent/res",
     ],
     static_libs: [
         "SystemUISharedLib",
@@ -96,6 +97,7 @@ android_library {
         ":ReleaseJavaFiles",
         "compose/features/src/**/*.kt",
         "compose/facade/enabled/src/**/*.kt",
+        "slimrecent/src/**/*.java",
     ],
     product_variables: {
         debuggable: {
@@ -166,6 +168,7 @@ android_library {
         "androidx.compose.material_material-icons-extended",
         "androidx.activity_activity-compose",
         "androidx.compose.animation_animation-graphics",
+        "androidx.cardview_cardview",
     ],
     libs: [
         "keepanno-annotations",

@@ -138,5 +138,6 @@ public class SystemSettings {
         Settings.System.CHARGING_ANIMATION,
         Settings.System.DOZE_ON_CHARGE,
         Settings.System.DOZE_ON_CHARGE_NOW,
+        Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL,
     };
 }

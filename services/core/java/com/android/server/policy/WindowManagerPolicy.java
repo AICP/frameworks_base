@@ -51,6 +51,7 @@ import static android.view.WindowManager.LayoutParams.TYPE_SECURE_SYSTEM_OVERLAY
 import static android.view.WindowManager.LayoutParams.TYPE_STATUS_BAR;
 import static android.view.WindowManager.LayoutParams.TYPE_STATUS_BAR_ADDITIONAL;
 import static android.view.WindowManager.LayoutParams.TYPE_STATUS_BAR_SUB_PANEL;
+import static android.view.WindowManager.LayoutParams.TYPE_SLIM_RECENTS;
 import static android.view.WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
 import static android.view.WindowManager.LayoutParams.TYPE_SYSTEM_DIALOG;
 import static android.view.WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;
@@ -814,8 +815,10 @@ public interface WindowManagerPolicy extends WindowManagerPolicyConstants {
                 // changes the device volume
                 return  22;
             case TYPE_SYSTEM_OVERLAY:
+            case TYPE_SLIM_RECENTS:
                 // the on-screen volume indicator and controller shown when the user
                 // changes the device volume
+                // slim recents panel, navbar shows atop this to keep visible buttons
                 return  canAddInternalSystemWindow ? 23 : 11;
             case TYPE_NAVIGATION_BAR:
                 // the navigation bar, if available, shows atop most things

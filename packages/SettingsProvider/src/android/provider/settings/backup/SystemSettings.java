@@ -201,8 +201,31 @@ public class SystemSettings {
                 Settings.System.LOCKSCREEN_MAX_NOTIF_CONFIG,
                 Settings.System.TRANSPARENT_POWER_MENU,
                 Settings.System.TRANSPARENT_POWER_DIALOG_DIM,
-                Settings.System.POWER_MENU_ANIMATIONS
-
+                Settings.System.POWER_MENU_ANIMATIONS,
+                Settings.System.USE_SLIM_RECENTS,
+                Settings.System.RECENTS_MAX_APPS,
+                Settings.System.RECENT_PANEL_GRAVITY,
+                Settings.System.RECENT_PANEL_SCALE_FACTOR,
+                Settings.System.RECENT_PANEL_FAVORITES,
+                Settings.System.RECENT_PANEL_EXPANDED_MODE,
+                Settings.System.RECENT_PANEL_BG_COLOR,
+                Settings.System.RECENT_CARD_BG_COLOR,
+                Settings.System.SLIM_RECENT_AICP_EMPTY_DRAWABLE,
+                Settings.System.USE_RECENT_APP_SIDEBAR,
+                Settings.System.RECENT_APP_SIDEBAR_CONTENT,
+                Settings.System.RECENT_APP_SIDEBAR_DISABLE_LABELS,
+                Settings.System.RECENT_APP_SIDEBAR_BG_COLOR,
+                Settings.System.RECENT_APP_SIDEBAR_TEXT_COLOR,
+                Settings.System.RECENT_APP_SIDEBAR_SCALE_FACTOR,
+                Settings.System.RECENT_APP_SIDEBAR_OPEN_SIMULTANEOUSLY,
+                Settings.System.SLIM_RECENTS_MEM_DISPLAY,
+                Settings.System.SLIM_RECENTS_MEM_DISPLAY_LONG_CLICK_CLEAR,
+                Settings.System.SLIM_RECENTS_ICON_PACK,
+                Settings.System.SLIM_MEM_BAR_COLOR,
+                Settings.System.SLIM_MEM_TEXT_COLOR,
+                Settings.System.SLIM_RECENTS_CORNER_RADIUS,
+                Settings.System.SLIM_RECENTS_BLACKLIST_VALUES,
+                Settings.System.SLIM_RECENT_ENTER_EXIT_ANIMATION
         ));
         if (Flags.backUpSmoothDisplayAndForcePeakRefreshRate()) {
             settings.add(Settings.System.PEAK_REFRESH_RATE);

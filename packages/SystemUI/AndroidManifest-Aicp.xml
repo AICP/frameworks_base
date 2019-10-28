@@ -38,6 +38,6 @@
     <!-- Locale QS -->
     <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
 
-    <!-- Kill app from slim recents -->
+    <!-- Kill app from Slim recents -->
     <uses-permission android:name="android.permission.FORCE_STOP_PACKAGES" />
 </manifest>

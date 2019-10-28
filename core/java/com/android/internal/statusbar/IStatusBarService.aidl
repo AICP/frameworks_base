@@ -176,4 +176,9 @@ interface IStatusBarService
     void preloadRecentApps();
     void cancelPreloadRecentApps();
     //void startAssist(in Bundle args); defined above
+
+    /**
+     * Slim recents
+     */
+    void showScreenPinningRequest(int taskId);
 }

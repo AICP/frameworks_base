@@ -122,6 +122,7 @@ android_library {
         "src/**/*.java",
         "src/**/I*.aidl",
         ":ReleaseJavaFiles",
+        "slimrecent/src/**/*.java",
     ],
     product_variables: {
         debuggable: {
@@ -133,6 +134,7 @@ android_library {
         "res-product",
         "res-keyguard",
         "res",
+        "slimrecent/res",
     ],
     static_libs: [
         "WifiTrackerLib",
@@ -163,6 +165,7 @@ android_library {
         "androidx.lifecycle_lifecycle-runtime-ktx",
         "androidx.dynamicanimation_dynamicanimation",
         "androidx-constraintlayout_constraintlayout",
+        "androidx.cardview_cardview",
         "androidx.exifinterface_exifinterface",
         "androidx.test.ext.junit",
         "com.google.android.material_material",

@@ -22,8 +22,11 @@ import android.content.res.Configuration;
 import android.provider.Settings;
 
 import com.android.systemui.CoreStartable;
+import com.android.systemui.Dependency;
 import com.android.systemui.statusbar.CommandQueue;
 import com.android.systemui.statusbar.policy.ConfigurationController;
+import com.android.systemui.slimrecent.RecentController;
+import com.android.systemui.tuner.TunerService;
 
 import java.io.PrintWriter;
 
@@ -33,27 +36,46 @@ import java.io.PrintWriter;
 public class Recents implements
         CoreStartable,
         ConfigurationController.ConfigurationListener,
-        CommandQueue.Callbacks {
+        CommandQueue.Callbacks,
+        TunerService.Tunable {
+
+    private static final String USE_SLIM_RECENTS = "system:" + Settings.System.USE_SLIM_RECENTS;
 
     private final Context mContext;
-    private final RecentsImplementation mImpl;
+    private RecentsImplementation mImpl;
     private final CommandQueue mCommandQueue;
+
+    private RecentsImplementation mDefaultImpl;
+    private RecentController mSlimImpl;
+    private boolean mStarted = false;
+    private boolean mBootCompleted = false;
+    private boolean mUseSlimRecents = false;
 
     public Recents(Context context, RecentsImplementation impl, CommandQueue commandQueue) {
         mContext = context;
-        mImpl = impl;
+        mDefaultImpl = impl;
         mCommandQueue = commandQueue;
+        mImpl = getCurrentImpl();
     }
 
     @Override
     public void start() {
+        mStarted = true;
         mCommandQueue.addCallback(this);
-        mImpl.onStart(mContext);
+        mDefaultImpl.onStart(mContext);
+        if (mSlimImpl != null) {
+            mSlimImpl.onStart(mContext);
+        }
+        Dependency.get(TunerService.class).addTunable(this, USE_SLIM_RECENTS);
     }
 
     @Override
     public void onBootCompleted() {
-        mImpl.onBootCompleted();
+        mBootCompleted = true;
+        mDefaultImpl.onBootCompleted();
+        if (mSlimImpl != null) {
+            mSlimImpl.onBootCompleted();
+        }
     }
 
     @Override
@@ -136,4 +158,37 @@ public class Recents implements
     public void dump(PrintWriter pw, String[] args) {
         mImpl.dump(pw);
     }
+
+    private RecentsImplementation getCurrentImpl() {
+        RecentsImplementation newImpl;
+        boolean newCreated = false;
+        if (mUseSlimRecents) {
+            if (mSlimImpl == null) {
+                newCreated = true;
+                mSlimImpl = new RecentController(mDefaultImpl);
+            }
+            newImpl = mSlimImpl;
+        } else {
+            newImpl = mDefaultImpl;
+        }
+        if (newCreated) {
+            if (mStarted) {
+                newImpl.onStart(mContext);
+            }
+            if (mBootCompleted) {
+                newImpl.onBootCompleted();
+            }
+        }
+        return newImpl;
+    }
+
+    @Override
+    public void onTuningChanged(String key, String newValue) {
+        switch (key) {
+            case USE_SLIM_RECENTS:
+                mUseSlimRecents = "1".equals(newValue);
+                mImpl = getCurrentImpl();
+                break;
+         }
+     }
 }

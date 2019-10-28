@@ -1000,6 +1000,19 @@ public class StatusBarManagerService extends IStatusBarService.Stub implements D
         }
     }
 
+    /**
+     * @hide
+     */
+    @Override
+    public void showScreenPinningRequest(int taskId) {
+        if (mBar != null) {
+            try {
+                mBar.showScreenPinningRequest(taskId);
+            } catch (RemoteException e) {
+            }
+        }
+    }
+
     // TODO(b/117478341): make it aware of multi-display if needed.
     @Override
     public void disable(int what, IBinder token, String pkg) {

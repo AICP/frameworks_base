@@ -238,4 +238,9 @@ interface IStatusBarService
 
     /** AICP additions. */
     void toggleCameraFlash();
+
+    /**
+     * Slim recents
+     */
+    void showScreenPinningRequest(int taskId);
 }

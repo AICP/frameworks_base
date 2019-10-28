@@ -5504,6 +5504,11 @@ public final class Settings {
          */
         public static final String DOZE_ON_CHARGE_NOW = "doze_on_charge_now";
 
+        /**
+         * @hide
+         */
+        public static final String STATUS_BAR_BRIGHTNESS_CONTROL = "status_bar_brightness_control";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5689,6 +5694,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(CHARGING_ANIMATION);
             PRIVATE_SETTINGS.add(DOZE_ON_CHARGE);
             PRIVATE_SETTINGS.add(DOZE_ON_CHARGE_NOW);
+            PRIVATE_SETTINGS.add(STATUS_BAR_BRIGHTNESS_CONTROL);
         }
 
         /**

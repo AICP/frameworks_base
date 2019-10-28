@@ -5407,6 +5407,170 @@ public final class Settings {
          */
         public static final String TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK = "touchscreen_gesture_haptic_feedback";
 
+        /**
+         * Whether to use slim recents
+         * @hide
+         */
+        public static final String USE_SLIM_RECENTS = "use_slim_recents";
+
+        /**
+         * Amount of apps to show in recents
+         * @hide
+         */
+        public static final String RECENTS_MAX_APPS = "recents_max_apps";
+
+        /**
+         * Whether recent panel gravity is left or right (default = Gravity.RIGHT).
+         * @hide
+         */
+        public static final String RECENT_PANEL_GRAVITY = "recent_panel_gravity";
+
+        /**
+         * Size of recent panel view in percent (default = 100).
+         * @hide
+         */
+        public static final String RECENT_PANEL_SCALE_FACTOR = "recent_panel_scale_factor";
+
+        /**
+         * User favorite tasks for recent panel.
+         * @hide
+         */
+        public static final String RECENT_PANEL_FAVORITES = "recent_panel_favorites";
+
+        /**
+         * Recent panel expanded mode (auto = 0, always = 1, never = 2).
+         * default = 0.
+         *
+         * @hide
+         */
+        public static final String RECENT_PANEL_EXPANDED_MODE = "recent_panel_expanded_mode";
+
+        /**
+         * Recent panel background color
+         *
+         * @hide
+         */
+        public static final String RECENT_PANEL_BG_COLOR = "recent_panel_bg_color";
+
+        /**
+         * Recent card background color
+         *
+         * @hide
+         */
+        public static final String RECENT_CARD_BG_COLOR = "recent_card_bg_color";
+
+        /**
+         * Slim recents AICPfied empty recents drawable
+         *
+         * @hide
+         */
+        public static final String SLIM_RECENT_AICP_EMPTY_DRAWABLE =
+                "slim_recents_aicp_empty_drawable";
+
+        /**
+         * Whether to use slim recent app sidebar
+         * @hide
+         */
+        public static final String USE_RECENT_APP_SIDEBAR = "use_recent_app_sidebar";
+
+        /**
+         * Recent app sidebar content
+         *
+         * @hide
+         */
+        public static final String RECENT_APP_SIDEBAR_CONTENT = "recent_app_sidebar_content";
+
+        /**
+         * Disable text labels for the slim recent app sidebar items
+         *
+         * @hide
+         */
+        public static final String RECENT_APP_SIDEBAR_DISABLE_LABELS =
+                "recent_app_sidebar_disable_labels";
+
+        /**
+         * Slim recent app sidebar background color
+         *
+         * @hide
+         */
+        public static final String RECENT_APP_SIDEBAR_BG_COLOR = "recent_app_sidebar_bg_color";
+
+        /**
+         * Slim recent app sidebar text color
+         *
+         * @hide
+         */
+        public static final String RECENT_APP_SIDEBAR_TEXT_COLOR = "recent_app_sidebar_text_color";
+
+        /**
+         * Size of recent app sidebar in percent (default = 100).
+         *
+         * @hide
+         */
+        public static final String RECENT_APP_SIDEBAR_SCALE_FACTOR =
+                "recent_app_sidebar_scale_factor";
+
+        /**
+         * Whether the app sidebar should open simultaneously with recents
+         * Alternative: recents are allowed to open before the app sidebar finished inflating
+         *
+         * @hide
+         */
+        public static final String RECENT_APP_SIDEBAR_OPEN_SIMULTANEOUSLY =
+                "recent_app_sidebar_open_simultaneously";
+
+        /**
+         * show the membar in slim recents
+         * @hide
+         */
+        public static final String SLIM_RECENTS_MEM_DISPLAY = "slim_recents_mem_display";
+
+        /**
+         * Use the membar in slim recents as clear all button on longclick
+         * @hide
+         */
+        public static final String SLIM_RECENTS_MEM_DISPLAY_LONG_CLICK_CLEAR =
+                "slim_recents_mem_display_long_click_clear";
+
+        /**
+         * Custom icon pack name to use for Slim Recents
+         * @hide
+         */
+        public static final String SLIM_RECENTS_ICON_PACK = "slim_recents_icon_pack";
+
+       /**
+         * Slim Recents MemBar Color
+         * @hide
+         */
+        public static final String SLIM_MEM_BAR_COLOR= "slim_mem_bar_color";
+
+       /**
+         * Slim Recents MemBar Text Color
+         * @hide
+         */
+        public static final String SLIM_MEM_TEXT_COLOR= "slim_mem_text_color";
+
+        /**
+         * The corner radius for Slim Recents cards
+         * @hide
+         */
+        public static final String SLIM_RECENTS_CORNER_RADIUS = "slim_recents_corner_radius";
+
+        /**
+         * Apps to blacklist in Slim Recents
+         * @hide
+         */
+        public static final String SLIM_RECENTS_BLACKLIST_VALUES = "slim_recents_blacklist_values";
+
+
+        /**
+         * Slim recents enter/exit animation
+         * @hide
+         */
+        public static final String SLIM_RECENT_ENTER_EXIT_ANIMATION =
+                "slim_recent_enter_exit_animation";
+
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5457,6 +5621,30 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(ENABLE_SUGGESTIONS, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(THEMING_SETTINGS_DASHBOARD_ICONS, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(USE_SLIM_RECENTS, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(RECENTS_MAX_APPS, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(RECENT_PANEL_GRAVITY, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(RECENT_PANEL_SCALE_FACTOR, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(RECENT_PANEL_FAVORITES, ANY_STRING_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(RECENT_PANEL_EXPANDED_MODE, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(RECENT_PANEL_BG_COLOR, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(RECENT_CARD_BG_COLOR, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(SLIM_RECENT_AICP_EMPTY_DRAWABLE, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(USE_RECENT_APP_SIDEBAR, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(RECENT_APP_SIDEBAR_CONTENT, ANY_STRING_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(RECENT_APP_SIDEBAR_DISABLE_LABELS, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(RECENT_APP_SIDEBAR_BG_COLOR, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(RECENT_APP_SIDEBAR_TEXT_COLOR, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(RECENT_APP_SIDEBAR_SCALE_FACTOR, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(RECENT_APP_SIDEBAR_OPEN_SIMULTANEOUSLY, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(SLIM_RECENTS_MEM_DISPLAY, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(SLIM_RECENTS_MEM_DISPLAY_LONG_CLICK_CLEAR, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(SLIM_RECENTS_ICON_PACK, ANY_STRING_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(SLIM_MEM_BAR_COLOR, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(SLIM_MEM_TEXT_COLOR, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(SLIM_RECENTS_CORNER_RADIUS, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(SLIM_RECENTS_BLACKLIST_VALUES, ANY_STRING_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(SLIM_RECENT_ENTER_EXIT_ANIMATION, ANY_INTEGER_VALIDATOR);
         }
 
         /**

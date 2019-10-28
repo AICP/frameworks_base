@@ -5835,6 +5835,11 @@ public final class Settings {
          */
         public static final String OMNI_DOZE_ON_CHARGE_NOW = "doze_on_charge_now";
 
+        /**
+         * @hide
+         */
+        public static final String STATUS_BAR_BRIGHTNESS_CONTROL = "status_bar_brightness_control";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5952,6 +5957,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(CHARGING_ANIMATION, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(OMNI_DOZE_ON_CHARGE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(OMNI_DOZE_ON_CHARGE_NOW, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(STATUS_BAR_BRIGHTNESS_CONTROL, BOOLEAN_VALIDATOR);
         }
 
         /**

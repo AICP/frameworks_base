@@ -1373,6 +1373,19 @@ public class StatusBarManagerService extends IStatusBarService.Stub implements D
     }
 
     /**
+     * @hide
+     */
+    @Override
+    public void showScreenPinningRequest(int taskId) {
+        if (mBar != null) {
+            try {
+                mBar.showScreenPinningRequest(taskId);
+            } catch (RemoteException e) {
+            }
+        }
+    }
+
+    /**
      * Disable status bar features for a given user. Pass the bitwise-or of the
      * {@code #DISABLE_*} flags. To re-enable everything, pass {@code #DISABLE_NONE}.
      *

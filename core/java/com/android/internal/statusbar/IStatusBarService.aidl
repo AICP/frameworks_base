@@ -157,4 +157,9 @@ interface IStatusBarService
      */
     void toggleCameraFlash();
     void toggleCameraFlashState(boolean enable);
+
+    /**
+     * Slim recents
+     */
+    void showScreenPinningRequest(int taskId);
 }

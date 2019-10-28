@@ -19,6 +19,7 @@ package com.android.server.wm;
 import static android.app.ActivityManager.FLAG_AND_UNLOCKED;
 import static android.app.ActivityManager.RECENT_IGNORE_UNAVAILABLE;
 import static android.app.ActivityManager.RECENT_WITH_EXCLUDED;
+import static android.app.ActivityManager.SLIM_RECENTS;
 import static android.app.ActivityTaskManager.INVALID_TASK_ID;
 import static android.app.WindowConfiguration.ACTIVITY_TYPE_ASSISTANT;
 import static android.app.WindowConfiguration.ACTIVITY_TYPE_DREAM;
@@ -885,6 +886,7 @@ class RecentTasks {
     private ArrayList<ActivityManager.RecentTaskInfo> getRecentTasksImpl(int maxNum, int flags,
             boolean getTasksAllowed, int userId, int callingUid) {
         final boolean withExcluded = (flags & RECENT_WITH_EXCLUDED) != 0;
+        final boolean slimRecents = (flags & SLIM_RECENTS) != 0;
 
         if (!isUserRunning(userId, FLAG_AND_UNLOCKED)) {
             Slog.i(TAG, "user " + userId + " is still locked. Cannot load recents");
@@ -901,7 +903,7 @@ class RecentTasks {
         for (int i = 0; i < size; i++) {
             final Task task = mTasks.get(i);
 
-            if (isVisibleRecentTask(task)) {
+            if (isVisibleRecentTask(task, slimRecents)) {
                 numVisibleTasks++;
                 if (isInVisibleRange(task, i, numVisibleTasks, withExcluded)) {
                     // Fall through
@@ -1295,6 +1297,10 @@ class RecentTasks {
      */
     @VisibleForTesting
     boolean isVisibleRecentTask(Task task) {
+        return isVisibleRecentTask(task, false);
+    }
+
+    private boolean isVisibleRecentTask(Task task, boolean slimRecents) {
         if (DEBUG_RECENTS_TRIM_TASKS) Slog.d(TAG, "isVisibleRecentTask: task=" + task
                 + " minVis=" + mMinNumVisibleTasks + " maxVis=" + mMaxNumVisibleTasks
                 + " sessionDuration=" + mActiveTasksSessionDurationMs
@@ -1328,7 +1334,7 @@ class RecentTasks {
                     Slog.d(TAG, "\ttop=" + task.getStack().getTopMostTask());
                 }
                 final ActivityStack stack = task.getStack();
-                if (stack != null && stack.getTopMostTask() == task) {
+                if (stack != null && stack.getTopMostTask() == task && !slimRecents) {
                     // Only the non-top task of the primary split screen mode is visible
                     return false;
                 }

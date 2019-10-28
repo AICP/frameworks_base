@@ -792,7 +792,9 @@ public interface WindowManager extends ViewManager {
                 @ViewDebug.IntToString(from = TYPE_SCREENSHOT,
                         to = "SCREENSHOT"),
                 @ViewDebug.IntToString(from = TYPE_APPLICATION_OVERLAY,
-                        to = "APPLICATION_OVERLAY")
+                        to = "APPLICATION_OVERLAY"),
+                @ViewDebug.IntToString(from = TYPE_SLIM_RECENTS,
+                        to = "TYPE_SLIM_RECENTS")
         })
         @WindowType
         public int type;
@@ -1223,6 +1225,13 @@ public interface WindowManager extends ViewManager {
          */
         // TODO(b/155781676): Remove and replace call points with trustedOverlay when that is ready.
         public static final int TYPE_TRUSTED_APPLICATION_OVERLAY = FIRST_SYSTEM_WINDOW + 42;
+
+        /**
+         * Window type: panel that slides out from the status bar
+         * In multiuser systems shows on all users' windows.
+         * @hide
+         */
+        public static final int TYPE_SLIM_RECENTS = FIRST_SYSTEM_WINDOW+43;
 
         /**
          * End of types of system windows.

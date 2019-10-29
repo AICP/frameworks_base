@@ -72,6 +72,8 @@ import android.os.Trace;
 import android.os.UserHandle;
 import android.os.UserManager;
 import android.os.Vibrator;
+import android.pocket.IPocketCallback;
+import android.pocket.PocketManager;
 import android.provider.Settings;
 import android.service.dreams.DreamService;
 import android.service.dreams.IDreamManager;
@@ -192,6 +194,9 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
 
     public static final int LOCK_SCREEN_MODE_NORMAL = 0;
     public static final int LOCK_SCREEN_MODE_LAYOUT_1 = 1;
+
+    // Additional messages should be 600+
+    private static final int MSG_POCKET_STATE_CHANGED = 600;
 
     /** Biometric authentication state: Not listening. */
     private static final int BIOMETRIC_STATE_STOPPED = 0;
@@ -362,6 +367,27 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
         @Override
         public void onChanged(Integer ringer) {
             mHandler.obtainMessage(MSG_RINGER_MODE_CHANGED, ringer, 0).sendToTarget();
+        }
+    };
+
+    private PocketManager mPocketManager;
+    private boolean mIsDeviceInPocket;
+    private final IPocketCallback mPocketCallback = new IPocketCallback.Stub() {
+        @Override
+        public void onStateChanged(boolean isDeviceInPocket, int reason) {
+            boolean changed = false;
+            if (reason == PocketManager.REASON_SENSOR) {
+                if (isDeviceInPocket != mIsDeviceInPocket) {
+                    mIsDeviceInPocket = isDeviceInPocket;
+                    changed = true;
+                }
+            } else {
+                changed = isDeviceInPocket != mIsDeviceInPocket;
+                mIsDeviceInPocket = false;
+            }
+            if (changed) {
+                mHandler.sendEmptyMessage(MSG_POCKET_STATE_CHANGED);
+            }
         }
     };
 
@@ -1903,6 +1929,9 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
                     case MSG_REQUIRE_NFC_UNLOCK:
                         handleRequireUnlockForNfc();
                         break;
+                    case MSG_POCKET_STATE_CHANGED:
+                        updateFingerprintListeningState();
+                        break;
                     default:
                         super.handleMessage(msg);
                         break;
@@ -1982,6 +2011,11 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
 
         mDreamManager = IDreamManager.Stub.asInterface(
                 ServiceManager.getService(DreamService.DREAM_SERVICE));
+
+        mPocketManager = (PocketManager) context.getSystemService(Context.POCKET_SERVICE);
+        if (mPocketManager != null) {
+            mPocketManager.addCallback(mPocketCallback);
+        }
 
         if (mContext.getPackageManager().hasSystemFeature(PackageManager.FEATURE_FINGERPRINT)) {
             mFpm = (FingerprintManager) context.getSystemService(Context.FINGERPRINT_SERVICE);
@@ -2220,7 +2254,7 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
         BiometricAuthenticated face = mUserFaceAuthenticated.get(getCurrentUser());
         return mAssistantVisible && mKeyguardOccluded
                 && !(face != null && face.mAuthenticated)
-                && !mUserHasTrust.get(getCurrentUser(), false);
+                && !mUserHasTrust.get(getCurrentUser(), false) && !mIsDeviceInPocket;
     }
 
     @VisibleForTesting
@@ -2261,7 +2295,7 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
                     && !mFingerprintLockedOut);
 
         final boolean shouldListen = shouldListenKeyguardState && shouldListenUserState
-                && shouldListenBouncerState && shouldListenUdfpsState;
+                && shouldListenBouncerState && shouldListenUdfpsState && !mIsDeviceInPocket;
 
         if (DEBUG_FINGERPRINT || DEBUG_SPEW) {
             maybeLogListenerModelData(

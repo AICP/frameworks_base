@@ -6059,6 +6059,15 @@ public final class Settings {
          */
         public static final String QS_QUICKBAR_COLUMNS = "qs_quickbar_columns";
 
+        /**
+         * Whether allowing pocket service to register sensors and dispatch informations.
+         *   0 = disabled
+         *   1 = enabled
+         * @author Carlo Savignano
+         * @hide
+         */
+        public static final String POCKET_JUDGE = "pocket_judge";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6213,6 +6222,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(APP_SWITCH_WAKE_SCREEN, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(CAMERA_WAKE_SCREEN, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(QS_QUICKBAR_COLUMNS, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(POCKET_JUDGE, ANY_INTEGER_VALIDATOR);
         }
 
         /**

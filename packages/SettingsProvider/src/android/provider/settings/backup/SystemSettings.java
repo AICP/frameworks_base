@@ -188,5 +188,6 @@ public class SystemSettings {
         Settings.System.ASSIST_WAKE_SCREEN,
         Settings.System.APP_SWITCH_WAKE_SCREEN,
         Settings.System.CAMERA_WAKE_SCREEN,
+        Settings.System.POCKET_JUDGE,
     };
 }

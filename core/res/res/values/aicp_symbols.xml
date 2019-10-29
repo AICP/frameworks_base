@@ -133,4 +133,7 @@
   <java-symbol type="style" name="Animation.Toast.Translucent" />
   <java-symbol type="style" name="Animation.Toast.SlideRightLeft" />
   <java-symbol type="style" name="Animation.Toast.SlideLeftRight" />
+
+  <!-- Pocket bridge -->
+  <java-symbol type="string" name="config_pocketBridgeSysfsInpocket" />
 </resources>

@@ -274,4 +274,5 @@
 
     <!-- Screenrecord Stop Dot -->
     <string name="screenrecord_stopdot_label">Show stop dot</string>
+    <string name="screenrecord_low_quality_label">Low quality</string>
 </resources>

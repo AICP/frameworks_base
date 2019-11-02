@@ -5896,7 +5896,13 @@ public final class Settings {
         /** @hide */
         private static final Validator STATUSBAR_HIDE_NOTCH_VALIDATOR = BOOLEAN_VALIDATOR;
 
-
+        /** Whether to pulse ambient on new music tracks
+         *
+         * @hide
+         */
+        public static final String PULSE_ON_NEW_TRACKS = "pulse_on_new_tracks";
+        /** @hide */
+        private static final Validator PULSE_ON_NEW_TRACKS_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /***************************
          * AICP System Settings end
@@ -6104,6 +6110,7 @@ public final class Settings {
             ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER,
             LOCK_SCREEN_VISUALIZER_USE_CUSTOM_COLOR,
             STATUSBAR_HIDE_NOTCH,
+            PULSE_ON_NEW_TRACKS,
             // AICP Settings end
         };
 
@@ -6364,6 +6371,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(ANSWER_VOLUME_BUTTON_BEHAVIOR_ANSWER);
             PRIVATE_SETTINGS.add(LOCK_SCREEN_VISUALIZER_USE_CUSTOM_COLOR);
             PRIVATE_SETTINGS.add(STATUSBAR_HIDE_NOTCH);
+            PRIVATE_SETTINGS.add(PULSE_ON_NEW_TRACKS);
             // AICP Settings end
         }
 
@@ -6611,6 +6619,7 @@ public final class Settings {
             VALIDATORS.put(LOCK_SCREEN_VISUALIZER_USE_CUSTOM_COLOR,
                     LOCK_SCREEN_VISUALIZER_USE_CUSTOM_COLOR_VALIDATOR);
             VALIDATORS.put(STATUSBAR_HIDE_NOTCH,STATUSBAR_HIDE_NOTCH_VALIDATOR);
+            VALIDATORS.put(PULSE_ON_NEW_TRACKS, PULSE_ON_NEW_TRACKS_VALIDATOR);
             // AICP Settings end
         }
 

@@ -121,6 +121,7 @@ public class KeyguardSliceProviderTest extends SysuiTestCase {
     public void onBindSlice_readsMedia_withoutBypass() {
         MediaMetadata metadata = mock(MediaMetadata.class);
         when(metadata.getText(any())).thenReturn("metadata");
+        when(mDozeParameters.getAlwaysOn()).thenReturn(true);
         mProvider.onDozingChanged(true);
         mProvider.onMetadataOrStateChanged(metadata, PlaybackState.STATE_PLAYING);
         mProvider.onBindSlice(mProvider.getUri());

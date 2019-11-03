@@ -2179,6 +2179,11 @@ public class StatusBar extends SystemUI implements DemoMode,
         // Panels are not available in setup
         if (!mUserSetup) return;
 
+        if (KeyEvent.KEYCODE_MEDIA_PREVIOUS == key || KeyEvent.KEYCODE_MEDIA_NEXT == key) {
+            mMediaManager.onSkipTrackEvent(key);
+            return;
+        }
+
         if (KeyEvent.KEYCODE_SYSTEM_NAVIGATION_UP == key) {
             mMetricsLogger.action(MetricsEvent.ACTION_SYSTEM_NAVIGATION_KEY_UP);
             mNotificationPanelViewController.collapse(

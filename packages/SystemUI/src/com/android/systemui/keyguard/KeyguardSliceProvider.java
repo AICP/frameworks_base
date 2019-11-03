@@ -237,9 +237,10 @@ public class KeyguardSliceProvider extends SliceProvider implements
         return slice;
     }
 
-    protected boolean needsMediaLocked() {
+    public boolean needsMediaLocked() {
         boolean keepWhenAwake = mKeyguardBypassController != null
                 && mKeyguardBypassController.getBypassEnabled() && mDozeParameters.getAlwaysOn();
+
         // Show header if music is playing and the status bar is in the shade state. This way, an
         // animation isn't necessary when pressing power and transitioning to AOD.
         boolean keepWhenShade = mStatusBarState == StatusBarState.SHADE && mMediaIsVisible;
@@ -266,6 +267,10 @@ public class KeyguardSliceProvider extends SliceProvider implements
 
             listBuilder.addRow(albumBuilder);
         }
+    }
+
+    public NotificationMediaManager getMediaManager() {
+        return mMediaManager;
     }
 
     protected void addPrimaryActionLocked(ListBuilder builder) {

@@ -236,6 +236,8 @@ import com.android.systemui.statusbar.policy.ZenModeController;
 import com.android.systemui.util.InjectionInflationController;
 import com.android.systemui.volume.VolumeComponent;
 
+import com.aicp.gear.util.ThemeOverlayHelper;
+
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -860,6 +862,8 @@ public class StatusBar extends SystemUI implements DemoMode,
         mAicpSettingsObserver = new AicpSettingsObserver(mHandler);
         mAicpSettingsObserver.observe();
         mAicpSettingsObserver.update();
+
+        ThemeOverlayHelper.onBootCompleted(mContext);
     }
 
     // ================================================================================

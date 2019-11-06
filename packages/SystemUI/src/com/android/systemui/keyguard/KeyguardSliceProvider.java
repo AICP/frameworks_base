@@ -159,7 +159,8 @@ public class KeyguardSliceProvider extends SliceProvider implements
         @Override
         public void onReceive(Context context, Intent intent) {
             final String action = intent.getAction();
-            if (Intent.ACTION_DATE_CHANGED.equals(action)) {
+            if (Intent.ACTION_DATE_CHANGED.equals(action)
+                || Intent.ACTION_TIME_TICK.equals(action)) {
                 synchronized (this) {
                     updateClockLocked();
                 }
@@ -519,6 +520,7 @@ public class KeyguardSliceProvider extends SliceProvider implements
             }
 
             IntentFilter filter = new IntentFilter();
+            filter.addAction(Intent.ACTION_TIME_TICK);
             filter.addAction(Intent.ACTION_DATE_CHANGED);
             filter.addAction(Intent.ACTION_LOCALE_CHANGED);
             getContext().registerReceiver(mIntentReceiver, filter, null /* permission*/,

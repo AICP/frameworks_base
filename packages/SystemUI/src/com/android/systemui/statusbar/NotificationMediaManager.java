@@ -48,9 +48,11 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.android.internal.statusbar.NotificationVisibility;
+import com.android.internal.util.aicp.ImageHelper;
 import com.android.systemui.Dependency;
 import com.android.systemui.Dumpable;
 import com.android.systemui.animation.Interpolators;
+import com.android.systemui.R;
 import com.android.systemui.colorextraction.SysuiColorExtractor;
 import com.android.systemui.dagger.qualifiers.Main;
 import com.android.systemui.dump.DumpManager;
@@ -152,6 +154,7 @@ public class NotificationMediaManager implements Dumpable {
     private ImageView mBackdropBack;
 
     private boolean mLockscreenMediaMetadata;
+    private int mLockscreenAlbumArtFilter;
     private final MediaController.Callback mMediaListener = new MediaController.Callback() {
         @Override
         public void onPlaybackStateChanged(PlaybackState state) {
@@ -840,7 +843,22 @@ public class NotificationMediaManager implements Dumpable {
     };
 
     private Bitmap processArtwork(Bitmap artwork) {
-        return mMediaArtworkProcessor.processArtwork(mContext, artwork, getLockScreenMediaBlurLevel());
+        switch (mLockscreenAlbumArtFilter) {
+            case 0:
+                // TODO: Implement a proper fix to use this recycled bitmap
+                return Bitmap.createBitmap(ImageHelper.getBlurredImage(mContext, artwork, 0.001f));
+            case 1:
+                return Bitmap.createBitmap(ImageHelper.toGrayscale(artwork));
+            case 2:
+                return Bitmap.createBitmap(ImageHelper.getColoredBitmap(new BitmapDrawable(mBackdropBack.getResources(), artwork), com.android.settingslib.Utils.getColorAccentDefaultColor(mContext)));
+            case 3:
+                return Bitmap.createBitmap(ImageHelper.getBlurredImage(mContext, artwork, getLockScreenMediaBlurLevel()));
+            case 4:
+                return Bitmap.createBitmap(ImageHelper.getGrayscaleBlurredImage(mContext, artwork, getLockScreenMediaBlurLevel()));
+            case 5:
+            default:
+                return mMediaArtworkProcessor.processArtwork(mContext, artwork, getLockScreenMediaBlurLevel());
+        }
     }
 
     @MainThread
@@ -912,8 +930,9 @@ public class NotificationMediaManager implements Dumpable {
         return level;
     }
 
-    public void setLockscreenMediaMetadata(boolean lockscreenMediaMetadata) {
+    public void setLockscreenMediaMetadata(boolean lockscreenMediaMetadata, int lockscreenAlbumArtFilter) {
         mLockscreenMediaMetadata = lockscreenMediaMetadata;
+        mLockscreenAlbumArtFilter = lockscreenAlbumArtFilter;
         dispatchUpdateMediaMetaData(false /* changed */, true /* allowAnimation */);
     }
 }

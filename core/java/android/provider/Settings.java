@@ -6718,6 +6718,18 @@ public final class Settings {
         */
         public static final String LOCKSCREEN_MEDIA_METADATA = "lockscreen_media_metadata";
 
+        /**
+        * modify how the album art shows up on lockscreen
+        * 0 - normal
+        * 1 - grayscale
+        * 2 - accent tint
+        * 3 - blurry
+        * 4 - grayscale and blurry
+        * 5 - gradient blur (default)
+        * @hide
+        */
+        public static final String LOCKSCREEN_ALBUM_ART_FILTER = "lockscreen_album_art_filter";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7063,6 +7075,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(BLUETOOTH_SHOW_BATTERY);
             PRIVATE_SETTINGS.add(OMNI_LOCKSCREEN_MEDIA_BLUR);
             PRIVATE_SETTINGS.add(LOCKSCREEN_MEDIA_METADATA);
+            PRIVATE_SETTINGS.add(LOCKSCREEN_ALBUM_ART_FILTER);
         }
 
         /**

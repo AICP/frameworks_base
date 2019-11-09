@@ -4085,6 +4085,9 @@ public class StatusBar extends SystemUI implements
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.LOCKSCREEN_MEDIA_METADATA),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.LOCKSCREEN_ALBUM_ART_FILTER),
+                    false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -4914,6 +4917,8 @@ public class StatusBar extends SystemUI implements
     private void setLockscreenMediaArt() {
         boolean lockscreenMediaMetadata = Settings.System.getIntForUser(mContext.getContentResolver(),
                         Settings.System.LOCKSCREEN_MEDIA_METADATA, 0, UserHandle.USER_CURRENT) == 1;
-        mMediaManager.setLockscreenMediaMetadata(lockscreenMediaMetadata);
+        int lockscreenAlbumArtFilter = Settings.System.getIntForUser(mContext.getContentResolver(),
+                        Settings.System.LOCKSCREEN_ALBUM_ART_FILTER, 5, UserHandle.USER_CURRENT);
+        mMediaManager.setLockscreenMediaMetadata(lockscreenMediaMetadata, lockscreenAlbumArtFilter);
     }
 }

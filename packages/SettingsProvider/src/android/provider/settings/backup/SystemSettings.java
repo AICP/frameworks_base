@@ -310,5 +310,6 @@ public class SystemSettings {
         Settings.System.HEADS_UP_NOTIFICATIONS_THRESHOLD,
         Settings.System.OMNI_LOCKSCREEN_MEDIA_BLUR,
         Settings.System.LOCKSCREEN_MEDIA_METADATA,
+        Settings.System.LOCKSCREEN_ALBUM_ART_FILTER,
     };
 }

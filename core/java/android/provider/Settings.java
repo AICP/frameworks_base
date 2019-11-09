@@ -6894,6 +6894,18 @@ public final class Settings {
          */
         public static final String OMNI_USE_OLD_MOBILETYPE = "use_old_mobiletype";
 
+        /**
+        * modify how the album art shows up on lockscreen
+        * 0 - normal
+        * 1 - grayscale
+        * 2 - accent tint
+        * 3 - blurry
+        * 4 - grayscale and blurry
+        * 5 - gradient blur (default)
+        * @hide
+        */
+        public static final String LOCKSCREEN_ALBUM_ART_FILTER = "lockscreen_album_art_filter";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7135,6 +7147,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(QS_MEDIAPLAYER_IGNORE_LAYOUT_CHANGE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(LOCKSCREEN_BATTERY_INFO_TEMP_UNIT, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(OMNI_USE_OLD_MOBILETYPE, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(LOCKSCREEN_ALBUM_ART_FILTER, ANY_INTEGER_VALIDATOR);
         }
 
         /**

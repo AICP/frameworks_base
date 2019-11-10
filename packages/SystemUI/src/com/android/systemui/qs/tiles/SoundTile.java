@@ -21,6 +21,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.provider.Settings.Global;
+import android.service.quicksettings.Tile;
 
 import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
@@ -121,6 +122,7 @@ public class SoundTile extends QSTileImpl<State> {
             default:
                 break;
         }
+        state.state = Tile.STATE_INACTIVE;
     }
 
     @Override

@@ -52,7 +52,8 @@ public class AmbientDisplayConfiguration {
                 || wakeDisplayGestureEnabled(user)
                 || pickupGestureEnabled(user)
                 || tapGestureEnabled(user)
-                || doubleTapGestureEnabled(user);
+                || doubleTapGestureEnabled(user)
+                || isAmbientTickerEnabled(user);
     }
 
     /** {@hide} */
@@ -232,5 +233,9 @@ public class AmbientDisplayConfiguration {
             return dozeOnChargeEnabledNow && alwaysOnAvailable() && !accessibilityInversionEnabled(user);
         }
         return false;
+    }
+
+    public boolean isAmbientTickerEnabled(int user) {
+        return boolSettingSystem(Settings.System.PULSE_ON_NEW_TRACKS, user, 1);
     }
 }

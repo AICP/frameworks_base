@@ -15,6 +15,7 @@
  */
 package com.android.systemui.statusbar;
 
+import static com.android.systemui.Dependency.MAIN_HANDLER;
 import static com.android.systemui.statusbar.StatusBarState.KEYGUARD;
 import static com.android.systemui.statusbar.phone.StatusBar.DEBUG_MEDIA_FAKE_ARTWORK;
 import static com.android.systemui.statusbar.phone.StatusBar.ENABLE_LOCKSCREEN_WALLPAPER;
@@ -35,6 +36,7 @@ import android.media.session.MediaSession;
 import android.media.session.MediaSessionManager;
 import android.media.session.PlaybackState;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.os.SystemClock;
 import android.os.Trace;
 import android.os.UserHandle;
@@ -123,6 +125,8 @@ public class NotificationMediaManager implements Dumpable {
     private LockscreenWallpaper mLockscreenWallpaper;
 
     private final DelayableExecutor mMainExecutor;
+
+    private final Handler mHandler = Dependency.get(MAIN_HANDLER);
 
     private final Context mContext;
     private final MediaSessionManager mMediaSessionManager;

@@ -10756,7 +10756,7 @@ public final class Settings {
 
         private static final Validator FACE_AUTO_UNLOCK_VALIDATOR = BOOLEAN_VALIDATOR;
 
-        /*
+        /**
          * Boolean value whether to display volume panel on the display left
          * @hide
          */
@@ -10764,7 +10764,7 @@ public final class Settings {
 
         private static final Validator VOLUME_PANEL_ON_LEFT_VALIDATOR = BOOLEAN_VALIDATOR;
 
-        /*
+        /**
          * Boolean value whether to link ringtone and notification volume
          * @hide
          */

@@ -244,6 +244,12 @@ public class EdgeBackGestureHandler implements DisplayListener {
         updateCurrentUserResources(currentUserContext.getResources());
     }
 
+    public void setStateForBackArrowGesture() {
+        if (mEdgePanel != null) {
+            mEdgePanel.setBackArrowVisibility();
+        }
+    }
+
     public void onSystemUiVisibilityChanged(int systemUiVisibility) {
         mIsInTransientImmersiveStickyState =
                 (systemUiVisibility & SYSTEM_UI_FLAG_IMMERSIVE_STICKY) != 0

@@ -778,7 +778,10 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.PULSE_AMBIENT_LIGHT),
                     false, this, UserHandle.USER_ALL);
-         }
+            resolver.registerContentObserver(Settings.Secure.getUriFor(
+                    Settings.Secure.SHOW_BACK_ARROW_GESTURE),
+                    false, this, UserHandle.USER_ALL);
+        }
 
         @Override
         public void onChange(boolean selfChange) {
@@ -810,6 +813,7 @@ public class StatusBar extends SystemUI implements DemoMode,
             setMaxKeyguardNotifConfig();
             updateTickerAnimation();
             updateTickerTickDuration();
+            setHideArrowForBackGesture();
         }
     }
 
@@ -5250,5 +5254,11 @@ public class StatusBar extends SystemUI implements DemoMode,
         mMaxKeyguardNotifConfig = Settings.System.getIntForUser(mContext.getContentResolver(),
                  Settings.System.LOCKSCREEN_MAX_NOTIF_CONFIG, 3, UserHandle.USER_CURRENT);
         mPresenter.setMaxAllowedNotifUser(mMaxKeyguardNotifConfig);
+    }
+
+    private void setHideArrowForBackGesture() {
+        if (getNavigationBarView() != null) {
+            getNavigationBarView().updateBackArrowForGesture();
+        }
     }
 }

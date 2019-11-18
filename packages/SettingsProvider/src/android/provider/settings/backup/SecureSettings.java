@@ -201,5 +201,6 @@ public class SecureSettings {
         Settings.Secure.QS_FOOTER_SHOW_POWER_MENU,
         Settings.Secure.QS_TILES_VIBRATE,
         Settings.Secure.BACK_GESTURE_HEIGHT,
+        Settings.Secure.SHOW_BACK_ARROW_GESTURE,
     };
 }

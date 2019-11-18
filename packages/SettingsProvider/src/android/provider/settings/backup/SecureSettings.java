@@ -196,5 +196,6 @@ public class SecureSettings {
         Settings.Secure.NAV_BAR_INVERSE,
         Settings.Secure.QS_TILES_VIBRATE,
         Settings.Secure.BACK_GESTURE_HEIGHT,
+        Settings.Secure.SHOW_BACK_ARROW_GESTURE,
     };
 }

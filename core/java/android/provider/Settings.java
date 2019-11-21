@@ -5904,6 +5904,33 @@ public final class Settings {
         /** @hide */
         private static final Validator PULSE_ON_NEW_TRACKS_VALIDATOR = BOOLEAN_VALIDATOR;
 
+        /**
+         * Whether the phone ringtone should be played in an increasing manner
+         * @hide
+         */
+        public static final String INCREASING_RING = "increasing_ring";
+        /** @hide */
+        private static final Validator INCREASING_RING_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
+         * Start volume fraction for increasing ring volume
+         * @hide
+         */
+        public static final String INCREASING_RING_START_VOLUME = "increasing_ring_start_vol";
+        /** @hide */
+        private static final Validator INCREASING_RING_START_VOLUME_VALIDATOR =
+                new SettingsValidators.InclusiveFloatRangeValidator(0.f, 1.f);
+
+
+        /**
+         * Ramp up time (seconds) for increasing ring
+         * @hide
+         */
+        public static final String INCREASING_RING_RAMP_UP_TIME = "increasing_ring_ramp_up_time";
+        /** @hide */
+        private static final Validator INCREASING_RING_RAMP_UP_TIME_VALIDATOR =
+                ANY_INTEGER_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6111,6 +6138,9 @@ public final class Settings {
             LOCK_SCREEN_VISUALIZER_USE_CUSTOM_COLOR,
             STATUSBAR_HIDE_NOTCH,
             PULSE_ON_NEW_TRACKS,
+            INCREASING_RING,
+            INCREASING_RING_RAMP_UP_TIME,
+            INCREASING_RING_START_VOLUME,
             // AICP Settings end
         };
 
@@ -6372,6 +6402,9 @@ public final class Settings {
             PRIVATE_SETTINGS.add(LOCK_SCREEN_VISUALIZER_USE_CUSTOM_COLOR);
             PRIVATE_SETTINGS.add(STATUSBAR_HIDE_NOTCH);
             PRIVATE_SETTINGS.add(PULSE_ON_NEW_TRACKS);
+            PRIVATE_SETTINGS.add(INCREASING_RING);
+            PRIVATE_SETTINGS.add(INCREASING_RING_RAMP_UP_TIME);
+            PRIVATE_SETTINGS.add(INCREASING_RING_START_VOLUME);
             // AICP Settings end
         }
 
@@ -6620,6 +6653,9 @@ public final class Settings {
                     LOCK_SCREEN_VISUALIZER_USE_CUSTOM_COLOR_VALIDATOR);
             VALIDATORS.put(STATUSBAR_HIDE_NOTCH,STATUSBAR_HIDE_NOTCH_VALIDATOR);
             VALIDATORS.put(PULSE_ON_NEW_TRACKS, PULSE_ON_NEW_TRACKS_VALIDATOR);
+            VALIDATORS.put(INCREASING_RING, INCREASING_RING_VALIDATOR);
+            VALIDATORS.put(INCREASING_RING_RAMP_UP_TIME, INCREASING_RING_RAMP_UP_TIME_VALIDATOR);
+            VALIDATORS.put(INCREASING_RING_START_VOLUME, INCREASING_RING_START_VOLUME_VALIDATOR);
             // AICP Settings end
         }
 

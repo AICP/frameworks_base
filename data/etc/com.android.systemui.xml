@@ -73,5 +73,6 @@
         <permission name="android.permission.FORCE_STOP_PACKAGES" />
         <permission name="android.permission.REBOOT"/>
         <permission name="android.permission.RECOVERY"/>
+        <permission name="android.permission.WRITE_APN_SETTINGS" />
     </privapp-permissions>
 </permissions>

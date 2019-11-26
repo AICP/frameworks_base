@@ -83,5 +83,6 @@
         <permission name="android.permission.SET_UNRESTRICTED_KEEP_CLEAR_AREAS" />
         <permission name="android.permission.REBOOT"/>
         <permission name="android.permission.RECOVERY"/>
+        <permission name="android.permission.WRITE_APN_SETTINGS" />
     </privapp-permissions>
 </permissions>

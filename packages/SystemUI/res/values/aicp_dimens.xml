@@ -82,4 +82,9 @@
 
     <!-- OmniWeather image size -->
     <dimen name="current_weather_image_size">30dp</dimen>
+
+    <!-- Old mobile signal -->
+    <dimen name="status_bar_mobile_signal_with_type_width">22dp</dimen>
+    <dimen name="status_bar_mobile_signal_width">16dp</dimen>
+    <dimen name="status_bar_mobile_type_height">10dp</dimen>
 </resources>

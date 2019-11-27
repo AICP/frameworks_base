@@ -5965,6 +5965,11 @@ public final class Settings {
          */
         public static final String QS_HEADER_CLOCK_SIZE = "qs_header_clock_size";
 
+        /**
+         * @hide
+         */
+        public static final String USE_OLD_MOBILETYPE = "use_old_mobiletype";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6140,6 +6145,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SHOW_QS_DATE);
             PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK_SIZE);
             PRIVATE_SETTINGS.add(QS_HEADER_CLOCK_SIZE);
+            PRIVATE_SETTINGS.add(USE_OLD_MOBILETYPE);
         }
 
         /**

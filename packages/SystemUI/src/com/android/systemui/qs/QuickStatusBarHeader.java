@@ -52,9 +52,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Space;
 import android.widget.TextView;
-import android.database.ContentObserver;
-import android.content.ContentResolver;
-import android.os.UserHandle;
 
 import androidx.annotation.VisibleForTesting;
 
@@ -167,26 +164,6 @@ public class QuickStatusBarHeader extends RelativeLayout implements
     private int mSysCPUTempMultiplier;
     private int mSysBatTempMultiplier;
 
-    protected ContentResolver mContentResolver;
-
-    private class SettingsObserver extends ContentObserver {
-        SettingsObserver(Handler handler) {
-            super(handler);
-        }
-
-        void observe() {
-            ContentResolver resolver = getContext().getContentResolver();
-            resolver.registerContentObserver(Settings.System
-                    .getUriFor(Settings.System.QS_SYSTEM_INFO), false,
-                    this, UserHandle.USER_ALL);
-            }
-
-        @Override
-        public void onChange(boolean selfChange) {
-            updateSettings();
-        }
-    }
-    private SettingsObserver mSettingsObserver = new SettingsObserver(mHandler);
     private final BroadcastReceiver mRingerReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -233,8 +210,6 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         mDualToneHandler = new DualToneHandler(
                 new ContextThemeWrapper(context, R.style.QSHeaderTheme));
         mSystemInfoMode = getQsSystemInfoMode();
-        mContentResolver = context.getContentResolver();
-        mSettingsObserver.observe();
     }
 
     @Override
@@ -308,6 +283,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
 
         Dependency.get(TunerService.class).addTunable(this,
                 StatusBarIconController.ICON_BLACKLIST);
+        updateSysInfoResources();
         updateSettings();
     }
 
@@ -542,7 +518,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         updatePrivacyChipAlphaAnimator();
     }
 
-      private void updateSettings() {
+    private void updateSysInfoResources(){
         Resources resources = mContext.getResources();
         mSysCPUTemp = resources.getString(
                   com.android.internal.R.string.config_sysCPUTemp);
@@ -556,11 +532,13 @@ public class QuickStatusBarHeader extends RelativeLayout implements
                   com.android.internal.R.integer.config_sysCPUTempMultiplier);
         mSysBatTempMultiplier = resources.getInteger(
                   com.android.internal.R.integer.config_sysBatteryTempMultiplier);
+    }
 
+    public void updateSettings() {
         mSystemInfoMode = getQsSystemInfoMode();
         updateSystemInfoText();
         updateResources();
-     }
+    }
 
     private void updateStatusIconAlphaAnimator() {
         mStatusIconsAlphaAnimator = new TouchAnimator.Builder()

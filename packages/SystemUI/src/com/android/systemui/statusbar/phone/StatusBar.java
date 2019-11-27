@@ -179,6 +179,7 @@ import com.android.systemui.plugins.statusbar.StatusBarStateController;
 import com.android.systemui.qs.QSFragment;
 import com.android.systemui.qs.QSPanel;
 import com.android.systemui.qs.QuickQSPanel;
+import com.android.systemui.qs.QuickStatusBarHeader;
 import com.android.systemui.recents.Recents;
 import com.android.systemui.recents.ScreenPinningRequest;
 import com.android.systemui.shared.plugins.PluginManager;
@@ -419,6 +420,7 @@ public class StatusBar extends SystemUI implements DemoMode,
     // settings
     private QSPanel mQSPanel;
     private QuickQSPanel mQuickQSPanel;
+    private QuickStatusBarHeader mQuickStatusBarHeader;
 
     KeyguardIndicationController mKeyguardIndicationController;
 
@@ -741,6 +743,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System
+                    .getUriFor(Settings.System.QS_SYSTEM_INFO), false,
+                    this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -1332,6 +1337,7 @@ public class StatusBar extends SystemUI implements DemoMode,
                 if (qs instanceof QSFragment) {
                     mQSPanel = ((QSFragment) qs).getQsPanel();
                     mQuickQSPanel = ((QSFragment) qs).getQuickQsPanel();
+                    mQuickStatusBarHeader = ((QSFragment) qs).getQuickStatusBarHeader();
                     mQSPanel.setBrightnessMirror(mBrightnessMirrorController);
                 }
             });
@@ -4626,6 +4632,9 @@ public class StatusBar extends SystemUI implements DemoMode,
         }
         if (mQuickQSPanel != null) {
             mQuickQSPanel.updateSettings();
+        }
+        if (mQuickStatusBarHeader != null) {
+            mQuickStatusBarHeader.updateSettings();
         }
         if (mIconPolicy != null) {
             mIconPolicy.updateSettings(showBluetoothBattery);

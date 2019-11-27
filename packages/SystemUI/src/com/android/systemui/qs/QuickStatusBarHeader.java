@@ -122,26 +122,6 @@ public class QuickStatusBarHeader extends FrameLayout implements
     private int mSysCPUTempMultiplier;
     private int mSysBatTempMultiplier;
 
-    protected ContentResolver mContentResolver;
-
-    private class SettingsObserver extends ContentObserver {
-        SettingsObserver(Handler handler) {
-            super(handler);
-        }
-
-        void observe() {
-            ContentResolver resolver = getContext().getContentResolver();
-            resolver.registerContentObserver(Settings.System
-                    .getUriFor(Settings.System.QS_SYSTEM_INFO), false,
-                    this, UserHandle.USER_ALL);
-            }
-
-        @Override
-        public void onChange(boolean selfChange) {
-            updateSettings();
-        }
-    }
-    private SettingsObserver mSettingsObserver = new SettingsObserver(mHandler);
     private int mRoundedCornerPadding = 0;
     private int mWaterfallTopInset;
     private int mCutOutPaddingLeft;
@@ -167,8 +147,6 @@ public class QuickStatusBarHeader extends FrameLayout implements
         mActivityStarter = Dependency.get(ActivityStarter.class);
         mVibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         mSystemInfoMode = getQsSystemInfoMode();
-        mContentResolver = context.getContentResolver();
-        mSettingsObserver.observe();
      }
 
     /**
@@ -223,6 +201,7 @@ public class QuickStatusBarHeader extends FrameLayout implements
         // QS will always show the estimate, and BatteryMeterView handles the case where
         // it's unavailable or charging
         mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_ESTIMATE);
+        updateSysInfoResources();
         updateSettings();
 
         mIconsAlphaAnimatorFixed = new TouchAnimator.Builder()
@@ -415,25 +394,27 @@ public class QuickStatusBarHeader extends FrameLayout implements
         }
     }
 
-    private void updateSettings() {
-      Resources resources = mContext.getResources();
-      mSysCPUTemp = resources.getString(
-                com.android.internal.R.string.config_sysCPUTemp);
-      mSysBatTemp = resources.getString(
-                com.android.internal.R.string.config_sysBatteryTemp);
-      mSysGPUFreq = resources.getString(
-                com.android.internal.R.string.config_sysGPUFreq);
-      mSysGPULoad = resources.getString(
-                com.android.internal.R.string.config_sysGPULoad);
-      mSysCPUTempMultiplier = resources.getInteger(
-                com.android.internal.R.integer.config_sysCPUTempMultiplier);
-      mSysBatTempMultiplier = resources.getInteger(
-                com.android.internal.R.integer.config_sysBatteryTempMultiplier);
+    private void updateSysInfoResources(){
+        Resources resources = mContext.getResources();
+        mSysCPUTemp = resources.getString(
+                  com.android.internal.R.string.config_sysCPUTemp);
+        mSysBatTemp = resources.getString(
+                  com.android.internal.R.string.config_sysBatteryTemp);
+        mSysGPUFreq = resources.getString(
+                  com.android.internal.R.string.config_sysGPUFreq);
+        mSysGPULoad = resources.getString(
+                  com.android.internal.R.string.config_sysGPULoad);
+        mSysCPUTempMultiplier = resources.getInteger(
+                  com.android.internal.R.integer.config_sysCPUTempMultiplier);
+        mSysBatTempMultiplier = resources.getInteger(
+                  com.android.internal.R.integer.config_sysBatteryTempMultiplier);
+    }
 
-      mSystemInfoMode = getQsSystemInfoMode();
-      updateSystemInfoText();
-      updateResources();
-   }
+    public void updateSettings() {
+        mSystemInfoMode = getQsSystemInfoMode();
+        updateSystemInfoText();
+        updateResources();
+    }
 
     void updateResources() {
         Resources resources = mContext.getResources();

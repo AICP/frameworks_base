@@ -48,9 +48,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.database.ContentObserver;
-import android.content.ContentResolver;
-import android.os.UserHandle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
@@ -161,26 +158,6 @@ public class QuickStatusBarHeader extends RelativeLayout implements
     private int mSysCPUTempMultiplier;
     private int mSysBatTempMultiplier;
 
-    protected ContentResolver mContentResolver;
-
-    private class SettingsObserver extends ContentObserver {
-        SettingsObserver(Handler handler) {
-            super(handler);
-        }
-
-        void observe() {
-            ContentResolver resolver = getContext().getContentResolver();
-            resolver.registerContentObserver(Settings.System
-                    .getUriFor(Settings.System.QS_SYSTEM_INFO), false,
-                    this, UserHandle.USER_ALL);
-            }
-
-        @Override
-        public void onChange(boolean selfChange) {
-            updateSettings();
-        }
-    }
-    private SettingsObserver mSettingsObserver = new SettingsObserver(mHandler);
     private boolean mHasTopCutout = false;
     private int mStatusBarPaddingTop = 0;
     private int mRoundedCornerPadding = 0;
@@ -208,8 +185,6 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         mCommandQueue = commandQueue;
         mRingerModeTracker = ringerModeTracker;
         mSystemInfoMode = getQsSystemInfoMode();
-        mContentResolver = context.getContentResolver();
-        mSettingsObserver.observe();
     }
 
     @Override
@@ -273,6 +248,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         mBatteryRemainingIcon.setQsbHeader();
         mRingerModeTextView.setSelected(true);
         mNextAlarmTextView.setSelected(true);
+        updateSysInfoResources();
         updateSettings();
     }
 
@@ -488,7 +464,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         updateHeaderTextContainerAlphaAnimator();
     }
 
-      private void updateSettings() {
+    private void updateSysInfoResources(){
         Resources resources = mContext.getResources();
         mSysCPUTemp = resources.getString(
                   com.android.internal.R.string.config_sysCPUTemp);
@@ -502,11 +478,13 @@ public class QuickStatusBarHeader extends RelativeLayout implements
                   com.android.internal.R.integer.config_sysCPUTempMultiplier);
         mSysBatTempMultiplier = resources.getInteger(
                   com.android.internal.R.integer.config_sysBatteryTempMultiplier);
+    }
 
+    public void updateSettings() {
         mSystemInfoMode = getQsSystemInfoMode();
         updateSystemInfoText();
         updateResources();
-     }
+    }
 
     private void updateStatusIconAlphaAnimator() {
         mStatusIconsAlphaAnimator = new TouchAnimator.Builder()

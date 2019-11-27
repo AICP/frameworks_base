@@ -21,6 +21,7 @@ import static com.android.systemui.statusbar.phone.StatusBarIconHolder.TYPE_WIFI
 
 import android.annotation.Nullable;
 import android.content.Context;
+import android.content.ContentResolver;
 import android.os.Bundle;
 import android.os.UserHandle;
 import android.provider.Settings;
@@ -256,6 +257,7 @@ public interface StatusBarIconController {
 
         private final boolean mNewIconStyle;
         private final boolean mShowNotificationCount;
+        private final boolean mUseOldStyleMobileDataIcons;
 
         public IconManager(ViewGroup group, FeatureFlags featureFlags) {
             mFeatureFlags = featureFlags;
@@ -269,6 +271,9 @@ public interface StatusBarIconController {
                 Settings.System.STATUSBAR_NOTIF_COUNT,
                 mContext.getResources().getBoolean(R.bool.config_statusBarShowNumber) ? 1 : 0,
                 UserHandle.USER_CURRENT) == 1;
+            mUseOldStyleMobileDataIcons = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.OMNI_USE_OLD_MOBILETYPE, 0, UserHandle.USER_CURRENT) == 1;
+
         }
 
         public boolean isDemoable() {
@@ -357,7 +362,7 @@ public interface StatusBarIconController {
         @VisibleForTesting
         protected StatusBarMobileView addMobileIcon(int index, String slot, MobileIconState state) {
             StatusBarMobileView view = onCreateStatusBarMobileView(slot);
-            view.applyMobileState(state);
+            view.applyMobileState(state, mUseOldStyleMobileDataIcons);
             mGroup.addView(view, index, onCreateLayoutParams());
 
             if (mIsInDemoMode) {
@@ -464,7 +469,7 @@ public interface StatusBarIconController {
         public void onSetMobileIcon(int viewIndex, MobileIconState state) {
             StatusBarMobileView view = (StatusBarMobileView) mGroup.getChildAt(viewIndex);
             if (view != null) {
-                view.applyMobileState(state);
+                view.applyMobileState(state, mUseOldStyleMobileDataIcons);
             }
 
             if (mIsInDemoMode) {

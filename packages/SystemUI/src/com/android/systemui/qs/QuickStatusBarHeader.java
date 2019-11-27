@@ -47,6 +47,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.android.internal.policy.SystemBarUtils;
+import com.android.internal.util.aicp.FileUtils;
 import com.android.settingslib.Utils;
 import com.android.systemui.R;
 import com.android.systemui.battery.BatteryMeterView;
@@ -253,73 +254,76 @@ public class QuickStatusBarHeader extends FrameLayout implements
     }
 
     private void updateSystemInfoText() {
-        if (mSystemInfoMode == 0) {
-            mSystemInfoText.setVisibility(View.GONE);
-            mSystemInfoIcon.setVisibility(View.GONE);
-            return;
-        } else {
+        mSystemInfoText.setVisibility(View.GONE);
+        mSystemInfoIcon.setVisibility(View.GONE);
+        if (mSystemInfoMode == 0) return;
+        boolean makeInfoVisible = false;
+        switch (mSystemInfoMode) {
+            case 1:
+                if (getCPUTemp() != null) {
+                    mSystemInfoIcon.setImageDrawable(getContext().getDrawable(R.drawable.ic_thermometer));
+                    mSystemInfoText.setText(getCPUTemp());
+                    makeInfoVisible = true;
+                }
+                break;
+            case 2:
+                if (getBatteryTemp() != null) {
+                    mSystemInfoIcon.setImageDrawable(getContext().getDrawable(R.drawable.ic_thermometer));
+                    mSystemInfoText.setText(getBatteryTemp());
+                    makeInfoVisible = true;
+                }
+                break;
+            case 3:
+                if (getGPUClock() != null) {
+                    mSystemInfoIcon.setImageDrawable(getContext().getDrawable(R.drawable.ic_gpu));
+                    mSystemInfoText.setText(getGPUClock());
+                    makeInfoVisible = true;
+                }
+                break;
+            case 4:
+                if (getGPUBusy() != null) {
+                    mSystemInfoIcon.setImageDrawable(getContext().getDrawable(R.drawable.ic_gpu));
+                    mSystemInfoText.setText(getGPUBusy());
+                    makeInfoVisible = true;
+                }
+                break;
+        }
+        if (makeInfoVisible) {
             mSystemInfoText.setVisibility(View.VISIBLE);
             mSystemInfoIcon.setVisibility(View.VISIBLE);
         }
-
-        switch (mSystemInfoMode) {
-            case 1:
-                mSystemInfoIcon.setImageDrawable(getContext().getDrawable(R.drawable.ic_thermometer));
-                mSystemInfoText.setText(getCPUTemp());
-                break;
-            case 2:
-                mSystemInfoIcon.setImageDrawable(getContext().getDrawable(R.drawable.ic_thermometer));
-                mSystemInfoText.setText(getBatteryTemp());
-                break;
-            case 3:
-                mSystemInfoIcon.setImageDrawable(getContext().getDrawable(R.drawable.ic_gpu));
-                mSystemInfoText.setText(getGPUClock());
-                break;
-            case 4:
-                mSystemInfoIcon.setImageDrawable(getContext().getDrawable(R.drawable.ic_gpu));
-                mSystemInfoText.setText(getGPUBusy());
-                break;
-            default:
-                mSystemInfoText.setVisibility(View.GONE);
-                mSystemInfoIcon.setVisibility(View.GONE);
-            break;
-            }
     }
 
     private String getBatteryTemp() {
-        String value = readOneLine(BATTERY_TEMP_PATH);
-        return String.format("%s", Integer.parseInt(value) / 10) + "\u2103";
+        if (FileUtils.fileExists(BATTERY_TEMP_PATH)) {
+            String value = FileUtils.readOneLine(BATTERY_TEMP_PATH);
+            return String.format("%s", Integer.parseInt(value) / 10) + "\u2103";
+        }
+        return null;
+
     }
 
     private String getCPUTemp() {
-        String value = readOneLine(CPU_TEMP_PATH);
-        return String.format("%s", Integer.parseInt(value) / 1000) + "\u2103";
+        if (FileUtils.fileExists(CPU_TEMP_PATH)) {
+            String value = FileUtils.readOneLine(CPU_TEMP_PATH);
+            return String.format("%s", Integer.parseInt(value) / 1000) + "\u2103";
+        }
+        return null;
     }
 
     private String getGPUBusy() {
-        String value = readOneLine(GPU_BUSY_PATH);
-        return value;
+        if (FileUtils.fileExists(GPU_BUSY_PATH)) {
+            return FileUtils.readOneLine(GPU_BUSY_PATH);
+        }
+        return null;
     }
 
     private String getGPUClock() {
-        String value = readOneLine(GPU_CLOCK_PATH);
-        return String.format("%s", Integer.parseInt(value)) + "Mhz";
-    }
-
-    private static String readOneLine(String fname) {
-        BufferedReader br;
-        String line = null;
-        try {
-            br = new BufferedReader(new FileReader(fname), 512);
-            try {
-                line = br.readLine();
-            } finally {
-                br.close();
-            }
-        } catch (Exception e) {
-            return null;
+        if (FileUtils.fileExists(GPU_CLOCK_PATH)) {
+            String value = FileUtils.readOneLine(GPU_CLOCK_PATH);
+            return String.format("%s", Integer.parseInt(value)) + "Mhz";
         }
-        return line;
+        return null;
     }
 
     void setIsSingleCarrier(boolean isSingleCarrier) {

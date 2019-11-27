@@ -141,5 +141,6 @@ public class SystemSettings {
         Settings.System.SHOW_QS_DATE,
         Settings.System.STATUS_BAR_CLOCK_SIZE,
         Settings.System.QS_HEADER_CLOCK_SIZE,
+        Settings.System.USE_OLD_MOBILETYPE,
     };
 }

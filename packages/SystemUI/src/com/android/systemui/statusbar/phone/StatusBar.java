@@ -191,6 +191,7 @@ import com.android.systemui.plugins.statusbar.StatusBarStateController;
 import com.android.systemui.qs.QSFragment;
 import com.android.systemui.qs.QSPanelController;
 import com.android.systemui.qs.QuickQSPanelController;
+import com.android.systemui.qs.QuickStatusBarHeader;
 import com.android.systemui.recents.ScreenPinningRequest;
 import com.android.systemui.scrim.ScrimView;
 import com.android.systemui.settings.brightness.BrightnessSliderController;
@@ -550,6 +551,7 @@ public class StatusBar extends SystemUI implements
     // settings
     private QSPanelController mQSPanelController;
     private QuickQSPanelController mQuickQSPanelController;
+    private QuickStatusBarHeader mQuickStatusBarHeader;
 
     private final OperatorNameViewController.Factory mOperatorNameViewControllerFactory;
     KeyguardIndicationController mKeyguardIndicationController;
@@ -1367,6 +1369,7 @@ public class StatusBar extends SystemUI implements
                     mQSPanelController = ((QSFragment) qs).getQSPanelController();
                     mQuickQSPanelController = ((QSFragment) qs).getQuickQSPanelController();
                     ((QSFragment) qs).setBrightnessMirrorController(mBrightnessMirrorController);
+                    mQuickStatusBarHeader = ((QSFragment) qs).getQuickStatusBarHeader();
                 }
             });
         }
@@ -4056,11 +4059,14 @@ public class StatusBar extends SystemUI implements
                     Settings.System.PULSE_ON_NEW_TRACKS),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                          Settings.System.LOCKSCREEN_MAX_NOTIF_CONFIG),
-                          false, this, UserHandle.USER_ALL);
+                    Settings.System.LOCKSCREEN_MAX_NOTIF_CONFIG),
+                    false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.HEADS_UP_BLACKLIST_VALUES),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System
+                    .getUriFor(Settings.System.QS_SYSTEM_INFO), false,
+                    this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -4700,6 +4706,9 @@ public class StatusBar extends SystemUI implements
         }
         if (mNotificationInterruptStateProvider != null) {
             mNotificationInterruptStateProvider.setUseLessBoringHeadsUp(lessBoringHeadsUp);
+        }
+        if (mQuickStatusBarHeader != null) {
+            mQuickStatusBarHeader.updateSettings();
         }
         setScreenBrightnessMode();
         updateNavigationBar(false);

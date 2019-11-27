@@ -99,11 +99,6 @@ public class QuickStatusBarHeader extends RelativeLayout implements
     private static final String TAG = "QuickStatusBarHeader";
     private static final boolean DEBUG = false;
     public static final String QS_SHOW_INFO_HEADER = "qs_show_info_header";
-    private static final String CPU_TEMP_PATH = "/sys/class/thermal/thermal_zone0/temp";
-    private static final String BATTERY_TEMP_PATH = "/sys/class/power_supply/battery/temp";
-    private static final String GPU_CLOCK_PATH = "/sys/kernel/gpu/gpu_clock";
-    private static final String GPU_BUSY_PATH = "/sys/kernel/gpu/gpu_busy";
-
     /** Delay for auto fading out the long press tooltip after it's fully visible (in ms). */
     private static final long AUTO_FADE_OUT_DELAY_MS = DateUtils.SECOND_IN_MILLIS * 6;
     private static final int FADE_ANIMATION_DURATION_MS = 300;
@@ -159,6 +154,12 @@ public class QuickStatusBarHeader extends RelativeLayout implements
     private int mSystemInfoMode;
     private ImageView mSystemInfoIcon;
     private View mSystemInfoLayout;
+    private String mSysCPUTemp;
+    private String mSysBatTemp;
+    private String mSysGPUFreq;
+    private String mSysGPULoad;
+    private int mSysCPUTempMultiplier;
+    private int mSysBatTempMultiplier;
 
     protected ContentResolver mContentResolver;
 
@@ -347,33 +348,33 @@ public class QuickStatusBarHeader extends RelativeLayout implements
     }
 
     private String getBatteryTemp() {
-        if (FileUtils.fileExists(BATTERY_TEMP_PATH)) {
-            String value = FileUtils.readOneLine(BATTERY_TEMP_PATH);
-            return String.format("%s", Integer.parseInt(value) / 10) + "\u2103";
+        if (!mSysBatTemp.isEmpty() && FileUtils.fileExists(mSysBatTemp)) {
+            String value = FileUtils.readOneLine(mSysBatTemp);
+            return String.format("%s", Integer.parseInt(value) / (mSysBatTempMultiplier > 1 ? mSysBatTempMultiplier : 1)) + "\u2103";
         }
         return null;
 
     }
 
     private String getCPUTemp() {
-        if (FileUtils.fileExists(CPU_TEMP_PATH)) {
-            String value = FileUtils.readOneLine(CPU_TEMP_PATH);
-            return String.format("%s", Integer.parseInt(value) / 1000) + "\u2103";
+        if (!mSysCPUTemp.isEmpty() && FileUtils.fileExists(mSysCPUTemp)) {
+            String value = FileUtils.readOneLine(mSysCPUTemp);
+            return String.format("%s", Integer.parseInt(value) / (mSysCPUTempMultiplier > 1 ? mSysCPUTempMultiplier : 1)) + "\u2103";
         }
         return null;
     }
 
     private String getGPUBusy() {
-        if (FileUtils.fileExists(GPU_BUSY_PATH)) {
-            return FileUtils.readOneLine(GPU_BUSY_PATH);
+        if (!mSysGPULoad.isEmpty() && FileUtils.fileExists(mSysGPULoad)) {
+            return FileUtils.readOneLine(mSysGPULoad);
         }
         return null;
     }
 
     private String getGPUClock() {
-        if (FileUtils.fileExists(GPU_CLOCK_PATH)) {
-            String value = FileUtils.readOneLine(GPU_CLOCK_PATH);
-            return String.format("%s", Integer.parseInt(value)) + "Mhz";
+        if (!mSysGPUFreq.isEmpty() && FileUtils.fileExists(mSysGPUFreq)) {
+            String value = FileUtils.readOneLine(mSysGPUFreq);
+            return String.format("%s", Integer.parseInt(value)) + " Mhz";
         }
         return null;
     }
@@ -488,6 +489,20 @@ public class QuickStatusBarHeader extends RelativeLayout implements
     }
 
       private void updateSettings() {
+        Resources resources = mContext.getResources();
+        mSysCPUTemp = resources.getString(
+                  com.android.internal.R.string.config_sysCPUTemp);
+        mSysBatTemp = resources.getString(
+                  com.android.internal.R.string.config_sysBatteryTemp);
+        mSysGPUFreq = resources.getString(
+                  com.android.internal.R.string.config_sysGPUFreq);
+        mSysGPULoad = resources.getString(
+                  com.android.internal.R.string.config_sysGPULoad);
+        mSysCPUTempMultiplier = resources.getInteger(
+                  com.android.internal.R.integer.config_sysCPUTempMultiplier);
+        mSysBatTempMultiplier = resources.getInteger(
+                  com.android.internal.R.integer.config_sysBatteryTempMultiplier);
+
         mSystemInfoMode = getQsSystemInfoMode();
         updateSystemInfoText();
         updateResources();

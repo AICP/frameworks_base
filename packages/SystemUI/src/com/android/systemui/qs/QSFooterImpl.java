@@ -72,6 +72,7 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
     public static final String QS_SHOW_AUTO_BRIGHTNESS_BUTTON = "qs_show_auto_brightness_button";
     public static final String SCREEN_BRIGHTNESS_MODE = "screen_brightness_mode";
     public static final String AICP_FOOTER_TEXT_SHOW = "footer_text_show";
+    public static final String AICP_FOOTER_TEXT_STRING = "footer_text_string";
 
     private final ActivityStarter mActivityStarter;
     private final UserInfoController mUserInfoController;
@@ -169,7 +170,11 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
         mShouldShowFooterText = Settings.System.getIntForUser(mContext.getContentResolver(),
                         Settings.System.AICP_FOOTER_TEXT_SHOW, 0,
                         UserHandle.USER_CURRENT) == 1;
-        mBuildText.setText(mContext.getResources().getString(R.string.qs_footer_aicp_text));
+        String footerText = Settings.System.getStringForUser(mContext.getContentResolver(),
+                        Settings.System.AICP_FOOTER_TEXT_STRING, UserHandle.USER_CURRENT);
+        mBuildText.setText((footerText != null && !footerText.isEmpty()) ? footerText :
+                        mContext.getResources().getString(R.string.qs_footer_aicp_text));
+
         if (mShouldShowFooterText) {
             // Set as selected for marquee before its made visible, then it won't be announced when
             // it's made visible.
@@ -258,11 +263,12 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-
         final TunerService tunerService = Dependency.get(TunerService.class);
-        tunerService.addTunable(this, QS_SHOW_AUTO_BRIGHTNESS_BUTTON);
-        tunerService.addTunable(this, SCREEN_BRIGHTNESS_MODE);
-        tunerService.addTunable(this, AICP_FOOTER_TEXT_SHOW);
+        tunerService.addTunable(this,
+                QS_SHOW_AUTO_BRIGHTNESS_BUTTON,
+                SCREEN_BRIGHTNESS_MODE,
+                AICP_FOOTER_TEXT_SHOW,
+                AICP_FOOTER_TEXT_STRING);
     }
 
     @Override
@@ -281,7 +287,7 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
         if (SCREEN_BRIGHTNESS_MODE.equals(key)) {
             setAutoBrightnessIcon(newValue != null && Integer.parseInt(newValue) != 0);
         }
-        if (AICP_FOOTER_TEXT_SHOW.equals(key)) {
+        if (AICP_FOOTER_TEXT_SHOW.equals(key) || AICP_FOOTER_TEXT_STRING.equals(key)) {
             setFooterText();
         }
     }

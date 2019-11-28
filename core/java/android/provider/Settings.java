@@ -6180,6 +6180,12 @@ public final class Settings {
          */
         public static final String AICP_FOOTER_TEXT_SHOW = "footer_text_show";
 
+        /**
+         * QS footer text
+         * @hide
+         */
+        public static final String AICP_FOOTER_TEXT_STRING = "footer_text_string";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6351,6 +6357,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(INCREASING_RING_START_VOLUME, ANY_STRING_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(INCREASING_RING_RAMP_UP_TIME, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(AICP_FOOTER_TEXT_SHOW, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(AICP_FOOTER_TEXT_STRING, ANY_STRING_VALIDATOR);
         }
 
         /**

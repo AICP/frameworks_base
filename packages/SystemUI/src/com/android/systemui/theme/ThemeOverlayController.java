@@ -506,13 +506,7 @@ public class ThemeOverlayController implements CoreStartable, Dumpable {
                             mDeferredThemeEvaluation = true;
                             return;
                         }
-                        boolean isCircleBattery = Settings.System.getIntForUser(
-                                mContext.getContentResolver(),
-                                Settings.System.STATUS_BAR_BATTERY_STYLE,
-                                0, UserHandle.USER_CURRENT) == 1;
-                        if (isCircleBattery) {
-                            reevaluateSystemTheme(true /* forceReload */);
-                        }
+                        reevaluateSystemTheme(true /* forceReload */);
                     }
                 },
                 UserHandle.USER_ALL);

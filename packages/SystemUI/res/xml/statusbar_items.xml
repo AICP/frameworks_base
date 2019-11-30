@@ -33,12 +33,6 @@
         android:key="rotate"
         android:title="@string/status_bar_settings_auto_rotation" />
 
-    <!-- secure -->
-    <com.android.systemui.tuner.StatusBarSwitch
-        android:icon="@*android:drawable/ic_battery"
-        android:key="battery"
-        android:title="@string/battery" />
-
     <com.android.systemui.tuner.StatusBarSwitch
         android:icon="@*android:drawable/ic_qs_bluetooth"
         android:key="bluetooth"

@@ -250,5 +250,6 @@ public class SystemSettings {
         Settings.System.SHOW_LTE_FOURGEE,
         Settings.System.LOCKSCREEN_QUICK_UNLOCK_CONTROL,
         Settings.System.SHOW_VOLTE_ICON,
+        Settings.System.VOLTE_ICON_STYLE,
     };
 }

@@ -268,5 +268,6 @@ public class SystemSettings {
         Settings.System.ADAPTIVE_PLAYBACK_ENABLED,
         Settings.System.ADAPTIVE_PLAYBACK_TIMEOUT,
         Settings.System.SHOW_VOLTE_ICON,
+        Settings.System.VOLTE_ICON_STYLE,
     };
 }

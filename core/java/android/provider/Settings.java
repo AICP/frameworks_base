@@ -6558,6 +6558,13 @@ public final class Settings {
          */
         public static final String QS_TILE_VERTICAL_LAYOUT = "qs_tile_vertical_layout";
 
+        /**
+         * Style of battery to show.
+         *
+         * @hide
+         */
+        public static final String STATUS_BAR_BATTERY_STYLE = "status_bar_battery_style";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6818,6 +6825,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(QS_LAYOUT_COLUMNS_LANDSCAPE);
             PRIVATE_SETTINGS.add(QS_LAYOUT_COLUMNS);
             PRIVATE_SETTINGS.add(QS_TILE_VERTICAL_LAYOUT);
+            PRIVATE_SETTINGS.add(STATUS_BAR_BATTERY_STYLE);
         }
 
         /**

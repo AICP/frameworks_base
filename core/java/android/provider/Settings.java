@@ -6550,6 +6550,13 @@ public final class Settings {
          */
         public static final String CHARGING_ANIMATION = "charging_animation";
 
+        /**
+         * Style of battery to show.
+         *
+         * @hide
+         */
+        public static final String STATUS_BAR_BATTERY_STYLE = "status_bar_battery_style";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6809,6 +6816,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_LOCATION);
             PRIVATE_SETTINGS.add(FORCE_FULLSCREEN_CUTOUT_APPS);
             PRIVATE_SETTINGS.add(CHARGING_ANIMATION);
+            PRIVATE_SETTINGS.add(STATUS_BAR_BATTERY_STYLE);
         }
 
         /**

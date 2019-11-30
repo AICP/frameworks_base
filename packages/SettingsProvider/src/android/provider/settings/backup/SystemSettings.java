@@ -226,5 +226,7 @@ public class SystemSettings {
         Settings.System.QS_LAYOUT_COLUMNS_LANDSCAPE,
         Settings.System.QS_LAYOUT_COLUMNS,
         Settings.System.STATUS_BAR_BATTERY_STYLE,
+        Settings.System.STATUS_BAR_SHOW_BATTERY_PERCENT,
+        Settings.System.STATUS_BAR_BATTERY_TEXT_CHARGING,
     };
 }

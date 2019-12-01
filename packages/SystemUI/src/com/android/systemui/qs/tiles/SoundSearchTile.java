@@ -43,7 +43,7 @@ public class SoundSearchTile extends QSTileImpl<BooleanState> {
 
     @Override
     public int getMetricsCategory() {
-        return MetricsEvent.CRDROID_SETTINGS;
+        return MetricsEvent.AICP_METRICS;
     }
 
     @Override

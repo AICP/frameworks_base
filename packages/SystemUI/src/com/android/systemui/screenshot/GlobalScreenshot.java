@@ -64,6 +64,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.PowerManager;
 import android.os.RemoteException;
+import android.os.ServiceManager;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -91,6 +92,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.android.internal.logging.UiEventLogger;
+import com.android.internal.statusbar.IStatusBarService;
 import com.android.systemui.R;
 import com.android.systemui.dagger.qualifiers.Main;
 import com.android.systemui.dagger.qualifiers.UiBackground;
@@ -641,6 +643,18 @@ public class GlobalScreenshot implements ViewTreeObserver.OnComputeInternalInset
         }
     }
 
+    void setBlockedGesturalNavigation(boolean blocked) {
+        IStatusBarService service = IStatusBarService.Stub.asInterface(
+                ServiceManager.getService(Context.STATUS_BAR_SERVICE));
+        if (service != null) {
+            try {
+                service.setBlockedGesturalNavigation(blocked);
+            } catch (RemoteException e) {
+                // end of the world
+            }
+        }
+    }
+
     /**
      * Displays a screenshot selector
      */
@@ -649,6 +663,7 @@ public class GlobalScreenshot implements ViewTreeObserver.OnComputeInternalInset
         dismissScreenshot("new screenshot requested", true);
         mOnCompleteRunnable = onComplete;
 
+        setBlockedGesturalNavigation(true);
         mWindowManager.addView(mScreenshotLayout, mWindowLayoutParams);
         mScreenshotSelectorView.setSelectionListener((rect, firstSelection) -> {
             if (firstSelection) {
@@ -690,6 +705,7 @@ public class GlobalScreenshot implements ViewTreeObserver.OnComputeInternalInset
         mScreenshotSelectorView.stopSelection();
         mScreenshotSelectorView.setVisibility(View.GONE);
         mCaptureButton.setVisibility(View.GONE);
+        setBlockedGesturalNavigation(false);
     }
 
     /**
@@ -704,6 +720,8 @@ public class GlobalScreenshot implements ViewTreeObserver.OnComputeInternalInset
             } catch (IllegalArgumentException ignored) {
             }
         }
+
+        setBlockedGesturalNavigation(false);
     }
 
     /**

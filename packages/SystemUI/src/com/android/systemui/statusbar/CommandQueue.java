@@ -275,6 +275,7 @@ public class CommandQueue extends IStatusBar.Stub implements CallbackController<
         default void hideAuthenticationDialog() { }
         default void showInDisplayFingerprintView() { }
         default void hideInDisplayFingerprintView() { }
+        default void setBlockedGesturalNavigation(boolean blocked) {}
 
         /**
          * @see IStatusBar#onDisplayReady(int)
@@ -880,6 +881,15 @@ public class CommandQueue extends IStatusBar.Stub implements CallbackController<
     public void hideInDisplayFingerprintView() {
         synchronized (mLock) {
             mHandler.obtainMessage(MSG_HIDE_IN_DISPLAY_FINGERPRINT_VIEW).sendToTarget();
+
+        }
+    }
+
+    @Override
+    public void setBlockedGesturalNavigation(boolean blocked) {
+        synchronized (mLock) {
+            mHandler.removeMessages(MSG_SET_BLOCKED_GESTURAL_NAVIGATION);
+            mHandler.obtainMessage(MSG_SET_BLOCKED_GESTURAL_NAVIGATION, blocked).sendToTarget();
         }
     }
 
@@ -1367,6 +1377,11 @@ public class CommandQueue extends IStatusBar.Stub implements CallbackController<
                 case MSG_HIDE_IN_DISPLAY_FINGERPRINT_VIEW:
                     for (int i = 0; i < mCallbacks.size(); i++) {
                         mCallbacks.get(i).hideInDisplayFingerprintView();
+                    }
+                    break;
+                case MSG_SET_BLOCKED_GESTURAL_NAVIGATION:
+                    for (int i = 0; i < mCallbacks.size(); i++) {
+                        mCallbacks.get(i).setBlockedGesturalNavigation((Boolean) msg.obj);
                     }
                     break;
             }

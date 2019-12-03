@@ -266,6 +266,7 @@ public class AmbientDisplayConfiguration {
         return false;
     }
 
+    /** {@hide} */
     public boolean isAmbientTickerEnabled(int user) {
         return boolSettingSystem(Settings.System.PULSE_ON_NEW_TRACKS, user, 1);
     }

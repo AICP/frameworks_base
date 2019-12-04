@@ -31,6 +31,7 @@ public class TileLayout extends ViewGroup implements QSTileLayout {
     protected int mRows = 1;
     protected int mDefaultColumns;
     protected boolean mShowTitles = true;
+    private boolean mLayoutChanged = false;
 
     protected final ArrayList<TileRecord> mRecords = new ArrayList<>();
     private int mCellMarginTop;
@@ -95,7 +96,7 @@ public class TileLayout extends ViewGroup implements QSTileLayout {
         mSidePadding = res.getDimensionPixelOffset(R.dimen.qs_tile_layout_margin_side);
         mMaxAllowedRows = Math.max(1, getResources().getInteger(R.integer.quick_settings_max_rows));
         updateSettings();
-        return false;
+        return mLayoutChanged;
     }
 
     @Override
@@ -242,11 +243,13 @@ public class TileLayout extends ViewGroup implements QSTileLayout {
         if (mColumns != (isPortrait ? columns : columnsLandscape) || mShowTitles != showTitles) {
             mColumns = isPortrait ? columns : columnsLandscape;
             mShowTitles = showTitles;
+            mLayoutChanged = true;
             requestLayout();
         }
         if (mRows != (isPortrait ? rows : rowsLandscape) || mShowTitles != showTitles) {
             mRows = isPortrait ? rows : rowsLandscape;
             mShowTitles = showTitles;
+            mLayoutChanged = true;
             requestLayout();
         }
     }

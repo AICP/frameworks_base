@@ -102,4 +102,7 @@
 
     <!-- Whether to allow process with media UID to access CameraServiceProxy -->
     <bool name="config_allowMediaUidForCameraServiceProxy">false</bool>
+
+    <!-- Whether device has warp charging support -->
+    <bool name="config_hasWarpCharger">false</bool>
 </resources>

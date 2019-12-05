@@ -23,7 +23,6 @@ import android.app.Fragment;
 import android.content.ContentResolver;
 import android.database.ContentObserver;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Parcelable;
 import android.os.UserHandle;
 import android.provider.Settings;
@@ -93,27 +92,6 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
         }
     };
 
-    private final Handler mHandler = new Handler();
-    private class AicpSettingsObserver extends ContentObserver {
-        AicpSettingsObserver(Handler handler) {
-            super(handler);
-        }
-
-        void observe() {
-            ContentResolver resolver = getContext().getContentResolver();
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                          Settings.System.STATUS_BAR_SHOW_CARRIER),
-                          false, this, UserHandle.USER_ALL);
-        }
-
-        @Override
-        public void onChange(boolean selfChange) {
-            updateSettings(true);
-        }
-    }
-
-    private AicpSettingsObserver mAicpSettingsObserver;
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -152,8 +130,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
         showSystemIconArea(false);
         initEmergencyCryptkeeperText();
         initOperatorName();
-        mAicpSettingsObserver = new AicpSettingsObserver(mHandler);
-        mAicpSettingsObserver.observe();
+        updateSettings(false);
     }
 
     @Override

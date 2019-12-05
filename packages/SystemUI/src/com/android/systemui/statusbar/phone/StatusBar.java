@@ -432,6 +432,7 @@ public class StatusBar extends SystemUI implements DemoMode,
     private QSPanel mQSPanel;
     private QuickQSPanel mQuickQSPanel;
     private QuickStatusBarHeader mQuickStatusBarHeader;
+    private CollapsedStatusBarFragment mCollapsedStatusBarFragment;
 
     KeyguardIndicationController mKeyguardIndicationController;
 
@@ -758,6 +759,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System
                     .getUriFor(Settings.System.QS_SYSTEM_INFO), false,
                     this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_SHOW_CARRIER),
+                    false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -1183,7 +1187,7 @@ public class StatusBar extends SystemUI implements DemoMode,
                 .addTagListener(CollapsedStatusBarFragment.TAG, (tag, fragment) -> {
                     CollapsedStatusBarFragment statusBarFragment =
                             (CollapsedStatusBarFragment) fragment;
-
+                    mCollapsedStatusBarFragment = (CollapsedStatusBarFragment) statusBarFragment;
                     PhoneStatusBarView oldStatusBarView = mStatusBarView;
                     mStatusBarView = (PhoneStatusBarView) statusBarFragment.getView();
                     mStatusBarView.setBar(this);
@@ -4678,6 +4682,9 @@ public class StatusBar extends SystemUI implements DemoMode,
         }
         if (mQuickQSPanel != null) {
             mQuickQSPanel.updateSettings();
+        }
+        if (mCollapsedStatusBarFragment != null) {
+            mCollapsedStatusBarFragment.updateSettings(false);
         }
         if (mQuickStatusBarHeader != null) {
             mQuickStatusBarHeader.updateSettings();

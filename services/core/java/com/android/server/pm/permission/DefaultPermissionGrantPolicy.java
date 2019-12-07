@@ -193,6 +193,11 @@ public final class DefaultPermissionGrantPolicy {
         STORAGE_PERMISSIONS.add(Manifest.permission.ACCESS_MEDIA_LOCATION);
     }
 
+    private static final Set<String> WALLPAPER_PERMISSIONS = new ArraySet<>();
+    static {
+        WALLPAPER_PERMISSIONS.add(Manifest.permission.BIND_WALLPAPER);
+    }
+
     private static final int MSG_READ_DEFAULT_PERMISSION_EXCEPTIONS = 1;
 
     private static final String ACTION_TRACK = "com.android.fitness.TRACK";
@@ -614,6 +619,10 @@ public final class DefaultPermissionGrantPolicy {
             grantPermissionsToPackage(chromePackage, userId, false /* ignoreSystemPackage */,
                     true /*whitelistRestrictedPermissions*/, CONTACTS_PERMISSIONS, STORAGE_PERMISSIONS);
         }
+
+        // Google prebuilt WP picker
+        String wpPickerPackageName = "com.android.wallpaper.livepicker";
+        grantPermissionsToSystemPackage(wpPickerPackageName, userId, WALLPAPER_PERMISSIONS);
 
         // Voice interaction
         if (voiceInteractPackageNames != null) {

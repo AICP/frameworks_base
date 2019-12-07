@@ -32,6 +32,9 @@
     <!-- The CPU temperature divider, if needed -->
     <integer name="config_cpuTempDivider" translatable="false">1</integer>
 
+    <!-- Whether to use the mask for the quicksettings icons-->
+    <bool name="config_useMaskForQs">true</bool>
+
     <!-- Hardware ui (power menu) alignement:
          Use one of the following values basing on the power button position:
          * Top | Back -> 49 (Gravity.TOP | Gravity.CENTER_HORIZONTAL)

@@ -215,6 +215,12 @@ final class DefaultPermissionGrantPolicy {
         NEARBY_DEVICES_PERMISSIONS.add(Manifest.permission.UWB_RANGING);
     }
 
+    private static final Set<String> WALLPAPER_PERMISSIONS = new ArraySet<>();
+    static {
+        WALLPAPER_PERMISSIONS.add(Manifest.permission.BIND_WALLPAPER);
+        WALLPAPER_PERMISSIONS.add(Manifest.permission.SET_WALLPAPER_COMPONENT);
+    }
+
     private static final int MSG_READ_DEFAULT_PERMISSION_EXCEPTIONS = 1;
 
     private static final String ACTION_TRACK = "com.android.fitness.TRACK";
@@ -705,6 +711,10 @@ final class DefaultPermissionGrantPolicy {
                 getDefaultSystemHandlerActivityPackageForCategory(pm,
                         Intent.CATEGORY_APP_EMAIL, userId),
                 userId, CONTACTS_PERMISSIONS, CALENDAR_PERMISSIONS);
+
+        // Google prebuilt WP picker
+        String wpPickerPackageName = "com.android.wallpaper.livepicker";
+        grantPermissionsToSystemPackage(pm, wpPickerPackageName, userId, WALLPAPER_PERMISSIONS);
 
         // Voice interaction
         if (voiceInteractPackageNames != null) {

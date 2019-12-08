@@ -207,4 +207,6 @@
     <string name="dlg_ok">@android:string/ok</string>
     <string name="dlg_cancel">@android:string/cancel</string>
     <string name="guts_force_close_app">Kill App</string>
+
+    <string name="status_bar_location">Location</string>
 </resources>

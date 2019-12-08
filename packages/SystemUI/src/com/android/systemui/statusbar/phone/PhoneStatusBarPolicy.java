@@ -99,7 +99,7 @@ public class PhoneStatusBarPolicy
     private static final boolean DEBUG = Log.isLoggable(TAG, Log.DEBUG);
 
     static final int LOCATION_STATUS_ICON_ID =
-            com.android.internal.R.drawable.perm_group_location;
+            R.drawable.stat_sys_location;
 
     private final String mSlotCast;
     private final String mSlotHotspot;
@@ -112,7 +112,7 @@ public class PhoneStatusBarPolicy
     private final String mSlotRotate;
     private final String mSlotHeadset;
     private final String mSlotDataSaver;
-    private final String mSlotLocation;
+    private final String mSlotLocation = "location";
     private final String mSlotSensorsOff;
     private final String mSlotScreenRecord;
     private final int mDisplayId;
@@ -207,7 +207,6 @@ public class PhoneStatusBarPolicy
         mSlotRotate = resources.getString(com.android.internal.R.string.status_bar_rotate);
         mSlotHeadset = resources.getString(com.android.internal.R.string.status_bar_headset);
         mSlotDataSaver = resources.getString(com.android.internal.R.string.status_bar_data_saver);
-        mSlotLocation = resources.getString(com.android.internal.R.string.status_bar_location);
         mSlotSensorsOff = resources.getString(com.android.internal.R.string.status_bar_sensors_off);
         mSlotScreenRecord = resources.getString(
                 com.android.internal.R.string.status_bar_screen_record);

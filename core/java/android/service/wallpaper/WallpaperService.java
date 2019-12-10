@@ -1032,6 +1032,7 @@ public abstract class WallpaperService extends Service {
          * Expose the ability to change shouldZoomOut during runtime
          * This needs to be done from within the engine in order to access the session and
          * window contexts.
+         * @hide
          */
         public void setShouldZoomOut(boolean zoom) {
             try {

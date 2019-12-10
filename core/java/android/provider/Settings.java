@@ -5547,6 +5547,7 @@ public final class Settings {
         /**
          * Whether keyguard will rotate to landscape mode
          * 0 = false, 1 = true
+         * @hide
          */
         @SuppressLint("NoSettingsProvider")
         public static final String LOCKSCREEN_ROTATION = "lockscreen_rotation";
@@ -5878,6 +5879,7 @@ public final class Settings {
         /**
          * Whether to allow one finger quick settings expansion on the side of the statusbar.
          * 0 = 0ff, 1 = right, 2 = left, 3 = both
+         * @hide
          */
         @SuppressLint("NoSettingsProvider")
         public static final String STATUS_BAR_QUICK_QS_PULLDOWN = "qs_quick_pulldown";
@@ -6470,6 +6472,7 @@ public final class Settings {
         /**
          * Whether to answer the call with the volume keys, the value is boolean.
          * 0 = 0ff, 1 = on
+         * @hide
          */
         @SuppressLint("NoSettingsProvider")
         public static final String VOLUME_ANSWER_CALL = "volume_answer_call";
@@ -6515,6 +6518,7 @@ public final class Settings {
         /**
          *  Enable statusbar double tap gesture on to put device to sleep
          *  0 = 0ff, 1 = on
+         *  @hide
          */
         @SuppressLint("NoSettingsProvider")
         public static final String DOUBLE_TAP_SLEEP_GESTURE = "double_tap_sleep_gesture";
@@ -12094,6 +12098,7 @@ public final class Settings {
 
         /**
          * Whether tethering is allowed to use VPN upstreams
+         * @hide
          */
         @SuppressLint("NoSettingsProvider")
         public static final String TETHERING_ALLOW_VPN_UPSTREAMS = "tethering_allow_vpn_upstreams";

@@ -409,6 +409,9 @@ public class Ringtone {
         return title;
     }
 
+    /**
+     * @hide
+     */
     public void setCustomAudioAttributes() {
         int focusmode = getRingtoneFocusMode();
         boolean isHeadsetConnected = false;

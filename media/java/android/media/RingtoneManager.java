@@ -790,8 +790,7 @@ public class RingtoneManager {
      *            {@link #TYPE_ALARM}.
      * @param slotId The slotId whose default sound should be returned.
      * @return A {@link Uri} pointing to the default sound for the sound type.
-     * @see #setActualDefaultRingtoneUriBySlot(Context, int, Uri, int)
-     *
+     * @see #setActualDefaultRingtoneUriForPhoneAccountHandle(Context, int, Uri, PhoneAccountHandle)
      * @hide
      */
     public static Uri getActualDefaultRingtoneUriBySlot(Context context, int type, int slotId) {
@@ -834,9 +833,8 @@ public class RingtoneManager {
      *            {@link #TYPE_RINGTONE}, {@link #TYPE_NOTIFICATION}, or
      *            {@link #TYPE_ALARM}.
      * @param ringtoneUri A {@link Uri} pointing to the default sound to set.
-     * @param slotId The slotId whose default sound should be set.
-     * @see #getActualDefaultRingtoneUriBySlot(Context, int, int)
-     *
+     * @param phoneAccountHandle The {@link PhoneAccountHandle} whose default sound should be set.
+     * @see #getActualDefaultRingtoneUriForPhoneAccountHandle(Context, int, PhoneAccountHandle)
      * @hide
      */
     public static void setActualDefaultRingtoneUriBySlot(Context context, int type,

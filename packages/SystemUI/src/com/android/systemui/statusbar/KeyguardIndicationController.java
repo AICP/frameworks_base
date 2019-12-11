@@ -174,7 +174,7 @@ public class KeyguardIndicationController {
     private int mChargingWattage;
     private int mBatteryLevel;
     private boolean mBatteryPresent = true;
-    private int mTemperature;
+    private float mTemperature;
     private long mChargingTimeRemaining;
     private String mMessageToShowOnScreenOn;
     private final Set<Integer> mCoExFaceHelpMsgIdsToShow;

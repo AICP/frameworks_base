@@ -5454,6 +5454,12 @@ public final class Settings {
          */
         public static final String QS_TILE_LABEL_HIDE = "qs_tile_label_hide";
 
+        /**
+         * Whether to show arrow keys in navigation bar
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_ARROW_KEYS = "navigation_bar_menu_arrow_keys";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5630,6 +5636,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(QS_LAYOUT_COLUMNS);
             PRIVATE_SETTINGS.add(QS_TILE_VERTICAL_LAYOUT);
             PRIVATE_SETTINGS.add(QS_TILE_LABEL_HIDE);
+            PRIVATE_SETTINGS.add(NAVIGATION_BAR_ARROW_KEYS);
         }
 
         /**

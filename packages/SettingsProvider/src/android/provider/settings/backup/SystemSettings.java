@@ -124,5 +124,6 @@ public class SystemSettings {
         Settings.System.LESS_BORING_HEADS_UP,
         Settings.System.STATUSBAR_COLORED_ICONS,
         Settings.System.STATUSBAR_NOTIF_COUNT,
+        Settings.System.NAVIGATION_BAR_ARROW_KEYS,
     };
 }

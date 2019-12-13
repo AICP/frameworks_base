@@ -5460,6 +5460,12 @@ public final class Settings {
          */
         public static final String STATUSBAR_NOTIF_COUNT = "statusbar_notif_count";
 
+        /**
+         * Whether to show arrow keys in navigation bar
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_ARROW_KEYS = "navigation_bar_menu_arrow_keys";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5631,6 +5637,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(LESS_BORING_HEADS_UP);
             PRIVATE_SETTINGS.add(STATUSBAR_COLORED_ICONS);
             PRIVATE_SETTINGS.add(STATUSBAR_NOTIF_COUNT);
+            PRIVATE_SETTINGS.add(NAVIGATION_BAR_ARROW_KEYS);
         }
 
         /**

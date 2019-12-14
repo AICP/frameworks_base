@@ -24,4 +24,22 @@
     <string name="screen_zoom_summary_smallest">Smallest</string>
 
     <string name="status_deep_sleep">(Deep sleep: %1$d%2$s)</string>
+
+    <!-- Label for estimated remaining duration of dash battery charging -->
+    <string name="power_remaining_dash_charging_duration_only">Dash charging (<xliff:g id="time">%1$s</xliff:g> left until full)</string>
+
+    <!-- Battery use screen.  Battery status shown in chart label when charging from a dash source.  -->
+    <string name="battery_info_status_dash_charging">Dash charging</string>
+
+    <!-- Label for estimated remaining duration of warp battery charging -->
+    <string name="power_remaining_warp_charging_duration_only">Warp charging (<xliff:g id="time">%1$s</xliff:g> left until full)</string>
+
+    <!-- Battery use screen. Battery status shown in chart label when charging from a warp source.  -->
+    <string name="battery_info_status_warp_charging">Warp charging</string>
+
+    <!-- Label for estimated remaining duration of vooc battery charging -->
+    <string name="power_remaining_vooc_charging_duration_only">VOOC charging (<xliff:g id="time">%1$s</xliff:g> left until full)</string>
+
+    <!-- Battery use screen. Battery status shown in chart label when charging from a VOOC source.  -->
+    <string name="battery_info_status_vooc_charging">VOOC charging</string>
 </resources>

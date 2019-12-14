@@ -184,6 +184,15 @@ public class Utils {
         } else {
             if (status == BatteryManager.BATTERY_STATUS_CHARGING) {
                 switch (batteryStatus.getChargingSpeed(context)) {
+                    case BatteryStatus.CHARGING_VOOC:
+                        statusString = res.getString(R.string.battery_info_status_vooc_charging);
+                        break;
+                    case BatteryStatus.CHARGING_DASH:
+                        statusString = res.getString(R.string.battery_info_status_dash_charging);
+                        break;
+                    case BatteryStatus.CHARGING_WARP:
+                        statusString = res.getString(R.string.battery_info_status_warp_charging);
+                        break;
                     case BatteryStatus.CHARGING_FAST:
                         statusString = res.getString(R.string.battery_info_status_charging_fast);
                         break;

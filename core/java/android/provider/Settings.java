@@ -6096,6 +6096,15 @@ public final class Settings {
                 ANY_INTEGER_VALIDATOR;
 
         /**
+         * Whether to use color from wallpaper for Ambient edge light
+         * @hide
+         */
+        public static final String PULSE_AMBIENT_LIGHT_AUTO_COLOR = "pulse_ambient_light_auto_color";
+
+        /** @hide */
+        private static final Validator PULSE_AMBIENT_LIGHT_AUTO_COLOR_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
          * Whether to vibrate on notifications
          * @hide
          */
@@ -6379,6 +6388,7 @@ public final class Settings {
             FLASHLIGHT_ON_CALL,
             LOCKSCREEN_LOCK_ICON,
             HEADSET_CONNECT_PLAYER,
+            PULSE_AMBIENT_LIGHT_AUTO_COLOR,
             // AICP Settings end
         };
 
@@ -6664,6 +6674,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(FLASHLIGHT_ON_CALL);
             PRIVATE_SETTINGS.add(LOCKSCREEN_LOCK_ICON);
             PRIVATE_SETTINGS.add(HEADSET_CONNECT_PLAYER);
+            PRIVATE_SETTINGS.add(PULSE_AMBIENT_LIGHT_AUTO_COLOR);
             // AICP Settings end
         }
 
@@ -6939,6 +6950,7 @@ public final class Settings {
             VALIDATORS.put(FLASHLIGHT_ON_CALL, FLASHLIGHT_ON_CALL_VALIDATOR);
             VALIDATORS.put(LOCKSCREEN_LOCK_ICON, LOCKSCREEN_LOCK_ICON_VALIDATOR);
             VALIDATORS.put(HEADSET_CONNECT_PLAYER, HEADSET_CONNECT_PLAYER_VALIDATOR);
+            VALIDATORS.put(PULSE_AMBIENT_LIGHT_AUTO_COLOR, PULSE_AMBIENT_LIGHT_AUTO_COLOR_VALIDATOR);
             // AICP Settings end
         }
 

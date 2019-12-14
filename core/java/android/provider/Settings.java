@@ -6204,6 +6204,12 @@ public final class Settings {
          */
         public static final String PULSE_AMBIENT_LIGHT_DURATION = "pulse_ambient_light_duration";
 
+        /**
+         * Whether to use color from wallpaper for Ambient edge light
+         * @hide
+         */
+        public static final String PULSE_AMBIENT_LIGHT_AUTO_COLOR = "pulse_ambient_light_auto_color";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6379,6 +6385,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(PULSE_AMBIENT_LIGHT, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(PULSE_AMBIENT_LIGHT_COLOR, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(PULSE_AMBIENT_LIGHT_DURATION, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(PULSE_AMBIENT_LIGHT_AUTO_COLOR, BOOLEAN_VALIDATOR);
         }
 
         /**

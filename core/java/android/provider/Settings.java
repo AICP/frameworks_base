@@ -6033,6 +6033,16 @@ public final class Settings {
          */
         public static final String INCREASING_RING_RAMP_UP_TIME = "increasing_ring_ramp_up_time";
 
+        /**
+         * Whether to blink flashlight for incoming calls
+         * 0 = Disabled (Default)
+         * 1 = Blink flashlight only in Ringer mode
+         * 2 = Blink flashlight only in DND mode
+         * 3 = Blink flashlight always regardless of ringer mode
+         * @hide
+         */
+        public static final String FLASHLIGHT_ON_CALL = "flashlight_on_call";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6217,6 +6227,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(INCREASING_RING);
             PRIVATE_SETTINGS.add(INCREASING_RING_RAMP_UP_TIME);
             PRIVATE_SETTINGS.add(INCREASING_RING_START_VOLUME);
+            PRIVATE_SETTINGS.add(FLASHLIGHT_ON_CALL);
         }
 
         /**

@@ -6597,6 +6597,16 @@ public final class Settings {
          */
         public static final String VIBRATE_ON_NOTIFICATIONS = "vibrate_on_notifications";
 
+        /**
+         * Whether to blink flashlight for incoming calls
+         * 0 = Disabled (Default)
+         * 1 = Blink flashlight only in Ringer mode
+         * 2 = Blink flashlight only in DND mode
+         * 3 = Blink flashlight always regardless of ringer mode
+         * @hide
+         */
+        public static final String FLASHLIGHT_ON_CALL = "flashlight_on_call";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6823,6 +6833,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(GAMING_MODE_DYNAMIC_STATE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(NOTIFICATION_HEADERS, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(VIBRATE_ON_NOTIFICATIONS, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(FLASHLIGHT_ON_CALL, ANY_INTEGER_VALIDATOR);
         }
 
         /**

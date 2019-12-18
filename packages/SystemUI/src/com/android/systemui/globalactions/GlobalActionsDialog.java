@@ -33,6 +33,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.Nullable;
 import android.app.ActivityManager;
+import android.app.ActivityTaskManager;
 import android.app.Dialog;
 import android.app.IActivityManager;
 import android.app.PendingIntent;
@@ -587,6 +588,14 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
         }
     }
 
+    private boolean isInLockTaskMode() {
+        try {
+            return ActivityTaskManager.getService().isInLockTaskMode();
+        } catch (RemoteException e) {
+            return false;
+        }
+    }
+
     @VisibleForTesting
     protected String[] getDefaultActions() {
         return mResources.getStringArray(R.array.config_globalActionsList);
@@ -680,7 +689,9 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
             if (GLOBAL_ACTION_KEY_POWER.equals(actionKey)) {
                 addIfShouldShowAction(tempActions, shutdownAction);
             } else if (GLOBAL_ACTION_KEY_AIRPLANE.equals(actionKey)) {
-                addIfShouldShowAction(tempActions, mAirplaneModeOn);
+                if (!isInLockTaskMode()){
+                    addIfShouldShowAction(tempActions, mAirplaneModeOn);
+                }
             } else if (GLOBAL_ACTION_KEY_BUGREPORT.equals(actionKey)) {
                 if (shouldDisplayBugReport(currentUser.get())) {
                     addIfShouldShowAction(tempActions, new BugReportAction());
@@ -690,14 +701,18 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
                     addIfShouldShowAction(tempActions, mSilentModeAction);
                 }
             } else if (GLOBAL_ACTION_KEY_USERS.equals(actionKey)) {
-                if (SystemProperties.getBoolean("fw.power_user_switcher", false)) {
-                    addUserActions(tempActions, currentUser.get());
+                if (!isInLockTaskMode()){
+                    if (SystemProperties.getBoolean("fw.power_user_switcher", false)) {
+                        addUserActions(tempActions, currentUser.get());
+                    }
                 }
             } else if (GLOBAL_ACTION_KEY_SETTINGS.equals(actionKey)) {
                 addIfShouldShowAction(tempActions, getSettingsAction());
             } else if (GLOBAL_ACTION_KEY_LOCKDOWN.equals(actionKey)) {
-                if (shouldDisplayLockdown(currentUser.get())) {
-                    addIfShouldShowAction(tempActions, new LockDownAction());
+                if (!isInLockTaskMode()){
+                    if (shouldDisplayLockdown(currentUser.get())) {
+                        addIfShouldShowAction(tempActions, new LockDownAction());
+                    }
                 }
             } else if (GLOBAL_ACTION_KEY_VOICEASSIST.equals(actionKey)) {
                 addIfShouldShowAction(tempActions, getVoiceAssistAction());

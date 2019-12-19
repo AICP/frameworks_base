@@ -28,4 +28,8 @@
 
     <!-- Name of a font family to use as regular font. For theming purpose. -->
     <string name="config_regularFontFamily" translatable="false">sans-serif-regular</string>
+
+    <!-- Whether device supports sensor based doze customizations -->
+    <bool name="config_dozePulseTilt">false</bool>
+    <bool name="config_dozePulseProximity">false</bool>
 </resources>

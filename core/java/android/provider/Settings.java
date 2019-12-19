@@ -5324,6 +5324,24 @@ public final class Settings {
          */
         public static final String POWERMENU_TORCH = "powermenu_torch";
 
+        /**
+         * Pulse notifications on tilt
+         * @hide
+         */
+        public static final String DOZE_TILT_GESTURE = "doze_tilt_gesture";
+
+        /**
+         * Pulse notifications on hand wave
+         * @hide
+         */
+        public static final String DOZE_HANDWAVE_GESTURE = "doze_handwave_gesture";
+
+        /**
+         * Pulse notifications on removal from pocket
+         * @hide
+         */
+        public static final String DOZE_POCKET_GESTURE = "doze_pocket_gesture";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5472,6 +5490,9 @@ public final class Settings {
             PRIVATE_SETTINGS.add(POWERMENU_LOGOUT);
             PRIVATE_SETTINGS.add(POWERMENU_EMERGENCY);
             PRIVATE_SETTINGS.add(POWERMENU_TORCH);
+            PRIVATE_SETTINGS.add(DOZE_TILT_GESTURE);
+            PRIVATE_SETTINGS.add(DOZE_HANDWAVE_GESTURE);
+            PRIVATE_SETTINGS.add(DOZE_POCKET_GESTURE);
         }
 
         /**

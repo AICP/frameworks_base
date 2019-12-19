@@ -66,4 +66,8 @@
         <item>lockdown</item>
         <item>torch</item>
     </string-array>
+
+    <!-- Whether device supports sensor based doze customizations -->
+    <bool name="config_dozePulseTilt">false</bool>
+    <bool name="config_dozePulseProximity">false</bool>
 </resources>

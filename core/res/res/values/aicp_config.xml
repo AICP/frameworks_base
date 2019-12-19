@@ -144,4 +144,8 @@
 
     <!-- Whether to cleanup fingerprints upon connection to the daemon and when user switches -->
     <bool name="config_cleanupUnusedFingerprints">true</bool>
+
+    <!-- Whether device supports sensor based doze customizations -->
+    <bool name="config_dozePulseTilt">false</bool>
+    <bool name="config_dozePulseProximity">false</bool>
 </resources>

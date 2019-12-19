@@ -9827,6 +9827,30 @@ public final class Settings {
         private static final Validator DOZE_WAKE_DISPLAY_GESTURE_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
+         * Pulse notifications on tilt
+         * @hide
+         */
+        public static final String DOZE_TILT_GESTURE = "doze_tilt_gesture";
+
+        private static final Validator DOZE_TILT_GESTURE_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
+         * Pulse notifications on hand wave
+         * @hide
+         */
+        public static final String DOZE_HANDWAVE_GESTURE = "doze_handwave_gesture";
+
+        private static final Validator DOZE_HANDWAVE_GESTURE_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
+         * Pulse notifications on removal from pocket
+         * @hide
+         */
+        public static final String DOZE_POCKET_GESTURE = "doze_pocket_gesture";
+
+        private static final Validator DOZE_POCKET_GESTURE_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
          * Gesture that skips media.
          * @hide
          */
@@ -11068,11 +11092,6 @@ public final class Settings {
 
         private static final Validator LOCK_QS_DISABLED_VALIDATOR = BOOLEAN_VALIDATOR;
 
-
-        /*****************************
-         * AICP Secure Settings end
-         *****************************/
-
         /**
          * Whether the Reboot button should be shown in the power menu.
          * @hide
@@ -11086,7 +11105,7 @@ public final class Settings {
         public static final String EMERGENCY_IN_POWER_MENU = "emergency_in_power_menu";
 
         /**
-	 * Whether the Advanced reboot button should be shown in the power menu.
+         * Whether the Advanced reboot button should be shown in the power menu.
          * @hide
          */
         public static final String ADVANCED_REBOOT_IN_POWER_MENU = "advanced_reboot_in_power_menu";
@@ -11208,6 +11227,10 @@ public final class Settings {
         private static final Validator FP_SWIPE_TO_DISMISS_NOTIFICATIONS_VALIDATOR =
                  BOOLEAN_VALIDATOR;
 
+        /*****************************
+         * AICP Secure Settings end
+         *****************************/
+
         /**
          * This are the settings to be backed up.
          *
@@ -11292,6 +11315,9 @@ public final class Settings {
             DOZE_TAP_SCREEN_GESTURE,
             DOZE_WAKE_LOCK_SCREEN_GESTURE,
             DOZE_WAKE_DISPLAY_GESTURE,
+            DOZE_HANDWAVE_GESTURE,
+            DOZE_POCKET_GESTURE,
+            DOZE_TILT_GESTURE,
             NFC_PAYMENT_DEFAULT_COMPONENT,
             AUTOMATIC_STORAGE_MANAGER_DAYS_TO_RETAIN,
             FACE_UNLOCK_KEYGUARD_ENABLED,
@@ -11481,6 +11507,9 @@ public final class Settings {
             VALIDATORS.put(DOZE_TAP_SCREEN_GESTURE, DOZE_TAP_SCREEN_GESTURE_VALIDATOR);
             VALIDATORS.put(DOZE_WAKE_LOCK_SCREEN_GESTURE, DOZE_WAKE_LOCK_SCREEN_GESTURE_VALIDATOR);
             VALIDATORS.put(DOZE_WAKE_DISPLAY_GESTURE, DOZE_WAKE_DISPLAY_GESTURE_VALIDATOR);
+            VALIDATORS.put(DOZE_HANDWAVE_GESTURE, DOZE_HANDWAVE_GESTURE_VALIDATOR);
+            VALIDATORS.put(DOZE_POCKET_GESTURE, DOZE_POCKET_GESTURE_VALIDATOR);
+            VALIDATORS.put(DOZE_TILT_GESTURE, DOZE_TILT_GESTURE_VALIDATOR);
             VALIDATORS.put(NFC_PAYMENT_DEFAULT_COMPONENT, NFC_PAYMENT_DEFAULT_COMPONENT_VALIDATOR);
             VALIDATORS.put(AUTOMATIC_STORAGE_MANAGER_DAYS_TO_RETAIN,
                     AUTOMATIC_STORAGE_MANAGER_DAYS_TO_RETAIN_VALIDATOR);

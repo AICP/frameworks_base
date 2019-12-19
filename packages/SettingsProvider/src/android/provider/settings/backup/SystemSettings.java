@@ -101,5 +101,8 @@ public class SystemSettings {
         Settings.System.POWERMENU_LOGOUT,
         Settings.System.POWERMENU_EMERGENCY,
         Settings.System.POWERMENU_TORCH,
+        Settings.System.DOZE_TILT_GESTURE,
+        Settings.System.DOZE_HANDWAVE_GESTURE,
+        Settings.System.DOZE_POCKET_GESTURE,
     };
 }

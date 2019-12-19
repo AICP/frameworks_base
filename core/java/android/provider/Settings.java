@@ -11121,6 +11121,12 @@ public final class Settings {
          */
         public static final String PULSE_AMBIENT_LIGHT_COLOR = "pulse_ambient_light_color";
 
+        /**
+         * Duration of Ambient edge light in seconds
+         * @hide
+         */
+        public static final String PULSE_AMBIENT_LIGHT_DURATION = "pulse_ambient_light_duration";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

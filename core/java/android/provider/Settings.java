@@ -5235,7 +5235,25 @@ public final class Settings {
          */
         public static final String AE_THEME = "ae_theme";
 
-        /***************************
+        /**
+         * Pulse notifications on tilt
+         * @hide
+         */
+        public static final String DOZE_TILT_GESTURE = "doze_tilt_gesture";
+
+        /**
+         * Pulse notifications on hand wave
+         * @hide
+         */
+        public static final String DOZE_HANDWAVE_GESTURE = "doze_handwave_gesture";
+
+        /**
+         * Pulse notifications on removal from pocket
+         * @hide
+         */
+        public static final String DOZE_POCKET_GESTURE = "doze_pocket_gesture";
+
+	/***************************
          * AICP System Settings end
          ***************************/
 
@@ -5247,6 +5265,9 @@ public final class Settings {
         public static final String[] AICP_SETTINGS_TO_BACKUP = {
             // AICP_FOO_BAR_BALABALA
             AE_THEME,
+            DOZE_HANDWAVE_GESTURE,
+            DOZE_POCKET_GESTURE,
+            DOZE_TILT_GESTURE,
         };
 
         /**
@@ -5262,6 +5283,9 @@ public final class Settings {
         static {
             //AICP_SETTINGS_VALIDATORS.put(AICP_FOO_BAR_BALABALA, 1);
             AICP_SETTINGS_VALIDATORS.put(AE_THEME, 1);
+            AICP_SETTINGS_VALIDATORS.put(DOZE_HANDWAVE_GESTURE, 0);
+            AICP_SETTINGS_VALIDATORS.put(DOZE_POCKET_GESTURE, 0);
+            AICP_SETTINGS_VALIDATORS.put(DOZE_TILT_GESTURE, 0);
         }
     }
 

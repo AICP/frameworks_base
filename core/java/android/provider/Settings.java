@@ -6591,6 +6591,12 @@ public final class Settings {
          */
         public static final String NOTIFICATION_HEADERS = "notification_headers";
 
+        /**
+         * Whether to vibrate on notifications
+         * @hide
+         */
+        public static final String VIBRATE_ON_NOTIFICATIONS = "vibrate_on_notifications";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6816,6 +6822,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(GAMING_MODE_MANUAL_BRIGHTNESS_TOGGLE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(GAMING_MODE_DYNAMIC_STATE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(NOTIFICATION_HEADERS, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(VIBRATE_ON_NOTIFICATIONS, BOOLEAN_VALIDATOR);
         }
 
         /**

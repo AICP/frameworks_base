@@ -240,5 +240,6 @@ public class SystemSettings {
         Settings.System.BATTERY_LIGHT_BLEND_FULL_COLOR,
         Settings.System.BATTERY_LIGHT_BLEND_EMPTY_COLOR,
         Settings.System.BATTERY_LIGHT_BLEND_REVERSE,
+        Settings.System.VIBRATE_ON_NOTIFICATIONS,
     };
 }

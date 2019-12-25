@@ -6095,6 +6095,11 @@ public final class Settings {
         private static final Validator PULSE_AMBIENT_LIGHT_COLOR_VALIDATOR =
                 ANY_INTEGER_VALIDATOR;
 
+        /**
+         * Whether to vibrate on notifications
+         * @hide
+         */
+        public static final String VIBRATE_ON_NOTIFICATIONS = "vibrate_on_notifications";
 
         /***************************
          * AICP System Settings end

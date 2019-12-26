@@ -103,7 +103,7 @@ public class ClockController implements TunerService.Tunable {
         if (CLOCK_POSITION.equals(key)) {
             mClockPosition = newValue == null ? CLOCK_POSITION_LEFT : Integer.valueOf(newValue);
         } if (STATUS_BAR_CLOCK.equals(key)) {
-            mShowClock = newValue == null ? false : "1".equals(newValue);
+            mShowClock = newValue == null ? true : "1".equals(newValue);
         } else {
             mBlackListed = StatusBarIconController.getIconBlacklist(newValue).contains("clock");
         }

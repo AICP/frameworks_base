@@ -258,6 +258,8 @@
     <protected-broadcast android:name="com.android.settingslib.action.UNREGISTER_SLICE_RECEIVER" />
     <protected-broadcast android:name="com.android.settings.flashlight.action.FLASHLIGHT_CHANGED" />
 
+    <protected-broadcast android:name="com.android.systemui.doze.pulse" />
+
     <!-- screenrecord -->
     <uses-permission android:name="android.permission.ACCESS_SURFACE_FLINGER" />
 

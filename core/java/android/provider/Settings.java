@@ -5856,7 +5856,7 @@ public final class Settings {
          * Whether to display VoLTE icon when VoLTE present
          * @hide
          */
-        public static final String SHOW_VOLTE_ICON = "show_volte_icon";
+        public static final String VOLTE_ICON_STYLE = "volte_icon_style";
 
         /***************************
          * AICP System Settings end
@@ -5978,7 +5978,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(STATUS_BAR_BRIGHTNESS_CONTROL, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(LOCK_HIDE_STATUS_BAR, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(LOCKSCREEN_QUICK_UNLOCK_CONTROL, BOOLEAN_VALIDATOR);
-            AICP_SETTINGS_VALIDATORS.put(SHOW_VOLTE_ICON, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(VOLTE_ICON_STYLE, BOOLEAN_VALIDATOR);
         }
 
         /**

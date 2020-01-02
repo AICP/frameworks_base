@@ -6797,6 +6797,12 @@ public final class Settings {
          */
         public static final String QS_TRANSPARENCY = "qs_transparency";
 
+        /**
+         * Whether or not to vibrate when a touchscreen gesture is detected
+         * @hide
+         */
+        public static final String TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK = "touchscreen_gesture_haptic_feedback";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7153,6 +7159,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(ANIM_TILE_DURATION);
             PRIVATE_SETTINGS.add(ANIM_TILE_INTERPOLATOR);
             PRIVATE_SETTINGS.add(QS_TRANSPARENCY);
+            PRIVATE_SETTINGS.add(TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK);
         }
 
         /**

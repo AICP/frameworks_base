@@ -72,4 +72,7 @@
 
     <!-- Force Low quality on screenRecord for legacy devices -->
     <bool name="config_screenRecordforceLowQuality">false</bool>
+
+    <!-- Allow devices to use unordinary cutout overlays -->
+    <bool name="config_customCutout">false</bool>
 </resources>

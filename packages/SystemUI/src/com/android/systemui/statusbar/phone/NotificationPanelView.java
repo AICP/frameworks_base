@@ -333,6 +333,7 @@ public class NotificationPanelView extends PanelView implements
     private FalsingManager mFalsingManager;
     private String mLastCameraLaunchSource = KeyguardBottomAreaView.CAMERA_LAUNCH_SOURCE_AFFORDANCE;
     private NotificationLightsView mPulseLightsView;
+    private boolean mPulseLights;
 
     private Runnable mHeadsUpExistenceChangedRunnable = new Runnable() {
         @Override
@@ -3370,8 +3371,6 @@ public class NotificationPanelView extends PanelView implements
         DozeParameters dozeParameters = DozeParameters.getInstance(mContext);
         final boolean animatePulse = !dozeParameters.getDisplayNeedsBlanking()
                 && dozeParameters.getAlwaysOn();
-        boolean pulseLights = Settings.System.getIntForUser(mContext.getContentResolver(),
-                Settings.System.PULSE_AMBIENT_LIGHT, 0, UserHandle.USER_CURRENT) != 0;
 
         if (animatePulse) {
             mAnimateNextPositionUpdate = true;
@@ -3381,7 +3380,7 @@ public class NotificationPanelView extends PanelView implements
         if (!mPulsing && !mDozing) {
             mAnimateNextPositionUpdate = false;
         }
-        if ((mPulseLightsView != null) && pulseLights) {
+        if ((mPulseLightsView != null) && mPulseLights) {
             mPulseLightsView.setVisibility(mPulsing ? View.VISIBLE : View.GONE);
             if (mPulsing) {
                 mPulseLightsView.animateNotification();
@@ -3584,6 +3583,10 @@ public class NotificationPanelView extends PanelView implements
 
     public void updateDoubleTapToSleep(boolean doubleTapToSleepEnabled) {
         mDoubleTapToSleepEnabled = doubleTapToSleepEnabled;
+    }
+
+    public void setPulseAmbientLight(boolean pulseAmbientLights) {
+        mPulseLights = pulseAmbientLights;
     }
 
     public void setOneFingerQuickSettingsIntercept(int onefingerQuickSettingsintercept) {

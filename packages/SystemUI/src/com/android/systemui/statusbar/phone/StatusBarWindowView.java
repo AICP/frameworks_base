@@ -919,11 +919,15 @@ public class StatusBarWindowView extends FrameLayout implements Tunable {
         boolean isQsSecureExpandDisabled = Settings.Secure.getIntForUser(
                 mContext.getContentResolver(), Settings.Secure.LOCK_QS_DISABLED, 0,
                 UserHandle.USER_CURRENT) != 0;
+        boolean pulseAmbientLightEnabled = Settings.System.getIntForUser(
+                mContext.getContentResolver(), Settings.System.PULSE_AMBIENT_LIGHT, 0,
+                UserHandle.USER_CURRENT) == 1;
         if (mNotificationPanel != null) {
             mNotificationPanel.updateDoubleTapToSleep(doubleTapToSleepEnabled);
             mNotificationPanel.setLockscreenDoubleTapToSleep(isDoubleTapEnabled);
             mNotificationPanel.setOneFingerQuickSettingsIntercept(onefingerQuickSettingsintercept);
             mNotificationPanel.setQsSecureExpandDisabled(isQsSecureExpandDisabled);
+            mNotificationPanel.setPulseAmbientLight(pulseAmbientLightEnabled);
         }
         if (mDragDownHelper != null) {
             mDragDownHelper.updateDoubleTapToSleep(doubleTapToSleepEnabled);

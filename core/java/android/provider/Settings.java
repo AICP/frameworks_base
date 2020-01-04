@@ -6130,6 +6130,15 @@ public final class Settings {
         private static final Validator FLASHLIGHT_ON_CALL_VALIDATOR =
                new SettingsValidators.InclusiveIntegerRangeValidator(0, 3);
 
+        /**
+         * Whether to show lock icon on lockscreen
+         * @hide
+         */
+        public static final String LOCKSCREEN_LOCK_ICON = "lockscreen_lock_icon";
+        /** @hide */
+        private static final Validator LOCKSCREEN_LOCK_ICON_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6359,6 +6368,7 @@ public final class Settings {
             GESTURE_PILL_TOGGLE,
             PULSE_AMBIENT_LIGHT_DURATION,
             FLASHLIGHT_ON_CALL,
+            LOCKSCREEN_LOCK_ICON,
             // AICP Settings end
         };
 
@@ -6642,6 +6652,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(GESTURE_PILL_TOGGLE);
             PRIVATE_SETTINGS.add(PULSE_AMBIENT_LIGHT_DURATION);
             PRIVATE_SETTINGS.add(FLASHLIGHT_ON_CALL);
+            PRIVATE_SETTINGS.add(LOCKSCREEN_LOCK_ICON);
             // AICP Settings end
         }
 
@@ -6915,6 +6926,7 @@ public final class Settings {
             VALIDATORS.put(GESTURE_PILL_TOGGLE, GESTURE_PILL_TOGGLE_VALIDATOR);
             VALIDATORS.put(PULSE_AMBIENT_LIGHT_DURATION, PULSE_AMBIENT_LIGHT_DURATION_VALIDATOR);
             VALIDATORS.put(FLASHLIGHT_ON_CALL, FLASHLIGHT_ON_CALL_VALIDATOR);
+            VALIDATORS.put(LOCKSCREEN_LOCK_ICON, LOCKSCREEN_LOCK_ICON_VALIDATOR);
             // AICP Settings end
         }
 

@@ -5287,6 +5287,12 @@ public final class Settings {
         /** @hide */
         public static final String BACK_GESTURE_HAPTIC = "back_gesture_haptic";
 
+        /**
+         * Whether to show lock icon on lockscreen
+         * @hide
+         */
+        public static final String LOCKSCREEN_LOCK_ICON = "lockscreen_lock_icon";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5308,6 +5314,7 @@ public final class Settings {
             OMNI_SYSTEM_PROXI_CHECK_ENABLED,
             ALERT_SLIDER_NOTIFICATIONS,
             BACK_GESTURE_HAPTIC,
+            LOCKSCREEN_LOCK_ICON,
         };
 
         /**
@@ -5332,6 +5339,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(OMNI_SYSTEM_PROXI_CHECK_ENABLED, 0);
             AICP_SETTINGS_VALIDATORS.put(ALERT_SLIDER_NOTIFICATIONS, 2);
             AICP_SETTINGS_VALIDATORS.put(BACK_GESTURE_HAPTIC, 0);
+            AICP_SETTINGS_VALIDATORS.put(LOCKSCREEN_LOCK_ICON, 0);
         }
     }
 

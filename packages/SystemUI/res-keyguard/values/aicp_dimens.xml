@@ -2,4 +2,8 @@
 <resources>
     <!-- Weather condition icon  -->
     <dimen name="weather_icon_size">24dp</dimen>
+
+    <!-- Padding added to keyguard status area when Type clock is in use -->
+    <dimen name="keyguard_status_area_typeclock_padding">32dp</dimen>
+
 </resources>

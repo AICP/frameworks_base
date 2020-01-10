@@ -59,8 +59,20 @@ public class AicpUtils {
      */
     public static final String DISMISS_KEYGUARD_EXTRA_INTENT = "launch";
 
+    /**
+     * @hide
+     */
     public static final String INTENT_SCREENSHOT = "action_handler_screenshot";
+
+    /**
+     * @hide
+     */
     public static final String INTENT_REGION_SCREENSHOT = "action_handler_region_screenshot";
+
+    /**
+     * @hide
+     */
+    public static final String OMNIRECORD_PACKAGE_NAME = "org.omnirom.omnirecord";
 
     /**
      * @hide
@@ -121,6 +133,7 @@ public class AicpUtils {
         am.adjustVolume(AudioManager.ADJUST_SAME, AudioManager.FLAG_SHOW_UI);
     }
 
+    // Screenshot
     public static void takeScreenshot(boolean full) {
         IWindowManager wm = WindowManagerGlobal.getWindowManagerService();
         try {
@@ -130,19 +143,27 @@ public class AicpUtils {
         }
     }
 
-/*
+    // Screenrecord
+    public static void takeScreenrecord(Context context, UserHandle user) {
+        if(PackageUtils.isPackageAvailable(context, OMNIRECORD_PACKAGE_NAME)) {
+            final Intent intent = new Intent(OMNIRECORD_PACKAGE_NAME + ".ACTION_START");
+            intent.setPackage(OMNIRECORD_PACKAGE_NAME);
+            context.sendBroadcastAsUser(intent, user);
+        }
+    }
+
     // Toggle flashlight
     public static void toggleCameraFlash() {
         IStatusBarService service = getStatusBarService();
         if (service != null) {
             try {
-                service.toggleFlashlight();
+                service.toggleCameraFlash();
             } catch (RemoteException e) {
                 // do nothing.
             }
         }
     }
-*/
+
     // Clear notifications
     public static void clearAllNotifications() {
         IStatusBarService service = getStatusBarService();
@@ -167,18 +188,18 @@ public class AicpUtils {
         }
     }
 
-/*    // Toggle qs panel
+    // Toggle qs panel
     public static void toggleQsPanel() {
         IStatusBarService service = getStatusBarService();
         if (service != null) {
             try {
-                service.toggleSettingsPanel();
+                service.expandSettingsPanel(null);
             } catch (RemoteException e) {
                 // do nothing.
             }
         }
     }
-*/
+
     // Check for Chinese language
     public static boolean isChineseLanguage() {
        return Resources.getSystem().getConfiguration().locale.getLanguage().startsWith(

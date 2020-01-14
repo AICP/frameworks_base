@@ -96,6 +96,8 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
     private boolean mIsAuthenticated;
     private boolean mCanUnlockWithFp;
 
+    private float mCurrentDimAmount = 0.0f;
+
     private Handler mHandler;
 
     private LockPatternUtils mLockPatternUtils;
@@ -279,6 +281,16 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
         mFODAnimation = new FODAnimation(context, mPositionX, mPositionY);
 
         mFodPressedImage = res.getBoolean(R.bool.config_fodPressedImage);
+
+        getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+            float drawingDimAmount = mParams.dimAmount;
+            if (mCurrentDimAmount == 0.0f && drawingDimAmount > 0.0f) {
+                dispatchPress();
+                mCurrentDimAmount = drawingDimAmount;
+            } else if (mCurrentDimAmount > 0.0f && drawingDimAmount == 0.0f) {
+                mCurrentDimAmount = drawingDimAmount;
+            }
+        });
     }
 
     @Override
@@ -383,7 +395,6 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
 
         setDim(true);
         updateAlpha();
-        dispatchPress();
 
         if (mFodPressedImage) {
             setImageResource(R.drawable.fod_icon_pressed);

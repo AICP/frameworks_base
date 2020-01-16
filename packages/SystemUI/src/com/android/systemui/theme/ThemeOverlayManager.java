@@ -73,23 +73,23 @@ class ThemeOverlayManager {
      * starts with launcher and grouped by target package.
      */
     static final List<String> THEME_CATEGORIES = Lists.newArrayList(
-            OVERLAY_CATEGORY_ICON_LAUNCHER,
+            /*OVERLAY_CATEGORY_ICON_LAUNCHER,
             OVERLAY_CATEGORY_SHAPE,
             OVERLAY_CATEGORY_FONT,
             OVERLAY_CATEGORY_COLOR,
             OVERLAY_CATEGORY_ICON_ANDROID,
             OVERLAY_CATEGORY_ICON_SYSUI,
             OVERLAY_CATEGORY_ICON_SETTINGS,
-            OVERLAY_CATEGORY_ICON_THEME_PICKER);
+            OVERLAY_CATEGORY_ICON_THEME_PICKER*/);
 
     /* Categories that need to applied to the current user as well as the system user. */
     @VisibleForTesting
     static final Set<String> SYSTEM_USER_CATEGORIES = Sets.newHashSet(
-            OVERLAY_CATEGORY_COLOR,
+            /*OVERLAY_CATEGORY_COLOR,
             OVERLAY_CATEGORY_FONT,
             OVERLAY_CATEGORY_SHAPE,
             OVERLAY_CATEGORY_ICON_ANDROID,
-            OVERLAY_CATEGORY_ICON_SYSUI);
+            OVERLAY_CATEGORY_ICON_SYSUI*/);
 
     /* Allowed overlay categories for each target package. */
     private final Map<String, Set<String>> mTargetPackageToCategories = new ArrayMap<>();
@@ -106,6 +106,7 @@ class ThemeOverlayManager {
         mExecutor = executor;
         mLauncherPackage = launcherPackage;
         mThemePickerPackage = themePickerPackage;
+        /*
         mTargetPackageToCategories.put(ANDROID_PACKAGE, Sets.newHashSet(
                 OVERLAY_CATEGORY_COLOR, OVERLAY_CATEGORY_FONT,
                 OVERLAY_CATEGORY_SHAPE, OVERLAY_CATEGORY_ICON_ANDROID));
@@ -125,6 +126,7 @@ class ThemeOverlayManager {
         mCategoryToTargetPackage.put(OVERLAY_CATEGORY_ICON_SETTINGS, SETTINGS_PACKAGE);
         mCategoryToTargetPackage.put(OVERLAY_CATEGORY_ICON_LAUNCHER, mLauncherPackage);
         mCategoryToTargetPackage.put(OVERLAY_CATEGORY_ICON_THEME_PICKER, mThemePickerPackage);
+        */
     }
 
     /**

@@ -187,16 +187,17 @@ public class WeatherTile extends QSTileImpl<BooleanState> implements OmniJawsCli
         state.value = mEnabled;
         state.state = state.value ? Tile.STATE_ACTIVE : Tile.STATE_INACTIVE;
         state.icon = mIcon;
+        state.label = mContext.getResources().getString(R.string.omnijaws_label_default);
         if (mEnabled) {
             if (mWeatherImage == null) {
-                state.label = mContext.getResources().getString(R.string.omnijaws_label_default);
+                state.secondaryLabel = mContext.getResources().getString(R.string.omnijaws_service_error_long);
             } else {
                 state.icon = new DrawableIcon(mWeatherImage);
-                state.label = mWeatherLabel;
+                state.secondaryLabel = mWeatherLabel;
             }
         } else {
             mWeatherImage = null;
-            state.label = mContext.getResources().getString(R.string.omnijaws_label_default);
+            state.secondaryLabel = mContext.getResources().getString(R.string.omnijaws_service_unkown);
         }
     }
 

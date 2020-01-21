@@ -297,5 +297,6 @@ public class SystemSettings {
         Settings.System.HEADS_UP_TIMEOUT,
         Settings.System.HEADS_UP_BLACKLIST_VALUES,
         Settings.System.QS_SYSTEM_INFO,
+        Settings.System.QS_DATAUSAGE,
     };
 }

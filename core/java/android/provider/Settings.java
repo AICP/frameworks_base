@@ -7106,6 +7106,12 @@ public final class Settings {
          */
         public static final String BACK_SWIPE_EXTENDED = "back_swipe_extended";
 
+        /**
+         * Show data usage in QS header
+         * @hide
+         */
+        public static final String QS_DATAUSAGE = "qs_datausage";
+
         /***************************
          * AICP System Settings end
          ***************************/

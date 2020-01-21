@@ -778,6 +778,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.QS_SHOW_BATTERY_PERCENT),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.QS_DATAUSAGE),
+                    false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -4839,6 +4842,12 @@ public class StatusBar extends SystemUI implements DemoMode,
             KeyguardSliceProvider.getAttachedInstance().setPulseOnNewTracks(Settings.System.getIntForUser(mContext.getContentResolver(),
                     Settings.System.PULSE_ON_NEW_TRACKS, 1,
                     UserHandle.USER_CURRENT) == 1);
+        }
+    }
+
+    public void updateDataUsageImage() {
+        if (mQuickStatusBarHeader != null) {
+            mQuickStatusBarHeader.updateDataUsageImage();
         }
     }
 }

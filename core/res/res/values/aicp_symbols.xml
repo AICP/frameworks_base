@@ -144,4 +144,7 @@
   <!-- True if the notification's dynamic app icon and text tint should be optimised for dark
        backgrounds -->
   <java-symbol type="bool" name="config_useDarkBgNotificationIconTextTinting" />
+
+  <!--Exposed Java styles for power menu -->
+  <java-symbol type="style" name="Theme.Power.Dialog" />
 </resources>

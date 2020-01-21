@@ -6338,6 +6338,12 @@ public final class Settings {
         private static final Validator NAVIGATION_BAR_ARROW_KEYS_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
+        /** @hide */
+        public static final String BACK_GESTURE_BLOCK_IME = "back_gesture_block_ime";
+        /** @hide */
+        private static final Validator BACK_GESTURE_BLOCK_IME_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6587,6 +6593,7 @@ public final class Settings {
             GAMING_MODE_MANUAL_BRIGHTNESS_TOGGLE,
             GAMING_MODE_DYNAMIC_STATE,
             NAVIGATION_BAR_ARROW_KEYS,
+            BACK_GESTURE_BLOCK_IME,
             // AICP Settings end
         };
 
@@ -6887,6 +6894,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(GAMING_MODE_MANUAL_BRIGHTNESS_TOGGLE);
             PRIVATE_SETTINGS.add(GAMING_MODE_DYNAMIC_STATE);
             PRIVATE_SETTINGS.add(NAVIGATION_BAR_ARROW_KEYS);
+            PRIVATE_SETTINGS.add(BACK_GESTURE_BLOCK_IME);
             // AICP Settings end
         }
 
@@ -7178,6 +7186,7 @@ public final class Settings {
             VALIDATORS.put(GAMING_MODE_DYNAMIC_STATE, GAMING_MODE_DYNAMIC_STATE_VALIDATOR);
             VALIDATORS.put(NAVIGATION_BAR_ARROW_KEYS,
                     NAVIGATION_BAR_ARROW_KEYS_VALIDATOR);
+            VALIDATORS.put(BACK_GESTURE_BLOCK_IME, BACK_GESTURE_BLOCK_IME_VALIDATOR);
             // AICP Settings end
         }
 

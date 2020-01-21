@@ -82,4 +82,6 @@
     <dimen name="qs_header_image_side_margin">4dp</dimen>
     <dimen name="qs_header_image_top_margin">4dp</dimen>
     <dimen name="qs_header_image_bottom_margin">4dp</dimen>
+
+    <dimen name="data_usage_padding_start">4dp</dimen>
 </resources>

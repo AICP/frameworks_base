@@ -6292,6 +6292,12 @@ public final class Settings {
          */
         public static final String QS_SHOW_BATTERY_PERCENT = "qs_header_show_battery_percent";
 
+        /**
+         * Show data usage in QS header
+         * @hide
+         */
+        public static final String QS_DATAUSAGE = "qs_datausage";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6474,6 +6480,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(PULSE_AMBIENT_LIGHT_WIDTH, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(PULSE_ON_NEW_TRACKS, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(QS_SHOW_BATTERY_PERCENT, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(QS_DATAUSAGE, ANY_INTEGER_VALIDATOR);
         }
 
         /**

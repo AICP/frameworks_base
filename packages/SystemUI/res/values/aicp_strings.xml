@@ -246,4 +246,7 @@
     <string name="accessibility_quick_settings_hwkeys_on">HW keys on</string>
     <string name="accessibility_quick_settings_hwkeys_off">HW keys off</string>
     <string name="quick_settings_hwkeys_label">HW keys</string>
+
+    <!-- Daily data usage -->
+    <string name="daily_data_usage_title">Today\'s usage</string>
 </resources>

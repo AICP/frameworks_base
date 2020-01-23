@@ -102,6 +102,7 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
 
     private FODAnimation mFODAnimation;
     private boolean mIsRecognizingAnimEnabled;
+    private final boolean mFodPressedImage;
 
     private IFingerprintInscreenCallback mFingerprintInscreenCallback =
             new IFingerprintInscreenCallback.Stub() {
@@ -264,6 +265,8 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
         mCanUnlockWithFp = canUnlockWithFp();
 
         mFODAnimation = new FODAnimation(context, mPositionX, mPositionY);
+
+        mFodPressedImage = res.getBoolean(R.bool.config_fodPressedImage);
     }
 
     @Override
@@ -370,7 +373,11 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
         updateAlpha();
         dispatchPress();
 
-        setImageResource(R.drawable.fod_icon_pressed);
+        if (mFodPressedImage) {
+            setImageResource(R.drawable.fod_icon_pressed);
+        } else {
+            setImageDrawable(null);
+        }
         invalidate();
     }
 

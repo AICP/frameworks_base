@@ -3417,6 +3417,21 @@ public class CarrierConfigManager {
      */
     public static final String KEY_DATA_SWITCH_VALIDATION_TIMEOUT_LONG =
             "data_switch_validation_timeout_long";
+    /**
+     * Title text to be used in the emergency notification displayed when VoWifi is available
+     *
+     * @hide
+     */
+    public static final String KEY_EMERGENCY_NOTIFICATION_TITLE_STRING =
+            "emergency_notification_title_string";
+
+    /**
+     * Summary text to be used in the emergency notification displayed when VoWifi is available
+     *
+     * @hide
+     */
+    public static final String KEY_EMERGENCY_NOTIFICATION_SUMMARY_STRING =
+            "emergency_notification_summary_string";
 
     /**
      * Specifies whether the system should prefix the EAP method to the anonymous identity.
@@ -4359,6 +4374,8 @@ public class CarrierConfigManager {
                 "ims:2", "cbs:2", "ia:2", "emergency:2", "mcx:3", "xcap:3"
         });
         sDefaults.putStringArray(KEY_MISSED_INCOMING_CALL_SMS_PATTERN_STRING_ARRAY, new String[0]);
+        sDefaults.putString(KEY_EMERGENCY_NOTIFICATION_SUMMARY_STRING, "");
+        sDefaults.putString(KEY_EMERGENCY_NOTIFICATION_TITLE_STRING, "");
     }
 
     /**

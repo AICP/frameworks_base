@@ -323,6 +323,26 @@ public class TelephonyIntents {
             "android.intent.action.USER_ACTIVITY_NOTIFICATION";
 
     /**
+     * <p>Broadcast action to notify Voice Over Wifi is available
+     *
+     * <p class="note">
+     * You can <em>not</em> receive this through components declared
+     * in manifests, only by explicitly registering for it with
+     * {@link android.content.Context#registerReceiver(android.content.BroadcastReceiver,
+     * android.content.IntentFilter) Context.registerReceiver()}.
+     *
+     * <p class="note">
+     * Requires no permission.
+     *
+     * <p class="note">This is a protected intent that can only be sent
+     * by the system.
+     *
+     * @hide
+     */
+    public static final String ACTION_VOWIFI_ENABLED
+            = "android.intent.action.VOWIFI_ENABLED";
+
+    /**
      * Kept for backwards compatibility.
      * @deprecated @see TelephonyManager#ACTION_CARRIER_SIGNAL_REDIRECTED
      */

@@ -147,4 +147,8 @@
 
   <!--Exposed Java styles for power menu -->
   <java-symbol type="style" name="Theme.Power.Dialog" />
+
+    <!-- Light / Regular style fonts -->
+    <java-symbol type="string" name="config_lightFontFamily" />
+    <java-symbol type="string" name="config_regularFontFamily" />
 </resources>

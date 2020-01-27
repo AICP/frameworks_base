@@ -84,4 +84,7 @@
     <dimen name="qs_header_image_bottom_margin">4dp</dimen>
 
     <dimen name="data_usage_padding_start">4dp</dimen>
+
+    <!-- Recognizing fingerprint animation -->
+    <dimen name="fod_animation_size">280dp</dimen>
 </resources>

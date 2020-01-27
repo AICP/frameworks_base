@@ -6448,6 +6448,15 @@ public final class Settings {
         private static final Validator FOD_ICON_WALLPAPER_COLOR_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
+        /**
+         * FOD recognizing animation
+         * @hide
+         */
+        public static final String FOD_RECOGNIZING_ANIMATION = "fod_recognizing_animation";
+        /** @hide */
+        private static final Validator FOD_RECOGNIZING_ANIMATION_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6705,6 +6714,7 @@ public final class Settings {
             NAVIGATION_HANDLE_WIDTH,
             FOD_ICON,
             FOD_ICON_WALLPAPER_COLOR,
+            FOD_RECOGNIZING_ANIMATION,
             // AICP Settings end
         };
 
@@ -7016,6 +7026,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(NAVIGATION_HANDLE_WIDTH);
             PRIVATE_SETTINGS.add(FOD_ICON);
             PRIVATE_SETTINGS.add(FOD_ICON_WALLPAPER_COLOR);
+            PRIVATE_SETTINGS.add(FOD_RECOGNIZING_ANIMATION);
             // AICP Settings end
         }
 
@@ -7325,6 +7336,7 @@ public final class Settings {
             VALIDATORS.put(FOD_ICON, FOD_ICON_VALIDATOR);
             VALIDATORS.put(FOD_ICON_WALLPAPER_COLOR,
                     FOD_ICON_WALLPAPER_COLOR_VALIDATOR);
+            VALIDATORS.put(FOD_RECOGNIZING_ANIMATION, FOD_RECOGNIZING_ANIMATION_VALIDATOR);
             // AICP Settings end
         }
 

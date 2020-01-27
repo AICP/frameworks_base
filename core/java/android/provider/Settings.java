@@ -3948,6 +3948,12 @@ public final class Settings {
         public static final String DISPLAY_COLOR_MODE = "display_color_mode";
 
         /**
+         * FOD recognizing animation
+         * @hide
+         */
+        public static final String FOD_RECOGNIZING_ANIMATION = "fod_recognizing_animation";
+
+        /**
          * The user selected min refresh rate in frames per second.
          *
          * If this isn't set, 0 will be used.
@@ -4896,6 +4902,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(LOCK_TO_APP_ENABLED);
             PRIVATE_SETTINGS.add(EGG_MODE);
             PRIVATE_SETTINGS.add(DISPLAY_COLOR_MODE);
+            PRIVATE_SETTINGS.add(FOD_RECOGNIZING_ANIMATION);
         }
 
         /**
@@ -6883,6 +6890,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(CAMERA_SLEEP_ON_RELEASE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(CAMERA_LAUNCH, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(OFF_GESTURE_HAPTIC_ENABLE, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(FOD_RECOGNIZING_ANIMATION, BOOLEAN_VALIDATOR);
         }
 
         /**

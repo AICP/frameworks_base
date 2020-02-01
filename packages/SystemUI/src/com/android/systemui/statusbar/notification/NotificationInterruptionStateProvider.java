@@ -81,6 +81,7 @@ public class NotificationInterruptionStateProvider {
 
     private boolean mLessBoringHeadsUp;
     private ArrayList<String> mHeadsUpBlacklist = new ArrayList<String>();
+    private boolean mSkipHeadsUp;
 
     @Inject
     public NotificationInterruptionStateProvider(Context context, NotificationFilter filter,
@@ -232,6 +233,13 @@ public class NotificationInterruptionStateProvider {
     private boolean shouldHeadsUpWhenAwake(NotificationEntry entry) {
         StatusBarNotification sbn = entry.notification;
 
+        if (shouldSkipHeadsUp(sbn)) {
+            if (DEBUG_HEADS_UP) {
+                Log.d(TAG, "No alerting: gaming mode or boring apps");
+            }
+            return false;
+        }
+
         if (!mUseHeadsUp) {
             if (DEBUG_HEADS_UP) {
                 Log.d(TAG, "No heads up: no huns");
@@ -373,9 +381,21 @@ public class NotificationInterruptionStateProvider {
         mLessBoringHeadsUp = lessBoring;
     }
 
+    public void setGamingPeekMode(boolean skipHeadsUp) {
+        mSkipHeadsUp = skipHeadsUp;
+    }
+
     public boolean shouldSkipHeadsUp(StatusBarNotification sbn) {
         boolean isImportantHeadsUp = false;
         String notificationPackageName = sbn.getPackageName().toLowerCase();
+
+        // Gaming mode takes precedence since messaging headsup is intrusive
+        if (mSkipHeadsUp) {
+            boolean isNonInstrusive = notificationPackageName.contains("dialer") ||
+                notificationPackageName.contains("clock");
+            return !getShadeController().isDozing() && mSkipHeadsUp && !isNonInstrusive;
+        }
+
         isImportantHeadsUp = notificationPackageName.contains("dialer") ||
                 notificationPackageName.contains("messaging") ||
                 notificationPackageName.contains("clock");
@@ -387,7 +407,7 @@ public class NotificationInterruptionStateProvider {
     }
 
     public void setHeadsUpBlacklist(ArrayList<String> arrayList) {
-            mHeadsUpBlacklist = arrayList;
+        mHeadsUpBlacklist = arrayList;
     }
 
     /**

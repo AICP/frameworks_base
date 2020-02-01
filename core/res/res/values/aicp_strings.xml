@@ -34,4 +34,11 @@
     <!-- Defines the sysfs attribute path used by pocket bridge
         to communicate pocket state to the pocket judge kernel driver. -->
     <string name="config_pocketBridgeSysfsInpocket"></string>
+
+    <!-- Gaming mode -->
+    <string name="notification_channel_gaming">Gaming mode</string>
+    <string name="gaming_mode_notification_title">Gaming mode enabled</string>
+    <string name="gaming_mode_notification_content">Tap to turn off Gaming mode</string>
+    <string name="gaming_mode_enabled_toast">Gaming mode turned on</string>
+    <string name="gaming_mode_disabled_toast">Gaming mode turned off</string>
 </resources>

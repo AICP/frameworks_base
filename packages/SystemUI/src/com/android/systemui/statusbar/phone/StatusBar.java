@@ -478,6 +478,8 @@ public class StatusBar extends SystemUI implements DemoMode,
 
     private PackageMonitor mPackageMonitor;
 
+    private boolean mHeadsUpDisabled, mGamingModeActivated;
+
     // XXX: gesture research
     private final GestureRecorder mGestureRec = DEBUG_GESTURES
         ? new GestureRecorder("/sdcard/statusbar_gestures.dat")
@@ -784,6 +786,12 @@ public class StatusBar extends SystemUI implements DemoMode,
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.FORCE_SHOW_NAVBAR),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.GAMING_MODE_ACTIVE),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.GAMING_MODE_HEADSUP_TOGGLE),
                     false, this, UserHandle.USER_ALL);
         }
 
@@ -4707,6 +4715,8 @@ public class StatusBar extends SystemUI implements DemoMode,
         setMaxKeyguardNotifConfig();
         setPulseOnNewTracks();
         updateNavigationBar(false);
+        setGamingModeActive();
+        setGamingModeHeadsupToggle();
     }
 
     private void adjustBrightness(int x) {
@@ -4873,5 +4883,17 @@ public class StatusBar extends SystemUI implements DemoMode,
             }
         }
         mShowNavBar = showNavBar;
+    }
+
+    private void setGamingModeActive() {
+        mGamingModeActivated = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.GAMING_MODE_ACTIVE, 0, UserHandle.USER_CURRENT) == 1;
+        mNotificationInterruptStateProvider.setGamingPeekMode(mGamingModeActivated && mHeadsUpDisabled);
+    }
+
+    private void setGamingModeHeadsupToggle() {
+        mHeadsUpDisabled = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.GAMING_MODE_HEADSUP_TOGGLE, 0, UserHandle.USER_CURRENT) == 1;
+        mNotificationInterruptStateProvider.setGamingPeekMode(mGamingModeActivated && mHeadsUpDisabled);
     }
 }

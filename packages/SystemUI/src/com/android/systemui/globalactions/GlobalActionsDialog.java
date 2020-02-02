@@ -747,7 +747,9 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
             mHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    mScreenshotHelper.takeScreenshot(1/*TAKE_SCREENSHOT_FULLSCREEN*/, true, true, mHandler, null);
+                    mScreenshotHelper.takeScreenshot(isPartialScreenshotDefault() ?
+                            2 /*TAKE_SCREENSHOT_SELECTED_REGION*/ : 1 /*TAKE_SCREENSHOT_FULLSCREEN*/,
+                            true, true, mHandler, null);
                     MetricsLogger.action(mContext,
                             MetricsEvent.ACTION_SCREENSHOT_POWER_MENU);
                 }
@@ -775,12 +777,19 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
             mHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    mScreenshotHelper.takeScreenshot(2/*TAKE_SCREENSHOT_SELECTED_REGION*/, true, true, mHandler, null);
+                    mScreenshotHelper.takeScreenshot(isPartialScreenshotDefault() ?
+                            1 /*TAKE_SCREENSHOT_FULLSCREEN*/ : 2 /*TAKE_SCREENSHOT_SELECTED_REGION*/,
+                            true, true, mHandler, null);
                     MetricsLogger.action(mContext,
                             MetricsEvent.ACTION_SCREENSHOT_POWER_MENU);
                 }
             }, 500);
             return true;
+        }
+
+        private boolean isPartialScreenshotDefault() {
+            return Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.PARTIAL_SCREENSHOT_AS_DEFAULT, 0) == 1;
         }
     }
 

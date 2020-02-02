@@ -6167,6 +6167,12 @@ public final class Settings {
         private static final Validator SHOW_BATTERY_PERCENT_VALIDATOR =
                new SettingsValidators.InclusiveIntegerRangeValidator(0, 2);
 
+        /**
+         * Wheter to trigger partial screenshot action on normal or long click for globalactions Screenshot button
+         * @hide
+         */
+        public static final String PARTIAL_SCREENSHOT_AS_DEFAULT = "partial_screenshot_as_default";
+
         /***************************
          * AICP System Settings end
          ***************************/

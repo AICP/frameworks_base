@@ -6344,6 +6344,16 @@ public final class Settings {
         private static final Validator BACK_GESTURE_BLOCK_IME_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
+        /**
+         * Number of times to repeat animations of Ambient edge light
+         * 0 is infinite
+         * @hide
+         */
+        public static final String PULSE_AMBIENT_LIGHT_REPEAT_COUNT = "pulse_ambient_light_repeat_count";
+
+        /** @hide */
+        private static final Validator PULSE_AMBIENT_LIGHT_REPEAT_COUNT_VALIDATOR = ANY_INTEGER_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6600,6 +6610,7 @@ public final class Settings {
             GAMING_MODE_DYNAMIC_STATE,
             NAVIGATION_BAR_ARROW_KEYS,
             BACK_GESTURE_BLOCK_IME,
+            PULSE_AMBIENT_LIGHT_REPEAT_COUNT,
             // AICP Settings end
         };
 
@@ -6901,6 +6912,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(GAMING_MODE_DYNAMIC_STATE);
             PRIVATE_SETTINGS.add(NAVIGATION_BAR_ARROW_KEYS);
             PRIVATE_SETTINGS.add(BACK_GESTURE_BLOCK_IME);
+            PRIVATE_SETTINGS.add(PULSE_AMBIENT_LIGHT_REPEAT_COUNT);
             // AICP Settings end
         }
 
@@ -7193,6 +7205,7 @@ public final class Settings {
             VALIDATORS.put(NAVIGATION_BAR_ARROW_KEYS,
                     NAVIGATION_BAR_ARROW_KEYS_VALIDATOR);
             VALIDATORS.put(BACK_GESTURE_BLOCK_IME, BACK_GESTURE_BLOCK_IME_VALIDATOR);
+            VALIDATORS.put(PULSE_AMBIENT_LIGHT_REPEAT_COUNT, PULSE_AMBIENT_LIGHT_REPEAT_COUNT_VALIDATOR);
             // AICP Settings end
         }
 

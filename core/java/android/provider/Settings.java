@@ -5994,6 +5994,18 @@ public final class Settings {
          */
         public static final String STATUSBAR_COLORED_ICONS = "statusbar_colored_icons";
 
+        /**
+         * Which Vibration Pattern to use
+         * 0: dzzz-dzzz
+         * 1: dzzz-da
+         * 2: mm-mm-mm
+         * 3: da-da-dzzz
+         * 4: da-dzzz-da
+         * @hide
+         */
+        @Readable
+        public static final String RINGTONE_VIBRATION_PATTERN = "ringtone_vibration_pattern";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6173,6 +6185,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(ROAMING_INDICATOR_ICON);
             PRIVATE_SETTINGS.add(DATA_DISABLED_ICON);
             PRIVATE_SETTINGS.add(STATUSBAR_COLORED_ICONS);
+            PRIVATE_SETTINGS.add(RINGTONE_VIBRATION_PATTERN);
         }
 
         /**

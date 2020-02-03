@@ -7139,6 +7139,18 @@ public final class Settings {
          */
         public static final String CUSTOM_RINGTONE_VIBRATION_PATTERN = "custom_ringtone_vibration_pattern";
 
+        /**
+         * Which Vibration Pattern to use
+         * 0: dzzz-dzzz
+         * 1: dzzz-da
+         * 2: mm-mm-mm
+         * 3: da-da-dzzz
+         * 4: da-dzzz-da
+         * 5: custom
+         * @hide
+         */
+        public static final String RINGTONE_VIBRATION_PATTERN = "ringtone_vibration_pattern";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7406,6 +7418,8 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(CLIPBOARD_TOAST_INFO, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(FOD_ICON, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(FOD_ICON_WALLPAPER_COLOR, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(RINGTONE_VIBRATION_PATTERN, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(CUSTOM_RINGTONE_VIBRATION_PATTERN, ANY_STRING_VALIDATOR);
         }
 
         /**

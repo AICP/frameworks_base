@@ -310,5 +310,6 @@ public class SystemSettingsValidators {
         VALIDATORS.put(System.ROAMING_INDICATOR_ICON, BOOLEAN_VALIDATOR);
         VALIDATORS.put(System.DATA_DISABLED_ICON, BOOLEAN_VALIDATOR);
         VALIDATORS.put(System.STATUSBAR_COLORED_ICONS, BOOLEAN_VALIDATOR);
+        VALIDATORS.put(System.RINGTONE_VIBRATION_PATTERN, new InclusiveIntegerRangeValidator(0, 4));
     }
 }

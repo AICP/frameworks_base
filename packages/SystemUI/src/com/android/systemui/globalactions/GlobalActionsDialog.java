@@ -143,9 +143,6 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
     private static final String GLOBAL_ACTION_KEY_EMERGENCY = "emergency";
     private static final String GLOBAL_ACTION_KEY_SCREENSHOT = "screenshot";
     private static final String GLOBAL_ACTION_KEY_ONTHEGO = "onthego";
-    private static final String GLOBAL_ACTION_KEY_SCREENRECORD = "screenrecord";
-
-    private static final String OMNIRECORD_PACKAGE_NAME = "org.omnirom.omnirecord";
 
     private static final int SHOW_TOGGLES_BUTTON = 1;
     private static final int RESTART_RECOVERY_BUTTON = 2;
@@ -814,26 +811,6 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
         };
     }
 
-    private Action getScreenRecordAction() {
-        return new SinglePressAction(com.android.internal.R.drawable.ic_lock_screenrecord,
-                com.android.systemui.R.string.global_action_screenrecord) {
-            @Override
-            public void onPress() {
-                TakeScreenRecord();
-            }
-
-            @Override
-            public boolean showDuringKeyguard() {
-                return true;
-            }
-
-            @Override
-            public boolean showBeforeProvisioning() {
-                return true;
-            }
-        };
-    }
-
     private class BugReportAction extends SinglePressAction implements LongPressAction {
 
         public BugReportAction() {
@@ -1090,13 +1067,6 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
         startIntent.setComponent(cn);
         startIntent.setAction("start");
         mContext.startService(startIntent);
-    }
-
-    private void TakeScreenRecord() {
-
-        final Intent intent = new Intent(OMNIRECORD_PACKAGE_NAME + ".ACTION_START");
-        intent.setPackage(OMNIRECORD_PACKAGE_NAME);
-        mContext.sendBroadcastAsUser(intent, UserHandle.CURRENT);
     }
 
     private void prepareDialog() {

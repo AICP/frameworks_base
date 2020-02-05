@@ -925,6 +925,9 @@ public class DisplayPolicy {
                         attrs.windowAnimations = com.android.internal.R.style.Animation_Toast_SlideRightLeft;
                         break;
                 }
+                // Toasts can't be clickable
+                attrs.flags |= WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE;
+                break;
         }
 
         if (attrs.type != TYPE_STATUS_BAR) {

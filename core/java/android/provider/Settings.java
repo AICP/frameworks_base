@@ -6776,6 +6776,15 @@ public final class Settings {
         private static final Validator FORCE_SHOW_NAVBAR_VALIDATOR =
                 ANY_INTEGER_VALIDATOR;
 
+        /**
+         * FOD recognizing animation picker
+         * @hide
+         */
+        public static final String FOD_ANIM = "fod_anim";
+        /** @hide */
+        private static final Validator FOD_ANIM_VALIDATOR =
+               new SettingsValidators.InclusiveIntegerRangeValidator(0, 6);
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7042,6 +7051,7 @@ public final class Settings {
             OFF_GESTURE_HAPTIC_ENABLE,
             MUSIC_PLAYBACK_GESTURE_ENABLE,
             SHOW_MEDIA_HEADS_UP,
+            FOD_ANIM,
             // AICP Settings end
         };
 
@@ -7375,6 +7385,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(KEY_APP_SWITCH_DOUBLE_TAP_ACTION);
             PRIVATE_SETTINGS.add(KEY_CAMERA_LONG_PRESS_ACTION);
             PRIVATE_SETTINGS.add(KEY_CAMERA_DOUBLE_TAP_ACTION);
+            PRIVATE_SETTINGS.add(FOD_ANIM);
             // AICP Settings end
         }
 
@@ -7694,6 +7705,7 @@ public final class Settings {
             VALIDATORS.put(MUSIC_PLAYBACK_GESTURE_ENABLE, MUSIC_PLAYBACK_GESTURE_ENABLE_VALIDATOR);
             VALIDATORS.put(SHOW_MEDIA_HEADS_UP, SHOW_MEDIA_HEADS_UP_VALIDATOR);
             VALIDATORS.put(FORCE_SHOW_NAVBAR, FORCE_SHOW_NAVBAR_VALIDATOR);
+            VALIDATORS.put(FOD_ANIM,FOD_ANIM_VALIDATOR);
             // AICP Settings end
         }
 

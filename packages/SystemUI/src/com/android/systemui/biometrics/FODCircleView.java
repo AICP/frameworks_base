@@ -676,19 +676,23 @@ class FODAnimation extends ImageView {
     private int getFODAnimResource() {
         switch (getFODAnim()) {
             case 1:
-                return R.drawable.fod_aod_recognizing_anim;
+                return R.drawable.fod_miui_aod_recognizing_anim;
             case 2:
-                return R.drawable.fod_light_recognizing_anim;
+                return R.drawable.fod_miui_light_recognizing_anim;
             case 3:
-                return R.drawable.fod_pop_recognizing_anim;
+                return R.drawable.fod_miui_pop_recognizing_anim;
             case 4:
-                return R.drawable.fod_pulse_recognizing_anim;
+                return R.drawable.fod_miui_pulse_recognizing_anim;
             case 5:
-                return R.drawable.fod_pulse_recognizing_anim_white;
+                return R.drawable.fod_miui_pulse_recognizing_anim_white;
             case 6:
-                return R.drawable.fod_rhythm_recognizing_anim;
+                return R.drawable.fod_miui_rhythm_recognizing_anim;
+            case 7:
+                return R.drawable.fod_op_cosmos_recognizing_anim;
+            case 8:
+                return R.drawable.fod_op_mclaren_recognizing_anim;
         }
-        return R.drawable.fod_normal_recognizing_anim;
+        return R.drawable.fod_miui_normal_recognizing_anim;
     }
 
     public void updateParams(int mDreamingOffsetY) {

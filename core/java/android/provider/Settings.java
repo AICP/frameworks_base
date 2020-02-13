@@ -6225,6 +6225,11 @@ public final class Settings {
          */
         public static final String PULSE_AMBIENT_LIGHT_REPEAT_DIRECTION = "pulse_ambient_light_repeat_direction";
 
+        /**
+         * @hide
+         */
+        public static final String PULSE_AMBIENT_LIGHT_COLOR_AUTOMATIC = "pulse_ambient_light_color_automatic";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6403,6 +6408,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(PULSE_AMBIENT_LIGHT_COLOR_MODE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(PULSE_AMBIENT_LIGHT_REPEAT_COUNT, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(PULSE_AMBIENT_LIGHT_REPEAT_DIRECTION, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(PULSE_AMBIENT_LIGHT_COLOR_AUTOMATIC, BOOLEAN_VALIDATOR);
         }
 
         /**

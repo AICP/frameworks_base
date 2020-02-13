@@ -89,21 +89,12 @@ public class NotificationLightsView extends RelativeLayout {
         Log.e("NotificationLightsView", "draw");
     }
 
-    public void animateNotification() {
-        int customColor = Settings.System.getIntForUser(mContext.getContentResolver(),
-                Settings.System.PULSE_AMBIENT_LIGHT_COLOR, 0xFF3980FF,
-                UserHandle.USER_CURRENT);
-        int duration = Settings.System.getIntForUser(mContext.getContentResolver(),
-                Settings.System.PULSE_AMBIENT_LIGHT_DURATION, 2,
-                UserHandle.USER_CURRENT) * 1000;
-        int repeat = Settings.System.getIntForUser(mContext.getContentResolver(),
-                Settings.System.PULSE_AMBIENT_LIGHT_REPEAT_COUNT, 0,
-                UserHandle.USER_CURRENT);
-        boolean directionIsRestart = Settings.System.getIntForUser(mContext.getContentResolver(),
-                Settings.System.PULSE_AMBIENT_LIGHT_REPEAT_DIRECTION, 0,
-                UserHandle.USER_CURRENT) != 1;
+    public int getNotificationLightsColor() {
         int colorMode = Settings.System.getIntForUser(mContext.getContentResolver(),
                 Settings.System.PULSE_AMBIENT_LIGHT_COLOR_MODE, 1,
+                UserHandle.USER_CURRENT);
+        int customColor = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.PULSE_AMBIENT_LIGHT_COLOR, 0xFF3980FF,
                 UserHandle.USER_CURRENT);
 
         if (colorMode == 0) {
@@ -125,10 +116,23 @@ public class NotificationLightsView extends RelativeLayout {
         } else {
             color = customColor;
         }
-        StringBuilder sb = new StringBuilder();
-        sb.append("animateNotification color ");
-        sb.append(Integer.toHexString(color));
-        Log.e("NotificationLightsView", sb.toString());
+        return color;
+    }
+
+    public void animateNotification() {
+        animateNotificationWithColor(getNotificationLightsColor());
+    }
+
+    public void animateNotificationWithColor(int color) {
+        int duration = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.PULSE_AMBIENT_LIGHT_DURATION, 2,
+                UserHandle.USER_CURRENT) * 1000;
+        int repeat = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.PULSE_AMBIENT_LIGHT_REPEAT_COUNT, 0,
+                UserHandle.USER_CURRENT);
+        boolean directionIsRestart = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.PULSE_AMBIENT_LIGHT_REPEAT_DIRECTION, 0,
+                UserHandle.USER_CURRENT) != 1;
         ImageView leftView = (ImageView) findViewById(R.id.notification_animation_left);
         ImageView rightView = (ImageView) findViewById(R.id.notification_animation_right);
         leftView.setColorFilter(color);

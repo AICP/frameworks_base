@@ -19,6 +19,7 @@ package com.android.systemui.statusbar.phone;
 import static com.android.systemui.SysUiServiceProvider.getComponent;
 import static com.android.systemui.statusbar.notification.ActivityLaunchAnimator.ExpandAnimationParameters;
 import static com.android.systemui.statusbar.notification.stack.NotificationStackScrollLayout.ROWS_ALL;
+import static com.android.systemui.statusbar.notification.stack.NotificationStackScrollLayout.ROWS_HIGH_PRIORITY;
 import static com.android.systemui.util.InjectionInflationController.VIEW_CONTEXT;
 
 import android.animation.Animator;
@@ -26,6 +27,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.app.ActivityManager;
 import android.app.Fragment;
+import android.app.Notification;
 import android.app.StatusBarManager;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -43,6 +45,8 @@ import android.graphics.Region;
 import android.hardware.biometrics.BiometricSourceType;
 import android.os.PowerManager;
 import android.os.SystemClock;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.MathUtils;
@@ -3377,6 +3381,9 @@ public class NotificationPanelView extends PanelView implements
         DozeParameters dozeParameters = DozeParameters.getInstance(mContext);
         final boolean animatePulse = !dozeParameters.getDisplayNeedsBlanking()
                 && dozeParameters.getAlwaysOn();
+        ExpandableNotificationRow row = mNotificationStackScroller.getFirstActiveClearableNotifications(ROWS_HIGH_PRIORITY);
+        boolean pulseColorAutomatic = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.PULSE_AMBIENT_LIGHT_COLOR_AUTOMATIC, 0, UserHandle.USER_CURRENT) != 0;
 
         if (animatePulse) {
             mAnimateNextPositionUpdate = true;
@@ -3387,9 +3394,18 @@ public class NotificationPanelView extends PanelView implements
             mAnimateNextPositionUpdate = false;
         }
         if ((mPulseLightsView != null) && mPulseLights) {
+            int pulseColor = mPulseLightsView.getNotificationLightsColor();
+            if (row != null) {
+                if (pulseColorAutomatic) {
+                    int notificationColor = row.getStatusBarNotification().getNotification().color;
+                    if (notificationColor != Notification.COLOR_DEFAULT) {
+                        pulseColor = notificationColor;
+                    }
+                }
+            }
             mPulseLightsView.setVisibility(mPulsing ? View.VISIBLE : View.GONE);
             if (mPulsing) {
-                mPulseLightsView.animateNotification();
+                mPulseLightsView.animateNotificationWithColor(pulseColor);
                 mPulseLightsView.setPulsing(pulsing);
             }
         }

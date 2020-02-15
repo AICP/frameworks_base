@@ -861,6 +861,9 @@ public final class DefaultPermissionGrantPolicy {
         // Chromium Sign-in
         grantSystemFixedPermissionsToSystemPackage(pm, "org.chromium.chrome", userId, CONTACTS_PERMISSIONS,
                 STORAGE_PERMISSIONS);
+
+        // AICP Updater3
+        grantSystemFixedPermissionsToSystemPackage(pm,"com.aicp.updater3", userId, STORAGE_PERMISSIONS);
     }
 
     private String getDefaultSystemHandlerActivityPackageForCategory(PackageManagerWrapper pm,

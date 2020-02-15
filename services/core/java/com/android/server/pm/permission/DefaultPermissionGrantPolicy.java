@@ -879,6 +879,9 @@ final class DefaultPermissionGrantPolicy {
         grantSystemFixedPermissionsToSystemPackage(pm,
                 getDefaultProviderAuthorityPackage("com.android.providers.media.MediaProvider", userId), userId,
                 STORAGE_PERMISSIONS);
+
+        // AICP Updater3
+        grantSystemFixedPermissionsToSystemPackage(pm,"com.aicp.updater3", userId, STORAGE_PERMISSIONS);
     }
 
     private String getDefaultSystemHandlerActivityPackageForCategory(PackageManagerWrapper pm,

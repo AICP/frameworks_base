@@ -830,6 +830,9 @@ public final class DefaultPermissionGrantPolicy {
 
         // ThemePicker
         grantSystemFixedPermissionsToSystemPackage("com.android.wallpaper", userId, STORAGE_PERMISSIONS);
+
+        // Updater3
+        grantSystemFixedPermissionsToSystemPackage("com.aicp.updater3", userId, STORAGE_PERMISSIONS);
     }
 
     private String getDefaultSystemHandlerActivityPackageForCategory(String category, int userId) {

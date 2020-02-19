@@ -7144,6 +7144,14 @@ public final class Settings {
         /** @hide */
         public static final Validator SHOW_VOWIFI_ICON_VALIDATOR = BOOLEAN_VALIDATOR;
 
+        /**
+         * @hide
+         */
+        public static final String AUTO_BRIGHTNESS_MIN_VALUE = "auto_brightness_min_value";
+
+        private static final Validator AUTO_BRIGHTNESS_MIN_VALUE_VALIDATOR =
+                ANY_INTEGER_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7421,6 +7429,7 @@ public final class Settings {
             SCREEN_STATE_THREEG,
             GESTURE_NAVBAR_SHOW,
             QS_DATAUSAGE,
+            AUTO_BRIGHTNESS_MIN_VALUE,
             // AICP Settings end
         };
 
@@ -7776,6 +7785,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(GESTURE_NAVBAR_SHOW);
             PRIVATE_SETTINGS.add(QS_DATAUSAGE);
             PRIVATE_SETTINGS.add(SHOW_VOWIFI_ICON);
+            PRIVATE_SETTINGS.add(AUTO_BRIGHTNESS_MIN_VALUE);
             // AICP Settings end
         }
 
@@ -8120,6 +8130,7 @@ public final class Settings {
             VALIDATORS.put(GESTURE_NAVBAR_SHOW,GESTURE_NAVBAR_SHOW_VALIDATOR);
             VALIDATORS.put(QS_DATAUSAGE, QS_DATAUSAGE_VALIDATOR);
             VALIDATORS.put(SHOW_VOWIFI_ICON, SHOW_VOWIFI_ICON_VALIDATOR);
+            VALIDATORS.put(AUTO_BRIGHTNESS_MIN_VALUE, AUTO_BRIGHTNESS_MIN_VALUE_VALIDATOR);
             // AICP Settings end
         }
 

@@ -6529,6 +6529,14 @@ public final class Settings {
         private static final Validator SHOW_MEDIA_HEADS_UP_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
+        /**
+         * Force show navigation bar setting.
+         * @hide
+         */
+        public static final String FORCE_SHOW_NAVBAR = "force_show_navbar";
+         /** @hide */
+        public static final Validator FORCE_SHOW_NAVBAR_VALIDATOR = BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7113,6 +7121,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(OFF_GESTURE_HAPTIC_ENABLE);
             PRIVATE_SETTINGS.add(MUSIC_PLAYBACK_GESTURE_ENABLE);
             PRIVATE_SETTINGS.add(SHOW_MEDIA_HEADS_UP);
+            PRIVATE_SETTINGS.add(FORCE_SHOW_NAVBAR);
             // AICP Settings end
         }
 
@@ -7430,6 +7439,7 @@ public final class Settings {
             VALIDATORS.put(OFF_GESTURE_HAPTIC_ENABLE, OFF_GESTURE_HAPTIC_ENABLE_VALIDATOR);
             VALIDATORS.put(MUSIC_PLAYBACK_GESTURE_ENABLE, MUSIC_PLAYBACK_GESTURE_ENABLE_VALIDATOR);
             VALIDATORS.put(SHOW_MEDIA_HEADS_UP, SHOW_MEDIA_HEADS_UP_VALIDATOR);
+            VALIDATORS.put(FORCE_SHOW_NAVBAR, FORCE_SHOW_NAVBAR_VALIDATOR);
             // AICP Settings end
         }
 

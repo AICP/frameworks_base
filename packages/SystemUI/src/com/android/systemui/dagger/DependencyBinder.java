@@ -17,6 +17,8 @@
 package com.android.systemui.dagger;
 
 import com.android.systemui.ActivityStarterDelegate;
+import com.android.systemui.CustomSettingsService;
+import com.android.systemui.CustomSettingsServiceImpl;
 import com.android.systemui.appops.AppOpsController;
 import com.android.systemui.appops.AppOpsControllerImpl;
 import com.android.systemui.classifier.FalsingManagerProxy;
@@ -265,4 +267,10 @@ public abstract class DependencyBinder {
     @Binds
     public abstract RingerModeTracker provideRingerModeTracker(
             RingerModeTrackerImpl ringerModeTrackerImpl);
+
+    /**
+     */
+    @Binds
+    public abstract CustomSettingsService provideCustomSettingsService(
+            CustomSettingsServiceImpl controllerImpl);
 }

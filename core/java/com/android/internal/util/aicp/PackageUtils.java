@@ -46,4 +46,14 @@ public class PackageUtils {
     public static <T> T notNullOrDefault(T value, T defValue) {
         return value == null ? defValue : value;
     }
+
+    public static boolean isDozePackageAvailable(Context context) {
+        return isPackageAvailable(context, PackageConstants.DOZE_PACKAGE_NAME) ||
+            isPackageAvailable(context, PackageConstants.ONEPLUS_DOZE_PACKAGE_NAME) ||
+            isPackageAvailable(context, PackageConstants.CUSTOM_DOZE_PACKAGE_NAME);
+    }
+
+    public static boolean isTouchGesturesPackageAvailable(Context context) {
+        return isPackageAvailable(context, PackageConstants.TOUCHGESTURES_PACKAGE_NAME);
+    }
 }

@@ -37,6 +37,11 @@ public class NavbarUtilities {
     public static final int KEY_ACTION_CAMERA = 6;
     public static final int KEY_ACTION_LAST_APP = 7;
     public static final int KEY_ACTION_SPLIT_SCREEN = 8;
+    public static final int KEY_ACTION_FLASHLIGHT = 9;
+    public static final int KEY_ACTION_CLEAR_NOTIFICATIONS = 10;
+    public static final int KEY_ACTION_VOLUME_PANEL = 11;
+    public static final int KEY_ACTION_SCREEN_OFF = 12;
+    public static final int KEY_ACTION_SCREENSHOT = 13;
 
     // Special values, used internal only.
     public static final int KEY_ACTION_HOME = 100;
@@ -58,29 +63,6 @@ public class NavbarUtilities {
                         LocalServices.getService(StatusBarManagerInternal.class);
             }
             return mStatusBarManagerInternal;
-        }
-    }
-
-    /**
-     * Request camera to be opened.
-     * This goes through status bar service which will check if there
-     * is an app set as default camera app and launch that or trigger
-     * a ResolverActivity to let user chose which camera app to use.
-     */
-    public static void launchCamera() {
-        StatusBarManagerInternal statusbar = getCustomStatusBarManagerInternal();
-        if (statusbar != null) {
-            statusbar.onCameraLaunchGestureDetected(-1);
-        }
-    }
-
-    /**
-     * Request current window to enter multiwindow mode.
-     */
-    public static void toggleSplitScreen() {
-        StatusBarManagerInternal statusbar = getCustomStatusBarManagerInternal();
-        if (statusbar != null) {
-            statusbar.toggleSplitScreen();
         }
     }
 
@@ -108,7 +90,12 @@ public class NavbarUtilities {
             KEY_ACTION_IN_APP_SEARCH,
             KEY_ACTION_CAMERA,
             KEY_ACTION_LAST_APP,
-            KEY_ACTION_SPLIT_SCREEN
+            KEY_ACTION_SPLIT_SCREEN,
+            KEY_ACTION_FLASHLIGHT,
+            KEY_ACTION_CLEAR_NOTIFICATIONS,
+            KEY_ACTION_VOLUME_PANEL,
+            KEY_ACTION_SCREEN_OFF,
+            KEY_ACTION_SCREENSHOT,
     };
 
     /**

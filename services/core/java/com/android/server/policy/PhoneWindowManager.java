@@ -7012,7 +7012,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 break;
             case NavbarUtilities.KEY_ACTION_CAMERA:
                 sendCloseSystemWindows();
-                NavbarUtilities.launchCamera();
+                launchCamera();
                 break;
             case NavbarUtilities.KEY_ACTION_LAST_APP:
                 awakenDreams();
@@ -7020,7 +7020,22 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 triggerVirtualKeypress(KeyEvent.KEYCODE_APP_SWITCH, !mRecentsVisible);
                 break;
             case NavbarUtilities.KEY_ACTION_SPLIT_SCREEN:
-                NavbarUtilities.toggleSplitScreen();
+                toggleSplitScreen();
+                break;
+            case NavbarUtilities.KEY_ACTION_FLASHLIGHT:
+                toggleFlashLight();
+                break;
+            case NavbarUtilities.KEY_ACTION_CLEAR_NOTIFICATIONS:
+                toggleClearNotifications();
+                break;
+            case NavbarUtilities.KEY_ACTION_VOLUME_PANEL:
+                toggleVolumePanel();
+                break;
+            case NavbarUtilities.KEY_ACTION_SCREEN_OFF:
+                toggleScreenOff();
+                break;
+            case NavbarUtilities.KEY_ACTION_SCREENSHOT:
+                toggleScreenshot();
                 break;
         }
     }
@@ -7046,7 +7061,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 break;
             case KeyEvent.KEYCODE_CAMERA:
                 sendCloseSystemWindows();
-                NavbarUtilities.launchCamera();
+                launchCamera();
                 break;
         }
     }
@@ -7077,5 +7092,47 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         } catch (RemoteException|NullPointerException e) {
             // no-op
         }
+    }
+
+    // Flashlight
+    private void toggleFlashLight() {
+        performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, true, "Flashlight toggle");
+        ActionHandler.performTask(mContext, ActionHandler.SYSTEMUI_TASK_TORCH);
+    }
+
+    // Clear notifications
+    private void toggleClearNotifications() {
+        performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, true, "Clear-all notifications");
+        ActionHandler.performTask(mContext, ActionHandler.SYSTEMUI_TASK_CLEAR_NOTIFICATIONS);
+    }
+
+    // Volume panel
+    private void toggleVolumePanel() {
+        performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, true, "Volume panel");
+        ActionHandler.performTask(mContext, ActionHandler.SYSTEMUI_TASK_VOLUME_PANEL);
+    }
+
+    // Screen off
+    private void toggleScreenOff() {
+        performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, true, "Screen off");
+        ActionHandler.performTask(mContext, ActionHandler.SYSTEMUI_TASK_SCREENOFF);
+    }
+
+    // Screenshot
+    private void toggleScreenshot() {
+        performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, true, "Screenshot");
+        ActionHandler.performTask(mContext, ActionHandler.SYSTEMUI_TASK_SCREENSHOT);
+    }
+
+    // Split screen
+    private void toggleSplitScreen() {
+        performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, true, "SplitScreen");
+        ActionHandler.performTask(mContext, ActionHandler.SYSTEMUI_TASK_SPLIT_SCREEN);
+    }
+
+    // Split screen
+    private void launchCamera() {
+        performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, true, "Launch camera");
+        ActionHandler.performTask(mContext, ActionHandler.SYSTEMUI_TASK_CAMERA);
     }
 }

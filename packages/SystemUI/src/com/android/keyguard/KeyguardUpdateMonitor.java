@@ -204,7 +204,7 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
      */
     private static final int BIOMETRIC_STATE_CANCELLING_RESTARTING = 3;
 
-    private static final int BIOMETRIC_HELP_FINGERPRINT_NOT_RECOGNIZED = -1;
+    public static final int BIOMETRIC_HELP_FINGERPRINT_NOT_RECOGNIZED = -1;
     public static final int BIOMETRIC_HELP_FACE_NOT_RECOGNIZED = -2;
 
     private static final int DEFAULT_CHARGING_VOLTAGE_MICRO_VOLT = 5000000;

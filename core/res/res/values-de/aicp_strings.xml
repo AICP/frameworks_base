@@ -18,12 +18,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="reboot_title">Neustart</string>
     <string name="reboot_message">System wird neu gestartet\u2026</string>
-    <!-- MicroG -->
     <string name="permlab_fakePackageSignature">Paketsignatur imitieren</string>
-    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_fakePackageSignature">Erlaubt einer App, sich als eine Andere auszugeben. Böswillige Anwendungen könnten dadurch Zugriff auf private Anwendungsdaten erhalten. Zu den legitimen Verwendungen gehört ein Emulator, der vorgibt, das zu sein, was er emuliert. Berechtigung nur mit Vorsicht erteilen!</string>
-    <!-- Pocket Lock -->
     <string name="pocket_lock_message_long_press">Ein-/Aus-Taste lange drücken, um mit dem Gerät zu interagieren</string>
-    <!-- Defines the sysfs attribute path used by pocket bridge
-        to communicate pocket state to the pocket judge kernel driver. -->
 </resources>

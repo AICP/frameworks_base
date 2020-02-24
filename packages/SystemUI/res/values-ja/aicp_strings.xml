@@ -19,9 +19,7 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- CPUInfo tile -->
     <string name="quick_settings_cpuinfo_label">CPU 情報</string>
-    <!-- Compass QS Tile -->
     <string name="quick_settings_compass_label">コンパス</string>
     <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
     <string name="quick_settings_compass_init">初期化中...</string>
@@ -37,82 +35,52 @@
     <string name="quick_settings_compass_SW">南西</string>
     <string name="quick_settings_compass_W">西</string>
     <string name="quick_settings_compass_NW">北西</string>
-    <!-- Music tile -->
     <string name="quick_settings_music_label">音楽</string>
     <string name="quick_settings_music_play">再生</string>
     <string name="quick_settings_music_pause">一時停止</string>
-    <!-- Screenshoot tile -->
     <string name="quick_settings_screenshot_label">スクリーン\nショット</string>
-    <!-- Screenrecord tile -->
     <string name="quick_settings_screenrecord_label">画面録画</string>
-    <!-- Reboot/Recovery QS Tile -->
     <string name="quick_settings_reboot_label">再起動</string>
     <string name="quick_settings_reboot_recovery_label">リカバリー</string>
-    <!-- USB Tethering tile -->
     <string name="accessibility_quick_settings_usb_tether_off">USB テザリング OFF</string>
     <string name="accessibility_quick_settings_usb_tether_on">USB テザリング ON</string>
     <string name="accessibility_quick_settings_usb_tether_changed_off">USB テザリングを OFF にしました</string>
     <string name="accessibility_quick_settings_usb_tether_changed_on">USB テザリングを ON にしました</string>
     <string name="quick_settings_usb_tether_label">USB\nテザリング</string>
-    <!-- Caffeine tile -->
     <string name="quick_settings_caffeine_label">カフェイン</string>
     <string name="accessibility_quick_settings_caffeine_off">カフェイン OFF</string>
     <string name="accessibility_quick_settings_caffeine_on">カフェイン ON</string>
-    <!-- Aicp Extras Tile -->
     <string name="quick_aicp_extras_label">Aicp Extras</string>
     <string name="quick_aicp_extras_toast">長押しで何か起きると思った? 残念! 何も起こりません!</string>
-    <!-- Power menu advanced restart -->
     <string name="global_action_restart_system">再起動</string>
     <string name="global_action_restart_recovery">リカバリー</string>
-    <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
-    <!-- Indication on the keyguard that is shown when the device is charging with a warp charger. Should match keyguard_plugged_in_warp_charging [CHAR LIMIT=40]-->
-    <!-- Heads up QS tile -->
     <string name="quick_settings_heads_up_label">Heads Up</string>
     <string name="accessibility_quick_settings_heads_up_off">Heads Up OFF</string>
     <string name="accessibility_quick_settings_heads_up_on">Heads Up ON</string>
     <string name="accessibility_quick_settings_heads_up_changed_off">Heads Up を OFF にしました</string>
     <string name="accessibility_quick_settings_heads_up_changed_on">Heads Up を ON にしました</string>
-    <!-- Smart Pixels QS Tile -->
     <string name="quick_settings_smart_pixels">スマート\nピクセル</string>
     <string name="quick_settings_smart_pixels_on_power_save">自動有効</string>
-    <!-- QS Config -->
     <string name="qs_menu_item_columns">列数</string>
     <string name="qs_menu_item_columns_landscape">列数 (横向き)</string>
     <string name="qs_menu_item_reset">リセット</string>
     <string name="qs_menu_item_titles">ラベルを表示</string>
     <string name="qs_menu_item_qs_columns">クイックバーの列数</string>
     <string name="qs_menu_item_columns_auto">自動</string>
-    <!-- Advance location quick setting tile -->
     <string name="accessibility_quick_settings_location_battery_saving">位置情報レポート: バッテリー節約モード</string>
     <string name="accessibility_quick_settings_location_gps_only">位置情報レポート: 端末のみモード</string>
     <string name="accessibility_quick_settings_location_high_accuracy">位置情報レポート: 高精度モード</string>
-    <!-- QuickSettings: Location (On, low-power) [CHAR LIMIT=NONE] -->
-    <!-- QuickSettings: Location (On, gps-only) [CHAR LIMIT=NONE] -->
-    <!-- QuickSettings: Location (On, high-accuracy) [CHAR LIMIT=NONE] -->
-    <!-- QuickSettings: Location detail panel title [CHAR LIMIT=NONE] -->
-    <!-- QuickSettings: Location detail panel menu title [CHAR LIMIT=NONE] -->
-    <!-- [CHAR LIMIT=30] Location detail panel, high accuracy location mode -->
-    <!-- [CHAR LIMIT=30] Location detail panel, battery saving location mode -->
-    <!-- [CHAR LIMIT=30] Location detail panel, device only location mode -->
-    <!-- [CHAR LIMIT=130] Location detail panel, description for high accuracy mode -->
-    <!-- [CHAR LIMIT=130] Location detail panel, description for battery saving mode -->
-    <!-- [CHAR LIMIT=130] Location detail panel, description for sensors only mode -->
-    <!-- ADB over network tile -->
     <string name="quick_settings_network_adb_enabled_label">有効</string>
     <string name="quick_settings_network_adb_disabled_label">無効</string>
     <string name="quick_settings_network_adb_label">ネット経由の\nADB</string>
     <string name="quick_settings_network_adb_toast">USB デバッグが有効になっていません</string>
-    <!-- AOD QS tile -->
     <string name="quick_settings_aod_label">Always On Display</string>
-    <!-- Language toggle tile -->
     <string name="quick_settings_locale_label">言語</string>
     <string name="quick_settings_locale_more_locales_toast">トグル機能を有効にするには複数の言語を設定して下さい</string>
-    <!-- Sound tile -->
     <string name="quick_settings_sound_label">音</string>
     <string name="quick_settings_sound_ring">通常</string>
     <string name="quick_settings_sound_vibrate">マナー</string>
     <string name="quick_settings_sound_silent">サイレント</string>
-    <!-- On The Go -->
     <string name="onthego_notif_ticker">On-The-Go モードを有効化しました</string>
     <string name="onthego_notif_title">On-The-Go が有効です</string>
     <string name="onthego_notif_stop">停止</string>
@@ -125,20 +93,15 @@
     <string name="onthego_service_toggle">サービスを自動的に再起動する</string>
     <string name="onthego_channel_name">メイン</string>
     <string name="global_action_onthego">On-The-Go</string>
-    <!-- OnTheGo Tile -->
     <string name="quick_settings_onthego_label">On-The-Go</string>
-    <!-- Sync QS Tile -->
     <string name="quick_settings_sync_label">同期</string>
     <string name="accessibility_quick_settings_sync_off">同期 OFF</string>
     <string name="accessibility_quick_settings_sync_on">同期 ON</string>
     <string name="accessibility_quick_settings_sync_changed_off">同期を OFF にしました</string>
     <string name="accessibility_quick_settings_sync_changed_on">同期を ON にしました</string>
-    <!-- Label for item that screenrecords in power menu options dialog -->
     <string name="global_action_screenrecord">画面録画</string>
-    <!-- Heads up snooze toast -->
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - 通知の表示は1分間一時停止します</string>
     <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - 通知の表示は<xliff:g id="number">%d</xliff:g>分間停止します</string>
-    <!-- Omnijaws Weather -->
     <string name="omnijaws_service_error">エラー</string>
     <string name="omnijaws_service_unkown">天気データがありません</string>
     <string name="omnijaws_service_error_long">気象データの読み込みエラー</string>
@@ -148,24 +111,17 @@
     <string name="omnijaws_current_text">現在</string>
     <string name="omnijaws_package_not_available">OmniJaws がありません</string>
     <string name="omnijaws_service_last_update">最終更新:</string>
-    <!-- Tuner -->
     <string name="reset">リセット</string>
-    <!-- Stock Navbar -->
     <string name="systemui_tuner_navbar_title">標準の設定</string>
     <string name="navbar_activity_title">ナビゲーション\nバー</string>
-    <!-- Kill button in notification guts -->
     <string name="force_stop_dlg_title">強制停止しますか?</string>
     <string name="force_stop_dlg_text">アプリを強制停止すると、アプリが正常に機能しないことがあります。</string>
     <string name="dlg_ok">@android:string/ok</string>
     <string name="dlg_cancel">@android:string/cancel</string>
     <string name="guts_force_close_app">アプリを終了</string>
-    <!--Google sound search tile -->
-    <!-- DataSwitch Tile -->
-    <!-- HW Keys Tile -->
     <string name="accessibility_quick_settings_hwkeys_on">ハードウェアキー ON</string>
     <string name="accessibility_quick_settings_hwkeys_off">ハードウェアキー OFF</string>
     <string name="quick_settings_hwkeys_label">ハードウェアキー</string>
-    <!-- Immersive tile -->
     <string name="quick_settings_immersive_tile">没入モード</string>
     <string name="quick_settings_immersive_tile_statusbar">ステータスバーを隠す</string>
     <string name="quick_settings_immersive_tile_navbar">ナビゲーションバーを隠す</string>

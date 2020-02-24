@@ -19,9 +19,7 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- CPUInfo tile -->
     <string name="quick_settings_cpuinfo_label">Información de la CPU</string>
-    <!-- Compass QS Tile -->
     <string name="quick_settings_compass_label">Brújula</string>
     <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
     <string name="quick_settings_compass_init">Iniciando\u2026</string>
@@ -37,52 +35,39 @@
     <string name="quick_settings_compass_SW">SO</string>
     <string name="quick_settings_compass_W">O</string>
     <string name="quick_settings_compass_NW">NO</string>
-    <!-- Music tile -->
     <string name="quick_settings_music_label">Música</string>
     <string name="quick_settings_music_play">Reproducir</string>
     <string name="quick_settings_music_pause">Pausar</string>
-    <!-- Screenshoot tile -->
     <string name="quick_settings_screenshot_label">Captura de pantalla</string>
-    <!-- Screenrecord tile -->
     <string name="quick_settings_screenrecord_label">Grabar pantalla</string>
-    <!-- Reboot/Recovery QS Tile -->
     <string name="quick_settings_reboot_label">Reniciar</string>
     <string name="quick_settings_reboot_recovery_label">Recuperación</string>
-    <!-- USB Tethering tile -->
     <string name="accessibility_quick_settings_usb_tether_off">Anclaje USB desactivado</string>
     <string name="accessibility_quick_settings_usb_tether_on">Anclaje USB activado</string>
     <string name="accessibility_quick_settings_usb_tether_changed_off">Anclaje USB desactivado</string>
     <string name="accessibility_quick_settings_usb_tether_changed_on">Anclaje USB activado</string>
     <string name="quick_settings_usb_tether_label">Anclaje USB</string>
-    <!-- Caffeine tile -->
     <string name="quick_settings_caffeine_label">Cafeína</string>
     <string name="accessibility_quick_settings_caffeine_off">Cafeína off</string>
     <string name="accessibility_quick_settings_caffeine_on">Cafeína on</string>
-    <!-- Aicp Extras Tile -->
     <string name="quick_aicp_extras_label">Aicp Extras</string>
     <string name="quick_aicp_extras_toast">Jajaja, esperabas que la pulsación larga mostrara algo!!!</string>
-    <!-- Power menu advanced restart -->
     <string name="global_action_restart_system">Reniciar</string>
     <string name="global_action_restart_advanced">Avanzado</string>
     <string name="global_action_restart_recovery">Recuperación</string>
     <string name="global_action_restart_bootloader">Bootloader</string>
     <string name="global_action_restart_ui">SystemUI</string>
-    <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
     <string name="keyguard_indication_dash_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Carga rápida Dash (<xliff:g id="charging_time_left" example="4 horas y 2 minutos">%1$s</xliff:g> para completar)</string>
     <string name="keyguard_plugged_in_dash_charging"><xliff:g id="percentage">%s</xliff:g> • Carga rápida Dash</string>
-    <!-- Indication on the keyguard that is shown when the device is charging with a warp charger. Should match keyguard_plugged_in_warp_charging [CHAR LIMIT=40]-->
     <string name="keyguard_indication_warp_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Carga Warp (<xliff:g id="charging_time_left" example="4 horas y 2 minutos">%1$s</xliff:g> para completar)</string>
     <string name="keyguard_plugged_in_warp_charging"><xliff:g id="percentage">%s</xliff:g> • Carga Warp</string>
-    <!-- Heads up QS tile -->
     <string name="quick_settings_heads_up_label">Notificaciones emergentes</string>
     <string name="accessibility_quick_settings_heads_up_off">Notificaciones emergentes desactivadas.</string>
     <string name="accessibility_quick_settings_heads_up_on">Notificaciones emergentes activadas.</string>
     <string name="accessibility_quick_settings_heads_up_changed_off">Notificaciones emergentes desactivadas.</string>
     <string name="accessibility_quick_settings_heads_up_changed_on">Notificaciones emergentes activadas.</string>
-    <!-- Smart Pixels QS Tile -->
     <string name="quick_settings_smart_pixels">Píxeles inteligentes</string>
     <string name="quick_settings_smart_pixels_on_power_save">Habilitar píxeles inteligentes automáticamente</string>
-    <!-- QS Config -->
     <string name="qs_menu_item_columns">Columnas</string>
     <string name="qs_menu_item_columns_landscape">Columnas en apaisado</string>
     <string name="qs_menu_item_reset">Restablecer</string>
@@ -94,51 +79,34 @@
     <string name="tuner_brightness_position_bottom">Mostrar la barra de brillo abajo</string>
     <string name="tuner_show_secure_title">Mostrar seguridad al pie</string>
     <string name="tuner_show_drag_handle">Mostrar gestor de arrastre</string>
-    <!-- Advance location quick setting tile -->
     <string name="accessibility_quick_settings_location_battery_saving">Informe de ubicación: modo de ahorro de batería.</string>
     <string name="accessibility_quick_settings_location_gps_only">Informe de ubicación: modo sólo sensores.</string>
     <string name="accessibility_quick_settings_location_high_accuracy">Informe de ubicación: modo alta precisión.</string>
-    <!-- QuickSettings: Location (On, low-power) [CHAR LIMIT=NONE] -->
     <string name="quick_settings_location_battery_saving_label">Ahorro de batería</string>
     <string name="quick_settings_location_battery_saving_label_twoline">Ahorro\nde batería</string>
-    <!-- QuickSettings: Location (On, gps-only) [CHAR LIMIT=NONE] -->
     <string name="quick_settings_location_gps_only_label">Sólo dispositivo</string>
     <string name="quick_settings_location_gps_only_label_twoline">Sólo\ndispositivo</string>
-    <!-- QuickSettings: Location (On, high-accuracy) [CHAR LIMIT=NONE] -->
     <string name="quick_settings_location_high_accuracy_label">Alta precisión</string>
     <string name="quick_settings_location_high_accuracy_label_twoline">Alta\nprecisión</string>
-    <!-- QuickSettings: Location detail panel title [CHAR LIMIT=NONE] -->
     <string name="quick_settings_location_detail_title">Ubicación</string>
-    <!-- QuickSettings: Location detail panel menu title [CHAR LIMIT=NONE] -->
     <string name="quick_settings_location_detail_menu_title">Seleccionar modo:</string>
-    <!-- [CHAR LIMIT=30] Location detail panel, high accuracy location mode -->
     <string name="quick_settings_location_detail_mode_high_accuracy_title">Alta precisión</string>
-    <!-- [CHAR LIMIT=30] Location detail panel, battery saving location mode -->
     <string name="quick_settings_location_detail_mode_battery_saving_title">Ahorro de batería</string>
-    <!-- [CHAR LIMIT=30] Location detail panel, device only location mode -->
     <string name="quick_settings_location_detail_mode_sensors_only_title">Sólo dispositivo</string>
-    <!-- [CHAR LIMIT=130] Location detail panel, description for high accuracy mode -->
     <string name="quick_settings_location_detail_mode_high_accuracy_description">Usar GPS, Wi\u2011Fi, Bluetooth o redes móviles para determinar la ubicación</string>
-    <!-- [CHAR LIMIT=130] Location detail panel, description for battery saving mode -->
     <string name="quick_settings_location_detail_mode_battery_saving_description">Usar Wi\u2011Fi, Bluetooth, o redes móviles para determinar la ubicación</string>
-    <!-- [CHAR LIMIT=130] Location detail panel, description for sensors only mode -->
     <string name="quick_settings_location_detail_mode_sensors_only_description">Usar GPS para determinar la ubicación</string>
-    <!-- ADB over network tile -->
     <string name="quick_settings_network_adb_enabled_label">Habilitado</string>
     <string name="quick_settings_network_adb_disabled_label">Deshabilitado</string>
     <string name="quick_settings_network_adb_label">ADB sobre red</string>
     <string name="quick_settings_network_adb_toast">Depuración USB no está habilitada</string>
-    <!-- AOD QS tile -->
     <string name="quick_settings_aod_label">AOD</string>
-    <!-- Language toggle tile -->
     <string name="quick_settings_locale_label">Idioma</string>
     <string name="quick_settings_locale_more_locales_toast">Es necesario configurar múltiples idiomas para que este interruptor funcione</string>
-    <!-- Sound tile -->
     <string name="quick_settings_sound_label">Sonido</string>
     <string name="quick_settings_sound_ring">Sonar</string>
     <string name="quick_settings_sound_vibrate">Vibrar</string>
     <string name="quick_settings_sound_silent">Silencio</string>
-    <!-- On The Go -->
     <string name="onthego_notif_ticker">Modo En-Marcha activado</string>
     <string name="onthego_notif_title">El modo En-Marcha está activado</string>
     <string name="onthego_notif_stop">Detener</string>
@@ -151,20 +119,15 @@
     <string name="onthego_service_toggle">Reiniciar el servicio automáticamente</string>
     <string name="onthego_channel_name">Principal</string>
     <string name="global_action_onthego">En-marcha</string>
-    <!-- OnTheGo Tile -->
     <string name="quick_settings_onthego_label">En-marcha</string>
-    <!-- Sync QS Tile -->
     <string name="quick_settings_sync_label">Sinc</string>
     <string name="accessibility_quick_settings_sync_off">Sinc off</string>
     <string name="accessibility_quick_settings_sync_on">Sinc on</string>
     <string name="accessibility_quick_settings_sync_changed_off">Sinc desactivada</string>
     <string name="accessibility_quick_settings_sync_changed_on">Sinc activada</string>
-    <!-- Label for item that screenrecords in power menu options dialog -->
     <string name="global_action_screenrecord">Grabar pantalla</string>
-    <!-- Heads up snooze toast -->
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Notificaciones emergentes pospuestas 1 minuto.</string>
     <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - Notificaciones emergentes pospuestas durante <xliff:g id="number">%d</xliff:g> minutos.</string>
-    <!-- Omnijaws Weather -->
     <string name="omnijaws_service_error">Error</string>
     <string name="omnijaws_service_unkown">No hay datos metereológicos</string>
     <string name="omnijaws_service_error_long">Error al cargar datos meteorológicos</string>
@@ -174,7 +137,6 @@
     <string name="omnijaws_current_text">Ahora</string>
     <string name="omnijaws_package_not_available">OmniJaws no disponible</string>
     <string name="omnijaws_service_last_update">Última actualización:</string>
-    <!-- Tuner -->
     <string name="preview">Vista previa</string>
     <string name="keycode">KeyCode</string>
     <string name="no_home_title">Ningún botón de inicio encontrado</string>
@@ -195,30 +157,24 @@
     <string name="right">Derecha</string>
     <string name="navbar_editor_title">Editor</string>
     <string name="navbar_editor_summary">Configurar la barra de navegación</string>
-    <!-- Stock Navbar -->
     <string name="systemui_tuner_navbar_title">Configuración predeterminada</string>
     <string name="navbar_activity_title">Barra de navegación</string>
-    <!-- Kill button in notification guts -->
     <string name="force_stop_dlg_title">¿Forzar detención?</string>
     <string name="force_stop_dlg_text">Si se detiene una aplicación, es posible que no funcione correctamente.</string>
     <string name="guts_force_close_app">Cerrar aplicación</string>
     <string name="tuner_show_brightness_mode">Mostrar el interruptor de modo de brillo</string>
     <string name="tuner_show_brightness_side_buttons">Mostrar botones al lado de la barra de brillo</string>
-    <!--Google sound search tile -->
     <string name="quick_settings_sound_search">Búsqueda por voz</string>
     <string name="quick_settings_sound_search_no_app">Lo sentimos, pero esto no funciona si no tienes una aplicación de búsqueda por voz.</string>
     <string name="status_bar_location">Ubicación</string>
-    <!-- DataSwitch Tile -->
     <string name="qs_data_switch_label">Cambiar tarjeta de datos</string>
     <string name="qs_data_switch_toast_0">Actualmente no se ha insertado ninguna tarjeta SIM</string>
     <string name="qs_data_switch_toast_1">Actualmente solo se ha insertado una tarjeta SIM</string>
     <string name="qs_data_switch_changed_1">Cambiar datos a tarjeta SIM 1.</string>
     <string name="qs_data_switch_changed_2">Cambiar datos a tarjeta SIM 2.</string>
-    <!-- HW Keys Tile -->
     <string name="accessibility_quick_settings_hwkeys_on">Botones físicos activados</string>
     <string name="accessibility_quick_settings_hwkeys_off">Botones físicos desactivados</string>
     <string name="quick_settings_hwkeys_label">Botones físicos</string>
-    <!-- Immersive tile -->
     <string name="quick_settings_immersive_tile">Modo inmersivo</string>
     <string name="quick_settings_immersive_tile_statusbar">Ocultar barra de estado</string>
     <string name="quick_settings_immersive_tile_navbar">Ocultar barra de navegación</string>

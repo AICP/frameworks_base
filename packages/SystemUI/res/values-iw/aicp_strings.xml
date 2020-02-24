@@ -19,8 +19,6 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- CPUInfo tile -->
-    <!-- Compass QS Tile -->
     <string name="accessibility_quick_settings_compass_off">מצפן כבוי.</string>
     <string name="accessibility_quick_settings_compass_changed_off">מצפן כובה.</string>
     <string name="accessibility_quick_settings_compass_changed_on">מצפן הודלק.</string>
@@ -32,63 +30,21 @@
     <string name="quick_settings_compass_SW">ד.מע</string>
     <string name="quick_settings_compass_W">מע</string>
     <string name="quick_settings_compass_NW">צ.מע</string>
-    <!-- Music tile -->
     <string name="quick_settings_music_label">מוזיקה</string>
     <string name="quick_settings_music_play">נגן</string>
     <string name="quick_settings_music_pause">עצור</string>
-    <!-- Screenshoot tile -->
     <string name="quick_settings_screenshot_label">צילום מסך</string>
-    <!-- Screenrecord tile -->
     <string name="quick_settings_screenrecord_label">הקלטת מסך</string>
-    <!-- Reboot/Recovery QS Tile -->
-    <!-- USB Tethering tile -->
-    <!-- Caffeine tile -->
     <string name="quick_settings_caffeine_label">קפאין</string>
     <string name="accessibility_quick_settings_caffeine_off">קפאין כבוי</string>
     <string name="accessibility_quick_settings_caffeine_on">קפאין פועל</string>
-    <!-- Aicp Extras Tile -->
-    <!-- Power menu advanced restart -->
-    <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
-    <!-- Indication on the keyguard that is shown when the device is charging with a warp charger. Should match keyguard_plugged_in_warp_charging [CHAR LIMIT=40]-->
-    <!-- Heads up QS tile -->
-    <!-- Smart Pixels QS Tile -->
-    <!-- QS Config -->
-    <!-- Advance location quick setting tile -->
-    <!-- QuickSettings: Location (On, low-power) [CHAR LIMIT=NONE] -->
-    <!-- QuickSettings: Location (On, gps-only) [CHAR LIMIT=NONE] -->
-    <!-- QuickSettings: Location (On, high-accuracy) [CHAR LIMIT=NONE] -->
-    <!-- QuickSettings: Location detail panel title [CHAR LIMIT=NONE] -->
-    <!-- QuickSettings: Location detail panel menu title [CHAR LIMIT=NONE] -->
-    <!-- [CHAR LIMIT=30] Location detail panel, high accuracy location mode -->
-    <!-- [CHAR LIMIT=30] Location detail panel, battery saving location mode -->
-    <!-- [CHAR LIMIT=30] Location detail panel, device only location mode -->
-    <!-- [CHAR LIMIT=130] Location detail panel, description for high accuracy mode -->
-    <!-- [CHAR LIMIT=130] Location detail panel, description for battery saving mode -->
-    <!-- [CHAR LIMIT=130] Location detail panel, description for sensors only mode -->
-    <!-- ADB over network tile -->
-    <!-- AOD QS tile -->
-    <!-- Language toggle tile -->
-    <!-- Sound tile -->
     <string name="quick_settings_sound_label">צליל</string>
     <string name="quick_settings_sound_ring">צלצול</string>
     <string name="quick_settings_sound_vibrate">רטט</string>
-    <!-- On The Go -->
-    <!-- OnTheGo Tile -->
-    <!-- Sync QS Tile -->
     <string name="quick_settings_sync_label">סנכרון</string>
     <string name="accessibility_quick_settings_sync_off">סנכרון כבוי</string>
     <string name="accessibility_quick_settings_sync_on">סנכרון פעיל</string>
     <string name="accessibility_quick_settings_sync_changed_off">סנכרון כובה</string>
     <string name="accessibility_quick_settings_sync_changed_on">סנכון הופעל</string>
-    <!-- Label for item that screenrecords in power menu options dialog -->
     <string name="global_action_screenrecord">הקלטת מסך</string>
-    <!-- Heads up snooze toast -->
-    <!-- Omnijaws Weather -->
-    <!-- Tuner -->
-    <!-- Stock Navbar -->
-    <!-- Kill button in notification guts -->
-    <!--Google sound search tile -->
-    <!-- DataSwitch Tile -->
-    <!-- HW Keys Tile -->
-    <!-- Immersive tile -->
 </resources>

@@ -19,9 +19,7 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- CPUInfo tile -->
     <string name="quick_settings_cpuinfo_label">Info CPU</string>
-    <!-- Compass QS Tile -->
     <string name="quick_settings_compass_label">Bussola</string>
     <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
     <string name="quick_settings_compass_init">Inizializzando\u2026</string>
@@ -37,82 +35,52 @@
     <string name="quick_settings_compass_SW">SO</string>
     <string name="quick_settings_compass_W">O</string>
     <string name="quick_settings_compass_NW">NO</string>
-    <!-- Music tile -->
     <string name="quick_settings_music_label">Musica</string>
     <string name="quick_settings_music_play">Play</string>
     <string name="quick_settings_music_pause">Pausa</string>
-    <!-- Screenshoot tile -->
     <string name="quick_settings_screenshot_label">Screenshot</string>
-    <!-- Screenrecord tile -->
     <string name="quick_settings_screenrecord_label">Registra schermo</string>
-    <!-- Reboot/Recovery QS Tile -->
     <string name="quick_settings_reboot_label">Riavvia</string>
     <string name="quick_settings_reboot_recovery_label">Recovery</string>
-    <!-- USB Tethering tile -->
     <string name="accessibility_quick_settings_usb_tether_off">Tethering USB disattivato</string>
     <string name="accessibility_quick_settings_usb_tether_on">Tethering USB attivato</string>
     <string name="accessibility_quick_settings_usb_tether_changed_off">Tethering USB disattivato</string>
     <string name="accessibility_quick_settings_usb_tether_changed_on">Tethering USB attivato</string>
     <string name="quick_settings_usb_tether_label">Tethering USB</string>
-    <!-- Caffeine tile -->
     <string name="quick_settings_caffeine_label">Caffeina</string>
     <string name="accessibility_quick_settings_caffeine_off">Caffeina disattivata</string>
     <string name="accessibility_quick_settings_caffeine_on">Caffeina attivata</string>
-    <!-- Aicp Extras Tile -->
     <string name="quick_aicp_extras_label">Aicp Extras</string>
     <string name="quick_aicp_extras_toast">LOL, credete davvero che quel click lungo vi porterà da qualche parte!!!</string>
-    <!-- Power menu advanced restart -->
     <string name="global_action_restart_system">Riavvia</string>
     <string name="global_action_restart_recovery">Recovery</string>
-    <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
-    <!-- Indication on the keyguard that is shown when the device is charging with a warp charger. Should match keyguard_plugged_in_warp_charging [CHAR LIMIT=40]-->
-    <!-- Heads up QS tile -->
     <string name="quick_settings_heads_up_label">Notifiche fluttuanti</string>
     <string name="accessibility_quick_settings_heads_up_off">Notifiche fluttuanti disattivate.</string>
     <string name="accessibility_quick_settings_heads_up_on">Notifiche fluttuanti attivate.</string>
     <string name="accessibility_quick_settings_heads_up_changed_off">Notifiche fluttuanti spente.</string>
     <string name="accessibility_quick_settings_heads_up_changed_on">Notifiche fluttuanti accese.</string>
-    <!-- Smart Pixels QS Tile -->
     <string name="quick_settings_smart_pixels">Smart Pixel</string>
     <string name="quick_settings_smart_pixels_on_power_save">Abilita automaticamente Smart Pixel</string>
-    <!-- QS Config -->
     <string name="qs_menu_item_columns">Colonne</string>
     <string name="qs_menu_item_columns_landscape">Colonne in orizzontale</string>
     <string name="qs_menu_item_reset">Ripristina</string>
     <string name="qs_menu_item_titles">Mostra etichette</string>
     <string name="qs_menu_item_qs_columns">Colonne barra veloce</string>
     <string name="qs_menu_item_columns_auto">Automatico</string>
-    <!-- Advance location quick setting tile -->
     <string name="accessibility_quick_settings_location_battery_saving">Segnalazione della posizione: modalità risparmio energetico.</string>
     <string name="accessibility_quick_settings_location_gps_only">Segnalazione della posizione: modalità solo sensori.</string>
     <string name="accessibility_quick_settings_location_high_accuracy">Segnalazione della posizione: modalità alta precisione.</string>
-    <!-- QuickSettings: Location (On, low-power) [CHAR LIMIT=NONE] -->
-    <!-- QuickSettings: Location (On, gps-only) [CHAR LIMIT=NONE] -->
-    <!-- QuickSettings: Location (On, high-accuracy) [CHAR LIMIT=NONE] -->
-    <!-- QuickSettings: Location detail panel title [CHAR LIMIT=NONE] -->
-    <!-- QuickSettings: Location detail panel menu title [CHAR LIMIT=NONE] -->
-    <!-- [CHAR LIMIT=30] Location detail panel, high accuracy location mode -->
-    <!-- [CHAR LIMIT=30] Location detail panel, battery saving location mode -->
-    <!-- [CHAR LIMIT=30] Location detail panel, device only location mode -->
-    <!-- [CHAR LIMIT=130] Location detail panel, description for high accuracy mode -->
-    <!-- [CHAR LIMIT=130] Location detail panel, description for battery saving mode -->
-    <!-- [CHAR LIMIT=130] Location detail panel, description for sensors only mode -->
-    <!-- ADB over network tile -->
     <string name="quick_settings_network_adb_enabled_label">Abilitato</string>
     <string name="quick_settings_network_adb_disabled_label">Disabilitata</string>
     <string name="quick_settings_network_adb_label">ADB tramite rete</string>
     <string name="quick_settings_network_adb_toast">Non è abilitato il debug USB</string>
-    <!-- AOD QS tile -->
     <string name="quick_settings_aod_label">AOD</string>
-    <!-- Language toggle tile -->
     <string name="quick_settings_locale_label">Lingua</string>
     <string name="quick_settings_locale_more_locales_toast">Si prega di configurare più lingue per abilitare la funzionalità attiva/disattiva</string>
-    <!-- Sound tile -->
     <string name="quick_settings_sound_label">Suono</string>
     <string name="quick_settings_sound_ring">Suoneria</string>
     <string name="quick_settings_sound_vibrate">Vibrazione</string>
     <string name="quick_settings_sound_silent">Silenzioso</string>
-    <!-- On The Go -->
     <string name="onthego_notif_ticker">On-The-Go attivato</string>
     <string name="onthego_notif_title">On-The-Go è attivo</string>
     <string name="onthego_notif_stop">Stop</string>
@@ -125,20 +93,15 @@
     <string name="onthego_service_toggle">Riavvia automaticamente il servizio</string>
     <string name="onthego_channel_name">Principale</string>
     <string name="global_action_onthego">On-The-Go</string>
-    <!-- OnTheGo Tile -->
     <string name="quick_settings_onthego_label">On-The-Go</string>
-    <!-- Sync QS Tile -->
     <string name="quick_settings_sync_label">Sincronizzazione</string>
     <string name="accessibility_quick_settings_sync_off">Sincronizzazione disattivata</string>
     <string name="accessibility_quick_settings_sync_on">Sincronizzazione attivata</string>
     <string name="accessibility_quick_settings_sync_changed_off">Sincronizzazione disattivata</string>
     <string name="accessibility_quick_settings_sync_changed_on">Sincronizzazione attivata</string>
-    <!-- Label for item that screenrecords in power menu options dialog -->
     <string name="global_action_screenrecord">Registra schermo</string>
-    <!-- Heads up snooze toast -->
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - La notifica è posticipata per 1 minuto.</string>
     <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - Le notifiche saranno posticipate per <xliff:g id="number">%d</xliff:g> minuti.</string>
-    <!-- Omnijaws Weather -->
     <string name="omnijaws_service_error">Errore</string>
     <string name="omnijaws_service_unkown">Dati meteo non disponibili</string>
     <string name="omnijaws_service_error_long">Errore durante il caricamento dei dati meteo</string>
@@ -148,22 +111,15 @@
     <string name="omnijaws_current_text">Adesso</string>
     <string name="omnijaws_package_not_available">OmniJaws non disponibile</string>
     <string name="omnijaws_service_last_update">Ultimo aggiornamento:</string>
-    <!-- Tuner -->
     <string name="reset">Ripristina</string>
-    <!-- Stock Navbar -->
     <string name="systemui_tuner_navbar_title">Impostazioni stock</string>
     <string name="navbar_activity_title">Barra di navigazione</string>
-    <!-- Kill button in notification guts -->
     <string name="force_stop_dlg_title">Forzare la chiusura?</string>
     <string name="force_stop_dlg_text">Se forzi la chiusura di un\'app, tale app potrebbe funzionare in modo anomalo.</string>
     <string name="guts_force_close_app">Chiudi l\'applicazione</string>
-    <!--Google sound search tile -->
-    <!-- DataSwitch Tile -->
-    <!-- HW Keys Tile -->
     <string name="accessibility_quick_settings_hwkeys_on">Tasti fisici attivati</string>
     <string name="accessibility_quick_settings_hwkeys_off">Tasti fisici disattivati</string>
     <string name="quick_settings_hwkeys_label">Tasti fisici</string>
-    <!-- Immersive tile -->
     <string name="quick_settings_immersive_tile">Modalità a schermo intero</string>
     <string name="quick_settings_immersive_tile_statusbar">Barra di stato a schermo intero</string>
     <string name="quick_settings_immersive_tile_navbar">Barra di navigazione a schermo intero</string>

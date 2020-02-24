@@ -19,49 +19,5 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- CPUInfo tile -->
-    <!-- Compass QS Tile -->
-    <!-- Music tile -->
-    <!-- Screenshoot tile -->
-    <!-- Screenrecord tile -->
-    <!-- Reboot/Recovery QS Tile -->
-    <!-- USB Tethering tile -->
-    <!-- Caffeine tile -->
-    <!-- Aicp Extras Tile -->
-    <!-- Power menu advanced restart -->
-    <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
-    <!-- Indication on the keyguard that is shown when the device is charging with a warp charger. Should match keyguard_plugged_in_warp_charging [CHAR LIMIT=40]-->
-    <!-- Heads up QS tile -->
-    <!-- Smart Pixels QS Tile -->
-    <!-- QS Config -->
-    <!-- Advance location quick setting tile -->
-    <!-- QuickSettings: Location (On, low-power) [CHAR LIMIT=NONE] -->
-    <!-- QuickSettings: Location (On, gps-only) [CHAR LIMIT=NONE] -->
-    <!-- QuickSettings: Location (On, high-accuracy) [CHAR LIMIT=NONE] -->
-    <!-- QuickSettings: Location detail panel title [CHAR LIMIT=NONE] -->
-    <!-- QuickSettings: Location detail panel menu title [CHAR LIMIT=NONE] -->
-    <!-- [CHAR LIMIT=30] Location detail panel, high accuracy location mode -->
-    <!-- [CHAR LIMIT=30] Location detail panel, battery saving location mode -->
-    <!-- [CHAR LIMIT=30] Location detail panel, device only location mode -->
-    <!-- [CHAR LIMIT=130] Location detail panel, description for high accuracy mode -->
-    <!-- [CHAR LIMIT=130] Location detail panel, description for battery saving mode -->
-    <!-- [CHAR LIMIT=130] Location detail panel, description for sensors only mode -->
-    <!-- ADB over network tile -->
     <string name="quick_settings_network_adb_disabled_label">غیرفعال</string>
-    <!-- AOD QS tile -->
-    <!-- Language toggle tile -->
-    <!-- Sound tile -->
-    <!-- On The Go -->
-    <!-- OnTheGo Tile -->
-    <!-- Sync QS Tile -->
-    <!-- Label for item that screenrecords in power menu options dialog -->
-    <!-- Heads up snooze toast -->
-    <!-- Omnijaws Weather -->
-    <!-- Tuner -->
-    <!-- Stock Navbar -->
-    <!-- Kill button in notification guts -->
-    <!--Google sound search tile -->
-    <!-- DataSwitch Tile -->
-    <!-- HW Keys Tile -->
-    <!-- Immersive tile -->
 </resources>

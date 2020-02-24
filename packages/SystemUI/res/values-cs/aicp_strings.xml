@@ -19,9 +19,7 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- CPUInfo tile -->
     <string name="quick_settings_cpuinfo_label">Informace o CPU</string>
-    <!-- Compass QS Tile -->
     <string name="quick_settings_compass_label">Kompas</string>
     <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
     <string name="quick_settings_compass_init">Spouštění\u2026</string>
@@ -37,52 +35,39 @@
     <string name="quick_settings_compass_SW">JZ</string>
     <string name="quick_settings_compass_W">Z</string>
     <string name="quick_settings_compass_NW">SZ</string>
-    <!-- Music tile -->
     <string name="quick_settings_music_label">Hudba</string>
     <string name="quick_settings_music_play">Přehrát</string>
     <string name="quick_settings_music_pause">Pozastavit</string>
-    <!-- Screenshoot tile -->
     <string name="quick_settings_screenshot_label">Snímek obrazovky</string>
-    <!-- Screenrecord tile -->
     <string name="quick_settings_screenrecord_label">Záznam obrazovky</string>
-    <!-- Reboot/Recovery QS Tile -->
     <string name="quick_settings_reboot_label">Restartovat</string>
     <string name="quick_settings_reboot_recovery_label">Recovery</string>
-    <!-- USB Tethering tile -->
     <string name="accessibility_quick_settings_usb_tether_off">Vypnout USB tethering</string>
     <string name="accessibility_quick_settings_usb_tether_on">Zapnout USB Tetehering</string>
     <string name="accessibility_quick_settings_usb_tether_changed_off">USB Tethering je vypnutý</string>
     <string name="accessibility_quick_settings_usb_tether_changed_on">USB Tethering je zapnutý</string>
     <string name="quick_settings_usb_tether_label">USB tethering</string>
-    <!-- Caffeine tile -->
     <string name="quick_settings_caffeine_label">Kofein</string>
     <string name="accessibility_quick_settings_caffeine_off">Kofein vyp</string>
     <string name="accessibility_quick_settings_caffeine_on">Kofein zap</string>
-    <!-- Aicp Extras Tile -->
     <string name="quick_aicp_extras_label">AICP Extras</string>
     <string name="quick_aicp_extras_toast">Haha! Vážně sis myslel, že dlouhé kliknutí tě někam dostane!</string>
-    <!-- Power menu advanced restart -->
     <string name="global_action_restart_system">Restartovat</string>
     <string name="global_action_restart_advanced">Rozšířené</string>
     <string name="global_action_restart_recovery">Recovery</string>
     <string name="global_action_restart_bootloader">Bootloader</string>
     <string name="global_action_restart_ui">SystemUI</string>
-    <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
     <string name="keyguard_indication_dash_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • DASH nabíjení (zbývá <xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> do plného nabití)</string>
     <string name="keyguard_plugged_in_dash_charging"><xliff:g id="percentage">%s</xliff:g> • DASH nabíjení</string>
-    <!-- Indication on the keyguard that is shown when the device is charging with a warp charger. Should match keyguard_plugged_in_warp_charging [CHAR LIMIT=40]-->
     <string name="keyguard_indication_warp_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Warp nabíjení (zbývá <xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> do plného nabití)</string>
     <string name="keyguard_plugged_in_warp_charging"><xliff:g id="percentage">%s</xliff:g> • Warp nabíjení</string>
-    <!-- Heads up QS tile -->
     <string name="quick_settings_heads_up_label">Plovoucí upozornění</string>
     <string name="accessibility_quick_settings_heads_up_off">Plovoucí upozornění vypnuto.</string>
     <string name="accessibility_quick_settings_heads_up_on">Plovoucí upozornění zapnuto.</string>
     <string name="accessibility_quick_settings_heads_up_changed_off">Plovoucí upozornění vypnuto.</string>
     <string name="accessibility_quick_settings_heads_up_changed_on">Plovoucí upozornění zapnuto.</string>
-    <!-- Smart Pixels QS Tile -->
     <string name="quick_settings_smart_pixels">Smart Pixels</string>
     <string name="quick_settings_smart_pixels_on_power_save">Automaticky povolit Smart Pixels</string>
-    <!-- QS Config -->
     <string name="qs_menu_item_columns">Sloupce</string>
     <string name="qs_menu_item_columns_landscape">Sloupce (na šířku)</string>
     <string name="qs_menu_item_reset">Obnovit</string>
@@ -94,51 +79,34 @@
     <string name="tuner_brightness_position_bottom">Posuvník jasu v dolní části</string>
     <string name="tuner_show_secure_title">Zobrazit bezpečnostní zápatí</string>
     <string name="tuner_show_drag_handle">Zobrazit úchyt potáhnutí</string>
-    <!-- Advance location quick setting tile -->
     <string name="accessibility_quick_settings_location_battery_saving">Hlášení polohy: úsporný režim.</string>
     <string name="accessibility_quick_settings_location_gps_only">Hlášení polohy: pouze GPS.</string>
     <string name="accessibility_quick_settings_location_high_accuracy">Hlášení polohy: vysoká přesnost.</string>
-    <!-- QuickSettings: Location (On, low-power) [CHAR LIMIT=NONE] -->
     <string name="quick_settings_location_battery_saving_label">Úspora baterie</string>
     <string name="quick_settings_location_battery_saving_label_twoline">Úspora\nbaterie</string>
-    <!-- QuickSettings: Location (On, gps-only) [CHAR LIMIT=NONE] -->
     <string name="quick_settings_location_gps_only_label">Pouze GPS</string>
     <string name="quick_settings_location_gps_only_label_twoline">Pouze\nGPS</string>
-    <!-- QuickSettings: Location (On, high-accuracy) [CHAR LIMIT=NONE] -->
     <string name="quick_settings_location_high_accuracy_label">Vysoká přesnost</string>
     <string name="quick_settings_location_high_accuracy_label_twoline">Vysoká\npřesnost</string>
-    <!-- QuickSettings: Location detail panel title [CHAR LIMIT=NONE] -->
     <string name="quick_settings_location_detail_title">Poloha</string>
-    <!-- QuickSettings: Location detail panel menu title [CHAR LIMIT=NONE] -->
     <string name="quick_settings_location_detail_menu_title">Zvolte režim:</string>
-    <!-- [CHAR LIMIT=30] Location detail panel, high accuracy location mode -->
     <string name="quick_settings_location_detail_mode_high_accuracy_title">Vysoká přesnost</string>
-    <!-- [CHAR LIMIT=30] Location detail panel, battery saving location mode -->
     <string name="quick_settings_location_detail_mode_battery_saving_title">Úspora baterie</string>
-    <!-- [CHAR LIMIT=30] Location detail panel, device only location mode -->
     <string name="quick_settings_location_detail_mode_sensors_only_title">Pouze GPS</string>
-    <!-- [CHAR LIMIT=130] Location detail panel, description for high accuracy mode -->
     <string name="quick_settings_location_detail_mode_high_accuracy_description">K určování polohy používat GPS, Wi-Fi, Bluetooth nebo mobilní sítě</string>
-    <!-- [CHAR LIMIT=130] Location detail panel, description for battery saving mode -->
     <string name="quick_settings_location_detail_mode_battery_saving_description">K určování polohy používat Wi-Fi, Bluetooth nebo mobilní sítě</string>
-    <!-- [CHAR LIMIT=130] Location detail panel, description for sensors only mode -->
     <string name="quick_settings_location_detail_mode_sensors_only_description">K určování polohy používat GPS</string>
-    <!-- ADB over network tile -->
     <string name="quick_settings_network_adb_enabled_label">Povoleno</string>
     <string name="quick_settings_network_adb_disabled_label">Zakázáno</string>
     <string name="quick_settings_network_adb_label">ADB přes síť</string>
     <string name="quick_settings_network_adb_toast">Ladění USB není povoleno</string>
-    <!-- AOD QS tile -->
     <string name="quick_settings_aod_label">AOD</string>
-    <!-- Language toggle tile -->
     <string name="quick_settings_locale_label">Jazyk</string>
     <string name="quick_settings_locale_more_locales_toast">Prosím nastavte přepínač umožňující více jazyků</string>
-    <!-- Sound tile -->
     <string name="quick_settings_sound_label">Zvuk</string>
     <string name="quick_settings_sound_ring">Vyzvánění</string>
     <string name="quick_settings_sound_vibrate">Vibrace</string>
     <string name="quick_settings_sound_silent">Tichý režim</string>
-    <!-- On The Go -->
     <string name="onthego_notif_ticker">On-The-Go aktivováno</string>
     <string name="onthego_notif_title">On-The-Go je aktivní</string>
     <string name="onthego_notif_stop">Zastavit</string>
@@ -151,20 +119,15 @@
     <string name="onthego_service_toggle">Automaticky restartovat službu</string>
     <string name="onthego_channel_name">Hlavní</string>
     <string name="global_action_onthego">On-The-Go</string>
-    <!-- OnTheGo Tile -->
     <string name="quick_settings_onthego_label">On-The-Go</string>
-    <!-- Sync QS Tile -->
     <string name="quick_settings_sync_label">Synchronizace</string>
     <string name="accessibility_quick_settings_sync_off">Vypnout synchronizaci</string>
     <string name="accessibility_quick_settings_sync_on">Zapnout synchronizaci</string>
     <string name="accessibility_quick_settings_sync_changed_off">Synchronizace vypnuta</string>
     <string name="accessibility_quick_settings_sync_changed_on">Synchronizace zapnuta</string>
-    <!-- Label for item that screenrecords in power menu options dialog -->
     <string name="global_action_screenrecord">Záznam obrazovky</string>
-    <!-- Heads up snooze toast -->
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Plovoucí oznámení jsou odložena na dobu 1 minuty.</string>
     <string name="heads_up_snooze_message"><xliff:g id="string">%s </xliff:g> - Plovoucí oznámení jsou odložena na dobu <xliff:g id="number">%d </xliff:g> minut.</string>
-    <!-- Omnijaws Weather -->
     <string name="omnijaws_service_error">Chyba</string>
     <string name="omnijaws_service_unkown">Žádné údaje o počasí</string>
     <string name="omnijaws_service_error_long">Chyba při načítání údajů o počasí</string>
@@ -174,7 +137,6 @@
     <string name="omnijaws_current_text">Nyní</string>
     <string name="omnijaws_package_not_available">OmniJaws není k dispozici</string>
     <string name="omnijaws_service_last_update">Poslední aktualizace:</string>
-    <!-- Tuner -->
     <string name="preview">Náhled</string>
     <string name="keycode">Klávesa</string>
     <string name="no_home_title">Nebylo nalezeno tlačítko plochy</string>
@@ -195,30 +157,24 @@
     <string name="right">Vpravo</string>
     <string name="navbar_editor_title">Editor</string>
     <string name="navbar_editor_summary">Konfigurovat navigační panel</string>
-    <!-- Stock Navbar -->
     <string name="systemui_tuner_navbar_title">Výchozí nastavení</string>
     <string name="navbar_activity_title">Navigační panel</string>
-    <!-- Kill button in notification guts -->
     <string name="force_stop_dlg_title">Vynutit ukončení?</string>
     <string name="force_stop_dlg_text">Vynucené zastavení může způsobit nepředvídatelné chování aplikace.</string>
     <string name="guts_force_close_app">Zavřít aplikaci</string>
     <string name="tuner_show_brightness_mode">Zobrazit přepínač režimu jasu</string>
     <string name="tuner_show_brightness_side_buttons">Zobrazit krajní tlačítka posuvníku jasu</string>
-    <!--Google sound search tile -->
     <string name="quick_settings_sound_search">Zvukové vyhledávání</string>
     <string name="quick_settings_sound_search_no_app">Je nám to líto, ale nefunguje to, pokud nemáte aplikaci Zvukové vyhledávání.</string>
     <string name="status_bar_location">Poloha</string>
-    <!-- DataSwitch Tile -->
     <string name="qs_data_switch_label">Přepnout SIM pro data</string>
     <string name="qs_data_switch_toast_0">Momentálně není vložena žádná SIM karta</string>
     <string name="qs_data_switch_toast_1">Momentálně je vložena pouze jedna SIM karta</string>
     <string name="qs_data_switch_changed_1">Přepnout datovou kartu na SIM 1.</string>
     <string name="qs_data_switch_changed_2">Přepnout datovou kartu na SIM 2.</string>
-    <!-- HW Keys Tile -->
     <string name="accessibility_quick_settings_hwkeys_on">HW tlačítka zapnuta</string>
     <string name="accessibility_quick_settings_hwkeys_off">HW tlačítka vypnuta</string>
     <string name="quick_settings_hwkeys_label">HW tlačítka</string>
-    <!-- Immersive tile -->
     <string name="quick_settings_immersive_tile">Režim celé obrazovky</string>
     <string name="quick_settings_immersive_tile_statusbar">Pohlcující stavová lišta</string>
     <string name="quick_settings_immersive_tile_navbar">Pohlcující navigační panel</string>

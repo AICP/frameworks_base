@@ -183,6 +183,11 @@ public class NavigationBarInflaterView extends FrameLayout
         } else if (NAVIGATION_BAR_ARROW_KEYS.equals(key)) {
             onLikelyDefaultLayoutChange();
         }
+        if (QuickStepContract.isGesturalMode(mNavBarMode)) {
+            inflateChildren();
+            clearViews();
+            inflateLayout(getDefaultLayout());
+        }
     }
 
     @Override

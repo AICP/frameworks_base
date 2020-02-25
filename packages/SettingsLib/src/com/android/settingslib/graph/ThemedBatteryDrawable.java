@@ -67,7 +67,6 @@ public class ThemedBatteryDrawable extends BatteryMeterDrawableBase {
     private final float mWidthDp = 12f;
     private final float mHeightDp = 21f;
 
-    private int mMeterStyle;
     private int level;
     private boolean showPercent;
 
@@ -208,6 +207,7 @@ public class ThemedBatteryDrawable extends BatteryMeterDrawableBase {
         }
     }
 
+    @Override
     public void draw(Canvas canvas) {
         if (getMeterStyle() != BATTERY_STYLE_Q) {
             super.draw(canvas);
@@ -220,13 +220,13 @@ public class ThemedBatteryDrawable extends BatteryMeterDrawableBase {
         boolean pctOpaque;
         if (!this.charging && !this.powerSaveEnabled && this.showPercent) {
             float baseHeight = (this.dualTone ? this.iconRect : this.fillRect).height();
-            this.textPaint.setColor(getColorForLevel(level));
+            this.textPaint.setColor(getColorForLevel(this.level));
             final float full = 0.38f;
             final float nofull = 0.5f;
             final float single = 0.75f;
             this.textPaint.setTextSize(baseHeight * (this.level == 100 ? full : nofull));
             textHeight = -mTextPaint.getFontMetrics().ascent;
-            pctText = String.valueOf(level);
+            pctText = String.valueOf(this.level);
             pctX = this.fillRect.width() * 0.5f + this.fillRect.left;
             pctY = (this.fillRect.height() + textHeight) * 0.47f + this.fillRect.top;
             this.textPath.reset();

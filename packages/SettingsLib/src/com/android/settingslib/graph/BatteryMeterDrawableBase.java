@@ -355,7 +355,6 @@ public class BatteryMeterDrawableBase extends Drawable {
                 break;
             case BATTERY_STYLE_PORTRAIT:
             case BATTERY_STYLE_LANDSCAPE:
-            default:
                 drawRectangle(c);
                 break;
         }

@@ -134,4 +134,6 @@
     <string name="screenshot_delete_description">Delete screenshot</string>
 
     <string name="statusbar_items_title">Statusbar icon</string>
+
+    <string name="status_bar_vpn">VPN</string>
 </resources>

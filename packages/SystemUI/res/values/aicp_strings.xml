@@ -283,4 +283,8 @@
     <string name="accessibility_quick_settings_gaming_mode_disabled">Gaming mode turned off.</string>
     <!-- Content description of the Gaming mode tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_gaming_mode_enabled">Gaming mode turned on.</string>
+
+    <!-- Navigation bar dpad -->
+    <string name="accessibility_dpad_left">Cursor left</string>
+    <string name="accessibility_dpad_right">Cursor right</string>
 </resources>

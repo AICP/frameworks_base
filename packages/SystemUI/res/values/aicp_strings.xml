@@ -271,4 +271,8 @@
     <string name="accessibility_quick_settings_fpsinfo_off">FPS Info off</string>
     <string name="accessibility_quick_settings_fpsinfo_on">FPS Info on</string>
 
+    <!-- Navigation bar dpad -->
+    <string name="accessibility_dpad_left">Cursor left</string>
+    <string name="accessibility_dpad_right">Cursor right</string>
+
 </resources>

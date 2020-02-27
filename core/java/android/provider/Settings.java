@@ -6483,6 +6483,12 @@ public final class Settings {
          */
         public static final String KEY_CAMERA_DOUBLE_TAP_ACTION = "key_camera_double_tap_action";
 
+        /**
+         * Whether to show arrow keys in navigation bar
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_ARROW_KEYS = "navigation_bar_menu_arrow_keys";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6690,6 +6696,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(KEY_APP_SWITCH_DOUBLE_TAP_CUSTOM_APP_FR_NAME, ANY_STRING_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(KEY_CAMERA_LONG_PRESS_ACTION, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(KEY_CAMERA_DOUBLE_TAP_ACTION, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(NAVIGATION_BAR_ARROW_KEYS, BOOLEAN_VALIDATOR);
         }
 
         /**

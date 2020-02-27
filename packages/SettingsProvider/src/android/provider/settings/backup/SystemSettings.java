@@ -108,5 +108,6 @@ public class SystemSettings {
         Settings.System.OMNI_DEVICE_FEATURE_SETTINGS,
         Settings.System.OMNI_BUTTON_EXTRA_KEY_MAPPING,
         Settings.System.OMNI_SYSTEM_PROXI_CHECK_ENABLED,
+        Settings.System.ALERT_SLIDER_NOTIFICATIONS,
     };
 }

@@ -5336,6 +5336,12 @@ public final class Settings {
          */
         public static final String OMNI_SYSTEM_PROXI_CHECK_ENABLED = "system_proxi_check_enabled";
 
+        /**
+         * Whether to show or hide alert slider notifications on supported devices
+         * @hide
+         */
+        public static final String ALERT_SLIDER_NOTIFICATIONS = "alert_slider_notifications";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5491,6 +5497,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(OMNI_DEVICE_FEATURE_SETTINGS);
             PRIVATE_SETTINGS.add(OMNI_BUTTON_EXTRA_KEY_MAPPING);
             PRIVATE_SETTINGS.add(OMNI_SYSTEM_PROXI_CHECK_ENABLED);
+            PRIVATE_SETTINGS.add(ALERT_SLIDER_NOTIFICATIONS);
         }
 
         /**

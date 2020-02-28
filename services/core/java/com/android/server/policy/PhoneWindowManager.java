@@ -7052,6 +7052,12 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             case NavbarUtilities.KEY_ACTION_POWER_MENU:
                 triggerVirtualKeypress(KeyEvent.KEYCODE_POWER, false, true);
                 break;
+            case NavbarUtilities.KEY_ACTION_QS_PANEL:
+                toggleQSPanel();
+                break;
+            case NavbarUtilities.KEY_ACTION_RINGER_MODES:
+                toggleRingerModes();
+                break;
         }
     }
 
@@ -7155,5 +7161,17 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private void toggleNotifications() {
         performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, true, "Expand notifications");
         ActionHandler.performTask(mContext, ActionHandler.SYSTEMUI_TASK_NOTIFICATION_PANEL);
+    }
+
+    // Expand settings panel
+    private void toggleQSPanel() {
+        performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, true, "Expand settings panel");
+        ActionHandler.performTask(mContext, ActionHandler.SYSTEMUI_TASK_SETTINGS_PANEL);
+    }
+
+    // Toggle ringer modes
+    private void toggleRingerModes() {
+        performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, true, "Toggle ringer modes");
+        ActionHandler.performTask(mContext, ActionHandler.SYSTEMUI_TASK_SOUNDMODE_VIB_SILENT);
     }
 }

@@ -7032,6 +7032,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             case NavbarUtilities.KEY_ACTION_SCREENSHOT:
                 toggleScreenshot();
                 break;
+            case NavbarUtilities.KEY_ACTION_NOTIFICATIONS:
+                toggleNotifications();
+                break;
         }
     }
 
@@ -7129,5 +7132,11 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private void launchCamera() {
         performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, true, "Launch camera");
         ActionHandler.performTask(mContext, ActionHandler.SYSTEMUI_TASK_CAMERA);
+    }
+
+    // Toggle notifications panel
+    private void toggleNotifications() {
+        performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, true, "Expand notifications");
+        ActionHandler.performTask(mContext, ActionHandler.SYSTEMUI_TASK_NOTIFICATION_PANEL);
     }
 }

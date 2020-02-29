@@ -6208,7 +6208,7 @@ public final class Settings {
          * Whether to use color from wallpaper for Ambient edge light
          * @hide
          */
-        public static final String PULSE_AMBIENT_LIGHT_AUTO_COLOR = "pulse_ambient_light_auto_color";
+        public static final String PULSE_AMBIENT_LIGHT_COLOR_MODE = "pulse_ambient_light_color_mode";
 
         /**
          * Number of times to repeat animations of Ambient edge light
@@ -6392,7 +6392,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(PULSE_AMBIENT_LIGHT, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(PULSE_AMBIENT_LIGHT_COLOR, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(PULSE_AMBIENT_LIGHT_DURATION, ANY_INTEGER_VALIDATOR);
-            AICP_SETTINGS_VALIDATORS.put(PULSE_AMBIENT_LIGHT_AUTO_COLOR, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(PULSE_AMBIENT_LIGHT_COLOR_MODE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(PULSE_AMBIENT_LIGHT_REPEAT_COUNT, ANY_INTEGER_VALIDATOR);
         }
 

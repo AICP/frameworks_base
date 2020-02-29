@@ -69,6 +69,7 @@ android_library {
         "dagger2-2.19",
         "jsr330",
         "AicpGear-util",
+        "AicpGear-preference",
         "vendor.lineage.biometrics.fingerprint.inscreen-V1.0-java",
         "vendor.lineage.powershare-V1.0-java",
     ],

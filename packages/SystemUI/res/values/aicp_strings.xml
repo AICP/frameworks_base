@@ -304,4 +304,8 @@
     <string name="vpn_credentials_username">Username</string>
     <string name="vpn_credentials_password">Password</string>
     <string name="vpn_credentials_dialog_connect">Connect</string>
+
+    <!-- Long swipe gesture actions -->
+    <string name="app_picker_dialog_title">Select an app</string>
+
 </resources>

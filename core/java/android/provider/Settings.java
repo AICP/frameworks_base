@@ -6121,10 +6121,10 @@ public final class Settings {
          * Whether to use color from wallpaper for Ambient edge light
          * @hide
          */
-        public static final String PULSE_AMBIENT_LIGHT_AUTO_COLOR = "pulse_ambient_light_auto_color";
+        public static final String PULSE_AMBIENT_LIGHT_COLOR_MODE = "pulse_ambient_light_color_mode";
 
         /** @hide */
-        private static final Validator PULSE_AMBIENT_LIGHT_AUTO_COLOR_VALIDATOR = BOOLEAN_VALIDATOR;
+        private static final Validator PULSE_AMBIENT_LIGHT_COLOR_MODE_VALIDATOR = ANY_INTEGER_VALIDATOR;
 
         /**
          * Whether to vibrate on notifications
@@ -6354,6 +6354,15 @@ public final class Settings {
         /** @hide */
         private static final Validator PULSE_AMBIENT_LIGHT_REPEAT_COUNT_VALIDATOR = ANY_INTEGER_VALIDATOR;
 
+        /** @hide */
+        public static final String BACK_GESTURE_HAPTIC = "back_gesture_haptic";
+
+        /**
+         * Whether to show or hide alert slider notifications on supported devices
+         * @hide
+         */
+        public static final String ALERT_SLIDER_NOTIFICATIONS = "alert_slider_notifications";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6364,15 +6373,6 @@ public final class Settings {
          * it to PRIVATE_SETTINGS below. Also add a validator that can validate
          * the setting value. See an example above.
          */
-
-        /** @hide */
-        public static final String BACK_GESTURE_HAPTIC = "back_gesture_haptic";
-
-        /**
-         * Whether to show or hide alert slider notifications on supported devices
-         * @hide
-         */
-        public static final String ALERT_SLIDER_NOTIFICATIONS = "alert_slider_notifications";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
@@ -6596,7 +6596,7 @@ public final class Settings {
             FLASHLIGHT_ON_CALL,
             LOCKSCREEN_LOCK_ICON,
             HEADSET_CONNECT_PLAYER,
-            PULSE_AMBIENT_LIGHT_AUTO_COLOR,
+            PULSE_AMBIENT_LIGHT_COLOR_MODE,
             AICP_SHOW_BATTERY_IMAGE,
             GAMING_MODE_ENABLED,
             GAMING_MODE_ACTIVE,
@@ -6898,7 +6898,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(FLASHLIGHT_ON_CALL);
             PRIVATE_SETTINGS.add(LOCKSCREEN_LOCK_ICON);
             PRIVATE_SETTINGS.add(HEADSET_CONNECT_PLAYER);
-            PRIVATE_SETTINGS.add(PULSE_AMBIENT_LIGHT_AUTO_COLOR);
+            PRIVATE_SETTINGS.add(PULSE_AMBIENT_LIGHT_COLOR_MODE);
             PRIVATE_SETTINGS.add(AICP_SHOW_BATTERY_IMAGE);
             PRIVATE_SETTINGS.add(GAMING_MODE_ENABLED);
             PRIVATE_SETTINGS.add(GAMING_MODE_ACTIVE);
@@ -7190,7 +7190,7 @@ public final class Settings {
             VALIDATORS.put(FLASHLIGHT_ON_CALL, FLASHLIGHT_ON_CALL_VALIDATOR);
             VALIDATORS.put(LOCKSCREEN_LOCK_ICON, LOCKSCREEN_LOCK_ICON_VALIDATOR);
             VALIDATORS.put(HEADSET_CONNECT_PLAYER, HEADSET_CONNECT_PLAYER_VALIDATOR);
-            VALIDATORS.put(PULSE_AMBIENT_LIGHT_AUTO_COLOR, PULSE_AMBIENT_LIGHT_AUTO_COLOR_VALIDATOR);
+            VALIDATORS.put(PULSE_AMBIENT_LIGHT_COLOR_MODE, PULSE_AMBIENT_LIGHT_COLOR_MODE_VALIDATOR);
             VALIDATORS.put(AICP_SHOW_BATTERY_IMAGE, AICP_SHOW_BATTERY_IMAGE_VALIDATOR);
             VALIDATORS.put(GAMING_MODE_ENABLED, GAMING_MODE_ENABLED_VALIDATOR);
             VALIDATORS.put(GAMING_MODE_ACTIVE, GAMING_MODE_ACTIVE_VALIDATOR);

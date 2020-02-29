@@ -205,6 +205,7 @@ public class EdgeBackGestureHandler implements DisplayListener {
     private int mLeftLongSwipeAction;
     private int mRightLongSwipeAction;
     private boolean mBlockNextEvent;
+    private boolean mIsExtendedSwipe;
 
     public EdgeBackGestureHandler(Context context, OverviewProxyService overviewProxyService) {
         final Resources res = context.getResources();
@@ -521,6 +522,9 @@ public class EdgeBackGestureHandler implements DisplayListener {
 
 
     public void setLongSwipeOptions() {
+        mIsExtendedSwipe = Settings.System.getIntForUser(mContext.getContentResolver(),
+            Settings.System.BACK_SWIPE_EXTENDED, 0,
+            UserHandle.USER_CURRENT) != 0;
         mTImeout = Settings.System.getIntForUser(mContext.getContentResolver(),
             Settings.System.LONG_BACK_SWIPE_TIMEOUT, 2000,
             UserHandle.USER_CURRENT);
@@ -557,6 +561,8 @@ public class EdgeBackGestureHandler implements DisplayListener {
             }
         } else if (mAllowGesture && !mBlockNextEvent) {
             if (!mThresholdCrossed) {
+                // mThresholdCrossed is true only after the first move event
+                // then other events will go straight to "forward touch" line
                 if (action == MotionEvent.ACTION_POINTER_DOWN) {
                     // We do not support multi touch for back gesture
                     cancelGesture(ev);
@@ -575,8 +581,8 @@ public class EdgeBackGestureHandler implements DisplayListener {
 
                     } else if (dx > dy && dx > mTouchSlop) {
                         mThresholdCrossed = true;
-                        if ((mLeftLongSwipeAction != 0 && mIsOnLeftEdge)
-                                || (mRightLongSwipeAction != 0 && !mIsOnLeftEdge)) {
+                        if (!mIsExtendedSwipe && ((mLeftLongSwipeAction != 0 && mIsOnLeftEdge)
+                                || (mRightLongSwipeAction != 0 && !mIsOnLeftEdge))) {
                             mHandler.postDelayed(mLongSwipeAction, (mTImeout - elapsedTime));
                         }
                         // Capture inputs
@@ -591,6 +597,15 @@ public class EdgeBackGestureHandler implements DisplayListener {
 
             boolean isUp = action == MotionEvent.ACTION_UP;
             boolean isCancel = action == MotionEvent.ACTION_CANCEL;
+            boolean isMove = action == MotionEvent.ACTION_MOVE;
+
+            if (isMove && mIsExtendedSwipe) {
+                float deltaX = Math.abs(ev.getX() - mDownPoint.x);
+                if (deltaX  > ((mDisplaySize.x / 4) * 3)) {
+                    mLongSwipeAction.run();
+                }
+            }
+
             if (isUp || isCancel) {
                 mHandler.removeCallbacksAndMessages(null);
             }

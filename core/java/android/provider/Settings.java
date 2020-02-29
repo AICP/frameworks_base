@@ -7048,6 +7048,12 @@ public final class Settings {
          */
         public static final String LONG_BACK_SWIPE_TIMEOUT = "long_back_swipe_timeout";
 
+        /**
+         * Gestures nav: whether to use extended swipe instead of timeout to trigger custom actions
+         * @hide
+         */
+        public static final String BACK_SWIPE_EXTENDED = "back_swipe_extended";
+
         /***************************
          * AICP System Settings end
          ***************************/

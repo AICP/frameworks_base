@@ -244,4 +244,9 @@ oneway interface IStatusBar
      * Used to block or unblock usage of gestural navigation
      */
     void setBlockedGesturalNavigation(boolean blocked);
+
+    /**
+     * Used for kill foreground app api
+     */
+    void killForegroundApp();
 }

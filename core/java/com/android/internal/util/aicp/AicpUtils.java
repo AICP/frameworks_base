@@ -324,4 +324,23 @@ public class AicpUtils {
             return mStatusBarService;
         }
     }
+
+    public static void killForegroundApp() {
+        FireActions.killForegroundApp();
+    }
+
+    private static final class FireActions {
+        private static IStatusBarService mStatusBarService = null;
+
+        public static void killForegroundApp() {
+            IStatusBarService service = getStatusBarService();
+            if (service != null) {
+                try {
+                    service.killForegroundApp();
+                } catch (RemoteException e) {
+                    // do nothing.
+                }
+            }
+        }
+    }
 }

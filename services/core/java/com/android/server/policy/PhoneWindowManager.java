@@ -7065,6 +7065,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             case NavbarUtilities.KEY_ACTION_RINGER_MODES:
                 toggleRingerModes();
                 break;
+            case NavbarUtilities.KEY_ACTION_KILL_APP:
+                killForegroundApp();
+                break;
         }
     }
 
@@ -7143,6 +7146,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 break;
             case NavbarUtilities.KEY_ACTION_RINGER_MODES:
                 toggleRingerModes();
+                break;
+            case NavbarUtilities.KEY_ACTION_KILL_APP:
+                killForegroundApp();
                 break;
         }
     }
@@ -7259,6 +7265,13 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private void toggleRingerModes() {
         performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, true, "Toggle ringer modes");
         ActionHandler.performTask(mContext, ActionHandler.SYSTEMUI_TASK_SOUNDMODE_VIB_SILENT);
+    }
+
+    // Kill foreground app
+    private void killForegroundApp() {
+        performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, true, "Kill foreground app");
+//        ActionHandler.performTask(mContext, ActionHandler.SYSTEMUI_TASK_KILL_PROCESS);
+        ActionHandler.killForegroundApp(mContext, mCurrentUserId);
     }
 
     private static void customAppLaunch(Context context, String action) {

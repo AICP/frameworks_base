@@ -856,6 +856,24 @@ public class ActionHandler {
         return false;
     }
 
+    /**
+     * Kills the top most / most recent user application, but leaves out the launcher.
+     * This is function governed by {@link Settings.Secure.KILL_APP_LONGPRESS_BACK}.
+     *
+     * @param context the current context, used to retrieve the package manager.
+     * @param userId the ID of the currently active user
+     * @return {@code true} when a user application was found and closed.
+     */
+    public static boolean killForegroundApp(Context context, int userId) {
+        try {
+            return killForegroundAppInternal(context, userId);
+        } catch (RemoteException e) {
+            Log.e(TAG, "Could not kill foreground app");
+        }
+        Log.d("ActionHandler", "Caller cannot kill processes, aborting");
+        return false;
+    }
+
     private static boolean killForegroundAppInternal(Context context, int userId)
             throws RemoteException {
         final String packageName = getForegroundTaskPackageName(context, userId);

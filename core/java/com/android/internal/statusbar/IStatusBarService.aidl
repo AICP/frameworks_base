@@ -127,4 +127,5 @@ interface IStatusBarService
     void hideInDisplayFingerprintView();
     // Used to block or unblock usage of gestural navigation
     void setBlockedGesturalNavigation(boolean blocked);
+    void killForegroundApp();
 }

@@ -307,8 +307,6 @@
 
     <!-- Long swipe gesture actions -->
     <string name="app_picker_dialog_title">Select an app</string>
-
-    <!-- Foreground app kill -->
     <string name="recents_app_killed">App killed</string>
     <string name="nope_cant_kill">Launcher cannot be killed</string>
 

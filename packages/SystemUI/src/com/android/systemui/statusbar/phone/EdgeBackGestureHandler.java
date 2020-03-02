@@ -658,6 +658,7 @@ public class EdgeBackGestureHandler implements DisplayListener {
             mBlockNextEvent = true;
             mEdgePanel.resetOnDown();
             triggerAction(mIsOnLeftEdge);
+            mVibrator.vibrate(VibrationEffect.createOneShot(50, VibrationEffect.DEFAULT_AMPLITUDE));
         }
     }
 

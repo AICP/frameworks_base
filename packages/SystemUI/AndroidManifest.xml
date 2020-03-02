@@ -270,6 +270,7 @@
     <uses-permission android:name="android.permission.REBOOT" />
     <uses-permission android:name="android.permission.RECOVERY" />
 
+    <!-- Long swipe gesture actions -->
     <uses-permission android:name="android.permission.FORCE_STOP_PACKAGES" />
 
     <!-- Locale QS -->

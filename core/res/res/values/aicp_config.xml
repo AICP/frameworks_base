@@ -249,4 +249,17 @@
 
     <!-- HW Buttons Brightness control -->
     <integer name="config_deviceSupportsButtonBrightnessControl">0</integer>
+
+    <!-- Gesture handle length
+        values can be in range 0 - 3
+        0 means default size
+        1 means 1 1/3 of default size
+        2 means 1 2/3 of default size
+        3 means twice the default size -->
+    <array name="config_handleLengthScales">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </array>
 </resources>

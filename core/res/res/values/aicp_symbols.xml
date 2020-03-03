@@ -196,4 +196,7 @@
 
   <!-- HW Buttons Brightness control -->
   <java-symbol type="integer" name="config_deviceSupportsButtonBrightnessControl" />
+
+  <!-- Gesture handle width -->
+  <java-symbol type="array" name="config_handleLengthScales" />
 </resources>

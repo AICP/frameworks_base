@@ -139,6 +139,9 @@ public class NavigationModeController implements Dumpable {
         mContext.getContentResolver().registerContentObserver(Settings.Secure.getUriFor(
                 Settings.Secure.BACK_GESTURE_HEIGHT),
                 false, mSettingsObserver, UserHandle.USER_ALL);
+        mContext.getContentResolver().registerContentObserver(Settings.Secure.getUriFor(
+                Settings.Secure.NAVIGATION_HANDLE_WIDTH),
+                false, mSettingsObserver, UserHandle.USER_ALL);
 
         configurationController.addCallback(new ConfigurationController.ConfigurationListener() {
             @Override

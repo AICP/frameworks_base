@@ -6422,6 +6422,14 @@ public final class Settings {
         private static final Validator OMNI_STATUS_BAR_FILE_HEADER_IMAGE_VALIDATOR =
                 ANY_STRING_VALIDATOR;
 
+        /** Width of the navigation handle.
+         *  @hide
+         */
+        public static final String NAVIGATION_HANDLE_WIDTH = "navigation_handle_width";
+
+        /** @hide */
+        private static final Validator NAVIGATION_HANDLE_WIDTH_VALIDATOR = ANY_INTEGER_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6676,6 +6684,7 @@ public final class Settings {
             OMNI_STATUS_BAR_CUSTOM_HEADER_PROVIDER,
             OMNI_STATUS_BAR_CUSTOM_HEADER_IMAGE,
             OMNI_STATUS_BAR_FILE_HEADER_IMAGE,
+            NAVIGATION_HANDLE_WIDTH,
             // AICP Settings end
         };
 
@@ -6984,6 +6993,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(OMNI_STATUS_BAR_CUSTOM_HEADER_PROVIDER);
             PRIVATE_SETTINGS.add(OMNI_STATUS_BAR_CUSTOM_HEADER_IMAGE);
             PRIVATE_SETTINGS.add(OMNI_STATUS_BAR_FILE_HEADER_IMAGE);
+            PRIVATE_SETTINGS.add(NAVIGATION_HANDLE_WIDTH);
             // AICP Settings end
         }
 
@@ -7289,6 +7299,7 @@ public final class Settings {
                     OMNI_STATUS_BAR_CUSTOM_HEADER_IMAGE_VALIDATOR);
             VALIDATORS.put(OMNI_STATUS_BAR_FILE_HEADER_IMAGE,
                     OMNI_STATUS_BAR_FILE_HEADER_IMAGE_VALIDATOR);
+            VALIDATORS.put(NAVIGATION_HANDLE_WIDTH, NAVIGATION_HANDLE_WIDTH_VALIDATOR);
             // AICP Settings end
         }
 

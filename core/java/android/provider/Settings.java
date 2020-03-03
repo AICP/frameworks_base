@@ -11061,6 +11061,12 @@ public final class Settings {
          */
         public static final String NAVIGATION_BAR_HINT = "navigation_bar_hint";
 
+        /**
+         * Width of the navigation handle.
+         * @hide
+         */
+        public static final String NAVIGATION_HANDLE_WIDTH = "navigation_handle_width";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

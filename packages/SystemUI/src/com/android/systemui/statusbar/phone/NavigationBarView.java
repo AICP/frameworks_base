@@ -917,6 +917,7 @@ public class NavigationBarView extends FrameLayout implements
     @Override
     public void onSettingsChanged() {
         mEdgeBackGestureHandler.onSettingsChanged();
+        getHomeHandle().getCurrentView().invalidate();
     }
 
     public void setAccessibilityButtonState(final boolean visible, final boolean longClickable) {

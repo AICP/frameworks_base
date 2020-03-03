@@ -200,6 +200,7 @@ public class InetDiagSocketTest {
         checkGetConnectionOwnerUid("::1", "::1");
     }
 
+    @Ignore("Times out on Marlin/Sailfish")
     /* Verify fix for b/141603906 */
     @Test
     public void testB141603906() throws Exception {

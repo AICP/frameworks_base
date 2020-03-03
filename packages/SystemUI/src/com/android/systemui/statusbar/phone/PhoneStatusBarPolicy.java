@@ -489,7 +489,9 @@ public class PhoneStatusBarPolicy
                     // don't get the level if still pairing
                     if (mBluetooth.getBondState(device) == BluetoothDevice.BOND_NONE) continue;
                     int state = device.getMaxConnectionState();
-                    if (state == BluetoothProfile.STATE_CONNECTED) {
+                    if (state == BluetoothProfile.STATE_CONNECTED
+                              && (mBluetooth.isBluetoothAudioActive()
+                                  || !mBluetooth.isBluetoothAudioProfileOnly())) {
                         int batteryLevel = device.getBatteryLevel();
                         BluetoothClass type = device.getBtClass();
                         if (batteryLevel != BluetoothDevice.BATTERY_LEVEL_UNKNOWN && showBatteryForThis(type)

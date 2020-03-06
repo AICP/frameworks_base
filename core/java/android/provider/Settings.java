@@ -11916,6 +11916,14 @@ public final class Settings {
         private static final Validator STATUS_BAR_BATTERY_STYLE_VALIDATOR =
                new SettingsValidators.InclusiveIntegerRangeValidator(0, 5);
 
+        /**
+         * Whether longpress back button to Kill appkeys is enabled.
+         * @hide
+         */
+        public static final String KILL_APP_LONGPRESS_BACK = "kill_app_longpress_back";
+        /** @hide */
+        private static final Validator KILL_APP_LONGPRESS_BACK_VALIDATOR = BOOLEAN_VALIDATOR;
+
         /*****************************
          * AICP Secure Settings end
          *****************************/
@@ -12293,6 +12301,7 @@ public final class Settings {
             VALIDATORS.put(STATUSBAR_CLOCK_POSITION, STATUSBAR_CLOCK_POSITION_VALIDATOR);
             VALIDATORS.put(FP_SWIPE_TO_DISMISS_NOTIFICATIONS, FP_SWIPE_TO_DISMISS_NOTIFICATIONS_VALIDATOR);
             VALIDATORS.put(STATUS_BAR_BATTERY_STYLE, STATUS_BAR_BATTERY_STYLE_VALIDATOR);
+            VALIDATORS.put(KILL_APP_LONGPRESS_BACK, KILL_APP_LONGPRESS_BACK_VALIDATOR);
         }
 
         /**

@@ -70,6 +70,8 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.om.IOverlayManager;
+import android.content.om.OverlayInfo;
 import android.content.pm.IPackageManager;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -142,6 +144,7 @@ import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 import com.android.internal.statusbar.IStatusBarService;
 import com.android.internal.statusbar.RegisterStatusBarResult;
 import com.android.internal.util.aicp.DeviceUtils;
+import com.android.internal.util.aicp.NavbarStyles;
 import com.android.internal.util.hwkeys.ActionConstants;
 import com.android.internal.util.hwkeys.ActionUtils;
 import com.android.internal.util.hwkeys.PackageMonitor;
@@ -163,6 +166,7 @@ import com.android.systemui.Prefs;
 import com.android.systemui.R;
 import com.android.systemui.SystemUI;
 import com.android.systemui.SystemUIFactory;
+import com.android.systemui.UiOffloadThread;
 import com.android.systemui.assist.AssistManager;
 import com.android.systemui.broadcast.BroadcastDispatcher;
 import com.android.systemui.bubbles.BubbleController;
@@ -717,6 +721,9 @@ public class StatusBar extends SystemUI implements DemoMode,
 
     // aicp additions start
     private boolean mFpDismissNotifications;
+    private int mNavbarStyle;
+    private IOverlayManager mOverlayManager;
+    private UiOffloadThread mUiOffloadThread;
 
     private class AicpSettingsObserver extends ContentObserver {
         AicpSettingsObserver(Handler handler) {
@@ -808,6 +815,9 @@ public class StatusBar extends SystemUI implements DemoMode,
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.GAMING_MODE_HEADSUP_TOGGLE),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.NAVBAR_STYLE),
                     false, this, UserHandle.USER_ALL);
         }
 
@@ -1016,6 +1026,9 @@ public class StatusBar extends SystemUI implements DemoMode,
         mWindowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
         mDreamManager = IDreamManager.Stub.asInterface(
                 ServiceManager.checkService(DreamService.DREAM_SERVICE));
+        mOverlayManager = IOverlayManager.Stub.asInterface(
+                ServiceManager.getService(Context.OVERLAY_SERVICE));
+        mUiOffloadThread = Dependency.get(UiOffloadThread.class);
 
         mDisplay = mWindowManager.getDefaultDisplay();
         mDisplayId = mDisplay.getDisplayId();
@@ -4784,6 +4797,7 @@ public class StatusBar extends SystemUI implements DemoMode,
         updateNavigationBar(false);
         setGamingModeActive();
         setGamingModeHeadsupToggle();
+        updateNavbarStyle();
     }
 
     private void adjustBrightness(int x) {
@@ -4962,5 +4976,13 @@ public class StatusBar extends SystemUI implements DemoMode,
         mHeadsUpDisabled = Settings.System.getIntForUser(mContext.getContentResolver(),
                 Settings.System.GAMING_MODE_HEADSUP_TOGGLE, 0, UserHandle.USER_CURRENT) == 1;
         mNotificationInterruptStateProvider.setGamingPeekMode(mGamingModeActivated && mHeadsUpDisabled);
+    }
+
+    private void updateNavbarStyle() {
+        mNavbarStyle = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.NAVBAR_STYLE, 0, UserHandle.USER_CURRENT);
+        mUiOffloadThread.execute(() -> {
+            NavbarStyles.setNavbarStyle(mOverlayManager, mLockscreenUserManager.getCurrentUserId(), mNavbarStyle);
+        });
     }
 }

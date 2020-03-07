@@ -4495,6 +4495,11 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             }
         }
 
+        // Specific device key handling
+        if (dispatchKeyToKeyHandlers(event)) {
+            return 0;
+        }
+
         // Pre-basic policy based on interactive and pocket lock state.
         if (mIsDeviceInPocket && (!interactive || mPocketLockShowing)) {
             if (keyCode != KeyEvent.KEYCODE_POWER &&
@@ -4647,11 +4652,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             if (isHwKeysDisabled() || keyguardOn()) {
                 useHapticFeedback = false;
             }
-        }
-
-        // Specific device key handling
-        if (dispatchKeyToKeyHandlers(event)) {
-            return 0;
         }
 
         // Handle special keys.

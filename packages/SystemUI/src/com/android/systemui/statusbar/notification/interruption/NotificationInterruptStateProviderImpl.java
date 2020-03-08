@@ -53,8 +53,8 @@ import javax.inject.Inject;
 @SysUISingleton
 public class NotificationInterruptStateProviderImpl implements NotificationInterruptStateProvider {
     private static final String TAG = "InterruptionStateProvider";
-    private static final boolean DEBUG = false;
-    private static final boolean DEBUG_HEADS_UP = Build.IS_DEBUGGABLE;
+    private static final boolean DEBUG = Build.IS_ENG;
+    private static final boolean DEBUG_HEADS_UP = Build.IS_ENG;
     private static final boolean ENABLE_HEADS_UP = true;
     private static final String SETTING_HEADS_UP_TICKER = "ticker_gets_heads_up";
 

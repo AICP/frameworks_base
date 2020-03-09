@@ -57,8 +57,6 @@ import com.android.systemui.plugins.DarkIconDispatcher.DarkReceiver;
 import com.android.systemui.qs.QSPanel;
 import com.android.systemui.statusbar.CommandQueue;
 import com.android.systemui.statusbar.phone.StatusBarIconController.TintedIconManager;
-import com.android.systemui.statusbar.policy.BatteryController;
-import com.android.systemui.statusbar.policy.BatteryController.BatteryStateChangeCallback;
 import com.android.systemui.statusbar.policy.ConfigurationController;
 import com.android.systemui.statusbar.policy.ConfigurationController.ConfigurationListener;
 import com.android.systemui.statusbar.policy.KeyguardUserSwitcher;
@@ -74,7 +72,7 @@ import java.io.PrintWriter;
  * The header group on Keyguard.
  */
 public class KeyguardStatusBarView extends RelativeLayout
-        implements BatteryStateChangeCallback, OnUserInfoChangedListener, ConfigurationListener {
+        implements OnUserInfoChangedListener, ConfigurationListener {
 
     private static final int LAYOUT_NONE = 0;
     private static final int LAYOUT_CUTOUT = 1;
@@ -82,10 +80,7 @@ public class KeyguardStatusBarView extends RelativeLayout
 
     private final Rect mEmptyRect = new Rect(0, 0, 0, 0);
 
-    private boolean mShowPercentAvailable;
-    private boolean mBatteryCharging;
     private boolean mKeyguardUserSwitcherShowing;
-    private boolean mBatteryListening;
 
     private int mShowCarrierLabel;
 
@@ -95,7 +90,6 @@ public class KeyguardStatusBarView extends RelativeLayout
     private BatteryMeterView mBatteryView;
     private StatusIconContainer mStatusIconContainer;
 
-    private BatteryController mBatteryController;
     private KeyguardUserSwitcher mKeyguardUserSwitcher;
     private UserSwitcherController mUserSwitcherController;
 
@@ -151,7 +145,6 @@ public class KeyguardStatusBarView extends RelativeLayout
 
         loadDimens();
         updateUserSwitcher();
-        mBatteryController = Dependency.get(BatteryController.class);
     }
 
     @Override
@@ -209,8 +202,6 @@ public class KeyguardStatusBarView extends RelativeLayout
                 R.dimen.system_icons_super_container_avatarless_margin_end);
         mCutoutSideNudge = getResources().getDimensionPixelSize(
                 R.dimen.display_cutout_margin_consumption);
-        mShowPercentAvailable = getContext().getResources().getBoolean(
-                com.android.internal.R.bool.config_battery_percentage_setting_available);
         mRoundedCornerPadding = res.getDimensionPixelSize(
                 R.dimen.rounded_corner_content_padding);
     }
@@ -234,7 +225,6 @@ public class KeyguardStatusBarView extends RelativeLayout
                 mMultiUserSwitch.setVisibility(View.GONE);
             }
         }
-        mBatteryView.setForceShowPercent(mBatteryCharging && mShowPercentAvailable);
         if (mCarrierLabel != null) {
             mCarrierLabel.setVisibility(mHideContents ? View.INVISIBLE : View.VISIBLE);
             if (mShowCarrierLabel == 1 || mShowCarrierLabel == 3) {
@@ -352,18 +342,6 @@ public class KeyguardStatusBarView extends RelativeLayout
         return true;
     }
 
-    public void setListening(boolean listening) {
-        if (listening == mBatteryListening) {
-            return;
-        }
-        mBatteryListening = listening;
-        if (mBatteryListening) {
-            mBatteryController.addCallback(this);
-        } else {
-            mBatteryController.removeCallback(this);
-        }
-    }
-
     private void updateUserSwitcher() {
         boolean keyguardSwitcherAvailable = mKeyguardUserSwitcher != null;
         mMultiUserSwitch.setClickable(keyguardSwitcherAvailable);
@@ -403,19 +381,6 @@ public class KeyguardStatusBarView extends RelativeLayout
 
     public void setQSPanel(QSPanel qsp) {
         mMultiUserSwitch.setQsPanel(qsp);
-    }
-
-    @Override
-    public void onBatteryLevelChanged(int level, boolean pluggedIn, boolean charging) {
-        if (mBatteryCharging != charging) {
-            mBatteryCharging = charging;
-            updateVisibilities();
-        }
-    }
-
-    @Override
-    public void onPowerSaveChanged(boolean isPowerSave) {
-        // could not care less
     }
 
     public void setKeyguardUserSwitcher(KeyguardUserSwitcher keyguardUserSwitcher) {
@@ -511,8 +476,6 @@ public class KeyguardStatusBarView extends RelativeLayout
 
     @Override
     public void onOverlayChanged() {
-        mShowPercentAvailable = getContext().getResources().getBoolean(
-                com.android.internal.R.bool.config_battery_percentage_setting_available);
         mCarrierLabel.setTextAppearance(
                 Utils.getThemeAttr(mContext, com.android.internal.R.attr.textAppearanceSmall));
         onThemeChanged();
@@ -555,9 +518,7 @@ public class KeyguardStatusBarView extends RelativeLayout
 
     public void dump(FileDescriptor fd, PrintWriter pw, String[] args) {
         pw.println("KeyguardStatusBarView:");
-        pw.println("  mBatteryCharging: " + mBatteryCharging);
         pw.println("  mKeyguardUserSwitcherShowing: " + mKeyguardUserSwitcherShowing);
-        pw.println("  mBatteryListening: " + mBatteryListening);
         pw.println("  mLayoutState: " + mLayoutState);
         if (mBatteryView != null) {
             mBatteryView.dump(fd, pw, args);

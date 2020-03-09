@@ -2375,7 +2375,6 @@ public class NotificationPanelViewController extends PanelViewController {
     }
 
     private void setListening(boolean listening) {
-        mKeyguardStatusBar.setListening(listening);
         if (mQs == null) return;
         mQs.setListening(listening);
     }

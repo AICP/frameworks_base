@@ -6597,6 +6597,12 @@ public final class Settings {
          */
         public static final String STATUS_BAR_BATTERY_TEXT_CHARGING = "status_bar_battery_text_charging";
 
+        /**
+         * boolean value. toggles compact layout in navigation bar
+         * @hide
+         */
+        public static final String NAV_BAR_COMPACT_LAYOUT = "navigation_bar_compact_layout";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6858,6 +6864,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUS_BAR_BATTERY_STYLE);
             PRIVATE_SETTINGS.add(STATUS_BAR_SHOW_BATTERY_PERCENT);
             PRIVATE_SETTINGS.add(STATUS_BAR_BATTERY_TEXT_CHARGING);
+            PRIVATE_SETTINGS.add(NAV_BAR_COMPACT_LAYOUT);
         }
 
         /**

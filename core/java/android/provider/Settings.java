@@ -10558,6 +10558,12 @@ public final class Settings {
          */
         public static final String SHOW_CPU_OVERLAY = "show_cpu_overlay";
 
+        /**
+         * Control whether the process FPS info meter should be shown.
+         * @hide
+         */
+        public static final String SHOW_FPS_OVERLAY = "show_fps_overlay";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

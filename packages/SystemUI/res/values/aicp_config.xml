@@ -23,7 +23,7 @@
 
     <!-- The default tiles to display in QuickSettings -->
     <string name="quick_settings_tiles_extra" translatable="false">
-      ambient_display,aod,caffeine,compass,dataswitch,heads_up,music,nfc,reboot,sound,sync,usb_tether,nfc,locale,volume_panel,cpuinfo
+      ambient_display,aod,caffeine,compass,dataswitch,heads_up,music,nfc,reboot,sound,sync,usb_tether,nfc,locale,volume_panel,cpuinfo,fpsinfo
     </string>
 
     <!-- Max visible notification icons -->
@@ -67,4 +67,7 @@
 
     <!-- The CPUs to display in CPUInfoService view -->
     <string name="config_displayCpus" translatable="false"></string>
+
+    <!-- FPSInfoService FPS node file path -->
+    <string name="config_fpsInfoSysNode" translatable="false"></string>
 </resources>

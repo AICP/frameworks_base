@@ -16887,6 +16887,13 @@ public final class Settings {
         private static final Validator LOCKSCREEN_ENABLE_POWER_MENU_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
+         * @hide
+         */
+        public static final String SHOW_FPS_OVERLAY = "show_fps_overlay";
+
+        private static final Validator SHOW_FPS_OVERLAY_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -16937,6 +16944,7 @@ public final class Settings {
             AWARE_ALLOWED,
             NOTIFICATION_BUBBLES,
             LOCKSCREEN_ENABLE_POWER_MENU,
+            SHOW_FPS_OVERLAY,
         };
 
         /**
@@ -17006,6 +17014,7 @@ public final class Settings {
             VALIDATORS.put(POWER_BUTTON_VERY_LONG_PRESS, POWER_BUTTON_VERY_LONG_PRESS_VALIDATOR);
             VALIDATORS.put(NOTIFICATION_BUBBLES, NOTIFICATION_BUBBLES_VALIDATOR);
             VALIDATORS.put(LOCKSCREEN_ENABLE_POWER_MENU,LOCKSCREEN_ENABLE_POWER_MENU_VALIDATOR);
+            VALIDATORS.put(SHOW_FPS_OVERLAY, SHOW_FPS_OVERLAY_VALIDATOR);
         }
 
         /**

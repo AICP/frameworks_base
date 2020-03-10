@@ -534,6 +534,9 @@ public class EdgeBackGestureHandler implements DisplayListener {
         mIsExtendedSwipe = Settings.System.getIntForUser(mContext.getContentResolver(),
             Settings.System.BACK_SWIPE_EXTENDED, 0,
             UserHandle.USER_CURRENT) != 0;
+        if (mEdgePanel != null) {
+            mEdgePanel.setExtendedSwipe();
+        }
         mTImeout = Settings.System.getIntForUser(mContext.getContentResolver(),
             Settings.System.LONG_BACK_SWIPE_TIMEOUT, 2000,
             UserHandle.USER_CURRENT);

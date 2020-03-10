@@ -14192,6 +14192,11 @@ public final class Settings {
         public static final String SHOW_CPU_OVERLAY = "show_cpu_overlay";
 
         /**
+         * @hide
+         */
+        public static final String SHOW_FPS_OVERLAY = "show_fps_overlay";
+
+        /**
          * If 1, battery saver ({@link #LOW_POWER_MODE}) will be re-activated after the device
          * is unplugged from a charger or rebooted.
          * @hide

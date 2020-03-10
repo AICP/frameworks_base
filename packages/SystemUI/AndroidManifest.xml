@@ -382,7 +382,18 @@
             </intent-filter>
         </receiver>
 
+        <!-- CPU Info -->
         <service android:name="com.android.systemui.CPUInfoService"
+                android:exported="false" />
+
+        <receiver android:name=".BootReceiver" androidprv:systemUserOnly="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- FPS Info -->
+        <service android:name="com.android.systemui.FPSInfoService"
                 android:exported="false" />
 
         <receiver android:name=".BootReceiver" androidprv:systemUserOnly="true">
@@ -841,6 +852,5 @@
                 <action android:name="com.android.intent.action.SHOW_KEYBOARD_SHORTCUTS" />
             </intent-filter>
         </receiver>
-
     </application>
 </manifest>

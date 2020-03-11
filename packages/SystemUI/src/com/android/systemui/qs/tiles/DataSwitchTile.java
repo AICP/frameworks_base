@@ -160,6 +160,10 @@ public class DataSwitchTile extends QSTileImpl<BooleanState> {
         }
         updateSimCount();
         switch (mSimCount) {
+            case 0:
+                state.icon = ResourceIcon.get(R.drawable.ic_qs_data_switch_0);
+                state.value = false;
+                break;
             case 1:
                 state.icon = ResourceIcon.get(activeSIMZero
                         ? R.drawable.ic_qs_data_switch_1

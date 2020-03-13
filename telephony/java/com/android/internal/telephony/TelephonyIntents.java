@@ -340,7 +340,7 @@ public class TelephonyIntents {
      * @hide
      */
     public static final String ACTION_VOWIFI_ENABLED
-            = "android.intent.action.VOWIFI_ENABLED";
+            = "org.codeaurora.telephony.VOWIFI_ENABLED";
 
     /**
      * Kept for backwards compatibility.

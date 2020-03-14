@@ -6530,14 +6530,6 @@ public final class Settings {
                 BOOLEAN_VALIDATOR;
 
         /**
-         * Force show navigation bar setting.
-         * @hide
-         */
-        public static final String FORCE_SHOW_NAVBAR = "force_show_navbar";
-         /** @hide */
-        public static final Validator FORCE_SHOW_NAVBAR_VALIDATOR = BOOLEAN_VALIDATOR;
-
-        /**
          * Whether user can swap navigation lateral keys.
          * <p>
          * Type: int (0 for false, 1 for true)

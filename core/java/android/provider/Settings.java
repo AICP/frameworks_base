@@ -6498,6 +6498,16 @@ public final class Settings {
         private static final Validator OMNI_SYSTEM_PROXI_CHECK_ENABLED_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
+        /**
+         * Enable haptic feedback for gestures in DeviceParts
+         * @hide
+         */
+        public static final String OFF_GESTURE_HAPTIC_ENABLE = "off_gesture_haptic_check_enabled";
+
+        /** @hide */
+        private static final Validator OFF_GESTURE_HAPTIC_ENABLE_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6760,6 +6770,7 @@ public final class Settings {
             OMNI_DEVICE_FEATURE_SETTINGS,
             OMNI_BUTTON_EXTRA_KEY_MAPPING,
             OMNI_SYSTEM_PROXI_CHECK_ENABLED,
+            OFF_GESTURE_HAPTIC_ENABLE,
             // AICP Settings end
         };
 
@@ -7076,6 +7087,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(OMNI_DEVICE_PROXI_CHECK_ENABLED);
             PRIVATE_SETTINGS.add(OMNI_DEVICE_FEATURE_SETTINGS);
             PRIVATE_SETTINGS.add(OMNI_SYSTEM_PROXI_CHECK_ENABLED);
+            PRIVATE_SETTINGS.add(OFF_GESTURE_HAPTIC_ENABLE);
             // AICP Settings end
         }
 
@@ -7390,6 +7402,8 @@ public final class Settings {
             VALIDATORS.put(OMNI_DEVICE_FEATURE_SETTINGS, OMNI_DEVICE_FEATURE_SETTINGS_VALIDATOR);
             VALIDATORS.put(OMNI_BUTTON_EXTRA_KEY_MAPPING, OMNI_BUTTON_EXTRA_KEY_MAPPING_VALIDATOR);
             VALIDATORS.put(OMNI_SYSTEM_PROXI_CHECK_ENABLED, OMNI_SYSTEM_PROXI_CHECK_ENABLED_VALIDATOR);
+            VALIDATORS.put(OFF_GESTURE_HAPTIC_ENABLE, OFF_GESTURE_HAPTIC_ENABLE_VALIDATOR);
+
             // AICP Settings end
         }
 

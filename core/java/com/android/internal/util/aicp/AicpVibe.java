@@ -25,7 +25,6 @@ import android.os.Vibrator;
 import android.provider.Settings;
 import android.provider.Settings.Global;
 import android.view.HapticFeedbackConstants;
-//import com.android.internal.util.omni.DeviceUtils;
 
 public class AicpVibe{
 
@@ -42,14 +41,14 @@ public class AicpVibe{
     public static void AicpVibe(){
     }
 
-    public static boolean performHapticFeedbackLw(int effectId, boolean always, Context mContext) {
+    public static boolean performHapticFeedbackLw(int effectId, boolean always, Context mContext, String settingsVariable, int vibrDuration) {
         final boolean hapticsDisabled = Settings.System.getIntForUser(mContext.getContentResolver(),
-                Settings.System.HAPTIC_FEEDBACK_ENABLED, 0, UserHandle.USER_CURRENT) == 0;
+                "Settings.System."+settingsVariable, 0, UserHandle.USER_CURRENT) == 0;
         if (hapticsDisabled && !always) {
             return false;
         }
 
-        VibrationEffect effect = getVibrationEffect(effectId);
+/*        VibrationEffect effect = getVibrationEffect(effectId);
         if (effect == null) {
             return false;
         }
@@ -61,10 +60,10 @@ public class AicpVibe{
         final AudioAttributes VIBRATION_ATTRIBUTES = new AudioAttributes.Builder()
             .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
             .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
-            .build();
+            .build();*/
         Vibrator mVibrator = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
         if (mVibrator.hasVibrator()){
-            //mVibrator.vibrate(owningUid, owningPackage, effect, VIBRATION_ATTRIBUTES);
+            mVibrator.vibrate(vibrDuration);
         }
         return true;
     }

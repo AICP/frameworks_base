@@ -6643,6 +6643,12 @@ public final class Settings {
          */
         public static final String CAMERA_LAUNCH = "camera_launch";
 
+        /**
+         * Enable haptic feedback for gestures in DeviceParts
+         * @hide
+         */
+        public static final String OFF_GESTURE_HAPTIC_ENABLE = "off_gesture_haptic_check_enabled";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6876,6 +6882,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(HEADSET_CONNECT_PLAYER, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(CAMERA_SLEEP_ON_RELEASE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(CAMERA_LAUNCH, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(OFF_GESTURE_HAPTIC_ENABLE, BOOLEAN_VALIDATOR);
         }
 
         /**

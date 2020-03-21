@@ -914,7 +914,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
                     t.click();
                     setAnimationTile(v);
             });
-            if (t.isDualTarget()) {
+            /*if (t.isDualTarget()) {
                 if (!mTileLayout.isShowTitles()) {
                     v.setOnLongClickListener(view -> {
                         t.secondaryClick();
@@ -926,7 +926,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
                         return true;
                     });
                 }
-            }
+            }*/
         }
     }
 

@@ -4,4 +4,7 @@
     <!-- Weather condition icon  -->
     <dimen name="weather_icon_size">24dp</dimen>
     <dimen name="date_owner_info_margin">4dp</dimen>
+
+    <dimen name="header_row_font_size">14dp</dimen>
+    <dimen name="header_font_size">20dp</dimen>
 </resources>

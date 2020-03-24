@@ -2147,6 +2147,11 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
         }
     }
 
+    public boolean isUnlockWithFingerprintPossible() {
+        final int userId = getCurrentUser();
+        return isUnlockWithFingerprintPossible(userId);
+    }
+
     /**
      * If biometrics hardware is available, not disabled, and user has enrolled templates.
      * This does NOT check if the device is encrypted or in lockdown.

@@ -198,6 +198,14 @@ public class FODCircleView extends ImageView {
                 show();
             }
         }
+
+        @Override
+        public void onBiometricHelp(int msgId, String helpString,
+                BiometricSourceType biometricSourceType) {
+            if (msgId == -1){ // Auth error
+                mHandler.post(() -> mFODAnimation.hideFODanimation());
+            }
+        }
     };
 
     public FODCircleView(Context context) {

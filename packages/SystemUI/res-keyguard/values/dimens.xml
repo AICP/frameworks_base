@@ -81,4 +81,7 @@
 
     <!-- The translation for disappearing security views after having solved them. -->
     <dimen name="disappear_y_translation">-32dp</dimen>
+
+    <!-- The minimum bottom margin of the keyguard security container -->
+    <dimen name="kg_security_container_min_bottom_margin">0dp</dimen>
 </resources>

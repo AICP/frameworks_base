@@ -18,7 +18,6 @@ package com.android.systemui.statusbar.phone;
 
 import android.animation.ArgbEvaluator;
 import android.annotation.ColorInt;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
@@ -114,6 +113,12 @@ public class NavigationHandle extends View implements ButtonInterface {
     public void setDelayTouchFeedback(boolean shouldDelay) {
     }
 
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        setMeasuredDimension(getCustomWidth() + getPaddingLeft() + getPaddingRight(),
+                getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec));
+     }
+
     private int getCustomPadding() {
         int basePadding = (int) (getWidth() / 2) - (int) (getCustomWidth() / 2);
         return basePadding;
@@ -121,8 +126,11 @@ public class NavigationHandle extends View implements ButtonInterface {
 
     private int getCustomWidth() {
         /* 0: small (stock AOSP) */
-        int baseWidth = mContext.getResources().getDimensionPixelSize(R.dimen.navigation_home_handle_width);
-        int userSelection = Settings.Secure.getInt(mContext.getContentResolver(), Settings.Secure.NAVIGATION_HANDLE_WIDTH, 0);
+        /* 1: medium */
+        /* 2: long */
+        /* 3: extra long */
+        int baseWidth = getContext().getResources().getDimensionPixelSize(R.dimen.navigation_home_handle_width);
+        int userSelection = Settings.Secure.getInt(getContext().getContentResolver(), Settings.Secure.NAVIGATION_HANDLE_WIDTH, 0);
         if (userSelection == 3) {
             baseWidth *= 2;
         } else if (userSelection == 2) {

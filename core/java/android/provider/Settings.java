@@ -6532,6 +6532,15 @@ public final class Settings {
 
         public static final String STABILIZATION_VELOCITY_AMPLITUDE = "stabilization_velocity_amplitude";
 
+        /**
+         * Whether to show heads up on new music tracks
+         * @hide
+         */
+        public static final String SHOW_MEDIA_HEADS_UP = "show_media_heads_up";
+        /** @hide */
+        private static final Validator SHOW_MEDIA_HEADS_UP_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6796,6 +6805,7 @@ public final class Settings {
             OMNI_SYSTEM_PROXI_CHECK_ENABLED,
             OFF_GESTURE_HAPTIC_ENABLE,
             MUSIC_PLAYBACK_GESTURE_ENABLE,
+            SHOW_MEDIA_HEADS_UP,
             // AICP Settings end
         };
 
@@ -7114,6 +7124,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(OMNI_SYSTEM_PROXI_CHECK_ENABLED);
             PRIVATE_SETTINGS.add(OFF_GESTURE_HAPTIC_ENABLE);
             PRIVATE_SETTINGS.add(MUSIC_PLAYBACK_GESTURE_ENABLE);
+            PRIVATE_SETTINGS.add(SHOW_MEDIA_HEADS_UP);
             // AICP Settings end
         }
 
@@ -7430,7 +7441,7 @@ public final class Settings {
             VALIDATORS.put(OMNI_SYSTEM_PROXI_CHECK_ENABLED, OMNI_SYSTEM_PROXI_CHECK_ENABLED_VALIDATOR);
             VALIDATORS.put(OFF_GESTURE_HAPTIC_ENABLE, OFF_GESTURE_HAPTIC_ENABLE_VALIDATOR);
             VALIDATORS.put(MUSIC_PLAYBACK_GESTURE_ENABLE, MUSIC_PLAYBACK_GESTURE_ENABLE_VALIDATOR);
-
+            VALIDATORS.put(SHOW_MEDIA_HEADS_UP, SHOW_MEDIA_HEADS_UP_VALIDATOR);
             // AICP Settings end
         }
 

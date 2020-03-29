@@ -243,6 +243,10 @@ public class StatusBarNotificationPresenter implements NotificationPresenter,
         notificationAlertingManager.setHeadsUpManager(mHeadsUpManager);
     }
 
+    public boolean isMediaPlayerNotification(NotificationEntry entry) {
+        return mMediaManager.isMediaPlayerNotification(entry);
+    }
+
     @Override
     public void onDensityOrFontScaleChanged() {
         MessagingMessage.dropCache();

@@ -20,6 +20,7 @@ import static com.android.systemui.statusbar.StatusBarState.SHADE;
 
 import android.app.NotificationManager;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.database.ContentObserver;
 import android.hardware.display.AmbientDisplayConfiguration;
 import android.os.Handler;
@@ -27,8 +28,10 @@ import android.os.PowerManager;
 import android.os.RemoteException;
 import android.os.UserHandle;
 import android.provider.Settings;
+import android.provider.Telephony.Sms;
 import android.service.dreams.IDreamManager;
 import android.service.notification.StatusBarNotification;
+import android.telecom.TelecomManager;
 import android.util.Log;
 
 import com.android.internal.annotations.VisibleForTesting;
@@ -74,10 +77,14 @@ public class NotificationInterruptStateProviderImpl implements NotificationInter
     private boolean mSkipHeadsUp = false;
 
     private boolean mLessBoringHeadsUp;
+    private TelecomManager mTm;
+    private Context mContext;
+
     private ArrayList<String> mHeadsUpBlacklist = new ArrayList<String>();
 
     @Inject
     public NotificationInterruptStateProviderImpl(
+            Context context,
             ContentResolver contentResolver,
             PowerManager powerManager,
             IDreamManager dreamManager,
@@ -87,6 +94,8 @@ public class NotificationInterruptStateProviderImpl implements NotificationInter
             StatusBarStateController statusBarStateController,
             HeadsUpManager headsUpManager,
             @Main Handler mainHandler) {
+        mContext = context;
+        mTm = (TelecomManager) context.getSystemService(Context.TELECOM_SERVICE);
         mContentResolver = contentResolver;
         mPowerManager = powerManager;
         mDreamManager = dreamManager;
@@ -314,6 +323,15 @@ public class NotificationInterruptStateProviderImpl implements NotificationInter
         return true;
     }
 
+    private static String getDefaultSmsPackage(Context ctx) {
+        // for reference, there's also a new RoleManager api with getDefaultSmsPackage(context, userid)
+        return Sms.getDefaultSmsPackage(ctx);
+    }
+
+    private static String getDefaultDialerPackage(TelecomManager tm) {
+        return tm != null ? tm.getDefaultDialerPackage() : "";
+    }
+
     /**
      * Common checks between regular & AOD heads up and bubbles.
      *
@@ -409,14 +427,14 @@ public class NotificationInterruptStateProviderImpl implements NotificationInter
 
         // Gaming mode takes precedence since messaging headsup is intrusive
         if (mSkipHeadsUp) {
-            boolean isNonInstrusive = notificationPackageName.contains("dialer") ||
-                notificationPackageName.contains("clock");
+            boolean isNonInstrusive = notificationPackageName.equals(getDefaultDialerPackage(mTm))
+                    || notificationPackageName.contains("clock");
             return !mStatusBarStateController.isDozing() && mSkipHeadsUp && !isNonInstrusive;
         }
 
-        isImportantHeadsUp = notificationPackageName.contains("dialer") ||
-                notificationPackageName.contains("messaging") ||
-                notificationPackageName.contains("clock");
+        isImportantHeadsUp = notificationPackageName.equals(getDefaultDialerPackage(mTm))
+                || notificationPackageName.equals(getDefaultSmsPackage(mContext))
+                || notificationPackageName.toLowerCase().contains("clock");
         return mLessBoringHeadsUp && !isImportantHeadsUp;
     }
 

@@ -828,6 +828,12 @@ public final class DefaultPermissionGrantPolicy {
         // Google Markup
         grantSystemFixedPermissionsToSystemPackage("com.google.android.markup", userId, STORAGE_PERMISSIONS);
 
+        // Google Recorder
+        grantSystemFixedPermissionsToSystemPackage("com.google.android.apps.recorder", userId, MICROPHONE_PERMISSIONS);
+
+        // GBoard
+        grantSystemFixedPermissionsToSystemPackage("com.google.android.inputmethod.latin", userId, STORAGE_PERMISSIONS);
+
         // ThemePicker
         grantSystemFixedPermissionsToSystemPackage("com.android.wallpaper", userId, STORAGE_PERMISSIONS);
 

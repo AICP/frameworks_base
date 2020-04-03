@@ -7225,6 +7225,12 @@ public final class Settings {
         public static final String POCKET_JUDGE = "pocket_judge";
 
         /**
+         * Settings dashboard icon style
+         * @hide
+         */
+        public static final String THEMING_SETTINGS_DASHBOARD_ICONS = "theming_settings_dashboard_icons";
+
+        /**
          * Whether to show the carrier name on the lockscreen
          * @hide
          */

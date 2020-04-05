@@ -231,6 +231,8 @@
     <string name="right">Right</string>
     <string name="navbar_editor_title">Editor</string>
     <string name="navbar_editor_summary">Configure navigaton bar</string>
+    <string name="tuner_keyguard_transition_animations_title">Show transition animations</string>
+    <string name="tuner_keyguard_transition_animations_summary">Show useless animations</string>
 
     <!-- Stock Navbar -->
     <string name="systemui_tuner_navbar_title">Stock settings</string>
@@ -303,4 +305,9 @@
     <string name="stabilization_velocity_friction">Velocity Friction</string>
     <string name="stabilization_velocity_amplitude">Velocity Amplitude</string>
     <string name="stabilization_position_friction">Position Friction</string>
+
+    <!-- FPS Info tile -->
+    <string name="quick_settings_fpsinfo_label">FPS Info</string>
+    <string name="accessibility_quick_settings_fpsinfo_off">FPS Info off</string>
+    <string name="accessibility_quick_settings_fpsinfo_on">FPS Info on</string>
 </resources>

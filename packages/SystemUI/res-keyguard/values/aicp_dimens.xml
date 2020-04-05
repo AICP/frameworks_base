@@ -10,4 +10,5 @@
     <dimen name="binary_clock_stroke_width">2dp</dimen>
     <dimen name="binary_clock_width">100dp</dimen>
     <dimen name="binary_clock_height">100dp</dimen>
+    <dimen name="header_font_size">20dp</dimen>
 </resources>

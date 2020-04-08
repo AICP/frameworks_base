@@ -6785,6 +6785,26 @@ public final class Settings {
         private static final Validator FOD_ANIM_VALIDATOR =
                new SettingsValidators.InclusiveIntegerRangeValidator(0, 10);
 
+        /**
+         * Adaptive playback
+         * Automatically pause media when the volume is muted and
+         * will resume automatically when volume is restored.
+         *   0 = disabled
+         *   1 = enabled
+         * @hide
+         */
+        public static final String ADAPTIVE_PLAYBACK_ENABLED = "adaptive_playback_enabled";
+        /** @hide */
+        private static final Validator ADAPTIVE_PLAYBACK_ENABLED_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
+         * Adaptive playback's timeout in ms
+         * @hide
+         */
+        public static final String ADAPTIVE_PLAYBACK_TIMEOUT = "adaptive_playback_timeout";
+
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7052,6 +7072,7 @@ public final class Settings {
             MUSIC_PLAYBACK_GESTURE_ENABLE,
             SHOW_MEDIA_HEADS_UP,
             FOD_ANIM,
+            ADAPTIVE_PLAYBACK_ENABLED,
             // AICP Settings end
         };
 
@@ -7386,6 +7407,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(KEY_CAMERA_LONG_PRESS_ACTION);
             PRIVATE_SETTINGS.add(KEY_CAMERA_DOUBLE_TAP_ACTION);
             PRIVATE_SETTINGS.add(FOD_ANIM);
+            PRIVATE_SETTINGS.add(ADAPTIVE_PLAYBACK_ENABLED);
             // AICP Settings end
         }
 
@@ -7706,6 +7728,7 @@ public final class Settings {
             VALIDATORS.put(SHOW_MEDIA_HEADS_UP, SHOW_MEDIA_HEADS_UP_VALIDATOR);
             VALIDATORS.put(FORCE_SHOW_NAVBAR, FORCE_SHOW_NAVBAR_VALIDATOR);
             VALIDATORS.put(FOD_ANIM,FOD_ANIM_VALIDATOR);
+            VALIDATORS.put(ADAPTIVE_PLAYBACK_ENABLED, ADAPTIVE_PLAYBACK_ENABLED_VALIDATOR);
             // AICP Settings end
         }
 

@@ -339,7 +339,7 @@ public final class ClockManager {
                     .setId(id)
                     .setThumbnail(plugin::getThumbnail)
                      // to make the preview bigger in ThemePicker
-                    .setPreview(() -> plugin.getPreview(mWidth / 2, mHeight / 2))
+                    .setPreview(() -> plugin.getPreview(mWidth * 2 / 5, mHeight * 2 / 5))
                     .build());
         }
 

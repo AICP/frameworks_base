@@ -181,4 +181,9 @@ public class SamsungBoldClockController implements ClockPlugin {
     public boolean shouldShowStatusArea() {
         return true;
     }
+
+    @Override
+    public boolean shouldShowInBigContainer() {
+        return true;
+    }
 }

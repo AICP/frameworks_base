@@ -7387,7 +7387,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 break;
             case NavbarUtilities.KEY_ACTION_CAMERA:
                 sendCloseSystemWindows();
-                NavbarUtilities.launchCamera();
+                launchCamera();
                 break;
             case NavbarUtilities.KEY_ACTION_LAST_APP:
                 awakenDreams();

@@ -645,7 +645,6 @@ public class StatusBar extends SystemUI implements DemoMode,
     private FlashlightController mFlashlightController;
     private KeyguardUserSwitcher mKeyguardUserSwitcher;
     protected UserSwitcherController mUserSwitcherController;
-    private CurrentUserTracker mUserTracker;
     protected NetworkController mNetworkController;
     protected KeyguardMonitor mKeyguardMonitor;
     protected BatteryController mBatteryController;
@@ -837,7 +836,7 @@ public class StatusBar extends SystemUI implements DemoMode,
             setGamingModeActive();
             setGamingModeHeadsupToggle();
             setMediaHeadsup();
-            updateNavigationBar(false);
+            updateNavigationBar(getRegisterStatusBarResult(), false);
         }
     }
 
@@ -5436,7 +5435,7 @@ public class StatusBar extends SystemUI implements DemoMode,
     }
 
     private void updateNavigationBar(@Nullable RegisterStatusBarResult result, boolean init) {
-        boolean showNavBar = Utils.deviceSupportNavigationBar(mContext);
+        boolean showNavBar = DeviceUtils.deviceSupportNavigationBar(mContext);
         if (init) {
             if (showNavBar) {
                 mNavigationBarController.createNavigationBars(true, result);

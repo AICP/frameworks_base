@@ -135,6 +135,7 @@ import android.os.Message;
 import android.os.SystemClock;
 import android.os.SystemProperties;
 import android.os.UserHandle;
+import android.provider.Settings;
 import android.util.ArraySet;
 import android.util.Pair;
 import android.util.PrintWriterPrinter;
@@ -164,7 +165,7 @@ import com.android.internal.annotations.VisibleForTesting;
 import com.android.internal.policy.ScreenDecorationsUtils;
 import com.android.internal.util.ScreenShapeHelper;
 import com.android.internal.util.ScreenshotHelper;
-import com.android.internal.util.du.Utils;
+import com.android.internal.util.aicp.DeviceUtils;
 import com.android.internal.util.function.TriConsumer;
 import com.android.internal.widget.PointerLocationView;
 import com.android.server.LocalServices;
@@ -593,7 +594,7 @@ public class DisplayPolicy {
 
         if (mDisplayContent.isDefaultDisplay) {
             mHasStatusBar = true;
-            mHasNavigationBar = Utils.deviceSupportNavigationBar(mContext);
+            mHasNavigationBar = DeviceUtils.deviceSupportNavigationBar(mContext);
         } else {
             mHasStatusBar = false;
             mHasNavigationBar = mDisplayContent.supportsSystemDecorations();
@@ -674,7 +675,7 @@ public class DisplayPolicy {
      */
     public void updatehasNavigationBar() {
         if (mDisplayContent.isDefaultDisplay) {
-            mHasNavigationBar = Utils.deviceSupportNavigationBar(mContext);
+            mHasNavigationBar = DeviceUtils.deviceSupportNavigationBar(mContext);
         }
     }
 

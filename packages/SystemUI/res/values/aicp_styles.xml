@@ -35,7 +35,7 @@
         <item name="android:textColor">@color/status_bar_carrier_color</item>
     </style>
 
-<!-- Status bar notification ticker -->
+    <!-- Status bar notification ticker -->
     <style name="TextAppearance.StatusBar.PhoneTicker" parent="@*android:style/TextAppearance.StatusBar">
         <!-- Note: must be dp to fit in status bar -->
         <item name="android:textSize">14dp</item>
@@ -44,5 +44,23 @@
     <style name="TriStateUiText">
         <item name="android:textSize">14.0sp</item>
         <item name="android:fontFamily">@*android:string/config_headlineFontFamilyMedium</item>
+    </style>
+
+    <!-- Navbar tuner -->
+    <style name="CustomTunerSettings" parent="@android:style/Theme.DeviceDefault.Settings">
+        <item name="android:windowActionBar">false</item>
+        <item name="preferenceTheme">@style/CustomTunerPreferenceTheme</item>
+    </style>
+
+    <style name="CustomTunerPreferenceTheme" parent="@style/PreferenceThemeOverlay.SettingsBase">
+        <item name="preferenceCategoryTitleTextAppearance">@style/TextAppearance.CategoryTitle</item>
+    </style>
+
+    <style name="TextAppearance.CategoryTitle"
+           parent="@*android:style/TextAppearance.DeviceDefault.Body2">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">11sp</item>
+        <!-- 0.8 Spacing, 0.8/11 = 0.072727273 -->
+        <item name="android:letterSpacing">0.072727273</item>
     </style>
 </resources>

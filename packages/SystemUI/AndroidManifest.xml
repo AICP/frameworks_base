@@ -393,7 +393,7 @@
         <activity android:name=".tuner.NavBarActivity"
                   android:enabled="true"
                   android:icon="@drawable/tuner"
-                  android:theme="@style/TunerSettings"
+                  android:theme="@style/CustomTunerSettings"
                   android:label="@string/systemui_tuner_navbar_title"
                   android:parentActivityName="com.aicp.extras.SettingsActivity"
                   android:process=":tuner"

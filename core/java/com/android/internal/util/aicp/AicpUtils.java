@@ -33,6 +33,8 @@ import android.os.PowerManager;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemClock;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.view.InputDevice;
 import android.view.KeyCharacterMap;
@@ -47,7 +49,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class AicpUtils {
-    private static OverlayManager mOverlayService;
+    private static OverlayManager sOverlayService;
     /**
      * @hide
      */
@@ -311,14 +313,24 @@ public class AicpUtils {
         }
     }
 
+    public static boolean shouldShowGestureNav(Context context) {
+        boolean setNavbarHeight = Settings.System.getIntForUser(context.getContentResolver(),
+            Settings.System.GESTURE_NAVBAR_SHOW, 1, UserHandle.USER_CURRENT) != 0;
+        boolean twoThreeButtonEnabled = AicpUtils.isThemeEnabled("com.android.internal.systemui.navbar.twobutton") ||
+                AicpUtils.isThemeEnabled("com.android.internal.systemui.navbar.threebutton");
+        return setNavbarHeight || twoThreeButtonEnabled;
+    }
+
     // Method to detect whether an overlay is enabled or not
     public static boolean isThemeEnabled(String packageName) {
-        mOverlayService = new OverlayManager();
+        if (sOverlayService == null) {
+            sOverlayService = new OverlayManager();
+        }
         try {
             ArrayList<OverlayInfo> infos = new ArrayList<OverlayInfo>();
-            infos.addAll(mOverlayService.getOverlayInfosForTarget("android",
+            infos.addAll(sOverlayService.getOverlayInfosForTarget("android",
                     UserHandle.myUserId()));
-            infos.addAll(mOverlayService.getOverlayInfosForTarget("com.android.systemui",
+            infos.addAll(sOverlayService.getOverlayInfosForTarget("com.android.systemui",
                     UserHandle.myUserId()));
             for (int i = 0, size = infos.size(); i < size; i++) {
                 if (infos.get(i).packageName.equals(packageName)) {

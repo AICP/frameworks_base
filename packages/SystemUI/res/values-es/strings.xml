@@ -567,9 +567,9 @@
     <string name="stream_dtmf" msgid="7322536356554673067">"Multifrecuencia de tono dual"</string>
     <string name="stream_accessibility" msgid="3873610336741987152">"Accesibilidad"</string>
     <string name="ring_toggle_title" msgid="5973120187287633224">"Llamadas"</string>
-    <string name="volume_ringer_status_normal" msgid="1339039682222461143">"Hacer sonar"</string>
+    <string name="volume_ringer_status_normal" msgid="1339039682222461143">"Normal"</string>
     <string name="volume_ringer_status_vibrate" msgid="6970078708957857825">"Vibrar"</string>
-    <string name="volume_ringer_status_silent" msgid="3691324657849880883">"Silenciar"</string>
+    <string name="volume_ringer_status_silent" msgid="3691324657849880883">"Silencio"</string>
     <string name="qs_status_phone_vibrate" msgid="7055409506885541979">"Teléfono en vibración"</string>
     <string name="qs_status_phone_muted" msgid="3763664791309544103">"Teléfono silenciado"</string>
     <string name="volume_stream_content_description_unmute" msgid="7729576371406792977">"%1$s. Toca para activar el sonido."</string>

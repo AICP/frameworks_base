@@ -7119,6 +7119,23 @@ public final class Settings {
         private static final Validator QS_DATAUSAGE_VALIDATOR =
                 new SettingsValidators.InclusiveIntegerRangeValidator(0, 2);
 
+        /**
+         * DismissAll Button
+         * @hide
+         */
+        public static final String DISMISS_ALL_BUTTON = "dismiss_all_button";
+
+        /**
+         * Setting to determine whether or not to show the battery percentage in the qs status bar header.
+         *    0 - Show remaining time
+         *    1 - Show percentage
+         * @hide
+         */
+        public static final String QS_SHOW_BATTERY_PERCENT = "qs_header_show_battery_percent";
+
+        /** @hide */
+        private static final Validator QS_SHOW_BATTERY_PERCENT_VALIDATOR = BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7129,12 +7146,6 @@ public final class Settings {
          * it to PRIVATE_SETTINGS below. Also add a validator that can validate
          * the setting value. See an example above.
          */
-
-        /**
-         * DismissAll Button
-         * @hide
-         */
-        public static final String DISMISS_ALL_BUTTON = "dismiss_all_button";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
@@ -7195,6 +7206,7 @@ public final class Settings {
             NOTIFICATION_SOUND,
             ACCELEROMETER_ROTATION,
             SHOW_BATTERY_PERCENT,
+            QS_SHOW_BATTERY_PERCENT,
             NOTIFICATION_VIBRATION_INTENSITY,
             RING_VIBRATION_INTENSITY,
             HAPTIC_FEEDBACK_INTENSITY,
@@ -7520,6 +7532,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(LOCK_TO_APP_ENABLED);
             PRIVATE_SETTINGS.add(EGG_MODE);
             PRIVATE_SETTINGS.add(SHOW_BATTERY_PERCENT);
+            PRIVATE_SETTINGS.add(QS_SHOW_BATTERY_PERCENT);
             PRIVATE_SETTINGS.add(DISPLAY_COLOR_MODE);
             // AICP Settings
             PRIVATE_SETTINGS.add(AE_THEME);
@@ -7847,6 +7860,7 @@ public final class Settings {
             VALIDATORS.put(WIFI_STATIC_DNS1, WIFI_STATIC_DNS1_VALIDATOR);
             VALIDATORS.put(WIFI_STATIC_DNS2, WIFI_STATIC_DNS2_VALIDATOR);
             VALIDATORS.put(SHOW_BATTERY_PERCENT, SHOW_BATTERY_PERCENT_VALIDATOR);
+            VALIDATORS.put(QS_SHOW_BATTERY_PERCENT, QS_SHOW_BATTERY_PERCENT_VALIDATOR);
             VALIDATORS.put(NOTIFICATION_LIGHT_PULSE, BOOLEAN_VALIDATOR);
             // AICP Settings
             VALIDATORS.put(AE_THEME, AE_THEME_VALIDATOR);

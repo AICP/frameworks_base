@@ -50,6 +50,7 @@ import com.android.systemui.statusbar.policy.NetworkController.AccessPointContro
 import com.android.systemui.statusbar.policy.NetworkController.IconState;
 import com.android.systemui.statusbar.policy.NetworkController.SignalCallback;
 import com.android.systemui.statusbar.policy.WifiIcons;
+import com.android.systemui.tuner.TunerService;
 
 import java.util.List;
 
@@ -58,6 +59,7 @@ import javax.inject.Inject;
 /** Quick settings tile: Wifi **/
 public class WifiTile extends QSTileImpl<SignalState> {
     private static final Intent WIFI_SETTINGS = new Intent(Settings.Panel.ACTION_WIFI);
+    private static final Intent WIFI_SETTINGS_FULL = new Intent(Settings.ACTION_WIFI_SETTINGS);
 
     protected final NetworkController mController;
     private final AccessPointController mWifiController;
@@ -127,6 +129,10 @@ public class WifiTile extends QSTileImpl<SignalState> {
 
     @Override
     public Intent getLongClickIntent() {
+        if (Dependency.get(TunerService.class).getValue(
+                com.android.systemui.qs.QSPanel.QS_LONG_PRESS_ACTION, 0) == 1) {
+            return WIFI_SETTINGS_FULL;
+        }
         return WIFI_SETTINGS;
     }
 
@@ -355,7 +361,7 @@ public class WifiTile extends QSTileImpl<SignalState> {
         }
 
         public Intent getSettingsIntent() {
-            return new Intent(Settings.ACTION_WIFI_SETTINGS);
+            return WIFI_SETTINGS_FULL;
         }
 
         @Override

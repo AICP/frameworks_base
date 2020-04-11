@@ -2749,10 +2749,10 @@ public class DisplayPolicy {
                 res.getDimensionPixelSize(R.dimen.navigation_bar_height) : 0;
         final int navbarHeightLandscape = showNavbar ?
                 res.getDimensionPixelSize(R.dimen.navigation_bar_height_landscape) : 0;
-        final int navbarFrameHeight = showNavbar ?
-                res.getDimensionPixelSize(R.dimen.navigation_bar_frame_height) : 0;
-        final int navbarFrameHeightLandscape = showNavbar ?
-                res.getDimensionPixelSize(R.dimen.navigation_bar_frame_height_landscape) : 0;
+        final int navbarFrameHeight = /*showNavbar ?
+                */res.getDimensionPixelSize(R.dimen.navigation_bar_frame_height)/* : 0*/;
+        final int navbarFrameHeightLandscape = /*showNavbar ?
+                */res.getDimensionPixelSize(R.dimen.navigation_bar_frame_height_landscape)/* : 0*/;
         final int navbarWidth = showNavbar ?
                 res.getDimensionPixelSize(R.dimen.navigation_bar_width) : 0;
 

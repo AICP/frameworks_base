@@ -89,6 +89,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     public static final String QS_SHOW_BRIGHTNESS_SIDE_BUTTONS = "qs_show_brightness_side_buttons";
     public static final String QS_BRIGHTNESS_POSITION_BOTTOM = "qs_brightness_position_bottom";
     public static final String QS_SHOW_SECURITY = "qs_show_secure";
+    public static final String QS_LONG_PRESS_SECONDARY = "qs_long_press_secondary";
 
     private static final String TAG = "QSPanel";
 
@@ -129,6 +130,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     private boolean mBrightnessBottom;
     private boolean mBrightnessVisible;
     private View mBrightnessPlaceholder;
+    private boolean mDualTargetSecondary;
 
     public QSPanel(Context context) {
         this(context, null);
@@ -269,6 +271,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
         tunerService.addTunable(this, QS_SHOW_BRIGHTNESS_SIDE_BUTTONS);
         tunerService.addTunable(this, QS_BRIGHTNESS_POSITION_BOTTOM);
         tunerService.addTunable(this, QS_SHOW_SECURITY);
+        tunerService.addTunable(this, QS_LONG_PRESS_SECONDARY);
         if (mHost != null) {
             setTiles(mHost.getTiles());
         }
@@ -325,6 +328,10 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
         }
         if (QS_SHOW_SECURITY.equals(key)) {
             mFooter.setForceHide(newValue != null && Integer.parseInt(newValue) == 0);
+        }
+        if (QS_LONG_PRESS_SECONDARY.equals(key)) {
+            mDualTargetSecondary = newValue != null && Integer.parseInt(newValue) == 1;
+            updateSettings();
         }
     }
 
@@ -914,8 +921,9 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
                     t.click();
                     setAnimationTile(v);
             });
-            /*if (t.isDualTarget()) {
-                if (!mTileLayout.isShowTitles()) {
+            // mod long press to do secondary click
+            if (t.isDualTarget()) {
+                if (mDualTargetSecondary && !mTileLayout.isShowTitles()) {
                     v.setOnLongClickListener(view -> {
                         t.secondaryClick();
                         return true;
@@ -926,7 +934,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
                         return true;
                     });
                 }
-            }*/
+            }
         }
     }
 

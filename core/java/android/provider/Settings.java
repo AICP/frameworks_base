@@ -6284,6 +6284,14 @@ public final class Settings {
          */
         public static final String PULSE_ON_NEW_TRACKS = "pulse_on_new_tracks";
 
+        /**
+         * Setting to determine whether or not to show the battery percentage in the qs status bar header.
+         *    0 - Show remaining time
+         *    1 - Show percentage
+         * @hide
+         */
+        public static final String QS_SHOW_BATTERY_PERCENT = "qs_header_show_battery_percent";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6465,6 +6473,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(PULSE_AMBIENT_LIGHT_COLOR_AUTOMATIC, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(PULSE_AMBIENT_LIGHT_WIDTH, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(PULSE_ON_NEW_TRACKS, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(QS_SHOW_BATTERY_PERCENT, BOOLEAN_VALIDATOR);
         }
 
         /**

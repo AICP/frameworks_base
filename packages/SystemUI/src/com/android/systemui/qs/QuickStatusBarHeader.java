@@ -15,6 +15,7 @@
 package com.android.systemui.qs;
 
 import static android.app.StatusBarManager.DISABLE2_QUICK_SETTINGS;
+import static android.provider.Settings.System.QS_SHOW_BATTERY_PERCENT;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 import static com.android.systemui.util.InjectionInflationController.VIEW_CONTEXT;
@@ -302,7 +303,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         //mBatteryRemainingIcon.setIgnoreTunerUpdates(true);
         // QS will always show the estimate, and BatteryMeterView handles the case where
         // it's unavailable or charging
-        mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_ESTIMATE);
+        mBatteryRemainingIcon.setPercentShowMode(getBatteryPercentMode());
         mBatteryRemainingIcon.setQsbHeader();
         mRingerModeTextView.setSelected(true);
         mNextAlarmTextView.setSelected(true);
@@ -545,6 +546,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         updateSystemInfoText();
         updateHeaderImage();
         updateResources();
+        setBatteryPercentMode();
     }
 
     private void updateStatusIconAlphaAnimator() {
@@ -563,6 +565,20 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         mPrivacyChipAlphaAnimator = new TouchAnimator.Builder()
                 .addFloat(mPrivacyChip, "alpha", 1, 0, 1)
                 .build();
+    }
+
+    private int getBatteryPercentMode() {
+        boolean showBatteryPercent = Settings.System
+                .getIntForUser(getContext().getContentResolver(),
+                QS_SHOW_BATTERY_PERCENT, 0, UserHandle.USER_CURRENT) == 1;
+        int batteryMode = showBatteryPercent ?
+               BatteryMeterView.MODE_ON : BatteryMeterView.MODE_ESTIMATE;
+
+        return batteryMode;
+    }
+
+    private void setBatteryPercentMode() {
+        mBatteryRemainingIcon.setPercentShowMode(getBatteryPercentMode(), true);
     }
 
     public void setExpanded(boolean expanded) {

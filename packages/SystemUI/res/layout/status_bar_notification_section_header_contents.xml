@@ -24,7 +24,7 @@
         android:layout_marginStart="@dimen/notification_section_header_padding_left"
         android:gravity="start"
         android:textAlignment="gravity"
-        android:textSize="13sp"
+        android:textSize="11sp"
         android:textColor="@color/notification_section_header_label_color"
         android:fontFamily="@*android:string/config_headlineFontFamilyMedium"
     />

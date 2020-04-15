@@ -611,7 +611,7 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
                 RESTART_RECOVERY_BUTTON,
                 com.android.systemui.R.drawable.ic_restart_recovery,
                 com.android.systemui.R.string.global_action_restart_recovery,
-                mWindowManagerFuncs, mHandler) {
+                mWindowManagerFuncs, mHandler, mKeyguardStateController, mActivityStarter) {
 
             public boolean showDuringKeyguard() {
                 return true;
@@ -626,7 +626,7 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
                 RESTART_BOOTLOADER_BUTTON,
                 com.android.systemui.R.drawable.ic_restart_bootloader,
                 com.android.systemui.R.string.global_action_restart_bootloader,
-                mWindowManagerFuncs, mHandler) {
+                mWindowManagerFuncs, mHandler, mKeyguardStateController, mActivityStarter) {
 
             public boolean showDuringKeyguard() {
                 return true;
@@ -641,7 +641,7 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
                 RESTART_UI_BUTTON,
                 com.android.systemui.R.drawable.ic_restart_ui,
                 com.android.systemui.R.string.global_action_restart_ui,
-                mWindowManagerFuncs, mHandler) {
+                mWindowManagerFuncs, mHandler, mKeyguardStateController, mActivityStarter) {
 
             public boolean showDuringKeyguard() {
                 return true;
@@ -839,6 +839,18 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
         return mWalletPlugin.onPanelShown(this, !mKeyguardStateController.isUnlocked());
     }
 
+    private boolean rebootAction(boolean safeMode) {
+        if (mKeyguardStateController.isMethodSecure() && mKeyguardStateController.isShowing()) {
+              mActivityStarter.postQSRunnableDismissingKeyguard(() -> {
+                mWindowManagerFuncs.reboot(safeMode);
+            });
+            return true;
+        } else {
+            mWindowManagerFuncs.reboot(safeMode);
+            return true;
+        }
+    }
+
     /**
      * Implements {@link GlobalActionsPanelPlugin.Callbacks#dismissGlobalActionsMenu()}, which is
      * called when the quick access wallet requests dismissal.
@@ -893,7 +905,7 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
         @Override
         public boolean onLongPress() {
             if (!mUserManager.hasUserRestriction(UserManager.DISALLOW_SAFE_BOOT)) {
-                mWindowManagerFuncs.reboot(true);
+                rebootAction(true);
                 return true;
             }
             return false;
@@ -912,7 +924,13 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
         @Override
         public void onPress() {
             // shutdown by making sure radio and power are handled accordingly.
-            mWindowManagerFuncs.shutdown();
+            if (mKeyguardStateController.isMethodSecure() && mKeyguardStateController.isShowing()) {
+                  mActivityStarter.postQSRunnableDismissingKeyguard(() -> {
+                    mWindowManagerFuncs.shutdown();
+                });
+            } else {
+                mWindowManagerFuncs.shutdown();
+            }
         }
     }
 
@@ -1005,7 +1023,7 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
         @Override
         public boolean onLongPress() {
             if (!mUserManager.hasUserRestriction(UserManager.DISALLOW_SAFE_BOOT)) {
-                mWindowManagerFuncs.reboot(true);
+                rebootAction(true);
                 return true;
             }
             return false;
@@ -1023,7 +1041,7 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
 
         @Override
         public void onPress() {
-            mWindowManagerFuncs.reboot(false);
+            rebootAction(false);
         }
     }
 
@@ -1949,18 +1967,24 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
         protected Handler mRefresh;
         protected GlobalActionsManager mWmFuncs;
         private Context mContext;
+        private KeyguardStateController mKeyguardStateController;
+        private ActivityStarter mActivityStarter;
 
         public AdvancedAction(
                 int actionType,
                 int iconResid,
                 int messageResid,
                 GlobalActionsManager funcs,
-                Handler handler) {
+                Handler handler,
+                KeyguardStateController ksc,
+                ActivityStarter as) {
             mActionType = actionType;
             mIconResid = iconResid;
             mMessageResId = messageResid;
             mRefresh = handler;
             mWmFuncs = funcs;
+            mKeyguardStateController = ksc;
+            mActivityStarter = as;
         }
 
         @Override
@@ -1984,7 +2008,13 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
 
         @Override
         public final void onPress() {
-            triggerAction(mActionType, mRefresh, mWmFuncs, mContext);
+            if (mKeyguardStateController.isMethodSecure() && mKeyguardStateController.isShowing()) {
+                  mActivityStarter.postQSRunnableDismissingKeyguard(() -> {
+                    triggerAction(mActionType, mRefresh, mWmFuncs, mContext);
+                });
+            } else {
+                triggerAction(mActionType, mRefresh, mWmFuncs, mContext);
+            }
         }
 
         @Override

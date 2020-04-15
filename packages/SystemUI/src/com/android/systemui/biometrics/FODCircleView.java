@@ -662,34 +662,33 @@ class FODAnimation extends ImageView {
 
         this.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         setFODAnim();
-        recognizingAnim = (AnimationDrawable) this.getBackground();
-
     }
 
-    public int getFODAnim() {
+    protected void setFODAnim(){
+        this.setBackgroundResource(getFODAnimResource());
+        recognizingAnim = (AnimationDrawable) this.getBackground();
+    }
+    private int getFODAnim() {
         return Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.FOD_ANIM, 0);
     }
 
-    public void setFODAnim() {
-        int fodanim = getFODAnim();
-
-        if (fodanim == 0) {
-            this.setBackgroundResource(R.drawable.fod_normal_recognizing_anim);
-        } else if (fodanim == 1) {
-            this.setBackgroundResource(R.drawable.fod_aod_recognizing_anim);
-        } else if (fodanim == 2) {
-            this.setBackgroundResource(R.drawable.fod_light_recognizing_anim);
-        } else if (fodanim == 3) {
-            this.setBackgroundResource(R.drawable.fod_pop_recognizing_anim);
-        } else if (fodanim == 4) {
-            this.setBackgroundResource(R.drawable.fod_pulse_recognizing_anim);
-        } else if (fodanim == 5) {
-            this.setBackgroundResource(R.drawable.fod_pulse_recognizing_anim_white);
-        } else if (fodanim == 6) {
-            this.setBackgroundResource(R.drawable.fod_rhythm_recognizing_anim);
+    private int getFODAnimResource() {
+        switch (getFODAnim()) {
+            case 1:
+                return R.drawable.fod_aod_recognizing_anim;
+            case 2:
+                return R.drawable.fod_light_recognizing_anim;
+            case 3:
+                return R.drawable.fod_pop_recognizing_anim;
+            case 4:
+                return R.drawable.fod_pulse_recognizing_anim;
+            case 5:
+                return R.drawable.fod_pulse_recognizing_anim_white;
+            case 6:
+                return R.drawable.fod_rhythm_recognizing_anim;
         }
-        recognizingAnim = (AnimationDrawable) this.getBackground();
+        return R.drawable.fod_normal_recognizing_anim;
     }
 
     public void updateParams(int mDreamingOffsetY) {

@@ -22,7 +22,7 @@
     android:background="@drawable/qs_detail_background"
     android:clickable="true"
     android:orientation="vertical"
-    android:paddingBottom="0.01dp"
+    android:paddingBottom="8dp"
     android:visibility="invisible"
     android:elevation="4dp"
     android:importantForAccessibility="no" >

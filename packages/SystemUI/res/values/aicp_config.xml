@@ -23,7 +23,7 @@
 
     <!-- The default tiles to display in QuickSettings -->
     <string name="quick_settings_tiles_extra" translatable="false">
-        cpuinfo,compass,music,screenshot,scr,reboot,usb_tether,caffeine,aicp_extras,heads_up,smartpixels,adb_network,aod,locale,sound,onthego,sync,weather,soundsearch,dataswitch,hwkeys,immersive,gaming,screenstabilization,fpsinfo
+        cpuinfo,compass,music,screenshot,scr,reboot,usb_tether,caffeine,aicp_extras,heads_up,smartpixels,adb_network,aod,locale,sound,onthego,sync,weather,soundsearch,dataswitch,hwkeys,immersive,gaming,fpsinfo
     </string>
 
     <!-- The CPU temperature sensor path, defaults to empty -->

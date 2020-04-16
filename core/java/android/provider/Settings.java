@@ -6492,7 +6492,7 @@ public final class Settings {
                 ANY_STRING_VALIDATOR;
 
         /**
-	       * @hide
+	* @hide
          */
         public static final String OMNI_SYSTEM_PROXI_CHECK_ENABLED = "system_proxi_check_enabled";
 
@@ -6510,7 +6510,7 @@ public final class Settings {
         private static final Validator OFF_GESTURE_HAPTIC_ENABLE_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
-	      /**
+	/**
          * Enable haptic feedback for gestures in DeviceParts
          * @hide
          */
@@ -6519,20 +6519,6 @@ public final class Settings {
         /** @hide */
         private static final Validator MUSIC_PLAYBACK_GESTURE_ENABLE_VALIDATOR =
                 BOOLEAN_VALIDATOR;
-
-        /**
-         * Screen stabilization parameters
-         * @hide
-         */
-        public static final String STABILIZATION_ENABLE = "stabilization_enable";
-
-        public static final String STABILIZATION_VELOCITY_FRICTION = "stabilization_velocity_friction";
-
-        public static final String STABILIZATION_POSITION_FRICTION = "stabilization_position_friction";
-
-        public static final String STABILIZATION_LOWPASS_ALPHA = "stabilization_lowpass_alpha";
-
-        public static final String STABILIZATION_VELOCITY_AMPLITUDE = "stabilization_velocity_amplitude";
 
         /**
          * Whether to show heads up on new music tracks

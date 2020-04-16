@@ -61,7 +61,6 @@ import com.android.systemui.qs.tiles.UiModeNightTile;
 import com.android.systemui.qs.tiles.ScreenshotTile;
 import com.android.systemui.qs.tiles.SoundTile;
 import com.android.systemui.qs.tiles.SyncTile;
-import com.android.systemui.qs.tiles.ScreenStabilizationTile;
 import com.android.systemui.qs.tiles.UsbTetherTile;
 import com.android.systemui.qs.tiles.SmartPixelsTile;
 import com.android.systemui.qs.tiles.SoundSearchTile;
@@ -105,7 +104,6 @@ public class QSFactoryImpl implements QSFactory {
     private final Provider<SoundSearchTile> mSoundSearchTileProvider;
     private final Provider<DataSwitchTile> mDataSwitchTileProvider;
     private final Provider<GamingModeTile> mGamingModeTileProvider;
-    private final Provider<ScreenStabilizationTile> mScreenStabilizationTileProvider;
     private final Provider<FPSInfoTile> mFPSInfoTileProvider;
 
     private QSTileHost mHost;
@@ -135,7 +133,6 @@ public class QSFactoryImpl implements QSFactory {
             Provider<SoundSearchTile> soundSearchTileProvider,
             Provider<DataSwitchTile> dataSwitchTileProvider,
             Provider<GamingModeTile> gamingModeTileProvider,
-            Provider<ScreenStabilizationTile> screenStabilizationTileProvider,
             Provider<FPSInfoTile> fpsInfoTileProvider) {
         mWifiTileProvider = wifiTileProvider;
         mBluetoothTileProvider = bluetoothTileProvider;
@@ -161,7 +158,6 @@ public class QSFactoryImpl implements QSFactory {
         mSoundSearchTileProvider = soundSearchTileProvider;
         mDataSwitchTileProvider = dataSwitchTileProvider;
         mGamingModeTileProvider = gamingModeTileProvider;
-        mScreenStabilizationTileProvider = screenStabilizationTileProvider;
         mFPSInfoTileProvider = fpsInfoTileProvider;
     }
 
@@ -263,8 +259,6 @@ public class QSFactoryImpl implements QSFactory {
                 return new ImmersiveTile(mHost);
             case "gaming":
                 return mGamingModeTileProvider.get();
-            case "screenstabilization":
-                return mScreenStabilizationTileProvider.get();
             case "fpsinfo":
                 return mFPSInfoTileProvider.get();
         }

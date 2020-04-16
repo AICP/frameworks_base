@@ -69,4 +69,7 @@
 
     <!-- Whether to use fingerprint pressed image -->
     <bool name="config_fodPressedImage">false</bool>
+
+    <!-- Force Low quality on screenRecord for legacy devices -->
+    <bool name="config_screenRecordforceLowQuality">false</bool>
 </resources>

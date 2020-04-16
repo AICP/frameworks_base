@@ -79,16 +79,22 @@ public class ScreenRecordDialog extends Activity {
         final Switch tapsSwitch = findViewById(R.id.checkbox_taps);
         final Switch dotSwitch = findViewById(R.id.checkbox_stopdot);
         final Switch qualitySwitch = findViewById(R.id.checkbox_low_quality);
-        
+
         initialCheckSwitch(micSwitch, SCREENRECORD_ENABLE_MIC);
         initialCheckSwitch(tapsSwitch, SCREENRECORD_SHOW_TAPS);
         initialCheckSwitch(dotSwitch, SCREENRECORD_STOP_DOT);
         initialCheckSwitch(qualitySwitch, SCREENRECORD_LOW_QUALITY);
-        
+
         setSwitchListener(micSwitch, SCREENRECORD_ENABLE_MIC);
         setSwitchListener(tapsSwitch, SCREENRECORD_SHOW_TAPS);
         setSwitchListener(dotSwitch, SCREENRECORD_STOP_DOT);
         setSwitchListener(qualitySwitch, SCREENRECORD_LOW_QUALITY);
+
+        // force Low quality, if corresponding overlay is set
+        if (getResources().getBoolean(R.bool.config_screenRecordforceLowQuality)) {
+            qualitySwitch.setEnabled(false);
+            qualitySwitch.setChecked(true);
+        }
 
         final Button recordButton = findViewById(R.id.record_button);
         recordButton.setOnClickListener(v -> {

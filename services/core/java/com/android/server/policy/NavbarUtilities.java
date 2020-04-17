@@ -80,7 +80,8 @@ public class NavbarUtilities {
             KeyEvent.KEYCODE_MENU,
             KeyEvent.KEYCODE_ASSIST,
             KeyEvent.KEYCODE_APP_SWITCH,
-            KeyEvent.KEYCODE_CAMERA
+            // Use legacy camera button handling
+            //KeyEvent.KEYCODE_CAMERA
     };
 
     /**

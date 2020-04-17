@@ -2502,7 +2502,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         final boolean hasBack = mNavBarEnabled || (mDeviceHardwareKeys & KEY_MASK_BACK) != 0;
         final boolean hasMenu = (mDeviceHardwareKeys & KEY_MASK_MENU) != 0;
         final boolean hasAssist = (mDeviceHardwareKeys & KEY_MASK_ASSIST) != 0;
-        final boolean hasCamera = (mDeviceHardwareKeys & KEY_MASK_CAMERA) != 0;
 
         for (int i = 0; i < NavbarUtilities.SUPPORTED_KEYCODE_LIST.length; i++) {
             final int keyCode = NavbarUtilities.SUPPORTED_KEYCODE_LIST[i];
@@ -2566,14 +2565,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     mKeyDoubleTapBehavior.get(KeyEvent.KEYCODE_APP_SWITCH), UserHandle.USER_CURRENT));
         }
 
-        if (hasCamera) {
-            mKeyLongPressBehavior.put(KeyEvent.KEYCODE_CAMERA, Settings.System.getIntForUser(resolver,
-                    Settings.System.KEY_CAMERA_LONG_PRESS_ACTION,
-                    mKeyLongPressBehavior.get(KeyEvent.KEYCODE_CAMERA), UserHandle.USER_CURRENT));
-            mKeyDoubleTapBehavior.put(KeyEvent.KEYCODE_CAMERA, Settings.System.getIntForUser(resolver,
-                    Settings.System.KEY_CAMERA_DOUBLE_TAP_ACTION,
-                    mKeyDoubleTapBehavior.get(KeyEvent.KEYCODE_CAMERA), UserHandle.USER_CURRENT));
-        }
     }
 
     private void enableSwipeThreeFingerGesture(boolean enable){
@@ -7096,10 +7087,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 break;
             case NavbarUtilities.KEY_ACTION_VOICE_SEARCH:
                 launchAssistLongPressAction(false, false);
-                break;
-            case NavbarUtilities.KEY_ACTION_CAMERA:
-                sendCloseSystemWindows();
-                NavbarUtilities.launchCamera();
                 break;
             case NavbarUtilities.KEY_ACTION_LAST_APP:
                 awakenDreams();

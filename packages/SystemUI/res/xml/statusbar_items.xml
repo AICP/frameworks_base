@@ -31,6 +31,10 @@
         android:title="@string/quick_settings_bluetooth_label" />
 
     <com.android.systemui.tuner.StatusBarSwitch
+        android:key="camera"
+        android:title="@string/status_bar_camera" />
+
+    <com.android.systemui.tuner.StatusBarSwitch
         android:key="cast"
         android:title="@string/quick_settings_cast_title" />
 
@@ -49,6 +53,10 @@
     <com.android.systemui.tuner.StatusBarSwitch
         android:key="managed_profile"
         android:title="@string/status_bar_work" />
+
+    <com.android.systemui.tuner.StatusBarSwitch
+        android:key="microphone"
+        android:title="@string/status_bar_microphone" />
 
     <com.android.systemui.tuner.StatusBarSwitch
         android:key="mobile"

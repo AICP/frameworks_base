@@ -204,6 +204,10 @@
     <!-- OnTheGo Tile -->
     <string name="quick_settings_onthego_label">On-The-Go</string>
 
+    <!-- Name of the additional status bar icons also exposed with SystemUI Tuner -->
+    <string name="status_bar_camera">Camera</string>
+    <string name="status_bar_microphone">Microphone</string>
+
     <!-- Screen pinning -->
     <string name="screen_pinning_description_custom">This keeps it in view until you unpin. Touch &amp; hold Back to unpin.</string>
     <string name="screen_pinning_description_recents_invisible_custom">This keeps it in view until you unpin. Touch &amp; hold Back to unpin.</string>

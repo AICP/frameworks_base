@@ -253,7 +253,10 @@
     <string name="quick_settings_sound_search">Sound search</string>
     <string name="quick_settings_sound_search_no_app">Sorry, but this doesn\'t work if you don\'t have a Sound search app.</string>
 
+    <!-- Name of the additional status bar icons also exposed with SystemUI Tuner -->
+    <string name="status_bar_camera">Camera</string>
     <string name="status_bar_location">Location</string>
+    <string name="status_bar_microphone">Microphone</string>
 
     <string name="qs_footer_aicp_text" translatable="false">#Aicp</string>
 

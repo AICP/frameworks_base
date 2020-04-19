@@ -18,4 +18,10 @@
     <dimen name="analog_clock_width">120dp</dimen>
     <dimen name="analog_clock_height">120dp</dimen>
     <dimen name="date_padding">8dp</dimen>
+
+    <!-- The margin between the pattern view and the Emergency Carrier area -->
+    <dimen name="pattern_view_bottom_margin">4dp</dimen>
+
+    <!-- The margin between the pin view and the Emergency Carrier area -->
+    <dimen name="pin_view_bottom_margin">0dp</dimen>
 </resources>

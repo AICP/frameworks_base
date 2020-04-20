@@ -331,4 +331,10 @@
     <string name="applock_fingerprint">&#160;or your fingerprint to unlock</string>
     <string name="applock_credential">&#160;to unlock</string>
     <string name="applock_unlock">Unlock</string>
+
+    <!-- PowerShare QS tile -->
+    <string name="quick_settings_powershare_label">Wireless PowerShare</string>
+    <string name="quick_settings_powershare_off_powersave_label">Wireless PowerShare off\nBattery saver</string>
+    <string name="quick_settings_powershare_off_low_battery_label">Wireless PowerShare off\nBattery too low</string>
+    <string name="quick_settings_powershare_enabled_label">Wireless PowerShare is enabled</string>
 </resources>

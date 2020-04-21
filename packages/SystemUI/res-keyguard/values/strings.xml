@@ -44,22 +44,22 @@
     <string name="keyguard_charged">Charged</string>
 
     <!-- When the lock screen is showing and the phone plugged in, and the battery is not fully charged, say that it's wirelessly charging. [CHAR LIMIT=50]  -->
-    <string name="keyguard_plugged_in_wireless"><xliff:g id="percentage" example="20%">%s</xliff:g> • Charging wirelessly</string>
+    <string name="keyguard_plugged_in_wireless"><xliff:g id="percentage" example="20%">%s</xliff:g>Charging wirelessly</string>
 
     <!-- When the lock screen is showing and the phone plugged in, and the battery is not fully charged, say that it's charging. [CHAR LIMIT=50]  -->
     <string name="keyguard_plugged_in_dock"><xliff:g id="percentage" example="20%">%s</xliff:g> • Charging</string>
 
     <!-- When the lock screen is showing and the phone plugged in, and the battery
          is not fully charged, say that it's charging.  -->
-    <string name="keyguard_plugged_in"><xliff:g id="percentage">%s</xliff:g> • Charging</string>
+    <string name="keyguard_plugged_in"><xliff:g id="percentage">%s</xliff:g>Charging</string>
 
     <!-- When the lock screen is showing and the phone plugged in, and the battery
          is not fully charged, and it's plugged into a fast charger, say that it's charging fast.  -->
-    <string name="keyguard_plugged_in_charging_fast"><xliff:g id="percentage">%s</xliff:g> • Charging rapidly</string>
+    <string name="keyguard_plugged_in_charging_fast"><xliff:g id="percentage">%s</xliff:g>Charging rapidly</string>
 
     <!-- When the lock screen is showing and the phone plugged in, and the battery
          is not fully charged, and it's plugged into a slow charger, say that it's charging slowly.  -->
-    <string name="keyguard_plugged_in_charging_slowly"><xliff:g id="percentage">%s</xliff:g> • Charging slowly</string>
+    <string name="keyguard_plugged_in_charging_slowly"><xliff:g id="percentage">%s</xliff:g>Charging slowly</string>
 
     <!-- When the lock screen is showing and the phone plugged in, and the defend mode is triggered, say that charging is temporarily limited.  -->
     <string name="keyguard_plugged_in_charging_limited"><xliff:g id="percentage">%s</xliff:g> • Charging on hold to protect battery</string>

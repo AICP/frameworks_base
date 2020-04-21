@@ -1272,9 +1272,9 @@ public class KeyguardIndicationController {
 
         String batteryInfo = "";
         boolean showbatteryInfo = Settings.System.getIntForUser(mContext.getContentResolver(),
-            Settings.System.LOCKSCREEN_BATTERY_INFO, 0, UserHandle.USER_CURRENT) == 1;
+            Settings.System.LOCKSCREEN_BATTERY_INFO, 1, UserHandle.USER_CURRENT) == 1;
         boolean batteryTempUnit = Settings.System.getIntForUser(mContext.getContentResolver(),
-            Settings.System.LOCKSCREEN_BATTERY_INFO_TEMP_UNIT, 1, UserHandle.USER_CURRENT) == 0;
+            Settings.System.LOCKSCREEN_BATTERY_INFO_TEMP_UNIT, 0, UserHandle.USER_CURRENT) == 0;
          if (showbatteryInfo) {
             if (mChargingCurrent >= mCurrentDivider * 1000) {
                 batteryInfo = String.format("%.1f" , (mChargingCurrent / mCurrentDivider / 1000)) + "A";
@@ -1286,16 +1286,16 @@ public class KeyguardIndicationController {
                         String.format("%.1f" , (mChargingWattage / mCurrentDivider / 1000)) + "W";
             }
             if (mChargingVoltage > 0) {
-                batteryInfo = (batteryInfo == "" ? "" : batteryInfo + " · ") +
+                batteryInfo = (batteryInfo == "" ? "" : batteryInfo + " • ") +
                         String.format("%.1f", (mChargingVoltage / 1000 / 1000)) + "V";
             }
             if (mTemperature > 0) {
                 if (batteryTempUnit) {
-                    batteryInfo = (batteryInfo == "" ? "" : batteryInfo + " · ") +
-                            Math.round(mTemperature / 10 * 9f / 5f + 32) + "°F";
-                } else {
-                    batteryInfo = (batteryInfo == "" ? "" : batteryInfo + " · ") +
-                            mTemperature / 10 + "°C";
+                    batteryInfo = (batteryInfo == "" ? "" : batteryInfo + " • ") +
+                            Math.round(mTemperature / 10 * 9f / 5f + 32) + "°F" + "\n";
+                    } else {
+                    batteryInfo = (batteryInfo == "" ? "" : batteryInfo + " • ") +
+                        mTemperature / 10 + "°C" + "\n";
                 }
             }
             if (batteryInfo != "") {

@@ -718,6 +718,8 @@ class FODAnimation extends ImageView {
                 return R.drawable.fod_pureview_future_recognizing_anim;
             case 10:
                 return R.drawable.fod_pureview_molecular_recognizing_anim;
+            case 11:
+                return R.drawable.fod_op_energy_recognizing_anim;
         }
         return R.drawable.fod_miui_normal_recognizing_anim;
     }

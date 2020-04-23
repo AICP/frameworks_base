@@ -4649,7 +4649,7 @@
     <!-- Allows an application to restart the SystemUI process.
          @hide <p>Not for use by third-party applications.
     -->
-    <permission android:name="android.permission.RESTART_UI"
+    <permission android:name="aicp.permission.RESTART_UI"
         android:label="@string/permlab_restartUI"
         android:description="@string/permdesc_restartUI"
         android:protectionLevel="signature" />

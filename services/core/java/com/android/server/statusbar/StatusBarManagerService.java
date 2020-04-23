@@ -1152,7 +1152,7 @@ public class StatusBarManagerService extends IStatusBarService.Stub implements D
     }
 
     private void enforceRestartUI () {
-        mContext.enforceCallingOrSelfPermission(android.Manifest.permission.RESTART_UI,
+        mContext.enforceCallingOrSelfPermission("aicp.permission.RESTART_UI",
                 "StatusBarManagerService");
     }
     private void enforceBiometricDialog() {

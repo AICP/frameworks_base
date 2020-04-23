@@ -4643,7 +4643,7 @@
     <!-- Allows an application to override the power key action
          @hide <p>Not for use by third-party applications.
     -->
-    <permission android:name="android.permission.PREVENT_POWER_KEY"
+    <permission android:name="aicp.permission.PREVENT_POWER_KEY"
                 android:protectionLevel="signature|privileged" />
 
     <!-- Allows an application to manage ADB Root

@@ -158,11 +158,11 @@ public class BatteryMeterViewController extends ViewController<BatteryMeterView>
             super.onChange(selfChange, uri);
             mView.updateSettings();
             mView.updateShowPercent();
-            if (TextUtils.equals(uri.getLastPathSegment(),
+            /*if (TextUtils.equals(uri.getLastPathSegment(),
                     Settings.Global.BATTERY_ESTIMATES_LAST_UPDATE_TIME)) {
                 // update the text for sure if the estimate in the cache was updated
                 mView.updatePercentText();
-            }
+            }*/
         }
     }
 }

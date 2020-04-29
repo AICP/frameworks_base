@@ -37,11 +37,6 @@ import javax.inject.Inject;
 /** Quick settings tile: Location **/
 public class LocationTile extends QSTileImpl<BooleanState> {
 
-    private static final int BATTERY_SAVING = Settings.Secure.LOCATION_MODE_BATTERY_SAVING;
-    private static final int SENSORS_ONLY = Settings.Secure.LOCATION_MODE_SENSORS_ONLY;
-    private static final int HIGH_ACCURACY = Settings.Secure.LOCATION_MODE_HIGH_ACCURACY;
-    private static final int OFF = Settings.Secure.LOCATION_MODE_OFF;
-
     private final Icon mIcon = ResourceIcon.get(R.drawable.ic_location);
 
     private final LocationController mController;
@@ -80,28 +75,12 @@ public class LocationTile extends QSTileImpl<BooleanState> {
             mActivityStarter.postQSRunnableDismissingKeyguard(() -> {
                 final boolean wasEnabled = mState.value;
                 mHost.openPanels();
-                switchMode();
+                mController.setLocationEnabled(!wasEnabled);
             });
             return;
         }
-        switchMode();
-    }
-
-    private void switchMode() {
-        int currentMode = mController.getCurrentMode();
-        if (currentMode == BATTERY_SAVING) {
-            //from battery saving to off
-            mController.setLocationEnabled(OFF);
-        } else if (currentMode == SENSORS_ONLY) {
-            //from sensor only to high precision
-            mController.setLocationEnabled(HIGH_ACCURACY);
-        } else if (currentMode == HIGH_ACCURACY) {
-            //from high precision to battery saving
-            mController.setLocationEnabled(BATTERY_SAVING);
-        } else {
-            //from off to sensor only
-            mController.setLocationEnabled(SENSORS_ONLY);
-        }
+        final boolean wasEnabled = mState.value;
+        mController.setLocationEnabled(!wasEnabled);
     }
 
     @Override
@@ -111,41 +90,29 @@ public class LocationTile extends QSTileImpl<BooleanState> {
 
     @Override
     protected void handleUpdateState(BooleanState state, Object arg) {
-        if (mController == null) {
-            return;
+        if (state.slash == null) {
+            state.slash = new SlashState();
         }
         final boolean locationEnabled =  mController.isLocationEnabled();
 
         // Work around for bug 15916487: don't show location tile on top of lock screen. After the
         // bug is fixed, this should be reverted to only hiding it on secure lock screens:
         // state.visible = !(mKeyguard.isSecure() && mKeyguard.isShowing());
+        state.value = locationEnabled;
         checkIfRestrictionEnforcedByAdminOnly(state, UserManager.DISALLOW_SHARE_LOCATION);
         if (state.disabledByPolicy == false) {
             checkIfRestrictionEnforcedByAdminOnly(state, UserManager.DISALLOW_CONFIG_LOCATION);
         }
         state.icon = mIcon;
-        state.value = locationEnabled;
-        state.label = mContext.getString(R.string.quick_settings_location_label);
-        int currentMode = mController.getCurrentMode();
-        switch (currentMode) {
-            case BATTERY_SAVING:
-                state.value = true;
-                state.contentDescription = mContext.getString(R.string.accessibility_quick_settings_location_battery_saving);
-                state.icon = ResourceIcon.get(R.drawable.ic_qs_location_battery_saving);
-                break;
-            case SENSORS_ONLY:
-                state.value = true;
-                state.contentDescription = mContext.getString(R.string.accessibility_quick_settings_location_gps_only);
-                break;
-            case HIGH_ACCURACY:
-                state.value = true;
-                state.contentDescription = mContext.getString(R.string.accessibility_quick_settings_location_high_accuracy);
-                state.icon = ResourceIcon.get(R.drawable.ic_qs_location_high_accuracy);
-                break;
-            case OFF:
-                state.value = false;
-                state.contentDescription = mContext.getString(R.string.accessibility_quick_settings_location_off);
-                break;
+        state.slash.isSlashed = !state.value;
+        if (locationEnabled) {
+            state.label = mContext.getString(R.string.quick_settings_location_label);
+            state.contentDescription = mContext.getString(
+                    R.string.accessibility_quick_settings_location_on);
+        } else {
+            state.label = mContext.getString(R.string.quick_settings_location_label);
+            state.contentDescription = mContext.getString(
+                    R.string.accessibility_quick_settings_location_off);
         }
         state.state = state.value ? Tile.STATE_ACTIVE : Tile.STATE_INACTIVE;
         state.expandedAccessibilityClassName = Switch.class.getName();

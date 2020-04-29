@@ -118,11 +118,6 @@
     <string name="tuner_show_drag_handle">Show drag handle</string>
     <string name="tuner_qs_long_press_action">Dont show panels on long press</string>
 
-    <!-- Advance location quick setting tile -->
-    <string name="accessibility_quick_settings_location_battery_saving">Location reporting: battery saving mode.</string>
-    <string name="accessibility_quick_settings_location_gps_only">Location reporting: sensors only mode.</string>
-    <string name="accessibility_quick_settings_location_high_accuracy">Location reporting: high accuracy mode.</string>
-
     <!-- ADB over network tile -->
     <string name="quick_settings_network_adb_enabled_label">Enabled</string>
     <string name="quick_settings_network_adb_disabled_label">Disabled</string>

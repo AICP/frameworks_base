@@ -115,19 +115,17 @@ public class LocationControllerImpl extends BroadcastReceiver implements Locatio
         }
         // When enabling location, a user consent dialog will pop up, and the
         // setting won't be fully enabled until the user accepts the agreement.
-        return Settings.Secure.putIntForUser(mContext.getContentResolver(),
+        Settings.Secure.putIntForUser(mContext.getContentResolver(),
                 Settings.Secure.LOCATION_MODE, mode, currentUserId);
+        return true;
     }
 
     /**
-     * Returns int corresponding to current location mode in settings.
+     * Returns the current location mode.
      */
     public int getCurrentMode() {
         int currentUserId = ActivityManager.getCurrentUser();
-        if (isUserLocationRestricted(currentUserId)) {
-            return Settings.Secure.LOCATION_MODE_OFF;
-        }
-        return Settings.Secure.getIntForUser(mContext.getContentResolver(),
+         return Settings.Secure.getIntForUser(mContext.getContentResolver(),
                 Settings.Secure.LOCATION_MODE, Settings.Secure.LOCATION_MODE_OFF,
                 currentUserId);
     }

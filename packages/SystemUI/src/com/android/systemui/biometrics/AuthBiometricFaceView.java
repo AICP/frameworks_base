@@ -174,6 +174,11 @@ public class AuthBiometricFaceView extends AuthBiometricView {
     }
 
     @Override
+    protected int getDescriptionTextId() {
+        return R.string.applock_face;
+    }
+
+    @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
         mIconView.setVisibility(View.VISIBLE);

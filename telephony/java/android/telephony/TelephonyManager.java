@@ -5460,6 +5460,16 @@ public class TelephonyManager {
     }
 
     /**
+     * @hide
+     */
+    public void toggle3G(boolean threeGees) {
+        try {
+            getITelephony().toggle3G(threeGees);
+        } catch (RemoteException e) {
+        }
+    }
+
+    /**
      * Returns the MMS user agent.
      */
     public String getMmsUserAgent() {
@@ -10567,7 +10577,7 @@ public class TelephonyManager {
     public static final long NETWORK_CLASS_BITMASK_2G = NETWORK_TYPE_BITMASK_GSM
                 | NETWORK_TYPE_BITMASK_GPRS
                 | NETWORK_TYPE_BITMASK_EDGE
-                | NETWORK_TYPE_BITMASK_CDMA	
+                | NETWORK_TYPE_BITMASK_CDMA
                 | NETWORK_TYPE_BITMASK_1xRTT;
 
     /** @hide */
@@ -10581,15 +10591,15 @@ public class TelephonyManager {
             | NETWORK_TYPE_BITMASK_HSPAP
             | NETWORK_TYPE_BITMASK_UMTS
             | NETWORK_TYPE_BITMASK_TD_SCDMA;
-	
+
     /** @hide */
     public static final long NETWORK_CLASS_BITMASK_4G = NETWORK_TYPE_BITMASK_LTE
             | NETWORK_TYPE_BITMASK_LTE_CA
             | NETWORK_TYPE_BITMASK_IWLAN;
-	
+
     /** @hide */
     public static final long NETWORK_CLASS_BITMASK_5G = NETWORK_TYPE_BITMASK_NR;
-	
+
     /** @hide */
     public static final long NETWORK_STANDARDS_FAMILY_BITMASK_3GPP = NETWORK_TYPE_BITMASK_GSM
             | NETWORK_TYPE_BITMASK_GPRS
@@ -10603,13 +10613,13 @@ public class TelephonyManager {
             | NETWORK_TYPE_BITMASK_LTE
             | NETWORK_TYPE_BITMASK_LTE_CA
             | NETWORK_TYPE_BITMASK_NR;
-	
+
     /** @hide */
     public static final long NETWORK_STANDARDS_FAMILY_BITMASK_3GPP2 = NETWORK_TYPE_BITMASK_CDMA
             | NETWORK_TYPE_BITMASK_1xRTT
             | NETWORK_TYPE_BITMASK_EVDO_0
             | NETWORK_TYPE_BITMASK_EVDO_A
-            | NETWORK_TYPE_BITMASK_EVDO_B	
+            | NETWORK_TYPE_BITMASK_EVDO_B
             | NETWORK_TYPE_BITMASK_EHRPD;
 
     /**

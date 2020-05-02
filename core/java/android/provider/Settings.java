@@ -6972,6 +6972,14 @@ public final class Settings {
         /** @hide */
         private static final Validator SCREEN_STATE_MOBILE_DATA_VALIDATOR = BOOLEAN_VALIDATOR;
 
+        /**
+         * @hide
+         */
+        public static final String SCREEN_STATE_THREEG = "screen_state_threeg";
+
+        /** @hide */
+        private static final Validator SCREEN_STATE_THREEG_VALIDATOR = BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7244,6 +7252,7 @@ public final class Settings {
             SCREEN_STATE_GPS,
             SCREEN_STATE_MOBILE_DATA,
             SCREEN_STATE_TWOG,
+            SCREEN_STATE_THREEG,
             // AICP Settings end
         };
 
@@ -7593,6 +7602,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SCREEN_STATE_GPS);
             PRIVATE_SETTINGS.add(SCREEN_STATE_MOBILE_DATA);
             PRIVATE_SETTINGS.add(SCREEN_STATE_TWOG);
+            PRIVATE_SETTINGS.add(SCREEN_STATE_THREEG);
             // AICP Settings end
         }
 
@@ -7929,6 +7939,7 @@ public final class Settings {
             VALIDATORS.put(SCREEN_STATE_GPS, SCREEN_STATE_GPS_VALIDATOR);
             VALIDATORS.put(SCREEN_STATE_MOBILE_DATA, SCREEN_STATE_MOBILE_DATA_VALIDATOR);
             VALIDATORS.put(SCREEN_STATE_TWOG, SCREEN_STATE_TWOG_VALIDATOR);
+            VALIDATORS.put(SCREEN_STATE_THREEG, SCREEN_STATE_THREEG_VALIDATOR);
             // AICP Settings end
         }
 

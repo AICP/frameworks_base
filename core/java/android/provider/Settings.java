@@ -7060,6 +7060,11 @@ public final class Settings {
          */
         public static final String SCREEN_STATE_TWOG = "screen_state_twog";
 
+        /**
+         * @hide
+         */
+        public static final String SCREEN_STATE_THREEG = "screen_state_threeg";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7316,6 +7321,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(SCREEN_STATE_GPS, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(SCREEN_STATE_MOBILE_DATA, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(SCREEN_STATE_TWOG, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(SCREEN_STATE_THREEG, BOOLEAN_VALIDATOR);
         }
 
         /**

@@ -469,6 +469,7 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
         } else if (fodicon == 20) {
             this.setImageResource(R.drawable.fod_icon_sun_metro);
         }
+        this.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
 
         if (useWallpaperColor()) {
             try {

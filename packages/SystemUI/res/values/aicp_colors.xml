@@ -12,4 +12,8 @@
     <color name="screenshot_partial_capture_background">@*android:color/accent_device_default_light</color>
     <color name="screenshot_partial_cancel_background">#a0000000</color>
 
+    <!-- Dismiss all icon -->
+    <color name="recents_dismiss_all_background_color">@android:color/white</color>
+    <color name="recents_dismiss_all_icon_color">#8a000000</color>
+
 </resources>

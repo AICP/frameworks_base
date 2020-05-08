@@ -389,12 +389,9 @@ public class ZenModeConfig implements Parcelable {
 
     private static int[] generateMinuteBuckets() {
         final int maxHrs = 24;
-        final int[] buckets = new int[maxHrs + 3];
-        buckets[0] = 15;
-        buckets[1] = 30;
-        buckets[2] = 45;
-        for (int i = 1; i <= maxHrs; i++) {
-            buckets[2 + i] = 60 * i;
+        final int[] buckets = new int[maxHrs * 4];
+        for (int i = 1; i <= maxHrs * 4; i++) {
+            buckets[i - 1] = 15 * i;
         }
         return buckets;
     }

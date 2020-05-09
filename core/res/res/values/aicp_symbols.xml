@@ -232,4 +232,7 @@
 
   <!-- Whether to allow process with media UID to access CameraServiceProxy -->
   <java-symbol type="bool" name="config_allowMediaUidForCameraServiceProxy" />
+
+  <java-symbol type="plurals" name="zen_mode_duration_minutes_combined" />
+  <java-symbol type="plurals" name="zen_mode_duration_minutes_combined_short" />
 </resources>

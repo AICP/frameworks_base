@@ -1206,13 +1206,17 @@ public class ZenModeConfig implements Parcelable {
             line2 = res.getString(R.string.zen_mode_until, formattedTime);
         } else if (minutes < DAY_MINUTES) {
             // display as hours
-            num =  Math.round(minutes / 60f);
+            num = minutes / 60;
+            int numMins = minutes % 60;
             int summaryResId = shortVersion ? R.plurals.zen_mode_duration_hours_summary_short
                     : R.plurals.zen_mode_duration_hours_summary;
             summary = res.getQuantityString(summaryResId, num, num, formattedTime);
             int line1ResId = shortVersion ? R.plurals.zen_mode_duration_hours_short
                     : R.plurals.zen_mode_duration_hours;
-            line1 = res.getQuantityString(line1ResId, num, num, formattedTime);
+            int minsResId = shortVersion ? R.plurals.zen_mode_duration_minutes_combined_short
+                    : R.plurals.zen_mode_duration_minutes_combined;
+            line1 = res.getQuantityString(line1ResId, num, num, formattedTime) + " " +
+                          res.getQuantityString(minsResId, numMins, numMins, formattedTime);
             line2 = res.getString(R.string.zen_mode_until, formattedTime);
         } else {
             // display as day/time

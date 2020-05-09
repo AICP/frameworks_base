@@ -71,4 +71,17 @@
 
     <!-- Whether to allow process with media UID to access CameraServiceProxy -->
     <bool name="config_allowMediaUidForCameraServiceProxy">false</bool>
+
+    <!-- 15 min ZenMode duration periods display, e.g. 2 hours 45 minutes -->
+    <plurals name="zen_mode_duration_minutes_combined">
+        <item quantity="one">one minute</item>
+        <item quantity="other">%d minutes</item>
+    </plurals>
+
+    <!-- 15 min ZenMode duration periods display, e.g. 2 hrs 45 mins -->
+    <plurals name="zen_mode_duration_minutes_combined_short">
+        <item quantity="one">1 min</item>
+        <item quantity="other">%d min</item>
+    </plurals>
+
 </resources>

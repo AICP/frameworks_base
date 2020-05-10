@@ -162,21 +162,18 @@ public class WeatherTile extends QSTileImpl<BooleanState> implements OmniJawsCli
     @Override
     protected void handleSecondaryClick(@Nullable View view) {
         if (DEBUG) Log.d(TAG, "handleSecondaryClick");
-        if (!mWeatherClient.isOmniJawsServiceInstalled()) {
-            Toast.makeText(mContext, R.string.omnijaws_package_not_available, Toast.LENGTH_SHORT).show();
-            return;
-        }
         // Secondary clicks are also on quickbar tiles
         showDetail(true);
     }
 
     @Override
+    public boolean isAvailable() {
+        return mWeatherClient.isOmniJawsServiceInstalled();
+    }
+
+    @Override
     protected void handleClick(@Nullable View view) {
         if (DEBUG) Log.d(TAG, "handleClick");
-        if (!mWeatherClient.isOmniJawsServiceInstalled()) {
-            Toast.makeText(mContext, R.string.omnijaws_package_not_available, Toast.LENGTH_SHORT).show();
-            return;
-        }
         if (!mState.value) {
             if (!mWeatherClient.isOmniJawsSetupDone()) {
                 mActivityStarter.postStartActivityDismissingKeyguard(mWeatherClient.getSettingsIntent(), 0);

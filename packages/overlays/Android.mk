@@ -41,11 +41,7 @@ LOCAL_REQUIRED_MODULES := \
 	NavigationBarModeGesturalOverlay \
 	NavigationBarModeGesturalOverlayNarrowBack \
 	NavigationBarModeGesturalOverlayWideBack \
-	NavigationBarModeGesturalOverlayExtraWideBack \
-	NavigationBarModeGesturalOverlayNoPill \
-	NavigationBarModeGesturalOverlayNarrowBackNoPill \
-	NavigationBarModeGesturalOverlayWideBackNoPill \
-	NavigationBarModeGesturalOverlayExtraWideBackNoPill
+	NavigationBarModeGesturalOverlayExtraWideBack
 
 include $(BUILD_PHONY_PACKAGE)
 include $(CLEAR_VARS)

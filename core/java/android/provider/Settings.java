@@ -6113,12 +6113,6 @@ public final class Settings {
          */
         public static final String VIBRATE_ON_NOTIFICATIONS = "vibrate_on_notifications";
 
-        /** @hide */
-        public static final String GESTURE_PILL_TOGGLE = "gesture_pill_toggle";
-
-        /** @hide */
-        private static final Validator GESTURE_PILL_TOGGLE_VALIDATOR = BOOLEAN_VALIDATOR;
-
         /**
          * Duration of Ambient edge light in seconds
          * @hide
@@ -7192,7 +7186,6 @@ public final class Settings {
             STATUS_BAR_TICKER_TICK_DURATION,
             PULSE_AMBIENT_LIGHT,
             PULSE_AMBIENT_LIGHT_COLOR,
-            GESTURE_PILL_TOGGLE,
             PULSE_AMBIENT_LIGHT_DURATION,
             FLASHLIGHT_ON_CALL,
             LOCKSCREEN_LOCK_ICON,
@@ -7518,7 +7511,6 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUS_BAR_TICKER_TICK_DURATION);
             PRIVATE_SETTINGS.add(PULSE_AMBIENT_LIGHT);
             PRIVATE_SETTINGS.add(PULSE_AMBIENT_LIGHT_COLOR);
-            PRIVATE_SETTINGS.add(GESTURE_PILL_TOGGLE);
             PRIVATE_SETTINGS.add(PULSE_AMBIENT_LIGHT_DURATION);
             PRIVATE_SETTINGS.add(FLASHLIGHT_ON_CALL);
             PRIVATE_SETTINGS.add(LOCKSCREEN_LOCK_ICON);
@@ -7857,7 +7849,6 @@ public final class Settings {
                     STATUS_BAR_TICKER_TICK_DURATION_VALIDATOR);
             VALIDATORS.put(PULSE_AMBIENT_LIGHT, PULSE_AMBIENT_LIGHT_VALIDATOR);
             VALIDATORS.put(PULSE_AMBIENT_LIGHT_COLOR, PULSE_AMBIENT_LIGHT_COLOR_VALIDATOR);
-            VALIDATORS.put(GESTURE_PILL_TOGGLE, GESTURE_PILL_TOGGLE_VALIDATOR);
             VALIDATORS.put(PULSE_AMBIENT_LIGHT_DURATION, PULSE_AMBIENT_LIGHT_DURATION_VALIDATOR);
             VALIDATORS.put(FLASHLIGHT_ON_CALL, FLASHLIGHT_ON_CALL_VALIDATOR);
             VALIDATORS.put(LOCKSCREEN_LOCK_ICON, LOCKSCREEN_LOCK_ICON_VALIDATOR);

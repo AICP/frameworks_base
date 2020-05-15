@@ -650,9 +650,6 @@
     <protected-broadcast
         android:name="com.android.server.policy.PhoneWindowManager.ACTION_TORCH_OFF" />
 
-    <!-- Used to get camera status. -->
-    <protected-broadcast android:name="android.intent.action.CAMERA_STATUS_CHANGED" />
-
     <!-- Gaming mode -->
     <protected-broadcast android:name="android.intent.action.GAMING_MODE_TURN_OFF" />
     <protected-broadcast android:name="android.intent.action.GAMING_MODE_TURN_ON" />

@@ -11140,6 +11140,14 @@ public final class Settings {
          */
         public static final String PULSE_AMBIENT_LIGHT_REPEAT_COUNT = "pulse_ambient_light_repeat_count";
 
+        /**
+         * Direction of repeat animations of Ambient edge light
+         * 0 is restart
+         * 1 is reverse
+         * @hide
+         */
+        public static final String PULSE_AMBIENT_LIGHT_REPEAT_DIRECTION = "pulse_ambient_light_repeat_direction";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

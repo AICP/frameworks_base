@@ -27,7 +27,7 @@
         android:layout_gravity="right"
         android:id="@+id/notification_animation_right"
         android:scaleType="fitXY"
-        android:layout_width="125px"
+        android:layout_width="right_edgeLightNotificationWidth"
         android:layout_height="match_parent"
         android:src="@drawable/ambient_light_pulse_right"/>
      <ImageView
@@ -36,7 +36,7 @@
         android:layout_gravity="left"
         android:id="@+id/notification_animation_left"
         android:scaleType="fitXY"
-        android:layout_width="125px"
+        android:layout_width="left_edgeLightNotificationWidth"
         android:layout_height="match_parent"
         android:src="@drawable/ambient_light_pulse_left"/>
 

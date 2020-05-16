@@ -132,11 +132,7 @@ public class NotificationLightsView extends RelativeLayout {
         rightView.setColorFilter(color);
         mLightAnimator = ValueAnimator.ofFloat(new float[]{0.0f, 2.0f});
         mLightAnimator.setDuration(duration);
-        if (repeat == 0) {
-            mLightAnimator.setRepeatCount(ValueAnimator.INFINITE);
-        } else {
-            mLightAnimator.setRepeatCount(repeat);
-        }
+        mLightAnimator.setRepeatCount(repeat);
         mLightAnimator.setRepeatMode(ValueAnimator.RESTART);
         mLightAnimator.addUpdateListener(new AnimatorUpdateListener() {
             public void onAnimationUpdate(ValueAnimator animation) {

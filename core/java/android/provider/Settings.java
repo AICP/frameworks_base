@@ -6217,6 +6217,14 @@ public final class Settings {
          */
         public static final String PULSE_AMBIENT_LIGHT_REPEAT_COUNT = "pulse_ambient_light_repeat_count";
 
+        /**
+         * Direction of repeat animations of Ambient edge light
+         * 0 is restart
+         * 1 is reverse
+         * @hide
+         */
+        public static final String PULSE_AMBIENT_LIGHT_REPEAT_DIRECTION = "pulse_ambient_light_repeat_direction";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6394,6 +6402,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(PULSE_AMBIENT_LIGHT_DURATION, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(PULSE_AMBIENT_LIGHT_COLOR_MODE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(PULSE_AMBIENT_LIGHT_REPEAT_COUNT, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(PULSE_AMBIENT_LIGHT_REPEAT_DIRECTION, BOOLEAN_VALIDATOR);
         }
 
         /**

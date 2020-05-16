@@ -11135,7 +11135,7 @@ public final class Settings {
 
         /**
          * Number of times to repeat animations of Ambient edge light
-         * 0 is infinite
+         * 0 is never
          * @hide
          */
         public static final String PULSE_AMBIENT_LIGHT_REPEAT_COUNT = "pulse_ambient_light_repeat_count";

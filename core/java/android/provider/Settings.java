@@ -6329,6 +6329,17 @@ public final class Settings {
         /** @hide */
         private static final Validator PULSE_AMBIENT_LIGHT_REPEAT_COUNT_VALIDATOR = ANY_INTEGER_VALIDATOR;
 
+        /**
+         * Direction of repeat animations of Ambient edge light
+         * 0 is restart
+         * 1 is reverse
+         * @hide
+         */
+        public static final String PULSE_AMBIENT_LIGHT_REPEAT_DIRECTION = "pulse_ambient_light_repeat_direction";
+
+        /** @hide */
+        private static final Validator PULSE_AMBIENT_LIGHT_REPEAT_DIRECTION_VALIDATOR = BOOLEAN_VALIDATOR;
+
         /** @hide */
         public static final String BACK_GESTURE_HAPTIC = "back_gesture_haptic";
 
@@ -7215,6 +7226,7 @@ public final class Settings {
             NAVIGATION_BAR_ARROW_KEYS,
             BACK_GESTURE_BLOCK_IME,
             PULSE_AMBIENT_LIGHT_REPEAT_COUNT,
+            PULSE_AMBIENT_LIGHT_REPEAT_DIRECTION,
             OMNI_STATUS_BAR_CUSTOM_HEADER,
             OMNI_STATUS_BAR_CUSTOM_HEADER_SHADOW,
             OMNI_STATUS_BAR_DAYLIGHT_HEADER_PACK,
@@ -7541,6 +7553,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(NAVIGATION_BAR_ARROW_KEYS);
             PRIVATE_SETTINGS.add(BACK_GESTURE_BLOCK_IME);
             PRIVATE_SETTINGS.add(PULSE_AMBIENT_LIGHT_REPEAT_COUNT);
+            PRIVATE_SETTINGS.add(PULSE_AMBIENT_LIGHT_REPEAT_DIRECTION);
             PRIVATE_SETTINGS.add(OMNI_STATUS_BAR_CUSTOM_HEADER);
             PRIVATE_SETTINGS.add(OMNI_STATUS_BAR_CUSTOM_HEADER_SHADOW);
             PRIVATE_SETTINGS.add(OMNI_STATUS_BAR_DAYLIGHT_HEADER_PACK);
@@ -7880,7 +7893,10 @@ public final class Settings {
             VALIDATORS.put(NAVIGATION_BAR_ARROW_KEYS,
                     NAVIGATION_BAR_ARROW_KEYS_VALIDATOR);
             VALIDATORS.put(BACK_GESTURE_BLOCK_IME, BACK_GESTURE_BLOCK_IME_VALIDATOR);
-            VALIDATORS.put(PULSE_AMBIENT_LIGHT_REPEAT_COUNT, PULSE_AMBIENT_LIGHT_REPEAT_COUNT_VALIDATOR);
+            VALIDATORS.put(PULSE_AMBIENT_LIGHT_REPEAT_COUNT,
+                    PULSE_AMBIENT_LIGHT_REPEAT_COUNT_VALIDATOR);
+            VALIDATORS.put(PULSE_AMBIENT_LIGHT_REPEAT_DIRECTION,
+                    PULSE_AMBIENT_LIGHT_REPEAT_DIRECTION_VALIDATOR);
             VALIDATORS.put(OMNI_STATUS_BAR_CUSTOM_HEADER,
                     OMNI_STATUS_BAR_CUSTOM_HEADER_VALIDATOR);
             VALIDATORS.put(OMNI_STATUS_BAR_CUSTOM_HEADER_SHADOW,

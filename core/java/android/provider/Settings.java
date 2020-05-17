@@ -6132,6 +6132,15 @@ public final class Settings {
                 ANY_INTEGER_VALIDATOR;
 
         /**
+         * Width of Ambient edge light in px
+         * @hide
+         */
+        public static final String PULSE_AMBIENT_LIGHT_WIDTH = "pulse_ambient_light_width";
+
+        /** @hide */
+        private static final Validator PULSE_AMBIENT_LIGHT_WIDTH_VALIDATOR =
+                ANY_INTEGER_VALIDATOR;
+        /**
          * Whether to blink flashlight for incoming calls
          * 0 = Disabled (Default)
          * 1 = Blink flashlight only in Ringer mode
@@ -7220,6 +7229,7 @@ public final class Settings {
             HEADSET_CONNECT_PLAYER,
             PULSE_AMBIENT_LIGHT_COLOR_MODE,
             PULSE_AMBIENT_LIGHT_COLOR_AUTOMATIC,
+            PULSE_AMBIENT_LIGHT_WIDTH,
             AICP_SHOW_BATTERY_IMAGE,
             GAMING_MODE_ENABLED,
             GAMING_MODE_ACTIVE,
@@ -7548,6 +7558,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(HEADSET_CONNECT_PLAYER);
             PRIVATE_SETTINGS.add(PULSE_AMBIENT_LIGHT_COLOR_MODE);
             PRIVATE_SETTINGS.add(PULSE_AMBIENT_LIGHT_COLOR_AUTOMATIC);
+            PRIVATE_SETTINGS.add(PULSE_AMBIENT_LIGHT_WIDTH);
             PRIVATE_SETTINGS.add(AICP_SHOW_BATTERY_IMAGE);
             PRIVATE_SETTINGS.add(GAMING_MODE_ENABLED);
             PRIVATE_SETTINGS.add(GAMING_MODE_ACTIVE);
@@ -7889,6 +7900,7 @@ public final class Settings {
             VALIDATORS.put(HEADSET_CONNECT_PLAYER, HEADSET_CONNECT_PLAYER_VALIDATOR);
             VALIDATORS.put(PULSE_AMBIENT_LIGHT_COLOR_MODE, PULSE_AMBIENT_LIGHT_COLOR_MODE_VALIDATOR);
             VALIDATORS.put(PULSE_AMBIENT_LIGHT_COLOR_AUTOMATIC, PULSE_AMBIENT_LIGHT_COLOR_AUTOMATIC_VALIDATOR);
+            VALIDATORS.put(PULSE_AMBIENT_LIGHT_WIDTH, PULSE_AMBIENT_LIGHT_WIDTH_VALIDATOR);
             VALIDATORS.put(AICP_SHOW_BATTERY_IMAGE, AICP_SHOW_BATTERY_IMAGE_VALIDATOR);
             VALIDATORS.put(GAMING_MODE_ENABLED, GAMING_MODE_ENABLED_VALIDATOR);
             VALIDATORS.put(GAMING_MODE_ACTIVE, GAMING_MODE_ACTIVE_VALIDATOR);

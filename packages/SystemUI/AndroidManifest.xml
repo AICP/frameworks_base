@@ -309,6 +309,10 @@
 
     <uses-permission android:name="android.permission.FORCE_STOP_PACKAGES" />
 
+    <!-- Pulse -->
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
     <application
         android:name=".SystemUIApplication"
         android:persistent="true"

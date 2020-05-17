@@ -182,4 +182,5 @@ interface IStatusBarService
      * Used for kill foreground app api
      */
     void killForegroundApp();
+    void screenPinningStateChanged(boolean enabled);
 }

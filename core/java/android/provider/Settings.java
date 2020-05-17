@@ -5735,6 +5735,12 @@ public final class Settings {
          */
         public static final String QS_FOOTER_TEXT_STRING = "qs_footer_text_string";
 
+        /**
+         * Whether to take partial screenshot with volume down + power click.
+         * @hide
+         */
+        public static final String CLICK_PARTIAL_SCREENSHOT = "click_partial_screenshot";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5885,6 +5891,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(AICP_LOCKSCREEN_WEATHER_STYLE);
             PRIVATE_SETTINGS.add(QS_FOOTER_TEXT_SHOW);
             PRIVATE_SETTINGS.add(QS_FOOTER_TEXT_STRING);
+            PRIVATE_SETTINGS.add(CLICK_PARTIAL_SCREENSHOT);
         }
 
         /**

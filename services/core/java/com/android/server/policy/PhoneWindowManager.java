@@ -62,6 +62,7 @@ import static android.view.WindowManager.LayoutParams.TYPE_WALLPAPER;
 import static android.view.WindowManager.LayoutParams.isSystemAlertWindowType;
 import static android.view.WindowManager.ScreenshotSource.SCREENSHOT_KEY_CHORD;
 import static android.view.WindowManager.ScreenshotSource.SCREENSHOT_KEY_OTHER;
+import static android.view.WindowManager.ScreenshotSource.SCREENSHOT_OTHER;
 import static android.view.WindowManager.TAKE_SCREENSHOT_FULLSCREEN;
 import static android.view.WindowManager.TAKE_SCREENSHOT_SELECTED_REGION;
 import static android.view.WindowManagerGlobal.ADD_OKAY;
@@ -534,6 +535,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
     private boolean mHandleVolumeKeysInWM;
 
+    // Click volume down + power for partial screenshot
+    boolean mClickPartialScreenshot;
+
     private boolean mPendingKeyguardOccluded;
     private boolean mKeyguardOccludedChanged;
 
@@ -786,9 +790,12 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     UserHandle.USER_ALL);
             if (mLineageHardware.isSupported(LineageHardwareManager.FEATURE_KEY_SWAP)) {
                 resolver.registerContentObserver(Settings.Secure.getUriFor(
-                        Settings.Secure.SWAP_CAPACITIVE_KEYS), false, this,
-                        UserHandle.USER_ALL);
+                    Settings.Secure.SWAP_CAPACITIVE_KEYS), false, this,
+                    UserHandle.USER_ALL);
             }
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.CLICK_PARTIAL_SCREENSHOT), false, this,
+                    UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.THREE_FINGER_GESTURE), false, this,
                     UserHandle.USER_ALL);
@@ -1516,9 +1523,11 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     }
 
     private long getScreenshotChordLongPressDelay() {
-        long delayMs = DeviceConfig.getLong(
+        // If click to partial screenshot is enabled, restore pre Android QPR1
+        // default delay (500ms) in case SCREENSHOT_KEYCHORD_DELAY is shorter than it.
+        long delayMs = Long.max(mClickPartialScreenshot ? 500 : 0, DeviceConfig.getLong(
                 DeviceConfig.NAMESPACE_SYSTEMUI, SCREENSHOT_KEYCHORD_DELAY,
-                ViewConfiguration.get(mContext).getScreenshotChordKeyTimeout());
+                ViewConfiguration.get(mContext).getScreenshotChordKeyTimeout()));
         if (mKeyguardDelegate.isShowing()) {
             // Double the time it takes to take a screenshot from the keyguard
             return (long) (KEYGUARD_SCREENSHOT_CHORD_DELAY_MULTIPLIER * delayMs);
@@ -1532,7 +1541,12 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     }
 
     private void cancelPendingScreenshotChordAction() {
+        boolean hadMessage = mHandler.hasMessages(MSG_SCREENSHOT_CHORD);
         mHandler.removeMessages(MSG_SCREENSHOT_CHORD);
+        if (mClickPartialScreenshot && hadMessage) {
+            mHandler.sendMessage(mHandler.obtainMessage(
+                    MSG_SCREENSHOT_CHORD, TAKE_SCREENSHOT_SELECTED_REGION, SCREENSHOT_OTHER));
+        }
     }
 
     private void cancelPendingAccessibilityShortcutAction() {
@@ -2498,6 +2512,11 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     .getBoolean(com.android.internal.R.bool.config_volumeHushGestureEnabled)) {
                 mRingerToggleChord = VOLUME_HUSH_OFF;
             }
+
+            //Clıck partial screenshot
+            mClickPartialScreenshot = Settings.System.getIntForUser(resolver,
+                    Settings.System.CLICK_PARTIAL_SCREENSHOT, 0,
+                    UserHandle.USER_CURRENT) == 1;
 
             //Three Finger Gesture
             final boolean threeFingerGestureEnabled = Settings.System.getIntForUser(resolver,

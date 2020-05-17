@@ -6230,6 +6230,12 @@ public final class Settings {
          */
         public static final String PULSE_AMBIENT_LIGHT_COLOR_AUTOMATIC = "pulse_ambient_light_color_automatic";
 
+        /**
+         * Width of Ambient edge light in px
+         * @hide
+         */
+        public static final String PULSE_AMBIENT_LIGHT_WIDTH = "pulse_ambient_light_width";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6409,6 +6415,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(PULSE_AMBIENT_LIGHT_REPEAT_COUNT, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(PULSE_AMBIENT_LIGHT_REPEAT_DIRECTION, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(PULSE_AMBIENT_LIGHT_COLOR_AUTOMATIC, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(PULSE_AMBIENT_LIGHT_WIDTH, ANY_INTEGER_VALIDATOR);
         }
 
         /**

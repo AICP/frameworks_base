@@ -182,4 +182,6 @@ oneway interface IStatusBar
     void onRecentsAnimationStateChanged(boolean running);
 
     void killForegroundApp();
+    void screenPinningStateChanged(boolean enabled);
+    void leftInLandscapeChanged(boolean isLeft);
 }

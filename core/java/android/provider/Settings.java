@@ -5624,6 +5624,12 @@ public final class Settings {
         public static final String HIGH_TOUCH_SENSITIVITY_ENABLE =
                 "high_touch_sensitivity_enable";
 
+        /**
+         * Whether to take partial screenshot with volume down + power click.
+         * @hide
+         */
+        public static final String CLICK_PARTIAL_SCREENSHOT = "click_partial_screenshot";
+
         /***************************
          * AICP System Settings end
          ***************************/

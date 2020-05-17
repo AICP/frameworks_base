@@ -249,4 +249,6 @@ oneway interface IStatusBar
      * Used for kill foreground app api
      */
     void killForegroundApp();
+    void screenPinningStateChanged(boolean enabled);
+    void leftInLandscapeChanged(boolean isLeft);
 }

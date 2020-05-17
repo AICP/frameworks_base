@@ -36,6 +36,7 @@ android_library {
         "src/**/*.java",
         "src/**/I*.aidl",
         "slimrecent/src/**/*.java",
+        "pulse/src/**/*.java",
     ],
     resource_dirs: [
         "res-product",
@@ -43,6 +44,7 @@ android_library {
         "res",
         "slimrecent/res",
         "res-hwkeys",
+        "pulse/res",
     ],
     static_libs: [
         "WindowManager-Shell",

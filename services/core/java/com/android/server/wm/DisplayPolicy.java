@@ -2028,6 +2028,15 @@ public class DisplayPolicy {
         return mStatusBarController.checkHiddenLw();
     }
 
+    private void notifyLeftInLandscapeChanged(boolean isOnLeft) {
+        mHandler.post(() -> {
+            StatusBarManagerInternal statusBar = getStatusBarManagerInternal();
+            if (statusBar != null) {
+                statusBar.leftInLandscapeChanged(isOnLeft);
+            }
+        });
+    }
+
     private boolean layoutNavigationBar(DisplayFrames displayFrames, int uiMode, boolean navVisible,
             boolean navTranslucent, boolean navAllowedHidden,
             boolean statusBarForcesShowingNavigation, Rect simulatedContentFrame) {
@@ -2045,7 +2054,12 @@ public class DisplayPolicy {
         final int displayWidth = displayFrames.mDisplayWidth;
         final Rect dockFrame = displayFrames.mDock;
         final int navBarPosition = navigationBarPosition(displayWidth, displayHeight, rotation);
-
+        final int lastNavbarPosition = navBarPosition;
+        if (lastNavbarPosition == NAV_BAR_LEFT && navBarPosition != NAV_BAR_LEFT) {
+            notifyLeftInLandscapeChanged(false);
+        } else if (lastNavbarPosition != NAV_BAR_LEFT && navBarPosition == NAV_BAR_LEFT) {
+            notifyLeftInLandscapeChanged(true);
+        }
         final Rect cutoutSafeUnrestricted = sTmpRect;
         cutoutSafeUnrestricted.set(displayFrames.mUnrestricted);
         cutoutSafeUnrestricted.intersectUnchecked(displayFrames.mDisplayCutoutSafe);

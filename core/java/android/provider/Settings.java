@@ -11148,6 +11148,12 @@ public final class Settings {
          */
         public static final String PULSE_AMBIENT_LIGHT_REPEAT_DIRECTION = "pulse_ambient_light_repeat_direction";
 
+        /**
+         * Width of Ambient edge light in px
+         * @hide
+         */
+        public static final String PULSE_AMBIENT_LIGHT_WIDTH = "pulse_ambient_light_width";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

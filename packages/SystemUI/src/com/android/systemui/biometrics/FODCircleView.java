@@ -241,7 +241,6 @@ public class FODCircleView extends ImageView {
 
         Resources res = context.getResources();
 
-        mPaintFingerprint.setColor(res.getColor(R.color.config_fodColor));
         mPaintFingerprint.setAntiAlias(true);
 
         mPaintFingerprintBackground.setColor(res.getColor(R.color.config_fodColorBackground));
@@ -280,7 +279,6 @@ public class FODCircleView extends ImageView {
                 super.onDraw(canvas);
             }
         };
-        mPressedView.setImageResource(R.drawable.fod_icon_pressed);
 
         mWindowManager.addView(this, mParams);
 
@@ -384,6 +382,11 @@ public class FODCircleView extends ImageView {
 
     public void showCircle() {
         if (mFading) return;
+
+        if (mContext.getResources().getBoolean(R.bool.config_fodShadow) == true)
+            mPressedView.setImageResource(R.drawable.fod_icon_pressed_shadow);
+        mPaintFingerprint.setColor(getFODColor());
+
         mIsCircleShowing = true;
 
         setKeepScreenOn(true);
@@ -574,4 +577,13 @@ public class FODCircleView extends ImageView {
             mHandler.post(() -> updatePosition());
         }
     };
+
+    private int getFODColor() {
+       int defaultColor = mContext.getResources().getColor(R.color.config_fodColor);
+       int fodColor = Settings.System.getInt(mContext.getContentResolver(), Settings.System.FOD_COLOR, defaultColor);
+       if ( fodColor != 0)
+           return fodColor;
+       else
+           return defaultColor;
+    }
 }

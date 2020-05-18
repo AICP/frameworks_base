@@ -262,4 +262,7 @@
         <item>2</item>
         <item>3</item>
     </array>
+
+    <!-- FOD pressed color-->
+    <bool name="config_fod_color_picker">false</bool>
 </resources>

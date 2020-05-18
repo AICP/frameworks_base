@@ -56,4 +56,7 @@
 
     <!-- FPSInfoService FPS node file path -->
     <string name="config_fpsInfoSysNode" translatable="false"></string>
+
+   <!-- Draw shadow on FOD pressed -->
+   <bool name="config_fodShadow">true</bool>
 </resources>

@@ -4772,6 +4772,12 @@ public final class Settings {
         public static final String MULTI_AUDIO_FOCUS_ENABLED = "multi_audio_focus_enabled";
 
         /**
+         * FOD pressed icon color
+         * @hide
+         */
+        public static final String FOD_COLOR = "fod_color";
+
+        /**
          * IMPORTANT: If you add a new public settings you also have to add it to
          * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
          * it to PRIVATE_SETTINGS below. Also add a validator that can validate
@@ -4896,6 +4902,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(LOCK_TO_APP_ENABLED);
             PRIVATE_SETTINGS.add(EGG_MODE);
             PRIVATE_SETTINGS.add(DISPLAY_COLOR_MODE);
+            PRIVATE_SETTINGS.add(FOD_COLOR);
         }
 
         /**
@@ -6883,6 +6890,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(CAMERA_SLEEP_ON_RELEASE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(CAMERA_LAUNCH, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(OFF_GESTURE_HAPTIC_ENABLE, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(FOD_COLOR, ANY_INTEGER_VALIDATOR);
         }
 
         /**

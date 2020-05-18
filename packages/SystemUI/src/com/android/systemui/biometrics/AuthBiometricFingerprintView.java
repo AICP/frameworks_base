@@ -81,6 +81,18 @@ public class AuthBiometricFingerprintView extends AuthBiometricView {
         showTouchSensorString();
     }
 
+    @Override
+    void onFinishInflateInternal() {
+        super.onFinishInflateInternal();
+        if (mHasFod) {
+            mIconView.setVisibility(View.INVISIBLE);
+            mIconView.setPadding(0, 0, 0, 0);
+            // Add IndicatorView above the biometric icon
+            removeView(mIndicatorView);
+            addView(mIndicatorView, indexOfChild(mIconView));
+        }
+    }
+
     private void showTouchSensorString() {
         mIndicatorView.setText(R.string.fingerprint_dialog_touch_sensor);
         mIndicatorView.setTextColor(mTextColorHint);

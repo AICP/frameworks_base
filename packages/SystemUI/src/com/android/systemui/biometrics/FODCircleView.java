@@ -271,7 +271,6 @@ public class FODCircleView extends ImageView implements ConfigurationListener, T
 
         Resources res = context.getResources();
 
-        mPaintFingerprint.setColor(res.getColor(R.color.config_fodColor));
         mPaintFingerprint.setAntiAlias(true);
 
         mTargetUsesInKernelDimming = res.getBoolean(com.android.internal.R.bool.config_targetUsesInKernelDimming);
@@ -467,6 +466,8 @@ public class FODCircleView extends ImageView implements ConfigurationListener, T
         if (mIsAuthenticated) {
             return;
         }
+
+        mPaintFingerprint.setColor(getFODColor());
 
         mIsCircleShowing = true;
 
@@ -787,6 +788,12 @@ public class FODCircleView extends ImageView implements ConfigurationListener, T
         } else {
             this.setColorFilter(null);
         }
+    }
+
+    private int getFODColor() {
+       int defaultColor = mContext.getResources().getColor(R.color.config_fodColor);
+       return Settings.System.getInt(mContext.getContentResolver(),
+            Settings.System.FOD_COLOR, defaultColor);
     }
 
     private static int lighter(int color, int factor) {

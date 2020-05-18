@@ -199,4 +199,7 @@
 
   <!-- Gesture handle width -->
   <java-symbol type="array" name="config_handleLengthScales" />
+
+  <!-- FOD pressed color-->
+  <java-symbol type="bool" name="config_fod_color_picker" />
 </resources>

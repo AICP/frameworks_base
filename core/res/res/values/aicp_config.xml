@@ -269,4 +269,7 @@
 
     <!-- FOD icon dim-->
     <bool name="config_targetUsesInKernelDimming">false</bool>
+
+    <!-- FOD pressed color-->
+    <bool name="config_fod_color_picker">false</bool>
 </resources>

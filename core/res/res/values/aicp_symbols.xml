@@ -238,4 +238,7 @@
 
   <!-- FOD icon dimming -->
   <java-symbol type="bool" name="config_targetUsesInKernelDimming" />
+
+  <!-- FOD pressed color-->
+  <java-symbol type="bool" name="config_fod_color_picker" />
 </resources>

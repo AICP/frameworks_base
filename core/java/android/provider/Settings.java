@@ -6461,6 +6461,16 @@ public final class Settings {
                 BOOLEAN_VALIDATOR;
 
         /**
+         * FOD pressed icon color
+         * @hide
+         */
+        public static final String FOD_COLOR = "fod_color";
+
+        /** @hide */
+        private static final Validator FOD_COLOR_VALIDATOR =
+                ANY_INTEGER_VALIDATOR;
+
+        /**
          * Enable proxi check for wake keys - must be implemented in a device
          * KeyHandler
          * @hide
@@ -7397,6 +7407,7 @@ public final class Settings {
             FOD_ICON,
             FOD_ICON_WALLPAPER_COLOR,
             FOD_RECOGNIZING_ANIMATION,
+            FOD_COLOR,
             OMNI_DEVICE_PROXI_CHECK_ENABLED,
             OMNI_DEVICE_FEATURE_SETTINGS,
             OMNI_BUTTON_EXTRA_KEY_MAPPING,
@@ -7728,6 +7739,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(FOD_ICON);
             PRIVATE_SETTINGS.add(FOD_ICON_WALLPAPER_COLOR);
             PRIVATE_SETTINGS.add(FOD_RECOGNIZING_ANIMATION);
+            PRIVATE_SETTINGS.add(FOD_COLOR);
             PRIVATE_SETTINGS.add(OMNI_BUTTON_EXTRA_KEY_MAPPING);
             PRIVATE_SETTINGS.add(OMNI_DEVICE_PROXI_CHECK_ENABLED);
             PRIVATE_SETTINGS.add(OMNI_DEVICE_FEATURE_SETTINGS);
@@ -8082,6 +8094,7 @@ public final class Settings {
             VALIDATORS.put(FOD_ICON_WALLPAPER_COLOR,
                     FOD_ICON_WALLPAPER_COLOR_VALIDATOR);
             VALIDATORS.put(FOD_RECOGNIZING_ANIMATION, FOD_RECOGNIZING_ANIMATION_VALIDATOR);
+            VALIDATORS.put(FOD_COLOR, FOD_COLOR_VALIDATOR);
             VALIDATORS.put(OMNI_DEVICE_PROXI_CHECK_ENABLED, OMNI_DEVICE_PROXI_CHECK_ENABLED_VALIDATOR);
             VALIDATORS.put(OMNI_DEVICE_FEATURE_SETTINGS, OMNI_DEVICE_FEATURE_SETTINGS_VALIDATOR);
             VALIDATORS.put(OMNI_BUTTON_EXTRA_KEY_MAPPING, OMNI_BUTTON_EXTRA_KEY_MAPPING_VALIDATOR);

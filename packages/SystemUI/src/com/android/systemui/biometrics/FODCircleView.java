@@ -226,6 +226,12 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
         return true;
     }
 
+    private int getFODColor() {
+       int defaultColor = mContext.getResources().getColor(R.color.config_fodColor);
+       return Settings.System.getInt(mContext.getContentResolver(),
+            Settings.System.FOD_SOLID_COLOR, defaultColor);
+    }
+
     public FODCircleView(Context context) {
         super(context);
 
@@ -250,6 +256,7 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
         mPaintFingerprint.setColor(res.getColor(R.color.config_fodColor));
         mPaintFingerprint.setAntiAlias(true);
 
+        mPaintFingerprint.setColor(getFODColor());
         mPaintFingerprintBackground.setColor(res.getColor(R.color.config_fodColorBackground));
         mPaintFingerprintBackground.setAntiAlias(true);
 

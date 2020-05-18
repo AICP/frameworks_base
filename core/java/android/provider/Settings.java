@@ -4889,6 +4889,12 @@ public final class Settings {
          */
         public static final String FOD_ICON_WALLPAPER_COLOR = "fod_icon_wallpaper_color";
 
+	/**
+         * FOD pressed icon color
+         * @hide
+         */
+        public static final String FOD_COLOR = "fod_color";
+
         /**
          * FOD use accent default color
          * @hide
@@ -5035,6 +5041,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(FOD_ICON);
             PRIVATE_SETTINGS.add(FOD_ICON_WALLPAPER_COLOR);
             PRIVATE_SETTINGS.add(FOD_ICON_ACCENT_DEFAULT_COLOR);
+            PRIVATE_SETTINGS.add(FOD_COLOR);
         }
 
         /**
@@ -7435,6 +7442,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(USE_NEW_SEARCHBAR, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(RINGTONE_VIBRATION_PATTERN, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(CUSTOM_RINGTONE_VIBRATION_PATTERN, ANY_STRING_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(FOD_COLOR, ANY_INTEGER_VALIDATOR);
         }
 
         /**

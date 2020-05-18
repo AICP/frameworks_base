@@ -245,4 +245,6 @@
   <!-- Vendor package signatures -->
   <java-symbol type="array" name="config_vendorPlatformSignatures" />
 
+  <!-- FOD pressed color-->
+  <java-symbol type="bool" name="config_fod_color_picker" />
 </resources>

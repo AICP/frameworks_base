@@ -278,4 +278,6 @@
     <string-array name="config_vendorPlatformSignatures">
     </string-array>
 
+    <!-- FOD pressed color-->
+    <bool name="config_fod_color_picker">false</bool>
 </resources>

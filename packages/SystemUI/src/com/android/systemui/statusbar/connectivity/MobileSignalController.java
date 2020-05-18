@@ -515,10 +515,6 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
                 case 4:
                     resId = R.drawable.ic_volte3;
                     break;
-                // CAF HD Icon
-                case 5:
-                    resId = R.drawable.ic_hd2_volte;
-                    break;
                 // MIUI 11 VoLTE icon
                 case 6:
                     resId = R.drawable.ic_volte_miui;
@@ -687,7 +683,13 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
             statusIcon = new IconState(
                     showDataIconStatusBar && !mCurrentState.airplaneMode,
                     getCurrentIconId(), contentDescription);
-
+            MobileIconGroup vowifiIconGroup = getVowifiIconGroup();
+            if (vowifiIconGroup != null ) {
+                typeIcon = vowifiIconGroup.dataType;
+                statusIcon = new IconState(true,
+                        mCurrentState.enabled && !mCurrentState.airplaneMode? statusIcon.icon : -1,
+                        statusIcon.contentDescription);
+            }
             showTriangle = showDataIconStatusBar && !mCurrentState.airplaneMode;
         } else {
             statusIcon = new IconState(
@@ -1062,6 +1064,30 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
     @VisibleForTesting
     void setImsType(int imsType) {
         mImsType = imsType;
+    }
+
+    private boolean isCallIdle() {
+        return mCallState == TelephonyManager.CALL_STATE_IDLE;
+    }
+
+    private int getDataNetworkType() {
+        return mServiceState != null ?
+                mServiceState.getDataNetworkType() : TelephonyManager.NETWORK_TYPE_UNKNOWN;
+    }
+
+    private boolean isVowifiAvailable() {
+        return mCurrentState.voiceCapable &&  mCurrentState.imsRegistered
+                && getDataNetworkType() == TelephonyManager.NETWORK_TYPE_IWLAN;
+    }
+
+    private MobileIconGroup getVowifiIconGroup() {
+        if ( isVowifiAvailable() && !isCallIdle() ) {
+            return TelephonyIcons.VOWIFI_CALLING;
+        }else if (isVowifiAvailable()) {
+            return TelephonyIcons.VOWIFI;
+        }else {
+            return null;
+        }
     }
 
     @Override

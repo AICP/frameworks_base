@@ -6588,6 +6588,12 @@ public final class Settings {
          */
         public static final String QS_TILE_VERTICAL_LAYOUT = "qs_tile_vertical_layout";
 
+        /**
+         * boolean value. toggles swipe up hint in gestural nav mode
+         */
+        @SuppressLint("NoSettingsProvider")
+        public static final String NAVIGATION_BAR_HINT = "navigation_bar_hint";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6845,6 +6851,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(QS_LAYOUT_COLUMNS_LANDSCAPE);
             PRIVATE_SETTINGS.add(QS_LAYOUT_COLUMNS);
             PRIVATE_SETTINGS.add(QS_TILE_VERTICAL_LAYOUT);
+            PRIVATE_SETTINGS.add(NAVIGATION_BAR_HINT);
         }
 
         /**

@@ -6593,6 +6593,12 @@ public final class Settings {
          */
         public static final String FINGERPRINT_WAKE_UNLOCK = "fingerprint_wake_unlock";
 
+        /**
+         * boolean value. toggles swipe up hint in gestural nav mode
+         */
+        @SuppressLint("NoSettingsProvider")
+        public static final String NAVIGATION_BAR_HINT = "navigation_bar_hint";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6853,6 +6859,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUS_BAR_SHOW_BATTERY_PERCENT);
             PRIVATE_SETTINGS.add(STATUS_BAR_BATTERY_TEXT_CHARGING);
             PRIVATE_SETTINGS.add(FINGERPRINT_WAKE_UNLOCK);
+            PRIVATE_SETTINGS.add(NAVIGATION_BAR_HINT);
         }
 
         /**

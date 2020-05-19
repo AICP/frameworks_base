@@ -223,5 +223,6 @@ public class SystemSettings {
         Settings.System.STATUS_BAR_SHOW_BATTERY_PERCENT,
         Settings.System.STATUS_BAR_BATTERY_TEXT_CHARGING,
 	Settings.System.FINGERPRINT_WAKE_UNLOCK,
+        Settings.System.NAVIGATION_BAR_HINT,
     };
 }

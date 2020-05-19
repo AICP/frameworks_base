@@ -17,12 +17,12 @@
 LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
 
-LOCAL_RRO_THEME := NavigationBarModeGestural
+LOCAL_RRO_THEME := NavigationBarNoHint
 
 
 LOCAL_RESOURCE_DIR := $(LOCAL_PATH)/res
 
-LOCAL_PACKAGE_NAME := NavigationBarModeGesturalOverlay
+LOCAL_PACKAGE_NAME := NavigationBarNoHintOverlay
 LOCAL_SDK_VERSION := current
 
 include $(BUILD_RRO_PACKAGE)

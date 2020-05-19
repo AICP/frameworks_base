@@ -16,12 +16,11 @@
  */
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-        package="com.android.internal.systemui.navbar.gestural_wide_back"
+        package="aicp.overlay.customization.navbar.nohint"
         android:versionCode="1"
         android:versionName="1.0">
     <overlay android:targetPackage="android"
-        android:category="com.android.internal.navigation_bar_mode"
         android:priority="1"/>
 
-    <application android:label="@string/navigation_bar_mode_title" android:hasCode="false"/>
+    <application android:label="@string/navigation_bar_hidden_title" android:hasCode="false"/>
 </manifest>

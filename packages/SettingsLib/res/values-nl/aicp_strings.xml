@@ -21,4 +21,8 @@
     <string name="screen_zoom_summary_smaller">Kleiner</string>
     <string name="screen_zoom_summary_smallest">Kleinste</string>
     <string name="status_deep_sleep">(Diepe slaap: %1$d%2$s)</string>
+    <string name="power_remaining_dash_charging_duration_only">Dash opladen (<xliff:g id="time">%1$s</xliff:g> tot volledig opgeladen)</string>
+    <string name="battery_info_status_dash_charging">Dash opladen</string>
+    <string name="power_remaining_warp_charging_duration_only">Warp opladen (<xliff:g id="time">%1$s</xliff:g> tot volledig opgeladen)</string>
+    <string name="battery_info_status_warp_charging">Warp opladen</string>
 </resources>

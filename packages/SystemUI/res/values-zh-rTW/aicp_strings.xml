@@ -48,9 +48,6 @@
     <string name="accessibility_quick_settings_caffeine_on">暫停休眠開啟</string>
     <string name="quick_aicp_extras_label">Aicp 額外功能</string>
     <string name="quick_aicp_extras_toast">哈哈哈，真的以為長按有東西可以用！！！</string>
-    <string name="accessibility_quick_settings_location_battery_saving">位置回報：省電模式。</string>
-    <string name="accessibility_quick_settings_location_gps_only">位置回報：僅限感應器模式。</string>
-    <string name="accessibility_quick_settings_location_high_accuracy">位置回報：高精度模式。</string>
     <string name="quick_settings_network_adb_disabled_label">已停用</string>
     <string name="quick_settings_locale_label">語言</string>
     <string name="quick_settings_locale_more_locales_toast">請配置多種語言以啟用切換功能</string>

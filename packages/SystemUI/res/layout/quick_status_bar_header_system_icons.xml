@@ -73,6 +73,16 @@
 
     <include layout="@layout/ongoing_privacy_chip" />
 
+    <com.android.systemui.statusbar.info.DataUsageView
+        android:id="@+id/data_sim_usage"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:gravity="center_vertical|end"
+        android:textAppearance="@style/TextAppearance.StatusBar.Clock"
+        android:singleLine="true"
+        android:visibility="gone" />
+
     <com.android.systemui.statusbar.policy.NetworkTraffic
         android:id="@+id/networkTraffic"
         android:paddingStart="@dimen/net_traffic_starting_padding"
@@ -89,17 +99,6 @@
         android:scaleType="center"
         android:gravity="center_vertical"
         android:visibility="gone" />
-
-        <com.android.systemui.statusbar.info.DataUsageView
-            android:id="@+id/data_sim_usage"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical|end"
-            android:paddingStart="@dimen/status_bar_left_clock_starting_padding"
-            android:paddingEnd="@dimen/status_bar_left_clock_end_padding"
-            android:textAppearance="@style/TextAppearance.StatusBar.Clock"
-            android:singleLine="true"
-            android:text="" />
 
     </LinearLayout>
 </LinearLayout>

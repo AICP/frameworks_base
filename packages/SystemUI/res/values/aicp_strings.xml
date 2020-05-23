@@ -309,6 +309,4 @@
     <string name="app_picker_dialog_title">Select an app</string>
     <string name="recents_app_killed">App killed</string>
     <string name="nope_cant_kill">Launcher cannot be killed</string>
-
-    <string name="usage_data">used</string>
 </resources>

@@ -62,12 +62,11 @@ public class DataUsageView extends TextView {
         mobileDataController.setSubscriptionId(
             SubscriptionManager.getDefaultDataSubscriptionId());
         final DataUsageController.DataUsageInfo info = mobileDataController.getDataUsageInfo();
-
-        formatedinfo = formatDataUsage(info.usageLevel) + " " + mContext.getResources().getString(R.string.usage_data);
+        formatedinfo = formatDataUsage(info.usageLevel) + " ";
         shouldUpdateDataTextView = true;
     }
 
-    private boolean isDataUsageEnabled() {
+    public boolean isDataUsageEnabled() {
         return Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.QS_DATAUSAGE, 0) != 0;
     }

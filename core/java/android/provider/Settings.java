@@ -7113,7 +7113,7 @@ public final class Settings {
         public static final String QS_DATAUSAGE = "qs_datausage";
 
         /** @hide */
-        private static final Validator QS_DATAUSAGE_VALIDATOR = BOOLEAN_VALIDATOR;
+        private static final Validator QS_DATAUSAGE_VALIDATOR = ANY_INTEGER_VALIDATOR;
 
         /***************************
          * AICP System Settings end

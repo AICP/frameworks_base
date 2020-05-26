@@ -222,5 +222,6 @@ public class SecureSettings {
         Settings.Secure.SHOW_BACK_ARROW_GESTURE,
         Settings.Secure.SECURE_LOCKSCREEN_QS_DISABLED,
         Settings.Secure.LOCKSCREEN_MEDIA_METADATA,
+        Settings.Secure.BERRY_BLACK_THEME,
     };
 }

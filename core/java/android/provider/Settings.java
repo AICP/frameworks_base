@@ -11698,6 +11698,12 @@ public final class Settings {
          */
         public static final String LOCKSCREEN_MEDIA_METADATA = "lockscreen_media_metadata";
 
+        /**
+         * Whether to use black theme for dark mode
+         * @hide
+         */
+        public static final String BERRY_BLACK_THEME = "berry_black_theme";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

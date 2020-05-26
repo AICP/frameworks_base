@@ -19,18 +19,18 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <string name="clock_title_binary" translatable="false">Binary</string>
-    <string name="clock_title_default_bold" translatable="false">Default (bold)</string>
-    <string name="clock_title_samsung" translatable="false">Samsung</string>
-    <string name="clock_title_samsung_bold" translatable="false">Samsung (bold)</string>
-    <string name="clock_title_spectrum" translatable="false">Spectrum</string>
-    <string name="clock_title_dot" translatable="false">Dot</string>
-    <string name="clock_title_sneeky" translatable="false">Sneeky</string>
-    <string name="clock_title_spidey" translatable="false">Spidey</string>
-    <string name="clock_title_bliss" translatable="false">Bliss</string>
-    <string name="clock_title_custom_num" translatable="false">Custom-Num</string>
-    <string name="clock_title_aicp" translatable="false">Aicp</string>
+    <string name="clock_title_binary">Binary</string>
+    <string name="clock_title_default_bold">Default (bold)</string>
+    <string name="clock_title_samsung">Samsung</string>
+    <string name="clock_title_samsung_bold">Samsung (bold)</string>
+    <string name="clock_title_spectrum">Spectrum</string>
+    <string name="clock_title_dot">Dot</string>
+    <string name="clock_title_sneeky">Sneeky</string>
+    <string name="clock_title_spidey">Spidey</string>
+    <string name="clock_title_bliss">Bliss</string>
+    <string name="clock_title_custom_num">Custom-Num</string>
+    <string name="clock_title_aicp">Aicp</string>
 
-    <string name="clock_title_two_line_digital" translatable="false">Vertical</string>
-    <string name="clock_title_one_line_digital" translatable="false">Digital</string>
+    <string name="clock_title_two_line_digital">Vertical</string>
+    <string name="clock_title_one_line_digital">Digital</string>
 </resources>

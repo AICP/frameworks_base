@@ -5,7 +5,8 @@
     <color name="status_bar_carrier_color">#FFFFFFFF</color>
 
     <!-- Color of the FOD view -->
-    <color name="config_fodColor">#00ffff</color>
+    <color name="config_fodColor">#00ff00</color>
+    <color name="config_fodColorBackground">#20000000</color>
 
     <!-- Partial screenshot -->
     <color name="screenshot_partial_layout_background">#20000000</color>

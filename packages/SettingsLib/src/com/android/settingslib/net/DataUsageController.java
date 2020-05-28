@@ -298,7 +298,11 @@ public class DataUsageController {
 
     public DataUsageInfo getDailyDataUsageInfo() {
         NetworkTemplate template = DataUsageUtils.getMobileTemplate(mContext, mSubscriptionId);
+        return getDailyDataUsageInfo(template);
+    }
 
+    public DataUsageInfo getDailyWifiDataUsageInfo() {
+        NetworkTemplate template = NetworkTemplate.buildTemplateWifiWildcard();
         return getDailyDataUsageInfo(template);
     }
 

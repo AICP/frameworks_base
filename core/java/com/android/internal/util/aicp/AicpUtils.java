@@ -270,6 +270,15 @@ public class AicpUtils {
         return wifi.isConnected() || mobile.isConnected();
     }
 
+    // Check if device is connected to Wi-Fi
+    public static boolean isWiFiConnected(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (cm == null) return false;
+
+        NetworkInfo wifi = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        return wifi.isConnected();
+    }
+
     public static int getBlendColorForPercent(int fullColor, int emptyColor, boolean reversed,
                                               int percentage) {
         // When changing implementation here, please update the same method in the

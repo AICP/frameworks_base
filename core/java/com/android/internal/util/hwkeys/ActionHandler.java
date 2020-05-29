@@ -154,7 +154,7 @@ public class ActionHandler {
         sDisabledActions.add(SYSTEMUI_TASK_REGION_SCREENSHOT);
         sDisabledActions.add(SYSTEMUI_TASK_STOP_SCREENPINNING);
         sDisabledActions.add(SYSTEMUI_TASK_ASSISTANT_SOUND_SEARCH);
-        sDisabledActions.add(SYSTEMUI_TASK_POWER_MENU);
+        // sDisabledActions.add(SYSTEMUI_TASK_POWER_MENU);
     }
 
     static enum SystemAction {

@@ -6708,6 +6708,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 mHandler.removeCallbacks(mScreenshotRunnable);
                 mScreenshotRunnable.setScreenshotType(TAKE_SCREENSHOT_SELECTED_REGION);
                 mHandler.post(mScreenshotRunnable);
+            } else if (AicpUtils.INTENT_SHOW_POWER_MENU.equals(action)) {
+                showGlobalActions();
             }
         }
     }

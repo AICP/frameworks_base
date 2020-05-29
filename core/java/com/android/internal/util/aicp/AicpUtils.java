@@ -89,6 +89,11 @@ public class AicpUtils {
     /**
      * @hide
      */
+     public static final String INTENT_SHOW_POWER_MENU = "action_handler_show_power_menu";
+
+    /**
+     * @hide
+     */
     public static void launchKeyguardDismissIntent(Context context, UserHandle user, Intent launchIntent) {
         Intent keyguardIntent = new Intent(ACTION_DISMISS_KEYGUARD);
         keyguardIntent.setPackage(SYSTEMUI_PACKAGE_NAME);
@@ -233,6 +238,16 @@ public class AicpUtils {
             case AudioManager.RINGER_MODE_SILENT:
                 am.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
                 break;
+        }
+    }
+
+    // Power menu
+    public static void showPowerMenu() {
+        IWindowManager wm = WindowManagerGlobal.getWindowManagerService();
+        try {
+            wm.sendCustomAction(new Intent(INTENT_SHOW_POWER_MENU));
+        } catch (RemoteException e) {
+            e.printStackTrace();
         }
     }
 

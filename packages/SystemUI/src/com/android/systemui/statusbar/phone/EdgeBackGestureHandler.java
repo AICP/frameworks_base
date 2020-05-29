@@ -691,7 +691,7 @@ public class EdgeBackGestureHandler implements DisplayListener {
     private SwipeRunnable mLongSwipeAction = new SwipeRunnable();
     private class SwipeRunnable implements Runnable {
         private boolean mIsVertical;
-        
+
         public void setIsVertical(boolean vertical) {
             mIsVertical = vertical;
         }
@@ -762,6 +762,9 @@ public class EdgeBackGestureHandler implements DisplayListener {
                 break;
             case 15: // Previous song
                 AicpUtils.sendSystemKeyToStatusBar(KeyEvent.KEYCODE_MEDIA_PREVIOUS);
+                break;
+            case 16: // Show power menu
+                AicpUtils.showPowerMenu();
                 break;
         }
     }

@@ -30,6 +30,7 @@
     <string name="clock_title_bliss">Bliss</string>
     <string name="clock_title_custom_num">Custom-Num</string>
     <string name="clock_title_aicp">Aicp</string>
+    <string name="clock_title_type_alt" translatable="false">Type (center)</string>
 
     <string name="clock_title_two_line_digital">Vertical</string>
     <string name="clock_title_one_line_digital">Digital</string>

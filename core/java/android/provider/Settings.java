@@ -7112,6 +7112,9 @@ public final class Settings {
          */
         public static final String QS_DATAUSAGE = "qs_datausage";
 
+        /** @hide */
+        private static final Validator QS_DATAUSAGE_VALIDATOR = BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7393,6 +7396,7 @@ public final class Settings {
             SCREEN_STATE_TWOG,
             SCREEN_STATE_THREEG,
             GESTURE_NAVBAR_SHOW,
+            QS_DATAUSAGE,
             // AICP Settings end
         };
 
@@ -7745,6 +7749,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SCREEN_STATE_TWOG);
             PRIVATE_SETTINGS.add(SCREEN_STATE_THREEG);
             PRIVATE_SETTINGS.add(GESTURE_NAVBAR_SHOW);
+            PRIVATE_SETTINGS.add(QS_DATAUSAGE);
             // AICP Settings end
         }
 
@@ -8086,6 +8091,7 @@ public final class Settings {
             VALIDATORS.put(SCREEN_STATE_TWOG, SCREEN_STATE_TWOG_VALIDATOR);
             VALIDATORS.put(SCREEN_STATE_THREEG, SCREEN_STATE_THREEG_VALIDATOR);
             VALIDATORS.put(GESTURE_NAVBAR_SHOW,GESTURE_NAVBAR_SHOW_VALIDATOR);
+            VALIDATORS.put(QS_DATAUSAGE, QS_DATAUSAGE_VALIDATOR);
             // AICP Settings end
         }
 

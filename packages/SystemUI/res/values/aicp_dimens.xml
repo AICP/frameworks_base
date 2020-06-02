@@ -116,7 +116,7 @@
     <dimen name="dismiss_all_button_width">55dp</dimen>
     <dimen name="dismiss_all_fab_src_size">24dp</dimen>
 
-    <dimen name="qs_header_image_offset">25dp</dimen>
+    <dimen name="qs_header_image_offset">0dp</dimen>
     <dimen name="qs_header_image_side_margin">4dp</dimen>
     <dimen name="qs_header_image_bottom_margin">4dp</dimen>
 

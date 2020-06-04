@@ -269,15 +269,13 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
 
         mWindowManager.addView(this, mParams);
 
-        updatePosition();
+        updateCutoutFlags();
         hide();
 
         mLockPatternUtils = new LockPatternUtils(mContext);
 
         mUpdateMonitor = KeyguardUpdateMonitor.getInstance(context);
         mUpdateMonitor.registerCallback(mMonitorCallback);
-
-        updateCutoutFlags();
 
         Dependency.get(ConfigurationController.class).addCallback(this);
 
@@ -478,6 +476,9 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
 
         if (mIsDreaming) {
             mParams.y += mDreamingOffsetY;
+        }
+
+        if (mFODAnimation != null) {
             mFODAnimation.updateParams(mParams.y);
         }
 
@@ -702,10 +703,10 @@ class FODAnimation extends ImageView {
     private WindowManager mWindowManager;
     private boolean mShowing = false;
     private boolean mIsKeyguard;
-    private AnimationDrawable recognizingAnim;
+    private AnimationDrawable mRecognizingAnimDrawable;
     private final WindowManager.LayoutParams mAnimParams = new WindowManager.LayoutParams();
 
-    public FODAnimation(Context context, int mPositionX, int mPositionY) {
+    public FODAnimation(Context context, int positionX, int positionY) {
         super(context);
 
         mContext = context;
@@ -713,8 +714,8 @@ class FODAnimation extends ImageView {
 
         mAnimParams.height = mContext.getResources().getDimensionPixelSize(R.dimen.fod_animation_size);
         mAnimParams.width = mContext.getResources().getDimensionPixelSize(R.dimen.fod_animation_size);
-
-        mAnimationPositionY = (int) Math.round(mPositionY - (mContext.getResources().getDimensionPixelSize(R.dimen.fod_animation_size) / 2));
+        final int animationOffsetY = mContext.getResources().getDimensionPixelSize(R.dimen.fod_animation_offset);
+        mAnimationPositionY = (int) Math.round(positionY - mAnimParams.height / 2 + animationOffsetY);
 
         mAnimParams.format = PixelFormat.TRANSLUCENT;
         mAnimParams.type = WindowManager.LayoutParams.TYPE_VOLUME_OVERLAY; // it must be behind FOD icon
@@ -729,7 +730,7 @@ class FODAnimation extends ImageView {
 
     protected void setFODAnim(){
         this.setBackgroundResource(getFODAnimResource());
-        recognizingAnim = (AnimationDrawable) this.getBackground();
+        mRecognizingAnimDrawable = (AnimationDrawable) this.getBackground();
     }
     private int getFODAnim() {
         return Settings.System.getInt(mContext.getContentResolver(),
@@ -764,8 +765,10 @@ class FODAnimation extends ImageView {
         return R.drawable.fod_miui_normal_recognizing_anim;
     }
 
-    public void updateParams(int mDreamingOffsetY) {
-        mAnimationPositionY = (int) Math.round(mDreamingOffsetY - (mContext.getResources().getDimensionPixelSize(R.dimen.fod_animation_size) / 2));
+    public void updateParams(int dreamingOffsetY) {
+        mAnimationPositionY = (int) Math.round(dreamingOffsetY
+                                  - (mContext.getResources().getDimensionPixelSize(R.dimen.fod_animation_size) / 2)
+                                  + mContext.getResources().getDimensionPixelSize(R.dimen.fod_animation_offset));
         mAnimParams.y = mAnimationPositionY;
     }
 
@@ -780,17 +783,17 @@ class FODAnimation extends ImageView {
                 mWindowManager.addView(this, mAnimParams);
                 mWindowManager.updateViewLayout(this, mAnimParams);
             }
-            recognizingAnim.start();
+            mRecognizingAnimDrawable.start();
         }
     }
 
     public void hideFODanimation() {
         if (mShowing) {
             mShowing = false;
-            if (recognizingAnim != null) {
+            if (mRecognizingAnimDrawable != null) {
                 this.clearAnimation();
-                recognizingAnim.stop();
-                recognizingAnim.selectDrawable(0);
+                mRecognizingAnimDrawable.stop();
+                mRecognizingAnimDrawable.selectDrawable(0);
             }
             if (this.getWindowToken() != null) {
                 mWindowManager.removeView(this);

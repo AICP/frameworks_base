@@ -146,5 +146,6 @@ public class SystemSettings {
         Settings.System.DATA_DISABLED_ICON,
         Settings.System.STATUSBAR_COLORED_ICONS,
         Settings.System.RINGTONE_VIBRATION_PATTERN,
+        Settings.System.CUSTOM_RINGTONE_VIBRATION_PATTERN,
     };
 }

@@ -6001,10 +6001,19 @@ public final class Settings {
          * 2: mm-mm-mm
          * 3: da-da-dzzz
          * 4: da-dzzz-da
+         * 5: custom
          * @hide
          */
         @Readable
         public static final String RINGTONE_VIBRATION_PATTERN = "ringtone_vibration_pattern";
+
+        /**
+         * Custom vibration pattern
+         * format: ms,ms,ms each a range from 0 to 1000 ms
+         * @hide
+         */
+        @Readable
+        public static final String CUSTOM_RINGTONE_VIBRATION_PATTERN = "custom_ringtone_vibration_pattern";
 
         /***************************
          * AICP System Settings end
@@ -6186,6 +6195,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(DATA_DISABLED_ICON);
             PRIVATE_SETTINGS.add(STATUSBAR_COLORED_ICONS);
             PRIVATE_SETTINGS.add(RINGTONE_VIBRATION_PATTERN);
+            PRIVATE_SETTINGS.add(CUSTOM_RINGTONE_VIBRATION_PATTERN);
         }
 
         /**

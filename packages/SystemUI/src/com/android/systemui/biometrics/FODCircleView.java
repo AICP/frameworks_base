@@ -90,6 +90,7 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
     private boolean mIsBouncer;
     private boolean mIsDreaming;
     private boolean mIsCircleShowing;
+    private boolean mIsKeyguard;
 
     private Handler mHandler;
 
@@ -124,9 +125,23 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
 
     private KeyguardUpdateMonitorCallback mMonitorCallback = new KeyguardUpdateMonitorCallback() {
         @Override
+        public void onBiometricAuthenticated(int userId, BiometricSourceType biometricSourceType) {
+            // We assume that if biometricSourceType matches Fingerprint it will be
+            // handled here, so we hide only when other biometric types authenticate
+            if (biometricSourceType != BiometricSourceType.FINGERPRINT) hide();
+            super.onBiometricAuthenticated(userId, biometricSourceType);
+            mIsAuthenticated = true;
+        }
+
+        @Override
         public void onDreamingStateChanged(boolean dreaming) {
             mIsDreaming = dreaming;
-            updateAlpha();
+
+            if (mIsKeyguard && mUpdateMonitor.isFingerprintDetectionRunning()) {
+                show();
+            } else {
+                hide();
+            }
 
             if (dreaming) {
                 mBurnInProtectionTimer = new Timer();
@@ -138,10 +153,17 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
 
         @Override
         public void onKeyguardVisibilityChanged(boolean showing) {
-            final boolean isKeyguard = showing;
+            mIsKeyguard = showing;
+
             updatePosition();
             if (mFODAnimation != null) {
-                mFODAnimation.setAnimationKeyguard(isKeyguard);
+                mFODAnimation.setAnimationKeyguard(mIsKeyguard);
+            }
+
+            if (!showing) {
+                hide();
+            } else {
+                updateAlpha();
             }
         }
 
@@ -157,12 +179,6 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
             } else {
                 hide();
             }
-        }
-
-        @Override
-        public void onBiometricAuthenticated(int userId, BiometricSourceType biometricSourceType) {
-            super.onBiometricAuthenticated(userId, biometricSourceType);
-            mIsAuthenticated = true;
         }
 
         @Override
@@ -419,6 +435,11 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
 
         if (mIsBouncer && !isPinOrPattern(mUpdateMonitor.getCurrentUser())) {
             // Ignore show calls when Keyguard password screen is being shown
+            return;
+        }
+
+        if (mUpdateMonitor.getUserCanSkipBouncer(mUpdateMonitor.getCurrentUser())) {
+            // Ignore show calls if user can skip bouncer
             return;
         }
 

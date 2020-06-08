@@ -7062,6 +7062,12 @@ public final class Settings {
          */
         public static final String APP_LOCK_SHOW_ONLY_ON_WAKE = "app_lock_show_only_on_wake";
 
+        /**
+         * Sensor blocked packages
+         * @hide
+         */
+        public static final String SENSOR_BLOCKED_APP = "sensor_blocked_app";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7317,6 +7323,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(STATUS_BAR_TICKER_TICK_DURATION, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(NETWORK_TRAFFIC_INDICATOR_MODE, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(APP_LOCK_SHOW_ONLY_ON_WAKE, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(SENSOR_BLOCKED_APP, ANY_STRING_VALIDATOR);
         }
 
         /**

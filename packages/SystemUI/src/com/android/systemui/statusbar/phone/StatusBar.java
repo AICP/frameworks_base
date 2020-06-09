@@ -757,6 +757,7 @@ public class StatusBar extends SystemUI implements DemoMode,
 
     private ImageButton mDismissAllButton;
     private boolean mClearableNotifications = true;
+    private boolean mShowDismissButton;
 
     private class AicpSettingsObserver extends ContentObserver {
         AicpSettingsObserver(Handler handler) {
@@ -851,6 +852,9 @@ public class StatusBar extends SystemUI implements DemoMode,
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.GAMING_MODE_HEADSUP_TOGGLE),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.NOTIFICATION_MATERIAL_DISMISS),
                     false, this, UserHandle.USER_ALL);
         }
 
@@ -2519,7 +2523,8 @@ public class StatusBar extends SystemUI implements DemoMode,
     }
 
     public void updateDismissAllVisibility(boolean visible) {
-        if (mClearableNotifications && mState != StatusBarState.KEYGUARD && visible) {
+        if (mDismissAllButton == null) return;
+        if (mClearableNotifications && mState != StatusBarState.KEYGUARD && visible && mShowDismissButton) {
             mDismissAllButton.setVisibility(View.VISIBLE);
             int DismissAllAlpha = Math.round(255.0f * mNotificationPanelViewController.getExpandedFraction());
             mDismissAllButton.setAlpha(DismissAllAlpha);
@@ -2527,7 +2532,7 @@ public class StatusBar extends SystemUI implements DemoMode,
         } else {
             mDismissAllButton.setAlpha(0);
             mDismissAllButton.getBackground().setAlpha(0);
-            mDismissAllButton.setVisibility(View.INVISIBLE);
+            mDismissAllButton.setVisibility(View.GONE);
         }
     }
 
@@ -4850,6 +4855,9 @@ public class StatusBar extends SystemUI implements DemoMode,
         boolean pulseAmbientLightEnabled = Settings.System.getIntForUser(
                 mContext.getContentResolver(), Settings.System.PULSE_AMBIENT_LIGHT, 0,
                 UserHandle.USER_CURRENT) == 1;
+        mShowDismissButton = Settings.System.getIntForUser(
+                mContext.getContentResolver(), Settings.System.NOTIFICATION_MATERIAL_DISMISS, 0,
+                UserHandle.USER_CURRENT) == 1;
 
         if (mNotificationPanelViewController != null) {
             mNotificationPanelViewController.updateDoubleTapToSleep(doubleTapToSleepEnabled);
@@ -4886,6 +4894,7 @@ public class StatusBar extends SystemUI implements DemoMode,
         updateNavigationBar(false);
         setGamingModeActive();
         setGamingModeHeadsupToggle();
+        updateDismissAllVisibility(true);
     }
 
     private void adjustBrightness(int x) {

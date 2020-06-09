@@ -19,6 +19,8 @@ package com.android.systemui.statusbar.notification.row;
 import android.annotation.ColorInt;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -116,6 +118,10 @@ public class FooterView extends StackScrollerDecorView {
                 FooterView footerView = (FooterView) view;
                 boolean visible = this.clipTopAmount < mClearAllTopPadding;
                 footerView.setContentVisible(visible && footerView.isVisible());
+                boolean secondaryVisible = Settings.System.getInt(
+                        mContext.getContentResolver(),
+                        Settings.System.NOTIFICATION_MATERIAL_DISMISS, 0) == 0;
+                footerView.setSecondaryVisible(secondaryVisible, false);
             }
         }
     }

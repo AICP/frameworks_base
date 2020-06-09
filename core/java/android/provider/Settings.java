@@ -6971,6 +6971,11 @@ public final class Settings {
          */
         public static final String BATTERY_LIGHT_BLEND_REVERSE = "battery_light_blend_reverse";
 
+        /**
+         * Whether to show material Dismiss All Button for notifications
+         * @hide
+         */
+        public static final String NOTIFICATION_MATERIAL_DISMISS = "notification_material_dismiss";
 
         /***************************
          * AICP System Settings end
@@ -7222,6 +7227,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(BATTERY_LIGHT_BLEND_FULL_COLOR, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(BATTERY_LIGHT_BLEND_EMPTY_COLOR, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(BATTERY_LIGHT_BLEND_REVERSE, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(NOTIFICATION_MATERIAL_DISMISS, BOOLEAN_VALIDATOR);
         }
 
         /**

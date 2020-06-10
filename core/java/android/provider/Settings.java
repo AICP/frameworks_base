@@ -6037,8 +6037,9 @@ public final class Settings {
          * Whether to blink flashlight for incoming calls
          * 0 = Disabled (Default)
          * 1 = Blink flashlight only in Ringer mode
-         * 2 = Blink flashlight only in DND mode
-         * 3 = Blink flashlight always regardless of ringer mode
+         * 2 = Blink flashlight only when ringer is not audible
+         * 3 = Blink flahslight only when entirely silent
+         * 4 = Blink flashlight always regardless of ringer mode
          * @hide
          */
         public static final String FLASHLIGHT_ON_CALL = "flashlight_on_call";

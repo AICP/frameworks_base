@@ -123,4 +123,6 @@
     <!-- Edge light notification width -->
     <dimen name="left_edgeLightNotificationWidth">125px</dimen>
     <dimen name="right_edgeLightNotificationWidth">125px</dimen>
+
+    <dimen name="data_usage_padding_start">4dp</dimen>
 </resources>

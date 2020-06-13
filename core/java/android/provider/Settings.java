@@ -6049,6 +6049,18 @@ public final class Settings {
          */
         public static final String FLASHLIGHT_ON_CALL_WAITING = "flashlight_on_call_waiting";
 
+        /**
+         * Whether flashlight_on_call ignores DND (Zen Mode)
+         * @hide
+         */
+        public static final String FLASHLIGHT_ON_CALL_IGNORE_DND = "flashlight_on_call_ignore_dnd";
+
+        /**
+         * Rate in Hz in which to blink flashlight_on_call
+         * @hide
+         */
+        public static final String FLASHLIGHT_ON_CALL_RATE = "flashlight_on_call_rate";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6235,6 +6247,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(INCREASING_RING_START_VOLUME);
             PRIVATE_SETTINGS.add(FLASHLIGHT_ON_CALL);
             PRIVATE_SETTINGS.add(FLASHLIGHT_ON_CALL_WAITING);
+            PRIVATE_SETTINGS.add(FLASHLIGHT_ON_CALL_IGNORE_DND);
+            PRIVATE_SETTINGS.add(FLASHLIGHT_ON_CALL_RATE);
         }
 
         /**

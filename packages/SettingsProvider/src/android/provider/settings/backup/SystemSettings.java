@@ -152,5 +152,7 @@ public class SystemSettings {
         Settings.System.INCREASING_RING_RAMP_UP_TIME,
         Settings.System.FLASHLIGHT_ON_CALL,
         Settings.System.FLASHLIGHT_ON_CALL_WAITING,
+        Settings.System.FLASHLIGHT_ON_CALL_IGNORE_DND,
+        Settings.System.FLASHLIGHT_ON_CALL_RATE,
     };
 }

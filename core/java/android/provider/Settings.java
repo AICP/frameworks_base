@@ -6613,6 +6613,18 @@ public final class Settings {
          */
         public static final String FLASHLIGHT_ON_CALL_WAITING = "flashlight_on_call_waiting";
 
+        /**
+         * Whether flashlight_on_call ignores DND (Zen Mode)
+         * @hide
+         */
+        public static final String FLASHLIGHT_ON_CALL_IGNORE_DND = "flashlight_on_call_ignore_dnd";
+
+        /**
+         * Rate in Hz in which to blink flashlight_on_call
+         * @hide
+         */
+        public static final String FLASHLIGHT_ON_CALL_RATE = "flashlight_on_call_rate";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6841,6 +6853,8 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(VIBRATE_ON_NOTIFICATIONS, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(FLASHLIGHT_ON_CALL, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(FLASHLIGHT_ON_CALL_WAITING, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(FLASHLIGHT_ON_CALL_IGNORE_DND, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(FLASHLIGHT_ON_CALL_RATE, ANY_INTEGER_VALIDATOR);
         }
 
         /**

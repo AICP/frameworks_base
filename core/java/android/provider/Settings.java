@@ -6155,6 +6155,24 @@ public final class Settings {
                 new SettingsValidators.InclusiveIntegerRangeValidator(0, 4);
 
         /**
+         * Whether flashlight_on_call ignores DND (Zen Mode)
+         * @hide
+         */
+        public static final String FLASHLIGHT_ON_CALL_IGNORE_DND = "flashlight_on_call_ignore_dnd";
+        /** @hide */
+        private static final Validator FLASHLIGHT_ON_CALL_IGNORE_DND_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
+         * Rate in Hz in which to blink flashlight_on_call
+         * @hide
+         */
+        public static final String FLASHLIGHT_ON_CALL_RATE = "flashlight_on_call_rate";
+        /** @hide */
+        private static final Validator FLASHLIGHT_ON_CALL_RATE_VALIDATOR =
+                new SettingsValidators.InclusiveIntegerRangeValidator(1, 5);
+
+        /**
          * Whether to show lock icon on lockscreen
          * @hide
          */
@@ -7472,6 +7490,8 @@ public final class Settings {
             PULSE_AMBIENT_LIGHT_COLOR,
             PULSE_AMBIENT_LIGHT_DURATION,
             FLASHLIGHT_ON_CALL,
+            FLASHLIGHT_ON_CALL_IGNORE_DND,
+            FLASHLIGHT_ON_CALL_RATE,
             LOCKSCREEN_LOCK_ICON,
             HEADSET_CONNECT_PLAYER,
             PULSE_AMBIENT_LIGHT_COLOR_MODE,
@@ -7804,6 +7824,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(PULSE_AMBIENT_LIGHT_COLOR);
             PRIVATE_SETTINGS.add(PULSE_AMBIENT_LIGHT_DURATION);
             PRIVATE_SETTINGS.add(FLASHLIGHT_ON_CALL);
+            PRIVATE_SETTINGS.add(FLASHLIGHT_ON_CALL_IGNORE_DND);
+            PRIVATE_SETTINGS.add(FLASHLIGHT_ON_CALL_RATE);
             PRIVATE_SETTINGS.add(LOCKSCREEN_LOCK_ICON);
             PRIVATE_SETTINGS.add(HEADSET_CONNECT_PLAYER);
             PRIVATE_SETTINGS.add(PULSE_AMBIENT_LIGHT_COLOR_MODE);
@@ -8150,6 +8172,8 @@ public final class Settings {
             VALIDATORS.put(PULSE_AMBIENT_LIGHT_COLOR, PULSE_AMBIENT_LIGHT_COLOR_VALIDATOR);
             VALIDATORS.put(PULSE_AMBIENT_LIGHT_DURATION, PULSE_AMBIENT_LIGHT_DURATION_VALIDATOR);
             VALIDATORS.put(FLASHLIGHT_ON_CALL, FLASHLIGHT_ON_CALL_VALIDATOR);
+            VALIDATORS.put(FLASHLIGHT_ON_CALL_IGNORE_DND, FLASHLIGHT_ON_CALL_IGNORE_DND_VALIDATOR);
+            VALIDATORS.put(FLASHLIGHT_ON_CALL_RATE, FLASHLIGHT_ON_CALL_RATE_VALIDATOR);
             VALIDATORS.put(LOCKSCREEN_LOCK_ICON, LOCKSCREEN_LOCK_ICON_VALIDATOR);
             VALIDATORS.put(HEADSET_CONNECT_PLAYER, HEADSET_CONNECT_PLAYER_VALIDATOR);
             VALIDATORS.put(PULSE_AMBIENT_LIGHT_COLOR_MODE, PULSE_AMBIENT_LIGHT_COLOR_MODE_VALIDATOR);

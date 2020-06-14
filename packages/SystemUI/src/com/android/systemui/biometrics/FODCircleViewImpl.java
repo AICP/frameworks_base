@@ -24,6 +24,7 @@ import com.android.systemui.SystemUI;
 import com.android.systemui.statusbar.CommandQueue;
 import com.android.systemui.statusbar.CommandQueue.Callbacks;
 
+import com.aicp.gear.util.AicpContextConstants;
 
 public class FODCircleViewImpl extends SystemUI implements CommandQueue.Callbacks {
     private static final String TAG = "FODCircleViewImpl";
@@ -33,7 +34,8 @@ public class FODCircleViewImpl extends SystemUI implements CommandQueue.Callback
     @Override
     public void start() {
         PackageManager packageManager = mContext.getPackageManager();
-        if (!packageManager.hasSystemFeature(PackageManager.FEATURE_FINGERPRINT)) {
+        if (!(packageManager.hasSystemFeature(PackageManager.FEATURE_FINGERPRINT) &&
+                packageManager.hasSystemFeature(AicpContextConstants.Features.FOD))) {
             return;
         }
         getComponent(CommandQueue.class).addCallback(this);

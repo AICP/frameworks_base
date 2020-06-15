@@ -242,6 +242,7 @@ public class NotificationMediaManager implements Dumpable {
             @Override
             public void onEntryReinflated(NotificationEntry entry) {
                 findAndUpdateMediaNotifications();
+                checkMediaNotificationColor(entry);
             }
 
             @Override
@@ -251,6 +252,15 @@ public class NotificationMediaManager implements Dumpable {
                     boolean removedByUser,
                     int reason) {
                 removeEntry(entry);
+            }
+
+            // these get called from NotificationEntryManager.onAsyncInflationFinished
+            // so we are sure the final media notification albumart and colors elaboration
+            // has been completed by the system
+            @Override
+            public void onNotificationAdded(
+                    NotificationEntry entry) {
+                checkMediaNotificationColor(entry);
             }
         });
 
@@ -299,6 +309,17 @@ public class NotificationMediaManager implements Dumpable {
         if (key.equals(mNowPlayingNotificationKey)) {
             mNowPlayingNotificationKey = null;
             dispatchUpdateMediaMetaData(true /* changed */, true /* allowEnterAnimation */);
+        }
+    }
+
+    private void checkMediaNotificationColor(NotificationEntry entry) {
+        if (entry.getKey().equals(mMediaNotificationKey)) {
+            ArrayList<MediaListener> callbacks = new ArrayList<>(mMediaListeners);
+            for (int i = 0; i < callbacks.size(); i++) {
+                callbacks.get(i).setMediaNotificationColor(
+                        entry.getSbn().getNotification().isColorizedMedia(),
+                        entry.getRow().getCurrentBackgroundTint());
+            }
         }
     }
 
@@ -812,6 +833,8 @@ public class NotificationMediaManager implements Dumpable {
          */
         default void onPrimaryMetadataOrStateChanged(MediaMetadata metadata,
                 @PlaybackState.State int state) {}
+
+        default void setMediaNotificationColor(boolean colorizedMedia, int color) {};
     }
 
     private float getLockScreenMediaBlurLevel() {

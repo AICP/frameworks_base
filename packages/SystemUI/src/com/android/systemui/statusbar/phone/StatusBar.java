@@ -1044,9 +1044,6 @@ public class StatusBar extends SystemUI implements DemoMode,
         // Connect in to the status bar manager service
         mCommandQueue.addCallback(this);
 
-        // this will initialize Pulse and begin listening for media events
-        mMediaManager.addCallback(Dependency.get(PulseController.class));
-
         RegisterStatusBarResult result = null;
         try {
             result = mBarService.registerStatusBar(mCommandQueue);
@@ -1141,6 +1138,9 @@ public class StatusBar extends SystemUI implements DemoMode,
         mAicpSettingsObserver = new AicpSettingsObserver(mHandler);
         mAicpSettingsObserver.observe();
         mAicpSettingsObserver.update();
+
+        // this will initialize Pulse and begin listening for media events
+        mMediaManager.addCallback(Dependency.get(PulseController.class));
 
         mPluginManager.addPluginListener(
                 new PluginListener<OverlayPlugin>() {

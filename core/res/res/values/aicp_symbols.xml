@@ -175,4 +175,7 @@
 
     <!-- Cycle through ringer modes -->
     <java-symbol type="string" name="volume_dialog_ringer_guidance_normal" />
+
+    <!-- Wired/BT headset focus mode -->
+    <java-symbol type="bool" name="config_deviceRingtoneFocusMode" />
 </resources>

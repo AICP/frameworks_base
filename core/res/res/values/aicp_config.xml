@@ -190,4 +190,7 @@
         <item>2</item>
         <item>3</item>
     </array>
+
+    <!-- Wired/BT headset focus mode -->
+    <bool name="config_deviceRingtoneFocusMode">false</bool>
 </resources>

@@ -103,6 +103,8 @@ public class Ringtone {
     private boolean mHapticGeneratorEnabled = false;
     private final Object mPlaybackSettingsLock = new Object();
 
+    private final boolean mDeviceRingtoneFocus;
+
     /** {@hide} */
     @UnsupportedAppUsage
     public Ringtone(Context context, boolean allowRemote) {
@@ -111,6 +113,8 @@ public class Ringtone {
         mAllowRemote = allowRemote;
         mRemotePlayer = allowRemote ? mAudioManager.getRingtonePlayer() : null;
         mRemoteToken = allowRemote ? new Binder() : null;
+        mDeviceRingtoneFocus = mContext.getResources().getBoolean(
+            com.android.internal.R.bool.config_deviceRingtoneFocusMode);
     }
 
     /**
@@ -373,7 +377,7 @@ public class Ringtone {
 
     private int getRingtoneFocusMode() {
         int mode = Settings.Global.getInt(mContext.getContentResolver(),
-                Settings.Global.RINGTONE_FOCUS_MODE, 1);
+                Settings.Global.RINGTONE_FOCUS_MODE_V2, 1);
         return mode;
     }
 
@@ -411,8 +415,12 @@ public class Ringtone {
         mLocalPlayer = new MediaPlayer();
         try {
             mLocalPlayer.setDataSource(mContext, mUri);
-            setCustomAudioAttributes();
-            mLocalPlayer.setAudioAttributes(mFinalAudioAttributes);
+            if (mDeviceRingtoneFocus) {
+                setCustomAudioAttributes();
+                mLocalPlayer.setAudioAttributes(mFinalAudioAttributes);
+            } else {
+                mLocalPlayer.setAudioAttributes(mAudioAttributes);
+            }
             synchronized (mPlaybackSettingsLock) {
                 applyPlaybackProperties_sync();
             }

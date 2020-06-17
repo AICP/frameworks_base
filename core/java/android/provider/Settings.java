@@ -16759,7 +16759,7 @@ public final class Settings {
          * Audio focus mode for ringtones when headset is connected
          * @hide
          */
-        public static final String RINGTONE_FOCUS_MODE = "ringtone_focus_mode"
+        public static final String RINGTONE_FOCUS_MODE_V2 = "ringtone_focus_mode_v2";
 
         /*****************************
          * AICP Global Settings end

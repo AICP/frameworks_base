@@ -121,4 +121,7 @@
     <!-- Defines custom OEM sensor for pocket detection. -->
     <string name="config_pocketJudgeVendorSensorName"></string>
     <string name="config_pocketJudgeVendorProximitySensorName"></string>
+
+    <!-- Wired/BT headset focus mode -->
+    <bool name="config_deviceRingtoneFocusMode">false</bool>
 </resources>

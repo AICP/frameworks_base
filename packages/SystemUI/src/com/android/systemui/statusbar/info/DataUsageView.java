@@ -78,10 +78,9 @@ public class DataUsageView extends TextView {
         shouldUpdateData = true;
     }
 
-    private CharSequence formatDataUsage(long byteValue) {
+    private String formatDataUsage(long byteValue) {
         final BytesResult res = Formatter.formatBytes(mContext.getResources(), byteValue,
                 Formatter.FLAG_IEC_UNITS);
-        return BidiFormatter.getInstance().unicodeWrap(mContext.getString(
-                com.android.internal.R.string.fileSizeSuffix, res.value, res.units));
+        return BidiFormatter.getInstance().unicodeWrap(res.value + res.units);
     }
 }

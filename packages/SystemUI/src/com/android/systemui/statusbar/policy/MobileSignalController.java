@@ -151,6 +151,9 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
     // Volte Icon Style
     private int mVoLTEstyle;
 
+    // VoWiFi Icon
+    private int mVoWiFiIcon;
+
     // TODO: Reduce number of vars passed in, if we have the NetworkController, probably don't
     // need listener lists anymore.
     public MobileSignalController(
@@ -339,6 +342,9 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
             resolver.registerContentObserver(Settings.System.getUriFor(
                    Settings.System.VOLTE_ICON_STYLE),
                    false,this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                   Settings.System.VOWIFI_ICON),
+                   false,this, UserHandle.USER_ALL);
         }
 
         /*
@@ -365,6 +371,9 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
                 UserHandle.USER_CURRENT) == 1;
         mVoLTEstyle = Settings.System.getIntForUser(resolver,
                 Settings.System.VOLTE_ICON_STYLE, 0,
+                UserHandle.USER_CURRENT);
+        mVoWiFiIcon = Settings.System.getIntForUser(resolver,
+                Settings.System.VOWIFI_ICON, 0,
                 UserHandle.USER_CURRENT);
 
         mNetworkToIconLookup = mapIconSets(mConfig, mShowLteFourGee);
@@ -505,6 +514,10 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
 
     private int getVolteResId() {
         int resId = 0;
+
+        if (mVoWiFiIcon == 2 && isVowifiAvailable()) {
+            return resId;
+        }
 
         if (mCurrentState.imsRegistered && mVolteIcon) {
             switch(mVoLTEstyle) {
@@ -680,7 +693,7 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
             showDataIcon &= mCurrentState.isDefault || dataDisabled;
             int typeIcon = (showDataIcon || mConfig.alwaysShowDataRatIcon) ? icons.dataType : 0;
             MobileIconGroup vowifiIconGroup = getVowifiIconGroup();
-            if (vowifiIconGroup != null ) {
+            if (vowifiIconGroup != null && (mVoWiFiIcon >= 1)) {
                 typeIcon = vowifiIconGroup.dataType;
                 statusIcon = new IconState(true,
                         mCurrentState.enabled && !mCurrentState.airplaneMode? statusIcon.icon : -1,

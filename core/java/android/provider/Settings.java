@@ -6452,6 +6452,12 @@ public final class Settings {
          */
         public static final String VOLTE_ICON_STYLE = "volte_icon_style";
 
+        /**
+         * Whether to show VoWiFi icon or not
+         * @hide
+         */
+        public static final String VOWIFI_ICON = "vowifi_icon";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6757,6 +6763,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(ADAPTIVE_PLAYBACK_TIMEOUT);
             PRIVATE_SETTINGS.add(SHOW_VOLTE_ICON);
             PRIVATE_SETTINGS.add(VOLTE_ICON_STYLE);
+            PRIVATE_SETTINGS.add(VOWIFI_ICON);
         }
 
         /**

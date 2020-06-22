@@ -6464,6 +6464,12 @@ public final class Settings {
          */
 
         /**
+         * Whether to show VoWiFi icon or not
+         * @hide
+         */
+        public static final String VOWIFI_ICON = "vowifi_icon";
+
+        /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.
          *
@@ -6757,6 +6763,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(ADAPTIVE_PLAYBACK_TIMEOUT);
             PRIVATE_SETTINGS.add(SHOW_VOLTE_ICON);
             PRIVATE_SETTINGS.add(VOLTE_ICON_STYLE);
+            PRIVATE_SETTINGS.add(VOWIFI_ICON);
         }
 
         /**

@@ -251,5 +251,6 @@ public class SystemSettings {
         Settings.System.LOCKSCREEN_QUICK_UNLOCK_CONTROL,
         Settings.System.SHOW_VOLTE_ICON,
         Settings.System.VOLTE_ICON_STYLE,
+        Settings.System.VOWIFI_ICON,
     };
 }

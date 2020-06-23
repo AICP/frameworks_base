@@ -5858,6 +5858,12 @@ public final class Settings {
          */
         public static final String VOLTE_ICON_STYLE = "volte_icon_style";
 
+        /**
+          * VoWiFi icon style
+          * @hide
+          */
+         public static final String VOWIFI_ICON_STYLE = "vowifi_icon_style";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5979,6 +5985,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(LOCK_HIDE_STATUS_BAR, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(LOCKSCREEN_QUICK_UNLOCK_CONTROL, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(VOLTE_ICON_STYLE, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(VOWIFI_ICON_STYLE, BOOLEAN_VALIDATOR);
         }
 
         /**

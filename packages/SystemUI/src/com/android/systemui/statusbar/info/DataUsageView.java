@@ -14,6 +14,8 @@ import com.android.internal.util.aicp.AicpUtils;
 import com.android.settingslib.net.DataUsageController;
 import com.android.systemui.Dependency;
 import com.android.systemui.R;
+import com.android.systemui.SysUiServiceProvider;
+import com.android.systemui.statusbar.phone.StatusBar;
 import com.android.systemui.statusbar.policy.NetworkController;
 
 public class DataUsageView extends TextView {
@@ -40,6 +42,7 @@ public class DataUsageView extends TextView {
             updateUsageData();
             setText(formatedinfo);
         }
+        updateDataUsageImage();
     }
 
     private void updateUsageData() {
@@ -64,6 +67,11 @@ public class DataUsageView extends TextView {
 
     public static void updateUsage() {
         shouldUpdateData = true;
+    }
+
+    private void updateDataUsageImage() {
+        StatusBar statusBar = SysUiServiceProvider.getComponent(mContext, StatusBar.class);
+        statusBar.updateDataUsageImage();
     }
 
     private String formatDataUsage(long byteValue) {

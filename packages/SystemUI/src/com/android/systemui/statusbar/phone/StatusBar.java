@@ -5634,6 +5634,12 @@ public class StatusBar extends SystemUI implements DemoMode,
         }
     }
 
+    public void updateDataUsageImage() {
+        if (mQuickStatusBarHeader != null) {
+            mQuickStatusBarHeader.updateDataUsageImage();
+        }
+    }
+
     private RegisterStatusBarResult getRegisterStatusBarResult() {
         RegisterStatusBarResult result = null;
         try {

@@ -62,6 +62,7 @@ import androidx.annotation.VisibleForTesting;
 
 import com.android.internal.util.aicp.AicpUtils;
 import com.android.internal.config.sysui.SystemUiDeviceConfigFlags;
+import com.android.internal.util.aicp.AicpUtils;
 import com.android.internal.util.aicp.FileUtils;
 import com.android.settingslib.Utils;
 import com.android.systemui.BatteryMeterView;
@@ -286,6 +287,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         mDataUsageImage = findViewById(R.id.daily_data_usage_icon);
         mDataUsageView = findViewById(R.id.data_sim_usage);
 
+        updateDataUsageImage();
         // Set the correct tint for the data usage icons so they contrast
         mDataUsageImage.setImageTintList(ColorStateList.valueOf(fillColor));
 
@@ -552,6 +554,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         updateSysInfoResources();
         updateSystemInfoText();
         updateDataUsageView();
+        updateDataUsageImage();
         updateStatusbarProperties();
     }
 
@@ -571,6 +574,19 @@ public class QuickStatusBarHeader extends RelativeLayout implements
             mDataUsageView.setVisibility(View.GONE);
             mDataUsageImage.setVisibility(View.GONE);
             mDataUsageLayout.setVisibility(View.GONE);
+        }
+    }
+
+    public void updateDataUsageImage() {
+        if (mDataUsageView.isDataUsageEnabled() == 0) {
+            mDataUsageImage.setVisibility(View.GONE);
+        } else {
+            if (AicpUtils.isWiFiConnected(mContext)) {
+                mDataUsageImage.setImageDrawable(mContext.getDrawable(R.drawable.ic_data_usage_wifi));
+            } else {
+                mDataUsageImage.setImageDrawable(mContext.getDrawable(R.drawable.ic_data_usage_cellular));
+            }
+            mDataUsageImage.setVisibility(View.VISIBLE);
         }
     }
 

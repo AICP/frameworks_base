@@ -309,7 +309,6 @@ public class QuickStatusBarHeader extends RelativeLayout implements
                 mContext.getMainExecutor(), mPropertyListener);
 
         Dependency.get(TunerService.class).addTunable(this,
-                Settings.System.OMNI_STATUS_BAR_CUSTOM_HEADER,
                 StatusBarIconController.ICON_BLACKLIST);
         updateSysInfoResources();
         updateSettings();
@@ -883,8 +882,6 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         } else if (StatusBarIconController.ICON_BLACKLIST.equals(key)) {
             mClockView.setClockVisibleByUser(!StatusBarIconController.getIconBlacklist(newValue)
                     .contains("clock"));
-        } else if (Settings.System.OMNI_STATUS_BAR_CUSTOM_HEADER.equals(key)) {
-            updateSettings();
         }
     }
 

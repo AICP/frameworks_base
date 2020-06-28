@@ -15,6 +15,6 @@
  * limitations under the License.
  */
 
-package com.android.internal.aicp.hardware;
+package com.android.internal.custom.hardware;
 
 parcelable TouchscreenGesture;

@@ -6464,6 +6464,12 @@ public final class Settings {
          */
         public static final String VOWIFI_ICON_STYLE = "vowifi_icon_style";
 
+        /**
+         * Whether VoWiFi icon should override VoLTE icon
+         * @hide
+         */
+        public static final String VOLTE_VOWIFI_OVERRIDE = "volte_vowifi_override";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6771,6 +6777,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(VOLTE_ICON_STYLE);
             PRIVATE_SETTINGS.add(VOWIFI_ICON);
             PRIVATE_SETTINGS.add(VOWIFI_ICON_STYLE);
+            PRIVATE_SETTINGS.add(VOLTE_VOWIFI_OVERRIDE);
         }
 
         /**

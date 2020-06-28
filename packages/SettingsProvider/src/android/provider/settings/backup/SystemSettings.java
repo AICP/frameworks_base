@@ -271,5 +271,6 @@ public class SystemSettings {
         Settings.System.VOLTE_ICON_STYLE,
         Settings.System.VOWIFI_ICON,
         Settings.System.VOWIFI_ICON_STYLE,
+        Settings.System.VOLTE_VOWIFI_OVERRIDE,
     };
 }

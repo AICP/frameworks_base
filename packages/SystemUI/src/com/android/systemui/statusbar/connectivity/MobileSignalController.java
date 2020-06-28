@@ -133,6 +133,7 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
     private int mVoWiFistyle;
 
     private boolean mIsVowifiAvailable;
+    private boolean mOverride = true;
 
     private final MobileStatusTracker.Callback mMobileCallback =
             new MobileStatusTracker.Callback() {
@@ -340,6 +341,9 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
             resolver.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.VOWIFI_ICON_STYLE), false,
                     this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.VOLTE_VOWIFI_OVERRIDE), false,
+                    this, UserHandle.USER_ALL);
             updateSettings();
         }
 
@@ -377,6 +381,9 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
         mVoWiFistyle = Settings.System.getIntForUser(resolver,
                 Settings.System.VOWIFI_ICON_STYLE, 0,
                 UserHandle.USER_CURRENT);
+        mOverride = Settings.System.getIntForUser(resolver,
+                Settings.System.VOLTE_VOWIFI_OVERRIDE, 1,
+                UserHandle.USER_CURRENT) == 1;
 
         mNetworkToIconLookup = mapIconSets(mConfig, mShowLteFourGee);
         updateTelephony();
@@ -514,16 +521,58 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
         return mImsManager != null && mImsManager.isEnhanced4gLteModeSettingEnabledByUser();
     }
 
-    private int getVolteResId() {
+    private int getVolteVowifiResId() {
         int resId = 0;
 
-        if (mVoWiFiIcon == 2 && isVowifiAvailable()) {
-            return resId;
-        }
-
-        if (mCurrentState.imsRegistered && mVolteIcon) {
-            switch(mVoLTEstyle) {
-                // VoLTE
+        if (mOverride && mVoWiFiIcon > 0 && isVowifiAvailable()) {
+            if (!isCallIdle()) {
+                resId = R.drawable.ic_vowifi_calling;
+            } else {
+                switch (mVoWiFiIcon) {
+                    case 1:
+                    default:
+                        resId = com.android.settingslib.R.drawable.ic_vowifi;
+                        break;
+                    // OOS
+                    case 2:
+                        resId = com.android.settingslib.R.drawable.ic_vowifi_oneplus;
+                        break;
+                    // Motorola
+                    case 3:
+                        resId = com.android.settingslib.R.drawable.ic_vowifi_moto;
+                        break;
+                    // ASUS
+                    case 4:
+                        resId = com.android.settingslib.R.drawable.ic_vowifi_asus;
+                        break;
+                    // EMUI (Huawei P10)
+                    case 5:
+                        resId = com.android.settingslib.R.drawable.ic_vowifi_emui;
+                        break;
+                    // Simple1
+                    case 6:
+                        resId = com.android.settingslib.R.drawable.ic_vowifi_simple1;
+                        break;
+                    // Simple2
+                    case 7:
+                        resId = com.android.settingslib.R.drawable.ic_vowifi_simple2;
+                        break;
+                    // Simple3
+                    case 8:
+                        resId = com.android.settingslib.R.drawable.ic_vowifi_simple3;
+                        break;
+                    // Vivo
+                    case 9:
+                        resId = com.android.settingslib.R.drawable.ic_vowifi_vivo;
+                        break;
+                    // Margaritov
+                    case 10:
+                        resId = com.android.settingslib.R.drawable.ic_vowifi_margaritov;
+                        break;
+                }
+            }
+        } else if (mVoLTEstyle > 0 && isVolteAvailable()) {
+            switch (mVoLTEstyle) {
                 case 1:
                     resId = R.drawable.ic_volte1;
                     break;
@@ -646,12 +695,7 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
         final QsInfo qsInfo = getQsInfo(contentDescription, icons.dataType);
         final SbInfo sbInfo = getSbInfo(contentDescription, icons.dataType);
 
-        int resId = 0;
-        if (mCurrentState.imsRegistered && mVolteIcon) {
-            resId = getVolteResId();
-        }
-
-        int volteId = mShowVolteIcon && isVolteSwitchOn() && mVolteIcon ? resId : 0;
+        int voltewifiIcon = getVolteVowifiResId();
 
         MobileDataIndicators mobileDataIndicators = new MobileDataIndicators(
                 sbInfo.icon,
@@ -667,7 +711,7 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
                 mCurrentState.roaming,
                 sbInfo.showTriangle,
                 mCurrentState.isDefault,
-                volteId);
+                voltewifiIcon);
         callback.setMobileDataIndicators(mobileDataIndicators);
     }
 
@@ -729,7 +773,7 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
             boolean showDataIconInStatusBar =
                     (mCurrentState.dataConnected && mCurrentState.isDefault) || dataDisabled;
             typeIcon =
-                    ((showDataIconInStatusBar || mConfig.alwaysShowDataRatIcon) && getVolteResId() == 0) ? dataTypeIcon : 0;
+                    ((showDataIconInStatusBar || mConfig.alwaysShowDataRatIcon) && getVolteVowifiResId() == 0) ? dataTypeIcon : 0;
             MobileIconGroup vowifiIconGroup = getVowifiIconGroup();
             if (vowifiIconGroup != null && (mVoWiFiIcon >= 1)) {
                 typeIcon = vowifiIconGroup.dataType;
@@ -1112,13 +1156,19 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
                 mCurrentState.getDataNetworkType() : TelephonyManager.NETWORK_TYPE_UNKNOWN;
     }
 
-    public boolean isVowifiAvailable() {
-        return (mCurrentState.voiceCapable && mCurrentState.imsRegistered
-                && getDataNetworkType() == TelephonyManager.NETWORK_TYPE_IWLAN)
-                || mIsVowifiAvailable;
+    private boolean isVolteAvailable() {
+        return isVolteSwitchOn()
+                && (mCurrentState.voiceCapable || mCurrentState.videoCapable) &&  mCurrentState.imsRegistered;
+    }
+
+    private boolean isVowifiAvailable() {
+        return isVolteAvailable()
+                && getDataNetworkType() == TelephonyManager.NETWORK_TYPE_IWLAN;
     }
 
     private MobileIconGroup getVowifiIconGroup() {
+        if (mVoWiFiIcon == 0 || mOverride) return null;
+
         if (isVowifiAvailable() && !isCallIdle()) {
             return TelephonyIcons.VOWIFI_CALLING;
         } else if (isVowifiAvailable()) {

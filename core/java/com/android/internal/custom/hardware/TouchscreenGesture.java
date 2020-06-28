@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.android.internal.aicp.hardware;
+package com.android.internal.custom.hardware;
 
 import android.os.Parcel;
 import android.os.Parcelable;

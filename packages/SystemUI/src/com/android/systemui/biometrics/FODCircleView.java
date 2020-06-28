@@ -244,6 +244,8 @@ public class FODCircleView extends ImageView  implements ConfigurationListener {
             }
         };
 
+	mPressedView.setImageResource(R.drawable.fod_icon_pressed);
+
         mWindowManager.addView(this, mParams);
 
         updatePosition();
@@ -254,6 +256,8 @@ public class FODCircleView extends ImageView  implements ConfigurationListener {
         mUpdateMonitor = KeyguardUpdateMonitor.getInstance(context);
         mUpdateMonitor.registerCallback(mMonitorCallback);
         updateCutoutFlags();
+
+	setImageResource(R.drawable.fod_icon_default);
 
         Dependency.get(ConfigurationController.class).addCallback(this);
     }
@@ -351,16 +355,12 @@ public class FODCircleView extends ImageView  implements ConfigurationListener {
         dispatchPress();
 
         mPaintFingerprint.setColor(mColor);
-        setImageResource(R.drawable.fod_icon_pressed);
-        invalidate();
     }
 
     public void hideCircle() {
         mIsCircleShowing = false;
 
         mPaintFingerprint.setColor(mColorBackground);
-        setImageResource(R.drawable.fod_icon_default);
-        invalidate();
 
         dispatchRelease();
         setDim(false);

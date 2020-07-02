@@ -7136,6 +7136,14 @@ public final class Settings {
         /** @hide */
         private static final Validator QS_SHOW_BATTERY_PERCENT_VALIDATOR = BOOLEAN_VALIDATOR;
 
+        /**
+         * Whether to show VoWIFI icon or not
+         * @hide
+         */
+        public static final String SHOW_VOWIFI_ICON = "show_vowifi_icon";
+        /** @hide */
+        public static final Validator SHOW_VOWIFI_ICON_VALIDATOR = BOOLEAN_VALIDATOR;
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7767,6 +7775,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SCREEN_STATE_THREEG);
             PRIVATE_SETTINGS.add(GESTURE_NAVBAR_SHOW);
             PRIVATE_SETTINGS.add(QS_DATAUSAGE);
+            PRIVATE_SETTINGS.add(SHOW_VOWIFI_ICON);
             // AICP Settings end
         }
 
@@ -8110,6 +8119,7 @@ public final class Settings {
             VALIDATORS.put(SCREEN_STATE_THREEG, SCREEN_STATE_THREEG_VALIDATOR);
             VALIDATORS.put(GESTURE_NAVBAR_SHOW,GESTURE_NAVBAR_SHOW_VALIDATOR);
             VALIDATORS.put(QS_DATAUSAGE, QS_DATAUSAGE_VALIDATOR);
+            VALIDATORS.put(SHOW_VOWIFI_ICON, SHOW_VOWIFI_ICON_VALIDATOR);
             // AICP Settings end
         }
 

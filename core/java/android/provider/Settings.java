@@ -7163,6 +7163,12 @@ public final class Settings {
         /** @hide */
         public static final Validator SHOW_VOWIFI_ICON_VALIDATOR = BOOLEAN_VALIDATOR;
 
+        /**
+         * A2DP codec priority
+         * @hide
+         */
+        public static final String A2DP_SOURCE_CODEC_PRIORITY = "a2dp_source_codec_priority";
+
         /***************************
          * AICP System Settings end
          ***************************/

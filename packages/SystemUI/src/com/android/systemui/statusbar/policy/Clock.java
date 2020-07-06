@@ -123,6 +123,7 @@ public class Clock extends TextView implements DemoMode, Tunable, CommandQueue.C
     private boolean mShowSeconds;
     private Handler mSecondsHandler;
     private boolean mQsHeader;
+    private Handler mHandler;
 
     /**
      * Whether we should use colors that adapt based on wallpaper/the scrim behind quick settings
@@ -225,6 +226,8 @@ public class Clock extends TextView implements DemoMode, Tunable, CommandQueue.C
             }
             mCurrentUserTracker.startTracking();
             mCurrentUserId = mCurrentUserTracker.getCurrentUserId();
+
+            mHandler = new Handler();
         }
 
         // NOTE: It's safe to do these after registering the receiver since the receiver always runs
@@ -234,9 +237,11 @@ public class Clock extends TextView implements DemoMode, Tunable, CommandQueue.C
         mCalendar = Calendar.getInstance(TimeZone.getDefault());
 
         // Make sure we update to the current time
-        updateClock();
-        updateClockVisibility();
-        updateShowSeconds();
+        if (mHandler != null) mHandler.post(() -> {
+            updateClock();
+            updateClockVisibility();
+            updateShowSeconds();
+        });
     }
 
     @Override
@@ -259,8 +264,7 @@ public class Clock extends TextView implements DemoMode, Tunable, CommandQueue.C
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            Handler handler = getHandler();
-            if (handler == null) {
+            if (mHandler == null) {
                 Log.e(TAG,
                         "Received intent, but handler is null - still attached to window? Window "
                                 + "token: "
@@ -270,7 +274,7 @@ public class Clock extends TextView implements DemoMode, Tunable, CommandQueue.C
 
             if (action.equals(Intent.ACTION_TIMEZONE_CHANGED)) {
                 String tz = intent.getStringExtra("time-zone");
-                handler.post(() -> {
+                mHandler.post(() -> {
                     mCalendar = Calendar.getInstance(TimeZone.getTimeZone(tz));
                     if (mClockFormat != null) {
                         mClockFormat.setTimeZone(mCalendar.getTimeZone());
@@ -278,7 +282,7 @@ public class Clock extends TextView implements DemoMode, Tunable, CommandQueue.C
                 });
             } else if (action.equals(Intent.ACTION_CONFIGURATION_CHANGED)) {
                 final Locale newLocale = getResources().getConfiguration().locale;
-                handler.post(() -> {
+                mHandler.post(() -> {
                     if (!newLocale.equals(mLocale)) {
                         mLocale = newLocale;
                     }
@@ -292,7 +296,7 @@ public class Clock extends TextView implements DemoMode, Tunable, CommandQueue.C
             }
 
             if (mScreenOn) {
-                handler.post(() -> updateClock());
+                mHandler.post(() -> updateClock());
             }
         }
     };
@@ -654,7 +658,9 @@ public class Clock extends TextView implements DemoMode, Tunable, CommandQueue.C
         }
 
         if (mCalendar != null) {
-            updateClock();
+          if (mHandler != null) mHandler.post(() -> {
+                updateClock();
+            });
         }
     }
 

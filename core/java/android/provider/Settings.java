@@ -7169,6 +7169,12 @@ public final class Settings {
          */
         public static final String A2DP_SOURCE_CODEC_PRIORITY = "a2dp_source_codec_priority";
 
+        /**
+         * SBC HD priority - whether to use dual channel for SBC by default
+         * @hide
+         */
+        public static final String SBC_HD_PRIORITY = "sbc_hd_priority";
+
         /***************************
          * AICP System Settings end
          ***************************/

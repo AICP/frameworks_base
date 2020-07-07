@@ -7164,6 +7164,18 @@ public final class Settings {
          */
         public static final String RINGTONE_VIBRATION_PATTERN = "ringtone_vibration_pattern";
 
+        /**
+         * Control how to handle the display cutout
+         * @hide
+         */
+        public static final String DISPLAY_CUTOUT_MODE = "display_cutout_mode";
+
+        /**
+         * Control how to handle the display cutout
+         * @hide
+         */
+        public static final String STOCK_STATUSBAR_IN_HIDE = "stock_statusbar_in_hide";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7435,6 +7447,8 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(USE_NEW_SEARCHBAR, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(RINGTONE_VIBRATION_PATTERN, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(CUSTOM_RINGTONE_VIBRATION_PATTERN, ANY_STRING_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(DISPLAY_CUTOUT_MODE, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(STOCK_STATUSBAR_IN_HIDE, BOOLEAN_VALIDATOR);
         }
 
         /**

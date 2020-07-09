@@ -7246,6 +7246,15 @@ public final class Settings {
          ***************************/
 
         /**
+         * Screen off fod
+         * @hide
+         */
+        public static final String FOD_GESTURE = "fod_gesture";
+
+        /** @hide */
+        public static final Validator FOD_GESTURE_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
          * IMPORTANT: If you add a new public settings you also have to add it to
          * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
          * it to PRIVATE_SETTINGS below. Also add a validator that can validate
@@ -7875,6 +7884,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(QS_DATAUSAGE);
             PRIVATE_SETTINGS.add(SHOW_VOWIFI_ICON);
             PRIVATE_SETTINGS.add(AUTO_BRIGHTNESS_MIN_VALUE);
+            PRIVATE_SETTINGS.add(FOD_GESTURE);
             // AICP Settings end
         }
 
@@ -8220,6 +8230,7 @@ public final class Settings {
             VALIDATORS.put(QS_DATAUSAGE, QS_DATAUSAGE_VALIDATOR);
             VALIDATORS.put(SHOW_VOWIFI_ICON, SHOW_VOWIFI_ICON_VALIDATOR);
             VALIDATORS.put(AUTO_BRIGHTNESS_MIN_VALUE, AUTO_BRIGHTNESS_MIN_VALUE_VALIDATOR);
+            VALIDATORS.put(FOD_GESTURE, FOD_GESTURE_VALIDATOR);
             // AICP Settings end
         }
 

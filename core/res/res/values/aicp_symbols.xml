@@ -238,4 +238,7 @@
 
   <!-- FOD icon dimming -->
   <java-symbol type="bool" name="config_targetUsesInKernelDimming" />
+
+  <!-- Whether device supports in-display fingerprint when screen is turned off -->
+  <java-symbol type="bool" name="config_supportsInDisplayFingerprintGesture" />
 </resources>

@@ -7141,6 +7141,15 @@ public final class Settings {
          ***************************/
 
         /**
+         * Screen off fod
+         * @hide
+         */
+        public static final String FOD_GESTURE = "fod_gesture";
+
+        /** @hide */
+        public static final Validator FOD_GESTURE_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
          * IMPORTANT: If you add a new public settings you also have to add it to
          * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
          * it to PRIVATE_SETTINGS below. Also add a validator that can validate
@@ -7767,6 +7776,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SCREEN_STATE_THREEG);
             PRIVATE_SETTINGS.add(GESTURE_NAVBAR_SHOW);
             PRIVATE_SETTINGS.add(QS_DATAUSAGE);
+            PRIVATE_SETTINGS.add(FOD_GESTURE);
             // AICP Settings end
         }
 
@@ -8110,6 +8120,7 @@ public final class Settings {
             VALIDATORS.put(SCREEN_STATE_THREEG, SCREEN_STATE_THREEG_VALIDATOR);
             VALIDATORS.put(GESTURE_NAVBAR_SHOW,GESTURE_NAVBAR_SHOW_VALIDATOR);
             VALIDATORS.put(QS_DATAUSAGE, QS_DATAUSAGE_VALIDATOR);
+            VALIDATORS.put(FOD_GESTURE, FOD_GESTURE_VALIDATOR);
             // AICP Settings end
         }
 

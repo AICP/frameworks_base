@@ -266,4 +266,7 @@
 
     <!-- Default state for LiveDisplay -->
     <bool name="config_liveDisplayAvailable">false</bool>
+
+    <!-- Whether device supports in-display fingerprint when screen is turned off -->
+    <bool name="config_supportsInDisplayFingerprintGesture">false</bool>
 </resources>

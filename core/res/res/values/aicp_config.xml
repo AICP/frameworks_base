@@ -272,4 +272,7 @@
 
     <!-- FOD pressed color-->
     <bool name="config_fod_color_picker">false</bool>
+
+    <!-- Whether device supports in-display fingerprint when screen is turned off -->
+    <bool name="config_supportsInDisplayFingerprintGesture">false</bool>
 </resources>

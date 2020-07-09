@@ -241,4 +241,7 @@
 
   <!-- FOD pressed color-->
   <java-symbol type="bool" name="config_fod_color_picker" />
+
+  <!-- Whether device supports in-display fingerprint when screen is turned off -->
+  <java-symbol type="bool" name="config_supportsInDisplayFingerprintGesture" />
 </resources>

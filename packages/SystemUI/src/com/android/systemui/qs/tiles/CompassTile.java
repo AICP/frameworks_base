@@ -124,12 +124,13 @@ public class CompassTile extends QSTileImpl<BooleanState> implements SensorEvent
         Float degrees = arg == null ? 0 :(float) arg;
 
         state.value = mActive;
+        state.icon = ResourceIcon.get(R.drawable.ic_qs_compass_on);
+        state.label = mContext.getString(R.string.quick_settings_compass_label);
 
         if (state.value) {
             state.state = Tile.STATE_ACTIVE;
-            state.icon = ResourceIcon.get(R.drawable.ic_qs_compass_on);
             if (arg != null) {
-                state.label = formatValueWithCardinalDirection(degrees);
+                state.secondaryLabel = formatValueWithCardinalDirection(degrees);
 
                 float target = 360 - degrees;
                 float relative = target - mImage.getRotation();
@@ -137,15 +138,14 @@ public class CompassTile extends QSTileImpl<BooleanState> implements SensorEvent
 
                 mImage.setRotation(mImage.getRotation() + relative / 2);
             } else {
-                state.label = mContext.getString(R.string.quick_settings_compass_init);
+                state.secondaryLabel = mContext.getString(R.string.quick_settings_compass_init);
                 mImage.setRotation(0);
             }
             state.contentDescription = mContext.getString(
                     R.string.accessibility_quick_settings_compass_on);
         } else {
             state.state = Tile.STATE_INACTIVE;
-            state.icon = ResourceIcon.get(R.drawable.ic_qs_compass_off);
-            state.label = mContext.getString(R.string.quick_settings_compass_label);
+            state.secondaryLabel = null;
             state.contentDescription = mContext.getString(
                     R.string.accessibility_quick_settings_compass_off);
             if (mImage != null) {

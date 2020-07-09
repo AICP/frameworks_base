@@ -30,6 +30,7 @@ import android.os.ServiceManager;
 import android.os.SystemClock;
 import android.os.UserHandle;
 import android.provider.Settings;
+import android.service.quicksettings.Tile;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.ViewConfiguration;
@@ -109,13 +110,17 @@ public class MusicTile extends QSTileImpl<BooleanState> {
 
     @Override
     protected void handleUpdateState(BooleanState state, Object arg) {
+        state.state = mActive ? Tile.STATE_ACTIVE : Tile.STATE_INACTIVE;
         if (mActive) {
             state.icon = ResourceIcon.get(R.drawable.ic_qs_media_pause);
             state.label = mMetadata.trackTitle != null && MusicTileTitle()
                 ? mMetadata.trackTitle : mContext.getString(R.string.quick_settings_music_pause);
+            state.secondaryLabel = mMetadata.trackTitle != null && MusicTileTitle()
+                ? mMetadata.trackArtist : null;
         } else {
             state.icon = ResourceIcon.get(R.drawable.ic_qs_media_play);
             state.label = mContext.getString(R.string.quick_settings_music_play);
+            state.secondaryLabel = null;
         }
     }
 
@@ -237,6 +242,8 @@ public class MusicTile extends QSTileImpl<BooleanState> {
         public void onClientMetadataUpdate(RemoteController.MetadataEditor data) {
             mMetadata.trackTitle = data.getString(MediaMetadataRetriever.METADATA_KEY_TITLE,
                     mMetadata.trackTitle);
+            mMetadata.trackArtist = data.getString(MediaMetadataRetriever.METADATA_KEY_ARTIST,
+                    mMetadata.trackTitle);
             mClientIdLost = false;
             if (mMetadata.trackTitle != null
                     && !mMetadata.trackTitle.equals(mCurrentTrack)) {
@@ -252,9 +259,11 @@ public class MusicTile extends QSTileImpl<BooleanState> {
 
     class Metadata {
         private String trackTitle;
+        private String trackArtist;
 
         public void clear() {
             trackTitle = null;
+            trackArtist = null;
         }
     }
 

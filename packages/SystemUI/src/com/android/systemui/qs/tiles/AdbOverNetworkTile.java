@@ -83,9 +83,9 @@ public class AdbOverNetworkTile extends QSTileImpl<BooleanState> {
         }
         state.icon = mIcon;
         state.slash.isSlashed = !mActive;
+        state.label = mContext.getString(R.string.quick_settings_network_adb_label);
 
         if (!mActive) {
-            state.label = mContext.getString(R.string.quick_settings_network_adb_label);
             state.state = Tile.STATE_INACTIVE;
             return;
         }
@@ -99,16 +99,16 @@ public class AdbOverNetworkTile extends QSTileImpl<BooleanState> {
             if (wifiInfo != null) {
                 // if wifiInfo is not null, set the label to "hostAddress"
                 InetAddress address = NetworkUtils.intToInetAddress(wifiInfo.getIpAddress());
-                state.label = address.getHostAddress();
+                state.secondaryLabel = address.getHostAddress();
             } else {
                 // if wifiInfo is null, set the label without host address
-                state.label = mContext.getString(R.string.quick_settings_network_adb_label);
+                state.secondaryLabel = null;
             }
             state.value = true;
             state.state = Tile.STATE_ACTIVE;
         } else {
             // Otherwise set the disabled label and icon
-            state.label = mContext.getString(R.string.quick_settings_network_adb_label);
+            state.secondaryLabel = null;
             state.value = false;
             state.state = Tile.STATE_INACTIVE;
         }

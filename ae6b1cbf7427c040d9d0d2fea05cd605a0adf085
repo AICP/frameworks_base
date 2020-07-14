@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ebe70c27_23852794",
+        "filename": "packages/SystemUI/src/com/android/systemui/qs/tiles/WeatherTile.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2020-07-14T11:50:27Z",
+      "side": 1,
+      "message": "Wouldn\u0027t it be better to show the current condition with \"Now: \" + mWeatherData.condition instead?\nOtherwise there might be a discrepancy between the icon and the condition",
+      "revId": "ae6b1cbf7427c040d9d0d2fea05cd605a0adf085",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    }
+  ]
+}

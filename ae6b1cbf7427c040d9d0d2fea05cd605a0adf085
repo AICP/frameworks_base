@@ -16,6 +16,24 @@
       "revId": "ae6b1cbf7427c040d9d0d2fea05cd605a0adf085",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff7c62a8_b6d0df2d",
+        "filename": "packages/SystemUI/src/com/android/systemui/qs/tiles/WeatherTile.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2020-07-14T12:55:32Z",
+      "side": 1,
+      "message": "I was thinking in the direction that the icon will give an idea about current condition, while the secondary label will give an idea about the day ahead, thus was the \"Today\" added to make it much clear.",
+      "parentUuid": "ebe70c27_23852794",
+      "revId": "ae6b1cbf7427c040d9d0d2fea05cd605a0adf085",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
     }
   ]
 }

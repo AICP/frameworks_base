@@ -150,6 +150,10 @@ public class ScreenDecorations extends SystemUI implements Tunable,
     private Handler mHandler;
     private boolean mPendingRotationChange;
     private boolean mIsRoundedCornerMultipleRadius;
+    private int mImmerseModeSetting = 0;
+    private boolean mTopEnabled = true;
+    private Point mZeroPoint = new Point(0, 0);
+
     private final SysuiStatusBarStateController mStatusBarStateController =
             (SysuiStatusBarStateController) Dependency.get(StatusBarStateController.class);
     private boolean mFullscreenMode = false;
@@ -838,7 +842,9 @@ public class ScreenDecorations extends SystemUI implements Tunable,
         if (mOverlays == null) {
             return;
         }
-        if (sizeTop.x == 0) {
+        if (!mTopEnabled && mRotation == RotationUtils.ROTATION_NONE) {
+            sizeTop = mZeroPoint;
+        } else if (sizeTop.x == 0) {
             sizeTop = sizeDefault;
         }
         if (sizeBottom.x == 0) {
@@ -863,6 +869,19 @@ public class ScreenDecorations extends SystemUI implements Tunable,
             } else if (i == BOUNDS_POSITION_BOTTOM) {
                 setSize(mOverlays[i].findViewById(R.id.left), sizeBottom);
                 setSize(mOverlays[i].findViewById(R.id.right), sizeBottom);
+            }
+        }
+    }
+
+    public void setTopCorners(boolean enable) {
+        if (mImmerseModeSetting == 1 && mTopEnabled != enable) {
+            mTopEnabled = enable;
+            if (mOverlays != null) {
+                if (!mHandler.getLooper().isCurrentThread()) {
+                    mHandler.post(() -> updateAllForCutout());
+                } else {
+                    updateAllForCutout();
+                }
             }
         }
     }
@@ -1361,8 +1380,7 @@ public class ScreenDecorations extends SystemUI implements Tunable,
     private void updateCutoutMode() {
         boolean newImmerseMode;
         if (mRotation == RotationUtils.ROTATION_NONE) {
-            newImmerseMode = System.getIntForUser(mContext.getContentResolver(),
-                        System.DISPLAY_CUTOUT_MODE, 0, UserHandle.USER_CURRENT) == 1;
+            newImmerseMode = mImmerseModeSetting == 1;
         } else {
             newImmerseMode = false;
         }
@@ -1393,7 +1411,7 @@ public class ScreenDecorations extends SystemUI implements Tunable,
         @Override
         public void onChange(boolean selfChange, Uri uri) {
             if (uri.equals(System.getUriFor(System.DISPLAY_CUTOUT_MODE))) {
-                updateCutoutMode();
+                update();
             }
         }
 
@@ -1403,6 +1421,8 @@ public class ScreenDecorations extends SystemUI implements Tunable,
         }
 
         public void update() {
+            mImmerseModeSetting = System.getIntForUser(mContext.getContentResolver(),
+                        System.DISPLAY_CUTOUT_MODE, 0, UserHandle.USER_CURRENT);
             updateCutoutMode();
         }
     }

@@ -7112,6 +7112,12 @@ public final class Settings {
          */
         public static final String VOLUME_ANSWER_CALL = "volume_answer_call";
 
+        /**
+         * Toggle for clipboard access toast.
+         * @hide
+         */
+        public static final String SHOW_CLIPBOARD_TOAST = "show_clipboard_toast";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7376,6 +7382,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(STATUS_BAR_TICKER_TICK_DURATION, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(NAVIGATION_BAR_MENU_ARROW_KEYS, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(VOLUME_ANSWER_CALL, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(SHOW_CLIPBOARD_TOAST, BOOLEAN_VALIDATOR);
         }
 
         /**

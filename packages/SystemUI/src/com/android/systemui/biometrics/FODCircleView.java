@@ -64,8 +64,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class FODCircleView extends ImageView implements ConfigurationListener {
-    private static final int FADE_ANIM_DURATION = 250;
-
     private final int mPositionX;
     private final int mPositionY;
     private final int mSize;
@@ -83,7 +81,6 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
     private int mDreamingOffsetX;
     private int mDreamingOffsetY;
 
-    private boolean mFading;
     private boolean mIsBouncer;
     private boolean mIsDreaming;
     private boolean mIsCircleShowing;
@@ -299,7 +296,6 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
     }
 
     public void dispatchPress() {
-        if (mFading) return;
         IFingerprintInscreen daemon = getFingerprintInScreenDaemon();
         try {
             daemon.onPress();
@@ -336,7 +332,6 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
     }
 
     public void showCircle() {
-        if (mFading) return;
         if (mIsAuthenticated) {
             return;
         }
@@ -382,25 +377,12 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
 
         updatePosition();
 
-        setVisibility(View.VISIBLE);
-        animate().withStartAction(() -> mFading = true)
-                .alpha(mIsDreaming ? 0.5f : 1.0f)
-                .setDuration(FADE_ANIM_DURATION)
-                .withEndAction(() -> mFading = false)
-                .start();
         dispatchShow();
+        setVisibility(View.VISIBLE);
     }
 
     public void hide() {
-        animate().withStartAction(() -> mFading = true)
-                .alpha(0)
-                .setDuration(FADE_ANIM_DURATION)
-                .withEndAction(() -> {
-                    setVisibility(View.GONE);
-                    mFading = false;
-                })
-                .start();
-
+        setVisibility(View.GONE);
         hideCircle();
         dispatchHide();
     }

@@ -63,7 +63,8 @@ import java.util.NoSuchElementException;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class FODCircleView extends ImageView implements ConfigurationListener {
+public class FODCircleView extends ImageView  implements ConfigurationListener {
+
     private final int mPositionX;
     private final int mPositionY;
     private final int mSize;
@@ -104,17 +105,17 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
     private int iconcolor = 0xFF3980FF;
 
     private IFingerprintInscreenCallback mFingerprintInscreenCallback =
-        new IFingerprintInscreenCallback.Stub() {
-            @Override
-            public void onFingerDown() {
-                mHandler.post(() -> showCircle());
-            }
+            new IFingerprintInscreenCallback.Stub() {
+        @Override
+        public void onFingerDown() {
+            mHandler.post(() -> showCircle());
+        }
 
-            @Override
-            public void onFingerUp() {
-                mHandler.post(() -> hideCircle());
-            }
-        };
+        @Override
+        public void onFingerUp() {
+            mHandler.post(() -> hideCircle());
+        }
+    };
 
     private KeyguardUpdateMonitor mUpdateMonitor;
 
@@ -222,7 +223,7 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
 
         mNavigationBarSize = res.getDimensionPixelSize(R.dimen.navigation_bar_size);
 
-        mDreamingMaxOffset = (int)(mSize * 0.1f);
+        mDreamingMaxOffset = (int) (mSize * 0.1f);
 
         mHandler = new Handler(Looper.getMainLooper());
 
@@ -430,7 +431,6 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
 
         int rotation = defaultDisplay.getRotation();
         int cutoutMaskedExtra = mCutoutMasked ? mStatusbarHeight : 0;
-
         int x, y;
         switch (rotation) {
             case Surface.ROTATION_0:
@@ -465,6 +465,7 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
         }
 
         mWindowManager.updateViewLayout(this, mParams);
+
         if (mPressedView.getParent() != null) {
             mWindowManager.updateViewLayout(mPressedView, mPressedParams);
         }
@@ -521,13 +522,13 @@ public class FODCircleView extends ImageView implements ConfigurationListener {
         public void run() {
             long now = System.currentTimeMillis() / 1000 / 60;
 
-            mDreamingOffsetX = (int)(now % (mDreamingMaxOffset * 4));
+            mDreamingOffsetX = (int) (now % (mDreamingMaxOffset * 4));
             if (mDreamingOffsetX > mDreamingMaxOffset * 2) {
                 mDreamingOffsetX = mDreamingMaxOffset * 4 - mDreamingOffsetX;
             }
 
             // Let y to be not synchronized with x, so that we get maximum movement
-            mDreamingOffsetY = (int)((now + mDreamingMaxOffset / 3) % (mDreamingMaxOffset * 2));
+            mDreamingOffsetY = (int) ((now + mDreamingMaxOffset / 3) % (mDreamingMaxOffset * 2));
             if (mDreamingOffsetY > mDreamingMaxOffset * 2) {
                 mDreamingOffsetY = mDreamingMaxOffset * 4 - mDreamingOffsetY;
             }

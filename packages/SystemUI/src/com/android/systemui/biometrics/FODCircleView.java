@@ -82,6 +82,9 @@ public class FODCircleView extends ImageView  implements ConfigurationListener {
     private int mDreamingOffsetX;
     private int mDreamingOffsetY;
 
+    private int mColor;
+    private int mColorBackground;
+
     private boolean mIsBiometricRunning;
     private boolean mIsBouncer;
     private boolean mIsDreaming;
@@ -96,12 +99,7 @@ public class FODCircleView extends ImageView  implements ConfigurationListener {
 
     private Timer mBurnInProtectionTimer;
 
-    private boolean mCutoutMasked;
-    private boolean mIsRecognizingAnimEnabled;
-    private boolean mCanUnlockWithFp;
-    private boolean mIsAuthenticated;
     private FODAnimation mFODAnimation;
-    private int mStatusbarHeight;
     private int iconcolor = 0xFF3980FF;
 
     private IFingerprintInscreenCallback mFingerprintInscreenCallback =
@@ -172,6 +170,10 @@ public class FODCircleView extends ImageView  implements ConfigurationListener {
         public void onKeyguardVisibilityChanged(boolean showing) {
             mIsKeyguard = showing;
 
+            if (mFODAnimation != null) {
+                mFODAnimation.setAnimationKeyguard(mIsKeyguard);
+            }
+
             if (!showing) {
                 hide();
             } else {
@@ -191,6 +193,9 @@ public class FODCircleView extends ImageView  implements ConfigurationListener {
             }
         }
     };
+
+    private boolean mCutoutMasked;
+    private int mStatusbarHeight;
 
     public FODCircleView(Context context) {
         super(context);
@@ -213,10 +218,12 @@ public class FODCircleView extends ImageView  implements ConfigurationListener {
 
         Resources res = context.getResources();
 
-        mPaintFingerprint.setColor(res.getColor(R.color.config_fodColor));
+        mColor = res.getColor(R.color.config_fodColor);
+        mPaintFingerprint.setColor(mColor);
         mPaintFingerprint.setAntiAlias(true);
 
-        mPaintFingerprintBackground.setColor(res.getColor(R.color.config_fodColorBackground));
+        mColorBackground = res.getColor(R.color.config_fodColorBackground);
+        mPaintFingerprintBackground.setColor(mColorBackground);
         mPaintFingerprintBackground.setAntiAlias(true);
 
         mWindowManager = context.getSystemService(WindowManager.class);
@@ -255,13 +262,14 @@ public class FODCircleView extends ImageView  implements ConfigurationListener {
 
         mWindowManager.addView(this, mParams);
 
-        updateCutoutFlags();
+        updatePosition();
         hide();
 
         mLockPatternUtils = new LockPatternUtils(mContext);
 
         mUpdateMonitor = KeyguardUpdateMonitor.getInstance(context);
         mUpdateMonitor.registerCallback(mMonitorCallback);
+        updateCutoutFlags();
 
         Dependency.get(ConfigurationController.class).addCallback(this);
 
@@ -387,13 +395,13 @@ public class FODCircleView extends ImageView  implements ConfigurationListener {
     }
 
     public void show() {
-        if (!mCanUnlockWithFp){
-            // Ignore when unlocking with fp is not possible
+        if (!mUpdateMonitor.isScreenOn()) {
+            // Keyguard is shown just after screen turning off
             return;
         }
 
-        if (!mUpdateMonitor.isScreenOn()) {
-            // Keyguard is shown just after screen turning off
+        if (mIsBouncer && !isPinOrPattern(mUpdateMonitor.getCurrentUser())) {
+            // Ignore show calls when Keyguard password screen is being shown
             return;
         }
 
@@ -447,7 +455,7 @@ public class FODCircleView extends ImageView  implements ConfigurationListener {
                 break;
             case Surface.ROTATION_270:
                 x = size.x - mPositionY - mSize - mNavigationBarSize - cutoutMaskedExtra;
-                y = mPositionX;
+                y = mPositionX - cutoutMaskedExtra;
                 break;
             default:
                 throw new IllegalArgumentException("Unknown rotation: " + rotation);
@@ -552,7 +560,9 @@ public class FODCircleView extends ImageView  implements ConfigurationListener {
                 com.android.internal.R.bool.config_maskMainBuiltInDisplayCutout);
         if (mCutoutMasked != cutoutMasked){
             mCutoutMasked = cutoutMasked;
-            updatePosition();
+            if (mIsCircleShowing) {
+                updatePosition();
+            }
         }
     }
 

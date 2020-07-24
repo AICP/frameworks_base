@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d02f0c28_203c8f15",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/StatusBarMobileView.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2020-07-24T13:52:25Z",
+      "side": 1,
+      "message": "Don\u0027t think this required, also not found here too https://review.lineageos.org/c/LineageOS/android_frameworks_base/+/280069",
+      "range": {
+        "startLine": 163,
+        "startChar": 8,
+        "endLine": 163,
+        "endChar": 41
+      },
+      "revId": "2a39b23bf069de0b2ec6d3a8795163e3dbf5e757",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    }
+  ]
+}

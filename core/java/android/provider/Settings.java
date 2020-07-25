@@ -6434,24 +6434,6 @@ public final class Settings {
         private static final Validator NAVIGATION_HANDLE_WIDTH_VALIDATOR = ANY_INTEGER_VALIDATOR;
 
         /**
-         * FOD icon picker
-         * @hide
-         */
-        public static final String FOD_ICON = "fod_icon";
-        /** @hide */
-        private static final Validator FOD_ICON_VALIDATOR =
-               new SettingsValidators.InclusiveIntegerRangeValidator(0, 20);
-
-        /**
-         * FOD use wallpaper color
-         * @hide
-         */
-        public static final String FOD_ICON_WALLPAPER_COLOR = "fod_icon_wallpaper_color";
-        /** @hide */
-        private static final Validator FOD_ICON_WALLPAPER_COLOR_VALIDATOR =
-                BOOLEAN_VALIDATOR;
-
-        /**
          * FOD recognizing animation
          * @hide
          */
@@ -7394,8 +7376,6 @@ public final class Settings {
             OMNI_STATUS_BAR_CUSTOM_HEADER_IMAGE,
             OMNI_STATUS_BAR_FILE_HEADER_IMAGE,
             NAVIGATION_HANDLE_WIDTH,
-            FOD_ICON,
-            FOD_ICON_WALLPAPER_COLOR,
             FOD_RECOGNIZING_ANIMATION,
             OMNI_DEVICE_PROXI_CHECK_ENABLED,
             OMNI_DEVICE_FEATURE_SETTINGS,
@@ -7725,8 +7705,6 @@ public final class Settings {
             PRIVATE_SETTINGS.add(OMNI_STATUS_BAR_CUSTOM_HEADER_IMAGE);
             PRIVATE_SETTINGS.add(OMNI_STATUS_BAR_FILE_HEADER_IMAGE);
             PRIVATE_SETTINGS.add(NAVIGATION_HANDLE_WIDTH);
-            PRIVATE_SETTINGS.add(FOD_ICON);
-            PRIVATE_SETTINGS.add(FOD_ICON_WALLPAPER_COLOR);
             PRIVATE_SETTINGS.add(FOD_RECOGNIZING_ANIMATION);
             PRIVATE_SETTINGS.add(OMNI_BUTTON_EXTRA_KEY_MAPPING);
             PRIVATE_SETTINGS.add(OMNI_DEVICE_PROXI_CHECK_ENABLED);
@@ -8078,9 +8056,6 @@ public final class Settings {
             VALIDATORS.put(OMNI_STATUS_BAR_FILE_HEADER_IMAGE,
                     OMNI_STATUS_BAR_FILE_HEADER_IMAGE_VALIDATOR);
             VALIDATORS.put(NAVIGATION_HANDLE_WIDTH, NAVIGATION_HANDLE_WIDTH_VALIDATOR);
-            VALIDATORS.put(FOD_ICON, FOD_ICON_VALIDATOR);
-            VALIDATORS.put(FOD_ICON_WALLPAPER_COLOR,
-                    FOD_ICON_WALLPAPER_COLOR_VALIDATOR);
             VALIDATORS.put(FOD_RECOGNIZING_ANIMATION, FOD_RECOGNIZING_ANIMATION_VALIDATOR);
             VALIDATORS.put(OMNI_DEVICE_PROXI_CHECK_ENABLED, OMNI_DEVICE_PROXI_CHECK_ENABLED_VALIDATOR);
             VALIDATORS.put(OMNI_DEVICE_FEATURE_SETTINGS, OMNI_DEVICE_FEATURE_SETTINGS_VALIDATOR);

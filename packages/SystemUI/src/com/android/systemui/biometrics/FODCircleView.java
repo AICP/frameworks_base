@@ -16,14 +16,10 @@
 
 package com.android.systemui.biometrics;
 
-import android.app.WallpaperColors;
-import android.app.WallpaperManager;
 import android.app.admin.DevicePolicyManager;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
@@ -45,7 +41,6 @@ import android.view.Surface;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import androidx.palette.graphics.Palette;
 
 import com.android.internal.widget.LockPatternUtils;
 import com.android.keyguard.KeyguardSecurityModel.SecurityMode;
@@ -91,6 +86,8 @@ public class FODCircleView extends ImageView  implements ConfigurationListener {
     private boolean mIsCircleShowing;
     private boolean mIsKeyguard;
 
+    private float mCurrentDimAmount = 0.0f;
+
     private Handler mHandler;
 
     private final ImageView mPressedView;
@@ -100,7 +97,6 @@ public class FODCircleView extends ImageView  implements ConfigurationListener {
     private Timer mBurnInProtectionTimer;
 
     private FODAnimation mFODAnimation;
-    private int iconcolor = 0xFF3980FF;
 
     private IFingerprintInscreenCallback mFingerprintInscreenCallback =
             new IFingerprintInscreenCallback.Stub() {
@@ -382,7 +378,7 @@ public class FODCircleView extends ImageView  implements ConfigurationListener {
     public void hideCircle() {
         mIsCircleShowing = false;
 
-        setFODIcon();
+        setImageResource(R.drawable.fod_icon_default);
         if (mFODAnimation != null) {
             mFODAnimation.setFODAnim();
         }

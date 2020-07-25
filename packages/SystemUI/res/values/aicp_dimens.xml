@@ -91,8 +91,6 @@
     <dimen name="right_tri_state_up_top_left_radius">24.0dip</dimen>
     <dimen name="right_tri_state_up_top_right_radius">24.0dip</dimen>
 
-    <!-- FOD recognizing animation -->
-    <dimen name="fod_animation_size">280dp</dimen>
     <!-- FOD recognizing animation vertical position offset -->
     <dimen name="fod_animation_offset">0dp</dimen>
 

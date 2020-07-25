@@ -318,4 +318,9 @@
          values/config.xml) and must be truncated.
          [CHAR LIMIT=4] -->
     <string name="status_bar_notification_info_overflow" translatable="false">\u221E</string>
+
+    <!-- DC Dimming -->
+    <string name="quick_settings_dc_dimming_label">DC Dimming</string>
+    <string name="quick_settings_dc_brightness_mode">Brightness mode</string>
+    <string name="quick_settings_dc_full_auto">Auto mode</string>
 </resources>

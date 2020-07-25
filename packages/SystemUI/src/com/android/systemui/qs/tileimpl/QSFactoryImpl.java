@@ -40,6 +40,7 @@ import com.android.systemui.qs.tiles.CompassTile;
 import com.android.systemui.qs.tiles.CPUInfoTile;
 import com.android.systemui.qs.tiles.DataSaverTile;
 import com.android.systemui.qs.tiles.DataSwitchTile;
+import com.android.systemui.qs.tiles.DcDimmingTile;
 import com.android.systemui.qs.tiles.DndTile;
 import com.android.systemui.qs.tiles.FlashlightTile;
 import com.android.systemui.qs.tiles.FPSInfoTile;
@@ -131,6 +132,7 @@ public class QSFactoryImpl implements QSFactory {
     private final Provider<KillappTile> mKillappTileProvider;
     private final Provider<VpnTile> mVpnTileProvider;
     private final Provider<MonoToggleTile> mMonoToggleTileProvider;
+    private final Provider<DcDimmingTile> mDcDimmingTileProvider;
     private final Provider<AntiFlickerTile> mAntiFlickerTileProvider;
 
     private final Lazy<QSHost> mQsHostLazy;
@@ -183,6 +185,7 @@ public class QSFactoryImpl implements QSFactory {
             Provider<KillappTile> killappTileProvider,
             Provider<VpnTile> vpnTileProvider,
             Provider<MonoToggleTile> monoToggleTileProvider,
+            Provider<DcDimmingTile> dcDimTileProvider,
             Provider<AntiFlickerTile> antiFlickerTileProvider) {
         mQsHostLazy = qsHostLazy;
         mWifiTileProvider = wifiTileProvider;
@@ -231,6 +234,7 @@ public class QSFactoryImpl implements QSFactory {
         mKillappTileProvider = killappTileProvider;
         mVpnTileProvider = vpnTileProvider;
         mMonoToggleTileProvider = monoToggleTileProvider;
+        mDcDimmingTileProvider = dcDimTileProvider;
         mAntiFlickerTileProvider = antiFlickerTileProvider;
     }
 
@@ -336,6 +340,8 @@ public class QSFactoryImpl implements QSFactory {
                 return mVpnTileProvider.get();
             case "mono":
                 return mMonoToggleTileProvider.get();
+            case "dc_dimming":
+                return mDcDimmingTileProvider.get();
             case "anti_flicker":
                 return mAntiFlickerTileProvider.get();
         }

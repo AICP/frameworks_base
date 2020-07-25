@@ -289,4 +289,7 @@
   <java-symbol type="anim" name="slide_out_right_no_fade" />
 
   <java-symbol type="bool" name="config_has_weird_dt_sensor" />
+
+  <!-- DC Dimming -->
+  <java-symbol type="string" name="config_deviceDcDimmingSysfsNode" />
 </resources>

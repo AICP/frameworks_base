@@ -306,4 +306,8 @@
     <bool name="config_liveDisplayAvailable">false</bool>
 
     <bool name="config_has_weird_dt_sensor">false</bool>
+
+    <!-- Defines the sysfs attribute path used by the device
+         to enable/disable DC dimming. -->
+    <string name="config_deviceDcDimmingSysfsNode"></string>
 </resources>

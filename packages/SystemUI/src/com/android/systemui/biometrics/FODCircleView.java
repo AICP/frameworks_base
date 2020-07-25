@@ -22,8 +22,6 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
@@ -31,7 +29,6 @@ import android.hardware.biometrics.BiometricSourceType;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.RemoteException;
-import android.os.UserHandle;
 import android.provider.Settings;
 import android.view.Display;
 import android.view.Gravity;
@@ -84,8 +81,6 @@ public class FODCircleView extends ImageView  implements ConfigurationListener {
     private boolean mIsDreaming;
     private boolean mIsCircleShowing;
     private boolean mIsKeyguard;
-
-    private float mCurrentDimAmount = 0.0f;
 
     private Handler mHandler;
 
@@ -365,9 +360,6 @@ public class FODCircleView extends ImageView  implements ConfigurationListener {
         mIsCircleShowing = false;
 
         setImageResource(R.drawable.fod_icon_default);
-        if (mFODAnimation != null) {
-            mFODAnimation.setFODAnim();
-        }
         invalidate();
 
         dispatchRelease();
@@ -542,127 +534,5 @@ public class FODCircleView extends ImageView  implements ConfigurationListener {
                 updatePosition();
             }
         }
-    }
-
-    private boolean useWallpaperColor() {
-        return Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.FOD_ICON_WALLPAPER_COLOR, 0) != 0;
-    }
-
-    private boolean isRecognizingAnimEnabled() {
-        return Settings.System.getInt(mContext.getContentResolver(),
-            Settings.System.FOD_RECOGNIZING_ANIMATION, 0) != 0;
-    }
-
-    private int getFODIcon() {
-        return Settings.System.getInt(mContext.getContentResolver(),
-            Settings.System.FOD_ICON, 0);
-    }
-
-    private void setFODIcon() {
-        switch (getFODIcon()) {
-            case 0:
-                this.setImageResource(R.drawable.fod_icon_default);
-                break;
-            case 1:
-                this.setImageResource(R.drawable.fod_icon_default_1);
-                break;
-            case 2:
-                this.setImageResource(R.drawable.fod_icon_default_2);
-                break;
-            case 3:
-                this.setImageResource(R.drawable.fod_icon_default_3);
-                break;
-            case 4:
-                this.setImageResource(R.drawable.fod_icon_default_4);
-                break;
-            case 5:
-                this.setImageResource(R.drawable.fod_icon_default_5);
-                break;
-            case 6:
-                this.setImageResource(R.drawable.fod_icon_arc_reactor);
-                break;
-            case 7:
-                this.setImageResource(R.drawable.fod_icon_cpt_america_flat);
-                break;
-            case 8:
-                this.setImageResource(R.drawable.fod_icon_cpt_america_flat_gray);
-                break;
-            case 9:
-                this.setImageResource(R.drawable.fod_icon_dragon_black_flat);
-                break;
-            case 10:
-                this.setImageResource(R.drawable.fod_icon_future);
-                break;
-            case 11:
-                this.setImageResource(R.drawable.fod_icon_glow_circle);
-                break;
-            case 12:
-                this.setImageResource(R.drawable.fod_icon_neon_arc);
-                break;
-            case 13:
-                this.setImageResource(R.drawable.fod_icon_neon_arc_gray);
-                break;
-            case 14:
-                this.setImageResource(R.drawable.fod_icon_neon_circle_pink);
-                break;
-            case 15:
-                this.setImageResource(R.drawable.fod_icon_neon_triangle);
-                break;
-            case 16:
-                this.setImageResource(R.drawable.fod_icon_paint_splash_circle);
-                break;
-            case 17:
-                this.setImageResource(R.drawable.fod_icon_rainbow_horn);
-                break;
-            case 18:
-                this.setImageResource(R.drawable.fod_icon_shooky);
-                break;
-            case 19:
-                this.setImageResource(R.drawable.fod_icon_spiral_blue);
-                break;
-            case 20:
-                this.setImageResource(R.drawable.fod_icon_sun_metro);
-                break;
-            default:
-                this.setImageResource(R.drawable.fod_icon_default);
-        }
-        this.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-
-        if (useWallpaperColor()) {
-            try {
-                WallpaperManager wallpaperManager = WallpaperManager.getInstance(mContext);
-                Drawable wallpaperDrawable = wallpaperManager.getDrawable();
-                Bitmap bitmap = ((BitmapDrawable)wallpaperDrawable).getBitmap();
-                if (bitmap != null) {
-                    Palette p = Palette.from(bitmap).generate();
-                    int wallColor = p.getDominantColor(iconcolor);
-                    if (iconcolor != wallColor) {
-                        iconcolor = wallColor;
-                    }
-                    this.setColorFilter(lighter(iconcolor, 3));
-                }
-            } catch (Exception e) {
-                // Nothing to do
-            }
-        } else {
-            this.setColorFilter(null);
-        }
-    }
-
-    private static int lighter(int color, int factor) {
-        int red = Color.red(color);
-        int green = Color.green(color);
-        int blue = Color.blue(color);
-
-        blue = blue * factor;
-        green = green * factor;
-        blue = blue * factor;
-
-        blue = blue > 255 ? 255 : blue;
-        green = green > 255 ? 255 : green;
-        red = red > 255 ? 255 : red;
-
-        return Color.argb(Color.alpha(color), red, green, blue);
     }
 }

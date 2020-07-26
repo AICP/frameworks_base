@@ -253,6 +253,7 @@
     <string name="recents_app_killed">Aplicación cerrada</string>
     <string name="nope_cant_kill">El launcher se puede cerrar</string>
     <!-- Daily data usage -->
+    <string name="daily_data_usage_title">Uso de hoy</string>
     <string name="lockscreen_default">Predeterminado</string>
     <string name="lockscreen_hidden">Ninguno</string>
     <!-- Shows when people have clicked on the custom lockscreen shortcut [CHAR LIMIT=60] -->

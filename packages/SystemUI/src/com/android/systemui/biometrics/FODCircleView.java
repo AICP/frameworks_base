@@ -260,9 +260,7 @@ public class FODCircleView extends ImageView  implements ConfigurationListener {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        if (!mIsCircleShowing) {
-            canvas.drawCircle(mSize / 2, mSize / 2, mSize / 2.0f, mPaintFingerprintBackground);
-        }
+        canvas.drawCircle(mSize / 2, mSize / 2, mSize / 2.0f, mPaintFingerprint);
         super.onDraw(canvas);
     }
 
@@ -352,6 +350,7 @@ public class FODCircleView extends ImageView  implements ConfigurationListener {
         setDim(true);
         dispatchPress();
 
+        mPaintFingerprint.setColor(mColor);
         setImageDrawable(null);
         invalidate();
     }
@@ -359,6 +358,7 @@ public class FODCircleView extends ImageView  implements ConfigurationListener {
     public void hideCircle() {
         mIsCircleShowing = false;
 
+        mPaintFingerprint.setColor(mColorBackground);
         setImageResource(R.drawable.fod_icon_default);
         invalidate();
 

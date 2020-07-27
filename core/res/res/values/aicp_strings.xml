@@ -49,4 +49,7 @@
     <string name="pocket_view_top_tag_cancel2">Long press the power button to force quit pocket mode.</string>
     <string name="pocket_view_top_tag_number1" translatable="false">1.\u0020</string>
     <string name="pocket_view_top_tag_number2" translatable="false">2.\u0020</string>
+
+    <!-- Cycle through ringer modes -->
+    <string name="volume_dialog_ringer_guidance_normal">Calls and notifications will ring</string>
 </resources>

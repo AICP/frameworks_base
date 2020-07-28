@@ -3465,6 +3465,11 @@ public class StatusBar extends SystemUI implements DemoMode,
         if (command.equals(COMMAND_CLOCK)) {
             dispatchDemoCommandToView(command, args, R.id.clock);
         }
+        if (command.equals(COMMAND_BATTERY)) {
+            mBatteryController.dispatchDemoCommand(command, args);
+            dispatchDemoCommandToView(command, args, R.id.battery_bar);
+            dispatchDemoCommandToView(command, args, R.id.battery_bar_1);
+        }
         if (command.equals(COMMAND_BARS)) {
             String mode = args.getString("mode");
             int barMode = "opaque".equals(mode) ? MODE_OPAQUE :

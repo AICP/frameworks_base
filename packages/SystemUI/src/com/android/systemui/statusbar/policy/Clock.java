@@ -439,7 +439,7 @@ public class Clock extends TextView implements DemoMode, Tunable, CommandQueue.C
         final char MAGIC2 = '\uEF01';
 
         SimpleDateFormat sdf;
-        String format = mShowSeconds
+        String format = (mShowSeconds && !mDemoMode)
                 ? is24 ? d.timeFormat_Hms : d.timeFormat_hms
                 : is24 ? d.timeFormat_Hm : d.timeFormat_hm;
         if (!format.equals(mClockFormatString)) {
@@ -480,51 +480,59 @@ public class Clock extends TextView implements DemoMode, Tunable, CommandQueue.C
             sdf = mClockFormat;
         }
 
-        CharSequence dateString = null;
-
-        String result = "";
-        String timeResult = sdf.format(mCalendar.getTime());
-        String dateResult = "";
-
-        if (mClockDateDisplay != CLOCK_DATE_DISPLAY_GONE) {
-            Date now = new Date();
-
-            if (mClockDateFormat == null || mClockDateFormat.isEmpty()) {
-                // Set dateString to short uppercase Weekday if empty
-                dateString = DateFormat.format("EEE", now);
-            } else {
-                dateString = DateFormat.format(mClockDateFormat, now);
-            }
-            if (mClockDateStyle == CLOCK_DATE_STYLE_LOWERCASE) {
-                // When Date style is small, convert date to uppercase
-                dateResult = dateString.toString().toLowerCase();
-            } else if (mClockDateStyle == CLOCK_DATE_STYLE_UPPERCASE) {
-                dateResult = dateString.toString().toUpperCase();
-            } else {
-                dateResult = dateString.toString();
-            }
-            result = (mClockDatePosition == STYLE_DATE_LEFT) ? dateResult + " " + timeResult
-                    : timeResult + " " + dateResult;
+        SpannableStringBuilder formatted;
+        String result;
+        if (mDemoMode) {
+            // Don't enable clock customizations in demo mode
+            result = sdf.format(mCalendar.getTime());
+            formatted = new SpannableStringBuilder(result);
         } else {
-            // No date, just show time
-            result = timeResult;
-        }
+            CharSequence dateString = null;
 
-        SpannableStringBuilder formatted = new SpannableStringBuilder(result);
+            result = "";
+            String timeResult = sdf.format(mCalendar.getTime());
+            String dateResult = "";
 
-        if (mClockDateDisplay != CLOCK_DATE_DISPLAY_NORMAL) {
-            if (dateString != null) {
-                int dateStringLen = dateString.length();
-                int timeStringOffset = (mClockDatePosition == STYLE_DATE_RIGHT)
-                        ? timeResult.length() + 1 : 0;
-                if (mClockDateDisplay == CLOCK_DATE_DISPLAY_GONE) {
-                    formatted.delete(0, dateStringLen);
+            if (mClockDateDisplay != CLOCK_DATE_DISPLAY_GONE) {
+                Date now = new Date();
+
+                if (mClockDateFormat == null || mClockDateFormat.isEmpty()) {
+                    // Set dateString to short uppercase Weekday if empty
+                    dateString = DateFormat.format("EEE", now);
                 } else {
-                    if (mClockDateDisplay == CLOCK_DATE_DISPLAY_SMALL) {
-                        CharacterStyle style = new RelativeSizeSpan(0.7f);
-                        formatted.setSpan(style, timeStringOffset,
-                                timeStringOffset + dateStringLen,
-                                Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+                    dateString = DateFormat.format(mClockDateFormat, now);
+                }
+                if (mClockDateStyle == CLOCK_DATE_STYLE_LOWERCASE) {
+                    // When Date style is small, convert date to uppercase
+                    dateResult = dateString.toString().toLowerCase();
+                } else if (mClockDateStyle == CLOCK_DATE_STYLE_UPPERCASE) {
+                    dateResult = dateString.toString().toUpperCase();
+                } else {
+                    dateResult = dateString.toString();
+                }
+                result = (mClockDatePosition == STYLE_DATE_LEFT) ? dateResult + " " + timeResult
+                        : timeResult + " " + dateResult;
+            } else {
+                // No date, just show time
+                result = timeResult;
+            }
+
+            formatted = new SpannableStringBuilder(result);
+
+            if (mClockDateDisplay != CLOCK_DATE_DISPLAY_NORMAL) {
+                if (dateString != null) {
+                    int dateStringLen = dateString.length();
+                    int timeStringOffset = (mClockDatePosition == STYLE_DATE_RIGHT)
+                            ? timeResult.length() + 1 : 0;
+                    if (mClockDateDisplay == CLOCK_DATE_DISPLAY_GONE) {
+                        formatted.delete(0, dateStringLen);
+                    } else {
+                        if (mClockDateDisplay == CLOCK_DATE_DISPLAY_SMALL) {
+                            CharacterStyle style = new RelativeSizeSpan(0.7f);
+                            formatted.setSpan(style, timeStringOffset,
+                                    timeStringOffset + dateStringLen,
+                                    Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+                        }
                     }
                 }
             }

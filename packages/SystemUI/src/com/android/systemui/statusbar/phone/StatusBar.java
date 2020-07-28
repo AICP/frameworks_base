@@ -3118,6 +3118,8 @@ public class StatusBar extends SystemUI implements DemoMode,
         }
         if (modeChange || command.equals(COMMAND_BATTERY)) {
             mBatteryController.dispatchDemoCommand(command, args);
+            dispatchDemoCommandToView(command, args, R.id.battery_bar);
+            dispatchDemoCommandToView(command, args, R.id.battery_bar_1);
         }
         if (modeChange || command.equals(COMMAND_STATUS)) {
             ((StatusBarIconControllerImpl) mIconController).dispatchDemoCommand(command, args);

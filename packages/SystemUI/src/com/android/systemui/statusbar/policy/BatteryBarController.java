@@ -24,6 +24,7 @@ import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.database.ContentObserver;
 import android.os.BatteryManager;
+import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
 import android.util.AttributeSet;
@@ -33,7 +34,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-public class BatteryBarController extends LinearLayout {
+import com.android.systemui.DemoMode;
+
+public class BatteryBarController extends LinearLayout implements DemoMode {
 
     private static final String TAG = "BatteryBarController";
 
@@ -55,6 +58,8 @@ public class BatteryBarController extends LinearLayout {
 
     boolean isAttached = false;
     boolean isVertical = false;
+
+    private boolean mDemoMode;
 
     class SettingsObserver extends ContentObserver {
 
@@ -210,7 +215,7 @@ public class BatteryBarController extends LinearLayout {
             mLocation = 0;
         }
 
-        if (mLocation > 0 && isLocationValid(mLocation)) {
+        if (mLocation > 0 && isLocationValid(mLocation) && !mDemoMode) {
             removeBars();
             addBars();
             // Visibility handled externally
@@ -224,5 +229,16 @@ public class BatteryBarController extends LinearLayout {
 
     protected boolean isLocationValid(int location) {
         return mLocationToLookFor == location;
+    }
+
+    @Override
+    public void dispatchDemoCommand(String command, Bundle args) {
+        if (!mDemoMode && command.equals(COMMAND_ENTER)) {
+            mDemoMode = true;
+            updateSettings();
+        } else if (mDemoMode && command.equals(COMMAND_EXIT)) {
+            mDemoMode = false;
+            updateSettings();
+        }
     }
 }

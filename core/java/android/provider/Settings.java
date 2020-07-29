@@ -6818,10 +6818,6 @@ public final class Settings {
         @SuppressLint("NoSettingsProvider")
         public static final String HIGH_TOUCH_SENSITIVITY_ENABLE = "high_touch_sensitivity_enable";
 
-        /***************************
-         * AICP System Settings end
-         ***************************/
-
         /**
          * Color temperature of the display during the day
          * @hide
@@ -6846,6 +6842,13 @@ public final class Settings {
          * @hide
          */
         public static final String DISPLAY_AUTO_OUTDOOR_MODE = "display_auto_outdoor_mode";
+
+        /**
+         * Anti flicker
+         * 0 = 0ff, 1 = on
+         * @hide
+         */
+        public static final String DISPLAY_ANTI_FLICKER = "display_anti_flicker";
 
         /**
          * Reader mode
@@ -6885,14 +6888,17 @@ public final class Settings {
          * The current custom picture adjustment values as a delimited string
          * @hide
          */
-        public static final String DISPLAY_PICTURE_ADJUSTMENT =
-                "display_picture_adjustment";
+        public static final String DISPLAY_PICTURE_ADJUSTMENT = "display_picture_adjustment";
 
         /**
          * Did we tell about how they can stop breaking their eyes?
          * @hide
          */
         public static final String LIVE_DISPLAY_HINTED = "live_display_hinted";
+
+        /***************************
+         * AICP System Settings end
+         ***************************/
 
         /**
          * IMPORTANT: If you add a new public settings you also have to add it to
@@ -7253,6 +7259,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(DISPLAY_TEMPERATURE_NIGHT);
             PRIVATE_SETTINGS.add(DISPLAY_TEMPERATURE_MODE);
             PRIVATE_SETTINGS.add(DISPLAY_AUTO_OUTDOOR_MODE);
+            PRIVATE_SETTINGS.add(DISPLAY_ANTI_FLICKER);
             PRIVATE_SETTINGS.add(DISPLAY_READING_MODE);
             PRIVATE_SETTINGS.add(DISPLAY_CABC);
             PRIVATE_SETTINGS.add(DISPLAY_COLOR_ENHANCE);

@@ -391,6 +391,7 @@ java_library {
         "com.android.sysprop.init",
         "PlatformProperties",
         "vendor.lineage.livedisplay-V2.0-java",
+        "vendor.lineage.livedisplay-V2.1-java",
     ],
     sdk_version: "core_platform",
     installable: false,

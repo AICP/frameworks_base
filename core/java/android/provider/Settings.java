@@ -11042,17 +11042,23 @@ public final class Settings {
         public static final String NAVIGATION_HANDLE_WIDTH = "navigation_handle_width";
 
         /**
+         * Whether tethering is allowed to use VPN upstreams
+         * 0 = false, 1 = true
+         * @hide
+         */
+        public static final String TETHERING_ALLOW_VPN_UPSTREAMS = "tethering_allow_vpn_upstreams";
+
+        /**
          * Pulse lockscreen music visualizer
          * @hide
          */
         public static final String LOCKSCREEN_PULSE_ENABLED = "lockscreen_pulse_enabled";
 
         /**
-         * Whether tethering is allowed to use VPN upstreams
-         * 0 = false, 1 = true
+         * Pulse ambient music visualizer
          * @hide
          */
-        public static final String TETHERING_ALLOW_VPN_UPSTREAMS = "tethering_allow_vpn_upstreams";
+        public static final String AMBIENT_PULSE_ENABLED = "ambient_pulse_enabled";
 
         /*****************************
          * AICP Secure Settings end

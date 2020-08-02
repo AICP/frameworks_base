@@ -3974,6 +3974,10 @@ public class StatusBar extends SystemUI implements DemoMode,
         return mVisualizerView;
     }
 
+    public VisualizerView getAmVisualizer() {
+        return mVisualizerView;
+    }
+
     /**
      * TODO: Remove this method. Views should not be passed forward. Will cause theme issues.
      * @return bottom area view

@@ -11042,6 +11042,12 @@ public final class Settings {
         public static final String NAVIGATION_HANDLE_WIDTH = "navigation_handle_width";
 
         /**
+         * Pulse lockscreen music visualizer
+         * @hide
+         */
+        public static final String LOCKSCREEN_PULSE_ENABLED = "lockscreen_pulse_enabled";
+
+        /**
          * Whether tethering is allowed to use VPN upstreams
          * 0 = false, 1 = true
          * @hide

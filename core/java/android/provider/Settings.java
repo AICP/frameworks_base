@@ -11048,6 +11048,12 @@ public final class Settings {
          */
         public static final String TETHERING_ALLOW_VPN_UPSTREAMS = "tethering_allow_vpn_upstreams";
 
+        /**
+         * Pulse lockscreen music visualizer
+         * @hide
+         */
+        public static final String LOCKSCREEN_PULSE_ENABLED = "lockscreen_pulse_enabled";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

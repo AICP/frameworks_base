@@ -295,4 +295,7 @@
 
   <!-- Device has OnePlus haptic motor -->
   <java-symbol type="bool" name="config_hasOnePlusHapticMotor" />
+
+  <!-- Power button fingerprint -->
+  <java-symbol type="bool" name="config_powerButtonFingerprint" />
 </resources>

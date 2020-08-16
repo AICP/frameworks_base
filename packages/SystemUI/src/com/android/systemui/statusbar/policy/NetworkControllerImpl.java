@@ -1149,7 +1149,6 @@ public class NetworkControllerImpl extends BroadcastReceiver
         boolean showVolteIcon;
         public String patternOfCarrierSpecificDataIcon = "";
         public long nrIconDisplayGracePeriodMs;
-
         /**
          * Mapping from NR 5G status string to an integer. The NR 5G status string should match
          * those in carrier config.

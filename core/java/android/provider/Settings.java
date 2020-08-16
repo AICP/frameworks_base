@@ -7136,6 +7136,111 @@ public final class Settings {
         /** @hide */
         private static final Validator QS_SHOW_BATTERY_PERCENT_VALIDATOR = BOOLEAN_VALIDATOR;
 
+        /**
+         * Whether to show VoWIFI icon or not
+         * @hide
+         */
+        public static final String SHOW_VOWIFI_ICON = "show_vowifi_icon";
+        /** @hide */
+        public static final Validator SHOW_VOWIFI_ICON_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
+         * @hide
+         */
+        public static final String AUTO_BRIGHTNESS_MIN_VALUE = "auto_brightness_min_value";
+
+        private static final Validator AUTO_BRIGHTNESS_MIN_VALUE_VALIDATOR =
+                ANY_INTEGER_VALIDATOR;
+
+        /**
+         * Pulse navbar music visualizer
+         *
+         * @hide
+         */
+        public static final String PULSE_ENABLED = "navbar_pulse_enabled";
+
+        /**
+         * Pulse navbar music visualizer color type
+         *
+         * @hide
+         */
+        public static final String PULSE_COLOR_TYPE = "navbar_pulse_color_type";
+
+        /**
+         * Pulse music visualizer user defined color
+         *
+         * @hide
+         */
+        public static final String PULSE_COLOR_USER = "navbar_pulse_color_user";
+
+        /**
+         * Pulse lavalamp animation speed
+         *
+         * @hide
+         */
+        public static final String PULSE_LAVALAMP_SPEED = "navbar_pulse_lavalamp_speed";
+
+        /**
+         * Pulse renderer implementation
+         *
+         * @hide
+         */
+        public static final String PULSE_RENDER_STYLE_URI = "navbar_pulse_render_style";
+
+        /**
+         * Custom Pulse Widths
+         * @hide
+         */
+        public static final String PULSE_CUSTOM_DIMEN = "pulse_custom_dimen";
+
+        /**
+         * Custom Spacing Between Pulse Bars
+         * @hide
+         */
+        public static final String PULSE_CUSTOM_DIV = "pulse_custom_div";
+
+        /**
+         * Custom Pulse Block Size
+         * @hide
+         */
+        public static final String PULSE_FILLED_BLOCK_SIZE = "pulse_filled_block_size";
+
+        /**
+         * Custom Spacing Between Pulse Blocks
+         * @hide
+         */
+        public static final String PULSE_EMPTY_BLOCK_SIZE = "pulse_empty_block_size";
+
+        /**
+         * Custom Pulse Sanity Levels
+         * @hide
+         */
+        public static final String PULSE_CUSTOM_FUDGE_FACTOR = "pulse_custom_fudge_factor";
+
+        /**
+         * Pulse Fudge Factor
+         * @hide
+         */
+        public static final String PULSE_SOLID_FUDGE_FACTOR = "pulse_solid_fudge_factor";
+
+        /**
+         * Pulse Solid units count
+         * @hide
+         */
+        public static final String PULSE_SOLID_UNITS_COUNT = "pulse_solid_units_count";
+
+        /**
+         * Pulse Solid units opacity
+         * @hide
+         */
+        public static final String PULSE_SOLID_UNITS_OPACITY = "pulse_solid_units_opacity";
+
+        /**
+         * Pulse uses FFT averaging
+         * @hide
+         */
+        public static final String PULSE_SMOOTHING_ENABLED = "pulse_smoothing_enabled";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7422,6 +7527,7 @@ public final class Settings {
             SCREEN_STATE_THREEG,
             GESTURE_NAVBAR_SHOW,
             QS_DATAUSAGE,
+            AUTO_BRIGHTNESS_MIN_VALUE,
             // AICP Settings end
         };
 
@@ -7776,6 +7882,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SCREEN_STATE_THREEG);
             PRIVATE_SETTINGS.add(GESTURE_NAVBAR_SHOW);
             PRIVATE_SETTINGS.add(QS_DATAUSAGE);
+            PRIVATE_SETTINGS.add(SHOW_VOWIFI_ICON);
+            PRIVATE_SETTINGS.add(AUTO_BRIGHTNESS_MIN_VALUE);
             PRIVATE_SETTINGS.add(FOD_GESTURE);
             // AICP Settings end
         }
@@ -8120,6 +8228,8 @@ public final class Settings {
             VALIDATORS.put(SCREEN_STATE_THREEG, SCREEN_STATE_THREEG_VALIDATOR);
             VALIDATORS.put(GESTURE_NAVBAR_SHOW,GESTURE_NAVBAR_SHOW_VALIDATOR);
             VALIDATORS.put(QS_DATAUSAGE, QS_DATAUSAGE_VALIDATOR);
+            VALIDATORS.put(SHOW_VOWIFI_ICON, SHOW_VOWIFI_ICON_VALIDATOR);
+            VALIDATORS.put(AUTO_BRIGHTNESS_MIN_VALUE, AUTO_BRIGHTNESS_MIN_VALUE_VALIDATOR);
             VALIDATORS.put(FOD_GESTURE, FOD_GESTURE_VALIDATOR);
             // AICP Settings end
         }

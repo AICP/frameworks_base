@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f0561774_a86a480e",
+        "filename": "packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 857,
+      "author": {
+        "id": 1446
+      },
+      "writtenOn": "2020-08-26T12:21:27Z",
+      "side": 0,
+      "message": "Don\u0027t remove space",
+      "revId": "57e18e21ca81e72b58c883cb4617911d0ca52432",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a0b19bc_f4471ecd",
+        "filename": "packages/SystemUI/src/com/android/systemui/volume/VolumeToolTipView.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1446
+      },
+      "writtenOn": "2020-08-26T12:21:27Z",
+      "side": 0,
+      "message": "Don\u0027t remove space",
+      "revId": "57e18e21ca81e72b58c883cb4617911d0ca52432",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    }
+  ]
+}

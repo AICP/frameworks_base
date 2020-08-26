@@ -1,0 +1,259 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "42b5e1ae_70f2e8ca",
+        "filename": "packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1446
+      },
+      "writtenOn": "2020-08-26T12:21:27Z",
+      "side": 1,
+      "message": "Spacing",
+      "revId": "b427eb0ac5e627e3b224a0377e66623ad9305bec",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e4a60e7_eec93823",
+        "filename": "packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1446
+      },
+      "writtenOn": "2020-08-26T12:21:27Z",
+      "side": 1,
+      "message": "Spacing",
+      "revId": "b427eb0ac5e627e3b224a0377e66623ad9305bec",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65e9ea44_85a12977",
+        "filename": "packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1446
+      },
+      "writtenOn": "2020-08-26T12:21:27Z",
+      "side": 1,
+      "message": "Remove space",
+      "revId": "b427eb0ac5e627e3b224a0377e66623ad9305bec",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab1b241a_b4404268",
+        "filename": "packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 1446
+      },
+      "writtenOn": "2020-08-26T12:21:27Z",
+      "side": 1,
+      "message": "Don\u0027t add new space",
+      "revId": "b427eb0ac5e627e3b224a0377e66623ad9305bec",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "202678d9_7fb55b39",
+        "filename": "packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1446
+      },
+      "writtenOn": "2020-08-26T12:21:27Z",
+      "side": 1,
+      "message": "Don\u0027t comment just remove",
+      "revId": "b427eb0ac5e627e3b224a0377e66623ad9305bec",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e857d0c_ad95e3d2",
+        "filename": "packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1341,
+      "author": {
+        "id": 1446
+      },
+      "writtenOn": "2020-08-26T12:21:27Z",
+      "side": 1,
+      "message": "Don\u0027t add space",
+      "revId": "b427eb0ac5e627e3b224a0377e66623ad9305bec",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2bf6f2c6_a1f0bf82",
+        "filename": "packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1363,
+      "author": {
+        "id": 1446
+      },
+      "writtenOn": "2020-08-26T12:21:27Z",
+      "side": 1,
+      "message": "Remove space",
+      "revId": "b427eb0ac5e627e3b224a0377e66623ad9305bec",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b8cee11_ac0f7f5c",
+        "filename": "packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1399,
+      "author": {
+        "id": 1446
+      },
+      "writtenOn": "2020-08-26T12:21:27Z",
+      "side": 1,
+      "message": "Don\u0027t add space",
+      "revId": "b427eb0ac5e627e3b224a0377e66623ad9305bec",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3407c07d_ace9a9e4",
+        "filename": "packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1404,
+      "author": {
+        "id": 1446
+      },
+      "writtenOn": "2020-08-26T12:21:27Z",
+      "side": 1,
+      "message": "Space between \"if\" and \"(\"",
+      "revId": "b427eb0ac5e627e3b224a0377e66623ad9305bec",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef1ff215_1fbcc43b",
+        "filename": "packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1558,
+      "author": {
+        "id": 1446
+      },
+      "writtenOn": "2020-08-26T12:21:27Z",
+      "side": 1,
+      "message": "Fix spacing",
+      "revId": "b427eb0ac5e627e3b224a0377e66623ad9305bec",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5044ba00_e565c1fa",
+        "filename": "packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1755,
+      "author": {
+        "id": 1446
+      },
+      "writtenOn": "2020-08-26T12:21:27Z",
+      "side": 1,
+      "message": "Don\u0027t add space",
+      "revId": "b427eb0ac5e627e3b224a0377e66623ad9305bec",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd6650b9_97a3f1d4",
+        "filename": "packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1780,
+      "author": {
+        "id": 1446
+      },
+      "writtenOn": "2020-08-26T12:21:27Z",
+      "side": 1,
+      "message": "Don\u0027t add space",
+      "revId": "b427eb0ac5e627e3b224a0377e66623ad9305bec",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d999bbdd_d57e520d",
+        "filename": "packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2056,
+      "author": {
+        "id": 1446
+      },
+      "writtenOn": "2020-08-26T12:21:27Z",
+      "side": 1,
+      "message": "Remove space",
+      "revId": "b427eb0ac5e627e3b224a0377e66623ad9305bec",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80222965_7dd671cf",
+        "filename": "packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2075,
+      "author": {
+        "id": 1446
+      },
+      "writtenOn": "2020-08-26T12:21:27Z",
+      "side": 1,
+      "message": "Remove space",
+      "revId": "b427eb0ac5e627e3b224a0377e66623ad9305bec",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5d05df5_77c41c49",
+        "filename": "packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2123,
+      "author": {
+        "id": 1446
+      },
+      "writtenOn": "2020-08-26T12:21:27Z",
+      "side": 1,
+      "message": "Empty tabs",
+      "revId": "b427eb0ac5e627e3b224a0377e66623ad9305bec",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    }
+  ]
+}

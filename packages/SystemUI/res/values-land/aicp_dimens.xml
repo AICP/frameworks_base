@@ -19,4 +19,7 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <dimen name="qs_custom_header_offset">10dp</dimen>
+  
+    <!-- Volume panel -->
+    <dimen name="volume_dialog_custom_icon_padding">17dp</dimen>
 </resources>

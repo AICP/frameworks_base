@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "80e2f66a_524e1b0d",
+        "filename": "packages/overlays/IconShapePebbleOverlay/res/values/config.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2020-08-28T08:32:15Z",
+      "side": 1,
+      "message": "Don\u0027t think this is desirable, the icon shape was separated from corner radius\n\nPS: Also for all config.xml files",
+      "range": {
+        "startLine": 7,
+        "startChar": 4,
+        "endLine": 10,
+        "endChar": 62
+      },
+      "revId": "bc6dc65d1f8ca93cdd336630a6a2f9afc1809acf",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    }
+  ]
+}

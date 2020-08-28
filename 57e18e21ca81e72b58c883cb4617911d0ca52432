@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "1d450999_062172d2",
+        "filename": "packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2020-08-28T19:51:22Z",
+      "side": 0,
+      "message": "Fixed the issue with the runtime toggling of audio panel.",
+      "parentUuid": "aaf5e05d_c3efb108",
+      "revId": "57e18e21ca81e72b58c883cb4617911d0ca52432",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0a0b19bc_f4471ecd",
         "filename": "packages/SystemUI/src/com/android/systemui/volume/VolumeToolTipView.java",
         "patchSetId": 1

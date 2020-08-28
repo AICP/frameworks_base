@@ -19,6 +19,23 @@
     },
     {
       "key": {
+        "uuid": "aaf5e05d_c3efb108",
+        "filename": "packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2020-08-28T18:48:08Z",
+      "side": 0,
+      "message": "Removing all this logic breaks down the option of relocating Volume panel during runtime.",
+      "revId": "57e18e21ca81e72b58c883cb4617911d0ca52432",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0a0b19bc_f4471ecd",
         "filename": "packages/SystemUI/src/com/android/systemui/volume/VolumeToolTipView.java",
         "patchSetId": 1

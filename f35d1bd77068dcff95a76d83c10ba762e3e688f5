@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "41bb3080_2d730505",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2020-08-30T16:18:10Z",
+      "side": 1,
+      "message": "Nope, credit goes to original author",
+      "range": {
+        "startLine": 2,
+        "startChar": 12,
+        "endLine": 2,
+        "endChar": 50
+      },
+      "revId": "f35d1bd77068dcff95a76d83c10ba762e3e688f5",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a56e48b_599ea14a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2020-08-30T16:18:10Z",
+      "side": 1,
+      "message": "Change to \"SystemUI: Redesign volume panel\"\n\nand add the following before Change-Id line\n\nAICP edits:\n - Adapt to existing volume dialog location logic",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 41
+      },
+      "revId": "f35d1bd77068dcff95a76d83c10ba762e3e688f5",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2df10f2_9d394794",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2020-08-30T16:18:10Z",
+      "side": 1,
+      "message": "No, unless you add anything substantial to original commit. In this case, No",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 54
+      },
+      "revId": "f35d1bd77068dcff95a76d83c10ba762e3e688f5",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad4b9e44_0d5fbdc6",
+        "filename": "packages/SystemUI/res/values/colors.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2020-08-30T16:18:10Z",
+      "side": 1,
+      "message": "Move to aicp_colors.xml",
+      "range": {
+        "startLine": 212,
+        "startChar": 3,
+        "endLine": 213,
+        "endChar": 54
+      },
+      "revId": "f35d1bd77068dcff95a76d83c10ba762e3e688f5",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "abc5884b_6fe54a47",
+        "filename": "packages/SystemUI/res/values/strings.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 946,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2020-08-30T16:18:10Z",
+      "side": 1,
+      "message": "Move it to aicp_strings.xml",
+      "range": {
+        "startLine": 946,
+        "startChar": 4,
+        "endLine": 946,
+        "endChar": 60
+      },
+      "revId": "f35d1bd77068dcff95a76d83c10ba762e3e688f5",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b4b9dbc_b94ff2e1",
+        "filename": "packages/SystemUI/res/values/styles.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2020-08-30T16:18:10Z",
+      "side": 1,
+      "message": "Don\u0027t overwrite AOSP code, declare a new style as VolumeButtons_Custom and move it to aicp_styles.xml \nChange references in layout xmls too",
+      "range": {
+        "startLine": 415,
+        "startChar": 4,
+        "endLine": 423,
+        "endChar": 73
+      },
+      "revId": "f35d1bd77068dcff95a76d83c10ba762e3e688f5",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    }
+  ]
+}

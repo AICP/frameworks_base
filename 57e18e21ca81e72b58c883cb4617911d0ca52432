@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "f3b7d13e_c775a63c",
+        "filename": "packages/SystemUI/res/values/dimens.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2020-08-30T16:18:10Z",
+      "side": 0,
+      "message": "Don\u0027t remove AOSP code, declare a new variables at aicp_dimens.xml. \n\nIf the values are just changed, declare as a new variable, change references in layout xmls too in that case",
+      "range": {
+        "startLine": 401,
+        "startChar": 4,
+        "endLine": 413,
+        "endChar": 60
+      },
+      "revId": "57e18e21ca81e72b58c883cb4617911d0ca52432",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f0561774_a86a480e",
         "filename": "packages/SystemUI/src/com/android/systemui/volume/VolumeDialogImpl.java",
         "patchSetId": 1

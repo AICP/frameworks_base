@@ -235,7 +235,4 @@
   <java-symbol type="id" name="aerr_copy" />
   <java-symbol type="string" name="url_copy_success" />
   <java-symbol type="string" name="url_copy_failed" />
-
-  <!-- FOD icon dimming -->
-  <java-symbol type="bool" name="config_targetUsesInKernelDimming" />
 </resources>

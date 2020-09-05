@@ -129,4 +129,7 @@
 
     <!-- Size of the FOD animation -->
     <dimen name="fod_animation_size">310dp</dimen>
+
+    <!-- Volume dialog app row icon padding -->
+    <dimen name="volume_row_app_icon_padding">8dp</dimen>
 </resources>

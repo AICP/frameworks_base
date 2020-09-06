@@ -140,6 +140,8 @@ public class VolumeDialogImpl implements VolumeDialog,
 
     public static final String VOLUME_PANEL_ON_LEFT =
                           Settings.Secure.VOLUME_PANEL_ON_LEFT;
+    public static final String SHOW_APP_VOLUME =
+                          Settings.Secure.SHOW_APP_VOLUME;
 
     static final int DIALOG_TIMEOUT_MILLIS = 3000;
     static final int DIALOG_SAFETYWARNING_TIMEOUT_MILLIS = 5000;
@@ -199,6 +201,8 @@ public class VolumeDialogImpl implements VolumeDialog,
     private boolean mHasSeenODICaptionsTooltip;
     private ViewStub mODICaptionsTooltipViewStub;
     private View mODICaptionsTooltipView = null;
+
+    private boolean mShowAppVolume;
 
     // Volume panel placement left or right
     private boolean mVolumePanelOnLeft;
@@ -267,7 +271,9 @@ public class VolumeDialogImpl implements VolumeDialog,
         mHasSeenODICaptionsTooltip =
                 Prefs.getBoolean(context, Prefs.Key.HAS_SEEN_ODI_CAPTIONS_TOOLTIP, false);
         final TunerService tunerService = Dependency.get(TunerService.class);
-        tunerService.addTunable(this, VOLUME_PANEL_ON_LEFT);
+        tunerService.addTunable(this,
+                                VOLUME_PANEL_ON_LEFT,
+                                SHOW_APP_VOLUME);
         ColorMatrix colorMatrix = new ColorMatrix();
         colorMatrix.setSaturation(0);
         mAppIconMuteColorFilter = new ColorMatrixColorFilter(colorMatrix);
@@ -457,6 +463,16 @@ public class VolumeDialogImpl implements VolumeDialog,
                 final boolean volumePanelOnLeft = TunerService.parseIntegerSwitch(newValue, isAudioPanelOnLeftSide());
                 if (mVolumePanelOnLeft != volumePanelOnLeft) {
                     mVolumePanelOnLeft = volumePanelOnLeft;
+                    mHandler.post(() -> {
+                        // Trigger panel rebuild on next show
+                        mConfigChanged = true;
+                    });
+                }
+                break;
+            case SHOW_APP_VOLUME:
+                final boolean showAppVolume = TunerService.parseIntegerSwitch(newValue, false);
+                if (mShowAppVolume != showAppVolume) {
+                    mShowAppVolume = showAppVolume;
                     mHandler.post(() -> {
                         // Trigger panel rebuild on next show
                         mConfigChanged = true;
@@ -703,6 +719,7 @@ public class VolumeDialogImpl implements VolumeDialog,
             final VolumeRow row = mAppRows.get(i);
             removeAppRow(row);
         }
+        if (!mShowAppVolume) return;
         List<AppTrackData> trackDatas = mController.getAudioManager().listAppTrackDatas();
         for (AppTrackData data : trackDatas) {
             if (data.isActive()) {

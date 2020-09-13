@@ -18,9 +18,7 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- CPUInfo tile -->
     <string name="quick_settings_cpuinfo_label">Informácie o CPU</string>
-    <!-- Compass QS Tile -->
     <string name="quick_settings_compass_label">Kompas</string>
     <string name="quick_settings_compass_init">Inicializácia\u2026</string>
     <string name="accessibility_quick_settings_compass_off">Kompas vyp.</string>
@@ -35,46 +33,28 @@
     <string name="quick_settings_compass_SW">JZ</string>
     <string name="quick_settings_compass_W">Z</string>
     <string name="quick_settings_compass_NW">SZ</string>
-    <!-- Music tile -->
     <string name="quick_settings_music_label">Hudba</string>
     <string name="quick_settings_music_play">Prehrať</string>
     <string name="quick_settings_music_pause">Pozastaviť</string>
-    <!-- Screenshoot tile -->
     <string name="quick_settings_screenshot_label">Snímka obrazovky</string>
-    <!-- Screenrecord tile -->
     <string name="quick_settings_screenrecord_label">Nahrávanie obrazovky</string>
-    <!-- Reboot/Recovery QS Tile -->
-    <!-- USB Tethering tile -->
     <string name="accessibility_quick_settings_usb_tether_off">USB Tethering vyp.</string>
     <string name="accessibility_quick_settings_usb_tether_on">USB Tethering zap.</string>
     <string name="accessibility_quick_settings_usb_tether_changed_off">USB Tethering je vypnutý</string>
     <string name="accessibility_quick_settings_usb_tether_changed_on">USB Tethering je zapnutý</string>
     <string name="quick_settings_usb_tether_label">USB Tethering</string>
-    <!-- Caffeine tile -->
     <string name="quick_settings_caffeine_label">Kofeín</string>
     <string name="accessibility_quick_settings_caffeine_off">Kofeín vyp.</string>
     <string name="accessibility_quick_settings_caffeine_on">Kofeín zap.</string>
-    <!-- Aicp Extras Tile -->
     <string name="quick_aicp_extras_label">AICP Rozšírenia</string>
     <string name="quick_aicp_extras_toast">LOL, naozaj ste si mysleli, že toto dlhé kliknutie vás niekam dostane?</string>
-    <!-- Power menu advanced restart -->
-    <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
-    <!-- Indication on the keyguard that is shown when the device is charging with a warp charger. Should match keyguard_plugged_in_warp_charging [CHAR LIMIT=40]-->
-    <!-- Heads up QS tile -->
-    <!-- Smart Pixels QS Tile -->
-    <!-- QS Config -->
-    <!-- ADB over network tile -->
     <string name="quick_settings_network_adb_disabled_label">Vypnuté</string>
-    <!-- AOD QS tile -->
-    <!-- Language toggle tile -->
     <string name="quick_settings_locale_label">Jazyk</string>
     <string name="quick_settings_locale_more_locales_toast">Aby ste povolili funkciu prepínania, prosím nastavte viacero jazykov</string>
-    <!-- Sound tile -->
     <string name="quick_settings_sound_label">Zvuk</string>
     <string name="quick_settings_sound_ring">Zvonenie</string>
     <string name="quick_settings_sound_vibrate">Vibrácie</string>
     <string name="quick_settings_sound_silent">Tichý režim</string>
-    <!-- On The Go -->
     <string name="onthego_notif_ticker">Režim na cestách je aktivovaný</string>
     <string name="onthego_notif_title">Režim na cestách je aktívny</string>
     <string name="onthego_notif_stop">Zastavit</string>
@@ -87,20 +67,15 @@
     <string name="onthego_service_toggle">Automaticky reštartovať službu</string>
     <string name="onthego_channel_name">Hlavný</string>
     <string name="global_action_onthego">Režim na cestách</string>
-    <!-- OnTheGo Tile -->
     <string name="quick_settings_onthego_label">Režim na cestách</string>
-    <!-- Sync QS Tile -->
     <string name="quick_settings_sync_label">Synchronizácia</string>
     <string name="accessibility_quick_settings_sync_off">Synch. vyp.</string>
     <string name="accessibility_quick_settings_sync_on">Synch. zap.</string>
     <string name="accessibility_quick_settings_sync_changed_off">Synchronizácia je vypnutá</string>
     <string name="accessibility_quick_settings_sync_changed_on">Synchronizácia je zapnutá</string>
-    <!-- Label for item that screenrecords in power menu options dialog -->
     <string name="global_action_screenrecord">Nahrávanie obrazovky</string>
-    <!-- Heads up snooze toast -->
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> • Plávajúce upozornenia sú odložené na 1 minútu.</string>
     <string name="heads_up_snooze_message"><xliff:g id="string">%s </xliff:g> • Plávajúce upozornenia sú odložené na <xliff:g id="number">%d </xliff:g> minút.</string>
-    <!-- Omnijaws Weather -->
     <string name="omnijaws_service_error">Chyba</string>
     <string name="omnijaws_service_unkown">Žiadne údaje o počasí</string>
     <string name="omnijaws_service_error_long">Chyba pri načítavaní údajov o počasí</string>
@@ -110,35 +85,12 @@
     <string name="omnijaws_current_text">Teraz</string>
     <string name="omnijaws_package_not_available">OmniJaws nie je k dispozícii</string>
     <string name="omnijaws_service_last_update">Posledná aktualizácia:</string>
-    <!-- Tuner -->
-    <!-- Stock Navbar -->
     <string name="systemui_tuner_navbar_title">Predvolené nastavenia</string>
     <string name="navbar_activity_title">Navigačný panel</string>
-    <!-- Kill button in notification guts -->
     <string name="force_stop_dlg_title">Vynútiť zastavenie?</string>
     <string name="force_stop_dlg_text">Ak vynútite zastavenie aplikácie, môže sa správať zvláštne.</string>
-    <!--Google sound search tile -->
-    <!-- Name of the additional status bar icons also exposed with SystemUI Tuner -->
-    <!-- DataSwitch Tile -->
-    <!-- HW Keys Tile -->
-    <!-- Immersive tile -->
-    <!-- Screenrecord Stop Dot -->
-    <!-- Gaming mode -->
-    <!-- Content description of the Gaming mode tile in quick settings when disabled (not shown on the screen). [CHAR LIMIT=NONE] -->
-    <!-- Content description of the Gaming mode tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
-    <!-- Navigation bar dpad -->
-    <!-- Alert slide extras -->
-    <!-- FPS Info tile -->
-    <!-- Screen pinning -->
-    <!-- Reader mode QS tile -->
-    <!-- Alerting notification header label -->
-    <!-- PowerShare QS tile -->
-    <!-- VPN QS tile -->
-    <!-- Long swipe gesture actions -->
     <string name="recents_app_killed">Aplikácia bola ukončená</string>
-    <!-- Daily data usage -->
     <string name="lockscreen_default">Predvolená</string>
     <string name="lockscreen_hidden">Žiadna</string>
-    <!-- Shows when people have clicked on the custom lockscreen shortcut [CHAR LIMIT=60] -->
     <string name="custom_hint">Spustiť potiahnutím prstom od ikony</string>
 </resources>

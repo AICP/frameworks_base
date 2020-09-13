@@ -18,12 +18,6 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- Description for the screen zoom level that makes interface elements smaller. [CHAR LIMIT=24] -->
     <string name="screen_zoom_summary_smaller">Piccolo</string>
-    <!-- Description for the screen zoom level that makes interface elements smallest. [CHAR LIMIT=24] -->
     <string name="screen_zoom_summary_smallest">Piccolissimo</string>
-    <!-- Label for estimated remaining duration of dash battery charging -->
-    <!-- Battery use screen.  Battery status shown in chart label when charging from a dash source.  -->
-    <!-- Label for estimated remaining duration of warp battery charging -->
-    <!-- Battery use screen. Battery status shown in chart label when charging from a warp source.  -->
 </resources>

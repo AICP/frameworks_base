@@ -17,24 +17,16 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="reboot_title">Mulai ulang</string>
     <string name="reboot_message">Memulai ulang sistem</string>
-    <!-- MicroG -->
     <string name="permlab_fakePackageSignature">Palsukan tanda tangan paket</string>
-    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_fakePackageSignature">Izinkan aplikasi menyamar menjadi aplikasi lain.
 Aplikasi jahat mungkin dapat menggunakan ini untuk masuk ke aplikasi data pribadi. Pengguna sah termasuk peniru berpura-pura menjadi yg di samar. Bolehkan perizinan ini dengan hati-hati!</string>
-    <!-- Pocket Lock -->
     <string name="pocket_lock_message_long_press">Tekan lama tombol daya untuk berinteraksi</string>
-    <!-- Defines the sysfs attribute path used by pocket bridge
-        to communicate pocket state to the pocket judge kernel driver. -->
-    <!-- Gaming mode -->
     <string name="notification_channel_gaming">Mode permainan</string>
     <string name="gaming_mode_notification_title">Mode permainan dihidupkan</string>
     <string name="gaming_mode_notification_content">Tekan untuk mematikan mode permainan</string>
     <string name="gaming_mode_enabled_toast">Mode permainan dihidupkan</string>
     <string name="gaming_mode_disabled_toast">Mode permainan dimatikan</string>
-    <!-- App killed (Back button long pressed)-->
     <string name="app_killed_message">Aplikasi ditutup</string>
-    <!-- LiveDisplay strings -->
     <string name="live_display_auto">Otomatis</string>
     <string name="live_display_auto_summary">Secara otomatis menyesuaikan warna layar setelah matahari terbenam dan matahari terbit</string>
     <string name="live_display_off">Mati</string>
@@ -55,10 +47,6 @@ Aplikasi jahat mungkin dapat menggunakan ini untuk masuk ke aplikasi data pribad
     <string name="accessibility_quick_settings_live_display_changed_day">LiveDisplay diubah menjadi mode siang.</string>
     <string name="accessibility_quick_settings_live_display_changed_night">LiveDisplay diubah menjadi mode malam.</string>
     <string name="accessibility_quick_settings_live_display_changed_outdoor">LiveDisplay diubah menjadi mode luar ruangan.</string>
-    <!-- Whether to allow process with media UID to access CameraServiceProxy -->
-    <!-- 15 min ZenMode duration periods display, e.g. 2 hours 45 minutes -->
-    <!-- 15 min ZenMode duration periods display, e.g. 2 hrs 45 mins -->
-    <!-- Button that copies the url to the log of a crashed application -->
     <string name="aerr_copy">Salin URL riwayat kerusakan</string>
     <string name="url_copy_success">URL berhasil disalin</string>
     <string name="url_copy_failed">Terjadi kesalahan saat mengunggah log ke aicp haste</string>

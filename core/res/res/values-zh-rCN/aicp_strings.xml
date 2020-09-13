@@ -17,23 +17,15 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="reboot_title">重新启动</string>
     <string name="reboot_message">正在重新启动</string>
-    <!-- MicroG -->
     <string name="permlab_fakePackageSignature">模仿软件包签名</string>
-    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_fakePackageSignature">允许应用伪装成为其他应用。恶意应用程序可以借此来访问隐私应用程序数据。请小心授予此权限！</string>
-    <!-- Pocket Lock -->
     <string name="pocket_lock_message_long_press">长按电源键来交互</string>
-    <!-- Defines the sysfs attribute path used by pocket bridge
-        to communicate pocket state to the pocket judge kernel driver. -->
-    <!-- Gaming mode -->
     <string name="notification_channel_gaming">游戏模式</string>
     <string name="gaming_mode_notification_title">游戏模式已启用</string>
     <string name="gaming_mode_notification_content">点击关闭游戏模式</string>
     <string name="gaming_mode_enabled_toast">游戏模式已开启</string>
     <string name="gaming_mode_disabled_toast">游戏模式已关闭</string>
-    <!-- App killed (Back button long pressed)-->
     <string name="app_killed_message">应用已终止</string>
-    <!-- LiveDisplay strings -->
     <string name="live_display_auto">自动</string>
     <string name="live_display_auto_summary">在日落和日出后自动调整屏幕色温</string>
     <string name="live_display_off">关闭</string>
@@ -55,16 +47,12 @@
     <string name="accessibility_quick_settings_live_display_changed_day">LiveDisplay 已改为白天模式。</string>
     <string name="accessibility_quick_settings_live_display_changed_night">LiveDisplay 已改为夜晚模式。</string>
     <string name="accessibility_quick_settings_live_display_changed_outdoor">LiveDisplay 已改为户外模式。</string>
-    <!-- Whether to allow process with media UID to access CameraServiceProxy -->
-    <!-- 15 min ZenMode duration periods display, e.g. 2 hours 45 minutes -->
     <plurals name="zen_mode_duration_minutes_combined">
         <item quantity="other">%d 分钟</item>
     </plurals>
-    <!-- 15 min ZenMode duration periods display, e.g. 2 hrs 45 mins -->
     <plurals name="zen_mode_duration_minutes_combined_short">
         <item quantity="other">%d 分钟</item>
     </plurals>
-    <!-- Button that copies the url to the log of a crashed application -->
     <string name="aerr_copy">复制崩溃日志链接</string>
     <string name="url_copy_success">已成功复制链接</string>
     <string name="url_copy_failed">上传日志到 aicp haste 时发生错误</string>

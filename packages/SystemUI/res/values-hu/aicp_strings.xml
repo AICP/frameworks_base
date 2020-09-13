@@ -18,9 +18,7 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- CPUInfo tile -->
     <string name="quick_settings_cpuinfo_label">CPU-adatok</string>
-    <!-- Compass QS Tile -->
     <string name="quick_settings_compass_label">Iránytű</string>
     <string name="quick_settings_compass_init">Előkészítés\u2026</string>
     <string name="accessibility_quick_settings_compass_off">Iránytű ki.</string>
@@ -35,52 +33,39 @@
     <string name="quick_settings_compass_SW">DNY</string>
     <string name="quick_settings_compass_W">NY</string>
     <string name="quick_settings_compass_NW">ÉNY</string>
-    <!-- Music tile -->
     <string name="quick_settings_music_label">Zene</string>
     <string name="quick_settings_music_play">Lejátszás</string>
     <string name="quick_settings_music_pause">Szüneteltetés</string>
-    <!-- Screenshoot tile -->
     <string name="quick_settings_screenshot_label">Képernyőmentés</string>
-    <!-- Screenrecord tile -->
     <string name="quick_settings_screenrecord_label">Képernyővideó</string>
-    <!-- Reboot/Recovery QS Tile -->
     <string name="quick_settings_reboot_label">Újraindítás</string>
     <string name="quick_settings_reboot_recovery_label">Recovery indítása</string>
-    <!-- USB Tethering tile -->
     <string name="accessibility_quick_settings_usb_tether_off">USB-megosztás ki</string>
     <string name="accessibility_quick_settings_usb_tether_on">USB-megosztás be</string>
     <string name="accessibility_quick_settings_usb_tether_changed_off">USB-megosztás kikapcsolva</string>
     <string name="accessibility_quick_settings_usb_tether_changed_on">USB-megosztás bekapcsolva</string>
     <string name="quick_settings_usb_tether_label">USB-megosztás</string>
-    <!-- Caffeine tile -->
     <string name="quick_settings_caffeine_label">Koffein</string>
     <string name="accessibility_quick_settings_caffeine_off">Koffein ki</string>
     <string name="accessibility_quick_settings_caffeine_on">Koffein be</string>
-    <!-- Aicp Extras Tile -->
     <string name="quick_aicp_extras_label">AICP Extrák</string>
     <string name="quick_aicp_extras_toast">Hűha, komolyan azt hitted a hosszan kattintás eljuttat téged valahová!!!</string>
-    <!-- Power menu advanced restart -->
     <string name="global_action_restart_system">Újraindítás</string>
     <string name="global_action_restart_advanced">Speciális</string>
     <string name="global_action_restart_recovery">Recovery indítása</string>
     <string name="global_action_restart_bootloader">Bootloader</string>
     <string name="global_action_restart_ui">Felhasználói felület</string>
-    <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
     <string name="keyguard_indication_dash_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Erőteljes töltés (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> a teljes töltésig)</string>
     <string name="keyguard_plugged_in_dash_charging"><xliff:g id="percentage">%s</xliff:g> • Erőteljes töltés</string>
-    <!-- Indication on the keyguard that is shown when the device is charging with a warp charger. Should match keyguard_plugged_in_warp_charging [CHAR LIMIT=40]-->
     <string name="keyguard_indication_warp_charging_time"><xliff:g id="percentage">%2$s</xliff:g> Lánctöltés (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> a teljes töltöttségig)</string>
     <string name="keyguard_plugged_in_warp_charging"><xliff:g id="percentage">%s</xliff:g> • Lánctöltés</string>
-    <!-- Heads up QS tile -->
     <string name="quick_settings_heads_up_label">Lebegő értesítés</string>
     <string name="accessibility_quick_settings_heads_up_off">Lebegő értesítés ki.</string>
     <string name="accessibility_quick_settings_heads_up_on">Lebegő értesítés be.</string>
     <string name="accessibility_quick_settings_heads_up_changed_off">Lebegő értesítés kikapcsolva.</string>
     <string name="accessibility_quick_settings_heads_up_changed_on">Lebegő értesítés bekapcsolva.</string>
-    <!-- Smart Pixels QS Tile -->
     <string name="quick_settings_smart_pixels">Intelligens pixelek</string>
     <string name="quick_settings_smart_pixels_on_power_save">Intelligens pixelek automatikus engedélyezése</string>
-    <!-- QS Config -->
     <string name="qs_menu_item_columns">Oszlopok</string>
     <string name="qs_menu_item_columns_landscape">Oszlopok (fekvő módban)</string>
     <string name="qs_menu_item_reset">Visszaállítás</string>
@@ -93,22 +78,17 @@
     <string name="tuner_show_secure_title">Biztonsági-lábléc megjelenítése</string>
     <string name="tuner_show_drag_handle">A hozzáérés vonalának kijelzése</string>
     <string name="tuner_qs_long_press_action">Nyomva tartásnál ne jelenjenek meg a panelek</string>
-    <!-- ADB over network tile -->
     <string name="quick_settings_network_adb_enabled_label">Engedélyezve</string>
     <string name="quick_settings_network_adb_disabled_label">Letiltva</string>
     <string name="quick_settings_network_adb_label">ADB a hálózaton keresztül</string>
     <string name="quick_settings_network_adb_toast">Az USB hibakeresés nem engedélyezett</string>
-    <!-- AOD QS tile -->
     <string name="quick_settings_aod_label">AOD</string>
-    <!-- Language toggle tile -->
     <string name="quick_settings_locale_label">Nyelv</string>
     <string name="quick_settings_locale_more_locales_toast">Kérjük, állítson be több nyelvet, hogy lehetővé tegye a funkcióváltást</string>
-    <!-- Sound tile -->
     <string name="quick_settings_sound_label">Hang</string>
     <string name="quick_settings_sound_ring">Csengés</string>
     <string name="quick_settings_sound_vibrate">Rezgés</string>
     <string name="quick_settings_sound_silent">Néma</string>
-    <!-- On The Go -->
     <string name="onthego_notif_ticker">Menet közben mód aktiválva</string>
     <string name="onthego_notif_title">A Menet közben mód aktív</string>
     <string name="onthego_notif_stop">Megállítás</string>
@@ -121,20 +101,15 @@
     <string name="onthego_service_toggle">Szolgáltatás automatikus újraindítása</string>
     <string name="onthego_channel_name">Fő</string>
     <string name="global_action_onthego">Menet közben</string>
-    <!-- OnTheGo Tile -->
     <string name="quick_settings_onthego_label">Menet közben</string>
-    <!-- Sync QS Tile -->
     <string name="quick_settings_sync_label">Szinkronizálás</string>
     <string name="accessibility_quick_settings_sync_off">Szinkronizálás ki</string>
     <string name="accessibility_quick_settings_sync_on">Szinkronizálás be</string>
     <string name="accessibility_quick_settings_sync_changed_off">Szinkronizálás kikapcsolva</string>
     <string name="accessibility_quick_settings_sync_changed_on">Szinkronizálás bekapcsolva</string>
-    <!-- Label for item that screenrecords in power menu options dialog -->
     <string name="global_action_screenrecord">Képernyővideó</string>
-    <!-- Heads up snooze toast -->
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - lebegő értesítései 1 percig elhalasztásra kerülnek.</string>
     <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - lebegő értesítései <xliff:g id="number">%d</xliff:g> percig elhalasztásra kerülnek.</string>
-    <!-- Omnijaws Weather -->
     <string name="omnijaws_service_error">Hiba</string>
     <string name="omnijaws_service_unkown">Nincsenek időjárási adatok</string>
     <string name="omnijaws_service_error_long">Hiba az időjárásadatok betöltésekor</string>
@@ -144,7 +119,6 @@
     <string name="omnijaws_current_text">Most</string>
     <string name="omnijaws_package_not_available">OmniJaws nem elérhető</string>
     <string name="omnijaws_service_last_update">Utolsó frissítés:</string>
-    <!-- Tuner -->
     <string name="preview">Előnézet</string>
     <string name="keycode">Billentyűkód</string>
     <string name="no_home_title">Nem található a Kezdőoldal-gomb</string>
@@ -167,91 +141,72 @@
     <string name="navbar_editor_summary">A Navigációs sáv konfigurálása</string>
     <string name="tuner_keyguard_transition_animations_title">Áttűnési animációk megjelenítése</string>
     <string name="tuner_keyguard_transition_animations_summary">Haszontalan animációk megjelenítése</string>
-    <!-- Stock Navbar -->
     <string name="systemui_tuner_navbar_title">Gyári beállítások</string>
     <string name="navbar_activity_title">Navigációs sáv</string>
-    <!-- Kill button in notification guts -->
     <string name="force_stop_dlg_title">Kényszeríti a leállítást?</string>
     <string name="force_stop_dlg_text">Ha egy alkalmazást leállásra kényszerít, az hibásan működhet.</string>
     <string name="guts_force_close_app">Alkalmazás bezárása</string>
     <string name="tuner_show_brightness_mode">A fényerősségmód-kapcsoló megjelenítése</string>
     <string name="tuner_show_brightness_side_buttons">A fényerősségszabályzó-csúszka oldalgomjainak megjelenítése</string>
-    <!--Google sound search tile -->
     <string name="quick_settings_sound_search">Hangalapú keresés</string>
     <string name="quick_settings_sound_search_no_app">Sajnáljuk, de ez nem működhet, ha nincs alkalmazás telepítve a hangalapú kereséshez.</string>
-    <!-- Name of the additional status bar icons also exposed with SystemUI Tuner -->
     <string name="status_bar_camera">Kamera</string>
     <string name="status_bar_location">Tartózkodási hely</string>
     <string name="status_bar_microphone">Mikrofon</string>
-    <!-- DataSwitch Tile -->
     <string name="qs_data_switch_label">SIM-kártyák váltása</string>
     <string name="qs_data_switch_toast_0">Jelenleg nincs SIM-kártya beillesztve</string>
     <string name="qs_data_switch_toast_1">Jelenleg csak egy SIM-kártya van beillesztve</string>
     <string name="qs_data_switch_changed_1">SIM 1 lesz az adatkártya.</string>
     <string name="qs_data_switch_changed_2">SIM 2 lesz az adatkártya.</string>
-    <!-- HW Keys Tile -->
     <string name="accessibility_quick_settings_hwkeys_on">Hardvergombok be</string>
     <string name="accessibility_quick_settings_hwkeys_off">Hardvergombok ki</string>
     <string name="quick_settings_hwkeys_label">Hardvergombok</string>
-    <!-- Immersive tile -->
     <string name="quick_settings_immersive_tile">Immerzív mód</string>
     <string name="quick_settings_immersive_tile_statusbar">Immerzív állapotsáv</string>
     <string name="quick_settings_immersive_tile_navbar">Immerzív navigációs sáv</string>
     <string name="quick_settings_immersive_tile_full">Teljesen immerzív mód</string>
-    <!-- Screenrecord Stop Dot -->
     <string name="screenrecord_stopdot_label">Leállítógomb megjelenítése</string>
     <string name="screenrecord_low_quality_label">Gyenge minőségű</string>
-    <!-- Gaming mode -->
     <string name="gaming_mode_not_enabled">A Játékmód a beállításokban le van tiltva</string>
     <string name="quick_settings_gaming_mode_label">Játékmód</string>
-    <!-- Content description of the Gaming mode tile in quick settings when disabled (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_gaming_mode_disabled">A Játékmód kikapcsolásra került.</string>
-    <!-- Content description of the Gaming mode tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_gaming_mode_enabled">A Játékmód bekapcsolásra került.</string>
-    <!-- Navigation bar dpad -->
     <string name="accessibility_dpad_left">Kurzor balra</string>
     <string name="accessibility_dpad_right">Kurzor jobbra</string>
-    <!-- Alert slide extras -->
     <string name="volume_ringer_priority_only">Fontosak</string>
     <string name="volume_ringer_alarms_only">Ébresztések</string>
     <string name="volume_ringer_dnd">Ne zavarjanak</string>
     <string name="tristate_flashlight">Zseblámpa</string>
-    <!-- FPS Info tile -->
     <string name="quick_settings_fpsinfo_label">FPS-adatok</string>
     <string name="accessibility_quick_settings_fpsinfo_off">FPS-adatok ki</string>
     <string name="accessibility_quick_settings_fpsinfo_on">FPS-adatok be</string>
-    <!-- Screen pinning -->
     <string name="screen_pinning_description_custom">Ebben a nézetben tartja addig, amíg Ön fel nem oldja. A feloldáshoz tartsa lenyomva a Vissza gombot.</string>
     <string name="screen_pinning_description_recents_invisible_custom">Ebben a nézetben tartja addig, amíg Ön fel nem oldja. A feloldáshoz tartsa lenyomva a Vissza gombot.</string>
     <string name="screen_pinning_description_accessible_custom">Ebben a nézetben tartja addig, amíg Ön fel nem oldja. A feloldáshoz tartsa lenyomva a Vissza gombot.</string>
     <string name="screen_pinning_description_recents_invisible_accessible_custom">Ebben a nézetben tartja addig, amíg Ön fel nem oldja. A feloldáshoz tartsa lenyomva a Vissza gombot.</string>
     <string name="screen_pinning_toast_custom">A Képernyő feloldásához tartsa nyomva a Vissza gombot</string>
     <string name="screen_pinning_toast_recents_invisible_custom">A Képernyő feloldásához tartsa nyomva a Vissza gombot</string>
-    <!-- Reader mode QS tile -->
     <string name="quick_settings_reading_mode">Olvasómód</string>
     <string name="accessibility_quick_settings_reading_mode_on">Olvasómód be.</string>
     <string name="accessibility_quick_settings_reading_mode_off">Olvasómód ki.</string>
     <string name="accessibility_quick_settings_reading_mode_changed_on">Olvasómód bekapcsolva.</string>
     <string name="accessibility_quick_settings_reading_mode_changed_off">Olvasómód kikapcsolva.</string>
-    <!-- Alerting notification header label -->
     <string name="notification_section_header_alerting">Riasztási értesítések</string>
-    <!-- PowerShare QS tile -->
     <string name="quick_settings_powershare_label">PowerShare</string>
     <string name="quick_settings_powershare_off_powersave_label">PowerShare ki\nAkkukímélő</string>
     <string name="quick_settings_powershare_off_low_battery_label">PowerShare ki\nAlacsony akkuszint</string>
     <string name="quick_settings_powershare_enabled_label">A PowerShare bekapcsolva</string>
-    <!-- VPN QS tile -->
     <string name="quick_settings_vpn_label">VPN</string>
     <string name="quick_settings_vpn_connect_dialog_title">Csatlakozás a következőhöz\u2026</string>
     <string name="vpn_credentials_hint">Kérjük, adja meg a hitelesítőadatait, hogy csatlakozhasson a következőhöz: <xliff:g id="name">%s</xliff:g></string>
     <string name="vpn_credentials_username">Felhasználónév</string>
     <string name="vpn_credentials_password">Jelszó</string>
     <string name="vpn_credentials_dialog_connect">Csatlakozás</string>
-    <!-- Long swipe gesture actions -->
+    <string name="app_picker_dialog_title">Válasszon egy alkalmazást</string>
     <string name="recents_app_killed">Alkalmazás leállítva</string>
-    <!-- Daily data usage -->
+    <string name="nope_cant_kill">A Launcher-t nem lehet kilőni</string>
+    <string name="daily_data_usage_title">A mai napi használat</string>
     <string name="lockscreen_default">Alapértelmezett</string>
     <string name="lockscreen_hidden">Nincs</string>
-    <!-- Shows when people have clicked on the custom lockscreen shortcut [CHAR LIMIT=60] -->
     <string name="custom_hint">Indításhoz csúsztasson az ikonról</string>
 </resources>

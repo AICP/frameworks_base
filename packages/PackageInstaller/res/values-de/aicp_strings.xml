@@ -14,8 +14,6 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- Message for updating an existing app [CHAR LIMIT=NONE] -->
     <string name="old_version_number">Installierte Version: <xliff:g id="old_version">%1$s</xliff:g></string>
-    <!-- Message for updating an existing system app [CHAR LIMIT=NONE] -->
     <string name="new_version_number">Neue Version: <xliff:g id="new_version">%1$s</xliff:g></string>
 </resources>

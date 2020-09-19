@@ -18,9 +18,7 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- CPUInfo tile -->
     <string name="quick_settings_cpuinfo_label">Info CPU</string>
-    <!-- Compass QS Tile -->
     <string name="quick_settings_compass_label">Kompas</string>
     <string name="quick_settings_compass_init">Memulai\u2026</string>
     <string name="accessibility_quick_settings_compass_off">Kompas mati.</string>
@@ -35,52 +33,39 @@
     <string name="quick_settings_compass_SW">BD</string>
     <string name="quick_settings_compass_W">B</string>
     <string name="quick_settings_compass_NW">BL</string>
-    <!-- Music tile -->
     <string name="quick_settings_music_label">Musik</string>
     <string name="quick_settings_music_play">Putar</string>
     <string name="quick_settings_music_pause">Jeda</string>
-    <!-- Screenshoot tile -->
     <string name="quick_settings_screenshot_label">Tangkapan layar</string>
-    <!-- Screenrecord tile -->
     <string name="quick_settings_screenrecord_label">Rekam layar</string>
-    <!-- Reboot/Recovery QS Tile -->
     <string name="quick_settings_reboot_label">Mulai ulang</string>
     <string name="quick_settings_reboot_recovery_label">Recovery</string>
-    <!-- USB Tethering tile -->
     <string name="accessibility_quick_settings_usb_tether_off">Penambatan USB mati</string>
     <string name="accessibility_quick_settings_usb_tether_on">Penambatan USB hidup</string>
     <string name="accessibility_quick_settings_usb_tether_changed_off">Penambatan USB dimatikan</string>
     <string name="accessibility_quick_settings_usb_tether_changed_on">Penambatan USB dihidupkan</string>
     <string name="quick_settings_usb_tether_label">Penambatan USB</string>
-    <!-- Caffeine tile -->
     <string name="quick_settings_caffeine_label">Kafein</string>
     <string name="accessibility_quick_settings_caffeine_off">Kafein mati</string>
     <string name="accessibility_quick_settings_caffeine_on">Kafein hidup</string>
-    <!-- Aicp Extras Tile -->
     <string name="quick_aicp_extras_label">Aicp Extras</string>
     <string name="quick_aicp_extras_toast">LOL, Anda benar-benar berpikir bahwa dengan menekan lama akan membawa Anda ke suatu tempat!!!</string>
-    <!-- Power menu advanced restart -->
     <string name="global_action_restart_system">Mulai ulang</string>
     <string name="global_action_restart_advanced">Lanjutan</string>
     <string name="global_action_restart_recovery">Recovery</string>
     <string name="global_action_restart_bootloader">Bootloader</string>
     <string name="global_action_restart_ui">SystemUI</string>
-    <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
     <string name="keyguard_indication_dash_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Pengisian daya cepat (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> hingga penuh)</string>
     <string name="keyguard_plugged_in_dash_charging"><xliff:g id="percentage">%s</xliff:g> • Pengisian daya cepat</string>
-    <!-- Indication on the keyguard that is shown when the device is charging with a warp charger. Should match keyguard_plugged_in_warp_charging [CHAR LIMIT=40]-->
     <string name="keyguard_indication_warp_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Pengisian daya pintar (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> hingga penuh)</string>
     <string name="keyguard_plugged_in_warp_charging"><xliff:g id="percentage">%s</xliff:g> • Pengisian daya pintar</string>
-    <!-- Heads up QS tile -->
     <string name="quick_settings_heads_up_label">Heads up</string>
     <string name="accessibility_quick_settings_heads_up_off">Heads up mati.</string>
     <string name="accessibility_quick_settings_heads_up_on">Heads up hidup.</string>
     <string name="accessibility_quick_settings_heads_up_changed_off">Heads up dimatikan.</string>
     <string name="accessibility_quick_settings_heads_up_changed_on">Heads up dihidupkan.</string>
-    <!-- Smart Pixels QS Tile -->
     <string name="quick_settings_smart_pixels">Smart Pixels</string>
     <string name="quick_settings_smart_pixels_on_power_save">Hidupkan otomatis Smart Pixels</string>
-    <!-- QS Config -->
     <string name="qs_menu_item_columns">Kolom</string>
     <string name="qs_menu_item_columns_landscape">Kolom mendatar</string>
     <string name="qs_menu_item_reset">Setel ulang</string>
@@ -90,22 +75,17 @@
     <string name="tuner_quick_settings">Setelan cepat</string>
     <string name="tuner_show_brightness_new">Tampilkan panel kecerahan</string>
     <string name="tuner_brightness_position_bottom">Panel kecerahan di bawah</string>
-    <!-- ADB over network tile -->
     <string name="quick_settings_network_adb_enabled_label">Dihidupkan</string>
     <string name="quick_settings_network_adb_disabled_label">Dimatikan</string>
     <string name="quick_settings_network_adb_label">ADB melalui Jaringan</string>
     <string name="quick_settings_network_adb_toast">USB debugging tidak dihidupkan</string>
-    <!-- AOD QS tile -->
     <string name="quick_settings_aod_label">AOD</string>
-    <!-- Language toggle tile -->
     <string name="quick_settings_locale_label">Bahasa</string>
     <string name="quick_settings_locale_more_locales_toast">Silakan konfigurasikan beberapa bahasa untuk mengaktifkan fungsi tombol</string>
-    <!-- Sound tile -->
     <string name="quick_settings_sound_label">Suara</string>
     <string name="quick_settings_sound_ring">Dering</string>
     <string name="quick_settings_sound_vibrate">Getar</string>
     <string name="quick_settings_sound_silent">Senyap</string>
-    <!-- On The Go -->
     <string name="onthego_notif_ticker">On-The-Go diaktifkan</string>
     <string name="onthego_notif_title">On-The-Go aktif</string>
     <string name="onthego_notif_stop">Hentikan</string>
@@ -118,20 +98,15 @@
     <string name="onthego_service_toggle">Otomatis mulai ulang layanan</string>
     <string name="onthego_channel_name">Utama</string>
     <string name="global_action_onthego">On-The-Go</string>
-    <!-- OnTheGo Tile -->
     <string name="quick_settings_onthego_label">On-The-Go</string>
-    <!-- Sync QS Tile -->
     <string name="quick_settings_sync_label">Sinkronisasi</string>
     <string name="accessibility_quick_settings_sync_off">Sinkronisasi mati</string>
     <string name="accessibility_quick_settings_sync_on">Sinkronisasi hidup</string>
     <string name="accessibility_quick_settings_sync_changed_off">Sinkronisasi dimatikan</string>
     <string name="accessibility_quick_settings_sync_changed_on">Sinkronisasi dihidupkan</string>
-    <!-- Label for item that screenrecords in power menu options dialog -->
     <string name="global_action_screenrecord">Rekam layar</string>
-    <!-- Heads up snooze toast -->
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Pemberitahuan tertunda selama 1 menit.</string>
     <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - Pemberitahuan mengintip tertidur selama <xliff:g id="number">%d </xliff:g> menit.</string>
-    <!-- Omnijaws Weather -->
     <string name="omnijaws_service_error">Kesalahan</string>
     <string name="omnijaws_service_unkown">Tidak ada data cuaca</string>
     <string name="omnijaws_service_error_long">Kesalahan saat memuat data cuaca</string>
@@ -141,7 +116,6 @@
     <string name="omnijaws_current_text">Sekarang</string>
     <string name="omnijaws_package_not_available">OmniJaws tidak tersedia</string>
     <string name="omnijaws_service_last_update">Pembaruan terakhir:</string>
-    <!-- Tuner -->
     <string name="preview">Pratinjau</string>
     <string name="keycode">Kata kunci</string>
     <string name="no_home_title">Tombol beranda tidak ditemukan</string>
@@ -155,47 +129,25 @@
     <string name="right">Kanan</string>
     <string name="navbar_editor_title">Penyunting</string>
     <string name="navbar_editor_summary">Mengkonfigurasi bilah navigasi</string>
-    <!-- Stock Navbar -->
     <string name="systemui_tuner_navbar_title">Setelan bawaan</string>
     <string name="navbar_activity_title">Bilah navigasi</string>
-    <!-- Kill button in notification guts -->
     <string name="force_stop_dlg_title">Paksa berhenti?</string>
     <string name="force_stop_dlg_text">Jika anda menghentikan aplikasi secara paksa, akan menyebabkan gagal fungsi.</string>
     <string name="guts_force_close_app">Tutup Aplikasi</string>
-    <!--Google sound search tile -->
-    <!-- Name of the additional status bar icons also exposed with SystemUI Tuner -->
-    <!-- DataSwitch Tile -->
-    <!-- HW Keys Tile -->
-    <!-- Immersive tile -->
     <string name="quick_settings_immersive_tile">Modus layar penuh</string>
     <string name="quick_settings_immersive_tile_statusbar">Layar penuh bilah status</string>
     <string name="quick_settings_immersive_tile_navbar">Layar penuh bilah navigasi</string>
     <string name="quick_settings_immersive_tile_full">Layar penuh semua</string>
-    <!-- Screenrecord Stop Dot -->
-    <!-- Gaming mode -->
-    <!-- Content description of the Gaming mode tile in quick settings when disabled (not shown on the screen). [CHAR LIMIT=NONE] -->
-    <!-- Content description of the Gaming mode tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
-    <!-- Navigation bar dpad -->
-    <!-- Alert slide extras -->
-    <!-- FPS Info tile -->
-    <!-- Screen pinning -->
-    <!-- Reader mode QS tile -->
     <string name="quick_settings_reading_mode">Mode membaca</string>
     <string name="accessibility_quick_settings_reading_mode_on">Mode membaca hidup.</string>
     <string name="accessibility_quick_settings_reading_mode_off">Mode membaca mati.</string>
     <string name="accessibility_quick_settings_reading_mode_changed_on">Mode membaca dihidupkan.</string>
     <string name="accessibility_quick_settings_reading_mode_changed_off">Mode membaca dimatikan.</string>
-    <!-- Alerting notification header label -->
-    <!-- PowerShare QS tile -->
-    <!-- VPN QS tile -->
     <string name="quick_settings_vpn_label">VPN</string>
     <string name="vpn_credentials_username">Nama pengguna</string>
     <string name="vpn_credentials_password">Kata sandi</string>
-    <!-- Long swipe gesture actions -->
     <string name="recents_app_killed">Aplikasi dimatikan</string>
-    <!-- Daily data usage -->
     <string name="lockscreen_default">Standar</string>
     <string name="lockscreen_hidden">Tidak ada</string>
-    <!-- Shows when people have clicked on the custom lockscreen shortcut [CHAR LIMIT=60] -->
     <string name="custom_hint">Usap dari ikon untuk menjalankan</string>
 </resources>

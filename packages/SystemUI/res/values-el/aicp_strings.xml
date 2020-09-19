@@ -18,8 +18,6 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- CPUInfo tile -->
-    <!-- Compass QS Tile -->
     <string name="quick_settings_compass_label">Πυξίδα</string>
     <string name="quick_settings_compass_init">Προετοιμασία\u2026</string>
     <string name="accessibility_quick_settings_compass_off">Πυξίδα ανενεργή.</string>
@@ -34,56 +32,33 @@
     <string name="quick_settings_compass_SW">ΝΔ</string>
     <string name="quick_settings_compass_W">Δ</string>
     <string name="quick_settings_compass_NW">ΒΔ</string>
-    <!-- Music tile -->
     <string name="quick_settings_music_label">Μουσική</string>
     <string name="quick_settings_music_play">Αναπαραγωγή</string>
     <string name="quick_settings_music_pause">Παύση</string>
-    <!-- Screenshoot tile -->
     <string name="quick_settings_screenshot_label">Στιγμιότυπο οθόνης</string>
-    <!-- Screenrecord tile -->
     <string name="quick_settings_screenrecord_label">Εγγραφή οθόνης</string>
-    <!-- Reboot/Recovery QS Tile -->
-    <!-- USB Tethering tile -->
     <string name="accessibility_quick_settings_usb_tether_off">Απενεργοποίηση USB tethering</string>
     <string name="accessibility_quick_settings_usb_tether_on">Πρόσδεση USB ενεργή</string>
     <string name="accessibility_quick_settings_usb_tether_changed_off">Η πρόσδεση USB απενεργοποιήθηκε</string>
     <string name="accessibility_quick_settings_usb_tether_changed_on">Η πρόσδεση USB ενεργοποιήθηκε</string>
     <string name="quick_settings_usb_tether_label">Πρόσδεση USB</string>
-    <!-- Caffeine tile -->
     <string name="quick_settings_caffeine_label">Καφεΐνη</string>
     <string name="accessibility_quick_settings_caffeine_off">Καφεΐνη off</string>
     <string name="accessibility_quick_settings_caffeine_on">Καφεΐνη ενεργή</string>
-    <!-- Aicp Extras Tile -->
     <string name="quick_aicp_extras_label">Συμπληρώματα Aicp</string>
     <string name="quick_aicp_extras_toast">LOL, νόμιζες πραγματικά ότι μακρά κλικ θα σας πάρει κάπου!!!</string>
-    <!-- Power menu advanced restart -->
-    <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
-    <!-- Indication on the keyguard that is shown when the device is charging with a warp charger. Should match keyguard_plugged_in_warp_charging [CHAR LIMIT=40]-->
-    <!-- Heads up QS tile -->
-    <!-- Smart Pixels QS Tile -->
-    <!-- QS Config -->
-    <!-- ADB over network tile -->
-    <!-- AOD QS tile -->
-    <!-- Language toggle tile -->
     <string name="quick_settings_locale_label">Γλώσσα</string>
     <string name="quick_settings_locale_more_locales_toast">Παρακαλούμε επιλέξετε πάνω από μια γλώσσα για να ενεργοποιηθεί η λειτουργία αναδιάταξης</string>
-    <!-- Sound tile -->
     <string name="quick_settings_sound_label">Ήχος</string>
     <string name="quick_settings_sound_ring">Κουδούνισμα</string>
     <string name="quick_settings_sound_vibrate">Δόνηση</string>
     <string name="quick_settings_sound_silent">Αθόρυβο</string>
-    <!-- On The Go -->
-    <!-- OnTheGo Tile -->
-    <!-- Sync QS Tile -->
     <string name="quick_settings_sync_label">Συγχρονισμός</string>
     <string name="accessibility_quick_settings_sync_off">Συγχρονισμός ανενεργός</string>
     <string name="accessibility_quick_settings_sync_on">Συγχρονισμός ενεργός</string>
     <string name="accessibility_quick_settings_sync_changed_off">Ο συγχρονισμός απενεργοποιήθηκε</string>
     <string name="accessibility_quick_settings_sync_changed_on">Ο συγχρονισμός ενεργοποιήθηκε</string>
-    <!-- Label for item that screenrecords in power menu options dialog -->
     <string name="global_action_screenrecord">Εγγραφή οθόνης</string>
-    <!-- Heads up snooze toast -->
-    <!-- Omnijaws Weather -->
     <string name="omnijaws_service_error">Σφάλμα</string>
     <string name="omnijaws_service_unkown">Δεν υπάρχουν δεδομένα καιρού</string>
     <string name="omnijaws_service_error_long">Σφάλμα κατά τη φόρτωση δεδομένων καιρού</string>
@@ -91,30 +66,7 @@
     <string name="omnijaws_label_default">Καιρός</string>
     <string name="omnijaws_current_text">Τώρα</string>
     <string name="omnijaws_package_not_available">Το OmniJaws δεν είναι διαθέσιμο</string>
-    <!-- Tuner -->
-    <!-- Stock Navbar -->
     <string name="navbar_activity_title">Γραμμή πλοήγησης</string>
-    <!-- Kill button in notification guts -->
     <string name="force_stop_dlg_title">Αναγκαστική διακοπή;</string>
     <string name="force_stop_dlg_text">Άμα σταματήσετε ξαφνικά μια εφαρμογή, ενδέχεται να μην λειτουργεί σωστά.</string>
-    <!--Google sound search tile -->
-    <!-- Name of the additional status bar icons also exposed with SystemUI Tuner -->
-    <!-- DataSwitch Tile -->
-    <!-- HW Keys Tile -->
-    <!-- Immersive tile -->
-    <!-- Screenrecord Stop Dot -->
-    <!-- Gaming mode -->
-    <!-- Content description of the Gaming mode tile in quick settings when disabled (not shown on the screen). [CHAR LIMIT=NONE] -->
-    <!-- Content description of the Gaming mode tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
-    <!-- Navigation bar dpad -->
-    <!-- Alert slide extras -->
-    <!-- FPS Info tile -->
-    <!-- Screen pinning -->
-    <!-- Reader mode QS tile -->
-    <!-- Alerting notification header label -->
-    <!-- PowerShare QS tile -->
-    <!-- VPN QS tile -->
-    <!-- Long swipe gesture actions -->
-    <!-- Daily data usage -->
-    <!-- Shows when people have clicked on the custom lockscreen shortcut [CHAR LIMIT=60] -->
 </resources>

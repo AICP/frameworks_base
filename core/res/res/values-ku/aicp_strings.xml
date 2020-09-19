@@ -17,23 +17,15 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="reboot_title">هەڵکردنەوە</string>
     <string name="reboot_message">هەڵکردنەوەی سیستەم</string>
-    <!-- MicroG -->
     <string name="permlab_fakePackageSignature">واژووی پاکێجی ساختە</string>
-    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_fakePackageSignature">ڕێ بە ئەپەکە ئەدات وەک ئەپێکیتر خۆی بنوێنێت. ئەپلیکەیشنە هەمەجۆرەکان دەکرێ بتوانن گەیشتن بە زانیارییە تایبەتییەکانی ئەم ئەپە وەدەسبێنن. بۆیە ئەم مۆڵەتە بەورییاییەوە بدە!</string>
-    <!-- Pocket Lock -->
     <string name="pocket_lock_message_long_press">پەنجەڕاگرتنی دوگمەی سەرەکی بۆ لکاندن</string>
-    <!-- Defines the sysfs attribute path used by pocket bridge
-        to communicate pocket state to the pocket judge kernel driver. -->
-    <!-- Gaming mode -->
     <string name="notification_channel_gaming">دۆخی یاریکردن</string>
     <string name="gaming_mode_notification_title">دۆخی یاریکردن کاراکرا</string>
     <string name="gaming_mode_notification_content">گرتەبکە بۆ ناکاراکردنی دۆخی یاریکردن</string>
     <string name="gaming_mode_enabled_toast">دۆخی یاریکردن کاراکرا</string>
     <string name="gaming_mode_disabled_toast">دۆخی یاریکردن ناکاراکرا</string>
-    <!-- App killed (Back button long pressed)-->
     <string name="app_killed_message">ئەپەکە داخرا</string>
-    <!-- LiveDisplay strings -->
     <string name="live_display_auto">خۆکار</string>
     <string name="live_display_auto_summary">ڕێکخستنی ڕەنگی پلەی گەرمی ڕوونما لەدوای خۆرهەڵاتن و خۆرئاوابون بەخۆکاری</string>
     <string name="live_display_off">ناکارا</string>
@@ -42,7 +34,7 @@
     <string name="live_display_day_summary">تەنها بەکارهێنانی ڕێکخستنی ڕۆژ</string>
     <string name="live_display_night">شەو</string>
     <string name="live_display_night_summary">تەنها بەکارهێنانی ڕێکخستنی شەو</string>
-    <string name="live_display_outdoor">دەرەوە (ڕۆشنایی خۆر)</string>
+    <string name="live_display_outdoor">دەرەوە (ڕووناکی خۆر)</string>
     <string name="live_display_outdoor_summary">تەنها بەکارهێنانی ڕێکخستنی دەرەوە</string>
     <string name="live_display_hint">ڕوونمای چالاک یارمەتیدەرە لە کەمکردنی ئازاری چاو و یارمەتیدەرە بۆ نوستن لە شەو. دایگرە و تاقیکەوە!</string>
     <string name="accessibility_quick_settings_live_display_off">ڕوونمای چالاک ناکارایە.</string>
@@ -55,18 +47,14 @@
     <string name="accessibility_quick_settings_live_display_changed_day">ڕوونمای چالاک گۆڕا بۆ دۆخی ڕۆژ.</string>
     <string name="accessibility_quick_settings_live_display_changed_night">ڕوونمای چالاک گۆڕا بۆ دۆخی شەو.</string>
     <string name="accessibility_quick_settings_live_display_changed_outdoor">ڕوونمای چالاک گۆڕا بۆ دۆخی دەرەوە.</string>
-    <!-- Whether to allow process with media UID to access CameraServiceProxy -->
-    <!-- 15 min ZenMode duration periods display, e.g. 2 hours 45 minutes -->
     <plurals name="zen_mode_duration_minutes_combined">
         <item quantity="one">یەک خولەک</item>
         <item quantity="other">%d خولەک</item>
     </plurals>
-    <!-- 15 min ZenMode duration periods display, e.g. 2 hrs 45 mins -->
     <plurals name="zen_mode_duration_minutes_combined_short">
         <item quantity="one">1 خولەک</item>
         <item quantity="other">%d خولەک</item>
     </plurals>
-    <!-- Button that copies the url to the log of a crashed application -->
     <string name="aerr_copy">لەبەرگرتنەوەی URL کڕاشبوون</string>
     <string name="url_copy_success">بەسەرکەوتوویی URL لەبەرگیرایەوە</string>
     <string name="url_copy_failed">کێشەیەک ڕوویدا لەکاتی بەرزکردنەوەی تۆمارەکە بۆ aicp</string>

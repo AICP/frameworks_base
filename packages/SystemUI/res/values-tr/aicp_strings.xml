@@ -18,9 +18,7 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- CPUInfo tile -->
     <string name="quick_settings_cpuinfo_label">İşlemci bilgisi</string>
-    <!-- Compass QS Tile -->
     <string name="quick_settings_compass_label">Pusula</string>
     <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
     <string name="quick_settings_compass_init">Başlatılıyor\u2026</string>
@@ -36,67 +34,49 @@
     <string name="quick_settings_compass_SW">SW</string>
     <string name="quick_settings_compass_W">W</string>
     <string name="quick_settings_compass_NW">NW</string>
-    <!-- Music tile -->
     <string name="quick_settings_music_label">Müzik</string>
     <string name="quick_settings_music_play">Oynat</string>
     <string name="quick_settings_music_pause">Duraklat</string>
-    <!-- Screenshoot tile -->
     <string name="quick_settings_screenshot_label">Ekran görüntüsü</string>
-    <!-- Screenrecord tile -->
     <string name="quick_settings_screenrecord_label">Ekran kaydı</string>
-    <!-- Reboot/Recovery QS Tile -->
     <string name="quick_settings_reboot_label">Yeniden başlat</string>
     <string name="quick_settings_reboot_recovery_label">Kurtarma modu (Recovery)</string>
-    <!-- USB Tethering tile -->
     <string name="accessibility_quick_settings_usb_tether_off">USB internet paylaşımı kapalı</string>
     <string name="accessibility_quick_settings_usb_tether_on">USB internet paylaşımı açık</string>
     <string name="accessibility_quick_settings_usb_tether_changed_off">USB internet paylaşımı kapatıldı</string>
     <string name="accessibility_quick_settings_usb_tether_changed_on">USB internet paylaşımı açıldı</string>
     <string name="quick_settings_usb_tether_label">USB internet paylaşımı</string>
-    <!-- Caffeine tile -->
     <string name="quick_settings_caffeine_label">Kafein</string>
     <string name="accessibility_quick_settings_caffeine_off">Kafein kapalı</string>
     <string name="accessibility_quick_settings_caffeine_on">Kafein açık</string>
-    <!-- Aicp Extras Tile -->
     <string name="quick_aicp_extras_label">Aicp Extras</string>
     <string name="quick_aicp_extras_toast">LOL, gerçekten uzun basmanın bir işe yarayacağına inandın mı!!!</string>
-    <!-- Power menu advanced restart -->
     <string name="global_action_restart_system">Yeniden başlat</string>
     <string name="global_action_restart_recovery">Kurtarma modu (Recovery)</string>
-    <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
-    <!-- Indication on the keyguard that is shown when the device is charging with a warp charger. Should match keyguard_plugged_in_warp_charging [CHAR LIMIT=40]-->
-    <!-- Heads up QS tile -->
     <string name="quick_settings_heads_up_label">Bildirim pencereleri</string>
     <string name="accessibility_quick_settings_heads_up_off">Bildirim pencereleri kapalı.</string>
     <string name="accessibility_quick_settings_heads_up_on">Bildirim pencereleri açık.</string>
     <string name="accessibility_quick_settings_heads_up_changed_off">Bildirim pencereleri kapatıldı.</string>
     <string name="accessibility_quick_settings_heads_up_changed_on">Bildirim pencereleri açıldı.</string>
-    <!-- Smart Pixels QS Tile -->
     <string name="quick_settings_smart_pixels">Akıllı pikseller</string>
     <string name="quick_settings_smart_pixels_on_power_save">Otomatik olarak akıllı pikselleri etkinleştir</string>
-    <!-- QS Config -->
     <string name="qs_menu_item_columns">Sütunlar</string>
     <string name="qs_menu_item_columns_landscape">Yatay sütunlar</string>
     <string name="qs_menu_item_reset">Sıfırla</string>
     <string name="qs_menu_item_titles">Etiketleri göster</string>
     <string name="qs_menu_item_qs_columns">Hızlı ayarlar sütunları</string>
     <string name="qs_menu_item_columns_auto">Otomatik</string>
-    <!-- ADB over network tile -->
     <string name="quick_settings_network_adb_enabled_label">Etkin</string>
     <string name="quick_settings_network_adb_disabled_label">Devre dışı</string>
     <string name="quick_settings_network_adb_label">Ağ üzerinden ADB</string>
     <string name="quick_settings_network_adb_toast">USB hata ayıklama etkin değil</string>
-    <!-- AOD QS tile -->
     <string name="quick_settings_aod_label">AOD</string>
-    <!-- Language toggle tile -->
     <string name="quick_settings_locale_label">Dil</string>
     <string name="quick_settings_locale_more_locales_toast">Geçiş işlevselliğinin etkin olması için lütfen birden fazla dil ekleyin</string>
-    <!-- Sound tile -->
     <string name="quick_settings_sound_label">Ses</string>
     <string name="quick_settings_sound_ring">Zil sesi</string>
     <string name="quick_settings_sound_vibrate">Titreşim</string>
     <string name="quick_settings_sound_silent">Sessiz</string>
-    <!-- On The Go -->
     <string name="onthego_notif_ticker">Yürüme modu etkinleştirildi</string>
     <string name="onthego_notif_title">Yürüme modu aktif</string>
     <string name="onthego_notif_stop">Durdur</string>
@@ -109,20 +89,15 @@
     <string name="onthego_service_toggle">Servisi otomatik yeniden başlat</string>
     <string name="onthego_channel_name">Ana</string>
     <string name="global_action_onthego">Yürüme modu</string>
-    <!-- OnTheGo Tile -->
     <string name="quick_settings_onthego_label">Yürüme modu</string>
-    <!-- Sync QS Tile -->
     <string name="quick_settings_sync_label">Eşitleme</string>
     <string name="accessibility_quick_settings_sync_off">Eşitleme kapalı</string>
     <string name="accessibility_quick_settings_sync_on">Eşitleme açık</string>
     <string name="accessibility_quick_settings_sync_changed_off">Eşitleme kapatıldı</string>
     <string name="accessibility_quick_settings_sync_changed_on">Eşitleme açıldı</string>
-    <!-- Label for item that screenrecords in power menu options dialog -->
     <string name="global_action_screenrecord">Ekran kaydı</string>
-    <!-- Heads up snooze toast -->
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Bildirim pencereleri 1 dakika kadar erteleniyor.</string>
     <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - Bildirim pencereleri <xliff:g id="number">%d</xliff:g> dakika erteleniyor.</string>
-    <!-- Omnijaws Weather -->
     <string name="omnijaws_service_error">Hata</string>
     <string name="omnijaws_service_unkown">Hava durumu verileri yok</string>
     <string name="omnijaws_service_error_long">Hava durumu verileri yüklenemedi</string>
@@ -132,55 +107,32 @@
     <string name="omnijaws_current_text">Şimdi</string>
     <string name="omnijaws_package_not_available">OmniJaws mevcut değil</string>
     <string name="omnijaws_service_last_update">Son güncelleme:</string>
-    <!-- Tuner -->
     <string name="reset">Sıfırla</string>
-    <!-- Stock Navbar -->
     <string name="systemui_tuner_navbar_title">Standart ayarlar</string>
     <string name="navbar_activity_title">Gezinme çubuğu</string>
-    <!-- Kill button in notification guts -->
     <string name="force_stop_dlg_title">Zorla durdurulsun mu?</string>
     <string name="force_stop_dlg_text">Uygulamayı zorla durdurursanız, hatalı davranabilir.</string>
     <string name="guts_force_close_app">Uygulama kapat</string>
-    <!--Google sound search tile -->
-    <!-- Name of the additional status bar icons also exposed with SystemUI Tuner -->
-    <!-- DataSwitch Tile -->
-    <!-- HW Keys Tile -->
     <string name="accessibility_quick_settings_hwkeys_on">Donanım tuşları açık</string>
     <string name="accessibility_quick_settings_hwkeys_off">Donanım tuşları kapalı</string>
     <string name="quick_settings_hwkeys_label">Donanım tuşları</string>
-    <!-- Immersive tile -->
     <string name="quick_settings_immersive_tile">Tam ekran modu</string>
     <string name="quick_settings_immersive_tile_statusbar">Tam ekran durum çubuğu</string>
     <string name="quick_settings_immersive_tile_navbar">Tam ekran gezinme çubuğu</string>
     <string name="quick_settings_immersive_tile_full">Tam ekran full</string>
-    <!-- Screenrecord Stop Dot -->
-    <!-- Gaming mode -->
-    <!-- Content description of the Gaming mode tile in quick settings when disabled (not shown on the screen). [CHAR LIMIT=NONE] -->
-    <!-- Content description of the Gaming mode tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
-    <!-- Navigation bar dpad -->
-    <!-- Alert slide extras -->
-    <!-- FPS Info tile -->
-    <!-- Screen pinning -->
-    <!-- Reader mode QS tile -->
     <string name="quick_settings_reading_mode">Okuma modu</string>
     <string name="accessibility_quick_settings_reading_mode_on">Okuma modu açık.</string>
     <string name="accessibility_quick_settings_reading_mode_off">Okuma modu kapalı.</string>
     <string name="accessibility_quick_settings_reading_mode_changed_on">Okuma modu açıldı.</string>
     <string name="accessibility_quick_settings_reading_mode_changed_off">Okuma modu kapatıldı.</string>
-    <!-- Alerting notification header label -->
-    <!-- PowerShare QS tile -->
-    <!-- VPN QS tile -->
     <string name="quick_settings_vpn_label">VPN</string>
     <string name="quick_settings_vpn_connect_dialog_title">\u2026\'a bağlan</string>
     <string name="vpn_credentials_hint">Lütfen <xliff:g id="name">%s</xliff:g> bağlanmak için kimlik bilgilerinizi girin</string>
     <string name="vpn_credentials_username">Kullanıcı adı</string>
     <string name="vpn_credentials_password">Şifre</string>
     <string name="vpn_credentials_dialog_connect">Bağlan</string>
-    <!-- Long swipe gesture actions -->
     <string name="recents_app_killed">Uygulama sonlandırıldı</string>
-    <!-- Daily data usage -->
     <string name="lockscreen_default">Varsayılan</string>
     <string name="lockscreen_hidden">Yok</string>
-    <!-- Shows when people have clicked on the custom lockscreen shortcut [CHAR LIMIT=60] -->
     <string name="custom_hint">Başlatmak için simgeyi kaydırın</string>
 </resources>

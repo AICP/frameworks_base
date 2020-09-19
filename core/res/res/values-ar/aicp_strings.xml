@@ -15,16 +15,8 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- MicroG -->
     <string name="permlab_fakePackageSignature">تزييف التوقيع الرقمي للحزمة</string>
-    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <!-- Pocket Lock -->
     <string name="pocket_lock_message_long_press">اضغط على زر الطاقة مطولاً للتفاعل</string>
-    <!-- Defines the sysfs attribute path used by pocket bridge
-        to communicate pocket state to the pocket judge kernel driver. -->
-    <!-- Gaming mode -->
-    <!-- App killed (Back button long pressed)-->
-    <!-- LiveDisplay strings -->
     <string name="live_display_auto">تلقائي</string>
     <string name="live_display_auto_summary">ضبط درجة الحرارة اللونية للشاشة تلقائياً بعد غروب الشمس وشروق الشمس</string>
     <string name="live_display_off">إيقاف</string>
@@ -46,10 +38,6 @@
     <string name="accessibility_quick_settings_live_display_changed_day">تم تغيير العرض الحي إلى الوضع النهاري.</string>
     <string name="accessibility_quick_settings_live_display_changed_night">تم تغيير العرض الحي إلى الوضع الليلي.</string>
     <string name="accessibility_quick_settings_live_display_changed_outdoor">تم تغيير العرض الحي إلى وضع الخارج.</string>
-    <!-- Whether to allow process with media UID to access CameraServiceProxy -->
-    <!-- 15 min ZenMode duration periods display, e.g. 2 hours 45 minutes -->
-    <!-- 15 min ZenMode duration periods display, e.g. 2 hrs 45 mins -->
-    <!-- Button that copies the url to the log of a crashed application -->
     <string name="aerr_copy">انسخ عنوان URL لسجل الانهيار</string>
     <string name="url_copy_success">تم نسخ عنوان URL بنجاح</string>
     <string name="url_copy_failed">حدث خطأ أثناء تحميل السجل إلى aicp haste</string>

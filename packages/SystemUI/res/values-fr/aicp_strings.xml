@@ -18,9 +18,7 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- CPUInfo tile -->
     <string name="quick_settings_cpuinfo_label">Infos CPU</string>
-    <!-- Compass QS Tile -->
     <string name="quick_settings_compass_label">Boussole</string>
     <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
     <string name="quick_settings_compass_init">Initialisation\u2026</string>
@@ -36,46 +34,28 @@
     <string name="quick_settings_compass_SW">SO</string>
     <string name="quick_settings_compass_W">O</string>
     <string name="quick_settings_compass_NW">NO</string>
-    <!-- Music tile -->
     <string name="quick_settings_music_label">Musique</string>
     <string name="quick_settings_music_play">Lecture</string>
     <string name="quick_settings_music_pause">Pause</string>
-    <!-- Screenshoot tile -->
     <string name="quick_settings_screenshot_label">Capture d\'écran</string>
-    <!-- Screenrecord tile -->
     <string name="quick_settings_screenrecord_label">Enregistrement de l\'écran</string>
-    <!-- Reboot/Recovery QS Tile -->
-    <!-- USB Tethering tile -->
     <string name="accessibility_quick_settings_usb_tether_off">Partage de connexion via USB désactivé</string>
     <string name="accessibility_quick_settings_usb_tether_on">Partage de connexion USB activé</string>
     <string name="accessibility_quick_settings_usb_tether_changed_off">Le partage de connexion via USB a été désactivé</string>
     <string name="accessibility_quick_settings_usb_tether_changed_on">Le partage de connexion via USB a été activé</string>
     <string name="quick_settings_usb_tether_label">Partage de connexion USB</string>
-    <!-- Caffeine tile -->
     <string name="quick_settings_caffeine_label">Caffeine</string>
     <string name="accessibility_quick_settings_caffeine_off">Caffeine désactivée</string>
     <string name="accessibility_quick_settings_caffeine_on">Caffeine activé</string>
-    <!-- Aicp Extras Tile -->
     <string name="quick_aicp_extras_label">Aicp Extras</string>
     <string name="quick_aicp_extras_toast">LOL, comme si cet appui long allait vous emmener quelque part !!!</string>
-    <!-- Power menu advanced restart -->
-    <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
-    <!-- Indication on the keyguard that is shown when the device is charging with a warp charger. Should match keyguard_plugged_in_warp_charging [CHAR LIMIT=40]-->
-    <!-- Heads up QS tile -->
-    <!-- Smart Pixels QS Tile -->
-    <!-- QS Config -->
-    <!-- ADB over network tile -->
     <string name="quick_settings_network_adb_disabled_label">Désactivé</string>
-    <!-- AOD QS tile -->
-    <!-- Language toggle tile -->
     <string name="quick_settings_locale_label">Langue</string>
     <string name="quick_settings_locale_more_locales_toast">Veuillez configurer plusieurs langues pour utiliser cette fonctionnalité</string>
-    <!-- Sound tile -->
     <string name="quick_settings_sound_label">Son</string>
     <string name="quick_settings_sound_ring">Sonnerie</string>
     <string name="quick_settings_sound_vibrate">Vibreur</string>
     <string name="quick_settings_sound_silent">Silencieux</string>
-    <!-- On The Go -->
     <string name="onthego_notif_ticker">Mode On-The-Go activé</string>
     <string name="onthego_notif_title">Le mode On-The-Go est activé</string>
     <string name="onthego_notif_stop">Stop</string>
@@ -88,18 +68,13 @@
     <string name="onthego_service_toggle">Redémarrer automatiquement le service</string>
     <string name="onthego_channel_name">Principal</string>
     <string name="global_action_onthego">On-The-Go</string>
-    <!-- OnTheGo Tile -->
     <string name="quick_settings_onthego_label">On-The-Go</string>
-    <!-- Sync QS Tile -->
     <string name="quick_settings_sync_label">Synchronisation</string>
     <string name="accessibility_quick_settings_sync_off">Synchronisation désactivée</string>
     <string name="accessibility_quick_settings_sync_on">Synchronisation activée</string>
     <string name="accessibility_quick_settings_sync_changed_off">La synchronisation est désactivée</string>
     <string name="accessibility_quick_settings_sync_changed_on">La synchronisation est activée</string>
-    <!-- Label for item that screenrecords in power menu options dialog -->
     <string name="global_action_screenrecord">Enregistrement de l\'écran</string>
-    <!-- Heads up snooze toast -->
-    <!-- Omnijaws Weather -->
     <string name="omnijaws_service_error">Erreur</string>
     <string name="omnijaws_service_unkown">Donnée météo indisponible</string>
     <string name="omnijaws_service_error_long">Erreur lors du chargement des données météo</string>
@@ -109,34 +84,11 @@
     <string name="omnijaws_current_text">Maintenant</string>
     <string name="omnijaws_package_not_available">OmniJaws indisponible</string>
     <string name="omnijaws_service_last_update">Dernière mise à jour :</string>
-    <!-- Tuner -->
-    <!-- Stock Navbar -->
     <string name="systemui_tuner_navbar_title">Configuration d\'origine</string>
     <string name="navbar_activity_title">Barre de navigation</string>
-    <!-- Kill button in notification guts -->
     <string name="force_stop_dlg_title">Forcer l\'arrêt ?</string>
     <string name="force_stop_dlg_text">Si vous forcez l\'arrêt d\'une application, cela peut provoquer son dysfonctionnement.</string>
-    <!--Google sound search tile -->
-    <!-- Name of the additional status bar icons also exposed with SystemUI Tuner -->
-    <!-- DataSwitch Tile -->
-    <!-- HW Keys Tile -->
-    <!-- Immersive tile -->
-    <!-- Screenrecord Stop Dot -->
-    <!-- Gaming mode -->
-    <!-- Content description of the Gaming mode tile in quick settings when disabled (not shown on the screen). [CHAR LIMIT=NONE] -->
-    <!-- Content description of the Gaming mode tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
-    <!-- Navigation bar dpad -->
-    <!-- Alert slide extras -->
-    <!-- FPS Info tile -->
-    <!-- Screen pinning -->
-    <!-- Reader mode QS tile -->
-    <!-- Alerting notification header label -->
-    <!-- PowerShare QS tile -->
-    <!-- VPN QS tile -->
-    <!-- Long swipe gesture actions -->
     <string name="recents_app_killed">Application arrêtée</string>
-    <!-- Daily data usage -->
     <string name="lockscreen_default">Par défaut</string>
     <string name="lockscreen_hidden">Aucun</string>
-    <!-- Shows when people have clicked on the custom lockscreen shortcut [CHAR LIMIT=60] -->
 </resources>

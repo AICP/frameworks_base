@@ -17,23 +17,15 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="reboot_title">Перезагрузить</string>
     <string name="reboot_message">Перезагрузка системы</string>
-    <!-- MicroG -->
     <string name="permlab_fakePackageSignature">Разрешить подмену подписи</string>
-    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
     <string name="permdesc_fakePackageSignature">Разрешить приложению выдавать себя за другое. Вредоносные приложения могут получить доступ к вашим данным. Легитимное использовение включает в себя эмулятор, притворяющийся тем, что он эмулирует. Используйте только на свой страх и риск!</string>
-    <!-- Pocket Lock -->
     <string name="pocket_lock_message_long_press">Нажмите и удерживайте кнопку питания для взаимодействия</string>
-    <!-- Defines the sysfs attribute path used by pocket bridge
-        to communicate pocket state to the pocket judge kernel driver. -->
-    <!-- Gaming mode -->
     <string name="notification_channel_gaming">Игровой режим</string>
     <string name="gaming_mode_notification_title">Игровой режим включен</string>
     <string name="gaming_mode_notification_content">Нажмите, чтобы выключить Игровой режим</string>
     <string name="gaming_mode_enabled_toast">Игровой режим включен</string>
     <string name="gaming_mode_disabled_toast">Игровой режим выключен</string>
-    <!-- App killed (Back button long pressed)-->
     <string name="app_killed_message">Приложение закрыто</string>
-    <!-- LiveDisplay strings -->
     <string name="live_display_auto">Автоматически</string>
     <string name="live_display_auto_summary">Автоматическая подстройка цветовой температуры экрана после заката и восхода солнца</string>
     <string name="live_display_off">Выкл.</string>
@@ -55,22 +47,18 @@
     <string name="accessibility_quick_settings_live_display_changed_day">Режим LiveDisplay изменен на дневной.</string>
     <string name="accessibility_quick_settings_live_display_changed_night">Режим LiveDisplay изменен на ночной.</string>
     <string name="accessibility_quick_settings_live_display_changed_outdoor">Режим LiveDisplay изменен на уличный.</string>
-    <!-- Whether to allow process with media UID to access CameraServiceProxy -->
-    <!-- 15 min ZenMode duration periods display, e.g. 2 hours 45 minutes -->
     <plurals name="zen_mode_duration_minutes_combined">
         <item quantity="one">одна минута</item>
         <item quantity="few">%d мин.</item>
         <item quantity="many">%d мин.</item>
         <item quantity="other">%d мин.</item>
     </plurals>
-    <!-- 15 min ZenMode duration periods display, e.g. 2 hrs 45 mins -->
     <plurals name="zen_mode_duration_minutes_combined_short">
         <item quantity="one">1 мин.</item>
         <item quantity="few">%d мин.</item>
         <item quantity="many">%d мин.</item>
         <item quantity="other">%d мин.</item>
     </plurals>
-    <!-- Button that copies the url to the log of a crashed application -->
     <string name="aerr_copy">Скопировать ссылку лога ошибки</string>
     <string name="url_copy_success">Ссылка успешно скопирована</string>
     <string name="url_copy_failed">Произошла ошибка при загрузке лога в aicp haste</string>

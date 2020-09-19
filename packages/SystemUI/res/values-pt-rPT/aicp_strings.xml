@@ -18,9 +18,7 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- CPUInfo tile -->
     <string name="quick_settings_cpuinfo_label">Informação do dispositivo</string>
-    <!-- Compass QS Tile -->
     <string name="quick_settings_compass_label">Bússola</string>
     <string name="quick_settings_compass_init">A iniciar\u2026</string>
     <string name="accessibility_quick_settings_compass_off">Bússola desligada.</string>
@@ -35,67 +33,49 @@
     <string name="quick_settings_compass_SW">SW</string>
     <string name="quick_settings_compass_W">W</string>
     <string name="quick_settings_compass_NW">NW</string>
-    <!-- Music tile -->
     <string name="quick_settings_music_label">Música</string>
     <string name="quick_settings_music_play">Jogar</string>
     <string name="quick_settings_music_pause">Pausa</string>
-    <!-- Screenshoot tile -->
     <string name="quick_settings_screenshot_label">Capturas de ecrã</string>
-    <!-- Screenrecord tile -->
     <string name="quick_settings_screenrecord_label">Gravação de ecrã</string>
-    <!-- Reboot/Recovery QS Tile -->
     <string name="quick_settings_reboot_label">Reiniciar</string>
     <string name="quick_settings_reboot_recovery_label">Recuperação</string>
-    <!-- USB Tethering tile -->
     <string name="accessibility_quick_settings_usb_tether_off">USB tethering desligado</string>
     <string name="accessibility_quick_settings_usb_tether_on">Partilha de internet por USB ligado</string>
     <string name="accessibility_quick_settings_usb_tether_changed_off">A partilha de Internet por USB foi desligada</string>
     <string name="accessibility_quick_settings_usb_tether_changed_on">Partilha de internet por USB foi ligada</string>
     <string name="quick_settings_usb_tether_label">Partilha de ligação USB</string>
-    <!-- Caffeine tile -->
     <string name="quick_settings_caffeine_label">Cafeína</string>
     <string name="accessibility_quick_settings_caffeine_off">Cafeína desligada</string>
     <string name="accessibility_quick_settings_caffeine_on">Cafeína ligada</string>
-    <!-- Aicp Extras Tile -->
     <string name="quick_aicp_extras_label">AICP Extras</string>
     <string name="quick_aicp_extras_toast">LOL, você realmente pensou que aquele longo clique irá levá-lo em algum lugar!!!</string>
-    <!-- Power menu advanced restart -->
     <string name="global_action_restart_system">Reiniciar</string>
     <string name="global_action_restart_recovery">Recuperação</string>
-    <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
-    <!-- Indication on the keyguard that is shown when the device is charging with a warp charger. Should match keyguard_plugged_in_warp_charging [CHAR LIMIT=40]-->
-    <!-- Heads up QS tile -->
     <string name="quick_settings_heads_up_label">Notificações pop-up</string>
     <string name="accessibility_quick_settings_heads_up_off">Notificações pop-up desativadas.</string>
     <string name="accessibility_quick_settings_heads_up_on">Notificações pop-up ativadas.</string>
     <string name="accessibility_quick_settings_heads_up_changed_off">As notificações pop-up foram desativadas.</string>
     <string name="accessibility_quick_settings_heads_up_changed_on">As notificações pop-up foram ativadas.</string>
-    <!-- Smart Pixels QS Tile -->
     <string name="quick_settings_smart_pixels">Inteligentes Pixels</string>
     <string name="quick_settings_smart_pixels_on_power_save">Auto-ativação dos Píxeis Inteligentes</string>
-    <!-- QS Config -->
     <string name="qs_menu_item_columns">Colunas</string>
     <string name="qs_menu_item_columns_landscape">Vista de colunas</string>
     <string name="qs_menu_item_reset">Repor</string>
     <string name="qs_menu_item_titles">Mostrar indicação</string>
     <string name="qs_menu_item_qs_columns">Colunas de barra rápida</string>
     <string name="qs_menu_item_columns_auto">Automático</string>
-    <!-- ADB over network tile -->
     <string name="quick_settings_network_adb_enabled_label">Ativado</string>
     <string name="quick_settings_network_adb_disabled_label">Desativado</string>
     <string name="quick_settings_network_adb_label">ADB através da rede</string>
     <string name="quick_settings_network_adb_toast">Depuração USB não está habilitado</string>
-    <!-- AOD QS tile -->
     <string name="quick_settings_aod_label">AOD</string>
-    <!-- Language toggle tile -->
     <string name="quick_settings_locale_label">Idioma</string>
     <string name="quick_settings_locale_more_locales_toast">Configure vários idiomas para ativar a funcionalidade de troca</string>
-    <!-- Sound tile -->
     <string name="quick_settings_sound_label">Som</string>
     <string name="quick_settings_sound_ring">Toque</string>
     <string name="quick_settings_sound_vibrate">Vibrar</string>
     <string name="quick_settings_sound_silent">Silêncio</string>
-    <!-- On The Go -->
     <string name="onthego_notif_ticker">On-The-Go ativado</string>
     <string name="onthego_notif_title">On-The-Go está ativado</string>
     <string name="onthego_notif_stop">Parar</string>
@@ -108,20 +88,15 @@
     <string name="onthego_service_toggle">Reiniciar automaticamente o serviço</string>
     <string name="onthego_channel_name">Principal</string>
     <string name="global_action_onthego">On-The-Go</string>
-    <!-- OnTheGo Tile -->
     <string name="quick_settings_onthego_label">On-The-Go</string>
-    <!-- Sync QS Tile -->
     <string name="quick_settings_sync_label">Sincronização</string>
     <string name="accessibility_quick_settings_sync_off">Sincronização desligada</string>
     <string name="accessibility_quick_settings_sync_on">Sincronização ativada</string>
     <string name="accessibility_quick_settings_sync_changed_off">Sincronização desligada</string>
     <string name="accessibility_quick_settings_sync_changed_on">Sincronização ativada</string>
-    <!-- Label for item that screenrecords in power menu options dialog -->
     <string name="global_action_screenrecord">Gravação de ecrã</string>
-    <!-- Heads up snooze toast -->
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - as notificações flutuantes vão parar por 1 minuto.</string>
     <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - as notificações flutuantes vão parar por <xliff:g id="number">%d</xliff:g> minutos.</string>
-    <!-- Omnijaws Weather -->
     <string name="omnijaws_service_error">Erro</string>
     <string name="omnijaws_service_unkown">Sem informações meteorológicas</string>
     <string name="omnijaws_service_error_long">Erro ao carregar dados meteorológicos</string>
@@ -131,40 +106,17 @@
     <string name="omnijaws_current_text">Agora</string>
     <string name="omnijaws_package_not_available">OmniJaws não está disponível</string>
     <string name="omnijaws_service_last_update">Última atualização:</string>
-    <!-- Tuner -->
     <string name="reset">Repor</string>
-    <!-- Stock Navbar -->
     <string name="systemui_tuner_navbar_title">Definições Padrão</string>
     <string name="navbar_activity_title">Barra de navegação</string>
-    <!-- Kill button in notification guts -->
     <string name="force_stop_dlg_title">Forçar paragem?</string>
     <string name="force_stop_dlg_text">Se forçar a paragem de uma aplicação, esta poderá apresentar um comportamento anormal.</string>
-    <!--Google sound search tile -->
-    <!-- Name of the additional status bar icons also exposed with SystemUI Tuner -->
-    <!-- DataSwitch Tile -->
-    <!-- HW Keys Tile -->
-    <!-- Immersive tile -->
     <string name="quick_settings_immersive_tile">Modo imersersivo</string>
     <string name="quick_settings_immersive_tile_statusbar">Barra de navegação imersiva</string>
     <string name="quick_settings_immersive_tile_navbar">Barra de navegação imersiva</string>
     <string name="quick_settings_immersive_tile_full">Modo imersersivo</string>
-    <!-- Screenrecord Stop Dot -->
-    <!-- Gaming mode -->
-    <!-- Content description of the Gaming mode tile in quick settings when disabled (not shown on the screen). [CHAR LIMIT=NONE] -->
-    <!-- Content description of the Gaming mode tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
-    <!-- Navigation bar dpad -->
-    <!-- Alert slide extras -->
-    <!-- FPS Info tile -->
-    <!-- Screen pinning -->
-    <!-- Reader mode QS tile -->
-    <!-- Alerting notification header label -->
-    <!-- PowerShare QS tile -->
-    <!-- VPN QS tile -->
-    <!-- Long swipe gesture actions -->
     <string name="recents_app_killed">Aplicação terminada</string>
-    <!-- Daily data usage -->
     <string name="lockscreen_default">Padrão</string>
     <string name="lockscreen_hidden">Nenhum</string>
-    <!-- Shows when people have clicked on the custom lockscreen shortcut [CHAR LIMIT=60] -->
     <string name="custom_hint">Deslize a partir do ícone para iniciar</string>
 </resources>

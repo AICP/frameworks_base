@@ -18,9 +18,7 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- CPUInfo tile -->
     <string name="quick_settings_cpuinfo_label">CPU-info</string>
-    <!-- Compass QS Tile -->
     <string name="quick_settings_compass_label">Kompas</string>
     <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
     <string name="quick_settings_compass_init">Initialiseren\u2026</string>
@@ -36,48 +34,35 @@
     <string name="quick_settings_compass_SW">ZW</string>
     <string name="quick_settings_compass_W">W</string>
     <string name="quick_settings_compass_NW">NW</string>
-    <!-- Music tile -->
     <string name="quick_settings_music_label">Muziek</string>
     <string name="quick_settings_music_play">Afspelen</string>
     <string name="quick_settings_music_pause">Pauze</string>
-    <!-- Screenshoot tile -->
     <string name="quick_settings_screenshot_label">Schermafbeelding</string>
-    <!-- Screenrecord tile -->
     <string name="quick_settings_screenrecord_label">Schermopname</string>
-    <!-- Reboot/Recovery QS Tile -->
     <string name="quick_settings_reboot_label">Opnieuw opstarten</string>
     <string name="quick_settings_reboot_recovery_label">Recovery</string>
-    <!-- USB Tethering tile -->
     <string name="accessibility_quick_settings_usb_tether_off">USB tethering uit</string>
     <string name="accessibility_quick_settings_usb_tether_on">Usb tethering aan</string>
     <string name="accessibility_quick_settings_usb_tether_changed_off">USB tethering uitgeschakeld</string>
     <string name="accessibility_quick_settings_usb_tether_changed_on">USB tethering ingeschakeld</string>
     <string name="quick_settings_usb_tether_label">USB tethering</string>
-    <!-- Caffeine tile -->
     <string name="quick_settings_caffeine_label">Cafeïne</string>
     <string name="accessibility_quick_settings_caffeine_off">Cafeïne uit</string>
     <string name="accessibility_quick_settings_caffeine_on">Cafeïne aan</string>
-    <!-- Aicp Extras Tile -->
     <string name="quick_aicp_extras_label">Aicp Extras</string>
     <string name="quick_aicp_extras_toast">LOL, dacht je echt dat die lange klik je ergens zou brengen!?</string>
-    <!-- Power menu advanced restart -->
     <string name="global_action_restart_system">Opnieuw opstarten</string>
     <string name="global_action_restart_advanced">Geavanceerd</string>
     <string name="global_action_restart_recovery">Recovery</string>
     <string name="global_action_restart_bootloader">Bootloader</string>
     <string name="global_action_restart_ui">SystemUI</string>
-    <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
-    <!-- Indication on the keyguard that is shown when the device is charging with a warp charger. Should match keyguard_plugged_in_warp_charging [CHAR LIMIT=40]-->
-    <!-- Heads up QS tile -->
     <string name="quick_settings_heads_up_label">Notificaties</string>
     <string name="accessibility_quick_settings_heads_up_off">Notificaties uit.</string>
     <string name="accessibility_quick_settings_heads_up_on">Notificaties aan.</string>
     <string name="accessibility_quick_settings_heads_up_changed_off">Notificaties uitgeschakeld.</string>
     <string name="accessibility_quick_settings_heads_up_changed_on">Notificaties ingeschakeld.</string>
-    <!-- Smart Pixels QS Tile -->
     <string name="quick_settings_smart_pixels">Smart Pixels</string>
     <string name="quick_settings_smart_pixels_on_power_save">Smart Pixels automatisch ingeschakeld</string>
-    <!-- QS Config -->
     <string name="qs_menu_item_columns">Kolommen</string>
     <string name="qs_menu_item_columns_landscape">Kolommen liggend</string>
     <string name="qs_menu_item_reset">Herstellen</string>
@@ -88,22 +73,17 @@
     <string name="tuner_show_brightness_new">Helderheids schuifregelaar weergeven</string>
     <string name="tuner_brightness_position_bottom">Helderheids schuifregelaar onderaan</string>
     <string name="tuner_show_secure_title">Toon veiligheids voettekst</string>
-    <!-- ADB over network tile -->
     <string name="quick_settings_network_adb_enabled_label">Ingeschakeld</string>
     <string name="quick_settings_network_adb_disabled_label">Uitgeschakeld</string>
     <string name="quick_settings_network_adb_label">ADB over netwerk</string>
     <string name="quick_settings_network_adb_toast">USB-foutopsporing is niet ingeschakeld</string>
-    <!-- AOD QS tile -->
     <string name="quick_settings_aod_label">Always On Display</string>
-    <!-- Language toggle tile -->
     <string name="quick_settings_locale_label">Taal</string>
     <string name="quick_settings_locale_more_locales_toast">Configureer alstublieft eerst meerdere talen om te kunnen wisselen</string>
-    <!-- Sound tile -->
     <string name="quick_settings_sound_label">Geluid</string>
     <string name="quick_settings_sound_ring">Beltoon</string>
     <string name="quick_settings_sound_vibrate">Trillen</string>
     <string name="quick_settings_sound_silent">Stil</string>
-    <!-- On The Go -->
     <string name="onthego_notif_ticker">On-The-Go geactiveerd</string>
     <string name="onthego_notif_title">On-The-Go is actief</string>
     <string name="onthego_notif_stop">Stop</string>
@@ -116,20 +96,15 @@
     <string name="onthego_service_toggle">Service automatisch herstarten</string>
     <string name="onthego_channel_name">Hoofdkanaal</string>
     <string name="global_action_onthego">On-The-Go</string>
-    <!-- OnTheGo Tile -->
     <string name="quick_settings_onthego_label">On-The-Go</string>
-    <!-- Sync QS Tile -->
     <string name="quick_settings_sync_label">Synchroniseren</string>
     <string name="accessibility_quick_settings_sync_off">Synchronisatie uit</string>
     <string name="accessibility_quick_settings_sync_on">Synchronisatie aan</string>
     <string name="accessibility_quick_settings_sync_changed_off">Synchronisatie uitgeschakeld</string>
     <string name="accessibility_quick_settings_sync_changed_on">Synchronisatie ingeschakeld</string>
-    <!-- Label for item that screenrecords in power menu options dialog -->
     <string name="global_action_screenrecord">Schermopname</string>
-    <!-- Heads up snooze toast -->
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s </xliff:g> - Heads up notificaties zijn gedempt voor 1 minuut.</string>
     <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - Heads up notificaties zijn gedempt voor <xliff:g id="number">%d</xliff:g> minuten.</string>
-    <!-- Omnijaws Weather -->
     <string name="omnijaws_service_error">Fout</string>
     <string name="omnijaws_service_unkown">Geen weergegevens</string>
     <string name="omnijaws_service_error_long">Fout bij het laden van weergegevens</string>
@@ -139,7 +114,6 @@
     <string name="omnijaws_current_text">Nu</string>
     <string name="omnijaws_package_not_available">OmniJaws niet beschikbaar</string>
     <string name="omnijaws_service_last_update">Laatste update:</string>
-    <!-- Tuner -->
     <string name="preview">Voorbeeld</string>
     <string name="keycode">Toetscode</string>
     <string name="no_home_title">Geen Home-toets gevonden</string>
@@ -162,80 +136,58 @@
     <string name="navbar_editor_summary">Navigatiebalk configureren</string>
     <string name="tuner_keyguard_transition_animations_title">Overgang animaties weergeven</string>
     <string name="tuner_keyguard_transition_animations_summary">Laat nutteloze animaties zien</string>
-    <!-- Stock Navbar -->
     <string name="systemui_tuner_navbar_title">Standaard instellingen</string>
     <string name="navbar_activity_title">Navigatiebalk</string>
-    <!-- Kill button in notification guts -->
     <string name="force_stop_dlg_title">Nu gedwongen stoppen?</string>
     <string name="force_stop_dlg_text">Als je een app gedwongen stopt, kan deze onverwacht gedrag vertonen.</string>
     <string name="guts_force_close_app">App sluiten</string>
     <string name="tuner_show_brightness_mode">Toon helderheid modus schakelaar</string>
     <string name="tuner_show_brightness_side_buttons">Knoppen voor helderheid schuifregelaar weergeven</string>
-    <!--Google sound search tile -->
-    <!-- Name of the additional status bar icons also exposed with SystemUI Tuner -->
     <string name="status_bar_camera">Camera</string>
     <string name="status_bar_location">Locatie</string>
     <string name="status_bar_microphone">Microfoon</string>
-    <!-- DataSwitch Tile -->
     <string name="qs_data_switch_label">Gegevenskaart omschakelen</string>
     <string name="qs_data_switch_toast_0">Momenteel is er geen Simkaart geplaatst</string>
     <string name="qs_data_switch_toast_1">Momenteel is slechts één Simkaart geplaatst</string>
     <string name="qs_data_switch_changed_1">Gegevenskaart omschakelen naar SIM 1.</string>
     <string name="qs_data_switch_changed_2">Gegevenskaart omschakelen naar SIM 2.</string>
-    <!-- HW Keys Tile -->
     <string name="accessibility_quick_settings_hwkeys_on">HW knoppen aan</string>
     <string name="accessibility_quick_settings_hwkeys_off">HW knoppen uit</string>
     <string name="quick_settings_hwkeys_label">HW knoppen</string>
-    <!-- Immersive tile -->
     <string name="quick_settings_immersive_tile">Schermvullende modus</string>
     <string name="quick_settings_immersive_tile_statusbar">Statusbalk schermvullende modus</string>
     <string name="quick_settings_immersive_tile_navbar">Navigatiebalk schermvullende modus</string>
     <string name="quick_settings_immersive_tile_full">Volledig scherm</string>
-    <!-- Screenrecord Stop Dot -->
     <string name="screenrecord_stopdot_label">Toon stop stip</string>
     <string name="screenrecord_low_quality_label">Lage kwaliteit</string>
-    <!-- Gaming mode -->
     <string name="gaming_mode_not_enabled">Game-modus is uitgeschakeld in Instellingen</string>
     <string name="quick_settings_gaming_mode_label">Game-modus</string>
-    <!-- Content description of the Gaming mode tile in quick settings when disabled (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_gaming_mode_disabled">Game-modus uitgeschakeld.</string>
-    <!-- Content description of the Gaming mode tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_gaming_mode_enabled">Game-modus ingeschakeld.</string>
-    <!-- Navigation bar dpad -->
     <string name="accessibility_dpad_left">Cursor links</string>
     <string name="accessibility_dpad_right">Cursor rechts</string>
-    <!-- Alert slide extras -->
     <string name="volume_ringer_priority_only">Prioriteit</string>
     <string name="volume_ringer_alarms_only">Alarmen</string>
     <string name="volume_ringer_dnd">Do Not Disturb</string>
     <string name="tristate_flashlight">Zaklamp</string>
-    <!-- FPS Info tile -->
     <string name="quick_settings_fpsinfo_label">FPS Info</string>
     <string name="accessibility_quick_settings_fpsinfo_off">FPS Info uit</string>
     <string name="accessibility_quick_settings_fpsinfo_on">FPS-info aan</string>
-    <!-- Screen pinning -->
-    <!-- Reader mode QS tile -->
     <string name="quick_settings_reading_mode">Leesmodus</string>
     <string name="accessibility_quick_settings_reading_mode_on">Leesmodus aan.</string>
     <string name="accessibility_quick_settings_reading_mode_off">Leesmodus uit.</string>
     <string name="accessibility_quick_settings_reading_mode_changed_on">Leesmodus ingeschakeld.</string>
     <string name="accessibility_quick_settings_reading_mode_changed_off">Leesmodus uitgeschakeld.</string>
-    <!-- Alerting notification header label -->
-    <!-- PowerShare QS tile -->
-    <!-- VPN QS tile -->
     <string name="quick_settings_vpn_label">VPN</string>
     <string name="quick_settings_vpn_connect_dialog_title">Verbinden met\u2026</string>
     <string name="vpn_credentials_hint">Voer uw inloggegevens in om verbinding te maken met <xliff:g id="name">%s</xliff:g></string>
     <string name="vpn_credentials_username">Gebruikersnaam</string>
     <string name="vpn_credentials_password">Wachtwoord</string>
     <string name="vpn_credentials_dialog_connect">Verbinding maken</string>
-    <!-- Long swipe gesture actions -->
     <string name="app_picker_dialog_title">Selecteer een app</string>
     <string name="recents_app_killed">App afgesloten</string>
     <string name="nope_cant_kill">Launcher kan niet worden afgesloten</string>
-    <!-- Daily data usage -->
     <string name="lockscreen_default">Standaard</string>
     <string name="lockscreen_hidden">Geen</string>
-    <!-- Shows when people have clicked on the custom lockscreen shortcut [CHAR LIMIT=60] -->
     <string name="custom_hint">Veeg vanaf icoon om te starten</string>
 </resources>

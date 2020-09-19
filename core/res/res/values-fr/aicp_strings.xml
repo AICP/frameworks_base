@@ -15,18 +15,6 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- MicroG -->
     <string name="permlab_fakePackageSignature">Imiter la signature du paquet</string>
-    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
-    <!-- Pocket Lock -->
     <string name="pocket_lock_message_long_press">Appui long sur le bouton d\'alimentation pour interagir</string>
-    <!-- Defines the sysfs attribute path used by pocket bridge
-        to communicate pocket state to the pocket judge kernel driver. -->
-    <!-- Gaming mode -->
-    <!-- App killed (Back button long pressed)-->
-    <!-- LiveDisplay strings -->
-    <!-- Whether to allow process with media UID to access CameraServiceProxy -->
-    <!-- 15 min ZenMode duration periods display, e.g. 2 hours 45 minutes -->
-    <!-- 15 min ZenMode duration periods display, e.g. 2 hrs 45 mins -->
-    <!-- Button that copies the url to the log of a crashed application -->
 </resources>

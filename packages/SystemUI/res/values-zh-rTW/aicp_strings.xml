@@ -18,9 +18,7 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- CPUInfo tile -->
     <string name="quick_settings_cpuinfo_label">CPU 資訊</string>
-    <!-- Compass QS Tile -->
     <string name="quick_settings_compass_label">指南針</string>
     <string name="quick_settings_compass_init">初始化中\u2026</string>
     <string name="accessibility_quick_settings_compass_off">指南針關閉。</string>
@@ -35,46 +33,28 @@
     <string name="quick_settings_compass_SW">西南</string>
     <string name="quick_settings_compass_W">西</string>
     <string name="quick_settings_compass_NW">西北</string>
-    <!-- Music tile -->
     <string name="quick_settings_music_label">音樂</string>
     <string name="quick_settings_music_play">播放</string>
     <string name="quick_settings_music_pause">暫停</string>
-    <!-- Screenshoot tile -->
     <string name="quick_settings_screenshot_label">擷取螢幕畫面</string>
-    <!-- Screenrecord tile -->
     <string name="quick_settings_screenrecord_label">螢幕錄製</string>
-    <!-- Reboot/Recovery QS Tile -->
-    <!-- USB Tethering tile -->
     <string name="accessibility_quick_settings_usb_tether_off">USB 網路共用關閉</string>
     <string name="accessibility_quick_settings_usb_tether_on">USB 網路共用開啟</string>
     <string name="accessibility_quick_settings_usb_tether_changed_off">USB 網路共用已關閉</string>
     <string name="accessibility_quick_settings_usb_tether_changed_on">USB 網路共用已開啟</string>
     <string name="quick_settings_usb_tether_label">USB 網路共用</string>
-    <!-- Caffeine tile -->
     <string name="quick_settings_caffeine_label">暫停休眠</string>
     <string name="accessibility_quick_settings_caffeine_off">暫停休眠關閉</string>
     <string name="accessibility_quick_settings_caffeine_on">暫停休眠開啟</string>
-    <!-- Aicp Extras Tile -->
     <string name="quick_aicp_extras_label">Aicp 額外功能</string>
     <string name="quick_aicp_extras_toast">哈哈哈，真的以為長按有東西可以用！！！</string>
-    <!-- Power menu advanced restart -->
-    <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
-    <!-- Indication on the keyguard that is shown when the device is charging with a warp charger. Should match keyguard_plugged_in_warp_charging [CHAR LIMIT=40]-->
-    <!-- Heads up QS tile -->
-    <!-- Smart Pixels QS Tile -->
-    <!-- QS Config -->
-    <!-- ADB over network tile -->
     <string name="quick_settings_network_adb_disabled_label">已停用</string>
-    <!-- AOD QS tile -->
-    <!-- Language toggle tile -->
     <string name="quick_settings_locale_label">語言</string>
     <string name="quick_settings_locale_more_locales_toast">請配置多種語言以啟用切換功能</string>
-    <!-- Sound tile -->
     <string name="quick_settings_sound_label">音效</string>
     <string name="quick_settings_sound_ring">鈴聲</string>
     <string name="quick_settings_sound_vibrate">震動</string>
     <string name="quick_settings_sound_silent">靜音</string>
-    <!-- On The Go -->
     <string name="onthego_notif_ticker">On-The-Go 已啟動</string>
     <string name="onthego_notif_title">On-The-Go 處於啟動狀態</string>
     <string name="onthego_notif_stop">停止</string>
@@ -87,20 +67,15 @@
     <string name="onthego_service_toggle">自動重新啟動服務</string>
     <string name="onthego_channel_name">主要</string>
     <string name="global_action_onthego">On-The-Go</string>
-    <!-- OnTheGo Tile -->
     <string name="quick_settings_onthego_label">On-The-Go</string>
-    <!-- Sync QS Tile -->
     <string name="quick_settings_sync_label">同步處理</string>
     <string name="accessibility_quick_settings_sync_off">同步處理關閉</string>
     <string name="accessibility_quick_settings_sync_on">同步處理開啟</string>
     <string name="accessibility_quick_settings_sync_changed_off">同步處理已關閉</string>
     <string name="accessibility_quick_settings_sync_changed_on">同步處理已開啟</string>
-    <!-- Label for item that screenrecords in power menu options dialog -->
     <string name="global_action_screenrecord">螢幕錄製</string>
-    <!-- Heads up snooze toast -->
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - 顯示預覽通知會暫停 1 分鐘。</string>
     <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - 顯示預覽通知會暫停 <xliff:g id="number">%d</xliff:g> 分鐘。</string>
-    <!-- Omnijaws Weather -->
     <string name="omnijaws_service_error">錯誤</string>
     <string name="omnijaws_service_unkown">無天氣資料</string>
     <string name="omnijaws_service_error_long">載入天氣資料錯誤</string>
@@ -110,35 +85,12 @@
     <string name="omnijaws_current_text">立刻</string>
     <string name="omnijaws_package_not_available">OmniJaws 不可用</string>
     <string name="omnijaws_service_last_update">上次更新：</string>
-    <!-- Tuner -->
-    <!-- Stock Navbar -->
     <string name="systemui_tuner_navbar_title">原始設定</string>
     <string name="navbar_activity_title">導覽列</string>
-    <!-- Kill button in notification guts -->
     <string name="force_stop_dlg_title">強制停止嗎？</string>
     <string name="force_stop_dlg_text">如果您強制停止應用程式，應用程式可能無法正常運作。</string>
-    <!--Google sound search tile -->
-    <!-- Name of the additional status bar icons also exposed with SystemUI Tuner -->
-    <!-- DataSwitch Tile -->
-    <!-- HW Keys Tile -->
-    <!-- Immersive tile -->
-    <!-- Screenrecord Stop Dot -->
-    <!-- Gaming mode -->
-    <!-- Content description of the Gaming mode tile in quick settings when disabled (not shown on the screen). [CHAR LIMIT=NONE] -->
-    <!-- Content description of the Gaming mode tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
-    <!-- Navigation bar dpad -->
-    <!-- Alert slide extras -->
-    <!-- FPS Info tile -->
-    <!-- Screen pinning -->
-    <!-- Reader mode QS tile -->
-    <!-- Alerting notification header label -->
-    <!-- PowerShare QS tile -->
-    <!-- VPN QS tile -->
-    <!-- Long swipe gesture actions -->
     <string name="recents_app_killed">應用程式已終止</string>
-    <!-- Daily data usage -->
     <string name="lockscreen_default">預設</string>
     <string name="lockscreen_hidden">無</string>
-    <!-- Shows when people have clicked on the custom lockscreen shortcut [CHAR LIMIT=60] -->
     <string name="custom_hint">滑動圖示以啟動</string>
 </resources>

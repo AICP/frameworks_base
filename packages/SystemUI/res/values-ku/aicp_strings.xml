@@ -18,9 +18,7 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- CPUInfo tile -->
     <string name="quick_settings_cpuinfo_label">CPU زانیاری</string>
-    <!-- Compass QS Tile -->
     <string name="quick_settings_compass_label">قیبلەنما</string>
     <string name="quick_settings_compass_init">ئامادە دەکرێ\u2026</string>
     <string name="accessibility_quick_settings_compass_off">قیبلەنما ناکارایە.</string>
@@ -35,52 +33,39 @@
     <string name="quick_settings_compass_SW">SW</string>
     <string name="quick_settings_compass_W">W</string>
     <string name="quick_settings_compass_NW">NW</string>
-    <!-- Music tile -->
     <string name="quick_settings_music_label">میوزیک</string>
     <string name="quick_settings_music_play">لێدان</string>
     <string name="quick_settings_music_pause">ڕاگرتن</string>
-    <!-- Screenshoot tile -->
     <string name="quick_settings_screenshot_label">ڕوونماچرکان</string>
-    <!-- Screenrecord tile -->
     <string name="quick_settings_screenrecord_label">تۆمارکردنی ڕوونما</string>
-    <!-- Reboot/Recovery QS Tile -->
     <string name="quick_settings_reboot_label">هەڵکردنەوە</string>
     <string name="quick_settings_reboot_recovery_label">ڕیکەڤەری</string>
-    <!-- USB Tethering tile -->
     <string name="accessibility_quick_settings_usb_tether_off">USB tethering ناکارایە</string>
     <string name="accessibility_quick_settings_usb_tether_on">USB tethering کارایە</string>
     <string name="accessibility_quick_settings_usb_tether_changed_off">USB tethering ناکاراکرا</string>
     <string name="accessibility_quick_settings_usb_tether_changed_on">USB tethering کاراکرا</string>
     <string name="quick_settings_usb_tether_label">USB tethering</string>
-    <!-- Caffeine tile -->
     <string name="quick_settings_caffeine_label">کافایینی</string>
     <string name="accessibility_quick_settings_caffeine_off">کافایینی ناکارایە</string>
     <string name="accessibility_quick_settings_caffeine_on">کافایینی کارایە</string>
-    <!-- Aicp Extras Tile -->
     <string name="quick_aicp_extras_label">زیادکراوەکانی Aicp</string>
     <string name="quick_aicp_extras_toast">لۆل، بەڕاستی واتەزانی ئەو گرتە درێژە دەتباتە شوێنێکیترەوە!!!</string>
-    <!-- Power menu advanced restart -->
     <string name="global_action_restart_system">هەڵکردنەوە</string>
     <string name="global_action_restart_advanced">پەرەسەندوو</string>
     <string name="global_action_restart_recovery">ڕیکەڤەری</string>
     <string name="global_action_restart_bootloader">بووتلۆدەر</string>
     <string name="global_action_restart_ui">ڕووکاری سیستەم</string>
-    <!-- Indication on the keyguard that is shown when the device is charging with a dash charger. Should match keyguard_plugged_in_dash_charging [CHAR LIMIT=40]-->
     <string name="keyguard_indication_dash_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • بارگاویبوونەوەی خێرا (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> بۆ پڕبوون)</string>
     <string name="keyguard_plugged_in_dash_charging"><xliff:g id="percentage">%s</xliff:g> • خێرا بارگاویبوونەوە</string>
-    <!-- Indication on the keyguard that is shown when the device is charging with a warp charger. Should match keyguard_plugged_in_warp_charging [CHAR LIMIT=40]-->
     <string name="keyguard_indication_warp_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • خێرا بارگاویبوونەوە (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> بۆ پڕبوون)</string>
     <string name="keyguard_plugged_in_warp_charging"><xliff:g id="percentage">%s</xliff:g> • خێرا بارگاویبوون</string>
-    <!-- Heads up QS tile -->
     <string name="quick_settings_heads_up_label">ئاگانامەی زیندوو</string>
     <string name="accessibility_quick_settings_heads_up_off">ئاگانامەی زیندوو ناکارایە.</string>
     <string name="accessibility_quick_settings_heads_up_on">ئاگانامەی زیندوو کارایە.</string>
     <string name="accessibility_quick_settings_heads_up_changed_off">ئاگانامەی زیندوو ناکاراکرا.</string>
     <string name="accessibility_quick_settings_heads_up_changed_on">ئاگانامەی زیندوو کاراکرا.</string>
-    <!-- Smart Pixels QS Tile -->
     <string name="quick_settings_smart_pixels">پیکسڵە ژیرەکان</string>
     <string name="quick_settings_smart_pixels_on_power_save">کارکردنی-خۆکاری پیکسڵی ژیرەکان</string>
-    <!-- QS Config -->
     <string name="qs_menu_item_columns">ستوونەکان</string>
     <string name="qs_menu_item_columns_landscape">ستوونەکان بە پانی</string>
     <string name="qs_menu_item_reset">گێڕانەوە</string>
@@ -88,27 +73,22 @@
     <string name="qs_menu_item_qs_columns">ستوونە خێراکان</string>
     <string name="qs_menu_item_columns_auto">خۆکار</string>
     <string name="tuner_quick_settings">ڕێکخستنەخێراکان</string>
-    <string name="tuner_show_brightness_new">پیشاندانی تەختەی ڕۆشنایی</string>
-    <string name="tuner_brightness_position_bottom">تەختەی ڕۆشنایی لەخوارەوە</string>
+    <string name="tuner_show_brightness_new">پیشاندانی تەختەی ڕووناکی</string>
+    <string name="tuner_brightness_position_bottom">تەختەی ڕووناکی لەخوارەوە</string>
     <string name="tuner_show_secure_title">پیشاندانی ئاسایشی پێپەڕە</string>
     <string name="tuner_show_drag_handle">پیشاندانی دەسکی ڕاکێشان</string>
     <string name="tuner_qs_long_press_action">پیشان نەدانی تەختەکان لە پەنجەڕاگرتن</string>
-    <!-- ADB over network tile -->
     <string name="quick_settings_network_adb_enabled_label">کاراکرا</string>
     <string name="quick_settings_network_adb_disabled_label">لەکارخراوە</string>
     <string name="quick_settings_network_adb_label">ADB over network</string>
     <string name="quick_settings_network_adb_toast">USB debugging چالاک نەکراوە</string>
-    <!-- AOD QS tile -->
     <string name="quick_settings_aod_label">AOD</string>
-    <!-- Language toggle tile -->
     <string name="quick_settings_locale_label">زمان</string>
     <string name="quick_settings_locale_more_locales_toast">تکایە زمانی زیاتر پێکبهێنە بۆ چەسپاندنی فرەکرداری</string>
-    <!-- Sound tile -->
     <string name="quick_settings_sound_label">دەنگ</string>
     <string name="quick_settings_sound_ring">زەنگ</string>
     <string name="quick_settings_sound_vibrate">لەرزین</string>
     <string name="quick_settings_sound_silent">بێدەنگ</string>
-    <!-- On The Go -->
     <string name="onthego_notif_ticker">پاشبنەمای کامێرا چالاککرا</string>
     <string name="onthego_notif_title">پاشبنەمای کامێرا چالاکە</string>
     <string name="onthego_notif_stop">ڕاگرتن</string>
@@ -121,20 +101,15 @@
     <string name="onthego_service_toggle">کارکردنەوەی خۆکاری خزمەتگوزاری</string>
     <string name="onthego_channel_name">سەرەکی</string>
     <string name="global_action_onthego">پ. کامێرا</string>
-    <!-- OnTheGo Tile -->
     <string name="quick_settings_onthego_label">پ. کامێرا</string>
-    <!-- Sync QS Tile -->
     <string name="quick_settings_sync_label">هاوکاتی</string>
     <string name="accessibility_quick_settings_sync_off">هاوکاتی ناکارایە</string>
     <string name="accessibility_quick_settings_sync_on">هاوکاتی کارایە</string>
     <string name="accessibility_quick_settings_sync_changed_off">هاوکاتی ناکاراکرا</string>
     <string name="accessibility_quick_settings_sync_changed_on">هاوکاتی کاراکرا</string>
-    <!-- Label for item that screenrecords in power menu options dialog -->
     <string name="global_action_screenrecord">تۆمارکردنی ڕوونما</string>
-    <!-- Heads up snooze toast -->
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - ئاگانامەکان بۆ ماوەی 1 خولەک کپ ئەکرێن.</string>
     <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - ئاگانامەکان بۆ ماوەی <xliff:g id="number">%d</xliff:g> خولەک کپ ئەکرێن.</string>
-    <!-- Omnijaws Weather -->
     <string name="omnijaws_service_error">هه‌ڵه‌</string>
     <string name="omnijaws_service_unkown">زانیاری کەش نییە</string>
     <string name="omnijaws_service_error_long">کێشە لە بارکردنی داتای کەش هەیە</string>
@@ -144,7 +119,6 @@
     <string name="omnijaws_current_text">ئێستا</string>
     <string name="omnijaws_package_not_available">OmniJaws بەردەست نییە</string>
     <string name="omnijaws_service_last_update">کۆتا نوێکردنەوە:</string>
-    <!-- Tuner -->
     <string name="preview">پێشبینین</string>
     <string name="keycode">Keycode</string>
     <string name="no_home_title">دوگمەی ماڵەوە نەدۆزرایەوە</string>
@@ -167,94 +141,72 @@
     <string name="navbar_editor_summary">سازدانی تووڵی جێنیشاندەر</string>
     <string name="tuner_keyguard_transition_animations_title">پیشاندانی ئەنیمەیشنەکانی تێپەڕین</string>
     <string name="tuner_keyguard_transition_animations_summary">پیشاندانی ئەنیمەیشنە بێسوودەکان</string>
-    <!-- Stock Navbar -->
     <string name="systemui_tuner_navbar_title">ڕێکخستنە بنچەکان</string>
     <string name="navbar_activity_title">توڵی جێنیشاندەر</string>
-    <!-- Kill button in notification guts -->
     <string name="force_stop_dlg_title">ڕاگرتنی تینی؟</string>
     <string name="force_stop_dlg_text">گەر بەتینی ئەپێک ڕاگری، ڕەنگە کێشەی بۆ دروسکات.</string>
     <string name="guts_force_close_app">داخستنی ئەپ</string>
-    <string name="tuner_show_brightness_mode">پیشاندانی گۆڕینی دۆخی ڕۆشنایی</string>
-    <string name="tuner_show_brightness_side_buttons">پیشاندانی دوگمەکانی گۆڕینی دۆخی ڕۆشنایی</string>
-    <!--Google sound search tile -->
+    <string name="tuner_show_brightness_mode">پیشاندانی گۆڕینی دۆخی ڕووناکی</string>
+    <string name="tuner_show_brightness_side_buttons">پیشاندانی دوگمەکانی گۆڕینی دۆخی ڕووناکی</string>
     <string name="quick_settings_sound_search">گەڕانی دەنگ</string>
     <string name="quick_settings_sound_search_no_app">ببورە، بەڵام ئەمە کارناکات گەر بێتو ئەپێکی گەڕانی دەنگیت نەبێت.</string>
-    <!-- Name of the additional status bar icons also exposed with SystemUI Tuner -->
     <string name="status_bar_camera">کامێرا</string>
     <string name="status_bar_location">ناوچە</string>
     <string name="status_bar_microphone">مایکرۆفۆن</string>
-    <!-- DataSwitch Tile -->
     <string name="qs_data_switch_label">گۆڕینی کارتی داتا</string>
     <string name="qs_data_switch_toast_0">لەئێستادا هیچ سیمکارتێک بەردەست نییە</string>
     <string name="qs_data_switch_toast_1">لەئێستادا تەنها یەک سیمکارت بەردەستە</string>
     <string name="qs_data_switch_changed_1">گۆڕینی کارتی داتا بۆ سیمی 1.</string>
     <string name="qs_data_switch_changed_2">گۆڕینی کارتی داتا بۆ سیمی 2.</string>
-    <!-- HW Keys Tile -->
     <string name="accessibility_quick_settings_hwkeys_on">HW keys کارایە</string>
     <string name="accessibility_quick_settings_hwkeys_off">HW keys ناکارایە</string>
     <string name="quick_settings_hwkeys_label">HW keys</string>
-    <!-- Immersive tile -->
     <string name="quick_settings_immersive_tile">دۆخی ڕوونماپڕی</string>
     <string name="quick_settings_immersive_tile_statusbar">ڕوونماپڕی بێ ڕەوشبەند</string>
     <string name="quick_settings_immersive_tile_navbar">ڕوونماپڕی بێ جێنیشاندەر</string>
     <string name="quick_settings_immersive_tile_full">ڕوونماپڕی تەواو</string>
-    <!-- Screenrecord Stop Dot -->
     <string name="screenrecord_stopdot_label">پیشاندانی خاڵی ڕاگرتن</string>
     <string name="screenrecord_low_quality_label">کوالێتی نزم</string>
-    <!-- Gaming mode -->
     <string name="gaming_mode_not_enabled">دۆخی یاریکردن لە ڕێکخستنەکانەوە ناکارایە</string>
     <string name="quick_settings_gaming_mode_label">دۆخی یاریکردن</string>
-    <!-- Content description of the Gaming mode tile in quick settings when disabled (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_gaming_mode_disabled">دۆخی یاریکردن ناکاراکرا.</string>
-    <!-- Content description of the Gaming mode tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_gaming_mode_enabled">دۆخی یاریکردن کاراکرا.</string>
-    <!-- Navigation bar dpad -->
     <string name="accessibility_dpad_left">جێنیشانده‌ری چه‌پ</string>
     <string name="accessibility_dpad_right">جێنیشانده‌ری ڕاست</string>
-    <!-- Alert slide extras -->
     <string name="volume_ringer_priority_only">پێشەیی</string>
     <string name="volume_ringer_alarms_only">وریاکەرەوە</string>
     <string name="volume_ringer_dnd">DnD</string>
     <string name="tristate_flashlight">فلاش</string>
-    <!-- FPS Info tile -->
     <string name="quick_settings_fpsinfo_label">FPS زانیاری</string>
     <string name="accessibility_quick_settings_fpsinfo_off">زانیاری FPS ناچالاکە</string>
     <string name="accessibility_quick_settings_fpsinfo_on">زانیاری FPS چالاکە</string>
-    <!-- Screen pinning -->
     <string name="screen_pinning_description_custom">ئەمە لە نیشاندان دەمێنێتەوە تاکو لای دەبەیت. &amp; داگرە و پەنجە لەسەر گەڕانەوە ڕاگرە.</string>
     <string name="screen_pinning_description_recents_invisible_custom">ئەمە لە نیشاندان دەمێنێتەوە تاکو لای دەبەیت. &amp; داگرە و پەنجە لەسەر گەڕانەوە ڕاگرە.</string>
     <string name="screen_pinning_description_accessible_custom">ئەمە لە نیشاندان دەمێنێتەوە تاکو لای دەبەیت. &amp; داگرە و پەنجە لەسەر گەڕانەوە ڕاگرە.</string>
     <string name="screen_pinning_description_recents_invisible_accessible_custom">ئەمە لە نیشاندان دەمێنێتەوە تاکو لای دەبەیت. &amp; داگرە و پەنجە لەسەر گەڕانەوە ڕاگرە.</string>
     <string name="screen_pinning_toast_custom">بۆ لابردنی ئەم پەڕەیە، &amp; داگرە و پەنجە لەسەر گەڕانەوە ڕاگرە</string>
     <string name="screen_pinning_toast_recents_invisible_custom">بۆ لابردنی ئەم پەڕەیە، &amp; داگرە و پەنجە لەسەر گەڕانەوە ڕاگرە</string>
-    <!-- Reader mode QS tile -->
     <string name="quick_settings_reading_mode">دۆخی خوێندنەوە</string>
     <string name="accessibility_quick_settings_reading_mode_on">دۆخی خوێندنەوە کارایە.</string>
     <string name="accessibility_quick_settings_reading_mode_off">دۆخی خوێندنەوە ناکارایە.</string>
     <string name="accessibility_quick_settings_reading_mode_changed_on">دۆخی خوێندنەوە کاراکرا.</string>
     <string name="accessibility_quick_settings_reading_mode_changed_off">دۆخی خوێندنەوە ناکاراکرا.</string>
-    <!-- Alerting notification header label -->
     <string name="notification_section_header_alerting">ئاگانامە ووریاکەرەوەکان</string>
-    <!-- PowerShare QS tile -->
     <string name="quick_settings_powershare_label">Wireless PowerShare</string>
     <string name="quick_settings_powershare_off_powersave_label">Wireless PowerShare ناکارایە\nپاراستنی ووزە</string>
     <string name="quick_settings_powershare_off_low_battery_label">Wireless PowerShare ناکارایە\nڕێژەی پاتری زۆر کەمە</string>
     <string name="quick_settings_powershare_enabled_label">Wireless PowerShare چالاککراوە</string>
-    <!-- VPN QS tile -->
     <string name="quick_settings_vpn_label">VPN</string>
     <string name="quick_settings_vpn_connect_dialog_title">په‌یوه‌ستبوون به‌ \u2026</string>
     <string name="vpn_credentials_hint">تکایە بەڵگەنامەکانت دابنێ بۆ پەیوەست بوون بە <xliff:g id="name">%s</xliff:g></string>
     <string name="vpn_credentials_username">ناوی بەکارهێنەر</string>
     <string name="vpn_credentials_password">تێپەڕەووشە</string>
     <string name="vpn_credentials_dialog_connect">پەیوەست بوون</string>
-    <!-- Long swipe gesture actions -->
     <string name="app_picker_dialog_title">ئەپێک دیاریبکە</string>
     <string name="recents_app_killed">ئەپەکە داخرا</string>
     <string name="nope_cant_kill">ناتوانرێ لانچەر دابخرێ</string>
-    <!-- Daily data usage -->
     <string name="daily_data_usage_title">بەکارهاتووی ئەمڕۆ</string>
     <string name="lockscreen_default">بنەڕەت</string>
     <string name="lockscreen_hidden">هیچیان</string>
-    <!-- Shows when people have clicked on the custom lockscreen shortcut [CHAR LIMIT=60] -->
     <string name="custom_hint">ئایکۆن ڕاکێشە بۆ چوونەنێوی</string>
 </resources>

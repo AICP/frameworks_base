@@ -39,6 +39,8 @@ import javax.inject.Inject;
 /** Quick settings tile: Enable/Disable NFC **/
 public class NfcTile extends QSTileImpl<BooleanState> {
 
+    private final Icon mIcon = ResourceIcon.get(R.drawable.ic_qs_nfc_enabled);
+
     private NfcAdapter mAdapter;
     private BroadcastDispatcher mBroadcastDispatcher;
 
@@ -109,7 +111,7 @@ public class NfcTile extends QSTileImpl<BooleanState> {
         state.state = getAdapter() == null
                 ? Tile.STATE_UNAVAILABLE
                 : state.value ? Tile.STATE_ACTIVE : Tile.STATE_INACTIVE;
-        state.icon = ResourceIcon.get(R.drawable.ic_qs_nfc_enabled);
+        state.icon = mIcon;
         state.label = mContext.getString(R.string.quick_settings_nfc_label);
         state.expandedAccessibilityClassName = Switch.class.getName();
         state.contentDescription = state.label;
@@ -132,7 +134,7 @@ public class NfcTile extends QSTileImpl<BooleanState> {
     private NfcAdapter getAdapter() {
         if (mAdapter == null) {
             try {
-                mAdapter = NfcAdapter.getDefaultAdapter(mContext);
+                mAdapter = NfcAdapter.getNfcAdapter(mContext.getApplicationContext());
             } catch (UnsupportedOperationException e) {
                 mAdapter = null;
             }

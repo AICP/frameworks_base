@@ -25,20 +25,22 @@
 
 package com.android.server.policy;
 
-import static android.view.WindowManager.LayoutParams.PRIVATE_FLAG_KEYGUARD;
-
 import java.util.ArrayList;
 
+import com.android.internal.policy.KeyInterceptionInfo;
 import com.android.internal.util.hwkeys.ActionConstants;
 import com.android.internal.util.hwkeys.ActionHandler;
 import com.android.internal.util.hwkeys.ActionUtils;
 import com.android.internal.util.hwkeys.Config;
 import com.android.internal.util.hwkeys.Config.ActionConfig;
 import com.android.internal.util.hwkeys.Config.ButtonConfig;
+import com.android.server.LocalServices;
+import com.android.server.wm.WindowManagerInternal;
 
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.ContentObserver;
+import android.os.IBinder;
 import android.os.Handler;
 import android.os.Message;
 import android.os.PowerManager;
@@ -50,7 +52,9 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.ViewConfiguration;
 import android.view.WindowManager;
-import com.android.server.policy.WindowManagerPolicy.WindowState;
+
+import static android.view.WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG;
+import static android.view.WindowManager.LayoutParams.TYPE_NOTIFICATION_SHADE;
 
 public class HardkeyActionHandler {
     private interface ActionReceiver {
@@ -58,6 +62,8 @@ public class HardkeyActionHandler {
     }
 
     private static final String TAG = HardkeyActionHandler.class.getSimpleName();
+
+    WindowManagerInternal mWindowManagerInternal;
 
     // messages to PWM to do some actions we can't really do here
     public static final int MSG_FIRE_HOME = 7102;
@@ -119,6 +125,8 @@ public class HardkeyActionHandler {
         mDeviceHardwareKeys = ActionUtils.getInt(context, "config_deviceHardwareKeys",
                 ActionUtils.PACKAGE_ANDROID);
 
+        mWindowManagerInternal = LocalServices.getService(WindowManagerInternal.class);
+
         mBackButton = new HardKeyButton(mActionReceiver, handler);
         mHomeButton = new HardKeyButton(mActionReceiver, handler);
         mRecentButton = new HardKeyButton(mActionReceiver, handler);
@@ -147,7 +155,7 @@ public class HardkeyActionHandler {
                 || keyCode == KeyEvent.KEYCODE_BACK);
     }
 
-    public boolean handleKeyEvent(WindowState win, int keyCode, int repeatCount, boolean down,
+    public boolean handleKeyEvent(IBinder focusedToken, int keyCode, int repeatCount, boolean down,
             boolean canceled,
             boolean longPress, boolean keyguardOn) {
         if (filterDisabledKey(keyCode)) {
@@ -207,33 +215,24 @@ public class HardkeyActionHandler {
                 return true;
             }
 
-            // If a system window has focus, then it doesn't make sense
-            // right now to interact with applications.
-            //
-            // NOTE: I don't think this code block is reachable here anyways because
-            // we don't intercept any key events if keyguard is showing
-            // However, "WINDOW_TYPES_WHERE_HOME_DOESNT_WORK" is reachable
-            //
-            WindowManager.LayoutParams attrs = win != null ? win.getAttrs() : null;
-            if (attrs != null) {
-                final int type = attrs.type;
-                if (type == WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG
-                        || (attrs.privateFlags & PRIVATE_FLAG_KEYGUARD) != 0) {
+            final KeyInterceptionInfo info =
+                    mWindowManagerInternal.getKeyInterceptionInfoFromToken(focusedToken);
+            if (info != null) {
+                // If a system window has focus, then it doesn't make sense
+                // right now to interact with applications.
+                if (info.layoutParamsType == TYPE_KEYGUARD_DIALOG
+                        || (info.layoutParamsType == TYPE_NOTIFICATION_SHADE
+                        && keyguardOn)) {
                     // the "app" is keyguard, so give it the key
-                    // NOTE: if somehow we ever get here, send it back and let the event
-                    // pass through to AOSP handling. Which, in this case, does the same
-                    // thing we just did.
                     return false;
                 }
-                final int typeCount = WINDOW_TYPES_WHERE_HOME_DOESNT_WORK.length;
-                for (int i=0; i<typeCount; i++) {
-                    if (type == WINDOW_TYPES_WHERE_HOME_DOESNT_WORK[i]) {
+                for (int t : WINDOW_TYPES_WHERE_HOME_DOESNT_WORK) {
+                    if (info.layoutParamsType == t) {
                         // don't do anything, but also don't pass it to the app
                         return true;
                     }
                 }
             }
-
 
             if (!down) {
                 return true;

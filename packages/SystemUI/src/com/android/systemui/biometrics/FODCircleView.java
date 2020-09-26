@@ -466,6 +466,8 @@ public class FODCircleView extends ImageView implements ConfigurationListener, T
         if (mIsAuthenticated) {
             return;
         }
+        if (mContext.getResources().getBoolean(R.bool.config_fodShadow) == true)
+            mPressedView.setImageResource(R.drawable.fod_icon_pressed_shadow);
 
         mPaintFingerprint.setColor(getFODColor());
 

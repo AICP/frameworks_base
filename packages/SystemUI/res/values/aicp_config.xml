@@ -74,4 +74,8 @@
     <bool name="config_customCutout">false</bool>
 
     <bool name="qs_status_bar_hidden">false</bool>
+
+    <!-- Draw shadow on FOD pressed -->
+    <bool name="config_fodShadow">false</bool>
+
 </resources>

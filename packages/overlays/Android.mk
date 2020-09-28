@@ -51,6 +51,8 @@ LOCAL_REQUIRED_MODULES := \
 	IconShapeTaperedRectOverlay \
 	IconShapeTeardropOverlay \
 	IconShapeVesselOverlay \
+	IconShapeHeartOverlay \
+	IconShapeSquareOverlay \
 	NavigationBarMode2ButtonOverlay \
 	NavigationBarMode3ButtonOverlay \
 	NavigationBarModeGesturalOverlay \

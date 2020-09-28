@@ -15125,6 +15125,7 @@ public final class Settings {
          * @hide
          */
         public static final int ONE_HANDED_KEYGUARD_SIDE_RIGHT = 1;
+
         /**
          * In one handed mode, which side the keyguard should be on. Allowable values are one of
          * the ONE_HANDED_KEYGUARD_SIDE_* constants.
@@ -15132,6 +15133,12 @@ public final class Settings {
          * @hide
          */
         public static final String ONE_HANDED_KEYGUARD_SIDE = "one_handed_keyguard_side";
+
+        /**
+         * Google Hybrid Battery Warnings
+         * @hide
+         */
+        public static final String HYBRID_SYSUI_BATTERY_WARNING_FLAGS = "hybrid_sysui_battery_warning_flags";
 
         /**
          * Keys we no longer back up under the current schema, but want to continue to

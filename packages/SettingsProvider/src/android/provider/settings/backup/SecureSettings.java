@@ -215,5 +215,6 @@ public class SecureSettings {
         Settings.Secure.MONET_ENGINE_WHITE_LUMINANCE,
         Settings.Secure.SHOW_WIFI_STANDARD_ICON,
         Settings.Secure.VOLUME_LINK_NOTIFICATION,
+        Settings.Secure.GESTURE_NAVBAR_LENGTH_MODE,
     };
 }

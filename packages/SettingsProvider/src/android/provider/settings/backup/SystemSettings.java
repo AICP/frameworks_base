@@ -85,5 +85,6 @@ public class SystemSettings {
         Settings.System.ALARM_ALERT,
         Settings.System.NOTIFICATION_LIGHT_PULSE,
         Settings.System.VOLUME_KEY_CURSOR_CONTROL,
+        Settings.System.BACK_GESTURE_HAPTIC,
     };
 }

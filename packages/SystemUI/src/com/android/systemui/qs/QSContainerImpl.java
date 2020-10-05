@@ -80,7 +80,6 @@ public class QSContainerImpl extends FrameLayout implements
     private QuickStatusBarHeader mHeader;
     private float mQsExpansion;
     private QSCustomizer mQSCustomizer;
-    private View mDragHandle;
     private View mQSPanelContainer;
 
     private View mBackground;
@@ -117,7 +116,6 @@ public class QSContainerImpl extends FrameLayout implements
         mQSDetail = findViewById(R.id.qs_detail);
         mHeader = findViewById(R.id.header);
         mQSCustomizer = findViewById(R.id.qs_customize);
-        mDragHandle = findViewById(R.id.qs_drag_handle_view);
         mBackground = findViewById(R.id.quick_settings_background);
         mStatusBarBackground = findViewById(R.id.quick_settings_status_bar_background);
         mBackgroundGradient = findViewById(R.id.quick_settings_gradient_view);
@@ -334,8 +332,6 @@ public class QSContainerImpl extends FrameLayout implements
         int height = calculateContainerHeight();
         setBottom(getTop() + height);
         mQSDetail.setBottom(getTop() + height);
-        // Pin the drag handle to the bottom of the panel.
-        mDragHandle.setTranslationY(height - mDragHandle.getHeight());
         mBackground.setTop(mQSPanelContainer.getTop());
         updateBackgroundBottom(height, animate);
     }
@@ -363,7 +359,6 @@ public class QSContainerImpl extends FrameLayout implements
 
     public void setExpansion(float expansion) {
         mQsExpansion = expansion;
-        mDragHandle.setAlpha(1.0f - expansion);
         updateExpansion();
     }
 

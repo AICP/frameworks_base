@@ -5798,6 +5798,11 @@ public final class Settings {
          @Readable
          public static final String VOLUME_KEY_CURSOR_CONTROL = "volume_key_cursor_control";
 
+        /**
+         * Enable haptic feedback for Back Gesture
+         * @hide
+         */
+        public static final String BACK_GESTURE_HAPTIC = "back_gesture_haptic";
 
         /***************************
          * AICP System Settings end
@@ -5942,6 +5947,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(LOCKSCREEN_BATTERY_INFO_TEMP_UNIT);
             PRIVATE_SETTINGS.add(SCREEN_OFF_ANIMATION);
             PRIVATE_SETTINGS.add(VOLUME_KEY_CURSOR_CONTROL);
+            PRIVATE_SETTINGS.add(BACK_GESTURE_HAPTIC);
         }
 
         /**

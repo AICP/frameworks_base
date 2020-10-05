@@ -5284,6 +5284,9 @@ public final class Settings {
          */
         public static final String ALERT_SLIDER_NOTIFICATIONS = "alert_slider_notifications";
 
+        /** @hide */
+        public static final String BACK_GESTURE_HAPTIC = "back_gesture_haptic";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5304,6 +5307,7 @@ public final class Settings {
             OMNI_BUTTON_EXTRA_KEY_MAPPING,
             OMNI_SYSTEM_PROXI_CHECK_ENABLED,
             ALERT_SLIDER_NOTIFICATIONS,
+            BACK_GESTURE_HAPTIC,
         };
 
         /**
@@ -5327,6 +5331,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(OMNI_BUTTON_EXTRA_KEY_MAPPING, 0);
             AICP_SETTINGS_VALIDATORS.put(OMNI_SYSTEM_PROXI_CHECK_ENABLED, 0);
             AICP_SETTINGS_VALIDATORS.put(ALERT_SLIDER_NOTIFICATIONS, 2);
+            AICP_SETTINGS_VALIDATORS.put(BACK_GESTURE_HAPTIC, 0);
         }
     }
 

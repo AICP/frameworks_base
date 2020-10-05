@@ -107,5 +107,6 @@ public class SystemSettings {
         Settings.System.LOCKSCREEN_BATTERY_INFO_TEMP_UNIT,
         Settings.System.SCREEN_OFF_ANIMATION,
         Settings.System.VOLUME_KEY_CURSOR_CONTROL,
+        Settings.System.BACK_GESTURE_HAPTIC,
     };
 }

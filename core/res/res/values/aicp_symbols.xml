@@ -178,4 +178,7 @@
 
     <!-- Wired/BT headset focus mode -->
     <java-symbol type="bool" name="config_deviceRingtoneFocusMode" />
+
+    <!-- Keyboard Buttons Brightness control -->
+    <java-symbol type="dimen" name="config_keyboardBrightnessSettingDefaultFloat" />
 </resources>

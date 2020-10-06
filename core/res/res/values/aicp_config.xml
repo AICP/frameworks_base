@@ -241,4 +241,7 @@
 
     <!-- Wired/BT headset focus mode -->
     <bool name="config_deviceRingtoneFocusMode">false</bool>
+
+    <!-- Keyboard Buttons Brightness control -->
+    <dimen name="config_keyboardBrightnessSettingDefaultFloat">1.0</dimen>
 </resources>

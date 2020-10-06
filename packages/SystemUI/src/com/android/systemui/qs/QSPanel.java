@@ -1326,6 +1326,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
         int getOffsetTop(TileRecord tile);
 
         boolean updateResources();
+        int getNumColumns();
         void updateSettings();
 
         void setListening(boolean listening);
@@ -1423,5 +1424,9 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
                     setAnimationTile(v);
             });
         }
+    }
+
+    public int getNumColumns() {
+        return mTileLayout.getNumColumns();
     }
 }

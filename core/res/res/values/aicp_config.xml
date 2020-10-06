@@ -250,6 +250,9 @@
     <!-- HW Buttons Brightness control -->
     <integer name="config_deviceSupportsButtonBrightnessControl">0</integer>
 
+    <!-- Keyboard Buttons Brightness control -->
+    <dimen name="config_keyboardBrightnessSettingDefaultFloat">1.0</dimen>
+
     <!-- Gesture handle length
         values can be in range 0 - 3
         0 means default size

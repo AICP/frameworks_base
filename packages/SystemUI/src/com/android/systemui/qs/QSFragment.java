@@ -231,6 +231,9 @@ public class QSFragment extends LifecycleFragment implements QS, CommandQueue.Ca
                 mQSAnimator.onRtlChanged();
             }
         }
+        if (mQSAnimator != null) {
+            mQSAnimator.updateSettings();
+        }
     }
 
     private void setEditLocation(View view) {
@@ -256,7 +259,7 @@ public class QSFragment extends LifecycleFragment implements QS, CommandQueue.Ca
     public void setHost(QSTileHost qsh) {
         mQSPanel.setHost(qsh, mQSCustomizer);
         mHeader.setQSPanel(mQSPanel);
-        mFooter.setQSPanel(mQSPanel);
+        mFooter.setQSPanel(mQSPanel, mQuickQSPanel);
         mQSDetail.setHost(qsh);
 
         if (mQSAnimator != null) {
@@ -564,6 +567,7 @@ public class QSFragment extends LifecycleFragment implements QS, CommandQueue.Ca
         if (!mQSCustomizer.isCustomizing()) {
             mQSPanel.updateSettings();
             mQuickQSPanel.updateSettings();
+            mQSAnimator.updateSettings();
         }
     }
 
@@ -633,13 +637,13 @@ public class QSFragment extends LifecycleFragment implements QS, CommandQueue.Ca
         }
     };
 
+    public QuickQSPanel getQuickQsPanel() {
+        return mQuickQSPanel;
+    }
+
     @Override
     public void onStateChanged(int newState) {
         mState = newState;
         setKeyguardShowing(newState == StatusBarState.KEYGUARD);
-    }
-
-    public QuickQSPanel getQuickQsPanel() {
-        return mQuickQSPanel;
     }
 }

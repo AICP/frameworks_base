@@ -226,5 +226,6 @@ public class SecureSettings {
         Settings.Secure.ENABLE_PROJECTION_PRIVACY_INDICATOR,
         Settings.Secure.BUTTON_BACKLIGHT_TIMEOUT,
         Settings.Secure.BUTTON_BRIGHTNESS,
+        Settings.Secure.KEYBOARD_BRIGHTNESS,
     };
 }

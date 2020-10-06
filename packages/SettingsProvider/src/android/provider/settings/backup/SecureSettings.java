@@ -226,5 +226,6 @@ public class SecureSettings {
         Settings.Secure.EXTENDED_MONET_THEMES,
         Settings.Secure.BUTTON_BACKLIGHT_TIMEOUT,
         Settings.Secure.BUTTON_BRIGHTNESS,
+        Settings.Secure.KEYBOARD_BRIGHTNESS,
     };
 }

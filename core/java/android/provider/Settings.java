@@ -6282,6 +6282,14 @@ public final class Settings {
         public static final String BUTTON_BRIGHTNESS = "button_brightness";
 
         /**
+         * The keyboard brightness to be used while the screen is on or after a button press,
+         * depending on the value of {@link BUTTON_BACKLIGHT_TIMEOUT}.
+         * Valid value range is between 0 and {@link PowerManager#getMaximumButtonBrightness()}
+         * @hide
+         */
+        public static final String KEYBOARD_BRIGHTNESS = "keyboard_brightness";
+
+        /**
          * Whether the button backlight is only lit when pressed (and not when screen is touched)
          * The value is boolean (1 or 0).
          */

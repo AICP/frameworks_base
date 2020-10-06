@@ -6053,6 +6053,12 @@ public final class Settings {
          */
         public static final String CAMERA_WAKE_SCREEN = "assist_wake_screen";
 
+        /**
+         * Number of qs columns on quickbar
+         * @hide
+         */
+        public static final String QS_QUICKBAR_COLUMNS = "qs_quickbar_columns";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6206,6 +6212,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(ASSIST_WAKE_SCREEN, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(APP_SWITCH_WAKE_SCREEN, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(CAMERA_WAKE_SCREEN, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(QS_QUICKBAR_COLUMNS, ANY_INTEGER_VALIDATOR);
         }
 
         /**

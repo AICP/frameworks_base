@@ -6730,6 +6730,22 @@ public final class Settings {
         */
         public static final String LOCKSCREEN_ALBUM_ART_FILTER = "lockscreen_album_art_filter";
 
+        /**
+         * Whether to show material Dismiss All Button for notifications
+         * @hide
+         */
+        public static final String NOTIFICATION_MATERIAL_DISMISS = "notification_material_dismiss";
+
+        /**
+         * @hide
+         */
+        public static final String NOTIFICATION_MATERIAL_DISMISS_STYLE = "notification_material_dismiss_style";
+
+        /**
+         * @hide
+         */
+        public static final String NOTIFICATION_MATERIAL_DISMISS_BGSTYLE = "notification_material_dismiss_bgstyle";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7076,6 +7092,9 @@ public final class Settings {
             PRIVATE_SETTINGS.add(OMNI_LOCKSCREEN_MEDIA_BLUR);
             PRIVATE_SETTINGS.add(LOCKSCREEN_MEDIA_METADATA);
             PRIVATE_SETTINGS.add(LOCKSCREEN_ALBUM_ART_FILTER);
+            PRIVATE_SETTINGS.add(NOTIFICATION_MATERIAL_DISMISS);
+            PRIVATE_SETTINGS.add(NOTIFICATION_MATERIAL_DISMISS_STYLE);
+            PRIVATE_SETTINGS.add(NOTIFICATION_MATERIAL_DISMISS_BGSTYLE);
         }
 
         /**

@@ -62,12 +62,12 @@ public class DeviceUtils {
         return (BluetoothAdapter.getDefaultAdapter() != null);
     }
 
-    public static boolean deviceSupportsLte(Context context) {
-        final TelephonyManager tm =
-            (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        return (tm.getLteOnCdmaMode() == PhoneConstants.LTE_ON_CDMA_TRUE);
-                    // || tm.getLteOnGsmMode() != 0; // add back if when we have support on LP for it
-    }
+    //public static boolean deviceSupportsLte(Context context) {
+    //    final TelephonyManager tm =
+    //        (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+    //    return (tm.getLteOnCdmaMode() == PhoneConstants.LTE_ON_CDMA_TRUE);
+    //                // || tm.getLteOnGsmMode() != 0; // add back if when we have support on LP for it
+    //}
 
     public static boolean deviceSupportsGps(Context context) {
         return context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_LOCATION_GPS);

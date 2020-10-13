@@ -6547,6 +6547,12 @@ public final class Settings {
          */
         public static final String LOCKSCREEN_MAX_NOTIF_CONFIG = "lockscreen_max_notif_config";
 
+        /**
+         * Whether to use partial screenshot when using volume keys
+         * @hide
+         */
+        public static final String SCREENSHOT_TYPE = "screenshot_type";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6870,6 +6876,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(AICP_LOCKSCREEN_WEATHER_STYLE);
             PRIVATE_SETTINGS.add(LOCKSCREEN_MAX_NOTIF_CONFIG);
             PRIVATE_SETTINGS.add(LOCK_SCREEN_CUSTOM_NOTIF);
+            PRIVATE_SETTINGS.add(SCREENSHOT_TYPE);
         }
 
         /**

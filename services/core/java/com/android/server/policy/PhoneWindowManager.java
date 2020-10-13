@@ -678,6 +678,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
     private boolean mLockNowPending = false;
 
+    private int mScreenshotType;
+
     private final List<DeviceKeyHandler> mDeviceKeyHandlers = new ArrayList<>();
 
     private PocketManager mPocketManager;
@@ -995,6 +997,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.CAMERA_LAUNCH), false, this,
+                    UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.SCREENSHOT_TYPE), false, this,
                     UserHandle.USER_ALL);
             updateSettings();
         }
@@ -1518,7 +1523,11 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
     private void interceptScreenshotChord() {
         mHandler.removeCallbacks(mScreenshotRunnable);
-        mScreenshotRunnable.setScreenshotType(TAKE_SCREENSHOT_FULLSCREEN);
+        if (mScreenshotType == 1) {
+            mScreenshotRunnable.setScreenshotType(TAKE_SCREENSHOT_SELECTED_REGION);
+        } else {
+            mScreenshotRunnable.setScreenshotType(TAKE_SCREENSHOT_FULLSCREEN);
+        }
         mScreenshotRunnable.setScreenshotSource(SCREENSHOT_KEY_CHORD);
         mHandler.postDelayed(mScreenshotRunnable, getScreenshotChordLongPressDelay());
     }
@@ -1992,7 +2001,12 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             @Override
             public void onSwipeThreeFinger() {
                 if (!mPocketLockShowing) {
-                    mHandler.post(mScreenshotRunnable);
+                    if (mScreenshotType == 1) {
+                        mScreenshotRunnable.setScreenshotType(TAKE_SCREENSHOT_SELECTED_REGION);
+                    } else {
+                        mScreenshotRunnable.setScreenshotType(TAKE_SCREENSHOT_FULLSCREEN);
+                    }
+                    mHandler.postDelayed(mScreenshotRunnable, getScreenshotChordLongPressDelay());
                 }
             }
         });
@@ -2631,7 +2645,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 mRingerToggleChord = Settings.Secure.VOLUME_HUSH_OFF;
             }
 
-
             // Hardware button wake
             mHomeWakeScreen = (Settings.System.getIntForUser(resolver,
                     Settings.System.HOME_WAKE_SCREEN, 1,
@@ -2694,6 +2707,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             boolean threeFingerGesture = Settings.System.getIntForUser(resolver,
                     Settings.System.THREE_FINGER_GESTURE, 0, UserHandle.USER_CURRENT) == 1;
             enableSwipeThreeFingerGesture(threeFingerGesture);
+
+            // Screenshot type
+            mScreenshotType = Settings.System.getIntForUser(resolver,
+                    Settings.System.SCREENSHOT_TYPE, 0, UserHandle.USER_CURRENT);
 
             final boolean ANBIEnabled = Settings.System.getIntForUser(resolver,
                     Settings.System.ANBI_ENABLED_OPTION, 0, UserHandle.USER_CURRENT) == 1;

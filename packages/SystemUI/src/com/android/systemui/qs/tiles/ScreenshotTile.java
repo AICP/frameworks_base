@@ -46,7 +46,7 @@ import javax.inject.Inject;
 /** Quick settings tile: Screenshot **/
 public class ScreenshotTile extends QSTileImpl<BooleanState> {
 
-    private boolean mRegion = false;
+    private boolean mRegion;
 
     @Inject
     public ScreenshotTile(
@@ -61,6 +61,8 @@ public class ScreenshotTile extends QSTileImpl<BooleanState> {
     ) {
         super(host, backgroundLooper, mainHandler, falsingManager, metricsLogger,
                 statusBarStateController, activityStarter, qsLogger);
+        mRegion = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.SCREENSHOT_TYPE, 0, UserHandle.USER_CURRENT) == 1;
     }
 
     @Override
@@ -80,6 +82,9 @@ public class ScreenshotTile extends QSTileImpl<BooleanState> {
     @Override
     protected void handleClick(@Nullable View view) {
         mRegion = !mRegion;
+        Settings.System.putIntForUser(mContext.getContentResolver(),
+                Settings.System.SCREENSHOT_TYPE, mRegion ? 1 : 0,
+                UserHandle.USER_CURRENT);
         refreshState();
     }
 

@@ -51,4 +51,11 @@
     <!-- Component name of popup camera service -->
     <string name="config_popUpCameraServiceComponentName" translatable="false"></string>
 
+    <!-- Global Actions prefs list -->
+    <string-array translatable="false" name="custom_config_globalActionsList">
+        <item>emergency</item>
+        <item>power</item>
+        <item>restart</item>
+        <item>logout</item>
+    </string-array>
 </resources>

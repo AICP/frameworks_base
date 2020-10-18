@@ -5223,12 +5223,17 @@ public final class Settings {
          * AICP System Settings start
          *****************************/
 
--        /**
--         Add aicp settings like e.g.
--         @hide
--         public static final String AICP_FOO_BAR_BALABALA = "foo_bar_balabala";
--        */
+         /**
+         Add aicp settings like e.g.
+         @hide
+         public static final String AICP_FOO_BAR_BALABALA = "foo_bar_balabala";
+         */
 
+         /**
+         * Theme of AicpExtras.
+         * @hide
+         */
+        public static final String AE_THEME = "ae_theme";
 
         /***************************
          * AICP System Settings end
@@ -5241,6 +5246,7 @@ public final class Settings {
          */
         public static final String[] AICP_SETTINGS_TO_BACKUP = {
             // AICP_FOO_BAR_BALABALA
+            AE_THEME,
         };
 
         /**
@@ -5255,6 +5261,7 @@ public final class Settings {
         public static final Map<String, Integer> AICP_SETTINGS_VALIDATORS = new ArrayMap<>();
         static {
             //AICP_SETTINGS_VALIDATORS.put(AICP_FOO_BAR_BALABALA, 1);
+            AICP_SETTINGS_VALIDATORS.put(AE_THEME, 1);
         }
     }
 

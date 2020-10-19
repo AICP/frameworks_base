@@ -1811,6 +1811,7 @@ public class StatusBar extends SystemUI implements DemoMode,
         ((MyTicker)mTicker).setView(tickerView);
         tickerTextView.setTicker(mTicker);
         mTicker.setViews(tickerTextView, tickerIcon);
+        tickerView.setVisibility(View.GONE);
      }
 
     public void disableTicker() {

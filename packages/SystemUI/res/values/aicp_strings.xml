@@ -127,4 +127,9 @@
     <string name="volume_ringer_alarms_only">Alarms</string>
     <string name="volume_ringer_dnd">DnD</string>
     <string name="tristate_flashlight">Torch</string>
+
+    <!-- Label for UI element which allows deleting the screenshot [CHAR LIMIT=30] -->
+    <string name="screenshot_delete_label">Delete</string>
+    <!-- Content description indicating that tapping the element will allow deleting the screenshot [CHAR LIMIT=NONE] -->
+    <string name="screenshot_delete_description">Delete screenshot</string>
 </resources>

@@ -223,6 +223,8 @@ import com.android.systemui.statusbar.policy.UserInfoControllerImpl;
 import com.android.systemui.statusbar.policy.UserSwitcherController;
 import com.android.systemui.volume.VolumeComponent;
 
+import com.aicp.gear.util.ThemeOverlayHelper;
+
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -989,6 +991,8 @@ public class StatusBar extends SystemUI implements DemoMode,
                         }
                     }
                 }, OverlayPlugin.class, true /* Allow multiple plugins */);
+
+        ThemeOverlayHelper.onBootCompleted(mContext);
     }
 
     // ================================================================================

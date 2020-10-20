@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b918390a_07119659",
+        "filename": "core/java/com/android/internal/util/aicp/PackageConstants.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1375
+      },
+      "writtenOn": "2020-10-20T20:04:01Z",
+      "side": 1,
+      "message": "why LOS, should this not be aicp?",
+      "revId": "7f6724e8d1d017a9bbedbd59b73602e3769a170a",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    }
+  ]
+}

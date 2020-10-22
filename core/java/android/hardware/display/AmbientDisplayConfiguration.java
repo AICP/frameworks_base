@@ -82,7 +82,7 @@ public class AmbientDisplayConfiguration {
 
     /** {@hide} */
     public boolean tiltGestureEnabled(int user) {
-        return boolSettingDefaultOff(Settings.System.DOZE_TILT_GESTURE, user)
+        return boolSettingDefaultOff(Settings.Secure.DOZE_TILT_GESTURE, user)
                 && dozeTiltSensorAvailable();
     }
 
@@ -93,13 +93,13 @@ public class AmbientDisplayConfiguration {
 
     /** {@hide} */
     public boolean handwaveGestureEnabled(int user) {
-        return boolSettingDefaultOff(Settings.System.DOZE_HANDWAVE_GESTURE, user)
+        return boolSettingDefaultOff(Settings.Secure.DOZE_HANDWAVE_GESTURE, user)
                 && dozeProximitySensorAvailable();
     }
 
     /** {@hide} */
     public boolean pocketGestureEnabled(int user) {
-        return boolSettingDefaultOff(Settings.System.DOZE_POCKET_GESTURE, user)
+        return boolSettingDefaultOff(Settings.Secure.DOZE_POCKET_GESTURE, user)
                 && dozeProximitySensorAvailable();
     }
 

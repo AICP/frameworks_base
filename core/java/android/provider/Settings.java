@@ -5236,24 +5236,6 @@ public final class Settings {
         public static final String AE_THEME = "ae_theme";
 
         /**
-         * Pulse notifications on tilt
-         * @hide
-         */
-        public static final String DOZE_TILT_GESTURE = "doze_tilt_gesture";
-
-        /**
-         * Pulse notifications on hand wave
-         * @hide
-         */
-        public static final String DOZE_HANDWAVE_GESTURE = "doze_handwave_gesture";
-
-        /**
-         * Pulse notifications on removal from pocket
-         * @hide
-         */
-        public static final String DOZE_POCKET_GESTURE = "doze_pocket_gesture";
-
-        /**
          * Enable proxi check for wake keys - must be implemented in a device
          * KeyHandler
          * @hide
@@ -5372,6 +5354,11 @@ public final class Settings {
         public static final String THEMING_SETTINGS_DASHBOARD_ICONS =
                 "theming_settings_dashboard_icons";
 
+        /**
+         * @hide
+         */
+        public static final String TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK = "touchscreen_gesture_haptic_feedback";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5393,9 +5380,6 @@ public final class Settings {
         static {
             //AICP_SETTINGS_VALIDATORS.put(AICP_FOO_BAR_BALABALA, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(AE_THEME, ANY_INTEGER_VALIDATOR);
-            AICP_SETTINGS_VALIDATORS.put(DOZE_HANDWAVE_GESTURE, BOOLEAN_VALIDATOR);
-            AICP_SETTINGS_VALIDATORS.put(DOZE_POCKET_GESTURE, BOOLEAN_VALIDATOR);
-            AICP_SETTINGS_VALIDATORS.put(DOZE_TILT_GESTURE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(OMNI_DEVICE_PROXI_CHECK_ENABLED, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(OMNI_DEVICE_FEATURE_SETTINGS, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(OMNI_BUTTON_EXTRA_KEY_MAPPING, BOOLEAN_VALIDATOR);
@@ -5416,6 +5400,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(ENABLE_CONDITIONS, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(ENABLE_SUGGESTIONS, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(THEMING_SETTINGS_DASHBOARD_ICONS, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK, BOOLEAN_VALIDATOR);
         }
 
         /**
@@ -7990,6 +7975,24 @@ public final class Settings {
          * @hide
          */
         public static final String DOZE_TAP_SCREEN_GESTURE = "doze_tap_gesture";
+
+        /**
+         * Pulse notifications on tilt
+         * @hide
+         */
+        public static final String DOZE_TILT_GESTURE = "doze_tilt_gesture";
+
+        /**
+         * Pulse notifications on hand wave
+         * @hide
+         */
+        public static final String DOZE_HANDWAVE_GESTURE = "doze_handwave_gesture";
+
+        /**
+         * Pulse notifications on removal from pocket
+         * @hide
+         */
+        public static final String DOZE_POCKET_GESTURE = "doze_pocket_gesture";
 
         /**
          * Gesture that wakes up the display, showing some version of the lock screen.

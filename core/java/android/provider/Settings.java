@@ -5319,30 +5319,9 @@ public final class Settings {
          * AICP System Settings end
          ***************************/
 
-        /**
-         * SettingsBackupAgent will combine its list with this so we dont need
-         * to add new things into SettingsProvider SystemSettings
-         * @hide
-         */
-        public static final String[] AICP_SETTINGS_TO_BACKUP = {
-            // AICP_FOO_BAR_BALABALA
-            AE_THEME,
-            DOZE_HANDWAVE_GESTURE,
-            DOZE_POCKET_GESTURE,
-            DOZE_TILT_GESTURE,
-            OMNI_DEVICE_PROXI_CHECK_ENABLED,
-            OMNI_DEVICE_FEATURE_SETTINGS,
-            OMNI_BUTTON_EXTRA_KEY_MAPPING,
-            OMNI_SYSTEM_PROXI_CHECK_ENABLED,
-            ALERT_SLIDER_NOTIFICATIONS,
-            BACK_GESTURE_HAPTIC,
-            LOCKSCREEN_LOCK_ICON,
-            OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE,
-            OMNI_QS_LAYOUT_COLUMNS,
-            OMNI_QS_TILE_TITLE_VISIBILITY,
-            OMNI_QS_LAYOUT_ROWS,
-        };
-
+        private static final int BOOLEAN_VALIDATOR = 0;
+        private static final int ANY_INTEGER_VALIDATOR = 1;
+        private static final int ANY_STRING_VALIDATOR = 2;
         /**
          * SettingsBackupAgent will combine its list with this so we dont need
          * to add new things into SettingsProvider SystemSettingsValidators
@@ -5354,23 +5333,32 @@ public final class Settings {
          */
         public static final Map<String, Integer> AICP_SETTINGS_VALIDATORS = new ArrayMap<>();
         static {
-            //AICP_SETTINGS_VALIDATORS.put(AICP_FOO_BAR_BALABALA, 1);
-            AICP_SETTINGS_VALIDATORS.put(AE_THEME, 1);
-            AICP_SETTINGS_VALIDATORS.put(DOZE_HANDWAVE_GESTURE, 0);
-            AICP_SETTINGS_VALIDATORS.put(DOZE_POCKET_GESTURE, 0);
-            AICP_SETTINGS_VALIDATORS.put(DOZE_TILT_GESTURE, 0);
-            AICP_SETTINGS_VALIDATORS.put(OMNI_DEVICE_PROXI_CHECK_ENABLED, 0);
-            AICP_SETTINGS_VALIDATORS.put(OMNI_DEVICE_FEATURE_SETTINGS, 0);
-            AICP_SETTINGS_VALIDATORS.put(OMNI_BUTTON_EXTRA_KEY_MAPPING, 0);
-            AICP_SETTINGS_VALIDATORS.put(OMNI_SYSTEM_PROXI_CHECK_ENABLED, 0);
-            AICP_SETTINGS_VALIDATORS.put(ALERT_SLIDER_NOTIFICATIONS, 2);
-            AICP_SETTINGS_VALIDATORS.put(BACK_GESTURE_HAPTIC, 0);
-            AICP_SETTINGS_VALIDATORS.put(LOCKSCREEN_LOCK_ICON, 0);
-            AICP_SETTINGS_VALIDATORS.put(OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE, 1);
-            AICP_SETTINGS_VALIDATORS.put(OMNI_QS_LAYOUT_COLUMNS, 1);
-            AICP_SETTINGS_VALIDATORS.put(OMNI_QS_TILE_TITLE_VISIBILITY, 0);
-            AICP_SETTINGS_VALIDATORS.put(OMNI_QS_LAYOUT_ROWS, 1);
+            //AICP_SETTINGS_VALIDATORS.put(AICP_FOO_BAR_BALABALA, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(AE_THEME, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(DOZE_HANDWAVE_GESTURE, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(DOZE_POCKET_GESTURE, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(DOZE_TILT_GESTURE, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(OMNI_DEVICE_PROXI_CHECK_ENABLED, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(OMNI_DEVICE_FEATURE_SETTINGS, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(OMNI_BUTTON_EXTRA_KEY_MAPPING, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(OMNI_SYSTEM_PROXI_CHECK_ENABLED, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(ALERT_SLIDER_NOTIFICATIONS, ANY_STRING_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(BACK_GESTURE_HAPTIC, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(LOCKSCREEN_LOCK_ICON, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(OMNI_QS_LAYOUT_COLUMNS, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(OMNI_QS_TILE_TITLE_VISIBILITY, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(OMNI_QS_LAYOUT_ROWS, ANY_INTEGER_VALIDATOR);
         }
+
+        /**
+         * SettingsBackupAgent will combine its list with this so we dont need
+         * to add new things into SettingsProvider SystemSettings
+         * @hide
+         */
+        public static final String[] AICP_SETTINGS_TO_BACKUP =
+                AICP_SETTINGS_VALIDATORS.keySet().toArray(
+                        new String[Settings.System.AICP_SETTINGS_VALIDATORS.size()]);
     }
 
     /**

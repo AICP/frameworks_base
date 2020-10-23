@@ -5347,6 +5347,17 @@ public final class Settings {
          */
         public static final String STATUSBAR_BATTERY_BAR_LOCATION = "statusbar_battery_bar_location";
 
+        /**
+         * Disable dashboard conditions in settings
+         * @hide
+         */
+        public static final String ENABLE_CONDITIONS = "enable_conditions";
+
+        /**
+         * Disable dashboard suggestions in settings
+         * @hide
+         */
+        public static final String ENABLE_SUGGESTIONS = "enable_suggestions";
 
         /***************************
          * AICP System Settings end
@@ -5389,6 +5400,8 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(STATUSBAR_BATTERY_BAR_STYLE, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(STATUSBAR_BATTERY_BAR_ANIMATE, ANY_STRING_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(STATUSBAR_BATTERY_BAR_LOCATION, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(ENABLE_CONDITIONS, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(ENABLE_SUGGESTIONS, BOOLEAN_VALIDATOR);
         }
 
         /**

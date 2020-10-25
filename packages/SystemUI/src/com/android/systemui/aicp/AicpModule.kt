@@ -20,6 +20,7 @@ import com.android.systemui.qs.QsEventLogger
 import com.android.systemui.qs.pipeline.shared.TileSpec
 import com.android.systemui.qs.shared.model.TileCategory
 import com.android.systemui.qs.tileimpl.QSTileImpl
+import com.android.systemui.qs.tiles.AicpExtrasTile
 import com.android.systemui.qs.tiles.AmbientDisplayTile
 import com.android.systemui.qs.tiles.AODTile
 import com.android.systemui.qs.tiles.CaffeineTile
@@ -46,6 +47,12 @@ import dagger.multibindings.StringKey
 
 @Module
 interface AicpModule {
+    /** Inject Aicp_extrasTile into tileMap in QSModule */
+    @Binds
+    @IntoMap
+    @StringKey(AicpExtrasTile.TILE_SPEC)
+    fun bindAicpExtrasTile(aicpExtrasTile: AicpExtrasTile): QSTileImpl<*>
+
     /** Inject AmbientDisplayTile into tileMap in QSModule */
     @Binds
     @IntoMap

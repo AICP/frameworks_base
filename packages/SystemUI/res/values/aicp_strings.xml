@@ -164,4 +164,8 @@
 
     <!-- FPS view text placeholder -->
     <string name="fps_text_placeholder">FPS: <xliff:g id="fps" example="90">%1$d</xliff:g></string>
+
+    <!-- Aicp Extras Tile -->
+    <string name="quick_aicp_extras_label">AICP Extras</string>
+    <string name="quick_aicp_extras_toast">LOL, you really thought that long click will take you somewhere!!!</string>
 </resources>

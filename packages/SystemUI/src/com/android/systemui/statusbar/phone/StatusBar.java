@@ -145,6 +145,7 @@ import com.android.systemui.ActivityIntentHelper;
 import com.android.systemui.AutoReinflateContainer;
 import com.android.systemui.Dependency;
 import com.android.systemui.DejankUtils;
+import com.android.systemui.Dependency;
 import com.android.systemui.EventLogTags;
 import com.android.systemui.InitController;
 import com.android.systemui.Prefs;
@@ -174,6 +175,7 @@ import com.android.systemui.keyguard.KeyguardUnlockAnimationController;
 import com.android.systemui.keyguard.KeyguardViewMediator;
 import com.android.systemui.keyguard.ScreenLifecycle;
 import com.android.systemui.keyguard.WakefulnessLifecycle;
+import com.android.systemui.navigation.pulse.VisualizerView;
 import com.android.systemui.navigationbar.NavigationBarController;
 import com.android.systemui.navigationbar.NavigationBarView;
 import com.android.systemui.plugins.ActivityStarter;
@@ -250,6 +252,7 @@ import com.android.systemui.statusbar.policy.DeviceProvisionedController.DeviceP
 import com.android.systemui.statusbar.policy.ExtensionController;
 import com.android.systemui.statusbar.policy.KeyguardStateController;
 import com.android.systemui.statusbar.policy.FlashlightController;
+import com.android.systemui.statusbar.policy.PulseController;
 import com.android.systemui.statusbar.policy.UserInfoControllerImpl;
 import com.android.systemui.statusbar.policy.UserSwitcherController;
 import com.android.systemui.statusbar.window.StatusBarWindowController;
@@ -681,6 +684,8 @@ public class StatusBar extends SystemUI implements
     private final NotificationRemoteInputManager mRemoteInputManager;
     private boolean mWallpaperSupported;
 
+    private VisualizerView mVisualizerView;
+
     private Runnable mLaunchTransitionEndRunnable;
     private boolean mLaunchCameraWhenFinishedWaking;
     private boolean mLaunchCameraOnFinishedGoingToSleep;
@@ -1015,6 +1020,9 @@ public class StatusBar extends SystemUI implements
 
         mKeyguardManager = (KeyguardManager) mContext.getSystemService(Context.KEYGUARD_SERVICE);
         mWallpaperSupported = mWallpaperManager.isWallpaperSupported();
+
+        // this will initialize Pulse and begin listening for media events
+        mMediaManager.addCallback(Dependency.get(PulseController.class));
 
         RegisterStatusBarResult result = null;
         try {
@@ -1360,6 +1368,8 @@ public class StatusBar extends SystemUI implements
                 }
             });
         }
+
+        mVisualizerView = (VisualizerView) mNotificationShadeWindowView.findViewById(R.id.visualizerview);
 
         mReportRejectedTouch = mNotificationShadeWindowView
                 .findViewById(R.id.report_rejected_touch);
@@ -3275,6 +3285,7 @@ public class StatusBar extends SystemUI implements
         // bar.
         mKeyguardStateController.notifyKeyguardGoingAway(true);
         mCommandQueue.appTransitionPending(mDisplayId, true /* forced */);
+        Dependency.get(PulseController.class).notifyKeyguardGoingAway();
     }
 
     /**
@@ -3338,6 +3349,7 @@ public class StatusBar extends SystemUI implements
                 && visibleNotOccludedOrWillBe);
 
         mNotificationPanelViewController.setDozing(mDozing, animate, mWakeUpTouchLocation);
+        Dependency.get(PulseController.class).setDozing(mDozing);
         updateQsExpansionEnabled();
         Trace.endSection();
     }
@@ -3483,6 +3495,11 @@ public class StatusBar extends SystemUI implements
     /** Collapse the panel. The collapsing will be animated for the given {@code duration}. */
     void collapsePanelWithDuration(int duration) {
         mNotificationPanelViewController.collapseWithDuration(duration);
+    }
+
+
+    public VisualizerView getLsVisualizer() {
+        return mVisualizerView;
     }
 
     /**
@@ -4544,6 +4561,7 @@ public class StatusBar extends SystemUI implements
                     checkBarModes();
                     updateScrimController();
                     mPresenter.updateMediaMetaData(false, mState != StatusBarState.KEYGUARD);
+                    Dependency.get(PulseController.class).setKeyguardShowing(mState == StatusBarState.KEYGUARD);
                     updateKeyguardState();
                     Trace.endSection();
                 }

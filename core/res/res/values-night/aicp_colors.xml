@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <!-- Dark toast -->
+    <color name="toast_bg_color">@*android:color/background_floating_device_default_dark</color>
+    <color name="toast_text_color">@*android:color/primary_text_default_material_dark</color>
+
+</resources>

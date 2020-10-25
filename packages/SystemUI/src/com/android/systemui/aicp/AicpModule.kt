@@ -20,6 +20,7 @@ import com.android.systemui.qs.QsEventLogger
 import com.android.systemui.qs.pipeline.shared.TileSpec
 import com.android.systemui.qs.shared.model.TileCategory
 import com.android.systemui.qs.tileimpl.QSTileImpl
+import com.android.systemui.qs.tiles.AicpExtrasTile
 import com.android.systemui.qs.tiles.AmbientDisplayTile
 import com.android.systemui.qs.tiles.AODTile
 import com.android.systemui.qs.tiles.CaffeineTile
@@ -43,6 +44,12 @@ import dagger.multibindings.StringKey
 
 @Module
 interface AicpModule {
+    /** Inject Aicp_extrasTile into tileMap in QSModule */
+    @Binds
+    @IntoMap
+    @StringKey(AicpExtrasTile.TILE_SPEC)
+    fun bindAicpExtrasTile(aicpExtrasTile: AicpExtrasTile): QSTileImpl<*>
+
     /** Inject AmbientDisplayTile into tileMap in QSModule */
     @Binds
     @IntoMap
@@ -110,6 +117,7 @@ interface AicpModule {
     fun bindVpnTile(vpnTile: VpnTile): QSTileImpl<*>
 
     companion object {
+        const val AICP_EXTRAS_TILE_SPEC = "aicp_extras"
         const val AMBIENT_DISPLAY_TILE_SPEC = "ambient_display"
         const val AOD_TILE_SPEC = "aod"
         const val CAFFEINE_TILE_SPEC = "caffeine"
@@ -121,6 +129,21 @@ interface AicpModule {
         const val SYNC_TILE_SPEC = "sync"
         const val USB_TETHER_TILE_SPEC = "usb_tether"
         const val VPN_TILE_SPEC = "vpn"
+
+        @Provides
+        @IntoMap
+        @StringKey(AICP_EXTRAS_TILE_SPEC)
+        fun provideAicpExtrasTileConfig(uiEventLogger: QsEventLogger): QSTileConfig =
+            QSTileConfig(
+                tileSpec = TileSpec.create(AICP_EXTRAS_TILE_SPEC),
+                uiConfig =
+                    QSTileUIConfig.Resource(
+                        iconRes = R.drawable.ic_qs_aicp_extras,
+                        labelRes = R.string.quick_aicp_extras_label
+                    ),
+                instanceId = uiEventLogger.getNewInstanceId(),
+                category = TileCategory.UTILITIES,
+            )
 
         @Provides
         @IntoMap

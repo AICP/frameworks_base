@@ -181,4 +181,10 @@ interface IStatusBarService
      * Slim recents
      */
     void showScreenPinningRequest(int taskId);
+
+    /**
+     * Pulse
+     */
+
+    void screenPinningStateChanged(boolean enabled);
 }

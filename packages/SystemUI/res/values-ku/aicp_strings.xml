@@ -50,7 +50,7 @@
     <string name="accessibility_quick_settings_caffeine_on">کافایینی کارایە</string>
     <string name="quick_aicp_extras_label">زیادکراوەکانی Aicp</string>
     <string name="quick_aicp_extras_toast">لۆل، بەڕاستی واتەزانی ئەو گرتە درێژە دەتباتە شوێنێکیترەوە!!!</string>
-    <string name="global_action_restart_system">هەڵکردنەوە</string>
+    <string name="global_action_restart_system">داگیرسانەوە</string>
     <string name="global_action_restart_advanced">پەرەسەندوو</string>
     <string name="global_action_restart_recovery">ڕیکەڤەری</string>
     <string name="global_action_restart_bootloader">بووتلۆدەر</string>

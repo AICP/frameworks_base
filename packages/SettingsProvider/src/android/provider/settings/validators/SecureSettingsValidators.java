@@ -19,6 +19,7 @@ package android.provider.settings.validators;
 import static android.provider.settings.validators.SettingsValidators.ACCESSIBILITY_SHORTCUT_TARGET_LIST_VALIDATOR;
 import static android.provider.settings.validators.SettingsValidators.ANY_INTEGER_VALIDATOR;
 import static android.provider.settings.validators.SettingsValidators.ANY_FLOAT_VALIDATOR;
+import static android.provider.settings.validators.SettingsValidators.ANY_STRING_VALIDATOR;
 import static android.provider.settings.validators.SettingsValidators.BOOLEAN_VALIDATOR;
 import static android.provider.settings.validators.SettingsValidators.COLON_SEPARATED_COMPONENT_LIST_VALIDATOR;
 import static android.provider.settings.validators.SettingsValidators.COLON_SEPARATED_PACKAGE_LIST_VALIDATOR;
@@ -342,5 +343,25 @@ public class SecureSettingsValidators {
         VALIDATORS.put(Secure.QS_SHOW_AUTO_BRIGHTNESS, BOOLEAN_VALIDATOR);
         VALIDATORS.put(Secure.QS_SHOW_BRIGHTNESS_SLIDER, new InclusiveIntegerRangeValidator(0, 3));
         VALIDATORS.put(Secure.QS_BRIGHTNESS_SLIDER_POSITION, new InclusiveIntegerRangeValidator(0, 1));
+        VALIDATORS.put(Secure.PULSE_ENABLED, BOOLEAN_VALIDATOR);
+        VALIDATORS.put(Secure.LOCKSCREEN_PULSE_ENABLED, BOOLEAN_VALIDATOR);
+        VALIDATORS.put(Secure.AMBIENT_PULSE_ENABLED, BOOLEAN_VALIDATOR);
+        VALIDATORS.put(Secure.PULSE_CENTER_MIRRORED, BOOLEAN_VALIDATOR);
+        VALIDATORS.put(Secure.PULSE_VERTICAL_MIRROR, BOOLEAN_VALIDATOR);
+        VALIDATORS.put(Secure.PULSE_CUSTOM_GRAVITY, ANY_STRING_VALIDATOR);
+        VALIDATORS.put(Secure.PULSE_COLOR_TYPE, ANY_INTEGER_VALIDATOR);
+        VALIDATORS.put(Secure.PULSE_COLOR_USER, ANY_INTEGER_VALIDATOR);
+        VALIDATORS.put(Secure.PULSE_LAVALAMP_SPEED, ANY_INTEGER_VALIDATOR);
+        VALIDATORS.put(Secure.PULSE_RENDER_STYLE_URI, ANY_INTEGER_VALIDATOR);
+        VALIDATORS.put(Secure.PULSE_CUSTOM_DIMEN, ANY_INTEGER_VALIDATOR);
+        VALIDATORS.put(Secure.PULSE_CUSTOM_DIV, ANY_INTEGER_VALIDATOR);
+        VALIDATORS.put(Secure.PULSE_FILLED_BLOCK_SIZE, ANY_INTEGER_VALIDATOR);
+        VALIDATORS.put(Secure.PULSE_EMPTY_BLOCK_SIZE, ANY_INTEGER_VALIDATOR);
+        VALIDATORS.put(Secure.PULSE_CUSTOM_FUDGE_FACTOR, ANY_INTEGER_VALIDATOR);
+        VALIDATORS.put(Secure.PULSE_SOLID_FUDGE_FACTOR, ANY_INTEGER_VALIDATOR);
+        VALIDATORS.put(Secure.PULSE_SOLID_UNITS_COUNT, ANY_INTEGER_VALIDATOR);
+        VALIDATORS.put(Secure.PULSE_SOLID_UNITS_OPACITY, ANY_INTEGER_VALIDATOR);
+        VALIDATORS.put(Secure.PULSE_SMOOTHING_ENABLED, BOOLEAN_VALIDATOR);
+        VALIDATORS.put(Secure.PULSE_SOLID_UNITS_ROUNDED, BOOLEAN_VALIDATOR);
     }
 }

@@ -67,5 +67,6 @@
         <permission name="android.permission.CAMERA_OPEN_CLOSE_LISTENER" />
         <permission name="android.permission.REBOOT"/>
         <permission name="android.permission.RECOVERY"/>
+        <permission name="android.permission.FORCE_STOP_PACKAGES"/>
     </privapp-permissions>
 </permissions>

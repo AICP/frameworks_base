@@ -54,4 +54,7 @@
   <!-- Whether device has dash charging support -->
   <java-symbol type="bool" name="config_hasDashCharger" />
 
+  <!-- Cleanup unused fingerprints -->
+  <java-symbol type="bool" name="config_cleanupUnusedFingerprints" />
+  <java-symbol type="bool" name="config_fingerprintPostResetRunnableForAllClients" />
 </resources>

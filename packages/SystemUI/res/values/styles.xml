@@ -379,7 +379,10 @@
         <item name="*android:errorColor">?android:attr/colorError</item>
     </style>
 
-    <style name="qs_theme" parent="@*android:style/Theme.DeviceDefault.QuickSettings">
+    <!-- Theming exposure -->
+    <style name="qs_theme_parent" parent="@*android:style/Theme.DeviceDefault.QuickSettings" />
+
+    <style name="qs_theme" parent="qs_theme_parent">
         <item name="lightIconTheme">@style/QSIconTheme</item>
         <item name="darkIconTheme">@style/QSIconTheme</item>
         <item name="android:colorError">@*android:color/error_color_material_dark</item>

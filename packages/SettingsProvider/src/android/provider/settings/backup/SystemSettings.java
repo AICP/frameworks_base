@@ -172,5 +172,7 @@ public class SystemSettings {
         Settings.System.LOCKSCREEN_ALBUMART_FILTER,
         Settings.System.ENABLE_RIPPLE_EFFECT,
         Settings.System.FINGERPRINT_SUCCESS_VIB,
+        Settings.System.ADAPTIVE_PLAYBACK_ENABLED,
+        Settings.System.ADAPTIVE_PLAYBACK_TIMEOUT,
     };
 }

@@ -54,6 +54,7 @@ import android.service.notification.ZenModeConfig;
 import android.util.ArrayMap;
 import android.util.Log;
 import android.util.Slog;
+import android.view.KeyEvent;
 import android.view.accessibility.AccessibilityManager;
 import android.view.accessibility.CaptioningManager;
 
@@ -140,6 +141,10 @@ public class VolumeDialogControllerImpl implements VolumeDialogController, Dumpa
     private boolean mShowA11yStream;
     private boolean mShowVolumeDialog;
     private boolean mShowSafetyWarning;
+
+    private boolean isResumable;
+    private Handler mMediaStateHandler;
+
     private long mLastToggledRingerOn;
     private boolean mDeviceInteractive = true;
 
@@ -208,6 +213,8 @@ public class VolumeDialogControllerImpl implements VolumeDialogController, Dumpa
         mKeyguardManager = keyguardManager;
         mActivityManager = activityManager;
 
+
+        mMediaStateHandler = new Handler();
 
         boolean accessibilityVolumeStreamActive = accessibilityManager
                 .isAccessibilityVolumeStreamActive();
@@ -523,6 +530,34 @@ public class VolumeDialogControllerImpl implements VolumeDialogController, Dumpa
         final StreamState ss = streamStateW(stream);
         if (ss.level == level) return false;
         ss.level = level;
+        if (stream == AudioSystem.STREAM_MUSIC && level == 0
+                  && mAudio.isMusicActive()) {
+            boolean adaptivePlaybackEnabled = Settings.System.getIntForUser(
+                    mContext.getContentResolver(), Settings.System.ADAPTIVE_PLAYBACK_ENABLED, 0,
+                    UserHandle.USER_CURRENT) == 1;
+            if (adaptivePlaybackEnabled) {
+                int adaptivePlaybackTimeout = Settings.System.getIntForUser(
+                        mContext.getContentResolver(), Settings.System.ADAPTIVE_PLAYBACK_TIMEOUT,
+                        30000, UserHandle.USER_CURRENT);
+                mAudio.dispatchMediaKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN,
+                        KeyEvent.KEYCODE_MEDIA_PAUSE));
+                mAudio.dispatchMediaKeyEvent(new KeyEvent(KeyEvent.ACTION_UP,
+                        KeyEvent.KEYCODE_MEDIA_PAUSE));
+                isResumable = true;
+                mMediaStateHandler.removeCallbacksAndMessages(null);
+                mMediaStateHandler.postDelayed(() -> {
+                    isResumable = false;
+                }, adaptivePlaybackTimeout);
+            }
+        }
+        if (stream == AudioSystem.STREAM_MUSIC && level > 0 && isResumable) {
+            mMediaStateHandler.removeCallbacksAndMessages(null);
+            mAudio.dispatchMediaKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN,
+                    KeyEvent.KEYCODE_MEDIA_PLAY));
+            mAudio.dispatchMediaKeyEvent(new KeyEvent(KeyEvent.ACTION_UP,
+                    KeyEvent.KEYCODE_MEDIA_PLAY));
+            isResumable = false;
+        }
         if (isLogWorthy(stream)) {
             Events.writeEvent(Events.EVENT_LEVEL_CHANGED, stream, level);
         }

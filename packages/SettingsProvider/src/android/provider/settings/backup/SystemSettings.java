@@ -265,5 +265,7 @@ public class SystemSettings {
         Settings.System.LOCK_SCREEN_CUSTOM_NOTIF,
         Settings.System.LOCKSCREEN_BATTERY_INFO_TEMP_UNIT,
         Settings.System.NETWORK_TRAFFIC_INDICATOR_MODE,
+        Settings.System.ADAPTIVE_PLAYBACK_ENABLED,
+        Settings.System.ADAPTIVE_PLAYBACK_TIMEOUT,
     };
 }

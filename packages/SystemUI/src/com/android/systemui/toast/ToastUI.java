@@ -27,12 +27,15 @@ import android.app.INotificationManager;
 import android.app.ITransientNotificationCallback;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.content.pm.PackageManager;
 import android.os.IBinder;
 import android.os.ServiceManager;
 import android.os.UserHandle;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.accessibility.AccessibilityManager;
 import android.view.accessibility.IAccessibilityManager;
+import android.widget.ImageView;
 import android.widget.ToastPresenter;
 
 import androidx.annotation.VisibleForTesting;
@@ -112,6 +115,20 @@ public class ToastUI extends SystemUI implements CommandQueue.Callbacks {
             Context context = mContext.createContextAsUser(userHandle, 0);
             mToast = mToastFactory.createToast(mContext /* sysuiContext */, text, packageName,
                     userHandle.getIdentifier(), mOrientation);
+
+
+            ImageView appIcon = (ImageView) mToast.getView().findViewById(android.R.id.icon);
+            if (appIcon != null) {
+                PackageManager pm = context.getPackageManager();
+                Drawable icon = null;
+                try {
+                    icon = pm.getApplicationIcon(packageName);
+                } catch (PackageManager.NameNotFoundException e) {
+                    // app not found, get default activity icon
+                    icon = pm.getDefaultActivityIcon();
+                }
+                appIcon.setImageDrawable(icon);
+            }
 
             if (mToast.getInAnimation() != null) {
                 mToast.getInAnimation().start();

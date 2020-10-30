@@ -135,8 +135,10 @@ import com.android.systemui.plugins.ActivityStarter;
 import com.android.systemui.plugins.GlobalActions.GlobalActionsManager;
 import com.android.systemui.plugins.GlobalActionsPanelPlugin;
 import com.android.systemui.settings.CurrentUserContextTracker;
+import com.android.systemui.statusbar.BlurUtils;
 import com.android.systemui.statusbar.NotificationShadeDepthController;
 import com.android.systemui.statusbar.phone.NotificationShadeWindowController;
+import com.android.systemui.statusbar.phone.ScrimController;
 import com.android.systemui.statusbar.policy.ConfigurationController;
 import com.android.systemui.statusbar.policy.KeyguardStateController;
 import com.android.systemui.util.EmergencyDialerConstants;
@@ -264,6 +266,7 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
     private int mDialogPressDelay = DIALOG_PRESS_DELAY; // ms
     private Handler mMainHandler;
     private CurrentUserContextTracker mCurrentUserContextTracker;
+    private final BlurUtils mBlurUtils;
     @VisibleForTesting
     boolean mShowLockScreenCardsAndControls = false;
 
@@ -324,7 +327,7 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
             UiEventLogger uiEventLogger,
             RingerModeTracker ringerModeTracker, SysUiState sysUiState, @Main Handler handler,
             ControlsComponent controlsComponent,
-            CurrentUserContextTracker currentUserContextTracker) {
+            CurrentUserContextTracker currentUserContextTracker, BlurUtils blurUtils) {
         mContext = context;
         mWindowManagerFuncs = windowManagerFuncs;
         mAudioManager = audioManager;
@@ -354,6 +357,7 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
         mSysUiState = sysUiState;
         mMainHandler = handler;
         mCurrentUserContextTracker = currentUserContextTracker;
+        mBlurUtils = blurUtils;
 
         // receive broadcasts
         IntentFilter filter = new IntentFilter();
@@ -783,7 +787,8 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
                 this::getWalletViewController, mDepthController, mSysuiColorExtractor,
                 mStatusBarService, mNotificationShadeWindowController,
                 controlsAvailable(), uiController,
-                mSysUiState, this::onRotate, mKeyguardShowing, mPowerAdapter);
+                mSysUiState, this::onRotate, mKeyguardShowing, mPowerAdapter,
+                mBlurUtils);
 
         if (shouldShowLockMessage(dialog)) {
             dialog.showLockMessage();
@@ -2376,6 +2381,7 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
         private Dialog mPowerOptionsDialog;
         private final Runnable mOnRotateCallback;
         private final boolean mControlsAvailable;
+        private final BlurUtils mBlurUtils;
 
         private ControlsUiController mControlsUiController;
         private ViewGroup mControlsView;
@@ -2390,7 +2396,7 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
                 NotificationShadeWindowController notificationShadeWindowController,
                 boolean controlsAvailable, @Nullable ControlsUiController controlsUiController,
                 SysUiState sysuiState, Runnable onRotateCallback, boolean keyguardShowing,
-                MyPowerOptionsAdapter powerAdapter) {
+                MyPowerOptionsAdapter powerAdapter, BlurUtils blurUtils) {
             super(context, com.android.systemui.R.style.Theme_SystemUI_Dialog_GlobalActions);
             mContext = context;
             mAdapter = adapter;
@@ -2405,6 +2411,7 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
             mSysUiState = sysuiState;
             mOnRotateCallback = onRotateCallback;
             mKeyguardShowing = keyguardShowing;
+            mBlurUtils = blurUtils;
             mWalletFactory = walletFactory;
 
             // Window initialization
@@ -2584,7 +2591,8 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
             initializeWalletView();
             if (mBackgroundDrawable == null) {
                 mBackgroundDrawable = new ScrimDrawable();
-                mScrimAlpha = 0.80f;
+                mScrimAlpha = mBlurUtils.supportsBlursOnWindows() ?
+                        ScrimController.BLUR_SCRIM_ALPHA : ScrimController.BUSY_SCRIM_ALPHA;
             }
             getWindow().setBackgroundDrawable(mBackgroundDrawable);
         }

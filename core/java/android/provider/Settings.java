@@ -6785,6 +6785,22 @@ public final class Settings {
          */
         public static final String STATUS_BAR_NOTIF_COUNT = "status_bar_notif_count";
 
+        /**
+         * Adaptive playback
+         * Automatically pause media when the volume is muted and
+         * will resume automatically when volume is restored.
+         *   0 = disabled
+         *   1 = enabled
+         * @hide
+         */
+        public static final String ADAPTIVE_PLAYBACK_ENABLED = "adaptive_playback_enabled";
+
+        /**
+         * Adaptive playback's timeout in ms
+         * @hide
+         */
+        public static final String ADAPTIVE_PLAYBACK_TIMEOUT = "adaptive_playback_timeout";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7021,6 +7037,8 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(QS_PANEL_BG_ALPHA, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(NAVBAR_STYLE, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(STATUS_BAR_NOTIF_COUNT, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(ADAPTIVE_PLAYBACK_ENABLED, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(ADAPTIVE_PLAYBACK_TIMEOUT, ANY_INTEGER_VALIDATOR);
         }
 
         /**

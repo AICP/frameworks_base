@@ -265,5 +265,7 @@ public class SystemSettings {
         Settings.System.LOCKSCREEN_MAX_NOTIF_CONFIG,
         Settings.System.LOCK_SCREEN_CUSTOM_NOTIF,
         Settings.System.LOCKSCREEN_BATTERY_INFO_TEMP_UNIT,
+        Settings.System.ADAPTIVE_PLAYBACK_ENABLED,
+        Settings.System.ADAPTIVE_PLAYBACK_TIMEOUT,
     };
 }

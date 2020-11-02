@@ -401,7 +401,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     private int getBrightnessViewPositionBottom() {
         for (int i = 0; i < getChildCount(); i++) {
             View v = getChildAt(i);
-            if (v == mDivider) {
+            if (v == mSecurityFooter.getView()) {
                 return i;
             }
         }

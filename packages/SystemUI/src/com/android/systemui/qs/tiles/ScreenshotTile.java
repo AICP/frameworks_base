@@ -28,6 +28,7 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
+import android.service.quicksettings.Tile;
 import android.view.View;
 
 import com.android.systemui.R;
@@ -83,6 +84,7 @@ public class ScreenshotTile extends QSTileImpl<BooleanState> {
     protected void handleUpdateState(BooleanState state, Object arg) {
         state.label = mContext.getString(R.string.quick_settings_screenshot_label);
         state.icon = ResourceIcon.get(R.drawable.ic_qs_screenshot);
+        state.state = Tile.STATE_INACTIVE;
     }
 
     @Override

@@ -71,6 +71,7 @@ public class QSFragment extends LifecycleFragment implements QS, CommandQueue.Ca
     protected QuickStatusBarHeader mHeader;
     private QSCustomizer mQSCustomizer;
     protected QSPanel mQSPanel;
+    protected QuickQSPanel mQuickQSPanel;
     protected NonInterceptingScrollView mQSPanelScrollView;
     private QSDetail mQSDetail;
     private boolean mListening;
@@ -148,7 +149,8 @@ public class QSFragment extends LifecycleFragment implements QS, CommandQueue.Ca
 
 
         mQSDetail.setQsPanel(mQSPanel, mHeader, (View) mFooter);
-        mQSAnimator = new QSAnimator(this, mHeader.findViewById(R.id.quick_qs_panel), mQSPanel);
+        mQuickQSPanel  = mHeader.findViewById(R.id.quick_qs_panel);
+        mQSAnimator = new QSAnimator(this, mQuickQSPanel, mQSPanel);
 
 
         mQSCustomizer = view.findViewById(R.id.qs_customize);
@@ -561,6 +563,7 @@ public class QSFragment extends LifecycleFragment implements QS, CommandQueue.Ca
         // when we come back from customize update
         if (!mQSCustomizer.isCustomizing()) {
             mQSPanel.updateSettings();
+            mQuickQSPanel.updateSettings();
         }
     }
 
@@ -634,5 +637,9 @@ public class QSFragment extends LifecycleFragment implements QS, CommandQueue.Ca
     public void onStateChanged(int newState) {
         mState = newState;
         setKeyguardShowing(newState == StatusBarState.KEYGUARD);
+    }
+
+    public QuickQSPanel getQuickQsPanel() {
+        return mQuickQSPanel;
     }
 }

@@ -27,6 +27,7 @@ import android.database.ContentObserver;
 import android.os.Handler;
 import android.os.LocaleList;
 import android.provider.Settings;
+import android.service.quicksettings.Tile;
 import android.widget.Toast;
 
 import com.android.systemui.R;
@@ -127,6 +128,7 @@ public class LocaleTile extends QSTileImpl<State> {
                         R.drawable.ic_qs_locale :
                         R.drawable.ic_qs_locale_pending);
         state.label = mLocaleList.get(0).getDisplayLanguage();
+        state.state = Tile.STATE_INACTIVE;
     }
 
     @Override

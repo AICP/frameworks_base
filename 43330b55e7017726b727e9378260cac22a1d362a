@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "78f6972e_2b6e1246",
+        "filename": "packages/SystemUI/src/com/android/systemui/globalactions/GlobalActionsDialog.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 741,
+      "author": {
+        "id": 505
+      },
+      "writtenOn": "2020-11-05T20:16:19Z",
+      "side": 1,
+      "message": "ps: this line got removed in final patchset on my git and du gerrit, otherwise you get the power button twice if Lockdown button shows up too.",
+      "revId": "43330b55e7017726b727e9378260cac22a1d362a",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    }
+  ]
+}

@@ -254,5 +254,8 @@ public class SystemSettings {
         Settings.System.VOWIFI_ICON,
         Settings.System.PULSE_ON_NEW_TRACKS,
         Settings.System.AUTO_BRIGHTNESS_ONE_SHOT,
+        Settings.System.INCREASING_RING,
+        Settings.System.INCREASING_RING_START_VOLUME,
+        Settings.System.INCREASING_RING_RAMP_UP_TIME,
     };
 }

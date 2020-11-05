@@ -325,5 +325,8 @@ public class SystemSettingsValidators {
                         return new InclusiveIntegerRangeValidator(0, 1000).validate(item);
                     }
                 });
+        VALIDATORS.put(System.INCREASING_RING, BOOLEAN_VALIDATOR);
+        VALIDATORS.put(System.INCREASING_RING_START_VOLUME, ANY_STRING_VALIDATOR);
+        VALIDATORS.put(System.INCREASING_RING_RAMP_UP_TIME, ANY_INTEGER_VALIDATOR);
     }
 }

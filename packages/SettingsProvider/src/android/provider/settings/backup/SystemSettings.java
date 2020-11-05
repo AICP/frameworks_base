@@ -147,5 +147,8 @@ public class SystemSettings {
         Settings.System.STATUSBAR_COLORED_ICONS,
         Settings.System.RINGTONE_VIBRATION_PATTERN,
         Settings.System.CUSTOM_RINGTONE_VIBRATION_PATTERN,
+        Settings.System.INCREASING_RING,
+        Settings.System.INCREASING_RING_START_VOLUME,
+        Settings.System.INCREASING_RING_RAMP_UP_TIME,
     };
 }

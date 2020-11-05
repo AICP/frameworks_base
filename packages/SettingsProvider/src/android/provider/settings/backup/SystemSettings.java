@@ -145,5 +145,8 @@ public class SystemSettings {
         Settings.System.STATUS_BAR_LOGO_POSITION,
         Settings.System.STATUS_BAR_LOGO_STYLE,
         Settings.System.STATUS_BAR_LOGO_COLOR_ACCENT,
+        Settings.System.INCREASING_RING,
+        Settings.System.INCREASING_RING_START_VOLUME,
+        Settings.System.INCREASING_RING_RAMP_UP_TIME,
     };
 }

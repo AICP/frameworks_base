@@ -228,6 +228,7 @@ import com.android.systemui.statusbar.policy.ConfigurationController.Configurati
 import com.android.systemui.statusbar.policy.DeviceProvisionedController;
 import com.android.systemui.statusbar.policy.DeviceProvisionedController.DeviceProvisionedListener;
 import com.android.systemui.statusbar.policy.ExtensionController;
+import com.android.systemui.statusbar.policy.FlashlightController;
 import com.android.systemui.statusbar.policy.KeyguardStateController;
 import com.android.systemui.statusbar.policy.UserInfoControllerImpl;
 import com.android.systemui.statusbar.policy.UserSwitcherController;
@@ -424,6 +425,11 @@ public class CentralSurfacesImpl extends CoreStartable implements
     @Override
     public void animateExpandSettingsPanel(@Nullable String subpanel) {
         mCommandQueueCallbacks.animateExpandSettingsPanel(subpanel);
+    }
+
+    /** */
+    public void toggleCameraFlash() {
+        mCommandQueueCallbacks.toggleCameraFlash();
     }
 
     /** */
@@ -640,6 +646,7 @@ public class CentralSurfacesImpl extends CoreStartable implements
     private boolean mStatusBarWindowHidden;
     private boolean mIsLaunchingActivityOverLockscreen;
 
+    private FlashlightController mFlashlightController;
     private final UserSwitcherController mUserSwitcherController;
     private final NetworkController mNetworkController;
     private final LifecycleRegistry mLifecycle = new LifecycleRegistry(this);
@@ -731,6 +738,7 @@ public class CentralSurfacesImpl extends CoreStartable implements
             NavigationBarController navigationBarController,
             AccessibilityFloatingMenuController accessibilityFloatingMenuController,
             Lazy<AssistManager> assistManagerLazy,
+            FlashlightController flashlightController,
             ConfigurationController configurationController,
             NotificationShadeWindowController notificationShadeWindowController,
             DozeParameters dozeParameters,
@@ -827,6 +835,7 @@ public class CentralSurfacesImpl extends CoreStartable implements
         mNavigationBarController = navigationBarController;
         mAccessibilityFloatingMenuController = accessibilityFloatingMenuController;
         mAssistManagerLazy = assistManagerLazy;
+        mFlashlightController = flashlightController;
         mConfigurationController = configurationController;
         mNotificationShadeWindowController = notificationShadeWindowController;
         mDozeServiceHost = dozeServiceHost;
@@ -2414,6 +2423,10 @@ public class CentralSurfacesImpl extends CoreStartable implements
 
         if (mLightBarController != null) {
             mLightBarController.dump(pw, args);
+        }
+
+        if (mFlashlightController != null) {
+            mFlashlightController.dump(pw, args);
         }
 
         pw.println("SharedPreferences:");

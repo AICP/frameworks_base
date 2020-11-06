@@ -738,7 +738,6 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
                 /*tempActions.size gets in count already PowerOptionsAction if added*/
                 && tempActions.size() > getMaxShownPowerItems()) {
             tempActions.remove(shutdownAction);
-            mPowerItems.add(shutdownAction);
         } else {
             mPowerItems.remove(shutdownAction);
         }

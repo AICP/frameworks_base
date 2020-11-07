@@ -237,4 +237,9 @@ interface IStatusBarService
     void toggleCameraFlash();
     void toggleCameraFlashState(boolean enable);
     boolean getSessionStatus(int sessionType);
+
+    /**
+     * Starts the default assistant app.
+     */
+    void startAssist(in Bundle args);
 }

@@ -397,6 +397,10 @@ public class ActionHandler {
         private static void fireGoogleAssistant() {
             IStatusBarService service = getStatusBarService();
             if (service != null) {
+                try {
+                    service.startAssist(new Bundle());
+                } catch (RemoteException e) {
+                }
             }
         }
 

@@ -159,6 +159,11 @@ interface IStatusBarService
     void suppressAmbientDisplay(boolean suppress);
 
     /**
+     * Starts the default assistant app.
+     */
+    void startAssist(in Bundle args);
+
+    /**
      * Omni
      */
     void toggleCameraFlash();

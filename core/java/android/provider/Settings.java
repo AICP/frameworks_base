@@ -6278,6 +6278,13 @@ public final class Settings {
          */
         public static final String VOWIFI_ICON = "vowifi_icon";
 
+        /**
+         * Whether to pulse ambient on new music tracks
+         *
+         * @hide
+         */
+        public static final String PULSE_ON_NEW_TRACKS = "pulse_on_new_tracks";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6571,6 +6578,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SHOW_VOLTE_ICON);
             PRIVATE_SETTINGS.add(VOLTE_ICON_STYLE);
             PRIVATE_SETTINGS.add(VOWIFI_ICON);
+            PRIVATE_SETTINGS.add(PULSE_ON_NEW_TRACKS);
         }
 
         /**

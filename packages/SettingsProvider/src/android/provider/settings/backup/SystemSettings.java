@@ -252,5 +252,6 @@ public class SystemSettings {
         Settings.System.SHOW_VOLTE_ICON,
         Settings.System.VOLTE_ICON_STYLE,
         Settings.System.VOWIFI_ICON,
+        Settings.System.PULSE_ON_NEW_TRACKS,
     };
 }

@@ -6277,6 +6277,13 @@ public final class Settings {
         public static final String OMNI_STATUS_BAR_FILE_HEADER_IMAGE =
                 "status_bar_file_header_image";
 
+        /**
+         * Whether to pulse ambient on new music tracks
+         *
+         * @hide
+         */
+        public static final String PULSE_ON_NEW_TRACKS = "pulse_on_new_tracks";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6457,6 +6464,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(PULSE_AMBIENT_LIGHT_REPEAT_DIRECTION, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(PULSE_AMBIENT_LIGHT_COLOR_AUTOMATIC, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(PULSE_AMBIENT_LIGHT_WIDTH, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(PULSE_ON_NEW_TRACKS, BOOLEAN_VALIDATOR);
         }
 
         /**

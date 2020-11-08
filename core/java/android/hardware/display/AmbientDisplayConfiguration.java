@@ -55,7 +55,8 @@ public class AmbientDisplayConfiguration {
                 || handwaveGestureEnabled(user)
                 || pocketGestureEnabled(user)
                 || tapGestureEnabled(user)
-                || doubleTapGestureEnabled(user);
+                || doubleTapGestureEnabled(user)
+                || isAmbientTickerEnabled(user);
     }
 
     /** {@hide} */
@@ -268,5 +269,11 @@ public class AmbientDisplayConfiguration {
             return dozeOnChargeEnabledNow && alwaysOnAvailable() && !accessibilityInversionEnabled(user);
         }
         return false;
+    }
+
+    /** {@hide} */
+    public boolean isAmbientTickerEnabled(int user) {
+        return Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.PULSE_ON_NEW_TRACKS, 1, user) != 0;
     }
 }

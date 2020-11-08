@@ -54,7 +54,6 @@ import com.android.systemui.qs.tiles.RotationLockTile;
 import com.android.systemui.qs.tiles.ScreenRecordTile;
 import com.android.systemui.qs.tiles.SoundSearchTile;
 import com.android.systemui.qs.tiles.UiModeNightTile;
-import com.android.systemui.qs.tiles.ScreenshotTile;
 import com.android.systemui.qs.tiles.SoundTile;
 import com.android.systemui.qs.tiles.SyncTile;
 import com.android.systemui.qs.tiles.UsbTetherTile;
@@ -98,7 +97,6 @@ public class QSFactoryImpl implements QSFactory {
     private final Provider<ScreenRecordTile> mScreenRecordTileProvider;
     private final Provider<CompassTile> mCompassTileProvider;
     private final Provider<MusicTile> mMusicTileProvider;
-    private final Provider<ScreenshotTile> mScreenshotTileProvider;
     private final Provider<RebootTile> mRebootTileProvider;
     private final Provider<UsbTetherTile> mUsbTetherTileProvider;
     private final Provider<CaffeineTile> mCaffeineTileProvider;
@@ -141,7 +139,6 @@ public class QSFactoryImpl implements QSFactory {
             Provider<ScreenRecordTile> screenRecordTileProvider,
             Provider<CompassTile> compassTileProvider,
             Provider<MusicTile> musicTileProvider,
-            Provider<ScreenshotTile> screenshotTileProvider,
             Provider<RebootTile> rebootTileProvider,
             Provider<UsbTetherTile> usbtetherTileProvider,
             Provider<CaffeineTile> caffeineTileProvider,
@@ -180,7 +177,6 @@ public class QSFactoryImpl implements QSFactory {
         mScreenRecordTileProvider = screenRecordTileProvider;
         mCompassTileProvider = compassTileProvider;
         mMusicTileProvider = musicTileProvider;
-        mScreenshotTileProvider = screenshotTileProvider;
         mRebootTileProvider = rebootTileProvider;
         mUsbTetherTileProvider = usbtetherTileProvider;
         mCaffeineTileProvider = caffeineTileProvider;
@@ -251,8 +247,6 @@ public class QSFactoryImpl implements QSFactory {
                 return mCompassTileProvider.get();
             case "music":
                 return mMusicTileProvider.get();
-            case "screenshot":
-                return mScreenshotTileProvider.get();
             case "reboot":
                 return mRebootTileProvider.get();
             case "usb_tether":

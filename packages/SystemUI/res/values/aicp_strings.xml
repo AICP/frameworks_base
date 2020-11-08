@@ -41,9 +41,6 @@
     <string name="quick_settings_music_play">Play</string>
     <string name="quick_settings_music_pause">Pause</string>
 
-    <!-- Screenshoot tile -->
-    <string name="quick_settings_screenshot_label">Screenshot</string>
-
     <!-- Reboot/Recovery/PowerOff QS tile -->
     <string name="quick_settings_reboot_label">Reboot</string>
     <string name="quick_settings_reboot_recovery_label">Recovery</string>

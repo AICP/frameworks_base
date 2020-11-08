@@ -6337,6 +6337,13 @@ public final class Settings {
         public static final String LOCKSCREEN_QUICK_UNLOCK_CONTROL =
                 "lockscreen_quick_unlock_control";
 
+        /**
+         * Whether to pulse ambient on new music tracks
+         *
+         * @hide
+         */
+        public static final String PULSE_ON_NEW_TRACKS = "pulse_on_new_tracks";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6635,6 +6642,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(ROAMING_INDICATOR_ICON);
             PRIVATE_SETTINGS.add(SHOW_LTE_FOURGEE);
             PRIVATE_SETTINGS.add(LOCKSCREEN_QUICK_UNLOCK_CONTROL);
+            PRIVATE_SETTINGS.add(PULSE_ON_NEW_TRACKS);
         }
 
         /**

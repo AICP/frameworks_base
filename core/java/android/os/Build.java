@@ -277,7 +277,7 @@ public class Build {
          * most recently applied a security patch.
          */
         public static final String SECURITY_PATCH = SystemProperties.get(
-                "ro.build.version.security_patch", "");
+                "ro.build.version.real_security_patch", "");
 
         /**
          * The user-visible SDK version of the framework in its raw String

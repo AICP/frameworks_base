@@ -255,5 +255,6 @@ public class SystemSettings {
         Settings.System.SHOW_LTE_FOURGEE,
         Settings.System.NETWORK_TRAFFIC_INDICATOR_MODE,
         Settings.System.LOCKSCREEN_QUICK_UNLOCK_CONTROL,
+        Settings.System.PULSE_ON_NEW_TRACKS,
     };
 }

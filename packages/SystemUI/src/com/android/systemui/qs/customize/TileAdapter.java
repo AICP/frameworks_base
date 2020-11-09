@@ -92,6 +92,7 @@ public class TileAdapter extends RecyclerView.Adapter<Holder> implements TileSta
     private int mAccessibilityFromIndex;
     private CharSequence mAccessibilityFromLabel;
     private QSTileHost mHost;
+    private boolean mHideLabel;
     private final UiEventLogger mUiEventLogger;
 
     public TileAdapter(Context context, UiEventLogger uiEventLogger) {
@@ -314,6 +315,7 @@ public class TileAdapter extends RecyclerView.Adapter<Holder> implements TileSta
         }
         holder.mTileView.handleStateChanged(info.state);
         holder.mTileView.setShowAppLabel(position > mEditIndex && !info.isSystem);
+        holder.mTileView.setHideLabel(mHideLabel);
 
         if (!mAccessibilityManager.isTouchExplorationEnabled()) {
             holder.mTileView.setOnClickListener(new OnClickListener() {
@@ -680,5 +682,12 @@ public class TileAdapter extends RecyclerView.Adapter<Holder> implements TileSta
 
     public void setColumnCount(int columns) {
         mSizeLookup.setColumnCount(columns);
+    }
+
+    public void setHideLabel(boolean value) {
+        if (mHideLabel != value) {
+            mHideLabel = value;
+            notifyDataSetChanged();
+        }
     }
 }

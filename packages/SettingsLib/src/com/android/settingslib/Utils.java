@@ -181,12 +181,16 @@ public class Utils {
                 BatteryManager.EXTRA_DASH_CHARGER, false);
         boolean warpChargeStatus = batteryChangedIntent.getBooleanExtra(
                 BatteryManager.EXTRA_WARP_CHARGER, false);
+        boolean turboPowerStatus = batteryChangedIntent.getBooleanExtra(
+                BatteryManager.EXTRA_TURBO_POWER, false);
         String statusString;
         if (status == BatteryManager.BATTERY_STATUS_CHARGING) {
             if (dashChargeStatus) {
                 statusString = res.getString(R.string.battery_info_status_dash_charging);
             } else if (warpChargeStatus) {
                 statusString = res.getString(R.string.battery_info_status_warp_charging);
+            } else if (turboPowerStatus) {
+                statusString = res.getString(R.string.battery_info_status_turbo_charging);
             } else {
                 statusString = res.getString(R.string.battery_info_status_charging);
             }

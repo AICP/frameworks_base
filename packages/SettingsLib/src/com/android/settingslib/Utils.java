@@ -227,6 +227,9 @@ public class Utils {
                     statusString = res.getString(R.string.battery_info_status_charging);
                 } else if (batteryStatus.isPluggedInWired()) {
                     switch (batteryStatus.getChargingSpeed(context)) {
+                        case BatteryStatus.CHARGING_TURBO_POWER:
+                            statusString = res.getString(R.string.battery_info_status_turbo_charging);
+                            break;
                         case BatteryStatus.CHARGING_VOOC:
                             statusString = res.getString(R.string.battery_info_status_vooc_charging);
                             break;

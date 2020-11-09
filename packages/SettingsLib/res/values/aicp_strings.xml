@@ -41,4 +41,10 @@
 
     <!-- Battery use screen. Battery status shown in chart label when charging from a VOOC source.  -->
     <string name="battery_info_status_vooc_charging">VOOC charging</string>
+
+    <!-- Label for estimated remaining duration of TurboPower battery charging -->
+    <string name="power_remaining_turbo_charging_duration_only">Turbo charging (<xliff:g id="time">%1$s</xliff:g> left until full)</string>
+
+    <!-- Battery use screen. Battery status shown in chart label when charging from a TurboPower source.  -->
+    <string name="battery_info_status_turbo_charging">Turbo charging</string>
 </resources>

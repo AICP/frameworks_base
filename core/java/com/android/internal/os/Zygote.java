@@ -25,6 +25,7 @@ import android.net.Credentials;
 import android.net.LocalServerSocket;
 import android.net.LocalSocket;
 import android.net.NetworkUtils;
+import android.os.Build;
 import android.os.FactoryTest;
 import android.os.IVold;
 import android.os.Process;
@@ -46,6 +47,7 @@ import java.io.DataOutputStream;
 import java.io.FileDescriptor;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Field;
 
 /** @hide */
 public final class Zygote {
@@ -284,6 +286,9 @@ public final class Zygote {
      * @hide for internal use only
      */
     public static final String USAP_POOL_SECONDARY_SOCKET_NAME = "usap_pool_secondary";
+
+    private static final boolean PRODUCT_NEEDS_MODEL_EDIT =
+            SystemProperties.getBoolean("ro.product.needs_model_edit", false);
 
     private Zygote() {}
 
@@ -786,6 +791,35 @@ public final class Zygote {
 
     private static native void nativeBoostUsapPriority();
 
+    private static void maybeSetGmsModel(String packageName, String loggingTag) {
+        if (PRODUCT_NEEDS_MODEL_EDIT &&
+                packageName != null &&
+                packageName.startsWith("com.google.android.gms")) {
+            /*
+             * This would be much prettier if we just removed "final" from the MODEL field in Build,
+             * but that's easy to detect should Google ever catch onto this. Inspecting bytecode
+             * is much harder so this is more future-proof.
+             *
+             * While it's an awful hack, it's technically safe because the field was populated at
+             * runtime (in pre-fork Zygote) and it's not a primitive.
+             */
+            try {
+                // Unlock
+                Field field = Build.class.getDeclaredField("MODEL");
+                field.setAccessible(true);
+
+                // Edit
+                String newModel = Build.MODEL + "\u200b";
+                field.set(null, newModel);
+
+                // Lock
+                field.setAccessible(false);
+            } catch (NoSuchFieldException | IllegalAccessException e) {
+                Log.w(loggingTag, "Failed to set fake model name for GMS", e);
+            }
+        }
+    }
+
     static void setAppProcessName(ZygoteArguments args, String loggingTag) {
         if (args.mNiceName != null) {
             Process.setArgV0(args.mNiceName);
@@ -794,6 +828,9 @@ public final class Zygote {
         } else {
             Log.w(loggingTag, "Unable to set package name.");
         }
+
+        // Modify model to defy SafetyNet hardware attestation in GMS
+        maybeSetGmsModel(args.mPackageName, loggingTag);
     }
 
     private static final String USAP_ERROR_PREFIX = "Invalid command to USAP: ";

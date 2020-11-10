@@ -35,12 +35,14 @@ public class AmbientDisplayConfiguration {
 
     private final Context mContext;
     private final boolean mAlwaysOnByDefault;
+    private final boolean mDeviceWithWeirdDtSensor;
 
     /** {@hide} */
     @TestApi
     public AmbientDisplayConfiguration(Context context) {
         mContext = context;
         mAlwaysOnByDefault = mContext.getResources().getBoolean(R.bool.config_dozeAlwaysOnEnabled);
+        mDeviceWithWeirdDtSensor = mContext.getResources().getBoolean(R.bool.config_has_weird_dt_sensor);
     }
 
     /** {@hide} */
@@ -275,5 +277,10 @@ public class AmbientDisplayConfiguration {
     public boolean isAmbientTickerEnabled(int user) {
         return Settings.System.getIntForUser(mContext.getContentResolver(),
                 Settings.System.PULSE_ON_NEW_TRACKS, 1, user) != 0;
+    }
+
+    /** {@hide} */
+    public boolean deviceHasWeirtdDtSensor() {
+        return mDeviceWithWeirdDtSensor;
     }
 }

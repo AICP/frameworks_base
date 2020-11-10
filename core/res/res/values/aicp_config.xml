@@ -302,4 +302,6 @@
 
     <!-- Default state for LiveDisplay -->
     <bool name="config_liveDisplayAvailable">false</bool>
+
+    <bool name="config_has_weird_dt_sensor">false</bool>
 </resources>

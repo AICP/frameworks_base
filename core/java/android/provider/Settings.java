@@ -6076,6 +6076,14 @@ public final class Settings {
         public static final String NOTIFICATION_GUTS_KILL_APP_BUTTON =
                 "notification_guts_kill_app_button";
 
+        /**
+         * Whether to show the kill app button in notification guts
+         *
+         * @hide
+         */
+        public static final String CONVERSATION_GUTS_KILL_APP_BUTTON =
+                "conversation_guts_kill_app_button";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6232,6 +6240,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(QS_QUICKBAR_COLUMNS, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(POCKET_JUDGE, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(NOTIFICATION_GUTS_KILL_APP_BUTTON, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(CONVERSATION_GUTS_KILL_APP_BUTTON, BOOLEAN_VALIDATOR);
         }
 
         /**

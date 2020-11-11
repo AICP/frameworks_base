@@ -6088,6 +6088,12 @@ public final class Settings {
          * custom lockscreen max notification config
          * @hide
          */
+        public static final String LOCK_SCREEN_CUSTOM_NOTIF = "lock_screen_custom_notif";
+
+        /**
+         * custom lockscreen max notification config
+         * @hide
+         */
         public static final String LOCKSCREEN_MAX_NOTIF_CONFIG = "lockscreen_max_notif_config";
 
         /***************************
@@ -6247,6 +6253,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(POCKET_JUDGE, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(NOTIFICATION_GUTS_KILL_APP_BUTTON, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(CONVERSATION_GUTS_KILL_APP_BUTTON, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(LOCK_SCREEN_CUSTOM_NOTIF, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(LOCKSCREEN_MAX_NOTIF_CONFIG, ANY_INTEGER_VALIDATOR);
         }
 

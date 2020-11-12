@@ -180,6 +180,7 @@ public class EdgeBackGestureHandler extends CurrentUserTracker implements Displa
     private static final int HAPTIC_DURATION = 20;
 
     private final Vibrator mVibrator;
+    private boolean mBlockedGesturalNavigation;
 
     private boolean mBlockedGesturalNavigation;
 

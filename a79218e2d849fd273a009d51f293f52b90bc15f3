@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b47bd17a_9f77a8aa",
+        "filename": "packages/SystemUI/res/layout/detailed_weather_view.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2020-11-13T07:15:24Z",
+      "side": 1,
+      "message": "Does appear a bit off for \"young\" eyes",
+      "range": {
+        "startLine": 38,
+        "startChar": 12,
+        "endLine": 39,
+        "endChar": 37
+      },
+      "revId": "a79218e2d849fd273a009d51f293f52b90bc15f3",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27b27db2_e6e580d2",
+        "filename": "packages/SystemUI/res/layout/detailed_weather_view.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2020-11-13T07:15:24Z",
+      "side": 1,
+      "message": "Same as above",
+      "range": {
+        "startLine": 212,
+        "startChar": 12,
+        "endLine": 213,
+        "endChar": 37
+      },
+      "revId": "a79218e2d849fd273a009d51f293f52b90bc15f3",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd76f409_4cbd8a48",
+        "filename": "packages/SystemUI/src/com/android/systemui/omni/DetailedWeatherView.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2020-11-13T07:15:24Z",
+      "side": 1,
+      "message": "Unused code, originally used on OmniJaws widget",
+      "range": {
+        "startLine": 90,
+        "startChar": 4,
+        "endLine": 94,
+        "endChar": 68
+      },
+      "revId": "a79218e2d849fd273a009d51f293f52b90bc15f3",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5fba8fb4_fd43df5a",
+        "filename": "packages/SystemUI/src/com/android/systemui/omni/DetailedWeatherView.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2020-11-13T07:15:24Z",
+      "side": 1,
+      "message": "Causes the same issue fixed using https://gerrit.aicp-rom.com/c/AICP/packages_services_OmniJaws/+/103911",
+      "range": {
+        "startLine": 272,
+        "startChar": 8,
+        "endLine": 279,
+        "endChar": 37
+      },
+      "revId": "a79218e2d849fd273a009d51f293f52b90bc15f3",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    }
+  ]
+}

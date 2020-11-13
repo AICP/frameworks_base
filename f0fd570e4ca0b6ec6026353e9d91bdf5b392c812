@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "93dad382_dabf0d17",
+        "filename": "packages/SystemUI/res/drawable/segmented_buttons_background.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2020-11-13T06:41:42Z",
+      "side": 1,
+      "message": "Doesnt fit well with the rounded panel, more apt is ?android:attr/dialogCornerRadius\n\nbetter when  used along with same radius on  drawable/zen_introduction_message_background",
+      "range": {
+        "startLine": 18,
+        "startChar": 31,
+        "endLine": 18,
+        "endChar": 62
+      },
+      "revId": "f0fd570e4ca0b6ec6026353e9d91bdf5b392c812",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "74fb001b_d710300f",
+        "filename": "packages/SystemUI/res/layout/zen_mode_panel.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2020-11-13T06:41:42Z",
+      "side": 1,
+      "message": "Will only follow light accent, better to switch to @*android:style/ThemeOverlay.DeviceDefault.Accent.DayNight",
+      "range": {
+        "startLine": 51,
+        "startChar": 27,
+        "endLine": 51,
+        "endChar": 82
+      },
+      "revId": "f0fd570e4ca0b6ec6026353e9d91bdf5b392c812",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    }
+  ]
+}

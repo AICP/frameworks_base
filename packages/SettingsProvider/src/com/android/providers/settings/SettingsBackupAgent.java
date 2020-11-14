@@ -863,6 +863,7 @@ public class SettingsBackupAgent extends BackupAgentHelper {
             // BOOLEAN_VALIDATOR == 0
             // ANY_INTEGER_VALIDATOR == 1
             // ANY_STRING_VALIDATOR == 2
+            // NON_NEGATIVE_INTEGER_VALIDATOR == 3
             for (String key : aicpValidators.keySet()) {
                 Integer validatorId = aicpValidators.get(key);
                 if (validatorId == 0) {
@@ -871,6 +872,8 @@ public class SettingsBackupAgent extends BackupAgentHelper {
                     validators.put(key, SettingsValidators.ANY_INTEGER_VALIDATOR);
                 } else if (validatorId == 2) {
                     validators.put(key, SettingsValidators.ANY_STRING_VALIDATOR);
+                } else if (validatorId == 3) {
+                    validators.put(key, SettingsValidators.NON_NEGATIVE_INTEGER_VALIDATOR);
                 }
             }
         } else if (contentUri.equals(Settings.Global.CONTENT_URI)) {

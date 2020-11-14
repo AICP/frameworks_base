@@ -56,6 +56,8 @@ public class ScreenRecordDialog extends SystemUIDialog {
     @Nullable
     private final Runnable mOnStartRecordingClicked;
     private Switch mTapsSwitch;
+    private Switch mStopDotSwitch;
+    private Switch mLowQualitySwitch;
     private Switch mAudioSwitch;
     private Spinner mOptions;
 
@@ -96,6 +98,8 @@ public class ScreenRecordDialog extends SystemUIDialog {
 
         mAudioSwitch = findViewById(R.id.screenrecord_audio_switch);
         mTapsSwitch = findViewById(R.id.screenrecord_taps_switch);
+        mStopDotSwitch = findViewById(R.id.screenrecord_stopdot_switch);
+        mLowQualitySwitch = findViewById(R.id.screenrecord_lowquality_switch);
         mOptions = findViewById(R.id.screen_recording_options);
         ArrayAdapter a = new ScreenRecordingAdapter(getContext().getApplicationContext(),
                 android.R.layout.simple_spinner_dropdown_item,
@@ -110,6 +114,8 @@ public class ScreenRecordDialog extends SystemUIDialog {
     private void requestScreenCapture() {
         Context userContext = mUserContextProvider.getUserContext();
         boolean showTaps = mTapsSwitch.isChecked();
+        boolean showStopDot = mStopDotSwitch.isChecked();
+        boolean lowQuality = mLowQualitySwitch.isChecked();
         ScreenRecordingAudioSource audioMode = mAudioSwitch.isChecked()
                 ? (ScreenRecordingAudioSource) mOptions.getSelectedItem()
                 : NONE;
@@ -117,7 +123,7 @@ public class ScreenRecordDialog extends SystemUIDialog {
                 RecordingService.REQUEST_CODE,
                 RecordingService.getStartIntent(
                         userContext, Activity.RESULT_OK,
-                        audioMode.ordinal(), showTaps),
+                        audioMode.ordinal(), showTaps, showStopDot, lowQuality),
                 PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
         PendingIntent stopIntent = PendingIntent.getService(userContext,
                 RecordingService.REQUEST_CODE,

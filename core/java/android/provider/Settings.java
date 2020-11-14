@@ -6149,6 +6149,25 @@ public final class Settings {
          */
         public static final String ACCELEROMETER_ROTATION_ANGLES = "accelerometer_rotation_angles";
 
+        /**
+         * Whether the phone ringtone should be played in an increasing manner
+         * @hide
+         */
+        public static final String INCREASING_RING = "increasing_ring";
+
+        /**
+         * Start volume fraction for increasing ring volume
+         * @hide
+         */
+        public static final String INCREASING_RING_START_VOLUME = "increasing_ring_start_vol";
+
+
+        /**
+         * Ramp up time (seconds) for increasing ring
+         * @hide
+         */
+        public static final String INCREASING_RING_RAMP_UP_TIME = "increasing_ring_ramp_up_time";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6315,6 +6334,9 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(SCREENSHOT_DEFAULT_MODE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(QS_SYSTEM_INFO, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(ACCELEROMETER_ROTATION_ANGLES, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(INCREASING_RING, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(INCREASING_RING_START_VOLUME, ANY_STRING_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(INCREASING_RING_RAMP_UP_TIME, ANY_INTEGER_VALIDATOR);
         }
 
         /**

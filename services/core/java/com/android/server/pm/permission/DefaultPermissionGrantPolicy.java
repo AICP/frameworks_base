@@ -809,6 +809,10 @@ public final class DefaultPermissionGrantPolicy {
                         TelephonyManager.ACTION_EMERGENCY_ASSISTANCE, userId),
                 userId, CONTACTS_PERMISSIONS, PHONE_PERMISSIONS);
 
+        // SafetyHub
+        grantSystemFixedPermissionsToSystemPackage(pm,"com.google.android.apps.safetyhub", userId, SENSORS_PERMISSIONS,
+                CONTACTS_PERMISSIONS, ALWAYS_LOCATION_PERMISSIONS, MICROPHONE_PERMISSIONS, PHONE_PERMISSIONS);
+
         // NFC Tag viewer
         Intent nfcTagIntent = new Intent(Intent.ACTION_VIEW)
                 .setType("vnd.android.cursor.item/ndef_msg");

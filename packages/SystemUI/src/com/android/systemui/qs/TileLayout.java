@@ -180,11 +180,11 @@ public class TileLayout extends ViewGroup implements QSTileLayout {
         final int previousRows = mRows;
         if (res.getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             mRows = Settings.System.getIntForUser(resolver,
-                    Settings.System.AICP_QS_LAYOUT_ROWS, 3,
+                    Settings.System.OMNI_QS_LAYOUT_ROWS, 3,
                     UserHandle.USER_CURRENT);
         } else {
             mRows = Settings.System.getIntForUser(resolver,
-                    Settings.System.AICP_QS_LAYOUT_ROWS_LANDSCAPE, 2,
+                    Settings.System.OMNI_QS_LAYOUT_ROWS_LANDSCAPE, 2,
                     UserHandle.USER_CURRENT);
         }
         if (mRows < mMinRows) {

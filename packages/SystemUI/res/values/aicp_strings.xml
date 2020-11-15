@@ -275,8 +275,9 @@
     <string name="accessibility_dpad_left">Cursor left</string>
     <string name="accessibility_dpad_right">Cursor right</string>
 
-    <!-- Kill app API -->
+    <!-- Kill app API & Tile-->
     <string name="task_helper_app_killed">%1$s force stopped</string>
     <string name="empty_app_killed">App</string>
+    <string name="quick_settings_killapp_label">Kill app</string>
 
 </resources>

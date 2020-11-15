@@ -104,6 +104,8 @@ class DoubleLineTileLayout(
 
     override fun getNumColumns() = actualColumns
 
+    override fun getNumRows() = NUM_LINES
+
     override fun isShowTitles(): Boolean {
         return false
     }

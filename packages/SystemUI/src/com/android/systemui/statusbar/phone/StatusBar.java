@@ -765,6 +765,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.QS_QUICKBAR_COLUMNS),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.PULSE_AMBIENT_LIGHT),
+                    false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -4643,12 +4646,16 @@ public class StatusBar extends SystemUI implements DemoMode,
         int onefingerQuickSettingsintercept = Settings.System.getIntForUser(
                 mContext.getContentResolver(), Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN, 0,
                 UserHandle.USER_CURRENT);
+        boolean pulseAmbientLightEnabled = Settings.System.getIntForUser(
+                mContext.getContentResolver(), Settings.System.PULSE_AMBIENT_LIGHT, 0,
+                UserHandle.USER_CURRENT) == 1;
 
         if (mNotificationPanelViewController != null) {
             mNotificationPanelViewController.updateDoubleTapToSleep(doubleTapToSleepEnabled);
             mNotificationPanelViewController.setLockscreenDoubleTapToSleep(isDoubleTapEnabled);
             mNotificationPanelViewController.setQsSecureExpandDisabled(isQsSecureExpandDisabled);
             mNotificationPanelViewController.setOneFingerQuickSettingsIntercept(onefingerQuickSettingsintercept);
+            mNotificationPanelViewController.setPulseAmbientLight(pulseAmbientLightEnabled);
         }
         if (mNotificationShadeWindowViewController != null) {
             mNotificationShadeWindowViewController.updateDoubleTapToSleep(doubleTapToSleepEnabled);

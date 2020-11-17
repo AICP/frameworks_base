@@ -6585,6 +6585,12 @@ public final class Settings {
          */
         public static final String GAMING_MODE_DYNAMIC_STATE = "gaming_mode_dynamic_state";
 
+        /**
+         * Controls whether to show notification headers
+         * @hide
+         */
+        public static final String NOTIFICATION_HEADERS = "notification_headers";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6809,6 +6815,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(GAMING_MODE_NOTIFICATIONS, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(GAMING_MODE_MANUAL_BRIGHTNESS_TOGGLE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(GAMING_MODE_DYNAMIC_STATE, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(NOTIFICATION_HEADERS, BOOLEAN_VALIDATOR);
         }
 
         /**

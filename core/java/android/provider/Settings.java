@@ -6280,6 +6280,7 @@ public final class Settings {
        private static final Validator GAMING_MODE_VALUES_VALIDATOR =
                ANY_STRING_VALIDATOR;
 
+        /** @hide */
         public static final String GAMING_MODE_DUMMY = "gaming_mode_dummy";
         /** @hide */
        private static final Validator GAMING_MODE_DUMMY_VALIDATOR =
@@ -6490,7 +6491,7 @@ public final class Settings {
         private static final Validator OMNI_DEVICE_PROXI_CHECK_ENABLED_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
-        /*
+        /**
          * @hide
          */
         public static final String OMNI_DEVICE_FEATURE_SETTINGS = "device_feature_settings";
@@ -6826,6 +6827,7 @@ public final class Settings {
 
         /**
          * Color temperature of the display during the day
+         * @hide
          */
         public static final String DISPLAY_TEMPERATURE_DAY = "display_temperature_day";
 
@@ -6835,6 +6837,7 @@ public final class Settings {
 
         /**
          * Color temperature of the display at night
+         * @hide
          */
         public static final String DISPLAY_TEMPERATURE_NIGHT = "display_temperature_night";
 
@@ -6844,6 +6847,7 @@ public final class Settings {
 
         /**
          * Display color temperature adjustment mode, one of DAY (default), NIGHT, or AUTO.
+         * @hide
          */
         public static final String DISPLAY_TEMPERATURE_MODE = "display_temperature_mode";
 
@@ -6854,6 +6858,7 @@ public final class Settings {
         /**
          * Automatic outdoor mode
          * 0 = 0ff, 1 = on
+         * @hide
          */
         public static final String DISPLAY_AUTO_OUTDOOR_MODE = "display_auto_outdoor_mode";
 
@@ -6864,6 +6869,7 @@ public final class Settings {
         /**
          * Reader mode
          * 0 = 0ff, 1 = on
+         * @hide
          */
         public static final String DISPLAY_READING_MODE = "display_reading_mode";
 
@@ -6874,6 +6880,7 @@ public final class Settings {
         /**
          * Use display power saving features such as CABC or CABL
          * 0 = 0ff, 1 = on
+         * @hide
          */
         public static final String DISPLAY_CABC = "display_low_power";
 
@@ -6884,6 +6891,7 @@ public final class Settings {
         /**
          * Use color enhancement feature of display
          * 0 = 0ff, 1 = on
+         * @hide
          */
         public static final String DISPLAY_COLOR_ENHANCE = "display_color_enhance";
 
@@ -6894,6 +6902,7 @@ public final class Settings {
         /**
          * Use auto contrast optimization feature of display
          * 0 = 0ff, 1 = on
+         * @hide
          */
         public static final String DISPLAY_AUTO_CONTRAST = "display_auto_contrast";
 
@@ -6903,6 +6912,7 @@ public final class Settings {
 
         /**
          * Manual display color adjustments (RGB values as floats, separated by spaces)
+         * @hide
          */
         public static final String DISPLAY_COLOR_ADJUSTMENT = "display_color_adjustment";
 
@@ -6926,6 +6936,7 @@ public final class Settings {
 
         /**
          * The current custom picture adjustment values as a delimited string
+         * @hide
          */
         public static final String DISPLAY_PICTURE_ADJUSTMENT =
                 "display_picture_adjustment";

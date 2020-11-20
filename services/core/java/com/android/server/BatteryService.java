@@ -353,13 +353,21 @@ public final class BatteryService extends SystemService {
             mLowBatteryBlinking = Settings.System.getInt(resolver,
                     Settings.System.BATTERY_LIGHT_LOW_BLINKING, 0) == 1;
             mBatteryLowARGB = Settings.System.getInt(resolver,
-                    Settings.System.BATTERY_LIGHT_LOW_COLOR, 0xFFFF0000);
+                    Settings.System.BATTERY_LIGHT_LOW_COLOR, mMultiColorLed ? 0xFFFF0000 :
+                    res.getInteger(
+                    com.android.internal.R.integer.config_notificationsBatteryLowARGB));
             mBatteryMediumARGB = Settings.System.getInt(resolver,
-                    Settings.System.BATTERY_LIGHT_MEDIUM_COLOR, 0xFFFFFF00);
+                    Settings.System.BATTERY_LIGHT_MEDIUM_COLOR, mMultiColorLed ? 0xFFFFFF00 :
+                    res.getInteger(
+                    com.android.internal.R.integer.config_notificationsBatteryMediumARGB));
             mBatteryFullARGB = Settings.System.getInt(resolver,
-                    Settings.System.BATTERY_LIGHT_FULL_COLOR, 0xFF00FF00);
+                    Settings.System.BATTERY_LIGHT_FULL_COLOR, mMultiColorLed ? 0xFF00FF00 :
+                    res.getInteger(
+                    com.android.internal.R.integer.config_notificationsBatteryFullARGB));
             mBatteryReallyFullARGB = Settings.System.getInt(resolver,
-                    Settings.System.BATTERY_LIGHT_REALLYFULL_COLOR, 0xFF00FF00);
+                    Settings.System.BATTERY_LIGHT_REALLYFULL_COLOR, mMultiColorLed ? 0xFF00FF00:
+                    res.getInteger(
+                    com.android.internal.R.integer.config_notificationsBatteryFullARGB));
              updateLed();
         }
     }

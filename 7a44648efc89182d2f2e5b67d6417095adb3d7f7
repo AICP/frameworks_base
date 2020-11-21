@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d65d82b7_2235a94c",
+        "filename": "packages/SystemUI/src/com/android/systemui/aicp/NotificationLightsView.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2020-11-21T04:33:10Z",
+      "side": 1,
+      "message": "Please don\u0027t let this ship",
+      "range": {
+        "startLine": 58,
+        "startChar": 8,
+        "endLine": 58,
+        "endChar": 47
+      },
+      "revId": "7a44648efc89182d2f2e5b67d6417095adb3d7f7",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    }
+  ]
+}

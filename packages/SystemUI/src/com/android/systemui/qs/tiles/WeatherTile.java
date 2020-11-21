@@ -212,7 +212,7 @@ public class WeatherTile extends QSTileImpl<BooleanState> implements OmniJawsCli
                 mWeatherData = mWeatherClient.getWeatherInfo();
                 if (mWeatherData != null) {
                     mWeatherImage = mWeatherClient.getWeatherConditionImagefromPack(
-                            mWeatherData.conditionCode, true /* force loading from default pack */);
+                            mWeatherData.conditionCode, false /* force loading from default pack */);
                     mWeatherImage = mWeatherImage.mutate();
                     mWeatherLabel = mWeatherData.temp + mWeatherData.tempUnits;
                 } else {

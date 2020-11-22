@@ -47,6 +47,18 @@
     <string name="accessibility_quick_settings_live_display_changed_day">LiveDisplay zmieniony na tryb dzienny.</string>
     <string name="accessibility_quick_settings_live_display_changed_night">LiveDisplay zmieniony na tryb nocny.</string>
     <string name="accessibility_quick_settings_live_display_changed_outdoor">LiveDisplay przełączono na tryb na zewnątrz.</string>
+    <plurals name="zen_mode_duration_minutes_combined">
+        <item quantity="one">jedna minuta</item>
+        <item quantity="few">%d minut</item>
+        <item quantity="many">%d minut</item>
+        <item quantity="other">%d minut</item>
+    </plurals>
+    <plurals name="zen_mode_duration_minutes_combined_short">
+        <item quantity="one">1 min</item>
+        <item quantity="few">%d minut</item>
+        <item quantity="many">%d minut</item>
+        <item quantity="other">%d minut</item>
+    </plurals>
     <string name="aerr_copy">Skopiuj URL logu</string>
     <string name="url_copy_success">Pomyślnie skopiowano URL</string>
     <string name="url_copy_failed">Wystąpił błąd podczas przesyłania logów do serwisu aicp haste</string>

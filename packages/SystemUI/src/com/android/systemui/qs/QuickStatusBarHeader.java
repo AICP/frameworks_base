@@ -264,8 +264,8 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         //mBatteryRemainingIcon.setIgnoreTunerUpdates(true);
         // QS will always show the estimate, and BatteryMeterView handles the case where
         // it's unavailable or charging
-        mBatteryRemainingIcon.setPercentShowMode(getBatteryPercentMode());
         mBatteryRemainingIcon.setQsbHeader();
+        mBatteryRemainingIcon.setPercentShowMode(getBatteryPercentMode(), true);
         mBatteryRemainingIcon.setOnClickListener(this);
         mRingerModeTextView.setSelected(true);
         mNextAlarmTextView.setSelected(true);
@@ -761,6 +761,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         float intensity = getColorIntensity(colorForeground);
         int fillColor = mDualToneHandler.getSingleColor(intensity);
         mBatteryRemainingIcon.onDarkChanged(tintArea, intensity, fillColor);
+        setBatteryPercentMode();
         if(mSystemInfoText != null &&  mSystemInfoIcon != null) {
             updateSystemInfoText();
         }

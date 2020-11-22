@@ -646,6 +646,5 @@ public class BatteryMeterView extends LinearLayout implements
 
     public void setQsbHeader() {
         mForceShowPercent = true;
-        updateBatteryStyle("" + BatteryMeterDrawableBase.BATTERY_STYLE_PORTRAIT);
     }
 }

@@ -193,4 +193,8 @@
     <!-- Button backlight -->
     <dimen name="config_buttonBrightnessSettingDefaultFloat">1.0</dimen>
     <bool name="config_deviceHasVariableButtonBrightness">false</bool>
+
+    <!-- Timeout in MS for how long you have to long-press the back key to
+         kill the foreground app. -->
+    <integer name="config_backKillTimeout">1500</integer>
 </resources>

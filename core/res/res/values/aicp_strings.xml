@@ -44,4 +44,7 @@
 
     <!-- Pocket Lock -->
     <string name="pocket_lock_message_long_press">Press and hold power button to unlock</string>
+
+    <!-- App killed (Back button long pressed)-->
+    <string name="app_killed_message">Application killed</string>
 </resources>

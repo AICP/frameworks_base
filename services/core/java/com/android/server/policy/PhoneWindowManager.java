@@ -204,6 +204,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.view.autofill.AutofillManagerInternal;
+import android.widget.Toast;
 
 import com.android.internal.R;
 import com.android.internal.accessibility.AccessibilityShortcutController;
@@ -737,6 +738,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private boolean mVolumeMusicControl;
     private boolean mVolumeWakeActive;
 
+    boolean mKillAppLongpressBack;
+    int mBackKillTimeout;
+
     private class PolicyHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
@@ -930,6 +934,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.VOLUME_ROCKER_WAKE), false, this,
+                    UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.Secure.getUriFor(
+                    Settings.Secure.KILL_APP_LONGPRESS_BACK), false, this,
                     UserHandle.USER_ALL);
             updateSettings();
         }
@@ -1665,6 +1672,19 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
     private final ScreenshotRunnable mScreenshotRunnable = new ScreenshotRunnable();
 
+    private final Runnable mBackLongPress = new Runnable() {
+        @Override
+        public void run() {
+            if (ActionUtils.killForegroundApp(mContext, mCurrentUserId)) {
+                performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, false,
+                        "Back - Long Press");
+                Toast.makeText(mContext,
+                        com.android.internal.R.string.app_killed_message,
+                        Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
+
     @Override
     public void showGlobalActions() {
         mHandler.removeMessages(MSG_DISPATCH_SHOW_GLOBAL_ACTIONS);
@@ -2129,6 +2149,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         mPerDisplayFocusEnabled = mContext.getResources().getBoolean(
                 com.android.internal.R.bool.config_perDisplayFocusEnabled);
 
+        mBackKillTimeout = mContext.getResources().getInteger(
+                com.android.internal.R.integer.config_backKillTimeout);
+
         readConfigurationDependentBehaviors();
 
         if (mLidControlsDisplayFold) {
@@ -2455,6 +2478,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             mProxiWakeupCheckEnabled = Settings.System.getIntForUser(resolver,
                     Settings.System.OMNI_SYSTEM_PROXI_CHECK_ENABLED, 0,
                     UserHandle.USER_CURRENT) != 0;
+            mKillAppLongpressBack = Settings.Secure.getInt(resolver,
+                    Settings.Secure.KILL_APP_LONGPRESS_BACK, 0) == 1;
         }
         if (updateRotation) {
             updateRotation(true);
@@ -3064,6 +3089,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             mPendingCapsLockToggle = false;
         }
 
+        if (keyCode == KeyEvent.KEYCODE_BACK && !down) {
+                    mHandler.removeCallbacks(mBackLongPress);
+        }
+
         // First we always handle the home key here, so applications
         // can never break it, although if keyguard is on, we do let
         // it handle it, because that gives us the correct 5 second
@@ -3260,6 +3289,12 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 launchAssistAction(Intent.EXTRA_ASSIST_INPUT_HINT_KEYBOARD, event.getDeviceId());
             }
             return -1;
+          } else if (keyCode == KeyEvent.KEYCODE_BACK) {
+              if (mKillAppLongpressBack) {
+                if (down && repeatCount == 0) {
+                  mHandler.postDelayed(mBackLongPress, mBackKillTimeout);
+                }
+              }
         }
 
         // Shortcuts are invoked through Search+key, so intercept those here

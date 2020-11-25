@@ -159,4 +159,8 @@
   <!-- Button backlight -->
   <java-symbol type="dimen" name="config_buttonBrightnessSettingDefaultFloat" />
   <java-symbol type="bool" name="config_deviceHasVariableButtonBrightness" />
+
+  <!-- kill app long press back -->
+  <java-symbol type="string" name="app_killed_message" />
+  <java-symbol type="integer" name="config_backKillTimeout" />
 </resources>

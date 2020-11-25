@@ -10390,6 +10390,12 @@ public final class Settings {
         /** @hide */
         public static final String BACK_GESTURE_HEIGHT = "back_gesture_height";
 
+        /**
+         * Whether longpress back button to Kill appkeys is enabled.
+         * @hide
+         */
+        public static final String KILL_APP_LONGPRESS_BACK = "kill_app_longpress_back";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

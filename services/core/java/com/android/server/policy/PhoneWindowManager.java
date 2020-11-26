@@ -4133,6 +4133,17 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             }
         }
 
+        // Disable hw keys in Ambient and when screen off
+        if (mANBIHandler != null && mANBIEnabled && mANBIHandler.isScreenTouched()
+                && !navBarKey && (appSwitchKey || homeKey || menuKey || backKey)) {
+            return 0;
+        }
+
+        // Disable hw keys in Ambient and when screen off
+        if ((isDozeMode() || !isScreenOn()) && (appSwitchKey || homeKey || menuKey || backKey)) {
+            return 0;
+        }
+
         // Specific custom key handling
         if (mCustomKeyHandler != null) {
             try {
@@ -4179,17 +4190,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
         // Specific device key handling
         if (dispatchKeyToKeyHandlers(event)) {
-            return 0;
-        }
-
-        // Disable hw keys in Ambient and when screen off
-        if (mANBIHandler != null && mANBIEnabled && mANBIHandler.isScreenTouched()
-                && !navBarKey && (appSwitchKey || homeKey || menuKey || backKey)) {
-            return 0;
-        }
-
-        // Disable hw keys in Ambient and when screen off
-        if ((isDozeMode() || !isScreenOn()) && (appSwitchKey || homeKey || menuKey || backKey)) {
             return 0;
         }
 

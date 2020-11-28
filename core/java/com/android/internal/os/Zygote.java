@@ -35,7 +35,7 @@ import android.provider.DeviceConfig;
 import android.system.ErrnoException;
 import android.system.Os;
 import android.util.Log;
-
+import com.android.internal.util.aicp.PixelPropsUtils;
 import dalvik.annotation.optimization.FastNative;
 import dalvik.system.ZygoteHooks;
 
@@ -831,6 +831,9 @@ public final class Zygote {
 
         // Modify model to defy SafetyNet hardware attestation in GMS
         maybeSetGmsModel(args.mPackageName, loggingTag);
+
+        // Set pixel props
+        PixelPropsUtils.setProps(args.mPackageName);
     }
 
     private static final String USAP_ERROR_PREFIX = "Invalid command to USAP: ";

@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d184e594_6783bc35",
+        "filename": "core/java/com/android/internal/os/Zygote.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2020-11-29T16:43:55Z",
+      "side": 1,
+      "message": "PLease move this to aicp instead.",
+      "range": {
+        "startLine": 38,
+        "startChar": 33,
+        "endLine": 38,
+        "endChar": 42
+      },
+      "revId": "a13d14cdc4d7a5d2e13e82d036a8b7b3fc272e5d",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    }
+  ]
+}

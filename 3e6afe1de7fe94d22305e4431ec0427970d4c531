@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "857243a9_53efbe3d",
+        "filename": "core/java/com/android/internal/util/aicp/PixelPropsUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1375
+      },
+      "writtenOn": "2020-11-30T07:25:52Z",
+      "side": 1,
+      "message": "why evolution and not aicp?",
+      "revId": "3e6afe1de7fe94d22305e4431ec0427970d4c531",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6b9fbae_49a275ae",
+        "filename": "core/java/com/android/internal/util/aicp/PixelPropsUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1375
+      },
+      "writtenOn": "2020-11-30T07:25:52Z",
+      "side": 1,
+      "message": "maybe also rename to aicp?",
+      "revId": "3e6afe1de7fe94d22305e4431ec0427970d4c531",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": true
+    }
+  ]
+}

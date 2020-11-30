@@ -51,6 +51,24 @@
       "revId": "3e6afe1de7fe94d22305e4431ec0427970d4c531",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ac4ef1c_511f976e",
+        "filename": "core/java/com/android/internal/util/aicp/PixelPropsUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1841
+      },
+      "writtenOn": "2020-11-30T07:57:29Z",
+      "side": 1,
+      "message": "isnt needed as far as i know",
+      "parentUuid": "e6b9fbae_49a275ae",
+      "revId": "3e6afe1de7fe94d22305e4431ec0427970d4c531",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b",
+      "unresolved": false
     }
   ]
 }

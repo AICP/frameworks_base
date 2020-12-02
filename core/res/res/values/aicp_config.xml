@@ -247,4 +247,6 @@
     <string-array name="config_vendorPlatformSignatures">
     </string-array>
 
+    <!-- HW Buttons Brightness control -->
+    <integer name="config_deviceSupportsButtonBrightnessControl">0</integer>
 </resources>

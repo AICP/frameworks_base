@@ -194,4 +194,6 @@
   <!-- Vendor package signatures -->
   <java-symbol type="array" name="config_vendorPlatformSignatures" />
 
+  <!-- HW Buttons Brightness control -->
+  <java-symbol type="integer" name="config_deviceSupportsButtonBrightnessControl" />
 </resources>

@@ -15,7 +15,10 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="reboot_title">Riavvio</string>
+    <string name="reboot_message">Riavvio del sistema</string>
     <string name="permlab_fakePackageSignature">Imitazione firma del pacchetto</string>
+    <string name="permdesc_fakePackageSignature">Consente all\'applicazione di fingere di essere un\'altra app. Le applicazioni dannose potrebbero essere in grado di utilizzarlo per accedere ai dati delle applicazioni private. Gli usi legittimi includono un emulatore che finge di essere ciò che emula. Concedi questo permesso con cautela!</string>
     <string name="pocket_lock_message_long_press">Pressione prolungata del pulsante per interagire</string>
     <string name="live_display_auto">Automatico</string>
     <string name="live_display_auto_summary">Regola automaticamente la temperatura del colore dello schermo dopo il tramonto e l\'alba</string>

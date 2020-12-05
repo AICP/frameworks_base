@@ -18,11 +18,11 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="screen_zoom_summary_smaller">더 작게</string>
-    <string name="screen_zoom_summary_smallest">가장 작음</string>
-    <string name="status_deep_sleep">(가동 시간: %1$d%2$s)</string>
-    <string name="power_remaining_dash_charging_duration_only">급속 충전 중 (완전 충전까지 <xliff:g id="time">%1$s</xliff:g>남음)</string>
-    <string name="battery_info_status_dash_charging">급속 충전 중</string>
-    <string name="power_remaining_warp_charging_duration_only">Warp 고속 충전 중 (완전 충전까지 <xliff:g id="time">%1$s</xliff:g>남음)</string>
-    <string name="battery_info_status_warp_charging">Warp 고속충전</string>
+    <string name="screen_zoom_summary_smaller">Plus petite</string>
+    <string name="screen_zoom_summary_smallest">Le plus petit</string>
+    <string name="status_deep_sleep">(Sommeil profond : %1$d%2$s)</string>
+    <string name="power_remaining_dash_charging_duration_only">Charge Rapide (<xliff:g id="time">%1$s</xliff:g> restant jusqu\'à charge complète)</string>
+    <string name="battery_info_status_dash_charging">Charge Rapide</string>
+    <string name="power_remaining_warp_charging_duration_only">Charge Rapide (<xliff:g id="time">%1$s</xliff:g> restant jusqu\'à charge complète)</string>
+    <string name="battery_info_status_warp_charging">Charge Rapide</string>
 </resources>

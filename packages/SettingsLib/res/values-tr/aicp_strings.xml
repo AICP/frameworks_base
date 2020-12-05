@@ -20,4 +20,9 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="screen_zoom_summary_smaller">Daha küçük</string>
     <string name="screen_zoom_summary_smallest">En küçük</string>
+    <string name="status_deep_sleep">(Derin uyku: %1$d%2$s)</string>
+    <string name="power_remaining_dash_charging_duration_only">Dash Şarj oluyor (tam dolmasına <xliff:g id="time">%1$s</xliff:g> kaldı)</string>
+    <string name="battery_info_status_dash_charging">Hızlı Şarj Oluyor</string>
+    <string name="power_remaining_warp_charging_duration_only">Warp şarj oluyor (Tam dolmasına <xliff:g id="time">%1$s</xliff:g> kaldı)</string>
+    <string name="battery_info_status_warp_charging">Süper hızlı şarj</string>
 </resources>

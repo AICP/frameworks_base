@@ -20,4 +20,9 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="screen_zoom_summary_smaller">特小</string>
     <string name="screen_zoom_summary_smallest">極小</string>
+    <string name="status_deep_sleep">(ディープスリープ: %1$d%2$s)</string>
+    <string name="power_remaining_dash_charging_duration_only">Dash Charging (充電完了まで残り<xliff:g id="time">%1$s</xliff:g>)</string>
+    <string name="battery_info_status_dash_charging">Dash Charging</string>
+    <string name="power_remaining_warp_charging_duration_only">Warp Charging (充電完了まで残り<xliff:g id="time">%1$s</xliff:g>)</string>
+    <string name="battery_info_status_warp_charging">Warp Charging</string>
 </resources>

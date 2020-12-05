@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/* //device/apps/common/assets/res/any/strings.xml
+**
+** Copyright 2006, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="quick_settings_cpuinfo_label">Інформація про ЦП</string>
+    <string name="quick_settings_compass_label">Компас</string>
+    <string name="quick_settings_compass_init">Ініціалізація\u2026</string>
+    <string name="accessibility_quick_settings_compass_off">Компас вимк.</string>
+    <string name="accessibility_quick_settings_compass_on">Компас увімк.</string>
+    <string name="accessibility_quick_settings_compass_changed_off">Компас вимкнено.</string>
+    <string name="accessibility_quick_settings_compass_changed_on">Компас увімкнено.</string>
+    <string name="quick_settings_compass_N">Пн</string>
+    <string name="quick_settings_compass_NE">ПнСх</string>
+    <string name="quick_settings_compass_E">Сх</string>
+    <string name="quick_settings_compass_SE">ПдС</string>
+    <string name="quick_settings_compass_S">Пд</string>
+    <string name="quick_settings_compass_SW">ПдЗ</string>
+    <string name="quick_settings_compass_W">З</string>
+    <string name="quick_settings_compass_NW">ПнЗ</string>
+    <string name="quick_settings_music_label">Музика</string>
+    <string name="quick_settings_music_play">Відтворити</string>
+    <string name="quick_settings_music_pause">Пауза</string>
+    <string name="quick_settings_screenshot_label">Знімок екрану</string>
+    <string name="quick_settings_screenrecord_label">Запис з екрану</string>
+    <string name="accessibility_quick_settings_usb_tether_off">USB-модем вимкнено</string>
+    <string name="accessibility_quick_settings_usb_tether_on">USB-модем увімкнено</string>
+    <string name="accessibility_quick_settings_usb_tether_changed_off">USB-модем вимкнено</string>
+    <string name="accessibility_quick_settings_usb_tether_changed_on">USB-модем увімкнуто</string>
+    <string name="quick_settings_usb_tether_label">USB-модем</string>
+    <string name="quick_settings_caffeine_label">Заборона сну</string>
+    <string name="accessibility_quick_settings_caffeine_off">Заборона сну вимк</string>
+    <string name="accessibility_quick_settings_caffeine_on">Заборона сну увімк</string>
+    <string name="quick_aicp_extras_label">Параметри AICP</string>
+    <string name="quick_aicp_extras_toast">Лол, ви насправді думали, що затиснення клавіши вас кудись приведе!?!</string>
+    <string name="quick_settings_network_adb_disabled_label">Вимкнено</string>
+    <string name="quick_settings_locale_label">Мова</string>
+    <string name="quick_settings_locale_more_locales_toast">Будь ласка, налаштуйте кілька мов, щоб активувати функцію</string>
+    <string name="quick_settings_sound_label">Сигнал</string>
+    <string name="quick_settings_sound_ring">Рингтон</string>
+    <string name="quick_settings_sound_vibrate">Вібрація</string>
+    <string name="quick_settings_sound_silent">Без звуку</string>
+    <string name="onthego_notif_ticker">Режим «На ходу» активовано</string>
+    <string name="onthego_notif_title">Режим «На ходу» активний</string>
+    <string name="onthego_notif_stop">Зупинити</string>
+    <string name="onthego_notif_options">Параметри</string>
+    <string name="onthego_notif_error">Не вдається запустити режим \"На ходу\"</string>
+    <string name="onthego_notif_restart">Перезавантажити режим \"На ходу\"</string>
+    <string name="onthego_notif_camera_changed">Режим камери змінено</string>
+    <string name="onthego_transparency">Прозорість</string>
+    <string name="onthego_front_camera">Використовувати фронтальну камеру</string>
+    <string name="onthego_service_toggle">Автоматично перезапустити службу</string>
+    <string name="onthego_channel_name">Головний</string>
+    <string name="global_action_onthego">Режим \"На ходу\"</string>
+    <string name="quick_settings_onthego_label">Режим \"На ходу\"</string>
+    <string name="quick_settings_sync_label">Синхронізація</string>
+    <string name="accessibility_quick_settings_sync_off">Синхронізацію вимкнено</string>
+    <string name="accessibility_quick_settings_sync_on">Синхронізація увімкнена</string>
+    <string name="accessibility_quick_settings_sync_changed_off">Синхронізацію вимкнено</string>
+    <string name="accessibility_quick_settings_sync_changed_on">Синхронізацію увімкнено</string>
+    <string name="global_action_screenrecord">Запис екрану</string>
+    <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Спливаючі сповіщення вимкнено на 1 хвилину.</string>
+    <string name="heads_up_snooze_message"><xliff:g id="string">%s</xliff:g> - Спливаючі сповіщення вимкнено на <xliff:g id="number">%d</xliff:g> хв.</string>
+    <string name="omnijaws_service_error">Помилка</string>
+    <string name="omnijaws_service_unkown">Немає даних про погоду</string>
+    <string name="omnijaws_service_error_long">Помилка завантаження даних про погоду</string>
+    <string name="omnijaws_service_disabled">Службу вимкнено</string>
+    <string name="omnijaws_detail_header">Погода</string>
+    <string name="omnijaws_label_default">Погода</string>
+    <string name="omnijaws_current_text">Зараз</string>
+    <string name="omnijaws_package_not_available">OmniJaws недоступний</string>
+    <string name="omnijaws_service_last_update">Останнє оновлення:</string>
+    <string name="systemui_tuner_navbar_title">Заводські налаштування</string>
+    <string name="navbar_activity_title">Панель навігації</string>
+    <string name="force_stop_dlg_title">Примусово зупинити?</string>
+    <string name="force_stop_dlg_text">Примусове вимкнення додатка може призвести до збою в його роботі.</string>
+    <string name="recents_app_killed">Додаток закрито</string>
+    <string name="lockscreen_default">За замовчуванням</string>
+    <string name="lockscreen_hidden">Нічого</string>
+    <string name="custom_hint">Свайпніть від іконки для запуску</string>
+</resources>

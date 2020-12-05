@@ -18,11 +18,43 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="quick_settings_cpuinfo_label">CPU informacije</string>
+    <string name="quick_settings_compass_label">Kompas</string>
+    <string name="quick_settings_compass_init">Inicijalizacija\u2026</string>
+    <string name="accessibility_quick_settings_compass_off">Kompas isključen.</string>
+    <string name="accessibility_quick_settings_compass_on">Kompas uključen.</string>
+    <string name="accessibility_quick_settings_compass_changed_off">Kompas je isključen.</string>
+    <string name="accessibility_quick_settings_compass_changed_on">Kompas je uključen.</string>
+    <string name="quick_settings_compass_N">S</string>
+    <string name="quick_settings_compass_NE">SI</string>
+    <string name="quick_settings_compass_E">I</string>
+    <string name="quick_settings_compass_SE">JI</string>
+    <string name="quick_settings_compass_S">J</string>
+    <string name="quick_settings_compass_SW">JZ</string>
+    <string name="quick_settings_compass_W">Z</string>
+    <string name="quick_settings_compass_NW">SZ</string>
+    <string name="quick_settings_screenshot_label">Snimka zaslona</string>
+    <string name="quick_settings_screenrecord_label">Snimanje zaslona</string>
     <string name="accessibility_quick_settings_usb_tether_off">Dijeljenje veze preko USB-a isključeno</string>
     <string name="accessibility_quick_settings_usb_tether_on">Dijeljenje veze preko USB-a uključeno</string>
     <string name="quick_aicp_extras_label">Dodatne Aicp opcije</string>
+    <string name="quick_aicp_extras_toast">LOL, stvarno ste mislili da će Vas dugi pritisak nekamo odvesti!!!</string>
     <string name="quick_settings_network_adb_disabled_label">Onemogućeno</string>
+    <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - obavijesti koje vire odgođene su na 1 minutu.</string>
+    <string name="omnijaws_service_error">Greška</string>
+    <string name="omnijaws_service_unkown">Nema podataka o vremenu</string>
+    <string name="omnijaws_service_error_long">Greška pri učitavanju podataka o vremenu</string>
+    <string name="omnijaws_service_disabled">Usluga je onemogućena</string>
+    <string name="omnijaws_detail_header">Vrijeme</string>
+    <string name="omnijaws_label_default">Vrijeme</string>
+    <string name="omnijaws_current_text">Sada</string>
     <string name="omnijaws_package_not_available">OmniJaws nije dostupan</string>
+    <string name="omnijaws_service_last_update">Posljednje ažuriranje:</string>
+    <string name="systemui_tuner_navbar_title">Zadane postavke</string>
+    <string name="navbar_activity_title">Navigacijska traka</string>
+    <string name="force_stop_dlg_title">Prisilno zaustaviti?</string>
+    <string name="force_stop_dlg_text">Prisilno zaustavljanje aplikacije može rezultirati čudnim ponašanjem aplikacije.</string>
     <string name="lockscreen_default">Zadano</string>
+    <string name="lockscreen_hidden">Ništa</string>
     <string name="custom_hint">Prijeđite prstom preko ikone za pokretanje</string>
 </resources>

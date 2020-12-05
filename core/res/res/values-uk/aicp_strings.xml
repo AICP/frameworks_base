@@ -15,6 +15,6 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="permlab_fakePackageSignature">Imitiraj potpis paketa</string>
-    <string name="pocket_lock_message_long_press">Pritisnite i držite power tipku za interakciju</string>
+    <string name="permlab_fakePackageSignature">Дозволити підміну підпису додатка</string>
+    <string name="pocket_lock_message_long_press">Натисніть та утримуйте клавішу живлення для взаємодії</string>
 </resources>

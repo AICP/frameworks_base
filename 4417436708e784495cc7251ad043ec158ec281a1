@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60b37d99_bbda46ad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2020-12-06T14:45:44Z",
+      "side": 1,
+      "message": "Test:\n- Compiles\n- Make an app crash (how is your wish)\n- In App Error dialog, observe \"Copy crash URL option\"\n- Tap on option, wait, toast informs of successful upload\n- Paste the link to AICP Haste in browser\n- Webpage shows stacktrace leading to crash\n",
+      "revId": "4417436708e784495cc7251ad043ec158ec281a1",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

@@ -1916,18 +1916,6 @@ public class PhoneWindow extends Window implements MenuBuilder.Callback {
                 // If we have a session send it the volume command, otherwise
                 // use the suggested stream.
                 if (mMediaController != null) {
-                    int direction = 0;
-                    switch (keyCode) {
-                        case KeyEvent.KEYCODE_VOLUME_UP:
-                            direction = AudioManager.ADJUST_RAISE;
-                            break;
-                        case KeyEvent.KEYCODE_VOLUME_DOWN:
-                            direction = AudioManager.ADJUST_LOWER;
-                            break;
-                        case KeyEvent.KEYCODE_VOLUME_MUTE:
-                            direction = AudioManager.ADJUST_TOGGLE_MUTE;
-                            break;
-                    }
                     final int rotation = getWindowManager().getDefaultDisplay().getRotation();
                     final Configuration config = getContext().getResources().getConfiguration();
                     final boolean swapKeys = Settings.System.getInt(getContext().getContentResolver(),
@@ -1936,9 +1924,16 @@ public class PhoneWindow extends Window implements MenuBuilder.Callback {
                     if (swapKeys
                             && (rotation == Surface.ROTATION_90 || rotation == Surface.ROTATION_180)
                             && config.getLayoutDirection() == View.LAYOUT_DIRECTION_LTR) {
-                        direction = keyCode == KeyEvent.KEYCODE_VOLUME_UP
-                                ? AudioManager.ADJUST_LOWER
-                                : AudioManager.ADJUST_RAISE;
+                        KeyEvent swapEvent = event;
+                        switch (keyCode) {
+                            case KeyEvent.KEYCODE_VOLUME_UP:
+                                swapEvent = KeyEvent.changeAction(event, KeyEvent.ACTION_DOWN);
+                                break;
+                            case KeyEvent.KEYCODE_VOLUME_DOWN:
+                                swapEvent = KeyEvent.changeAction(event, KeyEvent.ACTION_UP);
+                                break;
+                        }
+                        event = swapEvent;
                     }
                     getMediaSessionManager().dispatchVolumeKeyEventAsSystemService(
                             mMediaController.getSessionToken(), event);

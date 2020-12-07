@@ -304,7 +304,7 @@ public class NotificationConversationInfo extends LinearLayout implements
         settingsButton.setOnClickListener(getSettingsOnClickListener());
         settingsButton.setVisibility(settingsButton.hasOnClickListeners() ? VISIBLE : GONE);
 
-        final TextView killButton = (TextView) findViewById(R.id.notification_inspect_kill);
+        final View killButton = findViewById(R.id.force_stop);
         boolean killButtonEnabled = Settings.System.getIntForUser(
                 mContext.getContentResolver(),
                 Settings.System.CONVERSATION_GUTS_KILL_APP_BUTTON, 0,

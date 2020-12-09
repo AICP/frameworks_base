@@ -80,7 +80,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.android.internal.util.custom.FodUtils;
+import com.android.internal.util.aicp.FodUtils;
 
 import vendor.lineage.biometrics.fingerprint.inscreen.V1_0.IFingerprintInscreen;
 

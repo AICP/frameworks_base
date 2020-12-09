@@ -1,4 +1,3 @@
-
 /*
 * Copyright (C) 2019 The Pixel Experience Project
 *
@@ -14,8 +13,11 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-package com.android.internal.util.custom;
+
+package com.android.internal.util.aicp;
+
 import android.content.Context;
+
 public class FodUtils {
     public static boolean hasFodSupport(Context context) {
         return context.getResources().getBoolean(com.android.internal.R.bool.config_supportsInDisplayFingerprint);

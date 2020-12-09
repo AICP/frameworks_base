@@ -28,7 +28,7 @@ import com.android.systemui.statusbar.CommandQueue.Callbacks;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import com.android.internal.util.custom.FodUtils;
+import com.android.internal.util.aicp.FodUtils;
 
 @Singleton
 public class FODCircleViewImpl extends SystemUI implements CommandQueue.Callbacks {

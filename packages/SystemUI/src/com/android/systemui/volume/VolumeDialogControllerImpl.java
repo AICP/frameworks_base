@@ -79,7 +79,7 @@ import java.util.Optional;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import com.android.internal.util.custom.recorder.InternalAudioRecorder;
+import com.android.internal.util.aicp.recorder.InternalAudioRecorder;
 
 import dagger.Lazy;
 

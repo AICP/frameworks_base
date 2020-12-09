@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8570e2d0_cccfe77a",
+        "filename": "packages/SystemUI/src/com/android/systemui/biometrics/FODCircleView.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1375
+      },
+      "writtenOn": "2020-12-09T16:30:16Z",
+      "side": 1,
+      "message": "blanks not tab",
+      "revId": "16ad845252898efdd4791d905a658ece598eb21d",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

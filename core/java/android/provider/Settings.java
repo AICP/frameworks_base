@@ -11081,6 +11081,11 @@ public final class Settings {
          */
         public static final String NAVIGATION_HANDLE_WIDTH = "navigation_handle_width";
 
+        /**
+         * @hide
+         */
+        public static final String ADVANCED_REBOOT = "advanced_reboot_in_power_menu";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

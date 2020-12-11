@@ -352,6 +352,10 @@ public class QSContainerImpl extends FrameLayout implements
                 // The header contains the QQS panel which needs to have special padding, to
                 // visually align them.
                 mHeader.setContentMargins(mContentPaddingStart, mContentPaddingEnd);
+            } else if (view == mQSDetail) {
+                // Make QS detail panel lay out its content full width, making the header
+                // occupy the full width of the panel
+                mQSDetail.setLayoutParams(lp);
             } else {
                 view.setPaddingRelative(
                         mContentPaddingStart,

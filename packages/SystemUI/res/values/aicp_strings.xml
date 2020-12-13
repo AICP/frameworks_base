@@ -282,4 +282,6 @@
     <string name="empty_app_killed">App</string>
     <string name="quick_settings_killapp_label">Kill app</string>
 
+    <string name="app_picker_dialog_title">Select an app</string>
+
 </resources>

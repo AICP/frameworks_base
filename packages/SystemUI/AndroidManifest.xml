@@ -908,5 +908,49 @@
             </intent-filter>
         </receiver>
 
+        <activity
+            android:name="com.android.systemui.navigationbar.gestural.LeftBackSwipeCustomApp"
+            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.MinWidth"
+            android:exported="true"
+            android:label="@string/app_picker_dialog_title" >
+            <intent-filter>
+                <action android:name="com.android.systemui.navigationbar.gestural.LeftBackSwipeCustomApp" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.android.systemui.navigationbar.gestural.RightBackSwipeCustomApp"
+            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.MinWidth"
+            android:exported="true"
+            android:label="@string/app_picker_dialog_title" >
+            <intent-filter>
+                <action android:name="com.android.systemui.navigationbar.gestural.RightBackSwipeCustomApp" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.android.systemui.navigationbar.gestural.LeftBackVerticalSwipeCustomApp"
+            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.MinWidth"
+            android:exported="true"
+            android:label="@string/app_picker_dialog_title" >
+            <intent-filter>
+                <action android:name="com.android.systemui.navigationbar.gestural.LeftBackVerticalSwipeCustomApp" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.android.systemui.navigationbar.gestural.RightBackVerticalSwipeCustomApp"
+            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.MinWidth"
+            android:exported="true"
+            android:label="@string/app_picker_dialog_title" >
+            <intent-filter>
+                <action android:name="com.android.systemui.navigationbar.gestural.RightBackVerticalSwipeCustomApp" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
     </application>
 </manifest>

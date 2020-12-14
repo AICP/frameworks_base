@@ -186,8 +186,6 @@ public class EdgeBackGestureHandler extends CurrentUserTracker implements Displa
     private final Vibrator mVibrator;
     private boolean mBlockedGesturalNavigation;
 
-    private boolean mBlockedGesturalNavigation;
-
     private final GestureNavigationSettingsObserver mGestureNavigationSettingsObserver;
 
     private final NavigationEdgeBackPlugin.BackCallback mBackCallback =

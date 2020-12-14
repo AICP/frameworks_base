@@ -318,6 +318,7 @@ public class TileAdapter extends RecyclerView.Adapter<Holder> implements TileSta
 
         holder.mTileView.handleStateChanged(info.state);
         holder.mTileView.setShowAppLabel(position > mEditIndex && !info.isSystem);
+        holder.mTileView.setHideLabel(mHideLabel);
         /*holder.mTileView.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_YES);
         holder.mTileView.setClickable(true);
         holder.mTileView.setOnClickListener(null);

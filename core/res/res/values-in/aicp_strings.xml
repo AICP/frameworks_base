@@ -37,6 +37,7 @@ Aplikasi jahat mungkin dapat menggunakan ini untuk masuk ke aplikasi data pribad
     <string name="live_display_night_summary">Hanya menggunakan setelan malam hari</string>
     <string name="live_display_outdoor">Luar ruangan (matahari terang)</string>
     <string name="live_display_outdoor_summary">Hanya menggunakan setelan luar ruangan</string>
+    <string name="live_display_hint">LiveDisplay dapat membantu mengurangi kelelahan mata dan membantu Anda tidur di malam hari. Klik di sini untuk mencobanya!</string>
     <string name="accessibility_quick_settings_live_display_off">LiveDisplay mati.</string>
     <string name="accessibility_quick_settings_live_display_auto">LiveDisplay: mode otomatis.</string>
     <string name="accessibility_quick_settings_live_display_day">LiveDisplay: mode siang.</string>

@@ -17,11 +17,13 @@
 */
 package com.android.systemui.omni;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.database.ContentObserver;
 import android.graphics.Bitmap;
 import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
@@ -48,6 +50,9 @@ import android.widget.ImageView;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.os.Handler;
+import android.os.UserHandle;
+import android.provider.Settings;
 
 import com.android.internal.util.aicp.OmniJawsClient;
 import com.android.systemui.R;
@@ -69,6 +74,7 @@ public class CurrentWeatherView extends FrameLayout implements OmniJawsClient.Om
     private int mTextColor;
     private float mDarkAmount;
     private boolean mUpdatesEnabled;
+    private SettingsObserver mSettingsObserver;
 
     public CurrentWeatherView(Context context) {
         this(context, null);
@@ -117,9 +123,16 @@ public class CurrentWeatherView extends FrameLayout implements OmniJawsClient.Om
         mLeftText = (TextView) findViewById(R.id.left_text);
         mRightText = (TextView) findViewById(R.id.right_text);
         mTextColor = mLeftText.getCurrentTextColor();
+        mSettingsObserver = new SettingsObserver(new Handler());
+        mSettingsObserver.observe();
+        mSettingsObserver.update();
     }
 
     private void updateWeatherData(OmniJawsClient.WeatherInfo weatherData) {
+        boolean showTemp = Settings.System.getIntForUser(getContext().getContentResolver(),
+                Settings.System.LOCKSCREEN_WEATHER_SHOW_TEMP, 1, UserHandle.USER_CURRENT) == 1;
+        boolean showCity = Settings.System.getIntForUser(getContext().getContentResolver(),
+                Settings.System.LOCKSCREEN_WEATHER_SHOW_CITY, 0, UserHandle.USER_CURRENT) == 1;
         if (DEBUG) Log.d(TAG, "updateWeatherData");
 
         if (!mWeatherClient.isOmniJawsEnabled()) {
@@ -134,8 +147,16 @@ public class CurrentWeatherView extends FrameLayout implements OmniJawsClient.Om
         d = d.mutate();
         updateTint(d);
         mCurrentImage.setImageDrawable(d);
-        mRightText.setText(weatherData.temp + " " + weatherData.tempUnits);
-        mLeftText.setText(weatherData.city);
+        if (showTemp) {
+            mRightText.setText(weatherData.temp + " " + weatherData.tempUnits);
+        } else {
+            mRightText.setText("");
+        }
+        if (showCity) {
+            mLeftText.setText(weatherData.city);
+        } else {
+            mLeftText.setText("");
+        }
     }
 
     private int getTintColor() {
@@ -223,5 +244,29 @@ public class CurrentWeatherView extends FrameLayout implements OmniJawsClient.Om
                 getResources().getDimensionPixelSize(R.dimen.current_weather_image_size);
         mCurrentImage.getLayoutParams().width =
                 getResources().getDimensionPixelSize(R.dimen.current_weather_image_size);
+    }
+
+    private class SettingsObserver extends ContentObserver {
+        SettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        void observe() {
+            getContext().getContentResolver().registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.LOCKSCREEN_WEATHER_SHOW_TEMP),
+                    false, this, UserHandle.USER_ALL);
+            getContext().getContentResolver().registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.LOCKSCREEN_WEATHER_SHOW_CITY),
+                    false, this, UserHandle.USER_ALL);
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            update();
+        }
+
+        public void update() {
+            queryAndUpdateWeather();
+        }
     }
 }

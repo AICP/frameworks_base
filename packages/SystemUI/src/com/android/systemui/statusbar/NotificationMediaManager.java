@@ -314,11 +314,12 @@ public class NotificationMediaManager implements Dumpable {
 
     private void checkMediaNotificationColor(NotificationEntry entry) {
         if (entry.getKey().equals(mMediaNotificationKey)) {
+            int bgColor = mMediaDataManager.getAlbumArtColor();
             ArrayList<MediaListener> callbacks = new ArrayList<>(mMediaListeners);
             for (int i = 0; i < callbacks.size(); i++) {
                 callbacks.get(i).setMediaNotificationColor(
                         entry.getSbn().getNotification().isColorizedMedia(),
-                        entry.getRow().getCurrentBackgroundTint());
+                        bgColor);
             }
         }
     }

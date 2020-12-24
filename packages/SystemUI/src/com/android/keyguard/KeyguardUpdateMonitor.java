@@ -1987,7 +1987,7 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
                 (mKeyguardOccluded && mIsDreaming)) && mDeviceInteractive && !mGoingToSleep
                 && !mSwitchingUser && !isFingerprintDisabled(getCurrentUser())
                 && (!mKeyguardGoingAway || !mDeviceInteractive) && mIsPrimaryUser
-                && allowedOnBouncer;
+                && allowedOnBouncer && !mIsDeviceInPocket;
         } else {
             return (mKeyguardIsVisible || !mDeviceInteractive ||
                 (mBouncer && !mKeyguardGoingAway) || mGoingToSleep ||

@@ -74,6 +74,8 @@ private const val SATURATION_MULTIPLIER = 0.8f
 private val LOADING = MediaData(-1, false, 0, null, null, null, null, null,
         emptyList(), emptyList(), "INVALID", null, null, null, true, null)
 
+private var bgColor: Int = Color.DKGRAY
+
 fun isMediaNotification(sbn: StatusBarNotification): Boolean {
     if (!sbn.notification.hasMediaSession()) {
         return false
@@ -380,7 +382,7 @@ class MediaDataManager(
         } else {
             null
         }
-        val bgColor = artworkBitmap?.let { computeBackgroundColor(it) } ?: Color.DKGRAY
+        bgColor = artworkBitmap?.let { computeBackgroundColor(it) } ?: Color.DKGRAY
 
         val mediaAction = getResumeMediaAction(resumeAction)
         foregroundExecutor.execute {
@@ -434,7 +436,7 @@ class MediaDataManager(
                 }
             }
         }
-        val bgColor = computeBackgroundColor(artworkBitmap)
+        bgColor = computeBackgroundColor(artworkBitmap)
 
         // App name
         val builder = Notification.Builder.recoverBuilder(context, notif)
@@ -664,6 +666,11 @@ class MediaDataManager(
      * If resumption is disabled, we only want to show active players
      */
     fun hasAnyMedia() = mediaDataFilter.hasAnyMedia()
+
+    /**
+     * Can I get the dominant albumart color?
+     */
+    fun getAlbumArtColor() = bgColor
 
     interface Listener {
 

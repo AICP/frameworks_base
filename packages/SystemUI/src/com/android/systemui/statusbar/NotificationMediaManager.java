@@ -242,7 +242,10 @@ public class NotificationMediaManager implements Dumpable {
             @Override
             public void onEntryReinflated(NotificationEntry entry) {
                 findAndUpdateMediaNotifications();
-                checkMediaNotificationColor(entry);
+                if (entry.getKey().equals(mMediaNotificationKey)) {
+                    checkMediaNotificationColor(entry, mediaDataManager.getAlbumArtColor(
+                            entry.getKey(), entry.getSbn()));
+                }
             }
 
             @Override
@@ -260,7 +263,10 @@ public class NotificationMediaManager implements Dumpable {
             @Override
             public void onNotificationAdded(
                     NotificationEntry entry) {
-                checkMediaNotificationColor(entry);
+                if  (entry.getKey().equals(mMediaNotificationKey)) {
+                    checkMediaNotificationColor(entry, mediaDataManager.getAlbumArtColor(
+                        entry.getKey(), entry.getSbn()));
+                }
             }
         });
 
@@ -312,13 +318,13 @@ public class NotificationMediaManager implements Dumpable {
         }
     }
 
-    private void checkMediaNotificationColor(NotificationEntry entry) {
+    private void checkMediaNotificationColor(NotificationEntry entry, int albumArtColor) {
         if (entry.getKey().equals(mMediaNotificationKey)) {
             ArrayList<MediaListener> callbacks = new ArrayList<>(mMediaListeners);
             for (int i = 0; i < callbacks.size(); i++) {
                 callbacks.get(i).setMediaNotificationColor(
                         entry.getSbn().getNotification().isColorizedMedia(),
-                        entry.getRow().getCurrentBackgroundTint());
+                        albumArtColor);
             }
         }
     }

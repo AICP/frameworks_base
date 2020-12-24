@@ -509,6 +509,51 @@ class MediaDataManager(
         }
     }
 
+    fun getAlbumArtColor(
+        key: String,
+        sbn: StatusBarNotification
+    ) : Int {
+        val token = sbn.notification.extras.getParcelable(Notification.EXTRA_MEDIA_SESSION)
+                as MediaSession.Token?
+        val mediaController = mediaControllerFactory.create(token)
+        val metadata = mediaController.metadata
+
+        // Foreground and Background colors computed from album art
+        val notif: Notification = sbn.notification
+        var artworkBitmap = metadata?.getBitmap(MediaMetadata.METADATA_KEY_ART)
+        if (artworkBitmap == null) {
+            artworkBitmap = metadata?.getBitmap(MediaMetadata.METADATA_KEY_ALBUM_ART)
+        }
+        if (artworkBitmap == null && metadata != null) {
+            artworkBitmap = loadBitmapFromUri(metadata)
+        }
+        val artWorkIcon = if (artworkBitmap == null) {
+            notif.getLargeIcon()
+        } else {
+            Icon.createWithBitmap(artworkBitmap)
+        }
+        if (artWorkIcon != null) {
+            // If we have art, get colors from that
+            if (artworkBitmap == null) {
+                if (artWorkIcon.type == Icon.TYPE_BITMAP ||
+                        artWorkIcon.type == Icon.TYPE_ADAPTIVE_BITMAP) {
+                    artworkBitmap = artWorkIcon.bitmap
+                } else {
+                    val drawable: Drawable = artWorkIcon.loadDrawable(context)
+                    artworkBitmap = Bitmap.createBitmap(
+                            drawable.intrinsicWidth,
+                            drawable.intrinsicHeight,
+                            Bitmap.Config.ARGB_8888)
+                    val canvas = Canvas(artworkBitmap)
+                    drawable.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
+                    drawable.draw(canvas)
+                }
+            }
+        }
+        val bgColor = computeBackgroundColor(artworkBitmap)
+        return bgColor
+    }
+
     /**
      * Load a bitmap from the various Art metadata URIs
      */

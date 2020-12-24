@@ -20,6 +20,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.provider.Settings;
 import android.view.View;
 
@@ -140,5 +141,13 @@ public class Utils {
         int flag = Settings.Secure.getInt(context.getContentResolver(),
                 Settings.Secure.MEDIA_CONTROLS_RESUME, 1);
         return useQsMediaPlayer(context) && flag > 0;
+    }
+
+    /**
+     * Return the default media player background color
+     * Color.DKGRAY by default.
+     */
+    public static int bgColor(Context context) {
+        return Color.DKGRAY;
     }
 }

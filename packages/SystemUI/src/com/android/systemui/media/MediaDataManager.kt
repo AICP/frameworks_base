@@ -104,7 +104,8 @@ class MediaDataManager(
     mediaDataCombineLatest: MediaDataCombineLatest,
     private val mediaDataFilter: MediaDataFilter,
     private var useMediaResumption: Boolean,
-    private val useQsMediaPlayer: Boolean
+    private val useQsMediaPlayer: Boolean,
+    private var bgColor: Int
 ) : Dumpable {
 
     // Internal listeners are part of the internal pipeline. External listeners (those registered
@@ -134,7 +135,8 @@ class MediaDataManager(
     ) : this(context, backgroundExecutor, foregroundExecutor, mediaControllerFactory,
             broadcastDispatcher, dumpManager, mediaTimeoutListener, mediaResumeListener,
             mediaSessionBasedFilter, mediaDeviceManager, mediaDataCombineLatest, mediaDataFilter,
-            Utils.useMediaResumption(context), Utils.useQsMediaPlayer(context))
+            Utils.useMediaResumption(context), Utils.useQsMediaPlayer(context),
+            Utils.bgColor(context))
 
     private val appChangeReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
@@ -380,7 +382,7 @@ class MediaDataManager(
         } else {
             null
         }
-        val bgColor = artworkBitmap?.let { computeBackgroundColor(it) } ?: Color.DKGRAY
+        bgColor = artworkBitmap?.let { computeBackgroundColor(it) } ?: Color.DKGRAY
 
         val mediaAction = getResumeMediaAction(resumeAction)
         foregroundExecutor.execute {
@@ -434,7 +436,7 @@ class MediaDataManager(
                 }
             }
         }
-        val bgColor = computeBackgroundColor(artworkBitmap)
+        bgColor = computeBackgroundColor(artworkBitmap)
 
         // App name
         val builder = Notification.Builder.recoverBuilder(context, notif)
@@ -664,6 +666,11 @@ class MediaDataManager(
      * If resumption is disabled, we only want to show active players
      */
     fun hasAnyMedia() = mediaDataFilter.hasAnyMedia()
+
+    /**
+     * Return extracted album art background color
+     */
+    fun getAlbumArtColor() = bgColor
 
     interface Listener {
 

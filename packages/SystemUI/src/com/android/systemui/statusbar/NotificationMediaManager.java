@@ -58,7 +58,9 @@ import com.android.systemui.Dumpable;
 import com.android.systemui.Interpolators;
 import com.android.systemui.colorextraction.SysuiColorExtractor;
 import com.android.systemui.dagger.qualifiers.Main;
+import com.android.systemui.media.MediaData;
 import com.android.systemui.media.MediaDataManager;
+import com.android.systemui.media.MediaFeatureFlag;
 import com.android.systemui.plugins.statusbar.StatusBarStateController;
 import com.android.systemui.statusbar.dagger.StatusBarModule;
 import com.android.systemui.statusbar.notification.NotificationEntryListener;
@@ -92,7 +94,7 @@ import dagger.Lazy;
  * Handles tasks and state related to media notifications. For example, there is a 'current' media
  * notification, which this class keeps track of.
  */
-public class NotificationMediaManager implements Dumpable {
+public class NotificationMediaManager implements Dumpable, MediaDataManager.Listener {
     private static final String TAG = "NotificationMediaManager";
     public static final boolean DEBUG_MEDIA = false;
 
@@ -115,6 +117,7 @@ public class NotificationMediaManager implements Dumpable {
 
     private final NotificationEntryManager mEntryManager;
     private final MediaDataManager mMediaDataManager;
+    private final boolean mIsMediaInQS;
 
     @Nullable
     private Lazy<NotificationShadeWindowController> mNotificationShadeWindowController;
@@ -206,7 +209,8 @@ public class NotificationMediaManager implements Dumpable {
             KeyguardBypassController keyguardBypassController,
             @Main DelayableExecutor mainExecutor,
             DeviceConfigProxy deviceConfig,
-            MediaDataManager mediaDataManager) {
+            MediaDataManager mediaDataManager,
+            MediaFeatureFlag mediaFeatureFlag) {
         mContext = context;
         mMediaArtworkProcessor = mediaArtworkProcessor;
         mKeyguardBypassController = keyguardBypassController;
@@ -221,6 +225,8 @@ public class NotificationMediaManager implements Dumpable {
         mEntryManager = notificationEntryManager;
         mMainExecutor = mainExecutor;
         mMediaDataManager = mediaDataManager;
+        mMediaDataManager.addListener(this);
+        mIsMediaInQS = mediaFeatureFlag.getEnabled();
 
         notificationEntryManager.addNotificationEntryListener(new NotificationEntryListener() {
 
@@ -242,7 +248,9 @@ public class NotificationMediaManager implements Dumpable {
             @Override
             public void onEntryReinflated(NotificationEntry entry) {
                 findAndUpdateMediaNotifications();
-                checkMediaNotificationColor(entry);
+                if (!mIsMediaInQS) {
+                    checkMediaNotificationColor(entry);
+                }
             }
 
             @Override
@@ -260,7 +268,9 @@ public class NotificationMediaManager implements Dumpable {
             @Override
             public void onNotificationAdded(
                     NotificationEntry entry) {
-                checkMediaNotificationColor(entry);
+                if (!mIsMediaInQS) {
+                    checkMediaNotificationColor(entry);
+                }
             }
         });
 
@@ -321,6 +331,26 @@ public class NotificationMediaManager implements Dumpable {
                         entry.getRow().getCurrentBackgroundTint());
             }
         }
+    }
+
+    @Override
+    public void onMediaDataLoaded(String key, String oldKey, MediaData data) {
+        /* for future reference, now this static call is also available:
+        MediaDataManagerKt.isMediaNotification(sbn)*/
+        // TODO: mIsMediaInQS check should be useless here, if so we can remove it
+        if (mIsMediaInQS && key.equals(mMediaNotificationKey)) {
+            ArrayList<MediaListener> callbacks = new ArrayList<>(mMediaListeners);
+            for (int i = 0; i < callbacks.size(); i++) {
+                callbacks.get(i).setMediaNotificationColor(
+                        true/*colorized*/,
+                        data.getBackgroundColor());
+            }
+        }
+    }
+
+    @Override
+    public void onMediaDataRemoved(String key) {
+        //
     }
 
     public String getMediaNotificationKey() {

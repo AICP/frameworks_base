@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49ad5ba6_368d40d5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2020-12-25T08:37:30Z",
+      "side": 1,
+      "message": "Test:\n- Enable corresponding options in AE\n- Open associated notification gut by swiping on the notification\n- Observe the force stop icon near the settings button\n- Tap on the icon, observe the force stop dialog",
+      "revId": "89bd53a7a3ea00f6e63b2462c5f0f5223a1b0137",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

@@ -324,7 +324,8 @@ public class NavigationBarFragment extends LifecycleFragment implements Callback
                 buttonDispatcher = mNavigationBarView.getBackButton();
             } else if (isGesturalMode) {
                 forceVisible = mForceNavBarHandleOpaque;
-                buttonDispatcher = mNavigationBarView.getHomeHandle();
+                buttonDispatcher = mNavigationBarView.isHintEnabled() ?
+                        mNavigationBarView.getHomeHandle() : null;
             }
             if (buttonDispatcher != null) {
                 buttonDispatcher.setVisibility(

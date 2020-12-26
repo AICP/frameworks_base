@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6cd2d981_6bcff537",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2020-12-26T06:41:32Z",
+      "side": 1,
+      "message": "Professional explanation is \"Tethering is now an Apex package thus we can\u0027t use fwb @hide symbols\"\n\nRef: https://review.lineageos.org/c/LineageOS/android_frameworks_base/+/295849/1",
+      "revId": "6415fb7c9cf4ef2afdd09fd4ca2d3f0054cd35d7",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcfb873f_4d45931a",
+        "filename": "packages/Tethering/src/com/android/networkstack/tethering/Tethering.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2020-12-26T06:41:32Z",
+      "side": 1,
+      "message": "What\u0027s this non-sense, you ask?",
+      "range": {
+        "startLine": 163,
+        "startChar": 4,
+        "endLine": 164,
+        "endChar": 96
+      },
+      "revId": "6415fb7c9cf4ef2afdd09fd4ca2d3f0054cd35d7",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55ca9824_1615e7d8",
+        "filename": "packages/Tethering/src/com/android/networkstack/tethering/UpstreamNetworkMonitor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2020-12-26T06:41:32Z",
+      "side": 1,
+      "message": "Why here too?",
+      "range": {
+        "startLine": 83,
+        "startChar": 4,
+        "endLine": 84,
+        "endChar": 96
+      },
+      "revId": "6415fb7c9cf4ef2afdd09fd4ca2d3f0054cd35d7",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

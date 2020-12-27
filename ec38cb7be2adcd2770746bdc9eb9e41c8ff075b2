@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56225cd7_8f6f5dab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1799
+      },
+      "writtenOn": "2020-12-27T10:31:10Z",
+      "side": 1,
+      "message": "Tested and working fine on merlin (Moto G3 Turbo Edition)",
+      "revId": "ec38cb7be2adcd2770746bdc9eb9e41c8ff075b2",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

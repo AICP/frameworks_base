@@ -17,7 +17,6 @@
 package com.android.systemui.statusbar.phone;
 
 import static android.view.WindowManagerPolicyConstants.NAV_BAR_MODE_GESTURAL;
-import static android.view.WindowManagerPolicyConstants.NAV_BAR_MODE_GESTURAL_OVERLAY;
 
 import static com.android.systemui.shared.system.QuickStepContract.SYSUI_STATE_HOME_DISABLED;
 import static com.android.systemui.shared.system.QuickStepContract.SYSUI_STATE_NOTIFICATION_PANEL_EXPANDED;
@@ -39,7 +38,6 @@ import android.annotation.DrawableRes;
 import android.annotation.Nullable;
 import android.app.StatusBarManager;
 import android.content.Context;
-import android.content.om.IOverlayManager;
 import android.content.res.Configuration;
 import android.graphics.Canvas;
 import android.graphics.Point;
@@ -47,8 +45,6 @@ import android.graphics.Rect;
 import android.graphics.Region;
 import android.graphics.Region.Op;
 import android.os.Bundle;
-import android.os.RemoteException;
-import android.os.ServiceManager;
 import android.os.UserHandle;
 import android.provider.Settings;
 import android.util.AttributeSet;
@@ -161,8 +157,6 @@ public class NavigationBarView extends FrameLayout implements
     private NotificationPanelViewController mPanelView;
     private FloatingRotationButton mFloatingRotationButton;
     private RotationButtonController mRotationButtonController;
-
-    private final IOverlayManager mOverlayManager;
 
     private boolean mHomeHandleForceHidden;
 
@@ -347,8 +341,6 @@ public class NavigationBarView extends FrameLayout implements
                         .getDimensionPixelSize(R.dimen.navigation_handle_sample_horizontal_margin);
         mEdgeBackGestureHandler = new EdgeBackGestureHandler(context, mOverviewProxyService,
                 mSysUiFlagContainer, mPluginManager, this::updateStates);
-        mOverlayManager = IOverlayManager.Stub.asInterface(
-                ServiceManager.getService(Context.OVERLAY_SERVICE));
         mRegionSamplingHelper = new RegionSamplingHelper(this,
                 new RegionSamplingHelper.SamplingCallback() {
                     @Override
@@ -946,15 +938,8 @@ public class NavigationBarView extends FrameLayout implements
 
     @Override
     public void onSettingsChanged() {
-        if (isGesturalMode(mNavBarMode)) {
-            try {
-                mOverlayManager.setEnabled(NAV_BAR_MODE_GESTURAL_OVERLAY, false, UserHandle.USER_CURRENT);
-                mOverlayManager.setEnabledExclusiveInCategory(NAV_BAR_MODE_GESTURAL_OVERLAY, UserHandle.USER_CURRENT);
-            } catch (RemoteException e) {
-                Log.e(TAG, "Failed to refresh navbar.");
-            }
-        }
         mEdgeBackGestureHandler.onSettingsChanged();
+        getHomeHandle().getCurrentView().invalidate();
     }
 
     public void setAccessibilityButtonState(final boolean visible, final boolean longClickable) {

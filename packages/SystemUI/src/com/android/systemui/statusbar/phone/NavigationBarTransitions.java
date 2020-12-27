@@ -192,7 +192,6 @@ public final class NavigationBarTransitions extends BarTransitions implements
             buttonDispatchers.valueAt(i).setDarkIntensity(darkIntensity);
         }
         mView.getRotationButtonController().setDarkIntensity(darkIntensity);
-        mView.setDpadDarkIntensity(darkIntensity);
         for (DarkIntensityListener listener : mDarkIntensityListeners) {
             listener.onDarkIntensity(darkIntensity);
         }

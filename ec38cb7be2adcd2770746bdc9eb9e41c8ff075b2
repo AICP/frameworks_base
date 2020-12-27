@@ -16,6 +16,23 @@
       "message": "Tested and working fine on merlin (Moto G3 Turbo Edition)",
       "revId": "ec38cb7be2adcd2770746bdc9eb9e41c8ff075b2",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de7c9048_85d6675c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1799
+      },
+      "writtenOn": "2020-12-27T10:32:50Z",
+      "side": 1,
+      "message": "Preview-\nhttps://www.alpacinodump.ml/372944367276912/2020-12-27_10:28:35.jpg\nhttps://www.alpacinodump.ml/372978727015280/2020-12-27_10:28:35.jpg\nhttps://www.alpacinodump.ml/372961547146096/2020-12-27_10:28:35.jpg",
+      "revId": "ec38cb7be2adcd2770746bdc9eb9e41c8ff075b2",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

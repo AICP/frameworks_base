@@ -14,7 +14,6 @@
 
 package com.android.systemui.statusbar.phone;
 
-import static android.provider.Settings.System.NAVIGATION_BAR_ARROW_KEYS;
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 import static android.view.WindowManagerPolicyConstants.NAV_BAR_MODE_3BUTTON;
 import static android.view.WindowManagerPolicyConstants.NAV_BAR_MODE_GESTURAL;
@@ -154,8 +153,7 @@ public class NavigationBarInflaterView extends FrameLayout
 
     protected String getDefaultLayout() {
         final int defaultResource = QuickStepContract.isGesturalMode(mNavBarMode)
-                ? (showDpadArrowKeys() ? R.string.config_navBarLayoutHandleArrows
-                : R.string.config_navBarLayoutHandle)
+                ? R.string.config_navBarLayoutHandle
                 : mOverviewProxyService.shouldShowSwipeUpUI()
                         ? R.string.config_navBarLayoutQuickstep
                         : R.string.config_navBarLayout;
@@ -174,7 +172,6 @@ public class NavigationBarInflaterView extends FrameLayout
         Dependency.get(TunerService.class).addTunable(this,
                           NAV_BAR_INVERSE,
                           NAV_BAR_VIEWS,
-                          NAVIGATION_BAR_ARROW_KEYS,
                           KEY_NAVIGATION_HINT);
     }
 
@@ -192,8 +189,6 @@ public class NavigationBarInflaterView extends FrameLayout
         } else if (NAV_BAR_INVERSE.equals(key)) {
             mInverseLayout = TunerService.parseIntegerSwitch(newValue, false);
             updateLayoutInversion();
-        } else if (NAVIGATION_BAR_ARROW_KEYS.equals(key)) {
-            onLikelyDefaultLayoutChange();
         } else if (KEY_NAVIGATION_HINT.equals(key)) {
             mIsHintEnabled = TunerService.parseIntegerSwitch(newValue, true);
             updateHint();
@@ -556,9 +551,7 @@ public class NavigationBarInflaterView extends FrameLayout
 
     private void clearAllChildren(ViewGroup group) {
         for (int i = 0; i < group.getChildCount(); i++) {
-            if (group.getChildAt(i).getId() != R.id.dpad_group) {
-                ((ViewGroup) group.getChildAt(i)).removeAllViews();
-            }
+            ((ViewGroup) group.getChildAt(i)).removeAllViews();
         }
     }
 
@@ -570,10 +563,5 @@ public class NavigationBarInflaterView extends FrameLayout
         pw.println("NavigationBarInflaterView {");
         pw.println("      mCurrentLayout: " + mCurrentLayout);
         pw.println("    }");
-    }
-
-    private boolean showDpadArrowKeys() {
-        return Settings.System.getIntForUser(getContext().getContentResolver(),
-                NAVIGATION_BAR_ARROW_KEYS, 0, UserHandle.USER_CURRENT) != 0;
     }
 }

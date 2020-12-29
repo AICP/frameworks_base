@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80fc589a_6999d6cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2020-12-29T07:57:36Z",
+      "side": 1,
+      "message": "Make \"ancient\" apps use the full screen height, removes dependency on some extra overlays and https://github.com/AICP/frameworks_base/commit/12e669adfd8f1caa1c451ecac7e2df087a556557",
+      "revId": "a275c581c5170599f8b6abd47e35c311868540e4",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

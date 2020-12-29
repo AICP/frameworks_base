@@ -112,6 +112,9 @@
     <!-- Whether device has VOOC charging support -->
     <bool name="config_hasVoocCharger">false</bool>
 
+    <!-- Whether device has turbo power charging support -->
+    <bool name="config_hasTurboPowerCharger">false</bool>
+
     <!-- The list of components which should be automatically disabled for a specific device.
          Note: this MUST not be used to randomly disable components, ask for approval first! -->
     <string-array name="config_deviceDisabledComponents" translatable="false">

@@ -94,6 +94,9 @@
   <!-- Whether device has VOOC charging support -->
   <java-symbol type="bool" name="config_hasVoocCharger" />
 
+  <!-- Whether device has turbo power charging support -->
+  <java-symbol type="bool" name="config_hasTurboPowerCharger" />
+
   <!-- Toast Animation -->
   <java-symbol type="style" name="Animation.Toast.Fade" />
   <java-symbol type="style" name="Animation.Toast.SlideRight" />

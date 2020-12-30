@@ -16,6 +16,41 @@
       "message": "Ralfie, Moshe, can you please check these ?",
       "revId": "4e6e98c450021693d7df73c4113a1e03f5bc3414",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1ac79e6_b485b55d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 343
+      },
+      "writtenOn": "2020-12-30T12:48:26Z",
+      "side": 1,
+      "message": "As far as i saw, it looks okay.",
+      "revId": "4e6e98c450021693d7df73c4113a1e03f5bc3414",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8659cf93_8e0b3020",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 343
+      },
+      "writtenOn": "2020-12-30T12:48:26Z",
+      "side": 1,
+      "message": "If it works with change 105284, it is okay with me. Better the Moto-gang tests too.",
+      "parentUuid": "b4b8c3f9_44fe02f3",
+      "revId": "4e6e98c450021693d7df73c4113a1e03f5bc3414",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

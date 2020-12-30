@@ -51,6 +51,23 @@
       "parentUuid": "b4b8c3f9_44fe02f3",
       "revId": "4e6e98c450021693d7df73c4113a1e03f5bc3414",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c896992a_fa80a76a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 774
+      },
+      "writtenOn": "2020-12-30T15:22:32Z",
+      "side": 1,
+      "message": "yeah looks fine, don\u0027t have a moto though",
+      "revId": "4e6e98c450021693d7df73c4113a1e03f5bc3414",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

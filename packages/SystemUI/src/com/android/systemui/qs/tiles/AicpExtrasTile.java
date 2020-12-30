@@ -71,19 +71,18 @@ public class AicpExtrasTile extends QSTileImpl<BooleanState> {
 
     @Override
     public Intent getLongClickIntent() {
+        if (isOTABundled()) {
+            return OTA_INTENT;
+        }
+        showNotSupportedToast();
         return null;
     }
 
     @Override
-    public void handleLongClick() {
-        // Collapse the panels, so the user can see the toast.
-        mHost.collapsePanels();
-        if (!isOTABundled()) {
-            showNotSupportedToast();
-            return;
+    protected void handleSecondaryClick() {
+        if (isOTABundled()) {
+            startAicpOTA();
         }
-        startAicpOTA();
-        refreshState();
     }
 
     @Override
@@ -106,12 +105,7 @@ public class AicpExtrasTile extends QSTileImpl<BooleanState> {
     }
 
     private boolean isOTABundled(){
-        boolean isBundled = false;
-        try {
-          isBundled = (mContext.getPackageManager().getPackageInfo(OTA_PKG_NAME, 0).versionCode > 0);
-        } catch (PackageManager.NameNotFoundException e) {
-        }
-        return isBundled;
+        return PackageUtils.isPackageAvailable(mContext, OTA_PKG_NAME);
     }
 
     private boolean isAEAvailable(){

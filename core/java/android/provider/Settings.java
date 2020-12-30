@@ -11473,6 +11473,13 @@ public final class Settings {
          */
         public static final String ALLOW_SIGNATURE_FAKE = "allow_signature_fake";
 
+        /**
+         * Whether the Touch Sensitivity option is enabled.
+         *
+         * @hide
+         */
+        public static final String TOUCH_SENSITIVITY_ENABLED = "touch_sensitivity_enabled";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

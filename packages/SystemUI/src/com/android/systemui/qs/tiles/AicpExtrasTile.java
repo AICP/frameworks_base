@@ -16,13 +16,10 @@
 
 package com.android.systemui.qs.tiles;
 
-import android.content.Context;
-import android.content.Intent;
 import android.content.ComponentName;
-import android.content.pm.PackageManager;
+import android.content.Intent;
 import android.widget.Toast;
 
-import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 import com.android.internal.util.aicp.PackageUtils;
 import com.android.systemui.Dependency;
@@ -44,12 +41,12 @@ public class AicpExtrasTile extends QSTileImpl<BooleanState> {
     private static final String AE_PKG_NAME = "com.aicp.extras";
     private static final String OTA_PKG_NAME = "com.aicp.updater3";
 
-    private static final Intent AICP_EXTRAS = new Intent()
-        .setComponent(new ComponentName(AE_PKG_NAME,
-        "com.aicp.extras.SettingsActivity"));
+    private static final Intent AE_INTENT = new Intent()
+            .setComponent(new ComponentName(AE_PKG_NAME,
+                "com.aicp.extras.SettingsActivity"));
     private static final Intent OTA_INTENT = new Intent()
-        .setComponent(new ComponentName(OTA_PKG_NAME,
-        "org.lineageos.updater.UpdatesActivity"));
+            .setComponent(new ComponentName(OTA_PKG_NAME,
+                "org.lineageos.updater.UpdatesActivity"));
 
     @Inject
     public AicpExtrasTile(QSHost host) {
@@ -71,19 +68,18 @@ public class AicpExtrasTile extends QSTileImpl<BooleanState> {
 
     @Override
     public Intent getLongClickIntent() {
+        if (isOTABundled()) {
+            return OTA_INTENT;
+        }
+        showNotSupportedToast();
         return null;
     }
 
     @Override
-    public void handleLongClick() {
-        // Collapse the panels, so the user can see the toast.
-        mHost.collapsePanels();
-        if (!isOTABundled()) {
-            showNotSupportedToast();
-            return;
+    protected void handleSecondaryClick() {
+        if (isOTABundled()) {
+            startAicpOTA();
         }
-        startAicpOTA();
-        refreshState();
     }
 
     @Override
@@ -92,29 +88,26 @@ public class AicpExtrasTile extends QSTileImpl<BooleanState> {
     }
 
     protected void startAicpExtras() {
-        mActivityStarter.postStartActivityDismissingKeyguard(AICP_EXTRAS, 0);
+        mActivityStarter.postStartActivityDismissingKeyguard(AE_INTENT, 0);
     }
 
     protected void startAicpOTA() {
         mActivityStarter.postStartActivityDismissingKeyguard(OTA_INTENT, 0);
     }
 
-    private void showNotSupportedToast(){
+    private void showNotSupportedToast() {
+        // Collapse the panels, so the user can see the toast.
+        mHost.collapsePanels();
         SysUIToast.makeText(mContext, mContext.getString(
                 R.string.quick_aicp_extras_toast),
                 Toast.LENGTH_LONG).show();
     }
 
-    private boolean isOTABundled(){
-        boolean isBundled = false;
-        try {
-          isBundled = (mContext.getPackageManager().getPackageInfo(OTA_PKG_NAME, 0).versionCode > 0);
-        } catch (PackageManager.NameNotFoundException e) {
-        }
-        return isBundled;
+    private boolean isOTABundled() {
+        return PackageUtils.isPackageAvailable(mContext, OTA_PKG_NAME);
     }
 
-    private boolean isAEAvailable(){
+    private boolean isAEAvailable() {
         boolean isInstalled = false;
         boolean isNotHidden = false;
         isInstalled = PackageUtils.isPackageInstalled(mContext, AE_PKG_NAME);
@@ -123,8 +116,8 @@ public class AicpExtrasTile extends QSTileImpl<BooleanState> {
     }
 
     @Override
-    public boolean isAvailable(){
-      return isAEAvailable();
+    public boolean isAvailable() {
+        return isAEAvailable();
     }
 
     @Override

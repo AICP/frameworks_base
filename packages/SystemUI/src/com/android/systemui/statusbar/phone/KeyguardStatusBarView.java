@@ -479,7 +479,6 @@ public class KeyguardStatusBarView extends RelativeLayout
         mCarrierLabel.setTextAppearance(
                 Utils.getThemeAttr(mContext, com.android.internal.R.attr.textAppearanceSmall));
         onThemeChanged();
-        mBatteryView.updatePercentView();
     }
 
     private void updateIconsAndTextColors() {

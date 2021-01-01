@@ -11101,6 +11101,11 @@ public final class Settings {
          */
         public static final String ADVANCED_REBOOT = "advanced_reboot_in_power_menu";
 
+        /**
+         * @hide
+         */
+        public static final String  SCREENSHOT_IN_POWER_MENU = "screenshot_in_power_menu";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

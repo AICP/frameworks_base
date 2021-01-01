@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3da635fe_0b78732b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-01-01T04:01:42Z",
+      "side": 1,
+      "message": "Can I get a Aicp -\u003e AICP at https://github.com/AICP/frameworks_base/blob/cee4afc4de1de20d28b3e9cb838acc252af25192/packages/SystemUI/res/values/aicp_strings.xml#L92 too?",
+      "revId": "e1a18851ce132f9f3f654dc54ec69b729d59437f",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

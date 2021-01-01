@@ -712,7 +712,9 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
                     addIfShouldShowAction(tempActions, restartSystemUiAction);
                 }
             } else if (GLOBAL_ACTION_KEY_SCREENSHOT.equals(actionKey)) {
-                addIfShouldShowAction(tempActions, new ScreenshotAction());
+                if (screenshotEnabled(mContext)) {
+                    addIfShouldShowAction(tempActions, new ScreenshotAction());
+                }
             } else if (GLOBAL_ACTION_KEY_LOGOUT.equals(actionKey)) {
                 if (mDevicePolicyManager.isLogoutEnabled()
                         && currentUser.get() != null
@@ -845,6 +847,11 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
         boolean advancedRebootEnabled = Settings.Secure.getIntForUser(context.getContentResolver(),
                 Settings.Secure.ADVANCED_REBOOT, 0, UserHandle.USER_CURRENT) == 1;
         return advancedRebootEnabled;
+    }
+
+    private boolean screenshotEnabled(Context context) {
+        return Settings.Secure.getIntForUser(context.getContentResolver(),
+                Settings.Secure.SCREENSHOT_IN_POWER_MENU, 1, UserHandle.USER_CURRENT) == 1;
     }
 
     @VisibleForTesting

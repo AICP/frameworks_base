@@ -1,5 +1,6 @@
 /**
  * Copyright (C) 2019-2020 The LineageOS Project
+ * Copyright (C) 2021 Android Ice Cold Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -408,49 +409,80 @@ public class FODCircleView extends ImageView {
     private void setFODIcon() {
         int fodicon = getFODIcon();
 
-        if (fodicon == 0) {
-            this.setImageResource(R.drawable.fod_icon_default);
-        } else if (fodicon == 1) {
-            this.setImageResource(R.drawable.fod_icon_default_1);
-        } else if (fodicon == 2) {
-            this.setImageResource(R.drawable.fod_icon_default_2);
-        } else if (fodicon == 3) {
-            this.setImageResource(R.drawable.fod_icon_default_3);
-        } else if (fodicon == 4) {
-            this.setImageResource(R.drawable.fod_icon_default_4);
-        } else if (fodicon == 5) {
-            this.setImageResource(R.drawable.fod_icon_default_5);
-        } else if (fodicon == 6) {
-            this.setImageResource(R.drawable.fod_icon_arc_reactor);
-        } else if (fodicon == 7) {
-            this.setImageResource(R.drawable.fod_icon_cpt_america_flat);
-        } else if (fodicon == 8) {
-            this.setImageResource(R.drawable.fod_icon_cpt_america_flat_gray);
-        } else if (fodicon == 9) {
-            this.setImageResource(R.drawable.fod_icon_dragon_black_flat);
-        } else if (fodicon == 10) {
-            this.setImageResource(R.drawable.fod_icon_future);
-        } else if (fodicon == 11) {
-            this.setImageResource(R.drawable.fod_icon_glow_circle);
-        } else if (fodicon == 12) {
-            this.setImageResource(R.drawable.fod_icon_neon_arc);
-        } else if (fodicon == 13) {
-            this.setImageResource(R.drawable.fod_icon_neon_arc_gray);
-        } else if (fodicon == 14) {
-            this.setImageResource(R.drawable.fod_icon_neon_circle_pink);
-        } else if (fodicon == 15) {
-            this.setImageResource(R.drawable.fod_icon_neon_triangle);
-        } else if (fodicon == 16) {
-            this.setImageResource(R.drawable.fod_icon_paint_splash_circle);
-        } else if (fodicon == 17) {
-            this.setImageResource(R.drawable.fod_icon_rainbow_horn);
-        } else if (fodicon == 18) {
-            this.setImageResource(R.drawable.fod_icon_shooky);
-        } else if (fodicon == 19) {
-            this.setImageResource(R.drawable.fod_icon_spiral_blue);
-        } else if (fodicon == 20) {
-            this.setImageResource(R.drawable.fod_icon_sun_metro);
-        }
+        switch (fodicon){
+            case 0:
+                this.setImageResource(R.drawable.fod_icon_aicp);
+                break;
+            case 1:
+                this.setImageResource(R.drawable.fod_icon_aicp_1);
+                break;
+            case 2:
+                this.setImageResource(R.drawable.fod_icon_aicp_2);
+                break;
+            case 3:
+                this.setImageResource(R.drawable.fod_icon_default);
+                break;
+            case 4:
+                this.setImageResource(R.drawable.fod_icon_default_1);
+                break;
+            case 5:
+                this.setImageResource(R.drawable.fod_icon_default_2);
+                break;
+            case 6:
+                this.setImageResource(R.drawable.fod_icon_default_3);
+                break;
+            case 7:
+                this.setImageResource(R.drawable.fod_icon_default_4);
+                break;
+            case 8:
+                this.setImageResource(R.drawable.fod_icon_default_5);
+                break;
+            case 9:
+                this.setImageResource(R.drawable.fod_icon_arc_reactor);
+                break;
+            case 10:
+                this.setImageResource(R.drawable.fod_icon_cpt_america_flat);
+                break;
+            case 11:
+                this.setImageResource(R.drawable.fod_icon_cpt_america_flat_gray);
+                break;
+            case 12:
+                this.setImageResource(R.drawable.fod_icon_dragon_black_flat);
+                break;
+            case 13:
+                this.setImageResource(R.drawable.fod_icon_future);
+                break;
+            case 14:
+                this.setImageResource(R.drawable.fod_icon_glow_circle);
+                break;
+            case 15:
+                this.setImageResource(R.drawable.fod_icon_neon_arc);
+                break;
+            case 16:
+                this.setImageResource(R.drawable.fod_icon_neon_arc_gray);
+                break;
+            case 17:
+                this.setImageResource(R.drawable.fod_icon_neon_circle_pink);
+                break;
+            case 18:
+                this.setImageResource(R.drawable.fod_icon_neon_triangle);
+                break;
+            case 19:
+                this.setImageResource(R.drawable.fod_icon_paint_splash_circle);
+                break;
+            case 20:
+                this.setImageResource(R.drawable.fod_icon_rainbow_horn);
+                break;
+            case 21:
+                this.setImageResource(R.drawable.fod_icon_shooky);
+                break;
+            case 22:
+                this.setImageResource(R.drawable.fod_icon_spiral_blue);
+                break;
+            case 23:
+                this.setImageResource(R.drawable.fod_icon_sun_metro);
+                break;
+        } 
         this.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
 
         if (useWallpaperColor()) {

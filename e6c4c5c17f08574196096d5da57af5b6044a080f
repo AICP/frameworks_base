@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a173890e_252824d5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-01-02T15:41:42Z",
+      "side": 1,
+      "message": "This fixes the issue where the VPN tile ended up having no icon, label or any repose to inputs.\nThis was only observed on a build after flashing GApps, which make be suspect the issue may be something else.",
+      "revId": "e6c4c5c17f08574196096d5da57af5b6044a080f",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

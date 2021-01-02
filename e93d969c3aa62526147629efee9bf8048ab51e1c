@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14c37b64_5d2ed26f",
+        "filename": "packages/SystemUI/src/com/android/systemui/qs/tiles/AicpExtrasTile.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-01-02T18:58:10Z",
+      "side": 0,
+      "message": "The panel doesn\u0027t collapse to show the toast",
+      "range": {
+        "startLine": 80,
+        "startChar": 8,
+        "endLine": 80,
+        "endChar": 31
+      },
+      "revId": "e93d969c3aa62526147629efee9bf8048ab51e1c",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

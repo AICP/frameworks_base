@@ -61,6 +61,7 @@ import android.os.SystemProperties;
 import android.os.Trace;
 import android.os.UserHandle;
 import android.provider.DeviceConfig;
+import android.provider.Settings;
 import android.util.ArraySet;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -151,6 +152,8 @@ public class EdgeBackGestureHandler implements TunerService.Tunable {
 
     private static final String KEY_EDGE_LONG_SWIPE_ACTION =
             "lineagesystem:" + LineageSettings.System.KEY_EDGE_LONG_SWIPE_ACTION;
+    private static final String BACK_GESTURE_ARROW =
+            Settings.Secure.BACK_GESTURE_ARROW;
 
     private static final int MAX_NUM_LOGGED_PREDICTIONS = 10;
     private static final int MAX_NUM_LOGGED_GESTURES = 10;
@@ -336,6 +339,8 @@ public class EdgeBackGestureHandler implements TunerService.Tunable {
 
     private final GestureNavigationSettingsObserver mGestureNavigationSettingsObserver;
     private final TopUiController mTopUiController;
+
+    private boolean mIsBackGestureArrowEnabled;
 
     private final NavigationEdgeBackPlugin.BackCallback mBackCallback =
             new NavigationEdgeBackPlugin.BackCallback() {
@@ -627,6 +632,10 @@ public class EdgeBackGestureHandler implements TunerService.Tunable {
                         Action.NOTHING.ordinal(), UserHandle.USER_CURRENT)) != Action.NOTHING;
         updateLongSwipeWidth();
 
+        mIsBackGestureArrowEnabled = Settings.Secure.getIntForUser(mContext.getContentResolver(),
+                        Settings.Secure.BACK_GESTURE_ARROW, 1, UserHandle.USER_CURRENT) != 0;
+        updateBackArrowVisibility();
+
         // Reduce the default touch slop to ensure that we can intercept the gesture
         // before the app starts to react to it.
         // TODO(b/130352502) Tune this value and extract into a constant
@@ -678,6 +687,7 @@ public class EdgeBackGestureHandler implements TunerService.Tunable {
         updateIsEnabled();
         mUserTracker.addCallback(mUserChangedCallback, mUiThreadContext.getExecutor());
         mTunerService.addTunable(this, KEY_EDGE_LONG_SWIPE_ACTION);
+        mTunerService.addTunable(this, BACK_GESTURE_ARROW);
     }
 
     /**
@@ -886,6 +896,7 @@ public class EdgeBackGestureHandler implements TunerService.Tunable {
                     // Add a nav bar panel window
                     resetEdgeBackPlugin();
                     updateLongSwipeWidth();
+                    updateBackArrowVisibility();
                 }
 
                 // Begin listening to changes in blocked activities list
@@ -935,12 +946,22 @@ public class EdgeBackGestureHandler implements TunerService.Tunable {
             mIsLongSwipeEnabled = Action.fromIntSafe(TunerService.parseInteger(
                     newValue, 0)) != Action.NOTHING;
             updateLongSwipeWidth();
+        } else if (BACK_GESTURE_ARROW.equals(key)) {
+            mIsBackGestureArrowEnabled =
+                TunerService.parseIntegerSwitch(newValue, true);
+            updateBackArrowVisibility();
         }
     }
 
     private void updateLongSwipeWidth() {
         if (mIsEnabled && mEdgeBackPlugin != null) {
             mEdgeBackPlugin.setLongSwipeEnabled(mIsLongSwipeEnabled);
+        }
+    }
+
+    private void updateBackArrowVisibility() {
+        if (mIsEnabled && mEdgeBackPlugin != null) {
+            mEdgeBackPlugin.setBackArrowVisibility(mIsBackGestureArrowEnabled);
         }
     }
 
@@ -1469,6 +1490,7 @@ public class EdgeBackGestureHandler implements TunerService.Tunable {
         }
         updateBackAnimationThresholds();
         updateLongSwipeWidth();
+        updateBackArrowVisibility();
     }
 
     private void updateBackAnimationThresholds() {

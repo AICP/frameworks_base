@@ -62,7 +62,7 @@ public class AuthController extends SystemUI implements CommandQueue.Callbacks,
         AuthDialogCallback {
 
     private static final String TAG = "BiometricPrompt/AuthController";
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
 
     private final CommandQueue mCommandQueue;
     private final Injector mInjector;

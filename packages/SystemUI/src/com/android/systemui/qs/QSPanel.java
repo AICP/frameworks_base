@@ -106,6 +106,8 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
             "system:" + Settings.System.ANIM_TILE_DURATION;
     public static final String ANIM_TILE_INTERPOLATOR =
             "system:" + Settings.System.ANIM_TILE_INTERPOLATOR;
+    public static final String IGNORE_LAYOUT_CHANGE =
+            "system:" + Settings.System.QS_MEDIAPLAYER_IGNORE_LAYOUT_CHANGE;
 
     private static final String TAG = "QSPanel";
 
@@ -162,8 +164,6 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     private int mVisualTilePadding;
     private boolean mUsingHorizontalLayout;
 
-    private boolean mShowBrightnessSideButtons = false;
-
     private QSCustomizer mCustomizePanel;
     private Record mDetailRecord;
 
@@ -184,6 +184,8 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     // omni
     private int mFooterMargin;
     private boolean mBrightnessBottom;
+    private boolean mShowBrightnessSideButtons = false;
+    private boolean mIgnoreLayoutChange = true;
     private final ContentResolver mResolver;
 
     @Inject
@@ -431,6 +433,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
         tunerService.addTunable(this, ANIM_TILE_STYLE);
         tunerService.addTunable(this, ANIM_TILE_DURATION);
         tunerService.addTunable(this, ANIM_TILE_INTERPOLATOR);
+        tunerService.addTunable(this, IGNORE_LAYOUT_CHANGE);
 
         if (mHost != null) {
             setTiles(mHost.getTiles());
@@ -491,15 +494,11 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
             }
         }
         if (QS_BRIGHTNESS_POSITION_BOTTOM.equals(key)) {
-            if (newValue == null || Integer.parseInt(newValue) == 0) {
-                removeView(mBrightnessView);
-                addView(mBrightnessView, 0);
-                mBrightnessBottom = false;
-            } else {
-                removeView(mBrightnessView);
-                addView(mBrightnessView, getBrightnessViewPositionBottom());
-                mBrightnessBottom = true;
-            }
+            mBrightnessBottom = (newValue == null || Integer.parseInt(newValue) == 0) ? false : true;
+            updateBrightnessSliderPosition();
+        }
+        if (IGNORE_LAYOUT_CHANGE.equals(key)) {
+            mIgnoreLayoutChange = (newValue == null || Integer.parseInt(newValue) == 0) ? false : true;
         }
         if (QS_SHOW_BRIGHTNESS_SIDE_BUTTONS.equals(key)) {
             mShowBrightnessSideButtons = (newValue == null || Integer.parseInt(newValue) == 0)
@@ -510,6 +509,15 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
         if (QS_SHOW_SECURITY.equals(key)) {
             mSecurityFooter.setForceHide(newValue != null && Integer.parseInt(newValue) == 0);
         }
+    }
+
+    private void updateBrightnessSliderPosition() {
+        if (mBrightnessView == null) {
+            return;
+        }
+        removeView(mBrightnessView);
+        addView(mBrightnessView, (mBrightnessBottom && !shouldUseHorizontalLayout()) ?
+                      getBrightnessViewPositionBottom() : 0);
     }
 
     private int getBrightnessViewPositionBottom() {
@@ -719,6 +727,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
             updateMediaHostContentMargins();
             updateHorizontalLinearLayoutMargins();
             updatePadding();
+            updateBrightnessSliderPosition();
             return true;
         }
         return false;
@@ -787,7 +796,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
     }
 
     private boolean shouldUseHorizontalLayout() {
-        return mUsingMediaPlayer && mMediaHost.getVisible()
+        return mUsingMediaPlayer && !mIgnoreLayoutChange && mMediaHost.getVisible()
                 && getResources().getConfiguration().orientation
                 == Configuration.ORIENTATION_LANDSCAPE;
     }

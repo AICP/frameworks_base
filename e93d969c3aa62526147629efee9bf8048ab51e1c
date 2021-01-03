@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbefaa16_4a2b2e2a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-01-03T16:04:04Z",
+      "side": 1,
+      "message": "Why set default when we already provision the config to false with https://gerrit.aicp-rom.com/c/AICP/vendor_aicp/+/107207",
+      "revId": "e93d969c3aa62526147629efee9bf8048ab51e1c",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

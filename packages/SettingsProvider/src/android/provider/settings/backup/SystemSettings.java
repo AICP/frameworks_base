@@ -152,7 +152,8 @@ public class SystemSettings {
                 Settings.System.STATUSBAR_BATTERY_BAR_ENABLE_CHARGING_COLOR,
                 Settings.System.STATUSBAR_BATTERY_BAR_BLEND_COLORS_REVERSE,
                 Settings.System.STATUSBAR_BATTERY_BAR_BLEND_DARK_COLORS_REVERSE,
-                Settings.System.LOCKSCREEN_BATTERY_INFO
+                Settings.System.LOCKSCREEN_BATTERY_INFO,
+                Settings.System.LOCKSCREEN_BATTERY_INFO_TEMP_UNIT
         ));
         if (Flags.backUpSmoothDisplayAndForcePeakRefreshRate()) {
             settings.add(Settings.System.PEAK_REFRESH_RATE);

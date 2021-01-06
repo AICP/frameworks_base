@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aefc058b_61059793",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2021-01-06T15:49:37Z",
+      "side": 1,
+      "message": "excluded from my pick list becoz of: https://gerrit.aicp-rom.com/c/AICP/vendor_aicp/+/107207\n",
+      "revId": "d1d6fb6a005b05f85f746dfd4705cc47a4528860",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

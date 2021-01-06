@@ -5773,6 +5773,14 @@ public final class Settings {
          */
         public static final String LOCKSCREEN_BATTERY_INFO = "lockscreen_battery_info";
 
+        /**
+         * Whether to show Fahrenheit or Celsius with battery info on the
+         * lockscreen while charging
+         *
+         * @hide
+         */
+        public static final String LOCKSCREEN_BATTERY_INFO_TEMP_UNIT = "lockscreen_charge_temp_unit";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5913,6 +5921,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD);
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_EXPANDED_STATUS_BAR_STATE);
             PRIVATE_SETTINGS.add(LOCKSCREEN_BATTERY_INFO);
+            PRIVATE_SETTINGS.add(LOCKSCREEN_BATTERY_INFO_TEMP_UNIT);
         }
 
         /**

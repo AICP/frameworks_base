@@ -6801,6 +6801,14 @@ public final class Settings {
          */
         public static final String QS_MEDIAPLAYER_IGNORE_LAYOUT_CHANGE = "qsmplayer_ignore_layout_change";
 
+        /**
+         * Whether to show Fahrenheit or Celsius with battery info on the
+         * lockscreen while charging
+         *
+         * @hide
+         */
+        public static final String LOCKSCREEN_BATTERY_INFO_TEMP_UNIT = "lockscreen_charge_temp_unit";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7039,6 +7047,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(ADAPTIVE_PLAYBACK_ENABLED, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(ADAPTIVE_PLAYBACK_TIMEOUT, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(QS_MEDIAPLAYER_IGNORE_LAYOUT_CHANGE, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(LOCKSCREEN_BATTERY_INFO_TEMP_UNIT, BOOLEAN_VALIDATOR);
         }
 
         /**

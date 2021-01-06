@@ -6424,6 +6424,14 @@ public final class Settings {
          */
         public static final String LOCKSCREEN_MAX_NOTIF_CONFIG = "lockscreen_max_notif_config";
 
+        /**
+         * Whether to show Fahrenheit or Celsius with battery info on the
+         * lockscreen while charging
+         *
+         * @hide
+         */
+        public static final String LOCKSCREEN_BATTERY_INFO_TEMP_UNIT = "lockscreen_charge_temp_unit";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6724,6 +6732,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(AICP_LOCKSCREEN_WEATHER_STYLE);
             PRIVATE_SETTINGS.add(LOCKSCREEN_MAX_NOTIF_CONFIG);
             PRIVATE_SETTINGS.add(LOCK_SCREEN_CUSTOM_NOTIF);
+            PRIVATE_SETTINGS.add(LOCKSCREEN_BATTERY_INFO_TEMP_UNIT);
         }
 
         /**

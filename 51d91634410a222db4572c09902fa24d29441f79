@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9da5aa48_68929bc3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-01-12T10:03:31Z",
+      "side": 1,
+      "message": "Test:\n- Trigger a screenshot somehow\n- Observe the \"Delete\" button on screenshot \"notification\"\n- Press delete and check Gallery if the screenshot was indeed deleted",
+      "revId": "51d91634410a222db4572c09902fa24d29441f79",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

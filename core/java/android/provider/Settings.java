@@ -6899,6 +6899,18 @@ public final class Settings {
         public static final String QS_PANEL_BG_ALPHA = "qs_panel_bg_alpha";
 
         /**
+         * Whether to change the transparency of the qs status bar
+         * @hide
+         */
+        public static final String QS_SB_BG_ALPHA = "qs_sb_bg_alpha";
+
+        /**
+         * Whether to show gradient below status bar in qs panel
+         * @hide
+         */
+        public static final String QS_SB_BG_GRADIENT = "qs_sb_bg_gradient";
+
+        /**
          * Show the pending notification counts as overlays on the status bar
          * @hide
          */
@@ -7321,6 +7333,8 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(CAMERA_LAUNCH, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(OFF_GESTURE_HAPTIC_ENABLE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(QS_PANEL_BG_ALPHA, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(QS_SB_BG_GRADIENT, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(QS_SB_BG_ALPHA, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(STATUS_BAR_NOTIF_COUNT, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(ADAPTIVE_PLAYBACK_ENABLED, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(ADAPTIVE_PLAYBACK_TIMEOUT, ANY_INTEGER_VALIDATOR);

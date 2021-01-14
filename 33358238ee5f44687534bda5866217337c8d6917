@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0f9a105_53f2addb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1799
+      },
+      "writtenOn": "2021-01-14T14:10:03Z",
+      "side": 1,
+      "message": "Tested and working fine on merlin\n\nscreenshots - https://imgur.com/a/ef7esSp",
+      "revId": "33358238ee5f44687534bda5866217337c8d6917",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

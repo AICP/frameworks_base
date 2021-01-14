@@ -5342,6 +5342,12 @@ public final class Settings {
          */
         public static final String ALERT_SLIDER_NOTIFICATIONS = "alert_slider_notifications";
 
+        /**
+         * @hide
+         */
+        public static final String SHOW_BATTERY_IMAGE =
+                "show_battery_image";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5498,6 +5504,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(OMNI_BUTTON_EXTRA_KEY_MAPPING);
             PRIVATE_SETTINGS.add(OMNI_SYSTEM_PROXI_CHECK_ENABLED);
             PRIVATE_SETTINGS.add(ALERT_SLIDER_NOTIFICATIONS);
+            PRIVATE_SETTINGS.add(SHOW_BATTERY_IMAGE);
         }
 
         /**

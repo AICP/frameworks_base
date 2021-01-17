@@ -16,6 +16,23 @@
       "message": "Works fine here. Any objections? ",
       "revId": "064afa7e08a6425a3a63c2327d6c13f057ca34e3",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a80f8a9_3ef9a59d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 812
+      },
+      "writtenOn": "2021-01-17T11:02:10Z",
+      "side": 1,
+      "message": "Works fine here too.",
+      "revId": "064afa7e08a6425a3a63c2327d6c13f057ca34e3",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

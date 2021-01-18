@@ -735,7 +735,7 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
             addedKeys.add(actionKey);
         }
 
-        if (tempActions.contains(restartAction) && (advancedRebootEnabled(mContext))) {
+        if (tempActions.contains(restartAction) && advancedRebootEnabled(mContext)) {
             // transfer restart and advanced restart to their own list of power actions
             // and position it where Reset button was supposed to be
             int powerOptionsIndex = tempActions.indexOf(restartAction);
@@ -772,7 +772,7 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
                 && tempActions.size() > getMaxShownPowerItems()) {
             tempActions.remove(shutdownAction);
         } else {
-            mPowerItems.remove(shutdownAction);
+//            mPowerItems.remove(shutdownAction);
         }
         for (Action action : tempActions) {
             addActionItem(action);

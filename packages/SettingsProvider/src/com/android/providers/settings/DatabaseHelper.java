@@ -850,8 +850,8 @@ class DatabaseHelper extends SQLiteOpenHelper {
             try {
                 stmt = db.compileStatement("INSERT INTO system(name,value)"
                         + " VALUES(?,?);");
-                loadBooleanSetting(stmt, Settings.System.USER_ROTATION,
-                        R.integer.def_user_rotation); // should be zero degrees
+                loadIntegerSetting(stmt, Settings.System.USER_ROTATION,
+                        R.integer.def_user_rotation);
                 db.setTransactionSuccessful();
             } finally {
                 db.endTransaction();
@@ -2269,6 +2269,8 @@ class DatabaseHelper extends SQLiteOpenHelper {
 
             loadBooleanSetting(stmt, Settings.System.ACCELEROMETER_ROTATION,
                     R.bool.def_accelerometer_rotation);
+
+            loadIntegerSetting(stmt, Settings.System.USER_ROTATION, R.integer.def_user_rotation);
 
             loadDefaultHapticSettings(stmt);
 

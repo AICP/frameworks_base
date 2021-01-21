@@ -294,4 +294,7 @@
 
   <!-- Whether to show settings for hiding notch fill -->
   <java-symbol type="bool" name="config_showHideNotchSettings" />
+
+   <!-- FOD pressed color-->
+   <java-symbol type="bool" name="config_supportsInDisplayFingerprintGesture" />
 </resources>

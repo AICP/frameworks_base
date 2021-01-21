@@ -314,4 +314,7 @@
 
     <!-- Whether to show settings for hiding notch fill -->
     <bool name="config_showHideNotchSettings">false</bool>
+
+    <!-- FOD pressed color-->
+    <bool name="config_supportsInDisplayFingerprintGesture">false</bool>
 </resources>

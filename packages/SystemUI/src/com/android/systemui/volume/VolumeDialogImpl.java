@@ -709,17 +709,15 @@ public class VolumeDialogImpl implements VolumeDialog,
         }
         setVisOrGone(STREAM_VOICE_CALL, mVoiceShown && expand);
         setVisOrGone(STREAM_BLUETOOTH_SCO, mBTSCOShown && expand);
-        if (expand) {
-            updateAppRows();
-        }
+        updateAppRows(expand);
     }
 
-    private void updateAppRows() {
+    private void updateAppRows(boolean expand) {
         for (int i = mAppRows.size() - 1; i >= 0; i--) {
             final VolumeRow row = mAppRows.get(i);
             removeAppRow(row);
         }
-        if (!mShowAppVolume) return;
+        if (!mShowAppVolume || !expand) return;
         List<AppTrackData> trackDatas = mController.getAudioManager().listAppTrackDatas();
         for (AppTrackData data : trackDatas) {
             if (data.isActive()) {

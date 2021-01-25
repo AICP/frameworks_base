@@ -6565,6 +6565,13 @@ public final class Settings {
         public static final String KEY_CAMERA_DOUBLE_TAP_ACTION = "key_camera_double_tap_action";
 
         /**
+         * Whether the battery light should be enabled (if hardware supports it)
+         * The value is boolean (1 or 0).
+         * @hide
+         */
+        public static final String BATTERY_LIGHT_ENABLED = "battery_light_enabled";
+
+        /**
         * Whether to show battery light when DND mode is active
         * @hide
         */
@@ -7089,6 +7096,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(KEY_APP_SWITCH_DOUBLE_TAP_CUSTOM_APP_FR_NAME, ANY_STRING_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(KEY_CAMERA_LONG_PRESS_ACTION, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(KEY_CAMERA_DOUBLE_TAP_ACTION, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(BATTERY_LIGHT_ENABLED, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(BATTERY_LIGHT_ALLOW_ON_DND, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(BATTERY_LIGHT_LOW_BLINKING, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(BATTERY_LIGHT_LOW_COLOR, ANY_INTEGER_VALIDATOR);

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4b9aa7b_e4716ddf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1799
+      },
+      "writtenOn": "2021-01-27T13:01:32Z",
+      "side": 1,
+      "message": "Battery led can now be disabled on merlin, please check on other devices",
+      "revId": "2c3dfb69ab6239289a09f9bc09863b1afb536293",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

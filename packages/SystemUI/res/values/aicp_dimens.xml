@@ -136,4 +136,10 @@
     <!-- Media Player -->
     <dimen name="quick_settings_top_margin_media">4dp</dimen>
     <dimen name="quick_settings_top_margin_media_extra">8dp</dimen>
+
+    <!-- Margin on the left side of the center clock -->
+    <dimen name="status_bar_center_clock_padding_start">0dp</dimen>
+
+    <!-- Margin on the right side of the center clock -->
+    <dimen name="status_bar_center_clock_padding_end">0dp</dimen>
 </resources>

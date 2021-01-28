@@ -129,7 +129,7 @@ public class NavigationHandle extends View implements ButtonInterface {
         /* 2: long */
         /* 3: extra long */
         int baseWidth = getContext().getResources().getDimensionPixelSize(R.dimen.navigation_home_handle_width);
-        int userSelection = Settings.Secure.getInt(getContext().getContentResolver(), Settings.Secure.NAVIGATION_HANDLE_WIDTH, 0);
+        int userSelection = Settings.Secure.getInt(getContext().getContentResolver(), Settings.Secure.NAVIGATION_HANDLE_WIDTH, 1);
         if (userSelection == 3) {
             baseWidth *= 2;
         } else if (userSelection == 2) {

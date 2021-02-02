@@ -257,9 +257,6 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
 
     protected void onMediaVisibilityChanged(Boolean visible) {
         switchTileLayout();
-        if (getTileLayout() != null) {
-            getTileLayout().setMinRows(visible ? 2 : 3);
-        }
         if (mMediaVisibilityChangedListener != null) {
             mMediaVisibilityChangedListener.accept(visible);
         }

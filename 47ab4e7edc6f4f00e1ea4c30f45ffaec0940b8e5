@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39aaf66d_69941d61",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1866
+      },
+      "writtenOn": "2021-02-02T17:32:27Z",
+      "side": 1,
+      "message": "Still forces all devices to build moto health hal. Not ideal",
+      "revId": "47ab4e7edc6f4f00e1ea4c30f45ffaec0940b8e5",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

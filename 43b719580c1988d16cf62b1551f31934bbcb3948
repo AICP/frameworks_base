@@ -22,6 +22,30 @@
       },
       "revId": "43b719580c1988d16cf62b1551f31934bbcb3948",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3872e9f9_891fbb6b",
+        "filename": "packages/SettingsProvider/src/android/provider/settings/validators/SystemSettingsValidators.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-02-05T05:07:53Z",
+      "side": 1,
+      "message": "\u003e AICP has lowered the limit to 80%, requires adapting ?\n\u003e \n\u003e Reference: https://github.com/AICP/packages_apps_Settings/blob/r11.1/res/values/arrays.xml#L171-L181\n\nYes, will require adapting\n msg: java.lang.IllegalArgumentException: Invalid value: 0.8 for setting: font_scale\n stacktrace: java.lang.IllegalArgumentException: Invalid value: 0.8 for setting: font_scale\nApplicable to q10.0 too",
+      "parentUuid": "6f95397d_dccfa1bb",
+      "range": {
+        "startLine": 92,
+        "startChar": 75,
+        "endLine": 92,
+        "endChar": 86
+      },
+      "revId": "43b719580c1988d16cf62b1551f31934bbcb3948",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

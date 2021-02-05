@@ -140,6 +140,7 @@
 
   <!-- Pocket Service -->
   <java-symbol type="string" name="config_pocketJudgeVendorSensorName" />
+  <java-symbol type="bool" name="config_pocketUseLightSensor" />
 
   <!-- Whether to send camera status intent -->
   <java-symbol type="bool" name="config_sendCameraStatusIntent" />

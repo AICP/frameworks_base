@@ -12,4 +12,7 @@
     <!-- On-The-Go -->
     <integer name="quick_settings_onthego_dialog_short_timeout">3000</integer>
     <integer name="quick_settings_onthego_dialog_long_timeout">6000</integer>
+
+    <!-- If not zero, limits the internal screen recorder's framerate to the set value. -->
+    <integer name="config_screenRecorderMaxFramerate">0</integer>
 </resources>

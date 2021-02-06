@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f265d0f_0612e978",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/NotificationMediaManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 816,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-02-06T03:51:51Z",
+      "side": 1,
+      "message": "Can be made to follow day/night accent colors using getColorAccentDefaultColor(Context context) [seems to be used in some other places] from SettingsLib (https://github.com/AICP/frameworks_base/blob/r11.1/packages/SettingsLib/src/com/android/settingslib/Utils.java) but would have to use fully qualified class name as a Utils class is already imported",
+      "range": {
+        "startLine": 816,
+        "startChar": 131,
+        "endLine": 816,
+        "endChar": 192
+      },
+      "revId": "17b02906f66c987ac08acab0f63a5c420d69eb9b",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

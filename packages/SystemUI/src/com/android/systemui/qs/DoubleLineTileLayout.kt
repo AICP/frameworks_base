@@ -122,6 +122,8 @@ class DoubleLineTileLayout(
 
     override fun updateSettings() { }
 
+    override fun setHorizontalWithQsMediaPlayer(horizontalWithQSMediaPlayer: Boolean) { }
+
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
 
         mRecords.forEach {

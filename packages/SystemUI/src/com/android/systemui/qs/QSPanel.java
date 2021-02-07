@@ -686,6 +686,13 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
                 mDivider.setVisibility(View.GONE);
             }
         }
+        if (mTileLayout != null && mTileLayout instanceof PagedTileLayout) {
+            if (horizontal && mUsingMediaPlayer && mMediaHost.getVisible()) {
+                ((PagedTileLayout) mTileLayout).setHorizontalWithQsMediaPlayer(true);
+            } else {
+                ((PagedTileLayout) mTileLayout).setHorizontalWithQsMediaPlayer(false);
+            }
+        }
         if (horizontal != mUsingHorizontalLayout || force) {
             mUsingHorizontalLayout = horizontal;
             View visibleView = horizontal ? mHorizontalLinearLayout : (View) mRegularTileLayout;
@@ -1340,6 +1347,7 @@ public class QSPanel extends LinearLayout implements Tunable, Callback, Brightne
         int getNumRows();
         void updateSettings();
         boolean isShowTitles();
+        void setHorizontalWithQsMediaPlayer(boolean horizontalWithQSMediaPlayer);
 
         void setListening(boolean listening);
 

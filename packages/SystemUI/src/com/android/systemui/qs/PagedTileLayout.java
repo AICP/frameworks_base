@@ -71,6 +71,7 @@ public class PagedTileLayout extends ViewPager implements QSTileLayout {
     private int mMinRows = 1;
     private int mMaxColumns = TileLayout.NO_MAX_COLUMNS;
     private int mNumColumns;
+    private boolean mHorizontalWithQSMediaPlayer = false;
 
     public PagedTileLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -99,6 +100,7 @@ public class PagedTileLayout extends ViewPager implements QSTileLayout {
         super.onConfigurationChanged(newConfig);
         if (mLayoutOrientation != newConfig.orientation) {
             mLayoutOrientation = newConfig.orientation;
+            updateSettings();
             setCurrentItem(0, false);
             mPageToRestore = 0;
         }
@@ -605,8 +607,13 @@ public class PagedTileLayout extends ViewPager implements QSTileLayout {
     @Override
     public void updateSettings() {
         for (int i = 0; i < mPages.size(); i++) {
-            mPages.get(i).updateSettings();
+            mPages.get(i).setHorizontalWithQsMediaPlayer(mHorizontalWithQSMediaPlayer);
         }
         distributeTiles();
+    }
+
+    @Override
+    public void setHorizontalWithQsMediaPlayer(boolean horizontalWithQSMediaPlayer) {
+        mHorizontalWithQSMediaPlayer = horizontalWithQSMediaPlayer;
     }
 }

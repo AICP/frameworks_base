@@ -46,6 +46,7 @@ public class TileLayout extends ViewGroup implements QSTileLayout {
     private int mMinRows = 2;
     private int mMaxColumns = NO_MAX_COLUMNS;
     private int mResourceColumns;
+    private boolean mHorizontalWithQSMediaPlayer = false;
 
     public TileLayout(Context context) {
         this(context, null);
@@ -285,14 +286,16 @@ public class TileLayout extends ViewGroup implements QSTileLayout {
         } else {
             mCellHeight = mContext.getResources().getDimensionPixelSize(R.dimen.qs_tile_height_wo_label);
         }
-        if (mColumns != (isPortrait ? columns : columnsLandscape) || mShowTitles != showTitles) {
-            mColumns = isPortrait ? columns : columnsLandscape;
+        if (mColumns != (isPortrait ? columns : mHorizontalWithQSMediaPlayer ? 3 : columnsLandscape)
+                || mShowTitles != showTitles) {
+            mColumns = isPortrait ? columns : mHorizontalWithQSMediaPlayer ? 3 : columnsLandscape;
             mShowTitles = showTitles;
             mLayoutChanged = true;
             requestLayout();
         }
-        if (mRows != (isPortrait ? rows : rowsLandscape) || mShowTitles != showTitles) {
-            mRows = isPortrait ? rows : rowsLandscape;
+        if (mRows != (isPortrait ? rows : mHorizontalWithQSMediaPlayer ? 2 : rowsLandscape)
+                || mShowTitles != showTitles) {
+            mRows = isPortrait ? rows : mHorizontalWithQSMediaPlayer ? 2 : rowsLandscape;
             mShowTitles = showTitles;
             mLayoutChanged = true;
             requestLayout();
@@ -302,5 +305,10 @@ public class TileLayout extends ViewGroup implements QSTileLayout {
     @Override
     public boolean isShowTitles() {
         return mShowTitles;
+    }
+
+    public void setHorizontalWithQsMediaPlayer(boolean horizontalWithQSMediaPlayer) {
+        mHorizontalWithQSMediaPlayer = horizontalWithQSMediaPlayer;
+        updateSettings();
     }
 }

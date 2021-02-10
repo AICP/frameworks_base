@@ -37,21 +37,23 @@
 
         <com.android.systemui.statusbar.AlphaOptimizedFrameLayout
             android:id="@+id/brightness_icon_container"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="@dimen/qs_footer_action_button_size"
+            android:layout_height="@dimen/qs_footer_action_button_size"
             android:clipChildren="false"
             android:clipToPadding="false">
 
             <com.android.systemui.statusbar.AlphaOptimizedImageView
                 android:id="@+id/brightness_icon"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
                 android:clipToPadding="false"
                 android:focusable="true"
-                android:padding="15dp"
+                android:padding="@dimen/qs_footer_icon_padding"
                 android:src="@drawable/ic_qs_brightness_auto_off_new"
+                android:scaleType="centerInside"
                 android:contentDescription="@null"
                 android:tint="?android:attr/colorForeground"/>
         </com.android.systemui.statusbar.AlphaOptimizedFrameLayout>

@@ -94,6 +94,7 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
     private TextView mBuildText;
     private boolean mShouldShowFooterText;
     private View mRunningServicesButton;
+    private View mEditButton;
 
     private boolean mQsDisabled;
     private QSPanel mQsPanel;
@@ -167,6 +168,7 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
         mActionsContainer = findViewById(R.id.qs_footer_actions_container);
         mEditContainer = findViewById(R.id.qs_footer_actions_edit_container);
         mBuildText = findViewById(R.id.build);
+        mEditButton = findViewById(com.android.internal.R.id.edit);
 
         mAutoBrightnessContainer = findViewById(R.id.brightness_icon_container);
         mAutoBrightnessIcon = findViewById(R.id.brightness_icon);
@@ -399,10 +401,9 @@ public class QSFooterImpl extends FrameLayout implements QSFooter,
         mAutoBrightnessContainer.setVisibility(mShowAutoBrightnessButton ? View.GONE : View.VISIBLE);
         final boolean isDemo = UserManager.isDeviceInDemoMode(mContext);
         mMultiUserSwitch.setVisibility(showUserSwitcher() ? View.VISIBLE : View.GONE);
-        mEditContainer.setVisibility(!mShowEditIcon || isDemo || !mExpanded ? View.INVISIBLE : View.VISIBLE);
+        mEditButton.setVisibility(!mShowEditIcon || isDemo || !mExpanded ? View.GONE : View.VISIBLE);
         mSettingsButton.setVisibility(!mShowSettingsIcon || isDemo || !mExpanded ? View.GONE : View.VISIBLE);
         mRunningServicesButton.setVisibility(!mShowServicesIcon || isDemo || !mExpanded ? View.GONE : View.VISIBLE);
-
         mBuildText.setVisibility(mExpanded && mShouldShowFooterText ? View.VISIBLE : View.GONE);
     }
 

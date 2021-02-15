@@ -7209,6 +7209,12 @@ public final class Settings {
          */
         public static final String FP_WAKE_UNLOCK = "fp_wake_unlock";
 
+        /**
+         * Holds current enabled volume panel implementation
+         * @hide
+         */
+        public static final String SYSTEMUI_PLUGIN_VOLUME = "systemui_plugin_volume";
+
         /***************************
          * AICP System Settings end
          ***************************/

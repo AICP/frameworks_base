@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7bb7bde3_3baf222b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2021-02-19T06:24:53Z",
+      "side": 1,
+      "message": "http://haste.aicp-rom.com/janexuvixi.rb\n\n\nTo reproduce it: \n\n--- Connect your device to your car via usb and try to connect Android Auto.\n\nDevice freezes and after this hard reboots.\n\nFull log: https://drive.google.com/file/d/1bCX641zOaP9Nr2w4ml3u_-zgQSFuOKmt/view?usp\u003dsharing\n\n",
+      "revId": "27b4defac5631e940fec227437c353e5afc4f11d",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

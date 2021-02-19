@@ -33,6 +33,24 @@
       "message": "Probable fix? https://review.lineageos.org/c/LineageOS/android_frameworks_base/+/271869",
       "revId": "27b4defac5631e940fec227437c353e5afc4f11d",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e77cc31_8d5a8dd5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2021-02-19T15:59:31Z",
+      "side": 1,
+      "message": "That is the exact error it seems to me.",
+      "parentUuid": "9a39cf8a_2737225b",
+      "revId": "27b4defac5631e940fec227437c353e5afc4f11d",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

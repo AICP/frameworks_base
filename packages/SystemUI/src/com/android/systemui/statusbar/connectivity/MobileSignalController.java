@@ -132,6 +132,8 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
     // VoWiFi Icon Style
     private int mVoWiFistyle;
 
+    private boolean mIsVowifiAvailable;
+
     private final MobileStatusTracker.Callback mMobileCallback =
             new MobileStatusTracker.Callback() {
                 private String mLastStatus;
@@ -591,11 +593,13 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
         mCurrentState.voiceCapable = tm.isVolteAvailable();
         mCurrentState.videoCapable = tm.isVideoTelephonyAvailable();
         mCurrentState.imsRegistered = mPhone.isImsRegistered(mSubscriptionInfo.getSubscriptionId());
+        mIsVowifiAvailable = tm.isWifiCallingAvailable();
         if (DEBUG) {
             Log.d(mTag, "queryImsState tm=" + tm + " phone=" + mPhone
                     + " voiceCapable=" + mCurrentState.voiceCapable
                     + " videoCapable=" + mCurrentState.videoCapable
-                    + " imsRegistered=" + mCurrentState.imsRegistered);
+                    + " imsRegistered=" + mCurrentState.imsRegistered
+                    + " mIsVowifiAvailable=" + mIsVowifiAvailable);
         }
         notifyListenersIfNecessary();
     }
@@ -1097,15 +1101,16 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
                 mServiceState.getDataNetworkType() : TelephonyManager.NETWORK_TYPE_UNKNOWN;
     }
 
-    private boolean isVowifiAvailable() {
-        return mCurrentState.voiceCapable &&  mCurrentState.imsRegistered
-                && getDataNetworkType() == TelephonyManager.NETWORK_TYPE_IWLAN;
+    public boolean isVowifiAvailable() {
+        return (mCurrentState.voiceCapable && mCurrentState.imsRegistered
+                && getDataNetworkType() == TelephonyManager.NETWORK_TYPE_IWLAN)
+                || mIsVowifiAvailable;
     }
 
     private MobileIconGroup getVowifiIconGroup() {
-        if ( isVowifiAvailable() && !isCallIdle() ) {
+        if (isVowifiAvailable() && !isCallIdle()) {
             return TelephonyIcons.VOWIFI_CALLING;
-        }else if (isVowifiAvailable()) {
+        } else if (isVowifiAvailable()) {
             switch(mVoWiFistyle) {
                 // OOS
                 case 1:
@@ -1131,7 +1136,7 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
                 default:
                     return TelephonyIcons.VOWIFI;
             }
-        }else {
+        } else {
             return null;
         }
     }

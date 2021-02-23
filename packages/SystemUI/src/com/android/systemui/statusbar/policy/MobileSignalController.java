@@ -112,6 +112,8 @@ public class MobileSignalController extends SignalController<
     private int mVoWIFIicon = 0;
     private boolean mOverride = true;
 
+    private boolean mIsVowifiAvailable;
+
     // TODO: Reduce number of vars passed in, if we have the NetworkController, probably don't
     // need listener lists anymore.
     public MobileSignalController(Context context, Config config, boolean hasMobileData,
@@ -571,11 +573,13 @@ public class MobileSignalController extends SignalController<
         mCurrentState.voiceCapable = tm.isVolteAvailable();
         mCurrentState.videoCapable = tm.isVideoTelephonyAvailable();
         mCurrentState.imsRegistered = mPhone.isImsRegistered(mSubscriptionInfo.getSubscriptionId());
+        mIsVowifiAvailable = tm.isWifiCallingAvailable();
         if (DEBUG) {
             Log.d(mTag, "queryImsState tm=" + tm + " phone=" + mPhone
                     + " voiceCapable=" + mCurrentState.voiceCapable
                     + " videoCapable=" + mCurrentState.videoCapable
-                    + " imsResitered=" + mCurrentState.imsRegistered);
+                    + " imsRegistered=" + mCurrentState.imsRegistered
+                    + " mIsVowifiAvailable=" + mIsVowifiAvailable);
         }
         notifyListenersIfNecessary();
     }
@@ -876,9 +880,10 @@ public class MobileSignalController extends SignalController<
         return (mCurrentState.voiceCapable || mCurrentState.videoCapable) &&  mCurrentState.imsRegistered;
     }
 
-    private boolean isVowifiAvailable() {
-        return isVolteAvailable()
-                && mServiceState.getDataNetworkType() == TelephonyManager.NETWORK_TYPE_IWLAN;
+    public boolean isVowifiAvailable() {
+        return (isVolteAvailable()
+                && mServiceState.getDataNetworkType() == TelephonyManager.NETWORK_TYPE_IWLAN)
+                || mIsVowifiAvailable;
     }
 
     private MobileIconGroup getVowifiIconGroup() {

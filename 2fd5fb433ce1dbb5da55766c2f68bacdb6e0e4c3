@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7cdf3ec_a203e7a6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2021-02-24T09:35:29Z",
+      "side": 1,
+      "message": "The rest of the topic is here: https://review.lineageos.org/q/topic:%22eleven-bt-sbc-hd-dualchannel%22+(status:open%20OR%20status:merged)",
+      "revId": "2fd5fb433ce1dbb5da55766c2f68bacdb6e0e4c3",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

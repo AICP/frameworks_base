@@ -16868,6 +16868,12 @@ public final class Settings {
         public static final String UIDS_ALLOWED_ON_RESTRICTED_NETWORKS =
                 "uids_allowed_on_restricted_networks";
 
+        /**
+         * The amount of time in milliseconds before wifi is turned off
+         * @hide
+         */
+        public static final String WIFI_OFF_TIMEOUT = "wifi_off_timeout";
+
         /*****************************
          * AICP Global Settings end
          *****************************/

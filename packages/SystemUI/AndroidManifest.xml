@@ -917,5 +917,11 @@
             </intent-filter>
         </activity>
 
+        <receiver android:name="com.android.settingslib.wifi.WifiTimeoutReceiver">
+            <intent-filter>
+                <action android:name="android.net.wifi.intent.TIMEOUT" />
+            </intent-filter>
+        </receiver>
+
     </application>
 </manifest>

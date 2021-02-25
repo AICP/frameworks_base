@@ -16891,6 +16891,12 @@ public final class Settings {
          */
         public static final String RINGTONE_FOCUS_MODE_V2 = "ringtone_focus_mode_v2";
 
+        /**
+         * The amount of time in milliseconds before wifi is turned off
+         * @hide
+         */
+        public static final String WIFI_OFF_TIMEOUT = "wifi_off_timeout";
+
         /*****************************
          * AICP Global Settings end
          *****************************/

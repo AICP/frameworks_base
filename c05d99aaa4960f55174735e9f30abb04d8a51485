@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f61f1a4e_d4f7e383",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-02-27T08:07:14Z",
+      "side": 1,
+      "message": "Compiles and no crashes observed on runtime or change in setting values.\nSetting values seems to be applied on default display at least.",
+      "revId": "c05d99aaa4960f55174735e9f30abb04d8a51485",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

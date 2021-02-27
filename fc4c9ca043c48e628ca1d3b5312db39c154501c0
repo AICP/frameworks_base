@@ -16,6 +16,23 @@
       "message": "Need to check support in hardware/interfaces for q10.0",
       "revId": "fc4c9ca043c48e628ca1d3b5312db39c154501c0",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11436f3f_58d1866e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1682
+      },
+      "writtenOn": "2021-02-27T17:24:09Z",
+      "side": 1,
+      "message": "hardware interfaces support added",
+      "revId": "fc4c9ca043c48e628ca1d3b5312db39c154501c0",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

@@ -51,6 +51,23 @@
       "parentUuid": "9a39cf8a_2737225b",
       "revId": "27b4defac5631e940fec227437c353e5afc4f11d",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63058d2e_66880a7a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-02-27T08:01:50Z",
+      "side": 1,
+      "message": "Suggested fix is pushed as https://gerrit.aicp-rom.com/c/AICP/frameworks_base/+/108019/",
+      "revId": "27b4defac5631e940fec227437c353e5afc4f11d",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

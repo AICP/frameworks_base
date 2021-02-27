@@ -113,10 +113,7 @@
     <java-symbol type="integer" name="config_deviceHardwareWakeKeys" />
 
     <!-- Pocket Lock -->
-    <java-symbol type="layout" name="pocket_lock_view_layout" />
-    <java-symbol type="id" name="pocket_hint_container" />
-    <java-symbol type="id" name="pocket_hint_image" />
-    <java-symbol type="id" name="pocket_hint_message" />
+    <java-symbol type="layout" name="pocket_lock_view" />
 
   <!-- Toast Animation -->
   <java-symbol type="style" name="Animation.Toast.Fade" />

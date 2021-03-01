@@ -132,4 +132,8 @@
 
     <!-- Volume dialog app row icon padding -->
     <dimen name="volume_row_app_icon_padding">8dp</dimen>
+
+    <!-- Media Player -->
+    <dimen name="quick_settings_top_margin_media">4dp</dimen>
+    <dimen name="quick_settings_top_margin_media_extra">8dp</dimen>
 </resources>

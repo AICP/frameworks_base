@@ -129,4 +129,9 @@
 
     <!-- Size of the FOD animation -->
     <dimen name="fod_animation_size">310dp</dimen>
+
+    <!-- Media Player -->
+    <dimen name="quick_settings_top_margin_media">4dp</dimen>
+    <dimen name="quick_settings_top_margin_media_extra">8dp</dimen>
+
 </resources>

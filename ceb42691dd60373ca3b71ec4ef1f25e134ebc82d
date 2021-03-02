@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "472d4bb8_7a5b6715",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-03-02T06:12:47Z",
+      "side": 1,
+      "message": "\u003eLooks ugly\n\nWhat about tablets? Are they still alive?\n\nAlso seems the lock-screen rotation is enabled for smallest width \u003e 600dp",
+      "revId": "ceb42691dd60373ca3b71ec4ef1f25e134ebc82d",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

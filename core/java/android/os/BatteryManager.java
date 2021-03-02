@@ -236,8 +236,12 @@ public class BatteryManager {
      * {@hide}
      */
     public static final String EXTRA_PLUGGED_RAW = "plugged_raw";
+
+    /** @hide */
     public static final int BATTERY_PROPERTY_MOD_CHARGE_FULL = 100;
+    /** @hide */
     public static final int BATTERY_PROPERTY_CHARGE_FULL = 101;
+    /** @hide */
     public static final int BATTERY_PLUGGED_MOD = 8;
 
 

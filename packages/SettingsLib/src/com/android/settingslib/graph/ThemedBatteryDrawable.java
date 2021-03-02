@@ -131,13 +131,14 @@ public class ThemedBatteryDrawable extends BatteryMeterDrawableBase {
 
         dualToneBackgroundFill = new Paint(Paint.ANTI_ALIAS_FLAG);
         dualToneBackgroundFill.setColor(frameColor);
-        dualToneBackgroundFill.setAlpha(255);
+        dualToneBackgroundFill.setAlpha(85); // ~0.3 alpha by default
         dualToneBackgroundFill.setDither(true);
         dualToneBackgroundFill.setStrokeWidth(0f);
         dualToneBackgroundFill.setStyle(Style.FILL_AND_STROKE);
 
         fillColorStrokePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         fillColorStrokePaint.setColor(frameColor);
+        fillColorStrokePaint.setAlpha(255);
         fillColorStrokePaint.setDither(true);
         fillColorStrokePaint.setStrokeWidth(5f);
         fillColorStrokePaint.setStyle(Style.STROKE);

@@ -2628,6 +2628,11 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
             return true;
         }
 
+        // change in battery overheat
+        if (current.health != old.health) {
+            return true;
+        }
+
         // change in dash charging while plugged in
         if (nowPluggedIn && current.dashChargeStatus != old.dashChargeStatus) {
             return true;

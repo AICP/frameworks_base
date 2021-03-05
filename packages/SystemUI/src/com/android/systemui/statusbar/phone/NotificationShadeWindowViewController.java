@@ -99,7 +99,7 @@ public class NotificationShadeWindowViewController {
     private StatusBar mService;
     private NotificationShadeWindowController mNotificationShadeWindowController;
     private DragDownHelper mDragDownHelper;
-    private boolean mDoubleTapEnabled;
+    private boolean mDoubleTapEnabled = true;
     private boolean mSingleTapEnabled;
     private boolean mExpandingBelowNotch;
     private final DockManager mDockManager;

@@ -16,6 +16,24 @@
       "message": "With this commit after plugging in the device the user would have to swipe down to access notification shade\u003e\u003esettings\u003e\u003econnected devices\u003e\u003eusb\u003e\u003eMTP, Without this the user would have to swipe down notification shade\u003e\u003eusb\u003e\u003emtp.\nIts less hassle imo.",
       "revId": "41c2aea42b1ab7baa417de2f15398dd5afb582ac",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff012b5d_3dc3e45d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2021-03-06T15:50:36Z",
+      "side": 1,
+      "message": "I do agree. Hard to borrow with USB options after this commit. Excluded locally and I have only this now: https://gerrit.aicp-rom.com/c/AICP/frameworks_base/+/107992/8",
+      "parentUuid": "b12de8fa_7c1c815f",
+      "revId": "41c2aea42b1ab7baa417de2f15398dd5afb582ac",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

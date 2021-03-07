@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23254d28_371a0c6a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2021-03-07T18:12:33Z",
+      "side": 1,
+      "message": "before: https://pasteboard.co/JRxPzbI.jpg\nafter: https://pasteboard.co/JRxQ66s.jpg",
+      "revId": "5af04bca06bc9182883c0ce79c5bcdc710081cfa",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

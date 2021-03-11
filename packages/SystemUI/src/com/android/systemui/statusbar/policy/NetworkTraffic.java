@@ -41,6 +41,10 @@ public class NetworkTraffic extends TextView {
     private static final int GB = MB * KB;
     private static final String symbol = "B/s";
 
+    private static final int MODE_UPSTREAM_AND_DOWNSTREAM = 0;
+    private static final int MODE_UPSTREAM_ONLY = 1;
+    private static final int MODE_DOWNSTREAM_ONLY = 2;
+
     private static DecimalFormat decimalFormat = new DecimalFormat("##0.#");
     static {
         decimalFormat.setMaximumIntegerDigits(3);
@@ -53,12 +57,14 @@ public class NetworkTraffic extends TextView {
     private long totalTxBytes;
     private long lastUpdateTime;
     private int txtSize;
+    private int snglTxtSize;
     private int txtImgPadding;
     private int mAutoHideThreshold;
     protected int mTintColor;
     protected boolean mTrafficVisible = false;
 
     private boolean mScreenOn = true;
+    private int mMode;
 
     private Handler mTrafficHandler = new Handler() {
         @Override
@@ -82,21 +88,30 @@ public class NetworkTraffic extends TextView {
             long newTotalTxBytes = TrafficStats.getTotalTxBytes();
             long rxData = newTotalRxBytes - totalRxBytes;
             long txData = newTotalTxBytes - totalTxBytes;
-
+            String output = "";
             if (shouldHide(rxData, txData, timeDelta)) {
                 setText("");
                 mTrafficVisible = false;
             } else {
-                // Get information for uplink ready so the line return can be added
-                String output = formatOutput(timeDelta, txData, symbol);
-                // Ensure text size is where it needs to be
-                output += "\n";
-                // Add information for downlink if it's called for
-                output += formatOutput(timeDelta, rxData, symbol);
+                switch (mMode) {
+                  case MODE_UPSTREAM_ONLY:
+                    output = formatOutput(timeDelta, txData, symbol);
+                    break;
+                  case MODE_DOWNSTREAM_ONLY:
+                    output = formatOutput(timeDelta, rxData, symbol);
+                    break;
+                  default:
+                    output = formatOutput(timeDelta, txData, symbol);
+                    // Ensure text size is where it needs to be
+                    output += "\n";
+                    // Add information for downlink if it's called for
+                    output += formatOutput(timeDelta, rxData, symbol);
+                    break;
+                }
 
                 // Update view if there's anything new to show
                 if (! output.contentEquals(getText())) {
-                    setTextSize(TypedValue.COMPLEX_UNIT_PX, (float)txtSize);
+                    setTextSize(TypedValue.COMPLEX_UNIT_PX, mMode != 0 ? (float)snglTxtSize : (float)txtSize);
                     setGravity(Gravity.RIGHT | Gravity.CENTER_VERTICAL);
                     setText(output);
                 }
@@ -152,6 +167,9 @@ public class NetworkTraffic extends TextView {
             resolver.registerContentObserver(Settings.System
                     .getUriFor(Settings.System.NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD), false,
                     this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System
+                    .getUriFor(Settings.System.NETWORK_TRAFFIC_INDICATOR_MODE), false,
+                    this, UserHandle.USER_ALL);
         }
 
         /*
@@ -185,6 +203,7 @@ public class NetworkTraffic extends TextView {
         super(context, attrs, defStyle);
         final Resources resources = getResources();
         txtSize = resources.getDimensionPixelSize(R.dimen.net_traffic_multi_text_size);
+        snglTxtSize = resources.getDimensionPixelSize(R.dimen.net_traffic_single_text_size);
         txtImgPadding = resources.getDimensionPixelSize(R.dimen.net_traffic_txt_img_padding);
         mTintColor = resources.getColor(android.R.color.white);
         setTextColor(mTintColor);
@@ -266,6 +285,9 @@ public class NetworkTraffic extends TextView {
         mAutoHideThreshold = Settings.System.getIntForUser(resolver,
                 Settings.System.NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD, 1,
                 UserHandle.USER_CURRENT);
+        mMode = Settings.System.getIntForUser(resolver,
+                Settings.System.NETWORK_TRAFFIC_INDICATOR_MODE, 0,
+                UserHandle.USER_CURRENT);
     }
 
     protected String getSystemSettingKey() {
@@ -281,7 +303,17 @@ public class NetworkTraffic extends TextView {
     protected void updateTrafficDrawable() {
         int intTrafficDrawable;
         if (mIsEnabled) {
-            intTrafficDrawable = R.drawable.stat_sys_network_traffic_updown;
+            switch (mMode) {
+              case MODE_UPSTREAM_ONLY:
+                intTrafficDrawable = R.drawable.stat_sys_network_traffic_up;
+                break;
+              case MODE_DOWNSTREAM_ONLY:
+                intTrafficDrawable = R.drawable.stat_sys_network_traffic_down;
+                break;
+              default:
+                intTrafficDrawable = R.drawable.stat_sys_network_traffic_updown;
+                break;
+            }
         } else {
             intTrafficDrawable = 0;
         }
@@ -298,8 +330,9 @@ public class NetworkTraffic extends TextView {
     public void onDensityOrFontScaleChanged() {
         final Resources resources = getResources();
         txtSize = resources.getDimensionPixelSize(R.dimen.net_traffic_multi_text_size);
+        snglTxtSize = resources.getDimensionPixelSize(R.dimen.net_traffic_single_text_size);
         txtImgPadding = resources.getDimensionPixelSize(R.dimen.net_traffic_multi_text_size);
-        setTextSize(TypedValue.COMPLEX_UNIT_PX, (float)txtSize);
+        setTextSize(TypedValue.COMPLEX_UNIT_PX, mMode != 0 ? (float)snglTxtSize : (float)txtSize);
         setCompoundDrawablePadding(txtImgPadding);
     }
 

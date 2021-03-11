@@ -264,5 +264,6 @@ public class SystemSettings {
         Settings.System.LOCKSCREEN_MAX_NOTIF_CONFIG,
         Settings.System.LOCK_SCREEN_CUSTOM_NOTIF,
         Settings.System.LOCKSCREEN_BATTERY_INFO_TEMP_UNIT,
+        Settings.System.NETWORK_TRAFFIC_INDICATOR_MODE,
     };
 }

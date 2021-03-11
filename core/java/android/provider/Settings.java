@@ -6414,6 +6414,16 @@ public final class Settings {
          */
         public static final String LOCKSCREEN_BATTERY_INFO_TEMP_UNIT = "lockscreen_charge_temp_unit";
 
+        /**
+         * Network traffic mode
+         * 0: both directions (default)
+         * 1: upload direction
+         * 2: download direction
+	       * @hide
+         */
+        public static final String NETWORK_TRAFFIC_INDICATOR_MODE =
+                "network_traffic_indicator_mode";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6714,6 +6724,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(LOCKSCREEN_MAX_NOTIF_CONFIG);
             PRIVATE_SETTINGS.add(LOCK_SCREEN_CUSTOM_NOTIF);
             PRIVATE_SETTINGS.add(LOCKSCREEN_BATTERY_INFO_TEMP_UNIT);
+            PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_INDICATOR_MODE);
         }
 
         /**

@@ -253,5 +253,6 @@ public class SystemSettings {
         Settings.System.AUTHORIZATION_RIPPLE_EFFECT,
         Settings.System.ROAMING_INDICATOR_ICON,
         Settings.System.SHOW_LTE_FOURGEE,
+        Settings.System.NETWORK_TRAFFIC_INDICATOR_MODE,
     };
 }

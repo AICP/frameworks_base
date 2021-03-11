@@ -6984,6 +6984,16 @@ public final class Settings {
          */
         public static final String NOTIFICATION_MATERIAL_DISMISS = "notification_material_dismiss";
 
+        /**
+         * Network traffic mode
+         * 0: both directions (default)
+         * 1: upload direction
+         * 2: download direction
+	       * @hide
+         */
+        public static final String NETWORK_TRAFFIC_INDICATOR_MODE =
+                "network_traffic_indicator_mode";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7234,6 +7244,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(BATTERY_LIGHT_BLEND_EMPTY_COLOR, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(BATTERY_LIGHT_BLEND_REVERSE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(NOTIFICATION_MATERIAL_DISMISS, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(NETWORK_TRAFFIC_INDICATOR_MODE, ANY_INTEGER_VALIDATOR);
         }
 
         /**

@@ -7007,6 +7007,16 @@ public final class Settings {
         public static final String STATUS_BAR_TICKER_TICK_DURATION =
                 "status_bar_ticker_tick_duration";
 
+        /**
+         * Network traffic mode
+         * 0: both directions (default)
+         * 1: upload direction
+         * 2: download direction
+	       * @hide
+         */
+        public static final String NETWORK_TRAFFIC_INDICATOR_MODE =
+                "network_traffic_indicator_mode";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7260,6 +7270,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(STATUS_BAR_SHOW_TICKER, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(STATUS_BAR_TICKER_ANIMATION_MODE, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(STATUS_BAR_TICKER_TICK_DURATION, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(NETWORK_TRAFFIC_INDICATOR_MODE, ANY_INTEGER_VALIDATOR);
         }
 
         /**

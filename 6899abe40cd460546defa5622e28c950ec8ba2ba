@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1329e601_189d46fb",
+        "filename": "packages/SystemUI/res/layout/status_bar_ticker.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2021-03-15T19:43:39Z",
+      "side": 1,
+      "message": "Please test and you tell me. I dont have the issue.",
+      "parentUuid": "7204d772_29ebd17a",
+      "range": {
+        "startLine": 47,
+        "startChar": 8,
+        "endLine": 47,
+        "endChar": 41
+      },
+      "revId": "6899abe40cd460546defa5622e28c950ec8ba2ba",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5b47a77f_1c164f39",
         "filename": "packages/SystemUI/res/values/aicp_styles.xml",
         "patchSetId": 2

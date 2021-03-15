@@ -16,6 +16,24 @@
       "message": "didn\u0027t find why we need two instances, maybe I\u0027m not looking closely",
       "revId": "7f9a33d821a64f609604ed70b16b762881aad482",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7052b030_6384827a",
+        "filename": "packages/SystemUI/res/layout/status_bar_ticker.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2021-03-15T19:43:39Z",
+      "side": 0,
+      "message": "There are also 2 instances of AnimatedImageView as well. Have not taken a closer look tbh.",
+      "parentUuid": "e039369c_f1b0aed5",
+      "revId": "7f9a33d821a64f609604ed70b16b762881aad482",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

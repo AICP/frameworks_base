@@ -62,6 +62,30 @@
       },
       "revId": "6899abe40cd460546defa5622e28c950ec8ba2ba",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a931307c_917df468",
+        "filename": "packages/SystemUI/res/values/aicp_styles.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2021-03-15T19:02:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5b47a77f_1c164f39",
+      "range": {
+        "startLine": 64,
+        "startChar": 39,
+        "endLine": 64,
+        "endChar": 78
+      },
+      "revId": "6899abe40cd460546defa5622e28c950ec8ba2ba",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

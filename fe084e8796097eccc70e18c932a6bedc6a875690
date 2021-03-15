@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c17df21_822a705b",
+        "filename": "core/java/android/provider/Settings.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 7051,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-03-15T16:06:24Z",
+      "side": 0,
+      "message": "Duplicate",
+      "range": {
+        "startLine": 7051,
+        "startChar": 41,
+        "endLine": 7051,
+        "endChar": 66
+      },
+      "revId": "fe084e8796097eccc70e18c932a6bedc6a875690",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

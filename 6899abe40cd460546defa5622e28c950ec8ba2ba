@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f64975a_91aeda04",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-03-15T02:33:14Z",
+      "side": 1,
+      "message": "Lets clean this up while tweaking it",
+      "revId": "6899abe40cd460546defa5622e28c950ec8ba2ba",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7204d772_29ebd17a",
+        "filename": "packages/SystemUI/res/layout/status_bar_ticker.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-03-15T02:33:14Z",
+      "side": 1,
+      "message": "Don\u0027t think this will be required",
+      "range": {
+        "startLine": 47,
+        "startChar": 8,
+        "endLine": 47,
+        "endChar": 41
+      },
+      "revId": "6899abe40cd460546defa5622e28c950ec8ba2ba",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b47a77f_1c164f39",
+        "filename": "packages/SystemUI/res/values/aicp_styles.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-03-15T02:33:14Z",
+      "side": 1,
+      "message": "follow system font \u0026 make all elements use same font size at status bar",
+      "range": {
+        "startLine": 64,
+        "startChar": 39,
+        "endLine": 64,
+        "endChar": 78
+      },
+      "revId": "6899abe40cd460546defa5622e28c950ec8ba2ba",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

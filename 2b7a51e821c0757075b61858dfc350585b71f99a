@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4c4df0a_944ca586",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-03-17T07:53:18Z",
+      "side": 1,
+      "message": "Test:\n- Compiles\n- Visually test if the ticker remains on same levels as the clock and status bar icons on the status\n- Follows system font setting",
+      "revId": "2b7a51e821c0757075b61858dfc350585b71f99a",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

@@ -80,6 +80,7 @@ android_library {
         "AicpGear-util",
         "vendor.lineage.biometrics.fingerprint.inscreen-V1.0-java",
         "vendor.lineage.powershare-V1.0-java",
+        "tensorflowlite_java",
     ],
     manifest: "AndroidManifest.xml",
     additional_manifests: ["AicpManifest.xml"],
@@ -177,6 +178,8 @@ android_app {
     static_libs: [
         "SystemUI-core",
     ],
+    jni_libs: ["libtensorflowlite_jni"],
+    use_embedded_native_libs: true,
     resource_dirs: [],
 
     platform_apis: true,

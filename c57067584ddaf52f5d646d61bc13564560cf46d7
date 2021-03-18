@@ -16,6 +16,24 @@
       "message": "http://haste.aicp-rom.com/fumanusiti.cs",
       "revId": "c57067584ddaf52f5d646d61bc13564560cf46d7",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c66caff_a5e6fd88",
+        "filename": "services/core/java/com/android/server/custom/display/LiveDisplayService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-03-18T15:38:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a610ea17_5ab9be70",
+      "revId": "c57067584ddaf52f5d646d61bc13564560cf46d7",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

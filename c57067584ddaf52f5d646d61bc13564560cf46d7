@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a610ea17_5ab9be70",
+        "filename": "services/core/java/com/android/server/custom/display/LiveDisplayService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2021-03-18T11:58:36Z",
+      "side": 1,
+      "message": "http://haste.aicp-rom.com/fumanusiti.cs",
+      "revId": "c57067584ddaf52f5d646d61bc13564560cf46d7",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

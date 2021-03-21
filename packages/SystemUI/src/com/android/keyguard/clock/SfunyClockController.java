@@ -21,7 +21,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Paint.Style;
-import android.graphics.Typeface;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -131,7 +130,6 @@ public class SfunyClockController implements ClockPlugin {
         ColorExtractor.GradientColors colors = mColorExtractor.getColors(
                 WallpaperManager.FLAG_LOCK);
         setColorPalette(colors.supportsDarkText(), colors.getColorPalette());
-        onTimeTick();
 
         return mRenderer.createPreview(previewView, width, height);
     }

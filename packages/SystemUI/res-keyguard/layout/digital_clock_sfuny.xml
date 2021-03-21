@@ -22,7 +22,7 @@
             android:format24Hour="kk"
             style="@style/widget_big"
             android:textColor="?attr/wallpaperTextColor"
-            android:textSize="84sp" />
+            android:textSize="88sp" />
 
         <TextClock
             android:id="@+id/clockMinute"

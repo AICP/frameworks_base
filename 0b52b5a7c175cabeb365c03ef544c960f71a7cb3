@@ -16,6 +16,23 @@
       "message": "go ahead...😉",
       "revId": "0b52b5a7c175cabeb365c03ef544c960f71a7cb3",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ace252e_1046eea4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2021-03-22T17:02:27Z",
+      "side": 1,
+      "message": "Tested with clean flash. all good.",
+      "revId": "0b52b5a7c175cabeb365c03ef544c960f71a7cb3",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

@@ -120,5 +120,6 @@ public class SystemSettings {
         Settings.System.NOTIFICATION_SOUND_VIB_SCREEN_ON,
         Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD,
         Settings.System.LOCKSCREEN_PIN_SCRAMBLE_LAYOUT,
+        Settings.System.QS_SMART_PULLDOWN,
     };
 }

@@ -343,6 +343,7 @@ public class NotificationPanelViewController extends PanelViewController {
     private boolean mIsLockscreenDoubleTapEnabled;
     private int mStatusBarHeaderHeight;
     private int mOneFingerQuickSettingsIntercept;
+    private int mQsSmartPullDown;
 
     /**
      * If set, the ongoing touch gesture might both trigger the expansion in {@link PanelView} and
@@ -2007,6 +2008,13 @@ public class NotificationPanelViewController extends PanelViewController {
             case 3: // pull down anywhere
                 showQsOverride = true;
                 break;
+        }
+
+        if (mQsSmartPullDown == 1 && !hasActiveClearableNotifications()
+                || mQsSmartPullDown == 2 &&
+                !mEntryManager.hasActiveOngoingNotifications()
+                || mQsSmartPullDown == 3 && !mEntryManager.hasActiveVisibleNotifications()) {
+                showQsOverride = true;
         }
 
         showQsOverride &= mBarState == StatusBarState.SHADE;
@@ -4808,5 +4816,9 @@ public class NotificationPanelViewController extends PanelViewController {
 
     public void setOneFingerQuickSettingsIntercept(int onefingerQuickSettingsintercept) {
         mOneFingerQuickSettingsIntercept = onefingerQuickSettingsintercept;
+    }
+
+    public void setQsSmartPullDown(int qsSmartPulldown) {
+        mQsSmartPullDown = qsSmartPulldown;
     }
 }

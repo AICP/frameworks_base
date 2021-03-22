@@ -3899,6 +3899,9 @@ public class StatusBar extends SystemUI implements
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.QS_SMART_PULLDOWN),
+                    false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -4517,10 +4520,14 @@ public class StatusBar extends SystemUI implements
         int onefingerQuickSettingsintercept = Settings.System.getIntForUser(
                 mContext.getContentResolver(), Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN, 0,
                 UserHandle.USER_CURRENT);
+        int qsSmartPulldown = Settings.System.getIntForUser(
+                mContext.getContentResolver(), Settings.System.QS_SMART_PULLDOWN, 0,
+                UserHandle.USER_CURRENT);
         if (mNotificationPanelViewController != null) {
             mNotificationPanelViewController.setDoubleTapToSleep(doubleTapToSleepEnabled);
             mNotificationPanelViewController.setLockscreenDoubleTapToSleep(lsDoubleTapToSleepEnabled);
             mNotificationPanelViewController.setOneFingerQuickSettingsIntercept(onefingerQuickSettingsintercept);
+            mNotificationPanelViewController.setQsSmartPullDown(qsSmartPulldown);
         }
         if (mNotificationShadeWindowViewController != null) {
             mNotificationShadeWindowViewController.setDoubleTapToSleep(doubleTapToSleepEnabled);

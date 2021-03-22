@@ -291,7 +291,7 @@ public class SignalDrawable extends DrawableWrapper {
 
     /** Returns the state representing empty mobile signal with the given number of levels. */
     public static int getEmptyState(int numLevels) {
-        return getState(0, numLevels, true);
+        return getState(0, numLevels, false /* isRoaming */);
     }
 
     /** Returns the state representing carrier change with the given number of levels. */

@@ -27,7 +27,7 @@ import android.view.View;
 
 import com.android.systemui.R;
 
-import lineageos.app.LineageContextConstants;
+import com.android.internal.custom.app.LineageContextConstants;
 
 public class AuthBiometricFingerprintView extends AuthBiometricView {
 

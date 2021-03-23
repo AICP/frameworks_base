@@ -13,9 +13,9 @@
      limitations under the License.
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
-    <style name="TriStateUiText">
-        <item name="android:textSize">14.0sp</item>
-        <item name="android:fontFamily">@*android:string/config_headlineFontFamilyMedium</item>
+     <!-- Tri-state UI -->
+    <style name="qs_theme" parent="Theme.SystemUI.QuickSettings">
+        <item name="android:windowIsFloating">true</item>
     </style>
 
     <!-- Pure Tuner Theme-->

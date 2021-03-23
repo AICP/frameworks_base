@@ -222,6 +222,12 @@ public final class DefaultPermissionGrantPolicy {
         PULSE_EQ_PERMISSIONS.add(Manifest.permission.RECORD_AUDIO);
     }
 
+    private static final Set<String> NETWORK_PERMISSIONS = new ArraySet<>();
+    static {
+        NETWORK_PERMISSIONS.add(Manifest.permission.NETWORK_SETTINGS);
+        NETWORK_PERMISSIONS.add(Manifest.permission.NETWORK_SETUP_WIZARD);
+    }
+
     private static final int MSG_READ_DEFAULT_PERMISSION_EXCEPTIONS = 1;
 
     private static final String ACTION_TRACK = "com.android.fitness.TRACK";
@@ -921,7 +927,7 @@ public final class DefaultPermissionGrantPolicy {
 
         // Google Setup Wizard
         grantSystemFixedPermissionsToSystemPackage(pm, "com.google.android.setupwizard", userId, CONTACTS_PERMISSIONS,
-                PHONE_PERMISSIONS, ALWAYS_LOCATION_PERMISSIONS, CAMERA_PERMISSIONS);
+                PHONE_PERMISSIONS, ALWAYS_LOCATION_PERMISSIONS, CAMERA_PERMISSIONS, NETWORK_PERMISSIONS);
 
         // Google Play Store
         grantSystemFixedPermissionsToSystemPackage(pm, "com.android.vending", userId, CONTACTS_PERMISSIONS,

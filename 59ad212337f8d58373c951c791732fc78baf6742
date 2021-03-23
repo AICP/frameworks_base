@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28e63a05_d6416acd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 774
+      },
+      "writtenOn": "2021-03-23T23:14:24Z",
+      "side": 1,
+      "message": "03-23 22:48:48.437 19634 19634 E AndroidRuntime: java.lang.SecurityException: Permission android.permission.NETWORK_SETUP_WIZARD requested by com.google.android.setupwizard is not a changeable permission type",
+      "revId": "59ad212337f8d58373c951c791732fc78baf6742",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

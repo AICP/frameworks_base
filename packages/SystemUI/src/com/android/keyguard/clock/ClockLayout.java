@@ -100,11 +100,12 @@ public class ClockLayout extends FrameLayout {
                         - 0.5f * mBurnInPreventionOffsetY,
                 mDarkAmount);
 
-        // Put the analog clock in the middle of the screen.
+        // Put the analog clock slightly below the middle of the screen to accomodate
+        // for media player showing when music stream is active
         if (mAnalogClock != null) {
             mAnalogClock.setX(Math.max(0f, 0.5f * (getWidth() - mAnalogClock.getWidth()))
                     + ANALOG_CLOCK_SHIFT_FACTOR * offsetX);
-            mAnalogClock.setY(Math.max(0f, 0.5f * (getHeight() - mAnalogClock.getHeight()))
+            mAnalogClock.setY(Math.max(0f, 0.65f * (getHeight() - mAnalogClock.getHeight()))
                     + ANALOG_CLOCK_SHIFT_FACTOR * offsetY);
         }
 

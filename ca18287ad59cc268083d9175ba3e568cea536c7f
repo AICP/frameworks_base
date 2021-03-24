@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "524aae15_a7398159",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2021-03-24T11:38:32Z",
+      "side": 1,
+      "message": "Not merged at LoS yet. Just to avoid accidental merges...",
+      "revId": "ca18287ad59cc268083d9175ba3e568cea536c7f",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

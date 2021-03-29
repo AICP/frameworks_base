@@ -16,6 +16,23 @@
       "message": "Not merged at LoS yet. Just to avoid accidental merges...",
       "revId": "ca18287ad59cc268083d9175ba3e568cea536c7f",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f5cd30d_ea948742",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 774
+      },
+      "writtenOn": "2021-03-29T19:23:04Z",
+      "side": 1,
+      "message": "this currently requires patchset 2 of this\nhttps://review.lineageos.org/c/LineageOS/android_hardware_lineage_interfaces/+/301608/2 not 3",
+      "revId": "ca18287ad59cc268083d9175ba3e568cea536c7f",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

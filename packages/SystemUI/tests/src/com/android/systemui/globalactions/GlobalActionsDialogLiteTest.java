@@ -85,7 +85,6 @@ import com.android.systemui.statusbar.policy.ConfigurationController;
 import com.android.systemui.statusbar.policy.KeyguardStateController;
 import com.android.systemui.statusbar.window.StatusBarWindowController;
 import com.android.systemui.statusbar.window.StatusBarWindowControllerStore;
-import com.android.systemui.telephony.TelephonyListenerManager;
 import com.android.systemui.topui.TopUiController;
 import com.android.systemui.user.domain.interactor.SelectedUserInteractor;
 import com.android.systemui.user.domain.interactor.UserLogoutInteractor;
@@ -119,7 +118,6 @@ public class GlobalActionsDialogLiteTest extends SysuiTestCase {
     @Mock private AudioManager mAudioManager;
     @Mock private LockPatternUtils mLockPatternUtils;
     @Mock private BroadcastDispatcher mBroadcastDispatcher;
-    @Mock private TelephonyListenerManager mTelephonyListenerManager;
     private GlobalSettings mGlobalSettings;
     private SecureSettings mSecureSettings;
     @Mock private Resources mResources;
@@ -184,7 +182,6 @@ public class GlobalActionsDialogLiteTest extends SysuiTestCase {
                 mAudioManager,
                 mLockPatternUtils,
                 mBroadcastDispatcher,
-                mTelephonyListenerManager,
                 mGlobalSettings,
                 mSecureSettings,
                 mVibratorHelper,

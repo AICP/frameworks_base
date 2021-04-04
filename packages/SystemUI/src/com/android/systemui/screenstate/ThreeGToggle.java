@@ -18,7 +18,6 @@ package com.android.systemui.screenstate;
 import android.content.Context;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
-import com.android.internal.telephony.Phone;
 import android.util.Log;
 import android.net.ConnectivityManager;
 
@@ -39,10 +38,11 @@ public class ThreeGToggle extends ScreenStateToggle {
     protected boolean isEnabled(){
         ConnectivityManager cm = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
         if (!cm.isNetworkSupported(ConnectivityManager.TYPE_MOBILE)){
-            Log.d(TAG, "Data not enabled");
+            if (DEBUG) Log.d(TAG, "Data not enabled");
             return false;
         }
         int s = Settings.System.getInt(mContext.getContentResolver(), Settings.System.SCREEN_STATE_THREEG, 0);
+        if (DEBUG) Log.d(TAG, "isEnabled = " + (s != 0));
         if(s!=0)
             return true;
         else
@@ -78,7 +78,7 @@ public class ThreeGToggle extends ScreenStateToggle {
         } catch (Settings.SettingNotFoundException e) {
             e.printStackTrace();
         }
-        Log.d(TAG, "preferred SIM data network: " + network);
+        if (DEBUG) Log.d(TAG, "preferred SIM data network: " + network);
         return network;
     }
 
@@ -92,7 +92,7 @@ public class ThreeGToggle extends ScreenStateToggle {
             public void run() {
                 TelephonyManager tm = (TelephonyManager) mContext
                         .getSystemService(Context.TELEPHONY_SERVICE);
-                Log.d(TAG, "3G = true");
+                if (DEBUG) Log.d(TAG, "3G = true");
                 tm.toggle3G(true);
             }
         };
@@ -103,7 +103,7 @@ public class ThreeGToggle extends ScreenStateToggle {
             public void run() {
                 TelephonyManager tm = (TelephonyManager) mContext
                         .getSystemService(Context.TELEPHONY_SERVICE);
-                Log.d(TAG, "3G = false");
+                if (DEBUG) Log.d(TAG, "3G = false");
                 tm.toggle3G(false);
             }
         };

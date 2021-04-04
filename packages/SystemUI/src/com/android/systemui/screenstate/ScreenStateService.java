@@ -35,12 +35,13 @@ import java.util.Iterator;
 public class ScreenStateService extends Service  {
 
     private static final String TAG = "ScreenStateService";
+    private static final boolean DEBUG = false;
     private BroadcastReceiver mPowerKeyReceiver;
     private ThreeGToggle mThreeGToggle;
     private TwoGToggle mTwoGToggle;
     private GpsToggle mGpsToggle;
     private MobileDataToggle mMobileDataToggle;
-    private boolean mEnabled = true;
+    private boolean mEnabled = false;
     private Context mContext;
     private List<ScreenStateToggle> fEnabledToggles;
     private List<ScreenStateToggle> fAllToggles;
@@ -49,10 +50,11 @@ public class ScreenStateService extends Service  {
     private Handler scrOffHandler;
     private boolean offScheduled = true;
     private boolean onScheduled = false;
+    private boolean isStarted;
 
     private Runnable scrOffTask = new Runnable() {
         public void run() {
-            Log.v(TAG,"scrOffTask");
+            if (DEBUG) Log.v(TAG,"scrOffTask");
                 Iterator<ScreenStateToggle> nextToggle = fEnabledToggles.iterator();
                 while(nextToggle.hasNext()){
                     ScreenStateToggle toggle = nextToggle.next();
@@ -64,7 +66,7 @@ public class ScreenStateService extends Service  {
 
     private Runnable scrOnTask = new Runnable() {
         public void run() {
-            Log.v(TAG,"scrOnTask");
+            if (DEBUG) Log.v(TAG,"scrOnTask");
                 Iterator<ScreenStateToggle> nextToggle = fEnabledToggles.iterator();
                 while(nextToggle.hasNext()){
                     ScreenStateToggle toggle = nextToggle.next();
@@ -83,6 +85,7 @@ public class ScreenStateService extends Service  {
     public void onDestroy() {
         Log.d(TAG, "onDestroy");
         if (mEnabled){
+            isStarted = false;
             unregisterReceiver();
         }
     }
@@ -90,34 +93,32 @@ public class ScreenStateService extends Service  {
     @Override
     public void onStart(Intent intent, int startid)
     {
-        Log.d(TAG, "onStart");
-        mContext = getApplicationContext();
+        if (!isStarted) {
+            Log.d(TAG, "onStart");
+            mContext = getApplicationContext();
 
-        // firewall
-        int s = Settings.Global.getInt(mContext.getContentResolver(), Settings.Global.START_SCREEN_STATE_SERVICE, 0);
-        if(s!=0)
-            mEnabled = true;
-        else
-            mEnabled = false;
+            // firewall
+            mEnabled = Settings.Global.getInt(mContext.getContentResolver(), Settings.Global.START_SCREEN_STATE_SERVICE, 0) != 0;
+            if (mEnabled){
+                registerBroadcastReceiver();
+            }
 
-        if (mEnabled){
-            registerBroadcastReceiver();
+            scrOnHandler = new Handler();
+            scrOffHandler = new Handler();
+
+            fAllToggles = new ArrayList<ScreenStateToggle>();
+            mThreeGToggle = new ThreeGToggle(mContext);
+            fAllToggles.add(mThreeGToggle);
+            mTwoGToggle = new TwoGToggle(mContext);
+            fAllToggles.add(mTwoGToggle);
+            mGpsToggle = new GpsToggle(mContext);
+            fAllToggles.add(mGpsToggle);
+            mMobileDataToggle = new MobileDataToggle(mContext);
+            fAllToggles.add(mMobileDataToggle);
+
+            updateEnabledToggles();
+            isStarted = true;
         }
-
-        scrOnHandler = new Handler();
-        scrOffHandler = new Handler();
-
-        fAllToggles = new ArrayList<ScreenStateToggle>();
-        mThreeGToggle = new ThreeGToggle(mContext);
-        fAllToggles.add(mThreeGToggle);
-        mTwoGToggle = new TwoGToggle(mContext);
-        fAllToggles.add(mTwoGToggle);
-        mGpsToggle = new GpsToggle(mContext);
-        fAllToggles.add(mGpsToggle);
-        mMobileDataToggle = new MobileDataToggle(mContext);
-        fAllToggles.add(mMobileDataToggle);
-
-        updateEnabledToggles();
     }
 
     private void registerBroadcastReceiver() {
@@ -133,25 +134,25 @@ public class ScreenStateService extends Service  {
                 String strAction = intent.getAction();
 
                 if (strAction.equals(Intent.ACTION_SCREEN_OFF)){
-                    Log.d(TAG, "screen off");
+                    if (DEBUG) Log.d(TAG, "screen off");
                     if(onScheduled){
                         scrOnHandler.removeCallbacks(scrOnTask);
                     } else {
                         int sec = Settings.Global.getInt(mContext.getContentResolver(),
                                       Settings.Global.SCREEN_STATE_OFF_DELAY, 5);
-                        Log.d(TAG, "screen off delay: " + sec);
+                        if (DEBUG) Log.d(TAG, "screen off delay: " + sec);
                         scrOffHandler.postDelayed(scrOffTask, sec * 1000);
                         offScheduled = true;
                     }
                 }
                 if (strAction.equals(Intent.ACTION_SCREEN_ON)) {
-                    Log.d(TAG, "screen on");
+                    if (DEBUG) Log.d(TAG, "screen on");
                     if(offScheduled){
                         scrOffHandler.removeCallbacks(scrOffTask);
                     } else {
                         int sec = Settings.Global.getInt(mContext.getContentResolver(),
                                     Settings.Global.SCREEN_STATE_ON_DELAY, 5);
-                        Log.d(TAG, "screen on delay: " + sec);
+                        if (DEBUG) Log.d(TAG, "screen on delay: " + sec);
                         scrOnHandler.postDelayed(scrOnTask, sec * 1000);
                         onScheduled = true;
                     }

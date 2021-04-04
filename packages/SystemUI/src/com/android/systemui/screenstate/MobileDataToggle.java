@@ -34,6 +34,7 @@ public class MobileDataToggle extends ScreenStateToggle {
             return false;
         }
         int s = Settings.System.getInt(mContext.getContentResolver(), Settings.System.SCREEN_STATE_MOBILE_DATA, 0);
+        if (DEBUG) Log.d(TAG, "isEnabled = " + (s != 0));
         if(s!=0)
             return true;
         else
@@ -54,8 +55,8 @@ public class MobileDataToggle extends ScreenStateToggle {
     }
 
     private boolean isMobileDataEnabled(){
-            TelephonyManager telephonyService = (TelephonyManager)mContext.getSystemService(Context.TELEPHONY_SERVICE);
-            return telephonyService.getDataEnabled();
+        TelephonyManager telephonyService = (TelephonyManager)mContext.getSystemService(Context.TELEPHONY_SERVICE);
+        return telephonyService.getDataEnabled();
     }
 
     private void setMobileDataState(boolean mobileDataEnabled){
@@ -68,7 +69,7 @@ public class MobileDataToggle extends ScreenStateToggle {
             @Override
             public void run() {
                 setMobileDataState(false);
-                Log.d(TAG, "mobileData = false");
+                if (DEBUG) Log.d(TAG, "mobileData = false");
             }
         };
     }
@@ -77,7 +78,7 @@ public class MobileDataToggle extends ScreenStateToggle {
             @Override
             public void run() {
                 setMobileDataState(true);
-                Log.d(TAG, "mobileData = true");
+                if (DEBUG) Log.d(TAG, "mobileData = true");
             }
         };
     }

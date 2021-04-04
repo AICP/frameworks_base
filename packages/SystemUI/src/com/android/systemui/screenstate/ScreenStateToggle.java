@@ -21,6 +21,7 @@ import android.telephony.TelephonyManager;
 import android.os.Looper;
 
 public abstract class ScreenStateToggle {
+    protected static final boolean DEBUG = false;
     protected Context mContext;
     protected boolean mDoAction = false;
     protected ScreenStateService mService;

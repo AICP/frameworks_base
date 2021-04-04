@@ -30,6 +30,7 @@ public class GpsToggle extends ScreenStateToggle {
 
     protected boolean isEnabled(){
         int s = Settings.System.getInt(mContext.getContentResolver(), Settings.System.SCREEN_STATE_GPS, 0);
+        if (DEBUG) Log.d(TAG, "isEnabled = " + (s != 0));
         if(s != 0)
             return true;
         else
@@ -62,7 +63,7 @@ public class GpsToggle extends ScreenStateToggle {
             public void run() {
                 Settings.Secure.setLocationProviderEnabled(mContext.getContentResolver(),
                         LocationManager.GPS_PROVIDER, false);
-                Log.d(TAG, "gps = false");
+                if (DEBUG) Log.d(TAG, "gps = false");
             }
         };
     }
@@ -72,7 +73,7 @@ public class GpsToggle extends ScreenStateToggle {
             public void run() {
                 Settings.Secure.setLocationProviderEnabled(mContext.getContentResolver(),
                         LocationManager.GPS_PROVIDER, true);
-                Log.d(TAG, "gps = true");
+                if (DEBUG) Log.d(TAG, "gps = true");
             }
         };
     }

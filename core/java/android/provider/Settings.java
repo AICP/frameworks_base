@@ -6348,6 +6348,51 @@ public final class Settings {
         public static final String NETWORK_TRAFFIC_INDICATOR_MODE =
                 "network_traffic_indicator_mode";
 
+        /**
+         * Whether or not gaming mode is enabled.
+         * Default 0
+         * @hide
+         */
+        public static final String GAMING_MODE_ENABLED = "gaming_mode_enabled";
+
+        /**
+         * Whether or not gaming mode is active.
+         * Default 0
+         * @hide
+         */
+        public static final String GAMING_MODE_ACTIVE = "gaming_mode_active";
+
+        /**
+         * Whether to dynamically identify the launched application and
+         * add it to {@link GAMING_MODE_APP_LIST}.
+         * Default 1
+         * @hide
+         */
+        public static final String GAMING_MODE_DYNAMIC_ADD = "gaming_mode_dynamic_add";
+
+        /**
+         * List of application package names separated by a semi-colon, for which gaming
+         * mode should be enabled on launch.
+         * @hide
+         */
+        public static final String GAMING_MODE_APP_LIST = "gaming_mode_app_list";
+
+        /**
+         * Whether to disable notification heads-up or bubble in gaming mode.
+         * Default 1
+         * @hide
+         */
+        public static final String GAMING_MODE_DISABLE_NOTIFICATION_ALERT = "gaming_mode_disable_notification_alert";
+
+        /**
+         * Whether to disable adb while in gaming mode.
+         * Default 0
+         * @hide
+         */
+        public static final String GAMING_MODE_DISABLE_ADB = "gaming_mode_disable_adb";
+
+
+
         /***************************
          * AICP System Settings end
          ***************************/

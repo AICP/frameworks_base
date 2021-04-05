@@ -132,6 +132,7 @@ import android.annotation.Nullable;
 import android.annotation.UserIdInt;
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.ActivityManager.RunningTaskInfo;
 import android.app.ActivityManagerInternal;
 import android.app.ActivityOptions;
 import android.app.ActivityTaskManager;
@@ -153,6 +154,7 @@ import android.app.PendingIntent;
 import android.app.PictureInPictureParams;
 import android.app.ProfilerInfo;
 import android.app.RemoteAction;
+import android.app.TaskStackListener;
 import android.app.WaitResult;
 import android.app.WindowConfiguration;
 import android.app.admin.DevicePolicyCache;
@@ -246,6 +248,7 @@ import com.android.internal.policy.KeyguardDismissCallback;
 import com.android.internal.util.ArrayUtils;
 import com.android.internal.util.FastPrintWriter;
 import com.android.internal.util.FrameworkStatsLog;
+import com.android.internal.util.GamingModeHelper; 
 import com.android.internal.util.function.pooled.PooledConsumer;
 import com.android.internal.util.function.pooled.PooledFunction;
 import com.android.internal.util.function.pooled.PooledLambda;
@@ -676,6 +679,9 @@ public class ActivityTaskManagerService extends IActivityTaskManager.Stub {
 
     private int mDeviceOwnerUid = Process.INVALID_UID;
 
+    public GamingModeHelper mGamingModeHelper;
+    private TaskStackListener mTaskStackListener;
+
     private final class FontScaleSettingObserver extends ContentObserver {
         private final Uri mFontScaleUri = Settings.System.getUriFor(FONT_SCALE);
         private final Uri mHideErrorDialogsUri = Settings.Global.getUriFor(HIDE_ERROR_DIALOGS);
@@ -761,6 +767,10 @@ public class ActivityTaskManagerService extends IActivityTaskManager.Stub {
     public void installSystemProviders() {
         mFontScaleSettingObserver = new FontScaleSettingObserver();
         mScreenRatioSettingsObserver = new ScreenRatioSettingsObserver();
+
+        mGamingModeHelper = new GamingModeHelper(mContext);
+        mTaskStackListener = new TaskStackListenerImpl();
+        registerTaskStackListener(mTaskStackListener);
     }
 
     public void retrieveSettings(ContentResolver resolver) {
@@ -6577,6 +6587,7 @@ public class ActivityTaskManagerService extends IActivityTaskManager.Stub {
             synchronized (mGlobalLock) {
                 mAppWarnings.onPackageUninstalled(name);
                 mCompatModePackages.handlePackageUninstalledLocked(name);
+                mGamingModeHelper.onPackageUninstalled(name);
             }
         }
 
@@ -7591,5 +7602,17 @@ public class ActivityTaskManagerService extends IActivityTaskManager.Stub {
             return mAspectRatioApps;
         }
         return null;
+    }
+
+    private final class TaskStackListenerImpl extends TaskStackListener {
+        @Override
+        public void onTaskFocusChanged(int taskId, boolean focused)  {
+            if (!focused) return;
+            final Task task = mRootWindowContainer.anyTaskForId(taskId);
+            final ActivityStack stack = task.getStack();
+            if (stack.getWindowingMode() != WINDOWING_MODE_PINNED && stack.getWindowingMode() != WINDOWING_MODE_FREEFORM) {
+                mGamingModeHelper.onTopAppChanged(task.realActivity.getPackageName());
+            }
+        }
     }
 }

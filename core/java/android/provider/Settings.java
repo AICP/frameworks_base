@@ -6854,7 +6854,120 @@ public final class Settings {
         public static final String RIGHT_VERTICAL_BACK_SWIPE_APP_FR_ACTION = "right_vertical_back_swipe_app_fr_action";
 
         /**
-         * Launch custom activity when using the long right back swipe app action
+          * Setting to enable/disable gaming mode
+          * @hide
+          */
+        public static final String GAMING_MODE_ENABLED = "gaming_mode_enabled";
+
+        /**
+          * 0 - user is not in gaming mode
+          * 1 - user is in gaming mode
+          * @hide
+          */
+        public static final String GAMING_MODE_ACTIVE = "gaming_mode_active";
+
+        /**
+          * Dynamically identify the top application and add it to the list
+          * @hide
+          */
+        public static final String GAMING_MODE_DYNAMIC_ADD = "gaming_mode_dynamic_add";
+
+        /**
+          * @hide
+          */
+        public static final String GAMING_MODE_APP_LIST = "gaming_mode_app_list";
+
+        /**
+          * @hide
+          */
+        public static final String GAMING_MODE_REMOVED_APP_LIST = "gaming_mode_removed_app_list";
+
+        /**
+          * Auto answer call in gaming mode
+          * @hide
+          */
+        public static final String GAMING_MODE_AUTO_ANSWER_CALL = "gaming_mode_auto_answer_call";
+
+        /**
+          * @hide
+          */
+        public static final String GAMING_MODE_DISABLE_AUTO_BRIGHTNESS = "gaming_mode_disable_auto_brightness";
+
+        /**
+          * @hide
+          */
+        public static final String GAMING_MODE_DISABLE_NOTIFICATION_ALERT = "gaming_mode_disable_notification_alert";
+
+        /**
+          * @hide
+          */
+        public static final String GAMING_MODE_DISABLE_RINGTONE = "gaming_mode_disable_ringtone";
+
+        /**
+          * @hide
+          */
+        public static final String GAMING_MODE_DISABLE_GESTURE = "gaming_mode_disable_gesture";
+
+        /**
+          * Change performance level in gaming mode
+          * @hide
+          */
+        public static final String GAMING_MODE_CHANGE_PERFORMANCE_LEVEL = "gaming_mode_change_performance_level";
+
+        /**
+          * Prefermance level
+          * 0 - 6 : Powersave - Performance
+          * @hide
+          */
+        public static final String GAMING_MODE_PERFORMANCE_LEVEL = "gaming_mode_performance_level";
+
+        /**
+          * @hide
+          */
+        public static final String GAMING_MODE_QS_APP_LIST = "gaming_mode_qs_app_list";
+
+        /**
+          * @hide
+          */
+        public static final String GAMING_MODE_SHOW_DANMAKU = "gaming_mode_show_danmaku";
+
+        /**
+          * @hide
+          */
+        public static final String GAMING_MODE_DANMAKU_SPEED_HORIZONTAL = "gaming_mode_danmaku_speed_horizontal";
+
+        /**
+          * @hide
+          */
+        public static final String GAMING_MODE_DANMAKU_SPEED_VERTICAL = "gaming_mode_danmaku_speed_vertical";
+
+        /**
+          * @hide
+          */
+        public static final String GAMING_MODE_DANMAKU_SIZE_HORIZONTAL = "gaming_mode_danmaku_size_horizontal";
+
+        /**
+          * @hide
+          */
+        public static final String GAMING_MODE_DANMAKU_SIZE_VERTICAL = "gaming_mode_danmaku_size_vertical";
+
+        /**
+          * @hide
+          */
+        public static final String GAMING_MODE_DANMAKU_DYNAMIC_NOTIFICATION_FILTER = "gaming_mode_danmaku_dynamic_notification_filter";
+
+        /**
+          * @hide
+          */
+        public static final String GAMING_MODE_DANMAKU_APP_BLACKLIST = "gaming_mode_danmaku_app_blacklist";
+
+        /**
+          * @hide
+          */
+        public static final String GAMING_MODE_USE_GAME_DRIVER = "gaming_mode_use_game_driver";
+
+        /**
+        * Launch custom activity when using the long right back swipe app action
          *
          * @hide
          */

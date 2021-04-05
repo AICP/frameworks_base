@@ -298,5 +298,11 @@ public class SystemSettings {
         Settings.System.HEADS_UP_BLACKLIST_VALUES,
         Settings.System.QS_SYSTEM_INFO,
         Settings.System.QS_DATAUSAGE,
+        Settings.System.GAMING_MODE_ENABLED,
+        Settings.System.GAMING_MODE_ACTIVE,
+        Settings.System.GAMING_MODE_DYNAMIC_ADD,
+        Settings.System.GAMING_MODE_APP_LIST,
+        Settings.System.GAMING_MODE_DISABLE_NOTIFICATION_ALERT,
+        Settings.System.GAMING_MODE_DISABLE_ADB,
     };
 }

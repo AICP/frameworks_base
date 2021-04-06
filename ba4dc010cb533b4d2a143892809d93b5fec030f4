@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60b28467_efb31ae0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1393
+      },
+      "writtenOn": "2021-04-06T11:46:55Z",
+      "side": 1,
+      "message": "longpress wifi or bluetooth expands qs as expected with this revert.\nWorks on enchilada.",
+      "revId": "ba4dc010cb533b4d2a143892809d93b5fec030f4",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

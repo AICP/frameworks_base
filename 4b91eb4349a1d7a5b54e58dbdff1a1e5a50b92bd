@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3651d77_8af3b73f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-04-06T13:34:21Z",
+      "side": 1,
+      "message": "Test:\n- Compiles\n- Logspam is absent\n\nHas no dependency in open commits chain, may be merged",
+      "revId": "4b91eb4349a1d7a5b54e58dbdff1a1e5a50b92bd",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da2eb390_057cb13a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 774
+      },
+      "writtenOn": "2021-04-06T12:50:23Z",
+      "side": 1,
+      "message": "updated to patchset 8 of https://review.lineageos.org/c/LineageOS/android_lineage-sdk/+/301609 use pathset 3 (latest) of the interfaces commit",
+      "revId": "35801789a454bea914c506659bc24fe0688730c2",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

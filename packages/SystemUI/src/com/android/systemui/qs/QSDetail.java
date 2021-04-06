@@ -339,7 +339,7 @@ public class QSDetail extends LinearLayout {
                 @Override
                 public void run() {
                     if (isAttachedToWindow()) {
-                        handleShowingDetail(detail, x, y, false /* toggleQs */);
+                        handleShowingDetail(detail, x, y, true /* toggleQs */);
                     }
                 }
             });

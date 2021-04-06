@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "495741f9_c955e7ca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-04-06T13:39:49Z",
+      "side": 1,
+      "message": "Proper fixes got lost in the rebases",
+      "revId": "d8af0a37b96cf2518e43af345b66da8349f5b720",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

@@ -990,6 +990,8 @@ public class Watchdog implements Dumpable {
                 Slog.w(TAG, "Restart not allowed: Watchdog is *not* killing the system process");
             } else {
                 Slog.w(TAG, "*** WATCHDOG KILLING SYSTEM PROCESS: " + subject);
+                // Emergency sync
+                doSysRq('s');
                 WatchdogDiagnostics.diagnoseCheckers(blockedCheckers);
                 Slog.w(TAG, "*** GOODBYE!");
                 if (!Build.IS_USER && isCrashLoopFound()

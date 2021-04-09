@@ -16,6 +16,23 @@
       "message": "lineage merged on their side",
       "revId": "ecc7d27d106b64ec5709814a1ba25db93933a24c",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fd45b7a_bdadcd95",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2021-04-09T16:24:49Z",
+      "side": 1,
+      "message": "p",
+      "revId": "ecc7d27d106b64ec5709814a1ba25db93933a24c",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

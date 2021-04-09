@@ -7033,11 +7033,10 @@ public final class Settings {
                 "network_traffic_indicator_mode";
 
         /**
-         * Indicates whether we should only show the app lock view when the device is woken up
-         * Or always.
+         * APP_LOCK_LOCK_AFTER key for user selected app lock timeout
          * @hide
          */
-        public static final String APP_LOCK_SHOW_ONLY_ON_WAKE = "app_lock_show_only_on_wake";
+        public static final String APP_LOCK_LOCK_AFTER = "applock_lock_after";
 
         /**
          * Sensor blocked packages
@@ -7339,7 +7338,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(BATTERY_LIGHT_BLEND_REVERSE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(NOTIFICATION_MATERIAL_DISMISS, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(NETWORK_TRAFFIC_INDICATOR_MODE, ANY_INTEGER_VALIDATOR);
-            AICP_SETTINGS_VALIDATORS.put(APP_LOCK_SHOW_ONLY_ON_WAKE, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(APP_LOCK_LOCK_AFTER, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(SENSOR_BLOCKED_APP, ANY_STRING_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(SCREEN_STATE_GPS, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(SCREEN_STATE_MOBILE_DATA, BOOLEAN_VALIDATOR);

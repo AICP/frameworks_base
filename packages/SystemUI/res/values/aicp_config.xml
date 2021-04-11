@@ -23,8 +23,7 @@
 
     <!-- The default tiles to display in QuickSettings -->
     <string name="quick_settings_tiles_extra" translatable="false">
-        compass,music,reboot,usb_tether,caffeine,cpuinfo,aicp_extras,heads_up,smartpixels,aod,locale,sound,volume_panel,dataswitch,sync,onthego,soundsearch,screenshot,weather,hwkeys,gaming,fpsinfo,killapp,vpn,mono,powershare,dc_dimming
-
+        aicp_extras,aod,caffeine,compass,cpuinfo,dataswitch,dc_dimming,fpsinfo,gaming,heads_up,hwkeys,killapp,locale,mono,music,onthego,powershare,reboot,screenshot,smartpixels,sound,soundsearch,sync,usb_tether,volume_panel,vpn,weather
     </string>
 
     <!-- The CPU temperature sensor path, defaults to empty -->
@@ -60,4 +59,7 @@
          the sensor embedded in the power key and listening all the time
          causes a poor experience. -->
     <bool name="config_fingerprintWakeAndUnlock">true</bool>
+
+    <!-- Config to enable/diaable qs tile tinting -->
+    <bool name="config_enable_qs_tile_tinting">false</bool>
 </resources>

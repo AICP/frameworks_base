@@ -20,9 +20,7 @@ import android.app.WallpaperManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.Paint.Style;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextClock;
@@ -87,13 +85,13 @@ public class ShapeShiftClockController implements ClockPlugin {
             SysuiColorExtractor colorExtractor) {
         mResources = res;
         mLayoutInflater = inflater;
-	mColorExtractor = colorExtractor;
+        mColorExtractor = colorExtractor;
     }
 
     private void createViews() {
         mView = (ClockLayout) mLayoutInflater
                 .inflate(R.layout.digital_clock_ssos, null);
-	setViews(mView);
+        setViews(mView);
     }
 
     private void setViews(View view) {
@@ -132,13 +130,12 @@ public class ShapeShiftClockController implements ClockPlugin {
     public Bitmap getPreview(int width, int height) {
 
         View previewView = mLayoutInflater.inflate(R.layout.digital_clock_ssos_preview, null);
-
-	setViews(previewView);
+        setViews(previewView);
 
         ColorExtractor.GradientColors colors = mColorExtractor.getColors(
                 WallpaperManager.FLAG_LOCK);
 
-	setColorPalette(colors.supportsDarkText(), colors.getColorPalette());
+        setColorPalette(colors.supportsDarkText(), colors.getColorPalette());
         onTimeTick();
 
         return mRenderer.createPreview(previewView, width, height);
@@ -183,18 +180,18 @@ public class ShapeShiftClockController implements ClockPlugin {
 
     @Override
     public void onTimeTick() {
-	if (mView != null)
-	    mView.onTimeChanged();
-        mTimeClock.refreshTime();
-        mTimeClockAccented.refreshTime();
-        mDay.refreshTime();
-        mDate.refreshTime();
+        if (mView != null) {
+            mView.onTimeChanged();
+            mTimeClock.refreshTime();
+            mTimeClockAccented.refreshTime();
+            mDay.refreshTime();
+            mDate.refreshTime();
+        }
     }
 
     @Override
     public void setDarkAmount(float darkAmount) {
-	if (mView != null)
-	    mView.setDarkAmount(darkAmount);
+        if (mView != null) mView.setDarkAmount(darkAmount);
     }
 
     @Override

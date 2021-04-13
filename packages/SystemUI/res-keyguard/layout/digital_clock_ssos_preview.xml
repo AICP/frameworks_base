@@ -12,7 +12,7 @@
     limitations under the License.
 -->
 
-<FrameLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -20,10 +20,10 @@
 
     <LinearLayout
         android:id="@+id/clock_view"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:paddingLeft="20dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_centerInParent="true"
         android:orientation="vertical">
 
         <TextClock
@@ -68,7 +68,6 @@
                 android:textColor="?android:textColorPrimary"/>
 
         </LinearLayout>
-
         <TextClock
             android:id="@+id/timedate"
             android:layout_width="wrap_content"
@@ -82,5 +81,4 @@
             android:textColor="?android:textColorPrimary" />
 
     </LinearLayout>
-
-</FrameLayout>
+</RelativeLayout>

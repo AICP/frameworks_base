@@ -7215,6 +7215,12 @@ public final class Settings {
          */
         public static final String SYSTEMUI_PLUGIN_VOLUME = "systemui_plugin_volume";
 
+        /**
+         * Screenshot image compression
+         * @hide
+         */
+        public static final String SCREENSHOT_COMPRESSION = "screenshot_compression";
+
         /***************************
          * AICP System Settings end
          ***************************/

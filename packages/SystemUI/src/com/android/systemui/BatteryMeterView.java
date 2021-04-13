@@ -101,6 +101,7 @@ public class BatteryMeterView extends LinearLayout implements
     private boolean mForceShowPercent = false;
     private boolean mShowPercentAvailable;
     private boolean mShowBatteryImage;
+    private boolean mShowQSBatteryImage = false;
     // Some places may need to show the battery conditionally, and not obey the tuner
     private boolean mIgnoreTunerUpdates;
     private boolean mIsSubscribedForTunerUpdates;
@@ -469,7 +470,9 @@ public class BatteryMeterView extends LinearLayout implements
                 .getInt(getContext().getContentResolver(),
                 AICP_SHOW_BATTERY_IMAGE, 1));
         if (mBatteryIconView != null) {
-            mBatteryIconView.setVisibility(mShowBatteryImage ? View.VISIBLE : View.GONE);
+            mBatteryIconView.setVisibility(mShowQSBatteryImage ?  // we are in QSHeader
+                View.VISIBLE : mShowBatteryImage ?
+                View.VISIBLE : View.GONE);
         }
     }
 
@@ -647,5 +650,6 @@ public class BatteryMeterView extends LinearLayout implements
 
     public void setQsbHeader() {
         mForceShowPercent = true;
+        mShowQSBatteryImage = true;
     }
 }

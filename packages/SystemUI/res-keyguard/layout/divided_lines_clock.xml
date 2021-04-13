@@ -27,7 +27,7 @@
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
                 android:layout_weight="1"
-                android:background="?attr/wallpaperTextColor" />
+                android:background="?android:attr/colorAccent" />
 
             <TextClock
                 android:id="@+id/date"
@@ -73,7 +73,7 @@
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
                 android:layout_weight="1"
-                android:background="?attr/wallpaperTextColor" />
+                android:background="?android:attr/colorAccent" />
 
         </LinearLayout>
     </FrameLayout>

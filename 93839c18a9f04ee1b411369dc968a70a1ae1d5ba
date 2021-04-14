@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ce9d23a_f74bc935",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1393
+      },
+      "writtenOn": "2021-04-14T11:10:11Z",
+      "side": 1,
+      "message": "always use 24h. Respects 2 digit hour.",
+      "revId": "93839c18a9f04ee1b411369dc968a70a1ae1d5ba",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

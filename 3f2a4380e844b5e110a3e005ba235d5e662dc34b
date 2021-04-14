@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "666ab5b2_54c2b9f3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1393
+      },
+      "writtenOn": "2021-04-14T11:08:16Z",
+      "side": 1,
+      "message": "Looks good, follows change instantly when accent color is changed. enchilada.",
+      "revId": "3f2a4380e844b5e110a3e005ba235d5e662dc34b",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

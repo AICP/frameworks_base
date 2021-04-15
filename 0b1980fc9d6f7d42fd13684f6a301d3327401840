@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d38f7c52_7fd87c43",
+        "filename": "core/java/android/os/Trace.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-04-15T17:32:51Z",
+      "side": 1,
+      "message": "AICP\u0027s definition of production builds may defeat the purpose of this change\nMaybe IS_DEBUGGABLE -\u003e Build.IS_ENG ?",
+      "range": {
+        "startLine": 148,
+        "startChar": 19,
+        "endLine": 148,
+        "endChar": 32
+      },
+      "revId": "0b1980fc9d6f7d42fd13684f6a301d3327401840",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

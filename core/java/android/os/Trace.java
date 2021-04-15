@@ -145,7 +145,7 @@ public final class Trace {
      */
     @UnsupportedAppUsage
     public static boolean isTagEnabled(long traceTag) {
-        if (!Build.IS_DEBUGGABLE) {
+        if (!Build.IS_ENG) {
             return false;
         }
 

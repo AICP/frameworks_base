@@ -258,12 +258,12 @@ public class NotificationInterruptStateProviderImpl implements NotificationInter
             return false;
         }
 
-/*        if (entry.getImportance() < NotificationManager.IMPORTANCE_HIGH) {
+        if (entry.getImportance() < NotificationManager.IMPORTANCE_HIGH) {
             if (DEBUG_HEADS_UP) {
                 Log.d(TAG, "No heads up: unimportant notification: " + sbn.getKey());
             }
             return false;
-        }*/
+        }
 
         boolean isDreaming = false;
         try {

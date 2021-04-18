@@ -67,12 +67,6 @@ public class AicpClockController implements ClockPlugin {
     private final ViewPreviewer mRenderer = new ViewPreviewer();
 
     /**
-     * Custom clock shown on AOD screen and behind stack scroller on lock.
-     */
-    // private ClockLayout mBigClockView;
-    // private ImageClock mAicpClock;
-
-    /**
      * Small clock shown on lock screen above stack scroller.
      */
     private ClockLayout mView;
@@ -99,17 +93,12 @@ public class AicpClockController implements ClockPlugin {
     }
 
     private void createViews() {
-        // mBigClockView = (ClockLayout) mLayoutInflater.inflate(R.layout.aicp_clock, null);
-        // mAicpClock = mBigClockView.findViewById(R.id.analog_clock);
-
         mView = (ClockLayout) mLayoutInflater.inflate(R.layout.aicp_clock, null);
         mLockClock = mView.findViewById(R.id.aicp_clock);
     }
 
     @Override
     public void onDestroyView() {
-        // mBigClockView = null;
-        // mAicpClock = null;
         mView = null;
         mLockClock = null;
     }
@@ -133,17 +122,18 @@ public class AicpClockController implements ClockPlugin {
     public Bitmap getPreview(int width, int height) {
 
         // Prepare the clock view for the preview
-        View view = getView();
-
+        View previewView = mLayoutInflater.inflate(R.layout.aicp_clock_preview, null);
+        TextClock previewDate = previewView.findViewById(R.id.date);
         // Initialize state of plugin before generating preview.
         setDarkAmount(1f);
         setTextColor(Color.WHITE);
+        previewDate.setTextColor(Color.WHITE);
         ColorExtractor.GradientColors colors = mColorExtractor.getColors(
                 WallpaperManager.FLAG_LOCK);
         setColorPalette(colors.supportsDarkText(), colors.getColorPalette());
-        onTimeTick();
+        //onTimeTick();
 
-        return mRenderer.createPreview(view, width, height);
+        return mRenderer.createPreview(previewView, width, height);
     }
 
     @Override
@@ -156,10 +146,6 @@ public class AicpClockController implements ClockPlugin {
 
     @Override
     public View getBigClockView() {
-        /* if (mBigClockView == null) {
-            createViews();
-        }
-        return mBigClockView; */
         return null;
     }
 
@@ -185,20 +171,19 @@ public class AicpClockController implements ClockPlugin {
     private void updateColor() {
         final int primary = mPalette.getPrimaryColor();
         final int secondary = mPalette.getSecondaryColor();
-        // mLockClock.setTextColor(secondary);
-        //mAicpClock.setClockColors(primary, secondary);
     }
 
     @Override
     public void onTimeTick() {
-        mView.onTimeChanged();
-        mLockClock.onTimeChanged();
+        if (mView != null && mLockClock != null) {
+            mView.onTimeChanged();
+            mLockClock.onTimeChanged();
+        }
     }
 
     @Override
     public void setDarkAmount(float darkAmount) {
         mPalette.setDarkAmount(darkAmount);
-        // mBigClockView.setDarkAmount(darkAmount);
     }
 
     @Override

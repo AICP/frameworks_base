@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0fc90bc_de5faeba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-04-18T10:40:21Z",
+      "side": 1,
+      "message": "Killed moving the clock vertically ",
+      "revId": "209b598a5b75f10a8e99ca02405c69ed55393f94",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

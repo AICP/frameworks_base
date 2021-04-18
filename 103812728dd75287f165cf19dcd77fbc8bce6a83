@@ -34,6 +34,24 @@
       "parentUuid": "1bca3de7_638de7ee",
       "revId": "103812728dd75287f165cf19dcd77fbc8bce6a83",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f2307d0_eae07289",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2021-04-18T15:57:19Z",
+      "side": 1,
+      "message": "this is how we use that since the begigging:\n\nhttps://github.com/LineageOS/android_device_oneplus_instantnoodlep/blob/lineage-18.1/lineage_instantnoodlep.mk#L38",
+      "parentUuid": "9073cf64_dcbb338b",
+      "revId": "103812728dd75287f165cf19dcd77fbc8bce6a83",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1bca3de7_638de7ee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2021-04-18T09:43:51Z",
+      "side": 1,
+      "message": "Doesn\u0027t boot with this topic: http://haste.aicp-rom.com/azefotorus.sql\nfull log: https://drive.google.com/file/d/1KPTgyDIgTXahPEkKqPUdWF59u1GwJ9q6/view?usp\u003dsharing\n\nSet needed flags here: https://github.com/semdoc/device_oneplus_instantnoodlep/commit/6deed3535433db609321f0aebb31d8a431fc08ec\n\nDevice stuck at bootanimation. Clean build. ",
+      "revId": "103812728dd75287f165cf19dcd77fbc8bce6a83",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

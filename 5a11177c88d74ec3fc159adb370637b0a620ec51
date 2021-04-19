@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7cb62f99_b6593005",
+        "filename": "packages/SystemUI/src/com/android/keyguard/clock/AicpClockController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2021-04-19T19:08:55Z",
+      "side": 1,
+      "message": "wouldn\u0027t be better to show the current time?",
+      "range": {
+        "startLine": 134,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 23
+      },
+      "revId": "5a11177c88d74ec3fc159adb370637b0a620ec51",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

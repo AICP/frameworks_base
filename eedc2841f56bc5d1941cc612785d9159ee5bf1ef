@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7726e477_ee1bd401",
+        "filename": "packages/SystemUI/res-keyguard/drawable/aicp_clock_dial.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2021-04-19T16:13:22Z",
+      "side": 1,
+      "message": "PS: Set height to 170 dp instead.",
+      "range": {
+        "startLine": 16,
+        "startChar": 24,
+        "endLine": 16,
+        "endChar": 29
+      },
+      "revId": "eedc2841f56bc5d1941cc612785d9159ee5bf1ef",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

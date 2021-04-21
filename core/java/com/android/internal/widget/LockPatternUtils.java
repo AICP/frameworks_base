@@ -1260,7 +1260,7 @@ public class LockPatternUtils {
         return deadline;
     }
 
-    private boolean getBoolean(String secureSettingKey, boolean defaultValue, int userId) {
+    protected boolean getBoolean(String secureSettingKey, boolean defaultValue, int userId) {
         try {
             return getLockSettings().getBoolean(secureSettingKey, defaultValue, userId);
         } catch (RemoteException re) {
@@ -1268,7 +1268,7 @@ public class LockPatternUtils {
         }
     }
 
-    private void setBoolean(String secureSettingKey, boolean enabled, int userId) {
+    protected void setBoolean(String secureSettingKey, boolean enabled, int userId) {
         try {
             getLockSettings().setBoolean(secureSettingKey, enabled, userId);
         } catch (RemoteException re) {

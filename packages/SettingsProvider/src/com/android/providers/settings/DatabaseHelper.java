@@ -729,6 +729,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
                    Secure.LOCK_PATTERN_SIZE,
                    Secure.LOCK_DOTS_VISIBLE,
                    Secure.LOCK_SHOW_ERROR_PATH,
+                   Secure.LOCK_PASS_TO_SECURITY_VIEW,
                    "lockscreen.password_type",
                    "lockscreen.lockoutattemptdeadline",
                    "lockscreen.patterneverchosen",

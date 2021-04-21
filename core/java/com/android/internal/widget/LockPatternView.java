@@ -91,8 +91,6 @@ public class LockPatternView extends View {
      */
     private static final int MILLIS_PER_CIRCLE_ANIMATING = 700;
 
-    private byte mPatternSize = LockPatternUtils.PATTERN_SIZE_DEFAULT;
-
     /**
      * This can be used to avoid updating the display for very small motions or noisy panels.
      * It didn't seem to have much impact on the devices tested, so currently set to 0.

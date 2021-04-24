@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cfa8d26_76350200",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2021-04-24T07:38:54Z",
+      "side": 1,
+      "message": "Without ths patch: \nsingle tap on lockscreen -\u003e doze screen -\u003e double tap on lockscreen -\u003e lock the phone (screen off)\n\n\nWith this patch:\nsingle tap on lockscreen -\u003e doze screen -\u003e double tap on lockscreen -\u003e wake screen. You can lock with dt2s the device.",
+      "revId": "6d6f2a89e657bf43a141611e9dbfe46d2e6a78e3",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

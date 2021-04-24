@@ -119,6 +119,7 @@ import com.android.internal.util.ScreenRecordHelper;
 import com.android.internal.util.ScreenshotHelper;
 import com.android.internal.view.RotationPolicy;
 import com.android.internal.widget.LockPatternUtils;
+import com.android.systemui.Dependency;
 import com.android.systemui.Interpolators;
 import com.android.systemui.MultiListLayout;
 import com.android.systemui.MultiListLayout.MultiListAdapter;
@@ -142,6 +143,7 @@ import com.android.systemui.statusbar.phone.NotificationShadeWindowController;
 import com.android.systemui.statusbar.phone.ScrimController;
 import com.android.systemui.statusbar.policy.ConfigurationController;
 import com.android.systemui.statusbar.policy.KeyguardStateController;
+import com.android.systemui.tuner.TunerService;
 import com.android.systemui.util.EmergencyDialerConstants;
 import com.android.systemui.util.RingerModeTracker;
 import com.android.systemui.util.leak.RotationUtils;
@@ -167,7 +169,7 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
         DialogInterface.OnShowListener,
         ConfigurationController.ConfigurationListener,
         GlobalActionsPanelPlugin.Callbacks,
-        LifecycleOwner {
+        LifecycleOwner, TunerService.Tunable {
 
     public static final String SYSTEM_DIALOG_REASON_KEY = "reason";
     public static final String SYSTEM_DIALOG_REASON_GLOBAL_ACTIONS = "globalactions";
@@ -202,6 +204,8 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
     public static final String PREFS_CONTROLS_SEEDING_COMPLETED = "SeedingCompleted";
     public static final String PREFS_CONTROLS_FILE = "controls_prefs";
     private static final int SEEDING_MAX = 2;
+    private static final String NOTIFICATION_BG_ALPHA =
+            "system:" + Settings.System.NOTIFICATION_BG_ALPHA;
 
     private final Context mContext;
     private final GlobalActionsManager mWindowManagerFuncs;
@@ -222,6 +226,7 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
     private final UiEventLogger mUiEventLogger;
     private final NotificationShadeDepthController mDepthController;
     private final SysUiState mSysUiState;
+    private int mNotificationBackgroundAlpha;
 
     // Used for RingerModeTracker
     private final LifecycleRegistry mLifecycle = new LifecycleRegistry(this);
@@ -390,6 +395,9 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
 
         mConfigurationController.addCallback(this);
 
+        final TunerService tunerService = Dependency.get(TunerService.class);
+        tunerService.addTunable(this, NOTIFICATION_BG_ALPHA);
+
         mActivityStarter = activityStarter;
         keyguardStateController.addCallback(new KeyguardStateController.Callback() {
             @Override
@@ -436,6 +444,19 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
                         onPowerMenuLockScreenSettingsChanged();
                     }
                 });
+    }
+
+    @Override
+    public void onTuningChanged(String key, String newValue) {
+        switch (key) {
+            case NOTIFICATION_BG_ALPHA:
+                mNotificationBackgroundAlpha =
+                        TunerService.parseInteger(newValue, 255);
+                GlobalActionsPowerDialog.mNotificationBackgroundAlpha = mNotificationBackgroundAlpha;
+                break;
+            default:
+                break;
+        }
     }
 
     /**
@@ -1859,6 +1880,7 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
             View v = inflater.inflate(com.android.systemui.R.layout.global_actions_grid_item_v2,
                     parent, false /* attach */);
 
+            v.getBackground().setAlpha(mNotificationBackgroundAlpha);
             ImageView icon = v.findViewById(R.id.icon);
             TextView messageView = v.findViewById(R.id.message);
             messageView.setSelected(true); // necessary for marquee to work

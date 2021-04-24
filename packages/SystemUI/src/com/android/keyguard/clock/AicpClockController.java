@@ -123,6 +123,7 @@ public class AicpClockController implements ClockPlugin {
 
         // Prepare the clock view for the preview
         View previewView = mLayoutInflater.inflate(R.layout.aicp_clock_preview, null);
+        ImageClock previewClock = previewView.findViewById(R.id.aicp_clock);
         TextClock previewDate = previewView.findViewById(R.id.date);
         // Initialize state of plugin before generating preview.
         setDarkAmount(1f);
@@ -131,8 +132,8 @@ public class AicpClockController implements ClockPlugin {
         ColorExtractor.GradientColors colors = mColorExtractor.getColors(
                 WallpaperManager.FLAG_LOCK);
         setColorPalette(colors.supportsDarkText(), colors.getColorPalette());
-        //onTimeTick();
-
+        previewClock.onTimeChanged();
+        onTimeTick();
         return mRenderer.createPreview(previewView, width, height);
     }
 
@@ -175,10 +176,10 @@ public class AicpClockController implements ClockPlugin {
 
     @Override
     public void onTimeTick() {
-        if (mView != null && mLockClock != null) {
+        if (mView != null)
             mView.onTimeChanged();
+        if (mLockClock != null)
             mLockClock.onTimeChanged();
-        }
     }
 
     @Override

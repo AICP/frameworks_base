@@ -134,7 +134,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@*android:string/config_headlineFontFamilyMedium"
-                    android:text="\ttime =  \u0027"
+                    android:text="\ttime =  \u0022"
                     android:textColor="?attr/wallpaperTextColor"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -155,7 +155,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@*android:string/config_headlineFontFamilyMedium"
                     android:paddingStart="-0.5dip"
-                    android:text="\u0027  ;"
+                    android:text="\u0022  ;"
                     android:textColor="?attr/wallpaperTextColor"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -172,7 +172,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@*android:string/config_headlineFontFamilyMedium"
-                    android:text="\tday =  \u0027"
+                    android:text="\tday =  \u0022"
                     android:textColor="?attr/wallpaperTextColor"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -196,7 +196,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@*android:string/config_headlineFontFamilyMedium"
                     android:paddingStart="-0.5dip"
-                    android:text="\u0027  ;"
+                    android:text="\u0022  ;"
                     android:textColor="?attr/wallpaperTextColor"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -213,7 +213,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@*android:string/config_headlineFontFamilyMedium"
-                    android:text="\tdate =  \u0027"
+                    android:text="\tdate =  \u0022"
                     android:textColor="?attr/wallpaperTextColor"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -234,7 +234,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@*android:string/config_headlineFontFamilyMedium"
                     android:paddingStart="-0.5dip"
-                    android:text="\u0027  ;"
+                    android:text="\u0022  ;"
                     android:textColor="?attr/wallpaperTextColor"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -251,7 +251,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@*android:string/config_headlineFontFamilyMedium"
-                    android:text="\tmonth =  \u0027"
+                    android:text="\tmonth =  \u0022"
                     android:textColor="?attr/wallpaperTextColor"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -274,7 +274,24 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@*android:string/config_headlineFontFamilyMedium"
                     android:paddingStart="-0.5dip"
-                    android:text="\u0027  ;"
+                    android:text="\u0022  ;"
+                    android:textColor="?attr/wallpaperTextColor"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:gravity="start"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@*android:string/config_headlineFontFamilyMedium"
+                    android:text="\treturn 0;"
                     android:textColor="?attr/wallpaperTextColor"
                     android:textSize="14sp"
                     android:textStyle="bold" />

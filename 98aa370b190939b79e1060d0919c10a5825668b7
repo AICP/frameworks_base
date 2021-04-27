@@ -16,6 +16,24 @@
       "message": "Fix syntax error reported",
       "revId": "98aa370b190939b79e1060d0919c10a5825668b7",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9889cdb1_bc6b2664",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2021-04-27T19:45:02Z",
+      "side": 1,
+      "message": "what? where?",
+      "parentUuid": "62bd28fa_61c2f592",
+      "revId": "98aa370b190939b79e1060d0919c10a5825668b7",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

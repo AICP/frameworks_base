@@ -20,21 +20,12 @@
 
                 <TextView
                     android:id="@+id/textInclude"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@*android:string/config_headlineFontFamilyMedium"
                     android:text="#include  "
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    style="@style/IdeClock_StaticString.Bold" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@*android:string/config_headlineFontFamilyMedium"
                     android:text="\u003Ciostream\u003E"
-                    android:textColor="#3DDB86"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    style="@style/IdeClock_StaticString.Colored" />
             </LinearLayout>
 
             <LinearLayout
@@ -46,21 +37,13 @@
 
                 <TextView
                     android:id="@+id/textUsingNamespace"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@*android:string/config_headlineFontFamilyMedium"
                     android:text="using namespace  "
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    style="@style/IdeClock_StaticString.Bold" />
 
                 <TextView
                     android:id="@+id/textStd"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@*android:string/config_headlineFontFamilyMedium"
                     android:text="icecold;"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    style="@style/IdeClock_StaticString.Bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -72,21 +55,12 @@
 
                 <TextView
                     android:id="@+id/textIntMain"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@*android:string/config_headlineFontFamilyMedium"
                     android:text="int main  "
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    style="@style/IdeClock_StaticString.Bold" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@*android:string/config_headlineFontFamilyMedium"
                     android:text="( )"
-                    android:textColor="?attr/wallpaperTextColor"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    style="@style/IdeClock_StaticString.WallColor" />
             </LinearLayout>
 
             <LinearLayout
@@ -97,13 +71,8 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@*android:string/config_headlineFontFamilyMedium"
                     android:text="{"
-                    android:textColor="?attr/wallpaperTextColor"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    style="@style/IdeClock_StaticString.WallColor" />
             </LinearLayout>
 
             <LinearLayout
@@ -115,12 +84,8 @@
 
                 <TextView
                     android:id="@+id/textTimeDateDayMonth"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@*android:string/config_headlineFontFamilyMedium"
                     android:text="\tstring time, day, date, month;"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    style="@style/IdeClock_StaticString.Bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -131,34 +96,21 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@*android:string/config_headlineFontFamilyMedium"
                     android:text="\ttime =  \u0022"
-                    android:textColor="?attr/wallpaperTextColor"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    style="@style/IdeClock_StaticString.WallColor" />
 
                 <TextClock
                     android:id="@+id/clockTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@*android:string/config_headlineFontFamilyMedium"
                     android:format12Hour="hh:mm"
                     android:format24Hour="kk:mm"
                     android:letterSpacing="0.03"
                     android:textColor="#FFFFFF"
-                    android:textSize="14sp" />
+                    style="@style/IdeClock_StaticString" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@*android:string/config_headlineFontFamilyMedium"
                     android:paddingStart="-0.5dip"
                     android:text="\u0022  ;"
-                    android:textColor="?attr/wallpaperTextColor"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    style="@style/IdeClock_StaticString.WallColor" />
             </LinearLayout>
 
             <LinearLayout
@@ -169,37 +121,23 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@*android:string/config_headlineFontFamilyMedium"
                     android:text="\tday =  \u0022"
-                    android:textColor="?attr/wallpaperTextColor"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    style="@style/IdeClock_StaticString.WallColor" />
 
                 <TextClock
                     android:id="@+id/clockDay"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:fontFamily="@*android:string/config_headlineFontFamilyMedium"
                     android:format12Hour="EEEE"
                     android:format24Hour="EEEE"
                     android:gravity="center"
                     android:letterSpacing="0.3"
                     android:textAllCaps="true"
-                    android:textColor="#3DDB86"
-                    android:textSize="14sp" />
+                    style="@style/IdeClock_StaticString.Colored" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@*android:string/config_headlineFontFamilyMedium"
                     android:paddingStart="-0.5dip"
                     android:text="\u0022  ;"
-                    android:textColor="?attr/wallpaperTextColor"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    style="@style/IdeClock_StaticString.WallColor" />
             </LinearLayout>
 
             <LinearLayout
@@ -210,34 +148,21 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@*android:string/config_headlineFontFamilyMedium"
                     android:text="\tdate =  \u0022"
-                    android:textColor="?attr/wallpaperTextColor"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    style="@style/IdeClock_StaticString.WallColor" />
 
                 <TextClock
                     android:id="@+id/clockDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@*android:string/config_headlineFontFamilyMedium"
                     android:format12Hour="yyyy.MM.dd"
                     android:format24Hour="yyyy.MM.dd"
                     android:letterSpacing="0.03"
                     android:singleLine="true"
-                    android:textSize="14sp" />
+                    style="@style/IdeClock_StaticString" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@*android:string/config_headlineFontFamilyMedium"
                     android:paddingStart="-0.5dip"
                     android:text="\u0022  ;"
-                    android:textColor="?attr/wallpaperTextColor"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    style="@style/IdeClock_StaticString.WallColor" />
             </LinearLayout>
 
             <LinearLayout
@@ -248,36 +173,23 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@*android:string/config_headlineFontFamilyMedium"
                     android:text="\tmonth =  \u0022"
-                    android:textColor="?attr/wallpaperTextColor"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    style="@style/IdeClock_StaticString.WallColor" />
 
                 <TextClock
                     android:id="@+id/clockMonth"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@*android:string/config_headlineFontFamilyMedium"
                     android:format12Hour="MMMM"
                     android:format24Hour="MMMM"
                     android:gravity="center"
                     android:letterSpacing="0.3"
                     android:singleLine="true"
                     android:textAllCaps="true"
-                    android:textSize="14sp" />
+                    style="@style/IdeClock_StaticString" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@*android:string/config_headlineFontFamilyMedium"
                     android:paddingStart="-0.5dip"
                     android:text="\u0022  ;"
-                    android:textColor="?attr/wallpaperTextColor"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    style="@style/IdeClock_StaticString.WallColor" />
             </LinearLayout>
 
             <LinearLayout
@@ -288,13 +200,8 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@*android:string/config_headlineFontFamilyMedium"
                     android:text="\treturn 0;"
-                    android:textColor="?attr/wallpaperTextColor"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    style="@style/IdeClock_StaticString.WallColor" />
             </LinearLayout>
 
             <LinearLayout
@@ -305,13 +212,8 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@*android:string/config_headlineFontFamilyMedium"
                     android:text="}"
-                    android:textColor="?attr/wallpaperTextColor"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    style="@style/IdeClock_StaticString.WallColor" />
             </LinearLayout>
         </LinearLayout>
 </RelativeLayout>

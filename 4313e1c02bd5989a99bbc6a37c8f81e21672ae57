@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "828fe80b_a039ded5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-04-29T09:00:42Z",
+      "side": 1,
+      "message": "Test:\n- Compiles\n- No change in IDE clock/ clock preview",
+      "revId": "4313e1c02bd5989a99bbc6a37c8f81e21672ae57",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

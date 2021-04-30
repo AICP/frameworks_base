@@ -24,8 +24,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_above="@id/clock"
         android:gravity="center_horizontal"
-        android:format12Hour="EEE, MMM d"
-        android:format24Hour="EEE, MMM d"
+        android:format12Hour="EEEE, MMM d"
+        android:format24Hour="EEEE, MMM d"
         android:textColor="?attr/wallpaperTextColor"
         android:theme="@style/TextAppearance.Keyguard"
         android:fontFamily="@*android:string/config_bodyFontFamily"
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_centerInParent="true"
-        android:layout_above="@id/bottomLine"
+        android:layout_above="@id/weather_container"
         android:gravity="center_horizontal"
         android:format12Hour="hh:mm"
         android:format24Hour="kk:mm"
@@ -54,6 +54,18 @@
         android:letterSpacing="0.3"
         android:textColor="?attr/wallpaperTextColor"
         android:textSize="42sp" />
+
+    <include layout="@layout/current_weather_view"
+        android:id="@+id/weather_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/bottomLine"
+        android:textColor="?attr/wallpaperTextColor"
+        android:layout_marginTop="@dimen/date_owner_info_margin"
+        android:layout_marginBottom="@dimen/date_owner_info_margin" />
 
     <View
         android:id="@+id/bottomLine"

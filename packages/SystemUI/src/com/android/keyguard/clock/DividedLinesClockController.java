@@ -32,6 +32,7 @@ import android.widget.TextView;
 import com.android.internal.colorextraction.ColorExtractor;
 import com.android.systemui.R;
 import com.android.systemui.colorextraction.SysuiColorExtractor;
+import com.android.systemui.omni.CurrentWeatherView;
 import com.android.systemui.plugins.ClockPlugin;
 
 import java.util.TimeZone;
@@ -85,6 +86,8 @@ public class DividedLinesClockController implements ClockPlugin {
     private View mTopLine;
     private View mBottomLine;
 
+    private CurrentWeatherView mWeatherView;
+
     /**
      * Create a DefaultClockController instance.
      *
@@ -104,6 +107,8 @@ public class DividedLinesClockController implements ClockPlugin {
                 .inflate(R.layout.divided_lines_clock, null);
         mClock = mView.findViewById(R.id.clock);
         mDate = mView.findViewById(R.id.date);
+        mWeatherView = mView.findViewById(R.id.weather_container);
+        mWeatherView.enableUpdates();
         onTimeTick();
     }
 
@@ -114,6 +119,8 @@ public class DividedLinesClockController implements ClockPlugin {
         mDate = null;
         mTopLine = null;
         mBottomLine = null;
+        mWeatherView.disableUpdates();
+        mWeatherView = null;
     }
 
     @Override
@@ -138,6 +145,7 @@ public class DividedLinesClockController implements ClockPlugin {
         TextClock previewDate = previewView.findViewById(R.id.date);
         View previewTLine = previewView.findViewById(R.id.topLine);
         View previewBLine = previewView.findViewById(R.id.bottomLine);
+        CurrentWeatherView previewWeather = previewView.findViewById(R.id.weather_container);
 
         // Initialize state of plugin before generating preview.
         previewTime.setTextColor(Color.WHITE);

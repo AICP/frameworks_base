@@ -128,6 +128,8 @@ public class NotificationLightsView extends RelativeLayout {
             }
         } else if (colorMode == 1) {
             color = Utils.getColorAccentDefaultColor(getContext());
+        } else if (colorMode == 3) {
+            color = randomColor();
         } else {
             color = customColor;
         }
@@ -164,4 +166,14 @@ public class NotificationLightsView extends RelativeLayout {
         if (DEBUG) Log.d(TAG, "start");
         mLightAnimator.start();
     }
+
+    private int randomColor() {
+        int red = (int)(Math.random() * 128);
+        int green = (int)(Math.random() * 128);
+        int blue = (int)(Math.random() * 128);
+        int generatedColor = 0xFF000000 | (red << 16) | (green << 8) | blue;
+        if (DEBUG) Log.d(TAG, Integer.toHexString(generatedColor));
+        return generatedColor;
+    }
+
 }

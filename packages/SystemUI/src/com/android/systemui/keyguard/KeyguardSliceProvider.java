@@ -247,7 +247,7 @@ public class KeyguardSliceProvider extends SliceProvider implements
         // animation isn't necessary when pressing power and transitioning to AOD.
         boolean keepWhenShade = mStatusBarState == StatusBarState.SHADE && mMediaIsVisible;
         return !TextUtils.isEmpty(mMediaTitle) && (mMediaIsVisible || isAndroidSClockSelected) && (mDozing || keepWhenAwake
-                || keepWhenShade || isAndroidSClockSelected) && !isAndroidSClockSelected && !isTypeClockSelected;
+                || keepWhenShade || isAndroidSClockSelected) && (isAndroidSClockSelected) && !isTypeClockSelected;
     }
 
     protected void addMediaLocked(ListBuilder listBuilder) {

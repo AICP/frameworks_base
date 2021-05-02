@@ -25,4 +25,6 @@
     <string name="clock_title_mnml_box" translatable="false">MNML Box</string>
     <string name="clock_title_mnml_minimal" translatable="false">MNML Minimal</string>
     <string name="clock_title_android_s_dp3" translatable="false">Android S DP3</string>
+        <!-- android s clock -->
+    <string name="clock_title_android_s" translatable="false">Android S</string>
 </resources>

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fadc5e0d_d7323b01",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-05-06T03:51:24Z",
+      "side": 1,
+      "message": "Observing\n```\n0     0 I         : trying to isolate tail page\n0     0 W         : ------------[ cut here ]------------\n0     0 W         : WARNING: CPU: 5 PID: 2110 at mm/vmscan.c:1685 isolate_lru_page+0x25c/0x264\n0     0 I         : Modules linked in:\n0     0 I         : CPU: 5 PID: 2110 Comm: CachedAppOptimi Tainted: G S              4.14.232-unConv #1\n0     0 I Hardware name: Qualcomm Technologies, Inc. ATOLL-AB PM6150 wcd937x Audio Codec AB IDP GRAM (DT)\n0     0 I task    : 00000000d2bfb6ed task.stack: 00000000edae0643\n0     0 I pc      : isolate_lru_page+0x25c/0x264\n0     0 I lr      : isolate_lru_page+0x25c/0x264\n```\n\nSupported devices can always enable it with device_config utility\nPS: Not really sure which change, this or the follow up causes the issue, but against enabling by default for both features",
+      "revId": "4546c7e6c3431cb544ddd63a4b92dc7ff45887e2",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

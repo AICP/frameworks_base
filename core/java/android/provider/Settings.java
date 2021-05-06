@@ -7194,6 +7194,12 @@ public final class Settings {
          */
         public static final String NOTIFICATION_BG_ALPHA = "notification_bg_alpha";
 
+        /**
+         * Level of lockscreen background blur
+         * @hide
+         */
+        public static final String LOCKSCREEN_BLUR = "lockscreen_blur";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7469,6 +7475,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(DISPLAY_CUTOUT_MODE, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(STOCK_STATUSBAR_IN_HIDE, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(DISPLAY_HIDE_NOTCH, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(LOCKSCREEN_BLUR, ANY_INTEGER_VALIDATOR);
         }
 
         /**

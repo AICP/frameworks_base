@@ -33,6 +33,7 @@ import android.os.PowerManager;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemClock;
+import android.os.SystemProperties;
 import android.text.format.Time;
 import android.util.DisplayMetrics;
 import android.view.InputDevice;
@@ -265,6 +266,15 @@ public class AicpUtils {
         DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
         float px = 24 * (metrics.densityDpi / 160f);
         return result > Math.round(px);
+    }
+
+    // Check if device supports lockscreen blur
+    public static boolean supportsBlur() {
+        boolean blurSupportedSysProp = SystemProperties
+            .getBoolean("ro.surface_flinger.supports_background_blur", false);
+        boolean blurDisabledSysProp = SystemProperties
+            .getBoolean("persist.sys.sf.disable_blurs", false);
+        return blurSupportedSysProp && !blurDisabledSysProp && ActivityManager.isHighEndGfx();
     }
 /*
     public static void takeScreenrecord(int mode) {

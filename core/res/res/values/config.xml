@@ -4238,7 +4238,7 @@
     <string-array name="config_disableApkUnlessMatchedSku_skus_list" translatable="false" />
 
     <!-- Whether or not we should show the option to show battery percentage -->
-    <bool name="config_battery_percentage_setting_available">true</bool>
+    <bool name="config_battery_percentage_setting_available">false</bool>
 
     <!-- Whether or not battery saver should be "sticky" when manually enabled. -->
     <bool name="config_batterySaverStickyBehaviourDisabled">false</bool>

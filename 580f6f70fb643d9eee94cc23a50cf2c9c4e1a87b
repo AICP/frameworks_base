@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0a4ce9f_62b23adf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-05-12T16:58:11Z",
+      "side": 1,
+      "message": "Test:\n - Compiles\n - Open lockscreen clock style selector\n - Observe that the Shapeshift clock thumbnail is readable on light theme",
+      "revId": "580f6f70fb643d9eee94cc23a50cf2c9c4e1a87b",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

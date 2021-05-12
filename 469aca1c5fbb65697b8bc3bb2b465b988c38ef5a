@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e0fce4b_c310bfc5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-05-12T16:52:51Z",
+      "side": 1,
+      "message": "Test:\n- Without this patch:-\n  - Make sure only one VPN is available (Settings \u003e Network \u0026 internet \u003e VPN)\n  - Tap the VPN tile\n  - Observe the app being opened behind  the expanded QS panel\n\n- With this patch:-\n  - Compiles\n  - Tap the QS tile\n  - the QS panel collapses and the user is presented with the VPN app screen\n\nTested with:\n - 1.1.1.1: Faster \u0026 Safer Internet (https://play.google.com/store/apps/details?id\u003dcom.cloudflare.onedotonedotonedotone)\n - TunnelBear: Virtual Private Network \u0026 Security (https://play.google.com/store/apps/details?id\u003dcom.tunnelbear.android)",
+      "revId": "469aca1c5fbb65697b8bc3bb2b465b988c38ef5a",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

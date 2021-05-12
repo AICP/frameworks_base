@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7d03d98_c84290a3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-05-12T16:55:42Z",
+      "side": 1,
+      "message": "Test:\n - Compiles\n - No gap is observed between the edge lighting and the display edge when setting custom edge width",
+      "revId": "1644427f41069814b59925c8c4b299c42753e30f",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

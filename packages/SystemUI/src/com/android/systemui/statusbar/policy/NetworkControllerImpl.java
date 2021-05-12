@@ -713,15 +713,14 @@ public class NetworkControllerImpl extends BroadcastReceiver
     @GuardedBy("mLock")
     @VisibleForTesting
     public void setCurrentSubscriptionsLocked(List<SubscriptionInfo> subscriptions) {
-        /*Collections.sort(subscriptions, new Comparator<SubscriptionInfo>() {
+        Collections.sort(subscriptions, new Comparator<SubscriptionInfo>() {
             @Override
             public int compare(SubscriptionInfo lhs, SubscriptionInfo rhs) {
                 return lhs.getSimSlotIndex() == rhs.getSimSlotIndex()
                         ? lhs.getSubscriptionId() - rhs.getSubscriptionId()
                         : lhs.getSimSlotIndex() - rhs.getSimSlotIndex();
             }
-        });*/
-        Collections.reverse(subscriptions);
+        });
         mCurrentSubscriptions = subscriptions;
 
         SparseArray<MobileSignalController> cachedControllers =

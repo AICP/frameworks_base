@@ -7157,6 +7157,12 @@ public final class Settings {
          */
         public static final String RINGTONE_VIBRATION_PATTERN = "ringtone_vibration_pattern";
 
+        /**
+         * Whether auto brightness is applied one shot when screen is turned on
+         * @hide
+         */
+        public static final String AUTO_BRIGHTNESS_ONE_SHOT = "auto_brightness_one_shot";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7427,6 +7433,8 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(USE_NEW_SEARCHBAR, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(RINGTONE_VIBRATION_PATTERN, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(CUSTOM_RINGTONE_VIBRATION_PATTERN, ANY_STRING_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(AUTO_BRIGHTNESS_ONE_SHOT, BOOLEAN_VALIDATOR);
+
         }
 
         /**

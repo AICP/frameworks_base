@@ -7203,6 +7203,12 @@ public final class Settings {
          */
         public static final String FP_WAKE_UNLOCK = "fp_wake_unlock";
 
+        /**
+         * Wether auto brightness is applied one shot when screen is turned on
+         * @hide
+         */
+        public static final String AUTO_BRIGHTNESS_ONE_SHOT = "auto_brightness_one_shot";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7479,6 +7485,8 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(DISPLAY_HIDE_NOTCH, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(LOCKSCREEN_BLUR, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(FP_WAKE_UNLOCK, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(AUTO_BRIGHTNESS_ONE_SHOT, BOOLEAN_VALIDATOR);
+
         }
 
         /**

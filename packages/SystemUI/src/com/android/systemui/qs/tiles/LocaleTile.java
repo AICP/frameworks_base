@@ -127,7 +127,8 @@ public class LocaleTile extends QSTileImpl<State> {
         state.state = currentLocaleBackup == null || currentLocaleBackup.equals(mLocaleList.get(0))
                 ? Tile.STATE_ACTIVE
                 : Tile.STATE_INACTIVE;
-        state.label = mLocaleList.get(0).getDisplayLanguage();
+        state.label = mContext.getString(R.string.quick_settings_locale_label);
+        state.secondaryLabel = mLocaleList.get(0).getDisplayLanguage();
         state.state = Tile.STATE_INACTIVE;
     }
 

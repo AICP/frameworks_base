@@ -316,6 +316,7 @@
     <!-- Screenrecord options -->
     <string name="screenrecord_stopdot_label">Show dot to stop recording</string>
     <string name="screenrecord_lowquality_label">Lower recording quality</string>
+    <string name="screenrecord_longer_timeout_switch_label">Bigger file size limit\nLimit recording size to 15 GB</string>
 
     <!-- Text to use when the number in a notification info is too large
          (greater than status_bar_notification_info_maxnum, defined in

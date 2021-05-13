@@ -6344,6 +6344,13 @@ public final class Settings {
          */
         public static final String PULSE_ON_NEW_TRACKS = "pulse_on_new_tracks";
 
+        /**
+         * Whether auto brightness is applied one shot when screen is turned on.
+         * Default 0
+         * @hide
+         */
+        public static final String AUTO_BRIGHTNESS_ONE_SHOT = "auto_brightness_one_shot";
+
         /***************************
          * AICP System Settings end
          ***************************/

@@ -39,6 +39,10 @@
         android:title="@string/quick_settings_cast_title" />
 
     <com.android.systemui.tuner.StatusBarSwitch
+        android:key="data_saver"
+        android:title="@string/data_saver" />
+
+    <com.android.systemui.tuner.StatusBarSwitch
         android:key="ethernet"
         android:title="@string/status_bar_ethernet" />
 
@@ -63,16 +67,16 @@
         android:title="@string/quick_settings_cellular_detail_title" />
 
     <com.android.systemui.tuner.StatusBarSwitch
-        android:key="vpn"
-        android:title="@string/status_bar_vpn" />
-
-    <com.android.systemui.tuner.StatusBarSwitch
         android:key="rotate"
         android:title="@string/status_bar_settings_auto_rotation" />
 
     <com.android.systemui.tuner.StatusBarSwitch
         android:key="volume"
         android:title="@*android:string/volume_unknown" />
+
+    <com.android.systemui.tuner.StatusBarSwitch
+        android:key="vpn"
+        android:title="@string/status_bar_vpn" />
 
     <com.android.systemui.tuner.StatusBarSwitch
         android:key="wifi"

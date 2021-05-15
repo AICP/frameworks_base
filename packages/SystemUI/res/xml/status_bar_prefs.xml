@@ -62,6 +62,10 @@
         android:key="location"
         android:title="@string/status_bar_location" />
 
+    <com.android.systemui.tuner.StatusBarSwitch
+        android:key="data_saver"
+        android:title="@string/data_saver" />
+
     <!-- mute -->
 
     <com.android.systemui.tuner.StatusBarSwitch

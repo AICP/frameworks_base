@@ -120,4 +120,10 @@
 
     <!-- Custom size for clock on QS header -->
     <dimen name="status_bar_header_clock_size">21sp</dimen>
+
+    <!-- Ambient Indication -->
+    <dimen name="dock_logo_min_size">48dp</dimen>
+    <dimen name="dock_top_logo_margin">12dp</dimen>
+    <dimen name="dock_top_logo_padding">8dp</dimen>
+    <dimen name="ambient_indication_icon_size">20dp</dimen>
 </resources>

@@ -79,16 +79,4 @@
     <!-- Full screen aspect ratio -->
     <java-symbol type="bool" name="config_haveHigherAspectRatioScreen" />
     <java-symbol type="dimen" name="config_screenAspectRatio" />
-
-    <!-- Whether device has dash charging support -->
-    <java-symbol type="bool" name="config_hasDashCharger" />
-
-    <!-- Whether device has warp charging support -->
-    <java-symbol type="bool" name="config_hasWarpCharger" />
-
-    <!-- Whether device has VOOC charging support -->
-    <java-symbol type="bool" name="config_hasVoocCharger" />
-
-    <!-- Whether device has turbo power charging support -->
-    <java-symbol type="bool" name="config_hasTurboPowerCharger" />
 </resources>

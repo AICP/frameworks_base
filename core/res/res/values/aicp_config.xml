@@ -90,16 +90,4 @@
     <!-- Full screen aspect ratio -->
     <bool name="config_haveHigherAspectRatioScreen">false</bool>
     <item name="config_screenAspectRatio" format="float" type="dimen">2.1</item>
-
-    <!-- Whether device has dash charging support -->
-    <bool name="config_hasDashCharger">false</bool>
-
-    <!-- Whether device has warp charging support -->
-    <bool name="config_hasWarpCharger">false</bool>
-
-    <!-- Whether device has VOOC charging support -->
-    <bool name="config_hasVoocCharger">false</bool>
-
-    <!-- Whether device has turbo power charging support -->
-    <bool name="config_hasTurboPowerCharger">false</bool>
 </resources>

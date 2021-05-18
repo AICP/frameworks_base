@@ -62,9 +62,6 @@
     <!-- Shows the required view for in-display fingerprint -->
     <bool name="config_supportsInDisplayFingerprint">false</bool>
 
-    <!-- Whether device has dash charging support -->
-    <bool name="config_hasDashCharger">false</bool>
-
     <!-- Whether to cleanup fingerprints upon connection to the daemon and when user switches -->
     <bool name="config_cleanupUnusedFingerprints">true</bool>
     <bool name="config_fingerprintPostResetRunnableForAllClients">true</bool>
@@ -105,15 +102,6 @@
     <!-- Older rotation sensors are not setting event.timestamp correctly. Setting to
          true will use SystemClock.elapsedRealtimeNanos() to set timestamp. -->
     <bool name="config_useSystemClockforRotationSensor">false</bool>
-
-    <!-- Whether device has warp charging support -->
-    <bool name="config_hasWarpCharger">false</bool>
-
-    <!-- Whether device has VOOC charging support -->
-    <bool name="config_hasVoocCharger">false</bool>
-
-    <!-- Whether device has turbo power charging support -->
-    <bool name="config_hasTurboPowerCharger">false</bool>
 
     <!-- The list of components which should be automatically disabled for a specific device.
          Note: this MUST not be used to randomly disable components, ask for approval first! -->

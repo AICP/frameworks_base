@@ -54,9 +54,6 @@
   <!-- In-display Fingerprint -->
   <java-symbol type="bool" name="config_supportsInDisplayFingerprint" />
 
-  <!-- Whether device has dash charging support -->
-  <java-symbol type="bool" name="config_hasDashCharger" />
-
   <!-- Cleanup unused fingerprints -->
   <java-symbol type="bool" name="config_cleanupUnusedFingerprints" />
   <java-symbol type="bool" name="config_fingerprintPostResetRunnableForAllClients" />
@@ -87,15 +84,6 @@
 
   <!-- Rotation sensor -->
   <java-symbol type="bool" name="config_useSystemClockforRotationSensor" />
-
-  <!-- Whether device has warp charging support -->
-  <java-symbol type="bool" name="config_hasWarpCharger" />
-
-  <!-- Whether device has VOOC charging support -->
-  <java-symbol type="bool" name="config_hasVoocCharger" />
-
-  <!-- Whether device has turbo power charging support -->
-  <java-symbol type="bool" name="config_hasTurboPowerCharger" />
 
   <!-- Toast Animation -->
   <java-symbol type="style" name="Animation.Toast.Fade" />

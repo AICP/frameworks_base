@@ -40,15 +40,4 @@
   <java-symbol type="array" name="config_globallyDisabledComponents" />
   <java-symbol type="array" name="config_forceEnabledComponents" />
 
-  <!-- Whether device has dash charging support -->
-  <java-symbol type="bool" name="config_hasDashCharger" />
-
-  <!-- Whether device has warp charging support -->
-  <java-symbol type="bool" name="config_hasWarpCharger" />
-
-  <!-- Whether device has VOOC charging support -->
-  <java-symbol type="bool" name="config_hasVoocCharger" />
-
-  <!-- Whether device has turbo power charging support -->
-  <java-symbol type="bool" name="config_hasTurboPowerCharger" />
 </resources>

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a19847f_e319764e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2021-05-19T09:45:58Z",
+      "side": 1,
+      "message": "Builds. But wasnt been able to activate it. ",
+      "revId": "233ad205cc418340e02dfaedf5b8f00feb5404d6",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

@@ -189,6 +189,13 @@ public class FODCircleView extends ImageView {
                 show();
             }
         }
+
+        @Override
+        public void onStrongAuthStateChanged(int userId) {
+            if (mUpdateMonitor.userNeedsStrongAuth()) {
+                hide();
+            }
+        }
     };
 
     public FODCircleView(Context context) {

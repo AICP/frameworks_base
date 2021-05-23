@@ -31,6 +31,9 @@ import static android.view.WindowInsetsController.APPEARANCE_OPAQUE_STATUS_BARS;
 
 import static androidx.lifecycle.Lifecycle.State.RESUMED;
 
+import static com.android.settingslib.display.BrightnessUtils.GAMMA_SPACE_MAX;
+import static com.android.settingslib.display.BrightnessUtils.convertGammaToLinearFloat;
+
 import static com.android.systemui.Dependency.TIME_TICK_HANDLER_NAME;
 import static com.android.systemui.charging.WirelessChargingLayout.UNKNOWN_BATTERY_LEVEL;
 import static com.android.systemui.keyguard.WakefulnessLifecycle.WAKEFULNESS_ASLEEP;
@@ -485,7 +488,8 @@ public class StatusBar extends SystemUI implements DemoMode,
 
     private DisplayManager mDisplayManager;
 
-    private int mMinBrightness;
+    private float mMinimumBacklight;
+    private float mMaximumBacklight;
     private int mInitialTouchX;
     private int mInitialTouchY;
     private int mLinger;
@@ -1291,8 +1295,11 @@ public class StatusBar extends SystemUI implements DemoMode,
         mNotificationShadeWindowView.setOnTouchListener(getStatusBarWindowTouchListener());
         mDismissAllButton = mNotificationShadeWindowView.findViewById(R.id.clear_notifications);
 
-        mMinBrightness = context.getResources().getInteger(
-                com.android.internal.R.integer.config_screenBrightnessDim);
+        PowerManager pm = context.getSystemService(PowerManager.class);;
+        mMinimumBacklight = pm.getBrightnessConstraint(
+                PowerManager.BRIGHTNESS_CONSTRAINT_TYPE_MINIMUM);
+        mMaximumBacklight = pm.getBrightnessConstraint(
+                PowerManager.BRIGHTNESS_CONSTRAINT_TYPE_MAXIMUM);
 
         mQuickQsTotalHeight = context.getResources().getDimensionPixelSize(
             com.android.internal.R.dimen.quick_qs_total_height);
@@ -5172,17 +5179,15 @@ public class StatusBar extends SystemUI implements DemoMode,
                 }
             });
         } else {
-            int newBrightness = mMinBrightness + (int) Math.round(value *
-                    (PowerManager.BRIGHTNESS_ON - mMinBrightness));
-            newBrightness = Math.min(newBrightness, PowerManager.BRIGHTNESS_ON);
-            newBrightness = Math.max(newBrightness, mMinBrightness);
-            final int val = newBrightness;
+            final float val = convertGammaToLinearFloat(
+                    Math.round(value * GAMMA_SPACE_MAX),
+                    mMinimumBacklight, mMaximumBacklight);
             mDisplayManager.setTemporaryBrightness(val);
             AsyncTask.execute(new Runnable() {
                 @Override
                 public void run() {
-                    Settings.System.putIntForUser(mContext.getContentResolver(),
-                            Settings.System.SCREEN_BRIGHTNESS, val,
+                    Settings.System.putFloatForUser(mContext.getContentResolver(),
+                            Settings.System.SCREEN_BRIGHTNESS_FLOAT, val,
                             UserHandle.USER_CURRENT);
                 }
             });

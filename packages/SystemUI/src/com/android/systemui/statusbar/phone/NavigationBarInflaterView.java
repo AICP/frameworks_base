@@ -152,6 +152,9 @@ public class NavigationBarInflaterView extends FrameLayout
     }
 
     protected String getDefaultLayout() {
+        if (!QuickStepContract.isGesturalMode(mNavBarMode) && Dependency.get(TunerService.class).getValue(NAV_BAR_VIEWS) != null) {
+              return Dependency.get(TunerService.class).getValue(NAV_BAR_VIEWS);
+        }
         final int defaultResource = QuickStepContract.isGesturalMode(mNavBarMode)
                 ? R.string.config_navBarLayoutHandle
                 : mOverviewProxyService.shouldShowSwipeUpUI()

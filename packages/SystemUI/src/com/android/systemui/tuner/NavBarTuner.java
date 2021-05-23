@@ -14,18 +14,8 @@
 
 package com.android.systemui.tuner;
 
-import static com.android.systemui.statusbar.phone.NavigationBarInflaterView.KEY;
-import static com.android.systemui.statusbar.phone.NavigationBarInflaterView.KEY_CODE_END;
-import static com.android.systemui.statusbar.phone.NavigationBarInflaterView.KEY_CODE_START;
-import static com.android.systemui.statusbar.phone.NavigationBarInflaterView.KEY_IMAGE_DELIM;
-import static com.android.systemui.statusbar.phone.NavigationBarInflaterView.MENU_IME_ROTATE;
-import static com.android.systemui.statusbar.phone.NavigationBarInflaterView.NAVSPACE;
-import static com.android.systemui.statusbar.phone.NavigationBarInflaterView.NAV_BAR_LEFT;
-import static com.android.systemui.statusbar.phone.NavigationBarInflaterView.NAV_BAR_RIGHT;
+import static android.view.WindowManagerPolicyConstants.NAV_BAR_MODE_GESTURAL;
 import static com.android.systemui.statusbar.phone.NavigationBarInflaterView.NAV_BAR_VIEWS;
-import static com.android.systemui.statusbar.phone.NavigationBarInflaterView.extractButton;
-import static com.android.systemui.statusbar.phone.NavigationBarInflaterView.extractImage;
-import static com.android.systemui.statusbar.phone.NavigationBarInflaterView.extractKeycode;
 
 import android.annotation.Nullable;
 import android.app.AlertDialog;
@@ -48,21 +38,28 @@ import androidx.preference.PreferenceFragment;
 
 import com.android.systemui.Dependency;
 import com.android.systemui.R;
+import com.android.systemui.statusbar.phone.NavigationModeController;
 import com.android.systemui.tuner.TunerService.Tunable;
 
 import java.util.ArrayList;
 
-public class NavBarTuner extends PreferenceFragment {
+public class NavBarTuner extends PreferenceFragment
+    implements NavigationModeController.ModeChangedListener {
 
     private static final String LAYOUT = "layout";
 
     private final ArrayList<Tunable> mTunables = new ArrayList<>();
     private Handler mHandler;
 
+    private ListPreference mLayoutPref;
+    private int mNavBarMode;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         mHandler = new Handler();
         super.onCreate(savedInstanceState);
+        mNavBarMode = Dependency.get(NavigationModeController.class).addListener(this);
+        updatePreferences();
     }
 
     @Override
@@ -74,18 +71,30 @@ public class NavBarTuner extends PreferenceFragment {
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.nav_bar_tuner);
-        bindLayout((ListPreference) findPreference(LAYOUT));
+        mLayoutPref = (ListPreference) findPreference(LAYOUT);
+        bindLayout(mLayoutPref);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         mTunables.forEach(t -> Dependency.get(TunerService.class).removeTunable(t));
+        Dependency.get(NavigationModeController.class).removeListener(this);
+    }
+
+    @Override
+    public void onNavigationModeChanged(int mode) {
+        mNavBarMode = mode;
+        updatePreferences();
     }
 
     private void addTunable(Tunable tunable, String... keys) {
         mTunables.add(tunable);
         Dependency.get(TunerService.class).addTunable(tunable, keys);
+    }
+
+    private void updatePreferences() {
+        mLayoutPref.setEnabled(mNavBarMode != NAV_BAR_MODE_GESTURAL);
     }
 
     private void bindLayout(ListPreference preference) {

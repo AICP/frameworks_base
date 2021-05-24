@@ -317,8 +317,8 @@
     <string name="quick_settings_powershare_enabled_label">Wireless PowerShare is enabled</string>
 
     <!-- Screenrecord options -->
-    <string name="screenrecord_stopdot_label">Show stop dot\nLongpress to move it</string>
-    <string name="screenrecord_lowquality_label">Lower quality for smaller file size</string>
+    <string name="screenrecord_stopdot_label">Show dot to stop recording</string>
+    <string name="screenrecord_lowquality_label">Lower recording quality</string>
 
     <!-- Text to use when the number in a notification info is too large
          (greater than status_bar_notification_info_maxnum, defined in

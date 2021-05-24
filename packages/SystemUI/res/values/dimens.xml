@@ -1397,6 +1397,7 @@
 
     <!-- Screen Record -->
     <dimen name="screenrecord_dialog_padding">18dp</dimen>
+    <dimen name="screenrecord_dialog_padding_vertical">8dp</dimen>
     <dimen name="screenrecord_logo_size">24dp</dimen>
     <dimen name="screenrecord_status_text_size">14sp</dimen>
     <dimen name="screenrecord_status_icon_radius">7dp</dimen>

@@ -17,6 +17,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="4dp"
     android:orientation="vertical"
     android:background="@drawable/rounded_bg_full">
 
@@ -42,7 +43,7 @@
                     android:layout_height="@dimen/screenrecord_logo_size"
                     android:src="@drawable/ic_screenrecord"
                     android:tint="@color/GM2_red_500"
-                    android:layout_marginBottom="@dimen/screenrecord_dialog_padding"/>
+                    android:layout_marginVertical="@dimen/screenrecord_dialog_padding"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -160,7 +161,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="@dimen/screenrecord_dialog_padding">
+                android:paddingHorizontal="@dimen/screenrecord_dialog_padding"
+                android:paddingVertical="@dimen/screenrecord_dialog_padding_vertical">
                 <Button
                     android:id="@+id/button_cancel"
                     android:layout_width="wrap_content"

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "373c6165_23a0b683",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-05-25T17:42:26Z",
+      "side": 1,
+      "message": "Just to learn ConstraintLayout tricks. How it looks https://imgur.com/a/Vt3II4Z",
+      "revId": "dd4cebb11c64cca1d484680f9571eec226c16dfa",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

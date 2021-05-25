@@ -133,9 +133,9 @@ public class MediaControlPanel {
     }
 
     private void loadDimens() {
-        mAlbumArtRadius = mContext.getResources().getDimensionPixelSize(
-                Utils.getThemeAttr(mContext, android.R.attr.dialogCornerRadius));
-        mAlbumArtSize = mContext.getResources().getDimensionPixelSize(R.dimen.qs_media_album_size);
+        mAlbumArtRadius = 0; /* mContext.getResources().getDimensionPixelSize(
+                Utils.getThemeAttr(mContext, android.R.attr.dialogCornerRadius)); */
+        mAlbumArtSize = mContext.getResources().getDimensionPixelSize(R.dimen.qs_media_album_size_large);
     }
 
     /**

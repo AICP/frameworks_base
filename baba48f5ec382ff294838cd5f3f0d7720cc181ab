@@ -68,6 +68,41 @@
       "message": "merged: https://review.lineageos.org/c/LineageOS/android_frameworks_base/+/310819",
       "revId": "baba48f5ec382ff294838cd5f3f0d7720cc181ab",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04d73eac_ee88c6d3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1682
+      },
+      "writtenOn": "2021-05-28T10:33:49Z",
+      "side": 1,
+      "message": "Uhm my bad, I wrote fwb, is bluetooth 🤓",
+      "revId": "baba48f5ec382ff294838cd5f3f0d7720cc181ab",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a38533a5_113f06b2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1682
+      },
+      "writtenOn": "2021-05-28T10:33:49Z",
+      "side": 1,
+      "message": "eh, Bluetooth, my bad :)",
+      "parentUuid": "c919e169_32502261",
+      "revId": "baba48f5ec382ff294838cd5f3f0d7720cc181ab",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

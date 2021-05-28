@@ -16,6 +16,23 @@
       "message": "Depends on  https://review.lineageos.org/c/LineageOS/android_packages_apps_Bluetooth/+/310818",
       "revId": "baba48f5ec382ff294838cd5f3f0d7720cc181ab",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c919e169_32502261",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1682
+      },
+      "writtenOn": "2021-05-28T01:02:50Z",
+      "side": 1,
+      "message": "just hold for Los merge on fwb",
+      "revId": "baba48f5ec382ff294838cd5f3f0d7720cc181ab",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

@@ -33,6 +33,24 @@
       "message": "just hold for Los merge on fwb",
       "revId": "baba48f5ec382ff294838cd5f3f0d7720cc181ab",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47d77628_9af882c7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2021-05-28T07:13:20Z",
+      "side": 1,
+      "message": "agreed. there is packages apps Bluetooth part too...",
+      "parentUuid": "c919e169_32502261",
+      "revId": "baba48f5ec382ff294838cd5f3f0d7720cc181ab",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

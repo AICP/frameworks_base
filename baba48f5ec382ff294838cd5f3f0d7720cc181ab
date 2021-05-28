@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10a85488_66574169",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1682
+      },
+      "writtenOn": "2021-05-28T00:06:33Z",
+      "side": 1,
+      "message": "Depends on  https://review.lineageos.org/c/LineageOS/android_packages_apps_Bluetooth/+/310818",
+      "revId": "baba48f5ec382ff294838cd5f3f0d7720cc181ab",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

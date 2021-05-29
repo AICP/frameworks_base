@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0dd8c05a_e64eecd7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2021-05-29T15:40:40Z",
+      "side": 1,
+      "message": "PS14 is actually rebased PS12.",
+      "revId": "d06db8ea61348daacf966b00fc5a9ad8ef1124e6",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

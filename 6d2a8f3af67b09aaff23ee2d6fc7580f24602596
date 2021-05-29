@@ -16,6 +16,24 @@
       "message": "Should fix some reported issue with \"Big Clocks\" and media notification\nShould be best when compiled with revert of https://gerrit.aicp-rom.com/c/AICP/frameworks_base/+/108408\n\nPS: Need to do some authorship search",
       "revId": "6d2a8f3af67b09aaff23ee2d6fc7580f24602596",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67e3520f_dd7d7a4c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2021-05-29T13:26:46Z",
+      "side": 1,
+      "message": "Did you read that commit\u0027s message?",
+      "parentUuid": "2ee91a06_47fb307a",
+      "revId": "6d2a8f3af67b09aaff23ee2d6fc7580f24602596",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

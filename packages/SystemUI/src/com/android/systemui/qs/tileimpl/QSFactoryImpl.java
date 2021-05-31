@@ -61,6 +61,7 @@ import com.android.systemui.qs.tiles.RebootTile;
 import com.android.systemui.qs.tiles.PowerShareTile;
 import com.android.systemui.qs.tiles.RotationLockTile;
 import com.android.systemui.qs.tiles.ScreenRecordTile;
+import com.android.systemui.qs.tiles.SleepModeTile;
 import com.android.systemui.qs.tiles.SoundSearchTile;
 import com.android.systemui.qs.tiles.UiModeNightTile;
 import com.android.systemui.qs.tiles.SoundTile;
@@ -136,6 +137,7 @@ public class QSFactoryImpl implements QSFactory {
     private final Provider<MonoToggleTile> mMonoToggleTileProvider;
     private final Provider<AntiFlickerTile> mAntiFlickerTileProvider;
     private final Provider<DcDimmingTile> mDcDimmingTileProvider;
+    private final Provider<SleepModeTile> mSleepModeTileProvider;
 
     private final Lazy<QSHost> mQsHostLazy;
 
@@ -189,7 +191,8 @@ public class QSFactoryImpl implements QSFactory {
             Provider<VpnTile> vpnTileProvider,
             Provider<MonoToggleTile> monoToggleTileProvider,
             Provider<AntiFlickerTile> antiFlickerTileProvider,
-            Provider<DcDimmingTile> dcDimTileProvider) {
+            Provider<DcDimmingTile> dcDimTileProvider,
+            Provider<SleepModeTile> sleepModeTileProvider) {
         mQsHostLazy = qsHostLazy;
         mWifiTileProvider = wifiTileProvider;
         mBluetoothTileProvider = bluetoothTileProvider;
@@ -240,6 +243,7 @@ public class QSFactoryImpl implements QSFactory {
         mMonoToggleTileProvider = monoToggleTileProvider;
         mAntiFlickerTileProvider = antiFlickerTileProvider;
         mDcDimmingTileProvider = dcDimTileProvider;
+        mSleepModeTileProvider = sleepModeTileProvider;
     }
 
     public QSTile createTile(String tileSpec) {
@@ -350,6 +354,8 @@ public class QSFactoryImpl implements QSFactory {
                 return mAntiFlickerTileProvider.get();
             case "dc_dimming":
                 return mDcDimmingTileProvider.get();
+            case "sleep_mode":
+                return mSleepModeTileProvider.get();
         }
 
         // Custom tiles

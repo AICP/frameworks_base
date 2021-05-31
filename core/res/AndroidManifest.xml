@@ -685,6 +685,9 @@
     <protected-broadcast android:name="android.intent.action.GAMING_MODE_TURN_OFF" />
     <protected-broadcast android:name="android.intent.action.GAMING_MODE_TURN_ON" />
 
+    <!-- Sleep Mode -->
+    <protected-broadcast android:name="android.intent.action.SLEEP_MODE_TURN_OFF" />
+
     <!-- ====================================================================== -->
     <!--                          RUNTIME PERMISSIONS                           -->
     <!-- ====================================================================== -->

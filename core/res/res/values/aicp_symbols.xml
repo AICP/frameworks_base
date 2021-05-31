@@ -294,4 +294,12 @@
 
   <!-- Whether to show settings for hiding notch fill -->
   <java-symbol type="bool" name="config_showHideNotchSettings" />
+
+  <!-- Sleep Mode -->
+  <java-symbol type="drawable" name="ic_sleep" />
+  <java-symbol type="string" name="notification_channel_sleep" />
+  <java-symbol type="string" name="sleep_mode_notification_title" />
+  <java-symbol type="string" name="sleep_mode_notification_content" />
+  <java-symbol type="string" name="sleep_mode_enabled_toast" />
+  <java-symbol type="string" name="sleep_mode_disabled_toast" />
 </resources>

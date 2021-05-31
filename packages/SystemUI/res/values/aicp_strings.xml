@@ -361,4 +361,7 @@
 
    <!-- Change clockface -->
    <string name="change_clock_face">Swipe to change the clock face</string>
+
+    <!-- Sleep Mode -->
+    <string name="quick_settings_sleep_mode_label">Sleep Mode</string>
 </resources>

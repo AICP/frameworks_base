@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9398c202_f021dada",
+        "filename": "packages/SystemUI/src/com/android/systemui/biometrics/FODCircleView.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-05-31T15:53:02Z",
+      "side": 1,
+      "message": "Can we have a switch instead of if elses?",
+      "range": {
+        "startLine": 411,
+        "startChar": 8,
+        "endLine": 452,
+        "endChar": 65
+      },
+      "revId": "25209d663d9aaf550a0401d5c8e382096821c740",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

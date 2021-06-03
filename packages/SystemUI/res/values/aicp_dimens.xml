@@ -120,4 +120,7 @@
     <dimen name="binary_clock_stroke_width">2dp</dimen>
     <dimen name="binary_clock_width">100dp</dimen>
     <dimen name="binary_clock_height">100dp</dimen>
+
+    <!-- Custom size for clock on QS header -->
+    <dimen name="status_bar_header_clock_size">21sp</dimen>
 </resources>

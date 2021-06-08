@@ -5549,6 +5549,17 @@ public final class Settings {
          */
         public static final String QS_TILE_LABEL_HIDE = "qs_tile_label_hide";
 
+        /**
+         * Which Vibration Pattern to use
+         * 0: dzzz-dzzz
+         * 1: dzzz-da
+         * 2: mm-mm-mm
+         * 3: da-da-dzzz
+         * 4: da-dzzz-da
+         * @hide
+         */
+        public static final String RINGTONE_VIBRATION_PATTERN = "ringtone_vibration_pattern";
+
         /***************************
          * AICP System Settings end
          ***************************/

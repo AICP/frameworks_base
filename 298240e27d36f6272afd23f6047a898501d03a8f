@@ -16,6 +16,23 @@
       "message": "Clock size: 14sp -\u003e 21 sp\n\nTest:\n- Compiles\n- Clock on the QS header follows the larger font size\n- When date is shown along with time using clock settings in AICPExtras app and data usage info is show on QS panel, no space is left blank to the left of the data usage",
       "revId": "298240e27d36f6272afd23f6047a898501d03a8f",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e88f77fe_df95474f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 343
+      },
+      "writtenOn": "2021-06-10T13:47:21Z",
+      "side": 1,
+      "message": "👍",
+      "revId": "298240e27d36f6272afd23f6047a898501d03a8f",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

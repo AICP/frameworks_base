@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4eb578c7_6da43466",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1841
+      },
+      "writtenOn": "2021-06-12T19:28:33Z",
+      "side": 1,
+      "message": "Fixed the issue the commit states for the user of mine who reported it",
+      "revId": "fa973ddc9846268c6a6bb9d8603fe76d6dbe9b43",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

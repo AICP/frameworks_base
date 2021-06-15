@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97ee6b04_e94cb1ee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2021-06-15T21:31:32Z",
+      "side": 1,
+      "message": "https://review.lineageos.org/c/LineageOS/android_frameworks_base/+/312466\n\nComments: This adds back privacy indicators, removed after latest aosp merge.",
+      "revId": "ccc11081115efcfb13c29e1cd26d9a266bb00603",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0033ccf0_4b963c49",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2021-06-20T06:46:11Z",
+      "side": 1,
+      "message": "PS15 is PS11 from LoS Gerrit.",
+      "revId": "f23b49c2b003dace67700ee7e96fbebd9e46ea14",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

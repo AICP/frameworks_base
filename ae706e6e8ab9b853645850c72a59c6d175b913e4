@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0165a165_189483d7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2021-06-20T06:16:35Z",
+      "side": 1,
+      "message": "-2 to avoid accidenthal merge -open on LoS Gerrit: https://review.lineageos.org/c/LineageOS/android_frameworks_base/+/312775\n\nNeeds these 2 commits: \n1. https://review.lineageos.org/c/LineageOS/android_art/+/312776\n2. https://android-review.googlesource.com/c/platform/libcore/+/1588035 (merged to master it seems)",
+      "revId": "ae706e6e8ab9b853645850c72a59c6d175b913e4",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

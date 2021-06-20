@@ -564,6 +564,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         setBatteryPercentMode();
         updateDataUsageView();
         updateDataUsageImage();
+        updateDateView();
     }
 
     private void updateDataUsageView() {
@@ -630,14 +631,19 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         mBatteryRemainingIcon.setPercentShowMode(getBatteryPercentMode(), true);
     }
 
+    private void updateDateView() {
+        boolean showDateView = mClockView.isClockDateEnabled();
+        mDateView.setVisibility(showDateView ? View.GONE : View.VISIBLE);
+    }
+
     public void setExpanded(boolean expanded) {
         if (mExpanded == expanded) return;
         mExpanded = expanded;
         mHeaderQsPanel.setExpanded(expanded);
-        mDateView.setVisibility(mClockView.isClockDateEnabled() ? View.GONE : View.VISIBLE);
         updateSystemInfoText();
         updateEverything();
         updateDataUsageView();
+        updateDateView();
     }
 
     /**

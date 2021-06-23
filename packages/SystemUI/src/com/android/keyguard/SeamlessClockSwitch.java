@@ -23,9 +23,26 @@ public class SeamlessClockSwitch {
 
     private static final String[] CLOCK_FACES = {
         "com.android.keyguard.clock.DefaultClockController",
+        "com.android.keyguard.clock.DefaultBoldClockController",
+        "com.android.keyguard.clock.AicpClockController",
+        "com.android.keyguard.clock.AnalogClockController",
+        "com.android.keyguard.clock.BinaryClockController",
         "com.android.keyguard.clock.BubbleClockController",
-        "com.android.keyguard.clock.AnalogClockController"
-    };
+        "com.android.keyguard.clock.TypeClockController",
+        "com.android.keyguard.clock.TypeClockAltController",
+        "com.android.keyguard.clock.SamsungClockController",
+        "com.android.keyguard.clock.SamsungBoldClockController",
+        "com.android.keyguard.clock.DividedLinesClockController",
+        "com.android.keyguard.clock.FluidClockController",
+        "com.android.keyguard.clock.IDEClockController",
+        "com.android.keyguard.clock.MNMLBoxClockController",
+        "com.android.keyguard.clock.MNMLMinimalClockController",
+        "com.android.keyguard.clock.OPMinimalClockController",
+        "com.android.keyguard.clock.OPNumbersClockController",
+        "com.android.keyguard.clock.OPRomanClockController",
+        "com.android.keyguard.clock.SfunyClockController",
+        "com.android.keyguard.clock.ShapeShiftClockController"
+};
 
     public static int getCurrentPosition(String currentClockFace) {
         for (int i=0; i<CLOCK_FACES.length; i++) {

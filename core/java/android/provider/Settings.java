@@ -7151,6 +7151,12 @@ public final class Settings {
          */
         public static final String RINGTONE_VIBRATION_PATTERN = "ringtone_vibration_pattern";
 
+        /**
+         * Whether to use the Android 11 searchbar in settings, the value is boolean.
+         * 0 = 0ff, 1 = on
+         */
+        public static final String USE_NEW_SEARCHBAR = "use_new_searchbar";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7420,6 +7426,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(FOD_ICON_WALLPAPER_COLOR, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(RINGTONE_VIBRATION_PATTERN, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(CUSTOM_RINGTONE_VIBRATION_PATTERN, ANY_STRING_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(USE_NEW_SEARCHBAR, BOOLEAN_VALIDATOR);
         }
 
         /**

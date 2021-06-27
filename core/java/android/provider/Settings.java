@@ -7132,6 +7132,12 @@ public final class Settings {
          */
         public static final String CLIPBOARD_TOAST_INFO = "clipboard_toast_info";
 
+        /**
+         * Whether to use the Android 11 searchbar in settings, the value is boolean.
+         * 0 = 0ff, 1 = on
+         */
+        public static final String USE_NEW_SEARCHBAR = "use_new_searchbar";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7399,6 +7405,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(CLIPBOARD_TOAST_INFO, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(FOD_ICON, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(FOD_ICON_WALLPAPER_COLOR, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(USE_NEW_SEARCHBAR, BOOLEAN_VALIDATOR);
         }
 
         /**

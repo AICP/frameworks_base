@@ -7209,6 +7209,11 @@ public final class Settings {
          */
         public static final String AUTO_BRIGHTNESS_ONE_SHOT = "auto_brightness_one_shot";
 
+        /**
+         * @hide
+         */
+        public static final String SLIDER_STYLE = "slider_style";
+
         /***************************
          * AICP System Settings end
          ***************************/

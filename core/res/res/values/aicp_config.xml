@@ -90,4 +90,8 @@
     <!-- Full screen aspect ratio -->
     <bool name="config_haveHigherAspectRatioScreen">false</bool>
     <item name="config_screenAspectRatio" format="float" type="dimen">2.1</item>
+
+    <!-- Paths to fast charging status file to detect whether an oem fast charger is active -->
+    <string-array name="config_oemFastChargerStatusPaths" translatable="false">
+    </string-array>
 </resources>

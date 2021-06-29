@@ -1949,7 +1949,7 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
         }
 
         // Take a guess at initial SIM state, battery status and PLMN until we get an update
-        mBatteryStatus = new BatteryStatus(BATTERY_STATUS_UNKNOWN, 100, 0, 0, 0, 0, 0, 0, false, false, false, false, true);
+        mBatteryStatus = new BatteryStatus(BATTERY_STATUS_UNKNOWN, 100, 0, 0, 0, 0, 0, 0, false, false, false, false, false, true);
 
         // Watch for interesting updates
         final IntentFilter filter = new IntentFilter();
@@ -3068,6 +3068,11 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
 
         // change in turbo power charging while plugged in
         if (nowPluggedIn && current.turboPowerStatus != old.turboPowerStatus) {
+            return true;
+        }
+
+        // change in oem fast charging while plugged in
+        if (nowPluggedIn && current.oemChargeStatus != old.oemChargeStatus) {
             return true;
         }
 

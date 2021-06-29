@@ -32,6 +32,7 @@ import static android.os.BatteryManager.EXTRA_DASH_CHARGER;
 import static android.os.BatteryManager.EXTRA_WARP_CHARGER;
 import static android.os.BatteryManager.EXTRA_VOOC_CHARGER;
 import static android.os.BatteryManager.EXTRA_TURBO_POWER;
+import static android.os.BatteryManager.EXTRA_OEM_FAST_CHARGER;
 
 import android.content.Context;
 import android.content.Intent;
@@ -54,6 +55,7 @@ public class BatteryStatus {
     public static final int CHARGING_WARP = 4;
     public static final int CHARGING_VOOC = 5;
     public static final int CHARGING_TURBO_POWER = 6;
+    public static final int CHARGING_OEM_FAST_CHARGER = 7;
 
     public final int status;
     public final int level;
@@ -69,11 +71,13 @@ public class BatteryStatus {
     public final boolean warpChargeStatus;
     public final boolean voocChargeStatus;
     public final boolean turboPowerStatus;
+    public final boolean oemChargeStatus;
 
     public BatteryStatus(int status, int level, int plugged, int health,
             int maxChargingCurrent, int maxChargingVoltage, int maxChargingWattage,
             float temperature, boolean dashChargeStatus, boolean warpChargeStatus,
-            boolean voocChargeStatus, boolean turboPowerStatus, boolean present) {
+            boolean voocChargeStatus, boolean turboPowerStatus,
+            boolean oemChargeStatus, boolean present) {
         this.status = status;
         this.level = level;
         this.plugged = plugged;
@@ -86,6 +90,7 @@ public class BatteryStatus {
         this.warpChargeStatus = warpChargeStatus;
         this.voocChargeStatus = voocChargeStatus;
         this.turboPowerStatus = turboPowerStatus;
+        this.oemChargeStatus = oemChargeStatus;
         this.present = present;
     }
 
@@ -101,6 +106,7 @@ public class BatteryStatus {
         warpChargeStatus = batteryChangedIntent.getBooleanExtra(EXTRA_WARP_CHARGER, false);
         voocChargeStatus = batteryChangedIntent.getBooleanExtra(EXTRA_VOOC_CHARGER, false);
         turboPowerStatus = batteryChangedIntent.getBooleanExtra(EXTRA_TURBO_POWER, false);
+        oemChargeStatus = batteryChangedIntent.getBooleanExtra(EXTRA_OEM_FAST_CHARGER, false);
         present = batteryChangedIntent.getBooleanExtra(EXTRA_PRESENT, true);
 
         final int maxChargingMicroAmp = maxChargingCurrent;
@@ -202,6 +208,7 @@ public class BatteryStatus {
                 warpChargeStatus ? CHARGING_WARP :
                 voocChargeStatus ? CHARGING_VOOC :
                 turboPowerStatus ? CHARGING_TURBO_POWER :
+                oemChargeStatus ? CHARGING_OEM_FAST_CHARGER :
                 maxChargingWattage <= 0 ? CHARGING_UNKNOWN :
                 maxChargingWattage < slowThreshold ? CHARGING_SLOWLY :
                         maxChargingWattage > fastThreshold ? CHARGING_FAST :

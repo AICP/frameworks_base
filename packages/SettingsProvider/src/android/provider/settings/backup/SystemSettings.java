@@ -320,6 +320,7 @@ public class SystemSettings {
         Settings.System.ANIM_TILE_INTERPOLATOR,
         Settings.System.QS_TRANSPARENCY,
         Settings.System.TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK,
+        Settings.System.HIGH_TOUCH_POLLING_RATE_ENABLE,
         Settings.System.HIGH_TOUCH_SENSITIVITY_ENABLE,
     };
 }

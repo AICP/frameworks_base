@@ -54,6 +54,7 @@ public class TelephonyIcons {
     static final int ICON_VOWIFI_Simple1 = R.drawable.ic_vowifi_simple1;
     static final int ICON_VOWIFI_Simple2 = R.drawable.ic_vowifi_simple2;
     static final int ICON_VOWIFI_Simple3 = R.drawable.ic_vowifi_simple3;
+    static final int ICON_VOWIFI_VIVO = R.drawable.ic_vowifi_vivo;
 
 
     public static final MobileIconGroup CARRIER_NETWORK_CHANGE = new MobileIconGroup(
@@ -417,6 +418,19 @@ public class TelephonyIcons {
             AccessibilityContentDescriptions.PHONE_SIGNAL_STRENGTH[0],
             0,
             TelephonyIcons.ICON_VOWIFI_Simple3,
+            false);
+
+    static final MobileIconGroup VOWIFI_VIVO = new MobileIconGroup(
+            "VoWIFI_VIVO",
+            null,
+            null,
+            AccessibilityContentDescriptions.PHONE_SIGNAL_STRENGTH,
+            0, 0,
+            0,
+            0,
+            AccessibilityContentDescriptions.PHONE_SIGNAL_STRENGTH[0],
+            0,
+            TelephonyIcons.ICON_VOWIFI_VIVO,
             false);
 
 

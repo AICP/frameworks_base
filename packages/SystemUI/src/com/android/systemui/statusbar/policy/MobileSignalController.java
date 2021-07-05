@@ -1142,6 +1142,9 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
                 // Simple3
                 case 7:
                     return TelephonyIcons.VOWIFI_Simple3;
+                // Vivo
+                case 8:
+                    return TelephonyIcons.VOWIFI_VIVO;
                 default:
                     return TelephonyIcons.VOWIFI;
             }

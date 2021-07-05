@@ -44,6 +44,7 @@ import vendor.lineage.livedisplay.V2_0.IReadingEnhancement;
 import vendor.lineage.livedisplay.V2_0.ISunlightEnhancement;
 import vendor.lineage.livedisplay.V2_1.IAntiFlicker;
 import vendor.lineage.touch.V1_0.IGloveMode;
+import vendor.lineage.touch.V1_0.IHighTouchPollingRate;
 import vendor.lineage.touch.V1_0.IKeyDisabler;
 import vendor.lineage.touch.V1_0.IKeySwapper;
 import vendor.lineage.touch.V1_0.IStylusMode;
@@ -73,6 +74,12 @@ public final class LineageHardwareManager {
     // The VisibleForTesting annotation is to ensure Proguard doesn't remove these
     // fields, as they might be used via reflection. When the @Keep annotation in
     // the support library is properly handled in the platform, we should change this.
+
+    /**
+     * High Touch Polling Rate
+     */
+    @VisibleForTesting
+    public static final int FEATURE_HIGH_TOUCH_POLLING_RATE = 0x8;
 
     /**
      * High touch sensitivity for touch panels
@@ -166,6 +173,7 @@ public final class LineageHardwareManager {
     public static final int FEATURE_ANTI_FLICKER = 0x200000;
 
     private static final List<Integer> BOOLEAN_FEATURES = Arrays.asList(
+        FEATURE_HIGH_TOUCH_POLLING_RATE,
         FEATURE_HIGH_TOUCH_SENSITIVITY,
         FEATURE_KEY_DISABLE,
         FEATURE_KEY_SWAP,
@@ -277,6 +285,8 @@ public final class LineageHardwareManager {
     private IBase getHIDLService(int feature) {
         try {
             switch (feature) {
+                case FEATURE_HIGH_TOUCH_POLLING_RATE:
+                    return IHighTouchPollingRate.getService(true);
                 case FEATURE_HIGH_TOUCH_SENSITIVITY:
                     return IGloveMode.getService(true);
                 case FEATURE_KEY_DISABLE:
@@ -351,6 +361,9 @@ public final class LineageHardwareManager {
             if (isSupportedHIDL(feature)) {
                 IBase obj = mHIDLMap.get(feature);
                 switch (feature) {
+                    case FEATURE_HIGH_TOUCH_POLLING_RATE:
+                        IHighTouchPollingRate highTouchPollingRate = (IHighTouchPollingRate) obj;
+                        return highTouchPollingRate.isEnabled();
                     case FEATURE_HIGH_TOUCH_SENSITIVITY:
                         IGloveMode gloveMode = (IGloveMode) obj;
                         return gloveMode.isEnabled();
@@ -409,6 +422,9 @@ public final class LineageHardwareManager {
             if (isSupportedHIDL(feature)) {
                 IBase obj = mHIDLMap.get(feature);
                 switch (feature) {
+                    case FEATURE_HIGH_TOUCH_POLLING_RATE:
+                        IHighTouchPollingRate highTouchPollingRate = (IHighTouchPollingRate) obj;
+                        return highTouchPollingRate.setEnabled(enable);
                     case FEATURE_HIGH_TOUCH_SENSITIVITY:
                         IGloveMode gloveMode = (IGloveMode) obj;
                         return gloveMode.setEnabled(enable);

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "063ffdd3_d0023939",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2021-07-05T16:58:57Z",
+      "side": 1,
+      "message": "PS17 is PS12 from LoS Gerrit. Merged.",
+      "revId": "ad834ff44d7cf90106c0860f3cb16136604a5885",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

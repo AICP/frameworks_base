@@ -180,6 +180,9 @@
     <permission android:name="com.android.systemui.permission.PLUGIN"
             android:protectionLevel="signature" />
 
+    <permission android:name="com.android.systemui.permission.SCREEN_RECORDING"
+            android:protectionLevel="signature" />
+
     <!-- Adding Quick Settings tiles -->
     <uses-permission android:name="android.permission.BIND_QUICK_SETTINGS_TILE" />
 
@@ -391,7 +394,14 @@
             android:theme="@style/ScreenRecord"
             android:showForAllUsers="true"
             android:excludeFromRecents="true" />
-        <service android:name=".screenrecord.RecordingService" />
+        <service android:name=".screenrecord.RecordingService"
+            android:exported="true"
+            android:process=":screenrecord"
+            android:permission="com.android.systemui.permission.SCREEN_RECORDING">
+            <intent-filter>
+                <action android:name="com.android.systemui.screenrecord.RecordingService" />
+            </intent-filter>
+        </service>
 
         <!-- started from PhoneWindowManager
              TODO: Should have an android:permission attribute -->

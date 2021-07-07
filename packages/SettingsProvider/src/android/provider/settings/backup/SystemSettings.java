@@ -174,5 +174,6 @@ public class SystemSettings {
         Settings.System.FINGERPRINT_SUCCESS_VIB,
         Settings.System.ADAPTIVE_PLAYBACK_ENABLED,
         Settings.System.ADAPTIVE_PLAYBACK_TIMEOUT,
+        Settings.System.HIDE_LOCKSCREEN_STATUS_BAR,
     };
 }

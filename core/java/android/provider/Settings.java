@@ -6203,6 +6203,12 @@ public final class Settings {
          */
         public static final String ADAPTIVE_PLAYBACK_TIMEOUT = "adaptive_playback_timeout";
 
+        /**
+         * Hide Statusbar on LockScreen
+         * @hide
+         */
+        public static final String HIDE_LOCKSCREEN_STATUS_BAR = "hide_lockscreen_status_bar";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6411,6 +6417,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(FINGERPRINT_SUCCESS_VIB);
             PRIVATE_SETTINGS.add(ADAPTIVE_PLAYBACK_ENABLED);
             PRIVATE_SETTINGS.add(ADAPTIVE_PLAYBACK_TIMEOUT);
+            PRIVATE_SETTINGS.add(HIDE_LOCKSCREEN_STATUS_BAR);
         }
 
         /**

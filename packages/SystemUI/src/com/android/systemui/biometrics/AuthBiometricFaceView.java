@@ -181,7 +181,6 @@ public class AuthBiometricFaceView extends AuthBiometricView {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        mIconView.setVisibility(View.VISIBLE);
         mIconController = new IconController(mContext, mIconView, mIndicatorView);
     }
 

@@ -379,8 +379,10 @@ public class AndroidSClockController implements ClockPlugin {
                             .setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                                 @Override
                                 public void onAnimationUpdate(ValueAnimator animation) {
-                                    mClock.setTextSize(mTextSizeBig);
-                                    mClock.requestLayout();
+                                    if (mClock != null) {
+                                        mClock.setTextSize(mTextSizeBig);
+                                        mClock.requestLayout();
+                                    }
                                 }
                             })
                             .setDuration(350)
@@ -401,8 +403,10 @@ public class AndroidSClockController implements ClockPlugin {
                             .setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                                 @Override
                                 public void onAnimationUpdate(ValueAnimator animation) {
-                                    mClock.setTextSize(mTextSizeNormal);
-                                    mClock.requestLayout();
+                                    if (mClock != null) {
+                                        mClock.setTextSize(mTextSizeNormal);
+                                        mClock.requestLayout();
+                                    }
                                 }
                             })
                             .setDuration(350)

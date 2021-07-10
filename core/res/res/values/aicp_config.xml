@@ -154,6 +154,7 @@
 
     <!-- Defines custom OEM sensor for pocket detection. -->
     <string name="config_pocketJudgeVendorSensorName"></string>
+    <string name="config_pocketJudgeVendorProximitySensorName"></string>
 
     <!-- System info -->
     <string name="config_sysCPUTemp"></string>

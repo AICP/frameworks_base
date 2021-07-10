@@ -125,8 +125,9 @@
   <java-symbol type="bool" name="config_pocketModeSupported" />
 
   <!-- Pocket Service -->
-  <java-symbol type="string" name="config_pocketJudgeVendorSensorName" />
   <java-symbol type="bool" name="config_pocketUseLightSensor" />
+  <java-symbol type="string" name="config_pocketJudgeVendorSensorName" />
+  <java-symbol type="string" name="config_pocketJudgeVendorProximitySensorName" />
 
   <!-- System info -->
   <java-symbol type="string" name="config_sysCPUTemp" />

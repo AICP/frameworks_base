@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "44332717_a3694f23",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2021-07-11T11:43:41Z",
+      "side": 1,
+      "message": "Main commit: https://github.com/AOSPA/android_frameworks_base/commit/5b4c22a585ece604a332b9638565d7bb85b7fadc#diff-a41d514f470cac815ca1658eab8134b68ae8cbd205998280fad089bf0b9f2b12\n\n1. part of the main commit is https://gerrit.aicp-rom.com/c/AICP/frameworks_base/+/110058\n2. part of the main commit is the current one.",
+      "revId": "db31d827552695c5563ddfbe5756c5eb88e3c664",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

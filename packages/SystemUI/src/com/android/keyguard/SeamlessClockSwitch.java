@@ -89,6 +89,11 @@ public class SeamlessClockSwitch {
         return myString;
     }
 
+    public static String getCurrentClockFace(Context context) {
+        mContext = context;
+        return getCurrentClockFace();
+    }
+
     public static void shakeClock(View targetView, boolean status) {
         if (status) {
             Animation anim = new RotateAnimation(-3, 3, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);

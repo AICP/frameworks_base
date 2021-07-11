@@ -18,9 +18,7 @@ package com.android.keyguard;
 
 import android.app.ActivityManager;
 import android.app.IActivityManager;
-import android.content.ContentResolver;
 import android.content.Context;
-import android.content.ContentResolver;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Handler;
@@ -322,16 +320,27 @@ public class KeyguardStatusView extends GridLayout implements
         if (mOwnerInfo == null) return;
         String info = mLockPatternUtils.getDeviceOwnerInfo();
         if (info == null) {
-            final ContentResolver resolver = mContext.getContentResolver();
-            String currentClock = Settings.Secure.getString(
-                resolver, Settings.Secure.LOCK_SCREEN_CUSTOM_CLOCK_FACE);
-            boolean mCustomClockSelection = currentClock == null ? false : currentClock.contains("Type")
-                    || currentClock.contains("ide") || currentClock.contains("OOS 11");
-
+            String currentClock = mClockView.getClockPluginName();
+            boolean isClockLeftAligned = currentClock == null
+                    ? false
+                    : "type".equals(currentClock)
+                    || "ide".equals(currentClock)
+                    || "ssos".equals(currentClock);
             // If left aligned style clock, align the textView to start else keep it center.
-            if (mCustomClockSelection) {
-                mOwnerInfo.setPaddingRelative((int) mContext.getResources()
-                    .getDimension(R.dimen.custom_clock_left_padding) + 8, 0, 0, 0);
+            int leftPadding = 0;
+            if (isClockLeftAligned) {
+                if ("ide".equals(currentClock)) {
+                    leftPadding = (int) mContext.getResources()
+                        .getDimension(R.dimen.ide_clock_margin_start);
+                } else if("type".equals(currentClock)) {
+                    leftPadding = ((int) mContext.getResources()
+                        .getDimension(R.dimen.custom_clock_left_padding)) + 8;
+                } else {
+                    //ssos clockFace
+                    leftPadding = ((int) mContext.getResources()
+                        .getDimension(R.dimen.ssos_clock_padding_start));
+                }
+                mOwnerInfo.setPaddingRelative(leftPadding, 0, 0, 0);
                 mOwnerInfo.setGravity(Gravity.START);
             } else {
                 mOwnerInfo.setPaddingRelative(0, 0, 0, 0);

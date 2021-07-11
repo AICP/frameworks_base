@@ -402,10 +402,6 @@ public class KeyguardClockSwitch extends RelativeLayout implements TunerService.
         return mClockView.getTextSize();
     }
 
-    public String getClockPluginName() {
-        return  (mClockPlugin != null) ? mClockPlugin.getName() : null;
-    }
-
     /**
      * Returns the preferred Y position of the clock.
      *

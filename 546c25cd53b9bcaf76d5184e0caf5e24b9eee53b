@@ -16,6 +16,29 @@
       "message": "PS5 is actually PS3. ",
       "revId": "546c25cd53b9bcaf76d5184e0caf5e24b9eee53b",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "434265ad_ad184a19",
+        "filename": "packages/SystemUI/src/com/android/keyguard/KeyguardStatusView.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-07-13T02:49:26Z",
+      "side": 1,
+      "message": "Isn\u0027t this redundant with checks at L332-342, except a null check",
+      "range": {
+        "startLine": 324,
+        "startChar": 12,
+        "endLine": 328,
+        "endChar": 51
+      },
+      "revId": "546c25cd53b9bcaf76d5184e0caf5e24b9eee53b",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

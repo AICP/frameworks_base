@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "685c87b7_899a7bcf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2021-07-18T17:44:29Z",
+      "side": 1,
+      "message": "PS9 picked from https://github.com/eyosen/frameworks_base/commit/5c346f54a6e93d75f6f895b538c276195524a5c8",
+      "revId": "46697eddd7b3abc38cfab478cbe6eef444d25520",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

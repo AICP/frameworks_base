@@ -7176,6 +7176,12 @@ public final class Settings {
          */
         public static final String STOCK_STATUSBAR_IN_HIDE = "stock_statusbar_in_hide";
 
+        /**
+         * Whether to hide notch fill
+         * @hide
+         */
+        public static final String DISPLAY_HIDE_NOTCH = "display_hide_notch";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7449,6 +7455,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(CUSTOM_RINGTONE_VIBRATION_PATTERN, ANY_STRING_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(DISPLAY_CUTOUT_MODE, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(STOCK_STATUSBAR_IN_HIDE, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(DISPLAY_HIDE_NOTCH, BOOLEAN_VALIDATOR);
         }
 
         /**

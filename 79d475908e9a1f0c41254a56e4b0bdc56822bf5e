@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c145f9f7_0656f2ee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2021-08-03T20:41:53Z",
+      "side": 1,
+      "message": "Squashed commit, full history: https://github.com/semdoc/frameworks_base/commits/r11.1",
+      "revId": "79d475908e9a1f0c41254a56e4b0bdc56822bf5e",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

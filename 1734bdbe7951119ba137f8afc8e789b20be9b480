@@ -16,6 +16,23 @@
       "message": "Untested",
       "revId": "1734bdbe7951119ba137f8afc8e789b20be9b480",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e47d4ab3_dc974bae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-08-05T17:29:52Z",
+      "side": 1,
+      "message": "Test: \n - Compiles\n - Without the patch, with secure lockscreens, toggling QS airplane mode tile causes the panel to expand\n - With this patch, on secure lockscreen toggling QS airplane mode tile will require unlocking but does not expand the QS panel\n\nP.S.: -1 -\u003e Not tested by myself",
+      "revId": "1734bdbe7951119ba137f8afc8e789b20be9b480",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

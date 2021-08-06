@@ -52,6 +52,7 @@ import com.android.internal.widget.LockPatternUtils;
 import com.android.keyguard.KeyguardSecurityModel.SecurityMode;
 import com.android.keyguard.KeyguardUpdateMonitor;
 import com.android.keyguard.KeyguardUpdateMonitorCallback;
+import com.android.settingslib.Utils;
 import com.android.systemui.Dependency;
 import com.android.systemui.R;
 
@@ -403,6 +404,11 @@ public class FODCircleView extends ImageView {
                 Settings.System.FOD_ICON_WALLPAPER_COLOR, 0) != 0;
     }
 
+    private boolean useAccentDefaultColor() {
+        return Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.FOD_ICON_ACCENT_DEFAULT_COLOR, 0) != 0;
+    }
+
     private int getFODIcon() {
         return Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.FOD_ICON, 0);
@@ -505,6 +511,11 @@ public class FODCircleView extends ImageView {
             }
         } else {
             this.setColorFilter(null);
+        }
+
+        if (useAccentDefaultColor()) {
+            int accentColor = Utils.getColorAccentDefaultColor(getContext());
+            this.setColorFilter(accentColor);
         }
     }
 

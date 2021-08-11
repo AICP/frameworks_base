@@ -171,6 +171,14 @@ public class SecureSettings {
         Settings.Secure.ACCESSIBILITY_BUTTON_TARGETS,
         Settings.Secure.ADAPTIVE_CONNECTIVITY_ENABLED,
         Settings.Secure.ASSIST_HANDLES_LEARNING_TIME_ELAPSED_MILLIS,
-        Settings.Secure.ASSIST_HANDLES_LEARNING_EVENT_COUNT
+        Settings.Secure.ASSIST_HANDLES_LEARNING_EVENT_COUNT,
+        Settings.Secure.DOZE_AMBIENT_SWIPE,
+        Settings.Secure.DOZE_POCKET_GESTURE,
+        Settings.Secure.DOZE_HANDWAVE_GESTURE,
+        Settings.Secure.DOZE_TILT_GESTURE,
+        Settings.Secure.DOZE_TAP_SCREEN_GESTURE,
+        Settings.Secure.DOZE_DOUBLE_TAP_GESTURE,
+        Settings.Secure.DOZE_PICK_UP_GESTURE,
+        Settings.Secure.DOZE_PULSE_ON_LONG_PRESS
     };
 }

@@ -396,7 +396,6 @@
             android:excludeFromRecents="true" />
         <service android:name=".screenrecord.RecordingService"
             android:exported="true"
-            android:process=":screenrecord"
             android:permission="com.android.systemui.permission.SCREEN_RECORDING">
             <intent-filter>
                 <action android:name="com.android.systemui.screenrecord.RecordingService" />

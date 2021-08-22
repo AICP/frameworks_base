@@ -11678,6 +11678,12 @@ public final class Settings {
         public static final String PULSE_SMOOTHING_ENABLED = "pulse_smoothing_enabled";
 
         /**
+         * Pulse Solid units rounded
+         * @hide
+         */
+        public static final String PULSE_SOLID_UNITS_ROUNDED = "pulse_solid_units_rounded";
+
+        /**
          * Pulse ambient music visualizer
          * @hide
          */

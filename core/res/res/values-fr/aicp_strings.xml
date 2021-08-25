@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Copyright (C) 2014-2020 AICP
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="permlab_fakePackageSignature">Imiter la signature du paquet</string>
+    <string name="permdesc_fakePackageSignature">Autoriser l\'application à prétendre être une autre application. Des applications malveillantes peuvent l\'utiliser pour accéder aux données d\'applications privées. Accordez cette autorisation avec prudence!</string>
+    <string name="permgrouplab_fake_package_signature">Imiter la signature du paquet</string>
+    <string name="reboot_title">Redémarrer</string>
+    <string name="reboot_message">Redémarrage du système</string>
+    <string name="aerr_copy">Copier l\'URL du rapport d\'erreur</string>
+    <string name="url_copy_success">URL copiée avec succès</string>
+    <string name="url_copy_failed">Une erreur est survenue pendant l\'envoi du rapport à dogbin</string>
+    <string name="app_killed_message">Application tuée</string>
+    <string name="notification_channel_gaming">Mode jeu</string>
+    <string name="gaming_mode_notification_title">Mode jeu activé</string>
+    <string name="gaming_mode_notification_content">Appuyez pour désactiver le mode Jeu</string>
+    <string name="gaming_mode_enabled_toast">Mode jeu activé</string>
+    <string name="gaming_mode_disabled_toast">Mode jeu désactivé</string>
+    <string name="live_display_auto">Automatique</string>
+    <string name="live_display_auto_summary">Ajuster automatiquement la température de couleur de l\'écran après le coucher et le lever du soleil</string>
+    <string name="live_display_off">Désactivé</string>
+    <string name="live_display_off_summary">Désactiver tous les réglages</string>
+    <string name="live_display_day">Jour</string>
+    <string name="live_display_day_summary">Utiliser les paramètres de jour uniquement</string>
+    <string name="live_display_night">Nuit</string>
+    <string name="live_display_night_summary">Utiliser les paramètres de nuit uniquement</string>
+    <string name="live_display_outdoor">Extérieur (plein soleil)</string>
+    <string name="live_display_outdoor_summary">Utiliser seulement les paramètres du mode extérieur</string>
+    <string name="live_display_hint">LiveDisplay peut contribuer à réduire la fatigue oculaire et vous aider à dormir la nuit. Appuyez ici pour l\'essayer !</string>
+    <string name="accessibility_quick_settings_live_display_off">LiveDisplay désactivé.</string>
+    <string name="accessibility_quick_settings_live_display_auto">LiveDisplay : mode automatique.</string>
+    <string name="accessibility_quick_settings_live_display_day">LiveDisplay : mode jour.</string>
+    <string name="accessibility_quick_settings_live_display_night">LiveDisplay : mode nuit.</string>
+    <string name="accessibility_quick_settings_live_display_outdoor">LiveDisplay : mode extérieur.</string>
+    <string name="accessibility_quick_settings_live_display_changed_off">LiveDisplay desactivé.</string>
+    <string name="accessibility_quick_settings_live_display_changed_auto">LiveDisplay changé en mode automatique.</string>
+    <string name="accessibility_quick_settings_live_display_changed_day">LiveDisplay changé en mode jour.</string>
+    <string name="accessibility_quick_settings_live_display_changed_night">LiveDisplay changé en mode nuit.</string>
+    <string name="accessibility_quick_settings_live_display_changed_outdoor">LiveDisplay changé en mode extérieur.</string>
+    <string name="animation_fade">Fondu</string>
+    <string name="animation_slide_right">Glisser vers la droite</string>
+    <string name="animation_slide_left">Glisser vers la gauche</string>
+    <string name="animation_slide_right_no_fade">Glisser vers la droite (Sans fondu)</string>
+    <string name="animation_slide_left_no_fade">Glissez vers la gauche (sans fondu)</string>
+    <string name="animation_slide_up">Glisser vers le bas</string>
+    <string name="animation_slide_down">Glisser vers le haut</string>
+    <string name="animation_default">Par défaut</string>
+    <string name="animation_translucent">Translucide</string>
+    <string name="animation_grow_shrink">Agrandissement (Haut)</string>
+    <string name="animation_grow_shrink_center">Agrandissement (Centre)</string>
+    <string name="animation_grow_shrink_bottom">Agrandissement (Bas)</string>
+    <string name="animation_grow_shrink_left">Agrandissement (Gauche)</string>
+    <string name="animation_grow_shrink_right">Agrandissement (droit)</string>
+    <string name="action_null">Vierge</string>
+</resources>

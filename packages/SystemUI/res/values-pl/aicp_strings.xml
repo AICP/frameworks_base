@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/* //device/apps/common/assets/res/any/strings.xml
+**
+** Copyright 2006, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="quick_settings_compass_label">Kompas</string>
+    <string name="quick_settings_compass_init">Inicjowanie</string>
+    <string name="accessibility_quick_settings_compass_off">Kompas wył.</string>
+    <string name="accessibility_quick_settings_compass_on">Kompas wł.</string>
+    <string name="accessibility_quick_settings_compass_changed_off">Kompas wyłączony.</string>
+    <string name="accessibility_quick_settings_compass_changed_on">Kompas włączony.</string>
+    <string name="quick_settings_compass_N">płn</string>
+    <string name="quick_settings_compass_NE">płn-wsch</string>
+    <string name="quick_settings_compass_E">wsch</string>
+    <string name="quick_settings_compass_SE">płd-wsch</string>
+    <string name="quick_settings_compass_S">płd</string>
+    <string name="quick_settings_compass_SW">płd-zach</string>
+    <string name="quick_settings_compass_W">zach</string>
+    <string name="quick_settings_compass_NW">płn-zach</string>
+    <string name="quick_settings_music_label">Muzyka</string>
+    <string name="quick_settings_music_play">Odtwórz</string>
+    <string name="quick_settings_music_pause">Zatrzymaj</string>
+    <string name="quick_settings_reboot_label">Uruchom ponownie</string>
+    <string name="quick_settings_reboot_recovery_label">Recovery</string>
+    <string name="accessibility_quick_settings_usb_tether_off">Tethering przez USB wył</string>
+    <string name="accessibility_quick_settings_usb_tether_on">Tethering przez USB wł</string>
+    <string name="accessibility_quick_settings_usb_tether_changed_off">Tethering przez USB został wył.</string>
+    <string name="accessibility_quick_settings_usb_tether_changed_on">Tethering przez USB został wł.</string>
+    <string name="quick_settings_usb_tether_label">Tethering przez USB</string>
+    <string name="quick_settings_caffeine_label">Timer</string>
+    <string name="accessibility_quick_settings_caffeine_off">Timer wył</string>
+    <string name="accessibility_quick_settings_caffeine_on">Timer wł</string>
+    <string name="global_action_restart_advanced">Zaawansowane</string>
+    <string name="global_action_restart_recovery">Recovery</string>
+    <string name="global_action_restart_bootloader">Uruchom w trybie Bootloader</string>
+    <string name="global_action_restart_ui">Interfejs</string>
+    <string name="volume_ringer_priority_only">Priorytet</string>
+    <string name="volume_ringer_alarms_only">Alarmy</string>
+    <string name="volume_ringer_dnd">DnD</string>
+    <string name="tristate_flashlight">Latarka</string>
+    <string name="qs_menu_item_columns">Kolumny</string>
+    <string name="qs_menu_item_columns_landscape">Kolumny (poziomo)</string>
+    <string name="qs_menu_item_rows">Wiersze</string>
+    <string name="qs_menu_item_rows_landscape">Wiersze (poziomo)</string>
+    <string name="qs_menu_item_reset">Resetuj</string>
+    <string name="quick_settings_cpuinfo_label">Informacje o CPU</string>
+    <string name="quick_aicp_extras_toast">LOL, czy ty naprawdę myślałeś, że długie kliknięcie przeniesie Cię?!</string>
+    <string name="status_bar_camera">Aparat</string>
+    <string name="status_bar_microphone">Mikrofon</string>
+    <string name="keyguard_indication_warp_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Szybkie ładowanie (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> until full)</string>
+    <string name="quick_settings_heads_up_label">Wyskakujące powiadomienia</string>
+    <string name="accessibility_quick_settings_heads_up_off">Wyskakujące powiadomienia wyłączone</string>
+    <string name="accessibility_quick_settings_heads_up_on">Wyskakujące powiadomienia włączone</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">Wyskakujące powiadomienia wyłączone.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">Wyskakujące powiadomienia włączone.</string>
+    <string name="quick_settings_smart_pixels">Inteligentne piksele</string>
+    <string name="quick_settings_smart_pixels_on_power_save">Automatyczne włączanie Inteligentnych pikseli</string>
+    <string name="tuner_quick_settings">Szybkie ustawienia</string>
+    <string name="tuner_show_brightness_new">Pokaż suwak jasności</string>
+    <string name="tuner_brightness_position_bottom">Suwak jasności na dole</string>
+    <string name="tuner_show_secure_title">Pokaż stopkę zabezpieczeń</string>
+    <string name="quick_settings_aod_label">Tryb Always-On-Display</string>
+    <string name="quick_settings_locale_label">Język</string>
+    <string name="quick_settings_locale_more_locales_toast">Należy skonfigurować wiele języków, aby włączyć funkcję przełączania</string>
+    <string name="quick_settings_sound_label">Dźwięk</string>
+    <string name="quick_settings_sound_ring">Dzwonek</string>
+    <string name="quick_settings_sound_vibrate">Wibracje</string>
+    <string name="quick_settings_sound_silent">Tryb cichy</string>
+    <string name="qs_data_switch_label">Przełącz kartę danych</string>
+    <string name="quick_settings_sync_label">Synchronizacja</string>
+    <string name="accessibility_quick_settings_sync_off">Synchronizacja wył</string>
+    <string name="accessibility_quick_settings_sync_on">Synchronizacja wł</string>
+    <string name="accessibility_quick_settings_sync_changed_off">Synchronizacja została wyłączona</string>
+    <string name="accessibility_quick_settings_sync_changed_on">Synchronizacja została włączona</string>
+    <string name="onthego_notif_ticker">Tryb „W ruchu” aktywowany</string>
+    <string name="onthego_notif_title">Tryb „W ruchu” jest aktywny</string>
+    <string name="onthego_notif_stop">Zatrzymaj</string>
+    <string name="onthego_notif_options">Opcje</string>
+    <string name="onthego_notif_error">Nie można uruchomić trybu „W ruchu”</string>
+    <string name="onthego_notif_restart">Uruchom ponownie tryb tryb „W ruchu”</string>
+    <string name="onthego_notif_camera_changed">Zmieniono tryb pracy kamery</string>
+    <string name="onthego_transparency">Przezroczystość</string>
+    <string name="onthego_front_camera">Użyj przedniej kamery</string>
+    <string name="onthego_service_toggle">Automatycznie uruchom ponownie usługę</string>
+    <string name="onthego_channel_name">Główny</string>
+    <string name="global_action_onthego">W ruchu</string>
+    <string name="quick_settings_onthego_label">W ruchu</string>
+    <string name="quick_settings_screenshot_label">Zrzut ekranu</string>
+    <string name="tuner_show_brightness_mode">Pokaż przełącznik automatycznej jasności</string>
+    <string name="tuner_show_brightness_side_buttons">Pokaż suwak jasności w panelu szybkich ustawień</string>
+    <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Powiadomienia z podglądem są odkładane na 1 minutę.</string>
+    <string name="omnijaws_service_error">Błąd</string>
+    <string name="omnijaws_service_unkown">Brak danych o pogodzie</string>
+    <string name="omnijaws_service_error_long">Błąd podczas ładowania danych o pogodzie</string>
+    <string name="omnijaws_service_disabled">Usługa wyłączona</string>
+    <string name="omnijaws_detail_header">Pogoda</string>
+    <string name="omnijaws_label_default">Pogoda</string>
+    <string name="omnijaws_current_text">Teraz</string>
+    <string name="omnijaws_package_not_available">OmniJaws jest nie dostępny</string>
+    <string name="omnijaws_service_last_update">Ostatnia aktualizacja:</string>
+    <string name="qs_menu_item_qs_columns">Kolumny na Pasku Podręcznym</string>
+    <string name="qs_menu_item_columns_auto">Automatycznie</string>
+    <string name="qs_menu_item_titles">Pokaż etykiety</string>
+    <string name="force_stop_dlg_title">Wymusić zatrzymanie?</string>
+    <string name="force_stop_dlg_text">Jeśli wymusisz zatrzymanie aplikacji, może ona działać nieprawidłowo.</string>
+    <string name="guts_force_close_app">Zabij aplikację</string>
+    <string name="status_bar_location">Lokalizacja</string>
+    <string name="preview">Podgląd</string>
+    <string name="keycode">Klawisz</string>
+    <string name="no_home_title">Nie znaleziono przycisku Home</string>
+    <string name="no_home_message">Do prawidłowej obsługi urządzenia potrzebny jest przycisk ekranu głównego. Dodaj go, zanim zapiszesz zmiany.</string>
+    <string name="clipboard_description">Możesz przeciągać elementy bezpośrednio do schowka. Możesz też przeciągać umieszczone tam wcześniej elementy poza schowek.</string>
+    <string name="keycode_description">Na pasku nawigacji możesz umieszczać przyciski, które po naciśnięciu emulują funkcje klawiszy klawiatury. Najpierw musisz wybrać, jaki klawisz ma być przypisany do danego przycisku, a następnie wybrać dla niego grafikę.</string>
+    <string name="start">Start</string>
+    <string name="center">Wyśrodkuj</string>
+    <string name="end">Koniec</string>
+    <string name="space">Spacja</string>
+    <string name="menu_ime">Menu / przełączanie klawiatury</string>
+    <string name="select_button">Wybierz przycisk do dodania</string>
+    <string name="add_button">Dodaj przycisk</string>
+    <string name="save">Zapisz</string>
+    <string name="reset">Resetuj</string>
+    <string name="select_keycode">Wybierz przycisk klawiatury</string>
+    <string name="left">Lewo</string>
+    <string name="right">Prawo</string>
+    <string name="navbar_editor_title">Edytor</string>
+    <string name="navbar_editor_summary">Skonfiguruj pasek nawigacji</string>
+    <string name="tuner_keyguard_transition_animations_title">Pokaż animacje przejścia</string>
+    <string name="tuner_keyguard_transition_animations_summary">Pokaż bezużyteczne animacje</string>
+    <string name="systemui_tuner_navbar_title">Ustawienia domyślne</string>
+    <string name="navbar_activity_title">Pasek nawigacji</string>
+    <string name="quick_settings_sound_search">Wyszykiwanie głosowe</string>
+    <string name="quick_settings_sound_search_no_app">Przepraszamy, ale to nie zadziała, jeśli nie masz aplikacji do wyszukiwania głosem.</string>
+    <string name="accessibility_quick_settings_hwkeys_on">Przyciski fizyczne wł.</string>
+    <string name="accessibility_quick_settings_hwkeys_off">Przyciski fizyczne wył.</string>
+    <string name="quick_settings_hwkeys_label">Przyciski fizyczne</string>
+    <string name="daily_data_usage_title">Dzisiejsze użycie</string>
+    <string name="screen_pinning_description_custom">Ekran będzie widoczny, dopóki go nie odepniesz. Aby to zrobić, kliknij &amp; przytrzymaj Wstecz.</string>
+    <string name="screen_pinning_description_recents_invisible_custom">Ekran będzie widoczny, dopóki go nie odepniesz. Aby to zrobić, kliknij &amp; przytrzymaj Wstecz.</string>
+    <string name="screen_pinning_description_accessible_custom">Ekran będzie widoczny, dopóki go nie odepniesz. Aby to zrobić, kliknij &amp; przytrzymaj Wstecz.</string>
+    <string name="screen_pinning_description_recents_invisible_accessible_custom">Ekran będzie widoczny, dopóki go nie odepniesz. Aby to zrobić, kliknij &amp; przytrzymaj Wstecz.</string>
+    <string name="screen_pinning_toast_custom">Aby odpiąć ten ekran, naciśnij &amp; przytrzymaj Wstecz</string>
+    <string name="screen_pinning_toast_recents_invisible_custom">Aby odpiąć ten ekran, naciśnij &amp; przytrzymaj Wstecz</string>
+    <string name="gaming_mode_not_enabled">Tryb gry jest wyłączony w ustawieniach</string>
+    <string name="quick_settings_gaming_mode_label">Tryb grania</string>
+    <string name="accessibility_quick_settings_gaming_mode_disabled">Tryb gry wyłączony.</string>
+    <string name="accessibility_quick_settings_gaming_mode_enabled">Tryb gry włączony.</string>
+    <string name="quick_settings_fpsinfo_label">Informacje o FPS</string>
+    <string name="accessibility_quick_settings_fpsinfo_off">Informacje FPS wyłączone</string>
+    <string name="accessibility_quick_settings_fpsinfo_on">Informacje FPS włączone</string>
+    <string name="quick_settings_killapp_label">Zabij aplikację</string>
+    <string name="app_picker_dialog_title">Wybierz aplikację</string>
+    <string name="quick_settings_vpn_label">VPN</string>
+    <string name="quick_settings_vpn_connect_dialog_title">Połącz z\u2026</string>
+    <string name="vpn_credentials_hint">Wprowadź swoje dane uwierzytelniające, aby się połączyć<xliff:g id="name">%s</xliff:g></string>
+    <string name="vpn_credentials_username">Nazwa użytkownika</string>
+    <string name="vpn_credentials_password">Hasło</string>
+    <string name="vpn_credentials_dialog_connect">Połącz</string>
+    <string name="lockscreen_default">Domyślne</string>
+    <string name="lockscreen_hidden">Brak</string>
+    <string name="custom_hint">Przesuń palcem od ikony, aby uruchomić</string>
+    <string name="accessibility_quick_settings_running_services">Otwórz ekran Działających Usług.</string>
+    <string name="quick_settings_powershare_label">Ładowanie zwrotne PowerShare</string>
+    <string name="quick_settings_powershare_off_powersave_label">Ładowanie zwrotne PowerShare wyłączone\nOszczędzanie energii</string>
+    <string name="quick_settings_powershare_off_low_battery_label">Ładowanie zwrotne PowerShare wyłączone\nNaładuj baterię</string>
+    <string name="quick_settings_powershare_enabled_label">Ładowanie zwrotne PowerShare jest włączone</string>
+    <string name="accessibility_dpad_left">Kursor w lewo</string>
+    <string name="accessibility_dpad_right">Kursor w prawo</string>
+</resources>

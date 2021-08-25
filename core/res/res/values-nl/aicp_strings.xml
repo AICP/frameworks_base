@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Copyright (C) 2014-2020 AICP
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="permlab_fakePackageSignature">Pakkethandtekening nabootsen</string>
+    <string name="permdesc_fakePackageSignature">De app toestaan zich voor te doen als een andere app. Schadelijke apps kunnen dit mogelijk gebruiken om toegang te krijgen tot persoonlijke toepassingsgegevens. Legitieme toepassingen bevatten een emulator die pretendeert te zijn wat het emuleert. Verleen deze toestemming met de nodige voorzichtigheid!</string>
+    <string name="permgrouplab_fake_package_signature">Pakkethandtekening nabootsen</string>
+    <string name="reboot_title">Opnieuw opstarten</string>
+    <string name="reboot_message">Systeem wordt opnieuw gestart</string>
+    <string name="aerr_copy">Kopieer crash log URL</string>
+    <string name="url_copy_success">URL succesvol gekopieerd</string>
+    <string name="url_copy_failed">Er is een fout opgetreden tijdens het uploaden van het logboek naar de AICP server</string>
+    <string name="app_killed_message">Applicatie afgesloten</string>
+    <string name="notification_channel_gaming">Game-modus</string>
+    <string name="gaming_mode_notification_title">Game-modus ingeschakeld</string>
+    <string name="gaming_mode_notification_content">Tik om Game-modus uit te schakelen</string>
+    <string name="gaming_mode_enabled_toast">Game-modus ingeschakeld</string>
+    <string name="gaming_mode_disabled_toast">Game-modus uitgeschakeld</string>
+    <string name="live_display_auto">Automatisch</string>
+    <string name="live_display_auto_summary">Kleurtemperatuur van scherm automatisch aanpassen na zonsondergang en zonsopgang</string>
+    <string name="live_display_off">Uit</string>
+    <string name="live_display_off_summary">Alle aanpassingen uitschakelen</string>
+    <string name="live_display_day">Dag</string>
+    <string name="live_display_day_summary">Alleen instellingen voor overdag gebruiken</string>
+    <string name="live_display_night">Nacht</string>
+    <string name="live_display_night_summary">Alleen instellingen voor \'s nachts gebruiken</string>
+    <string name="live_display_outdoor">Buitenshuis (felle zon)</string>
+    <string name="live_display_outdoor_summary">Alleen instellingen voor buitenshuis gebruiken</string>
+    <string name="live_display_hint">LiveDisplay kan oogvermoeidheid verminderen en helpt u om \'s nachts te slapen. Tik hier om het uit te proberen!</string>
+    <string name="accessibility_quick_settings_live_display_off">LiveDisplay uit.</string>
+    <string name="accessibility_quick_settings_live_display_auto">LiveDisplay: auto modus.</string>
+    <string name="accessibility_quick_settings_live_display_day">LiveDisplay: dag modus.</string>
+    <string name="accessibility_quick_settings_live_display_night">LiveDisplay: nacht modus.</string>
+    <string name="accessibility_quick_settings_live_display_outdoor">LiveDisplay: buitenshuismodus.</string>
+    <string name="accessibility_quick_settings_live_display_changed_off">LiveDisplay uitgeschakeld.</string>
+    <string name="accessibility_quick_settings_live_display_changed_auto">LiveDisplay veranderd naar automodus.</string>
+    <string name="accessibility_quick_settings_live_display_changed_day">LiveDisplay veranderd naar dagmodus.</string>
+    <string name="accessibility_quick_settings_live_display_changed_night">LiveDisplay veranderd naar nachtmodus.</string>
+    <string name="accessibility_quick_settings_live_display_changed_outdoor">LiveDisplay veranderd naar buitenshuismodus.</string>
+    <string name="animation_fade">Vervagen</string>
+    <string name="animation_slide_right">Rechts inschuiven</string>
+    <string name="animation_slide_left">Links inschuiven</string>
+    <string name="animation_slide_right_no_fade">Rechts inschuiven (zonder vervagen)</string>
+    <string name="animation_slide_left_no_fade">Links inschuiven (zonder vervagen)</string>
+    <string name="animation_slide_up">Van onder inschuiven</string>
+    <string name="animation_slide_down">Van boven inschuiven</string>
+    <string name="animation_default">Standaard</string>
+    <string name="animation_translucent">Doorzichtig</string>
+    <string name="animation_grow_shrink">Ingroeien (boven)</string>
+    <string name="animation_grow_shrink_center">Ingroeien (vanuit het midden)</string>
+    <string name="animation_grow_shrink_bottom">Ingroeien (van onder)</string>
+    <string name="animation_grow_shrink_left">Ingroeien (van links)</string>
+    <string name="animation_grow_shrink_right">Ingroeien (van rechts)</string>
+    <string name="action_null">Leeg</string>
+    <string name="app_clipboard_access_denied">%1$s werd toegang tot het klembord geweigerd</string>
+    <string name="app_clipboard_access_granted">%1$s kreeg toegang tot het klembord</string>
+    <string name="pocket_view_title_cancel">Om je telefoon te activeren:</string>
+    <string name="pocket_view_top_tag_number1">1.\u0020</string>
+    <string name="pocket_view_top_tag_number2">2.\u0020</string>
+</resources>

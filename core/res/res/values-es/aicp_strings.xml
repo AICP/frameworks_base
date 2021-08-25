@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Copyright (C) 2014-2020 AICP
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="permlab_fakePackageSignature">Falsear firma del paquete</string>
+    <string name="permdesc_fakePackageSignature">Permite a la aplicación aparentar ser una aplicación diferente. Las aplicaciones maliciosas podrían usar esto para acceder a datos privados de aplicaciones. Los usos legítimos incluyen un emulador que pretende ser lo que emula. ¡Concede este permiso con mucha precaución!</string>
+    <string name="permgrouplab_fake_package_signature">Falsear firma del paquete</string>
+    <string name="permgroupdesc_fake_package_signature">permitir la falsear de la firma del paquete</string>
+    <string name="permgrouprequest_fake_package_signature">¿Quieres permitir que &lt;b&gt;<xliff:g id="app_name" example="Gmail">%1$s</xliff:g>&lt;/b&gt; falsee la firma del paquete?</string>
+    <string name="reboot_title">Reiniciar</string>
+    <string name="reboot_message">Reiniciando el sistema</string>
+    <string name="aerr_copy">Copiar URL del registro de errores</string>
+    <string name="url_copy_success">URL copiada satisfactoriamente</string>
+    <string name="url_copy_failed">Ocurrió un error mientras se cargaba el archivo de registro al haste de aicp</string>
+    <string name="pocket_lock_message_long_press">Pulse y mantenga el botón de encendido para desbloquear</string>
+    <string name="app_killed_message">Aplicación finalizada</string>
+    <string name="notification_channel_gaming">Modo juego</string>
+    <string name="gaming_mode_notification_title">Modo juego activado</string>
+    <string name="gaming_mode_notification_content">Toca para desactivar el modo juego</string>
+    <string name="gaming_mode_enabled_toast">Modo juego activado</string>
+    <string name="gaming_mode_disabled_toast">Modo juego desactivado</string>
+    <string name="volume_dialog_ringer_guidance_normal">Las llamadas y las notificaciones sonarán</string>
+    <string name="live_display_auto">Automático</string>
+    <string name="live_display_auto_summary">Ajustar automáticamente la temperatura del color de pantalla al amanecer y anochecer</string>
+    <string name="live_display_off">Desactivado</string>
+    <string name="live_display_off_summary">Desactivar todos los ajustes</string>
+    <string name="live_display_day">Día</string>
+    <string name="live_display_day_summary">Utilizar sólo la configuración de día</string>
+    <string name="live_display_night">Noche</string>
+    <string name="live_display_night_summary">Utilizar sólo la configuración de noche</string>
+    <string name="live_display_outdoor">Al aire libre (luz del sol)</string>
+    <string name="live_display_outdoor_summary">Usar solo la configuración de exterior</string>
+    <string name="live_display_hint">LiveDisplay puede ayudar a reducir la fatiga ocular y ayudarte a dormir por la noche. Haga clic aquí para probarlo!</string>
+    <string name="accessibility_quick_settings_live_display_off">LiveDisplay desactivado.</string>
+    <string name="accessibility_quick_settings_live_display_auto">LiveDisplay: modo automático.</string>
+    <string name="accessibility_quick_settings_live_display_day">LiveDisplay: modo de día.</string>
+    <string name="accessibility_quick_settings_live_display_night">LiveDisplay: modo de noche.</string>
+    <string name="accessibility_quick_settings_live_display_outdoor">LiveDisplay: modo al aire libre.</string>
+    <string name="accessibility_quick_settings_live_display_changed_off">LiveDisplay desactivado.</string>
+    <string name="accessibility_quick_settings_live_display_changed_auto">LiveDisplay cambiado a modo automático.</string>
+    <string name="accessibility_quick_settings_live_display_changed_day">LiveDisplay cambiado a modo día.</string>
+    <string name="accessibility_quick_settings_live_display_changed_night">LiveDisplay cambiado a modo noche.</string>
+    <string name="accessibility_quick_settings_live_display_changed_outdoor">LiveDisplay cambiado a modo al aire libre.</string>
+    <string name="animation_fade">Transición</string>
+    <string name="animation_slide_right">Deslizar a la derecha</string>
+    <string name="animation_slide_left">Deslizar a la izquierda</string>
+    <string name="animation_slide_right_no_fade">Deslizar a la derecha (Sin transición)</string>
+    <string name="animation_slide_left_no_fade">Deslizar a la izquieda (sin transición)</string>
+    <string name="animation_slide_up">Deslizar desde abajo</string>
+    <string name="animation_slide_down">Deslizar desde arriba</string>
+    <string name="animation_default">Predeterminado</string>
+    <string name="animation_translucent">Translúcido</string>
+    <string name="animation_grow_shrink">Crecer (Arriba)</string>
+    <string name="animation_grow_shrink_center">Crecer (Centro)</string>
+    <string name="animation_grow_shrink_bottom">Crecer (Abajo)</string>
+    <string name="animation_grow_shrink_left">Crecer (Izquierda)</string>
+    <string name="animation_grow_shrink_right">Crecer (Derecha)</string>
+    <string name="animation_random">Aleatorio</string>
+    <string name="action_null">Vacío</string>
+    <string name="app_clipboard_access_denied">%1$s acceso denegado al portapapeles</string>
+    <string name="app_clipboard_access_granted">%1$s acceso concedido al portapapeles</string>
+    <string name="pocket_view_title">Modo bolsillo activado</string>
+    <string name="pocket_view_title_cancel">Para activar su teléfono:</string>
+    <string name="pocket_view_top_tag_cancel">No cubra la zona azul de su teléfono y limpie la suciedad o el polvo.</string>
+    <string name="pocket_view_top_tag_cancel2">Mantenga pulsado el botón de encendido para forzar el apagado del modo bolsillo</string>
+    <string name="pocket_view_top_tag_number1">1.\u0020</string>
+    <string name="pocket_view_top_tag_number2">2.\u0020</string>
+</resources>

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/* //device/apps/common/assets/res/any/strings.xml
+**
+** Copyright 2006, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="quick_settings_compass_label">Bussola</string>
+    <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
+    <string name="quick_settings_compass_init">Inizializzando\u2026</string>
+    <string name="accessibility_quick_settings_compass_off">Bussola spenta.</string>
+    <string name="accessibility_quick_settings_compass_on">Bussola accesa.</string>
+    <string name="accessibility_quick_settings_compass_changed_off">Bussola disattivata.</string>
+    <string name="accessibility_quick_settings_compass_changed_on">Bussola attivata.</string>
+    <string name="quick_settings_compass_N">N</string>
+    <string name="quick_settings_compass_NE">NE</string>
+    <string name="quick_settings_compass_E">E</string>
+    <string name="quick_settings_compass_SE">SE</string>
+    <string name="quick_settings_compass_S">S</string>
+    <string name="quick_settings_compass_SW">SO</string>
+    <string name="quick_settings_compass_W">O</string>
+    <string name="quick_settings_compass_NW">NO</string>
+    <string name="quick_settings_music_label">Musica</string>
+    <string name="quick_settings_music_play">Play</string>
+    <string name="quick_settings_music_pause">Pausa</string>
+    <string name="quick_settings_reboot_label">Riavvia</string>
+    <string name="quick_settings_reboot_recovery_label">Recovery</string>
+    <string name="accessibility_quick_settings_usb_tether_off">Tethering USB disattivato</string>
+    <string name="accessibility_quick_settings_usb_tether_on">Tethering USB attivato</string>
+    <string name="accessibility_quick_settings_usb_tether_changed_off">Tethering USB disattivato</string>
+    <string name="accessibility_quick_settings_usb_tether_changed_on">Tethering USB attivato</string>
+    <string name="quick_settings_usb_tether_label">Tethering USB</string>
+    <string name="quick_settings_caffeine_label">Caffeina</string>
+    <string name="accessibility_quick_settings_caffeine_off">Caffeina disattivata</string>
+    <string name="accessibility_quick_settings_caffeine_on">Caffeina attivata</string>
+    <string name="global_action_restart_advanced">Avanzato</string>
+    <string name="global_action_restart_recovery">Recovery</string>
+    <string name="global_action_restart_bootloader">Bootloader</string>
+    <string name="global_action_restart_ui">SystemUI</string>
+    <string name="volume_ringer_priority_only">Priorità</string>
+    <string name="volume_ringer_alarms_only">Sveglie</string>
+    <string name="volume_ringer_dnd">DnD</string>
+    <string name="tristate_flashlight">Torcia</string>
+    <string name="qs_menu_item_columns">Colonne</string>
+    <string name="qs_menu_item_columns_landscape">Colonne in orizzontale</string>
+    <string name="qs_menu_item_rows">Righe</string>
+    <string name="qs_menu_item_rows_landscape">Righe in orizzontale</string>
+    <string name="qs_menu_item_reset">Ripristina</string>
+    <string name="quick_settings_cpuinfo_label">Info CPU</string>
+    <string name="quick_aicp_extras_toast">LOL, credete davvero che quel click lungo vi porterà da qualche parte!!!</string>
+    <string name="status_bar_camera">Fotocamera</string>
+    <string name="status_bar_microphone">Microfono</string>
+    <string name="keyguard_indication_warp_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Carica Rapida (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> al completamento)</string>
+    <string name="quick_settings_heads_up_label">Notifiche fluttuanti</string>
+    <string name="accessibility_quick_settings_heads_up_off">Notifiche fluttuanti disattivate.</string>
+    <string name="accessibility_quick_settings_heads_up_on">Notifiche fluttuanti attivate.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">Notifiche fluttuanti spente.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">Notifiche fluttuanti accese.</string>
+    <string name="quick_settings_smart_pixels">Smart Pixel</string>
+    <string name="quick_settings_smart_pixels_on_power_save">Abilita automaticamente Smart Pixel</string>
+    <string name="tuner_quick_settings">Impostazioni rapide</string>
+    <string name="tuner_show_brightness_new">Mostra barra luminosità</string>
+    <string name="tuner_brightness_position_bottom">Cursore della luminosità in basso</string>
+    <string name="tuner_show_secure_title">Mostra piè di pagina sicurezza</string>
+    <string name="quick_settings_aod_label">AOD</string>
+    <string name="quick_settings_locale_label">Lingua</string>
+    <string name="quick_settings_locale_more_locales_toast">Si prega di configurare più lingue per abilitare la funzionalità attiva/disattiva</string>
+    <string name="quick_settings_sound_label">Suono</string>
+    <string name="quick_settings_sound_ring">Suoneria</string>
+    <string name="quick_settings_sound_vibrate">Vibrazione</string>
+    <string name="quick_settings_sound_silent">Silenzioso</string>
+    <string name="qs_data_switch_label">Cambia scheda SIM</string>
+    <string name="quick_settings_sync_label">Sincronizzazione</string>
+    <string name="accessibility_quick_settings_sync_off">Sincronizzazione disattivata</string>
+    <string name="accessibility_quick_settings_sync_on">Sincronizzazione attivata</string>
+    <string name="accessibility_quick_settings_sync_changed_off">Sincronizzazione disattivata</string>
+    <string name="accessibility_quick_settings_sync_changed_on">Sincronizzazione attivata</string>
+    <string name="onthego_notif_ticker">On-The-Go attivato</string>
+    <string name="onthego_notif_title">On-The-Go è attivo</string>
+    <string name="onthego_notif_stop">Stop</string>
+    <string name="onthego_notif_options">Opzioni</string>
+    <string name="onthego_notif_error">Impossibile avviare On-The-Go</string>
+    <string name="onthego_notif_restart">Riavvia On-The-Go</string>
+    <string name="onthego_notif_camera_changed">Modalità fotocamera cambiata</string>
+    <string name="onthego_transparency">Trasparenza</string>
+    <string name="onthego_front_camera">Usa la fotocamera frontale</string>
+    <string name="onthego_service_toggle">Riavvia automaticamente il servizio</string>
+    <string name="onthego_channel_name">Principale</string>
+    <string name="global_action_onthego">On-The-Go</string>
+    <string name="quick_settings_onthego_label">On-The-Go</string>
+    <string name="quick_settings_screenshot_label">Screenshot</string>
+    <string name="tuner_show_brightness_mode">Mostra interruttore della modalità di luminosità</string>
+    <string name="tuner_show_brightness_side_buttons">Mostra pulsanti laterali del cursore di luminosità</string>
+    <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - La notifica è posticipata per 1 minuto.</string>
+    <string name="omnijaws_service_error">Errore</string>
+    <string name="omnijaws_service_unkown">Dati meteo non disponibili</string>
+    <string name="omnijaws_service_error_long">Errore durante il caricamento dei dati meteo</string>
+    <string name="omnijaws_service_disabled">Servizio disattivato</string>
+    <string name="omnijaws_detail_header">Meteo</string>
+    <string name="omnijaws_label_default">Meteo</string>
+    <string name="omnijaws_current_text">Adesso</string>
+    <string name="omnijaws_package_not_available">OmniJaws non disponibile</string>
+    <string name="omnijaws_service_last_update">Ultimo aggiornamento:</string>
+    <string name="qs_menu_item_qs_columns">Colonne barra veloce</string>
+    <string name="qs_menu_item_columns_auto">Automatico</string>
+    <string name="qs_menu_item_titles">Mostra etichette</string>
+    <string name="force_stop_dlg_title">Forzare la chiusura?</string>
+    <string name="force_stop_dlg_text">Se forzi la chiusura di un\'app, tale app potrebbe funzionare in modo anomalo.</string>
+    <string name="guts_force_close_app">Termina App</string>
+    <string name="status_bar_location">Posizione</string>
+    <string name="preview">Anteprima</string>
+    <string name="keycode">Chiave</string>
+    <string name="no_home_title">Nessun pulsante Home trovato</string>
+    <string name="no_home_message">Un pulsante home è necessario per poter navigare questo dispositivo. Sei pregato di aggiungerne uno prima di salvare.</string>
+    <string name="clipboard_description">Gli Appunti consentono agli elementi di esser trascinati direttamente in essi. Gli elementi sono anche direttamente trascinabili fuori dagli appunti quando presenti.</string>
+    <string name="keycode_description">I pulsanti chiave consentono ai tasti della tastiera di esser aggiunti alla Barra di Navigazione. Quando premuti, emulano il tasto selezionato della tastiera. Prima la chiave dev\'esser selezionata per il pulsante, seguita da un\'immagine da mostrare sul pulsante.</string>
+    <string name="start">Inizio</string>
+    <string name="center">Centro</string>
+    <string name="end">Fine</string>
+    <string name="space">Spaziatore</string>
+    <string name="menu_ime">Menu / Selettore Tastiera</string>
+    <string name="select_button">Seleziona pulsante da aggiungere</string>
+    <string name="add_button">Aggiungi pulsante</string>
+    <string name="save">Salva</string>
+    <string name="reset">Ripristina</string>
+    <string name="select_keycode">Seleziona Pulsante della Tastiera</string>
+    <string name="left">Sinistra</string>
+    <string name="right">Destra</string>
+    <string name="navbar_editor_title">Editor</string>
+    <string name="navbar_editor_summary">Configura la barra di navigazione</string>
+    <string name="tuner_keyguard_transition_animations_title">Mostra le animazioni di transizione</string>
+    <string name="tuner_keyguard_transition_animations_summary">Mostra le animazioni inutili</string>
+    <string name="systemui_tuner_navbar_title">Impostazioni stock</string>
+    <string name="navbar_activity_title">Barra di navigazione</string>
+    <string name="quick_settings_sound_search">Ricerca suono</string>
+    <string name="quick_settings_sound_search_no_app">Spiacenti, ma questo non funziona se non hai un\'app di ricerca sonora.</string>
+    <string name="accessibility_quick_settings_hwkeys_on">Tasti fisici attivati</string>
+    <string name="accessibility_quick_settings_hwkeys_off">Tasti fisici disattivati</string>
+    <string name="quick_settings_hwkeys_label">Tasti fisici</string>
+    <string name="daily_data_usage_title">Utilizzo odierno</string>
+    <string name="screen_pinning_description_custom">Questo lo mantiene a vista finché non lo sblocchi. Tocca e tieni premuto Indietro per sbloccare.</string>
+    <string name="screen_pinning_description_recents_invisible_custom">Questo lo mantiene a vista finché non lo sblocchi. Tocca e tieni premuto Indietro per sbloccare.</string>
+    <string name="screen_pinning_description_accessible_custom">Questo lo mantiene a vista finché non lo sblocchi. Tocca e tieni premuto Indietro per sbloccare.</string>
+    <string name="screen_pinning_description_recents_invisible_accessible_custom">Questo lo mantiene a vista finché non lo sblocchi. Tocca e tieni premuto Indietro per sbloccare.</string>
+    <string name="screen_pinning_toast_custom">Per sbloccare questa schermata, tocca e tieni premuto Indietro per sbloccare</string>
+    <string name="screen_pinning_toast_recents_invisible_custom">Per sbloccare questa schermata, tocca e tieni premuto Indietro per sbloccare</string>
+    <string name="gaming_mode_not_enabled">La modalità di gioco è disabilitata nelle impostazioni</string>
+    <string name="quick_settings_gaming_mode_label">Modalità di gioco</string>
+    <string name="accessibility_quick_settings_gaming_mode_disabled">Modalità di gioco disattivata.</string>
+    <string name="accessibility_quick_settings_gaming_mode_enabled">Modalità di gioco attivata.</string>
+    <string name="quick_settings_fpsinfo_label">Info FPS</string>
+    <string name="accessibility_quick_settings_fpsinfo_off">Info FPS spente</string>
+    <string name="accessibility_quick_settings_fpsinfo_on">Info FPS attive</string>
+    <string name="quick_settings_killapp_label">Termina applicazione</string>
+    <string name="app_picker_dialog_title">Seleziona un\'app</string>
+    <string name="quick_settings_vpn_label">VPN</string>
+    <string name="quick_settings_vpn_connect_dialog_title">Connettiti a\u2026</string>
+    <string name="vpn_credentials_hint">Inserisci le tue credenziali per la connessione a <xliff:g id="name">%s</xliff:g></string>
+    <string name="vpn_credentials_username">Nome utente</string>
+    <string name="vpn_credentials_password">Password</string>
+    <string name="vpn_credentials_dialog_connect">Connetti</string>
+    <string name="lockscreen_default">Predefinito</string>
+    <string name="lockscreen_hidden">Nessuno</string>
+    <string name="custom_hint">Scorri dall\'icona per avviare</string>
+    <string name="accessibility_quick_settings_running_services">Apri la schermata dei servizi in esecuzione.</string>
+    <string name="quick_settings_powershare_label">Wireless PowerShare</string>
+    <string name="quick_settings_powershare_off_powersave_label">Wireless PowerShare spento\nRisparmio energetico</string>
+    <string name="quick_settings_powershare_off_low_battery_label">Wireless PowerShare spento\nBatteria troppo scarica</string>
+    <string name="quick_settings_powershare_enabled_label">Wireless PowerShare è abilitato</string>
+    <string name="accessibility_dpad_left">Cursore a sinistra</string>
+    <string name="accessibility_dpad_right">Cursore a destra</string>
+</resources>

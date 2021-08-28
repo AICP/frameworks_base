@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/* //device/apps/common/assets/res/any/strings.xml
+**
+** Copyright 2006, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="quick_settings_compass_label">나침반</string>
+    <string name="quick_settings_compass_init">초기화중\u2026</string>
+    <string name="accessibility_quick_settings_compass_off">나침반 끄기.</string>
+    <string name="accessibility_quick_settings_compass_on">나침반 켜기.</string>
+    <string name="accessibility_quick_settings_compass_changed_off">나침반 꺼짐.</string>
+    <string name="accessibility_quick_settings_compass_changed_on">나침반 켜짐.</string>
+    <string name="quick_settings_compass_N">N</string>
+    <string name="quick_settings_compass_NE">NE</string>
+    <string name="quick_settings_compass_E">E</string>
+    <string name="quick_settings_compass_SE">SE</string>
+    <string name="quick_settings_compass_S">S</string>
+    <string name="quick_settings_compass_SW">SW</string>
+    <string name="quick_settings_compass_W">W</string>
+    <string name="quick_settings_compass_NW">NW</string>
+    <string name="quick_settings_music_label">음악</string>
+    <string name="quick_settings_music_play">재생</string>
+    <string name="quick_settings_music_pause">일시중지</string>
+    <string name="quick_settings_reboot_label">다시 시작</string>
+    <string name="quick_settings_reboot_recovery_label">복구 모드</string>
+    <string name="accessibility_quick_settings_usb_tether_off">USB 테더링 끄기</string>
+    <string name="accessibility_quick_settings_usb_tether_on">USB 테더링 켜기</string>
+    <string name="accessibility_quick_settings_usb_tether_changed_off">USB 테더링 꺼짐</string>
+    <string name="accessibility_quick_settings_usb_tether_changed_on">USB 테더링 켜짐</string>
+    <string name="quick_settings_usb_tether_label">USB 테더링</string>
+    <string name="quick_settings_caffeine_label">카페인</string>
+    <string name="accessibility_quick_settings_caffeine_off">카페인 꺼짐</string>
+    <string name="accessibility_quick_settings_caffeine_on">카페인 켜짐</string>
+    <string name="global_action_restart_advanced">고급</string>
+    <string name="global_action_restart_recovery">복구 모드</string>
+    <string name="global_action_restart_bootloader">부트로더</string>
+    <string name="global_action_restart_ui">시스템 UI</string>
+    <string name="volume_ringer_priority_only">우선순위</string>
+    <string name="volume_ringer_alarms_only">알람</string>
+    <string name="volume_ringer_dnd">DnD</string>
+    <string name="tristate_flashlight">손전등</string>
+    <string name="qs_menu_item_columns">열</string>
+    <string name="qs_menu_item_columns_landscape">열 개수 (가로 모드)</string>
+    <string name="qs_menu_item_rows">행</string>
+    <string name="qs_menu_item_rows_landscape">행 개수 (가로 모드)</string>
+    <string name="qs_menu_item_reset">재설정</string>
+    <string name="quick_settings_cpuinfo_label">CPU 정보</string>
+    <string name="quick_aicp_extras_toast">하하, 정말로 길게 누르는 행동이 너를 어디론가 데러다 줄거라고 생각하는거야!!</string>
+    <string name="status_bar_camera">카메라</string>
+    <string name="status_bar_microphone">마이크</string>
+    <string name="keyguard_indication_warp_charging_time"><xliff:g id="백분율">%2$s</xliff:g> • 고속충전중(<xliff:g id="charging_time_left" example="4 시간 2 분">%1$s</xliff:g> until full)</string>
+    <string name="quick_settings_heads_up_label">헤드업 알림</string>
+    <string name="accessibility_quick_settings_heads_up_off">헤드 업 알림 끄기.</string>
+    <string name="accessibility_quick_settings_heads_up_on">헤드 업 알림 켜기.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">헤드 업 알림 꺼짐</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">헤드 업 켜짐.</string>
+    <string name="quick_settings_smart_pixels">스마트 픽셀</string>
+    <string name="quick_settings_smart_pixels_on_power_save">스마트 픽셀 자동으로 켜기</string>
+    <string name="tuner_quick_settings">빠른 설정</string>
+    <string name="tuner_show_brightness_new">밝기 조정 슬라이더 표시</string>
+    <string name="tuner_brightness_position_bottom">밝기 조정 슬라이더를 하단에 표시</string>
+    <string name="tuner_show_secure_title">보안 꼬리말 보기</string>
+    <string name="quick_settings_aod_label">Always On Display</string>
+    <string name="quick_settings_locale_label">언어</string>
+    <string name="quick_settings_locale_more_locales_toast">토글 기능을 활성화 하려면 다중 언어를 설정하시기 바랍니다</string>
+    <string name="quick_settings_sound_label">소리</string>
+    <string name="quick_settings_sound_ring">벨소리</string>
+    <string name="quick_settings_sound_vibrate">진동</string>
+    <string name="quick_settings_sound_silent">무음</string>
+    <string name="qs_data_switch_label">SIM 카드 전환</string>
+    <string name="quick_settings_sync_label">동기화</string>
+    <string name="accessibility_quick_settings_sync_off">동기화 끄기</string>
+    <string name="accessibility_quick_settings_sync_on">동기화 켜기</string>
+    <string name="accessibility_quick_settings_sync_changed_off">동기화 꺼짐</string>
+    <string name="accessibility_quick_settings_sync_changed_on">동기화 켜짐.</string>
+    <string name="onthego_notif_ticker">On-The-Go 모드 활성화됨</string>
+    <string name="onthego_notif_title">On-The-Go 모드가 활성화 되었습니다</string>
+    <string name="onthego_notif_stop">정지</string>
+    <string name="onthego_notif_options">설정</string>
+    <string name="onthego_notif_error">On-The-Go 모드를 시작할 수 없습니다.</string>
+    <string name="onthego_notif_restart">On-The-Go 모드 다시 시작</string>
+    <string name="onthego_notif_camera_changed">카메라 모드 변경됨</string>
+    <string name="onthego_transparency">투명도</string>
+    <string name="onthego_front_camera">전면 카메라 사용</string>
+    <string name="onthego_service_toggle">자동 다시 시작 서비스</string>
+    <string name="onthego_channel_name">메인</string>
+    <string name="global_action_onthego">On-The-Go</string>
+    <string name="quick_settings_onthego_label">On-The-Go</string>
+    <string name="quick_settings_screenshot_label">스크린샷</string>
+    <string name="tuner_show_brightness_mode">자동 밝기 토글 버튼 보이기</string>
+    <string name="tuner_show_brightness_side_buttons">밝기 슬라이더 사이드 버튼 표시</string>
+    <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - 꺼내기 알람을 1분간 중지 시킵니다.</string>
+    <string name="omnijaws_service_error">오류</string>
+    <string name="omnijaws_service_unkown">날씨 정보 없음</string>
+    <string name="omnijaws_service_error_long">날씨 정보 불러오기 오류</string>
+    <string name="omnijaws_service_disabled">서비스 사용 중지됨</string>
+    <string name="omnijaws_detail_header">날씨</string>
+    <string name="omnijaws_label_default">날씨</string>
+    <string name="omnijaws_current_text">현재</string>
+    <string name="omnijaws_package_not_available">OmniJaws를 사용할 수 없음</string>
+    <string name="omnijaws_service_last_update">최근 업데이트:</string>
+    <string name="qs_menu_item_qs_columns">퀵 바 개수</string>
+    <string name="qs_menu_item_columns_auto">자동</string>
+    <string name="qs_menu_item_titles">라벨 표시</string>
+    <string name="force_stop_dlg_title">강제로 종료하시겠습니까?</string>
+    <string name="force_stop_dlg_text">강제로 앱을 종료하면 예기치 않은 오류가 발생할 수 있습니다.</string>
+    <string name="guts_force_close_app">앱 종료</string>
+    <string name="status_bar_location">위치</string>
+    <string name="preview">미리 보기</string>
+    <string name="keycode">키 코드</string>
+    <string name="no_home_title">홈 버튼을 찾지 못했습니다</string>
+    <string name="no_home_message">이 기기를 탐색하려면 홈 버튼을 사용해야 합니다. 홈 버튼을 추가한 다음 저장하세요.</string>
+    <string name="clipboard_description">클립보드에 아이템을 끌어서 넣거나 뺄 수 있습니다.</string>
+    <string name="keycode_description">키 코드 버튼을 사용하면 키보드 키를 네비게이션 바에 추가할 수 있습니다. 설정된 키 코드 버튼을 누르면 키보드 키가 에뮬레이션됩니다. 먼저 버튼에 할당할 키를 선택하고 그다음 버튼에 표시될 이미지를 선택해야 합니다.</string>
+    <string name="start">시작</string>
+    <string name="center">가운데</string>
+    <string name="end">끝</string>
+    <string name="space">공백</string>
+    <string name="menu_ime">메뉴 / 키보드 선택기</string>
+    <string name="select_button">추가할 버튼 선택</string>
+    <string name="add_button">버튼 추가</string>
+    <string name="save">저장</string>
+    <string name="reset">재설정</string>
+    <string name="select_keycode">키보드 버튼 선택</string>
+    <string name="left">왼쪽</string>
+    <string name="right">오른쪽</string>
+    <string name="navbar_editor_title">편집기</string>
+    <string name="navbar_editor_summary">내비게이션 바 설정</string>
+    <string name="tuner_keyguard_transition_animations_title">전환 애니메이션 표시</string>
+    <string name="tuner_keyguard_transition_animations_summary">애니메이션 표시</string>
+    <string name="systemui_tuner_navbar_title">기본 설정</string>
+    <string name="navbar_activity_title">내비게이션 바</string>
+    <string name="quick_settings_sound_search">사운드 검색</string>
+    <string name="quick_settings_sound_search_no_app">소리 검색 앱이 설치되지 않았습니다</string>
+    <string name="accessibility_quick_settings_hwkeys_on">하드웨어 키 사용</string>
+    <string name="accessibility_quick_settings_hwkeys_off">하드웨어 키 사용 안함</string>
+    <string name="quick_settings_hwkeys_label">하드웨어 키</string>
+    <string name="daily_data_usage_title">오늘의 사용법</string>
+    <string name="screen_pinning_description_custom">고정을 해제하기 전까지 계속 볼 수 있습니다. 고정을 해제하려면 뒤로 가기 버튼을 길게 누르세요.</string>
+    <string name="screen_pinning_description_recents_invisible_custom">고정을 해제하기 전까지 계속 볼 수 있습니다. 고정을 해제하려면 뒤로 가기 버튼을 길게 누르세요.</string>
+    <string name="screen_pinning_description_accessible_custom">고정을 해제하기 전까지 계속 볼 수 있습니다. 고정을 해제하려면 뒤로 가기 버튼을 길게 누르세요.</string>
+    <string name="screen_pinning_description_recents_invisible_accessible_custom">고정을 해제하기 전까지 계속 볼 수 있습니다. 고정을 해제하려면 뒤로 가기 버튼을 길게 누르세요.</string>
+    <string name="screen_pinning_toast_custom">이 화면의 고정을 해제하려면, 뒤로를 길게 누르세요</string>
+    <string name="screen_pinning_toast_recents_invisible_custom">이 화면의 고정을 해제하려면, 뒤로를 길게 누르세요</string>
+    <string name="gaming_mode_not_enabled">게임 모드가 설정에서 사용 중지되었습니다.</string>
+    <string name="quick_settings_gaming_mode_label">게이밍 모드</string>
+    <string name="accessibility_quick_settings_gaming_mode_disabled">게임 모드가 꺼졌습니다.</string>
+    <string name="accessibility_quick_settings_gaming_mode_enabled">게임 모드가 켜져 있습니다.</string>
+    <string name="quick_settings_fpsinfo_label">FPS 정보</string>
+    <string name="accessibility_quick_settings_fpsinfo_off">FPS 정보 끄기</string>
+    <string name="accessibility_quick_settings_fpsinfo_on">FPS 정보 껴기</string>
+    <string name="quick_settings_killapp_label">앱 종료</string>
+    <string name="app_picker_dialog_title">앱 선택</string>
+    <string name="quick_settings_vpn_label">VPN</string>
+    <string name="quick_settings_vpn_connect_dialog_title">연결 중…</string>
+    <string name="vpn_credentials_hint">Please enter your credentials for connecting to <xliff:g id="name">%s</xliff:g></string>
+    <string name="vpn_credentials_username">사용자이름</string>
+    <string name="vpn_credentials_password">패스워드/암호</string>
+    <string name="vpn_credentials_dialog_connect">연결</string>
+    <string name="lockscreen_default">기본</string>
+    <string name="lockscreen_hidden">없음</string>
+    <string name="custom_hint">실행하려면 아이콘에서 스와이프하세요.</string>
+    <string name="accessibility_quick_settings_running_services">실행중인 서비스 보기</string>
+    <string name="quick_settings_powershare_label">무선 PowerShare</string>
+    <string name="quick_settings_powershare_off_powersave_label">무선 PowerShare 꺼짐 \n배터리 보호기</string>
+    <string name="quick_settings_powershare_off_low_battery_label">무선 PowerShare 꺼짐\n 배터리가 부족합니다</string>
+    <string name="quick_settings_powershare_enabled_label">무선 PowerShare가 활성화되었습니다</string>
+    <string name="accessibility_dpad_left">왼쪽 커서</string>
+    <string name="accessibility_dpad_right">오른쪽 커서</string>
+</resources>

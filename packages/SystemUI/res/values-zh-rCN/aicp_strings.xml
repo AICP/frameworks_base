@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/* //device/apps/common/assets/res/any/strings.xml
+**
+** Copyright 2006, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="quick_settings_compass_label">指南针</string>
+    <string name="quick_settings_compass_init">正在初始化\u2026</string>
+    <string name="accessibility_quick_settings_compass_off">指南针关闭</string>
+    <string name="accessibility_quick_settings_compass_on">指南针开启</string>
+    <string name="accessibility_quick_settings_compass_changed_off">指南针已关闭</string>
+    <string name="accessibility_quick_settings_compass_changed_on">指南针已开启</string>
+    <string name="quick_settings_compass_N">北</string>
+    <string name="quick_settings_compass_NE">东北</string>
+    <string name="quick_settings_compass_E">东</string>
+    <string name="quick_settings_compass_SE">东南</string>
+    <string name="quick_settings_compass_S">南</string>
+    <string name="quick_settings_compass_SW">西南</string>
+    <string name="quick_settings_compass_W">西</string>
+    <string name="quick_settings_compass_NW">西北</string>
+    <string name="quick_settings_music_label">音乐</string>
+    <string name="quick_settings_music_play">播放</string>
+    <string name="quick_settings_music_pause">暂停</string>
+    <string name="quick_settings_reboot_label">重新启动</string>
+    <string name="quick_settings_reboot_recovery_label">恢复模式</string>
+    <string name="quick_settings_poweroff_label">关机</string>
+    <string name="accessibility_quick_settings_usb_tether_off">USB 网络共享关闭</string>
+    <string name="accessibility_quick_settings_usb_tether_on">USB 网络共享开启</string>
+    <string name="accessibility_quick_settings_usb_tether_changed_off">USB 网络共享已关闭</string>
+    <string name="accessibility_quick_settings_usb_tether_changed_on">USB 网络共享已开启</string>
+    <string name="quick_settings_usb_tether_label">USB 网络共享</string>
+    <string name="quick_settings_caffeine_label">保持亮屏</string>
+    <string name="accessibility_quick_settings_caffeine_off">保持亮屏关闭</string>
+    <string name="accessibility_quick_settings_caffeine_on">保持亮屏开启</string>
+    <string name="global_action_restart_advanced">高级</string>
+    <string name="global_action_restart_recovery">恢复模式</string>
+    <string name="global_action_restart_bootloader">引导模式</string>
+    <string name="global_action_restart_ui">系统界面</string>
+    <string name="volume_ringer_priority_only">优先级</string>
+    <string name="volume_ringer_alarms_only">闹铃</string>
+    <string name="volume_ringer_dnd">DnD</string>
+    <string name="tristate_flashlight">手电筒</string>
+    <string name="qs_menu_item_columns">列</string>
+    <string name="qs_menu_item_columns_landscape">列 (横向)</string>
+    <string name="qs_menu_item_rows">行</string>
+    <string name="qs_menu_item_rows_landscape">行 (横向)</string>
+    <string name="qs_menu_item_reset">重置</string>
+    <string name="quick_settings_cpuinfo_label">CPU 信息</string>
+    <string name="quick_aicp_extras_label">AICP 额外设置</string>
+    <string name="quick_aicp_extras_toast">你真的认为长按会打开什么!? (大声笑)</string>
+    <string name="status_bar_camera">相机</string>
+    <string name="status_bar_microphone">麦克风</string>
+    <string name="keyguard_indication_dash_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Dash闪充中 (预计<xliff:g id="charging_time_left">%1$s</xliff:g> 后充满)</string>
+    <string name="keyguard_plugged_in_dash_charging"><xliff:g id="percentage">%s</xliff:g> • Dash 闪充</string>
+    <string name="keyguard_indication_warp_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Warp 闪充中 (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> 后充满)</string>
+    <string name="keyguard_plugged_in_warp_charging"><xliff:g id="percentage">%s</xliff:g> • Warp闪充</string>
+    <string name="keyguard_indication_vooc_charging_time">&lt;xliff:g id="percentage"&gt;%2$s&lt;/xliff:g&gt; • VOOC闪充中 (预计&lt;xliff:g id="charging_time_left" 后&gt;%1$s&lt;/xliff:g&gt; 充满)</string>
+    <string name="keyguard_plugged_in_vooc_charging"><xliff:g id="percentage">%s</xliff:g> • VOOC 闪充中</string>
+    <string name="keyguard_indication_turbo_power_time"><xliff:g id="percentage">%2$s</xliff:g> • 快速充电中 (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> 后充满)</string>
+    <string name="keyguard_plugged_in_turbo_charging"><xliff:g id="percentage">%s</xliff:g> • 快速充电中</string>
+    <string name="quick_settings_heads_up_label">浮动通知</string>
+    <string name="accessibility_quick_settings_heads_up_off">关闭浮动通知</string>
+    <string name="accessibility_quick_settings_heads_up_on">开启浮动通知</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">浮动通知已关闭</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">浮动通知已开启</string>
+    <string name="quick_settings_smart_pixels">智能像素</string>
+    <string name="quick_settings_smart_pixels_on_power_save">自动启用智能像素</string>
+    <string name="tuner_quick_settings">快速设置</string>
+    <string name="tuner_show_brightness_new">显示亮度滑块</string>
+    <string name="tuner_brightness_position_bottom">底部亮度滑块</string>
+    <string name="tuner_show_secure_title">显示安全页脚</string>
+    <string name="quick_settings_aod_label">息屏显示</string>
+    <string name="quick_settings_locale_label">语言</string>
+    <string name="quick_settings_locale_more_locales_toast">请配置多种语言以启用切换功能</string>
+    <string name="quick_settings_sound_label">声音</string>
+    <string name="quick_settings_sound_ring">响铃</string>
+    <string name="quick_settings_sound_vibrate">震动</string>
+    <string name="quick_settings_sound_silent">静音</string>
+    <string name="quick_settings_volume_panel_label">音量面板</string>
+    <string name="qs_data_switch_label">切换数据卡</string>
+    <string name="qs_data_switch_changed_1">设置卡 1 为数据卡</string>
+    <string name="qs_data_switch_changed_2">设置卡 2 为数据卡</string>
+    <string name="quick_settings_sync_label">同步</string>
+    <string name="accessibility_quick_settings_sync_off">同步已关闭</string>
+    <string name="accessibility_quick_settings_sync_on">同步已开启</string>
+    <string name="accessibility_quick_settings_sync_changed_off">同步关闭</string>
+    <string name="accessibility_quick_settings_sync_changed_on">同步开启</string>
+    <string name="onthego_notif_ticker">行走模式已启用</string>
+    <string name="onthego_notif_title">行走模式正在运行</string>
+    <string name="onthego_notif_stop">停止</string>
+    <string name="onthego_notif_options">选项</string>
+    <string name="onthego_notif_error">无法启动行走模式</string>
+    <string name="onthego_notif_restart">重新启动行走模式</string>
+    <string name="onthego_notif_camera_changed">相机模式已更改</string>
+    <string name="onthego_transparency">透明度</string>
+    <string name="onthego_front_camera">使用前置摄像头</string>
+    <string name="onthego_service_toggle">自动重启服务</string>
+    <string name="onthego_channel_name">主要</string>
+    <string name="global_action_onthego">行走模式</string>
+    <string name="quick_settings_onthego_label">行走模式</string>
+    <string name="global_screenshot_selector_capture_description">截取部分屏幕</string>
+    <string name="global_screenshot_selector_cancel_description">取消部分屏幕截图</string>
+    <string name="quick_settings_screenshot_label">屏幕截图</string>
+    <string name="tuner_show_brightness_mode">显示亮度模式开关</string>
+    <string name="tuner_show_brightness_side_buttons">显示亮度滑块侧按钮</string>
+    <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - 浮动通知暂停 1 分钟。</string>
+    <string name="heads_up_snooze_message"><xliff:g id="string">%1$s</xliff:g> - 浮动通知暂停<xliff:g id="number">%2$d</xliff:g>分钟。</string>
+    <string name="omnijaws_service_error">错误</string>
+    <string name="omnijaws_service_unkown">没有天气数据</string>
+    <string name="omnijaws_service_error_long">加载天气数据时出错</string>
+    <string name="omnijaws_service_disabled">服务已禁用</string>
+    <string name="omnijaws_detail_header">天气</string>
+    <string name="omnijaws_label_default">天气</string>
+    <string name="omnijaws_current_text">现在</string>
+    <string name="omnijaws_package_not_available">OmniJaws 不可用</string>
+    <string name="omnijaws_service_last_update">上次更新：</string>
+    <string name="qs_menu_item_qs_columns">磁贴列数</string>
+    <string name="qs_menu_item_columns_auto">自动</string>
+    <string name="qs_menu_item_titles">显示标签</string>
+    <string name="force_stop_dlg_title">强制停止？</string>
+    <string name="force_stop_dlg_text">如果你强制停止一个应用程序，它可能会失败。</string>
+    <string name="guts_force_close_app">终止应用</string>
+    <string name="status_bar_location">位置</string>
+    <string name="preview">预览</string>
+    <string name="keycode">键码</string>
+    <string name="no_home_title">找不到主页按钮</string>
+    <string name="no_home_message">要在此设备上导航，您必须使用主页按钮。请先添加主页按钮，然后再保存。</string>
+    <string name="clipboard_description">您可以利用“剪贴板”按钮将相应内容直接拖动到剪贴板中。剪贴板中有内容时，您也可以将剪贴板中的内容直接拖出来。</string>
+    <string name="keycode_description">您可以利用“键码”按钮将键盘按键添加到导航栏中。只要按下这些按钮，按钮即可模仿所选键盘按键执行相应的操作。要使用这项功能，您必须先为按钮选择相应的按键，然后再选择要在按钮上显示的图片。</string>
+    <string name="start">开始</string>
+    <string name="center">居中</string>
+    <string name="end">末端</string>
+    <string name="space">空格键</string>
+    <string name="menu_ime">菜单/键盘切换器</string>
+    <string name="select_button">选择要添加的按钮</string>
+    <string name="add_button">添加按钮</string>
+    <string name="save">保存</string>
+    <string name="reset">重置</string>
+    <string name="select_keycode">选择键盘按钮</string>
+    <string name="left">左侧</string>
+    <string name="right">右侧</string>
+    <string name="navbar_editor_title">编辑器</string>
+    <string name="navbar_editor_summary">配置导航栏</string>
+    <string name="tuner_keyguard_transition_animations_title">使用过渡动画</string>
+    <string name="tuner_keyguard_transition_animations_summary">显示过渡动画</string>
+    <string name="systemui_tuner_navbar_title">初始设置</string>
+    <string name="navbar_activity_title">导航栏</string>
+    <string name="quick_settings_sound_search">语音搜索</string>
+    <string name="quick_settings_sound_search_no_app">抱歉，这将不会起作用若你未安装语音搜索应用程序。</string>
+    <string name="accessibility_quick_settings_hwkeys_on">实体按键已启用</string>
+    <string name="accessibility_quick_settings_hwkeys_off">实体按键已禁用</string>
+    <string name="quick_settings_hwkeys_label">实体按键</string>
+    <string name="daily_data_usage_title">今日使用量</string>
+    <string name="screen_pinning_description_custom">这将会固定显示此屏幕，直到您取消固定为止。触摸并按住“返回”即可取消固定屏幕。</string>
+    <string name="screen_pinning_description_recents_invisible_custom">这将会固定显示此屏幕，直到您取消固定为止。触摸并按住“返回”即可取消固定屏幕。</string>
+    <string name="screen_pinning_description_accessible_custom">这将会固定显示此屏幕，直到您取消固定为止。触摸并按住“返回”即可取消固定屏幕。</string>
+    <string name="screen_pinning_description_recents_invisible_accessible_custom">这将会固定显示此屏幕，直到您取消固定为止。触摸并按住“返回”即可取消固定屏幕。</string>
+    <string name="screen_pinning_toast_custom">要取消固定此屏幕，请触摸并按住“返回”按钮。</string>
+    <string name="screen_pinning_toast_recents_invisible_custom">要取消固定此屏幕，请触摸并按住“返回”按钮。</string>
+    <string name="gaming_mode_not_enabled">游戏模式在设置中被禁用</string>
+    <string name="quick_settings_gaming_mode_label">游戏模式</string>
+    <string name="accessibility_quick_settings_gaming_mode_disabled">游戏模式已关闭。</string>
+    <string name="accessibility_quick_settings_gaming_mode_enabled">游戏模式已开启。</string>
+    <string name="quick_settings_fpsinfo_label">FPS 信息</string>
+    <string name="accessibility_quick_settings_fpsinfo_off">关闭 FPS 信息</string>
+    <string name="accessibility_quick_settings_fpsinfo_on">开启 FPS 信息</string>
+    <string name="task_helper_app_killed">%1$s 已停止运行</string>
+    <string name="empty_app_killed">应用程序</string>
+    <string name="quick_settings_killapp_label">终止应用</string>
+    <string name="app_picker_dialog_title">选择一个应用</string>
+    <string name="quick_settings_vpn_label">VPN</string>
+    <string name="quick_settings_vpn_connect_dialog_title">连接到\u2026</string>
+    <string name="vpn_credentials_hint">请输入您连接<xliff:g id="name">%s</xliff:g>的凭据</string>
+    <string name="vpn_credentials_username">用户名</string>
+    <string name="vpn_credentials_password">密码</string>
+    <string name="vpn_credentials_dialog_connect">连接</string>
+    <string name="lockscreen_default">默认</string>
+    <string name="lockscreen_hidden">无</string>
+    <string name="custom_hint">滑动图标以启动</string>
+    <string name="quick_settings_monotoggle_tile">音频模式</string>
+    <string name="quick_settings_monotoggle_tile_mono">单声道</string>
+    <string name="quick_settings_monotoggle_tile_stereo">立体声</string>
+    <string name="quick_settings_anti_flicker">防闪烁</string>
+    <string name="accessibility_quick_settings_running_services">显示正在运行的服务。</string>
+    <string name="quick_settings_powershare_label">无线反充</string>
+    <string name="quick_settings_powershare_off_powersave_label">无线反充 关闭\n省电模式</string>
+    <string name="quick_settings_powershare_off_low_battery_label">无线反充 关闭\n电量过低</string>
+    <string name="quick_settings_powershare_enabled_label">无线反充已启用</string>
+    <string name="quick_settings_dc_dimming_label">DC 调光</string>
+    <string name="quick_settings_dc_brightness_mode">亮度模式</string>
+    <string name="quick_settings_dc_full_auto">自动模式</string>
+    <string name="applock_locked"> 已被锁定</string>
+    <string name="applock_fingerprint_face">指纹或者您的面部以解锁</string>
+    <string name="applock_face"> 或您的人脸以解锁</string>
+    <string name="applock_fingerprint"> 或您的指纹以解锁</string>
+    <string name="applock_credential"> 来解锁</string>
+    <string name="applock_unlock">解锁​​​​</string>
+    <string name="accessibility_dpad_left">光标左移</string>
+    <string name="accessibility_dpad_right">光标右移</string>
+</resources>

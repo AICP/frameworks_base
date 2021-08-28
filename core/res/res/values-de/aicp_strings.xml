@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Copyright (C) 2014-2020 AICP
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="permlab_fakePackageSignature">Paketsignatur imitieren</string>
+    <string name="permdesc_fakePackageSignature">Erlaubt einer App, sich als eine Andere auszugeben. Böswillige Anwendungen könnten dadurch Zugriff auf private Anwendungsdaten erhalten. Zu den legitimen Verwendungen gehört ein Emulator, der vorgibt, das zu sein, was er emuliert. Berechtigung nur mit Vorsicht erteilen!</string>
+    <string name="permgrouplab_fake_package_signature">Paketsignatur imitieren</string>
+    <string name="permgroupdesc_fake_package_signature">erlauben, die Paketsignatur vorzutäuschen</string>
+    <string name="permgrouprequest_fake_package_signature">&lt;b&gt;<xliff:g id="app_name" example="Gmail">%1$s</xliff:g>&lt;/b&gt; erlauben, die Paketsignatur vorzutäuschen?</string>
+    <string name="reboot_title">Neustart</string>
+    <string name="reboot_message">System wird neu gestartet\u2026</string>
+    <string name="aerr_copy">URL des Absturzberichts kopieren</string>
+    <string name="url_copy_success">URL erfolgreich kopiert</string>
+    <string name="url_copy_failed">Beim Upload des Protokolls zum AICP haste Server ist ein Fehler aufgetreten</string>
+    <string name="pocket_lock_message_long_press">Zum Entsperren EIN/AUS-Taste drücken und halten</string>
+    <string name="app_killed_message">Anwendung beendet</string>
+    <string name="notification_channel_gaming">Spielmodus</string>
+    <string name="gaming_mode_notification_title">Spielmodus aktiviert</string>
+    <string name="gaming_mode_notification_content">Tippen, um den Spielmodus zu deaktivieren</string>
+    <string name="gaming_mode_enabled_toast">Spielmodus eingeschaltet</string>
+    <string name="gaming_mode_disabled_toast">Spielmodus ausgeschaltet</string>
+    <string name="volume_dialog_ringer_guidance_normal">Bei Anrufen und Benachrichtigungen klingeln</string>
+    <string name="live_display_auto">Automatisch</string>
+    <string name="live_display_auto_summary">Farbtemperatur des Bildschirms automatisch nach Sonnenuntergang und Sonnenaufgang anpassen</string>
+    <string name="live_display_off">Aus</string>
+    <string name="live_display_off_summary">Alle Anpassungen deaktivieren</string>
+    <string name="live_display_day">Tag</string>
+    <string name="live_display_day_summary">Nur Tag-Modus verwenden</string>
+    <string name="live_display_night">Nacht</string>
+    <string name="live_display_night_summary">Nur Nacht-Modus verwenden</string>
+    <string name="live_display_outdoor">Draußen (helle Sonne)</string>
+    <string name="live_display_outdoor_summary">Nur Draußen-Modus verwenden</string>
+    <string name="live_display_hint">LiveDisplay entlastet Ihre Augen und lässt Sie nachts besser schlafen. Klicken Sie hier, um es auszuprobieren!</string>
+    <string name="accessibility_quick_settings_live_display_off">LiveDisplay AUS</string>
+    <string name="accessibility_quick_settings_live_display_auto">LiveDisplay: Auto-Modus</string>
+    <string name="accessibility_quick_settings_live_display_day">LiveDisplay: Tag-Modus</string>
+    <string name="accessibility_quick_settings_live_display_night">LiveDisplay: Nacht-Modus</string>
+    <string name="accessibility_quick_settings_live_display_outdoor">LiveDisplay: Draußen-Modus</string>
+    <string name="accessibility_quick_settings_live_display_changed_off">LiveDisplay ausgeschaltet.</string>
+    <string name="accessibility_quick_settings_live_display_changed_auto">LiveDisplay auf Auto-Modus geändert.</string>
+    <string name="accessibility_quick_settings_live_display_changed_day">LiveDisplay auf Tag-Modus geändert.</string>
+    <string name="accessibility_quick_settings_live_display_changed_night">LiveDisplay auf Nacht-Modus geändert.</string>
+    <string name="accessibility_quick_settings_live_display_changed_outdoor">LiveDisplay auf Draußen-Modus geändert.</string>
+    <string name="animation_fade">Ausblenden</string>
+    <string name="animation_slide_right">Gleiten von rechts</string>
+    <string name="animation_slide_left">Gleiten von links</string>
+    <string name="animation_slide_right_no_fade">Gleiten von rechts (ohne verblassen)</string>
+    <string name="animation_slide_left_no_fade">Gleiten von links (ohne verblassen)</string>
+    <string name="animation_slide_up">Gleiten von unten</string>
+    <string name="animation_slide_down">Gleiten von oben</string>
+    <string name="animation_default">Standard</string>
+    <string name="animation_translucent">Transparent</string>
+    <string name="animation_grow_shrink">Einblenden (von oben)</string>
+    <string name="animation_grow_shrink_center">Einblenden (aus der Mitte)</string>
+    <string name="animation_grow_shrink_bottom">Einblenden (von unten)</string>
+    <string name="animation_grow_shrink_left">Einblenden (von links)</string>
+    <string name="animation_grow_shrink_right">Einblenden (von rechts)</string>
+    <string name="animation_random">Zufällig</string>
+    <string name="action_null">Leer</string>
+    <string name="app_clipboard_access_denied">%1$s wurde der Zugriff auf die Zwischenablage verweigert</string>
+    <string name="app_clipboard_access_granted">%1$s wurde der Zugriff auf die Zwischenablage gewährt</string>
+    <string name="pocket_view_title">Taschen-Modus aktiviert</string>
+    <string name="pocket_view_title_cancel">So aktivieren Sie ihr Telefon:</string>
+    <string name="pocket_view_top_tag_cancel">Bedecken Sie den blauen Bereich Ihres Telefons nicht und entfernen Sie Schmutz oder Staub.</string>
+    <string name="pocket_view_top_tag_cancel2">Halten Sie die Ein-/Aus-Taste länger gedrückt, um das Beenden des Taschen-Modus zu erzwingen.</string>
+    <string name="pocket_view_top_tag_number1">1.\u0020</string>
+    <string name="pocket_view_top_tag_number2">2.\u0020</string>
+</resources>

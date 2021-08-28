@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Copyright (C) 2014-2020 AICP
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="permlab_fakePackageSignature">تزييف التوقيع الرقمي للحزمة</string>
+    <string name="permgrouplab_fake_package_signature">تزييف التوقيع الرقمي للحزمة</string>
+    <string name="aerr_copy">انسخ عنوان URL لسجل الانهيار</string>
+    <string name="url_copy_success">تم نسخ عنوان URL بنجاح</string>
+    <string name="url_copy_failed">حدث خطأ أثناء تحميل السجل إلى aicp haste</string>
+    <string name="live_display_auto">تلقائي</string>
+    <string name="live_display_auto_summary">ضبط درجة الحرارة اللونية للشاشة تلقائياً بعد غروب الشمس وشروق الشمس</string>
+    <string name="live_display_off">إيقاف</string>
+    <string name="live_display_off_summary">تعطيل جميع التعديلات</string>
+    <string name="live_display_day">النهار</string>
+    <string name="live_display_day_summary">استخدام إعدادات النهار فقط</string>
+    <string name="live_display_night">الليل</string>
+    <string name="live_display_night_summary">استخدام إعدادات الليل فقط</string>
+    <string name="live_display_outdoor">خارج المنزل ( شمس ساطعة)</string>
+    <string name="live_display_outdoor_summary">استخدم إعدادات خارج المنزل فقط</string>
+    <string name="live_display_hint">يمكن أن تساعد ميزة العرض الحي في تقليل إجهاد العين ومساعدتك على النوم في الليل. انقر هنا لتجربتها!</string>
+    <string name="accessibility_quick_settings_live_display_off">إيقاف تشغيل العرض الحي.</string>
+    <string name="accessibility_quick_settings_live_display_auto">العرض الحي: الوضع التلقائي.</string>
+    <string name="accessibility_quick_settings_live_display_day">العرض الحي: الوضع النهاري.</string>
+    <string name="accessibility_quick_settings_live_display_night">العرض الحي: الوضع الليلي.</string>
+    <string name="accessibility_quick_settings_live_display_outdoor">العرض الحي: وضع الخارج.</string>
+    <string name="accessibility_quick_settings_live_display_changed_off">تم إيقاف تشغيل العرض الحي.</string>
+    <string name="accessibility_quick_settings_live_display_changed_auto">تم تغيير العرض الحي إلى الوضع التلقائي.</string>
+    <string name="accessibility_quick_settings_live_display_changed_day">تم تغيير العرض الحي إلى الوضع النهاري.</string>
+    <string name="accessibility_quick_settings_live_display_changed_night">تم تغيير العرض الحي إلى الوضع الليلي.</string>
+    <string name="accessibility_quick_settings_live_display_changed_outdoor">تم تغيير العرض الحي إلى وضع الخارج.</string>
+    <string name="animation_fade">التلاشي</string>
+    <string name="animation_slide_right">الإنزلاق نحو اليمين</string>
+    <string name="animation_slide_left">الإنزلاق نحو اليسار</string>
+    <string name="animation_slide_right_no_fade">انزلاق إلى اليمين (بدون تلاشي)</string>
+    <string name="animation_slide_left_no_fade">انزلاق إلى اليسار (بدون تلاشي)</string>
+    <string name="animation_slide_up">انزلاق إلى الأسفل</string>
+    <string name="animation_slide_down">الانزلاق الى الاعلى</string>
+    <string name="animation_default">افتراضي</string>
+    <string name="animation_translucent">شبه شفاف</string>
+    <string name="animation_grow_shrink">تنمو في (أعلى)</string>
+    <string name="animation_grow_shrink_center">تنمو في (الوسط)</string>
+    <string name="animation_grow_shrink_bottom">تنمو في (أسفل)</string>
+    <string name="animation_grow_shrink_left">تنمو في (اليسار)</string>
+    <string name="animation_grow_shrink_right">نمو للداخل (اليمين)</string>
+    <string name="action_null">فارغ</string>
+</resources>

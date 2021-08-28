@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Copyright (C) 2014-2020 AICP
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="permlab_fakePackageSignature">Sahte paket imzası</string>
+    <string name="permdesc_fakePackageSignature">Uygulamanın farklı bir uygulama gibi davranmasına izin verir. Zararlı uygulamalar bu özelliği kullanarak özel içerikli bilgilere ulaşabilir. Bu izni verirken dikkatli olun!</string>
+    <string name="permgrouplab_fake_package_signature">Sahte paket imzası</string>
+    <string name="permgroupdesc_fake_package_signature">sahte paket imzasına izin verin</string>
+    <string name="permgrouprequest_fake_package_signature">&lt;b&gt;<xliff:g id="app_name" example="Gmail">%1$s</xliff:g>&lt;/b&gt; paket imzasını taklit etmesine izin verilsin mi?</string>
+    <string name="reboot_title">Yeniden başlat</string>
+    <string name="reboot_message">Sistem yeniden başlatılıyor</string>
+    <string name="aerr_copy">Çökme günlüğü URL\' sini kopyala</string>
+    <string name="url_copy_success">URL başarıyla kopyalandı</string>
+    <string name="url_copy_failed">Günlük aicp haste\'ye yüklenirken bir hata oluştu</string>
+    <string name="pocket_lock_message_long_press">Kilidi açmak için güç tuşuna basılı tutun</string>
+    <string name="app_killed_message">Uygulama sonlandırıldı</string>
+    <string name="notification_channel_gaming">Oyun modu</string>
+    <string name="gaming_mode_notification_title">Oyun modu etkin</string>
+    <string name="gaming_mode_notification_content">Oyun modunu kapatmak için dokunun</string>
+    <string name="gaming_mode_enabled_toast">Oyun modu etkinleştirildi</string>
+    <string name="gaming_mode_disabled_toast">Oyun modu kapatıldı</string>
+    <string name="volume_dialog_ringer_guidance_normal">Çağrılar ve bildirimler çalacak</string>
+    <string name="live_display_auto">Otomatik</string>
+    <string name="live_display_auto_summary">Gün batımından ve gün doğumundan sonra ekranın renk sıcaklığını otomatik olarak ayarlar</string>
+    <string name="live_display_off">Kapalı</string>
+    <string name="live_display_off_summary">Tüm ayarlamaları devre dışı bırak</string>
+    <string name="live_display_day">Gün</string>
+    <string name="live_display_day_summary">Sadece gün ayarlarını kullan</string>
+    <string name="live_display_night">Gece</string>
+    <string name="live_display_night_summary">Sadece gece ayarlarını kullan</string>
+    <string name="live_display_outdoor">Açık alan (parlak güneş)</string>
+    <string name="live_display_outdoor_summary">Sadece açık alan ayarlarını kullan</string>
+    <string name="live_display_hint">LiveDisplay göz yorgunluğu azalttır ve geceleri uyumana yardımcı yardımcı olabilir. Denemek için buraya tıklayın!</string>
+    <string name="accessibility_quick_settings_live_display_off">LiveDisplay kapalı.</string>
+    <string name="accessibility_quick_settings_live_display_auto">LiveDisplay: otomatik modu.</string>
+    <string name="accessibility_quick_settings_live_display_day">LiveDisplay: gün modu.</string>
+    <string name="accessibility_quick_settings_live_display_night">LiveDisplay: gece modu.</string>
+    <string name="accessibility_quick_settings_live_display_outdoor">LiveDisplay: açık alan modu.</string>
+    <string name="accessibility_quick_settings_live_display_changed_off">LiveDisplay kapatıldı.</string>
+    <string name="accessibility_quick_settings_live_display_changed_auto">LiveDisplay otomatik moda geçti.</string>
+    <string name="accessibility_quick_settings_live_display_changed_day">LiveDisplay gün moduna geçti.</string>
+    <string name="accessibility_quick_settings_live_display_changed_night">LiveDisplay gece moduna geçti.</string>
+    <string name="accessibility_quick_settings_live_display_changed_outdoor">LiveDisplay açık alan moduna geçti.</string>
+    <string name="animation_fade">Karart</string>
+    <string name="animation_slide_right">Sağa kaydır</string>
+    <string name="animation_slide_left">Sola kaydır</string>
+    <string name="animation_slide_right_no_fade">Sağa kaydır (Karartma yok)</string>
+    <string name="animation_slide_left_no_fade">Sola kaydır (Karartma yok)</string>
+    <string name="animation_slide_up">Aşağı kaydır</string>
+    <string name="animation_slide_down">Yukarı kaydır</string>
+    <string name="animation_default">Varsayılan</string>
+    <string name="animation_translucent">Yarı şeffaf</string>
+    <string name="animation_grow_shrink">Büyüt (Yukarıdan)</string>
+    <string name="animation_grow_shrink_center">Büyüt (Ortadan)</string>
+    <string name="animation_grow_shrink_bottom">Büyüt (Aşağıdan)</string>
+    <string name="animation_grow_shrink_left">Büyüt (Soldan)</string>
+    <string name="animation_grow_shrink_right">Büyüt (Sağdan)</string>
+    <string name="animation_random">Rastgele</string>
+    <string name="action_null">Boş</string>
+    <string name="app_clipboard_access_denied">%1$s panoya erişimi reddedildi</string>
+    <string name="app_clipboard_access_granted">%1$s panoya erişim izni verildi</string>
+    <string name="pocket_view_title">Cep modu açık</string>
+    <string name="pocket_view_title_cancel">Telefonunuzu etkinleştirmek için:</string>
+    <string name="pocket_view_top_tag_cancel">Telefonunuzun mavi alanını kapatmayın ve her türlü kiri veya tozu temizleyin.</string>
+    <string name="pocket_view_top_tag_cancel2">Cep modundan çıkmaya zorlamak için güç tuşuna uzun basın</string>
+    <string name="pocket_view_top_tag_number1">1.\u0020</string>
+    <string name="pocket_view_top_tag_number2">2.\u0020</string>
+</resources>

@@ -215,7 +215,7 @@ public class BatteryMeterView extends LinearLayout implements
     }
 
     public void setForceShowPercent(boolean show) {
-        setPercentShowMode(show ? MODE_ON : MODE_DEFAULT);
+        setPercentShowMode(show ? mShowPercentMode : MODE_DEFAULT);
     }
 
     /**
@@ -224,11 +224,11 @@ public class BatteryMeterView extends LinearLayout implements
      * 0 - No preference
      * 1 - Force on
      * 2 - Force off
+     * 3 - Estimate
      * @param mode desired mode (none, on, off)
      */
     public void setPercentShowMode(@BatteryPercentMode int mode) {
-        mShowPercentMode = mode;
-        updateShowPercent(false);
+        setPercentShowMode(mode, mForceShowPercent);
     }
 
     public void setPercentShowMode(@BatteryPercentMode int mode, boolean forceShow) {

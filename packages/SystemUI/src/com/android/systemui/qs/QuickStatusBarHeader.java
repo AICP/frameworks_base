@@ -318,7 +318,6 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         // QS will always show the estimate, and BatteryMeterView handles the case where
         // it's unavailable or charging
         mBatteryRemainingIcon.setQsbHeader();
-        mBatteryRemainingIcon.setPercentShowMode(getBatteryPercentMode(), true);
         mBatteryRemainingIcon.setOnClickListener(this);
         mRingerModeTextView.setSelected(true);
         mNextAlarmTextView.setSelected(true);

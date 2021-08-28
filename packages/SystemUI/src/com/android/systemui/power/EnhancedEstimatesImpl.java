@@ -58,9 +58,11 @@ public class EnhancedEstimatesImpl implements EnhancedEstimates {
 
     @Override
     public Estimate getEstimate() {
-        boolean turboAvailable = PackageUtils.isPackageAvailable(mContext, "com.google.android.apps.turbo");
+        String packageName = "com.google.android.apps.turbo";
+        boolean turboAvailable = PackageUtils.isPackageAvailable(mContext, packageName);
+        boolean turboSystemApp = PackageUtils.isSystemApp(mContext, packageName);
 
-        if (turboAvailable) {
+        if (turboAvailable && turboSystemApp) {
             Uri build = new Uri.Builder().scheme("content").authority("com.google.android.apps.turbo.estimated_time_remaining").appendPath("time_remaining").build();
             try {
                 Cursor query = mContext.getContentResolver().query(build, (String[])null, (String)null, (String[])null, (String)null);

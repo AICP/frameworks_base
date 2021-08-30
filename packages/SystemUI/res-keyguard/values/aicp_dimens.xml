@@ -21,6 +21,7 @@
     <dimen name="header_font_size">20dp</dimen>
     <dimen name="ide_clock_margin_start">40dp</dimen>
     <dimen name="ssos_clock_padding_start">24dp</dimen>
+    <dimen name="sdp3_clock_padding_start">16dp</dimen>
 
     <!-- Padding added to keyguard status area when Type clock is in use -->
     <dimen name="keyguard_status_area_typeclock_padding">32dp</dimen>

@@ -196,4 +196,9 @@
     <!-- App lock -->
     <java-symbol type="string" name="unlock_application" />
     <java-symbol type="array" name="config_appLockAllowedSystemApps" />
+
+    <!-- Optimized charge notification -->
+    <java-symbol type="string" name="optimized_charge_notification_channel_label" />
+    <java-symbol type="string" name="optimized_charge_notification_title" />
+    <java-symbol type="string" name="optimized_charge_notification_text" />
 </resources>

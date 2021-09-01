@@ -210,6 +210,8 @@ import dalvik.system.VMRuntime;
 
 import com.google.android.startop.iorap.IorapForwardingService;
 
+import ink.kaleidoscope.server.OptimizedChargeService;
+
 import java.io.File;
 import java.io.FileDescriptor;
 import java.io.IOException;
@@ -381,6 +383,8 @@ public final class SystemServer implements Dumpable {
             "com.android.server.media.MediaCommunicationService";
     private static final String APP_COMPAT_OVERRIDES_SERVICE_CLASS =
             "com.android.server.compat.overrides.AppCompatOverridesService$Lifecycle";
+    private static final String OPTIMIZED_CHARGE_SERVICE_CLASS =
+            "ink.kaleidoscope.server.OptimizedChargeService";
 
     private static final String ROLE_SERVICE_CLASS = "com.android.role.RoleService";
     private static final String GAME_MANAGER_SERVICE_CLASS =
@@ -2679,6 +2683,10 @@ public final class SystemServer implements Dumpable {
 
         t.traceBegin("AppCompatOverridesService");
         mSystemServiceManager.startService(APP_COMPAT_OVERRIDES_SERVICE_CLASS);
+        t.traceEnd();
+
+        t.traceBegin("StartOptimizedChargeService");
+        mSystemServiceManager.startService(OPTIMIZED_CHARGE_SERVICE_CLASS);
         t.traceEnd();
 
         // These are needed to propagate to the runnable below.

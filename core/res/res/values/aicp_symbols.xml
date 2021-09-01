@@ -129,6 +129,10 @@
   <java-symbol type="string" name="config_pocketJudgeVendorSensorName" />
   <java-symbol type="string" name="config_pocketJudgeVendorProximitySensorName" />
 
+  <!-- Hide IME space -->
+  <java-symbol type="dimen" name="navigation_bar_frame_height_hide_ime" />
+  <java-symbol type="dimen" name="navigation_bar_frame_height_landscape_hide_ime" />
+
   <!-- System info -->
   <java-symbol type="string" name="config_sysCPUTemp" />
   <java-symbol type="string" name="config_sysBatteryTemp" />

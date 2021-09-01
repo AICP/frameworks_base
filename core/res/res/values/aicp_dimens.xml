@@ -33,4 +33,9 @@
     <dimen name="pocket_view_top_tag_view1_margin_top">9dp</dimen>
     <dimen name="pocket_view_top_tag_view2_margin_top">9dp</dimen>
 
+    <!-- Height of the bottom navigation bar frame when hide ime space -->
+    <dimen name="navigation_bar_frame_height_hide_ime">16dp</dimen>
+    <!-- Height of the bottom navigation bar frame in landscape when hide ime space -->
+    <dimen name="navigation_bar_frame_height_landscape_hide_ime">@dimen/navigation_bar_frame_height_hide_ime</dimen>
+
 </resources>

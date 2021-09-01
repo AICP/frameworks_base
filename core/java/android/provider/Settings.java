@@ -6773,6 +6773,24 @@ public final class Settings {
          */
         public static final String QS_SHOW_BATTERY_ESTIMATE = "qs_show_battery_estimate";
 
+        /**
+         * Optimized charging enabled
+         * @hide
+         */
+        public static final String OPTIMIZED_CHARGE_ENABLED = "optimized_charge_enabled";
+
+        /**
+         * Optimized charging ceiling
+         * @hide
+         */
+        public static final String OPTIMIZED_CHARGE_CEILING = "optimized_charge_ceiling";
+
+        /**
+         * Optimized charging floor
+         * @hide
+         */
+        public static final String OPTIMIZED_CHARGE_FLOOR = "optimized_charge_floor";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7125,6 +7143,9 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUS_BAR_BATTERY_STYLE);
             PRIVATE_SETTINGS.add(STATUS_BAR_SHOW_BATTERY_PERCENT);
             PRIVATE_SETTINGS.add(QS_SHOW_BATTERY_ESTIMATE);
+            PRIVATE_SETTINGS.add(OPTIMIZED_CHARGE_ENABLED);
+            PRIVATE_SETTINGS.add(OPTIMIZED_CHARGE_CEILING);
+            PRIVATE_SETTINGS.add(OPTIMIZED_CHARGE_FLOOR);
         }
 
         /**

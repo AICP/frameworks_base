@@ -39,7 +39,9 @@ import com.android.internal.R;
 import com.android.server.ServiceThread;
 import com.android.server.SystemService;
 
+import java.lang.InterruptedException;
 import java.lang.String;
+import java.lang.Thread;
 import java.util.NoSuchElementException;
 
 import ink.kaleidoscope.hardware.IOptimizedCharge;
@@ -146,8 +148,14 @@ public final class OptimizedChargeService extends SystemService {
             shouldUpdate = true;
         }
         if (newPlugged != mPlugged) {
-            if (newPlugged)
+            if (newPlugged) {
                 mLastChargeEnabled = false;
+                if (status == BatteryManager.BATTERY_PLUGGED_USB) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {}
+                }
+            }
             mPlugged = newPlugged;
             shouldUpdate = true;
         }

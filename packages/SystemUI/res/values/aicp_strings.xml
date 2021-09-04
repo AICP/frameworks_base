@@ -361,4 +361,9 @@
 
    <!-- Change clockface -->
    <string name="change_clock_face">Swipe to change the clock face</string>
+
+    <!-- Text for the quick setting tile for sensor privacy [CHAR LIMIT=30] -->
+    <string name="sensor_privacy_mode_tile">Sensors</string>
+    <string name="quick_settings_on">On</string>
+    <string name="quick_settings_off">Off</string>
 </resources>

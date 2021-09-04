@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "058cce3f_436dc54f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2021-09-04T20:02:08Z",
+      "side": 1,
+      "message": "includes https://review.lineageos.org/q/topic:%22OneShotAutoBrightness%22+(status:open%20OR%20status:merged) topic changes",
+      "revId": "c65151f24fe94bad86644960adafa6f89e5ccc32",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

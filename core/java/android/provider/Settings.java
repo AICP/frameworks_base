@@ -11494,6 +11494,18 @@ public final class Settings {
         public static final String LOCKSCREEN_PULSE_ENABLED = "lockscreen_pulse_enabled";
 
         /**
+         * Enable and disable QS Panel visualizer
+         * @hide
+         */
+        public static final String PULSE_CENTER_MIRRORED = "pulse_center_mirrored";
+
+        /**
+         * Pulse gravity
+         * @hide
+         */
+        public static final String PULSE_CUSTOM_GRAVITY = "pulse_custom_gravity";
+
+        /**
          * Pulse navbar music visualizer color type
          *
          * @hide

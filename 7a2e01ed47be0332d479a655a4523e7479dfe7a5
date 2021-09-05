@@ -33,6 +33,24 @@
       "message": "I actually like this better in terms of layout and compactness with the right amount of info showing in different states.",
       "revId": "7a2e01ed47be0332d479a655a4523e7479dfe7a5",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf7094de_39dd9bef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-09-05T12:32:47Z",
+      "side": 1,
+      "message": "May I suggest https://gerrit.aicp-rom.com/c/AICP/frameworks_base/+/110039, I have tried to retain the collapsed state as such and forced a alternate layout for expanded at high DPIs.\n\nIncreasing the height of the collapsed state causes notification to be inaccessible in smaller devices.\n\nBut the rounded corners of the album art, was lost in this layout",
+      "parentUuid": "08560abc_dcc36c8f",
+      "revId": "7a2e01ed47be0332d479a655a4523e7479dfe7a5",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

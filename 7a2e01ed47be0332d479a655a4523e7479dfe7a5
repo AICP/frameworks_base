@@ -51,6 +51,24 @@
       "parentUuid": "08560abc_dcc36c8f",
       "revId": "7a2e01ed47be0332d479a655a4523e7479dfe7a5",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ceabc6f_a85e349f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2021-09-05T17:25:17Z",
+      "side": 1,
+      "message": "Looked at it, your collapsed version is smaller but expanded version is bigger (especially the artwork) and that will certainly be a problem for smaller screen devices.\nhttps://imgur.com/a/RScx6ok\nYou can tell those darker ones (alpha 0.6) are mine, others are yours. Tbh, I dont like the inconsistency in size with yours. Maybe we can find a middle ground.",
+      "parentUuid": "bf7094de_39dd9bef",
+      "revId": "7a2e01ed47be0332d479a655a4523e7479dfe7a5",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

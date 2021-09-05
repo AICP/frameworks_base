@@ -11500,6 +11500,12 @@ public final class Settings {
         public static final String PULSE_CENTER_MIRRORED = "pulse_center_mirrored";
 
         /**
+         * Pulse vertical mirror
+         * @hide
+         */
+        public static final String PULSE_VERTICAL_MIRROR = "pulse_vertical_mirror";
+
+        /**
          * Pulse gravity
          * @hide
          */

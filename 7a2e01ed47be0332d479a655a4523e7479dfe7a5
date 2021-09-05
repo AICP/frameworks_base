@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c3d51e6_bde196dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-09-05T05:01:44Z",
+      "side": 1,
+      "message": "Increases of the size of the album art  in the collapsed state( which was supposed to be a concise version), which I personally dislike",
+      "revId": "7a2e01ed47be0332d479a655a4523e7479dfe7a5",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

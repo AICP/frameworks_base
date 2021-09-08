@@ -73,7 +73,11 @@ public class VolumePluginManager extends BroadcastReceiver {
     static final String[] ALLOWED_PLUGINS = {
         "com.android.plugin.volume.aosp",
         "com.android.plugin.volume.compact",
+        "com.android.plugin.volume.miui",
+        "com.android.plugin.volume.oos",
         "com.android.plugin.volume.oreo",
+        "com.android.plugin.volume.p404",
+        "com.android.plugin.volume.ssos",
         "com.android.plugin.volume.tiled",
     };
 

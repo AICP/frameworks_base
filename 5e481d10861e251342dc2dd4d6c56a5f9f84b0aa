@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd3bd9be_dc596336",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 397
+      },
+      "writtenOn": "2021-09-08T13:38:40Z",
+      "side": 1,
+      "message": "Breaks some notifications (weather, charging for example)",
+      "revId": "5e481d10861e251342dc2dd4d6c56a5f9f84b0aa",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

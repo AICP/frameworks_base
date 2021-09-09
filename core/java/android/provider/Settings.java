@@ -7209,6 +7209,12 @@ public final class Settings {
          */
         public static final String FP_WAKE_UNLOCK = "fp_wake_unlock";
 
+        /**
+         * Use app icons for notification
+         * @hide
+         */
+        public static final String APP_ICON_NOTIFICATION = "app_icon_notification";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7486,6 +7492,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(DISPLAY_HIDE_NOTCH, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(LOCKSCREEN_BLUR, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(FP_WAKE_UNLOCK, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(APP_ICON_NOTIFICATION, BOOLEAN_VALIDATOR);
         }
 
         /**

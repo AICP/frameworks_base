@@ -128,7 +128,7 @@ public class StatusBarIconView extends AnimatedImageView implements StatusIconDi
     };
 
     private boolean mAlwaysScaleIcon;
-    private static boolean mIsSystemUI;
+    private static boolean mAppIconForNotification;
     private int mStatusBarIconDrawingSizeIncreased = 1;
     private int mStatusBarIconDrawingSize = 1;
     private int mStatusBarIconSize = 1;
@@ -216,6 +216,7 @@ public class StatusBarIconView extends AnimatedImageView implements StatusIconDi
         mDozer = new NotificationIconDozeHelper(context);
         mBlocked = false;
         mAlwaysScaleIcon = true;
+        mAppIconForNotification = false;
         reloadDimens();
         maybeUpdateIconScaleDimens();
         mDensity = context.getResources().getDisplayMetrics().densityDpi;
@@ -465,9 +466,8 @@ public class StatusBarIconView extends AnimatedImageView implements StatusIconDi
 
         Drawable icon;
         String pkgName = statusBarIcon.pkg;
-        mIsSystemUI = pkgName.contains("systemui");
         try {
-            icon = mIsSystemUI ? statusBarIcon.icon.loadDrawableAsUser(context, userId)
+            icon = !mAppIconForNotification ? statusBarIcon.icon.loadDrawableAsUser(context, userId)
                                : context.getPackageManager().getApplicationIcon(pkgName);
         } catch (android.content.pm.PackageManager.NameNotFoundException e) {
             icon = statusBarIcon.icon.loadDrawableAsUser(context, userId);
@@ -663,7 +663,7 @@ public class StatusBarIconView extends AnimatedImageView implements StatusIconDi
 
     private void initializeDecorColor() {
         if (mNotification != null) {
-            if (mNotification.getPackageName().contains("systemui")) {
+            if (!mAppIconForNotification) {
                 setDecorColor(getContext().getColor(mNightMode
                         ? com.android.internal.R.color.notification_default_color_dark
                         : com.android.internal.R.color.notification_default_color_light));
@@ -687,8 +687,7 @@ public class StatusBarIconView extends AnimatedImageView implements StatusIconDi
      * transitioning this also immediately sets the color.
      */
     public void setStaticDrawableColor(int color) {
-        if (mNotification == null) return;
-        if (mNotification.getPackageName().contains("systemui")) { //if (mIsSystemUI) {
+        if (!mAppIconForNotification) {
             mDrawableColor = color;
             setColorInternal(color);
             updateContrastedStaticColor();
@@ -698,11 +697,8 @@ public class StatusBarIconView extends AnimatedImageView implements StatusIconDi
     }
 
     private void setColorInternal(int color) {
-        if (mNotification == null) return;
-        if (mNotification.getPackageName().contains("systemui")) { //if (mIsSystemUI) {
-            mCurrentSetColor = color;
-            updateIconColor();
-        }
+        mCurrentSetColor = color;
+        updateIconColor();
     }
 
     private void updateIconColor() {
@@ -711,22 +707,19 @@ public class StatusBarIconView extends AnimatedImageView implements StatusIconDi
             return;
         }
 
-        if (mNotification == null) return;
-        if (mNotification.getPackageName().contains("systemui")) { //if (mIsSystemUI) {
-            if (mCurrentSetColor != NO_COLOR) {
-                if (mMatrixColorFilter == null) {
-                    mMatrix = new float[4 * 5];
-                    mMatrixColorFilter = new ColorMatrixColorFilter(mMatrix);
-                }
-                int color = NotificationUtils.interpolateColors(
-                        mCurrentSetColor, Color.WHITE, mDozeAmount);
-                updateTintMatrix(mMatrix, color, DARK_ALPHA_BOOST * mDozeAmount);
-                mMatrixColorFilter.setColorMatrixArray(mMatrix);
-                setColorFilter(null);  // setColorFilter only invalidates if the instance changed.
-                setColorFilter(mMatrixColorFilter);
-            } else {
-                mDozer.updateGrayscale(this, mDozeAmount);
+        if (mCurrentSetColor != NO_COLOR && !mAppIconForNotification) {
+            if (mMatrixColorFilter == null) {
+                mMatrix = new float[4 * 5];
+                mMatrixColorFilter = new ColorMatrixColorFilter(mMatrix);
             }
+            int color = NotificationUtils.interpolateColors(
+                    mCurrentSetColor, Color.WHITE, mDozeAmount);
+            updateTintMatrix(mMatrix, color, DARK_ALPHA_BOOST * mDozeAmount);
+            mMatrixColorFilter.setColorMatrixArray(mMatrix);
+            setColorFilter(null);  // setColorFilter only invalidates if the instance changed.
+            setColorFilter(mMatrixColorFilter);
+        } else {
+            mDozer.updateGrayscale(this, mDozeAmount);
         }
     }
 
@@ -743,8 +736,7 @@ public class StatusBarIconView extends AnimatedImageView implements StatusIconDi
     }
 
     public void setIconColor(int iconColor, boolean animate) {
-        if (mNotification == null) return;
-        if (mNotification.getPackageName().contains("systemui")) { //if (mIsSystemUI) {
+        if (!mAppIconForNotification) {
             if (mIconColor != iconColor) {
                 mIconColor = iconColor;
                 if (mColorAnimator != null) {
@@ -775,8 +767,7 @@ public class StatusBarIconView extends AnimatedImageView implements StatusIconDi
     }
 
     public int getStaticDrawableColor() {
-        if (mNotification == null) return mDrawableColor;
-        return mNotification.getPackageName().contains("systemui") /*mIsSystemUI*/ ? mDrawableColor : 0;
+        return !mAppIconForNotification ? mDrawableColor : 0;
     }
 
     /**
@@ -795,8 +786,7 @@ public class StatusBarIconView extends AnimatedImageView implements StatusIconDi
     }
 
     private void updateContrastedStaticColor() {
-        if (mNotification == null) return;
-        if (mNotification.getPackageName().contains("systemui")) { //if (mIsSystemUI) {
+        if (!mAppIconForNotification) {
             if (Color.alpha(mCachedContrastBackgroundColor) != 255) {
                 mContrastedDrawableColor = mDrawableColor;
                 return;
@@ -1087,6 +1077,14 @@ public class StatusBarIconView extends AnimatedImageView implements StatusIconDi
         return mShowsConversation;
     }
 
+    /**
+     * @return if app icon is used for notification
+     */
+    public boolean usesAppIconForNotification() {
+        return Settings.System.getIntForUser(getContext().getContentResolver(),
+                Settings.System.APP_ICON_NOTIFICATION, 0, UserHandle.USER_CURRENT) == 1;
+    }
+
     public interface OnVisibilityChangedListener {
         void onVisibilityChanged(int newVisibility);
     }
@@ -1126,6 +1124,9 @@ public class StatusBarIconView extends AnimatedImageView implements StatusIconDi
             mContext.getContentResolver().registerContentObserver(
                     Settings.System.getUriFor(Settings.System.STATUS_BAR_NOTIF_COUNT),
                     false, this);
+            mContext.getContentResolver().registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.APP_ICON_NOTIFICATION),
+                    false, this);
         }
 
         void unobserve() {
@@ -1140,6 +1141,8 @@ public class StatusBarIconView extends AnimatedImageView implements StatusIconDi
                 sbiv.mShowNotificationCount = showIconCount;
                 sbiv.set(sbiv.mIcon, true);
             }
+            mAppIconForNotification = Settings.System.getIntForUser(mContext.getContentResolver(),
+                    Settings.System.APP_ICON_NOTIFICATION, 0, UserHandle.USER_CURRENT) == 1;
         }
     }
 }

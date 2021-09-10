@@ -6972,6 +6972,11 @@ public final class Settings {
           */
         public static final String GAMING_MODE_USE_GAME_DRIVER = "gaming_mode_use_game_driver";
 
+         /**
+          * @hide
+          */
+        public static final String GAMING_MODE_USE_OVERLAY_MENU = "gaming_mode_use_overlay_menu";
+
         /**
         * Launch custom activity when using the long right back swipe app action
          *

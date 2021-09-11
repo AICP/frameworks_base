@@ -295,17 +295,20 @@ public class AndroidSDP3ClockController implements ClockPlugin {
             SliceItem item = rc.getSliceItem();
             final Uri itemTag = item.getSlice().getUri();
             final boolean isDateSlice = itemTag.toString().equals(KeyguardSliceProvider.KEYGUARD_DATE_URI);
+            final boolean isWeatherSlice = itemTag.toString().equals(KeyguardSliceProvider.KEYGUARD_WEATHER_URI);
             // Try to reuse the view if already exists in the layout
             KeyguardSliceTextView button = mRow.findViewWithTag(itemTag);
             if (button == null) {
                 button = new KeyguardSliceTextView(mContext);
+                button.setShouldTintDrawable(!isWeatherSlice);
                 button.setTextSize(isDateSlice ? mTitleTextSize : mSliceTextSize);
                 button.setGravity(Gravity.START);
                 button.setTextColor(blendedColor);
                 button.setTag(itemTag);
-                final int viewIndex = i - (mHasHeader ? 0 : 0);
+                final int viewIndex = i - (mHasHeader ? 1 : 0);
                 mRow.addView(button, viewIndex);
             } else {
+                button.setShouldTintDrawable(!isWeatherSlice);
                 button.setTextSize(isDateSlice ? mTitleTextSize : mSliceTextSize);
                 button.setGravity(Gravity.START);
             }

@@ -162,7 +162,7 @@ public final class ClockManager {
         addBuiltinClock(() -> new DividedLinesClockController(res, layoutInflater, colorExtractor));
         addBuiltinClock(() -> new FluidClockController(res, layoutInflater, colorExtractor));
         addBuiltinClock(() -> new ShapeShiftClockController(res, layoutInflater, colorExtractor));
-        addBuiltinClock(() -> new IDEClockController(res, layoutInflater, colorExtractor, context));
+        addBuiltinClock(() -> new IDEClockController(res, layoutInflater, colorExtractor));
         addBuiltinClock(() -> new BinaryClockController(res, layoutInflater, colorExtractor));
         addBuiltinClock(() -> new MNMLBoxClockController(res, layoutInflater, colorExtractor));
         addBuiltinClock(() -> new MNMLMinimalClockController(res, layoutInflater, colorExtractor));

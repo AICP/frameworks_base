@@ -91,29 +91,17 @@ public class IDEClockController implements ClockPlugin {
     /**
      * Create a DefaultClockController instance.
      *
-     * @param res            Resources contains title and thumbnail.
-     * @param inflater       Inflater used to inflate custom clock views.
-     * @param colorExtractor Extracts accent color from wallpaper.
-     */
-    public IDEClockController(Resources res, LayoutInflater inflater,
-            SysuiColorExtractor colorExtractor) {
-        this(res, inflater, colorExtractor, null);
-    }
-
-    /**
-     * Create a DefaultClockController instance.
-     *
      * @param res Resources contains title and thumbnail.
      * @param inflater Inflater used to inflate custom clock views.
      * @param colorExtractor Extracts accent color from wallpaper.
      * @param context A context.
      */
     public IDEClockController(Resources res, LayoutInflater inflater,
-            SysuiColorExtractor colorExtractor, Context context) {
+            SysuiColorExtractor colorExtractor) {
         mResources = res;
         mLayoutInflater = inflater;
         mColorExtractor = colorExtractor;
-        mContext = context;
+        mContext = mLayoutInflater.getContext();
     }
 
     private void createViews() {

@@ -19,38 +19,26 @@ import static android.app.slice.Slice.HINT_LIST_ITEM;
 
 import android.animation.ValueAnimator;
 import android.app.PendingIntent;
-import android.app.WallpaperManager;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.graphics.text.LineBreaker;
 import android.graphics.Typeface;
 import android.graphics.Paint.Style;
-import android.icu.text.DateFormat;
-import android.icu.text.DisplayContext;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.text.Html;
-import android.transition.ChangeBounds;
 import android.transition.Fade;
-import android.transition.Transition;
 import android.transition.TransitionManager;
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextClock;
 import android.widget.TextView;
 
-import com.android.internal.colorextraction.ColorExtractor;
 import com.android.internal.graphics.ColorUtils;
-import com.android.internal.util.Converter;
 import com.android.settingslib.Utils;
-import com.android.systemui.Dependency;
 import com.android.systemui.R;
 import com.android.systemui.colorextraction.SysuiColorExtractor;
 import com.android.systemui.plugins.ClockPlugin;
@@ -59,43 +47,32 @@ import com.android.systemui.keyguard.KeyguardSliceProvider;
 import com.android.keyguard.KeyguardSliceView.KeyguardSliceTextView;
 import com.android.keyguard.KeyguardSliceView.Row;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 import androidx.slice.Slice;
 import androidx.slice.SliceItem;
-import androidx.slice.SliceViewManager;
 import androidx.slice.core.SliceQuery;
 import androidx.slice.widget.ListContent;
 import androidx.slice.widget.RowContent;
 import androidx.slice.widget.SliceContent;
-import androidx.slice.widget.SliceLiveData;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.TimeZone;
-
-import static com.android.systemui.statusbar.phone
-        .KeyguardClockPositionAlgorithm.CLOCK_USE_DEFAULT_Y;
 
 /**
  * Plugin for the default clock face used only to provide a preview.
  */
 public class AndroidSClockController implements ClockPlugin {
 
-    private final float mTextSizeNormal = 38f;
-    private final float mTextSizeBig = 50f;
-    private final float mSliceTextSize = 24f;
-    private final float mTitleTextSize = 28f;
+    private float mTextSizeNormal;
+    private float mTextSizeBig;
+    private float mRowTextSize;
     private boolean mHasVisibleNotification = false;
     private boolean mClockState = false;
-    private float clockDividY = 6f;
+    private float mClockDivideY = 6f;
 
     /**
      * Resources used to get title and thumbnail.
@@ -118,6 +95,11 @@ public class AndroidSClockController implements ClockPlugin {
     private final ViewPreviewer mRenderer = new ViewPreviewer();
 
     /**
+     * Helper to extract colors from wallpaper palette for clock face.
+     */
+    private final ClockPalette mPalette = new ClockPalette();
+
+    /**
      * Root view of clock.
      */
     private ClockLayout mView;
@@ -136,14 +118,9 @@ public class AndroidSClockController implements ClockPlugin {
     private Row mRow;
     private TextView mTitle;
     private int mIconSize;
-    private int mIconSizeWithHeader;
     private Slice mSlice;
     private boolean mHasHeader;
-    private final int mRowWithHeaderPadding;
-    private final int mRowPadding;
-    private float mRowTextSize;
-    private float mRowWithHeaderTextSize;
-    private final HashMap<View, PendingIntent> mClickActions;
+    private final HashMap<View, PendingIntent> mClickActions = new HashMap<>();
     private Uri mKeyguardSliceUri;
 
     private int mTextColor;
@@ -151,11 +128,6 @@ public class AndroidSClockController implements ClockPlugin {
     private int mRowHeight = 0;
 
     private Typeface mSliceTypeface;
-
-    /**
-     * Time and calendars to check the date
-     */
-    private final Calendar mTime = Calendar.getInstance(TimeZone.getDefault());
 
     /**
      * Create a DefaultClockController instance.
@@ -168,11 +140,8 @@ public class AndroidSClockController implements ClockPlugin {
             SysuiColorExtractor colorExtractor) {
         mResources = res;
         mLayoutInflater = inflater;
-        mContext = mLayoutInflater.getContext();
         mColorExtractor = colorExtractor;
-        mClickActions = new HashMap<>();
-        mRowPadding = mResources.getDimensionPixelSize(R.dimen.subtitle_clock_padding);
-        mRowWithHeaderPadding = mResources.getDimensionPixelSize(R.dimen.header_subtitle_padding);
+        mContext = mLayoutInflater.getContext();
     }
 
     private void createViews() {
@@ -190,14 +159,16 @@ public class AndroidSClockController implements ClockPlugin {
 
         mTitle = mView.findViewById(R.id.title);
         mRow = mView.findViewById(R.id.row);
-        mIconSize = (int) mContext.getResources().getDimension(R.dimen.widget_icon_size);
-        mIconSizeWithHeader = (int) mContext.getResources().getDimension(R.dimen.header_icon_size);
-        mRowTextSize = mContext.getResources().getDimensionPixelSize(
-                R.dimen.widget_label_font_size);
-        mRowWithHeaderTextSize = mContext.getResources().getDimensionPixelSize(
-                R.dimen.header_row_font_size);
+
+        mTextSizeNormal = mContext.getResources().getDimension(R.dimen.sclock_clock_font_size);
+        mTextSizeBig =  mContext.getResources().getDimension(R.dimen.sclock_big_clock_font_size);
+
+        mIconSize = (int) mContext.getResources().getDimension(R.dimen.sclock_icon_size);
+        mRowTextSize = mContext.getResources().getDimension(R.dimen.sclock_date_font_size);
         mTextColor = Utils.getColorAttrDefaultColor(mContext, R.attr.wallpaperTextColor);
         mSliceTypeface = mClock.getTypeface();
+
+        animate();
     }
 
     @Override
@@ -248,7 +219,7 @@ public class AndroidSClockController implements ClockPlugin {
 
     @Override
     public int getPreferredY(int totalHeight) {
-        return (int) (totalHeight / clockDividY);
+        return (int) (totalHeight / mClockDivideY);
     }
 
     @Override
@@ -256,11 +227,18 @@ public class AndroidSClockController implements ClockPlugin {
 
     @Override
     public void setTextColor(int color) {
-        mClock.setTextColor(color);
+        updateColor();
     }
 
     @Override
-    public void setColorPalette(boolean supportsDarkText, int[] colorPalette) {}
+    public void setColorPalette(boolean supportsDarkText, int[] colorPalette) {
+        mPalette.setColorPalette(supportsDarkText, colorPalette);
+        updateColor();
+    }
+
+    private void updateColor() {
+        mClock.setTextColor(mPalette.getSecondaryColor());
+    }
 
     @Override
     public void setSlice(Slice slice) {
@@ -294,12 +272,11 @@ public class AndroidSClockController implements ClockPlugin {
             mTitle.setVisibility(View.GONE);
         } else {
             mTitle.setVisibility(View.VISIBLE);
-
             RowContent header = lc.getHeader();
             SliceItem mainTitle = header.getTitleItem();
             CharSequence title = mainTitle != null ? mainTitle.getText() : null;
             mTitle.setText(title);
-            mTitle.setTextSize(mTitleTextSize);
+            mTitle.setTextSize(mRowTextSize);
             if (mSliceTypeface != null) mTitle.setTypeface(mSliceTypeface);
             if (header.getPrimaryAction() != null
                     && header.getPrimaryAction().getAction() != null) {
@@ -311,25 +288,25 @@ public class AndroidSClockController implements ClockPlugin {
             RowContent rc = (RowContent) subItems.get(i);
             SliceItem item = rc.getSliceItem();
             final Uri itemTag = item.getSlice().getUri();
-            final boolean isDateSlice = itemTag.toString().equals(KeyguardSliceProvider.KEYGUARD_DATE_URI);
             // Try to reuse the view if already exists in the layout
             KeyguardSliceTextView button = mRow.findViewWithTag(itemTag);
             if (button == null) {
                 button = new KeyguardSliceTextView(mContext);
-                button.setTextSize(isDateSlice ? mTitleTextSize : mSliceTextSize);
+                button.setTextSize(mRowTextSize);
                 button.setTextColor(blendedColor);
                 button.setGravity(Gravity.START);
                 button.setTag(itemTag);
-                final int viewIndex = i - (mHasHeader ? 0 : 0);
+                final int viewIndex = i - (mHasHeader ? 1 : 0);
                 mRow.addView(button, viewIndex);
             } else {
-                button.setTextSize(isDateSlice ? mTitleTextSize : mSliceTextSize);
+                button.setTextSize(mRowTextSize);
                 button.setGravity(Gravity.START);
             }
 
             if (mSliceTypeface != null) button.setTypeface(mSliceTypeface);
             // button.setVisibility(isDateSlice ? View.GONE : View.VISIBLE);
 
+            /*
             LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) button.getLayoutParams();
             layoutParams.height = LinearLayout.LayoutParams.WRAP_CONTENT;
             layoutParams.width = LinearLayout.LayoutParams.MATCH_PARENT;
@@ -337,6 +314,7 @@ public class AndroidSClockController implements ClockPlugin {
             layoutParams.topMargin = 8;
             layoutParams.bottomMargin = 8;
             button.setLayoutParams(layoutParams);
+            */
 
             PendingIntent pendingIntent = null;
             if (rc.getPrimaryAction() != null) {
@@ -346,18 +324,18 @@ public class AndroidSClockController implements ClockPlugin {
 
             final SliceItem titleItem = rc.getTitleItem();
             button.setText(titleItem == null ? null : titleItem.getText());
+            button.setTextSize(mRowTextSize);
             button.setContentDescription(rc.getContentDescription());
 
             Drawable iconDrawable = null;
             SliceItem icon = SliceQuery.find(item.getSlice(),
                     android.app.slice.SliceItem.FORMAT_IMAGE);
             if (icon != null) {
-                final int iconSize = Converter.dpToPx(mContext, (((int) mSliceTextSize) - 4));
                 iconDrawable = icon.getIcon().loadDrawable(mContext);
                 if (iconDrawable != null) {
                     final int width = (int) (iconDrawable.getIntrinsicWidth()
-                            / (float) iconDrawable.getIntrinsicHeight() * (iconSize));
-                    iconDrawable.setBounds(0, 0, Math.max(width, 1), (iconSize));
+                            / (float) iconDrawable.getIntrinsicHeight() * (mIconSize));
+                    iconDrawable.setBounds(0, 0, width, mIconSize);
                 }
             }
             button.setCompoundDrawables(iconDrawable, null, null, null);
@@ -392,21 +370,21 @@ public class AndroidSClockController implements ClockPlugin {
     }
 
     private void animate() {
-        final float differenceSize = mTextSizeBig - mTextSizeNormal;
+        getView();
         if (!mHasVisibleNotification) {
             if (!mClockState) {
                 mClock.animate()
                             .setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                                 @Override
                                 public void onAnimationUpdate(ValueAnimator animation) {
-                                    mClock.setTextSize((float) Converter.dpToPx(mContext, (int) (mTextSizeNormal + (differenceSize * animation.getAnimatedFraction()))));
+                                    mClock.setTextSize(mTextSizeBig);
                                     mClock.requestLayout();
                                 }
                             })
-                            .setDuration(550)
+                            .setDuration(350)
                             .withStartAction(() -> {
                                 TransitionManager.beginDelayedTransition(mContainer,
-                                new Fade().setDuration(550).addTarget(mContainer));
+                                new Fade().setDuration(350).addTarget(mContainer));
                                 mContainerSetBig.applyTo(mContainer);
                             })
                             .withEndAction(() -> {
@@ -421,14 +399,14 @@ public class AndroidSClockController implements ClockPlugin {
                             .setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                                 @Override
                                 public void onAnimationUpdate(ValueAnimator animation) {
-                                    mClock.setTextSize((float) Converter.dpToPx(mContext, (int) (mTextSizeNormal + (differenceSize * (1f - animation.getAnimatedFraction())))));
+                                    mClock.setTextSize(mTextSizeNormal);
                                     mClock.requestLayout();
                                 }
                             })
-                            .setDuration(550)
+                            .setDuration(350)
                             .withStartAction(() -> {
                                 TransitionManager.beginDelayedTransition(mContainer,
-                                new Fade().setDuration(550).addTarget(mContainer));
+                                new Fade().setDuration(350).addTarget(mContainer));
                                 mContainerSet.applyTo(mContainer);
                             })
                             .withEndAction(() -> {
@@ -450,10 +428,10 @@ public class AndroidSClockController implements ClockPlugin {
         mView.setDarkAmount(darkAmount);
         for (int i = 0; i < mRow.getChildCount(); i++) {
             KeyguardSliceTextView child = (KeyguardSliceTextView) mRow.getChildAt(i);
-            final boolean isDateSlice = child.getTag().toString().equals(KeyguardSliceProvider.KEYGUARD_DATE_URI);
-            child.setTextSize((isDateSlice ? mTitleTextSize : mSliceTextSize) + (8f * darkAmount));
+            child.setTextSize(mRowTextSize);
+
         }
-        mTitle.setTextSize(mTitleTextSize + (8f * darkAmount));
+        mTitle.setTextSize(mRowTextSize);
         mRow.setDarkAmount(darkAmount);
         mTitle.requestLayout();
         mRow.requestLayout();

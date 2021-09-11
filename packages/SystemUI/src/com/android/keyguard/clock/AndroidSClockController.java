@@ -288,6 +288,7 @@ public class AndroidSClockController implements ClockPlugin {
             RowContent rc = (RowContent) subItems.get(i);
             SliceItem item = rc.getSliceItem();
             final Uri itemTag = item.getSlice().getUri();
+            final boolean isWeatherSlice = itemTag.toString().equals(KeyguardSliceProvider.KEYGUARD_WEATHER_URI);
             // Try to reuse the view if already exists in the layout
             KeyguardSliceTextView button = mRow.findViewWithTag(itemTag);
             if (button == null) {
@@ -302,6 +303,7 @@ public class AndroidSClockController implements ClockPlugin {
                 button.setTextSize(mRowTextSize);
                 button.setGravity(Gravity.START);
             }
+            button.setShouldTintDrawable(!isWeatherSlice);
 
             if (mSliceTypeface != null) button.setTypeface(mSliceTypeface);
             // button.setVisibility(isDateSlice ? View.GONE : View.VISIBLE);

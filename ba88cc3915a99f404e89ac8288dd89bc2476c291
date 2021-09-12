@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1fbf4f1_9e99452c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-09-12T12:15:51Z",
+      "side": 1,
+      "message": "Test:\n- Compiles\n- Activating DnD modes(Total silence, Alarms only and Priority only) shows distinct icons at three locations\n  - Lockscreen\n  - Quick Settings Panel\n  - Statusbar",
+      "revId": "ba88cc3915a99f404e89ac8288dd89bc2476c291",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

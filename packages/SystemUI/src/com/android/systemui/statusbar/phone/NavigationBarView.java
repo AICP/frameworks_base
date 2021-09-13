@@ -971,15 +971,16 @@ public class NavigationBarView extends FrameLayout implements
         mRecentsOnboarding.hide(true);
     }
 
-    public void swiftNavigationBarItems(int horizontalShift, int verticalShift) {
+    public void shiftNavigationBarItems(int horizontalShift, int verticalShift) {
         if (mNavigationBarContents == null) {
             return;
         }
-
-        mNavigationBarContents.setPaddingRelative(mBasePaddingLeft + horizontalShift,
-                                              mBasePaddingTop + verticalShift,
-                                              mBasePaddingRight + horizontalShift,
-                                              mBasePaddingBottom - verticalShift);
+        mNavigationBarContents.setPaddingRelative(
+            mBasePaddingLeft + horizontalShift,
+            mBasePaddingTop + verticalShift,
+            mBasePaddingRight + horizontalShift,
+            mBasePaddingBottom - verticalShift
+        );
         invalidate();
     }
 

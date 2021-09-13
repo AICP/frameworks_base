@@ -32,6 +32,10 @@ import com.android.systemui.statusbar.policy.ConfigurationController.Configurati
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+@Singleton
 public class BurnInProtectionController {
     private static final String TAG = "BurnInProtectionController";
     private static final boolean DEBUG = false;
@@ -39,11 +43,11 @@ public class BurnInProtectionController {
 
     private final Context mContext;
     private final Handler mUiHandler;
-    private final StatusBar mStatusBar;
     private final Object mLock = new Object();
     private final boolean mShiftEnabled;
     private final int mShiftInterval;
 
+    private StatusBar mStatusBar;
     private PhoneStatusBarView mPhoneStatusBarView;
     private Timer mTimer;
     // Shift amount in pixels
@@ -52,11 +56,11 @@ public class BurnInProtectionController {
     // Increment / Decrement (based on sign) for each tick
     private int mHorizontalShiftStep, mVerticalShiftStep;
 
-    public BurnInProtectionController(Context context, StatusBar statusBar,
+    @Inject
+    public BurnInProtectionController(Context context,
             ConfigurationController configurationController) {
         mContext = context;
         mUiHandler = new Handler(Looper.getMainLooper());
-        mStatusBar = statusBar;
 
         final Resources res = mContext.getResources();
         mShiftEnabled = res.getBoolean(R.bool.config_statusBarBurnInProtection);
@@ -72,6 +76,10 @@ public class BurnInProtectionController {
                 loadResources(mContext.getResources());
             }
         });
+    }
+
+    public void setStatusBar(StatusBar statusBar) {
+        mStatusBar = statusBar;
     }
 
     public void setPhoneStatusBarView(PhoneStatusBarView phoneStatusBarView) {
@@ -139,9 +147,11 @@ public class BurnInProtectionController {
             if (mPhoneStatusBarView != null) {
                 mPhoneStatusBarView.shiftStatusBarItems(mHorizontalShift, mVerticalShift);
             }
-            final NavigationBarView mNavigationBarView = mStatusBar.getNavigationBarView();
-            if (mNavigationBarView != null) {
-                mNavigationBarView.shiftNavigationBarItems(mHorizontalShift, mVerticalShift);
+            if (mStatusBar != null) {
+                final NavigationBarView mNavigationBarView = mStatusBar.getNavigationBarView();
+                if (mNavigationBarView != null) {
+                    mNavigationBarView.shiftNavigationBarItems(mHorizontalShift, mVerticalShift);
+                }
             }
         });
     }

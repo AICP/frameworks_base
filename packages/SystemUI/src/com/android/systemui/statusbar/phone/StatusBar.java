@@ -1005,6 +1005,7 @@ public class StatusBar extends SystemUI implements DemoMode,
             Lazy<NotificationShadeDepthController> notificationShadeDepthControllerLazy,
             StatusBarTouchableRegionManager statusBarTouchableRegionManager,
             TaskHelper taskHelper,
+            BurnInProtectionController burnInProtectionController,
             FODCircleViewImpl fodCircleViewImpl) {
         super(context);
         mNotificationsController = notificationsController;
@@ -1083,6 +1084,7 @@ public class StatusBar extends SystemUI implements DemoMode,
         mIconPolicy = phoneStatusBarPolicy;
         mDismissCallbackRegistry = dismissCallbackRegistry;
         mTaskHelper = taskHelper;
+        mBurnInProtectionController = burnInProtectionController;
         mFODCircleViewImpl = fodCircleViewImpl;
 
         mBubbleExpandListener =
@@ -1093,8 +1095,7 @@ public class StatusBar extends SystemUI implements DemoMode,
 
         DateTimeView.setReceiverHandler(timeTickHandler);
 
-        mBurnInProtectionController = new BurnInProtectionController(context,
-            this, configurationController);
+        mBurnInProtectionController.setStatusBar(this);
 
         mFingerprintService = IFingerprintService.Stub.asInterface(
                 ServiceManager.getService(Context.FINGERPRINT_SERVICE));

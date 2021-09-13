@@ -97,6 +97,7 @@ import com.android.systemui.statusbar.policy.KeyguardStateController;
 import com.android.systemui.statusbar.policy.NetworkController;
 import com.android.systemui.statusbar.policy.RemoteInputQuickSettingsDisabler;
 import com.android.systemui.statusbar.policy.TaskHelper;
+import com.android.systemui.statusbar.policy.BurnInProtectionController;
 import com.android.systemui.statusbar.policy.UserInfoControllerImpl;
 import com.android.systemui.statusbar.policy.UserSwitcherController;
 import com.android.systemui.volume.VolumeComponent;
@@ -202,6 +203,7 @@ public interface StatusBarPhoneModule {
             DismissCallbackRegistry dismissCallbackRegistry,
             StatusBarTouchableRegionManager statusBarTouchableRegionManager,
             TaskHelper taskHelper,
+            BurnInProtectionController burnInProtectionController,
             FODCircleViewImpl fodCircleViewImpl) {
         return new StatusBar(
                 context,
@@ -282,6 +284,7 @@ public interface StatusBarPhoneModule {
                 notificationShadeDepthController,
                 statusBarTouchableRegionManager,
                 taskHelper,
+                burnInProtectionController,
                 fodCircleViewImpl);
     }
 }

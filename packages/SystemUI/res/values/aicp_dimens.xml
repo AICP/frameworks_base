@@ -75,8 +75,8 @@
     <dimen name="qs_temperatur_icon_size">16sp</dimen>
 
     <!-- Burn-in protection -->
-    <dimen name="horizontal_max_swift">3.0dp</dimen>
-    <dimen name="vertical_max_swift">1.0dp</dimen>
+    <dimen name="horizontal_max_shift">3.0dp</dimen>
+    <dimen name="vertical_max_shift">1.0dp</dimen>
 
     <!-- Custom header -->
     <dimen name="qs_header_image_offset">25dp</dimen>

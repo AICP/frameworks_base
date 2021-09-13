@@ -21,102 +21,132 @@ import android.content.res.Resources;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
-import android.view.View;
 
 import com.android.systemui.R;
 import com.android.systemui.statusbar.phone.PhoneStatusBarView;
 import com.android.systemui.statusbar.phone.NavigationBarView;
 import com.android.systemui.statusbar.phone.StatusBar;
+import com.android.systemui.statusbar.policy.ConfigurationController;
+import com.android.systemui.statusbar.policy.ConfigurationController.ConfigurationListener;;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class BurnInProtectionController {
-
-    private static final String TAG = BurnInProtectionController.class.getSimpleName();
+    private static final String TAG = "BurnInProtectionController";
     private static final boolean DEBUG = false;
+    private static final int TOTAL_SHIFTS_IN_ONE_DIRECTION = 3;
 
-    private boolean mSwiftEnabled;
-    private int mHorizontalShift = 0;
-    private int mVerticalShift = 0;
-    private int mHorizontalDirection = 1;
-    private int mVerticalDirection = 1;
-    private int mNavigationBarHorizontalMaxShift;
-    private int mNavigationBarVerticalMaxShift;
-    private int mHorizontalMaxShift;
-    private int mVerticalMaxShift;
-    private long mShiftInterval;
+    private final Context mContext;
+    private final Handler mUiHandler;
+    private final StatusBar mStatusBar;
+    private final Object mLock = new Object();
+    private final boolean mShiftEnabled;
+    private final int mShiftInterval;
 
-    private Timer mTimer;
-
-    private StatusBar mStatusBar;
     private PhoneStatusBarView mPhoneStatusBarView;
-
-    private Context mContext;
+    private Timer mTimer;
+    // Shift amount in pixels
+    private int mHorizontalShift, mVerticalShift;
+    private int mHorizontalMaxShift, mVerticalMaxShift;
+    // Increment / Decrement (based on sign) for each tick
+    private int mHorizontalShiftStep, mVerticalShiftStep;
 
     public BurnInProtectionController(Context context, StatusBar statusBar,
-                                      PhoneStatusBarView phoneStatusBarView) {
+            ConfigurationController configurationController) {
         mContext = context;
-
+        mUiHandler = new Handler(Looper.getMainLooper());
         mStatusBar = statusBar;
 
-        mPhoneStatusBarView = phoneStatusBarView;
+        final Resources res = mContext.getResources();
+        mShiftEnabled = res.getBoolean(R.bool.config_statusBarBurnInProtection);
+        mShiftInterval = res.getInteger(R.integer.config_shift_interval) * 1000;
+        logD("mShiftEnabled = " + mShiftEnabled + ", mShiftInterval = " + mShiftInterval);
+        loadResources(res);
 
-        mSwiftEnabled = mContext.getResources().getBoolean(
-                R.bool.config_statusBarBurnInProtection);
-        mHorizontalMaxShift = mContext.getResources()
-                .getDimensionPixelSize(R.dimen.horizontal_max_swift);
-        // total of ((vertical_max_swift - 1) * 2) pixels can be moved
-        mVerticalMaxShift = mContext.getResources()
-                .getDimensionPixelSize(R.dimen.vertical_max_swift) - 1;
-        mShiftInterval = (long) mContext.getResources().getInteger(R.integer.config_shift_interval);
+        // Reload resources on configuration change
+        configurationController.addCallback(new ConfigurationListener() {
+            @Override
+            public void onDensityOrFontScaleChanged() {
+                logD("onDensityOrFontScaleChanged");
+                loadResources(mContext.getResources());
+            }
+        });
     }
 
-    public void startSwiftTimer() {
-        if (!mSwiftEnabled) return;
+    public void setPhoneStatusBarView(PhoneStatusBarView phoneStatusBarView) {
+        mPhoneStatusBarView = phoneStatusBarView;
+    }
+
+    public void startShiftTimer() {
+        if (!mShiftEnabled) return;
         if (mTimer == null) {
+            logD("mTimer is set");
             mTimer = new Timer();
         }
         mTimer.schedule(new TimerTask() {
             @Override
             public void run() {
-                final Handler mUiHandler = new Handler(Looper.getMainLooper());
-                mUiHandler.post(() -> {
-                    swiftItems();
-                });
+                shiftItems();
             }
-        }, 0, mShiftInterval * 1000);
-        if (DEBUG) Log.d(TAG, "Started swift timer");
+        }, 0, mShiftInterval);
+        logD("Started swift timer");
     }
 
-    public void stopSwiftTimer() {
-        if (!mSwiftEnabled) return;
-        if (mTimer == null) return;
+    public void stopShiftTimer() {
+        if (!mShiftEnabled || mTimer == null) return;
         mTimer.cancel();
         mTimer.purge();
         mTimer = null;
-        if (DEBUG) Log.d(TAG, "Canceled swift timer");
+        logD("Cancelled swift timer");
     }
 
-    private void swiftItems() {
-        mHorizontalShift += mHorizontalDirection;
-        if ((mHorizontalShift >=  mHorizontalMaxShift) ||
-                (mHorizontalShift <= -mHorizontalMaxShift)) {
-            mHorizontalDirection *= -1;
+    private void loadResources(Resources res)  {
+        synchronized (mLock) {
+            mHorizontalShift = mVerticalShift = 0;
+            mHorizontalMaxShift = res.getDimensionPixelSize(R.dimen.horizontal_max_shift);
+            mHorizontalShiftStep = mHorizontalMaxShift / TOTAL_SHIFTS_IN_ONE_DIRECTION;
+            mVerticalMaxShift = res.getDimensionPixelSize(R.dimen.vertical_max_shift);
+            mVerticalShiftStep = mVerticalMaxShift / TOTAL_SHIFTS_IN_ONE_DIRECTION;
+            logD("mHorizontalMaxShift = " + mHorizontalMaxShift +
+                ", mHorizontalShiftStep = " + mHorizontalShiftStep +
+                ", mVerticalMaxShift = " + mVerticalMaxShift +
+                ", mVerticalShiftStep = " + mVerticalShiftStep);
+        }
+    }
+
+    private void shiftItems() {
+        synchronized (mLock) {
+            mHorizontalShift += mHorizontalShiftStep;
+            if ((mHorizontalShift >=  mHorizontalMaxShift) ||
+                    (mHorizontalShift <= -mHorizontalMaxShift)) {
+                logD("shifting horizontal direction");
+                mHorizontalShiftStep *= -1;
+            }
+
+            mVerticalShift += mVerticalShiftStep;
+            if ((mVerticalShift >=  mVerticalMaxShift) ||
+                    (mVerticalShift <= -mVerticalMaxShift)) {
+                logD("shifting vertical direction");
+                mVerticalShiftStep *= -1;
+            }
         }
 
-        mVerticalShift += mVerticalDirection;
-        if ((mVerticalShift >=  mVerticalMaxShift) ||
-                (mVerticalShift <= -mVerticalMaxShift)) {
-            mVerticalDirection *= -1;
-        }
+        logD("Shifting items, mHorizontalShift = " + mHorizontalShift +
+            ", mVerticalShift = " + mVerticalShift);
 
-        mPhoneStatusBarView.swiftStatusBarItems(mHorizontalShift, mVerticalShift);
-        NavigationBarView mNavigationBarView = mStatusBar.getNavigationBarView();
-        if (mNavigationBarView != null) {
-            mNavigationBarView.swiftNavigationBarItems(mHorizontalShift, mVerticalShift);
-        }
+        mUiHandler.post(() -> {
+            if (mPhoneStatusBarView != null) {
+                mPhoneStatusBarView.shiftStatusBarItems(mHorizontalShift, mVerticalShift);
+            }
+            final NavigationBarView mNavigationBarView = mStatusBar.getNavigationBarView();
+            if (mNavigationBarView != null) {
+                mNavigationBarView.shiftNavigationBarItems(mHorizontalShift, mVerticalShift);
+            }
+        });
+    }
 
-        if (DEBUG) Log.d(TAG, "Swifting items..");
+    private static void logD(String msg) {
+        if (DEBUG) Log.d(TAG, msg);
     }
 }

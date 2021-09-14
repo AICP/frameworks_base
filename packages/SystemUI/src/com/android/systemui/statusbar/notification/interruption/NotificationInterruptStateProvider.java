@@ -67,9 +67,4 @@ public interface NotificationInterruptStateProvider {
      * Limit notifications using a blacklist.
      */
     void setHeadsUpBlacklist(ArrayList<String> arrayList);
-
-    /**
-     * Whether heads-up notification should be skipped when Gaming mode is active.
-     */
-    void setGamingPeekMode(boolean skipHeadsUp);
 }

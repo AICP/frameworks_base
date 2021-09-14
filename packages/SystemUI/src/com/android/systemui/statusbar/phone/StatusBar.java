@@ -530,8 +530,6 @@ public class StatusBar extends SystemUI implements DemoMode,
 
     private PackageMonitor mPackageMonitor;
 
-    private boolean mHeadsUpDisabled, mGamingModeActivated;
-
     // XXX: gesture research
     private final GestureRecorder mGestureRec = DEBUG_GESTURES
         ? new GestureRecorder("/sdcard/statusbar_gestures.dat")
@@ -879,12 +877,6 @@ public class StatusBar extends SystemUI implements DemoMode,
                     Settings.System.FORCE_SHOW_NAVBAR),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.GAMING_MODE_ACTIVE),
-                    false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.GAMING_MODE_HEADSUP_TOGGLE),
-                    false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.NOTIFICATION_MATERIAL_DISMISS),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
@@ -905,6 +897,8 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STOCK_STATUSBAR_IN_HIDE),
                     false, this, UserHandle.USER_ALL);
+=======
+>>>>>>> parent of 2451b0ed7ca2... Bring back Gaming mode [1/2]
         }
 
         @Override
@@ -5187,8 +5181,6 @@ public class StatusBar extends SystemUI implements DemoMode,
         setMaxKeyguardNotifConfig();
         setPulseOnNewTracks();
         updateNavigationBar(false);
-        setGamingModeActive();
-        setGamingModeHeadsupToggle();
         updateDismissAllVisibility(true);
         updateTickerAnimation();
         updateTickerTickDuration();
@@ -5358,18 +5350,6 @@ public class StatusBar extends SystemUI implements DemoMode,
             }
         }
         mShowNavBar = showNavBar;
-    }
-
-    private void setGamingModeActive() {
-        mGamingModeActivated = Settings.System.getIntForUser(mContext.getContentResolver(),
-                Settings.System.GAMING_MODE_ACTIVE, 0, UserHandle.USER_CURRENT) == 1;
-        mNotificationInterruptStateProvider.setGamingPeekMode(mGamingModeActivated && mHeadsUpDisabled);
-    }
-
-    private void setGamingModeHeadsupToggle() {
-        mHeadsUpDisabled = Settings.System.getIntForUser(mContext.getContentResolver(),
-                Settings.System.GAMING_MODE_HEADSUP_TOGGLE, 0, UserHandle.USER_CURRENT) == 1;
-        mNotificationInterruptStateProvider.setGamingPeekMode(mGamingModeActivated && mHeadsUpDisabled);
     }
 
     private String getForegroundPackageNameAndClass() {

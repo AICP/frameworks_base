@@ -48,13 +48,6 @@
     <!-- App killed (Back button long pressed)-->
     <string name="app_killed_message">Application killed</string>
 
-    <!-- Gaming mode -->
-    <string name="notification_channel_gaming">Gaming mode</string>
-    <string name="gaming_mode_notification_title">Gaming mode enabled</string>
-    <string name="gaming_mode_notification_content">Tap to turn off Gaming mode</string>
-    <string name="gaming_mode_enabled_toast">Gaming mode turned on</string>
-    <string name="gaming_mode_disabled_toast">Gaming mode turned off</string>
-
     <!-- Cycle through ringer modes -->
     <string name="volume_dialog_ringer_guidance_normal">Calls and notifications will ring</string>
 

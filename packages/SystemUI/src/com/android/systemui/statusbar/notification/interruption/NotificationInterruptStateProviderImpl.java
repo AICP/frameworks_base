@@ -75,8 +75,6 @@ public class NotificationInterruptStateProviderImpl implements NotificationInter
     @VisibleForTesting
     protected boolean mUseHeadsUp = false;
 
-    private boolean mSkipHeadsUp = false;
-
     private boolean mLessBoringHeadsUp;
     private TelecomManager mTm;
     private Context mContext;
@@ -212,13 +210,6 @@ public class NotificationInterruptStateProviderImpl implements NotificationInter
         }
 
         StatusBarNotification sbn = entry.getSbn();
-
-        if (shouldSkipHeadsUp(sbn)) {
-            if (DEBUG_HEADS_UP) {
-                Log.d(TAG, "No alerting: gaming mode");
-            }
-            return false;
-        }
 
         if (!mUseHeadsUp) {
             if (DEBUG_HEADS_UP) {
@@ -432,25 +423,14 @@ public class NotificationInterruptStateProviderImpl implements NotificationInter
             mHeadsUpBlacklist = arrayList;
     }
 
-    @Override
-    public void setGamingPeekMode(boolean skipHeadsUp) {
-        mSkipHeadsUp = skipHeadsUp;
-    }
-
     private boolean shouldSkipHeadsUp(StatusBarNotification sbn) {
         boolean isImportantHeadsUp = false;
         String notificationPackageName = sbn.getPackageName().toLowerCase();
 
-        // Gaming mode takes precedence since messaging headsup is intrusive
-        if (mSkipHeadsUp) {
-            boolean isNonInstrusive = notificationPackageName.equals(getDefaultDialerPackage(mTm))
-                    || notificationPackageName.contains("clock");
-            return !mStatusBarStateController.isDozing() && mSkipHeadsUp && !isNonInstrusive;
-        }
-
         isImportantHeadsUp = notificationPackageName.equals(getDefaultDialerPackage(mTm))
                 || notificationPackageName.equals(getDefaultSmsPackage(mContext))
                 || notificationPackageName.toLowerCase().contains("clock");
+
         return mLessBoringHeadsUp && !isImportantHeadsUp;
     }
 

@@ -7446,5 +7446,7 @@ message MetricsEvent {
     PANEL_MOBILE_DATA = 2002;
     // Panel for Bluetooth
     PANEL_BLUETOOTH = 2003;
+
+    AICP = 4200;
   }
 }

@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3aa9abe1_9be9db31",
+        "filename": "proto/src/metrics_constants/metrics_constants.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 7450,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2021-09-15T05:59:44Z",
+      "side": 1,
+      "message": "Line 4206. We do have them defined..",
+      "range": {
+        "startLine": 7450,
+        "startChar": 0,
+        "endLine": 7450,
+        "endChar": 16
+      },
+      "revId": "0928cc41fa024507fd3a222251e3146f4f0257a3",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

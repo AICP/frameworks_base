@@ -286,4 +286,7 @@
 
   <!-- Whether to show settings for hiding notch fill -->
   <java-symbol type="bool" name="config_showHideNotchSettings" />
+
+  <!-- Wheter device supports an gaming mode profiles -->
+  <java-symbol type="bool" name="config_gamingmode_performance" />
 </resources>

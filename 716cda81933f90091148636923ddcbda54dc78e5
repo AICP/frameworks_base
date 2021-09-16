@@ -16,6 +16,23 @@
       "message": "Waiting for review from George.",
       "revId": "716cda81933f90091148636923ddcbda54dc78e5",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff9eae30_15369039",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-09-16T13:33:49Z",
+      "side": 1,
+      "message": "Test:\n- Compiles\n- The weather icons from third-party icon sets such as [1] doesn\u0027t appear whitewashed when using AndroidS or AndroidSDP3 clocks\n\n\n1. https://play.google.com/store/apps/details?id\u003dnjad.faded.chronus.weather",
+      "revId": "716cda81933f90091148636923ddcbda54dc78e5",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

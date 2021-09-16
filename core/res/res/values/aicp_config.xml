@@ -317,4 +317,7 @@
 
     <!-- FOD pressed color-->
     <bool name="config_supportsInDisplayFingerprintGesture">false</bool>
+
+    <!-- Wheter device supports an gaming mode profiles -->
+    <bool name="config_gamingmode_performance">false</bool>
 </resources>

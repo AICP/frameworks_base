@@ -4896,6 +4896,12 @@ public final class Settings {
         public static final String FOD_ICON_ACCENT_DEFAULT_COLOR = "fod_icon_accent_default_color";
 
         /**
+         * FOD recognizing animation
+         * @hide
+         */
+         public static final String FOD_RECOGNIZING_ANIMATION = "fod_recognizing_animation";
+
+        /**
          * IMPORTANT: If you add a new public settings you also have to add it to
          * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
          * it to PRIVATE_SETTINGS below. Also add a validator that can validate
@@ -5035,6 +5041,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(FOD_ICON);
             PRIVATE_SETTINGS.add(FOD_ICON_WALLPAPER_COLOR);
             PRIVATE_SETTINGS.add(FOD_ICON_ACCENT_DEFAULT_COLOR);
+            PRIVATE_SETTINGS.add(FOD_RECOGNIZING_ANIMATION);
         }
 
         /**
@@ -7489,6 +7496,7 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(FOD_ICON, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(FOD_ICON_WALLPAPER_COLOR, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(FOD_ICON_ACCENT_DEFAULT_COLOR, BOOLEAN_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(FOD_RECOGNIZING_ANIMATION, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(USE_NEW_SEARCHBAR, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(RINGTONE_VIBRATION_PATTERN, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(CUSTOM_RINGTONE_VIBRATION_PATTERN, ANY_STRING_VALIDATOR);

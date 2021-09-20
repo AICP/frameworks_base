@@ -81,6 +81,7 @@ public class FODCircleView extends ImageView {
     private final WindowManager.LayoutParams mPressedParams = new WindowManager.LayoutParams();
     private final WindowManager mWindowManager;
     private final FODAnimation mFODAnimation;
+    private boolean mIsRecognizingAnimEnabled;
 
     private IFingerprintInscreen mFingerprintInscreenDaemon;
 
@@ -390,7 +391,9 @@ public class FODCircleView extends ImageView {
 
         if (event.getAction() == MotionEvent.ACTION_DOWN && newIsInside) {
             showCircle();
-            mFODAnimation.showFODAnimation();
+            if (mIsRecognizingAnimEnabled) {
+                mFODAnimation.showFODAnimation();
+            }
             return true;
         } else if (event.getAction() == MotionEvent.ACTION_UP) {
             hideCircle();
@@ -507,6 +510,9 @@ public class FODCircleView extends ImageView {
 
     private void setFODIcon() {
         int fodicon = getFODIcon();
+
+        mIsRecognizingAnimEnabled = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.FOD_RECOGNIZING_ANIMATION, 0) != 0;
 
         switch (fodicon){
             case 0:

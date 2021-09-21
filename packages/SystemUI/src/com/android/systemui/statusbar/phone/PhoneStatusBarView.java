@@ -70,6 +70,8 @@ public class PhoneStatusBarView extends PanelBar implements Callbacks, TunerServ
     private int mBasePaddingBottom;
     private int mLeftPad;
     private int mRightPad;
+    private int mLeftPadDefault;
+    private int mRightPadDefault;
     private int mBasePaddingTop;
 
     private ViewGroup mStatusBarContents;
@@ -167,8 +169,13 @@ public class PhoneStatusBarView extends PanelBar implements Callbacks, TunerServ
 
         mBasePaddingTop = mStatusBarContents.getPaddingTop();
         mBasePaddingBottom = mStatusBarContents.getPaddingBottom();
-		Dependency.get(TunerService.class).addTunable(this,
-                LEFT_PADDING, RIGHT_PADDING);
+
+        mLeftPadDefault = getResources().getInteger(com.android.internal.R.integer.config_statusbarPaddingStartDefault);
+        mRightPadDefault = getResources().getInteger(com.android.internal.R.integer.config_statusbarPaddingEndDefault);
+
+        Dependency.get(TunerService.class).addTunable(this,
+            LEFT_PADDING,
+            RIGHT_PADDING);
 
         updateResources();
     }
@@ -454,13 +461,13 @@ public class PhoneStatusBarView extends PanelBar implements Callbacks, TunerServ
     @Override
     public void onTuningChanged(String key, String newValue) {
         if (LEFT_PADDING.equals(key)) {
-            int mLPadding = TunerService.parseInteger(newValue, 0);
+            int lPadding = TunerService.parseInteger(newValue, mLeftPadDefault);
             mLeftPad = Math.round(TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP, mLPadding,
                 getResources().getDisplayMetrics()));
             updateStatusBarHeight();
         } else if (RIGHT_PADDING.equals(key)) {
-            int mRPadding = TunerService.parseInteger(newValue, 0);
+            int rPadding = TunerService.parseInteger(newValue, mRightPadDefault);
             mRightPad = Math.round(TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP, mRPadding,
                 getResources().getDisplayMetrics()));

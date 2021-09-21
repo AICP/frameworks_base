@@ -289,4 +289,8 @@
 
   <!-- Wheter device supports an gaming mode profiles -->
   <java-symbol type="bool" name="config_gamingmode_performance" />
+
+    <!-- Statusbar Left-Right padding -->
+  <java-symbol type="integer" name="config_statusbarPaddingStartDefault" />
+  <java-symbol type="integer" name="config_statusbarPaddingEndDefault" />
 </resources>

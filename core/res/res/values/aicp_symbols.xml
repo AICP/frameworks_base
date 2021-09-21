@@ -165,4 +165,7 @@
   <java-symbol type="bool" name="config_multiColorBatteryLed" />
   <java-symbol type="bool" name="config_ledCanPulse" />
 
+  <!-- Statusbar Left-Right padding -->
+  <java-symbol type="integer" name="config_statusbarPaddingStartDefault" />
+  <java-symbol type="integer" name="config_statusbarPaddingEndDefault" />
 </resources>

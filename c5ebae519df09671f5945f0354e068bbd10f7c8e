@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74093148_561dda55",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2021-09-21T07:21:19Z",
+      "side": 1,
+      "message": "Needs AE part. Will ease the life with setting on air instead of setting in device tree overlays. ",
+      "revId": "c5ebae519df09671f5945f0354e068bbd10f7c8e",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

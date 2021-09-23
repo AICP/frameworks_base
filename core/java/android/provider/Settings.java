@@ -6940,6 +6940,11 @@ public final class Settings {
         /**
           * @hide
           */
+        public static final String GAMING_MODE_SHOW_FPSINFO = "gaming_mode_show_fpsinfo";
+
+        /**
+          * @hide
+          */
         public static final String GAMING_MODE_DANMAKU_SPEED_HORIZONTAL = "gaming_mode_danmaku_speed_horizontal";
 
         /**

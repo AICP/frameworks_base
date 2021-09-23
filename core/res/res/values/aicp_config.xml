@@ -317,4 +317,7 @@
 
     <!-- Wheter device supports an gaming mode profiles -->
     <bool name="config_gamingmode_performance">false</bool>
+
+    <!-- Gaming Mode FPSInfoService FPS node file path -->
+    <string name="config_gamingmode_fpsInfoSysNode" translatable="false"></string>
 </resources>

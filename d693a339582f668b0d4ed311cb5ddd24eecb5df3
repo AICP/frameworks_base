@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ddaac62_0121acc0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2021-09-26T21:43:04Z",
+      "side": 1,
+      "message": "build fails with http://haste.aicp-rom.com/olosinaved.coffeescript",
+      "revId": "d693a339582f668b0d4ed311cb5ddd24eecb5df3",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

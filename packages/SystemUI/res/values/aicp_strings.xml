@@ -369,4 +369,8 @@
     <string name="accessibility_quick_settings_gaming_mode_disabled">Gaming mode turned off.</string>
     <!-- Content description of the Gaming mode tile in quick settings when enabled (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_gaming_mode_enabled">Gaming mode turned on.</string>
+
+    <!-- Aicp PartsBin Tile -->
+    <string name="quick_aicp_partsbin_label">AICP PartsBin</string>
+    <string name="quick_aicp_partsbin_toast">LOL, you really thought that long click would take you somewhere!!!</string>
 </resources>

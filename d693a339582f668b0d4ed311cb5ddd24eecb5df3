@@ -16,6 +16,52 @@
       "message": "build fails with http://haste.aicp-rom.com/olosinaved.coffeescript",
       "revId": "d693a339582f668b0d4ed311cb5ddd24eecb5df3",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f60fc98_309472d0",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBarView.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 774
+      },
+      "writtenOn": "2021-09-27T05:55:58Z",
+      "side": 1,
+      "message": "lPadding",
+      "range": {
+        "startLine": 466,
+        "startChar": 45,
+        "endLine": 466,
+        "endChar": 54
+      },
+      "revId": "d693a339582f668b0d4ed311cb5ddd24eecb5df3",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddb51fab_ed16ce4d",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/PhoneStatusBarView.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 774
+      },
+      "writtenOn": "2021-09-27T05:55:58Z",
+      "side": 1,
+      "message": "rPadding",
+      "range": {
+        "startLine": 472,
+        "startChar": 45,
+        "endLine": 472,
+        "endChar": 54
+      },
+      "revId": "d693a339582f668b0d4ed311cb5ddd24eecb5df3",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

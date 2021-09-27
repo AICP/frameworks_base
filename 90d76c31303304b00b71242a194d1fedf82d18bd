@@ -16,6 +16,75 @@
       "message": "fixed the grammar 😊",
       "revId": "90d76c31303304b00b71242a194d1fedf82d18bd",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2778915a_70bf61a5",
+        "filename": "packages/SystemUI/res/values/aicp_strings.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-09-27T08:01:58Z",
+      "side": 1,
+      "message": "Maybe reuse `quick_aicp_extras_toast` string used above?",
+      "range": {
+        "startLine": 375,
+        "startChar": 18,
+        "endLine": 375,
+        "endChar": 43
+      },
+      "revId": "90d76c31303304b00b71242a194d1fedf82d18bd",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "403bc247_84f3938a",
+        "filename": "packages/SystemUI/src/com/android/systemui/qs/tiles/PartsBinTile.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-09-27T08:01:58Z",
+      "side": 1,
+      "message": "Why not have same function as handleClick? then the quick_aicp_partsbin_toast can be dropped too",
+      "range": {
+        "startLine": 66,
+        "startChar": 18,
+        "endLine": 66,
+        "endChar": 38
+      },
+      "revId": "90d76c31303304b00b71242a194d1fedf82d18bd",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bc2ac5c_9b50fe90",
+        "filename": "packages/SystemUI/src/com/android/systemui/qs/tiles/PartsBinTile.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-09-27T08:01:58Z",
+      "side": 1,
+      "message": "Isn\u0027t this redundant considering we\u0027re checking if the package is available in next line?",
+      "range": {
+        "startLine": 95,
+        "startChar": 35,
+        "endLine": 95,
+        "endChar": 54
+      },
+      "revId": "90d76c31303304b00b71242a194d1fedf82d18bd",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

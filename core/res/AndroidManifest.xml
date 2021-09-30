@@ -681,9 +681,9 @@
     <!-- Used to get camera status. -->
     <protected-broadcast android:name="android.intent.action.CAMERA_STATUS_CHANGED" />
 
-    <!-- Gaming mode -->
-    <protected-broadcast android:name="android.intent.action.GAMING_MODE_TURN_OFF" />
-    <protected-broadcast android:name="android.intent.action.GAMING_MODE_TURN_ON" />
+    <!-- Gaming Mode -->
+    <protected-broadcast android:name="exthmui.intent.action.GAMING_MODE_ON" />
+    <protected-broadcast android:name="exthmui.intent.action.GAMING_MODE_OFF" />
 
     <!-- ====================================================================== -->
     <!--                          RUNTIME PERMISSIONS                           -->

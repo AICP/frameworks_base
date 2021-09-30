@@ -131,13 +131,13 @@ public class QSFactoryImpl implements QSFactory {
     private final Provider<ScreenshotTile> mScreenshotTileProvider;
     private final Provider<WeatherTile> mWeatherTileProvider;
     private final Provider<HWKeysTile> mHWKeysTileProvider;
-    private final Provider<GamingModeTile> mGamingModeTileProvider;
     private final Provider<FPSInfoTile> mFPSInfoTileProvider;
     private final Provider<KillappTile> mKillappTileProvider;
     private final Provider<VpnTile> mVpnTileProvider;
     private final Provider<MonoToggleTile> mMonoToggleTileProvider;
     private final Provider<AntiFlickerTile> mAntiFlickerTileProvider;
     private final Provider<DcDimmingTile> mDcDimmingTileProvider;
+    private final Provider<GamingModeTile> mGamingModeTileProvider;
 
     private final Lazy<QSHost> mQsHostLazy;
 
@@ -186,13 +186,13 @@ public class QSFactoryImpl implements QSFactory {
             Provider<ScreenshotTile> screenshotTileProvider,
             Provider<WeatherTile> weatherTileProvider,
             Provider<HWKeysTile> hwkeysTileProvider,
-            Provider<GamingModeTile> gamingModeTileProvider,
             Provider<FPSInfoTile> fpsInfoTileProvider,
             Provider<KillappTile> killappTileProvider,
             Provider<VpnTile> vpnTileProvider,
             Provider<MonoToggleTile> monoToggleTileProvider,
             Provider<AntiFlickerTile> antiFlickerTileProvider,
-            Provider<DcDimmingTile> dcDimTileProvider) {
+            Provider<DcDimmingTile> dcDimTileProvider,
+            Provider<GamingModeTile> gamingModeTile) {
         mQsHostLazy = qsHostLazy;
         mWifiTileProvider = wifiTileProvider;
         mBluetoothTileProvider = bluetoothTileProvider;
@@ -237,13 +237,13 @@ public class QSFactoryImpl implements QSFactory {
         mScreenshotTileProvider = screenshotTileProvider;
         mWeatherTileProvider = weatherTileProvider;
         mHWKeysTileProvider = hwkeysTileProvider;
-        mGamingModeTileProvider = gamingModeTileProvider;
         mFPSInfoTileProvider = fpsInfoTileProvider;
         mKillappTileProvider = killappTileProvider;
         mVpnTileProvider = vpnTileProvider;
         mMonoToggleTileProvider = monoToggleTileProvider;
         mAntiFlickerTileProvider = antiFlickerTileProvider;
         mDcDimmingTileProvider = dcDimTileProvider;
+        mGamingModeTileProvider = gamingModeTile;
     }
 
     public QSTile createTile(String tileSpec) {
@@ -342,8 +342,6 @@ public class QSFactoryImpl implements QSFactory {
                 return mWeatherTileProvider.get();
             case "hwkeys":
                 return mHWKeysTileProvider.get();
-            case "gaming":
-                return mGamingModeTileProvider.get();
             case "fpsinfo":
                 return mFPSInfoTileProvider.get();
             case "killapp":
@@ -356,6 +354,8 @@ public class QSFactoryImpl implements QSFactory {
                 return mAntiFlickerTileProvider.get();
             case "dc_dimming":
                 return mDcDimmingTileProvider.get();
+            case "gaming_mode":
+                return mGamingModeTileProvider.get();
         }
 
         // Custom tiles

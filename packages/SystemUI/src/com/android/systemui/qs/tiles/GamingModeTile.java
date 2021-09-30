@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2019 crDroid Android Project
+ * Copyright (C) 2021 AICP
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,8 +28,8 @@ import android.widget.Toast;
 import com.android.systemui.R;
 import com.android.systemui.SysUIToast;
 import com.android.systemui.plugins.qs.QSTile.BooleanState;
-import com.android.systemui.qs.GlobalSetting;
 import com.android.systemui.qs.QSHost;
+import com.android.systemui.qs.SystemSetting;
 import com.android.systemui.qs.tileimpl.QSTileImpl;
 
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
@@ -37,14 +38,18 @@ import javax.inject.Inject;
 
 public class GamingModeTile extends QSTileImpl<BooleanState> {
 
-    private final GlobalSetting mGamingModeActivated;
+    private final SystemSetting mGamingModeEnabled;
     private final Icon mIcon = ResourceIcon.get(R.drawable.ic_qs_gaming_mode);
-    private static final Intent GAMING_MODE_SETTINGS = new Intent("android.settings.GAMING_MODE_SETTINGS");
+
+    private static final String SETTINGS_PACKAGE_NAME = "com.aicp.extras";
+    private static final String AE_SETTINGSACTIVITY = "com.aicp.extras.SettingsActivity";
+    private static final String GAMING_MODE_SETTINGS = "com.aicp.extras.fragments.GamingModeSettings";
+    private static final String EXTRA_SHOW_FRAGMENT = ":android:show_fragment";
 
     @Inject
     public GamingModeTile(QSHost host) {
         super(host);
-        mGamingModeActivated = new GlobalSetting(mContext, mHandler, Settings.System.GAMING_MODE_ACTIVE) {
+        mGamingModeEnabled = new SystemSetting(mContext, mHandler, Settings.System.GAMING_MODE_ENABLED) {
             @Override
             protected void handleValueChanged(int value) {
                 handleRefreshState(value);
@@ -64,22 +69,19 @@ public class GamingModeTile extends QSTileImpl<BooleanState> {
 
     @Override
     protected void handleClick() {
-        boolean gamingModeEnabled = Settings.System.getInt(mContext.getContentResolver(),
-                    Settings.System.GAMING_MODE_ENABLED, 0) == 1;
-        mHost.collapsePanels();
-        if (gamingModeEnabled) {
-            mGamingModeActivated.setValue(mState.value ? 0 : 1);
-        } else {
-            SysUIToast.makeText(mContext, mContext.getString(
-                    R.string.gaming_mode_not_enabled),
-                    Toast.LENGTH_LONG).show();
-        }
+        mGamingModeEnabled.setValue(mState.value ? 0 : 1);
+        SysUIToast.makeText(mContext, mContext.getString(
+                  mState.value ? R.string.gaming_mode_not_enabled : R.string.gaming_mode_enabled),
+                  Toast.LENGTH_LONG).show();
         refreshState();
     }
 
     @Override
     public Intent getLongClickIntent() {
-        return GAMING_MODE_SETTINGS;
+        Intent settings = new Intent(Intent.ACTION_MAIN);
+        settings.setClassName(SETTINGS_PACKAGE_NAME, AE_SETTINGSACTIVITY);
+        settings.putExtra(EXTRA_SHOW_FRAGMENT, GAMING_MODE_SETTINGS);
+        return settings;
     }
 
     @Override
@@ -89,7 +91,7 @@ public class GamingModeTile extends QSTileImpl<BooleanState> {
 
     @Override
     protected void handleUpdateState(BooleanState state, Object arg) {
-        final int value = arg instanceof Integer ? (Integer)arg : mGamingModeActivated.getValue();
+        final int value = arg instanceof Integer ? (Integer)arg : mGamingModeEnabled.getValue();
         final boolean enable = value == 1;
         state.value = enable;
         state.label = mContext.getString(R.string.quick_settings_gaming_mode_label);

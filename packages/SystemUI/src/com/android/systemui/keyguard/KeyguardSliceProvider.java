@@ -224,8 +224,9 @@ public class KeyguardSliceProvider extends SliceProvider implements
             ListBuilder builder = new ListBuilder(getContext(), mSliceUri, ListBuilder.INFINITY);
             if (needsMediaLocked()) {
                 addMediaLocked(builder);
+            } else {
+                builder.addRow(new RowBuilder(mDateUri).setTitle(mLastText));
             }
-            builder.addRow(new RowBuilder(mDateUri).setTitle(mLastText));
             addWeather(builder);
             addNextAlarmLocked(builder);
             addZenModeLocked(builder);

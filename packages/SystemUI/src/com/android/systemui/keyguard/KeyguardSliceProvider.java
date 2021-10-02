@@ -227,8 +227,8 @@ public class KeyguardSliceProvider extends SliceProvider implements
             } else {
                 builder.addRow(new RowBuilder(mDateUri).setTitle(mLastText));
             }
-            addWeather(builder);
             addNextAlarmLocked(builder);
+            addWeather(builder);
             addZenModeLocked(builder);
             addPrimaryActionLocked(builder);
             slice = builder.build();

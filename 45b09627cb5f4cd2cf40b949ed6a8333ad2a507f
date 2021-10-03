@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "593a3895_ef92d5f9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2021-10-03T16:44:47Z",
+      "side": 1,
+      "message": "Test:\n- Enable using ``` adb shell device_config put activity_manager use_compaction true ```\n- Observe kernel logs for any related warnings/crashes\n- Disable if errors are observed using `adb shell device_config put activity_manager use_compaction false`\n- if supported by device, overlay from SimpleDeviceConfig apps under `configs_device` array as `\u003citem\u003eactivity_manager/use_compaction\u003dtrue\u003c/item\u003e`",
+      "revId": "45b09627cb5f4cd2cf40b949ed6a8333ad2a507f",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccaa8a3b_2aa0b2bb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2021-10-05T15:53:15Z",
+      "side": 1,
+      "message": "full history: https://github.com/semdoc/frameworks_base/commits/r11.1_r46",
+      "revId": "5828b8e2781dd83147f09adb1689245a28b3cc6b",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

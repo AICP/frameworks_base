@@ -16,6 +16,24 @@
       "message": "Currently the slice items gets arranged in descending order of their length.\n\nThey kind of are how persistent they are, dates always, weather always if enabled, the alarm only appears when the next alarm is imminent and DnD rarely.\n\nAdditionally they seems to align with A12 screenshots on the web",
       "revId": "2cb05cbfe31f387ebc4332f5e149a40ed3ae0c78",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ec318e9_6dd2bb16",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2021-10-05T15:12:59Z",
+      "side": 1,
+      "message": "That may be so. But I still think it makes more sense to regroup them the way I indicated.",
+      "parentUuid": "148be9fe_aa9595b9",
+      "revId": "2cb05cbfe31f387ebc4332f5e149a40ed3ae0c78",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

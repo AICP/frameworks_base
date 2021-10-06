@@ -44,25 +44,24 @@ import com.android.systemui.plugins.ActivityStarter;
 import com.android.systemui.plugins.FalsingManager;
 import com.android.systemui.plugins.qs.QSTile.BooleanState;
 import com.android.systemui.plugins.statusbar.StatusBarStateController;
-import com.android.systemui.statusbar.policy.KeyguardStateController;
 import com.android.systemui.qs.GlobalSetting;
 import com.android.systemui.qs.QSHost;
 import com.android.systemui.qs.logging.QSLogger;
 import com.android.systemui.qs.tileimpl.QSTileImpl;
+import com.android.systemui.statusbar.policy.KeyguardStateController;
 
 import javax.inject.Inject;
 
 import dagger.Lazy;
 
 /** Quick settings tile: Airplane mode **/
-public class AirplaneModeTile extends QSTileImpl<BooleanState> {
+public class AirplaneModeTile extends SecureQSTile<BooleanState> {
     private final Icon mIcon = ResourceIcon.get(com.android.internal.R.drawable.ic_qs_airplane);
     private final GlobalSetting mSetting;
     private final BroadcastDispatcher mBroadcastDispatcher;
     private final Lazy<ConnectivityManager> mLazyConnectivityManager;
 
     private boolean mListening;
-    private final KeyguardStateController mKeyguardMonitor;
 
     @Inject
     public AirplaneModeTile(
@@ -76,13 +75,12 @@ public class AirplaneModeTile extends QSTileImpl<BooleanState> {
             QSLogger qsLogger,
             BroadcastDispatcher broadcastDispatcher,
             Lazy<ConnectivityManager> lazyConnectivityManager,
-            KeyguardStateController keyguardMonitor
+            KeyguardStateController keyguardStateController
     ) {
         super(host, backgroundLooper, mainHandler, falsingManager, metricsLogger,
-                statusBarStateController, activityStarter, qsLogger);
+                statusBarStateController, activityStarter, qsLogger, keyguardStateController);
         mBroadcastDispatcher = broadcastDispatcher;
         mLazyConnectivityManager = lazyConnectivityManager;
-        mKeyguardMonitor = keyguardMonitor;
 
         mSetting = new GlobalSetting(mContext, mHandler, Global.AIRPLANE_MODE_ON) {
             @Override
@@ -99,19 +97,16 @@ public class AirplaneModeTile extends QSTileImpl<BooleanState> {
     }
 
     @Override
-    public void handleClick(@Nullable View view) {
+    protected void handleClick(@Nullable View view, boolean keyguardShowing) {
+        if (checkKeyguard(view, keyguardShowing)) {
+            return;
+        }
+
         boolean airplaneModeEnabled = mState.value;
         MetricsLogger.action(mContext, getMetricsCategory(), !airplaneModeEnabled);
         if (!airplaneModeEnabled && TelephonyProperties.in_ecm_mode().orElse(false)) {
             mActivityStarter.postStartActivityDismissingKeyguard(
                     new Intent(TelephonyManager.ACTION_SHOW_NOTICE_ECM_BLOCK_OTHERS), 0);
-            return;
-        }
-        if (mKeyguardMonitor.isMethodSecure()) {
-            mActivityStarter.postQSRunnableDismissingKeyguard(() -> {
-                mHost.openPanels();
-                setEnabled(!mState.value);
-            });
             return;
         }
         // no secure keyguard

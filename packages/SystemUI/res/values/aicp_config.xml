@@ -8,4 +8,7 @@
     <string name="quick_settings_tiles_extra" translatable="false">
       livedisplay,reading_mode,anti_flicker
     </string>
+
+    <!-- Color of the UDFPS pressed view -->
+    <color name="config_udfpsColor">#ffffffff</color>
 </resources>

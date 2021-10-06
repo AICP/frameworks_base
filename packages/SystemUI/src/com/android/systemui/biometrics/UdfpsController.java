@@ -619,7 +619,7 @@ public class UdfpsController implements DozeReceiver, UdfpsHbmProvider {
                 });
 
         mCoreLayoutParams = new WindowManager.LayoutParams(
-                WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG,
+                WindowManager.LayoutParams.TYPE_DISPLAY_OVERLAY,
                 0 /* flags set in computeLayoutParams() */,
                 PixelFormat.TRANSLUCENT);
         mCoreLayoutParams.setTitle(TAG);

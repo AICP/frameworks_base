@@ -44,6 +44,8 @@ import com.android.server.inputmethod.InputMethodManagerInternal;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.function.Consumer;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Manages global window inset state in the system represented by {@link InsetsState}.
@@ -54,8 +56,7 @@ class InsetsStateController {
     private final InsetsState mState = new InsetsState();
     private final DisplayContent mDisplayContent;
 
-    private final ArrayMap<Integer, WindowContainerInsetsSourceProvider> mProviders =
-            new ArrayMap<>();
+    private final HashMap<Integer, WindowContainerInsetsSourceProvider> mProviders = new HashMap<>();
     private final ArrayMap<InsetsControlTarget, ArrayList<Integer>> mControlTargetTypeMap =
             new ArrayMap<>();
     private final SparseArray<InsetsControlTarget> mTypeControlTargetMap = new SparseArray<>();
@@ -107,7 +108,7 @@ class InsetsStateController {
         return result;
     }
 
-    ArrayMap<Integer, WindowContainerInsetsSourceProvider> getSourceProviders() {
+    Map<Integer, WindowContainerInsetsSourceProvider> getSourceProviders() {
         return mProviders;
     }
 
@@ -143,8 +144,8 @@ class InsetsStateController {
      */
     void onPostLayout() {
         Trace.traceBegin(TRACE_TAG_WINDOW_MANAGER, "ISC.onPostLayout");
-        for (int i = mProviders.size() - 1; i >= 0; i--) {
-            mProviders.valueAt(i).onPostLayout();
+        for (final WindowContainerInsetsSourceProvider provider : mProviders.values()) {
+            provider.onPostLayout();
         }
         if (!mLastState.equals(mState)) {
             mLastState.set(mState, true /* copySources */);
@@ -192,8 +193,8 @@ class InsetsStateController {
 
     void onInsetsModified(InsetsControlTarget caller) {
         boolean changed = false;
-        for (int i = mProviders.size() - 1; i >= 0; i--) {
-            changed |= mProviders.valueAt(i).updateClientVisibility(caller);
+        for (final WindowContainerInsetsSourceProvider provider : mProviders.values()) {
+            changed |= provider.updateClientVisibility(caller);
         }
         if (changed) {
             notifyInsetsChanged();
@@ -338,8 +339,7 @@ class InsetsStateController {
             return;
         }
         mDisplayContent.mWmService.mAnimator.addAfterPrepareSurfacesRunnable(() -> {
-            for (int i = mProviders.size() - 1; i >= 0; i--) {
-                final WindowContainerInsetsSourceProvider provider = mProviders.valueAt(i);
+            for (final WindowContainerInsetsSourceProvider provider : mProviders.values()) {
                 provider.onSurfaceTransactionApplied();
             }
             final ArraySet<InsetsControlTarget> newControlTargets = new ArraySet<>();
@@ -378,8 +378,8 @@ class InsetsStateController {
                     + mTypeControlTargetMap.valueAt(i));
         }
         pw.println(prefix + "InsetsSourceProviders:");
-        for (int i = mProviders.size() - 1; i >= 0; i--) {
-            mProviders.valueAt(i).dump(pw, prefix + "  ");
+        for (final WindowContainerInsetsSourceProvider provider : mProviders.values()) {
+            provider.dump(pw, prefix + "  ");
         }
     }
 }

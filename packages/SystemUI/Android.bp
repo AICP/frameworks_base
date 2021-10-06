@@ -124,6 +124,8 @@ android_library {
         "lottie",
         "AicpGear-preference",
         "AicpGear-util",
+        "colorkt",
+        "themelib",
     ],
     manifest: "AndroidManifest.xml",
 

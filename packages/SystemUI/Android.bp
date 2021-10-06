@@ -96,6 +96,8 @@ android_library {
         "jsr330",
         "lottie",
         "tensorflowlite_java",
+        "colorkt",
+        "themelib",
     ],
     manifest: "AndroidManifest.xml",
     additional_manifests: ["AndroidManifest-Aicp.xml"],

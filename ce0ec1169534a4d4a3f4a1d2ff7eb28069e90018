@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ea26e8b_4c7ca9f9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2021-10-07T15:59:26Z",
+      "side": 1,
+      "message": "https://gerrit.aicp-rom.com/c/AICP/frameworks_base/+/111950/1\nactually is the reason so abandoning this.",
+      "revId": "ce0ec1169534a4d4a3f4a1d2ff7eb28069e90018",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

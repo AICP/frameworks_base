@@ -24,7 +24,7 @@
     android:minHeight="@dimen/qs_header_row_min_height"
     android:clickable="false"
     android:focusable="true"
-    android:theme="@style/Theme.SystemUI.QuickSettings.Header">
+    android:theme="@style/QSHeaderTheme">
 
     <com.android.systemui.aicp.logo.LogoImageViewQuick
         android:id="@+id/statusbar_logo"

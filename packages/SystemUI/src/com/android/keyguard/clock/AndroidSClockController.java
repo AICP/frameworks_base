@@ -237,7 +237,7 @@ public class AndroidSClockController implements ClockPlugin {
     }
 
     private void updateColor() {
-        mClock.setTextColor(mPalette.getSecondaryColor());
+        updateTextColors();
     }
 
     @Override
@@ -467,6 +467,7 @@ public class AndroidSClockController implements ClockPlugin {
                 ((TextView) v).setTextColor(blendedColor);
             }
         }
+        mClock.setTextColor(mDarkAmount < 0.6f ? mPalette.getSecondaryColor() : Color.WHITE);
     }
 
     int getTextColor() {

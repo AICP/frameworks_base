@@ -34,6 +34,23 @@
       "parentUuid": "148be9fe_aa9595b9",
       "revId": "2cb05cbfe31f387ebc4332f5e149a40ed3ae0c78",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c31ef537_baf1fa76",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2021-10-07T15:58:43Z",
+      "side": 1,
+      "message": "Nevermind. Best to abandon",
+      "revId": "2cb05cbfe31f387ebc4332f5e149a40ed3ae0c78",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

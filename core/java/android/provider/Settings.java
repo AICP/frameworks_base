@@ -7301,13 +7301,13 @@ public final class Settings {
          * Whether to add left padding on statusbar
          * @hide
          */
-        public static final String LEFT_PADDING = "statusbar_left_padding";
+        public static final String STATUSBAR_LEFT_PADDING = "statusbar_left_padding";
 
         /**
          * Whether to add right padding on statusbar
          * @hide
          */
-        public static final String RIGHT_PADDING = "statusbar_right_padding";
+        public static final String STATUSBAR_RIGHT_PADDING = "statusbar_right_padding";
 
         /***************************
          * AICP System Settings end
@@ -7577,10 +7577,8 @@ public final class Settings {
             AICP_SETTINGS_VALIDATORS.put(DISPLAY_HIDE_NOTCH, BOOLEAN_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(LOCKSCREEN_BLUR, ANY_INTEGER_VALIDATOR);
             AICP_SETTINGS_VALIDATORS.put(FP_WAKE_UNLOCK, BOOLEAN_VALIDATOR);
-            AICP_SETTINGS_VALIDATORS.put(LEFT_PADDING, ANY_INTEGER_VALIDATOR);
-            AICP_SETTINGS_VALIDATORS.put(RIGHT_PADDING, ANY_INTEGER_VALIDATOR);
-
-
+            AICP_SETTINGS_VALIDATORS.put(STATUSBAR_LEFT_PADDING, ANY_INTEGER_VALIDATOR);
+            AICP_SETTINGS_VALIDATORS.put(STATUSBAR_RIGHT_PADDING, ANY_INTEGER_VALIDATOR);
         }
 
         /**

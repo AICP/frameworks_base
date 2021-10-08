@@ -26,9 +26,11 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.RemoteException;
+import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.EventLog;
 import android.util.Pair;
+import android.util.TypedValue;
 import android.view.Display;
 import android.view.DisplayCutout;
 import android.view.Gravity;
@@ -48,10 +50,8 @@ import com.android.systemui.plugins.DarkIconDispatcher;
 import com.android.systemui.plugins.DarkIconDispatcher.DarkReceiver;
 import com.android.systemui.statusbar.CommandQueue;
 import com.android.systemui.statusbar.CommandQueue.Callbacks;
-import com.android.systemui.util.leak.RotationUtils;
-import android.util.TypedValue;
 import com.android.systemui.tuner.TunerService;
-import android.provider.Settings;
+import com.android.systemui.util.leak.RotationUtils;
 
 import java.util.function.Consumer;
 import java.util.Objects;
@@ -63,9 +63,9 @@ public class PhoneStatusBarView extends PanelBar implements Callbacks, TunerServ
     private final CommandQueue mCommandQueue;
 
     private static final String LEFT_PADDING =
-            "system:" + Settings.System.LEFT_PADDING;
+            "system:" + Settings.System.STATUSBAR_LEFT_PADDING;
     private static final String RIGHT_PADDING =
-            "system:" + Settings.System.RIGHT_PADDING;
+            "system:" + Settings.System.STATUSBAR_RIGHT_PADDING;
 
     private int mBasePaddingBottom;
     private int mLeftPad;
@@ -151,10 +151,12 @@ public class PhoneStatusBarView extends PanelBar implements Callbacks, TunerServ
             return;
         }
 
-        mStatusBarContents.setPaddingRelative(mLeftPad + horizontalShift,
-                                              mBasePaddingTop + verticalShift,
-                                              mRightPad + horizontalShift,
-                                              mBasePaddingBottom - verticalShift);
+        mStatusBarContents.setPaddingRelative(
+            mLeftPad + horizontalShift,
+            mBasePaddingTop + verticalShift,
+            mRightPad + horizontalShift,
+            mBasePaddingBottom - verticalShift
+        );
         invalidate();
     }
 
@@ -167,8 +169,10 @@ public class PhoneStatusBarView extends PanelBar implements Callbacks, TunerServ
 
         mBasePaddingTop = mStatusBarContents.getPaddingTop();
         mBasePaddingBottom = mStatusBarContents.getPaddingBottom();
-		Dependency.get(TunerService.class).addTunable(this,
-                LEFT_PADDING, RIGHT_PADDING);
+
+		    Dependency.get(TunerService.class).addTunable(this,
+                LEFT_PADDING,
+                RIGHT_PADDING);
 
         updateResources();
     }
@@ -454,15 +458,15 @@ public class PhoneStatusBarView extends PanelBar implements Callbacks, TunerServ
     @Override
     public void onTuningChanged(String key, String newValue) {
         if (LEFT_PADDING.equals(key)) {
-            int mLPadding = TunerService.parseInteger(newValue, 0);
+            int lPadding = TunerService.parseInteger(newValue, 0);
             mLeftPad = Math.round(TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, mLPadding,
+                TypedValue.COMPLEX_UNIT_DIP, lPadding,
                 getResources().getDisplayMetrics()));
             updateStatusBarHeight();
         } else if (RIGHT_PADDING.equals(key)) {
-            int mRPadding = TunerService.parseInteger(newValue, 0);
+            int rPadding = TunerService.parseInteger(newValue, 0);
             mRightPad = Math.round(TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, mRPadding,
+                TypedValue.COMPLEX_UNIT_DIP, rPadding,
                 getResources().getDisplayMetrics()));
             updateStatusBarHeight();
         }

@@ -6,4 +6,7 @@
 <resources>
     <!-- Power Menu Lite-->
     <dimen name="global_actions_light_icon_padding">32dp</dimen>
+
+    <!-- Maximum vertical offset of statusbar for burn-in protection -->
+    <dimen name="status_bar_offset_max_y">4dp</dimen>
 </resources>

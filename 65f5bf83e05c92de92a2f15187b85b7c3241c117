@@ -16,6 +16,24 @@
       "message": "Is this same as the currently available FPSInfo option?",
       "revId": "65f5bf83e05c92de92a2f15187b85b7c3241c117",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d4eeaab_0561efb5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2021-10-11T05:35:10Z",
+      "side": 1,
+      "message": "shows in Gaming mode only.",
+      "parentUuid": "5bcff09a_db71be0a",
+      "revId": "65f5bf83e05c92de92a2f15187b85b7c3241c117",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

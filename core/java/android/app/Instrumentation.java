@@ -57,6 +57,7 @@ import android.view.WindowManagerGlobal;
 
 import com.android.internal.content.ReferrerIntent;
 
+import com.android.internal.gmscompat.AttestationHooks;
 import com.android.internal.gmscompat.GmsHooks;
 
 import java.io.File;
@@ -1183,6 +1184,7 @@ public class Instrumentation {
         GmsHooks.initApplicationBeforeOnCreate(app);
         String packageName = app.getPackageName();
         PixelPropsUtils.setProps(packageName);
+        AttestationHooks.initApplicationBeforeOnCreate(app);
         return app;
     }
 
@@ -1203,6 +1205,7 @@ public class Instrumentation {
         GmsHooks.initApplicationBeforeOnCreate(app);
         String packageName = app.getPackageName();
         PixelPropsUtils.setProps(packageName);
+        AttestationHooks.initApplicationBeforeOnCreate(app);
         return app;
     }
 

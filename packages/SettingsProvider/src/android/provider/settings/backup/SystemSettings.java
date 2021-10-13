@@ -215,5 +215,6 @@ public class SystemSettings {
         Settings.System.AICP_ASPECT_RATIO_APPS_LIST,
         Settings.System.AICP_ASPECT_RATIO_APPS_ENABLED,
         Settings.System.LOCKSCREEN_PIN_SCRAMBLE_LAYOUT,
+        Settings.System.LOCKSCREEN_QUICK_UNLOCK_CONTROL,
     };
 }

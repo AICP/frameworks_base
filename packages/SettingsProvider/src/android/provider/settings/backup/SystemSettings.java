@@ -254,5 +254,6 @@ public class SystemSettings {
         Settings.System.ROAMING_INDICATOR_ICON,
         Settings.System.SHOW_LTE_FOURGEE,
         Settings.System.NETWORK_TRAFFIC_INDICATOR_MODE,
+        Settings.System.LOCKSCREEN_QUICK_UNLOCK_CONTROL,
     };
 }

@@ -6348,6 +6348,13 @@ public final class Settings {
         public static final String NETWORK_TRAFFIC_INDICATOR_MODE =
                 "network_traffic_indicator_mode";
 
+        /**
+         * Whether to use the custom quick unlock screen control
+         * @hide
+         */
+        public static final String LOCKSCREEN_QUICK_UNLOCK_CONTROL =
+                "lockscreen_quick_unlock_control";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6638,6 +6645,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(ROAMING_INDICATOR_ICON);
             PRIVATE_SETTINGS.add(SHOW_LTE_FOURGEE);
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_INDICATOR_MODE);
+            PRIVATE_SETTINGS.add(LOCKSCREEN_QUICK_UNLOCK_CONTROL);
         }
 
         /**

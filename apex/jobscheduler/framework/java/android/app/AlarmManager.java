@@ -26,6 +26,7 @@ import android.annotation.SdkConstant.SdkConstantType;
 import android.annotation.SystemApi;
 import android.annotation.SystemService;
 import android.annotation.TestApi;
+import android.app.compat.gms.GmsCompat;
 import android.compat.annotation.ChangeId;
 import android.compat.annotation.EnabledSince;
 import android.compat.annotation.UnsupportedAppUsage;
@@ -43,6 +44,7 @@ import android.util.Log;
 import android.util.proto.ProtoOutputStream;
 
 import com.android.i18n.timezone.ZoneInfoDb;
+import com.android.internal.gmscompat.GmsHooks;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -1172,6 +1174,11 @@ public class AlarmManager {
     @RequiresPermission(value = Manifest.permission.SCHEDULE_EXACT_ALARM, conditional = true)
     public void setExactAndAllowWhileIdle(@AlarmType int type, long triggerAtMillis,
             PendingIntent operation) {
+        if (GmsCompat.isEnabled() && !canScheduleExactAlarms()) {
+            setAndAllowWhileIdle(type, triggerAtMillis, operation);
+            return;
+        }
+
         setImpl(type, triggerAtMillis, WINDOW_EXACT, 0, FLAG_ALLOW_WHILE_IDLE, operation,
                 null, null, (Handler) null, null, null);
     }

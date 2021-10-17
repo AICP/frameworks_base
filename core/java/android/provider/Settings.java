@@ -20616,6 +20616,9 @@ public final class Settings {
         public static final String REVIEW_PERMISSIONS_NOTIFICATION_STATE =
                 "review_permissions_notification_state";
 
+        /** @hide */
+        public static final String AUTO_REBOOT_TIMEOUT = "settings_reboot_after_timeout";
+
         /**
          * Whether repair mode is active on the device.
          * <p>

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a429be59_a25aa940",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2021-10-21T18:19:25Z",
+      "side": 1,
+      "message": "We need a feedback from MotoGang before merging.There are some comments on LoS Gerrit about this commit.",
+      "revId": "8ee8a2d97bb1e29da74ebf788740566273c05cc2",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

@@ -33,6 +33,7 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.UserHandle;
+import android.provider.Settings;
 import android.util.IconDrawableFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -184,10 +185,8 @@ public class SystemUIToast implements ToastPlugin.Toast {
                     + " user=" + mUserId);
         }
 
-        if (appInfo != null && appInfo.targetSdkVersion < Build.VERSION_CODES.S) {
-            // no two-line limit
-            textView.setMaxLines(Integer.MAX_VALUE);
-
+        if (Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.TOAST_ICON, 1) == 0) {
             // no app icon
             toastView.findViewById(com.android.systemui.R.id.icon).setVisibility(View.GONE);
         } else {
@@ -257,7 +256,7 @@ public class SystemUIToast implements ToastPlugin.Toast {
                     packageName,
                     PackageManager.ApplicationInfoFlags.of(PackageManager.GET_META_DATA),
                     userId);
-            if (appInfo == null || !showApplicationIcon(appInfo, packageManager)) {
+            if (appInfo == null) {
                 return null;
             }
 

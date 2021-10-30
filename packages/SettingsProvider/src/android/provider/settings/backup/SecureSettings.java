@@ -207,5 +207,11 @@ public class SecureSettings {
         Settings.Secure.STATUS_BAR_SHOW_VIBRATE_ICON,
         Settings.Secure.VOLUME_PANEL_ON_LEFT,
         Settings.Secure.TETHERING_ALLOW_VPN_UPSTREAMS,
+        Settings.Secure.MONET_ENGINE_ACCURATE_SHADES,
+        Settings.Secure.MONET_ENGINE_COLOR_OVERRIDE,
+        Settings.Secure.MONET_ENGINE_CUSTOM_COLOR,
+        Settings.Secure.MONET_ENGINE_CHROMA_FACTOR,
+        Settings.Secure.MONET_ENGINE_LINEAR_LIGHTNESS,
+        Settings.Secure.MONET_ENGINE_WHITE_LUMINANCE,
     };
 }

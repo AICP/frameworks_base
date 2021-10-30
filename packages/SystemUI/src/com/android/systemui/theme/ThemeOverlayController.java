@@ -473,7 +473,7 @@ public class ThemeOverlayController extends CoreStartable implements Dumpable {
         });
     }
 
-    private void reevaluateSystemTheme(boolean forceReload) {
+    protected void reevaluateSystemTheme(boolean forceReload) {
         final WallpaperColors currentColors = mCurrentColors.get(mUserTracker.getUserId());
         final int mainColor;
         if (currentColors == null) {
@@ -548,6 +548,26 @@ public class ThemeOverlayController extends CoreStartable implements Dumpable {
         return overlay.build();
     }
 
+    protected List<Integer> getAccent1() {
+        return mColorScheme.getAccent1();
+    }
+
+    protected List<Integer> getAccent2() {
+        return mColorScheme.getAccent2();
+    }
+
+    protected List<Integer> getAccent3() {
+        return mColorScheme.getAccent3();
+    }
+
+    protected List<Integer> getNeutral1() {
+        return mColorScheme.getNeutral1();
+    }
+
+    protected List<Integer> getNeutral2() {
+        return mColorScheme.getNeutral2();
+    }
+
     /**
      * Checks if the color scheme in mColorScheme matches the current system palettes.
      * @param managedProfiles List of managed profiles for this user.
@@ -559,15 +579,15 @@ public class ThemeOverlayController extends CoreStartable implements Dumpable {
             Resources res = userHandle.isSystem()
                     ? mResources : mContext.createContextAsUser(userHandle, 0).getResources();
             if (!(res.getColor(android.R.color.system_accent1_500, mContext.getTheme())
-                    == mColorScheme.getAccent1().get(6)
+                    == getAccent1().get(6)
                     && res.getColor(android.R.color.system_accent2_500, mContext.getTheme())
-                    == mColorScheme.getAccent2().get(6)
+                    == getAccent2().get(6)
                     && res.getColor(android.R.color.system_accent3_500, mContext.getTheme())
-                    == mColorScheme.getAccent3().get(6)
+                    == getAccent3().get(6)
                     && res.getColor(android.R.color.system_neutral1_500, mContext.getTheme())
-                    == mColorScheme.getNeutral1().get(6)
+                    == getNeutral1().get(6)
                     && res.getColor(android.R.color.system_neutral2_500, mContext.getTheme())
-                    == mColorScheme.getNeutral2().get(6))) {
+                    == getNeutral2().get(6))) {
                 return false;
             }
         }

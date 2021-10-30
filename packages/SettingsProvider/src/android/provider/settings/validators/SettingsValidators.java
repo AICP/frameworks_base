@@ -26,6 +26,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Locale;
+import java.util.regex.Pattern;
 
 /**
  * This class provides both interface for validation and common validators
@@ -85,6 +86,33 @@ public class SettingsValidators {
             } catch (NumberFormatException e) {
                 return false;
             }
+        }
+    };
+
+    public static final Validator ANY_FLOAT_VALIDATOR = new Validator() {
+        @Override
+        public boolean validate(@Nullable String value) {
+            if (value == null) {
+                return true;
+            }
+            try {
+                Float.parseFloat(value);
+                return true;
+            } catch (NumberFormatException e) {
+                return false;
+            }
+        }
+    };
+
+    public static final Validator HEX_COLOR_VALIDATOR = new Validator() {
+        @Override
+        public boolean validate(@Nullable String value) {
+            if (value == null ||
+                    value.isEmpty() ||
+                    Pattern.matches("^[#][0-9A-F]{6}|[0-9A-F]{8}", value)) {
+                return true;
+            }
+            return false;
         }
     };
 

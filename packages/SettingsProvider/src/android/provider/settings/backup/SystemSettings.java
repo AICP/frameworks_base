@@ -149,5 +149,6 @@ public class SystemSettings {
         Settings.System.STATUS_BAR_CLOCK,
         Settings.System.STATUS_BAR_CLOCK_POSITION,
         Settings.System.STATUS_BAR_AM_PM,
+        Settings.System.STATUS_BAR_CLOCK_AUTO_HIDE,
     };
 }

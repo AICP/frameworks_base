@@ -129,5 +129,6 @@ public class SystemSettings {
         Settings.System.DOUBLE_TAP_SLEEP_LOCKSCREEN,
         Settings.System.STATUS_BAR_CLOCK_POSITION,
         Settings.System.STATUS_BAR_AM_PM,
+        Settings.System.STATUS_BAR_CLOCK_AUTO_HIDE,
     };
 }

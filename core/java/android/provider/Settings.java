@@ -6791,6 +6791,11 @@ public final class Settings {
          */
         public static final String OPTIMIZED_CHARGE_FLOOR = "optimized_charge_floor";
 
+        /**
+         * @hide
+         */
+        public static final String USE_TILES_ON_SECURE_KEYGUARD = "use_tiles_on_secure_keyguard";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7146,6 +7151,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(OPTIMIZED_CHARGE_ENABLED);
             PRIVATE_SETTINGS.add(OPTIMIZED_CHARGE_CEILING);
             PRIVATE_SETTINGS.add(OPTIMIZED_CHARGE_FLOOR);
+            PRIVATE_SETTINGS.add(USE_TILES_ON_SECURE_KEYGUARD);
         }
 
         /**

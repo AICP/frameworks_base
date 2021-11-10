@@ -729,7 +729,7 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
             boolean showDataIconInStatusBar =
                     (mCurrentState.dataConnected && mCurrentState.isDefault) || dataDisabled;
             typeIcon =
-                    (showDataIconInStatusBar || mConfig.alwaysShowDataRatIcon) ? dataTypeIcon : 0;
+                    ((showDataIconInStatusBar || mConfig.alwaysShowDataRatIcon) && getVolteResId() == 0) ? dataTypeIcon : 0;
             MobileIconGroup vowifiIconGroup = getVowifiIconGroup();
             if (vowifiIconGroup != null && (mVoWiFiIcon >= 1)) {
                 typeIcon = vowifiIconGroup.dataType;

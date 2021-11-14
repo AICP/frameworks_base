@@ -35,6 +35,7 @@
     <string name="quick_settings_music_label">Музика</string>
     <string name="quick_settings_music_play">Відтворити</string>
     <string name="quick_settings_music_pause">Пауза</string>
+    <string name="quick_settings_poweroff_label">Вимкнути</string>
     <string name="accessibility_quick_settings_usb_tether_off">USB-модем вимкнено</string>
     <string name="accessibility_quick_settings_usb_tether_on">USB-модем увімкнено</string>
     <string name="accessibility_quick_settings_usb_tether_changed_off">USB-модем вимкнено</string>
@@ -44,13 +45,26 @@
     <string name="accessibility_quick_settings_caffeine_off">Заборона сну вимк</string>
     <string name="accessibility_quick_settings_caffeine_on">Заборона сну увімк</string>
     <string name="quick_settings_cpuinfo_label">Інформація про ЦП</string>
+    <string name="quick_aicp_extras_label">Додатки AICP</string>
     <string name="quick_aicp_extras_toast">Лол, ви насправді думали, що затиснення клавіши вас кудись приведе!?!</string>
+    <string name="keyguard_indication_dash_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Dash заряження (<xliff:g id="charging_time_left" example="4 години та 2 хвилини">%1$s</xliff:g> до повної зарядки)</string>
+    <string name="keyguard_plugged_in_dash_charging"><xliff:g id="percentage">%s</xliff:g> • Dash зарядження</string>
+    <string name="keyguard_plugged_in_warp_charging"><xliff:g id="percentage">%s</xliff:g> • Warp зарядження</string>
+    <string name="keyguard_indication_vooc_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • VOOC зарядження (<xliff:g id="charging_time_left" example="4 години та 2 хвилини">%1$s</xliff:g> до повної зарядки)</string>
+    <string name="keyguard_plugged_in_vooc_charging"><xliff:g id="percentage">%s</xliff:g> • VOOC зарядження</string>
+    <string name="keyguard_indication_turbo_power_time"><xliff:g id="percentage">%2$s</xliff:g> • Турбо зарядження (<xliff:g id="charging_time_left" example="4 години та 2 хвилини">%1$s</xliff:g> до повної зарядки)</string>
+    <string name="keyguard_plugged_in_turbo_charging"><xliff:g id="percentage">%s</xliff:g> • Турбо зарядження</string>
+    <string name="keyguard_indication_oem_power_time"><xliff:g id="percentage">%2$s</xliff:g> • Швидке заряження (<xliff:g id="charging_time_left" example="4 години та 2 хвилини">%1$s</xliff:g> до повної зарядки)</string>
+    <string name="keyguard_plugged_in_oem_charging"><xliff:g id="percentage">%s</xliff:g> • Швидке зарядження</string>
     <string name="quick_settings_locale_label">Мова</string>
     <string name="quick_settings_locale_more_locales_toast">Будь ласка, налаштуйте кілька мов, щоб активувати функцію</string>
     <string name="quick_settings_sound_label">Сигнал</string>
     <string name="quick_settings_sound_ring">Рингтон</string>
     <string name="quick_settings_sound_vibrate">Вібрація</string>
     <string name="quick_settings_sound_silent">Без звуку</string>
+    <string name="quick_settings_volume_panel_label">Панель гучності</string>
+    <string name="qs_data_switch_changed_1">Використання SIM 1 для передачі даних</string>
+    <string name="qs_data_switch_changed_2">Використання SIM 2 для передачі даних</string>
     <string name="quick_settings_sync_label">Синхронізація</string>
     <string name="accessibility_quick_settings_sync_off">Синхронізацію вимкнено</string>
     <string name="accessibility_quick_settings_sync_on">Синхронізація увімкнена</string>
@@ -69,8 +83,13 @@
     <string name="onthego_channel_name">Головний</string>
     <string name="global_action_onthego">Режим \"На ходу\"</string>
     <string name="quick_settings_onthego_label">Режим \"На ходу\"</string>
+    <string name="global_screenshot_selector_capture_description">Частковий знімок екрану</string>
+    <string name="global_screenshot_selector_cancel_description">Відмінити частковий знімок екрану</string>
     <string name="quick_settings_screenshot_label">Знімок екрану</string>
+    <string name="quick_settings_full_screenshot_label">Повний</string>
+    <string name="quick_settings_region_screenshot_label">Частковий</string>
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Спливаючі сповіщення вимкнено на 1 хвилину.</string>
+    <string name="heads_up_snooze_message"><xliff:g id="string">%1$s</xliff:g> - Спливаючі сповіщення вимкнено на <xliff:g id="number">%2$d</xliff:g> хв.</string>
     <string name="omnijaws_service_error">Помилка</string>
     <string name="omnijaws_service_unkown">Немає даних про погоду</string>
     <string name="omnijaws_service_error_long">Помилка завантаження даних про погоду</string>
@@ -85,9 +104,30 @@
     <string name="guts_force_close_app">Завершити додаток</string>
     <string name="systemui_tuner_navbar_title">Заводські налаштування</string>
     <string name="navbar_activity_title">Панель навігації</string>
+    <string name="task_helper_app_killed">%1$s примусово зупинено</string>
+    <string name="empty_app_killed">Додаток</string>
     <string name="quick_settings_killapp_label">Завершити додаток</string>
     <string name="lockscreen_default">За замовчуванням</string>
     <string name="lockscreen_hidden">Нічого</string>
     <string name="custom_hint">Свайпніть від іконки для запуску</string>
+    <string name="quick_settings_monotoggle_tile">Режим звуку</string>
+    <string name="quick_settings_monotoggle_tile_mono">Моно аудіо</string>
+    <string name="quick_settings_monotoggle_tile_stereo">Стерео аудіо</string>
+    <string name="quick_settings_anti_flicker">Анти-мерехтіння</string>
     <string name="accessibility_quick_settings_running_services">Відкрити список запущених сервісів.</string>
+    <string name="screenrecord_stopdot_label">Показувати крапку для зупинки запису</string>
+    <string name="screenrecord_lowquality_label">Нижча якість запису</string>
+    <string name="quick_settings_dc_dimming_label">DC Затемнення</string>
+    <string name="quick_settings_dc_brightness_mode">Режим яскравості</string>
+    <string name="quick_settings_dc_full_auto">Автоматичний режим</string>
+    <string name="applock_locked"> заблоковано</string>
+    <string name="applock_fingerprint_face">, відбиток пальця або обличчя для розблокування</string>
+    <string name="applock_face"> або обличчя для розблокування</string>
+    <string name="applock_fingerprint"> або відбиток пальця для розблокування</string>
+    <string name="applock_credential"> для розблокування</string>
+    <string name="applock_unlock">Розблокувати</string>
+    <string name="change_clock_face">Проведіть, щоб змінити стиль годинника</string>
+    <string name="sensor_privacy_mode_tile">Датчики</string>
+    <string name="quick_settings_on">Увімк.</string>
+    <string name="quick_settings_off">Вимк.</string>
 </resources>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Copyright (C) 2014-2020 AICP
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_clipboard_access_denied">%1$s i s-a restricționat accesul la clipboard</string>
+    <string name="app_clipboard_access_granted">%1$s i s-a permis accesul la clipboard</string>
+    <string name="pocket_view_title">Modul buzunar este pornit</string>
+    <string name="pocket_view_title_cancel">Pentru a activa telefonul:</string>
+    <string name="pocket_view_top_tag_cancel">Nu acoperiţi zona albastră a telefonului şi ştergeţi murdăria sau praful.</string>
+    <string name="pocket_view_top_tag_cancel2">Apăsați lung butonul de pornire pentru a forța ieșirea din modul buzunar</string>
+    <string name="pocket_view_top_tag_number1">1.\u0020</string>
+    <string name="pocket_view_top_tag_number2">2.\u0020</string>
+</resources>

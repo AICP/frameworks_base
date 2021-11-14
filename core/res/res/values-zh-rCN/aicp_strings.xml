@@ -71,4 +71,12 @@
     <string name="animation_grow_shrink_right">缩放 (右侧)</string>
     <string name="animation_random">随机</string>
     <string name="action_null">空白</string>
+    <string name="app_clipboard_access_denied">已拒绝 %1$s 访问剪贴板</string>
+    <string name="app_clipboard_access_granted">已允许 %1$s 访问剪贴板</string>
+    <string name="pocket_view_title">口袋模式已开启</string>
+    <string name="pocket_view_title_cancel">要激活您的手机：</string>
+    <string name="pocket_view_top_tag_cancel">不要遮挡您手机的蓝色区域，并清理干净灰尘。</string>
+    <string name="pocket_view_top_tag_cancel2">长按电源按钮强制退出口袋模式</string>
+    <string name="pocket_view_top_tag_number1">1.\u0020</string>
+    <string name="pocket_view_top_tag_number2">2.\u0020</string>
 </resources>

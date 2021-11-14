@@ -219,4 +219,7 @@
     <string name="accessibility_dpad_left">Kurzor doleva</string>
     <string name="accessibility_dpad_right">Kurzor doprava</string>
     <string name="change_clock_face">Přejetím prstu změnit vzhled hodin</string>
+    <string name="sensor_privacy_mode_tile">Senzory</string>
+    <string name="quick_settings_on">Zap.</string>
+    <string name="quick_settings_off">Vyp.</string>
 </resources>

@@ -214,10 +214,14 @@
     <string name="quick_settings_dc_full_auto">自動モード</string>
     <string name="applock_locked"> はロック中です</string>
     <string name="applock_fingerprint_face">、指紋または顔をロック解除に使用します。</string>
+    <string name="applock_face"> または顔をロック解除に使用します。</string>
     <string name="applock_fingerprint"> 又は指紋をロック解除に使用します。</string>
     <string name="applock_credential"> をロック解除に使用します。</string>
     <string name="applock_unlock">ロック解除</string>
     <string name="accessibility_dpad_left">カーソルを左へ</string>
     <string name="accessibility_dpad_right">カーソルを右へ</string>
     <string name="change_clock_face">スワイプして時計の表面を変更</string>
+    <string name="sensor_privacy_mode_tile">センサー</string>
+    <string name="quick_settings_on">ON</string>
+    <string name="quick_settings_off">OFF</string>
 </resources>

@@ -219,4 +219,7 @@
     <string name="accessibility_dpad_left">Cursor nach links</string>
     <string name="accessibility_dpad_right">Cursor nach rechts</string>
     <string name="change_clock_face">Wischen um das Ziffernblatt zu ändern</string>
+    <string name="sensor_privacy_mode_tile">Sensoren</string>
+    <string name="quick_settings_on">An</string>
+    <string name="quick_settings_off">Aus</string>
 </resources>

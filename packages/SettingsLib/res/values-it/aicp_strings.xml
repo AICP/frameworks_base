@@ -25,4 +25,8 @@
     <string name="battery_info_status_dash_charging">In carica Dash</string>
     <string name="power_remaining_warp_charging_duration_only">Ricarica Warp (<xliff:g id="time">%1$s</xliff:g> fino a carica completa)</string>
     <string name="battery_info_status_warp_charging">In carica Warp</string>
+    <string name="power_remaining_vooc_charging_duration_only">Ricarica VOOC (<xliff:g id="time">%1$s</xliff:g> rimanenti fino alla carica completa)</string>
+    <string name="battery_info_status_vooc_charging">Ricarica VOOC</string>
+    <string name="power_remaining_turbo_charging_duration_only">Ricarica Turbo (<xliff:g id="time">%1$s</xliff:g> rimanenti fino alla carica completa)</string>
+    <string name="battery_info_status_turbo_charging">Ricarica Turbo</string>
 </resources>

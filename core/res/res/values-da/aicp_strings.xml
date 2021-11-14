@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Copyright (C) 2014-2020 AICP
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="permlab_fakePackageSignature">Fup pakkesignatur</string>
+    <string name="permdesc_fakePackageSignature">Tillader appen at foregive, at være en anden app. Ondsindede applikationer kan være i stand til, at bruge dette til, at tilgå private applikationsdata. Legitime brug omfatter en emulator, som foregiver at være hvad den emulerer. Tildel kun denne tilladelse varsomt!</string>
+    <string name="permgrouplab_fake_package_signature">Fup pakkesignatur</string>
+    <string name="permgroupdesc_fake_package_signature">tillad at fuppe pakkesignatur</string>
+    <string name="permgrouprequest_fake_package_signature">Tillad
+        &lt;b&gt;<xliff:g id="app_name" example="Gmail">%1$s</xliff:g>&lt;/b&gt; at fuppe pakkesignatur?</string>
+    <string name="reboot_title">Genstart</string>
+    <string name="reboot_message">Genstarter system</string>
+    <string name="aerr_copy">Kopiér nedbrudslog-URL</string>
+    <string name="url_copy_success">Kopiering af URL lykkedes</string>
+    <string name="url_copy_failed">Der opstod en fejl ved forsendelse af logfilen til AICP-haste</string>
+    <string name="pocket_lock_message_long_press">Tryk og hold tænd/sluk-knap nede, for at låse op</string>
+    <string name="app_killed_message">Applikation slået ned</string>
+    <string name="notification_channel_gaming">Spiltilstand</string>
+    <string name="gaming_mode_notification_title">Spiltilstand aktiveret</string>
+    <string name="gaming_mode_notification_content">Tryk, for at deaktivere Spiltilstand</string>
+    <string name="gaming_mode_enabled_toast">Spiltilstand slået til</string>
+    <string name="gaming_mode_disabled_toast">Spiltilstand slået fra</string>
+    <string name="volume_dialog_ringer_guidance_normal">Opkald og notifikationer vil ringe</string>
+    <string name="live_display_auto">Automatisk</string>
+    <string name="live_display_auto_summary">Justerer automatisk skærmens farvetemperatur, efter solnedgang og solopgang</string>
+    <string name="live_display_off">Fra</string>
+    <string name="live_display_off_summary">Deaktivér alle justeringer</string>
+    <string name="live_display_day">Dag</string>
+    <string name="live_display_day_summary">Brug kun dagindstillinger</string>
+    <string name="live_display_night">Nat</string>
+    <string name="live_display_night_summary">Brug kun natindstillinger</string>
+    <string name="live_display_outdoor">Udendørs (solskin)</string>
+    <string name="live_display_outdoor_summary">Brug kun udendørsindstillinger</string>
+    <string name="live_display_hint">LevendeSkærm kan hjælpe med, at reducere øjenanstrengelse og hjælpe dig med, at sove om natten. Klik her, for at prøve det!</string>
+    <string name="accessibility_quick_settings_live_display_off">LevendeSkærm fra.</string>
+    <string name="accessibility_quick_settings_live_display_auto">LevendeSkærm: Automatisk tilstand.</string>
+    <string name="accessibility_quick_settings_live_display_day">LevendeSkærm: Dagtilstand.</string>
+    <string name="accessibility_quick_settings_live_display_night">LevendeSkærm: Nattilstand.</string>
+    <string name="accessibility_quick_settings_live_display_outdoor">LevendeSkærm: Udendørs tilstand.</string>
+    <string name="accessibility_quick_settings_live_display_changed_off">LevendeSkærm slået fra.</string>
+    <string name="accessibility_quick_settings_live_display_changed_auto">LevendeSkærm ændret til automatisk tilstand.</string>
+    <string name="accessibility_quick_settings_live_display_changed_day">LevendeSkærm ændret til dagtilstand.</string>
+    <string name="accessibility_quick_settings_live_display_changed_night">LevendeSkærm ændret til nattilstand.</string>
+    <string name="accessibility_quick_settings_live_display_changed_outdoor">LevendeSkærm ændret til udendørs tilstand.</string>
+    <string name="animation_fade">Udtoning</string>
+    <string name="animation_slide_right">Glid ind højre</string>
+    <string name="animation_slide_left">Glid ind venstre</string>
+    <string name="animation_slide_right_no_fade">Glid ind højre (Ingen udtoning)</string>
+    <string name="animation_slide_left_no_fade">Glid ind venstre (Ingen udtoning)</string>
+    <string name="animation_slide_up">Glid ind bund</string>
+    <string name="animation_slide_down">Glid ind top</string>
+    <string name="animation_default">Standard</string>
+    <string name="animation_translucent">Gennemsigtig</string>
+    <string name="animation_grow_shrink">Voks ind (Øverst)</string>
+    <string name="animation_grow_shrink_center">Voks ind (Midte)</string>
+    <string name="animation_grow_shrink_bottom">Voks ind (Nederst)</string>
+    <string name="animation_grow_shrink_left">Voks ind (Venstre)</string>
+    <string name="animation_grow_shrink_right">Voks ind (Højre)</string>
+    <string name="animation_random">Tilfældig</string>
+    <string name="action_null">Blank</string>
+    <string name="app_clipboard_access_denied">%1$s blev nægtet adgang til udklipsholderen</string>
+    <string name="app_clipboard_access_granted">%1$s blev tildelt adgang til udklipsholderen</string>
+    <string name="pocket_view_title">Lommetilstand er slået til</string>
+    <string name="pocket_view_title_cancel">For at aktivere din telefon:</string>
+    <string name="pocket_view_top_tag_cancel">Dæk ikke det blå område af din telefon til, og tør evt. skidt eller støv af.</string>
+    <string name="pocket_view_top_tag_cancel2">Langt tryk på tænd/sluk-knappen for tvunget afslutning af lommetilstand</string>
+    <string name="pocket_view_top_tag_number1">1.\u0020</string>
+    <string name="pocket_view_top_tag_number2">2.\u0020</string>
+</resources>

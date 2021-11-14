@@ -25,4 +25,8 @@
     <string name="battery_info_status_dash_charging">Carregamento Dash</string>
     <string name="power_remaining_warp_charging_duration_only">Carregamento Warp (<xliff:g id="tempo">%1$s</xliff:g> restante até completar)</string>
     <string name="battery_info_status_warp_charging">Carregamento Warp</string>
+    <string name="power_remaining_vooc_charging_duration_only">Carregamento super-rápido (<xliff:g id="time">%1$s</xliff:g> restantes até completar a carga)</string>
+    <string name="battery_info_status_vooc_charging">Carregamento super-rápido</string>
+    <string name="power_remaining_turbo_charging_duration_only">Carregamento turbo (<xliff:g id="time">%1$s</xliff:g> restantes até completar a carga)</string>
+    <string name="battery_info_status_turbo_charging">Carregamento turbo</string>
 </resources>

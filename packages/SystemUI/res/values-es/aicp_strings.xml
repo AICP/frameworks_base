@@ -219,4 +219,7 @@
     <string name="accessibility_dpad_left">Cursor izquierdo</string>
     <string name="accessibility_dpad_right">Cursor derecho</string>
     <string name="change_clock_face">Deslice para cambiar el tipo de reloj</string>
+    <string name="sensor_privacy_mode_tile">Sensores</string>
+    <string name="quick_settings_on">Activado</string>
+    <string name="quick_settings_off">Desactivado</string>
 </resources>

@@ -219,4 +219,7 @@
     <string name="accessibility_dpad_left">Sol imleç</string>
     <string name="accessibility_dpad_right">Sağ imleç</string>
     <string name="change_clock_face">Saat arayüzünü değiştirmek için kaydırın</string>
+    <string name="sensor_privacy_mode_tile">Sensörler</string>
+    <string name="quick_settings_on">Açık</string>
+    <string name="quick_settings_off">Kapalı</string>
 </resources>

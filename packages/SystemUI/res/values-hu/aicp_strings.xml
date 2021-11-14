@@ -218,4 +218,7 @@
     <string name="accessibility_dpad_left">Kurzor balra</string>
     <string name="accessibility_dpad_right">Kurzor jobbra</string>
     <string name="change_clock_face">Órakonézet módosítás csúsztatással</string>
+    <string name="sensor_privacy_mode_tile">Szenzorok</string>
+    <string name="quick_settings_on">Be</string>
+    <string name="quick_settings_off">Ki</string>
 </resources>

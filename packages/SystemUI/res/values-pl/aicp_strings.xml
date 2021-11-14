@@ -37,6 +37,7 @@
     <string name="quick_settings_music_pause">Zatrzymaj</string>
     <string name="quick_settings_reboot_label">Uruchom ponownie</string>
     <string name="quick_settings_reboot_recovery_label">Recovery</string>
+    <string name="quick_settings_poweroff_label">Wyłącz</string>
     <string name="accessibility_quick_settings_usb_tether_off">Tethering przez USB wył</string>
     <string name="accessibility_quick_settings_usb_tether_on">Tethering przez USB wł</string>
     <string name="accessibility_quick_settings_usb_tether_changed_off">Tethering przez USB został wył.</string>
@@ -59,10 +60,12 @@
     <string name="qs_menu_item_rows_landscape">Wiersze (poziomo)</string>
     <string name="qs_menu_item_reset">Resetuj</string>
     <string name="quick_settings_cpuinfo_label">Informacje o CPU</string>
+    <string name="quick_aicp_extras_label">Dodatki AICP</string>
     <string name="quick_aicp_extras_toast">LOL, czy ty naprawdę myślałeś, że długie kliknięcie przeniesie Cię?!</string>
     <string name="status_bar_camera">Aparat</string>
     <string name="status_bar_microphone">Mikrofon</string>
     <string name="keyguard_indication_warp_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Szybkie ładowanie (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> until full)</string>
+    <string name="keyguard_plugged_in_oem_charging"><xliff:g id="Percentage">%s</xliff:g> • Szybkie ładowanie</string>
     <string name="quick_settings_heads_up_label">Wyskakujące powiadomienia</string>
     <string name="accessibility_quick_settings_heads_up_off">Wyskakujące powiadomienia wyłączone</string>
     <string name="accessibility_quick_settings_heads_up_on">Wyskakujące powiadomienia włączone</string>
@@ -81,7 +84,10 @@
     <string name="quick_settings_sound_ring">Dzwonek</string>
     <string name="quick_settings_sound_vibrate">Wibracje</string>
     <string name="quick_settings_sound_silent">Tryb cichy</string>
+    <string name="quick_settings_volume_panel_label">Panel głośności</string>
     <string name="qs_data_switch_label">Przełącz kartę danych</string>
+    <string name="qs_data_switch_changed_1">Używaj karty SIM 1 dla danych mobilnych</string>
+    <string name="qs_data_switch_changed_2">Używaj karty SIM 2 dla danych mobilnych</string>
     <string name="quick_settings_sync_label">Synchronizacja</string>
     <string name="accessibility_quick_settings_sync_off">Synchronizacja wył</string>
     <string name="accessibility_quick_settings_sync_on">Synchronizacja wł</string>
@@ -100,10 +106,15 @@
     <string name="onthego_channel_name">Główny</string>
     <string name="global_action_onthego">W ruchu</string>
     <string name="quick_settings_onthego_label">W ruchu</string>
+    <string name="global_screenshot_selector_capture_description">Zrób częściowy zrzut ekranu</string>
+    <string name="global_screenshot_selector_cancel_description">Anuluj częściowy zrzut ekranu</string>
     <string name="quick_settings_screenshot_label">Zrzut ekranu</string>
+    <string name="quick_settings_full_screenshot_label">Pełny</string>
+    <string name="quick_settings_region_screenshot_label">Częściowy</string>
     <string name="tuner_show_brightness_mode">Pokaż przełącznik automatycznej jasności</string>
     <string name="tuner_show_brightness_side_buttons">Pokaż suwak jasności w panelu szybkich ustawień</string>
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Powiadomienia z podglądem są odkładane na 1 minutę.</string>
+    <string name="heads_up_snooze_message"><xliff:g id="string">%1$s</xliff:g> Powiadomienia z podglądem w trybie drzemki znajdują się tam <xliff:g id="number">%2$d</xliff:g> minut.</string>
     <string name="omnijaws_service_error">Błąd</string>
     <string name="omnijaws_service_unkown">Brak danych o pogodzie</string>
     <string name="omnijaws_service_error_long">Błąd podczas ładowania danych o pogodzie</string>
@@ -163,6 +174,8 @@
     <string name="quick_settings_fpsinfo_label">Informacje o FPS</string>
     <string name="accessibility_quick_settings_fpsinfo_off">Informacje FPS wyłączone</string>
     <string name="accessibility_quick_settings_fpsinfo_on">Informacje FPS włączone</string>
+    <string name="task_helper_app_killed">%1$s została zatrzymana</string>
+    <string name="empty_app_killed">Aplikacja</string>
     <string name="quick_settings_killapp_label">Zabij aplikację</string>
     <string name="app_picker_dialog_title">Wybierz aplikację</string>
     <string name="quick_settings_vpn_label">VPN</string>
@@ -174,11 +187,26 @@
     <string name="lockscreen_default">Domyślne</string>
     <string name="lockscreen_hidden">Brak</string>
     <string name="custom_hint">Przesuń palcem od ikony, aby uruchomić</string>
+    <string name="quick_settings_monotoggle_tile">Tryb dźwięku</string>
+    <string name="quick_settings_monotoggle_tile_mono">Dźwięk mono</string>
+    <string name="quick_settings_monotoggle_tile_stereo">Dźwięk stereo</string>
+    <string name="quick_settings_anti_flicker">Anty-migotanie</string>
     <string name="accessibility_quick_settings_running_services">Otwórz ekran Działających Usług.</string>
     <string name="quick_settings_powershare_label">Ładowanie zwrotne PowerShare</string>
     <string name="quick_settings_powershare_off_powersave_label">Ładowanie zwrotne PowerShare wyłączone\nOszczędzanie energii</string>
     <string name="quick_settings_powershare_off_low_battery_label">Ładowanie zwrotne PowerShare wyłączone\nNaładuj baterię</string>
     <string name="quick_settings_powershare_enabled_label">Ładowanie zwrotne PowerShare jest włączone</string>
+    <string name="screenrecord_stopdot_label">Pokaż kropkę do zatrzymania</string>
+    <string name="screenrecord_lowquality_label">Niższa jakość nagrywania</string>
+    <string name="quick_settings_dc_dimming_label">DC Dimming</string>
+    <string name="quick_settings_dc_brightness_mode">Tryb jasności</string>
+    <string name="quick_settings_dc_full_auto">Tryb automatyczny</string>
+    <string name="applock_locked"> jest zablokowany</string>
+    <string name="applock_fingerprint_face">, odcisk palca lub Twoją twarz, by odblokować</string>
+    <string name="applock_face"> lub Twoją twarz, by odblokować</string>
+    <string name="applock_fingerprint"> lub odcisk palca by odblokować</string>
+    <string name="applock_credential"> do odblokowania</string>
+    <string name="applock_unlock">Odblokuj</string>
     <string name="accessibility_dpad_left">Kursor w lewo</string>
     <string name="accessibility_dpad_right">Kursor w prawo</string>
 </resources>

@@ -38,6 +38,7 @@
     <string name="quick_settings_music_pause">Pausa</string>
     <string name="quick_settings_reboot_label">Riavvia</string>
     <string name="quick_settings_reboot_recovery_label">Recovery</string>
+    <string name="quick_settings_poweroff_label">Spegnimento</string>
     <string name="accessibility_quick_settings_usb_tether_off">Tethering USB disattivato</string>
     <string name="accessibility_quick_settings_usb_tether_on">Tethering USB attivato</string>
     <string name="accessibility_quick_settings_usb_tether_changed_off">Tethering USB disattivato</string>
@@ -60,10 +61,20 @@
     <string name="qs_menu_item_rows_landscape">Righe in orizzontale</string>
     <string name="qs_menu_item_reset">Ripristina</string>
     <string name="quick_settings_cpuinfo_label">Info CPU</string>
+    <string name="quick_aicp_extras_label">AICP Extra</string>
     <string name="quick_aicp_extras_toast">LOL, credete davvero che quel click lungo vi porterà da qualche parte!!!</string>
     <string name="status_bar_camera">Fotocamera</string>
     <string name="status_bar_microphone">Microfono</string>
+    <string name="keyguard_indication_dash_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Ricarica rapida (<xliff:g id="charging_time_left" example="4 ore e 2 minuti">%s</xliff:g> fino al completamento della carica)</string>
+    <string name="keyguard_plugged_in_dash_charging"><xliff:g id="percentage">%s</xliff:g> • Ricarica rapida</string>
     <string name="keyguard_indication_warp_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Carica Rapida (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> al completamento)</string>
+    <string name="keyguard_plugged_in_warp_charging"><xliff:g id="percentage">%s</xliff:g> • Carica Rapida</string>
+    <string name="keyguard_indication_vooc_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Carica VOOC (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> al completamento)</string>
+    <string name="keyguard_plugged_in_vooc_charging"><xliff:g id="percentage">%s</xliff:g> • Carica VOOC</string>
+    <string name="keyguard_indication_turbo_power_time"><xliff:g id="percentage">%2$s</xliff:g> • Carica Turbo (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> al completamento)</string>
+    <string name="keyguard_plugged_in_turbo_charging"><xliff:g id="percentage">%s</xliff:g> • Carica Turbo</string>
+    <string name="keyguard_indication_oem_power_time"><xliff:g id="percentage">%2$s</xliff:g> • Ricarica Rapida (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> fino al completamento)</string>
+    <string name="keyguard_plugged_in_oem_charging"><xliff:g id="percentage">%s</xliff:g> • Ricarica Rapida</string>
     <string name="quick_settings_heads_up_label">Notifiche fluttuanti</string>
     <string name="accessibility_quick_settings_heads_up_off">Notifiche fluttuanti disattivate.</string>
     <string name="accessibility_quick_settings_heads_up_on">Notifiche fluttuanti attivate.</string>
@@ -82,7 +93,10 @@
     <string name="quick_settings_sound_ring">Suoneria</string>
     <string name="quick_settings_sound_vibrate">Vibrazione</string>
     <string name="quick_settings_sound_silent">Silenzioso</string>
+    <string name="quick_settings_volume_panel_label">Pannello del volume</string>
     <string name="qs_data_switch_label">Cambia scheda SIM</string>
+    <string name="qs_data_switch_changed_1">Usare la SIM 1 per i Dati Mobili</string>
+    <string name="qs_data_switch_changed_2">Usare la SIM 2 per i Dati Mobili</string>
     <string name="quick_settings_sync_label">Sincronizzazione</string>
     <string name="accessibility_quick_settings_sync_off">Sincronizzazione disattivata</string>
     <string name="accessibility_quick_settings_sync_on">Sincronizzazione attivata</string>
@@ -101,10 +115,15 @@
     <string name="onthego_channel_name">Principale</string>
     <string name="global_action_onthego">On-The-Go</string>
     <string name="quick_settings_onthego_label">On-The-Go</string>
+    <string name="global_screenshot_selector_capture_description">Acquisisci screenshot parziale</string>
+    <string name="global_screenshot_selector_cancel_description">Annulla screenshot parziale</string>
     <string name="quick_settings_screenshot_label">Screenshot</string>
+    <string name="quick_settings_full_screenshot_label">Completa</string>
+    <string name="quick_settings_region_screenshot_label">Parziale</string>
     <string name="tuner_show_brightness_mode">Mostra interruttore della modalità di luminosità</string>
     <string name="tuner_show_brightness_side_buttons">Mostra pulsanti laterali del cursore di luminosità</string>
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - La notifica è posticipata per 1 minuto.</string>
+    <string name="heads_up_snooze_message"><xliff:g id="string">%1$s</xliff:g> - Le notifiche d\'attivazione sono posticipate per <xliff:g id="number">%2$d</xliff:g> minuti.</string>
     <string name="omnijaws_service_error">Errore</string>
     <string name="omnijaws_service_unkown">Dati meteo non disponibili</string>
     <string name="omnijaws_service_error_long">Errore durante il caricamento dei dati meteo</string>
@@ -164,6 +183,8 @@
     <string name="quick_settings_fpsinfo_label">Info FPS</string>
     <string name="accessibility_quick_settings_fpsinfo_off">Info FPS spente</string>
     <string name="accessibility_quick_settings_fpsinfo_on">Info FPS attive</string>
+    <string name="task_helper_app_killed">%1$s arrestata forzatamente</string>
+    <string name="empty_app_killed">App</string>
     <string name="quick_settings_killapp_label">Termina applicazione</string>
     <string name="app_picker_dialog_title">Seleziona un\'app</string>
     <string name="quick_settings_vpn_label">VPN</string>
@@ -175,11 +196,30 @@
     <string name="lockscreen_default">Predefinito</string>
     <string name="lockscreen_hidden">Nessuno</string>
     <string name="custom_hint">Scorri dall\'icona per avviare</string>
+    <string name="quick_settings_monotoggle_tile">Modalità audio</string>
+    <string name="quick_settings_monotoggle_tile_mono">Audio mono</string>
+    <string name="quick_settings_monotoggle_tile_stereo">Audio stereo</string>
+    <string name="quick_settings_anti_flicker">Anti-sfarfallio</string>
     <string name="accessibility_quick_settings_running_services">Apri la schermata dei servizi in esecuzione.</string>
     <string name="quick_settings_powershare_label">Wireless PowerShare</string>
     <string name="quick_settings_powershare_off_powersave_label">Wireless PowerShare spento\nRisparmio energetico</string>
     <string name="quick_settings_powershare_off_low_battery_label">Wireless PowerShare spento\nBatteria troppo scarica</string>
     <string name="quick_settings_powershare_enabled_label">Wireless PowerShare è abilitato</string>
+    <string name="screenrecord_stopdot_label">Mostra punto per interrompere la registrazione</string>
+    <string name="screenrecord_lowquality_label">Riduci la qualità della registrazione</string>
+    <string name="quick_settings_dc_dimming_label">Attenuazione DC</string>
+    <string name="quick_settings_dc_brightness_mode">Modalità luminosità</string>
+    <string name="quick_settings_dc_full_auto">Modalità automatica</string>
+    <string name="applock_locked"> è bloccata</string>
+    <string name="applock_fingerprint_face">, impronta digitale o il tuo volto per sbloccare</string>
+    <string name="applock_face"> o il tuo volto per sbloccare</string>
+    <string name="applock_fingerprint"> o la tua impronta digitale per sbloccare</string>
+    <string name="applock_credential"> per sbloccare</string>
+    <string name="applock_unlock">Sblocca</string>
     <string name="accessibility_dpad_left">Cursore a sinistra</string>
     <string name="accessibility_dpad_right">Cursore a destra</string>
+    <string name="change_clock_face">Scorri per cambiare l\'aspetto dell\'orologio</string>
+    <string name="sensor_privacy_mode_tile">Sensori</string>
+    <string name="quick_settings_on">On</string>
+    <string name="quick_settings_off">Off</string>
 </resources>

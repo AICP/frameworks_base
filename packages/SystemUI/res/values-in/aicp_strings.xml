@@ -67,6 +67,13 @@
     <string name="keyguard_indication_dash_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Pengisian Daya Cepat (<xliff:g id="charging_time_left" example="4 jam 2 menit">%1$s</xliff:g> hingga penuh)</string>
     <string name="keyguard_plugged_in_dash_charging"><xliff:g id="percentage">%s</xliff:g> • Pengisian Daya Cepat</string>
     <string name="keyguard_indication_warp_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Pengisian daya pintar (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> hingga penuh)</string>
+    <string name="keyguard_plugged_in_warp_charging"><xliff:g id="percentage">%s</xliff:g> • Pengisian Warp</string>
+    <string name="keyguard_indication_vooc_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Pengisian VOOC (<xliff:g id="charging_time_left" example="4 jam 2 menit">%1$s</xliff:g> hingga penuh)</string>
+    <string name="keyguard_plugged_in_vooc_charging"><xliff:g id="percentage">%s</xliff:g> • Pengisian VOOC</string>
+    <string name="keyguard_indication_turbo_power_time"><xliff:g id="percentage">%2$s</xliff:g> • Pengisian Turbo (<xliff:g id="charging_time_left" example="4 jam 2 menit">%1$s</xliff:g> hingga penuh)</string>
+    <string name="keyguard_plugged_in_turbo_charging"><xliff:g id="percentage">%s</xliff:g> • Pengisian Turbo</string>
+    <string name="keyguard_indication_oem_power_time"><xliff:g id="percentage">%2$s</xliff:g> • Pengisian Daya Cepat (<xliff:g id="charging_time_left" example="4 jam 2 menit">%1$s</xliff:g> hingga penuh)</string>
+    <string name="keyguard_plugged_in_oem_charging"><xliff:g id="percentage">%s</xliff:g> • Pengisian Daya Cepat</string>
     <string name="quick_settings_heads_up_label">Heads up</string>
     <string name="accessibility_quick_settings_heads_up_off">Heads up mati.</string>
     <string name="accessibility_quick_settings_heads_up_on">Heads up hidup.</string>
@@ -87,6 +94,8 @@
     <string name="quick_settings_sound_silent">Senyap</string>
     <string name="quick_settings_volume_panel_label">Panel volume</string>
     <string name="qs_data_switch_label">Ganti kartu data seluler</string>
+    <string name="qs_data_switch_changed_1">Gunakan SIM 1 untuk Data Seluler</string>
+    <string name="qs_data_switch_changed_2">Gunakan SIM 2 untuk Data Seluler</string>
     <string name="quick_settings_sync_label">Sinkronisasi</string>
     <string name="accessibility_quick_settings_sync_off">Sinkronisasi mati</string>
     <string name="accessibility_quick_settings_sync_on">Sinkronisasi hidup</string>
@@ -105,10 +114,15 @@
     <string name="onthego_channel_name">Utama</string>
     <string name="global_action_onthego">On-The-Go</string>
     <string name="quick_settings_onthego_label">On-The-Go</string>
+    <string name="global_screenshot_selector_capture_description">Mengambil tangkapan layar sebagian</string>
+    <string name="global_screenshot_selector_cancel_description">Batal menangkap layar sebagian</string>
     <string name="quick_settings_screenshot_label">Tangkapan layar</string>
+    <string name="quick_settings_full_screenshot_label">Penuh</string>
+    <string name="quick_settings_region_screenshot_label">Sebagian</string>
     <string name="tuner_show_brightness_mode">Tampilkan tombol ubah mode kecerahan</string>
     <string name="tuner_show_brightness_side_buttons">Tampilkan tombol sisi slider kecerahan</string>
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Pemberitahuan tertunda selama 1 menit.</string>
+    <string name="heads_up_snooze_message"><xliff:g id="string">%1$s </xliff:g> - Notifikasi mengambang ditunda selama <xliff:g id="number">%2$d </xliff:g> menit.</string>
     <string name="omnijaws_service_error">Kesalahan</string>
     <string name="omnijaws_service_unkown">Tidak ada data cuaca</string>
     <string name="omnijaws_service_error_long">Kesalahan saat memuat data cuaca</string>
@@ -168,6 +182,8 @@
     <string name="quick_settings_fpsinfo_label">Info FPS</string>
     <string name="accessibility_quick_settings_fpsinfo_off">Info FPS mati</string>
     <string name="accessibility_quick_settings_fpsinfo_on">Info FPS hidup</string>
+    <string name="task_helper_app_killed">%1$s paksa berhenti</string>
+    <string name="empty_app_killed">Apl</string>
     <string name="quick_settings_killapp_label">Matikan aplikasi</string>
     <string name="app_picker_dialog_title">Pilih aplikasi</string>
     <string name="quick_settings_vpn_label">VPN</string>
@@ -179,13 +195,30 @@
     <string name="lockscreen_default">Standar</string>
     <string name="lockscreen_hidden">Tidak ada</string>
     <string name="custom_hint">Usap dari ikon untuk menjalankan</string>
+    <string name="quick_settings_monotoggle_tile">Mode Audio</string>
+    <string name="quick_settings_monotoggle_tile_mono">Audio Mono</string>
+    <string name="quick_settings_monotoggle_tile_stereo">Audio Stereo</string>
     <string name="quick_settings_anti_flicker">Anti flicker</string>
     <string name="accessibility_quick_settings_running_services">Buka layar layanan yang sedang berjalan.</string>
     <string name="quick_settings_powershare_label">PowerShare Nirkabel</string>
     <string name="quick_settings_powershare_off_powersave_label">PowerShare Nirkabel off\nPenghemat baterai</string>
     <string name="quick_settings_powershare_off_low_battery_label">PowerShare Nirkabel mati\nBaterai terlalu rendah</string>
     <string name="quick_settings_powershare_enabled_label">PowerShare Nirkabel diaktifkan</string>
+    <string name="screenrecord_stopdot_label">Tampilkan titik untuk berhenti merekam</string>
+    <string name="screenrecord_lowquality_label">Kualitas lebih rendah untuk ukuran file yang lebih kecil</string>
+    <string name="quick_settings_dc_dimming_label">Peredupan DC</string>
+    <string name="quick_settings_dc_brightness_mode">Mode kecerahan</string>
     <string name="quick_settings_dc_full_auto">Mode otomatis</string>
+    <string name="applock_locked"> terkunci</string>
+    <string name="applock_fingerprint_face">, sidik jari atau wajah Anda untuk membuka kunci</string>
+    <string name="applock_face"> atau wajah Anda untuk membuka kunci</string>
+    <string name="applock_fingerprint"> atau sidik jari Anda untuk membuka kunci</string>
+    <string name="applock_credential"> untuk membuka</string>
+    <string name="applock_unlock">Membuka</string>
     <string name="accessibility_dpad_left">Kursor kiri</string>
     <string name="accessibility_dpad_right">Kursor kanan</string>
+    <string name="change_clock_face">Usap untuk mengganti tampilan jam</string>
+    <string name="sensor_privacy_mode_tile">Sensor</string>
+    <string name="quick_settings_on">Aktif</string>
+    <string name="quick_settings_off">Nonaktif</string>
 </resources>

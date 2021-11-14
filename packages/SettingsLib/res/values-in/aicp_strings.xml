@@ -25,4 +25,8 @@
     <string name="battery_info_status_dash_charging">Pengisian cepat</string>
     <string name="power_remaining_warp_charging_duration_only">Pengisian pintar (<xliff:g id="time">%1$s</xliff:g> tersisa hingga penuh)</string>
     <string name="battery_info_status_warp_charging">Pengisian pintar</string>
+    <string name="power_remaining_vooc_charging_duration_only">Pengisian VOOC (<xliff:g id="time">%1$s</xliff:g> tersisa sampai penuh)</string>
+    <string name="battery_info_status_vooc_charging">Pengisian VOOC</string>
+    <string name="power_remaining_turbo_charging_duration_only">Pengisian Turbo (<xliff:g id="time">%1$s</xliff:g> tersisa sampai penuh)</string>
+    <string name="battery_info_status_turbo_charging">Pengisian Turbo</string>
 </resources>

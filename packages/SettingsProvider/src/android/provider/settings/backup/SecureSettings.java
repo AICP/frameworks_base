@@ -207,5 +207,6 @@ public class SecureSettings {
         Settings.Secure.SHOW_CPU_OVERLAY,
         Settings.Secure.SHOW_FPS_OVERLAY,
         Settings.Secure.HARDWARE_KEYS_DISABLE,
+        Settings.Secure.ENABLE_LOCATION_PRIVACY_INDICATOR,
     };
 }

@@ -310,4 +310,9 @@ public class NetworkTraffic extends TextView {
             setVisibility(View.GONE);
         }
     }
+
+    public void setTintColor(int color) {
+        mTintColor = color;
+        updateTrafficDrawable();
+    }
 }

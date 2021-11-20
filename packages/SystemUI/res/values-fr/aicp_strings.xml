@@ -148,10 +148,6 @@
     <string name="accessibility_quick_settings_hwkeys_on">Boutons physiques activés</string>
     <string name="accessibility_quick_settings_hwkeys_off">Boutons physiques désactivés</string>
     <string name="quick_settings_hwkeys_label">Boutons physiques</string>
-    <string name="gaming_mode_not_enabled">Le mode de jeu est désactivé dans les paramètres</string>
-    <string name="quick_settings_gaming_mode_label">Mode jeu</string>
-    <string name="accessibility_quick_settings_gaming_mode_disabled">Mode jeu désactivé.</string>
-    <string name="accessibility_quick_settings_gaming_mode_enabled">Mode jeu activé.</string>
     <string name="quick_settings_fpsinfo_label">Infos FPS</string>
     <string name="accessibility_quick_settings_fpsinfo_off">FPS Info désactivée</string>
     <string name="accessibility_quick_settings_fpsinfo_on">FPS Info activé</string>
@@ -168,4 +164,7 @@
     <string name="accessibility_quick_settings_running_services">Afficher les services en cours.</string>
     <string name="accessibility_dpad_left">Curseur gauche</string>
     <string name="accessibility_dpad_right">Curseur droit</string>
+    <string name="quick_settings_gaming_mode_label">Mode jeu</string>
+    <string name="accessibility_quick_settings_gaming_mode_disabled">Mode jeu désactivé.</string>
+    <string name="accessibility_quick_settings_gaming_mode_enabled">Mode jeu activé.</string>
 </resources>

@@ -24,11 +24,6 @@
     <string name="url_copy_success">URL succesvol gekopieerd</string>
     <string name="url_copy_failed">Er is een fout opgetreden tijdens het uploaden van het logboek naar de AICP server</string>
     <string name="app_killed_message">Applicatie afgesloten</string>
-    <string name="notification_channel_gaming">Game-modus</string>
-    <string name="gaming_mode_notification_title">Game-modus ingeschakeld</string>
-    <string name="gaming_mode_notification_content">Tik om Game-modus uit te schakelen</string>
-    <string name="gaming_mode_enabled_toast">Game-modus ingeschakeld</string>
-    <string name="gaming_mode_disabled_toast">Game-modus uitgeschakeld</string>
     <string name="live_display_auto">Automatisch</string>
     <string name="live_display_auto_summary">Kleurtemperatuur van scherm automatisch aanpassen na zonsondergang en zonsopgang</string>
     <string name="live_display_off">Uit</string>

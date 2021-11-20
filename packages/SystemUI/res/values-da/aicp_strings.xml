@@ -175,10 +175,6 @@
     <string name="screen_pinning_description_recents_invisible_accessible_custom">Dette fastholder det i visning, indtil du frigør det. Tryk &amp; hold nede på Tilbage, for at frigøre.</string>
     <string name="screen_pinning_toast_custom">Tryk &amp; hold Tilbage-knap nede, for at frigøre denne skærm</string>
     <string name="screen_pinning_toast_recents_invisible_custom">Tryk &amp; hold Tilbage-knap nede, for at frigøre denne skærm</string>
-    <string name="gaming_mode_not_enabled">Spiltilstand er deaktiveret i Indstillinger</string>
-    <string name="quick_settings_gaming_mode_label">Spiltilstand</string>
-    <string name="accessibility_quick_settings_gaming_mode_disabled">Spiltilstand slået fra.</string>
-    <string name="accessibility_quick_settings_gaming_mode_enabled">Spiltilstand slået til.</string>
     <string name="quick_settings_fpsinfo_label">FPS-info</string>
     <string name="accessibility_quick_settings_fpsinfo_off">FPS-info fra</string>
     <string name="accessibility_quick_settings_fpsinfo_on">FPS-info til</string>
@@ -221,4 +217,7 @@
     <string name="sensor_privacy_mode_tile">Sensorer</string>
     <string name="quick_settings_on">Til</string>
     <string name="quick_settings_off">Fra</string>
+    <string name="quick_settings_gaming_mode_label">Spiltilstand</string>
+    <string name="accessibility_quick_settings_gaming_mode_disabled">Spiltilstand slået fra.</string>
+    <string name="accessibility_quick_settings_gaming_mode_enabled">Spiltilstand slået til.</string>
 </resources>

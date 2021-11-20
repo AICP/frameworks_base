@@ -27,11 +27,6 @@
     <string name="url_copy_failed">AICP Haste へのログのアップロード中にエラーが発生しました</string>
     <string name="pocket_lock_message_long_press">電源ボタンを押し続けてロック解除</string>
     <string name="app_killed_message">アプリを終了しました</string>
-    <string name="notification_channel_gaming">ゲームモード</string>
-    <string name="gaming_mode_notification_title">ゲームモードが有効です</string>
-    <string name="gaming_mode_notification_content">タップでゲームモードを無効化</string>
-    <string name="gaming_mode_enabled_toast">ゲームモードを有効化しました</string>
-    <string name="gaming_mode_disabled_toast">ゲームモードを無効化しました</string>
     <string name="volume_dialog_ringer_guidance_normal">通話と通知を着信します</string>
     <string name="live_display_auto">自動</string>
     <string name="live_display_auto_summary">日の出と日の入りに画面の色温度を自動的に調整する</string>

@@ -175,10 +175,6 @@
     <string name="screen_pinning_description_recents_invisible_accessible_custom">Hal ini membuatnya tetap dalam pandangan sampai Anda melepas sematan. Sentuh &amp; tahan tombol Kembali untuk melepas sematan.</string>
     <string name="screen_pinning_toast_custom">Untuk melepas sematan layar ini, sentuh &amp; tahan tombol Kembali</string>
     <string name="screen_pinning_toast_recents_invisible_custom">Untuk melepas sematan layar ini, sentuh &amp; tahan tombol Kembali</string>
-    <string name="gaming_mode_not_enabled">Mode permainan dimatikan di setelan</string>
-    <string name="quick_settings_gaming_mode_label">Mode permainan</string>
-    <string name="accessibility_quick_settings_gaming_mode_disabled">Mode permainan dimatikan.</string>
-    <string name="accessibility_quick_settings_gaming_mode_enabled">Mode permainan dihidupkan.</string>
     <string name="quick_settings_fpsinfo_label">Info FPS</string>
     <string name="accessibility_quick_settings_fpsinfo_off">Info FPS mati</string>
     <string name="accessibility_quick_settings_fpsinfo_on">Info FPS hidup</string>
@@ -221,4 +217,7 @@
     <string name="sensor_privacy_mode_tile">Sensor</string>
     <string name="quick_settings_on">Aktif</string>
     <string name="quick_settings_off">Nonaktif</string>
+    <string name="quick_settings_gaming_mode_label">Mode permainan</string>
+    <string name="accessibility_quick_settings_gaming_mode_disabled">Mode permainan dimatikan.</string>
+    <string name="accessibility_quick_settings_gaming_mode_enabled">Mode permainan dihidupkan.</string>
 </resources>

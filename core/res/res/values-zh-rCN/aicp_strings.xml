@@ -28,11 +28,6 @@
     <string name="url_copy_failed">上传日志到 aicp haste 时发生错误</string>
     <string name="pocket_lock_message_long_press">长按电源键以解锁</string>
     <string name="app_killed_message">应用已终止</string>
-    <string name="notification_channel_gaming">游戏模式</string>
-    <string name="gaming_mode_notification_title">游戏模式已启用</string>
-    <string name="gaming_mode_notification_content">点击关闭游戏模式</string>
-    <string name="gaming_mode_enabled_toast">游戏模式已开启</string>
-    <string name="gaming_mode_disabled_toast">游戏模式已关闭</string>
     <string name="volume_dialog_ringer_guidance_normal">来电和通知时会响铃</string>
     <string name="live_display_auto">自动</string>
     <string name="live_display_auto_summary">在日落和日出后自动调整屏幕色温</string>

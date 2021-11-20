@@ -24,11 +24,6 @@
     <string name="url_copy_success">URL copiado com sucesso</string>
     <string name="url_copy_failed">Ocorreu um erro ao enviar o registo para o dogbin</string>
     <string name="app_killed_message">Aplicação terminada</string>
-    <string name="notification_channel_gaming">Modo de jogo</string>
-    <string name="gaming_mode_notification_title">Modo de jogo ativado</string>
-    <string name="gaming_mode_notification_content">Toque para desativar o modo de jogo</string>
-    <string name="gaming_mode_enabled_toast">O modo de jogo foi ativado</string>
-    <string name="gaming_mode_disabled_toast">O modo de jogo foi desativado</string>
     <string name="live_display_auto">Automático</string>
     <string name="live_display_auto_summary">Ajusta automaticamente a temperatura de cor do ecrã após o pôr do sol e o nascer do sol</string>
     <string name="live_display_off">Desligado</string>

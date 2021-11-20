@@ -149,10 +149,6 @@
     <string name="accessibility_quick_settings_hwkeys_on">HW knoppen aan</string>
     <string name="accessibility_quick_settings_hwkeys_off">HW knoppen uit</string>
     <string name="quick_settings_hwkeys_label">HW knoppen</string>
-    <string name="gaming_mode_not_enabled">Game-modus is uitgeschakeld in Instellingen</string>
-    <string name="quick_settings_gaming_mode_label">Game-modus</string>
-    <string name="accessibility_quick_settings_gaming_mode_disabled">Game-modus uitgeschakeld.</string>
-    <string name="accessibility_quick_settings_gaming_mode_enabled">Game-modus ingeschakeld.</string>
     <string name="quick_settings_fpsinfo_label">FPS Info</string>
     <string name="accessibility_quick_settings_fpsinfo_off">FPS Info uit</string>
     <string name="accessibility_quick_settings_fpsinfo_on">FPS-info aan</string>
@@ -173,4 +169,7 @@
     <string name="accessibility_dpad_left">Cursor links</string>
     <string name="accessibility_dpad_right">Cursor rechts</string>
     <string name="change_clock_face">Veeg om het klokvlak te wijzigen</string>
+    <string name="quick_settings_gaming_mode_label">Game-modus</string>
+    <string name="accessibility_quick_settings_gaming_mode_disabled">Game-modus uitgeschakeld.</string>
+    <string name="accessibility_quick_settings_gaming_mode_enabled">Game-modus ingeschakeld.</string>
 </resources>

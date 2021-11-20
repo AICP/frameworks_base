@@ -26,11 +26,6 @@
     <string name="url_copy_failed">Wystąpił błąd podczas przesyłania logów do serwisu aicp haste</string>
     <string name="pocket_lock_message_long_press">Naciśnij i przytrzymaj przycisk zasilania, aby odblokować</string>
     <string name="app_killed_message">Aplikacja ubita</string>
-    <string name="notification_channel_gaming">Tryb grania</string>
-    <string name="gaming_mode_notification_title">Włączono Tryb grania</string>
-    <string name="gaming_mode_notification_content">Dotknij, aby wyłączyć tryb grania</string>
-    <string name="gaming_mode_enabled_toast">Tryb gry włączony</string>
-    <string name="gaming_mode_disabled_toast">Tryb gry wyłączony</string>
     <string name="volume_dialog_ringer_guidance_normal">Połączenia i powiadomienia użyją dzwonka</string>
     <string name="live_display_auto">Automatycznie</string>
     <string name="live_display_auto_summary">Automatycznie dopasuj temperaturę kolorów ekranu po zachodzie i wschodnie słońca</string>

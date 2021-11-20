@@ -27,11 +27,6 @@
     <string name="url_copy_failed">Günlük aicp haste\'ye yüklenirken bir hata oluştu</string>
     <string name="pocket_lock_message_long_press">Kilidi açmak için güç tuşuna basılı tutun</string>
     <string name="app_killed_message">Uygulama sonlandırıldı</string>
-    <string name="notification_channel_gaming">Oyun modu</string>
-    <string name="gaming_mode_notification_title">Oyun modu etkin</string>
-    <string name="gaming_mode_notification_content">Oyun modunu kapatmak için dokunun</string>
-    <string name="gaming_mode_enabled_toast">Oyun modu etkinleştirildi</string>
-    <string name="gaming_mode_disabled_toast">Oyun modu kapatıldı</string>
     <string name="volume_dialog_ringer_guidance_normal">Çağrılar ve bildirimler çalacak</string>
     <string name="live_display_auto">Otomatik</string>
     <string name="live_display_auto_summary">Gün batımından ve gün doğumundan sonra ekranın renk sıcaklığını otomatik olarak ayarlar</string>

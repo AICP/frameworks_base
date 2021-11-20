@@ -24,11 +24,6 @@
     <string name="url_copy_success">已成功複製連結</string>
     <string name="url_copy_failed">上傳紀錄檔至 aicp haste 時發生錯誤</string>
     <string name="app_killed_message">已強制結束應用程式</string>
-    <string name="notification_channel_gaming">遊戲模式</string>
-    <string name="gaming_mode_notification_title">已啟用遊戲模式</string>
-    <string name="gaming_mode_notification_content">點按以關閉遊戲模式</string>
-    <string name="gaming_mode_enabled_toast">遊戲模式已開啟</string>
-    <string name="gaming_mode_disabled_toast">遊戲模式已關閉</string>
     <string name="live_display_auto">自動</string>
     <string name="animation_fade">淡化</string>
     <string name="animation_slide_right">從右側滑入</string>

@@ -141,10 +141,6 @@
     <string name="accessibility_quick_settings_hwkeys_on">實體按鍵開啟</string>
     <string name="accessibility_quick_settings_hwkeys_off">實體按鍵關閉</string>
     <string name="quick_settings_hwkeys_label">實體按鍵</string>
-    <string name="gaming_mode_not_enabled">遊戲模式已在設定中被關閉</string>
-    <string name="quick_settings_gaming_mode_label">遊戲模式</string>
-    <string name="accessibility_quick_settings_gaming_mode_disabled">遊戲模式已關閉。</string>
-    <string name="accessibility_quick_settings_gaming_mode_enabled">遊戲模式已開啟。</string>
     <string name="quick_settings_fpsinfo_label">FPS 資訊</string>
     <string name="accessibility_quick_settings_fpsinfo_off">FPS 資訊關閉</string>
     <string name="accessibility_quick_settings_fpsinfo_on">FPS 資訊開啟</string>
@@ -159,4 +155,7 @@
     <string name="lockscreen_hidden">無</string>
     <string name="custom_hint">滑動圖示以啟動</string>
     <string name="accessibility_quick_settings_running_services">開啟執行服務的螢幕。</string>
+    <string name="quick_settings_gaming_mode_label">遊戲模式</string>
+    <string name="accessibility_quick_settings_gaming_mode_disabled">遊戲模式已關閉。</string>
+    <string name="accessibility_quick_settings_gaming_mode_enabled">遊戲模式已開啟。</string>
 </resources>

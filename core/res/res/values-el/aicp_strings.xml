@@ -21,11 +21,6 @@
     <string name="reboot_title">Επανεκκίνηση</string>
     <string name="reboot_message">Επανεκκίνηση του συστήματος</string>
     <string name="app_killed_message">Η εφαρμογή τερματίστηκε</string>
-    <string name="notification_channel_gaming">Λειτουργία παιχνιδιού</string>
-    <string name="gaming_mode_notification_title">Λειτουργία παιχνιδιού ενεργή</string>
-    <string name="gaming_mode_notification_content">Πατήστε για απενεργοποίηση της λειτ. παιχνιδιού</string>
-    <string name="gaming_mode_enabled_toast">Η λειτ. παιχνιδιού ενεργοποιήθηκε</string>
-    <string name="gaming_mode_disabled_toast">Η λειτ. παιχνιδιού απενεργοποιήθηκε</string>
     <string name="animation_fade">Ξεθώριασμα</string>
     <string name="animation_slide_right">Ολίσθηση δεξιά</string>
     <string name="animation_slide_left">Ολίσθηση αριστερά</string>

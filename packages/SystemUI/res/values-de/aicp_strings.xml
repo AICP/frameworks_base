@@ -176,10 +176,6 @@
     <string name="screen_pinning_description_recents_invisible_accessible_custom">Der Bildschirm wird solange angezeigt, bis die Fixierung aufgehoben wird. \"Zurück\" gedrückt halten, um die Fixierung aufzuheben.</string>
     <string name="screen_pinning_toast_custom">Um die Bildschirm-Fixierung aufzuheben, \"Zurück\" gedrückt halten</string>
     <string name="screen_pinning_toast_recents_invisible_custom">Um die Bildschirm-Fixierung aufzuheben, \"Zurück\" gedrückt halten</string>
-    <string name="gaming_mode_not_enabled">Spielmodus ist in den Einstellungen deaktiviert</string>
-    <string name="quick_settings_gaming_mode_label">Spielmodus</string>
-    <string name="accessibility_quick_settings_gaming_mode_disabled">Spielmodus ausgeschaltet.</string>
-    <string name="accessibility_quick_settings_gaming_mode_enabled">Spielmodus eingeschaltet.</string>
     <string name="quick_settings_fpsinfo_label">FPS-Anzeige</string>
     <string name="accessibility_quick_settings_fpsinfo_off">FPS-Anzeige AUS</string>
     <string name="accessibility_quick_settings_fpsinfo_on">FPS-Anzeige EIN</string>
@@ -207,6 +203,7 @@
     <string name="quick_settings_powershare_enabled_label">Wireless PowerShare ist aktiviert</string>
     <string name="screenrecord_stopdot_label">Stoppunkt zum Beenden der Aufnahme</string>
     <string name="screenrecord_lowquality_label">Niedrigere Aufnahmequalität</string>
+    <string name="screenrecord_longer_timeout_switch_label">Größere Dateigröße\nBegrenzung der Aufnahmegröße auf 15 GB</string>
     <string name="quick_settings_dc_dimming_label">Abdunklung (DC-Dimming)</string>
     <string name="quick_settings_dc_brightness_mode">Helligkeitsmodus</string>
     <string name="quick_settings_dc_full_auto">Automatikmodus</string>
@@ -222,4 +219,11 @@
     <string name="sensor_privacy_mode_tile">Sensoren</string>
     <string name="quick_settings_on">An</string>
     <string name="quick_settings_off">Aus</string>
+    <string name="gaming_mode_not_enabled">Spielmodus deaktiviert</string>
+    <string name="gaming_mode_enabled">Spielmodus aktiviert</string>
+    <string name="quick_settings_gaming_mode_label">Spielmodus</string>
+    <string name="accessibility_quick_settings_gaming_mode_disabled">Spielmodus ausgeschaltet.</string>
+    <string name="accessibility_quick_settings_gaming_mode_enabled">Spielmodus eingeschaltet.</string>
+    <string name="quick_aicp_partsbin_label">AICP Zusatzeinstellungen</string>
+    <string name="quick_aicp_partsbin_toast">LOL, Du hast tatsächlich geglaubt, dass \'Langes Drücken\' dich irgendwo hinbringt!!!</string>
 </resources>

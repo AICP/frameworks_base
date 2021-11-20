@@ -176,10 +176,6 @@
     <string name="screen_pinning_description_recents_invisible_accessible_custom">Bu işlem, siz sabitlemeyi kaldırana kadar ekranı görünür durumda tutar. Sabitlemeyi kaldırmak için Geri\'ye dokunun ve basılı tutun.</string>
     <string name="screen_pinning_toast_custom">Bu ekran görünümünü kaldırmak için, Geri tuşuna dokunun ve basılı tutun</string>
     <string name="screen_pinning_toast_recents_invisible_custom">Bu ekran görünümünü kaldırmak için, Geri tuşuna dokunun ve basılı tutun</string>
-    <string name="gaming_mode_not_enabled">Oyun modu ayarlardan devre dışı bırakıldı</string>
-    <string name="quick_settings_gaming_mode_label">Oyun modu</string>
-    <string name="accessibility_quick_settings_gaming_mode_disabled">Oyun modu kapatıldı.</string>
-    <string name="accessibility_quick_settings_gaming_mode_enabled">Oyun modu etkinleştirildi.</string>
     <string name="quick_settings_fpsinfo_label">FPS bilgisi</string>
     <string name="accessibility_quick_settings_fpsinfo_off">FPS bilgisi kapalı</string>
     <string name="accessibility_quick_settings_fpsinfo_on">FPS bilgisi açık</string>
@@ -207,6 +203,7 @@
     <string name="quick_settings_powershare_enabled_label">Kablosuz güç paylaşımı etkin</string>
     <string name="screenrecord_stopdot_label">Kaydı durdurmak için noktayı göster</string>
     <string name="screenrecord_lowquality_label">Daha düşük kayıt kalitesi</string>
+    <string name="screenrecord_longer_timeout_switch_label">Daha büyük dosya boyutu sınırı\nKayıt boyutunu 15 GB ile sınırlayın</string>
     <string name="quick_settings_dc_dimming_label">DC Karartma</string>
     <string name="quick_settings_dc_brightness_mode">Parlaklık modu</string>
     <string name="quick_settings_dc_full_auto">Otomatik mod</string>
@@ -222,4 +219,11 @@
     <string name="sensor_privacy_mode_tile">Sensörler</string>
     <string name="quick_settings_on">Açık</string>
     <string name="quick_settings_off">Kapalı</string>
+    <string name="gaming_mode_not_enabled">Oyun modu devre dışı</string>
+    <string name="gaming_mode_enabled">Oyun modu etkin</string>
+    <string name="quick_settings_gaming_mode_label">Oyun modu</string>
+    <string name="accessibility_quick_settings_gaming_mode_disabled">Oyun modu kapatıldı.</string>
+    <string name="accessibility_quick_settings_gaming_mode_enabled">Oyun modu etkinleştirildi.</string>
+    <string name="quick_aicp_partsbin_label">AICP PartsBin</string>
+    <string name="quick_aicp_partsbin_toast">LOL, gerçekten uzun tıklamanın seni bir yere götüreceğini düşündün!!!</string>
 </resources>

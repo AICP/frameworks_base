@@ -27,11 +27,6 @@
     <string name="url_copy_failed">Si è verificato un errore durante il caricamento del log in AICP Haste</string>
     <string name="pocket_lock_message_long_press">Premi e tieni premuto il pulsante di spegnimento per sbloccare</string>
     <string name="app_killed_message">Applicazione terminata</string>
-    <string name="notification_channel_gaming">Modalità gioco</string>
-    <string name="gaming_mode_notification_title">Modalità gioco abilitata</string>
-    <string name="gaming_mode_notification_content">Tocca per disabilitare modalità gioco</string>
-    <string name="gaming_mode_enabled_toast">Modalità gioco abilitata</string>
-    <string name="gaming_mode_disabled_toast">Modalità gioco disabilitata</string>
     <string name="volume_dialog_ringer_guidance_normal">La vibrazione sarà attiva per chiamate e notifiche</string>
     <string name="live_display_auto">Automatico</string>
     <string name="live_display_auto_summary">Regola automaticamente la temperatura del colore dello schermo dopo il tramonto e l\'alba</string>

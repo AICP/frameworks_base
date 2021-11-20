@@ -156,10 +156,6 @@
     <string name="screen_pinning_description_recents_invisible_accessible_custom">ئەمە لە نیشاندان دەمێنێتەوە تاکو لای دەبەیت. &amp; داگرە و پەنجە لەسەر گەڕانەوە ڕاگرە.</string>
     <string name="screen_pinning_toast_custom">بۆ لابردنی ئەم پەڕەیە، &amp; داگرە و پەنجە لەسەر گەڕانەوە ڕاگرە</string>
     <string name="screen_pinning_toast_recents_invisible_custom">بۆ لابردنی ئەم پەڕەیە، &amp; داگرە و پەنجە لەسەر گەڕانەوە ڕاگرە</string>
-    <string name="gaming_mode_not_enabled">دۆخی یاریکردن لە ڕێکخستنەکانەوە ناکارایە</string>
-    <string name="quick_settings_gaming_mode_label">دۆخی یاریکردن</string>
-    <string name="accessibility_quick_settings_gaming_mode_disabled">دۆخی یاریکردن ناکاراکرا.</string>
-    <string name="accessibility_quick_settings_gaming_mode_enabled">دۆخی یاریکردن کاراکرا.</string>
     <string name="quick_settings_fpsinfo_label">FPS زانیاری</string>
     <string name="accessibility_quick_settings_fpsinfo_off">زانیاری FPS ناچالاکە</string>
     <string name="accessibility_quick_settings_fpsinfo_on">زانیاری FPS چالاکە</string>
@@ -181,4 +177,7 @@
     <string name="quick_settings_powershare_enabled_label">Wireless PowerShare چالاککراوە</string>
     <string name="accessibility_dpad_left">جێنیشانده‌ری چه‌پ</string>
     <string name="accessibility_dpad_right">جێنیشانده‌ری ڕاست</string>
+    <string name="quick_settings_gaming_mode_label">دۆخی یاریکردن</string>
+    <string name="accessibility_quick_settings_gaming_mode_disabled">دۆخی یاریکردن ناکاراکرا.</string>
+    <string name="accessibility_quick_settings_gaming_mode_enabled">دۆخی یاریکردن کاراکرا.</string>
 </resources>

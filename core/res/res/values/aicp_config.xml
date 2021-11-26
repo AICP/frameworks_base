@@ -23,4 +23,5 @@
     <string-array name="config_deviceKeyHandlerClasses" translatable="false">
     </string-array>
 
+    <bool name="config_cleanupUnusedFingerprints">true</bool>
 </resources>

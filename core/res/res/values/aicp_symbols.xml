@@ -32,4 +32,6 @@
   <!-- Vendor Platform signatures -->
   <java-symbol type="array" name="config_vendorPlatformSignatures" />
 
+  <!-- Fingerprint cleanup -->
+  <java-symbol type="bool" name="config_cleanupUnusedFingerprints" />
 </resources>

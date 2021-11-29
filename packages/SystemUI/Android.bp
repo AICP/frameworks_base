@@ -98,6 +98,7 @@ android_library {
         "tensorflowlite_java",
         "colorkt",
         "themelib",
+        "//hardware/google/interfaces:com.google.hardware.pixel.display-V3-java",
         "AicpGear-preference",
         "AicpGear-util",
     ],

@@ -111,5 +111,15 @@ public class SystemSettings {
         Settings.System.HEADS_UP_NOTIFICATIONS_THRESHOLD,
         Settings.System.TOAST_ANIMATION,
         Settings.System.THREE_FINGER_GESTURE,
+        Settings.System.POWERMENU_SOUNDPANEL,
+        Settings.System.POWERMENU_SCREENSHOT,
+        Settings.System.POWERMENU_SETTINGS,
+        Settings.System.POWERMENU_LOCKDOWN,
+        Settings.System.POWERMENU_AIRPLANE,
+        Settings.System.POWERMENU_ADVANCED,
+        Settings.System.POWERMENU_USERS,
+        Settings.System.POWERMENU_LOGOUT,
+        Settings.System.POWERMENU_EMERGENCY,
+        Settings.System.POWERMENU_TORCH,
     };
 }

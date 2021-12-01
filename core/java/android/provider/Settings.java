@@ -5290,25 +5290,11 @@ public final class Settings {
         public static final String POWERMENU_AIRPLANE = "powermenu_airplane";
 
          /**
-         * Whether to display reboot in the power menu
-         *
-         * @hide
-         */
-        public static final String POWERMENU_RESTART = "powermenu_restart";
-
-         /**
-         * Whether to display reboot in the power menu
+         * Whether to display advanced menu in the power menu
          *
          * @hide
          */
         public static final String POWERMENU_ADVANCED = "powermenu_advanced";
-
-         /**
-         * Whether to display power in the power menu
-         *
-         * @hide
-         */
-        public static final String POWERMENU_POWER = "powermenu_power";
 
          /**
          * Whether to display the users option in the power menu
@@ -5318,14 +5304,14 @@ public final class Settings {
         public static final String POWERMENU_USERS = "powermenu_users";
 
          /**
-         * Whether to display the users option in the power menu
+         * Whether to display the logout option in the power menu
          *
          * @hide
          */
         public static final String POWERMENU_LOGOUT = "powermenu_logout";
 
          /**
-         * Whether to display the users option in the power menu
+         * Whether to display the emergency option in the power menu
          *
          * @hide
          */
@@ -5481,8 +5467,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(POWERMENU_SETTINGS);
             PRIVATE_SETTINGS.add(POWERMENU_LOCKDOWN);
             PRIVATE_SETTINGS.add(POWERMENU_AIRPLANE);
-            PRIVATE_SETTINGS.add(POWERMENU_RESTART);
-            PRIVATE_SETTINGS.add(POWERMENU_POWER);
+            PRIVATE_SETTINGS.add(POWERMENU_ADVANCED);
             PRIVATE_SETTINGS.add(POWERMENU_USERS);
             PRIVATE_SETTINGS.add(POWERMENU_LOGOUT);
             PRIVATE_SETTINGS.add(POWERMENU_EMERGENCY);

@@ -5683,38 +5683,29 @@ public final class Settings {
          */
         public static final String POWERMENU_AIRPLANE = "powermenu_airplane";
 
-        /**
-         * Whether to display reboot in the power menu
-         * @hide
-         */
-        public static final String POWERMENU_RESTART = "powermenu_restart";
-
-        /**
-         * Whether to display reboot in the power menu
+         /**
+         * Whether to display advanced menu in the power menu
+         *
          * @hide
          */
         public static final String POWERMENU_ADVANCED = "powermenu_advanced";
 
-        /**
-         * Whether to display power in the power menu
-         * @hide
-         */
-        public static final String POWERMENU_POWER = "powermenu_power";
-
-        /**
+         /**
          * Whether to display the users option in the power menu
          * @hide
          */
         public static final String POWERMENU_USERS = "powermenu_users";
 
-        /**
-         * Whether to display the users option in the power menu
+         /**
+         * Whether to display the logout option in the power menu
+         *
          * @hide
          */
         public static final String POWERMENU_LOGOUT = "powermenu_logout";
 
-        /**
-         * Whether to display the users option in the power menu
+         /**
+         * Whether to display the emergency option in the power menu
+         *
          * @hide
          */
         public static final String POWERMENU_EMERGENCY = "powermenu_emergency";
@@ -5975,6 +5966,16 @@ public final class Settings {
             PRIVATE_SETTINGS.add(VOLUME_KEY_CURSOR_CONTROL);
             PRIVATE_SETTINGS.add(BACK_GESTURE_HAPTIC);
             PRIVATE_SETTINGS.add(THREE_FINGER_GESTURE);
+            PRIVATE_SETTINGS.add(POWERMENU_SOUNDPANEL);
+            PRIVATE_SETTINGS.add(POWERMENU_SCREENSHOT);
+            PRIVATE_SETTINGS.add(POWERMENU_SETTINGS);
+            PRIVATE_SETTINGS.add(POWERMENU_LOCKDOWN);
+            PRIVATE_SETTINGS.add(POWERMENU_AIRPLANE);
+            PRIVATE_SETTINGS.add(POWERMENU_ADVANCED);
+            PRIVATE_SETTINGS.add(POWERMENU_USERS);
+            PRIVATE_SETTINGS.add(POWERMENU_LOGOUT);
+            PRIVATE_SETTINGS.add(POWERMENU_EMERGENCY);
+            PRIVATE_SETTINGS.add(POWERMENU_TORCH);
         }
 
         /**

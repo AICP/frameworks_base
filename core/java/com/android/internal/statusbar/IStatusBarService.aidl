@@ -181,4 +181,9 @@ interface IStatusBarService
      * Slim recents
      */
     void showScreenPinningRequest(int taskId);
+
+    /**
+     * Used to block or unblock usage of gestural navigation
+     */
+    void setBlockedGesturalNavigation(boolean blocked);
 }

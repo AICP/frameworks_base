@@ -178,6 +178,7 @@ public class CommandQueue extends IStatusBar.Stub implements
     private static final int MSG_IMMERSIVE_CHANGED = 78 << MSG_SHIFT;
     private static final int MSG_SET_QS_TILES = 79 << MSG_SHIFT;
     private static final int MSG_ENTER_DESKTOP = 80 << MSG_SHIFT;
+    private static final int MSG_SET_BLOCKED_GESTURAL_NAVIGATION = 81 << MSG_SHIFT;
 
     private static final int MSG_TOGGLE_CAMERA_FLASH               = 81 << MSG_SHIFT;
     private static final int MSG_TOGGLE_CAMERA_FLASH_STATE         = 82 << MSG_SHIFT;
@@ -536,6 +537,8 @@ public class CommandQueue extends IStatusBar.Stub implements
          * @see IStatusBar#enterDesktop(int)
          */
         default void enterDesktop(int displayId) {}
+
+        default void setBlockedGesturalNavigation(boolean blocked) {}
     }
 
     @VisibleForTesting
@@ -1461,6 +1464,16 @@ public class CommandQueue extends IStatusBar.Stub implements
         }
     }
 
+    @Override
+    public void setBlockedGesturalNavigation(boolean blocked) {
+        synchronized (mLock) {
+            if (mHandler.hasMessages(MSG_SET_BLOCKED_GESTURAL_NAVIGATION)) {
+                mHandler.removeMessages(MSG_SET_BLOCKED_GESTURAL_NAVIGATION);
+            }
+            mHandler.obtainMessage(MSG_SET_BLOCKED_GESTURAL_NAVIGATION, blocked).sendToTarget();
+        }
+    }
+
     private final class H extends Handler {
         private H(Looper l) {
             super(l);
@@ -1976,6 +1989,9 @@ public class CommandQueue extends IStatusBar.Stub implements
                     }
                     break;
                 }
+                case MSG_SET_BLOCKED_GESTURAL_NAVIGATION:
+                    mCallbacks.forEach(cb -> cb.setBlockedGesturalNavigation((Boolean) msg.obj));
+                    break;
             }
         }
     }

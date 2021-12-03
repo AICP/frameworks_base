@@ -325,4 +325,5 @@ oneway interface IStatusBar
 
     /** AICP additions. */
     void toggleCameraFlash();
+    void setBlockedGesturalNavigation(boolean blocked);
 }

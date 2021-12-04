@@ -175,10 +175,6 @@
     <string name="screen_pinning_description_recents_invisible_accessible_custom">Ebben a nézetben tartja addig, amíg Ön fel nem oldja. A feloldáshoz tartsa lenyomva a Vissza gombot.</string>
     <string name="screen_pinning_toast_custom">A Képernyő feloldásához tartsa nyomva a Vissza gombot</string>
     <string name="screen_pinning_toast_recents_invisible_custom">A Képernyő feloldásához tartsa nyomva a Vissza gombot</string>
-    <string name="gaming_mode_not_enabled">A Játékmód a beállításokban le van tiltva</string>
-    <string name="quick_settings_gaming_mode_label">Játékmód</string>
-    <string name="accessibility_quick_settings_gaming_mode_disabled">A Játékmód kikapcsolásra került.</string>
-    <string name="accessibility_quick_settings_gaming_mode_enabled">A Játékmód bekapcsolásra került.</string>
     <string name="quick_settings_fpsinfo_label">FPS-adatok</string>
     <string name="accessibility_quick_settings_fpsinfo_off">FPS-adatok ki</string>
     <string name="accessibility_quick_settings_fpsinfo_on">FPS-adatok be</string>
@@ -206,6 +202,7 @@
     <string name="quick_settings_powershare_enabled_label">A PowerShare bekapcsolva</string>
     <string name="screenrecord_stopdot_label">Leállítógomb megjelenítése</string>
     <string name="screenrecord_lowquality_label">Gyengébb minőségű felvétel</string>
+    <string name="screenrecord_longer_timeout_switch_label">Fájlméret felső határa\n15GB lehet a legnagyobb méret</string>
     <string name="quick_settings_dc_dimming_label">DC-kiegyenlítés</string>
     <string name="quick_settings_dc_brightness_mode">Fényerő mód</string>
     <string name="quick_settings_dc_full_auto">Automatikus mód</string>
@@ -221,4 +218,11 @@
     <string name="sensor_privacy_mode_tile">Szenzorok</string>
     <string name="quick_settings_on">Be</string>
     <string name="quick_settings_off">Ki</string>
+    <string name="gaming_mode_not_enabled">A Játékmód letiltva</string>
+    <string name="gaming_mode_enabled">A Játékmód engedélyezve</string>
+    <string name="quick_settings_gaming_mode_label">Játékmód</string>
+    <string name="accessibility_quick_settings_gaming_mode_disabled">A Játékmód kikapcsolásra került.</string>
+    <string name="accessibility_quick_settings_gaming_mode_enabled">A Játékmód bekapcsolásra került.</string>
+    <string name="quick_aicp_partsbin_label">További AICP-beállítások</string>
+    <string name="quick_aicp_partsbin_toast">Hűha, komolyan azt hitted a hosszan kattintás eljuttat téged valahová!!!</string>
 </resources>

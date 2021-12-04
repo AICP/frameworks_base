@@ -152,10 +152,6 @@
     <string name="screen_pinning_description_recents_invisible_accessible_custom">Με αυτόν τον τρόπο παραμένει σε προβολή μέχρι να το ξεκαρφιτσώσετε. Αγγίξτε παρατεταμένα &amp; \"Επιστροφή\" για ξεκαρφίτσωμα.</string>
     <string name="screen_pinning_toast_custom">Για να ξεκαρφιτσώσετε, αγγίξτε &amp; παρατεταμένα το \"Πίσω\"</string>
     <string name="screen_pinning_toast_recents_invisible_custom">Για να ξεκαρφιτσώσετε, αγγίξτε &amp; παρατεταμένα το \"Πίσω\"</string>
-    <string name="gaming_mode_not_enabled">Η λειτ. παιχνιδιού είναι ανενεργή στις ρυθμίσεις</string>
-    <string name="quick_settings_gaming_mode_label">Λειτουργία παιχνιδιού</string>
-    <string name="accessibility_quick_settings_gaming_mode_disabled">Η λειτ. παιχνιδιού απενεργοποιήθηκε.</string>
-    <string name="accessibility_quick_settings_gaming_mode_enabled">Η λειτ. παιχνιδιού ενεργοποιήθηκε.</string>
     <string name="quick_settings_fpsinfo_label">Πληροφορίες FPS</string>
     <string name="accessibility_quick_settings_fpsinfo_off">Πληροφ. FPS ανενεργές</string>
     <string name="accessibility_quick_settings_fpsinfo_on">Πληροφ. FPS ενεργές</string>
@@ -171,4 +167,7 @@
     <string name="quick_settings_powershare_enabled_label">Το Wireless PowerShare είναι ενεργοποιημένο</string>
     <string name="accessibility_dpad_left">Κέρσορας αριστερά</string>
     <string name="accessibility_dpad_right">Κέρσορας δεξιά</string>
+    <string name="quick_settings_gaming_mode_label">Λειτουργία παιχνιδιού</string>
+    <string name="accessibility_quick_settings_gaming_mode_disabled">Η λειτ. παιχνιδιού απενεργοποιήθηκε.</string>
+    <string name="accessibility_quick_settings_gaming_mode_enabled">Η λειτ. παιχνιδιού ενεργοποιήθηκε.</string>
 </resources>

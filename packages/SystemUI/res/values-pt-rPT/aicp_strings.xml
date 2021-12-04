@@ -155,10 +155,6 @@
     <string name="screen_pinning_description_recents_invisible_accessible_custom">Irá ficar visível até que o solte. Toque e segure o botão Anterior para soltar.</string>
     <string name="screen_pinning_toast_custom">Para soltar este ecrã, toque prolongadamente no botão Anterior</string>
     <string name="screen_pinning_toast_recents_invisible_custom">Para soltar este ecrã, toque prolongadamente no botão Anterior</string>
-    <string name="gaming_mode_not_enabled">Modo de jogo está desativado nas definições</string>
-    <string name="quick_settings_gaming_mode_label">Modo de jogo</string>
-    <string name="accessibility_quick_settings_gaming_mode_disabled">O modo de jogo foi desativado.</string>
-    <string name="accessibility_quick_settings_gaming_mode_enabled">O modo de jogo foi ativado.</string>
     <string name="quick_settings_fpsinfo_label">Informação de FPS</string>
     <string name="accessibility_quick_settings_fpsinfo_off">Informação de FPS desativada</string>
     <string name="accessibility_quick_settings_fpsinfo_on">Informação de FPS ativada</string>
@@ -181,4 +177,7 @@ Bateria demasiado fraca</string>
     <string name="quick_settings_powershare_enabled_label">Wireless PowerShare está ativo</string>
     <string name="accessibility_dpad_left">Cursor à esquerda</string>
     <string name="accessibility_dpad_right">Cursor à direita</string>
+    <string name="quick_settings_gaming_mode_label">Modo de jogo</string>
+    <string name="accessibility_quick_settings_gaming_mode_disabled">O modo de jogo foi desativado.</string>
+    <string name="accessibility_quick_settings_gaming_mode_enabled">O modo de jogo foi ativado.</string>
 </resources>

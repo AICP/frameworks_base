@@ -29,11 +29,6 @@ Aplikasi jahat mungkin dapat menggunakan ini untuk masuk ke aplikasi data pribad
     <string name="url_copy_failed">Terjadi kesalahan saat mengunggah log ke aicp haste</string>
     <string name="pocket_lock_message_long_press">Tekan dan tahan tombol daya untuk membuka kunci</string>
     <string name="app_killed_message">Aplikasi ditutup</string>
-    <string name="notification_channel_gaming">Mode permainan</string>
-    <string name="gaming_mode_notification_title">Mode permainan dihidupkan</string>
-    <string name="gaming_mode_notification_content">Tekan untuk mematikan mode permainan</string>
-    <string name="gaming_mode_enabled_toast">Mode permainan dihidupkan</string>
-    <string name="gaming_mode_disabled_toast">Mode permainan dimatikan</string>
     <string name="volume_dialog_ringer_guidance_normal">Panggilan dan notifikasi akan berdering</string>
     <string name="live_display_auto">Otomatis</string>
     <string name="live_display_auto_summary">Secara otomatis menyesuaikan warna layar setelah matahari terbenam dan matahari terbit</string>

@@ -178,10 +178,6 @@
     <string name="screen_pinning_description_recents_invisible_accessible_custom">固定を解除するまで表示されます。戻るを押し続けると解除されます。</string>
     <string name="screen_pinning_toast_custom">画面の固定を解除するには戻るボタンを長押しします</string>
     <string name="screen_pinning_toast_recents_invisible_custom">画面の固定を解除するには戻るボタンを長押しします</string>
-    <string name="gaming_mode_not_enabled">ゲームモードが設定で無効になっています</string>
-    <string name="quick_settings_gaming_mode_label">ゲームモード</string>
-    <string name="accessibility_quick_settings_gaming_mode_disabled">ゲームモードを無効化しました</string>
-    <string name="accessibility_quick_settings_gaming_mode_enabled">ゲームモードを有効化しました</string>
     <string name="quick_settings_fpsinfo_label">FPS 情報</string>
     <string name="accessibility_quick_settings_fpsinfo_off">FPS 情報 OFF</string>
     <string name="accessibility_quick_settings_fpsinfo_on">FPS 情報 ON</string>
@@ -224,4 +220,7 @@
     <string name="sensor_privacy_mode_tile">センサー</string>
     <string name="quick_settings_on">ON</string>
     <string name="quick_settings_off">OFF</string>
+    <string name="quick_settings_gaming_mode_label">ゲームモード</string>
+    <string name="accessibility_quick_settings_gaming_mode_disabled">ゲームモードを無効化しました</string>
+    <string name="accessibility_quick_settings_gaming_mode_enabled">ゲームモードを有効化しました</string>
 </resources>

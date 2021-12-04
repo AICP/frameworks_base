@@ -27,11 +27,6 @@
     <string name="url_copy_failed">Hiba történt a napló AICP haste-re való feltöltése során</string>
     <string name="pocket_lock_message_long_press">Tartsa lenyomva a bekapcsoló gombot a feloldáshoz</string>
     <string name="app_killed_message">Az alkalmazás leállítva</string>
-    <string name="notification_channel_gaming">Játékmód</string>
-    <string name="gaming_mode_notification_title">A Játékmód engedélyezve</string>
-    <string name="gaming_mode_notification_content">Érintse meg a Játékmódból való kilépéshez</string>
-    <string name="gaming_mode_enabled_toast">A Játékmód bekapcsolásra került</string>
-    <string name="gaming_mode_disabled_toast">A Játékmód kikapcsolásra került</string>
     <string name="volume_dialog_ringer_guidance_normal">A hívások és az értesítések rezegnek</string>
     <string name="live_display_auto">Automatikus</string>
     <string name="live_display_auto_summary">Automatikusan beállítja a képernyő színhőmérsékletét naplemente és napkelte után</string>

@@ -176,10 +176,6 @@
     <string name="screen_pinning_description_recents_invisible_accessible_custom">Questo lo mantiene a vista finché non lo sblocchi. Tocca e tieni premuto Indietro per sbloccare.</string>
     <string name="screen_pinning_toast_custom">Per sbloccare questa schermata, tocca e tieni premuto Indietro per sbloccare</string>
     <string name="screen_pinning_toast_recents_invisible_custom">Per sbloccare questa schermata, tocca e tieni premuto Indietro per sbloccare</string>
-    <string name="gaming_mode_not_enabled">La modalità di gioco è disabilitata nelle impostazioni</string>
-    <string name="quick_settings_gaming_mode_label">Modalità di gioco</string>
-    <string name="accessibility_quick_settings_gaming_mode_disabled">Modalità di gioco disattivata.</string>
-    <string name="accessibility_quick_settings_gaming_mode_enabled">Modalità di gioco attivata.</string>
     <string name="quick_settings_fpsinfo_label">Info FPS</string>
     <string name="accessibility_quick_settings_fpsinfo_off">Info FPS spente</string>
     <string name="accessibility_quick_settings_fpsinfo_on">Info FPS attive</string>
@@ -222,4 +218,7 @@
     <string name="sensor_privacy_mode_tile">Sensori</string>
     <string name="quick_settings_on">On</string>
     <string name="quick_settings_off">Off</string>
+    <string name="quick_settings_gaming_mode_label">Modalità di gioco</string>
+    <string name="accessibility_quick_settings_gaming_mode_disabled">Modalità di gioco disattivata.</string>
+    <string name="accessibility_quick_settings_gaming_mode_enabled">Modalità di gioco attivata.</string>
 </resources>

@@ -27,11 +27,6 @@
     <string name="url_copy_failed">Ocurrió un error mientras se cargaba el archivo de registro al haste de aicp</string>
     <string name="pocket_lock_message_long_press">Pulse y mantenga el botón de encendido para desbloquear</string>
     <string name="app_killed_message">Aplicación finalizada</string>
-    <string name="notification_channel_gaming">Modo juego</string>
-    <string name="gaming_mode_notification_title">Modo juego activado</string>
-    <string name="gaming_mode_notification_content">Toca para desactivar el modo juego</string>
-    <string name="gaming_mode_enabled_toast">Modo juego activado</string>
-    <string name="gaming_mode_disabled_toast">Modo juego desactivado</string>
     <string name="volume_dialog_ringer_guidance_normal">Las llamadas y las notificaciones sonarán</string>
     <string name="live_display_auto">Automático</string>
     <string name="live_display_auto_summary">Ajustar automáticamente la temperatura del color de pantalla al amanecer y anochecer</string>

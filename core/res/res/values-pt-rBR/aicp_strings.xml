@@ -27,11 +27,6 @@
     <string name="url_copy_failed">Ocorreu um erro durante o envio do log para o dogbin</string>
     <string name="pocket_lock_message_long_press">Segure o botão de ligar pra desbloquear</string>
     <string name="app_killed_message">Aplicativo encerrado</string>
-    <string name="notification_channel_gaming">Modo Jogo</string>
-    <string name="gaming_mode_notification_title">Modo Jogo ativado</string>
-    <string name="gaming_mode_notification_content">Toque para desativar o Modo Jogo</string>
-    <string name="gaming_mode_enabled_toast">Modo Jogo foi ativado</string>
-    <string name="gaming_mode_disabled_toast">Modo Jogo foi desativado</string>
     <string name="volume_dialog_ringer_guidance_normal">Chamadas e notificações irão tocar</string>
     <string name="live_display_auto">Automático</string>
     <string name="live_display_auto_summary">Ajusta automaticamente a cor da temperatura da tela depois do nascer e pôr do sol</string>

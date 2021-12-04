@@ -176,10 +176,6 @@
     <string name="screen_pinning_description_recents_invisible_accessible_custom">Isso mantém em vista até você desafixar. Toque &amp; segure \"Voltar\" para desafixar.</string>
     <string name="screen_pinning_toast_custom">Para desafixar esta tela, toque &amp; segure o botão \"Voltar\"</string>
     <string name="screen_pinning_toast_recents_invisible_custom">Para desafixar esta tela, toque &amp; segure o botão \"Voltar\"</string>
-    <string name="gaming_mode_not_enabled">Modo Jogo está desativado nas configurações</string>
-    <string name="quick_settings_gaming_mode_label">Modo Jogo</string>
-    <string name="accessibility_quick_settings_gaming_mode_disabled">O Modo Jogo foi desativado.</string>
-    <string name="accessibility_quick_settings_gaming_mode_enabled">O Modo Jogo foi ativado.</string>
     <string name="quick_settings_fpsinfo_label">Informação de FPS</string>
     <string name="accessibility_quick_settings_fpsinfo_off">Informação de FPS desativada</string>
     <string name="accessibility_quick_settings_fpsinfo_on">Informação de FPS ativada</string>
@@ -219,4 +215,7 @@
     <string name="accessibility_dpad_left">Cursor à esquerda</string>
     <string name="accessibility_dpad_right">Cursor à direita</string>
     <string name="change_clock_face">Deslize para alterar o estilo do relógio</string>
+    <string name="quick_settings_gaming_mode_label">Modo Jogo</string>
+    <string name="accessibility_quick_settings_gaming_mode_disabled">O Modo Jogo foi desativado.</string>
+    <string name="accessibility_quick_settings_gaming_mode_enabled">O Modo Jogo foi ativado.</string>
 </resources>

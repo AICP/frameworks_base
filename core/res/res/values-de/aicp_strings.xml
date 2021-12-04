@@ -27,11 +27,6 @@
     <string name="url_copy_failed">Beim Upload des Protokolls zum AICP haste Server ist ein Fehler aufgetreten</string>
     <string name="pocket_lock_message_long_press">Zum Entsperren EIN/AUS-Taste drücken und halten</string>
     <string name="app_killed_message">Anwendung beendet</string>
-    <string name="notification_channel_gaming">Spielmodus</string>
-    <string name="gaming_mode_notification_title">Spielmodus aktiviert</string>
-    <string name="gaming_mode_notification_content">Tippen, um den Spielmodus zu deaktivieren</string>
-    <string name="gaming_mode_enabled_toast">Spielmodus eingeschaltet</string>
-    <string name="gaming_mode_disabled_toast">Spielmodus ausgeschaltet</string>
     <string name="volume_dialog_ringer_guidance_normal">Bei Anrufen und Benachrichtigungen klingeln</string>
     <string name="live_display_auto">Automatisch</string>
     <string name="live_display_auto_summary">Farbtemperatur des Bildschirms automatisch nach Sonnenuntergang und Sonnenaufgang anpassen</string>

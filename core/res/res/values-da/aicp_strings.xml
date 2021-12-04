@@ -28,11 +28,6 @@
     <string name="url_copy_failed">Der opstod en fejl ved forsendelse af logfilen til AICP-haste</string>
     <string name="pocket_lock_message_long_press">Tryk og hold tænd/sluk-knap nede, for at låse op</string>
     <string name="app_killed_message">Applikation slået ned</string>
-    <string name="notification_channel_gaming">Spiltilstand</string>
-    <string name="gaming_mode_notification_title">Spiltilstand aktiveret</string>
-    <string name="gaming_mode_notification_content">Tryk, for at deaktivere Spiltilstand</string>
-    <string name="gaming_mode_enabled_toast">Spiltilstand slået til</string>
-    <string name="gaming_mode_disabled_toast">Spiltilstand slået fra</string>
     <string name="volume_dialog_ringer_guidance_normal">Opkald og notifikationer vil ringe</string>
     <string name="live_display_auto">Automatisk</string>
     <string name="live_display_auto_summary">Justerer automatisk skærmens farvetemperatur, efter solnedgang og solopgang</string>

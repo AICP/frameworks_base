@@ -24,11 +24,6 @@
     <string name="url_copy_success">링크가 성공적으로 복사되었습니다</string>
     <string name="url_copy_failed">로그를 aicp haste로 업로드하는 중에 오류가 발생했습니다.</string>
     <string name="app_killed_message">응용 프로그램이 종료되었습니다</string>
-    <string name="notification_channel_gaming">게이밍 모드</string>
-    <string name="gaming_mode_notification_title">게이밍 모드 활성화됨</string>
-    <string name="gaming_mode_notification_content">탭 하여 게이밍 모드 끄기</string>
-    <string name="gaming_mode_enabled_toast">게임 모드가 켜져 있습니다</string>
-    <string name="gaming_mode_disabled_toast">게임 모드가 꺼졌습니다</string>
     <string name="live_display_auto">자동</string>
     <string name="live_display_auto_summary">일출 및 일몰 후 화면의 색 온도를 자동으로 조정</string>
     <string name="live_display_off">오프</string>

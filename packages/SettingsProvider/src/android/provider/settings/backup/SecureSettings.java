@@ -238,5 +238,6 @@ public class SecureSettings {
         Settings.Secure.BUTTON_BRIGHTNESS,
         Settings.Secure.KEYBOARD_BRIGHTNESS,
         Settings.Secure.QSTILE_REQUIRES_UNLOCKING,
+        Settings.Secure.GESTURE_NAVBAR_LENGTH_MODE,
     };
 }

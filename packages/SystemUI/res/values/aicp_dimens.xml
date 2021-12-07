@@ -79,4 +79,9 @@
 
     <!-- Width of the landscape battery icon in the status bar. -->
     <dimen name="status_bar_battery_icon_width_landscape">24dp</dimen>
+
+    <!-- Additional gesture navbar lengths -->
+    <dimen name="navigation_home_handle_width_medium">140dp</dimen>
+    <dimen name="navigation_home_handle_width_long">170dp</dimen>
+    <dimen name="navigation_home_handle_width_very_long">190dp</dimen>
 </resources>

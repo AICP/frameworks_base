@@ -240,5 +240,6 @@ public class SecureSettings {
         Settings.Secure.QSTILE_REQUIRES_UNLOCKING,
         Settings.Secure.WINDOW_IGNORE_SECURE,
         Settings.Secure.SHOW_WIFI_STANDARD_ICON,
+        Settings.Secure.GESTURE_NAVBAR_LENGTH_MODE,
     };
 }

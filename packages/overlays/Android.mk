@@ -23,7 +23,7 @@ LOCAL_REQUIRED_MODULES := \
 	AvoidAppsInCutoutOverlay \
 	DisplayCutoutEmulationCornerOverlay \
 	DisplayCutoutEmulationDoubleOverlay \
-    DisplayCutoutEmulationHoleOverlay \
+	DisplayCutoutEmulationHoleOverlay \
 	DisplayCutoutEmulationTallOverlay \
 	DisplayCutoutEmulationWaterfallOverlay \
 	DisplayCutoutEmulationWideOverlay \
@@ -37,6 +37,7 @@ LOCAL_REQUIRED_MODULES := \
 	NoCutoutOverlay \
 	NotchBarKillerLeftrOverlay \
 	NotchBarKillerOverlay \
+	NavigationBarModeGesturalOverlayFS \
 	preinstalled-packages-platform-overlays.xml
 
 include $(BUILD_PHONY_PACKAGE)

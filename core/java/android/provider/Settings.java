@@ -12266,6 +12266,14 @@ public final class Settings {
          */
         public static final String SHOW_CLIPBOARD_OVERLAY = "show_clipboard_overlay";
 
+        /**
+         * Gesture navbar length mode.
+         * Supported modes: 0 for hidden, 1 for normal length, 2 for medium and 3 for long.
+         * Default 0.
+         * @hide
+         */
+        public static final String GESTURE_NAVBAR_LENGTH_MODE = "gesture_navbar_length_mode";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

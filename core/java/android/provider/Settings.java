@@ -5448,6 +5448,12 @@ public final class Settings {
          */
         public static final String LESS_BORING_HEADS_UP = "less_boring_heads_up";
 
+        /**
+         * Whether StatusBar icons should use app icon
+         * @hide
+         */
+        public static final String STATUSBAR_COLORED_ICONS = "statusbar_colored_icons";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5617,6 +5623,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(LOCKSCREEN_PIN_SCRAMBLE_LAYOUT);
             PRIVATE_SETTINGS.add(QS_SMART_PULLDOWN);
             PRIVATE_SETTINGS.add(LESS_BORING_HEADS_UP);
+            PRIVATE_SETTINGS.add(STATUSBAR_COLORED_ICONS);
         }
 
         /**

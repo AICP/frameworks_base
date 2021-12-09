@@ -122,5 +122,6 @@ public class SystemSettings {
         Settings.System.LOCKSCREEN_PIN_SCRAMBLE_LAYOUT,
         Settings.System.QS_SMART_PULLDOWN,
         Settings.System.LESS_BORING_HEADS_UP,
+        Settings.System.STATUSBAR_COLORED_ICONS,
     };
 }

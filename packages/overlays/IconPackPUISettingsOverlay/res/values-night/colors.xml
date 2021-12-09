@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="icon_color">#ffffeded</color>
+    <color name="pui_monet">@*android:color/bright_foreground_dark_inverse</color>
+    <color name="pui_color">#ffffffff</color>
+    <color name="color_icon">#ffffffff</color>
+</resources>

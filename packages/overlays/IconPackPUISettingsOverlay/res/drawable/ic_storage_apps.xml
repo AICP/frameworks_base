@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:height="24dp" android:width="24dp" android:viewportWidth="24" android:viewportHeight="24">
+    <path android:fillColor="@color/icon_color" android:pathData="M1.75,6.5C1.75,3.877 3.877,1.75 6.5,1.75C9.123,1.75 11.25,3.877 11.25,6.5C11.25,9.123 9.123,11.25 6.5,11.25C3.877,11.25 1.75,9.123 1.75,6.5Z" android:fillType="evenOdd"/>
+    <path android:fillColor="@color/icon_color" android:pathData="M12.75,17.5C12.75,14.877 14.877,12.75 17.5,12.75C20.123,12.75 22.25,14.877 22.25,17.5C22.25,20.123 20.123,22.25 17.5,22.25C14.877,22.25 12.75,20.123 12.75,17.5Z" android:fillType="evenOdd"/>
+    <path android:fillColor="@color/icon_color" android:pathData="M22.25,6.5C22.25,3.877 20.123,1.75 17.5,1.75C14.877,1.75 12.75,3.877 12.75,6.5C12.75,9.123 14.877,11.25 17.5,11.25C20.123,11.25 22.25,9.123 22.25,6.5Z" android:fillType="evenOdd"/>
+    <path android:fillColor="@color/icon_color" android:pathData="M11.25,17.5C11.25,14.877 9.123,12.75 6.5,12.75C3.877,12.75 1.75,14.877 1.75,17.5C1.75,20.123 3.877,22.25 6.5,22.25C9.123,22.25 11.25,20.123 11.25,17.5Z" android:fillType="evenOdd"/>
+</vector>

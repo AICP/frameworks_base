@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:height="24dp" android:width="24dp" android:viewportWidth="32" android:viewportHeight="32">
+    <path android:fillColor="@color/pui_monet" android:pathData="M26,2L6,2A2.002,2.002 0,0 0,4 4L4,17a10.981,10.981 0,0 0,5.824 9.707L16,30l6.176,-3.293A10.981,10.981 0,0 0,28 17L28,4A2.002,2.002 0,0 0,26 2ZM23,18L9,18L9,16L23,16ZM23,12L9,12L9,10L23,10Z"/>
+</vector>

@@ -144,5 +144,6 @@ public class SystemSettings {
         Settings.System.USE_OLD_MOBILETYPE,
         Settings.System.ROAMING_INDICATOR_ICON,
         Settings.System.DATA_DISABLED_ICON,
+        Settings.System.STATUSBAR_COLORED_ICONS,
     };
 }

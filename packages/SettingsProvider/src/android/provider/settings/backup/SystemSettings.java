@@ -138,5 +138,6 @@ public class SystemSettings {
         Settings.System.STATUS_BAR_CLOCK_AUTO_HIDE_HDURATION,
         Settings.System.STATUS_BAR_CLOCK_AUTO_HIDE_SDURATION,
         Settings.System.SHOW_QS_CLOCK,
+        Settings.System.SHOW_QS_DATE,
     };
 }

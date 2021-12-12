@@ -5947,6 +5947,12 @@ public final class Settings {
          */
         public static final String SHOW_QS_CLOCK = "show_qs_clock";
 
+        /**
+         * Whether to display QS date
+         * @hide
+         */
+        public static final String SHOW_QS_DATE = "show_qs_date";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6119,6 +6125,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK_AUTO_HIDE_HDURATION);
             PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK_AUTO_HIDE_SDURATION);
             PRIVATE_SETTINGS.add(SHOW_QS_CLOCK);
+            PRIVATE_SETTINGS.add(SHOW_QS_DATE);
         }
 
         /**

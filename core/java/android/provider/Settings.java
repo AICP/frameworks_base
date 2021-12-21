@@ -7257,6 +7257,16 @@ public final class Settings {
         /**
          * @hide
          */
+        public static final String UDFPS_ANIM_STYLE = "udfps_anim_style";
+
+        /**
+         * @hide
+         */
+        public static final String UDFPS_ICON = "udfps_icon";
+
+        /**
+         * @hide
+         */
         public static final String QS_TILES_COLUMNS_LANDSCAPE = "qs_tiles_columns_landscape";
 
         /**

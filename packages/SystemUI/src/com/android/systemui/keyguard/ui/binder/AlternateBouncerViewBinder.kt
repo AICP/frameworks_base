@@ -260,7 +260,7 @@ constructor(
                         var udfpsView = view.getViewById(udfpsViewId)
                         if (udfpsView == null) {
                             udfpsView =
-                                DeviceEntryIconView(view.context, null, logger = logger).apply {
+                                DeviceEntryIconView(view.context, null, 0, logger).apply {
                                     id = udfpsViewId
                                     contentDescription =
                                         context.resources.getString(
@@ -268,7 +268,7 @@ constructor(
                                         )
                                 }
                             view.addView(udfpsView)
-                            AlternateBouncerUdfpsViewBinder.bind(udfpsView, udfpsIconViewModel)
+                            AlternateBouncerUdfpsViewBinder.bind(applicationScope, udfpsView, udfpsIconViewModel)
                         }
 
                         val constraintSet = ConstraintSet().apply { clone(view) }

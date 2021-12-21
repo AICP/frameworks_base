@@ -18,8 +18,14 @@ package com.android.systemui.keyguard.ui.view
 
 import android.companion.virtualdevice.flags.Flags
 import android.content.Context
+import android.database.ContentObserver
 import android.graphics.drawable.AnimatedStateListDrawable
 import android.graphics.drawable.AnimatedVectorDrawable
+import android.net.Uri
+import android.os.Handler
+import android.os.Looper
+import android.os.UserHandle
+import android.provider.Settings
 import android.util.AttributeSet
 import android.util.StateSet
 import android.view.Gravity
@@ -32,6 +38,8 @@ import android.widget.ImageView
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat
 import com.airbnb.lottie.LottieCompositionFactory
 import com.airbnb.lottie.LottieDrawable
+import com.android.systemui.biometrics.UdfpsFpIconDrawable
+import com.android.systemui.biometrics.UdfpsIconDrawable
 import com.android.systemui.common.ui.view.TouchHandlingView
 import com.android.systemui.log.TouchHandlingViewLogger
 import com.android.systemui.res.R
@@ -64,6 +72,22 @@ constructor(
 
     private var animatedIconDrawable: AnimatedStateListDrawable = AnimatedStateListDrawable()
 
+    private val fingerprintDrawable: UdfpsIconDrawable = UdfpsFpIconDrawable(context)
+
+    private val packageInstalled = com.android.internal.util.derp.derpUtils.isPackageInstalled(
+        context, "org.derpfest.udfps.icons"
+    )
+
+    private val udfpsIconObserver = object : ContentObserver(Handler(Looper.getMainLooper())) {
+        override fun onChange(selfChange: Boolean, uri: Uri?) {
+            iconView.setImageDrawable(null)
+            animatedIconDrawable = AnimatedStateListDrawable()
+            setupIconStates()
+            setupIconTransitions()
+            iconView.setImageDrawable(animatedIconDrawable)
+        }
+    }
+
     init {
         setupIconStates()
         setupIconTransitions()
@@ -74,6 +98,18 @@ constructor(
         addBgImageView()
         addIconImageView()
         addTouchHandlingView()
+
+        context.contentResolver.registerContentObserver(
+            Settings.System.getUriFor(Settings.System.UDFPS_ICON),
+            false,
+            udfpsIconObserver,
+            UserHandle.USER_CURRENT
+        )
+    }
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        context.contentResolver.unregisterContentObserver(udfpsIconObserver)
     }
 
     private fun setupAccessibilityDelegate() {
@@ -111,6 +147,10 @@ constructor(
      * - Drawable properties can be updated using ImageView properties like imageTintList.
      */
     private fun setupIconStates() {
+        val customUdfpsIcon = packageInstalled && (Settings.System.getIntForUser(
+            mContext.contentResolver, Settings.System.UDFPS_ICON, 0, UserHandle.USER_CURRENT
+        ) != 0)
+
         // Lockscreen States
         // LOCK
         animatedIconDrawable.addState(
@@ -125,11 +165,20 @@ constructor(
             R.id.unlocked,
         )
         // FINGERPRINT
-        animatedIconDrawable.addState(
-            getIconState(IconType.FINGERPRINT, false),
-            context.getDrawable(R.drawable.ic_fingerprint)!!,
-            R.id.locked_fp,
-        )
+        if (customUdfpsIcon) {
+            fingerprintDrawable.setBounds(0, 0, bgView.width, bgView.height)
+            animatedIconDrawable.addState(
+                getIconState(IconType.FINGERPRINT, false),
+                fingerprintDrawable,
+                R.id.locked_fp
+            )
+        } else {
+            animatedIconDrawable.addState(
+                getIconState(IconType.FINGERPRINT, false),
+                context.getDrawable(R.drawable.ic_fingerprint)!!,
+                R.id.locked_fp
+            )
+        }
 
         // AOD states
         // LOCK

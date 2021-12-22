@@ -161,7 +161,10 @@ public class SystemSettings {
                 Settings.System.STATUS_BAR_LOGO_COLOR_ACCENT,
                 Settings.System.QS_FOOTER_TEXT_SHOW,
                 Settings.System.QS_FOOTER_TEXT_STRING,
-                Settings.System.HIDE_LOCKSCREEN_STATUS_BAR
+                Settings.System.HIDE_LOCKSCREEN_STATUS_BAR,
+                Settings.System.QS_TILE_VERTICAL_LAYOUT,
+                Settings.System.QS_LAYOUT_COLUMNS_LANDSCAPE,
+                Settings.System.QS_LAYOUT_COLUMNS
         ));
         if (Flags.backUpSmoothDisplayAndForcePeakRefreshRate()) {
             settings.add(Settings.System.PEAK_REFRESH_RATE);

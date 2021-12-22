@@ -24,6 +24,8 @@ import com.android.systemui.qs.tileimpl.HeightOverrideable;
 import com.android.systemui.qs.tileimpl.QSTileViewImplKt;
 import com.android.systemui.res.R;
 
+import com.aicp.gear.util.AicpUtils;
+
 import java.util.ArrayList;
 
 public class TileLayout extends ViewGroup implements QSTileLayout {
@@ -151,7 +153,6 @@ public class TileLayout extends ViewGroup implements QSTileLayout {
         int columns = useSmallLandscapeLockscreenResources()
                 ? res.getInteger(R.integer.small_land_lockscreen_quick_settings_num_columns)
                 : res.getInteger(R.integer.quick_settings_num_columns);
-        mResourceColumns = Math.max(1, columns);
         mResourceCellHeight = res.getDimensionPixelSize(mResourceCellHeightResId);
         mCellMarginHorizontal = res.getDimensionPixelSize(R.dimen.qs_tile_margin_horizontal);
         mSidePadding = useSidePadding() ? mCellMarginHorizontal / 2 : 0;
@@ -190,7 +191,7 @@ public class TileLayout extends ViewGroup implements QSTileLayout {
 
     private boolean updateColumns() {
         int oldColumns = mColumns;
-        mColumns = Math.min(mResourceColumns, mMaxColumns);
+        mColumns = Math.min(getResourceColumns(), mMaxColumns);
         return oldColumns != mColumns;
     }
 
@@ -376,5 +377,17 @@ public class TileLayout extends ViewGroup implements QSTileLayout {
         super.onInitializeAccessibilityNodeInfoInternal(info);
         info.setCollectionInfo(
                 new AccessibilityNodeInfo.CollectionInfo(mRecords.size(), 1, false));
+    }
+
+    @Override
+    public int getResourceColumns() {
+        int resourceColumns = Math.max(2, getResources().getInteger(R.integer.quick_settings_num_columns));
+        return AicpUtils.getQSColumnsCount(mContext, resourceColumns);
+    }
+
+    @Override
+    public void updateSettings() {
+        setMaxColumns(getResourceColumns());
+        requestLayout();
     }
 }

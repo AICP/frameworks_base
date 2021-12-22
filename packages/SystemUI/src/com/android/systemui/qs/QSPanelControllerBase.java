@@ -22,9 +22,15 @@ import static com.android.systemui.Flags.quickSettingsVisualHapticsLongpress;
 import android.annotation.NonNull;
 import android.annotation.Nullable;
 import android.content.ComponentName;
+import android.content.ContentResolver;
+import android.database.ContentObserver;
 import android.content.res.Configuration;
 import android.content.res.Configuration.Orientation;
 import android.metrics.LogMaker;
+import android.net.Uri;
+import android.os.Handler;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 
@@ -46,6 +52,7 @@ import com.android.systemui.statusbar.policy.SplitShadeStateController;
 import com.android.systemui.util.ViewController;
 import com.android.systemui.util.animation.DisappearParameters;
 import com.android.systemui.util.kotlin.JavaAdapterKt;
+import com.android.systemui.util.settings.SystemSettings;
 
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
@@ -163,6 +170,22 @@ public abstract class QSPanelControllerBase<T extends QSPanel> extends ViewContr
     @Nullable
     private Runnable mUsingHorizontalLayoutChangedListener;
 
+    private final class AicpSettingsObserver extends ContentObserver {
+        public AicpSettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
+            if (mView.getTileLayout() != null) {
+                mView.getTileLayout().updateSettings();
+                setTiles();
+            }
+        }
+    }
+
+    private AicpSettingsObserver mAicpSettingsObserver;
+
     protected QSPanelControllerBase(
             T view,
             QSHost host,
@@ -258,6 +281,17 @@ public abstract class QSPanelControllerBase<T extends QSPanel> extends ViewContr
         mDumpManager.registerDumpable(mView.getDumpableTag(), this);
 
         setListening(mLastListening);
+
+        mAicpSettingsObserver = new AicpSettingsObserver(new Handler());
+        getContext().getContentResolver().registerContentObserver(Settings.Secure.getUriFor(
+                Settings.System.QS_TILE_VERTICAL_LAYOUT),
+                false, mAicpSettingsObserver, UserHandle.USER_ALL);
+        getContext().getContentResolver().registerContentObserver(Settings.Secure.getUriFor(
+                Settings.System.QS_LAYOUT_COLUMNS),
+                false, mAicpSettingsObserver, UserHandle.USER_ALL);
+        getContext().getContentResolver().registerContentObserver(Settings.Secure.getUriFor(
+                Settings.System.QS_LAYOUT_COLUMNS_LANDSCAPE),
+                false, mAicpSettingsObserver, UserHandle.USER_ALL);
     }
 
     private void registerForMediaInteractorChanges() {

@@ -137,6 +137,8 @@ import com.android.systemui.wallpapers.domain.interactor.WallpaperInteractor;
 
 import com.google.errorprone.annotations.CompileTimeConstant;
 
+import com.aicp.gear.util.AicpUtils;
+
 import java.io.PrintWriter;
 import java.lang.annotation.Retention;
 import java.util.ArrayList;
@@ -988,6 +990,7 @@ public class NotificationStackScrollLayout
         mMinimumPaddings = res.getDimensionPixelSize(R.dimen.notification_side_paddings);
         mQsTilePadding = res.getDimensionPixelOffset(R.dimen.qs_tile_margin_horizontal);
         mQsTileColumns = res.getInteger(R.integer.quick_settings_num_columns);
+        mQsTileColumns = AicpUtils.getQSColumnsCount(mContext, mQsTileColumns);
         mSidePaddings = mMinimumPaddings;  // Updated in onMeasure by updateSidePadding()
         mMinInteractionHeight = res.getDimensionPixelSize(
                 R.dimen.notification_min_interaction_height);

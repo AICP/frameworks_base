@@ -60,6 +60,8 @@ import com.android.systemui.qs.external.CustomTile;
 import com.android.systemui.qs.tileimpl.QSTileViewImpl;
 import com.android.systemui.res.R;
 
+import com.aicp.gear.util.AicpUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -143,6 +145,7 @@ public class TileAdapter extends RecyclerView.Adapter<Holder> implements TileSta
                         R.integer.small_land_lockscreen_quick_settings_num_columns)
                 : context.getResources().getInteger(NUM_COLUMNS_ID);
         mAccessibilityDelegate = new TileAdapterDelegate();
+        mNumColumns = AicpUtils.getQSColumnsCount(mContext, mNumColumns);
         mSizeLookup.setSpanIndexCacheEnabled(true);
         mTempTextView = new TextView(context);
         mMinTileViewHeight = context.getResources().getDimensionPixelSize(R.dimen.qs_tile_height);
@@ -168,6 +171,7 @@ public class TileAdapter extends RecyclerView.Adapter<Holder> implements TileSta
                 ? mContext.getResources().getInteger(
                         R.integer.small_land_lockscreen_quick_settings_num_columns)
                 : mContext.getResources().getInteger(NUM_COLUMNS_ID);
+        numColumns = AicpUtils.getQSColumnsCount(mContext, numColumns);
         if (numColumns != mNumColumns) {
             mNumColumns = numColumns;
             return true;

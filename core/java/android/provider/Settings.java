@@ -6614,6 +6614,21 @@ public final class Settings {
          */
         public static final String QS_DATA_USAGE_PANEL = "qs_data_usage_panel";
 
+        /**
+         * @hide
+         */
+        public static final String QS_LAYOUT_COLUMNS_LANDSCAPE = "qs_layout_columns_landscape";
+
+        /**
+         * @hide
+         */
+        public static final String QS_LAYOUT_COLUMNS = "qs_layout_columns";
+
+        /**
+         * @hide
+         */
+        public static final String QS_TILE_VERTICAL_LAYOUT = "qs_tile_vertical_layout";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6877,6 +6892,9 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUS_BAR_SHOW_BATTERY_PERCENT);
             PRIVATE_SETTINGS.add(STATUS_BAR_BATTERY_TEXT_CHARGING);
             PRIVATE_SETTINGS.add(QS_DATA_USAGE_PANEL);
+            PRIVATE_SETTINGS.add(QS_LAYOUT_COLUMNS_LANDSCAPE);
+            PRIVATE_SETTINGS.add(QS_LAYOUT_COLUMNS);
+            PRIVATE_SETTINGS.add(QS_TILE_VERTICAL_LAYOUT);
         }
 
         /**

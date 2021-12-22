@@ -229,5 +229,8 @@ public class SystemSettings {
         Settings.System.STATUS_BAR_SHOW_BATTERY_PERCENT,
         Settings.System.STATUS_BAR_BATTERY_TEXT_CHARGING,
         Settings.System.QS_DATA_USAGE_PANEL,
+        Settings.System.QS_TILE_VERTICAL_LAYOUT,
+        Settings.System.QS_LAYOUT_COLUMNS_LANDSCAPE,
+        Settings.System.QS_LAYOUT_COLUMNS,
     };
 }

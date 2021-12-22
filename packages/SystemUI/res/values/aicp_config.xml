@@ -37,4 +37,8 @@
     <!-- On-The-Go -->
     <integer name="quick_settings_onthego_dialog_short_timeout">3000</integer>
     <integer name="quick_settings_onthego_dialog_long_timeout">6000</integer>
+
+    <bool name="qs_tile_vertical_layout">false</bool>
+
+    <integer name="quick_qs_panel_max_columns">4</integer>
 </resources>

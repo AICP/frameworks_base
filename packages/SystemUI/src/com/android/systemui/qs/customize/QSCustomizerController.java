@@ -19,9 +19,15 @@ package com.android.systemui.qs.customize;
 import static com.android.systemui.qs.customize.QSCustomizer.EXTRA_QS_CUSTOMIZING;
 import static com.android.systemui.qs.customize.QSCustomizer.MENU_RESET;
 
+import android.content.ContentResolver;
 import android.content.res.Configuration;
+import android.database.ContentObserver;
 import android.graphics.Rect;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -92,14 +98,22 @@ public class QSCustomizerController extends ViewController<QSCustomizer> {
         public void onConfigChanged(Configuration newConfig) {
             mView.updateNavBackDrop(newConfig, mLightBarController);
             mView.updateResources();
-            if (mTileAdapter.updateNumColumns()) {
-                RecyclerView.LayoutManager lm = mView.getRecyclerView().getLayoutManager();
-                if (lm instanceof GridLayoutManager) {
-                    ((GridLayoutManager) lm).setSpanCount(mTileAdapter.getNumColumns());
-                }
-            }
+            updateColumns();
         }
     };
+
+    private final class AicpSettingsObserver extends ContentObserver {
+        public AicpSettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
+            updateColumns();
+        }
+    }
+
+    private AicpSettingsObserver mAicpSettingsObserver;
 
     @Inject
     protected QSCustomizerController(QSCustomizer view, TileQueryHelper tileQueryHelper,
@@ -163,6 +177,14 @@ public class QSCustomizerController extends ViewController<QSCustomizer> {
 
         mToolbar.setOnMenuItemClickListener(mOnMenuItemClickListener);
         mToolbar.setNavigationOnClickListener(v -> hide());
+
+        mAicpSettingsObserver = new AicpSettingsObserver(new Handler());
+        getContext().getContentResolver().registerContentObserver(Settings.Secure.getUriFor(
+                Settings.System.QS_LAYOUT_COLUMNS),
+                false, mAicpSettingsObserver, UserHandle.USER_ALL);
+        getContext().getContentResolver().registerContentObserver(Settings.Secure.getUriFor(
+                Settings.System.QS_LAYOUT_COLUMNS_LANDSCAPE),
+                false, mAicpSettingsObserver, UserHandle.USER_ALL);
     }
 
     @Override
@@ -267,5 +289,14 @@ public class QSCustomizerController extends ViewController<QSCustomizer> {
             specs.add(tile.getTileSpec());
         }
         mTileAdapter.setTileSpecs(specs);
+    }
+
+    private void updateColumns() {
+        if (mTileAdapter.updateNumColumns()) {
+            RecyclerView.LayoutManager lm = mView.getRecyclerView().getLayoutManager();
+            if (lm instanceof GridLayoutManager) {
+                ((GridLayoutManager) lm).setSpanCount(mTileAdapter.getNumColumns());
+            }
+        }
     }
 }

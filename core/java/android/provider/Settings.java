@@ -5434,6 +5434,21 @@ public final class Settings {
          */
         public static final String STATUSBAR_NOTIF_COUNT = "statusbar_notif_count";
 
+        /**
+         * @hide
+         */
+        public static final String QS_LAYOUT_COLUMNS_LANDSCAPE = "qs_layout_columns_landscape";
+
+        /**
+         * @hide
+         */
+        public static final String QS_LAYOUT_COLUMNS = "qs_layout_columns";
+
+        /**
+         * @hide
+         */
+        public static final String QS_TILE_VERTICAL_LAYOUT = "qs_tile_vertical_layout";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5606,6 +5621,9 @@ public final class Settings {
             PRIVATE_SETTINGS.add(LESS_BORING_HEADS_UP);
             PRIVATE_SETTINGS.add(STATUSBAR_COLORED_ICONS);
             PRIVATE_SETTINGS.add(STATUSBAR_NOTIF_COUNT);
+            PRIVATE_SETTINGS.add(QS_LAYOUT_COLUMNS_LANDSCAPE);
+            PRIVATE_SETTINGS.add(QS_LAYOUT_COLUMNS);
+            PRIVATE_SETTINGS.add(QS_TILE_VERTICAL_LAYOUT);
         }
 
         /**

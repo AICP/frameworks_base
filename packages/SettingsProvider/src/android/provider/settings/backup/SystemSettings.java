@@ -219,5 +219,8 @@ public class SystemSettings {
         Settings.System.STATUSBAR_BATTERY_BAR_LOCATION,
         Settings.System.DOUBLE_TAP_SLEEP_GESTURE,
         Settings.System.DOUBLE_TAP_SLEEP_LOCKSCREEN,
+        Settings.System.QS_TILE_VERTICAL_LAYOUT,
+        Settings.System.QS_LAYOUT_COLUMNS_LANDSCAPE,
+        Settings.System.QS_LAYOUT_COLUMNS,
     };
 }

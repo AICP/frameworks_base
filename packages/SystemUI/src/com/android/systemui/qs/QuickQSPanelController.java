@@ -43,6 +43,8 @@ import com.android.systemui.statusbar.policy.BrightnessMirrorController;
 import com.android.systemui.util.leak.RotationUtils;
 import com.android.systemui.util.settings.SystemSettings;
 
+import com.aicp.gear.util.AicpUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -166,7 +168,8 @@ public class QuickQSPanelController extends QSPanelControllerBase<QuickQSPanel> 
 
     @Override
     protected void onConfigurationChanged() {
-        int newMaxTiles = getResources().getInteger(R.integer.quick_qs_panel_max_tiles);
+        int newMaxTiles = getResources().getInteger(R.integer.quick_qs_panel_max_columns);
+        newMaxTiles = AicpUtils.getQuickQSColumnsCount(getContext(), newMaxTiles);
         if (newMaxTiles != mView.getNumQuickTiles()) {
             setMaxTiles(newMaxTiles);
         }

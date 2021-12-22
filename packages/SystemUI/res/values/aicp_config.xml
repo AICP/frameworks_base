@@ -35,4 +35,8 @@
     <integer name="config_currentInfoDivider" translatable="false">1000</integer>
     <!-- Update battery info every second when device is charging -->
     <bool name="config_alternateFastchargeInfoUpdate">false</bool>
+
+    <bool name="qs_tile_vertical_layout">false</bool>
+
+    <integer name="quick_qs_panel_max_columns">4</integer>
 </resources>

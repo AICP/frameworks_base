@@ -12102,6 +12102,13 @@ public final class Settings {
          */
         public static final String DISPLAY_SETTINGS_WALLPAPER_ZOOM = "display_settings_wallpaper_zoom";
 
+        /**
+         * Whether to show QS auto brightness toggle button
+         * @hide
+         */
+        @Readable
+        public static final String QSTILE_REQUIRES_UNLOCKING = "qstile_requires_unlocking";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

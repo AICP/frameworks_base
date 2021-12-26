@@ -16740,6 +16740,14 @@ public final class Settings {
          */
         public static final String LOCKSCREEN_ENABLE_POWER_MENU = "lockscreen_enable_power_menu";
 
+        /**
+         * A list of uids that is allowed to use restricted networks.
+         *
+         * @hide
+         */
+        public static final String UIDS_ALLOWED_ON_RESTRICTED_NETWORKS =
+                "uids_allowed_on_restricted_networks";
+
         /*****************************
          * AICP Global Settings end
          *****************************/

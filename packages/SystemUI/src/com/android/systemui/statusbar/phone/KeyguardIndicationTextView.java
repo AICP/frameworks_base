@@ -49,7 +49,7 @@ public class KeyguardIndicationTextView extends TextView {
     private static int sButtonStyleId = R.style.TextAppearance_Keyguard_BottomArea_Button;
 
     private long mNextAnimationTime = 0;
-    private boolean mAnimationsEnabled = true;
+    private boolean mAnimationsEnabled = false;
     private LinkedList<CharSequence> mMessages = new LinkedList<>();
     private LinkedList<KeyguardIndication> mKeyguardIndicationInfo = new LinkedList<>();
 

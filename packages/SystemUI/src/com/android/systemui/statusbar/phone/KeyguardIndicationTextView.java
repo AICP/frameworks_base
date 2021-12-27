@@ -44,7 +44,7 @@ public class KeyguardIndicationTextView extends TextView {
     @StyleRes
     private static int sButtonStyleId = R.style.TextAppearance_Keyguard_BottomArea_Button;
 
-    private boolean mAnimationsEnabled = true;
+    private boolean mAnimationsEnabled = false;
     private CharSequence mMessage;
     private KeyguardIndication mKeyguardIndicationInfo;
 

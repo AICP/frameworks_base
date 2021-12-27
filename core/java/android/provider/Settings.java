@@ -6760,6 +6760,20 @@ public final class Settings {
          */
         public static final String QS_FOOTER_TEXT_STRING = "qs_footer_text_string";
 
+        /**
+         * GameSpace: List of added games by user
+         * @hide
+         */
+        @Readable
+        public static final String GAMESPACE_GAME_LIST = "gamespace_game_list";
+
+        /**
+         * GameSpace: Whether fullscreen intent will be suppressed while in game session
+         * @hide
+         */
+        @Readable
+        public static final String GAMESPACE_SUPPRESS_FULLSCREEN_INTENT = "gamespace_suppress_fullscreen_intent";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7111,6 +7125,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(OPTIMIZED_CHARGE_FLOOR);
             PRIVATE_SETTINGS.add(QS_FOOTER_TEXT_SHOW);
             PRIVATE_SETTINGS.add(QS_FOOTER_TEXT_STRING);
+            PRIVATE_SETTINGS.add(GAMESPACE_SUPPRESS_FULLSCREEN_INTENT);
         }
 
         /**

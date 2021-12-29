@@ -269,4 +269,8 @@
         <item>com.google.android.gm</item>
         <item>com.google.android.youtube</item>
     </string-array>
+
+    <!-- Whether to cancel fingerprint operation if not idle -->
+    <bool name="config_fpCancelIfNotIdle">false</bool>
+
 </resources>

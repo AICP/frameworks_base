@@ -201,4 +201,8 @@
     <java-symbol type="string" name="optimized_charge_notification_channel_label" />
     <java-symbol type="string" name="optimized_charge_notification_title" />
     <java-symbol type="string" name="optimized_charge_notification_text" />
+
+    <!-- Whether to cancel fingerprint operation if not idle -->
+    <java-symbol type="bool" name="config_fpCancelIfNotIdle" />
+
 </resources>

@@ -176,6 +176,11 @@ public class BrightnessSliderController extends ViewController<BrightnessSliderV
     }
 
     @Override
+    public void updateThumb(int value) {
+        mView.updateThumb(value);
+    }
+
+    @Override
     public void hideView() {
         mView.setVisibility(View.GONE);
     }
@@ -201,6 +206,7 @@ public class BrightnessSliderController extends ViewController<BrightnessSliderV
             if (mListener != null) {
                 mListener.onChanged(mTracking, progress, false);
             }
+            mView.updateThumb(progress);
         }
 
         @Override

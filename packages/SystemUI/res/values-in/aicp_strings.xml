@@ -202,6 +202,7 @@
     <string name="quick_settings_powershare_enabled_label">PowerShare Nirkabel diaktifkan</string>
     <string name="screenrecord_stopdot_label">Tampilkan titik untuk berhenti merekam</string>
     <string name="screenrecord_lowquality_label">Kualitas lebih rendah untuk ukuran file yang lebih kecil</string>
+    <string name="screenrecord_longer_timeout_switch_label">Batas ukuran file lebih besar\nBatasi ukuran perekaman hingga 15 GB</string>
     <string name="quick_settings_dc_dimming_label">Peredupan DC</string>
     <string name="quick_settings_dc_brightness_mode">Mode kecerahan</string>
     <string name="quick_settings_dc_full_auto">Mode otomatis</string>
@@ -217,7 +218,11 @@
     <string name="sensor_privacy_mode_tile">Sensor</string>
     <string name="quick_settings_on">Aktif</string>
     <string name="quick_settings_off">Nonaktif</string>
+    <string name="gaming_mode_not_enabled">Mode Permainan dimatikan</string>
+    <string name="gaming_mode_enabled">Mode Permainan diaktifkan</string>
     <string name="quick_settings_gaming_mode_label">Mode permainan</string>
     <string name="accessibility_quick_settings_gaming_mode_disabled">Mode permainan dimatikan.</string>
     <string name="accessibility_quick_settings_gaming_mode_enabled">Mode permainan dihidupkan.</string>
+    <string name="quick_aicp_partsbin_label">Tempat Suku Cadang AICP</string>
+    <string name="quick_aicp_partsbin_toast">LOL, Anda benar-benar berpikir bahwa dengan menekan lama akan membawa Anda ke suatu tempat!!!</string>
 </resources>

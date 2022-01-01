@@ -25,6 +25,8 @@
     <string name="battery_info_status_dash_charging">Ładowanie Dash</string>
     <string name="power_remaining_warp_charging_duration_only">Szybkie ładowanie (<xliff:g id="time">%1$s</xliff:g> pozostało do pełna)</string>
     <string name="battery_info_status_warp_charging">Szybkie ładowanie</string>
+    <string name="power_remaining_vooc_charging_duration_only">Ładowanie VOOC (<xliff:g id="time">%1$s</xliff:g> pozostało do pełna)</string>
+    <string name="battery_info_status_vooc_charging">Ładowanie VOOC</string>
     <string name="power_remaining_turbo_charging_duration_only">Szybkie ładowanie (<xliff:g id="time">%1$s</xliff:g> do pełnego naładowania)</string>
     <string name="battery_info_status_turbo_charging">Szybkie ładowanie</string>
 </resources>

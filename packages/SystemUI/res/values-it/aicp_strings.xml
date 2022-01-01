@@ -203,6 +203,7 @@
     <string name="quick_settings_powershare_enabled_label">Wireless PowerShare è abilitato</string>
     <string name="screenrecord_stopdot_label">Mostra punto per interrompere la registrazione</string>
     <string name="screenrecord_lowquality_label">Riduci la qualità della registrazione</string>
+    <string name="screenrecord_longer_timeout_switch_label">Limite dimensione file più grande\nLimita la dimensione della registrazione a 15 GB</string>
     <string name="quick_settings_dc_dimming_label">Attenuazione DC</string>
     <string name="quick_settings_dc_brightness_mode">Modalità luminosità</string>
     <string name="quick_settings_dc_full_auto">Modalità automatica</string>
@@ -218,7 +219,11 @@
     <string name="sensor_privacy_mode_tile">Sensori</string>
     <string name="quick_settings_on">On</string>
     <string name="quick_settings_off">Off</string>
+    <string name="gaming_mode_not_enabled">Modalità gioco disattivata</string>
+    <string name="gaming_mode_enabled">Modalità gioco abilitata</string>
     <string name="quick_settings_gaming_mode_label">Modalità di gioco</string>
     <string name="accessibility_quick_settings_gaming_mode_disabled">Modalità di gioco disattivata.</string>
     <string name="accessibility_quick_settings_gaming_mode_enabled">Modalità di gioco attivata.</string>
+    <string name="quick_aicp_partsbin_label">AICP PartsBin</string>
+    <string name="quick_aicp_partsbin_toast">LOL, hai davvero pensato che un clic lungo ti avrebbe portato da qualche parte!!!</string>
 </resources>

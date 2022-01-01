@@ -117,6 +117,7 @@
     <string name="accessibility_quick_settings_running_services">Відкрити список запущених сервісів.</string>
     <string name="screenrecord_stopdot_label">Показувати крапку для зупинки запису</string>
     <string name="screenrecord_lowquality_label">Нижча якість запису</string>
+    <string name="screenrecord_longer_timeout_switch_label">Збільшений розмір файлу\nОбмежити розмір запису до 15GB</string>
     <string name="quick_settings_dc_dimming_label">DC Затемнення</string>
     <string name="quick_settings_dc_brightness_mode">Режим яскравості</string>
     <string name="quick_settings_dc_full_auto">Автоматичний режим</string>
@@ -130,4 +131,8 @@
     <string name="sensor_privacy_mode_tile">Датчики</string>
     <string name="quick_settings_on">Увімк.</string>
     <string name="quick_settings_off">Вимк.</string>
+    <string name="gaming_mode_not_enabled">Ігровий режим вимкнено</string>
+    <string name="gaming_mode_enabled">Ігровий режим увімкнено</string>
+    <string name="quick_aicp_partsbin_label">AICP Налаштування</string>
+    <string name="quick_aicp_partsbin_toast">Лол, ви насправді думали, що затиснення клавіши вас кудись приведе!!!</string>
 </resources>

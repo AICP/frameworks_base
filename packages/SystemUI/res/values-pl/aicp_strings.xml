@@ -64,7 +64,15 @@
     <string name="quick_aicp_extras_toast">LOL, czy ty naprawdę myślałeś, że długie kliknięcie przeniesie Cię?!</string>
     <string name="status_bar_camera">Aparat</string>
     <string name="status_bar_microphone">Mikrofon</string>
+    <string name="keyguard_indication_dash_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Ładowanie Dash (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> do pełnego naładowania)</string>
+    <string name="keyguard_plugged_in_dash_charging"><xliff:g id="percentage">%s</xliff:g> • Ładowanie Dash</string>
     <string name="keyguard_indication_warp_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Szybkie ładowanie (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> until full)</string>
+    <string name="keyguard_plugged_in_warp_charging"><xliff:g id="percentage">%s</xliff:g> • Ładowanie Warp</string>
+    <string name="keyguard_indication_vooc_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Ładowanie VOOC (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> do pełnego naładowania)</string>
+    <string name="keyguard_plugged_in_vooc_charging"><xliff:g id="percentage">%s</xliff:g> • Ładowanie VOOC</string>
+    <string name="keyguard_indication_turbo_power_time"><xliff:g id="percentage">%2$s</xliff:g> • Ładowanie Turbo (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> do pełnego naładowania)</string>
+    <string name="keyguard_plugged_in_turbo_charging"><xliff:g id="percentage">%s</xliff:g> • Ładowanie Turbo</string>
+    <string name="keyguard_indication_oem_power_time">&lt;xliff:g id="percentage"&gt;%2$s&lt;/xliff:g&gt; • Szybkie ładowanie (&lt;xliff:g id="charging_time_left" Na przykład="4 godziny i 2 minuty"&gt;%1$s&lt;/xliff:g&gt; do pełnego naładowania)</string>
     <string name="keyguard_plugged_in_oem_charging"><xliff:g id="Percentage">%s</xliff:g> • Szybkie ładowanie</string>
     <string name="quick_settings_heads_up_label">Wyskakujące powiadomienia</string>
     <string name="accessibility_quick_settings_heads_up_off">Wyskakujące powiadomienia wyłączone</string>
@@ -205,7 +213,10 @@
     <string name="applock_unlock">Odblokuj</string>
     <string name="accessibility_dpad_left">Kursor w lewo</string>
     <string name="accessibility_dpad_right">Kursor w prawo</string>
+    <string name="change_clock_face">Przesuń, aby zmienić tarczę zegara</string>
     <string name="quick_settings_gaming_mode_label">Tryb grania</string>
     <string name="accessibility_quick_settings_gaming_mode_disabled">Tryb gry wyłączony.</string>
     <string name="accessibility_quick_settings_gaming_mode_enabled">Tryb gry włączony.</string>
+    <string name="quick_aicp_partsbin_label">AICP PartsBin</string>
+    <string name="quick_aicp_partsbin_toast">LOL, ty naprawdę myślałeś, że długie kliknięcie zabierze Cię gdzieś!!!</string>
 </resources>

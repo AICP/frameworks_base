@@ -19,6 +19,8 @@
     <string name="permdesc_fakePackageSignature">Pozwala aplikacji na udawanie innej aplikacji. Złośliwe aplikacje mogą wykorzystać to w celu uzyskania dostępu do prywatnych danych. Zachowaj ostrożność udzielając to uprawnienie!</string>
     <string name="permgrouplab_fake_package_signature">Fałszowanie podpisu pakietu</string>
     <string name="permgroupdesc_fake_package_signature">Zezwól na faszywy podpis pakietu</string>
+    <string name="permgrouprequest_fake_package_signature">Zezwolić
+        &lt;b&gt;<xliff:g id="app_name" example="Gmail">%1$s</xliff:g>&lt;/b&gt; na pozorowanie sygnatury pakietu?</string>
     <string name="reboot_title">Restart</string>
     <string name="reboot_message">Restart systemu</string>
     <string name="aerr_copy">Skopiuj URL logu</string>
@@ -67,5 +69,9 @@
     <string name="app_clipboard_access_denied">%1$s nie uzyskał dostępu do schowka</string>
     <string name="app_clipboard_access_granted">%1$s uzyskał dostęp do schowka</string>
     <string name="pocket_view_title">Tryb kieszonkowy jest włączony</string>
+    <string name="pocket_view_title_cancel">Aby aktywować telefon</string>
+    <string name="pocket_view_top_tag_cancel">Nie zakrywaj niebieskiego obszaru Twojego telefonu, i usuń wszelkie zabrudzenia lub kurz</string>
     <string name="pocket_view_top_tag_cancel2">Naciśnij i przytrzymaj przycisk zasilania aby wymusić wyjście z trybu kieszeniowego</string>
+    <string name="pocket_view_top_tag_number1">1.\u0020</string>
+    <string name="pocket_view_top_tag_number2">2.\u0020</string>
 </resources>

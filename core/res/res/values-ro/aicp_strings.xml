@@ -15,6 +15,12 @@
    limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="permgroupdesc_fake_package_signature">permite falsificarea semnăturii pachetului</string>
+    <string name="permgrouprequest_fake_package_signature">Permiteţi aplicaţiei
+        &lt;b&gt;<xliff:g id="app_name" example="Gmail">%1$s</xliff:g>&lt;/b&gt; să falsifice semnătura pachetului?</string>
+    <string name="pocket_lock_message_long_press">Apăsați și țineți apăsat butonul de alimentare pentru a debloca</string>
+    <string name="volume_dialog_ringer_guidance_normal">Apelurile și notificările vor suna</string>
+    <string name="animation_random">Aleatoriu</string>
     <string name="app_clipboard_access_denied">%1$s i s-a restricționat accesul la clipboard</string>
     <string name="app_clipboard_access_granted">%1$s i s-a permis accesul la clipboard</string>
     <string name="pocket_view_title">Modul buzunar este pornit</string>

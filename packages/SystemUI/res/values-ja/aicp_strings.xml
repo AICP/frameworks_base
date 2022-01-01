@@ -205,6 +205,7 @@
     <string name="quick_settings_powershare_enabled_label">ワイヤレス PowerShare は有効です</string>
     <string name="screenrecord_stopdot_label">録画停止ドットの表示</string>
     <string name="screenrecord_lowquality_label">低品質にしてファイルサイズ縮小</string>
+    <string name="screenrecord_longer_timeout_switch_label">ファイルサイズ制限です\n録画サイズを15GBに制限します</string>
     <string name="quick_settings_dc_dimming_label">DC 調光</string>
     <string name="quick_settings_dc_brightness_mode">明るさモード</string>
     <string name="quick_settings_dc_full_auto">自動モード</string>
@@ -220,7 +221,11 @@
     <string name="sensor_privacy_mode_tile">センサー</string>
     <string name="quick_settings_on">ON</string>
     <string name="quick_settings_off">OFF</string>
+    <string name="gaming_mode_not_enabled">ゲームモードが無効です</string>
+    <string name="gaming_mode_enabled">ゲームモードが有効です</string>
     <string name="quick_settings_gaming_mode_label">ゲームモード</string>
     <string name="accessibility_quick_settings_gaming_mode_disabled">ゲームモードを無効化しました</string>
     <string name="accessibility_quick_settings_gaming_mode_enabled">ゲームモードを有効化しました</string>
+    <string name="quick_aicp_partsbin_label">AICP PartsBin</string>
+    <string name="quick_aicp_partsbin_toast">長押しで何か起きると思った? 残念! 何も起こりません!</string>
 </resources>

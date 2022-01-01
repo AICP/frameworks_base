@@ -18,11 +18,49 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="quick_settings_poweroff_label">Opriți alimentarea</string>
+    <string name="quick_aicp_extras_label">AICP Extras</string>
+    <string name="keyguard_indication_dash_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Încărcare Rapidă (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> până la finalizare)</string>
+    <string name="keyguard_plugged_in_dash_charging"><xliff:g id="percentage">%s</xliff:g> • Încărcare Warp</string>
+    <string name="keyguard_plugged_in_warp_charging"><xliff:g id="percentage">%s</xliff:g> • Încărcare Warp</string>
+    <string name="keyguard_indication_vooc_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Încărcare Rapidă (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> până la finalizare)</string>
+    <string name="keyguard_plugged_in_vooc_charging"><xliff:g id="percentage">%s</xliff:g> • Încărcare Warp</string>
+    <string name="keyguard_indication_turbo_power_time"><xliff:g id="percentage">%2$s</xliff:g> • Încărcare Turbo (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> până la finalizare)</string>
+    <string name="keyguard_plugged_in_turbo_charging"><xliff:g id="percentage">%s</xliff:g> • Încărcare Turbo</string>
     <string name="keyguard_indication_oem_power_time"><xliff:g id="percentage">%2$s</xliff:g> • Încărcare Rapidă (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> până la finalizare)</string>
     <string name="keyguard_plugged_in_oem_charging"><xliff:g id="percentage">%s</xliff:g> • Încărcare rapidă</string>
+    <string name="quick_settings_volume_panel_label">Panou de volum</string>
+    <string name="qs_data_switch_changed_1">Utilizare SIM 1 pentru date mobile</string>
+    <string name="qs_data_switch_changed_2">Utilizare SIM 2 pentru date mobile</string>
+    <string name="global_screenshot_selector_capture_description">Captură parţială de ecran</string>
+    <string name="global_screenshot_selector_cancel_description">Anulează captura parțială de ecran</string>
     <string name="quick_settings_full_screenshot_label">Plin</string>
     <string name="quick_settings_region_screenshot_label">Parţial</string>
+    <string name="heads_up_snooze_message"><xliff:g id="string">%1$s</xliff:g> - Atenționările sunt blocate timp de <xliff:g id="number">%2$d</xliff:g> minute.</string>
+    <string name="task_helper_app_killed">%1$s forță oprită</string>
+    <string name="empty_app_killed">Aplicație</string>
+    <string name="quick_settings_monotoggle_tile">Mod audio</string>
+    <string name="quick_settings_monotoggle_tile_mono">Audio mono</string>
+    <string name="quick_settings_monotoggle_tile_stereo">Stereo audio</string>
+    <string name="quick_settings_anti_flicker">Anti-pâlpâire</string>
     <string name="screenrecord_stopdot_label">Arată punctul pentru a opri înregistrarea</string>
     <string name="screenrecord_lowquality_label">Calitate mai scăzută a înregistrării</string>
+    <string name="screenrecord_longer_timeout_switch_label">Limită dimensiune mai mare a fişierului\nLimită dimensiune de înregistrare la 15 GB</string>
+    <string name="quick_settings_dc_dimming_label">Mod întunecare DC</string>
+    <string name="quick_settings_dc_brightness_mode">Nivel de luminozitate</string>
+    <string name="quick_settings_dc_full_auto">Mod automat</string>
+    <string name="applock_locked"> este blocat</string>
+    <string name="applock_fingerprint_face">, amprentă sau față pentru deblocare</string>
+    <string name="applock_face"> sau fața pentru deblocare</string>
+    <string name="applock_fingerprint"> sau amprenta pentru deblocare</string>
+    <string name="applock_credential"> pentru deblocare</string>
+    <string name="applock_unlock">Deblochează</string>
     <string name="change_clock_face">Glisați pentru a schimba ceasul</string>
+    <string name="sensor_privacy_mode_tile">Senzori</string>
+    <string name="quick_settings_on">Pornit</string>
+    <string name="quick_settings_off">Oprit</string>
+    <string name="gaming_mode_not_enabled">Modul pentru jocuri este dezactivat</string>
+    <string name="gaming_mode_enabled">Modul pentru jocuri este activat</string>
+    <string name="quick_aicp_partsbin_label">AICP PartsBin</string>
+    <string name="quick_aicp_partsbin_toast">LOL, chiar ai crezut că un click lung te va duce undeva!!!</string>
 </resources>

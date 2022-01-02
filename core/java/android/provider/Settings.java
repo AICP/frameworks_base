@@ -5460,6 +5460,11 @@ public final class Settings {
          */
         public static final String NAVIGATION_BAR_ARROW_KEYS = "navigation_bar_menu_arrow_keys";
 
+        /**
+         * @hide
+         */
+        public static final String LOCKSCREEN_SMALL_CLOCK = "lockscreen_small_clock";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5637,6 +5642,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(QS_TILE_VERTICAL_LAYOUT);
             PRIVATE_SETTINGS.add(QS_TILE_LABEL_HIDE);
             PRIVATE_SETTINGS.add(NAVIGATION_BAR_ARROW_KEYS);
+            PRIVATE_SETTINGS.add(LOCKSCREEN_SMALL_CLOCK);
         }
 
         /**

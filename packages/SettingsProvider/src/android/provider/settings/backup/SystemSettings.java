@@ -185,8 +185,9 @@ public class SystemSettings {
                 Settings.System.SLIM_MEM_TEXT_COLOR,
                 Settings.System.SLIM_RECENTS_CORNER_RADIUS,
                 Settings.System.SLIM_RECENTS_BLACKLIST_VALUES,
-                Settings.System.SLIM_RECENT_ENTER_EXIT_ANIMATION
+                Settings.System.SLIM_RECENT_ENTER_EXIT_ANIMATION,
                 // SLIM RECENTS END
+                Settings.System.SCREEN_OFF_ANIMATION
         ));
         if (Flags.backUpSmoothDisplayAndForcePeakRefreshRate()) {
             settings.add(Settings.System.PEAK_REFRESH_RATE);

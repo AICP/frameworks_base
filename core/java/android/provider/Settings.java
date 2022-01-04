@@ -7044,6 +7044,11 @@ public final class Settings {
          */
         public static final String SLIM_RECENT_ENTER_EXIT_ANIMATION =
                 "slim_recent_enter_exit_animation";
+        /**
+         * Defines the screen-off animation to display
+         * @hide
+         */
+        public static final String SCREEN_OFF_ANIMATION = "screen_off_animation";
 
         /**
          * IMPORTANT: If you add a new public settings you also have to add it to
@@ -7336,6 +7341,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SLIM_RECENTS_BLACKLIST_VALUES);
             PRIVATE_SETTINGS.add(SLIM_RECENT_ENTER_EXIT_ANIMATION);
             // SLIM RECENTS END
+            PRIVATE_SETTINGS.add(SCREEN_OFF_ANIMATION);
         }
 
         /**

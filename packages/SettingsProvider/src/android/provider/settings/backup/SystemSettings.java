@@ -189,7 +189,8 @@ public class SystemSettings {
                 // SLIM RECENTS END
                 Settings.System.QS_FOOTER_TEXT_SHOW,
                 Settings.System.QS_FOOTER_TEXT_STRING,
-                Settings.System.QS_FOOTER_TEXT_FONT_WEIGHT
+                Settings.System.QS_FOOTER_TEXT_FONT_WEIGHT,
+                Settings.System.SCREEN_OFF_ANIMATION
         ));
         if (Flags.backUpSmoothDisplayAndForcePeakRefreshRate()) {
             settings.add(Settings.System.PEAK_REFRESH_RATE);

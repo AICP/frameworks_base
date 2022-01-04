@@ -7044,6 +7044,11 @@ public final class Settings {
          */
         public static final String SLIM_RECENT_ENTER_EXIT_ANIMATION =
                 "slim_recent_enter_exit_animation";
+        /**
+         * Defines the screen-off animation to display
+         * @hide
+         */
+        public static final String SCREEN_OFF_ANIMATION = "screen_off_animation";
 
         /**
          * IMPORTANT: If you add a new public settings you also have to add it to
@@ -7357,6 +7362,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(QS_FOOTER_TEXT_SHOW);
             PRIVATE_SETTINGS.add(QS_FOOTER_TEXT_STRING);
             PRIVATE_SETTINGS.add(QS_FOOTER_TEXT_FONT_WEIGHT);
+            PRIVATE_SETTINGS.add(SCREEN_OFF_ANIMATION);
         }
 
         /**

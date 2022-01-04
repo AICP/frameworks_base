@@ -130,7 +130,8 @@ public class SystemSettings {
                 // AICP Settings start
                 Settings.System.ANIM_TILE_STYLE,
                 Settings.System.ANIM_TILE_DURATION,
-                Settings.System.ANIM_TILE_INTERPOLATOR
+                Settings.System.ANIM_TILE_INTERPOLATOR,
+                Settings.System.SCREEN_OFF_ANIMATION
         ));
         if (Flags.backUpSmoothDisplayAndForcePeakRefreshRate()) {
             settings.add(Settings.System.PEAK_REFRESH_RATE);

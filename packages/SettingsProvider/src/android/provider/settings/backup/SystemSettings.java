@@ -176,7 +176,8 @@ public class SystemSettings {
                 Settings.System.STATUSBAR_BATTERY_BAR_THICKNESS,
                 Settings.System.STATUSBAR_BATTERY_BAR_STYLE,
                 Settings.System.STATUSBAR_BATTERY_BAR_ANIMATE,
-                Settings.System.STATUSBAR_BATTERY_BAR_LOCATION
+                Settings.System.STATUSBAR_BATTERY_BAR_LOCATION,
+                Settings.System.SCREEN_OFF_ANIMATION
         ));
         if (Flags.backUpSmoothDisplayAndForcePeakRefreshRate()) {
             settings.add(Settings.System.PEAK_REFRESH_RATE);

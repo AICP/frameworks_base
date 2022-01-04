@@ -105,5 +105,6 @@ public class SystemSettings {
         Settings.System.NETWORK_TRAFFIC_EXPANDED_STATUS_BAR_STATE,
         Settings.System.LOCKSCREEN_BATTERY_INFO,
         Settings.System.LOCKSCREEN_BATTERY_INFO_TEMP_UNIT,
+        Settings.System.SCREEN_OFF_ANIMATION,
     };
 }

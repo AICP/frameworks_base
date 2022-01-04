@@ -259,4 +259,7 @@
     <string name="total_internet_usage">Total internet usage (Since boot)</string>
     <string name="cellular_usage">Mobile data usage</string>
     <string name="wifi_usage">Wifi data usage</string>
+
+    <!-- Glove Mode Tile -->
+    <string name="quick_settings_glove_mode_label">Glove Mode</string>
 </resources>

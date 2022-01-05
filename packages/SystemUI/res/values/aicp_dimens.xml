@@ -62,4 +62,6 @@
 
     <dimen name="volume_seekbar_progress_width">8dp</dimen>
     <dimen name="volume_seekbar_progress_corner_radius">4dp</dimen>
+
+    <dimen name="fps_info_text_padding">4dp</dimen>
 </resources>

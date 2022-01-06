@@ -212,5 +212,8 @@ public class SecureSettings {
         Settings.Secure.LOCK_DOTS_VISIBLE,
         Settings.Secure.LOCK_SHOW_ERROR_PATH,
         Settings.Secure.HARDWARE_KEYS_DISABLE,
+        Settings.Secure.QS_SHOW_AUTO_BRIGHTNESS,
+        Settings.Secure.QS_SHOW_BRIGHTNESS_SLIDER,
+        Settings.Secure.QS_BRIGHTNESS_SLIDER_POSITION,
     };
 }

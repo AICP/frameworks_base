@@ -314,5 +314,6 @@ public class SystemSettings {
         Settings.System.NOTIFICATION_MATERIAL_DISMISS,
         Settings.System.NOTIFICATION_MATERIAL_DISMISS_STYLE,
         Settings.System.NOTIFICATION_MATERIAL_DISMISS_BGSTYLE,
+        Settings.System.QS_SHOW_BATTERY_ESTIMATE,
     };
 }

@@ -113,4 +113,7 @@
 
     <!-- Fingerprint from stock ROM -->
     <java-symbol type="string" name="config_stockFingerprint" />
+
+    <!-- Whether to force enable multi resolution configuration for camera -->
+    <java-symbol type="bool" name="config_forceMultiResolution" />
 </resources>

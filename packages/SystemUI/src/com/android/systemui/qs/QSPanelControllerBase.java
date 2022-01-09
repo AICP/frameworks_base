@@ -198,6 +198,9 @@ public abstract class QSPanelControllerBase<T extends QSPanel> extends ViewContr
         getContext().getContentResolver().registerContentObserver(Settings.Secure.getUriFor(
                 Settings.System.QS_LAYOUT_COLUMNS_LANDSCAPE),
                 false, mAicpSettingsObserver, UserHandle.USER_ALL);
+        getContext().getContentResolver().registerContentObserver(Settings.Secure.getUriFor(
+                Settings.System.QS_TILE_LABEL_HIDE),
+                false, mAicpSettingsObserver, UserHandle.USER_ALL);
     }
 
     @Override

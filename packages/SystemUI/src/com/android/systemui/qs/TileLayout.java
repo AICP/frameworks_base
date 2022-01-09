@@ -271,13 +271,10 @@ public class TileLayout extends ViewGroup implements QSTileLayout {
     }
 
     protected int getCellHeight() {
-        // Compare estimated height with resource height and return the larger one.
-        // If estimated height > resource height, it means the resource height is not enough
-        // for the tile content under current font scaling. Therefore, we need to use the estimated
-        // height to have a full tile content view.
-        // If estimated height <= resource height, we can use the resource height for tile to keep
-        // the same UI as original behavior.
-        return Math.max(mResourceCellHeight, mEstimatedCellHeight);
+        if (AicpUtils.getQSTileLabelHide(mContext)) {
+            return getResources().getDimensionPixelSize(R.dimen.qs_quick_tile_size);
+        }
+        return mResourceCellHeight;
     }
 
     private void layoutTileRecords(int numRecords, boolean forLayout) {

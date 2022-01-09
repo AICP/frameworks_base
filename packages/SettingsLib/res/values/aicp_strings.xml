@@ -22,4 +22,9 @@
     <string name="screen_zoom_summary_smaller">Smaller</string>
     <!-- Description for the screen zoom level that makes interface elements smallest. [CHAR LIMIT=24] -->
     <string name="screen_zoom_summary_smallest">Smallest</string>
+
+    <!-- Services settings screen, setting option name for the user to go to the screen to view cached services -->
+    <string name="background_processes_settings_title">Cached processes</string>
+    <!-- Services settings screen, setting option summary for the user to go to the screen to view running services  -->
+    <string name="background_processes_settings_summary">View and control cached processes</string>
 </resources>

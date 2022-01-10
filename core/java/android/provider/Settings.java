@@ -6312,6 +6312,12 @@ public final class Settings {
          */
         public static final String CAMERA_LAUNCH = "camera_launch";
 
+        /**
+         * Whether to enable the ripple animation on fingerprint unlock
+         * @hide
+         */
+        public static final String AUTHORIZATION_RIPPLE_EFFECT = "authorization_ripple_effect";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6606,6 +6612,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(HEADSET_CONNECT_PLAYER);
             PRIVATE_SETTINGS.add(CAMERA_SLEEP_ON_RELEASE);
             PRIVATE_SETTINGS.add(CAMERA_LAUNCH);
+            PRIVATE_SETTINGS.add(AUTHORIZATION_RIPPLE_EFFECT);
         }
 
         /**

@@ -6168,6 +6168,12 @@ public final class Settings {
         */
         public static final String LOCKSCREEN_ALBUMART_FILTER = "lockscreen_albumart_filter";
 
+        /**
+         * Whether to enable the ripple animation on fingerprint unlock
+         * @hide
+         */
+        public static final String ENABLE_RIPPLE_EFFECT = "enable_ripple_effect";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6373,6 +6379,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(FINGERPRINT_WAKE_UNLOCK);
             PRIVATE_SETTINGS.add(POCKET_JUDGE);
             PRIVATE_SETTINGS.add(OMNI_LOCKSCREEN_MEDIA_BLUR);
+            PRIVATE_SETTINGS.add(ENABLE_RIPPLE_EFFECT);
         }
 
         /**

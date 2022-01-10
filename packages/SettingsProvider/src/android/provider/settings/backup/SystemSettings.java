@@ -226,5 +226,6 @@ public class SystemSettings {
         Settings.System.CHARGING_ANIMATION,
         Settings.System.QS_DATA_USAGE_PANEL,
         Settings.System.HIDE_IME_SPACE_ENABLE,
+        Settings.System.ENABLE_RIPPLE_EFFECT,
     };
 }

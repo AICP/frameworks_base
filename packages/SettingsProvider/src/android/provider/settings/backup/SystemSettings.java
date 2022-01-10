@@ -244,5 +244,6 @@ public class SystemSettings {
         Settings.System.HEADSET_CONNECT_PLAYER,
         Settings.System.CAMERA_SLEEP_ON_RELEASE,
         Settings.System.CAMERA_LAUNCH,
+        Settings.System.AUTHORIZATION_RIPPLE_EFFECT,
     };
 }

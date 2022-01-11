@@ -65,6 +65,7 @@ import com.android.systemui.statusbar.policy.FlashlightController;
 import com.android.systemui.statusbar.policy.HeadsUpManager;
 import com.android.systemui.statusbar.policy.KeyguardStateController;
 import com.android.systemui.statusbar.policy.RemoteInputQuickSettingsDisabler;
+import com.android.systemui.statusbar.policy.SecureLockscreenQSDisabler;
 
 import java.util.Optional;
 
@@ -101,6 +102,7 @@ public class CentralSurfacesCommandQueueCallbacks implements CommandQueue.Callba
     private final int mDisplayId;
     private final boolean mVibrateOnOpening;
     private final VibrationEffect mCameraLaunchGestureVibrationEffect;
+    private final SecureLockscreenQSDisabler mSecureLockscreenQSDisabler;
 
 
     private static final VibrationAttributes HARDWARE_FEEDBACK_VIBRATION_ATTRIBUTES =
@@ -134,7 +136,8 @@ public class CentralSurfacesCommandQueueCallbacks implements CommandQueue.Callba
             Optional<Vibrator> vibratorOptional,
             LightBarController lightBarController,
             DisableFlagsLogger disableFlagsLogger,
-            @DisplayId int displayId) {
+            @DisplayId int displayId,
+            SecureLockscreenQSDisabler secureLockscreenQSDisabler) {
 
         mCentralSurfaces = centralSurfaces;
         mContext = context;
@@ -162,6 +165,7 @@ public class CentralSurfacesCommandQueueCallbacks implements CommandQueue.Callba
         mLightBarController = lightBarController;
         mDisableFlagsLogger = disableFlagsLogger;
         mDisplayId = displayId;
+        mSecureLockscreenQSDisabler = secureLockscreenQSDisabler;
 
         mVibrateOnOpening = resources.getBoolean(R.bool.config_vibrateOnIconAnimation);
         mCameraLaunchGestureVibrationEffect = getCameraGestureVibrationEffect(
@@ -261,6 +265,7 @@ public class CentralSurfacesCommandQueueCallbacks implements CommandQueue.Callba
 
         int state2BeforeAdjustment = state2;
         state2 = mRemoteInputQuickSettingsDisabler.adjustDisableFlags(state2);
+        state2 = mSecureLockscreenQSDisabler.adjustDisableFlags(state2);
         Log.d(CentralSurfaces.TAG,
                 mDisableFlagsLogger.getDisableFlagsString(
                         /* old= */ new DisableFlagsLogger.DisableState(

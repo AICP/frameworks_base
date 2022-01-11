@@ -12808,6 +12808,13 @@ public final class Settings {
         @Readable
         public static final String WINDOW_IGNORE_SECURE = "window_ignore_secure";
 
+        /**
+         * Whether to disable qs on secure lockscreen.
+         * Default 0
+         * @hide
+         */
+        public static final String SECURE_LOCKSCREEN_QS_DISABLED = "secure_lockscreen_qs_disabled";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

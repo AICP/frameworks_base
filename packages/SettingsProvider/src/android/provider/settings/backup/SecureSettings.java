@@ -323,6 +323,7 @@ public class SecureSettings {
         Settings.Secure.HDR_BRIGHTNESS_ENABLED,
         Settings.Secure.HDR_BRIGHTNESS_BOOST_LEVEL,
         Settings.Secure.WINDOW_IGNORE_SECURE,
-        Settings.Secure.SHOW_CPU_OVERLAY
+        Settings.Secure.SHOW_CPU_OVERLAY,
+        Settings.Secure.SECURE_LOCKSCREEN_QS_DISABLED
     };
 }

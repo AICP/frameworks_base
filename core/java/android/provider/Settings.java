@@ -11585,6 +11585,13 @@ public final class Settings {
          */
         public static final String SHOW_BACK_ARROW_GESTURE = "show_back_arrow_gesture";
 
+        /**
+         * Whether to disable qs on secure lockscreen.
+         * Default 0
+         * @hide
+         */
+        public static final String SECURE_LOCKSCREEN_QS_DISABLED = "secure_lockscreen_qs_disabled";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

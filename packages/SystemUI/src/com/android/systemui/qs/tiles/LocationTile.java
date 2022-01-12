@@ -85,10 +85,7 @@ public class LocationTile extends SecureQSTile<BooleanState> {
         if (checkKeyguard(view, keyguardShowing)) {
             return;
         }
-
-        final boolean wasEnabled = mState.value;
         mHost.openPanels();
-        mController.setLocationEnabled(!wasEnabled);
     }
 
     @Override
@@ -109,6 +106,8 @@ public class LocationTile extends SecureQSTile<BooleanState> {
         // YAAP note: mKeyguard is removed since there is no longer use for it
         // Use the function from SecureQSTile instead when AOSP fixes the bug above correctly
         state.value = locationEnabled;
+        // YAAP note: mKeyguard is removed since there is no longer use for it
+        // Use the function from SecureQSTile instead when AOSP fixes the bug above correctly
         checkIfRestrictionEnforcedByAdminOnly(state, UserManager.DISALLOW_SHARE_LOCATION);
         if (state.disabledByPolicy == false) {
             checkIfRestrictionEnforcedByAdminOnly(state, UserManager.DISALLOW_CONFIG_LOCATION);

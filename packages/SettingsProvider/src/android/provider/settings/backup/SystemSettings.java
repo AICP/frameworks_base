@@ -87,5 +87,6 @@ public class SystemSettings {
         Settings.System.VOLUME_KEY_CURSOR_CONTROL,
         Settings.System.BACK_GESTURE_HAPTIC,
         Settings.System.ACCELEROMETER_ROTATION_ANGLES,
+        Settings.System.AE_THEME,
     };
 }

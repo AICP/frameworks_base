@@ -5228,6 +5228,11 @@ public final class Settings {
          */
         public static final String ACCELEROMETER_ROTATION_ANGLES = "accelerometer_rotation_angles";
 
+        /**
+         * @hide
+         */
+        public static final String AE_THEME = "ae_theme";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -5362,6 +5367,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(VOLUME_KEY_CURSOR_CONTROL);
             PRIVATE_SETTINGS.add(BACK_GESTURE_HAPTIC);
             PRIVATE_SETTINGS.add(ACCELEROMETER_ROTATION_ANGLES);
+            PRIVATE_SETTINGS.add(AE_THEME);
         }
 
         /**

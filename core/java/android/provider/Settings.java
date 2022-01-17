@@ -11453,6 +11453,12 @@ public final class Settings {
          */
         public static final String ENABLE_LOCATION_PRIVACY_INDICATOR = "enable_location_privacy_indicator";
 
+        /**
+         * Whether to show privacy indicator for camera
+         * @hide
+         */
+        public static final String ENABLE_CAMERA_PRIVACY_INDICATOR = "enable_camera_privacy_indicator";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

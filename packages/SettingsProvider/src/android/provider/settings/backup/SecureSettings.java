@@ -213,5 +213,8 @@ public class SecureSettings {
         Settings.Secure.MONET_ENGINE_CHROMA_FACTOR,
         Settings.Secure.MONET_ENGINE_LINEAR_LIGHTNESS,
         Settings.Secure.MONET_ENGINE_WHITE_LUMINANCE,
+        Settings.Secure.ENABLE_LOCATION_PRIVACY_INDICATOR,
+        Settings.Secure.ENABLE_CAMERA_PRIVACY_INDICATOR,
+        Settings.Secure.ENABLE_PROJECTION_PRIVACY_INDICATOR,
     };
 }

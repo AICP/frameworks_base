@@ -221,5 +221,8 @@ public class SecureSettings {
         Settings.Secure.LOCKSCREEN_MEDIA_METADATA,
         Settings.Secure.BERRY_BLACK_THEME,
         Settings.Secure.EXTENDED_MONET_THEMES,
+        Settings.Secure.ENABLE_LOCATION_PRIVACY_INDICATOR,
+        Settings.Secure.ENABLE_CAMERA_PRIVACY_INDICATOR,
+        Settings.Secure.ENABLE_PROJECTION_PRIVACY_INDICATOR,
     };
 }

@@ -6616,6 +6616,13 @@ public final class Settings {
          */
         public static final String QS_DATA_USAGE_PANEL = "qs_data_usage_panel";
 
+        /**
+         * Force full screen for devices with cutout
+         * @hide
+         */
+        @Readable
+        public static final String FORCE_FULLSCREEN_CUTOUT_APPS = "force_full_screen_cutout_apps";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6880,6 +6887,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUS_BAR_SHOW_BATTERY_PERCENT);
             PRIVATE_SETTINGS.add(STATUS_BAR_BATTERY_TEXT_CHARGING);
             PRIVATE_SETTINGS.add(QS_DATA_USAGE_PANEL);
+            PRIVATE_SETTINGS.add(FORCE_FULLSCREEN_CUTOUT_APPS);
         }
 
         /**

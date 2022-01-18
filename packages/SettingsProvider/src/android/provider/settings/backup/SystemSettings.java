@@ -230,5 +230,6 @@ public class SystemSettings {
         Settings.System.STATUS_BAR_SHOW_BATTERY_PERCENT,
         Settings.System.STATUS_BAR_BATTERY_TEXT_CHARGING,
         Settings.System.QS_DATA_USAGE_PANEL,
+        Settings.System.FORCE_FULLSCREEN_CUTOUT_APPS,
     };
 }

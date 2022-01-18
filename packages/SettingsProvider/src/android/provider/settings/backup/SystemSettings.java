@@ -223,5 +223,6 @@ public class SystemSettings {
         Settings.System.QS_LAYOUT_COLUMNS_LANDSCAPE,
         Settings.System.QS_LAYOUT_COLUMNS,
         Settings.System.HIDE_IME_SPACE_ENABLE,
+        Settings.System.FORCE_FULLSCREEN_CUTOUT_APPS,
     };
 }

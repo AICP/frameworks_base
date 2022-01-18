@@ -6594,6 +6594,12 @@ public final class Settings {
         @SuppressLint("NoSettingsProvider")
         public static final String NAVIGATION_BAR_HINT = "navigation_bar_hint";
 
+        /**
+         * Force full screen for devices with cutout
+         * @hide
+         */
+        public static final String FORCE_FULLSCREEN_CUTOUT_APPS = "force_full_screen_cutout_apps";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6852,6 +6858,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(QS_LAYOUT_COLUMNS);
             PRIVATE_SETTINGS.add(QS_TILE_VERTICAL_LAYOUT);
             PRIVATE_SETTINGS.add(NAVIGATION_BAR_HINT);
+            PRIVATE_SETTINGS.add(FORCE_FULLSCREEN_CUTOUT_APPS);
         }
 
         /**

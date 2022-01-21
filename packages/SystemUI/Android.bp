@@ -122,6 +122,8 @@ android_library {
         "tensorflowlite_java",
         "colorkt",
         "themelib",
+        "AicpGear-preference",
+        "AicpGear-util",
     ],
     manifest: "AndroidManifest.xml",
     additional_manifests: ["AndroidManifest-Aicp.xml"],

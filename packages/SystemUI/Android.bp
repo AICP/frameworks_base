@@ -122,6 +122,8 @@ android_library {
         "dagger2",
         "jsr330",
         "lottie",
+        "AicpGear-preference",
+        "AicpGear-util",
     ],
     manifest: "AndroidManifest.xml",
 

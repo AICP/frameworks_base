@@ -16,7 +16,39 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="permlab_fakePackageSignature">Gói chữ ký tạm</string>
+    <string name="permdesc_fakePackageSignature">Cho phép ứng dụng có thể giả mạo làm ứng dụng khác. Các ứng dụng độc hại có thể sử dụng quyền này để truy cập trái phép vào dữ liệu riêng tư của bạn. Hãy thận trọng khi cấp quyền này!</string>
     <string name="permgrouplab_fake_package_signature">Gói chữ ký tạm</string>
+    <string name="permgroupdesc_fake_package_signature">cho phép giả mạo chữ ký gói</string>
+    <string name="permgrouprequest_fake_package_signature">Cho phép &lt;b&gt;<xliff:g id="app_name" example="Gmail">%1$s</xliff:g>&lt;/b&gt; để giả mạo gói chữ ký?</string>
+    <string name="reboot_title">Khởi động lại</string>
+    <string name="reboot_message">Đang khởi động lại hệ thống</string>
+    <string name="aerr_copy">Sao chép URL nhật ký sự cố</string>
+    <string name="url_copy_success">URL đã sao chép thành công</string>
+    <string name="url_copy_failed">Một lỗi đã xảy ra khi đăng tải nhật kí lên aicp haste</string>
+    <string name="pocket_lock_message_long_press">Nhấn và giữ nút nguồn để mở khoá</string>
+    <string name="app_killed_message">Ứng dụng đã dừng</string>
+    <string name="volume_dialog_ringer_guidance_normal">Các cuộc gọi và các thông báo sẽ rung</string>
+    <string name="live_display_auto">Tự động</string>
+    <string name="live_display_auto_summary">Tự động chỉnh nhiệt độ màu của màn hình theo ngày và đêm</string>
+    <string name="live_display_off">Tắt</string>
+    <string name="live_display_off_summary">Vô hiệu hoá tất cả điều chỉnh</string>
+    <string name="live_display_day">Ngày</string>
+    <string name="live_display_day_summary">Chỉ sử dụng những cài đặt ban ngày</string>
+    <string name="live_display_night">Đêm</string>
+    <string name="live_display_night_summary">Chỉ sử dụng những cài đặt ban đêm</string>
+    <string name="live_display_outdoor">Ngoài trời (Mặt trời sáng)</string>
+    <string name="live_display_outdoor_summary">Chỉ sử dụng những cài đặt ngoài trời</string>
+    <string name="live_display_hint">LiveDisplay có thể giúp giảm mỏi mắt và giúp bạn ngủ vào buổi tối. Nhấn vào đây để thử!</string>
+    <string name="accessibility_quick_settings_live_display_off">LiveDisplay tắt.</string>
+    <string name="accessibility_quick_settings_live_display_auto">LiveDisplay: chế độ tự động.</string>
+    <string name="accessibility_quick_settings_live_display_day">LiveDisplay: chế độ ban ngày.</string>
+    <string name="accessibility_quick_settings_live_display_night">LiveDisplay: chế độ ban đêm.</string>
+    <string name="accessibility_quick_settings_live_display_outdoor">LiveDisplay: chế độ ngoài trời.</string>
+    <string name="accessibility_quick_settings_live_display_changed_off">LiveDisplay đã tắt.</string>
+    <string name="accessibility_quick_settings_live_display_changed_auto">LiveDisplay đã chuyển sang chế độ tự động.</string>
+    <string name="accessibility_quick_settings_live_display_changed_day">LiveDisplay đã chuyển sang chế độ ban ngày.</string>
+    <string name="accessibility_quick_settings_live_display_changed_night">LiveDisplay đã chuyển sang chế độ đêm.</string>
+    <string name="accessibility_quick_settings_live_display_changed_outdoor">LiveDisplay đã chuyển sang chế độ ngoài trời.</string>
     <string name="animation_fade">Mờ dần</string>
     <string name="animation_slide_right">Trượt qua phải</string>
     <string name="animation_slide_left">Trượt sang trái</string>
@@ -31,5 +63,14 @@
     <string name="animation_grow_shrink_bottom">Lớn dần (Dưới)</string>
     <string name="animation_grow_shrink_left">Lớn dần (Bên trái)</string>
     <string name="animation_grow_shrink_right">Lớn dần (Bên phải)</string>
+    <string name="animation_random">Ngẫu nhiên</string>
     <string name="action_null">Trống</string>
+    <string name="app_clipboard_access_denied">%1$s đã bị từ chối truy cập vào khay nhớ tạm</string>
+    <string name="app_clipboard_access_granted">%1$s đã được phép truy cập vào bảng tạm</string>
+    <string name="pocket_view_title">Chế độ bỏ túi đang bật</string>
+    <string name="pocket_view_title_cancel">Để kích hoạt điện thoại của bạn:</string>
+    <string name="pocket_view_top_tag_cancel">Không được che vùng màu xanh điện thoại của bạn và lau sạch bụi bẩn.</string>
+    <string name="pocket_view_top_tag_cancel2">Giữ nút nguồn để buộc thoát khỏi chế độ túi</string>
+    <string name="pocket_view_top_tag_number1">1.\u0020</string>
+    <string name="pocket_view_top_tag_number2">2.\u0020</string>
 </resources>

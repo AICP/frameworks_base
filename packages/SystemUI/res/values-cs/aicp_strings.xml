@@ -59,6 +59,14 @@
     <string name="qs_menu_item_columns_landscape">Sloupce (na šířku)</string>
     <string name="qs_menu_item_rows">Řádky</string>
     <string name="qs_menu_item_rows_landscape">Řádky (na šířku)</string>
+    <string name="qs_menu_item_columns_two">2</string>
+    <string name="qs_menu_item_columns_three">3</string>
+    <string name="qs_menu_item_columns_four">4</string>
+    <string name="qs_menu_item_columns_five">5</string>
+    <string name="qs_menu_item_columns_six">6</string>
+    <string name="qs_menu_item_columns_seven">7</string>
+    <string name="qs_menu_item_columns_eight">8</string>
+    <string name="qs_menu_item_columns_nine">9</string>
     <string name="qs_menu_item_reset">Obnovit</string>
     <string name="quick_settings_cpuinfo_label">Informace o CPU</string>
     <string name="quick_aicp_extras_label">AICP Extras</string>
@@ -138,6 +146,8 @@
     <string name="qs_menu_item_titles">Zobrazit popisky</string>
     <string name="force_stop_dlg_title">Vynutit ukončení?</string>
     <string name="force_stop_dlg_text">Vynucené zastavení může způsobit nepředvídatelné chování aplikace.</string>
+    <string name="dlg_ok">@android:string/ok</string>
+    <string name="dlg_cancel">@android:string/cancel</string>
     <string name="guts_force_close_app">Ukončit aplikaci</string>
     <string name="status_bar_location">Poloha</string>
     <string name="preview">Náhled</string>

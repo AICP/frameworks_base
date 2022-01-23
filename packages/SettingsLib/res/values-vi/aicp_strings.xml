@@ -20,4 +20,13 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="screen_zoom_summary_smaller">Nhỏ hơn</string>
     <string name="screen_zoom_summary_smallest">Nhỏ nhất</string>
+    <string name="status_deep_sleep">(Đã ngủ sâu: %1$d%2$s)</string>
+    <string name="power_remaining_dash_charging_duration_only">Đang sạc nhanh Dash (<xliff:g id="time">%1$s</xliff:g> cho đến khi đầy)</string>
+    <string name="battery_info_status_dash_charging">Đang sạc nhanh Dash</string>
+    <string name="power_remaining_warp_charging_duration_only">Sạc nhanh Warp (<xliff:g id="time">%1$s</xliff:g> đến khi đầy)</string>
+    <string name="battery_info_status_warp_charging">Sạc nhanh Warp</string>
+    <string name="power_remaining_vooc_charging_duration_only">Sạc nhanh VOOC (<xliff:g id="time">%1$s</xliff:g> cho đến khi đầy)</string>
+    <string name="battery_info_status_vooc_charging">Sạc nhanh VOOC</string>
+    <string name="power_remaining_turbo_charging_duration_only">Đang sạc nhanh Turbo (<xliff:g id="time">%1$s</xliff:g> đến khi đầy)</string>
+    <string name="battery_info_status_turbo_charging">Đang sạc nhanh Turbo</string>
 </resources>

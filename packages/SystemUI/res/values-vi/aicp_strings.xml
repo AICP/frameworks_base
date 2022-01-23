@@ -36,6 +36,9 @@
     <string name="quick_settings_music_label">Nhạc</string>
     <string name="quick_settings_music_play">Phát</string>
     <string name="quick_settings_music_pause">Tạm dừng</string>
+    <string name="quick_settings_reboot_label">Khởi động lại</string>
+    <string name="quick_settings_reboot_recovery_label">Chế độ phục hồi</string>
+    <string name="quick_settings_poweroff_label">Tắt nguồn</string>
     <string name="accessibility_quick_settings_usb_tether_off">Tắt chia sẻ kết nối USB</string>
     <string name="accessibility_quick_settings_usb_tether_on">Mở chia sẽ kết nối USB</string>
     <string name="accessibility_quick_settings_usb_tether_changed_off">Chế độ chia sẻ kết nối USB đã tắt</string>
@@ -44,14 +47,56 @@
     <string name="quick_settings_caffeine_label">Caffeine</string>
     <string name="accessibility_quick_settings_caffeine_off">Caffeine tắt</string>
     <string name="accessibility_quick_settings_caffeine_on">Caffeine bật</string>
+    <string name="global_action_restart_advanced">Tuỳ chọn nâng cao</string>
+    <string name="global_action_restart_recovery">Chế độ phục hồi</string>
+    <string name="global_action_restart_bootloader">Bộ nạp khởi động</string>
+    <string name="global_action_restart_ui">Giao diện hệ thống người dùng</string>
+    <string name="volume_ringer_priority_only">Ưu tiên</string>
+    <string name="volume_ringer_alarms_only">Báo động</string>
+    <string name="volume_ringer_dnd">Không làm phiền</string>
+    <string name="tristate_flashlight">Đèn pin</string>
+    <string name="qs_menu_item_columns">Cột</string>
+    <string name="qs_menu_item_columns_landscape">Cột khi nằm ngang</string>
+    <string name="qs_menu_item_rows">Dòng</string>
+    <string name="qs_menu_item_rows_landscape">Số hàng màn hình ngang</string>
+    <string name="qs_menu_item_reset">Đặt lại</string>
     <string name="quick_settings_cpuinfo_label">Thông tin CPU</string>
+    <string name="quick_aicp_extras_label">Tùy biến AICP</string>
     <string name="quick_aicp_extras_toast">LOL, bạn thực sự nghĩ sự nhấn giữ đó sẽ đưa bạn một nơi nào đó!!!</string>
+    <string name="status_bar_camera">Máy ảnh</string>
+    <string name="status_bar_microphone">Micrô</string>
+    <string name="keyguard_indication_dash_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Đang sạc nhanh Dash (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> đến khi đầy)</string>
+    <string name="keyguard_plugged_in_dash_charging"><xliff:g id="percentage">%s</xliff:g> • Đang sạc nhanh Dash</string>
+    <string name="keyguard_indication_warp_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Đang sạc nhanh Warp (<xliff:g id="charging_time_left" example="4 giờ và 2 phút">%1$s</xliff:g> nữa sẽ đầy)</string>
+    <string name="keyguard_plugged_in_warp_charging"><xliff:g id="percentage">%s</xliff:g> • Đang sạc nhanh Warp</string>
+    <string name="keyguard_indication_vooc_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Sạc nhanh VOOC (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> đến khi đầy)</string>
+    <string name="keyguard_plugged_in_vooc_charging"><xliff:g id="Percentage">%s</xliff:g> • Sạc nhanh VOOC</string>
+    <string name="keyguard_indication_turbo_power_time"><xliff:g id="percentage">%2$s</xliff:g> • Đang sạc nhanh Turbo (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> nữa sẽ đầy)</string>
+    <string name="keyguard_plugged_in_turbo_charging"><xliff:g id="percentage">%s</xliff:g> • Sạc nhanh Turbo</string>
+    <string name="keyguard_indication_oem_power_time"><xliff:g id="percentage">%2$s</xliff:g> • Đang sạc nhanh (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> đến khi đầy)</string>
+    <string name="keyguard_plugged_in_oem_charging"><xliff:g id="percentage">%s</xliff:g> • Đang sạc nhanh</string>
+    <string name="quick_settings_heads_up_label">Thông báo nhanh</string>
+    <string name="accessibility_quick_settings_heads_up_off">Tắt thông báo nhanh.</string>
+    <string name="accessibility_quick_settings_heads_up_on">Bật thông báo nhanh.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">Thông báo nhanh đã tắt.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">Thông báo nhanh đã bật.</string>
+    <string name="quick_settings_smart_pixels">Điểm ảnh thông minh</string>
+    <string name="quick_settings_smart_pixels_on_power_save">Tự động bật Pixel thông minh</string>
+    <string name="tuner_quick_settings">Cài đặt nhanh</string>
+    <string name="tuner_show_brightness_new">Hiện thanh trượt điều chỉnh độ sáng</string>
+    <string name="tuner_brightness_position_bottom">Thanh trượt độ sáng ở dưới</string>
+    <string name="tuner_show_secure_title">Hiển thị cảnh báo bảo mật</string>
+    <string name="quick_settings_aod_label">AOD</string>
     <string name="quick_settings_locale_label">Ngôn ngữ</string>
     <string name="quick_settings_locale_more_locales_toast">Vui lòng thiết lập nhiều ngôn ngữ để kích hoạt chức năng chuyển đổi</string>
     <string name="quick_settings_sound_label">Âm thanh</string>
     <string name="quick_settings_sound_ring">Chuông</string>
     <string name="quick_settings_sound_vibrate">Báo rung</string>
     <string name="quick_settings_sound_silent">Im lặng</string>
+    <string name="quick_settings_volume_panel_label">Bảng điều khiển âm lượng</string>
+    <string name="qs_data_switch_label">Chuyển Sim dữ liệu</string>
+    <string name="qs_data_switch_changed_1">Sử dụng SIM 1 cho dữ liệu di động</string>
+    <string name="qs_data_switch_changed_2">Sử dụng SIM 2 cho dữ liệu di động</string>
     <string name="quick_settings_sync_label">Đồng bộ hoá</string>
     <string name="accessibility_quick_settings_sync_off">Tắt đồng bộ</string>
     <string name="accessibility_quick_settings_sync_on">Bật đồng bộ</string>
@@ -70,8 +115,15 @@
     <string name="onthego_channel_name">Chính</string>
     <string name="global_action_onthego">On-The-Go</string>
     <string name="quick_settings_onthego_label">On-The-Go</string>
+    <string name="global_screenshot_selector_capture_description">Chụp một phần ảnh chụp màn hình</string>
+    <string name="global_screenshot_selector_cancel_description">Hủy bỏ chụp một phần ảnh chụp màn hình</string>
     <string name="quick_settings_screenshot_label">Chụp ảnh màn hình</string>
+    <string name="quick_settings_full_screenshot_label">Đầy đủ</string>
+    <string name="quick_settings_region_screenshot_label">Một phần</string>
+    <string name="tuner_show_brightness_mode">Hiển thị công tắt chế độ ánh sáng</string>
+    <string name="tuner_show_brightness_side_buttons">Hiển thị thanh trượt chỉnh độ sáng ở dưới</string>
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Thông báo nổi sẽ báo lại sau 1 phút.</string>
+    <string name="heads_up_snooze_message"><xliff:g id="string">%1$s</xliff:g> - Thông báo nổi sẽ báo lại sau <xliff:g id="number">%2$d</xliff:g> phút.</string>
     <string name="omnijaws_service_error">Lỗi</string>
     <string name="omnijaws_service_unkown">Không có dữ liệu thời tiết</string>
     <string name="omnijaws_service_error_long">Lỗi khi tải dữ liệu thời tiết</string>
@@ -81,14 +133,97 @@
     <string name="omnijaws_current_text">Bây giờ</string>
     <string name="omnijaws_package_not_available">OmniJaws không có sẵn</string>
     <string name="omnijaws_service_last_update">Cập nhật lần cuối:</string>
+    <string name="qs_menu_item_qs_columns">Cột thanh cài đặt nhanh</string>
+    <string name="qs_menu_item_columns_auto">Tự động</string>
+    <string name="qs_menu_item_titles">Hiển thị tên</string>
     <string name="force_stop_dlg_title">Buộc dừng?</string>
     <string name="force_stop_dlg_text">Nếu bạn buộc dừng một ứng dụng, ứng dụng đó có thể hoạt động sai.</string>
     <string name="guts_force_close_app">Tắt ứng dụng</string>
+    <string name="status_bar_location">Vị trí</string>
+    <string name="preview">Xem trước</string>
+    <string name="keycode">Mã phím</string>
+    <string name="no_home_title">Không tìm thấy nút Trang chủ</string>
+    <string name="no_home_message">Cần có nút trang chủ để có thể điều hướng thiết bị này. Vui lòng thêm nút trang chủ trước khi lưu.</string>
+    <string name="clipboard_description">Bảng nhớ tạm cho phép các mục được kéo thả trực tiếp vào bảng tạm. Các mục cũng có thể được lấy ra khỏi bảng nhớ tạm khi cần thiết.</string>
+    <string name="keycode_description">Các mã phím cho phép thêm các phím trên bàn phím vào Thanh điều hướng. Khi bạn nhấn, các nút này sẽ mô phỏng phím trên bàn phím được chọn. Trước tiên, bạn phải chọn phím cho nút, sau đó chọn một hình ảnh để hiển thị trên nút.</string>
+    <string name="start">Bắt đầu</string>
+    <string name="center">Chính giữa</string>
+    <string name="end">Kết thúc</string>
+    <string name="space">Khoảng trống</string>
+    <string name="menu_ime">Menu / Bộ chọn Bàn phím</string>
+    <string name="select_button">Chọn nút để thêm</string>
+    <string name="add_button">Thêm nút</string>
+    <string name="save">Lưu</string>
+    <string name="reset">Đặt lại</string>
+    <string name="select_keycode">Chọn nút bàn phím</string>
+    <string name="left">Trái</string>
+    <string name="right">Phải</string>
+    <string name="navbar_editor_title">Trình chỉnh sửa</string>
+    <string name="navbar_editor_summary">Thiết lập thanh điều hướng</string>
+    <string name="tuner_keyguard_transition_animations_title">Hiển thị hoạt ảnh chuyển tiếp</string>
+    <string name="tuner_keyguard_transition_animations_summary">Hiển thị những hoạt ảnh vô dụng</string>
     <string name="systemui_tuner_navbar_title">Cài đặt gốc</string>
     <string name="navbar_activity_title">Thanh điều hướng</string>
+    <string name="quick_settings_sound_search">Tìm kiếm âm thanh</string>
+    <string name="quick_settings_sound_search_no_app">Rất tiếc, nhưng tính năng này không hoạt động nếu bạn không có ứng dụng Tìm kiếm nhạc.</string>
+    <string name="accessibility_quick_settings_hwkeys_on">Phím cứng bật</string>
+    <string name="accessibility_quick_settings_hwkeys_off">Phím cứng tắt</string>
+    <string name="quick_settings_hwkeys_label">Phím cứng</string>
+    <string name="daily_data_usage_title">Hôm nay sử dụng</string>
+    <string name="screen_pinning_description_custom">Thao tác này sẽ duy trì hiển thị màn hình cho đến khi bạn bỏ ghim. Chạm &amp; giữ Quay lại để bỏ ghim.</string>
+    <string name="screen_pinning_description_recents_invisible_custom">Thao tác này sẽ duy trì hiển thị màn hình cho đến khi bạn bỏ ghim. Chạm &amp; giữ Quay lại để bỏ ghim.</string>
+    <string name="screen_pinning_description_accessible_custom">Thao tác này sẽ duy trì hiển thị màn hình cho đến khi bạn bỏ ghim. Chạm &amp; giữ Quay lại để bỏ ghim.</string>
+    <string name="screen_pinning_description_recents_invisible_accessible_custom">Thao tác này sẽ duy trì hiển thị màn hình cho đến khi bạn bỏ ghim. Chạm &amp; giữ Quay lại để bỏ ghim.</string>
+    <string name="screen_pinning_toast_custom">Để bỏ ghim màn hình này, chạm &amp; giữ nút Quay lại</string>
+    <string name="screen_pinning_toast_recents_invisible_custom">Để bỏ ghim màn hình này, chạm &amp; giữ nút Quay lại</string>
+    <string name="quick_settings_fpsinfo_label">Thông tin FPS</string>
+    <string name="accessibility_quick_settings_fpsinfo_off">Thông tin FPS tắt</string>
+    <string name="accessibility_quick_settings_fpsinfo_on">Thông tin FPS bật</string>
+    <string name="task_helper_app_killed">%1$s buộc dừng</string>
+    <string name="empty_app_killed">Ứng dụng</string>
     <string name="quick_settings_killapp_label">Tắt ứng dụng</string>
+    <string name="app_picker_dialog_title">Vui lòng chọn ứng dụng</string>
+    <string name="quick_settings_vpn_label">VPN</string>
+    <string name="quick_settings_vpn_connect_dialog_title">Kết nối đến\u2026</string>
+    <string name="vpn_credentials_hint">Vui lòng nhập thông tin đăng nhập của bạn để kết nối với <xliff:g id="name">%s</xliff:g></string>
+    <string name="vpn_credentials_username">Tên người dùng</string>
+    <string name="vpn_credentials_password">Mật khẩu</string>
+    <string name="vpn_credentials_dialog_connect">Kết nối</string>
     <string name="lockscreen_default">Mặc định</string>
     <string name="lockscreen_hidden">Không</string>
     <string name="custom_hint">Trượt từ biểu tượng để khởi chạy</string>
+    <string name="quick_settings_monotoggle_tile">Chế độ âm thanh</string>
+    <string name="quick_settings_monotoggle_tile_mono">Âm thanh một kênh</string>
+    <string name="quick_settings_monotoggle_tile_stereo">Âm thanh đa kênh</string>
+    <string name="quick_settings_anti_flicker">Chống nhấp nháy</string>
     <string name="accessibility_quick_settings_running_services">Mở màn hình Dịch vụ đang chạy.</string>
+    <string name="quick_settings_powershare_label">Sạc Ngược Không Dây</string>
+    <string name="quick_settings_powershare_off_powersave_label">Sạc ngược không dây đã tắt\n Trình tiết kiệm pin</string>
+    <string name="quick_settings_powershare_off_low_battery_label">Tắt Sạc Ngược Không Dây\nPin Yếu</string>
+    <string name="quick_settings_powershare_enabled_label">Sạc Ngược Không Dây đã bật</string>
+    <string name="screenrecord_stopdot_label">Hiển thị dấu chấm để dừng ghi</string>
+    <string name="screenrecord_lowquality_label">Chất lượng ghi âm thấp hơn</string>
+    <string name="screenrecord_longer_timeout_switch_label">Giới hạn kích thước tệp lớn hơn\nKích thước bản ghi giới hạn ở 15 GB</string>
+    <string name="quick_settings_dc_dimming_label">Chỉnh độ sáng phù hợp màn hình</string>
+    <string name="quick_settings_dc_brightness_mode">Chế độ sáng</string>
+    <string name="quick_settings_dc_full_auto">Chế độ tự động</string>
+    <string name="applock_locked"> đã khóa</string>
+    <string name="applock_fingerprint_face">, vân tay hoặc khuôn mặt để mở khóa</string>
+    <string name="applock_face"> hoặc sử dụng khuôn mặt để mở khóa</string>
+    <string name="applock_fingerprint"> hoặc sử dụng vân tay để mở khóa</string>
+    <string name="applock_credential"> để mở khóa</string>
+    <string name="applock_unlock">Mở khoá</string>
+    <string name="accessibility_dpad_left">Con trỏ trái</string>
+    <string name="accessibility_dpad_right">Con trỏ phải</string>
+    <string name="change_clock_face">Vuốt để thay đổi mặt đồng hồ</string>
+    <string name="sensor_privacy_mode_tile">Cảm biến</string>
+    <string name="quick_settings_on">Bật</string>
+    <string name="quick_settings_off">Tắt</string>
+    <string name="gaming_mode_not_enabled">Chế độ chơi game đã tắt</string>
+    <string name="gaming_mode_enabled">Chế độ chơi game đã được bật</string>
+    <string name="quick_settings_gaming_mode_label">Chế độ chơi game</string>
+    <string name="accessibility_quick_settings_gaming_mode_disabled">Chế độ trò chơi đã tắt.</string>
+    <string name="accessibility_quick_settings_gaming_mode_enabled">Chế độ chơi game đã được bật.</string>
+    <string name="quick_aicp_partsbin_label">AICP PartsBin</string>
+    <string name="quick_aicp_partsbin_toast">LOL, bạn thực sự nghĩ sự nhấn giữ đó sẽ đưa bạn một nơi nào đó!!!</string>
 </resources>

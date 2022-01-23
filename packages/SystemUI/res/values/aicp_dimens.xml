@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2012-2022 AICP
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <!-- Power Menu Lite-->
+    <dimen name="global_actions_light_icon_padding">32dp</dimen>
+</resources>

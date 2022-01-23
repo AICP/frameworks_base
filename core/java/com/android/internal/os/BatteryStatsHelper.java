@@ -690,6 +690,9 @@ public class BatteryStatsHelper {
     }
 
     public void resetStatistics() {
+        if (mBatteryInfo == null) {
+            return;
+        }
         try {
             clearAllStats();
             mBatteryInfo.resetStatistics();

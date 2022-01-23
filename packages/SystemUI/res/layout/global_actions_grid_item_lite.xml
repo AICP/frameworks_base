@@ -27,7 +27,7 @@
             android:layout_width="@dimen/global_actions_button_size"
             android:layout_height="@dimen/global_actions_button_size"
             android:layout_marginBottom="@dimen/global_actions_grid_container_bottom_margin"
-            android:padding="@dimen/global_actions_button_padding"
+            android:padding="@dimen/global_actions_light_icon_padding"
             android:scaleType="centerInside"
             android:tint="@color/global_actions_lite_text"
             android:background="@drawable/global_actions_lite_button"/>

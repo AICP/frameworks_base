@@ -23,6 +23,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.PowerManager;
+import android.service.quicksettings.Tile;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -101,6 +102,7 @@ public class RebootTile extends QSTileImpl<BooleanState> {
 
     @Override
     protected void handleUpdateState(BooleanState state, Object arg) {
+        state.state = Tile.STATE_INACTIVE;
         if (mRebootToRecovery) {
             state.label = mContext.getString(R.string.quick_settings_reboot_recovery_label);
             state.icon = ResourceIcon.get(R.drawable.ic_qs_reboot_recovery);

@@ -24,6 +24,7 @@ import static android.provider.settings.validators.SettingsValidators.FONT_SCALE
 import static android.provider.settings.validators.SettingsValidators.LENIENT_IP_ADDRESS_VALIDATOR;
 import static android.provider.settings.validators.SettingsValidators.NON_NEGATIVE_FLOAT_VALIDATOR;
 import static android.provider.settings.validators.SettingsValidators.NON_NEGATIVE_INTEGER_VALIDATOR;
+import static android.provider.settings.validators.SettingsValidators.ANY_INTEGER_VALIDATOR;
 import static android.provider.settings.validators.SettingsValidators.URI_VALIDATOR;
 import static android.provider.settings.validators.SettingsValidators.VIBRATION_INTENSITY_VALIDATOR;
 
@@ -304,7 +305,7 @@ public class SystemSettingsValidators {
         VALIDATORS.put(System.ON_THE_GO_SERVICE_RESTART, BOOLEAN_VALIDATOR);
         VALIDATORS.put(System.ON_THE_GO_CAMERA, ANY_INTEGER_VALIDATOR);
         VALIDATORS.put(System.STATUSBAR_BATTERY_BAR, NON_NEGATIVE_INTEGER_VALIDATOR);
-        VALIDATORS.put(System.STATUSBAR_BATTERY_BAR_COLOR, NON_NEGATIVE_INTEGER_VALIDATOR);
+        VALIDATORS.put(System.STATUSBAR_BATTERY_BAR_COLOR, ANY_INTEGER_VALIDATOR);
         VALIDATORS.put(System.STATUSBAR_BATTERY_BAR_THICKNESS, NON_NEGATIVE_INTEGER_VALIDATOR);
         VALIDATORS.put(System.STATUSBAR_BATTERY_BAR_STYLE, NON_NEGATIVE_INTEGER_VALIDATOR);
         VALIDATORS.put(System.STATUSBAR_BATTERY_BAR_ANIMATE, NON_NEGATIVE_INTEGER_VALIDATOR);

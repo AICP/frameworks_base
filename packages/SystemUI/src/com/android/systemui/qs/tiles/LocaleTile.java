@@ -144,6 +144,7 @@ public class LocaleTile extends QSTileImpl<State> {
 
     @Override
     protected void handleUpdateState(State state, Object arg) {
+        state.state = Tile.STATE_INACTIVE;
         state.icon = ResourceIcon.get(
                 currentLocaleBackup == null || currentLocaleBackup.equals(mLocaleList.get(0)) ?
                         R.drawable.ic_qs_locale :

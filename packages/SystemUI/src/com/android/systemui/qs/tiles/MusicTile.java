@@ -33,6 +33,7 @@ import android.os.ServiceManager;
 import android.os.SystemClock;
 import android.os.UserHandle;
 import android.provider.Settings;
+import android.service.quicksettings.Tile;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -136,9 +137,11 @@ public class MusicTile extends QSTileImpl<BooleanState> {
             state.icon = ResourceIcon.get(R.drawable.ic_qs_media_pause);
             state.label = mMetadata.trackTitle != null && MusicTileTitle()
                 ? mMetadata.trackTitle : mContext.getString(R.string.quick_settings_music_pause);
+            state.state = Tile.STATE_ACTIVE;
         } else {
             state.icon = ResourceIcon.get(R.drawable.ic_qs_media_play);
             state.label = mContext.getString(R.string.quick_settings_music_play);
+            state.state = Tile.STATE_INACTIVE;
         }
     }
 

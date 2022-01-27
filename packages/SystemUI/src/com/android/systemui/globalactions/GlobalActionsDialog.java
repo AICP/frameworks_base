@@ -189,6 +189,7 @@ public class GlobalActionsDialog extends GlobalActionsDialogLite
                 vibrator,
                 resources,
                 configurationController,
+                activityStarter,
                 keyguardStateController,
                 userManager,
                 trustManager,

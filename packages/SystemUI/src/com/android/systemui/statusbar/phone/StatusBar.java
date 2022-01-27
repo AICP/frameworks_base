@@ -5210,7 +5210,7 @@ public class StatusBar extends SystemUI implements DemoMode,
             newBrightness = Math.min(newBrightness, PowerManager.BRIGHTNESS_ON);
             newBrightness = Math.max(newBrightness, mMinBrightness);
             final int val = newBrightness;
-            mDisplayManager.setTemporaryBrightness(val);
+            mDisplayManager.setTemporaryBrightness(mDisplayId, val);
             AsyncTask.execute(new Runnable() {
                 @Override
                 public void run() {

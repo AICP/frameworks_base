@@ -42,13 +42,11 @@ public class StatusBarNetworkTraffic extends NetworkTraffic implements StatusIco
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        Dependency.get(DarkIconDispatcher.class).addDarkReceiver(this);
     }
 
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        Dependency.get(DarkIconDispatcher.class).removeDarkReceiver(this);
     }
 
     @Override

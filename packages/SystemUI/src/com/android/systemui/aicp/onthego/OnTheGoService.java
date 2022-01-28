@@ -358,7 +358,7 @@ public class OnTheGoService extends Service {
             startIntent.setComponent(cn);
             startIntent.setAction(ACTION_START);
             final PendingIntent startPendIntent = PendingIntent.getService(this, 0, startIntent,
-                    PendingIntent.FLAG_UPDATE_CURRENT);
+                    PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
             builder.addAction(com.android.internal.R.drawable.ic_media_play,
                     r.getString(R.string.onthego_notif_restart), startPendIntent);
@@ -366,12 +366,12 @@ public class OnTheGoService extends Service {
             final Intent stopIntent = new Intent(this, OnTheGoService.class)
                     .setAction(OnTheGoService.ACTION_STOP);
             final PendingIntent stopPendIntent = PendingIntent.getService(this, 0, stopIntent,
-                    PendingIntent.FLAG_UPDATE_CURRENT);
+                    PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
             final Intent optionsIntent = new Intent(this, OnTheGoService.class)
                     .setAction(OnTheGoService.ACTION_TOGGLE_OPTIONS);
             final PendingIntent optionsPendIntent = PendingIntent.getService(this, 0, optionsIntent,
-                    PendingIntent.FLAG_UPDATE_CURRENT);
+                    PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
             builder
                     .addAction(com.android.internal.R.drawable.ic_media_stop,

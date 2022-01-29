@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c225167a_bfbd6dfa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2022-01-29T14:47:56Z",
+      "side": 1,
+      "message": "Or check for the array size when checked for null-ability in line just above",
+      "revId": "d103aeb7b6096673c7c63f1325a4ec98d977effe",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

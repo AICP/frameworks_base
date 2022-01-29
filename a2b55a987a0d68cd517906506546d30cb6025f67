@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d72cbb6_9a33a322",
+        "filename": "core/java/com/android/internal/gmscompat/AttestationHooks.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-01-29T18:46:30Z",
+      "side": 1,
+      "message": "frameworks/base/core/java/com/android/internal/gmscompat/AttestationHooks.java:6\n7: error: package GmsInfo does not exist\n        if (GmsInfo.PACKAGE_GMS.equals(app.getPackageName()) \u0026\u0026",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 63
+      },
+      "revId": "a2b55a987a0d68cd517906506546d30cb6025f67",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

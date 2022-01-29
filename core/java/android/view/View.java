@@ -4025,6 +4025,48 @@ public class View implements Drawable.Callback, KeyEvent.Callback,
 
     /**
      * @hide
+     *
+     * NOTE: This flag may only be used in subtreeSystemUiVisibility. It is masked
+     * out of the public fields to keep the undefined bits out of the developer's way.
+     *
+     * Flag to specify that the status bar is displayed in translucent mode.
+     */
+    public static final int STATUS_BAR_TRANSLUCENT = 0x40000000;
+
+    /**
+     * @hide
+     *
+     * NOTE: This flag may only be used in subtreeSystemUiVisibility. It is masked
+     * out of the public fields to keep the undefined bits out of the developer's way.
+     *
+     * Flag to specify that the navigation bar is displayed in translucent mode.
+     */
+    public static final int NAVIGATION_BAR_TRANSLUCENT = 0x80000000;
+
+    /**
+     * @hide
+     *
+     * Makes navigation bar transparent (but not the status bar).
+     */
+    public static final int NAVIGATION_BAR_TRANSPARENT = 0x00008000;
+
+    /**
+     * @hide
+     *
+     * Makes status bar transparent (but not the navigation bar).
+     */
+    public static final int STATUS_BAR_TRANSPARENT = 0x00000008;
+
+    /**
+     * @hide
+     *
+     * Makes both status bar and navigation bar transparent.
+     */
+    public static final int SYSTEM_UI_TRANSPARENT = NAVIGATION_BAR_TRANSPARENT
+            | STATUS_BAR_TRANSPARENT;
+
+    /**
+     * @hide
      */
     public static final int PUBLIC_STATUS_BAR_VISIBILITY_MASK = 0x00003FF7;
 

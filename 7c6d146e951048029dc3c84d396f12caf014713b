@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3ec7514_f4a72354",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-01-29T21:41:17Z",
+      "side": 1,
+      "message": "http://haste.aicp-rom.com/bogopimaca.cs",
+      "revId": "7c6d146e951048029dc3c84d396f12caf014713b",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

@@ -141,19 +141,18 @@ public class AicpUtils {
         }
     }
 
-/*
     // Toggle flashlight
     public static void toggleCameraFlash() {
         IStatusBarService service = getStatusBarService();
         if (service != null) {
             try {
-                service.toggleFlashlight();
+                service.toggleCameraFlash();
             } catch (RemoteException e) {
                 // do nothing.
             }
         }
     }
-*/
+
     // Clear notifications
     public static void clearAllNotifications() {
         IStatusBarService service = getStatusBarService();

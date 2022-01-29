@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1daa2d32_0853312f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2022-01-29T14:46:58Z",
+      "side": 1,
+      "message": "Might need more categories to be excluded\n\nCurrently:\n- Fonts\n- Adaptive Icon Shapes",
+      "revId": "1ecbe9d4718ae460fe52c2034adff769a42f2e3b",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

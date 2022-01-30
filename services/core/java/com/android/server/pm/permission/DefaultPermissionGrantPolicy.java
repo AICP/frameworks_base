@@ -987,6 +987,11 @@ final class DefaultPermissionGrantPolicy {
         // Settings Services
         grantSystemFixedPermissionsToSystemPackage(pm,"com.google.android.settings.intelligence", userId, PHONE_PERMISSIONS,
                 ALWAYS_LOCATION_PERMISSIONS);
+
+        // Google App
+        grantPermissionsToPackage(pm, "com.google.android.googlequicksearchbox", userId,
+                false /* ignoreSystemPackage */, true /*whitelistRestrictedPermissions*/,
+                PHONE_PERMISSIONS);
     }
 
     private String getDefaultSystemHandlerActivityPackageForCategory(PackageManagerWrapper pm,

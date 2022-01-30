@@ -313,7 +313,7 @@ public class KeyguardIndicationRotateTextViewController extends
                     if (mIsDozing) {
                         showIndication(INDICATION_TYPE_NONE, true);
                     } else if (mIndicationQueue.size() > 0) {
-                        showIndication(mIndicationQueue.get(0), true);
+                        showIndication(mIndicationQueue.remove(0), true);
                     }
                 }
             };

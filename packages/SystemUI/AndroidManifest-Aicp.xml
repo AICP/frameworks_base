@@ -46,4 +46,5 @@
 
     <!-- Kill app from slim recents -->
     <uses-permission android:name="android.permission.FORCE_STOP_PACKAGES" />
+    <uses-permission android:name="android.permission.SUSPEND_APPS" />
 </manifest>

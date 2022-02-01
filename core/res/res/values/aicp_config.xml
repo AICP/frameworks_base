@@ -264,4 +264,8 @@
     <bool name="config_proximityCheckOnWake">false</bool>
     <integer name="config_proximityCheckTimeout">250</integer>
     <bool name="config_proximityCheckOnWakeEnabledByDefault">false</bool>
+
+    <!-- List of system apps that are allowed to be locked with app lock.
+       Use with extreme caution. -->
+    <string-array name="config_appLockAllowedSystemApps" translatable="false" />
 </resources>

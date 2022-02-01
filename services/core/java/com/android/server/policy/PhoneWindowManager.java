@@ -4625,7 +4625,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
         // Apply custom policy for supported key codes.
         if (canApplyCustomPolicy(keyCode) && !isCustomSource) {
-            if (mNavBarEnabled && !navBarKey /* TODO> && !isADBVirtualKeyOrAnyOtherKeyThatWeNeedToHandleAKAWhenMonkeyTestOrWHATEVER! */) {
+            if (mNavBarEnabled && !navBarKey && !virtualHardKey /* TODO> && !isADBVirtualKeyOrAnyOtherKeyThatWeNeedToHandleAKAWhenMonkeyTestOrWHATEVER! */) {
                 if (DEBUG_INPUT) {
                     Log.d(TAG, "interceptKeyBeforeQueueing(): key policy: mNavBarEnabled, discard hw event.");
                 }

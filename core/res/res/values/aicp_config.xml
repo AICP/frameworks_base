@@ -238,4 +238,8 @@
     <!-- Indicates that the device has Single-stage Camera key
          (without "Focus" state) instead of Dual-stage. -->
     <bool name="config_singleStageCameraKey">false</bool>
+
+    <!-- List of system apps that are allowed to be locked with app lock.
+         Use with extreme caution. -->
+    <string-array name="config_appLockAllowedSystemApps" translatable="false" />
 </resources>

@@ -510,6 +510,9 @@ public class ExpandableNotificationRow extends ActivatableNotificationView
             mDismissButtonTargetVisibilityListeners = new ListenerSet<>();
     @RedactionType
     private int mRedactionType = REDACTION_TYPE_NONE;
+
+    private boolean mForceHideContents = false;
+
     public NotificationContentView[] getLayouts() {
         return Arrays.copyOf(mLayouts, mLayouts.length);
     }
@@ -2918,8 +2921,8 @@ public class ExpandableNotificationRow extends ActivatableNotificationView
     }
 
     private void updateChildrenVisibility() {
-        boolean hideContentWhileLaunching = mExpandAnimationRunning && mGuts != null
-                && mGuts.isExposed();
+        boolean hideContentWhileLaunching = mForceHideContents || (mExpandAnimationRunning && mGuts != null
+                && mGuts.isExposed());
         mPrivateLayout.setVisibility(!mShowingPublic && !mIsSummaryWithChildren
                 && !hideContentWhileLaunching ? VISIBLE : INVISIBLE);
         if (mChildrenContainer != null) {
@@ -3107,6 +3110,7 @@ public class ExpandableNotificationRow extends ActivatableNotificationView
     }
 
     public boolean isExpandable() {
+        if (mForceHideContents) return false;
         if (mIsSummaryWithChildren && !shouldShowPublic()) {
             return !mChildrenExpanded;
         }
@@ -3305,6 +3309,7 @@ public class ExpandableNotificationRow extends ActivatableNotificationView
 
     @Override
     public int getIntrinsicHeight() {
+        if (mForceHideContents) return getCollapsedHeight();
         if (isUserLocked()) {
             return getActualHeight();
         }
@@ -3664,7 +3669,7 @@ public class ExpandableNotificationRow extends ActivatableNotificationView
             } else {
                 mLogger.logSkipResetAllContentAlphas(mLoggingKey);
             }
-            mPublicLayout.setVisibility(mShowingPublic ? View.VISIBLE : View.INVISIBLE);
+            mPublicLayout.setVisibility((mShowingPublic || mForceHideContents) ? VISIBLE : INVISIBLE);
             updateChildrenVisibility();
         } else {
             animateShowingPublic(delay, duration, mShowingPublic);
@@ -3761,7 +3766,7 @@ public class ExpandableNotificationRow extends ActivatableNotificationView
     }
 
     private boolean shouldShowPublic() {
-        return mSensitive && mHideSensitiveForIntrinsicHeight;
+        return mForceHideContents || (mSensitive && mHideSensitiveForIntrinsicHeight);
     }
 
     public void makeActionsVisibile() {
@@ -4533,6 +4538,13 @@ public class ExpandableNotificationRow extends ActivatableNotificationView
         if (isAboveShelf() != wasAboveShelf) {
             mAboveShelfChangedListener.onAboveShelfStateChanged(!wasAboveShelf);
         }
+    }
+
+    public void setForceHideContents(boolean forceHide) {
+        if (mForceHideContents == forceHide) return;
+        mForceHideContents = forceHide;
+        updateChildrenVisibility();
+        onNotificationUpdated();
     }
 
     private static class NotificationViewState extends ExpandableViewState {

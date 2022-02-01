@@ -16,6 +16,23 @@
       "message": "Authorship: https://review.lineageos.org/c/LineageOS/android_frameworks_base/+/318777",
       "revId": "ea0d87c9e77cafc5159c710191b62d31fa3ebfdd",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8d9e2eb_5c298b74",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-02-01T08:20:15Z",
+      "side": 1,
+      "message": "Fixes FC in 3rd party keyboards such as Gboard, SwiftKey etc...",
+      "revId": "ea0d87c9e77cafc5159c710191b62d31fa3ebfdd",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

@@ -519,10 +519,14 @@ public class StatusBarNotificationPresenter implements NotificationPresenter,
 
         @Override
         public boolean suppressAwakeInterruptions(NotificationEntry entry) {
+            final StatusBarNotification sbn = entry.getSbn();
+            if (sbn.getIsContentSecure()) {
+                return true;
+            }
             if (isDeviceInVrMode()) {
                 return true;
             } else {
-                final Notification notification = entry.getSbn().getNotification();
+                final Notification notification = sbn.getNotification();
                 return (mGamingModeActive && mGamingModeNoAlert &&
                     !TextUtils.equals(notification.category, Notification.CATEGORY_CALL) &&
                     !TextUtils.equals(notification.category, Notification.CATEGORY_ALARM));

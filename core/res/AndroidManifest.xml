@@ -721,6 +721,10 @@
     <protected-broadcast android:name="exthmui.intent.action.GAMING_MODE_ON" />
     <protected-broadcast android:name="exthmui.intent.action.GAMING_MODE_OFF" />
 
+    <!-- App lock -->
+    <protected-broadcast android:name="com.android.server.app.AppLockManagerService.APP_LOCK_TIMEOUT" />
+    <protected-broadcast android:name="android.app.action.UNLOCK_APP" />
+
     <!-- ====================================================================== -->
     <!--                          RUNTIME PERMISSIONS                           -->
     <!-- ====================================================================== -->
@@ -5883,6 +5887,10 @@
                 android:protectionLevel="internal|role" />
 
     <!-- AICP additions -->
+    <!-- Allows an application to manage app lock
+         @hide -->
+    <permission android:name="android.permission.MANAGE_APP_LOCK"
+                android:protectionLevel="signature|privileged" />
 
     <!-- Allows an application to override the power key action
          @hide <p>Not for use by third-party applications.

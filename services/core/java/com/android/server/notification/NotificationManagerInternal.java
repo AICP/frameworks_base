@@ -45,4 +45,7 @@ public interface NotificationManagerInternal {
 
     /** Send a notification to the user prompting them to review their notification permissions. */
     void sendReviewPermissionsNotification();
+
+    void updateSecureNotifications(String pkg, boolean isContentSecure,
+        boolean isBubbleUpSuppressed, int userId);
 }

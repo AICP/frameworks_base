@@ -60,6 +60,7 @@ import com.android.internal.app.SuspendedAppActivity;
 import com.android.internal.app.UnlaunchableAppActivity;
 import com.android.server.LocalServices;
 import com.android.server.am.ActivityManagerService;
+import com.android.server.app.AppLockManagerServiceInternal;
 
 /**
  * A class that contains activity intercepting logic for {@link ActivityStarter#startActivityLocked}
@@ -182,14 +183,13 @@ class ActivityStartInterceptor {
         if (interceptLockedManagedProfileIfNeeded()) {
             return true;
         }
+        if (interceptLockedAppIfNeeded()) {
+            return true;
+        }
 
         final SparseArray<ActivityInterceptorCallback> callbacks =
                 mService.getActivityInterceptorCallbacks();
-        final ActivityInterceptorCallback.ActivityInterceptorInfo interceptorInfo =
-                new ActivityInterceptorCallback.ActivityInterceptorInfo(mRealCallingUid,
-                        mRealCallingPid, mUserId, mCallingPackage, mCallingFeatureId, mIntent,
-                        mRInfo, mAInfo, mResolvedType, mCallingPid, mCallingUid,
-                        mActivityOptions);
+        final ActivityInterceptorCallback.ActivityInterceptorInfo interceptorInfo = getInterceptorInfo();
 
         for (int i = 0; i < callbacks.size(); i++) {
             final ActivityInterceptorCallback callback = callbacks.valueAt(i);
@@ -206,6 +206,13 @@ class ActivityStartInterceptor {
             return true;
         }
         return false;
+    }
+
+    private ActivityInterceptorCallback.ActivityInterceptorInfo getInterceptorInfo() {
+        return new ActivityInterceptorCallback.ActivityInterceptorInfo(mRealCallingUid,
+            mRealCallingPid, mUserId, mCallingPackage, mCallingFeatureId, mIntent,
+            mRInfo, mAInfo, mResolvedType, mCallingPid, mCallingUid,
+            mActivityOptions);
     }
 
     private boolean hasCrossProfileAnimation() {
@@ -397,6 +404,34 @@ class ActivityStartInterceptor {
         mCallingPid = mRealCallingPid;
         mCallingUid = mRealCallingUid;
         mResolvedType = null;
+
+        mRInfo = mSupervisor.resolveIntent(mIntent, mResolvedType, mUserId, 0, mRealCallingUid);
+        mAInfo = mSupervisor.resolveActivity(mIntent, mRInfo, mStartFlags, null /*profilerInfo*/);
+        return true;
+    }
+
+    private AppLockManagerServiceInternal getAppLockManagerService() {
+        return mService.getAppLockManagerService();
+    }
+
+    private boolean interceptLockedAppIfNeeded() {
+        if (getAppLockManagerService() == null) return false;
+        final Intent interceptingIntent = getAppLockManagerService().interceptActivity(getInterceptorInfo());
+        if (interceptingIntent == null) return false;
+        mIntent = interceptingIntent;
+        mCallingPid = mRealCallingPid;
+        mCallingUid = mRealCallingUid;
+        mResolvedType = null;
+        // If we are intercepting and there was a task, convert it into an extra for the
+        // ConfirmCredentials intent and unassign it, as otherwise the task will move to
+        // front even if ConfirmCredentials is cancelled.
+        if (mInTask != null) {
+            mIntent.putExtra(EXTRA_TASK_ID, mInTask.mTaskId);
+            mInTask = null;
+        }
+        if (mActivityOptions == null) {
+            mActivityOptions = ActivityOptions.makeBasic();
+        }
 
         mRInfo = mSupervisor.resolveIntent(mIntent, mResolvedType, mUserId, 0, mRealCallingUid);
         mAInfo = mSupervisor.resolveActivity(mIntent, mRInfo, mStartFlags, null /*profilerInfo*/);

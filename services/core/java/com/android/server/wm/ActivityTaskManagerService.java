@@ -258,6 +258,7 @@ import com.android.server.am.BaseErrorDialog;
 import com.android.server.am.PendingIntentController;
 import com.android.server.am.PendingIntentRecord;
 import com.android.server.am.UserState;
+import com.android.server.app.AppLockManagerServiceInternal;
 import com.android.server.firewall.IntentFirewall;
 import com.android.server.inputmethod.InputMethodSystemProperty;
 import com.android.server.pm.UserManagerService;
@@ -833,6 +834,8 @@ public class ActivityTaskManagerService extends IActivityTaskManager.Stub {
         }
     };
 
+    private AppLockManagerServiceInternal mAppLockManagerService = null;
+
     @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
     public ActivityTaskManagerService(Context context) {
         mContext = context;
@@ -1244,11 +1247,12 @@ public class ActivityTaskManagerService extends IActivityTaskManager.Stub {
         assertPackageMatchesCallingUid(callingPackage);
         enforceNotIsolatedCaller("startActivityAsUser");
 
+        final int callingUid = Binder.getCallingUid();
         userId = getActivityStartController().checkTargetUser(userId, validateIncomingUser,
-                Binder.getCallingPid(), Binder.getCallingUid(), "startActivityAsUser");
+                Binder.getCallingPid(), callingUid, "startActivityAsUser");
 
-        // TODO: Switch to user app stacks here.
-        return getActivityStartController().obtainStarter(intent, "startActivityAsUser")
+        final ActivityStarter activityStarter = getActivityStartController()
+                .obtainStarter(intent, "startActivityAsUser")
                 .setCaller(caller)
                 .setCallingPackage(callingPackage)
                 .setCallingFeatureId(callingFeatureId)
@@ -1259,8 +1263,22 @@ public class ActivityTaskManagerService extends IActivityTaskManager.Stub {
                 .setStartFlags(startFlags)
                 .setProfilerInfo(profilerInfo)
                 .setActivityOptions(bOptions)
-                .setUserId(userId)
-                .execute();
+                .setUserId(userId);
+
+        final ActivityInfo aInfo = resolveActivityInfoForIntent(intent, resolvedType, userId, callingUid);
+        if (aInfo != null) {
+            if (getAppLockManagerService().requireUnlock(aInfo.packageName, userId)) {
+                getAppLockManagerService().unlock(aInfo.packageName, pkg -> {
+                    mContext.getMainExecutor().execute(() -> {
+                        activityStarter.execute();
+                    });
+                }, null /* cancelCallback */, userId);
+                return ActivityManager.START_ABORTED;
+            }
+        }
+
+        // TODO: Switch to user app stacks here.
+        return activityStarter.execute();
 
     }
 
@@ -1778,6 +1796,40 @@ public class ActivityTaskManagerService extends IActivityTaskManager.Stub {
 
         final int callingPid = Binder.getCallingPid();
         final int callingUid = Binder.getCallingUid();
+
+        final Task task;
+        synchronized (mGlobalLock) {
+            task = mRootWindowContainer.anyTaskForId(taskId);
+        }
+        final String packageName = getTaskPackageName(task);
+        if (packageName != null) {
+            if (getAppLockManagerService().requireUnlock(packageName, task.mUserId)) {
+                getAppLockManagerService().unlock(packageName,
+                pkg -> {
+                    mContext.getMainExecutor().execute(() -> {
+                        startActivityFromRecentsInternal(taskId, callingPid,
+                            callingUid, bOptions);
+                    });
+                },
+                pkg -> {
+                    // Send user to recents
+                    getStatusBarManagerInternal().showRecentApps(false);
+                }, task.mUserId);
+                return ActivityManager.START_ABORTED;
+            }
+        }
+        return startActivityFromRecentsInternal(taskId, callingPid, callingUid, bOptions);
+    }
+
+    private String getTaskPackageName(Task task) {
+        if (task == null) return null;
+        final Task rootTask = task.getRootTask();
+        if (rootTask == null || rootTask.realActivity == null) return null;
+        return rootTask.realActivity.getPackageName();
+    }
+
+    private int startActivityFromRecentsInternal(int taskId, int callingPid,
+            int callingUid, Bundle bOptions) {
         final SafeActivityOptions safeOptions = SafeActivityOptions.fromBundle(bOptions);
         final long origId = Binder.clearCallingIdentity();
         try {
@@ -3603,6 +3655,11 @@ public class ActivityTaskManagerService extends IActivityTaskManager.Stub {
                 return null;
             }
         }
+        final String packageName = getTaskPackageName(task);
+        if (packageName != null && getAppLockManagerService().requireUnlock(
+                packageName, task.mUserId)) {
+            return null;
+        }
         // Don't call this while holding the lock as this operation might hit the disk.
         return task.getSnapshot(isLowResolution, restoreFromDisk);
     }
@@ -4942,6 +4999,13 @@ public class ActivityTaskManagerService extends IActivityTaskManager.Stub {
         return mStatusBarManagerInternal;
     }
 
+    AppLockManagerServiceInternal getAppLockManagerService() {
+        if (mAppLockManagerService == null) {
+            mAppLockManagerService = LocalServices.getService(AppLockManagerServiceInternal.class);
+        }
+        return mAppLockManagerService;
+    }
+
     AppWarnings getAppWarningsLocked() {
         return mAppWarnings;
     }
@@ -5372,6 +5436,20 @@ public class ActivityTaskManagerService extends IActivityTaskManager.Stub {
                 boolean validateIncomingUser, PendingIntentRecord originatingPendingIntent,
                 boolean allowBackgroundActivityStart) {
             assertPackageMatchesCallingUid(callingPackage);
+            final ActivityInfo aInfo = resolveActivityInfoForIntent(intents[0], resolvedTypes[0], userId,
+                realCallingUid);
+            if (aInfo != null) {
+                if (getAppLockManagerService().requireUnlock(aInfo.packageName, userId)) {
+                    getAppLockManagerService().unlock(aInfo.packageName, pkg -> {
+                        mContext.getMainExecutor().execute(() ->
+                            getActivityStartController().startActivitiesInPackage(uid, realCallingPid,
+                                realCallingUid, callingPackage, callingFeatureId, intents, resolvedTypes,
+                                resultTo, options, userId, validateIncomingUser, originatingPendingIntent,
+                                allowBackgroundActivityStart));
+                    }, null /* cancelCallback */, userId);
+                    return ActivityManager.START_ABORTED;
+                }
+            }
             return getActivityStartController().startActivitiesInPackage(uid, realCallingPid,
                     realCallingUid, callingPackage, callingFeatureId, intents, resolvedTypes,
                     resultTo, options, userId, validateIncomingUser, originatingPendingIntent,
@@ -5386,6 +5464,21 @@ public class ActivityTaskManagerService extends IActivityTaskManager.Stub {
                 boolean validateIncomingUser, PendingIntentRecord originatingPendingIntent,
                 boolean allowBackgroundActivityStart) {
             assertPackageMatchesCallingUid(callingPackage);
+            final ActivityInfo aInfo = resolveActivityInfoForIntent(intent, resolvedType, userId,
+                realCallingUid);
+            if (aInfo != null) {
+                if (getAppLockManagerService().requireUnlock(aInfo.packageName, userId)) {
+                    getAppLockManagerService().unlock(aInfo.packageName, pkg -> {
+                        mContext.getMainExecutor().execute(() ->
+                            getActivityStartController().startActivityInPackage(uid, realCallingPid,
+                                realCallingUid, callingPackage, callingFeatureId, intent, resolvedType,
+                                resultTo, resultWho, requestCode, startFlags, options, userId, inTask,
+                                reason, validateIncomingUser, originatingPendingIntent,
+                                allowBackgroundActivityStart));
+                    }, null /* cancelCallback */, userId);
+                    return ActivityManager.START_ABORTED;
+                }
+            }
             return getActivityStartController().startActivityInPackage(uid, realCallingPid,
                     realCallingUid, callingPackage, callingFeatureId, intent, resolvedType,
                     resultTo, resultWho, requestCode, startFlags, options, userId, inTask,
@@ -6668,6 +6761,14 @@ public class ActivityTaskManagerService extends IActivityTaskManager.Stub {
                                     + FIRST_ORDERED_ID + "," + LAST_ORDERED_ID + "]");
                 }
                 mActivityInterceptorCallbacks.put(id, callback);
+            }
+        }
+
+        @Override
+        public boolean isVisibleActivity(IBinder activityToken) {
+            synchronized (mGlobalLock) {
+                final ActivityRecord r = ActivityRecord.isInRootTaskLocked(activityToken);
+                return r != null && r.isInterestingToUserLocked();
             }
         }
     }

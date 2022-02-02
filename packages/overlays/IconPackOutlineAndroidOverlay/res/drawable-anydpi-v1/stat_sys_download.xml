@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:oneshot="false">
+    <item android:drawable="@*android:drawable/stat_sys_download_anim0" android:duration="50" />
+    <item android:drawable="@*android:drawable/stat_sys_download_anim1" android:duration="50" />
+    <item android:drawable="@*android:drawable/stat_sys_download_anim2" android:duration="50" />
+    <item android:drawable="@*android:drawable/stat_sys_download_anim3" android:duration="50" />
+    <item android:drawable="@*android:drawable/stat_sys_download_anim4" android:duration="50" />
+    <item android:drawable="@*android:drawable/stat_sys_download_anim5" android:duration="50" />
+    <item android:drawable="@*android:drawable/ic_menu_add" android:duration="50" />
+    <item android:drawable="@*android:drawable/ic_menu_agenda" android:duration="50" />
+    <item android:drawable="@*android:drawable/ic_menu_always_landscape_portrait" android:duration="50" />
+    <item android:drawable="@*android:drawable/ic_menu_archive" android:duration="50" />
+    <item android:drawable="@*android:drawable/ic_menu_attachment" android:duration="50" />
+    <item android:drawable="@*android:drawable/ic_menu_block" android:duration="50" />
+    <item android:drawable="@*android:drawable/ic_menu_blocked_user" android:duration="50" />
+    <item android:drawable="@*android:drawable/ic_menu_call" android:duration="50" />
+    <item android:drawable="@*android:drawable/ic_menu_camera" android:duration="50" />
+    <item android:drawable="@*android:drawable/ic_menu_cc_am" android:duration="50" />
+    <item android:drawable="@*android:drawable/ic_menu_chat_dashboard" android:duration="50" />
+    <item android:drawable="@*android:drawable/ic_menu_clear_playlist" android:duration="50" />
+    <item android:drawable="@*android:drawable/ic_menu_compass" android:duration="50" />
+    <item android:drawable="@*android:drawable/ic_menu_crop" android:duration="50" />
+</animation-list>
+

@@ -1,0 +1,16 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:height="24dip"
+    android:width="24dip"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:name="hotspot"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M5.889 14.389c0-3.373 2.738-6.111 6.111-6.111 3.373 0 6.111 2.738 6.111
+  6.111M12 12.167c1.227 0 2.222.995 2.222 2.222 0 1.227-.995 2.222-2.222
+  2.222-1.227 0-2.222-.995-2.222-2.222 0-1.227.995-2.222 2.222-2.222zM2
+  14.389c0-5.519 4.481-10 10-10s10 4.481 10 10" />
+</vector>

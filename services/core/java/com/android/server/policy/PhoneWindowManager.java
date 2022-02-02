@@ -1287,10 +1287,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 performHapticFeedback(HapticFeedbackConstants.LONG_PRESS_POWER_BUTTON, false,
                         "Power - Long Press - Global Actions");
                 KeyguardManager km = (KeyguardManager) mContext.getSystemService(Context.KEYGUARD_SERVICE);
-                boolean isSecure = km.isKeyguardSecure();
+                boolean isLocked = km.isKeyguardLocked();
                 boolean globalActionsOnLockScreen = Settings.Global.getInt(
-                    mContext.getContentResolver(), Settings.Global.LOCKSCREEN_ENABLE_POWER_MENU, 1) == 1;
-                if (isSecure && !globalActionsOnLockScreen) {
+                    mContext.getContentResolver(), Settings.Global.LOCKSCREEN_ENABLE_POWER_MENU, 1) != 0;
+                if (isLocked && !globalActionsOnLockScreen) {
                     behavior = LONG_PRESS_POWER_NOTHING;
                 } else {
                     showGlobalActions();

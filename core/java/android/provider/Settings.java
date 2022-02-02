@@ -5643,6 +5643,12 @@ public final class Settings {
          */
         public static final String FLASHLIGHT_ON_CALL_RATE = "flashlight_on_call_rate";
 
+        /**
+         * Show app volume rows in volume panel
+         * @hide
+         */
+        public static final String SHOW_APP_VOLUME = "show_app_volume";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -17571,6 +17577,12 @@ public final class Settings {
                 "android.settings.panel.action.VOLUME";
 
         /**
+         * @hide
+         */
+        public static final String ACTION_APP_VOLUME =
+                "android.settings.panel.action.APP_VOLUME";
+
+        /**
          * Activity Action: Show a settings dialog containing controls for Bluetooth.
          * <p>
          * Input: Nothing.
@@ -17593,7 +17605,7 @@ public final class Settings {
         @SdkConstant(SdkConstant.SdkConstantType.ACTIVITY_INTENT_ACTION)
         public static final String ACTION_MOBILE_DATA =
                 "android.settings.panel.action.MOBILE_DATA";
-     }
+    }
 
     /**
      * Activity Action: Show setting page to process the addition of Wi-Fi networks to the user's

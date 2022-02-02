@@ -6791,11 +6791,6 @@ public final class Settings {
          */
         public static final String OPTIMIZED_CHARGE_FLOOR = "optimized_charge_floor";
 
-        /**
-         * @hide
-         */
-        public static final String USE_TILES_ON_SECURE_KEYGUARD = "use_tiles_on_secure_keyguard";
-
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7151,7 +7146,6 @@ public final class Settings {
             PRIVATE_SETTINGS.add(OPTIMIZED_CHARGE_ENABLED);
             PRIVATE_SETTINGS.add(OPTIMIZED_CHARGE_CEILING);
             PRIVATE_SETTINGS.add(OPTIMIZED_CHARGE_FLOOR);
-            PRIVATE_SETTINGS.add(USE_TILES_ON_SECURE_KEYGUARD);
         }
 
         /**
@@ -12376,6 +12370,13 @@ public final class Settings {
          * @hide
          */
         public static final String STATUSBAR_CLOCK_DATE_POSITION = "statusbar_clock_date_position";
+
+        /**
+         * Whether to disable secure qs tiles on lockscreen.
+         * Default 1
+         * @hide
+         */
+        public static final String DISABLE_SECURE_TILES_ON_LOCKSCREEN = "disable_secure_tiles_on_lockscreen";
 
         /*****************************
          * AICP Secure Settings end

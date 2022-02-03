@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b27e6a5c_75156a93",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2022-02-03T17:10:27Z",
+      "side": 1,
+      "message": "Please revert to PS2 to maintain authorship",
+      "revId": "a3f58d518e2764bc2d04f2e88dfa99c916f62126",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

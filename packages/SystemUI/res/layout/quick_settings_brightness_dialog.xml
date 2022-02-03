@@ -40,13 +40,14 @@
 
     <ImageButton
         android:id="@+id/brightness_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/rounded_slider_height"
+        android:layout_height="@dimen/rounded_slider_height"
         android:layout_gravity="center_vertical"
         android:background="@drawable/brightness_bg"
         android:src="@drawable/ic_qs_brightness_auto_off_new"
+        android:scaleType="centerInside"
         android:tint="?android:attr/textColorPrimaryInverse"
         android:contentDescription="@null"
-        android:layout_marginStart="20.0dip" />
+        android:layout_marginStart="20.0dp" />
 
 </com.android.systemui.settings.brightness.BrightnessSliderView>

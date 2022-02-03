@@ -15,8 +15,8 @@
      limitations under the License.
 -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="36.0dip"
-    android:height="48.0dip"
+    android:width="36.0dp"
+    android:height="48.0dp"
     android:viewportWidth="36.0"
     android:viewportHeight="48.0"
     android:tint="?android:attr/colorControlNormal">

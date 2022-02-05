@@ -284,7 +284,7 @@ public class TriStateUiControllerImpl implements TriStateUiController,
             mDialog.dismiss();
             mDialog = null;
         }
-        mDialog = new Dialog(mContext, R.style.qs_theme);
+        mDialog = new Dialog(mContext);
         mShowing = false;
         mWindow = mDialog.getWindow();
         mWindow.requestFeature(Window.FEATURE_NO_TITLE);

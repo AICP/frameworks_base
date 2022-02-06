@@ -35,6 +35,8 @@
     <string name="quick_settings_music_label">Музика</string>
     <string name="quick_settings_music_play">Відтворити</string>
     <string name="quick_settings_music_pause">Пауза</string>
+    <string name="quick_settings_reboot_label">Перезавантажити</string>
+    <string name="quick_settings_reboot_recovery_label">Recovery</string>
     <string name="quick_settings_poweroff_label">Вимкнути</string>
     <string name="accessibility_quick_settings_usb_tether_off">USB-модем вимкнено</string>
     <string name="accessibility_quick_settings_usb_tether_on">USB-модем увімкнено</string>
@@ -44,11 +46,27 @@
     <string name="quick_settings_caffeine_label">Заборона сну</string>
     <string name="accessibility_quick_settings_caffeine_off">Заборона сну вимк</string>
     <string name="accessibility_quick_settings_caffeine_on">Заборона сну увімк</string>
+    <string name="global_action_restart_advanced">Додатково</string>
+    <string name="global_action_restart_recovery">Recovery</string>
+    <string name="global_action_restart_bootloader">Bootloader</string>
+    <string name="global_action_restart_ui">Інтерфейс системи</string>
+    <string name="volume_ringer_priority_only">Пріоритетні</string>
+    <string name="volume_ringer_alarms_only">Будильники</string>
+    <string name="volume_ringer_dnd">Не турбувати</string>
+    <string name="tristate_flashlight">Ліхтарик</string>
+    <string name="qs_menu_item_columns">Стовпці</string>
+    <string name="qs_menu_item_columns_landscape">Стовпці (альбомна орієнтація)</string>
+    <string name="qs_menu_item_rows">Рядки</string>
+    <string name="qs_menu_item_rows_landscape">Рядки (альбомна орієнтація)</string>
+    <string name="qs_menu_item_reset">Скинути</string>
     <string name="quick_settings_cpuinfo_label">Інформація про ЦП</string>
     <string name="quick_aicp_extras_label">Додатки AICP</string>
     <string name="quick_aicp_extras_toast">Лол, ви насправді думали, що затиснення клавіши вас кудись приведе!?!</string>
+    <string name="status_bar_camera">Камера</string>
+    <string name="status_bar_microphone">Мікрофон</string>
     <string name="keyguard_indication_dash_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Dash заряження (<xliff:g id="charging_time_left" example="4 години та 2 хвилини">%1$s</xliff:g> до повної зарядки)</string>
     <string name="keyguard_plugged_in_dash_charging"><xliff:g id="percentage">%s</xliff:g> • Dash зарядження</string>
+    <string name="keyguard_indication_warp_charging_time"><xliff:g id="percentage">%2$s</xliff:g>Warp зарядження (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> до повного заряду)</string>
     <string name="keyguard_plugged_in_warp_charging"><xliff:g id="percentage">%s</xliff:g> • Warp зарядження</string>
     <string name="keyguard_indication_vooc_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • VOOC зарядження (<xliff:g id="charging_time_left" example="4 години та 2 хвилини">%1$s</xliff:g> до повної зарядки)</string>
     <string name="keyguard_plugged_in_vooc_charging"><xliff:g id="percentage">%s</xliff:g> • VOOC зарядження</string>
@@ -56,6 +74,18 @@
     <string name="keyguard_plugged_in_turbo_charging"><xliff:g id="percentage">%s</xliff:g> • Турбо зарядження</string>
     <string name="keyguard_indication_oem_power_time"><xliff:g id="percentage">%2$s</xliff:g> • Швидке заряження (<xliff:g id="charging_time_left" example="4 години та 2 хвилини">%1$s</xliff:g> до повної зарядки)</string>
     <string name="keyguard_plugged_in_oem_charging"><xliff:g id="percentage">%s</xliff:g> • Швидке зарядження</string>
+    <string name="quick_settings_heads_up_label">Спливаючі сповіщення</string>
+    <string name="accessibility_quick_settings_heads_up_off">Спливаючі сповіщення вимк.</string>
+    <string name="accessibility_quick_settings_heads_up_on">Спливаючі сповіщення увімк.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">Спливаючі сповіщення вимкнено.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">Спливаючі повідомлення увімкнено.</string>
+    <string name="quick_settings_smart_pixels">Розумні пікселі</string>
+    <string name="quick_settings_smart_pixels_on_power_save">Автоматичне увімкнення розумних пікселів</string>
+    <string name="tuner_quick_settings">Швидкі налаштування</string>
+    <string name="tuner_show_brightness_new">Відображати повзунок яскравості</string>
+    <string name="tuner_brightness_position_bottom">Повзунок яскравості знизу</string>
+    <string name="tuner_show_secure_title">Виноска про безпеку</string>
+    <string name="quick_settings_aod_label">ЗУЕ</string>
     <string name="quick_settings_locale_label">Мова</string>
     <string name="quick_settings_locale_more_locales_toast">Будь ласка, налаштуйте кілька мов, щоб активувати функцію</string>
     <string name="quick_settings_sound_label">Сигнал</string>
@@ -63,6 +93,7 @@
     <string name="quick_settings_sound_vibrate">Вібрація</string>
     <string name="quick_settings_sound_silent">Без звуку</string>
     <string name="quick_settings_volume_panel_label">Панель гучності</string>
+    <string name="qs_data_switch_label">Перемкнути карту передачі даних</string>
     <string name="qs_data_switch_changed_1">Використання SIM 1 для передачі даних</string>
     <string name="qs_data_switch_changed_2">Використання SIM 2 для передачі даних</string>
     <string name="quick_settings_sync_label">Синхронізація</string>
@@ -88,6 +119,8 @@
     <string name="quick_settings_screenshot_label">Знімок екрану</string>
     <string name="quick_settings_full_screenshot_label">Повний</string>
     <string name="quick_settings_region_screenshot_label">Частковий</string>
+    <string name="tuner_show_brightness_mode">Відображати перемикач режиму яскравості</string>
+    <string name="tuner_show_brightness_side_buttons">Відображати бокові кнопки повзунка яскравості</string>
     <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Спливаючі сповіщення вимкнено на 1 хвилину.</string>
     <string name="heads_up_snooze_message"><xliff:g id="string">%1$s</xliff:g> - Спливаючі сповіщення вимкнено на <xliff:g id="number">%2$d</xliff:g> хв.</string>
     <string name="omnijaws_service_error">Помилка</string>
@@ -99,14 +132,62 @@
     <string name="omnijaws_current_text">Зараз</string>
     <string name="omnijaws_package_not_available">OmniJaws недоступний</string>
     <string name="omnijaws_service_last_update">Останнє оновлення:</string>
+    <string name="qs_menu_item_qs_columns">Стовпці швидких налаштувань</string>
+    <string name="qs_menu_item_columns_auto">Автоматично</string>
+    <string name="qs_menu_item_titles">Відображати назви</string>
     <string name="force_stop_dlg_title">Примусово зупинити?</string>
     <string name="force_stop_dlg_text">Примусове вимкнення додатка може призвести до збою в його роботі.</string>
     <string name="guts_force_close_app">Завершити додаток</string>
+    <string name="status_bar_location">Розташування</string>
+    <string name="preview">Попередній перегляд</string>
+    <string name="keycode">Ключові клавіші</string>
+    <string name="no_home_title">Клавіші \"Додому\" не знайдено</string>
+    <string name="no_home_message">Для навігації пристроєм потрібна кнопка \"Додому\". Перш ніж зберегти, додайте цю кнопку.</string>
+    <string name="clipboard_description">Буфер обміну дозволяє перетягувати елементи безпосередньо в нього. Елементи також можна перетягувати з буфера обміну, коли присутні.</string>
+    <string name="keycode_description">За допомогою ключових клавіш, можна додавати клавіші клавіатури на панель навігації. Натискаючи на неї, вона імітує вибрану клавішу клавіатури. Потрібно вибрати клавішу та зображення для неї.</string>
+    <string name="start">На початку</string>
+    <string name="center">По центру</string>
+    <string name="end">В кінці</string>
+    <string name="space">Розділювач</string>
+    <string name="menu_ime">Вибір меню або клавіатури</string>
+    <string name="select_button">Виберіть клавішу для додавання</string>
+    <string name="add_button">Додати клавішу</string>
+    <string name="save">Зберегти</string>
+    <string name="reset">Скинути</string>
+    <string name="select_keycode">Виберіть клавішу клавіатури</string>
+    <string name="left">Ліворуч</string>
+    <string name="right">Праворуч</string>
+    <string name="navbar_editor_title">Редактор</string>
+    <string name="navbar_editor_summary">Налаштувати панель навігації</string>
+    <string name="tuner_keyguard_transition_animations_title">Зображати анімації переходу</string>
+    <string name="tuner_keyguard_transition_animations_summary">Зображати непотрібні анімації</string>
     <string name="systemui_tuner_navbar_title">Заводські налаштування</string>
     <string name="navbar_activity_title">Панель навігації</string>
+    <string name="quick_settings_sound_search">Пошук музики</string>
+    <string name="quick_settings_sound_search_no_app">Вибачте, але ця функція недоступна, якщо немає додатку для пошуку музики.</string>
+    <string name="accessibility_quick_settings_hwkeys_on">Апаратні клавіші увімкнено</string>
+    <string name="accessibility_quick_settings_hwkeys_off">Апаратні клавіші вимкнено</string>
+    <string name="quick_settings_hwkeys_label">Апаратні клавіші</string>
+    <string name="daily_data_usage_title">Сьогоднішнє використання</string>
+    <string name="screen_pinning_description_custom">Додаток залишається активним, поки ви не скасуєте блокування, натиснувши та утримуючи кнопку \"Назад\".</string>
+    <string name="screen_pinning_description_recents_invisible_custom">Додаток залишається активним, поки ви не скасуєте блокування, натиснувши та утримуючи кнопку \"Назад\".</string>
+    <string name="screen_pinning_description_accessible_custom">Додаток залишається активним, поки ви не скасуєте блокування, натиснувши та утримуючи кнопку \"Назад\".</string>
+    <string name="screen_pinning_description_recents_invisible_accessible_custom">Додаток залишається активним, поки ви не скасуєте блокування, натиснувши та утримуючи кнопку \"Назад\".</string>
+    <string name="screen_pinning_toast_custom">Щоб відкріпити цей додаток, натисніть і утримуйте кнопку \"Назад\"</string>
+    <string name="screen_pinning_toast_recents_invisible_custom">Щоб відкріпити цей додаток, натисніть і утримуйте кнопку \"Назад\"</string>
+    <string name="quick_settings_fpsinfo_label">Інформація про FPS</string>
+    <string name="accessibility_quick_settings_fpsinfo_off">Вимкнути інформацію про FPS</string>
+    <string name="accessibility_quick_settings_fpsinfo_on">Увімкнути інформацію про FPS</string>
     <string name="task_helper_app_killed">%1$s примусово зупинено</string>
     <string name="empty_app_killed">Додаток</string>
     <string name="quick_settings_killapp_label">Завершити додаток</string>
+    <string name="app_picker_dialog_title">Оберіть додаток</string>
+    <string name="quick_settings_vpn_label">Мережа VPN</string>
+    <string name="quick_settings_vpn_connect_dialog_title">Під\'єднання до\u2026</string>
+    <string name="vpn_credentials_hint">Будь ласка, введіть ваші дані для під\'єднання до <xliff:g id="name">%s</xliff:g></string>
+    <string name="vpn_credentials_username">Ім\'я користувача</string>
+    <string name="vpn_credentials_password">Пароль</string>
+    <string name="vpn_credentials_dialog_connect">Під’єднатися</string>
     <string name="lockscreen_default">За замовчуванням</string>
     <string name="lockscreen_hidden">Нічого</string>
     <string name="custom_hint">Свайпніть від іконки для запуску</string>
@@ -115,6 +196,10 @@
     <string name="quick_settings_monotoggle_tile_stereo">Стерео аудіо</string>
     <string name="quick_settings_anti_flicker">Анти-мерехтіння</string>
     <string name="accessibility_quick_settings_running_services">Відкрити список запущених сервісів.</string>
+    <string name="quick_settings_powershare_label">Бездротовий PowerShare</string>
+    <string name="quick_settings_powershare_off_powersave_label">Бездротовий PowerShare вимкнено\nЕкономія енергії</string>
+    <string name="quick_settings_powershare_off_low_battery_label">Бездротовий PowerShare вимкнено\nЗанадто низький заряд батареї</string>
+    <string name="quick_settings_powershare_enabled_label">Бездротовий PowerShare увімкнено</string>
     <string name="screenrecord_stopdot_label">Показувати крапку для зупинки запису</string>
     <string name="screenrecord_lowquality_label">Нижча якість запису</string>
     <string name="screenrecord_longer_timeout_switch_label">Збільшений розмір файлу\nОбмежити розмір запису до 15GB</string>
@@ -127,12 +212,17 @@
     <string name="applock_fingerprint"> або відбиток пальця для розблокування</string>
     <string name="applock_credential"> для розблокування</string>
     <string name="applock_unlock">Розблокувати</string>
+    <string name="accessibility_dpad_left">Вказівник ліворуч</string>
+    <string name="accessibility_dpad_right">Вказівник праворуч</string>
     <string name="change_clock_face">Проведіть, щоб змінити стиль годинника</string>
     <string name="sensor_privacy_mode_tile">Датчики</string>
     <string name="quick_settings_on">Увімк.</string>
     <string name="quick_settings_off">Вимк.</string>
     <string name="gaming_mode_not_enabled">Ігровий режим вимкнено</string>
     <string name="gaming_mode_enabled">Ігровий режим увімкнено</string>
+    <string name="quick_settings_gaming_mode_label">Ігровий режим</string>
+    <string name="accessibility_quick_settings_gaming_mode_disabled">Ігровий режим вимкнено.</string>
+    <string name="accessibility_quick_settings_gaming_mode_enabled">Ігровий режим увімкнено.</string>
     <string name="quick_aicp_partsbin_label">AICP Налаштування</string>
     <string name="quick_aicp_partsbin_toast">Лол, ви насправді думали, що затиснення клавіши вас кудись приведе!!!</string>
 </resources>

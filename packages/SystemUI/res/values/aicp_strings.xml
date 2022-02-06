@@ -190,4 +190,7 @@
 
     <!-- Name of the clock in status bar [CHAR LIMIT=30] -->
     <string name="clock">Clock</string>
+
+    <!-- Google Lens Screenshot string -->
+    <string name="lensss">Lens</string>
 </resources>

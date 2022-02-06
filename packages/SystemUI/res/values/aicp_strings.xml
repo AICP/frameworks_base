@@ -253,4 +253,8 @@
     <string name="quick_settings_monotoggle_tile">Audio mode</string>
     <string name="quick_settings_monotoggle_tile_mono">Mono audio</string>
     <string name="quick_settings_monotoggle_tile_stereo">Stereo audio</string>
+
+    <!-- Google Lens Screenshot string -->
+    <string name="lensss">Lens</string>
+
 </resources>

@@ -39,6 +39,7 @@ import com.android.systemui.dump.DumpManager;
 import com.android.systemui.fragments.FragmentService;
 import com.android.systemui.log.dagger.LogModule;
 import com.android.systemui.model.SysUiState;
+import com.android.systemui.aicp.dagger.AicpModule;
 import com.android.systemui.plugins.BcSmartspaceDataPlugin;
 import com.android.systemui.plugins.statusbar.StatusBarStateController;
 import com.android.systemui.recents.Recents;
@@ -113,7 +114,8 @@ import dagger.Provides;
             UserModule.class,
             UtilModule.class,
             VolumeModule.class,
-            WalletModule.class
+            WalletModule.class,
+            AicpModule.class
         },
         subcomponents = {
             StatusBarComponent.class,

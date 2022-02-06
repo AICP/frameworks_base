@@ -57,6 +57,7 @@ import com.android.systemui.navigationbar.NavigationBarController;
 import com.android.systemui.navigationbar.NavigationBarOverlayController;
 import com.android.systemui.navigationbar.NavigationModeController;
 import com.android.systemui.navigationbar.gestural.EdgeBackGestureHandler;
+import com.android.systemui.aicp.AicpSettingsService;
 import com.android.systemui.plugins.ActivityStarter;
 import com.android.systemui.plugins.DarkIconDispatcher;
 import com.android.systemui.plugins.PluginDependencyProvider;
@@ -367,6 +368,7 @@ public class Dependency {
     @Inject Lazy<UiEventLogger> mUiEventLogger;
     @Inject Lazy<FeatureFlags> mFeatureFlagsLazy;
     @Inject Lazy<StatusBarContentInsetsProvider> mContentInsetsProviderLazy;
+    @Inject Lazy<AicpSettingsService> mAicpSettingsService;
     @Inject Lazy<InternetDialogFactory> mInternetDialogFactory;
     @Inject Lazy<NotificationSectionsManager> mNotificationSectionsManagerLazy;
     @Inject Lazy<UnlockedScreenOffAnimationController> mUnlockedScreenOffAnimationControllerLazy;
@@ -596,6 +598,8 @@ public class Dependency {
         mProviders.put(GroupMembershipManager.class, mGroupMembershipManagerLazy::get);
         mProviders.put(GroupExpansionManager.class, mGroupExpansionManagerLazy::get);
         mProviders.put(PulseController.class, mPulseController::get);
+
+        mProviders.put(AicpSettingsService.class, mAicpSettingsService::get);
 
         Dependency.setInstance(this);
     }

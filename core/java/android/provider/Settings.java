@@ -5330,11 +5330,13 @@ public final class Settings {
          *
          * @hide
          */
+        @Readable
         public static final String OMNI_BUTTON_EXTRA_KEY_MAPPING = "button_extra_mapping";
 
         /**
          * @hide
          */
+        @Readable
         public static final String OMNI_SYSTEM_PROXI_CHECK_ENABLED = "system_proxi_check_enabled";
 
         /**

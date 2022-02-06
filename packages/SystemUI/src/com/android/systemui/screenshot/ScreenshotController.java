@@ -168,6 +168,7 @@ public class ScreenshotController {
         public Supplier<ActionTransition> shareTransition;
         public Supplier<ActionTransition> editTransition;
         public Notification.Action deleteAction;
+        public Notification.Action lensAction;
         public List<Notification.Action> smartActions;
         public Notification.Action quickShareAction;
 
@@ -188,6 +189,7 @@ public class ScreenshotController {
             shareTransition = null;
             editTransition = null;
             deleteAction = null;
+            lensAction = null;
             smartActions = null;
             quickShareAction = null;
         }
@@ -229,6 +231,7 @@ public class ScreenshotController {
     static final String EXTRA_ACTION_TYPE = "android:screenshot_action_type";
     static final String EXTRA_ID = "android:screenshot_id";
     static final String ACTION_TYPE_DELETE = "Delete";
+    static final String ACTION_TYPE_LENS = "Lens";
     static final String ACTION_TYPE_SHARE = "Share";
     static final String ACTION_TYPE_EDIT = "Edit";
     static final String EXTRA_SMART_ACTIONS_ENABLED = "android:smart_actions_enabled";

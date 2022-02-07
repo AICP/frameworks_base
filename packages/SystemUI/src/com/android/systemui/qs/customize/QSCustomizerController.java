@@ -19,14 +19,11 @@ package com.android.systemui.qs.customize;
 import static com.android.systemui.qs.customize.QSCustomizer.EXTRA_QS_CUSTOMIZING;
 import static com.android.systemui.qs.customize.QSCustomizer.MENU_RESET;
 
-import android.content.ContentResolver;
 import android.content.res.Configuration;
-import android.database.ContentObserver;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.UserHandle;
 import android.provider.Settings;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,7 +36,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.internal.logging.UiEventLogger;
+import com.android.systemui.Dependency;
 import com.android.systemui.R;
+import com.android.systemui.aicp.AicpSettingsService;
 import com.android.systemui.keyguard.ScreenLifecycle;
 import com.android.systemui.plugins.qs.QSTile;
 import com.android.systemui.qs.QSEditEvent;
@@ -60,7 +59,8 @@ import javax.inject.Inject;
 
 /** {@link ViewController} for {@link QSCustomizer}. */
 @QSScope
-public class QSCustomizerController extends ViewController<QSCustomizer> {
+public class QSCustomizerController extends ViewController<QSCustomizer>
+        implements AicpSettingsService.AicpSettingsObserver {
     private final TileQueryHelper mTileQueryHelper;
     private final QSTileHost mQsTileHost;
     private final TileAdapter mTileAdapter;
@@ -101,19 +101,6 @@ public class QSCustomizerController extends ViewController<QSCustomizer> {
             updateColumns();
         }
     };
-
-    private final class AicpSettingsObserver extends ContentObserver {
-        public AicpSettingsObserver(Handler handler) {
-            super(handler);
-        }
-
-        @Override
-        public void onChange(boolean selfChange, Uri uri) {
-            updateColumns();
-        }
-    }
-
-    private AicpSettingsObserver mAicpSettingsObserver;
 
     @Inject
     protected QSCustomizerController(QSCustomizer view, TileQueryHelper tileQueryHelper,
@@ -178,13 +165,9 @@ public class QSCustomizerController extends ViewController<QSCustomizer> {
         mToolbar.setOnMenuItemClickListener(mOnMenuItemClickListener);
         mToolbar.setNavigationOnClickListener(v -> hide());
 
-        mAicpSettingsObserver = new AicpSettingsObserver(new Handler());
-        getContext().getContentResolver().registerContentObserver(Settings.Secure.getUriFor(
-                Settings.System.QS_LAYOUT_COLUMNS),
-                false, mAicpSettingsObserver, UserHandle.USER_ALL);
-        getContext().getContentResolver().registerContentObserver(Settings.Secure.getUriFor(
-                Settings.System.QS_LAYOUT_COLUMNS_LANDSCAPE),
-                false, mAicpSettingsObserver, UserHandle.USER_ALL);
+        Dependency.get(AicpSettingsService.class).addIntObserver(this,
+              Settings.System.QS_LAYOUT_COLUMNS,
+              Settings.System.QS_LAYOUT_COLUMNS_LANDSCAPE);
     }
 
     @Override
@@ -192,6 +175,7 @@ public class QSCustomizerController extends ViewController<QSCustomizer> {
         mTileQueryHelper.setListener(null);
         mToolbar.setOnMenuItemClickListener(null);
         mConfigurationController.removeCallback(mConfigurationListener);
+        Dependency.get(AicpSettingsService.class).removeObserver(this);
     }
 
 
@@ -298,5 +282,10 @@ public class QSCustomizerController extends ViewController<QSCustomizer> {
                 ((GridLayoutManager) lm).setSpanCount(mTileAdapter.getNumColumns());
             }
         }
+    }
+
+    @Override
+    public void onIntSettingChanged(String key, Integer newValue) {
+        updateColumns();
     }
 }

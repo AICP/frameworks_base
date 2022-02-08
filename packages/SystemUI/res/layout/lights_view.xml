@@ -13,7 +13,7 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 
-<com.android.systemui.phone.NotificationLightsView
+<com.android.systemui.aicp.NotificationLightsView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
@@ -38,4 +38,4 @@
         android:layout_height="match_parent"
         android:src="@drawable/aod_notification_light_left"/>
 
-</com.android.systemui.phone.NotificationLightsView>
+</com.android.systemui.aicp.NotificationLightsView>

@@ -15,7 +15,7 @@
 * along with this program. If not, see <http://www.gnu.org/licenses/>.
 *
 */
-package com.android.systemui.phone;
+package com.android.systemui.aicp;
 
 import android.animation.ValueAnimator;
 import android.animation.ValueAnimator.AnimatorUpdateListener;
@@ -41,7 +41,7 @@ import android.widget.RelativeLayout;
 import androidx.palette.graphics.Palette;
 
 import com.android.settingslib.Utils;
-import com.android.systemui.R;
+import com.android.systemui.res.R;
 
 public class NotificationLightsView extends RelativeLayout {
 

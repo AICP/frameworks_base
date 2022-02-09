@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<inset android:insetLeft="0.70000005dip" android:insetRight="1.0dip" android:insetTop="4.799988dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <vector android:height="9.599976dip" android:width="5.5dip" android:viewportWidth="8.0" android:viewportHeight="14.0">
+        <group android:name="E-" android:translateX="-2.0" android:translateY="-7.0">
+            <path android:name="E" android:fillColor="#ff000000" android:pathData="M 9.10318471 14.5 L 4.06878981 14.5 L 4.06878981 19.5192308 L 10 19.5192308 L 10 21 L 2 21 L 2 7 L 9.94904459 7 L 9.94904459 8.5 L 4.06878981 8.5 L 4.06878981 13.0096154 L 9.10318471 13.0096154 Z" android:strokeWidth="1.0" />
+        </group>
+    </vector>
+</inset>

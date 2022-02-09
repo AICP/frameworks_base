@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<inset android:insetLeft="0.70000005dip" android:insetRight="1.0dip" android:insetTop="4.799988dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <vector android:height="9.599976dip" android:width="15.799988dip" android:viewportWidth="23.0" android:viewportHeight="14.0">
+        <group android:name="LTE" android:translateX="-1.0" android:translateY="-7.0">
+            <path android:name="Rectangle" android:pathData="M 0 0 H 24 V 24 H 0 V 0 Z" android:strokeWidth="1.0" android:fillType="evenOdd" />
+            <path android:name="LTE" android:fillColor="#ff000000" android:pathData="M2.98242188,19.5192308 L8.734375,19.5192308 L8.734375,21 L1,21 L1,7 L2.98242188,7 L2.98242188,19.5192308 Z M15.4589844,8.5 L11.6894531,8.5 L11.6894531,21 L9.69726562,21 L9.69726562,8.5 L5.95703125,8.5 L5.95703125,7 L15.4589844,7 L15.4589844,8.5 Z M22.9648438,14.5 L18.140625,14.5 L18.140625,19.5192308 L23.8242188,19.5192308 L23.8242188,21 L16.1582031,21 L16.1582031,7 L23.7753906,7 L23.7753906,8.5 L18.140625,8.5 L18.140625,13.0096154 L22.9648438,13.0096154 L22.9648438,14.5 Z" android:strokeWidth="1.0" />
+        </group>
+    </vector>
+</inset>

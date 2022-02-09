@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<inset android:insetLeft="0.70000005dip" android:insetTop="4.799988dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <vector android:height="9.599976dip" android:width="13.699982dip" android:viewportWidth="20.0" android:viewportHeight="14.0"
+      xmlns:android="http://schemas.android.com/apk/res/android">
+        <group android:name="H+" android:translateX="-2.0" android:translateY="-7.0">
+            <path android:fillColor="#ff000000" android:pathData="M12.6118986,21 L10.7131302,21 L10.7131302,14.8173077 L3.89876841,14.8173077 L3.89876841,21 L2,21 L2,7 L3.89876841,7 L3.89876841,13.3269231 L10.7131302,13.3269231 L10.7131302,7 L12.6118986,7 L12.6118986,21 Z M18.8732095,10.4384603 L22,10.4384603 L22,11.7947428 L18.8732095,11.7947428 L18.8732095,15.2921228 L17.3294056,15.2921228 L17.3294056,11.7947428 L14.1791054,11.7947428 L14.1791054,10.4384603 L17.3294056,10.4384603 L17.3294056,7.21538462 L18.8732095,7.21538462 L18.8732095,10.4384603 Z" android:strokeWidth="1.0" />
+        </group>
+    </vector>
+</inset>

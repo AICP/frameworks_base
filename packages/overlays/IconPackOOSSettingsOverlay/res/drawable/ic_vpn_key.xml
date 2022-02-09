@@ -1,29 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-   Copyright (C) 2019 The Android Open Source Project
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-        http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
--->
-<vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:height="24dp"
-    android:tint="?android:attr/colorControlNormal"
-    android:viewportHeight="24"
-    android:viewportWidth="24"
-    android:width="24dp" >
-    <path
-        android:fillColor="@android:color/white"
-        android:pathData="M 6.5 9.5 C 7.60456949966 9.5 8.5 10.3954305003 8.5 11.5 C 8.5 12.6045694997 7.60456949966 13.5 6.5 13.5 C 5.39543050034 13.5 4.5 12.6045694997 4.5 11.5 C 4.5 10.3954305003 5.39543050034 9.5 6.5 9.5 Z" />
-    <path
-        android:fillColor="@android:color/white"
-        android:pathData="M22,9H11.39C10.48,7.22,8.64,6,6.5,6C6.15,6,5.8,6.03,5.44,6.1c-2.13,0.4-3.88,2.09-4.32,4.22C0.38,13.87,3.08,17,6.5,17 c2.14,0,3.98-1.22,4.89-3H15v2c0,0.55,0.45,1,1,1h4c0.55,0,1-0.45,1-1v-2h1c0.55,0,1-0.45,1-1v-3C23,9.45,22.55,9,22,9z M21.5,12.5 h-2v3h-3v-3h-6.14c-0.45,1.72-2,3-3.86,3c-2.21,0-4-1.79-4-4c0-2.21,1.79-4,4-4c1.86,0,3.41,1.28,3.86,3H21.5V12.5z" />
+<vector android:tint="?android:colorControlNormal" android:height="24.0dip" android:width="24.0dip" android:viewportWidth="24.0" android:viewportHeight="24.0"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <group>
+            <group>
+                <path android:pathData="M 0 0 H 24 V 24 H 0 V 0 Z" android:strokeWidth="1.0" android:fillType="evenOdd" />
+                <path android:fillColor="@android:color/white" android:pathData="M2.75,16.4997 C2.75,18.0184864 3.98121356,19.2497 5.5,19.2497 C7.01878644,19.2497 8.25,18.0184864 8.25,16.4997 C8.25,14.9809136 7.01878644,13.7497 5.5,13.7497 C3.98121356,13.7497 2.75,14.9809136 2.75,16.4997 Z M14.6586278,8.73133242 L9.11926642,14.2706938 C9.51922269,14.9187284 9.75,15.6822633 9.75,16.4997 C9.75,18.8469136 7.84721356,20.7497 5.5,20.7497 C3.15278644,20.7497 1.25,18.8469136 1.25,16.4997 C1.25,14.1524864 3.15278644,12.2497 5.5,12.2497 C6.48730881,12.2497 7.39598526,12.5863595 8.11749534,13.1511445 L17.7989699,3.46966991 C18.0918631,3.1767767 18.5667369,3.1767767 18.8596301,3.46966991 L22.5306301,7.14066991 L21.4699699,8.20133009 L18.3293,5.06066017 L15.7192879,7.67067224 L18.8591023,10.8113422 L17.7982977,11.8718578 L14.6586278,8.73133242 Z" android:strokeWidth="1.0" />
+            </group>
+        </group>
+    </group>
 </vector>

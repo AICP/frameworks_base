@@ -7447,5 +7447,6 @@ message MetricsEvent {
     // ACTION: Custom AICP metrics
     AICP_METRICS = 10000;
     CUSTOM_QUICK_TILES = 9001;
+    CHOOSE_LOCK_PATTERN_SIZE = 10001;
   }
 }

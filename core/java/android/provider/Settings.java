@@ -11706,6 +11706,12 @@ public final class Settings {
         public static final String MONET_ENGINE_WHITE_LUMINANCE = "monet_engine_white_luminance_user";
 
 
+        /**
+         * Whether tethering allow vpn upstreams
+         * @hide
+         */
+        public static final String TETHERING_ALLOW_VPN_UPSTREAMS = "tethering_allow_vpn_upstreams";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

@@ -5797,58 +5797,68 @@ public final class Settings {
         /**
          * @hide
          */
+        @Readable
         public static final String TORCH_LONG_PRESS_POWER_GESTURE = "torch_long_press_power_gesture";
 
         /**
          * @hide
          */
+        @Readable
         public static final String TORCH_LONG_PRESS_POWER_TIMEOUT = "torch_long_press_power_timeout";
 
         /**
          * Volume rocker wake
          * @hide
          */
+        @Readable
         public static final String VOLUME_ROCKER_WAKE = "volume_rocker_wake";
 
         /**
          * @hide
          */
+        @Readable
         public static final String VOLUME_BUTTON_MUSIC_CONTROL = "volume_button_music_control";
 
         /**
          * Whether to wake the screen with the home key, the value is boolean.
          * @hide
          */
+        @Readable
         public static final String HOME_WAKE_SCREEN = "home_wake_screen";
 
         /**
          * Whether to wake the screen with the back key, the value is boolean.
          * @hide
          */
+        @Readable
         public static final String BACK_WAKE_SCREEN = "back_wake_screen";
 
         /**
          * Whether to wake the screen with the menu key, the value is boolean.
          * @hide
          */
+        @Readable
         public static final String MENU_WAKE_SCREEN = "menu_wake_screen";
 
         /**
          * Whether to wake the screen with the assist key, the value is boolean.
          * @hide
          */
+        @Readable
         public static final String ASSIST_WAKE_SCREEN = "assist_wake_screen";
 
         /**
          * Whether to wake the screen with the app switch key, the value is boolean.
          * @hide
          */
+        @Readable
         public static final String APP_SWITCH_WAKE_SCREEN = "app_switch_wake_screen";
 
         /**
          * Whether to wake the screen with the camera key, the value is boolean.
          * @hide
          */
+        @Readable
         public static final String CAMERA_WAKE_SCREEN = "assist_wake_screen";
 
         /**
@@ -5871,12 +5881,14 @@ public final class Settings {
          * Change volume up and down handlign based on rotation
          * @hide
          */
+        @Readable
         public static final String SWAP_VOLUME_BUTTONS = "swap_volume_buttons";
 
         /**
          * Volume key controls ringtone or media sound stream
          * @hide
          */
+        @Readable
         public static final String VOLUME_KEYS_CONTROL_RING_TONE =
                 "volume_keys_control_ring_tone";
 
@@ -5885,6 +5897,7 @@ public final class Settings {
          * A value of 0 will keep the buttons on for as long as the screen is on.
          * @hide
          */
+        @Readable
         public static final String BUTTON_BACKLIGHT_TIMEOUT = "button_backlight_timeout";
 
         /**
@@ -5893,6 +5906,7 @@ public final class Settings {
          * Valid value range is between 0 and {@link PowerManager#getMaximumButtonBrightness()}
          * @hide
          */
+        @Readable
         public static final String BUTTON_BRIGHTNESS = "button_brightness";
 
         /**
@@ -5900,12 +5914,14 @@ public final class Settings {
          * The value is boolean (1 or 0).
          * @hide
          */
+        @Readable
         public static final String BUTTON_BACKLIGHT_ONLY_WHEN_PRESSED =
                 "button_backlight_only_when_pressed";
 
         /**
          * @hide
          */
+        @Readable
         public static final String FORCE_SHOW_NAVBAR = "navigation_bar_show_new";
 
         /**
@@ -5962,6 +5978,7 @@ public final class Settings {
          * Type: int (0 for false, 1 for true)
          * @hide
          */
+        @Readable
         public static final String SWAP_NAVIGATION_KEYS = "swap_navigation_keys";
 
         /** Action to perform when the home key is long-pressed.
@@ -5976,12 +5993,14 @@ public final class Settings {
          * 7 - Launch last app
          * @hide
          */
+        @Readable
         public static final String KEY_HOME_LONG_PRESS_ACTION = "key_home_long_press_action";
 
         /**
          * Launch custom application when home key is long-pressed.
          * @hide
          */
+        @Readable
         public static final String KEY_HOME_LONG_PRESS_CUSTOM_APP = "key_home_long_press_custom_app";
 
         /**
@@ -5989,6 +6008,7 @@ public final class Settings {
          * home key is long-pressed.
          * @hide
          */
+        @Readable
         public static final String KEY_HOME_LONG_PRESS_CUSTOM_APP_FR_NAME = "key_home_long_press_custom_app_fr_name";
 
         /**
@@ -5997,12 +6017,14 @@ public final class Settings {
          * (See KEY_HOME_LONG_PRESS_ACTION for valid values)
          * @hide
          */
+        @Readable
         public static final String KEY_HOME_DOUBLE_TAP_ACTION = "key_home_double_tap_action";
 
         /**
          * Launch custom application when home key is double-tapped.
          * @hide
          */
+        @Readable
         public static final String KEY_HOME_DOUBLE_TAP_CUSTOM_APP = "key_home_double_tap_custom_app";
 
         /**
@@ -6010,6 +6032,7 @@ public final class Settings {
          * home key is double-tapped.
          * @hide
          */
+        @Readable
         public static final String KEY_HOME_DOUBLE_TAP_CUSTOM_APP_FR_NAME = "key_home_double_tap_custom_app_fr_name";
 
         /**
@@ -6018,6 +6041,7 @@ public final class Settings {
          * (See KEY_HOME_LONG_PRESS_ACTION for valid values)
          * @hide
          */
+        @Readable
         public static final String KEY_MENU_LONG_PRESS_ACTION = "key_menu_long_press_action";
 
         /**
@@ -6026,6 +6050,7 @@ public final class Settings {
          * (See KEY_HOME_LONG_PRESS_ACTION for valid values)
          * @hide
          */
+        @Readable
         public static final String KEY_MENU_DOUBLE_TAP_ACTION = "key_menu_double_tap_action";
 
         /**
@@ -6034,12 +6059,14 @@ public final class Settings {
          * (See KEY_HOME_LONG_PRESS_ACTION for valid values)
          * @hide
          */
+        @Readable
         public static final String KEY_BACK_LONG_PRESS_ACTION = "key_back_long_press_action";
 
         /**
          * Launch custom application when back key is long-pressed.
          * @hide
          */
+        @Readable
         public static final String KEY_BACK_LONG_PRESS_CUSTOM_APP = "key_back_long_press_custom_app";
 
         /**
@@ -6047,6 +6074,7 @@ public final class Settings {
          * back key is long-pressed.
          * @hide
          */
+        @Readable
         public static final String KEY_BACK_LONG_PRESS_CUSTOM_APP_FR_NAME = "key_back_long_press_custom_app_fr_name";
 
         /**
@@ -6055,12 +6083,14 @@ public final class Settings {
          * (See KEY_HOME_LONG_PRESS_ACTION for valid values)
          * @hide
          */
+        @Readable
         public static final String KEY_BACK_DOUBLE_TAP_ACTION = "key_back_double_tap_action";
 
         /**
          * Launch custom application when back key is double tapped.
          * @hide
          */
+        @Readable
         public static final String KEY_BACK_DOUBLE_TAP_CUSTOM_APP = "key_back_double_tap_custom_app";
 
         /**
@@ -6068,6 +6098,7 @@ public final class Settings {
          * back key is double-tapped.
          * @hide
          */
+        @Readable
         public static final String KEY_BACK_DOUBLE_TAP_CUSTOM_APP_FR_NAME = "key_back_double_tap_custom_app_fr_name";
 
         /**
@@ -6076,6 +6107,7 @@ public final class Settings {
          * (See KEY_HOME_LONG_PRESS_ACTION for valid values)
          * @hide
          */
+        @Readable
         public static final String KEY_ASSIST_LONG_PRESS_ACTION = "key_assist_long_press_action";
 
         /**
@@ -6084,6 +6116,7 @@ public final class Settings {
          * (See KEY_HOME_LONG_PRESS_ACTION for valid values)
          * @hide
          */
+        @Readable
         public static final String KEY_ASSIST_DOUBLE_TAP_ACTION = "key_assist_double_tap_action";
 
         /**
@@ -6092,12 +6125,14 @@ public final class Settings {
          * (See KEY_HOME_LONG_PRESS_ACTION for valid values)
          * @hide
          */
+        @Readable
         public static final String KEY_APP_SWITCH_LONG_PRESS_ACTION = "key_app_switch_long_press_action";
 
         /**
          * Launch custom application when app switch key is long-pressed.
          * @hide
          */
+        @Readable
         public static final String KEY_APP_SWITCH_LONG_PRESS_CUSTOM_APP = "key_app_switch_long_press_custom_app";
 
         /**
@@ -6105,6 +6140,7 @@ public final class Settings {
          * app switch key is long-pressed.
          * @hide
          */
+        @Readable
         public static final String KEY_APP_SWITCH_LONG_PRESS_CUSTOM_APP_FR_NAME =
                 "key_app_switch_long_press_custom_app_fr_name";
         /**
@@ -6113,12 +6149,14 @@ public final class Settings {
          * (See KEY_HOME_LONG_PRESS_ACTION for valid values)
          * @hide
          */
+        @Readable
         public static final String KEY_APP_SWITCH_DOUBLE_TAP_ACTION = "key_app_switch_double_tap_action";
 
         /**
          * Launch custom application when app switch key is double-tapped.
          * @hide
          */
+        @Readable
         public static final String KEY_APP_SWITCH_DOUBLE_TAP_CUSTOM_APP = "key_app_switch_double_tap_custom_app";
 
         /**
@@ -6126,6 +6164,7 @@ public final class Settings {
          * app switch key is double-tapped.
          * @hide
          */
+        @Readable
         public static final String KEY_APP_SWITCH_DOUBLE_TAP_CUSTOM_APP_FR_NAME =
                 "key_app_switch_double_tap_custom_app_fr_name";
 
@@ -6135,6 +6174,7 @@ public final class Settings {
          * (See KEY_HOME_LONG_PRESS_ACTION for valid values)
          * @hide
          */
+        @Readable
         public static final String KEY_CAMERA_LONG_PRESS_ACTION = "key_camera_long_press_action";
 
         /**
@@ -6143,6 +6183,7 @@ public final class Settings {
          * (See KEY_HOME_LONG_PRESS_ACTION for valid values)
          * @hide
          */
+        @Readable
         public static final String KEY_CAMERA_DOUBLE_TAP_ACTION = "key_camera_double_tap_action";
 
         /**

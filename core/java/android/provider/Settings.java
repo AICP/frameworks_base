@@ -5871,6 +5871,7 @@ public final class Settings {
          * Change volume up and down handlign based on rotation
          * @hide
          */
+        @Readable
         public static final String SWAP_VOLUME_BUTTONS = "swap_volume_buttons";
 
         /**

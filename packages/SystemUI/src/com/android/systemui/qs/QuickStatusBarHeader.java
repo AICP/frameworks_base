@@ -273,6 +273,7 @@ public class QuickStatusBarHeader extends FrameLayout {
             mTextColorPrimary = textColor;
             mClockView.setTextColor(textColor);
             mNetworkTraffic.setTintColor(textColor);
+            mNetworkTraffic.setTextColor(textColor);
             if (mTintedIconManager != null) {
                 mTintedIconManager.setTint(textColor);
             }

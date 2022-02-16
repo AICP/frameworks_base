@@ -6369,6 +6369,12 @@ public final class Settings {
          */
         public static final String AUTO_BRIGHTNESS_ONE_SHOT = "auto_brightness_one_shot";
 
+        /**
+         * Smart Pixels pattern
+         * @hide
+         */
+        public static final String CHOOSER_ACTIVITY_BLACKLIST = "chooser_activity_blacklist";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6661,6 +6667,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_INDICATOR_MODE);
             PRIVATE_SETTINGS.add(LOCKSCREEN_QUICK_UNLOCK_CONTROL);
             PRIVATE_SETTINGS.add(PULSE_ON_NEW_TRACKS);
+            PRIVATE_SETTINGS.add(CHOOSER_ACTIVITY_BLACKLIST);
         }
 
         /**

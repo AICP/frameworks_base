@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d91b91b_b816b344",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-02-16T06:20:26Z",
+      "side": 1,
+      "message": "we already have eveyrthing merged from fw_base commit in following topic: https://review.lineageos.org/q/topic:twelve-aux-camera",
+      "revId": "cd138994a79e4549c5840e2e7de9521e2fa8f8e3",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

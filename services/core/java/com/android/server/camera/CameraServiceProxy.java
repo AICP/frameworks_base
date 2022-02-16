@@ -414,7 +414,8 @@ public class CameraServiceProxy extends SystemService
         @Override
         public boolean isRotateAndCropOverrideNeeded(String packageName, int sensorOrientation,
                 int lensFacing) {
-            if (Binder.getCallingUid() != Process.CAMERASERVER_UID) {
+            if (Binder.getCallingUid() != Process.CAMERASERVER_UID
+                    && (!mAllowMediaUid || Binder.getCallingUid() != Process.MEDIA_UID)) {
                 Slog.e(TAG, "Calling UID: " + Binder.getCallingUid() + " doesn't match expected " +
                         " camera service UID!");
                 return false;

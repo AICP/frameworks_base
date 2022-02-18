@@ -164,9 +164,21 @@ public class QuickQSPanel extends QSPanel implements TunerService.Tunable {
                             TunerService.parseIntegerSwitch(newValue, true) ? View.VISIBLE : View.GONE);
                 }
                 break;
+             case QS_TILE_VERTICAL_LAYOUT:
+             case QS_LAYOUT_COLUMNS:
+             case QS_LAYOUT_COLUMNS_LANDSCAPE:
+             case QS_TILE_LABEL_HIDE:
+                if (mLayoutRunnable != null) {
+                    mLayoutRunnable.run();
+                }
+                break;
             default:
                 break;
          }
+    }
+
+    public void setLayoutRunnable(Runnable runnable) {
+        mLayoutRunnable = runnable;
     }
 
     public int getNumQuickTiles() {

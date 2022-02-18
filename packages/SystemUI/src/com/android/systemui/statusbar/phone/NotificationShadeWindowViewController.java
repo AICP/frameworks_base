@@ -372,7 +372,8 @@ public class NotificationShadeWindowViewController {
                 }
 
                 boolean intercept = false;
-                if (mNotificationPanelViewController.isFullyExpanded()
+                if (!mNotificationPanelViewController.isQsSecureExpandDisabled()
+                        && mNotificationPanelViewController.isFullyExpanded()
                         && mDragDownHelper.isDragDownEnabled()
                         && !mService.isBouncerShowing()
                         && !mStatusBarStateController.isDozing()) {

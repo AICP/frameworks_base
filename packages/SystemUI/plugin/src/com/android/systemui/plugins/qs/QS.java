@@ -69,6 +69,7 @@ public interface QS extends FragmentBase {
     void notifyCustomizeChanged();
     void setContainerController(QSContainerController controller);
     void setExpandClickListener(OnClickListener onClickListener);
+    void setSecureExpandDisabled(boolean value);
 
     View getHeader();
 

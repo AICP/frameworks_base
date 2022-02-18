@@ -143,6 +143,9 @@ public class QSFragment extends LifecycleFragment implements QS, CommandQueue.Ca
      */
     private float mFullShadeProgress;
 
+    // aicp additions
+    private boolean mSecureExpandDisabled;
+
     @Inject
     public QSFragment(RemoteInputQuickSettingsDisabler remoteInputQsDisabler,
             QSTileHost qsTileHost,
@@ -520,7 +523,7 @@ public class QSFragment extends LifecycleFragment implements QS, CommandQueue.Ca
         boolean onKeyguardAndExpanded = isKeyguardState() && !mShowCollapsedOnKeyguard;
         if (!mHeaderAnimating && !headerWillBeAnimating()) {
             getView().setTranslationY(
-                    onKeyguardAndExpanded
+                    (onKeyguardAndExpanded || mSecureExpandDisabled)
                             ? translationScaleY * mHeader.getHeight()
                             : headerTranslation);
         }
@@ -735,7 +738,13 @@ public class QSFragment extends LifecycleFragment implements QS, CommandQueue.Ca
 
     @Override
     public int getQsMinExpansionHeight() {
-        return mHeader.getHeight();
+        return mSecureExpandDisabled ? 0 : mHeader.getHeight();
+    }
+
+    @Override
+    public void setSecureExpandDisabled(boolean value) {
+        if (DEBUG) Log.d(TAG, "setSecureExpandDisabled " + value);
+        mSecureExpandDisabled = value;
     }
 
     @Override
@@ -748,6 +757,9 @@ public class QSFragment extends LifecycleFragment implements QS, CommandQueue.Ca
             = new ViewTreeObserver.OnPreDrawListener() {
         @Override
         public boolean onPreDraw() {
+            if (mSecureExpandDisabled) {
+                return false;
+            }
             getView().getViewTreeObserver().removeOnPreDrawListener(this);
             getView().animate()
                     .translationY(0f)

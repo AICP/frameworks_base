@@ -4803,6 +4803,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.PULSE_ON_NEW_TRACKS),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.Secure.getUriFor(
+                    Settings.Secure.LOCK_QS_DISABLED),
+                    false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -5240,11 +5243,15 @@ public class StatusBar extends SystemUI implements DemoMode,
         boolean lessBoringHeadsUp = Settings.System.getIntForUser(
                 mContext.getContentResolver(), Settings.System.LESS_BORING_HEADS_UP, 0,
                 UserHandle.USER_CURRENT) != 0;
+        boolean isQsSecureExpandDisabled = Settings.Secure.getIntForUser(
+                mContext.getContentResolver(), Settings.Secure.LOCK_QS_DISABLED, 0,
+                UserHandle.USER_CURRENT) != 0;
         if (mNotificationPanelViewController != null) {
             mNotificationPanelViewController.setDoubleTapToSleep(doubleTapToSleepEnabled);
             mNotificationPanelViewController.setLockscreenDoubleTapToSleep(lsDoubleTapToSleepEnabled);
             mNotificationPanelViewController.setOneFingerQuickSettingsIntercept(onefingerQuickSettingsintercept);
             mNotificationPanelViewController.setQsSmartPullDown(qsSmartPulldown);
+            mNotificationPanelViewController.setQsSecureExpandDisabled(isQsSecureExpandDisabled);
         }
         if (mNotificationShadeWindowViewController != null) {
             mNotificationShadeWindowViewController.setDoubleTapToSleep(doubleTapToSleepEnabled);

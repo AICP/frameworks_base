@@ -12371,6 +12371,13 @@ public final class Settings {
          */
         public static final String STATUSBAR_CLOCK_DATE_POSITION = "statusbar_clock_date_position";
 
+        /**
+         * Disable expanding quick settings on secure lock screens
+         *
+         * @hide
+         */
+        public static final String LOCK_QS_DISABLED = "lockscreen_qs_disabled";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

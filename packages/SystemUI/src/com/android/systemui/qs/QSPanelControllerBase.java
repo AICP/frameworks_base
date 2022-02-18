@@ -22,7 +22,6 @@ import static com.android.systemui.qs.dagger.QSFragmentModule.QS_USING_MEDIA_PLA
 import android.annotation.NonNull;
 import android.annotation.Nullable;
 import android.content.ComponentName;
-import android.content.ContentResolver;
 import android.content.res.Configuration;
 import android.metrics.LogMaker;
 import android.database.ContentObserver;
@@ -117,22 +116,6 @@ public abstract class QSPanelControllerBase<T extends QSPanel> extends ViewContr
     @Nullable
     private Runnable mUsingHorizontalLayoutChangedListener;
 
-    private final class AicpSettingsObserver extends ContentObserver {
-        public AicpSettingsObserver(Handler handler) {
-            super(handler);
-        }
-
-        @Override
-        public void onChange(boolean selfChange, Uri uri) {
-            if (mView.getTileLayout() != null) {
-                mView.getTileLayout().updateSettings();
-                setTiles();
-            }
-        }
-    }
-
-    private AicpSettingsObserver mAicpSettingsObserver;
-
     protected QSPanelControllerBase(
             T view,
             QSTileHost host,
@@ -189,19 +172,6 @@ public abstract class QSPanelControllerBase<T extends QSPanel> extends ViewContr
         switchTileLayout(true);
 
         mDumpManager.registerDumpable(mView.getDumpableTag(), this);
-        mAicpSettingsObserver = new AicpSettingsObserver(new Handler());
-        getContext().getContentResolver().registerContentObserver(Settings.Secure.getUriFor(
-                Settings.System.QS_TILE_VERTICAL_LAYOUT),
-                false, mAicpSettingsObserver, UserHandle.USER_ALL);
-        getContext().getContentResolver().registerContentObserver(Settings.Secure.getUriFor(
-                Settings.System.QS_LAYOUT_COLUMNS),
-                false, mAicpSettingsObserver, UserHandle.USER_ALL);
-        getContext().getContentResolver().registerContentObserver(Settings.Secure.getUriFor(
-                Settings.System.QS_LAYOUT_COLUMNS_LANDSCAPE),
-                false, mAicpSettingsObserver, UserHandle.USER_ALL);
-        getContext().getContentResolver().registerContentObserver(Settings.Secure.getUriFor(
-                Settings.System.QS_TILE_LABEL_HIDE),
-                false, mAicpSettingsObserver, UserHandle.USER_ALL);
     }
 
     @Override

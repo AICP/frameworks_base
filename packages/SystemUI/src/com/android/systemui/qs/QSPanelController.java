@@ -18,9 +18,6 @@ package com.android.systemui.qs;
 
 import static com.android.systemui.classifier.Classifier.QS_SWIPE;
 import static com.android.systemui.media.dagger.MediaModule.QS_PANEL;
-import static com.android.systemui.qs.QSPanel.QS_SHOW_BRIGHTNESS;
-import static com.android.systemui.qs.QSPanel.QS_BRIGHTNESS_POSITION_BOTTOM;
-import static com.android.systemui.qs.QSPanel.QS_SHOW_AUTO_BRIGHTNESS_BUTTON;
 import static com.android.systemui.qs.dagger.QSFragmentModule.QS_USING_MEDIA_PLAYER;
 
 import android.annotation.NonNull;
@@ -138,14 +135,23 @@ public class QSPanelController extends QSPanelControllerBase<QSPanel> {
 
         updateMediaDisappearParameters();
 
-        mTunerService.addTunable(mView, QS_SHOW_BRIGHTNESS);
-        mTunerService.addTunable(mView, QS_BRIGHTNESS_POSITION_BOTTOM);
-        mTunerService.addTunable(mView, QS_SHOW_AUTO_BRIGHTNESS_BUTTON);
+        mTunerService.addTunable(mView, QSPanel.QS_SHOW_BRIGHTNESS);
+        mTunerService.addTunable(mView, QSPanel.QS_BRIGHTNESS_POSITION_BOTTOM);
+        mTunerService.addTunable(mView, QSPanel.QS_SHOW_AUTO_BRIGHTNESS_BUTTON);
         mTunerService.addTunable(mView, QuickQSPanel.QQS_BRIGHTNESS_SLIDER);
+        mTunerService.addTunable(mView, QSPanel.QS_TILE_VERTICAL_LAYOUT);
+        mTunerService.addTunable(mView, QSPanel.QS_LAYOUT_COLUMNS);
+        mTunerService.addTunable(mView, QSPanel.QS_LAYOUT_COLUMNS_LANDSCAPE);
+        mTunerService.addTunable(mView, QSPanel.QS_TILE_LABEL_HIDE);
 
         mView.setBrightnessRunnable(() -> {
             mView.updateResources();
             updateBrightnessMirror();
+        });
+
+        mView.setLayoutRunnable(() -> {
+            mView.updateSettings();
+            setTiles();
         });
 
         mView.updateResources();
@@ -328,4 +334,3 @@ public class QSPanelController extends QSPanelControllerBase<QSPanel> {
         mView.setPageMargin(pageMargin);
     }
 }
-

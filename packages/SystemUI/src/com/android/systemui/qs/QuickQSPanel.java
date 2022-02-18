@@ -41,7 +41,7 @@ public class QuickQSPanel extends QSPanel implements TunerService.Tunable {
     private static final String TAG = "QuickQSPanel";
     // A default value so that we never return 0.
     public static final int DEFAULT_MAX_TILES = 42;
-    public static final int DEFAULT_MIN_TILES = 4;
+    public static final int DEFAULT_MIN_TILES = 2;
 
     public static final String QQS_BRIGHTNESS_SLIDER = "sysui_qqs_brightness_slider";
 

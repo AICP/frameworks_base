@@ -26,6 +26,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
@@ -60,6 +61,14 @@ public class QSPanel extends LinearLayout implements Tunable {
     public static final String QS_SHOW_HEADER = "qs_show_header";
     public static final String QS_BRIGHTNESS_POSITION_BOTTOM = "qs_brightness_position_bottom";
     public static final String QS_SHOW_AUTO_BRIGHTNESS_BUTTON = "qs_show_auto_brightness_button";
+    public static final String QS_TILE_VERTICAL_LAYOUT =
+            "system:" + Settings.System.QS_TILE_VERTICAL_LAYOUT;
+    public static final String QS_LAYOUT_COLUMNS =
+            "system:" + Settings.System.QS_LAYOUT_COLUMNS;
+    public static final String QS_LAYOUT_COLUMNS_LANDSCAPE =
+            "system:" + Settings.System.QS_LAYOUT_COLUMNS_LANDSCAPE;
+    public static final String QS_TILE_LABEL_HIDE =
+            "system:" + Settings.System.QS_TILE_LABEL_HIDE;
 
     private static final String TAG = "QSPanel";
 
@@ -80,6 +89,7 @@ public class QSPanel extends LinearLayout implements Tunable {
     protected ImageView mAutoBrightnessIcon;
     protected boolean mShowAutoBrightnessButton;
     protected Runnable mBrightnessRunnable;
+    protected Runnable mLayoutRunnable;
 
     protected boolean mTop;
 
@@ -270,10 +280,23 @@ public class QSPanel extends LinearLayout implements Tunable {
             mAutoBrightnessIcon.setVisibility(
                     mShowAutoBrightnessButton ? View.VISIBLE : View.GONE);
         }
+
+        if (QS_TILE_VERTICAL_LAYOUT.equals(key)
+              || QS_LAYOUT_COLUMNS.equals(key)
+              || QS_LAYOUT_COLUMNS_LANDSCAPE.equals(key)
+              || QS_TILE_LABEL_HIDE.equals(key)) {
+            if (mLayoutRunnable != null) {
+                mLayoutRunnable.run();
+            }
+        }
     }
 
     public void setBrightnessRunnable(Runnable runnable) {
         mBrightnessRunnable = runnable;
+    }
+
+    public void setLayoutRunnable(Runnable runnable) {
+        mLayoutRunnable = runnable;
     }
 
     private void updateViewVisibilityForTuningValue(View view, @Nullable String newValue) {
@@ -332,6 +355,12 @@ public class QSPanel extends LinearLayout implements Tunable {
 
         if (mTileLayout != null) {
             mTileLayout.updateResources();
+        }
+    }
+
+    public void updateSettings() {
+        if (mTileLayout != null) {
+            mTileLayout.updateSettings();
         }
     }
 

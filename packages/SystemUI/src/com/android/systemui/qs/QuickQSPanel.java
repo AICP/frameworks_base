@@ -166,6 +166,14 @@ public class QuickQSPanel extends QSPanel implements TunerService.Tunable {
                             mShowAutoBrightnessButton ? View.VISIBLE : View.GONE);
                 }
                 break;
+             case QS_TILE_VERTICAL_LAYOUT:
+             case QS_LAYOUT_COLUMNS:
+             case QS_LAYOUT_COLUMNS_LANDSCAPE:
+             case QS_TILE_LABEL_HIDE
+                if (mLayoutRunnable != null) {
+                    mLayoutRunnable.run();
+                }
+                 break;
             default:
                 break;
          }
@@ -184,6 +192,10 @@ public class QuickQSPanel extends QSPanel implements TunerService.Tunable {
 
     public void setBrightnessRunnable(Runnable runnable) {
         mBrightnessRunnable = runnable;
+    }
+
+    public void setLayoutRunnable(Runnable runnable) {
+        mLayoutRunnable = runnable;
     }
 
     public int getNumQuickTiles() {

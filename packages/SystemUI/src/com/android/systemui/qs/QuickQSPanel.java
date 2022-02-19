@@ -195,6 +195,14 @@ public class QuickQSPanel extends QSPanel implements TunerService.Tunable {
         }
     }
 
+    @Override
+    protected void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (mLayoutRunnable != null) {
+            mLayoutRunnable.run();
+        }
+    }
+
     public void setBrightnessRunnable(Runnable runnable) {
         mBrightnessRunnable = runnable;
     }

@@ -421,6 +421,9 @@ public class QSPanel extends LinearLayout implements Tunable {
         super.onConfigurationChanged(newConfig);
         mOnConfigurationChangedListeners.forEach(
                 listener -> listener.onConfigurationChange(newConfig));
+        if (mLayoutRunnable != null) {
+            mLayoutRunnable.run();
+        }
         switchSecurityFooter();
     }
 

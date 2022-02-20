@@ -90,6 +90,8 @@ public class PhoneStatusBarView extends PanelBar implements Callbacks, TunerServ
     };
     private DarkReceiver mBattery;
     private DarkReceiver mClock;
+    private DarkReceiver mClockCentre;
+    private DarkReceiver mClockRight;
     private int mRotationOrientation = -1;
     @Nullable
     private View mCenterIconSpace;
@@ -144,6 +146,8 @@ public class PhoneStatusBarView extends PanelBar implements Callbacks, TunerServ
     public void onFinishInflate() {
         mBattery = findViewById(R.id.battery);
         mClock = findViewById(R.id.clock);
+        mClockCentre = findViewById(R.id.clock_center);
+        mClockRight = findViewById(R.id.clock_right);
         mCutoutSpace = findViewById(R.id.cutout_space_view);
         mCenterIconSpace = findViewById(R.id.centered_icon_area);
         mStatusBarContents = (ViewGroup) findViewById(R.id.status_bar_contents);
@@ -164,6 +168,8 @@ public class PhoneStatusBarView extends PanelBar implements Callbacks, TunerServ
         // Always have Battery meters in the status bar observe the dark/light modes.
         Dependency.get(DarkIconDispatcher.class).addDarkReceiver(mBattery);
         Dependency.get(DarkIconDispatcher.class).addDarkReceiver(mClock);
+        Dependency.get(DarkIconDispatcher.class).addDarkReceiver(mClockCentre);
+        Dependency.get(DarkIconDispatcher.class).addDarkReceiver(mClockRight);
         if (updateOrientationAndCutout()) {
             updateLayoutForCutout();
         }
@@ -174,6 +180,8 @@ public class PhoneStatusBarView extends PanelBar implements Callbacks, TunerServ
         super.onDetachedFromWindow();
         Dependency.get(DarkIconDispatcher.class).removeDarkReceiver(mBattery);
         Dependency.get(DarkIconDispatcher.class).removeDarkReceiver(mClock);
+        Dependency.get(DarkIconDispatcher.class).removeDarkReceiver(mClockCentre);
+        Dependency.get(DarkIconDispatcher.class).removeDarkReceiver(mClockRight);
         mDisplayCutout = null;
     }
 

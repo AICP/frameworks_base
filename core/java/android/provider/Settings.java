@@ -6355,6 +6355,18 @@ public final class Settings {
           */
          public static final String VOLUME_DIALOG_TIMEOUT = "volume_dialog_timeout";
 
+         /**
+         * Whether to add left padding on statusbar
+         * @hide
+         */
+        public static final String STATUSBAR_LEFT_PADDING = "statusbar_left_padding";
+
+        /**
+         * Whether to add right padding on statusbar
+         * @hide
+         */
+        public static final String STATUSBAR_RIGHT_PADDING = "statusbar_right_padding";
+
         /***************************
          * AICP System Settings end
          ***************************/

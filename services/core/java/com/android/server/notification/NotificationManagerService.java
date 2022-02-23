@@ -348,7 +348,7 @@ import java.util.stream.Collectors;
 /** {@hide} */
 public class NotificationManagerService extends SystemService {
     public static final String TAG = "NotificationService";
-    public static final boolean DBG = Log.isLoggable(TAG, Log.DEBUG);
+    public static final boolean DBG = false;
     public static final boolean ENABLE_CHILD_NOTIFICATIONS
             = SystemProperties.getBoolean("debug.child_notifs", true);
 
@@ -1126,9 +1126,9 @@ public class NotificationManagerService extends SystemService {
                         .addTaggedData(MetricsEvent.NOTIFICATION_SHADE_COUNT, nv.count));
                 mNotificationRecordLogger.log(
                         NotificationRecordLogger.NotificationEvent.NOTIFICATION_CLICKED, r);
-                EventLogTags.writeNotificationClicked(key,
+                /* EventLogTags.writeNotificationClicked(key,
                         r.getLifespanMs(now), r.getFreshnessMs(now), r.getExposureMs(now),
-                        nv.rank, nv.count);
+                        nv.rank, nv.count); */
 
                 StatusBarNotification sbn = r.getSbn();
                 cancelNotification(callingUid, callingPid, sbn.getPackageName(), sbn.getTag(),
@@ -1208,7 +1208,7 @@ public class NotificationManagerService extends SystemService {
             MetricsLogger.histogram(getContext(), "note_load", items);
             mNotificationRecordLogger.log(
                     NotificationRecordLogger.NotificationPanelEvent.NOTIFICATION_PANEL_OPEN);
-            EventLogTags.writeNotificationPanelRevealed(items);
+            // EventLogTags.writeNotificationPanelRevealed(items);
             if (clearEffects) {
                 clearEffects();
             }
@@ -1220,7 +1220,7 @@ public class NotificationManagerService extends SystemService {
             MetricsLogger.hidden(getContext(), MetricsEvent.NOTIFICATION_PANEL);
             mNotificationRecordLogger.log(
                     NotificationRecordLogger.NotificationPanelEvent.NOTIFICATION_PANEL_CLOSE);
-            EventLogTags.writeNotificationPanelHidden();
+            // EventLogTags.writeNotificationPanelHidden();
             mAssistants.onPanelHidden();
         }
 
@@ -5801,7 +5801,7 @@ public class NotificationManagerService extends SystemService {
         }
         if (r.getSbn().getOverrideGroupKey() == null) {
             addAutoGroupAdjustment(r, GroupHelper.AUTOGROUP_KEY);
-            EventLogTags.writeNotificationAutogrouped(key);
+            // EventLogTags.writeNotificationAutogrouped(key);
             mRankingHandler.requestSort();
         }
     }
@@ -5815,7 +5815,7 @@ public class NotificationManagerService extends SystemService {
         }
         if (r.getSbn().getOverrideGroupKey() != null) {
             addAutoGroupAdjustment(r, null);
-            EventLogTags.writeNotificationUnautogrouped(key);
+            // EventLogTags.writeNotificationUnautogrouped(key);
             mRankingHandler.requestSort();
         }
     }
@@ -7336,9 +7336,9 @@ public class NotificationManagerService extends SystemService {
                     if (old != null) {
                         enqueueStatus = EVENTLOG_ENQUEUE_STATUS_UPDATE;
                     }
-                    EventLogTags.writeNotificationEnqueue(callingUid, callingPid,
+                    /* EventLogTags.writeNotificationEnqueue(callingUid, callingPid,
                             pkg, id, tag, userId, notification.toString(),
-                            enqueueStatus);
+                            enqueueStatus); */
                 }
 
                 // tell the assistant service about the notification
@@ -7918,7 +7918,7 @@ public class NotificationManagerService extends SystemService {
                     .setCategory(MetricsEvent.NOTIFICATION_ALERT)
                     .setType(MetricsEvent.TYPE_OPEN)
                     .setSubtype(buzzBeepBlink));
-            EventLogTags.writeNotificationAlert(key, buzz ? 1 : 0, beep ? 1 : 0, blink ? 1 : 0);
+            // EventLogTags.writeNotificationAlert(key, buzz ? 1 : 0, beep ? 1 : 0, blink ? 1 : 0);
         }
         record.setAudiblyAlerted(buzz || beep);
         return buzzBeepBlink;
@@ -8964,9 +8964,9 @@ public class NotificationManagerService extends SystemService {
                     .addTaggedData(MetricsEvent.NOTIFICATION_SHADE_COUNT, count);
         }
         MetricsLogger.action(logMaker);
-        EventLogTags.writeNotificationCanceled(canceledKey, reason,
+        /* EventLogTags.writeNotificationCanceled(canceledKey, reason,
                 r.getLifespanMs(now), r.getFreshnessMs(now), r.getExposureMs(now),
-                rank, count, listenerName);
+                rank, count, listenerName); */
         if (wasPosted) {
             mNotificationRecordLogger.logNotificationCancelled(r, reason,
                     r.getStats().getDismissalSurface());
@@ -9172,9 +9172,9 @@ public class NotificationManagerService extends SystemService {
             @Override
             public void run() {
                 String listenerName = listener == null ? null : listener.component.toShortString();
-                EventLogTags.writeNotificationCancelAll(callingUid, callingPid,
+                /* EventLogTags.writeNotificationCancelAll(callingUid, callingPid,
                         pkg, userId, mustHaveFlags, mustNotHaveFlags, reason,
-                        listenerName);
+                        listenerName); */
 
                 // Why does this parameter exist? Do we actually want to execute the above if doit
                 // is false?
@@ -9318,8 +9318,8 @@ public class NotificationManagerService extends SystemService {
                 synchronized (mNotificationLock) {
                     String listenerName =
                             listener == null ? null : listener.component.toShortString();
-                    EventLogTags.writeNotificationCancelAll(callingUid, callingPid,
-                            null, userId, 0, 0, reason, listenerName);
+                    /* EventLogTags.writeNotificationCancelAll(callingUid, callingPid,
+                            null, userId, 0, 0, reason, listenerName); */
 
                     FlagChecker flagChecker = (int flags) -> {
                         int flagsToCheck = FLAG_ONGOING_EVENT | FLAG_NO_CLEAR;
@@ -9386,8 +9386,8 @@ public class NotificationManagerService extends SystemService {
                     && (flagChecker == null || flagChecker.apply(childR.getFlags()))
                     && (!childR.getChannel().isImportantConversation()
                             || reason != REASON_CANCEL)) {
-                EventLogTags.writeNotificationCancel(callingUid, callingPid, pkg, childSbn.getId(),
-                        childSbn.getTag(), userId, 0, 0, childReason, listenerName);
+                /* EventLogTags.writeNotificationCancel(callingUid, callingPid, pkg, childSbn.getId(),
+                        childSbn.getTag(), userId, 0, 0, childReason, listenerName); */
                 notificationList.remove(i);
                 mNotificationsByKey.remove(childR.getKey());
                 cancelNotificationLocked(childR, sendDelete, childReason, wasPosted, listenerName,

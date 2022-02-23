@@ -93,7 +93,7 @@ public class NotificationHistoryManager {
             final NotificationHistoryDatabase userHistory =
                     getUserHistoryAndInitializeIfNeededLocked(userId);
             if (userHistory == null) {
-                Slog.i(TAG, "Attempted to unlock gone/disabled user " + userId);
+                if (DEBUG) Slog.i(TAG, "Attempted to unlock gone/disabled user " + userId);
                 return;
             }
 

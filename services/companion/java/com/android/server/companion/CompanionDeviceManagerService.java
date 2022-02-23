@@ -277,7 +277,7 @@ public class CompanionDeviceManagerService extends SystemService implements Bind
 
             @Override
             public void onPackageModified(String packageName) {
-                Slog.d(LOG_TAG, "onPackageModified(packageName = " + packageName + ")");
+                if (DEBUG) Slog.d(LOG_TAG, "onPackageModified(packageName = " + packageName + ")");
                 int userId = getChangingUserId();
                 forEach(getAllAssociations(userId, packageName), association -> {
                     updateSpecialAccessPermissionForAssociatedPackage(association);

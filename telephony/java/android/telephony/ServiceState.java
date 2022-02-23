@@ -1552,7 +1552,7 @@ public class ServiceState implements Parcelable {
      */
     @UnsupportedAppUsage
     public int getRadioTechnology() {
-        Rlog.e(LOG_TAG, "ServiceState.getRadioTechnology() DEPRECATED will be removed *******");
+        if (DBG) Rlog.e(LOG_TAG, "ServiceState.getRadioTechnology() DEPRECATED will be removed *******");
         return getRilDataRadioTechnology();
     }
 

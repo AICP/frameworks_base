@@ -399,13 +399,13 @@ public final class DreamManagerService extends SystemService {
                 && mCurrentDreamIsTest == isTest
                 && mCurrentDreamCanDoze == canDoze
                 && mCurrentDreamUserId == userId) {
-            Slog.i(TAG, "Already in target dream.");
+            if (DEBUG) Slog.i(TAG, "Already in target dream.");
             return;
         }
 
         stopDreamLocked(true /*immediate*/, "starting new dream");
 
-        Slog.i(TAG, "Entering dreamland.");
+        if (DEBUG) Slog.i(TAG, "Entering dreamland.");
 
         final Binder newToken = new Binder();
         mCurrentDreamToken = newToken;
@@ -428,19 +428,19 @@ public final class DreamManagerService extends SystemService {
     private void stopDreamLocked(final boolean immediate, String reason) {
         if (mCurrentDreamToken != null) {
             if (immediate) {
-                Slog.i(TAG, "Leaving dreamland.");
+                if (DEBUG) Slog.i(TAG, "Leaving dreamland.");
                 cleanupDreamLocked();
             } else if (mCurrentDreamIsWaking) {
                 return; // already waking
             } else {
-                Slog.i(TAG, "Gently waking up from dream.");
+                if (DEBUG) Slog.i(TAG, "Gently waking up from dream.");
                 mCurrentDreamIsWaking = true;
             }
 
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    Slog.i(TAG, "Performing gentle wake from dream.");
+                    if (DEBUG) Slog.i(TAG, "Performing gentle wake from dream.");
                     mController.stopDream(immediate, reason);
                 }
             });

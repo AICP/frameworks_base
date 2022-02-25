@@ -5835,6 +5835,12 @@ public final class Settings {
         public static final String POWERMENU_ONTHEGO = "powermenu_onthego";
 
         /**
+         * Whether to display the Device controls option in the power menu
+         * @hide
+         */
+        public static final String POWERMENU_DEVICECONTROLS = "powermenu_devicecontrols";
+
+        /**
          * @hide
          */
         public static final String TORCH_LONG_PRESS_POWER_GESTURE = "torch_long_press_power_gesture";

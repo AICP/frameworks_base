@@ -99,6 +99,7 @@
         <item>lockdown</item>
         <item>torch</item>
         <item>onthego</item>
+        <item>devicecontrols</item>
     </string-array>
 
     <!-- Full screen aspect ratio -->

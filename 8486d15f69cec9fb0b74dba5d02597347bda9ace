@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87dc6b27_af590918",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-02-25T12:02:01Z",
+      "side": 1,
+      "message": "Didn\u0027t wanted to broke the picking chain. These 2 reverts will be abandoned if we decide to merge this topic.",
+      "revId": "8486d15f69cec9fb0b74dba5d02597347bda9ace",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

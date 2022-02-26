@@ -51,6 +51,7 @@ import com.android.systemui.R;
 import com.android.systemui.animation.Interpolators;
 import com.android.systemui.keyguard.KeyguardSliceProvider;
 import com.android.systemui.util.wakelock.KeepAwakeAnimationListener;
+import com.android.systemui.tuner.TunerService.Tunable;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
@@ -63,10 +64,11 @@ import java.util.Set;
 /**
  * View visible under the clock on the lock screen and AoD.
  */
-public class KeyguardSliceView extends LinearLayout {
+public class KeyguardSliceView extends LinearLayout implements View.OnClickListener, Tunable {
 
     private static final String TAG = "KeyguardSliceView";
     public static final int DEFAULT_ANIM_DURATION = 550;
+    private static final String KEYGUARD_TRANSITION_ANIMATIONS = "sysui_keyguard_transition_animations";
 
     private final LayoutTransition mLayoutTransition;
     @VisibleForTesting
@@ -87,6 +89,8 @@ public class KeyguardSliceView extends LinearLayout {
     private View.OnClickListener mOnClickListener;
     private float mHeaderTextSize;
     private float mRowWithHeaderTextSize;
+
+    private static boolean mKeyguardTransitionAnimations = true;
 
     public KeyguardSliceView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -121,9 +125,16 @@ public class KeyguardSliceView extends LinearLayout {
     }
 
     @Override
+    public void onTuningChanged(String key, String newValue) {
+        if (key.equals(KEYGUARD_TRANSITION_ANIMATIONS)) {
+            mKeyguardTransitionAnimations = newValue == null || newValue.equals("1");
+        }
+    }
+
+    @Override
     public void onVisibilityAggregated(boolean isVisible) {
         super.onVisibilityAggregated(isVisible);
-        setLayoutTransition(isVisible ? mLayoutTransition : null);
+        setLayoutTransition((isVisible && mKeyguardTransitionAnimations) ? mLayoutTransition : null);
     }
 
     /**
@@ -385,7 +396,7 @@ public class KeyguardSliceView extends LinearLayout {
         @Override
         public void onVisibilityAggregated(boolean isVisible) {
             super.onVisibilityAggregated(isVisible);
-            setLayoutTransition(isVisible ? mLayoutTransition : null);
+            setLayoutTransition((isVisible && mKeyguardTransitionAnimations) ? mLayoutTransition : null);
         }
 
         @Override

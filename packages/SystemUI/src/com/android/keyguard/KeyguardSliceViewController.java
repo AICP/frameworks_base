@@ -124,6 +124,7 @@ public class KeyguardSliceViewController extends ViewController<KeyguardSliceVie
             mDisplayId = display.getDisplayId();
         }
         mTunerService.addTunable(mTunable, Settings.Secure.KEYGUARD_SLICE_URI);
+        mTunerService.addTunable(mView, Settings.Secure.KEYGUARD_TRANSITION_ANIMATIONS);
         // Make sure we always have the most current slice
         if (mDisplayId == DEFAULT_DISPLAY && mLiveData != null) {
             mLiveData.observeForever(mObserver);
@@ -142,6 +143,7 @@ public class KeyguardSliceViewController extends ViewController<KeyguardSliceVie
             mLiveData.removeObserver(mObserver);
         }
         mTunerService.removeTunable(mTunable);
+        mTunerService.removeTunable(mView);
         mConfigurationController.removeCallback(mConfigurationListener);
         mDumpManager.unregisterDumpable(
                 TAG + "@" + Integer.toHexString(

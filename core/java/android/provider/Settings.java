@@ -11996,6 +11996,12 @@ public final class Settings {
          */
         public static final String STATUSBAR_CLOCK_DATE_POSITION = "statusbar_clock_date_position";
 
+        /**
+         * Width of Ambient edge light in px
+         * @hide
+         */
+        public static final String KEYGUARD_TRANSITION_ANIMATIONS = "sysui_keyguard_transition_animations";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

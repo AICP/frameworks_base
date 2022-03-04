@@ -108,5 +108,6 @@ public class SystemSettings {
         Settings.System.SCREEN_OFF_ANIMATION,
         Settings.System.VOLUME_KEY_CURSOR_CONTROL,
         Settings.System.BACK_GESTURE_HAPTIC,
+        Settings.System.HEADS_UP_NOTIFICATIONS_THRESHOLD,
     };
 }

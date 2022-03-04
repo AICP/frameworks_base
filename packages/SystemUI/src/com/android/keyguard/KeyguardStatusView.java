@@ -32,9 +32,11 @@ import android.widget.GridLayout;
 import androidx.core.graphics.ColorUtils;
 
 import com.android.internal.widget.LockPatternUtils;
+import com.android.systemui.Dependency;
 import com.android.systemui.R;
 import com.android.systemui.omni.CurrentWeatherView;
 import com.android.systemui.statusbar.CrossFadeHelper;
+import com.android.systemui.tuner.TunerService;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
@@ -45,9 +47,15 @@ import java.util.Set;
  * - keyguard clock
  * - media player (split shade mode only)
  */
-public class KeyguardStatusView extends GridLayout {
+public class KeyguardStatusView extends GridLayout implements
+     TunerService.Tunable {
     private static final boolean DEBUG = KeyguardConstants.DEBUG;
     private static final String TAG = "KeyguardStatusView";
+
+    private static final String LOCKSCREEN_WEATHER_ENABLED =
+            "system:" + Settings.System.OMNI_LOCKSCREEN_WEATHER_ENABLED;
+    private static final String LOCKSCREEN_WEATHER_STYLE =
+            "system:" + Settings.System.AICP_LOCKSCREEN_WEATHER_STYLE;
 
     private final LockPatternUtils mLockPatternUtils;
     private final IActivityManager mIActivityManager;
@@ -57,6 +65,8 @@ public class KeyguardStatusView extends GridLayout {
     private KeyguardSliceView mKeyguardSlice;
     private View mMediaHostContainer;
     private CurrentWeatherView mWeatherView;
+    private boolean mShowWeather;
+    private boolean mOmniStyle;
 
     private float mDarkAmount = 0;
     private int mTextColor;
@@ -82,6 +92,9 @@ public class KeyguardStatusView extends GridLayout {
         super(context, attrs, defStyle);
         mIActivityManager = ActivityManager.getService();
         mLockPatternUtils = new LockPatternUtils(getContext());
+        Dependency.get(TunerService.class).addTunable(this,
+                LOCKSCREEN_WEATHER_ENABLED,
+                LOCKSCREEN_WEATHER_STYLE);
     }
 
     @Override
@@ -97,18 +110,16 @@ public class KeyguardStatusView extends GridLayout {
         mKeyguardSlice = findViewById(R.id.keyguard_slice_view);
 
         mWeatherView = (CurrentWeatherView) findViewById(R.id.weather_container);
-        updateSettings();
 
         mTextColor = mClockView.getCurrentTextColor();
-
-        mKeyguardSlice.setContentChangeListener(this::onSliceContentChanged);
-        onSliceContentChanged();
 
         mMediaHostContainer = findViewById(R.id.status_view_media_container);
 
         updateDark();
-        updateSettings();
+        updateWeatherView();
 
+        mKeyguardSlice.setContentChangeListener(this::onSliceContentChanged);
+        onSliceContentChanged();
     }
 
     /**
@@ -180,23 +191,30 @@ public class KeyguardStatusView extends GridLayout {
                 R.dimen.widget_vertical_padding_with_header);
     }
 
-    protected void updateSettings() {
-        final ContentResolver resolver = getContext().getContentResolver();
-        final Resources res = getContext().getResources();
-        boolean showWeather = Settings.System.getIntForUser(resolver,
-                Settings.System.OMNI_LOCKSCREEN_WEATHER_ENABLED, 0,
-                UserHandle.USER_CURRENT) == 1;
+    @Override
+    public void onTuningChanged(String key, String newValue) {
+        switch (key) {
+            case LOCKSCREEN_WEATHER_ENABLED:
+                mShowWeather =
+                        TunerService.parseIntegerSwitch(newValue, false);
+                updateWeatherView();
+                break;
+            case LOCKSCREEN_WEATHER_STYLE:
+                mOmniStyle =
+                        !TunerService.parseIntegerSwitch(newValue, false);
+                updateWeatherView();
+                break;
+            default:
+                break;
+        }
+    }
 
-        boolean omniStyle = Settings.System.getIntForUser(resolver,
-                Settings.System.AICP_LOCKSCREEN_WEATHER_STYLE, 0,
-                UserHandle.USER_CURRENT) == 0;
-
+    public void updateWeatherView() {
         if (mWeatherView != null) {
-            if (showWeather && omniStyle) {
+            if (mShowWeather && mOmniStyle && mKeyguardSlice.getVisibility() == View.VISIBLE) {
                 mWeatherView.setVisibility(View.VISIBLE);
                 mWeatherView.enableUpdates();
-            }
-            if (!showWeather || !omniStyle) {
+            } else if (!mShowWeather || !mOmniStyle) {
                 mWeatherView.setVisibility(View.GONE);
                 mWeatherView.disableUpdates();
             }

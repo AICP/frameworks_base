@@ -307,5 +307,6 @@ public class SystemSettings {
         Settings.System.VOLUME_ANSWER_CALL,
         Settings.System.TOAST_ICON,
         Settings.System.BLUETOOTH_SHOW_BATTERY,
+        Settings.System.HEADS_UP_NOTIFICATIONS_THRESHOLD,
     };
 }

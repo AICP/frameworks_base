@@ -5810,6 +5810,13 @@ public final class Settings {
          */
         public static final String LESS_BORING_HEADS_UP = "less_boring_heads_up";
 
+        /**
+         * Whether to disable adb while in gaming mode.
+         * Default 0
+         * @hide
+         */
+        public static final String HEADS_UP_NOTIFICATIONS_THRESHOLD = "heads_up_notifications_threshold";
+
         /***************************
          * AICP System Settings end
          ***************************/

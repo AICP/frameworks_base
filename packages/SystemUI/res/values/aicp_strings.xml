@@ -265,4 +265,8 @@
     <!-- Language toggle tile -->
     <string name="quick_settings_locale_label">Language</string>
     <string name="quick_settings_locale_more_locales_toast">Please configure multiple languages to enable toggle functionality</string>
+
+    <!-- Name of the firewall status bar icon. -->
+    <string name="status_bar_firewall">Firewall</string>
+    <string name="status_bar_firewall_slot" translatable="false">firewall</string>
 </resources>

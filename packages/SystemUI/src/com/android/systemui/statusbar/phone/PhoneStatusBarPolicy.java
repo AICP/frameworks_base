@@ -22,6 +22,7 @@ import android.annotation.Nullable;
 import android.app.ActivityTaskManager;
 import android.app.AlarmManager;
 import android.app.AlarmManager.AlarmClockInfo;
+import android.app.AppGlobals;
 import android.app.IActivityManager;
 import android.app.SynchronousUserSwitchObserver;
 import android.app.admin.DevicePolicyManager;
@@ -30,12 +31,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.media.AudioManager;
+import android.net.INetworkPolicyListener;
+import android.net.INetworkPolicyManager;
+import android.net.NetworkPolicyManager;
 import android.nfc.NfcAdapter;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.RemoteException;
+import android.os.ServiceManager;
 import android.os.UserHandle;
 import android.os.UserManager;
 import android.provider.Settings.Global;
@@ -76,6 +82,8 @@ import com.android.systemui.util.time.DateFormatUtil;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.Executor;
@@ -112,6 +120,7 @@ public class PhoneStatusBarPolicy
     private final String mSlotDataSaver;
     private final String mSlotSensorsOff;
     private final String mSlotScreenRecord;
+    private final String mSlotFirewall;
     private final String mSlotNfc;
     private final int mDisplayId;
     private final SharedPreferences mSharedPreferences;
@@ -147,6 +156,7 @@ public class PhoneStatusBarPolicy
     private boolean mCurrentUserSetup;
 
     private boolean mManagedProfileIconVisible = false;
+    private boolean mFirewallVisible = false;
 
     private BluetoothController mBluetooth;
     private AlarmManager.AlarmClockInfo mNextAlarm;
@@ -213,6 +223,7 @@ public class PhoneStatusBarPolicy
         mSlotSensorsOff = resources.getString(com.android.internal.R.string.status_bar_sensors_off);
         mSlotScreenRecord = resources.getString(
                 com.android.internal.R.string.status_bar_screen_record);
+        mSlotFirewall = resources.getString(R.string.status_bar_firewall_slot);
         mSlotNfc = resources.getString(com.android.internal.R.string.status_bar_nfc);
         mCurrentUserSetup = mProvisionedController.isDeviceProvisioned();
 
@@ -298,6 +309,11 @@ public class PhoneStatusBarPolicy
         mIconController.setIcon(mSlotScreenRecord, R.drawable.stat_sys_screen_record, null);
         mIconController.setIconVisibility(mSlotScreenRecord, false);
 
+        // firewall
+        mIconController.setIcon(mSlotFirewall, R.drawable.stat_sys_firewall, null);
+        mIconController.setIconVisibility(mSlotFirewall, mFirewallVisible);
+
+        // Nfc
         mIconController.setIcon(mSlotNfc, R.drawable.stat_sys_nfc,
                 mResources.getString(R.string.accessibility_status_bar_nfc));
 
@@ -316,6 +332,8 @@ public class PhoneStatusBarPolicy
         mKeyguardStateController.addCallback(this);
         mSensorPrivacyController.addCallback(mSensorPrivacyListener);
         mRecordingController.addCallback(this);
+
+        registerNetworkPolicyListener();
 
         mCommandQueue.addCallback(this);
 
@@ -548,6 +566,73 @@ public class PhoneStatusBarPolicy
         });
     }
 
+    private void updateFirewall() {
+        mUiBgExecutor.execute(() -> {
+            try {
+                final int uid = ActivityTaskManager.getService().getLastResumedActivityUid();
+                final boolean isRestricted = INetworkPolicyManager.Stub.asInterface(
+                        ServiceManager.getService(Context.NETWORK_POLICY_SERVICE))
+                        .isUidNetworkingBlocked(uid, false);
+                boolean isLauncher = false;
+                List<ResolveInfo> homeActivities = new ArrayList<>();
+                AppGlobals.getPackageManager().getHomeActivities(homeActivities);
+                for (ResolveInfo homeActivity : homeActivities) {
+                    if (uid == homeActivity.activityInfo.applicationInfo.uid) {
+                        isLauncher = true;
+                        break;
+                    }
+                }
+                final boolean finalIsLauncher = isLauncher;
+                mHandler.post(() -> {
+                    final boolean showIcon;
+                    if (!finalIsLauncher && isRestricted && (!mKeyguardStateController.isShowing()
+                            || mKeyguardStateController.isOccluded())) {
+                        showIcon = true;
+                        mIconController.setIcon(mSlotFirewall, R.drawable.stat_sys_firewall, null);
+                    } else {
+                        showIcon = false;
+                    }
+                    if (mFirewallVisible != showIcon) {
+                        mIconController.setIconVisibility(mSlotFirewall, showIcon);
+                        mFirewallVisible = showIcon;
+                    }
+                });
+            } catch (RemoteException e) {
+                Log.w(TAG, "updateFirewall: ", e);
+            }
+        });
+    }
+
+    private void registerNetworkPolicyListener() {
+        try {
+            INetworkPolicyManager policyManager = INetworkPolicyManager.Stub.asInterface(
+                    ServiceManager.getService(Context.NETWORK_POLICY_SERVICE));
+            policyManager.registerListener(mNetworkPolicyListener);
+        } catch (RemoteException e) {
+            Log.e(TAG, "registerNetworkPolicyListener: ", e);
+            return;
+        }
+    }
+
+    private final INetworkPolicyListener mNetworkPolicyListener =
+            new NetworkPolicyManager.Listener() {
+        @Override
+        public void onUidRulesChanged(int uid, int uidRules) {
+            if (DEBUG) Log.d(TAG, "INetworkPolicyListener." +
+                    "onUidRulesChanged: uid: " + uid +
+                    ", uidRules: " + uidRules);
+            updateFirewall();
+        }
+
+        @Override
+        public void onUidPoliciesChanged(int uid, int uidPolicies) {
+            if (DEBUG) Log.d(TAG, "INetworkPolicyListener." +
+                    "onUidPoliciesChanged: uid: " + uid +
+                    ", uidPolicies: " + uidPolicies);
+            updateFirewall();
+        }
+    };
+
     private final SynchronousUserSwitchObserver mUserSwitchListener =
             new SynchronousUserSwitchObserver() {
                 @Override
@@ -603,12 +688,14 @@ public class PhoneStatusBarPolicy
             boolean forced) {
         if (mDisplayId == displayId) {
             updateManagedProfile();
+            updateFirewall();
         }
     }
 
     @Override
     public void onKeyguardShowingChanged() {
         updateManagedProfile();
+        updateFirewall();
     }
 
     @Override

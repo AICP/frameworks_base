@@ -61,6 +61,7 @@ class PrivacyItemController @Inject constructor(
             "com.android.bluetooth",
             "com.android.networkstack.tethering",
             "com.android.systemui",
+            "com.google.android.settings.intelligence",
         )
         val OPS_MIC_CAMERA = intArrayOf(AppOpsManager.OP_CAMERA,
                 AppOpsManager.OP_PHONE_CALL_CAMERA, AppOpsManager.OP_RECORD_AUDIO,

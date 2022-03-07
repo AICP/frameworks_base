@@ -34,6 +34,7 @@ import java.util.Set;
  */
 public class DataUsageUtils {
     private static final String TAG = "DataUsageUtils";
+    private static final boolean DEBUG = false;
 
     /**
      * Return mobile NetworkTemplate based on {@code subId}
@@ -47,7 +48,7 @@ public class DataUsageUtils {
         final List<SubscriptionInfo> subInfoList =
                 subscriptionManager.getAvailableSubscriptionInfoList();
         if (subInfoList == null) {
-            Log.i(TAG, "Subscription is not inited: " + subId);
+            if (DEBUG) Log.i(TAG, "Subscription is not inited: " + subId);
             return getMobileTemplateForSubId(telephonyManager, mobileDefaultSubId);
         }
 
@@ -56,7 +57,7 @@ public class DataUsageUtils {
                 return getNormalizedMobileTemplate(telephonyManager, subId);
             }
         }
-        Log.i(TAG, "Subscription is not active: " + subId);
+        if (DEBUG) Log.i(TAG, "Subscription is not active: " + subId);
         return getMobileTemplateForSubId(telephonyManager, mobileDefaultSubId);
     }
 
@@ -66,7 +67,7 @@ public class DataUsageUtils {
         final Set<String> mergedSubscriberIds = Set.of(telephonyManager
                 .createForSubscriptionId(subId).getMergedImsisFromGroup());
         if (ArrayUtils.isEmpty(mergedSubscriberIds)) {
-            Log.i(TAG, "mergedSubscriberIds is null.");
+            if (DEBUG) Log.i(TAG, "mergedSubscriberIds is null.");
             return mobileTemplate;
         }
 

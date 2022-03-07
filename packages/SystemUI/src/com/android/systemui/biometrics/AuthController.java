@@ -103,7 +103,7 @@ public class AuthController extends CoreStartable implements CommandQueue.Callba
         AuthDialogCallback, DozeReceiver {
 
     private static final String TAG = "AuthController";
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
     private static final int SENSOR_PRIVACY_DELAY = 500;
 
     private final Handler mHandler;

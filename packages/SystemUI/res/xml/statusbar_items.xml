@@ -100,6 +100,11 @@
         android:title="@string/status_bar_nfc" />
 
     <com.android.systemui.tuner.StatusBarSwitch
+        android:icon="@drawable/ic_statusbar_roaming"
+        android:key="roaming"
+        android:title="@string/status_bar_roaming" />
+
+    <com.android.systemui.tuner.StatusBarSwitch
         android:icon="@drawable/ic_statusbar_volte"
         android:key="ims"
         android:title="@string/status_bar_ims" />

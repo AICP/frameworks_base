@@ -60,6 +60,7 @@ public class StatusBarSignalPolicy implements SignalCallback,
     private final String mSlotNoCalling;
     private final String mSlotCallStrength;
     private final String mSlotIms;
+    private final String mSlotRoaming = "roaming";
 
     private final Context mContext;
     private final StatusBarIconController mIconController;
@@ -77,6 +78,7 @@ public class StatusBarSignalPolicy implements SignalCallback,
     private boolean mActivityEnabled;
     private boolean mHideVpn;
     private boolean mHideIms;
+    private boolean mHideRoaming;
 
     // Track as little state as possible, and only for padding purposes
     private boolean mIsAirplaneMode = false;
@@ -169,16 +171,19 @@ public class StatusBarSignalPolicy implements SignalCallback,
         boolean hideEthernet = hideList.contains(mSlotEthernet);
         boolean hideVpn = hideList.contains(mSlotVpn);
         boolean hideIms = hideList.contains(mSlotIms);
+        boolean hideRoaming = hideList.contains(mSlotRoaming);
 
         if (hideAirplane != mHideAirplane || hideMobile != mHideMobile
                 || hideEthernet != mHideEthernet || hideWifi != mHideWifi
-                || hideVpn != mHideVpn || hideIms != mHideIms) {
+                || hideVpn != mHideVpn || hideIms != mHideIms
+                || hideRoaming != mHideRoaming) {
             mHideAirplane = hideAirplane;
             mHideMobile = hideMobile;
             mHideEthernet = hideEthernet;
             mHideVpn = hideVpn;
             mHideWifi = hideWifi;
             mHideIms = hideIms;
+            mHideRoaming = hideRoaming;
             // Re-register to get new callbacks.
             mNetworkController.removeCallback(this);
             mNetworkController.addCallback(this);
@@ -284,7 +289,7 @@ public class StatusBarSignalPolicy implements SignalCallback,
         state.contentDescription = indicators.statusIcon.contentDescription;
         state.typeContentDescription = indicators.typeContentDescription;
         state.showTriangle = indicators.showTriangle;
-        state.roaming = indicators.roaming;
+        state.roaming = indicators.roaming && !mHideRoaming;
         state.activityIn = indicators.activityIn && mActivityEnabled;
         state.activityOut = indicators.activityOut && mActivityEnabled;
         state.volteId = indicators.volteId;

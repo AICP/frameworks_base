@@ -217,4 +217,7 @@
 
     <!-- Screenshot Tile -->
     <string name="screenshot_long_press">Long press for partial screenshot</string>
+
+    <!-- Name of the roaming status bar icon. -->
+    <string name="status_bar_roaming">Roaming indicator</string>
 </resources>

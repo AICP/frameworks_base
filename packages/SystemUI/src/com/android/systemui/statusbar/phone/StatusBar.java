@@ -1731,7 +1731,7 @@ public class StatusBar extends SystemUI implements
                 && !mDozing
                 && !ONLY_CORE_APPS;
         mNotificationPanelViewController.setQsExpansionEnabledPolicy(expandEnabled);
-        Log.d(TAG, "updateQsExpansionEnabled - QS Expand enabled: " + expandEnabled);
+        if (DEBUG) Log.d(TAG, "updateQsExpansionEnabled - QS Expand enabled: " + expandEnabled);
     }
 
     public boolean isShadeDisabled() {

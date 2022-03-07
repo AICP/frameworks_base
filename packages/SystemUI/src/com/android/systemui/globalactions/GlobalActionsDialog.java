@@ -917,9 +917,16 @@ public class GlobalActionsDialog implements DialogInterface.OnDismissListener,
         return mWalletPlugin.onPanelShown(this, !mKeyguardStateController.isUnlocked());
     }
 
+    private boolean isPowerActionSecure() {
+        return Settings.Global.getInt(
+                mContentResolver, Settings.Global.LOCKSCREEN_SECURE_POWER_ACTION, 1) != 0;
+    }
+
     private boolean rebootAction(boolean safeMode) {
-        if (mKeyguardStateController.isMethodSecure() && mKeyguardStateController.isShowing()) {
-              mActivityStarter.postQSRunnableDismissingKeyguard(() -> {
+        if (isPowerActionSecure() &&
+          mKeyguardStateController.isMethodSecure() &&
+          mKeyguardStateController.isShowing()) {
+            mActivityStarter.postQSRunnableDismissingKeyguard(() -> {
                 mWindowManagerFuncs.reboot(safeMode);
             });
             return true;

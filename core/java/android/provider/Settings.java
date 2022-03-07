@@ -16204,6 +16204,12 @@ public final class Settings {
         public static final String LOCKSCREEN_ENABLE_POWER_MENU = "lockscreen_enable_power_menu";
 
         /**
+         * Whether lockscreen power actions require pin
+         * @hide
+         */
+        public static final String LOCKSCREEN_SECURE_POWER_ACTION = "lockscreen_secure_power_action";
+
+        /**
          * Audio focus mode for ringtones when headset is connected
          * @hide
          */

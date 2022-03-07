@@ -37,6 +37,7 @@ import java.util.Objects;
 public final class TextClassificationManager {
 
     private static final String LOG_TAG = TextClassifier.LOG_TAG;
+    private static final boolean DEBUG = false;
 
     private static final TextClassificationConstants sDefaultSettings =
             new TextClassificationConstants();
@@ -184,7 +185,7 @@ public final class TextClassificationManager {
         synchronized (mLock) {
             if (getSettings().isSystemTextClassifierEnabled()) {
                 try {
-                    Log.d(LOG_TAG, "Initializing SystemTextClassifier, type = "
+                    if (DEBUG) Log.d(LOG_TAG, "Initializing SystemTextClassifier, type = "
                             + TextClassifier.typeToString(type));
                     return new SystemTextClassifier(
                             mContext,

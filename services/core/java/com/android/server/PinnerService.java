@@ -842,7 +842,7 @@ public final class PinnerService extends SystemService {
                 pinRangeStream = maybeOpenPinMetaInZip(fileAsZip, fileToPin);
             }
 
-            Slog.d(TAG, "pinRangeStream: " + pinRangeStream);
+            if (DEBUG) Slog.d(TAG, "pinRangeStream: " + pinRangeStream);
 
             PinRangeSource pinRangeSource = (pinRangeStream != null)
                 ? new PinRangeSourceStream(pinRangeStream)

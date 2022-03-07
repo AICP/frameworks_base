@@ -462,7 +462,7 @@ public class PeopleSpaceWidgetManager {
                     new ComponentName(mContext, PeopleSpaceWidgetProvider.class)
             );
             if (widgetIds.length == 0) {
-                Log.d(TAG, "No app widget ids returned");
+                if (DEBUG) Log.d(TAG, "No app widget ids returned");
                 return;
             }
             synchronized (mLock) {

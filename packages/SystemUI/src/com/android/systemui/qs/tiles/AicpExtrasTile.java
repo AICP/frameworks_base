@@ -42,10 +42,11 @@ import com.android.systemui.plugins.statusbar.StatusBarStateController;
 import com.android.systemui.qs.QSHost;
 import com.android.systemui.qs.logging.QSLogger;
 import com.android.systemui.qs.tileimpl.QSTileImpl;
+import com.android.systemui.statusbar.policy.KeyguardStateController;
 
 import javax.inject.Inject;
 
-public class AicpExtrasTile extends QSTileImpl<State> {
+public class AicpExtrasTile extends SecureQSTile<State> {
     private boolean mListening;
     private final ActivityStarter mActivityStarter;
 
@@ -70,10 +71,11 @@ public class AicpExtrasTile extends QSTileImpl<State> {
             MetricsLogger metricsLogger,
             StatusBarStateController statusBarStateController,
             ActivityStarter activityStarter,
-            QSLogger qsLogger
+            QSLogger qsLogger,
+            KeyguardStateController keyguardStateController
     ) {
         super(host, backgroundLooper, mainHandler, falsingManager, metricsLogger,
-                statusBarStateController, activityStarter, qsLogger);
+                statusBarStateController, activityStarter, qsLogger, keyguardStateController);
         mActivityStarter = activityStarter;
     }
 
@@ -85,7 +87,11 @@ public class AicpExtrasTile extends QSTileImpl<State> {
     }
 
     @Override
-    protected void handleClick(@Nullable View view) {
+    protected void handleClick(@Nullable View view, boolean keyguardShowing) {
+        if (checkKeyguard(view, keyguardShowing)) {
+            return;
+        }
+
         mHost.collapsePanels();
         startAicpExtras();
         refreshState();

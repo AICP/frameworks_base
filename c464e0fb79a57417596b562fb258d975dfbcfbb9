@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "100382a0_7c32306b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2022-03-10T15:52:51Z",
+      "side": 1,
+      "message": "Test:\n- Compiles\n- Toggle the switch to OFF from AE \u003e Lockscreen\n- Have lockscreen set to PIN\n- Lock the device\n- Long press the power button to reveal Power menu\n  - Select Reboot, the device shouldn\u0027t ask for PIN and reboot\n  - Select Power Off, the device shouldn\u0027t ask for PIN and switch off",
+      "revId": "c464e0fb79a57417596b562fb258d975dfbcfbb9",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7c9c4465_3b39c723",
         "filename": "packages/SystemUI/src/com/android/systemui/globalactions/GlobalActionsDialog.java",
         "patchSetId": 1

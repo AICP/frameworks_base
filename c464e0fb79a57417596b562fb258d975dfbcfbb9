@@ -16,6 +16,52 @@
       "message": "okay for me.",
       "revId": "c464e0fb79a57417596b562fb258d975dfbcfbb9",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c9c4465_3b39c723",
+        "filename": "packages/SystemUI/src/com/android/systemui/globalactions/GlobalActionsDialog.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1012,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2022-03-10T09:57:19Z",
+      "side": 1,
+      "message": "Poweroff is handled here, don\u0027t we need the check here too?",
+      "range": {
+        "startLine": 1012,
+        "startChar": 41,
+        "endLine": 1012,
+        "endChar": 57
+      },
+      "revId": "c464e0fb79a57417596b562fb258d975dfbcfbb9",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13087216_c9f5ac86",
+        "filename": "packages/SystemUI/src/com/android/systemui/globalactions/GlobalActionsDialog.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2106,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2022-03-10T09:57:19Z",
+      "side": 1,
+      "message": "All other advanced ones(recovery, bootloader...) are handled here\n\nMight not be required",
+      "range": {
+        "startLine": 2106,
+        "startChar": 41,
+        "endLine": 2106,
+        "endChar": 57
+      },
+      "revId": "c464e0fb79a57417596b562fb258d975dfbcfbb9",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

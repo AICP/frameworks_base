@@ -726,6 +726,14 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
                     (mCurrentState.dataConnected && mCurrentState.isDefault) || dataDisabled;
             typeIcon =
                     ((showDataIconInStatusBar || mConfig.alwaysShowDataRatIcon) && getVolteResId() == 0) ? dataTypeIcon : 0;
+            MobileIconGroup vowifiIconGroup = getVowifiIconGroup();
+            if (vowifiIconGroup != null && (mVoWiFiIcon >= 1)) {
+                typeIcon = vowifiIconGroup.dataType;
+                statusIcon = new IconState(true,
+                        mCurrentState.enabled && !mCurrentState.airplaneMode? statusIcon.icon : -1,
+                        statusIcon.contentDescription);
+            }
+
             showTriangle = mCurrentState.enabled && !mCurrentState.airplaneMode;
         }
 
@@ -1097,8 +1105,8 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
     }
 
     private int getDataNetworkType() {
-        return mServiceState != null ?
-                mServiceState.getDataNetworkType() : TelephonyManager.NETWORK_TYPE_UNKNOWN;
+        return mCurrentState != null ?
+                mCurrentState.getDataNetworkType() : TelephonyManager.NETWORK_TYPE_UNKNOWN;
     }
 
     public boolean isVowifiAvailable() {

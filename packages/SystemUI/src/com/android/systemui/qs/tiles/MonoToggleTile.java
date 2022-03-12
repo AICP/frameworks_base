@@ -36,7 +36,7 @@ import com.android.systemui.dagger.qualifiers.Background;
 import com.android.systemui.dagger.qualifiers.Main;
 import com.android.systemui.plugins.ActivityStarter;
 import com.android.systemui.plugins.FalsingManager;
-import com.android.systemui.plugins.qs.QSTile.BooleanState;
+import com.android.systemui.plugins.qs.QSTile.State;
 import com.android.systemui.plugins.statusbar.StatusBarStateController;
 import com.android.systemui.qs.QSHost;
 import com.android.systemui.qs.logging.QSLogger;
@@ -45,7 +45,7 @@ import com.android.systemui.qs.tileimpl.QSTileImpl;
 import javax.inject.Inject;
 
 /** Quick settings tile: MonoToggleTile **/
-public class MonoToggleTile extends QSTileImpl<BooleanState> {
+public class MonoToggleTile extends QSTileImpl<State> {
 
     @Inject
     public MonoToggleTile(
@@ -63,8 +63,8 @@ public class MonoToggleTile extends QSTileImpl<BooleanState> {
     }
 
     @Override
-    public BooleanState newTileState() {
-        BooleanState state = new BooleanState();
+    public State newTileState() {
+        State state = new State();
         state.handlesLongClick = true;
         return state;
     }
@@ -102,14 +102,15 @@ public class MonoToggleTile extends QSTileImpl<BooleanState> {
     }
 
     @Override
-    protected void handleUpdateState(BooleanState state, Object arg) {
+    protected void handleUpdateState(State state, Object arg) {
+        state.label = mContext.getString(R.string.quick_settings_monotoggle_tile);
         if (isMonoEnabled()) {
-            state.label = mContext.getString(R.string.quick_settings_monotoggle_tile_mono);
+            state.secondaryLabel = mContext.getString(R.string.quick_settings_monotoggle_tile_mono);
             state.icon = ResourceIcon.get(R.drawable.ic_mono_toggle_on);
             state.contentDescription =  mContext.getString(
                     R.string.quick_settings_monotoggle_tile_mono);
         } else {
-            state.label = mContext.getString(R.string.quick_settings_monotoggle_tile_stereo);
+            state.secondaryLabel = mContext.getString(R.string.quick_settings_monotoggle_tile_stereo);
             state.icon = ResourceIcon.get(R.drawable.ic_mono_toggle_off);
             state.contentDescription =  mContext.getString(
                     R.string.quick_settings_monotoggle_tile_stereo);

@@ -36,7 +36,7 @@ import com.android.systemui.dagger.qualifiers.Background;
 import com.android.systemui.dagger.qualifiers.Main;
 import com.android.systemui.plugins.ActivityStarter;
 import com.android.systemui.plugins.FalsingManager;
-import com.android.systemui.plugins.qs.QSTile.BooleanState;
+import com.android.systemui.plugins.qs.QSTile.State;
 import com.android.systemui.plugins.statusbar.StatusBarStateController;
 import com.android.systemui.qs.QSHost;
 import com.android.systemui.qs.logging.QSLogger;
@@ -44,7 +44,7 @@ import com.android.systemui.qs.tileimpl.QSTileImpl;
 
 import javax.inject.Inject;
 
-public class VolumeTile extends QSTileImpl<BooleanState> {
+public class VolumeTile extends QSTileImpl<State> {
 
     private static final Intent SOUND_SETTINGS = new Intent(Settings.Panel.ACTION_VOLUME);
 
@@ -75,7 +75,7 @@ public class VolumeTile extends QSTileImpl<BooleanState> {
     }
 
     @Override
-    protected void handleUpdateState(BooleanState state, Object arg) {
+    protected void handleUpdateState(State state, Object arg) {
         state.label = mContext.getString(R.string.quick_settings_volume_panel_label);
         state.icon = ResourceIcon.get(R.drawable.ic_qs_volume_panel); // TODO needs own icon
         state.state = Tile.STATE_INACTIVE;
@@ -92,8 +92,8 @@ public class VolumeTile extends QSTileImpl<BooleanState> {
     }
 
     @Override
-    public BooleanState newTileState() {
-        return new BooleanState();
+    public State newTileState() {
+        return new State();
     }
 
     @Override

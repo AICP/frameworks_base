@@ -103,11 +103,12 @@ public class RebootTile extends QSTileImpl<BooleanState> {
     @Override
     protected void handleUpdateState(BooleanState state, Object arg) {
         state.state = Tile.STATE_INACTIVE;
+        state.label = mContext.getString(R.string.quick_settings_reboot_label);
         if (mRebootToRecovery) {
-            state.label = mContext.getString(R.string.quick_settings_reboot_recovery_label);
+            state.secondaryLabel = mContext.getString(R.string.quick_settings_reboot_recovery_label);
             state.icon = ResourceIcon.get(R.drawable.ic_qs_reboot_recovery);
         } else {
-            state.label = mContext.getString(R.string.quick_settings_reboot_label);
+            state.secondaryLabel = mContext.getString(R.string.quick_settings_reboot_system_label);
             state.icon = ResourceIcon.get(R.drawable.ic_qs_reboot);
         }
     }

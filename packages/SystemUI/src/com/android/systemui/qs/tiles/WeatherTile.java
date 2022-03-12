@@ -75,6 +75,7 @@ public class WeatherTile extends QSTileImpl<BooleanState> implements OmniJawsCli
     private OmniJawsClient mWeatherClient;
     private Drawable mWeatherImage;
     private String mWeatherLabel;
+    private String mWeatherSecLabel;
     private DetailedWeatherView mDetailedView;
     private OmniJawsClient.WeatherInfo mWeatherData;
     private boolean mEnabled;
@@ -206,13 +207,16 @@ public class WeatherTile extends QSTileImpl<BooleanState> implements OmniJawsCli
         if (mEnabled) {
             if (mWeatherImage == null) {
                 state.label = mContext.getResources().getString(R.string.omnijaws_label_default);
+                state.secondaryLabel = null;
             } else {
                 state.icon = new DrawableIcon(mWeatherImage);
                 state.label = mWeatherLabel;
+                state.secondaryLabel = mWeatherSecLabel;
             }
         } else {
             mWeatherImage = null;
             state.label = mContext.getResources().getString(R.string.omnijaws_label_default);
+            state.secondaryLabel = null;
         }
     }
 
@@ -234,6 +238,7 @@ public class WeatherTile extends QSTileImpl<BooleanState> implements OmniJawsCli
                             mWeatherData.conditionCode, true /* force loading from default pack */);
                     mWeatherImage = mWeatherImage.mutate();
                     mWeatherLabel = mWeatherData.temp + mWeatherData.tempUnits;
+                    mWeatherSecLabel = mWeatherData.condition;
                 } else {
                     mWeatherLabel = mContext.getResources().getString(R.string.omnijaws_service_unkown);
                 }

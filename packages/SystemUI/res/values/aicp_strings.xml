@@ -90,6 +90,7 @@
 
     <!-- Reboot/Recovery QS Tile -->
     <string name="quick_settings_reboot_label">Reboot</string>
+    <string name="quick_settings_reboot_system_label">System</string>
     <string name="quick_settings_reboot_recovery_label">Recovery</string>
 
     <!-- Compass QS Tile -->
@@ -257,8 +258,8 @@
 
     <!-- Mono QS tile -->
     <string name="quick_settings_monotoggle_tile">Audio mode</string>
-    <string name="quick_settings_monotoggle_tile_mono">Mono audio</string>
-    <string name="quick_settings_monotoggle_tile_stereo">Stereo audio</string>
+    <string name="quick_settings_monotoggle_tile_mono">Mono</string>
+    <string name="quick_settings_monotoggle_tile_stereo">Stereo</string>
 
     <!-- Google Lens Screenshot string -->
     <string name="lensss">Lens</string>

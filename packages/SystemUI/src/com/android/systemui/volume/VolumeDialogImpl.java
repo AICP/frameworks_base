@@ -106,6 +106,7 @@ import androidx.annotation.Nullable;
 import com.android.internal.graphics.drawable.BackgroundBlurDrawable;
 import com.android.internal.view.RotationPolicy;
 import com.android.settingslib.Utils;
+import com.android.systemui.Dependency;
 import com.android.systemui.Prefs;
 import com.android.systemui.R;
 import com.android.systemui.animation.Interpolators;
@@ -659,9 +660,9 @@ public class VolumeDialogImpl implements VolumeDialog,
         return (int) (alpha * 255);
     }
 
-    private boolean shouldSlideInVolumeTray() {
+    /* private boolean shouldSlideInVolumeTray() {
         return mContext.getDisplay().getRotation() != RotationPolicy.NATURAL_ROTATION;
-    }
+    } */
 
     private boolean isLandscape() {
         return mContext.getResources().getConfiguration().orientation ==

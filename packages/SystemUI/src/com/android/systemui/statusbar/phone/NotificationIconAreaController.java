@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.UserHandle;
+import android.os.Trace;
 import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;

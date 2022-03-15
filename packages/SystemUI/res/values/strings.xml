@@ -1437,6 +1437,7 @@
 
     <!-- Summary of battery saver not available [CHAR LIMIT=NONE] -->
 
+    <string name="battery_detail_switch_summary">Reduces performance and background data</string>
     <!-- Title of switch for battery saver [CHAR LIMIT=NONE] -->
     <string name="battery_detail_switch_title">Battery Saver</string>
 

@@ -163,4 +163,10 @@
     <!-- Aicp Extras Tile -->
     <string name="quick_aicp_extras_label">AICP Extras</string>
     <string name="quick_aicp_extras_toast">LOL, you really thought that long click will take you somewhere!!!</string>
+
+    <!-- Summary of battery saver not available [CHAR LIMIT=NONE] -->
+    <string name="battery_detail_charging_summary">Battery Saver not available during charging</string>
+
+    <!-- Title of the battery settings detail panel [CHAR LIMIT=20] -->
+    <string name="battery_panel_title">Battery usage</string>
 </resources>

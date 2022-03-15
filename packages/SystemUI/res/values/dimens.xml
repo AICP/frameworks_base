@@ -300,6 +300,9 @@
 
     <dimen name="navigation_key_padding">0dp</dimen>
 
+    <!-- The width of the view containing the menu/ime navigation bar icons -->
+    <dimen name="navigation_extra_key_width">36dp</dimen>
+
     <!-- The padding on the side of the navigation bar. Must be greater than or equal to
          navigation_extra_key_width -->
     <dimen name="navigation_side_padding">36dp</dimen>

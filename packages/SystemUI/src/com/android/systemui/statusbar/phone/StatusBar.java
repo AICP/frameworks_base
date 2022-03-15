@@ -78,6 +78,7 @@ import android.graphics.drawable.Drawable;
 import android.hardware.display.DisplayManager;
 import android.metrics.LogMaker;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -1018,7 +1019,7 @@ public class StatusBar extends SystemUI implements
             Log.v(TAG, "start(): no wallpaper service ");
         }
 
-        mAicpSettingsObserver = new AicpSettingsObserver(mHandler);
+        mAicpSettingsObserver = new AicpSettingsObserver(mMainHandler);
         mAicpSettingsObserver.observe();
         mAicpSettingsObserver.update();
 
@@ -1171,10 +1172,10 @@ public class StatusBar extends SystemUI implements
         mNotificationShadeWindowView.setOnTouchListener(getStatusBarWindowTouchListener());
         mWallpaperController.setRootView(mNotificationShadeWindowView);
 
-        mMinBrightness = context.getResources().getInteger(
+        mMinBrightness = mContext.getResources().getInteger(
                 com.android.internal.R.integer.config_screenBrightnessDim);
 
-        mQuickQsTotalHeight = context.getResources().getDimensionPixelSize(
+        mQuickQsTotalHeight = mContext.getResources().getDimensionPixelSize(
             com.android.internal.R.dimen.quick_qs_offset_height);
 
         // TODO: Deal with the ugliness that comes from having some of the statusbar broken out
@@ -2051,7 +2052,7 @@ public class StatusBar extends SystemUI implements
         }
     }
 
-    @Override
+    /* @Override
     public void toggleCameraFlash() {
         if (DEBUG) {
             Log.d(TAG, "Toggling camera flashlight");
@@ -2062,9 +2063,9 @@ public class StatusBar extends SystemUI implements
                 mFlashlightController.setFlashlight(!mFlashlightController.isEnabled());
             }
         }
-    }
+    } */
 
-    @Override
+    /* @Override
     public void toggleCameraFlashState(boolean enable) {
         if (DEBUG) {
             Log.d(TAG, "Disabling camera flashlight");
@@ -2075,7 +2076,7 @@ public class StatusBar extends SystemUI implements
                 mFlashlightController.setFlashlight(enable);
             }
         }
-    }
+    } */
 
     void makeExpandedVisible(boolean force) {
         if (SPEW) Log.d(TAG, "Make expanded visible: expanded visible=" + mExpandedVisible);
@@ -2213,7 +2214,7 @@ public class StatusBar extends SystemUI implements
         if (mBrightnessControl) {
             brightnessControl(event);
             if ((mDisabled1 & StatusBarManager.DISABLE_EXPAND) != 0) {
-                return true;
+                return; //true;
             }
         }
 
@@ -4658,8 +4659,8 @@ public class StatusBar extends SystemUI implements
                 mInitialTouchX = x;
                 mInitialTouchY = y;
                 mJustPeeked = true;
-                mHandler.removeCallbacks(mLongPressBrightnessChange);
-                mHandler.postDelayed(mLongPressBrightnessChange,
+                mMainHandler.removeCallbacks(mLongPressBrightnessChange);
+                mMainHandler.postDelayed(mLongPressBrightnessChange,
                         BRIGHTNESS_CONTROL_LONG_PRESS_TIMEOUT);
             }
         } else if (action == MotionEvent.ACTION_MOVE) {
@@ -4674,18 +4675,18 @@ public class StatusBar extends SystemUI implements
                         mLinger++;
                     }
                     if (xDiff > touchSlop || yDiff > touchSlop) {
-                        mHandler.removeCallbacks(mLongPressBrightnessChange);
+                        mMainHandler.removeCallbacks(mLongPressBrightnessChange);
                     }
                 }
             } else {
                 if (y > mQuickQsTotalHeight) {
                     mJustPeeked = false;
                 }
-                mHandler.removeCallbacks(mLongPressBrightnessChange);
+                mMainHandler.removeCallbacks(mLongPressBrightnessChange);
             }
         } else if (action == MotionEvent.ACTION_UP
                 || action == MotionEvent.ACTION_CANCEL) {
-            mHandler.removeCallbacks(mLongPressBrightnessChange);
+            mMainHandler.removeCallbacks(mLongPressBrightnessChange);
         }
     }
 

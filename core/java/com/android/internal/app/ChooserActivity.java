@@ -163,6 +163,8 @@ public class ChooserActivity extends ResolverActivity implements
     private AppPredictor mWorkAppPredictor;
     private boolean mShouldDisplayLandscape;
 
+    private static final int MAX_TARGETS_PER_ROW_LANDSCAPE = 8;
+
     @UnsupportedAppUsage
     public ChooserActivity() {
     }

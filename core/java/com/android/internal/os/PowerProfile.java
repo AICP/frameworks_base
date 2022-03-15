@@ -46,8 +46,6 @@ import java.util.HashMap;
 public class PowerProfile {
     private static final String TAG = "PowerProfile";
 
-    public static final String TAG = "PowerProfile";
-
     /*
      * POWER_CPU_SUSPEND: Power consumption when CPU is in power collapse mode.
      * POWER_CPU_IDLE: Power consumption when CPU is awake (when a wake lock is held). This should

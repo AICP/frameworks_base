@@ -792,7 +792,7 @@ public class GlobalActionsDialogLite implements DialogInterface.OnDismissListene
 
     @Override
     public void onConfigChanged(Configuration newConfig) {
-        if (mDialog != null) {
+        if ((mDialog != null)
                 && (newConfig.smallestScreenWidthDp != mSmallestScreenWidthDp)) {
             mSmallestScreenWidthDp = newConfig.smallestScreenWidthDp;
             mDialog.refreshDialog();
@@ -2030,7 +2030,7 @@ public class GlobalActionsDialogLite implements DialogInterface.OnDismissListene
         public View create(
                 Context context, View convertView, ViewGroup parent, LayoutInflater inflater) {
             mContext = context;
-            View v = inflater.inflate(com.android.systemui.R.layout.global_actions_item, parent,
+            View v = inflater.inflate(R.layout.global_actions_item, parent,
                     false);
 
             TextView messageView = (TextView) v.findViewById(R.id.message);

@@ -37,7 +37,6 @@ public class AudioPatch {
     private final AudioPortConfig[] mSources;
     private final AudioPortConfig[] mSinks;
 
-    @UnsupportedAppUsage(maxTargetSdk = Build.VERSION_CODES.R, trackingBug = 170729553)
     AudioPatch(AudioHandle patchHandle, AudioPortConfig[] sources, AudioPortConfig[] sinks) {
         mHandle = patchHandle;
         mSources = sources;

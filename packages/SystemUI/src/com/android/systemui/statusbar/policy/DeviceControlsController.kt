@@ -24,7 +24,7 @@ interface DeviceControlsController {
         /**
          * If controls become available, initiate this callback with the desired position
          */
-        fun onControlsUpdate(position: Int?)
+        fun onControlsAvailable(position: Int)
 
         fun removeControlsAutoTracker()
     }

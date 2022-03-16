@@ -19,7 +19,6 @@ package com.android.systemui.statusbar.policy
 import android.content.ComponentName
 import android.content.Context
 import android.content.pm.ServiceInfo
-import android.provider.Settings
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
@@ -39,7 +38,6 @@ import com.android.systemui.statusbar.policy.DeviceControlsControllerImpl.Compan
 import com.android.systemui.statusbar.policy.DeviceControlsControllerImpl.Companion.QS_DEFAULT_POSITION
 import com.android.systemui.statusbar.policy.DeviceControlsControllerImpl.Companion.QS_PRIORITY_POSITION
 import com.android.systemui.util.mockito.mock
-import com.android.systemui.util.settings.SecureSettings
 
 import java.util.Optional
 import java.util.function.Consumer
@@ -79,8 +77,6 @@ class DeviceControlsControllerImplTest : SysuiTestCase() {
     private lateinit var serviceInfo: ServiceInfo
     @Mock
     private lateinit var userContextProvider: UserContextProvider
-    @Mock
-    private lateinit var secureSettings: SecureSettings
     @Captor
     private lateinit var seedCallback: ArgumentCaptor<Consumer<SeedResponse>>
 
@@ -108,11 +104,8 @@ class DeviceControlsControllerImplTest : SysuiTestCase() {
         controller = DeviceControlsControllerImpl(
             mContext,
             controlsComponent,
-            userContextProvider,
-            secureSettings
+            userContextProvider
         )
-
-        `when`(secureSettings.getInt(Settings.Secure.CONTROLS_ENABLED, 1)).thenReturn(1)
 
         `when`(serviceInfo.componentName).thenReturn(TEST_COMPONENT)
         controlsServiceInfo = ControlsServiceInfo(mContext, serviceInfo)
@@ -130,16 +123,7 @@ class DeviceControlsControllerImplTest : SysuiTestCase() {
 
         verify(controlsListingController).addCallback(capture(listingCallbackCaptor))
         listingCallbackCaptor.value.onServicesUpdated(emptyList())
-        verify(callback, never()).onControlsUpdate(anyInt())
-    }
-
-    @Test
-    fun testCallbackWithNullValueWhenSettingIsDisabled() {
-        `when`(secureSettings.getInt(Settings.Secure.CONTROLS_ENABLED, 1)).thenReturn(0)
-        controller.setCallback(callback)
-
-        verify(controlsListingController, never()).addCallback(any())
-        verify(callback).onControlsUpdate(null)
+        verify(callback, never()).onControlsAvailable(anyInt())
     }
 
     @Test
@@ -149,7 +133,7 @@ class DeviceControlsControllerImplTest : SysuiTestCase() {
 
         verify(controlsListingController).addCallback(capture(listingCallbackCaptor))
         listingCallbackCaptor.value.onServicesUpdated(listOf(controlsServiceInfo))
-        verify(callback).onControlsUpdate(QS_PRIORITY_POSITION)
+        verify(callback).onControlsAvailable(QS_PRIORITY_POSITION)
     }
 
     @Test
@@ -169,7 +153,7 @@ class DeviceControlsControllerImplTest : SysuiTestCase() {
             capture(seedCallback)
         )
         seedCallback.value.accept(SeedResponse(TEST_PKG, true))
-        verify(callback).onControlsUpdate(QS_DEFAULT_POSITION)
+        verify(callback).onControlsAvailable(QS_DEFAULT_POSITION)
     }
 
     @Test
@@ -180,6 +164,6 @@ class DeviceControlsControllerImplTest : SysuiTestCase() {
         controller.setCallback(callback)
 
         verify(callback).removeControlsAutoTracker()
-        verify(callback, never()).onControlsUpdate(anyInt())
+        verify(callback, never()).onControlsAvailable(anyInt())
     }
 }

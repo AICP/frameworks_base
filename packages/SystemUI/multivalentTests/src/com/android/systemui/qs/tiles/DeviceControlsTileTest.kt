@@ -109,6 +109,7 @@ class DeviceControlsTileTest : SysuiTestCase() {
         spiedContext = spy(mContext)
         doNothing().`when`(spiedContext).startActivity(any(Intent::class.java))
         `when`(qsHost.context).thenReturn(spiedContext)
+        `when`(controlsController.available).thenReturn(true)
         `when`(controlsComponent.isEnabled()).thenReturn(true)
         `when`(controlsController.getPreferredSelection())
             .thenReturn(
@@ -172,6 +173,14 @@ class DeviceControlsTileTest : SysuiTestCase() {
         tile = createTile()
 
         assertThat(tile.isAvailable).isFalse()
+    }
+
+    @Test
+    fun testAvailableControlsSettingOff() {
+        `when`(controlsController.available).thenReturn(false)
+
+        tile = createTile()
+        assertThat(tile.isAvailable).isTrue()
     }
 
     @Test

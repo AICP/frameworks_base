@@ -20,12 +20,14 @@ import android.app.PendingIntent
 import android.app.backup.BackupManager
 import android.content.BroadcastReceiver
 import android.content.ComponentName
+import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.database.ContentObserver
 import android.net.Uri
 import android.os.UserHandle
+import android.provider.Settings
 import android.service.controls.Control
 import android.service.controls.actions.ControlAction
 import android.util.ArrayMap
@@ -71,10 +73,15 @@ class ControlsControllerImpl @Inject constructor (
 
     companion object {
         private const val TAG = "ControlsControllerImpl"
+        internal const val CONTROLS_AVAILABLE = Settings.Secure.CONTROLS_ENABLED
+        internal val URI = Settings.Secure.getUriFor(CONTROLS_AVAILABLE)
         private const val USER_CHANGE_RETRY_DELAY = 500L // ms
         private const val DEFAULT_ENABLED = 1
         private const val PERMISSION_SELF = "com.android.systemui.permission.SELF"
         const val SUGGESTED_CONTROLS_PER_STRUCTURE = 6
+
+        private fun isAvailable(userId: Int, cr: ContentResolver) = Settings.Secure.getIntForUser(
+            cr, CONTROLS_AVAILABLE, DEFAULT_ENABLED, userId) != 0
     }
 
     private var userChanging: Boolean = true
@@ -86,6 +93,12 @@ class ControlsControllerImpl @Inject constructor (
     private var currentUser = userTracker.userHandle
     override val currentUserId
         get() = currentUser.identifier
+
+    private val contentResolver: ContentResolver
+        get() = context.contentResolver
+
+    override var available = isAvailable(currentUserId, contentResolver)
+        private set
 
     private val persistenceWrapper: ControlsFavoritePersistenceWrapper
     @VisibleForTesting
@@ -117,7 +130,8 @@ class ControlsControllerImpl @Inject constructor (
                 BackupManager(userStructure.userContext)
         )
         auxiliaryPersistenceWrapper.changeFile(userStructure.auxiliaryFile)
-        resetFavorites()
+        available = isAvailable(newUser.identifier, contentResolver)
+        resetFavorites(available)
         bindingController.changeUser(newUser)
         listingController.changeUser(newUser)
         userChanging = false
@@ -141,7 +155,7 @@ class ControlsControllerImpl @Inject constructor (
                     Log.d(TAG, "Restore finished, storing auxiliary favorites")
                     auxiliaryPersistenceWrapper.initialize()
                     persistenceWrapper.storeFavorites(auxiliaryPersistenceWrapper.favorites)
-                    resetFavorites()
+                    resetFavorites(available)
                 }
             }
         }
@@ -160,7 +174,8 @@ class ControlsControllerImpl @Inject constructor (
             if (userChanging || userId != currentUserId) {
                 return
             }
-            resetFavorites()
+            available = isAvailable(currentUserId, contentResolver)
+            resetFavorites(available)
         }
     }
 
@@ -228,7 +243,7 @@ class ControlsControllerImpl @Inject constructor (
 
     init {
         dumpManager.registerDumpable(this)
-        resetFavorites()
+        resetFavorites(available)
         userChanging = false
         context.registerReceiver(
             restoreFinishedReceiver,
@@ -237,27 +252,35 @@ class ControlsControllerImpl @Inject constructor (
             null,
             Context.RECEIVER_NOT_EXPORTED
         )
+        contentResolver.registerContentObserver(URI, false, settingObserver, UserHandle.USER_ALL)
         listingController.addCallback(listingCallback)
     }
 
     fun destroy() {
         context.unregisterReceiver(restoreFinishedReceiver)
+        contentResolver.unregisterContentObserver(settingObserver)
         listingController.removeCallback(listingCallback)
     }
 
-    private fun resetFavorites() {
+    private fun resetFavorites(shouldLoad: Boolean) {
         Favorites.clear()
-        Favorites.load(persistenceWrapper.readFavorites())
-        // After loading favorites, add the package names of any apps with favorites to the list
-        // of authorized panels. That way, if the user has previously favorited controls for an app,
-        // that panel will be authorized.
-        authorizedPanelsRepository.addAuthorizedPanels(
-                Favorites.getAllStructures().map { it.componentName.packageName }.toSet())
+        if (shouldLoad) {
+            Favorites.load(persistenceWrapper.readFavorites())
+            // After loading favorites, add the package names of any apps with favorites to the list
+            // of authorized panels. That way, if the user has previously favorited controls for an app,
+            // that panel will be authorized.
+            authorizedPanelsRepository.addAuthorizedPanels(
+                    Favorites.getAllStructures().map { it.componentName.packageName }.toSet())
+        }
     }
 
     private fun confirmAvailability(): Boolean {
         if (userChanging) {
             Log.w(TAG, "Controls not available while user is changing")
+            return false
+        }
+        if (!available) {
+            Log.d(TAG, "Controls not available")
             return false
         }
         return true
@@ -580,6 +603,7 @@ class ControlsControllerImpl @Inject constructor (
 
     override fun dump(pw: PrintWriter, args: Array<out String>) {
         pw.println("ControlsController state:")
+        pw.println("  Available: $available")
         pw.println("  Changing users: $userChanging")
         pw.println("  Current user: ${currentUser.identifier}")
         pw.println("  Favorites:")

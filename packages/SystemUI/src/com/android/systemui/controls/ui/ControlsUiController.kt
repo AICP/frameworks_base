@@ -24,6 +24,8 @@ import android.view.ViewGroup
 import com.android.systemui.controls.controller.StructureInfo
 
 interface ControlsUiController {
+    val available: Boolean
+
     companion object {
         public const val TAG = "ControlsUiController"
         public const val EXTRA_ANIMATE = "extra_animate"

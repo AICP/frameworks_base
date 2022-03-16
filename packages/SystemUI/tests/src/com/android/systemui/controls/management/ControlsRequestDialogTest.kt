@@ -113,6 +113,7 @@ class ControlsRequestDialogTest : SysuiTestCase() {
         intent.putExtra(ControlsProviderService.EXTRA_CONTROL, control)
 
         `when`(controller.currentUserId).thenReturn(USER_ID)
+        `when`(controller.available).thenReturn(true)
         `when`(listingController.getAppLabel(CONTROL_COMPONENT)).thenReturn(LABEL)
         `when`(controller.getFavoritesForComponent(CONTROL_COMPONENT)).thenReturn(emptyList())
 

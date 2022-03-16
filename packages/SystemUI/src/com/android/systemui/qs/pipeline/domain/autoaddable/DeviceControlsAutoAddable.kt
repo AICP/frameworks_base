@@ -47,7 +47,7 @@ constructor(
         return conflatedCallbackFlow {
             val callback =
                 object : DeviceControlsController.Callback {
-                    override fun onControlsUpdate(position: Int?) {
+                    override fun onControlsAvailable(position: Int) {
                         position?.let { trySend(AutoAddSignal.Add(spec, position)) }
                         deviceControlsController.removeCallback()
                     }

@@ -106,6 +106,7 @@ class ControlsComponentTest : SysuiTestCase() {
 
     @Test
     fun testFeatureEnabledAfterBootVisibility() {
+        `when`(controller.available).thenReturn(true)
         `when`(lockPatternUtils.getStrongAuthForUser(anyInt()))
             .thenReturn(STRONG_AUTH_REQUIRED_AFTER_BOOT)
         val component = setupComponent(true)
@@ -115,6 +116,7 @@ class ControlsComponentTest : SysuiTestCase() {
 
     @Test
     fun testFeatureEnabledAndCannotShowOnLockScreenVisibility() {
+        `when`(controller.available).thenReturn(true)
         `when`(lockPatternUtils.getStrongAuthForUser(anyInt())).thenReturn(STRONG_AUTH_NOT_REQUIRED)
         `when`(keyguardStateController.isUnlocked()).thenReturn(false)
         controlsSettingsRepository.setCanShowControlsInLockscreen(false)
@@ -125,6 +127,7 @@ class ControlsComponentTest : SysuiTestCase() {
 
     @Test
     fun testFeatureEnabledAndCanShowOnLockScreenVisibility() {
+        `when`(controller.available).thenReturn(true)
         `when`(lockPatternUtils.getStrongAuthForUser(anyInt())).thenReturn(STRONG_AUTH_NOT_REQUIRED)
         `when`(keyguardStateController.isUnlocked()).thenReturn(false)
         controlsSettingsRepository.setCanShowControlsInLockscreen(true)
@@ -136,6 +139,7 @@ class ControlsComponentTest : SysuiTestCase() {
     @Test
     fun testFeatureEnabledAndCanShowWhileUnlockedVisibility() {
         controlsSettingsRepository.setCanShowControlsInLockscreen(false)
+        `when`(controller.available).thenReturn(true)
         `when`(lockPatternUtils.getStrongAuthForUser(anyInt())).thenReturn(STRONG_AUTH_NOT_REQUIRED)
         `when`(keyguardStateController.isUnlocked()).thenReturn(true)
         val component = setupComponent(true)

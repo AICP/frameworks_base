@@ -30,9 +30,10 @@ interface ControlsUiController {
         public const val TAG = "ControlsUiController"
         public const val EXTRA_ANIMATE = "extra_animate"
         public const val EXIT_TO_DREAM = "extra_exit_to_dream"
+        public const val BACK_TO_GLOBAL_ACTIONS = "back_to_global_actions"
     }
 
-    fun show(parent: ViewGroup, onDismiss: Runnable, activityContext: Context)
+    fun show(parent: ViewGroup, onDismiss: Runnable, activityContext: Context?)
 
     /**
      * Hide the controls content if it's attached to this parent.

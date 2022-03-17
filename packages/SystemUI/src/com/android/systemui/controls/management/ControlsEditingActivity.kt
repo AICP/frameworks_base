@@ -40,7 +40,9 @@ import com.android.systemui.controls.CustomIconCache
 import com.android.systemui.controls.controller.ControlsControllerImpl
 import com.android.systemui.controls.controller.StructureInfo
 import com.android.systemui.controls.ui.ControlsActivity
+import com.android.systemui.controls.ui.ControlsUiController
 import com.android.systemui.dagger.qualifiers.Main
+import com.android.systemui.globalactions.GlobalActionsComponent
 import com.android.systemui.res.R
 import com.android.systemui.settings.UserTracker
 import com.android.systemui.utils.SafeIconLoader
@@ -57,6 +59,8 @@ constructor(
     private val customIconCache: CustomIconCache,
     private val controlsListingController: ControlsListingController,
     private val safeIconLoaderFactory: SafeIconLoader.Factory,
+    private val globalActionsComponent: GlobalActionsComponent,
+    private val uiController: ControlsUiController,
 ) : ComponentActivity(), ControlsManagementActivity {
 
     companion object {
@@ -78,6 +82,8 @@ constructor(
     private lateinit var subtitle: TextView
     private lateinit var saveButton: View
     private lateinit var addControls: View
+
+    private var backToGlobalActions = false
 
     private var isFromFavoriting: Boolean = false
 
@@ -108,6 +114,11 @@ constructor(
         } ?: run(this::finish)
         isFromFavoriting = intent.getBooleanExtra(EXTRA_FROM_FAVORITING, false)
         intent.getCharSequenceExtra(EXTRA_STRUCTURE)?.let { structure = it } ?: run(this::finish)
+
+        backToGlobalActions = intent.getBooleanExtra(
+            ControlsUiController.BACK_TO_GLOBAL_ACTIONS,
+            false
+        )
 
         bindViews()
 
@@ -140,6 +151,15 @@ constructor(
     }
 
     override fun onBackPressed() {
+        if (backToGlobalActions) {
+            globalActionsComponent.handleShowGlobalActionsMenu()
+        } else {
+            val i = Intent().apply {
+                component = ComponentName(applicationContext, ControlsActivity::class.java)
+                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
+            startActivity(i)
+        }
         animateExitAndFinish()
     }
 
@@ -223,12 +243,7 @@ constructor(
                 setText(R.string.save)
                 setOnClickListener {
                     saveFavorites()
-                    startActivity(
-                        Intent(applicationContext, ControlsActivity::class.java),
-                        ActivityOptions.makeSceneTransitionAnimation(this@ControlsEditingActivity)
-                            .toBundle(),
-                    )
-                    animateExitAndFinish()
+                    onBackPressed()
                 }
             }
     }

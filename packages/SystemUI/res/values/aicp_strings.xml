@@ -134,4 +134,7 @@
 
     <!-- 4G icon -->
     <string name="show_fourg_icon_title">4G icon</string>
+
+    <!-- Quick controls -->
+    <string name="quick_controls_subtitle">Add controls for your connected devices</string>
 </resources>

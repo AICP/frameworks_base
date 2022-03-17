@@ -57,7 +57,7 @@ class PanelTaskViewControllerTest : SysuiTestCase() {
         val FAKE_BOUNDS = Rect(10, 20, 30, 40)
     }
 
-    @Mock private lateinit var activityContext: Context
+    @Mock private var activityContext: Context? = null
     @Mock private lateinit var taskView: TaskView
     @Mock private lateinit var pendingIntent: PendingIntent
     @Mock private lateinit var hideRunnable: () -> Unit
@@ -76,13 +76,13 @@ class PanelTaskViewControllerTest : SysuiTestCase() {
             uiExecutor.execute(it.arguments[0] as Runnable)
             true
         }
-        whenever(activityContext.resources).thenReturn(context.resources)
+        whenever(activityContext!!.resources).thenReturn(context.resources)
 
         uiExecutor = FakeExecutor(FakeSystemClock())
 
         underTest =
             PanelTaskViewController(
-                activityContext,
+                activityContext!!,
                 uiExecutor,
                 pendingIntent,
                 taskView,

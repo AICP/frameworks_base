@@ -136,4 +136,7 @@
 
     <!-- Screenshot Tile -->
     <string name="screenshot_long_press">Long press - selected region</string>
+
+    <!-- Quick controls -->
+    <string name="quick_controls_subtitle">Add controls for your connected devices</string>
 </resources>

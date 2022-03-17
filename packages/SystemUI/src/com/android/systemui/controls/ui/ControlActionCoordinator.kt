@@ -26,7 +26,7 @@ import android.service.controls.Control
 interface ControlActionCoordinator {
 
     // If launched from an Activity, continue within this stack
-    var activityContext: Context
+    var activityContext: Context?
 
     /**
      * Close any dialogs which may have been open
@@ -67,6 +67,12 @@ interface ControlActionCoordinator {
      * @param newValue value to set for the device
      */
     fun setValue(cvh: ControlViewHolder, templateId: String, newValue: Float)
+
+    /**
+     * Actions may have been put on hold while the device is unlocked. Invoke this action if
+     * present.
+     */
+    fun runPendingAction(controlId: String)
 
     /**
      * User interaction with a control may be blocked for a period of time while actions are being

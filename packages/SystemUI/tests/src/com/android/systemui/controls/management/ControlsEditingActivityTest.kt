@@ -22,6 +22,7 @@ import com.android.systemui.controls.controller.ControlsControllerImpl
 import com.android.systemui.res.R
 import com.android.systemui.settings.UserTracker
 import com.android.systemui.util.concurrency.FakeExecutor
+import com.android.systemui.util.mockito.mock
 import com.android.systemui.util.time.FakeSystemClock
 import com.android.systemui.utils.SafeIconLoader
 import com.google.common.truth.Truth.assertThat
@@ -211,6 +212,8 @@ class ControlsEditingActivityTest : SysuiTestCase() {
             customIconCache,
             controlsListingController,
             safeIconLoaderFactory,
+            mock(),
+            mock(),
         ) {
 
         var startActivityData: StartActivityData? = null

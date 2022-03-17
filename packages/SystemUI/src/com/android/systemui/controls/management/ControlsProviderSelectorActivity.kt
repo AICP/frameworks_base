@@ -40,9 +40,11 @@ import com.android.systemui.controls.ControlsServiceInfo
 import com.android.systemui.controls.controller.ControlsController
 import com.android.systemui.controls.panels.AuthorizedPanelsRepository
 import com.android.systemui.controls.ui.ControlsActivity
+import com.android.systemui.controls.ui.ControlsUiController
 import com.android.systemui.controls.ui.SelectedItem
 import com.android.systemui.dagger.qualifiers.Background
 import com.android.systemui.dagger.qualifiers.Main
+import com.android.systemui.globalactions.GlobalActionsComponent
 import com.android.systemui.res.R
 import com.android.systemui.settings.UserTracker
 import java.util.concurrent.Executor
@@ -59,6 +61,8 @@ constructor(
     private val userTracker: UserTracker,
     private val authorizedPanelsRepository: AuthorizedPanelsRepository,
     private val panelConfirmationDialogFactory: PanelConfirmationDialogFactory,
+    private val globalActionsComponent: GlobalActionsComponent,
+    private val uiController: ControlsUiController,
 ) : ComponentActivity(), ControlsManagementActivity {
 
     companion object {
@@ -71,6 +75,7 @@ constructor(
         get() = this
 
     private var backShouldExit = false
+    private var backToGlobalActions = false
     private lateinit var recyclerView: RecyclerView
     private val userTrackerCallback: UserTracker.Callback =
         object : UserTracker.Callback {
@@ -127,10 +132,16 @@ constructor(
         requireViewById<View>(R.id.done).visibility = View.GONE
 
         backShouldExit = intent.getBooleanExtra(BACK_SHOULD_EXIT, false)
+        backToGlobalActions = intent.getBooleanExtra(
+            ControlsUiController.BACK_TO_GLOBAL_ACTIONS,
+            false
+        )
     }
 
     override fun onBackPressed() {
-        if (!backShouldExit) {
+        if (backToGlobalActions) {
+            globalActionsComponent.handleShowGlobalActionsMenu()
+        } else if (!backShouldExit) {
             val i =
                 Intent().apply {
                     component = ComponentName(applicationContext, ControlsActivity::class.java)
@@ -235,6 +246,10 @@ constructor(
                         putExtra(
                             ControlsFavoritingActivity.EXTRA_SOURCE,
                             ControlsFavoritingActivity.EXTRA_SOURCE_VALUE_FROM_PROVIDER_SELECTOR,
+                        )
+                        putExtra(
+                            ControlsUiController.BACK_TO_GLOBAL_ACTIONS,
+                            backToGlobalActions
                         )
                     }
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())

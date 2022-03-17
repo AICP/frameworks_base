@@ -29,6 +29,7 @@ import com.android.systemui.res.R
 import com.android.systemui.settings.UserTracker
 import com.android.systemui.util.mockito.any
 import com.android.systemui.util.mockito.capture
+import com.android.systemui.util.mockito.mock
 import com.android.systemui.util.mockito.whenever
 import com.android.systemui.utils.SafeIconLoader
 import com.google.common.truth.Truth.assertThat
@@ -227,6 +228,8 @@ class ControlsFavoritingActivityTest : SysuiTestCase() {
             userTracker,
             safeIconLoaderFactory,
             controlsListingController,
+            mock(),
+            mock(),
         ) {
 
         var triedToFinish = false

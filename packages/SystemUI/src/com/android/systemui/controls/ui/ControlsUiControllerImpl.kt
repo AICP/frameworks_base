@@ -167,7 +167,7 @@ constructor(
     override val available: Boolean
         get() = controlsController.get().available
 
-    private lateinit var activityContext: Context
+    private var activityContext: Context? = null
     private lateinit var listingCallback: ControlsListingController.ControlsListingCallback
 
     override val isShowing: Boolean
@@ -225,7 +225,7 @@ constructor(
         }
     }
 
-    override fun show(parent: ViewGroup, onDismiss: Runnable, activityContext: Context) {
+    override fun show(parent: ViewGroup, onDismiss: Runnable, activityContext: Context?) {
         Log.d(ControlsUiController.TAG, "show()")
         Trace.instant(Trace.TRACE_TAG_APP, "ControlsUiControllerImpl#show")
         this.parent = parent
@@ -307,15 +307,34 @@ constructor(
     }
 
     private fun showSeedingView(items: List<SelectionItem>) {
-        val inflater = LayoutInflater.from(context)
+        val inflater = LayoutInflater.from(activityContext ?: context)
         inflater.inflate(R.layout.controls_no_favorites, parent, true)
         val subtitle = parent.requireViewById<TextView>(R.id.controls_subtitle)
         subtitle.setText(context.resources.getString(R.string.controls_seeding_in_progress))
     }
 
     private fun showInitialSetupView(items: List<SelectionItem>) {
-        startProviderSelectorActivity()
-        onDismiss.run()
+        if (activityContext != null) {
+            startProviderSelectorActivity()
+            onDismiss.run()
+            return
+        }
+        val inflater = LayoutInflater.from(activityContext ?: context)
+        inflater.inflate(R.layout.controls_no_favorites, parent, true)
+        val viewGroup = parent.requireViewById(R.id.controls_no_favorites_group) as ViewGroup
+        viewGroup.setOnClickListener { v: View ->
+            startProviderSelectorActivity()
+            onDismiss.run()
+        }
+        val subtitle = parent.requireViewById<TextView>(R.id.controls_subtitle)
+        subtitle.setText(context.resources.getString(R.string.quick_controls_subtitle))
+        val iconRowGroup = parent.requireViewById(R.id.controls_icon_row) as ViewGroup
+        items.forEach {
+            val imageView = inflater.inflate(R.layout.controls_icon, viewGroup, false) as ImageView
+            imageView.setContentDescription(it.getTitle())
+            imageView.setImageDrawable(it.icon)
+            iconRowGroup.addView(imageView)
+        }
     }
 
     private fun startFavoritingActivity(si: StructureInfo) {
@@ -372,7 +391,7 @@ constructor(
     }
 
     private fun startTargetedActivity(si: StructureInfo, klazz: Class<*>) {
-        val i = Intent(activityContext, klazz)
+        val i = Intent(context, klazz)
         putIntentExtras(i, si)
         startActivity(i)
 
@@ -391,7 +410,7 @@ constructor(
     }
 
     private fun startProviderSelectorActivity() {
-        val i = Intent(activityContext, ControlsProviderSelectorActivity::class.java)
+        val i = Intent(context, ControlsProviderSelectorActivity::class.java)
         i.putExtra(ControlsProviderSelectorActivity.BACK_SHOULD_EXIT, true)
         startActivity(i)
     }
@@ -402,12 +421,22 @@ constructor(
             intent.putExtra(ControlsUiController.EXTRA_ANIMATE, true)
         }
 
+        if (activityContext == null) {
+            intent.apply {
+	            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
+            intent.putExtra(ControlsUiController.BACK_TO_GLOBAL_ACTIONS, true)
+        }
         if (keyguardStateController.isShowing()) {
             activityStarter.postStartActivityDismissingKeyguard(intent, 0 /* delay */)
-        } else {
-            activityContext.startActivity(
+        } else if (activityContext != null) {
+            activityContext!!.startActivity(
                 intent,
                 ActivityOptions.makeSceneTransitionAnimation(activityContext as Activity).toBundle(),
+            )
+        } else {
+            context.startActivity(
+                intent
             )
         }
     }
@@ -523,7 +552,7 @@ constructor(
             taskViewFactory.get().create(activityContext, uiExecutor) { taskView ->
                 taskViewController =
                     PanelTaskViewController(
-                            activityContext,
+                            activityContext ?: context,
                             uiExecutor,
                             pendingIntent,
                             taskView,
@@ -597,6 +626,7 @@ constructor(
                                         pos: Int,
                                         id: Long,
                                     ) {
+                                        if (activityContext == null) /* in global actions menu */ onDismiss.run()
                                         when (id) {
                                             OPEN_APP_ID -> startDefaultActivity()
                                             ADD_APP_ID -> startProviderSelectorActivity()
@@ -696,12 +726,18 @@ constructor(
     }
 
     private fun createControlsSpaceFrame() {
-        val inflater = LayoutInflater.from(activityContext)
+        val inflater = LayoutInflater.from(activityContext ?: context)
         inflater.inflate(R.layout.controls_with_favorites, parent, true)
 
-        parent.requireViewById<ImageView>(R.id.controls_close).apply {
-            setOnClickListener { _: View -> onDismiss.run() }
-            visibility = View.VISIBLE
+        if (controlActionCoordinator.activityContext == null) {
+            parent.requireViewById<View>(R.id.controls_spacer).apply {
+                visibility = View.VISIBLE
+            }
+        } else {
+            parent.requireViewById<ImageView>(R.id.controls_close).apply {
+                setOnClickListener { _: View -> onDismiss.run() }
+                visibility = View.VISIBLE
+            }
         }
     }
 
@@ -714,9 +750,9 @@ constructor(
                 selected.componentName.packageName,
                 controlsController.get().currentUserId,
             )
-        val inflater = LayoutInflater.from(activityContext)
+        val inflater = LayoutInflater.from(activityContext ?: context)
 
-        val maxColumns = ControlAdapter.findMaxColumns(activityContext.resources)
+        val maxColumns = ControlAdapter.findMaxColumns(context.resources)
 
         val listView = parent.requireViewById(R.id.controls_list) as ViewGroup
         listView.removeAllViews()

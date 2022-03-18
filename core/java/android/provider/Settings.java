@@ -12310,6 +12310,13 @@ public final class Settings {
          */
         public static final String GESTURE_NAVBAR_LENGTH_MODE = "gesture_navbar_length_mode";
 
+        /**
+         * Control whether FLAG_SECURE is ignored for all windows.
+         * @hide
+         */
+        @Readable
+        public static final String WINDOW_IGNORE_SECURE = "window_ignore_secure";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

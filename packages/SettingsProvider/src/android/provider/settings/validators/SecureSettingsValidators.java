@@ -374,5 +374,6 @@ public class SecureSettingsValidators {
         VALIDATORS.put(Secure.KEYBOARD_BRIGHTNESS, NON_NEGATIVE_INTEGER_VALIDATOR);
         VALIDATORS.put(Secure.QSTILE_REQUIRES_UNLOCKING, BOOLEAN_VALIDATOR);
         VALIDATORS.put(Secure.GESTURE_NAVBAR_LENGTH_MODE, new InclusiveIntegerRangeValidator(0, 3));
+        VALIDATORS.put(Secure.WINDOW_IGNORE_SECURE, BOOLEAN_VALIDATOR);
     }
 }

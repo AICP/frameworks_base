@@ -12606,6 +12606,13 @@ public final class Settings {
          * AICP Secure Settings start
          *****************************/
 
+        /**
+         * Control whether FLAG_SECURE is ignored for all windows.
+         * @hide
+         */
+        @Readable
+        public static final String WINDOW_IGNORE_SECURE = "window_ignore_secure";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

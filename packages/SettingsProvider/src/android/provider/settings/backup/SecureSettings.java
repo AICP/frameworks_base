@@ -305,5 +305,6 @@ public class SecureSettings {
         Settings.Secure.SELECTED_SPELL_CHECKER,
         // SELECTED_SPELL_CHECKER_SUBTYPE needs to be restored after SELECTED_SPELL_CHECKER
         Settings.Secure.SELECTED_SPELL_CHECKER_SUBTYPE,
+        Settings.Secure.WINDOW_IGNORE_SECURE
     };
 }

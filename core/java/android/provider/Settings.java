@@ -13334,6 +13334,21 @@ public final class Settings {
         public static final String HBM_SETTING_KEY =
                 "com.android.server.display.HBM_SETTING_KEY";
 
+        /*****************************
+         * AICP Secure Settings start
+         *****************************/
+
+        /**
+         * Control whether FLAG_SECURE is ignored for all windows.
+         * @hide
+         */
+        @Readable
+        public static final String WINDOW_IGNORE_SECURE = "window_ignore_secure";
+
+        /*****************************
+         * AICP Secure Settings end
+         *****************************/
+
         /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.

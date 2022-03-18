@@ -12297,6 +12297,13 @@ public final class Settings {
          */
         public static final String SHOW_CLIPBOARD_OVERLAY = "show_clipboard_overlay";
 
+        /**
+         * Control whether FLAG_SECURE is ignored for all windows.
+         * @hide
+         */
+        @Readable
+        public static final String WINDOW_IGNORE_SECURE = "window_ignore_secure";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

@@ -67,4 +67,8 @@
 
     <!-- FPS measure interval in milliseconds, default 1000 -->
     <integer name="config_fpsReadInterval">1000</integer>
+
+    <bool name="qs_tile_vertical_layout">false</bool>
+
+    <integer name="quick_qs_panel_max_columns">4</integer>
 </resources>

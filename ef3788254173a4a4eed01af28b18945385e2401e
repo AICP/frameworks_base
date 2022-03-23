@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab182fa8_ca225789",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-03-23T18:22:21Z",
+      "side": 1,
+      "message": "fw_av part: https://github.com/semdoc/frameworks_av/commit/880444538e9203712c7b1a810fd7e0b95de85e3d",
+      "revId": "ef3788254173a4a4eed01af28b18945385e2401e",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

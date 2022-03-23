@@ -637,4 +637,11 @@ public class StatusBarCommandQueueCallbacks implements CommandQueue.Callbacks {
         }
         return VibrationEffect.createWaveform(timings, /* repeat= */ -1);
     }
+
+    @Override
+    public void setBlockedGesturalNavigation(boolean blocked) {
+        if (mStatusBar.getNavigationBarView() != null) {
+            mStatusBar.getNavigationBarView().setBlockedGesturalNavigation(blocked);
+        }
+    }
 }

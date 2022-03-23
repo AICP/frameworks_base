@@ -914,6 +914,14 @@ public class AlarmManager {
             long intervalMillis, int flags, PendingIntent operation, final OnAlarmListener listener,
             String listenerTag, Executor targetExecutor, WorkSource workSource,
             AlarmClockInfo alarmClock) {
+        if (GmsCompat.isEnabled()) {
+            if (windowMillis == WINDOW_EXACT && !canScheduleExactAlarms()) {
+                windowMillis = WINDOW_HEURISTIC;
+            }
+            // non-null WorkSource requires privileged UPDATE_DEVICE_STATS permission
+            workSource = null;
+        }
+
         if (triggerAtMillis < 0) {
             /* NOTYET
             if (mAlwaysExact) {
@@ -1174,11 +1182,6 @@ public class AlarmManager {
     @RequiresPermission(value = Manifest.permission.SCHEDULE_EXACT_ALARM, conditional = true)
     public void setExactAndAllowWhileIdle(@AlarmType int type, long triggerAtMillis,
             PendingIntent operation) {
-        if (GmsCompat.isEnabled() && !canScheduleExactAlarms()) {
-            setAndAllowWhileIdle(type, triggerAtMillis, operation);
-            return;
-        }
-
         setImpl(type, triggerAtMillis, WINDOW_EXACT, 0, FLAG_ALLOW_WHILE_IDLE, operation,
                 null, null, (Handler) null, null, null);
     }

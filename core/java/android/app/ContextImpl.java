@@ -95,7 +95,6 @@ import android.window.WindowContext;
 import android.window.WindowTokenClient;
 
 import com.android.internal.annotations.GuardedBy;
-import com.android.internal.gmscompat.GmsHooks;
 import com.android.internal.util.Preconditions;
 
 import dalvik.system.BlockGuard;
@@ -1394,8 +1393,6 @@ class ContextImpl extends Context {
 
     @Override
     public void sendBroadcastAsUser(Intent intent, UserHandle user) {
-        user = GmsHooks.getUserHandle(user);
-
         String resolvedType = intent.resolveTypeIfNeeded(getContentResolver());
         try {
             intent.prepareToLeaveProcess(this);
@@ -1417,8 +1414,6 @@ class ContextImpl extends Context {
     @Override
     public void sendBroadcastAsUser(Intent intent, UserHandle user, String receiverPermission,
             Bundle options) {
-        user = GmsHooks.getUserHandle(user);
-
         String resolvedType = intent.resolveTypeIfNeeded(getContentResolver());
         String[] receiverPermissions = receiverPermission == null ? null
                 : new String[] {receiverPermission};
@@ -1437,8 +1432,6 @@ class ContextImpl extends Context {
     @Override
     public void sendBroadcastAsUser(Intent intent, UserHandle user,
             String receiverPermission, int appOp) {
-        user = GmsHooks.getUserHandle(user);
-
         String resolvedType = intent.resolveTypeIfNeeded(getContentResolver());
         String[] receiverPermissions = receiverPermission == null ? null
                 : new String[] {receiverPermission};
@@ -1473,8 +1466,6 @@ class ContextImpl extends Context {
     public void sendOrderedBroadcastAsUser(Intent intent, UserHandle user,
             String receiverPermission, int appOp, Bundle options, BroadcastReceiver resultReceiver,
             Handler scheduler, int initialCode, String initialData, Bundle initialExtras) {
-        user = GmsHooks.getUserHandle(user);
-
         IIntentReceiver rd = null;
         if (resultReceiver != null) {
             if (mPackageInfo != null) {
@@ -1831,10 +1822,6 @@ class ContextImpl extends Context {
 
     @Override
     public ComponentName startService(Intent service) {
-        if (GmsCompat.isEnabled()) {
-            return GmsHooks.startService(this, service);
-        }
-
         warnIfCallingFromSystemProcess();
         return startServiceCommon(service, false, mUser);
     }
@@ -2076,6 +2063,18 @@ class ContextImpl extends Context {
 
     @Override
     public Object getSystemService(String name) {
+        if (GmsCompat.isEnabled()) {
+            switch (name) {
+                case Context.CONTEXTHUB_SERVICE:
+                case Context.WIFI_SCANNING_SERVICE:
+                case Context.APP_INTEGRITY_SERVICE:
+                // used for factory reset protection
+                case Context.PERSISTENT_DATA_BLOCK_SERVICE:
+                case Context.FONT_SERVICE:
+                    // these privileged services are null-checked by GMS
+                    return null;
+            }
+        }
         if (vmIncorrectContextUseEnabled()) {
             // Check incorrect Context usage.
             if (WINDOW_SERVICE.equals(name) && !isUiContext()) {

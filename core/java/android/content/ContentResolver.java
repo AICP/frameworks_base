@@ -31,6 +31,7 @@ import android.app.ActivityManager;
 import android.app.ActivityThread;
 import android.app.AppGlobals;
 import android.app.UriGrantsManager;
+import android.app.compat.gms.GmsCompat;
 import android.compat.annotation.UnsupportedAppUsage;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -40,6 +41,7 @@ import android.database.ContentObserver;
 import android.database.CrossProcessCursorWrapper;
 import android.database.Cursor;
 import android.database.IContentObserver;
+import android.database.MatrixCursor;
 import android.graphics.Bitmap;
 import android.graphics.ImageDecoder;
 import android.graphics.ImageDecoder.ImageInfo;
@@ -71,6 +73,7 @@ import android.util.Size;
 import android.util.SparseArray;
 
 import com.android.internal.annotations.GuardedBy;
+import com.android.internal.gmscompat.PlayStoreHooks;
 import com.android.internal.util.MimeIconUtils;
 
 import dalvik.system.CloseGuard;
@@ -1192,6 +1195,14 @@ public abstract class ContentResolver implements ContentInterface {
             @Nullable CancellationSignal cancellationSignal) {
         Objects.requireNonNull(uri, "uri");
 
+        if (GmsCompat.isEnabled()) {
+            if ("content://com.google.android.gms.phenotype/com.google.android.location".equals(uri.toString())) {
+                // keep PhenotypeFlags of the location service at their default values
+                // (updated flags degrade its speed and accuracy for unknown reasons)
+                return new MatrixCursor(projection);
+            }
+        }
+
         try {
             if (mWrapped != null) {
                 return mWrapped.query(uri, projection, queryArgs, cancellationSignal);
@@ -2177,6 +2188,9 @@ public abstract class ContentResolver implements ContentInterface {
     public final @Nullable Uri insert(@RequiresPermission.Write @NonNull Uri url,
             @Nullable ContentValues values, @Nullable Bundle extras) {
         Objects.requireNonNull(url, "url");
+        if (GmsCompat.isPlayStore()) {
+            PlayStoreHooks.filterContentValues(url, values);
+        }
 
         try {
             if (mWrapped != null) return mWrapped.insert(url, values, extras);

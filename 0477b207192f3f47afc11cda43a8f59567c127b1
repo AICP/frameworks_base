@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05c63a64_278b1ac4",
+        "filename": "core/java/android/hardware/camera2/CameraManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 653,
+      "author": {
+        "id": 1375
+      },
+      "writtenOn": "2022-03-23T19:31:14Z",
+      "side": 0,
+      "message": "you can add a sysprop for making this.",
+      "revId": "0477b207192f3f47afc11cda43a8f59567c127b1",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

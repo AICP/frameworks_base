@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67b2e7d6_32a049e8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-03-23T18:14:14Z",
+      "side": 1,
+      "message": "Need to sync: https://github.com/semdoc/android_packages_apps_GmsCompat/commits/sc-v2",
+      "revId": "4a34de7f263824320f1b6c7c372d6b488de393d4",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

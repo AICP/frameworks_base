@@ -580,6 +580,7 @@ public final class BluetoothHeadset implements BluetoothProfile {
      * {@inheritDoc}
      */
     @Override
+    @RequiresLegacyBluetoothAdminPermission
     @RequiresBluetoothConnectPermission
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     public List<BluetoothDevice> getConnectedDevices() {

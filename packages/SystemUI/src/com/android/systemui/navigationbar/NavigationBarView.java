@@ -941,6 +941,7 @@ public class NavigationBarView extends FrameLayout implements
             Log.d(TAG, "Updating panel sysui state flags: panelView=" + mPanelView);
         }
         if (mPanelView != null) {
+            mPanelView.setBlockedGesturalNavigation(mBlockedGesturalNavigation);
             mPanelView.updateSystemUiStateFlags();
         }
     }

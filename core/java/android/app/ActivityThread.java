@@ -198,7 +198,6 @@ import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.internal.app.IVoiceInteractor;
 import com.android.internal.content.ReferrerIntent;
-import com.android.internal.gmscompat.GmsHooks;
 import com.android.internal.os.BinderInternal;
 import com.android.internal.os.RuntimeInit;
 import com.android.internal.os.SomeArgs;
@@ -4552,7 +4551,6 @@ public final class ActivityThread extends ClientTransactionHandler
             context.setOuterContext(service);
             service.attach(context, this, data.info.name, data.token, app,
                     ActivityManager.getService());
-            GmsHooks.attachService(service);
             service.onCreate();
             mServicesData.put(data.token, data);
             mServices.put(data.token, service);
@@ -7960,4 +7958,15 @@ public final class ActivityThread extends ClientTransactionHandler
     private native void nPurgePendingResources();
     private native void nDumpGraphicsInfo(FileDescriptor fd);
     private native void nInitZygoteChildHeapProfiling();
+
+    public boolean hasAtLeastOneResumedActivity() {
+        synchronized (mResourcesManager) {
+            for (int i = 0; i < mActivities.size(); ++i) {
+                if (mActivities.valueAt(i).getLifecycleState() == ActivityLifecycleItem.ON_RESUME) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }

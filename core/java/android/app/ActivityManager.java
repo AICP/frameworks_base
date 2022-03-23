@@ -85,6 +85,7 @@ import android.window.TaskSnapshot;
 import com.android.internal.app.LocalePicker;
 import com.android.internal.app.procstats.ProcessStats;
 import com.android.internal.gmscompat.GmsHooks;
+import com.android.internal.gmscompat.GmsUserHooks;
 import com.android.internal.os.RoSystemProperties;
 import com.android.internal.os.TransferPipe;
 import com.android.internal.util.FastPrintWriter;
@@ -3373,7 +3374,11 @@ public class ActivityManager {
      */
     public List<RunningAppProcessInfo> getRunningAppProcesses() {
         try {
-            return getService().getRunningAppProcesses();
+            List<RunningAppProcessInfo> res = getService().getRunningAppProcesses();
+            if (GmsCompat.isEnabled()) {
+                res = GmsHooks.addRecentlyBoundPids(mContext, res);
+            }
+            return res;
         } catch (RemoteException e) {
             throw e.rethrowFromSystemServer();
         }
@@ -4040,7 +4045,7 @@ public class ActivityManager {
     })
     public static int getCurrentUser() {
         if (GmsCompat.isEnabled()) {
-            return GmsHooks.getCurrentUser();
+            return GmsUserHooks.getCurrentUser();
         }
 
         try {
@@ -4287,6 +4292,10 @@ public class ActivityManager {
      */
     @UnsupportedAppUsage
     public boolean isUserRunning(int userId) {
+        if (GmsCompat.isEnabled()) {
+            return GmsUserHooks.isUserRunning(userId);
+        }
+
         try {
             return getService().isUserRunning(userId, 0);
         } catch (RemoteException e) {

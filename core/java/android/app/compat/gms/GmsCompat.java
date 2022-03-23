@@ -18,25 +18,24 @@ package android.app.compat.gms;
 
 import android.annotation.SystemApi;
 import android.app.ActivityThread;
-import android.compat.Compatibility;
-import android.compat.annotation.ChangeId;
-import android.compat.annotation.Disabled;
+import android.app.Application;
+import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.IPackageManager;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.content.pm.SigningInfo;
 import android.os.Binder;
 import android.os.Process;
 import android.os.RemoteException;
 import android.os.UserHandle;
 import android.util.Log;
 
-import com.android.internal.compat.CompatibilityChangeInfo;
 import com.android.internal.gmscompat.GmsInfo;
 
 /**
- * This class provides helpers for Google Play Services compatibility. It allows the following apps
+ * This class provides helpers for Google Play compatibility. It allows the following apps
  * to work as regular, unprivileged user apps:
  *     - Google Play Services (Google Mobile Services, aka "GMS")
  *     - Google Services Framework
@@ -54,30 +53,15 @@ public final class GmsCompat {
     private static final String TAG = "GmsCompat/Core";
     private static final boolean DEBUG_VERBOSE = false;
 
-    /**
-     * Whether to enable Google Play Services compatibility for this app.
-     *
-     * This compatibility change is special because the system enables it automatically for certain
-     * apps, but it still needs to be declared with a change ID.
-     *
-     * We don't have a bug for this in Google's issue tracker, so the change ID is a
-     * randomly-generated long.
-     */
-    @ChangeId
-    @Disabled // Overridden as a special case in CompatChange
-    private static final long GMS_UNPRIVILEGED_COMPAT = 1531297613045645771L;
-
+    private static boolean isGmsCompatEnabled;
     /**
      * Whether to enable hooks for this app to load Dynamite modules from unprivileged GMS.
      * This is for CLIENT apps, not GMS itself.
      */
-    @ChangeId
-    @Disabled // Overridden as a special case in CompatChange
-    private static final long GMS_UNPRIVILEGED_DYNAMITE_CLIENT = 7528921493777479941L;
-
-    // Some hooks are in (potentially) hot paths, so cache the change enable states.
-    private static volatile boolean isGmsCompatEnabled = false;
-    private static volatile boolean isDynamiteClientEnabled = false;
+    private static boolean isDynamiteClientEnabled;
+    private static boolean isPlayServices;
+    private static boolean isPlayStore;
+    private static boolean isBinderRedirectionAllowed;
 
     // Static only
     private GmsCompat() { }
@@ -91,41 +75,47 @@ public final class GmsCompat {
         return isDynamiteClientEnabled;
     }
 
-    private static void logEnabled(String changeName, boolean enabled) {
-        if (!DEBUG_VERBOSE) {
-            return;
-        }
-
-        String pkg = ActivityThread.currentPackageName();
-        if (pkg == null) {
-            pkg = (Process.myUid() == Process.SYSTEM_UID) ? "system_server" : "[unknown]";
-        }
-
-        Log.d(TAG, changeName + " enabled for " + pkg + " (" + Process.myPid() + ") = " + enabled);
+    /** @hide */
+    public static boolean isPlayServices() {
+        return isPlayServices;
     }
 
-    private static boolean isChangeEnabled(String changeName, long changeId) {
-        boolean enabled = Compatibility.isChangeEnabled(changeId);
+    /** @hide */
+    public static boolean isPlayStore() {
+        return isPlayStore;
+    }
 
-        // Compatibility changes aren't available in the system process, but this should never be
-        // enabled for it or other core "android" system processes (such as the android:ui process
-        // used for chooser and resolver activities).
-        if (UserHandle.getAppId(Process.myUid()) == Process.SYSTEM_UID) {
-            enabled = false;
-        }
-
-        logEnabled(changeName, enabled);
-        return enabled;
+    /** @hide */
+    public static boolean isBinderRedirectionAllowed() {
+        return isBinderRedirectionAllowed;
     }
 
     /**
-     * Must be called to initialize the compatibility change enable states before any hooks run.
+     * Called before Application.onCreate()
      *
      * @hide
      */
-    public static void initChangeEnableStates() {
-        isGmsCompatEnabled = isChangeEnabled("GMS_UNPRIVILEGED_COMPAT", GMS_UNPRIVILEGED_COMPAT);
-        isDynamiteClientEnabled = isChangeEnabled("GMS_UNPRIVILEGED_DYNAMITE_CLIENT", GMS_UNPRIVILEGED_DYNAMITE_CLIENT);
+    public static void maybeEnable(Application app) {
+        if (!Process.isApplicationUid(Process.myUid())) {
+            return;
+        }
+        ApplicationInfo appInfo = app.getApplicationInfo();
+        String pkg = appInfo.packageName;
+        boolean isGmsApp = isGmsApp(appInfo);
+        isGmsCompatEnabled = isGmsApp;
+
+        if (!(isGmsApp && GmsInfo.PACKAGE_GMS.equals(pkg))) {
+            if (isGmsInstalled(app)) {
+                // Client apps can't be GMS itself, but GMS must be installed in the same user
+                isDynamiteClientEnabled = true;
+                isBinderRedirectionAllowed = !isGmsApp;
+            }
+        }
+        if (isGmsCompatEnabled) {
+            // certificate is already checked if isGmsCompatEnabled is set
+            isPlayServices = GmsInfo.PACKAGE_GMS.equals(pkg);
+            isPlayStore = GmsInfo.PACKAGE_PLAY_STORE.equals(pkg);
+        }
     }
 
     private static boolean validateCerts(Signature[] signatures) {
@@ -134,7 +124,6 @@ public final class GmsCompat {
                 return true;
             }
         }
-
         return false;
     }
 
@@ -144,7 +133,7 @@ public final class GmsCompat {
      * @hide
      */
     public static boolean isGmsApp(String packageName, Signature[] signatures,
-            Signature[] signatures2, boolean isPrivileged, String sharedUserId) {
+                                   Signature[] pastSignatures, boolean isPrivileged, String sharedUserId) {
         // Privileged GMS doesn't need any compatibility changes
         if (isPrivileged) {
             return false;
@@ -168,15 +157,20 @@ public final class GmsCompat {
         // Try past signing certificates if necessary. We iterate through two separate arrays here
         // instead of concatenating them beforehand because this method gets called for every
         // package installed in the system.
-        if (!validCert && signatures2 != null) {
-            validCert = validateCerts(signatures2);
+        if (!validCert && pastSignatures != null) {
+            validCert = validateCerts(pastSignatures);
         }
-
         return validCert;
     }
 
     /** @hide */
     public static boolean isGmsApp(ApplicationInfo app) {
+        String packageName = app.packageName;
+        if (!(GmsInfo.PACKAGE_GMS.equals(packageName)
+            || GmsInfo.PACKAGE_PLAY_STORE.equals(packageName)
+            || GmsInfo.PACKAGE_GSF.equals(packageName))) {
+            return false;
+        }
         int userId = UserHandle.getUserId(app.uid);
         IPackageManager pm = ActivityThread.getPackageManager();
 
@@ -184,47 +178,38 @@ public final class GmsCompat {
         PackageInfo pkg;
         long token = Binder.clearCallingIdentity();
         try {
-            pkg = pm.getPackageInfo(app.packageName, PackageManager.GET_SIGNING_CERTIFICATES, userId);
+            pkg = pm.getPackageInfo(packageName, PackageManager.GET_SIGNING_CERTIFICATES, userId);
         } catch (RemoteException e) {
             throw e.rethrowFromSystemServer();
         } finally {
             Binder.restoreCallingIdentity(token);
         }
-
-        // Get all applicable certificates, even if GMS switches to multiple signing certificates
-        // in the future
-        Signature[] signatures = pkg.signingInfo.hasMultipleSigners() ?
-                pkg.signingInfo.getApkContentsSigners() :
-                pkg.signingInfo.getSigningCertificateHistory();
-        return isGmsApp(app.packageName, signatures, null, app.isPrivilegedApp(), pkg.sharedUserId);
+        return isGmsApp(pkg);
     }
 
-    private static boolean isGmsInstalled(ApplicationInfo relatedApp) {
-        int userId = UserHandle.getUserId(relatedApp.uid);
-        IPackageManager pm = ActivityThread.getPackageManager();
-
-        ApplicationInfo gmsApp;
-        try {
-            gmsApp = pm.getApplicationInfo(GmsInfo.PACKAGE_GMS, 0, userId);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-
-        // Check signature to avoid breaking microG's implementation of Dynamite
-        return gmsApp != null && isGmsApp(gmsApp);
-    }
-
-    /** @hide */
-    // CompatChange#isEnabled(ApplicationInfo)
-    public static boolean isChangeEnabled(CompatibilityChangeInfo change, ApplicationInfo app) {
-        if (change.getId() == GMS_UNPRIVILEGED_COMPAT) {
-            return isGmsApp(app);
-        } else if (change.getId() == GMS_UNPRIVILEGED_DYNAMITE_CLIENT) {
-            // Client apps can't be GMS itself, but GMS must be installed in the same user
-            return !(GmsInfo.PACKAGE_GMS.equals(app.packageName) && isGmsApp(app)) &&
-                    isGmsInstalled(app);
-        } else {
+    private static boolean isGmsApp(PackageInfo pkg) {
+        ApplicationInfo app = pkg.applicationInfo;
+        if (app == null) {
             return false;
         }
+        SigningInfo si = pkg.signingInfo;
+        return isGmsApp(app.packageName,
+            si.getApkContentsSigners(), si.getSigningCertificateHistory(),
+            app.isPrivilegedApp(), pkg.sharedUserId);
+    }
+
+    private static boolean isGmsInstalled(Context ctx) {
+        try {
+            PackageInfo gmsPkg = ctx.getPackageManager()
+                .getPackageInfo(GmsInfo.PACKAGE_GMS, PackageManager.GET_SIGNING_CERTIFICATES);
+            // Check signature to avoid breaking microG's implementation of Dynamite
+            return isGmsApp(gmsPkg);
+        } catch (PackageManager.NameNotFoundException e) {
+            // Ignored: normal - GMS not installed
+        } catch (Exception e) {
+            Log.e(TAG, "Failed to get GMS package info", e);
+        }
+
+        return false;
     }
 }

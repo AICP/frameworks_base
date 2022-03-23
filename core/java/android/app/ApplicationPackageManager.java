@@ -122,6 +122,8 @@ import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.Immutable;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.internal.gmscompat.GmsHooks;
+import com.android.internal.gmscompat.GmsInfo;
+import com.android.internal.gmscompat.PlayStoreHooks;
 import com.android.internal.os.SomeArgs;
 import com.android.internal.util.UserIcons;
 
@@ -457,6 +459,15 @@ public class ApplicationPackageManager extends PackageManager {
         if (ai == null) {
             throw new NameNotFoundException(packageName);
         }
+
+        if (GmsCompat.isPlayServices()) {
+            if (GmsInfo.PACKAGE_GMS.equals(packageName)) {
+                // checked before accessing com.google.android.gms.phenotype content provider
+                // PhenotypeFlags will always return their default values if these flags aren't set
+                ai.flags |= ApplicationInfo.FLAG_SYSTEM | ApplicationInfo.FLAG_UPDATED_SYSTEM_APP;
+            }
+        }
+
         return maybeAdjustApplicationInfo(ai);
     }
 
@@ -578,6 +589,10 @@ public class ApplicationPackageManager extends PackageManager {
     /** @hide */
     @Override
     public @NonNull List<SharedLibraryInfo> getSharedLibraries(int flags) {
+        if (GmsCompat.isEnabled()) {
+            // MATCH_ANY_USER requires privileged INTERACT_ACROSS_USERS permission
+            flags &= ~MATCH_ANY_USER;
+        }
         return getSharedLibrariesAsUser(flags, getUserId());
     }
 
@@ -585,10 +600,6 @@ public class ApplicationPackageManager extends PackageManager {
     @Override
     @SuppressWarnings("unchecked")
     public @NonNull List<SharedLibraryInfo> getSharedLibrariesAsUser(int flags, int userId) {
-        if (GmsCompat.isEnabled()) {
-            return GmsHooks.getSharedLibrariesAsUser();
-        }
-
         try {
             ParceledListSlice<SharedLibraryInfo> sharedLibs = mPM.getSharedLibraries(
                     mContext.getOpPackageName(), flags, userId);
@@ -720,6 +731,12 @@ public class ApplicationPackageManager extends PackageManager {
 
     @Override
     public boolean hasSystemFeature(String name, int version) {
+        if (GmsCompat.isEnabled()) {
+            if ("android.hardware.uwb".equals(name)) {
+                // otherwise, GMS tries to access privileged UwbManager and crashes
+                return false;
+            }
+        }
         return mHasSystemFeatureCache.query(new HasSystemFeatureQuery(name, version));
     }
 
@@ -2513,6 +2530,10 @@ public class ApplicationPackageManager extends PackageManager {
     @Override
     @UnsupportedAppUsage
     public void deletePackage(String packageName, IPackageDeleteObserver observer, int flags) {
+        if (GmsCompat.isPlayStore()) {
+            PlayStoreHooks.deletePackage(mContext, this, packageName, observer, flags);
+            return;
+        }
         deletePackageAsUser(packageName, observer, flags, getUserId());
     }
 
@@ -2559,6 +2580,10 @@ public class ApplicationPackageManager extends PackageManager {
     @Override
     public void freeStorageAndNotify(String volumeUuid, long idealStorageSize,
             IPackageDataObserver observer) {
+        if (GmsCompat.isPlayStore()) {
+            PlayStoreHooks.freeStorageAndNotify(mContext, volumeUuid, idealStorageSize, observer);
+            return;
+        }
         try {
             mPM.freeStorageAndNotify(volumeUuid, idealStorageSize, 0, observer);
         } catch (RemoteException e) {

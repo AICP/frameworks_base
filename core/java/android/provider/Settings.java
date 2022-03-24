@@ -11105,6 +11105,27 @@ public final class Settings {
         public static final String MONET_ENGINE_WHITE_LUMINANCE = "monet_engine_white_luminance";
 
         /**
+         * Control whether to enable dynamic monet based theming mode.
+         * @hide
+         */
+        @UnsupportedAppUsage
+        public static final String MONET_MODE = "monet_mode";
+
+        /**
+         * MONET_MODE value for enabled mode.
+         * @hide
+         */
+        @UnsupportedAppUsage
+        public static final int MONET_MODE_ENABLED = 1;
+
+        /**
+         * MONET_MODE value for disabled mode.
+         * @hide
+         */
+        @UnsupportedAppUsage
+        public static final int MONET_MODE_DISABLED = 0;
+
+        /**
          * Whether to enable Ambient edge light
          * @hide
          */

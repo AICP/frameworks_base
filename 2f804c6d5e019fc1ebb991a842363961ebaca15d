@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7b9dd6b_02408a89",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2022-03-26T12:29:21Z",
+      "side": 1,
+      "message": "Better to overlay in vendor_aicp than apply this for every cycle",
+      "revId": "2f804c6d5e019fc1ebb991a842363961ebaca15d",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

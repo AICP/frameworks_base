@@ -60,6 +60,7 @@ public class NavigationBarInflaterView extends FrameLayout
     public static final String NAV_BAR_RIGHT = "sysui_nav_bar_right";
     public static final String NAV_BAR_INVERSE = "sysui_nav_bar_inverse";
     public static final String NAVIGATION_BAR_ARROW_KEYS = "navigation_bar_menu_arrow_keys";
+    public static final String NAVIGATION_BAR_DISABLE_TASKBAR = "navigation_bar_disable_taskbar";
     public static final String GESTURE_HANDLE_HIDE = "navbar_gesture_handle_hide";
 
     public static final String MENU_IME_ROTATE = "menu_ime";
@@ -156,9 +157,12 @@ public class NavigationBarInflaterView extends FrameLayout
                 return navbarLayout;
             }
         } else {
-            final int defaultResource = mOverviewProxyService.shouldShowSwipeUpUI()
-                            ? R.string.config_navBarLayoutQuickstep
-                            : R.string.config_navBarLayout;
+            int defaultResource;
+            if (mOverviewProxyService.shouldShowSwipeUpUI() && showTaskbar()) {
+                defaultResource = R.string.config_navBarLayoutQuickstep;
+            } else {
+                defaultResource = R.string.config_navBarLayout;
+            }
             return getContext().getString(defaultResource);
         }
     }
@@ -174,6 +178,7 @@ public class NavigationBarInflaterView extends FrameLayout
         Dependency.get(TunerService.class).addTunable(this,
                 NAV_BAR_INVERSE,
                 NAVIGATION_BAR_ARROW_KEYS,
+                NAVIGATION_BAR_DISABLE_TASKBAR,
                 GESTURE_HANDLE_HIDE);
     }
 
@@ -190,6 +195,7 @@ public class NavigationBarInflaterView extends FrameLayout
             mInverseLayout = TunerService.parseIntegerSwitch(newValue, false);
             updateLayoutInversion();
         } else if (NAVIGATION_BAR_ARROW_KEYS.equals(key)
+                  || NAVIGATION_BAR_DISABLE_TASKBAR.equals(key)
                   || GESTURE_HANDLE_HIDE.equals(key)) {
             onLikelyDefaultLayoutChange();
         }
@@ -536,6 +542,11 @@ public class NavigationBarInflaterView extends FrameLayout
     private boolean showDpadArrowKeys() {
         return Settings.System.getIntForUser(getContext().getContentResolver(),
                 NAVIGATION_BAR_ARROW_KEYS, 0, UserHandle.USER_CURRENT) != 0;
+    }
+
+    private boolean showTaskbar() {
+        return Settings.System.getIntForUser(getContext().getContentResolver(),
+                NAVIGATION_BAR_DISABLE_TASKBAR, 0, UserHandle.USER_CURRENT) == 0;
     }
 
     private boolean hideGestureHandle() {

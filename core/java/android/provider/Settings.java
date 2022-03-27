@@ -6946,6 +6946,28 @@ public final class Settings {
          */
         public static final String QS_HEADER_CLOCK_SIZE = "qs_header_clock_size";
 
+        /**
+         * Whether to show brightness slider in qqs.
+         * Default 0.
+         * @hide
+         */
+        public static final String QQS_SHOW_BRIGHTNESS = "qqs_show_brightness";
+
+        /**
+         * Whether to show auto brightness button to the end of brightness slider.
+         * Default 0.
+         * @hide
+         */
+        public static final String SHOW_AUTO_BRIGHTNESS_BUTTON = "show_auto_brightness_button";
+
+        /**
+         * Position of the brightness slider (applies to qqs as well).
+         * 0 - Top (Default).
+         * 1 - Bottom.
+         * @hide
+         */
+        public static final String BRIGHTNESS_SLIDER_POSITION = "brightness_slider_position";
+
         /***************************
          * AICP System Settings end
          ***************************/

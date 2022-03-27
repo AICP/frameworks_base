@@ -323,5 +323,8 @@ public class SystemSettings {
         Settings.System.TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK,
         Settings.System.HIGH_TOUCH_POLLING_RATE_ENABLE,
         Settings.System.HIGH_TOUCH_SENSITIVITY_ENABLE,
+        Settings.System.QQS_SHOW_BRIGHTNESS,
+        Settings.System.SHOW_AUTO_BRIGHTNESS_BUTTON,
+        Settings.System.BRIGHTNESS_SLIDER_POSITION,
     };
 }

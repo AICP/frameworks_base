@@ -93,5 +93,8 @@ public class SystemSettings {
         Settings.System.ACCELEROMETER_ROTATION_ANGLES,
         Settings.System.LOCKSCREEN_ROTATION,
         Settings.System.CLICK_PARTIAL_SCREENSHOT,
+        Settings.System.QQS_SHOW_BRIGHTNESS,
+        Settings.System.SHOW_AUTO_BRIGHTNESS_BUTTON,
+        Settings.System.BRIGHTNESS_SLIDER_POSITION,
     };
 }

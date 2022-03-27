@@ -76,6 +76,8 @@ public class NavigationBarController implements
         NavigationModeController.ModeChangedListener,
         Dumpable {
 
+    public static final String NAVIGATION_BAR_DISABLE_TASKBAR = "navigation_bar_disable_taskbar";
+
     private static final String TAG = NavigationBarController.class.getSimpleName();
 
     private final Context mContext;
@@ -133,10 +135,15 @@ public class NavigationBarController implements
         boolean largeScreenChanged = mIsTablet != isOldConfigTablet;
         // If we folded/unfolded while in 3 button, show navbar in folded state, hide in unfolded
         if (largeScreenChanged && updateNavbarForTaskbar()) {
-            return;
+            if (isTaskbarEnabled()) {
+                return;
+            }
         }
 
-        if (mConfigChanges.applyNewConfig(mContext.getResources())) {
+        if (mNavigationBars.size() == 0) {
+            removeNavigationBar(mContext.getDisplayId());
+            createNavigationBar(mContext.getDisplay(), null, null);
+        } else if (mConfigChanges.applyNewConfig(mContext.getResources())) {
             for (int i = 0; i < mNavigationBars.size(); i++) {
                 recreateNavigationBar(mNavigationBars.keyAt(i));
             }
@@ -212,9 +219,14 @@ public class NavigationBarController implements
     /** @return {@code true} if taskbar is enabled, false otherwise */
     private boolean initializeTaskbarIfNecessary() {
         if (mIsTablet) {
-            // Remove navigation bar when taskbar is showing
-            removeNavigationBar(mContext.getDisplayId());
-            mTaskbarDelegate.init(mContext.getDisplayId());
+            if (isTaskbarEnabled()) {
+                // Remove navigation bar when taskbar is showing
+                removeNavigationBar(mContext.getDisplayId());
+                mTaskbarDelegate.init(mContext.getDisplayId());
+            } else {
+                // Destroy if we disable taskbar
+                mTaskbarDelegate.destroy();
+            }
         } else {
             mTaskbarDelegate.destroy();
         }
@@ -269,7 +281,7 @@ public class NavigationBarController implements
 
         // Don't need to create nav bar on the default display if we initialize TaskBar.
         final boolean shouldCreateDefaultNavbar = includeDefaultDisplay
-                && !initializeTaskbarIfNecessary();
+                && (!initializeTaskbarIfNecessary() || !isTaskbarEnabled());
         Display[] displays = mDisplayManager.getDisplays();
         for (Display display : displays) {
             if (shouldCreateDefaultNavbar || display.getDisplayId() != DEFAULT_DISPLAY) {
@@ -295,7 +307,7 @@ public class NavigationBarController implements
 
         // We may show TaskBar on the default display for large screen device. Don't need to create
         // navigation bar for this case.
-        if (mIsTablet && isOnDefaultDisplay) {
+        if (mIsTablet && isOnDefaultDisplay && isTaskbarEnabled()) {
             return;
         }
 
@@ -433,5 +445,9 @@ public class NavigationBarController implements
             }
             mNavigationBars.valueAt(i).dump(pw);
         }
+    }
+    private boolean isTaskbarEnabled() {
+        return Settings.System.getIntForUser(mContext.getContentResolver(),
+                NAVIGATION_BAR_DISABLE_TASKBAR, 0, UserHandle.USER_CURRENT) == 0;
     }
 }

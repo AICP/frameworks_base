@@ -58,18 +58,12 @@ import com.android.systemui.plugins.qs.DetailAdapter;
 import com.android.systemui.plugins.qs.QSTile;
 import com.android.systemui.plugins.qs.QSTileView;
 import com.android.systemui.settings.brightness.BrightnessSliderController;
-import com.android.systemui.statusbar.policy.BrightnessMirrorController;
-import com.android.systemui.tuner.TunerService;
-import com.android.systemui.tuner.TunerService.Tunable;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /** View that represents the quick settings tile panel (when expanded/pulled down). **/
-public class QSPanel extends LinearLayout implements Tunable {
-
-    public static final String QS_SHOW_BRIGHTNESS = "qs_show_brightness";
-    public static final String QS_SHOW_HEADER = "qs_show_header";
+public class QSPanel extends LinearLayout {
 
     private static final String TAG = "QSPanel";
 
@@ -114,13 +108,14 @@ public class QSPanel extends LinearLayout implements Tunable {
 
     private Record mDetailRecord;
 
-    private BrightnessMirrorController mBrightnessMirrorController;
     private LinearLayout mHorizontalLinearLayout;
     protected LinearLayout mHorizontalContentContainer;
 
     protected QSTileLayout mTileLayout;
     private float mSquishinessFraction = 1f;
     private final ArrayMap<View, Integer> mChildrenLayoutTop = new ArrayMap<>();
+
+    protected boolean mSliderAtTop = true;
 
     public QSPanel(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -163,33 +158,55 @@ public class QSPanel extends LinearLayout implements Tunable {
         }
     }
 
+    protected void updateBrightnessView(boolean sliderAtTop) {
+        updateBrightnessView(sliderAtTop, false /* force */);
+    }
+
+    private void updateBrightnessView(boolean sliderAtTop, boolean force) {
+        if (mSliderAtTop == sliderAtTop && !force) return;
+        if (mBrightnessView == null) {
+            mSliderAtTop = sliderAtTop;
+            // Everything else will be handled in setBrightnessView
+            return;
+        }
+        removeView(mBrightnessView);
+        // Only decrement if slider is currently at top position
+        if (mSliderAtTop) mMovableContentStartIndex--;
+        mSliderAtTop = sliderAtTop;
+        addBrightnessView();
+    }
+
+    private void addBrightnessView() {
+        final int index = mSliderAtTop ? 0 :
+            ((!mUsingMediaPlayer || isLandscape()) ? getChildCount() : getChildCount() - 1);
+        addView(mBrightnessView, index);
+        setBrightnessViewMargin();
+        // Only increment if slider is swapped to top position
+        if (mSliderAtTop) mMovableContentStartIndex++;
+    }
+
     /**
-     * Add brightness view above the tile layout.
+     * Add brightness view above / below the tile layout.
      *
      * Used to add the brightness slider after construction.
      */
     public void setBrightnessView(@NonNull View view) {
         if (mBrightnessView != null) {
             removeView(mBrightnessView);
-            mMovableContentStartIndex--;
+            if (mSliderAtTop) mMovableContentStartIndex--;
         }
-        addView(view, 0);
         mBrightnessView = view;
-
-        setBrightnessViewMargin();
-
-        mMovableContentStartIndex++;
+        addBrightnessView();
     }
 
-    private void setBrightnessViewMargin() {
-        if (mBrightnessView != null) {
-            MarginLayoutParams lp = (MarginLayoutParams) mBrightnessView.getLayoutParams();
-            lp.topMargin = mContext.getResources()
-                    .getDimensionPixelSize(R.dimen.qs_brightness_margin_top);
-            lp.bottomMargin = mContext.getResources()
-                    .getDimensionPixelSize(R.dimen.qs_brightness_margin_bottom);
-            mBrightnessView.setLayoutParams(lp);
-        }
+    protected void setBrightnessViewMargin() {
+        if (mBrightnessView == null) return;
+        final MarginLayoutParams lp = (MarginLayoutParams) mBrightnessView.getLayoutParams();
+        lp.topMargin = mSliderAtTop ? mContext.getResources()
+            .getDimensionPixelSize(R.dimen.qs_brightness_margin_top) : 0;
+        lp.bottomMargin = mContext.getResources()
+            .getDimensionPixelSize(R.dimen.qs_brightness_margin_bottom);
+        mBrightnessView.setLayoutParams(lp);
     }
 
     /** */
@@ -292,17 +309,6 @@ public class QSPanel extends LinearLayout implements Tunable {
 
     protected String getDumpableTag() {
         return TAG;
-    }
-
-    @Override
-    public void onTuningChanged(String key, String newValue) {
-        if (QS_SHOW_BRIGHTNESS.equals(key) && mBrightnessView != null) {
-            updateViewVisibilityForTuningValue(mBrightnessView, newValue);
-        }
-    }
-
-    private void updateViewVisibilityForTuningValue(View view, @Nullable String newValue) {
-        view.setVisibility(TunerService.parseIntegerSwitch(newValue, true) ? VISIBLE : GONE);
     }
 
     /** */
@@ -434,13 +440,16 @@ public class QSPanel extends LinearLayout implements Tunable {
         }
     }
 
+    protected boolean isLandscape() {
+        return mContext.getResources().getConfiguration().orientation
+            == Configuration.ORIENTATION_LANDSCAPE;
+    }
+
     /** Switch the security footer between top and bottom of QS depending on orientation. */
     public void switchSecurityFooter(boolean shouldUseSplitNotificationShade) {
         if (mSecurityFooter == null) return;
 
-        if (!shouldUseSplitNotificationShade
-                && mContext.getResources().getConfiguration().orientation
-                == Configuration.ORIENTATION_LANDSCAPE && mHeaderContainer != null) {
+        if (!shouldUseSplitNotificationShade && isLandscape() && mHeaderContainer != null) {
             // Adding the security view to the header, that enables us to avoid scrolling
             switchToParent(mSecurityFooter, mHeaderContainer, 0);
         } else {
@@ -747,6 +756,7 @@ public class QSPanel extends LinearLayout implements Tunable {
             updateMargins(mediaHostView);
             if (mHorizontalLinearLayout == null) return;
             mHorizontalLinearLayout.setVisibility(horizontal ? View.VISIBLE : View.GONE);
+            updateBrightnessView(mSliderAtTop, true /* force */);
         }
     }
 

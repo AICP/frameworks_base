@@ -484,5 +484,8 @@ public class SystemSettingsValidators {
             }
         });
         VALIDATORS.put(System.LIVE_DISPLAY_HINTED, new InclusiveIntegerRangeValidator(-3, 1));
+        VALIDATORS.put(System.QQS_SHOW_BRIGHTNESS, BOOLEAN_VALIDATOR);
+        VALIDATORS.put(System.SHOW_AUTO_BRIGHTNESS_BUTTON, BOOLEAN_VALIDATOR);
+        VALIDATORS.put(System.BRIGHTNESS_SLIDER_POSITION, new InclusiveIntegerRangeValidator(0, 1));
     }
 }

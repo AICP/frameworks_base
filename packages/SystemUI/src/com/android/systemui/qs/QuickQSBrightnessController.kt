@@ -36,20 +36,16 @@ class QuickQSBrightnessController @VisibleForTesting constructor(
         brightnessSliderControllerFactory: BrightnessSliderController.Factory,
         quickQSPanel: QuickQSPanel
     ) : this(brightnessControllerFactory = {
-            val slider = brightnessSliderControllerFactory.create(quickQSPanel.context,
-                    quickQSPanel)
-            slider.init()
+            val slider = brightnessSliderControllerFactory.create(
+                quickQSPanel.context, quickQSPanel
+            ).also { it.init() }
             quickQSPanel.setBrightnessView(slider.rootView)
-            brightnessControllerFactory.create(slider)
+            brightnessControllerFactory.create(slider, quickQSPanel.brightnessView)
         })
 
     private var isListening = false
     private var brightnessController: BrightnessController? = null
     private var mirrorController: BrightnessMirrorController? = null
-
-    fun init(shouldUseSplitNotificationShade: Boolean) {
-        refreshVisibility(shouldUseSplitNotificationShade)
-    }
 
     /**
      * Starts/Stops listening for brightness changing events.
@@ -73,8 +69,11 @@ class QuickQSBrightnessController @VisibleForTesting constructor(
         brightnessController?.checkRestrictionAndSetEnabled()
     }
 
-    fun refreshVisibility(shouldUseSplitNotificationShade: Boolean) {
-        if (shouldUseSplitNotificationShade) {
+    fun refreshVisibility(
+        forceShowSlider: Boolean,
+        shouldUseSplitNotificationShade: Boolean
+    ) {
+        if (forceShowSlider || shouldUseSplitNotificationShade) {
             showBrightnessSlider()
         } else {
             hideBrightnessSlider()

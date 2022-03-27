@@ -5475,6 +5475,12 @@ public final class Settings {
         public static final String NAVIGATION_BAR_ARROW_KEYS = "navigation_bar_menu_arrow_keys";
 
         /**
+         * Whether to disable taskbar
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_DISABLE_TASKBAR = "navigation_bar_disable_taskbar";
+
+        /**
          * @hide
          */
         public static final String LOCKSCREEN_SMALL_CLOCK = "lockscreen_small_clock";
@@ -6620,6 +6626,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUSBAR_COLORED_ICONS);
             PRIVATE_SETTINGS.add(STATUSBAR_NOTIF_COUNT);
             PRIVATE_SETTINGS.add(NAVIGATION_BAR_ARROW_KEYS);
+            PRIVATE_SETTINGS.add(NAVIGATION_BAR_DISABLE_TASKBAR);
             PRIVATE_SETTINGS.add(LOCKSCREEN_SMALL_CLOCK);
             PRIVATE_SETTINGS.add(AICP_ASPECT_RATIO_APPS_LIST);
             PRIVATE_SETTINGS.add(AICP_ASPECT_RATIO_APPS_ENABLED);

@@ -30,6 +30,9 @@ import com.android.systemui.plugins.qs.QSTile;
 import com.android.systemui.qs.customize.QSCustomizerController;
 import com.android.systemui.qs.dagger.QSScope;
 import com.android.systemui.qs.logging.QSLogger;
+import com.android.systemui.settings.brightness.BrightnessController;
+import com.android.systemui.settings.brightness.BrightnessSliderController;
+import com.android.systemui.tuner.TunerService;
 
 import com.aicp.gear.util.AicpUtils;
 
@@ -52,7 +55,10 @@ public class QuickQSPanelController extends QSPanelControllerBase<QuickQSPanel> 
                 }
             };
 
+    private final BrightnessController mBrightnessController;
+    private final BrightnessSliderController mBrightnessSliderController;
     private final FooterActionsController mFooterActionsController;
+    private final TunerService mTunerService;
 
     @Inject
     QuickQSPanelController(QuickQSPanel view, QSTileHost qsTileHost,
@@ -61,11 +67,20 @@ public class QuickQSPanelController extends QSPanelControllerBase<QuickQSPanel> 
             @Named(QUICK_QS_PANEL) MediaHost mediaHost,
             MetricsLogger metricsLogger, UiEventLogger uiEventLogger, QSLogger qsLogger,
             DumpManager dumpManager,
-            @Named(QQS_FOOTER) FooterActionsController footerActionsController
+            @Named(QQS_FOOTER) FooterActionsController footerActionsController,
+            TunerService tunerService,
+            BrightnessController.Factory brightnessControllerFactory,
+            BrightnessSliderController.Factory brightnessSliderFactory
     ) {
         super(view, qsTileHost, qsCustomizerController, usingMediaPlayer, mediaHost, metricsLogger,
                 uiEventLogger, qsLogger, dumpManager);
+        mTunerService = tunerService;
         mFooterActionsController = footerActionsController;
+
+        mBrightnessSliderController = brightnessSliderFactory.create(getContext(), mView);
+        mView.setBrightnessView(mBrightnessSliderController.getRootView());
+
+        mBrightnessController = brightnessControllerFactory.create(mBrightnessSliderController);
     }
 
     @Override
@@ -76,17 +91,29 @@ public class QuickQSPanelController extends QSPanelControllerBase<QuickQSPanel> 
         mMediaHost.init(MediaHierarchyManager.LOCATION_QQS);
         mFooterActionsController.init();
         mFooterActionsController.refreshVisibility(mShouldUseSplitNotificationShade);
+        mBrightnessSliderController.init();
     }
 
     @Override
     protected void onViewAttached() {
         super.onViewAttached();
+
+        mTunerService.addTunable(mView, QSPanel.QS_BRIGHTNESS_SLIDER_POSITION);
+        mTunerService.addTunable(mView, QSPanel.QS_SHOW_AUTO_BRIGHTNESS);
+        mTunerService.addTunable(mView, QSPanel.QS_SHOW_BRIGHTNESS_SLIDER);
+
+        mView.setBrightnessRunnable(() -> {
+            mView.updateResources();
+        });
+
         mView.addOnConfigurationChangedListener(mOnConfigurationChangedListener);
     }
 
     @Override
     protected void onViewDetached() {
         super.onViewDetached();
+        mTunerService.removeTunable(mView);
+        mView.setBrightnessRunnable(null);
         mView.removeOnConfigurationChangedListener(mOnConfigurationChangedListener);
     }
 
@@ -94,6 +121,14 @@ public class QuickQSPanelController extends QSPanelControllerBase<QuickQSPanel> 
     void setListening(boolean listening) {
         super.setListening(listening);
         mFooterActionsController.setListening(listening);
+
+        // Set the listening as soon as the QS fragment starts listening regardless of the
+        //expansion, so it will update the current brightness before the slider is visible.
+        if (listening) {
+            mBrightnessController.registerCallbacks();
+        } else {
+            mBrightnessController.unregisterCallbacks();
+        }
     }
 
     public boolean isListening() {

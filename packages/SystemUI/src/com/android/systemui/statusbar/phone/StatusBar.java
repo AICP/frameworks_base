@@ -998,7 +998,7 @@ public class StatusBar extends SystemUI implements
         mStatusBarHideIconsForBouncerManager.setDisplayId(mDisplayId);
 
         mPackageMonitor = new PackageMonitor();
-        mPackageMonitor.register(mContext, mHandler);
+        mPackageMonitor.register(mContext, mMainHandler);
         mPackageMonitor.addListener(this);
 
         // start old BaseStatusBar.start().

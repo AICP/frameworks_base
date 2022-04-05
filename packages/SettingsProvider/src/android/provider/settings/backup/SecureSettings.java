@@ -244,5 +244,6 @@ public class SecureSettings {
         Settings.Secure.STATUSBAR_CLOCK_DATE_FORMAT,
         Settings.Secure.STATUSBAR_CLOCK_DATE_POSITION,
         Settings.Secure.ALLOW_SIGNATURE_FAKE,
+        Settings.Secure.LAUNCHER_HIDDEN_APPS,
     };
 }

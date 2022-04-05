@@ -12109,6 +12109,12 @@ public final class Settings {
         @Readable
         public static final String QSTILE_REQUIRES_UNLOCKING = "qstile_requires_unlocking";
 
+        /**
+         * List of ; separated apps to be hidden from launcher.
+         * @hide
+         */
+        public static final String LAUNCHER_HIDDEN_APPS = "launcher_hidden_apps";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

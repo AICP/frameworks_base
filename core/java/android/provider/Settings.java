@@ -12255,6 +12255,12 @@ public final class Settings {
          */
         public static final String ALLOW_SIGNATURE_FAKE = "allow_signature_fake";
 
+        /**
+         * List of ; separated apps to be hidden from launcher.
+         * @hide
+         */
+        public static final String LAUNCHER_HIDDEN_APPS = "launcher_hidden_apps";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

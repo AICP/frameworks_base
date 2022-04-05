@@ -263,4 +263,16 @@ public class SettingsValidators {
             }
         }
     };
+
+    static final Validator APP_LIST_VALIDATOR = new ListValidator(";") {
+        @Override
+        protected boolean isEntryValid(String entry) {
+            return true;
+        }
+
+        @Override
+        protected boolean isItemValid(String item) {
+            return PACKAGE_NAME_VALIDATOR.validate(item);
+        }
+    };
 }

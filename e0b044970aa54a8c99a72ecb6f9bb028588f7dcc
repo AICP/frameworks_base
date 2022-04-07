@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1abda8cf_654227bc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2022-04-07T18:18:59Z",
+      "side": 1,
+      "message": "Set topic to s-fwb-fixes",
+      "revId": "e0b044970aa54a8c99a72ecb6f9bb028588f7dcc",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

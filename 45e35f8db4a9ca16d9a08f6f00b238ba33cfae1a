@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f776e4ba_b9c2fa69",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1682
+      },
+      "writtenOn": "2022-04-08T13:10:12Z",
+      "side": 1,
+      "message": "Needed for moto devices",
+      "revId": "45e35f8db4a9ca16d9a08f6f00b238ba33cfae1a",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

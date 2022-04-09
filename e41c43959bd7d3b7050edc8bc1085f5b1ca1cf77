@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b732c0ab_3c743282",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2022-04-09T03:53:24Z",
+      "side": 1,
+      "message": "s-fwb-fixes",
+      "revId": "e41c43959bd7d3b7050edc8bc1085f5b1ca1cf77",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

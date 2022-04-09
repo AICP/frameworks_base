@@ -53,4 +53,8 @@
 
     <!-- Battery use screen. Battery status shown in chart label when charging from a TurboPower source.  -->
     <string name="battery_info_status_turbo_charging">Turbo charging</string>
+
+    <!-- NR Types -->
+    <string name="data_connection_5g_nsa" translatable="false">5G NSA</string>
+    <string name="data_connection_5g_sa" translatable="false">5G SA</string>
 </resources>

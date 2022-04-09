@@ -16,6 +16,23 @@
       "message": "Don\u0027t mind if it merged till here",
       "revId": "d5147f4c00a8ced1720d2966cb976a3d8b1c2dbb",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b32a542_05522164",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-04-09T16:09:31Z",
+      "side": 1,
+      "message": "Not sure about this..",
+      "revId": "d5147f4c00a8ced1720d2966cb976a3d8b1c2dbb",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

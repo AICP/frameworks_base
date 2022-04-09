@@ -281,9 +281,10 @@ public class KeyguardClockSwitch extends RelativeLayout {
                 Settings.System.LOCKSCREEN_SMALL_CLOCK, 0,
                 UserHandle.USER_CURRENT) != 0;
 
-        /* if (forceSmallClock) {
-            hasVisibleNotifications = true;
-        } */
+        if (forceSmallClock && clockSize == LARGE) {
+            return false;
+        }
+
         if (mDisplayedClockSize != null && clockSize == mDisplayedClockSize) {
             return false;
         }

@@ -6458,6 +6458,12 @@ public final class Settings {
          */
         public static final String VOWIFI_ICON = "vowifi_icon";
 
+        /**
+         * VoWiFi icon style
+         * @hide
+         */
+        public static final String VOWIFI_ICON_STYLE = "vowifi_icon_style";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6764,6 +6770,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SHOW_VOLTE_ICON);
             PRIVATE_SETTINGS.add(VOLTE_ICON_STYLE);
             PRIVATE_SETTINGS.add(VOWIFI_ICON);
+            PRIVATE_SETTINGS.add(VOWIFI_ICON_STYLE);
         }
 
         /**

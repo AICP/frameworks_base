@@ -11989,6 +11989,12 @@ public final class Settings {
          */
         public static final String STATUSBAR_CLOCK_DATE_POSITION = "statusbar_clock_date_position";
 
+        /**
+         * Stores the java DateFormat string for the date
+         * @hide
+         */
+        public static final String SHOW_COMBINED_STATUS_BAR_SIGNAL_ICONS = "show_combined_status_bar_signal_icons";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

@@ -227,5 +227,6 @@ public class SystemSettings {
         Settings.System.QS_DATA_USAGE_PANEL,
         Settings.System.CHARGING_ANIMATION,
         Settings.System.ENABLE_RIPPLE_EFFECT,
+        Settings.System.ENABLE_TASKBAR,
     };
 }

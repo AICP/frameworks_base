@@ -6626,6 +6626,11 @@ public final class Settings {
          */
         public static final String ENABLE_RIPPLE_EFFECT = "enable_ripple_effect";
 
+        /**
+         * @hide
+         */
+        public static final String ENABLE_TASKBAR = "enable_taskbar";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6886,6 +6891,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(QS_DATA_USAGE_PANEL);
             PRIVATE_SETTINGS.add(CHARGING_ANIMATION);
             PRIVATE_SETTINGS.add(ENABLE_RIPPLE_EFFECT);
+            PRIVATE_SETTINGS.add(ENABLE_TASKBAR);
         }
 
         /**

@@ -248,4 +248,10 @@
     <string name="screen_pinning_description_no_navbar_fpsensor">This keeps it in view until you unpin. Touch &amp; hold fingerprint sensor to unpin.</string>
      <!-- Notify use that they are in Lock-to-app (for devices without navbar and with gestures on fingerprint sensor)-->
     <string name="screen_pinning_toast_no_navbar_fpsensor">To unpin this screen, touch &amp; hold fingerprint sensor</string>
+
+    <!-- Preferred network tile -->
+    <string name="quick_settings_preferred_network_label">Preferred network</string>
+    <string name="quick_settings_preferred_network_lte">4g / LTE</string>
+    <string name="quick_settings_preferred_network_nr">5g / NR</string>
+    <string name="quick_settings_preferred_network_unsupported">Unsupported</string>
 </resources>

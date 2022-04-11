@@ -269,6 +269,12 @@ public class OverviewProxyService extends CurrentUserTracker implements
         }
 
         @Override
+        public void setTaskbarEnabled(boolean enabled) {
+            verifyCallerAndClearCallingIdentityPostMain("setTaskbarEnabled", () ->
+                    onTaskbarEnabled(enabled));
+        }
+
+        @Override
         public void notifyTaskbarStatus(boolean visible, boolean stashed) {
             verifyCallerAndClearCallingIdentityPostMain("notifyTaskbarStatus", () ->
                     onTaskbarStatusUpdated(visible, stashed));
@@ -858,6 +864,12 @@ public class OverviewProxyService extends CurrentUserTracker implements
         }
     }
 
+    private void onTaskbarEnabled(boolean enabled) {
+        for (int i = mConnectionCallbacks.size() - 1; i >= 0; --i) {
+            mConnectionCallbacks.get(i).onTaskbarEnabled(enabled);
+        }
+    }
+
     private void onTaskbarStatusUpdated(boolean visible, boolean stashed) {
         for (int i = mConnectionCallbacks.size() - 1; i >= 0; --i) {
             mConnectionCallbacks.get(i).onTaskbarStatusUpdated(visible, stashed);
@@ -1095,6 +1107,7 @@ public class OverviewProxyService extends CurrentUserTracker implements
         /** Notify the recents app (overview) is started by 3-button navigation. */
         default void onToggleRecentApps() {}
         default void onHomeRotationEnabled(boolean enabled) {}
+        default void onTaskbarEnabled(boolean enabled) {}
         default void onTaskbarStatusUpdated(boolean visible, boolean stashed) {}
         default void onTaskbarAutohideSuspend(boolean suspend) {}
         default void onSystemUiStateChanged(int sysuiStateFlags) {}

@@ -32,6 +32,24 @@ public final class AppLockManager {
     public static final long DEFAULT_TIMEOUT = 10 * 1000;
     public static final boolean DEFAULT_BIOMETRICS_ALLOWED = true;
 
+    /**
+     * Intent action for starting credential activity in SystemUI.
+     * @hide
+     */
+    public static final String ACTION_UNLOCK_APP = "android.app.action.UNLOCK_APP";
+
+    /**
+     * Intent extra to indicate whether usage of biometrics is allowed.
+     * @hide
+     */
+    public static final String EXTRA_ALLOW_BIOMETRICS = "android.app.AppLockManager.ALLOW_BIOMETRICS";
+
+    /**
+     * Intent extra for the name of the application to unlock.
+     * @hide
+     */
+    public static final String EXTRA_PACKAGE_LABEL = "android.app.AppLockManager.PACKAGE_LABEL";
+
     private final Context mContext;
     private final IAppLockManagerService mService;
 
@@ -183,6 +201,22 @@ public final class AppLockManager {
     public boolean isBiometricsAllowed() {
         try {
             return mService.isBiometricsAllowed(mContext.getUserId());
+        } catch (RemoteException e) {
+            throw e.rethrowFromSystemServer();
+        }
+    }
+
+    /**
+     * Unlock a package following authentication with credentials.
+     * Caller must hold {@link android.permission.MANAGE_APP_LOCK}.
+     *
+     * @param packageName the name of the package to unlock.
+     */
+    @UserHandleAware
+    @RequiresPermission(Manifest.permission.MANAGE_APP_LOCK)
+    public void unlockPackage(@NonNull String packageName) {
+        try {
+            mService.unlockPackage(packageName, mContext.getUserId());
         } catch (RemoteException e) {
             throw e.rethrowFromSystemServer();
         }

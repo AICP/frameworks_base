@@ -16,6 +16,10 @@
 
 package com.android.server.app
 
+import android.content.Intent
+
+import com.android.server.wm.ActivityInterceptorCallback.ActivityInterceptorInfo
+
 /**
  * Internal class for system server to manage app lock.
  *
@@ -32,21 +36,6 @@ abstract class AppLockManagerServiceInternal {
      * @return true if user has to unlock, false otherwise.
      */
     abstract fun requireUnlock(packageName: String, userId: Int): Boolean
-
-    /**
-     * Unlock the application.
-     *
-     * @param packageName the package name of the app to unlock.
-     * @param unlockCallback the callback to listen for when user unlocks.
-     * @param cancelCallback the callback to listen for when user cancels unlock.
-     * @param userId the user id given by the caller.
-     */
-    abstract fun unlock(
-        packageName: String,
-        unlockCallback: UnlockCallback?,
-        cancelCallback: CancelCallback?,
-        userId: Int,
-    )
 
     /**
      * Report that password for user has changed.
@@ -69,24 +58,13 @@ abstract class AppLockManagerServiceInternal {
      */
     abstract fun notifyDeviceLocked(locked: Boolean, userId: Int)
 
-    @FunctionalInterface
-    interface UnlockCallback {
-        /**
-         * Callback fired when user successfully unlocks the security prompt.
-         *
-         * @param packageName the name of the package that was unlocked.
-         */
-        fun onUnlocked(packageName: String)
-    }
-
-    @FunctionalInterface
-    interface CancelCallback {
-        /**
-         * Callback fired when user cancells security prompt.
-         *
-         * @param packageName the name of the package for which the
-         *    unlock was cancelled.
-         */
-        fun onCancelled(packageName: String)
-    }
+    /**
+     * Whether to intercept the activity launch from a package. Used
+     * to show confirm credentials prompt.
+     *
+     * @param info [ActivityInterceptorInfo] of intercepted activity.
+     * @return [Intent] which will be fired. Return null if activity
+     *    shouldn't be intercepted.
+     */
+    abstract fun interceptActivity(info: ActivityInterceptorInfo): Intent?
 }

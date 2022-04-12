@@ -1266,16 +1266,6 @@ public class ActivityTaskManagerService extends IActivityTaskManager.Stub {
                 .setUserId(userId);
 
         final ActivityInfo aInfo = resolveActivityInfoForIntent(intent, resolvedType, userId, callingUid);
-        if (aInfo != null) {
-            if (getAppLockManagerService().requireUnlock(aInfo.packageName, userId)) {
-                getAppLockManagerService().unlock(aInfo.packageName, pkg -> {
-                    mContext.getMainExecutor().execute(() -> {
-                        activityStarter.execute();
-                    });
-                }, null /* cancelCallback */, userId);
-                return ActivityManager.START_ABORTED;
-            }
-        }
 
         // TODO: Switch to user app stacks here.
         return activityStarter.execute();
@@ -1802,22 +1792,6 @@ public class ActivityTaskManagerService extends IActivityTaskManager.Stub {
             task = mRootWindowContainer.anyTaskForId(taskId);
         }
         final String packageName = getTaskPackageName(task);
-        if (packageName != null) {
-            if (getAppLockManagerService().requireUnlock(packageName, task.mUserId)) {
-                getAppLockManagerService().unlock(packageName,
-                pkg -> {
-                    mContext.getMainExecutor().execute(() -> {
-                        startActivityFromRecentsInternal(taskId, callingPid,
-                            callingUid, bOptions);
-                    });
-                },
-                pkg -> {
-                    // Send user to recents
-                    getStatusBarManagerInternal().showRecentApps(false);
-                }, task.mUserId);
-                return ActivityManager.START_ABORTED;
-            }
-        }
         return startActivityFromRecentsInternal(taskId, callingPid, callingUid, bOptions);
     }
 
@@ -5438,18 +5412,6 @@ public class ActivityTaskManagerService extends IActivityTaskManager.Stub {
             assertPackageMatchesCallingUid(callingPackage);
             final ActivityInfo aInfo = resolveActivityInfoForIntent(intents[0], resolvedTypes[0], userId,
                 realCallingUid);
-            if (aInfo != null) {
-                if (getAppLockManagerService().requireUnlock(aInfo.packageName, userId)) {
-                    getAppLockManagerService().unlock(aInfo.packageName, pkg -> {
-                        mContext.getMainExecutor().execute(() ->
-                            getActivityStartController().startActivitiesInPackage(uid, realCallingPid,
-                                realCallingUid, callingPackage, callingFeatureId, intents, resolvedTypes,
-                                resultTo, options, userId, validateIncomingUser, originatingPendingIntent,
-                                allowBackgroundActivityStart));
-                    }, null /* cancelCallback */, userId);
-                    return ActivityManager.START_ABORTED;
-                }
-            }
             return getActivityStartController().startActivitiesInPackage(uid, realCallingPid,
                     realCallingUid, callingPackage, callingFeatureId, intents, resolvedTypes,
                     resultTo, options, userId, validateIncomingUser, originatingPendingIntent,
@@ -5466,19 +5428,6 @@ public class ActivityTaskManagerService extends IActivityTaskManager.Stub {
             assertPackageMatchesCallingUid(callingPackage);
             final ActivityInfo aInfo = resolveActivityInfoForIntent(intent, resolvedType, userId,
                 realCallingUid);
-            if (aInfo != null) {
-                if (getAppLockManagerService().requireUnlock(aInfo.packageName, userId)) {
-                    getAppLockManagerService().unlock(aInfo.packageName, pkg -> {
-                        mContext.getMainExecutor().execute(() ->
-                            getActivityStartController().startActivityInPackage(uid, realCallingPid,
-                                realCallingUid, callingPackage, callingFeatureId, intent, resolvedType,
-                                resultTo, resultWho, requestCode, startFlags, options, userId, inTask,
-                                reason, validateIncomingUser, originatingPendingIntent,
-                                allowBackgroundActivityStart));
-                    }, null /* cancelCallback */, userId);
-                    return ActivityManager.START_ABORTED;
-                }
-            }
             return getActivityStartController().startActivityInPackage(uid, realCallingPid,
                     realCallingUid, callingPackage, callingFeatureId, intent, resolvedType,
                     resultTo, resultWho, requestCode, startFlags, options, userId, inTask,

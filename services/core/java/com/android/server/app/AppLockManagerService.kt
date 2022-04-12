@@ -18,8 +18,10 @@ package com.android.server.app
 
 import android.Manifest
 import android.annotation.RequiresPermission
+import android.app.Activity
 import android.app.ActivityManager
 import android.app.ActivityManagerInternal
+import android.app.ActivityOptions
 import android.app.ActivityTaskManager
 import android.app.AlarmManager
 import android.app.AppLockManager
@@ -31,6 +33,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.IntentSender
 import android.content.pm.PackageManager
 import android.os.Binder
 import android.os.Environment
@@ -44,12 +47,11 @@ import android.util.Slog
 
 import com.android.internal.R
 import com.android.internal.annotations.GuardedBy
-import com.android.server.app.AppLockManagerServiceInternal.CancelCallback
-import com.android.server.app.AppLockManagerServiceInternal.UnlockCallback
 import com.android.server.LocalServices
 import com.android.server.notification.NotificationManagerInternal
 import com.android.server.pm.UserManagerInternal
 import com.android.server.SystemService
+import com.android.server.wm.ActivityInterceptorCallback.ActivityInterceptorInfo
 import com.android.server.wm.ActivityTaskManagerInternal
 
 import kotlinx.coroutines.CoroutineScope
@@ -66,13 +68,12 @@ import kotlinx.coroutines.withContext
  *
  * @hide
  */
-class AppLockManagerService(private val context: Context) :
-    IAppLockManagerService.Stub() {
+class AppLockManagerService(
+    private val context: Context
+) : IAppLockManagerService.Stub() {
 
     private val localService = LocalService()
-    private val serviceScope: CoroutineScope by lazy {
-        CoroutineScope(Dispatchers.Default)
-    }
+    private val serviceScope = CoroutineScope(Dispatchers.Default)
 
     private val currentUserId: Int
         get() = activityManagerInternal.currentUserId
@@ -246,7 +247,7 @@ class AppLockManagerService(private val context: Context) :
                 context,
                 pkg.hashCode(),
                 Intent(ACTION_APP_LOCK_TIMEOUT).apply {
-                    putExtra(EXTRA_PACKAGE, pkg)
+                    putExtra(Intent.EXTRA_PACKAGE_NAME, pkg)
                 },
                 PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
             )
@@ -296,7 +297,7 @@ class AppLockManagerService(private val context: Context) :
         override fun onReceive(context: Context?, intent: Intent?) {
             if (intent?.action != ACTION_APP_LOCK_TIMEOUT) return
             logD("Lock alarm received")
-            val packageName = intent.getStringExtra(EXTRA_PACKAGE) ?: return
+            val packageName = intent.getStringExtra(Intent.EXTRA_PACKAGE_NAME) ?: return
             logD("$packageName timed out")
             serviceScope.launch {
                 mutex.withLock {
@@ -318,8 +319,11 @@ class AppLockManagerService(private val context: Context) :
                     }
                 } == true
                 notificationManagerInternal.updateSecureNotifications(
-                    packageName, isContentSecure,
-                    true /* isBubbleUpSuppressed */, currentUserId)
+                    packageName,
+                    isContentSecure,
+                    true /* isBubbleUpSuppressed */,
+                    currentUserId
+                )
             }
         }
     }
@@ -392,8 +396,11 @@ class AppLockManagerService(private val context: Context) :
                 // Collapse any active notifications or bubbles for the app.
                 if (!topPackages.contains(packageName)) {
                     notificationManagerInternal.updateSecureNotifications(
-                        packageName, true /* isContentSecure */,
-                        true /* isBubbleUpSuppressed */, actualUserId)
+                        packageName,
+                        true /* isContentSecure */,
+                        true /* isBubbleUpSuppressed */,
+                        actualUserId
+                    )
                 }
                 withContext(Dispatchers.IO) {
                     config.write()
@@ -437,8 +444,11 @@ class AppLockManagerService(private val context: Context) :
                 // Let active notifications be expanded since the app
                 // is no longer protected.
                 notificationManagerInternal.updateSecureNotifications(
-                    packageName, false /* isContentSecure */,
-                    false /* isBubbleUpSuppressed */, actualUserId)
+                    packageName,
+                    false /* isContentSecure */,
+                    false /* isBubbleUpSuppressed */,
+                    actualUserId
+                )
                 withContext(Dispatchers.IO) {
                     config.write()
                 }
@@ -595,6 +605,7 @@ class AppLockManagerService(private val context: Context) :
      * Set whether to allow unlocking with biometrics.
      *
      * @param biometricsAllowed whether to use biometrics.
+     * @param userId the user id of the caller.
      * @throws [SecurityException] if caller does not have permission
      *     [Manifest.permissions.MANAGE_APP_LOCK].
      */
@@ -634,6 +645,42 @@ class AppLockManagerService(private val context: Context) :
                     AppLockManager.DEFAULT_BIOMETRICS_ALLOWED
                 }
             }
+        }
+    }
+
+    /**
+     * Unlock a package following authentication with credentials.
+     * Caller must hold {@link android.permission.MANAGE_APP_LOCK}.
+     *
+     * @param packageName the name of the package to unlock.
+     * @param userId the user id of the caller.
+     * @throws [SecurityException] if caller does not have permission
+     *     [Manifest.permissions.MANAGE_APP_LOCK].
+     */
+    @RequiresPermission(Manifest.permission.MANAGE_APP_LOCK)
+    override fun unlockPackage(packageName: String, userId: Int) {
+        logD("unlockPackage: packageName = $packageName, userId = $userId")
+        enforceCallingPermission("unlockPackage")
+        val actualUserId = getActualUserId(userId, "unlockPackage")
+        serviceScope.launch {
+            mutex.withLock {
+                val config = userConfigMap[actualUserId] ?: run {
+                    Slog.e(TAG, "unlockPackage requested by unknown user id $actualUserId")
+                    return@launch
+                }
+                if (!config.appLockPackages.contains(packageName)) {
+                    Slog.w(TAG, "Unlock requested for package $packageName " +
+                        "that is not in list")
+                    return@launch
+                }
+                unlockedPackages.add(packageName)
+            }
+            notificationManagerInternal.updateSecureNotifications(
+                packageName,
+                false /* isContentSecure */,
+                false /* isBubbleUpSuppressed */,
+                actualUserId
+            )
         }
     }
 
@@ -787,50 +834,6 @@ class AppLockManagerService(private val context: Context) :
             }
         }
 
-        override fun unlock(
-            packageName: String,
-            unlockCallback: UnlockCallback?,
-            cancelCallback: CancelCallback?,
-            userId: Int
-        ) {
-            if (!checkUserAndDeviceStatus(userId)) return
-            logD("unlock: packageName = $packageName")
-            val actualUserId = getActualUserId(userId, "unlock")
-            serviceScope.launch {
-                mutex.withLock {
-                    val config = userConfigMap[actualUserId] ?: run {
-                        Slog.e(TAG, "Unlock requested by unknown user id $actualUserId")
-                        return@withLock
-                    }
-                    if (!config.appLockPackages.contains(packageName)) {
-                        Slog.w(TAG, "Unlock requested for package $packageName " +
-                            "that is not in list")
-                        return@withLock
-                    }
-                }
-                unlockInternal(packageName, actualUserId,
-                    onSuccess = {
-                        logD("Unlock successfull")
-                        serviceScope.launch {
-                            mutex.withLock {
-                                unlockedPackages.add(packageName)
-                            }
-                            unlockCallback?.onUnlocked(packageName)
-                            notificationManagerInternal.updateSecureNotifications(
-                                packageName, false /* isContentSecure */,
-                                false /* isBubbleUpSuppressed */, actualUserId)
-                        }
-                    },
-                    onCancel = {
-                        logD("Unlock cancelled")
-                        serviceScope.launch {
-                            cancelCallback?.onCancelled(packageName)
-                        }
-                    }
-                )
-            }
-        }
-
         override fun reportPasswordChanged(userId: Int) {
             logD("reportPasswordChanged: userId = $userId")
             if (userId != currentUserId) {
@@ -913,9 +916,44 @@ class AppLockManagerService(private val context: Context) :
                 }
             }
         }
+
+        override fun interceptActivity(info: ActivityInterceptorInfo): Intent? {
+            val packageName = info.aInfo.packageName
+            logD("interceptActivity, pkg = $packageName")
+            if (!localService.requireUnlock(packageName, info.userId)) return null
+            val target = IntentSender(
+                atmInternal.getIntentSender(
+                    ActivityManager.INTENT_SENDER_ACTIVITY,
+                    info.callingPackage,
+                    info.callingFeatureId,
+                    info.realCallingUid,
+                    info.userId,
+                    null /* token */,
+                    null /* resultCode */,
+                    0 /* requestCode */,
+                    arrayOf(info.intent),
+                    arrayOf(info.resolvedType),
+                    PendingIntent.FLAG_CANCEL_CURRENT or
+                        PendingIntent.FLAG_ONE_SHOT or
+                        PendingIntent.FLAG_IMMUTABLE,
+                    ActivityOptions.makeBasic().toBundle()
+                )
+            )
+            val intent = Intent(AppLockManager.ACTION_UNLOCK_APP).apply {
+                setPackage(SETTINGS_PACKAGE)
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or
+                            Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
+                putExtra(Intent.EXTRA_PACKAGE_NAME, packageName)
+                putExtra(AppLockManager.EXTRA_PACKAGE_LABEL, info.aInfo.loadLabel(packageManager))
+                putExtra(Intent.EXTRA_INTENT, target)
+                putExtra(Intent.EXTRA_USER_ID, info.userId)
+                putExtra(AppLockManager.EXTRA_ALLOW_BIOMETRICS, isBiometricsAllowed(info.userId))
+            }
+            return intent
+        }
     }
 
-    class Lifecycle(context: Context): SystemService(context) {
+    class Lifecycle(context: Context) : SystemService(context) {
         private val service = AppLockManagerService(context)
 
         override fun onStart() {
@@ -951,7 +989,7 @@ class AppLockManagerService(private val context: Context) :
             get() = Log.isLoggable(TAG, Log.DEBUG)
 
         private const val ACTION_APP_LOCK_TIMEOUT = "com.android.server.app.AppLockManagerService.APP_LOCK_TIMEOUT"
-        private const val EXTRA_PACKAGE = "com.android.server.app.AppLockManagerService.PACKAGE"
+        private const val SETTINGS_PACKAGE = "com.android.settings"
 
         internal fun logD(vararg msgs: String) {
             if (DEBUG) {

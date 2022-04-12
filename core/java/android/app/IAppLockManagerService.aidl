@@ -39,4 +39,6 @@ interface IAppLockManagerService {
     void setBiometricsAllowed(in boolean biometricsAllowed, in int userId);
 
     boolean isBiometricsAllowed(in int userId);
+
+    void unlockPackage(in String packageName, in int userId);
 }

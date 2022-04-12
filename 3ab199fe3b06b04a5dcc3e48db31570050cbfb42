@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b40800f_74e935ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1090
+      },
+      "writtenOn": "2022-04-12T03:11:35Z",
+      "side": 1,
+      "message": "It would be great if you could author the designer of this icon (MezzLasha \u003c64702427+MezzLasha@users.noreply.github.com\u003e). It was custom made by us and it\u0027s designed to look like the Vivo VoLTE icon (i.e. the actual Vivo VoWiFi icon doesn\u0027t look like this, so it technically isn\u0027t even a \"Vivo\" VoWiFi icon)",
+      "revId": "3ab199fe3b06b04a5dcc3e48db31570050cbfb42",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

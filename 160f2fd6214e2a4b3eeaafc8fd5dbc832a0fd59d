@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b5ebcc5_c540f3c0",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/info/DataUsageView.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-04-12T11:28:12Z",
+      "side": 1,
+      "message": "importing this fixes the build, but not fixes the boot. http://haste.aicp-rom.com/onafacixob.bash",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 69
+      },
+      "revId": "160f2fd6214e2a4b3eeaafc8fd5dbc832a0fd59d",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de17db7c_5df7443e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-04-12T07:00:07Z",
+      "side": 1,
+      "message": "Build fails with \n\nframeworks/base/packages/SystemUI/src/com/android/keyguard/KeyguardSliceView.java:67: Error: KeyguardSliceView is not abstract and \ndoes not override abstract method onClick(View) in OnClickListener\npublic class KeyguardSliceView extends LinearLayout implements View.OnClickListener, Tunable {\n\n1 error\n\n[TEMP]: Both fw_base \u0026 AE commits excluded from pick list",
+      "revId": "b52d74d805c6000e7e1cedd2d925c840930279ca",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

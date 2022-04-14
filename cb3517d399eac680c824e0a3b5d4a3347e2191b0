@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72352895_84b5fe71",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2022-04-14T13:21:05Z",
+      "side": 1,
+      "message": "We don\u0027t ship any proprietary fonts on our officials, ryt?",
+      "revId": "cb3517d399eac680c824e0a3b5d4a3347e2191b0",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

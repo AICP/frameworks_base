@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43d2843e_db98de3b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2022-04-16T14:30:16Z",
+      "side": 1,
+      "message": "This will check it any props are to be spoofed for *each* application being started, will be better with a check (prop/setting)\n\nElse, legacy devices will suffer with app launch times",
+      "revId": "957a657a103b9bed0024347d1ead45c502a42339",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

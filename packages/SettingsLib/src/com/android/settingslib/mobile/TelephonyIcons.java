@@ -39,10 +39,11 @@ public class TelephonyIcons {
     public static final int ICON_3G = R.drawable.ic_3g_mobiledata;
     public static final int ICON_4G = R.drawable.ic_4g_mobiledata;
     public static final int ICON_4G_PLUS = R.drawable.ic_4g_plus_mobiledata;
-    public static final int ICON_5G_E = R.drawable.ic_5g_e_mobiledata;
     public static final int ICON_1X = R.drawable.ic_1x_mobiledata;
-    public static final int ICON_5G = R.drawable.ic_5g_mobiledata;
-    public static final int ICON_5G_PLUS = R.drawable.ic_5g_plus_mobiledata;
+    public static final int ICON_5G_E = R.drawable.kscope_ic_5g_e_mobiledata;
+    public static final int ICON_5G = R.drawable.kscope_ic_5g_mobiledata;
+    public static final int ICON_5G_PLUS = R.drawable.kscope_ic_5g_plus_mobiledata;
+    public static final int ICON_5G_NSA = R.drawable.kscope_ic_5g_nsa_mobiledata;
     public static final int ICON_CWF = R.drawable.ic_carrier_wifi;
     public static final int ICON_VOWIFI = R.drawable.ic_vowifi;
     public static final int ICON_VOWIFI_CALLING = R.drawable.ic_vowifi_calling;
@@ -56,7 +57,6 @@ public class TelephonyIcons {
     static final int ICON_VOWIFI_Simple3 = R.drawable.ic_vowifi_simple3;
     static final int ICON_VOWIFI_VIVO = R.drawable.ic_vowifi_vivo;
     static final int ICON_VOWIFI_Margaritov = R.drawable.ic_vowifi_margaritov;
-
 
     public static final MobileIconGroup CARRIER_NETWORK_CHANGE = new MobileIconGroup(
             "CARRIER_NETWORK_CHANGE",

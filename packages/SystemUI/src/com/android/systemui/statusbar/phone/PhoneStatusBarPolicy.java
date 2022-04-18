@@ -349,6 +349,9 @@ public class PhoneStatusBarPolicy
         mRecordingController.addCallback(this);
 
         mCommandQueue.addCallback(this);
+
+        // Get initial user setup state
+        onUserSetupChanged();
     }
 
     public void updateSettings(boolean showBluetoothBattery) {

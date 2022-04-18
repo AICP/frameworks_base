@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb846917_3bb79097",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-04-18T23:06:07Z",
+      "side": 1,
+      "message": "Fixes Flashlight when set for Screen off gestures in PartsBin.",
+      "revId": "c7fdc3b2829b98ca0fb2f5a755a342d89347f3b7",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

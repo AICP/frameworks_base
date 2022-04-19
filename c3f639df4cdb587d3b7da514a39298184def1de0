@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d0fbe6b_e800dfa6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 562
+      },
+      "writtenOn": "2022-04-19T19:15:53Z",
+      "side": 1,
+      "message": "Image\nhttps://gist.github.com/koron393/353faf1019195e7fb3d8dc5d3dbd571a",
+      "revId": "c3f639df4cdb587d3b7da514a39298184def1de0",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

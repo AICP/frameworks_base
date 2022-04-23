@@ -133,6 +133,11 @@ public class InternetDialog extends SystemUIDialog implements
     private Drawable mBackgroundOff = null;
     private int mDefaultDataSubId = SubscriptionManager.INVALID_SUBSCRIPTION_ID;
     private boolean mCanConfigMobileData;
+    private LinearLayout mFivegLayout;
+    private ImageView mFivegIcon;
+    private TextView mFivegTitleText;
+    private View mFivegToggleDivider;
+    private Switch mFivegToggle;
 
     // Wi-Fi entries
     private int mWifiNetworkHeight;
@@ -153,6 +158,9 @@ public class InternetDialog extends SystemUIDialog implements
         mIsSearchingHidden = true;
         mInternetDialogSubTitle.setText(getSubtitleText());
     };
+
+    // 5g toggle
+    private final boolean mShouldShowFivegToggle;
 
     public InternetDialog(Context context, InternetDialogFactory internetDialogFactory,
             InternetDialogController internetDialogController, boolean canConfigMobileData,
@@ -175,6 +183,7 @@ public class InternetDialog extends SystemUIDialog implements
         mWifiManager = mInternetDialogController.getWifiManager();
         mCanConfigMobileData = canConfigMobileData;
         mCanConfigWifi = canConfigWifi;
+        mShouldShowFivegToggle = mInternetDialogController.isFivegSupported();
 
         mUiEventLogger = uiEventLogger;
         mAdapter = new InternetAdapter(mInternetDialogController);
@@ -227,6 +236,11 @@ public class InternetDialog extends SystemUIDialog implements
         mMobileToggleDivider = mDialogView.requireViewById(R.id.mobile_toggle_divider);
         mMobileDataToggle = mDialogView.requireViewById(R.id.mobile_toggle);
         mWiFiToggle = mDialogView.requireViewById(R.id.wifi_toggle);
+        mFivegLayout = mDialogView.requireViewById(R.id.fiveg_layout);
+        mFivegIcon = mDialogView.requireViewById(R.id.fiveg_icon);
+        mFivegTitleText = mDialogView.requireViewById(R.id.fiveg_title);
+        mFivegToggleDivider = mDialogView.requireViewById(R.id.fiveg_toggle_divider);
+        mFivegToggle = mDialogView.requireViewById(R.id.fiveg_toggle);
         mBackgroundOn = mContext.getDrawable(R.drawable.settingslib_switch_bar_bg_on);
         mInternetDialogTitle.setText(getDialogTitleText());
         mInternetDialogTitle.setGravity(Gravity.START | Gravity.CENTER_VERTICAL);
@@ -283,6 +297,7 @@ public class InternetDialog extends SystemUIDialog implements
         mWiFiToggle.setOnCheckedChangeListener(null);
         mDoneButton.setOnClickListener(null);
         mAirplaneModeButton.setOnClickListener(null);
+        mFivegToggle.setOnCheckedChangeListener(null);
         mInternetDialogController.onStop();
         mInternetDialogFactory.destroyDialog();
     }
@@ -349,6 +364,8 @@ public class InternetDialog extends SystemUIDialog implements
                                 isChecked, false);
                     }
                 });
+        mFivegToggle.setOnCheckedChangeListener(
+            (buttonView, isChecked) -> mInternetDialogController.setFivegEnabled(isChecked));
         mConnectedWifListLayout.setOnClickListener(v -> onClickConnectedWifi());
         mSeeAllLayout.setOnClickListener(v -> onClickSeeMoreButton());
         mWiFiToggle.setOnCheckedChangeListener(
@@ -383,7 +400,9 @@ public class InternetDialog extends SystemUIDialog implements
             mMobileNetworkLayout.setVisibility(View.GONE);
         } else {
             mMobileNetworkLayout.setVisibility(View.VISIBLE);
+            mFivegLayout.setVisibility(mShouldShowFivegToggle ? View.VISIBLE : View.GONE);
             mMobileDataToggle.setChecked(mInternetDialogController.isMobileDataEnabled());
+            mFivegToggle.setChecked(mInternetDialogController.isFivegEnabled());
             mMobileTitleText.setText(getMobileNetworkTitle());
             String summary = getMobileNetworkSummary();
             if (!TextUtils.isEmpty(summary)) {
@@ -399,7 +418,13 @@ public class InternetDialog extends SystemUIDialog implements
                     mSignalIcon.setImageDrawable(drawable);
                 });
             });
+            mFivegIcon.getDrawable().setTint(isNetworkConnected
+                ? mContext.getColor(R.color.connected_network_primary_color)
+                : Utils.getColorAttrDefaultColor(mContext, android.R.attr.textColorTertiary));
             mMobileTitleText.setTextAppearance(isNetworkConnected
+                    ? R.style.TextAppearance_InternetDialog_Active
+                    : R.style.TextAppearance_InternetDialog);
+            mFivegTitleText.setTextAppearance(isNetworkConnected
                     ? R.style.TextAppearance_InternetDialog_Active
                     : R.style.TextAppearance_InternetDialog);
             int secondaryRes = isNetworkConnected
@@ -423,10 +448,15 @@ public class InternetDialog extends SystemUIDialog implements
                     android.R.attr.textColorSecondary);
             mMobileToggleDivider.setBackgroundColor(isNetworkConnected
                     ? array.getColor(0, dividerColor) : dividerColor);
+            mFivegToggleDivider.setBackgroundColor(isNetworkConnected
+                    ? array.getColor(0, dividerColor) : dividerColor);
             array.recycle();
 
             mMobileDataToggle.setVisibility(mCanConfigMobileData ? View.VISIBLE : View.INVISIBLE);
+            mFivegToggle.setVisibility(mCanConfigMobileData ? View.VISIBLE : View.INVISIBLE);
             mMobileToggleDivider.setVisibility(
+                    mCanConfigMobileData ? View.VISIBLE : View.INVISIBLE);
+            mFivegToggleDivider.setVisibility(
                     mCanConfigMobileData ? View.VISIBLE : View.INVISIBLE);
         }
     }

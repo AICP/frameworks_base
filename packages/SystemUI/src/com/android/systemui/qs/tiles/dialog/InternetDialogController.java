@@ -39,6 +39,7 @@ import android.net.wifi.WifiManager;
 import android.os.Handler;
 import android.os.UserHandle;
 import android.provider.Settings;
+import android.sysprop.TelephonyProperties;
 import android.telephony.AccessNetworkConstants;
 import android.telephony.NetworkRegistrationInfo;
 import android.telephony.ServiceState;
@@ -756,6 +757,41 @@ public class InternetDialogController implements AccessPointController.AccessPoi
             }
         }
         mWorkerHandler.post(() -> setMergedCarrierWifiEnabledIfNeed(subId, enabled));
+    }
+
+    boolean isFivegSupported() {
+        List<Integer> list = TelephonyProperties.default_network();
+        for (int type : list) {
+            if (type > 22)
+                return true;
+        }
+        return false;
+    }
+
+    boolean isFivegEnabled() {
+        if (mTelephonyManager == null
+            || (mTelephonyManager.getAllowedNetworkTypesForReason(
+                    TelephonyManager.ALLOWED_NETWORK_TYPES_REASON_USER)
+                & TelephonyManager.NETWORK_TYPE_BITMASK_NR) == 0) {
+            return false;
+        }
+        return true;
+    }
+
+    void setFivegEnabled(boolean enabled) {
+        if (mTelephonyManager == null)
+            return;
+
+        long newType = mTelephonyManager.getAllowedNetworkTypesForReason(
+            TelephonyManager.ALLOWED_NETWORK_TYPES_REASON_USER);
+        if (enabled)
+            newType |= TelephonyManager.NETWORK_TYPE_BITMASK_NR;
+        else
+            newType &= ~TelephonyManager.NETWORK_TYPE_BITMASK_NR;
+
+        mTelephonyManager.setAllowedNetworkTypesForReason(
+                TelephonyManager.ALLOWED_NETWORK_TYPES_REASON_USER,
+                newType);
     }
 
     boolean isDataStateInService() {

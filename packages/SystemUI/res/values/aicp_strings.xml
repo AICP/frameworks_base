@@ -257,4 +257,7 @@
     <!-- Google Lens Screenshot string -->
     <string name="lensss">Lens</string>
 
+    <!-- 5G toggle in internet dialog -->
+    <string name="enable_fiveg">Enable 5G</string>
+
 </resources>

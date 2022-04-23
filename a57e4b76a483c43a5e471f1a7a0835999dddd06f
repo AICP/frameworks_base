@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e05d6657_54de2120",
+        "filename": "services/core/java/com/android/server/app/AppLockManagerService.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 918,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-04-23T19:55:31Z",
+      "side": 1,
+      "message": "http://haste.aicp-rom.com/hahociroku.php",
+      "range": {
+        "startLine": 918,
+        "startChar": 2,
+        "endLine": 918,
+        "endChar": 63
+      },
+      "revId": "a57e4b76a483c43a5e471f1a7a0835999dddd06f",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

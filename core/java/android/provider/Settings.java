@@ -6792,6 +6792,11 @@ public final class Settings {
          */
         public static final String ANIM_TILE_INTERPOLATOR = "anim_tile_interpolator";
 
+        /**
+         * @hide
+         */
+        public static final String QS_TRANSPARENCY = "qs_transparency";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -7147,6 +7152,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(ANIM_TILE_STYLE);
             PRIVATE_SETTINGS.add(ANIM_TILE_DURATION);
             PRIVATE_SETTINGS.add(ANIM_TILE_INTERPOLATOR);
+            PRIVATE_SETTINGS.add(QS_TRANSPARENCY);
         }
 
         /**

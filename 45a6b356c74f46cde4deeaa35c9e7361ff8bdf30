@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f263834e_a95c5d5f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-05-03T07:53:59Z",
+      "side": 1,
+      "message": "rest of the topic is here: https://review.lineageos.org/q/topic:twelve-qcom-fde",
+      "revId": "45a6b356c74f46cde4deeaa35c9e7361ff8bdf30",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

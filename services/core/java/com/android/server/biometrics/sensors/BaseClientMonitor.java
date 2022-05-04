@@ -41,7 +41,7 @@ public abstract class BaseClientMonitor extends LoggableMonitor
         implements IBinder.DeathRecipient {
 
     private static final String TAG = "Biometrics/ClientMonitor";
-    protected static final boolean DEBUG = true;
+    protected static final boolean DEBUG = false;
 
     // Counter used to distinguish between ClientMonitor instances to help debugging.
     private static int sCount = 0;

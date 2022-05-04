@@ -71,7 +71,7 @@ import java.util.UUID;
 
 public final class BluetoothDeviceGroup implements BluetoothProfile {
     private static final String TAG = "BluetoothDeviceGroup";
-    private static final boolean DBG = true;
+    private static final boolean DBG = false;
     private static final boolean VDBG = false;
 
     /** Group Client App is registerd for callbacks successfully */

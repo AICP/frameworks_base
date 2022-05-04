@@ -49,7 +49,7 @@ import java.util.List;
 public final class BluetoothMap implements BluetoothProfile, AutoCloseable {
 
     private static final String TAG = "BluetoothMap";
-    private static final boolean DBG = true;
+    private static final boolean DBG = false;
     private static final boolean VDBG = false;
 
     private CloseGuard mCloseGuard;

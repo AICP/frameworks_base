@@ -44,8 +44,8 @@ import java.util.List;
  */
 public final class BluetoothVcp implements BluetoothProfile {
     private static final String TAG = "BluetoothVcp";
-    private static final boolean DBG = true;
-    private static final boolean VDBG = true;
+    private static final boolean DBG = false;
+    private static final boolean VDBG = false;
 
     /**
      * Intent used to broadcast the change in connection state of the VCP

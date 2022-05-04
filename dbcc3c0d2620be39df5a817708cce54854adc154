@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4a33e0b_6f4460fe",
+        "filename": "core/java/android/app/Instrumentation.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1200,
+      "author": {
+        "id": 1587
+      },
+      "writtenOn": "2022-05-04T22:05:46Z",
+      "side": 1,
+      "message": "Our GamesProps is standalone, it\u0027s not a part of PixelProps",
+      "revId": "dbcc3c0d2620be39df5a817708cce54854adc154",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

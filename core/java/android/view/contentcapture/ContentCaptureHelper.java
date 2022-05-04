@@ -41,7 +41,7 @@ public final class ContentCaptureHelper {
     private static final String TAG = ContentCaptureHelper.class.getSimpleName();
 
     public static boolean sVerbose = false;
-    public static boolean sDebug = true;
+    public static boolean sDebug = false;
 
     /**
      * Used to log text that could contain PII.
@@ -80,7 +80,7 @@ public final class ContentCaptureHelper {
                 sVerbose = true;
                 // fall through
             case LOGGING_LEVEL_DEBUG:
-                sDebug = true;
+                sDebug = false;
                 return;
             case LOGGING_LEVEL_OFF:
                 // You log nothing, Jon Snow!

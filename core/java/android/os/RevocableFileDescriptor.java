@@ -41,7 +41,7 @@ import java.io.InterruptedIOException;
  */
 public class RevocableFileDescriptor {
     private static final String TAG = "RevocableFileDescriptor";
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
 
     private FileDescriptor mInner;
     private ParcelFileDescriptor mOuter;

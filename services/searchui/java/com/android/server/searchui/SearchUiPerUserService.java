@@ -298,7 +298,7 @@ public class SearchUiPerUserService extends
     }
 
     private static final class SearchSessionInfo {
-        private static final boolean DEBUG = true;  // Do not submit with true
+        private static final boolean DEBUG = false;  // Do not submit with true
 
         @NonNull
         private final SearchSessionId mSessionId;

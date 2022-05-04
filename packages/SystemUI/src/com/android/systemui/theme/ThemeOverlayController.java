@@ -97,7 +97,7 @@ import javax.inject.Inject;
 @SysUISingleton
 public class ThemeOverlayController extends SystemUI implements Dumpable {
     protected static final String TAG = "ThemeOverlayController";
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
 
     protected static final int NEUTRAL = 0;
     protected static final int ACCENT = 1;

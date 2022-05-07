@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fc1848b_994cba5a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-05-07T14:54:48Z",
+      "side": 1,
+      "message": "full history: https://github.com/semdoc/frameworks_base/commits/s12.1",
+      "revId": "5cb3a5c02c2aff6b9e06d9d85757ef6d7c9ce7f9",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

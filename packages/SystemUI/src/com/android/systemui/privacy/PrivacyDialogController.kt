@@ -141,6 +141,17 @@ class PrivacyDialogController(
         return permissionManager.getIndicatorAppOpUsageData(appOpsController.isMicMuted)
     }
 
+    private fun isItemInWhitelist(type : PrivacyType?, packageName : String) : Boolean {
+        if (type == PrivacyType.TYPE_LOCATION &&
+                packageName in privacyItemController.mLocationWhitelists)
+            return true
+        if (type == PrivacyType.TYPE_CAMERA &&
+                packageName in PrivacyItemController.CAMERA_WHITELIST_PKG)
+            return true
+
+        return false
+    }
+
     /**
      * Show the [PrivacyDialog]
      *
@@ -162,7 +173,8 @@ class PrivacyDialogController(
             val items = usage.mapNotNull {
                 val type = filterType(permGroupToPrivacyType(it.permGroupName))
                 val userInfo = userInfos.firstOrNull { ui -> ui.id == UserHandle.getUserId(it.uid) }
-                if (userInfo != null || it.isPhoneCall) {
+                if ((userInfo != null || it.isPhoneCall) &&
+                        !isItemInWhitelist(type, it.packageName)) {
                     type?.let { t ->
                         // Only try to get the app name if we actually need it
                         val appName = if (it.isPhoneCall) {

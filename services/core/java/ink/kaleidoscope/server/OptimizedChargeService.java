@@ -44,7 +44,7 @@ import java.util.NoSuchElementException;
 
 import ink.kaleidoscope.hardware.IOptimizedCharge;
 
-import vendor.kscope.chgctrl.V1_0.IChargeControl;
+import vendor.lineage.chgctrl.V1_0.IChargeControl;
 
 public final class OptimizedChargeService extends SystemService {
 

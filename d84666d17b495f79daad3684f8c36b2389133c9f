@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ef11561_bf14e14c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-05-15T09:01:16Z",
+      "side": 1,
+      "message": "logs: http://haste.aicp-rom.com/equlanonaz.java",
+      "revId": "d84666d17b495f79daad3684f8c36b2389133c9f",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

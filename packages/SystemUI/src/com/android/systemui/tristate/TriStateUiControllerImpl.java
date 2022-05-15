@@ -48,6 +48,7 @@ import android.view.WindowManager.LayoutParams;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.internal.policy.SystemBarUtils;
 import com.android.systemui.Dependency;
 import com.android.systemui.R;
 import com.android.systemui.tristate.TriStateUiController;
@@ -384,7 +385,7 @@ public class TriStateUiControllerImpl implements TriStateUiController,
                         }
                         positionY2 = res.getDimensionPixelSize(R.dimen.tri_state_up_dialog_position_deep_land);
                         if (isTsKeyRight) {
-                            positionY2 += res.getDimensionPixelSize(com.android.internal.R.dimen.status_bar_height);
+                            positionY2 += SystemBarUtils.getStatusBarHeight(mContext);
                         }
                         if (mPosition == POSITION_TOP) {
                             positionX = res.getDimensionPixelSize(R.dimen.tri_state_up_dialog_position_l);
@@ -402,7 +403,7 @@ public class TriStateUiControllerImpl implements TriStateUiController,
                             gravity = 85;
                         }
                         positionX = res.getDimensionPixelSize(R.dimen.tri_state_up_dialog_position_deep);
-                        positionY = res.getDimensionPixelSize(R.dimen.status_bar_height);
+                        positionY = SystemBarUtils.getStatusBarHeight(mContext);
                         if (mPosition == POSITION_TOP) {
                             positionY += res.getDimensionPixelSize(R.dimen.tri_state_up_dialog_position);
                             bg = !isTsKeyRight ? R.drawable.right_dialog_tri_state_down_bg : R.drawable.left_dialog_tri_state_down_bg;
@@ -423,7 +424,7 @@ public class TriStateUiControllerImpl implements TriStateUiController,
                         }
                         positionY2 = res.getDimensionPixelSize(R.dimen.tri_state_up_dialog_position_deep_land);
                         if (!isTsKeyRight) {
-                            positionY2 += res.getDimensionPixelSize(com.android.internal.R.dimen.status_bar_height);
+                            positionY2 += SystemBarUtils.getStatusBarHeight(mContext);
                         }
                         if (mPosition == POSITION_TOP) {
                             positionX = res.getDimensionPixelSize(R.dimen.tri_state_up_dialog_position_l);
@@ -451,7 +452,7 @@ public class TriStateUiControllerImpl implements TriStateUiController,
                             positionY2 = res.getDimensionPixelSize(R.dimen.tri_state_down_dialog_position);
                             bg = isTsKeyRight ? R.drawable.right_dialog_tri_state_down_bg : R.drawable.left_dialog_tri_state_down_bg;
                         }
-                        positionY2 += res.getDimensionPixelSize(com.android.internal.R.dimen.status_bar_height);
+                        positionY2 += SystemBarUtils.getStatusBarHeight(mContext);;
                         break;
                 }
                 if (mTriStateMode != -1) {

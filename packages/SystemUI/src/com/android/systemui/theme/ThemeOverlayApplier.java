@@ -110,7 +110,6 @@ public class ThemeOverlayApplier implements Dumpable {
             OVERLAY_CATEGORY_SYSTEM_PALETTE,
             OVERLAY_CATEGORY_ICON_LAUNCHER,
             OVERLAY_CATEGORY_ACCENT_COLOR,
-            OVERLAY_CATEGORY_ICON_SETTINGS,
             OVERLAY_CATEGORY_ICON_THEME_PICKER);
 
     /* Categories that need to be applied to the current user as well as the system user. */

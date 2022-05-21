@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.os.UserHandle;
 import android.provider.Settings;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
@@ -111,6 +112,15 @@ public class KeyguardClockSwitch extends RelativeLayout {
                 R.dimen.keyguard_smartspace_top_offset);
     }
 
+    public void onThemeChanged() {
+        String font = mContext.getString(com.android.internal.R.string.config_headlineFontFamily);
+        Typeface tf = font.equals("google-sans")
+                ? mContext.getResources().getFont(R.font.clock)
+                : Typeface.create(font, Typeface.NORMAL);
+        mClockView.setTypeface(tf);
+        mLargeClockView.setTypeface(tf);
+    }
+
     /**
      * Returns if this view is presenting a custom clock, or the default implementation.
      */
@@ -129,6 +139,7 @@ public class KeyguardClockSwitch extends RelativeLayout {
         mStatusArea = findViewById(R.id.keyguard_status_area);
 
         onDensityOrFontScaleChanged();
+        onThemeChanged();
     }
 
     void setClockPlugin(ClockPlugin plugin, int statusBarState) {

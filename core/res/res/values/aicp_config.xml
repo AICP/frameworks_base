@@ -129,4 +129,7 @@
 
     <!-- Whether to handle audio direction changes between major call states -->
     <bool name="config_handleAudioDirectionChangesBetweenCallStateChanges">true</bool>
+
+    <!-- Screen off delay -->
+    <integer name="config_screen_off_delay">1000</integer>
 </resources>

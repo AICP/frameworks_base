@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/weather_container"
         android:paddingStart="@dimen/clock_padding_start">
         <com.android.keyguard.AnimatableClockView
             android:id="@+id/animatable_clock_view"
@@ -73,11 +73,9 @@
         android:id="@+id/weather_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_centerHorizontal="true"
-        android:visibility="gone"
-        android:layout_marginTop="@dimen/date_owner_info_margin"
-        android:layout_below="@id/keyguard_slice_view"/>
+        android:layout_marginBottom="@dimen/date_owner_info_margin"
+        android:layout_marginStart="@dimen/weather_margin_start"
+        android:visibility="gone" />
 
     <!-- Not quite optimal but needed to translate these items as a group. The
          NotificationIconContainer has its own logic for translation. -->

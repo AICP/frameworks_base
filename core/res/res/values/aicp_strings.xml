@@ -14,4 +14,7 @@
     <string name="gamespace_new_game_added"><xliff:g id="name" example="MyApp">%s</xliff:g> added to GameSpace</string>
     <!-- Name of a font family to use as light font. For theming purpose. -->
     <string name="config_lightFontFamily" translatable="false">sans-serif-light</string>
+
+    <!-- Lock gesture -->
+    <string name="gesture_locked_warning">Swipe again to unlock gestures</string>
 </resources>

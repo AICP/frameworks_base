@@ -812,7 +812,6 @@ final class DisplayPowerController implements AutomaticBrightnessController.Call
     private void loadFromDisplayDeviceConfig(IBinder token, DisplayDeviceInfo info) {
         // All properties that depend on the associated DisplayDevice and the DDC must be
         // updated here.
-        loadAmbientLightSensor();
         loadBrightnessRampRates();
         loadProximitySensor();
         loadNitsRange(mContext.getResources());
@@ -940,9 +939,14 @@ final class DisplayPowerController implements AutomaticBrightnessController.Call
                     com.android.internal.R.array.config_ambientDarkeningThresholds);
             int[] ambientThresholdLevels = resources.getIntArray(
                     com.android.internal.R.array.config_ambientThresholdLevels);
+            float ambientDarkeningMinThreshold =
+                    mDisplayDeviceConfig.getAmbientLuxDarkeningMinThreshold();
+            float ambientBrighteningMinThreshold =
+                    mDisplayDeviceConfig.getAmbientLuxBrighteningMinThreshold();
             HysteresisLevels ambientBrightnessThresholds = new HysteresisLevels(
                     ambientBrighteningThresholds, ambientDarkeningThresholds,
-                    ambientThresholdLevels);
+                    ambientThresholdLevels, ambientDarkeningMinThreshold,
+                    ambientBrighteningMinThreshold);
 
             int[] screenBrighteningThresholds = resources.getIntArray(
                     com.android.internal.R.array.config_screenBrighteningThresholds);
@@ -950,8 +954,13 @@ final class DisplayPowerController implements AutomaticBrightnessController.Call
                     com.android.internal.R.array.config_screenDarkeningThresholds);
             int[] screenThresholdLevels = resources.getIntArray(
                     com.android.internal.R.array.config_screenThresholdLevels);
+            float screenDarkeningMinThreshold =
+                    mDisplayDeviceConfig.getScreenDarkeningMinThreshold();
+            float screenBrighteningMinThreshold =
+                    mDisplayDeviceConfig.getScreenBrighteningMinThreshold();
             HysteresisLevels screenBrightnessThresholds = new HysteresisLevels(
-                    screenBrighteningThresholds, screenDarkeningThresholds, screenThresholdLevels);
+                    screenBrighteningThresholds, screenDarkeningThresholds, screenThresholdLevels,
+                    screenDarkeningMinThreshold, screenBrighteningMinThreshold);
 
             long brighteningLightDebounce = resources.getInteger(
                     com.android.internal.R.integer.config_autoBrightnessBrighteningLightDebounce);
@@ -975,6 +984,9 @@ final class DisplayPowerController implements AutomaticBrightnessController.Call
             }
 
             loadAmbientLightSensor();
+            if (mBrightnessTracker != null) {
+                mBrightnessTracker.setLightSensor(mLightSensor);
+            }
 
             if (mAutomaticBrightnessController != null) {
                 mAutomaticBrightnessController.stop();

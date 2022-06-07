@@ -18,11 +18,17 @@ package com.android.systemui.navigationbar;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 import static android.view.WindowManagerPolicyConstants.NAV_BAR_MODE_3BUTTON;
+import static android.view.WindowManagerPolicyConstants.NAV_BAR_MODE_GESTURAL_OVERLAY;
 
 import android.annotation.Nullable;
+import android.app.ActivityManager;
 import android.content.Context;
+import android.content.om.OverlayInfo;
+import android.content.om.IOverlayManager;
 import android.content.res.Configuration;
 import android.graphics.drawable.Icon;
+import android.os.RemoteException;
+import android.os.ServiceManager;
 import android.os.UserHandle;
 import android.provider.Settings;
 import android.util.AttributeSet;
@@ -90,6 +96,9 @@ public class NavigationBarInflaterView extends FrameLayout
     private static final String ABSOLUTE_SUFFIX = "A";
     private static final String ABSOLUTE_VERTICAL_CENTERED_SUFFIX = "C";
 
+    private static final String KEY_NAVIGATION_NARROW =
+            "system:" + Settings.System.NAVIGATION_BAR_GESTURAL_NARROW;
+
     protected LayoutInflater mLayoutInflater;
     protected LayoutInflater mLandscapeInflater;
 
@@ -110,6 +119,7 @@ public class NavigationBarInflaterView extends FrameLayout
     private int mNavBarMode = NAV_BAR_MODE_3BUTTON;
 
     private boolean mInverseLayout;
+    private boolean mIsAttachedToWindow;
 
     public NavigationBarInflaterView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -179,11 +189,14 @@ public class NavigationBarInflaterView extends FrameLayout
                 NAV_BAR_INVERSE,
                 NAVIGATION_BAR_ARROW_KEYS,
                 NAVIGATION_BAR_DISABLE_TASKBAR,
-                GESTURE_HANDLE_HIDE);
+                GESTURE_HANDLE_HIDE,
+                KEY_NAVIGATION_NARROW);
+        mIsAttachedToWindow = true;
     }
 
     @Override
     protected void onDetachedFromWindow() {
+        mIsAttachedToWindow = false;
         Dependency.get(NavigationModeController.class).removeListener(this);
         Dependency.get(TunerService.class).removeTunable(this);
         super.onDetachedFromWindow();
@@ -198,7 +211,25 @@ public class NavigationBarInflaterView extends FrameLayout
                   || NAVIGATION_BAR_DISABLE_TASKBAR.equals(key)
                   || GESTURE_HANDLE_HIDE.equals(key)) {
             onLikelyDefaultLayoutChange();
+        } else if (mIsAttachedToWindow &&
+                mNavBarMode == NAV_BAR_MODE_GESTURAL && KEY_NAVIGATION_NARROW.equals(key)) {
+            boolean narrow = TunerService.parseIntegerSwitch(newValue, false);
+            String overlay = NAV_BAR_MODE_GESTURAL_OVERLAY;
+            if (narrow)
+                overlay += "_narrow_back";
+
+            try {
+                int userId = ActivityManager.getCurrentUser();
+                IOverlayManager om = IOverlayManager.Stub.asInterface(
+                        ServiceManager.getService(Context.OVERLAY_SERVICE));
+                OverlayInfo info = om.getOverlayInfo(overlay, userId);
+
+                if (info != null && !info.isEnabled())
+                    om.setEnabledExclusiveInCategory(overlay, userId);
+            } catch (Exception e) {
+            }
         }
+
     }
 
     @Override

@@ -6115,6 +6115,12 @@ public final class Settings {
          */
         public static final String NAV_BAR_COMPACT_LAYOUT = "navigation_bar_compact_layout";
 
+        /**
+         * boolean value. toggles narrow navigation bar in gestural nav mode
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_GESTURAL_NARROW = "navigation_bar_gestural_narrow";
+
         /***************************
          * AICP System Settings end
          ***************************/

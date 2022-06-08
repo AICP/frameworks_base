@@ -163,5 +163,6 @@ public class SystemSettings {
         Settings.System.NOTIFICATION_MATERIAL_DISMISS_BGSTYLE,
         Settings.System.NAVIGATION_BAR_INVERSE,
         Settings.System.NAV_BAR_COMPACT_LAYOUT,
+        Settings.System.NAVIGATION_BAR_IME_SPACE,
     };
 }

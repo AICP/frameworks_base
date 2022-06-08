@@ -96,8 +96,8 @@ public class NavigationBarInflaterView extends FrameLayout
     private static final String ABSOLUTE_SUFFIX = "A";
     private static final String ABSOLUTE_VERTICAL_CENTERED_SUFFIX = "C";
 
-    private static final String KEY_NAVIGATION_NARROW =
-            "system:" + Settings.System.NAVIGATION_BAR_GESTURAL_NARROW;
+    private static final String KEY_NAVIGATION_SPACE =
+            "system:" + Settings.System.NAVIGATION_BAR_IME_SPACE;
 
     protected LayoutInflater mLayoutInflater;
     protected LayoutInflater mLandscapeInflater;
@@ -190,7 +190,7 @@ public class NavigationBarInflaterView extends FrameLayout
                 NAVIGATION_BAR_ARROW_KEYS,
                 NAVIGATION_BAR_DISABLE_TASKBAR,
                 GESTURE_HANDLE_HIDE,
-                KEY_NAVIGATION_NARROW);
+                KEY_NAVIGATION_SPACE);
         mIsAttachedToWindow = true;
     }
 
@@ -211,12 +211,16 @@ public class NavigationBarInflaterView extends FrameLayout
                   || NAVIGATION_BAR_DISABLE_TASKBAR.equals(key)
                   || GESTURE_HANDLE_HIDE.equals(key)) {
             onLikelyDefaultLayoutChange();
-        } else if (mIsAttachedToWindow &&
-                mNavBarMode == NAV_BAR_MODE_GESTURAL && KEY_NAVIGATION_NARROW.equals(key)) {
-            boolean narrow = TunerService.parseIntegerSwitch(newValue, false);
+        } else if (mIsAttachedToWindow && KEY_NAVIGATION_SPACE.equals(key)) {
+            int state = TunerService.parseInteger(newValue, 0);
             String overlay = NAV_BAR_MODE_GESTURAL_OVERLAY;
-            if (narrow)
-                overlay += "_narrow_back";
+            switch (state) {
+                case 1:  // narrow
+                    overlay += "_narrow_back";
+                    break;
+                case 2:  // hidden
+                    overlay += "_wide_back";
+            }
 
             try {
                 int userId = ActivityManager.getCurrentUser();

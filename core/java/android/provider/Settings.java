@@ -6116,10 +6116,12 @@ public final class Settings {
         public static final String NAV_BAR_COMPACT_LAYOUT = "navigation_bar_compact_layout";
 
         /**
-         * boolean value. toggles narrow navigation bar in gestural nav mode
+         * Gesture navbar IME space.
+         * Supported modes: 0 for normal length, 1 for narrow and 2 for hidden.
+         * Default 0.
          * @hide
          */
-        public static final String NAVIGATION_BAR_GESTURAL_NARROW = "navigation_bar_gestural_narrow";
+        public static final String NAVIGATION_BAR_IME_SPACE = "navigation_bar_ime_space";
 
         /***************************
          * AICP System Settings end
@@ -6318,6 +6320,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(NOTIFICATION_MATERIAL_DISMISS_BGSTYLE);
             PRIVATE_SETTINGS.add(NAVIGATION_BAR_INVERSE);
             PRIVATE_SETTINGS.add(NAV_BAR_COMPACT_LAYOUT);
+            PRIVATE_SETTINGS.add(NAVIGATION_BAR_IME_SPACE);
         }
 
         /**

@@ -61,6 +61,7 @@ final class DisplayPowerState {
     private final Handler mHandler;
     private final Choreographer mChoreographer;
     private final DisplayBlanker mBlanker;
+    // private final ColorFade mColorFade;
     private final PhotonicModulator mPhotonicModulator;
     private final int mDisplayId;
 
@@ -84,8 +85,8 @@ final class DisplayPowerState {
     private ScreenStateAnimator mColorFade;
 
     DisplayPowerState(
-            DisplayBlanker blanker, ColorFade colorFade, int displayId, int displayState) {
-        this(blanker, colorFade, displayId, displayState, BackgroundThread.getExecutor());
+            DisplayBlanker blanker, int screenAnimatorMode, int displayId, int displayState) {
+        this(blanker, screenAnimatorMode, displayId, displayState, BackgroundThread.getExecutor());
     }
 
     @VisibleForTesting

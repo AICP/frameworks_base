@@ -18,13 +18,13 @@
 
 package com.android.server.display;
 
-import static com.android.server.wm.utils.RotationAnimationUtils.hasProtectedContent;
+import static com.android.internal.policy.TransitionAnimation.hasProtectedContent;
 
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.graphics.SurfaceTexture;
-import android.hardware.display.DisplayManagerInternal.DisplayTransactionListener;
 import android.hardware.display.DisplayManagerInternal;
+import android.hardware.display.DisplayManagerInternal.DisplayTransactionListener;
 import android.opengl.EGL14;
 import android.opengl.EGLConfig;
 import android.opengl.EGLContext;
@@ -32,18 +32,18 @@ import android.opengl.EGLDisplay;
 import android.opengl.EGLSurface;
 import android.opengl.GLES10;
 import android.opengl.GLES11Ext;
-import android.os.IBinder;
-import android.os.Looper;
 import android.util.Slog;
 import android.view.Display;
 import android.view.DisplayInfo;
-import android.view.Surface.OutOfResourcesException;
 import android.view.Surface;
-import android.view.SurfaceControl.Transaction;
+import android.view.Surface.OutOfResourcesException;
 import android.view.SurfaceControl;
+import android.view.SurfaceControl.Transaction;
 import android.view.SurfaceSession;
+import android.window.ScreenCapture;
 
 import com.android.server.LocalServices;
+import com.android.server.policy.WindowManagerPolicy;
 
 import java.io.PrintWriter;
 import java.lang.Math;
@@ -69,7 +69,7 @@ final class ElectronBeam implements ScreenStateAnimator {
 
     // The layer for the electron beam surface.
     // This is currently hardcoded to be one layer above the boot animation.
-    private static final int ELECTRON_BEAM_LAYER = 0x40000001;
+    private static final int ELECTRON_BEAM_LAYER = WindowManagerPolicy.COLOR_FADE_LAYER;
 
     // The relative proportion of the animation to spend performing
     // the horizontal stretch effect.  The remainder is spent performing
@@ -88,10 +88,11 @@ final class ElectronBeam implements ScreenStateAnimator {
 
     // Set to true when the animation context has been fully prepared.
     private boolean mPrepared;
+    private boolean mCreatedResources;
     private int mMode;
 
     private final DisplayManagerInternal mDisplayManagerInternal;
-    private int mDisplayId;
+    private final int mDisplayId;
     private int mDisplayLayerStack; // layer stack associated with primary display
     private int mDisplayWidth;      // real width, not rotated
     private int mDisplayHeight;     // real height, not rotated
@@ -167,19 +168,11 @@ final class ElectronBeam implements ScreenStateAnimator {
         mDisplayWidth = displayInfo.getNaturalWidth();
         mDisplayHeight = displayInfo.getNaturalHeight();
 
-        final IBinder token = SurfaceControl.getInternalDisplayToken();
-        if (token == null) {
-            Slog.e(TAG,
-                    "Failed to take screenshot because internal display is disconnected");
-            return false;
-        }
-        final boolean isWideColor = SurfaceControl.getDynamicDisplayInfo(token).activeColorMode
-                == Display.COLOR_MODE_DISPLAY_P3;
-
+        final boolean isWideColor = displayInfo.colorMode == Display.COLOR_MODE_DISPLAY_P3;
         // Set mPrepared here so if initialization fails, resources can be cleaned up.
         mPrepared = true;
 
-        final SurfaceControl.ScreenshotHardwareBuffer hardwareBuffer = captureScreen();
+        final ScreenCapture.ScreenshotHardwareBuffer hardwareBuffer = captureScreen();
         if (hardwareBuffer == null) {
             dismiss();
             return false;
@@ -197,12 +190,13 @@ final class ElectronBeam implements ScreenStateAnimator {
         }
 
         if (!(createEglContext(isProtected) && createEglSurface(isProtected, isWideColor)
-                && setScreenshotTextureAndSetViewport(hardwareBuffer))) {
+                && setScreenshotTextureAndSetViewport(hardwareBuffer, displayInfo.rotation))) {
             dismiss();
             return false;
         }
 
         // Done.
+        mCreatedResources = true;
         mLastWasProtectedContent = isProtected;
         mLastWasWideColor = isWideColor;
 
@@ -222,6 +216,31 @@ final class ElectronBeam implements ScreenStateAnimator {
     }
 
     /**
+     * Dismisses the electron beam animation resources.
+     *
+     * This function destroys the resources that are created for the electron beam
+     * animation but does not clean up the surface.
+     */
+    public void dismissResources() {
+        if (DEBUG) {
+            Slog.d(TAG, "dismissResources");
+        }
+
+        if (mCreatedResources) {
+            attachEglContext();
+            try {
+                destroyScreenshotTexture();
+                destroyEglSurface();
+            } finally {
+                detachEglContext();
+            }
+            // This is being called with no active context so shouldn't be
+            // needed but is safer to not change for now.
+            mCreatedResources = false;
+        }
+    }
+
+    /**
      * Dismisses the electron beam animation surface and cleans up.
      *
      * To prevent stray photons from leaking out after the electron beam has been
@@ -233,12 +252,37 @@ final class ElectronBeam implements ScreenStateAnimator {
             Slog.d(TAG, "dismiss");
         }
 
-        destroyScreenshotTexture();
-        destroyEglSurface();
-        destroySurface();
-        mPrepared = false;
+        if (mPrepared) {
+            dismissResources();
+            destroySurface();
+            mPrepared = false;
+        }
     }
 
+    /**
+     * Destroys electron beam animation and its resources
+     *
+     * This method should be called when the electron beam is no longer in use; i.e. when
+     * the {@link #mDisplayId display} has been removed.
+     */
+    public void destroy() {
+        if (DEBUG) {
+            Slog.d(TAG, "destroy");
+        }
+        if (mPrepared) {
+            if (mCreatedResources) {
+                attachEglContext();
+                try {
+                    destroyScreenshotTexture();
+                    destroyEglSurface();
+                } finally {
+                    detachEglContext();
+                }
+            }
+            destroyEglContext();
+            destroySurface();
+        }
+    }
 
     /**
      * Draws an animation frame showing the electron beam activated at the
@@ -476,7 +520,8 @@ final class ElectronBeam implements ScreenStateAnimator {
     }
 
     private boolean setScreenshotTextureAndSetViewport(
-            SurfaceControl.ScreenshotHardwareBuffer screenshotBuffer) {
+            ScreenCapture.ScreenshotHardwareBuffer screenshotBuffer,
+            @Surface.Rotation int rotation) {
         if (!attachEglContext()) {
             return false;
         }
@@ -502,13 +547,22 @@ final class ElectronBeam implements ScreenStateAnimator {
                 st.release();
             }
 
+            // if screen is rotated, map texture starting different corner
+            int indexDelta = (rotation == Surface.ROTATION_90) ? 2
+                            : (rotation == Surface.ROTATION_180) ? 4
+                            : (rotation == Surface.ROTATION_270) ? 6 : 0;
+
             // Set up texture coordinates for a quad.
             // We might need to change this if the texture ends up being
             // a different size from the display for some reason.
-            mTexCoordBuffer.put(0, 0f); mTexCoordBuffer.put(1, 0f);
-            mTexCoordBuffer.put(2, 0f); mTexCoordBuffer.put(3, 1f);
-            mTexCoordBuffer.put(4, 1f); mTexCoordBuffer.put(5, 1f);
-            mTexCoordBuffer.put(6, 1f); mTexCoordBuffer.put(7, 0f);
+            mTexCoordBuffer.put(indexDelta, 0f);
+            mTexCoordBuffer.put(indexDelta + 1, 0f);
+            mTexCoordBuffer.put((indexDelta + 2) % 8, 0f);
+            mTexCoordBuffer.put((indexDelta + 3) % 8, 1f);
+            mTexCoordBuffer.put((indexDelta + 4) % 8, 1f);
+            mTexCoordBuffer.put((indexDelta + 5) % 8, 1f);
+            mTexCoordBuffer.put((indexDelta + 6) % 8, 1f);
+            mTexCoordBuffer.put((indexDelta + 7) % 8, 0f);
 
             // Set up our viewport.
             GLES10.glViewport(0, 0, mDisplayWidth, mDisplayHeight);
@@ -540,8 +594,8 @@ final class ElectronBeam implements ScreenStateAnimator {
         }
     }
 
-    private SurfaceControl.ScreenshotHardwareBuffer captureScreen() {
-        SurfaceControl.ScreenshotHardwareBuffer screenshotBuffer =
+    private ScreenCapture.ScreenshotHardwareBuffer captureScreen() {
+        ScreenCapture.ScreenshotHardwareBuffer screenshotBuffer =
                 mDisplayManagerInternal.systemScreenshot(mDisplayId);
         if (screenshotBuffer == null) {
             Slog.e(TAG, "Failed to take screenshot. Buffer is null");
@@ -568,6 +622,8 @@ final class ElectronBeam implements ScreenStateAnimator {
 
         if (mEglConfig == null) {
             int[] eglConfigAttribList = new int[] {
+                    EGL14.EGL_RENDERABLE_TYPE,
+                    EGL14.EGL_OPENGL_ES2_BIT,
                     EGL14.EGL_RED_SIZE, 8,
                     EGL14.EGL_GREEN_SIZE, 8,
                     EGL14.EGL_BLUE_SIZE, 8,
@@ -579,6 +635,10 @@ final class ElectronBeam implements ScreenStateAnimator {
             if (!EGL14.eglChooseConfig(mEglDisplay, eglConfigAttribList, 0,
                     eglConfigs, 0, eglConfigs.length, numEglConfigs, 0)) {
                 logEglError("eglChooseConfig");
+                return false;
+            }
+            if (numEglConfigs[0] <= 0) {
+                Slog.e(TAG, "no valid config found");
                 return false;
             }
 
@@ -594,6 +654,7 @@ final class ElectronBeam implements ScreenStateAnimator {
 
         if (mEglContext == null) {
             int[] eglContextAttribList = new int[] {
+                    EGL14.EGL_CONTEXT_CLIENT_VERSION, 1,
                     EGL14.EGL_NONE, EGL14.EGL_NONE,
                     EGL14.EGL_NONE
             };
@@ -707,7 +768,11 @@ final class ElectronBeam implements ScreenStateAnimator {
             mSurfaceLayout.dispose();
             mSurfaceLayout = null;
             mTransaction.remove(mSurfaceControl).apply();
-            mSurface.release();
+            if (mSurface != null) {
+                mSurface.release();
+                mSurface = null;
+            }
+
             mSurfaceControl = null;
             mSurfaceVisible = false;
             mSurfaceAlpha = 0f;
@@ -770,6 +835,12 @@ final class ElectronBeam implements ScreenStateAnimator {
 
     private static float sigmoid(float x, float s) {
         return 1.0f / (1.0f + (float)Math.exp(-x * s));
+    }
+
+    private void destroyEglContext() {
+        if (mEglDisplay != null && mEglContext != null) {
+            EGL14.eglDestroyContext(mEglDisplay, mEglContext);
+        }
     }
 
     private static FloatBuffer createNativeFloatBuffer(int size) {
@@ -843,29 +914,32 @@ final class ElectronBeam implements ScreenStateAnimator {
                 if (mSurfaceControl == null) {
                     return;
                 }
-                try {
-                    DisplayInfo displayInfo = mDisplayManagerInternal.getDisplayInfo(mDisplayId);
-                    switch (displayInfo.rotation) {
-                        case Surface.ROTATION_0:
-                            t.setPosition(mSurfaceControl, 0, 0);
-                            t.setMatrix(mSurfaceControl, 1, 0, 0, 1);
-                            break;
-                        case Surface.ROTATION_90:
-                            t.setPosition(mSurfaceControl, 0, displayInfo.logicalHeight);
-                            t.setMatrix(mSurfaceControl, 0, -1, 1, 0);
-                            break;
-                        case Surface.ROTATION_180:
-                            t.setPosition(mSurfaceControl, displayInfo.logicalWidth,
-                                    displayInfo.logicalHeight);
-                            t.setMatrix(mSurfaceControl, -1, 0, 0, -1);
-                            break;
-                        case Surface.ROTATION_270:
-                            t.setPosition(mSurfaceControl, displayInfo.logicalWidth, 0);
-                            t.setMatrix(mSurfaceControl, 0, 1, -1, 0);
-                            break;
-                    }
-                } catch (Exception e) {
 
+                DisplayInfo displayInfo = mDisplayManagerInternal.getDisplayInfo(mDisplayId);
+                if (displayInfo == null) {
+                    // displayInfo can be null if the associated display has been removed. There
+                    // is a delay between the display being removed and ElectronBeam being dismissed.
+                    return;
+                }
+
+                switch (displayInfo.rotation) {
+                    case Surface.ROTATION_0:
+                        t.setPosition(mSurfaceControl, 0, 0);
+                        t.setMatrix(mSurfaceControl, 1, 0, 0, 1);
+                        break;
+                    case Surface.ROTATION_90:
+                        t.setPosition(mSurfaceControl, 0, displayInfo.logicalHeight);
+                        t.setMatrix(mSurfaceControl, 0, -1, 1, 0);
+                        break;
+                    case Surface.ROTATION_180:
+                        t.setPosition(mSurfaceControl, displayInfo.logicalWidth,
+                                displayInfo.logicalHeight);
+                        t.setMatrix(mSurfaceControl, -1, 0, 0, -1);
+                        break;
+                    case Surface.ROTATION_270:
+                        t.setPosition(mSurfaceControl, displayInfo.logicalWidth, 0);
+                        t.setMatrix(mSurfaceControl, 0, 1, -1, 0);
+                        break;
                 }
             }
         }

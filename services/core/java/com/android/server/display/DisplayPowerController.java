@@ -3352,9 +3352,9 @@ final class DisplayPowerController implements AutomaticBrightnessController.Call
             return SystemClock::uptimeMillis;
         }
 
-        DisplayPowerState getDisplayPowerState(DisplayBlanker blanker, ColorFade colorFade,
+        DisplayPowerState getDisplayPowerState(DisplayBlanker blanker, int screenOffAnimation,
                 int displayId, int displayState) {
-            return new DisplayPowerState(blanker, colorFade, displayId, displayState);
+            return new DisplayPowerState(blanker, screenOffAnimation, displayId, displayState);
         }
 
         DualRampAnimator<DisplayPowerState> getDualRampAnimator(DisplayPowerState dps,

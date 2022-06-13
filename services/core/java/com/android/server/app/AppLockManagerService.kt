@@ -146,6 +146,11 @@ class AppLockManagerService(
                 logD("Ignoring package removal broadcast from user $userId")
                 return
             }
+            val isReplacing = intent.getBooleanExtra(Intent.EXTRA_REPLACING, false /* defaultValue */)
+            if (isReplacing) {
+                logD("Ignoring package update broadcast")
+                return
+            }
             val packageName = intent.data?.schemeSpecificPart ?: run {
                 Slog.e(TAG, "Failed to get package name")
                 return

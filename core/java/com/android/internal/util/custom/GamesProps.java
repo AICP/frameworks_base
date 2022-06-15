@@ -17,6 +17,7 @@
 package com.android.internal.util.custom;
 
 import android.os.Build;
+import android.os.SystemProperties;
 import android.util.Log;
 
 import java.util.Arrays;
@@ -95,6 +96,9 @@ public class GamesProps {
         if (packageName == null){
             return;
         }
+        if (!SystemProperties.getBoolean("persist.aicp.games_props", false))
+            return;
+
         if (Arrays.asList(packagesToChangeROG1).contains(packageName)){
             if (DEBUG){
                 Log.d(TAG, "Defining props for: " + packageName);

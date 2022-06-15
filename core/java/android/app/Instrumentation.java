@@ -41,7 +41,6 @@ import android.os.Process;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemClock;
-import android.os.SystemProperties;
 import android.os.TestLooperManager;
 import android.os.UserHandle;
 import android.util.AndroidRuntimeException;
@@ -1197,9 +1196,7 @@ public class Instrumentation {
         GmsHooks.initApplicationBeforeOnCreate(app);
         AttestationHooks.initApplicationBeforeOnCreate(app);
         String packageName = app.getPackageName();
-        if (!SystemProperties.getBoolean("persist.aicp.games_props", false)) {
-            GamesProps.setProps(packageName);
-        }
+        GamesProps.setProps(packageName);
         return app;
     }
     
@@ -1220,9 +1217,7 @@ public class Instrumentation {
         GmsHooks.initApplicationBeforeOnCreate(app);
         AttestationHooks.initApplicationBeforeOnCreate(app);
         String packageName = app.getPackageName();
-        if (!SystemProperties.getBoolean("persist.aicp.games_props", false)) {
-            GamesProps.setProps(packageName);
-        }
+        GamesProps.setProps(packageName);
         return app;
     }
 

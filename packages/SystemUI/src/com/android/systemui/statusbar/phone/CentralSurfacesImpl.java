@@ -294,6 +294,9 @@ public class CentralSurfacesImpl extends CoreStartable implements
 
     private static final UiEventLogger sUiEventLogger = new UiEventLoggerImpl();
 
+    private static final String QS_TRANSPARENCY =
+            "system:" + Settings.System.QS_TRANSPARENCY;
+
     /**
      * If true, the system is in the half-boot-to-decryption-screen state.
      * Prudently disable QS and notifications.
@@ -942,6 +945,7 @@ public class CentralSurfacesImpl extends CoreStartable implements
                 SysuiStatusBarStateController.RANK_STATUS_BAR);
 
         mTunerService.addTunable(this, LESS_BORING_HEADS_UP);
+        mTunerService.addTunable(this, QS_TRANSPARENCY);
 
         mWindowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
 
@@ -4296,6 +4300,10 @@ public class CentralSurfacesImpl extends CoreStartable implements
                 boolean lessBoringHeadsUp =
                         TunerService.parseIntegerSwitch(newValue, false);
                 mNotificationInterruptStateProvider.setUseLessBoringHeadsUp(lessBoringHeadsUp);
+                break;
+            case QS_TRANSPARENCY:
+                mScrimController.setCustomScrimAlpha(
+                        TunerService.parseInteger(newValue, 100));
                 break;
             default:
                 break;

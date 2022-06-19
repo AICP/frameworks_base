@@ -299,10 +299,6 @@ public class StatusBar extends SystemUI implements
     public static final String SYSTEM_DIALOG_REASON_RECENT_APPS = "recentapps";
     static public final String SYSTEM_DIALOG_REASON_SCREENSHOT = "screenshot";
 
-    private static final String GAMING_MODE_ACTIVE =
-            "system:" + Settings.System.GAMING_MODE_ACTIVE;
-    private static final String GAMING_MODE_DISABLE_NOTIFICATION_ALERT =
-            "system:" + Settings.System.GAMING_MODE_DISABLE_NOTIFICATION_ALERT;
     private static final String NOTIFICATION_MATERIAL_DISMISS =
             "system:" + Settings.System.NOTIFICATION_MATERIAL_DISMISS;
     private static final String NOTIFICATION_MATERIAL_DISMISS_STYLE =
@@ -1017,8 +1013,6 @@ public class StatusBar extends SystemUI implements
 
         mDisplayManager = mContext.getSystemService(DisplayManager.class);
 
-        mTunerService.addTunable(this, GAMING_MODE_ACTIVE);
-        mTunerService.addTunable(this, GAMING_MODE_DISABLE_NOTIFICATION_ALERT);
         mTunerService.addTunable(this, NOTIFICATION_MATERIAL_DISMISS);
         mTunerService.addTunable(this, NOTIFICATION_MATERIAL_DISMISS_STYLE);
         mTunerService.addTunable(this, NOTIFICATION_MATERIAL_DISMISS_BGSTYLE);
@@ -4517,20 +4511,6 @@ public class StatusBar extends SystemUI implements
     @Override
     public void onTuningChanged(String key, String newValue) {
         switch (key) {
-            case GAMING_MODE_ACTIVE:
-                boolean gamingModeActive =
-                        TunerService.parseIntegerSwitch(newValue, false);
-                if (mPresenter != null) {
-                    mPresenter.setGamingModeActive(gamingModeActive);
-                }
-                break;
-            case GAMING_MODE_DISABLE_NOTIFICATION_ALERT:
-                boolean gamingModeNoAlert =
-                        TunerService.parseIntegerSwitch(newValue, true);
-                if (mPresenter != null) {
-                    mPresenter.setGamingModeNoAlert(gamingModeNoAlert);
-                }
-                break;
             case NOTIFICATION_MATERIAL_DISMISS:
                 mShowDimissButton =
                         TunerService.parseIntegerSwitch(newValue, false);

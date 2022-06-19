@@ -718,10 +718,6 @@
 
     <!-- AICP additions -->
 
-    <!-- Gaming Mode -->
-    <protected-broadcast android:name="exthmui.intent.action.GAMING_MODE_ON" />
-    <protected-broadcast android:name="exthmui.intent.action.GAMING_MODE_OFF" />
-
     <!-- App lock -->
     <protected-broadcast android:name="com.android.server.app.AppLockManagerService.APP_LOCK_TIMEOUT" />
     <protected-broadcast android:name="android.app.action.UNLOCK_APP" />

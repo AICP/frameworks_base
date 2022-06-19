@@ -253,9 +253,6 @@
     <integer name="config_sysCPUTempMultiplier">1</integer>
     <integer name="config_sysBatteryTempMultiplier">1</integer>
 
-    <!-- Whether device supports gaming mode profiles -->
-    <bool name="config_gamingmode_performance">false</bool>
-
     <!-- List of system apps that are allowed to be locked with app lock.
          Use with extreme caution. -->
     <string-array name="config_appLockAllowedSystemApps" translatable="false">

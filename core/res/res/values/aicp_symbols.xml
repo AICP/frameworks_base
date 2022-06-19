@@ -190,9 +190,6 @@
     <java-symbol type="integer" name="config_sysCPUTempMultiplier" />
     <java-symbol type="integer" name="config_sysBatteryTempMultiplier" />
 
-    <!-- Whether device supports gaming mode profiles -->
-    <java-symbol type="bool" name="config_gamingmode_performance" />
-
     <!-- App lock -->
     <java-symbol type="string" name="unlock_application" />
     <java-symbol type="array" name="config_appLockAllowedSystemApps" />

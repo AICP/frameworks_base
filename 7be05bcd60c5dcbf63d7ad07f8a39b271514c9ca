@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e99f1bf8_bf7baf5a",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/StatusBarNotificationPresenter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-06-20T11:22:20Z",
+      "side": 1,
+      "message": "REally ?",
+      "range": {
+        "startLine": 503,
+        "startChar": 0,
+        "endLine": 503,
+        "endChar": 12
+      },
+      "revId": "7be05bcd60c5dcbf63d7ad07f8a39b271514c9ca",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

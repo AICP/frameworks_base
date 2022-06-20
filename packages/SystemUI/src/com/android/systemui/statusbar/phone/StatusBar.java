@@ -290,7 +290,8 @@ import dagger.Lazy;
 public class StatusBar extends SystemUI implements
         ActivityStarter,
         LifecycleOwner,
-        PackageChangedListener {
+        PackageChangedListener,
+        TunerService.Tunable {
     public static final boolean MULTIUSER_DEBUG = false;
 
     protected static final int MSG_DISMISS_KEYBOARD_SHORTCUTS_MENU = 1027;

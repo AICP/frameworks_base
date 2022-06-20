@@ -22,6 +22,30 @@
       },
       "revId": "7be05bcd60c5dcbf63d7ad07f8a39b271514c9ca",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5ee2d7d_07d3346e",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/phone/StatusBarNotificationPresenter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 1587
+      },
+      "writtenOn": "2022-06-20T13:45:37Z",
+      "side": 1,
+      "message": "hm, didn\u0027t notice that, I just uploaded what I had without testing, we still need to adapt the app",
+      "parentUuid": "e99f1bf8_bf7baf5a",
+      "range": {
+        "startLine": 503,
+        "startChar": 0,
+        "endLine": 503,
+        "endChar": 12
+      },
+      "revId": "7be05bcd60c5dcbf63d7ad07f8a39b271514c9ca",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

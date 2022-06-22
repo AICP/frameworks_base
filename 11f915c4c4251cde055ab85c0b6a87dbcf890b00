@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a22c38f0_df6aef1c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-06-22T19:43:54Z",
+      "side": 1,
+      "message": "not sure we need this with current qs animations pack... George?",
+      "revId": "11f915c4c4251cde055ab85c0b6a87dbcf890b00",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

@@ -910,14 +910,6 @@
             </intent-filter>
         </receiver>
 
-        <!-- Wifi Timeout -->
-        <receiver android:name="com.android.settingslib.wifi.WifiTimeoutReceiver"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.net.wifi.intent.TIMEOUT" />
-            </intent-filter>
-        </receiver>
-
         <!-- Swipe Gestures -->
         <activity
             android:name="com.android.systemui.navigationbar.gestural.LeftBackSwipeCustomApp"

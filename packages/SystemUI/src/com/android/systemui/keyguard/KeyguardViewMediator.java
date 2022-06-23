@@ -370,6 +370,7 @@ public class KeyguardViewMediator extends SystemUI implements Dumpable,
     private boolean mHideAnimationRun = false;
     private boolean mHideAnimationRunning = false;
 
+    private long mLastTimeSoundWasPlayed = 0;
     private SoundPool mLockSounds;
     private int mLockSoundId;
     private int mUnlockSoundId;
@@ -2026,6 +2027,8 @@ public class KeyguardViewMediator extends SystemUI implements Dumpable,
         if (soundId == 0) return;
         final ContentResolver cr = mContext.getContentResolver();
         if (Settings.System.getInt(cr, Settings.System.LOCKSCREEN_SOUNDS_ENABLED, 1) == 1) {
+            if (SystemClock.elapsedRealtime() - mLastTimeSoundWasPlayed < 300) return;
+            mLastTimeSoundWasPlayed = SystemClock.elapsedRealtime();
 
             mLockSounds.stop(mLockSoundStreamId);
             // Init mAudioManager

@@ -1032,6 +1032,20 @@ public abstract class WallpaperService extends Service {
             }
         }
 
+        /**
+         * Expose the ability to change shouldZoomOut during runtime
+         * This needs to be done from within the engine in order to access the session and
+         * window contexts.
+         */
+        public void setShouldZoomOut(boolean zoom) {
+            try {
+                mSession.setShouldZoomOutWallpaper(mWindow, shouldZoomOutWallpaper());
+            } catch (RemoteException e) {
+                // Safe to ignore the exception.
+                // We're guaranteed at least one window session.
+            }
+        }
+
         private void dispatchPointer(MotionEvent event) {
             if (event.isTouchEvent()) {
                 synchronized (mLock) {
@@ -2474,6 +2488,15 @@ public abstract class WallpaperService extends Service {
             mActiveEngines.get(i).detach();
         }
         mActiveEngines.clear();
+    }
+
+    /**
+     * A way to set the engine shouldZoomOut flag during runtime
+     */
+    public void setEnginesShouldZoomOut(boolean zoom) {
+        for (int i=0; i<mActiveEngines.size(); i++) {
+            mActiveEngines.get(i).setShouldZoomOut(zoom);
+        }
     }
 
     /**

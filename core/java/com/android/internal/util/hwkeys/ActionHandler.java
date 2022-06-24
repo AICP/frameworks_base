@@ -139,8 +139,8 @@ public class ActionHandler {
 
     public static final String INTENT_SHOW_POWER_MENU = "action_handler_show_power_menu";
     public static final String INTENT_TOGGLE_SCREENRECORD = "action_handler_toggle_screenrecord";
-    public static final String INTENT_SCREENSHOT = "action_take_screenshot";
-    public static final String INTENT_REGION_SCREENSHOT = "action_take_region_screenshot";
+    public static final String INTENT_SCREENSHOT = "action_handler_screenshot";
+    public static final String INTENT_REGION_SCREENSHOT = "action_handler_region_screenshot";
 
     // remove actions from here as they come back on deck
     static final Set<String> sDisabledActions = new HashSet<String>();
@@ -153,7 +153,7 @@ public class ActionHandler {
         // quickly and more times
         sDisabledActions.add(SYSTEMUI_TASK_REGION_SCREENSHOT);
         sDisabledActions.add(SYSTEMUI_TASK_STOP_SCREENPINNING);
-        sDisabledActions.add(SYSTEMUI_TASK_ASSISTANT_SOUND_SEARCH);
+        // sDisabledActions.add(SYSTEMUI_TASK_ASSISTANT_SOUND_SEARCH);
         // sDisabledActions.add(SYSTEMUI_TASK_POWER_MENU);
     }
 
@@ -1122,6 +1122,7 @@ public class ActionHandler {
 
     public static void startAssistantSoundSearch(Context context) {
         Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.setAction("com.google.android.googlequicksearchbox.MUSIC_SEARCH");
         context.startActivity(intent);
     }

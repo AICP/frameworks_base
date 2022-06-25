@@ -48,10 +48,10 @@
             android:layout_height="@dimen/volume_row_slider_height">
             <SeekBar
                 android:id="@+id/volume_row_slider"
-                android:paddingLeft="@dimen/rounded_slider_track_inset"
-                android:paddingRight="@dimen/rounded_slider_track_inset"
-                android:paddingStart="@dimen/rounded_slider_track_inset"
-                android:paddingEnd="@dimen/rounded_slider_track_inset"
+                android:paddingLeft="@dimen/rounded_slider_vertical_padding"
+                android:paddingRight="@dimen/rounded_slider_vertical_padding"
+                android:paddingStart="@dimen/rounded_slider_vertical_padding"
+                android:paddingEnd="@dimen/rounded_slider_vertical_padding"
                 android:clickable="true"
                 android:layout_width="@dimen/volume_row_slider_height"
                 android:layout_height="match_parent"

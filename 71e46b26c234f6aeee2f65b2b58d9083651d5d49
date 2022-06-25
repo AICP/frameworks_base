@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a16be73_930d0ab3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2022-06-25T02:44:56Z",
+      "side": 1,
+      "message": "Test:\n- Compiles\n- The progress slider is not clipped in any of the configuration(portrait, landscape, per-app volume)",
+      "revId": "71e46b26c234f6aeee2f65b2b58d9083651d5d49",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

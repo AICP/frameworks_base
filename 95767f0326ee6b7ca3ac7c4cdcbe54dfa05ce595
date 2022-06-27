@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a38045ca_3dee631e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-06-27T11:47:34Z",
+      "side": 1,
+      "message": "LoS topic: https://review.lineageos.org/q/topic:twelve-better-partial-screenshot (merged)",
+      "revId": "95767f0326ee6b7ca3ac7c4cdcbe54dfa05ce595",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

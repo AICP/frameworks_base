@@ -95,4 +95,7 @@
         <item>@*android:string/status_bar_alarm_clock</item>
         <item>@*android:string/status_bar_call_strength</item>
     </string-array>
+
+    <!-- Doze: does the double tap sensor need a proximity check? -->
+    <bool name="doze_double_tap_proximity_check">false</bool>
 </resources>

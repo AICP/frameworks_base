@@ -113,6 +113,7 @@ import com.android.systemui.statusbar.phone.KeyguardBypassController;
 import com.android.systemui.telephony.TelephonyListenerManager;
 import com.android.systemui.util.Assert;
 import com.android.systemui.util.RingerModeTracker;
+import com.android.systemui.util.settings.SystemSettings;
 
 import com.google.android.collect.Lists;
 
@@ -311,6 +312,7 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
             mCallbacks = Lists.newArrayList();
     private ContentObserver mDeviceProvisionedObserver;
     private ContentObserver mTimeFormatChangeObserver;
+    private ContentObserver mSettingsChangeObserver;
 
     private boolean mSwitchingUser;
 
@@ -344,7 +346,7 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
     private SensorPrivacyManager mSensorPrivacyManager;
     private int mFaceAuthUserId;
 
-    private final boolean mFingerprintWakeAndUnlock;
+    private boolean mFingerprintWakeAndUnlock;
 
     /**
      * Short delay before restarting fingerprint authentication after a successful try. This should
@@ -1852,8 +1854,6 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
         mTelephonyListenerManager = telephonyListenerManager;
         mDeviceProvisioned = isDeviceProvisionedInSettingsDb();
         mStrongAuthTracker = new StrongAuthTracker(context, this::notifyStrongAuthStateChanged);
-        mFingerprintWakeAndUnlock = mContext.getResources().getBoolean(
-                com.android.systemui.R.bool.config_fingerprintWakeAndUnlock);
         mBackgroundExecutor = backgroundExecutor;
         mBroadcastDispatcher = broadcastDispatcher;
         mInteractionJankMonitor = interactionJankMonitor;
@@ -1866,6 +1866,8 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
         mAuthController = authController;
         dumpManager.registerDumpable(getClass().getName(), this);
         mSensorPrivacyManager = context.getSystemService(SensorPrivacyManager.class);
+
+        updateFingerprintSettings();
 
         mHandler = new Handler(mainLooper) {
             @Override
@@ -2147,6 +2149,32 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
         mContext.getContentResolver().registerContentObserver(
                 Settings.System.getUriFor(Settings.System.TIME_12_24),
                 false, mTimeFormatChangeObserver, UserHandle.USER_ALL);
+
+        mSettingsChangeObserver = new ContentObserver(mHandler) {
+            @Override
+            public void onChange(boolean selfChange) {
+                updateFingerprintSettings();
+            }
+        };
+        mContext.getContentResolver().registerContentObserver(
+                Settings.System.getUriFor(Settings.System.FINGERPRINT_WAKE_UNLOCK),
+                false, mSettingsChangeObserver, UserHandle.USER_ALL);
+    }
+
+    private void updateFingerprintSettings() {
+        boolean defFingerprintSettings = mContext.getResources().getBoolean(
+                com.android.systemui.R.bool.config_fingerprintWakeAndUnlock);
+        if (defFingerprintSettings) {
+            mFingerprintWakeAndUnlock = Settings.System.getIntForUser(
+                    mContext.getContentResolver(), Settings.System.FINGERPRINT_WAKE_UNLOCK,
+                    1, UserHandle.USER_CURRENT) == 1;
+        } else {
+            mFingerprintWakeAndUnlock = defFingerprintSettings;
+            // if its false, the device meant to be used like that, disable toggle with 2.
+            Settings.System.putIntForUser(mContext.getContentResolver(),
+                    Settings.System.FINGERPRINT_WAKE_UNLOCK,
+                    2, UserHandle.USER_CURRENT);
+        }
     }
 
     private void updateUdfpsEnrolled(int userId) {
@@ -3512,6 +3540,10 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener, Dumpab
 
         if (mTimeFormatChangeObserver != null) {
             mContext.getContentResolver().unregisterContentObserver(mTimeFormatChangeObserver);
+        }
+
+        if (mSettingsChangeObserver != null) {
+            mContext.getContentResolver().unregisterContentObserver(mSettingsChangeObserver);
         }
 
         try {

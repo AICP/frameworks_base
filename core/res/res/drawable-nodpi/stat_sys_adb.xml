@@ -17,7 +17,16 @@ Copyright (C) 2021 The Android Open Source Project
     android:width="24dp" android:height="24dp"
     android:viewportWidth="24"
     android:viewportHeight="24">
-  <path android:pathData="M18 9c0-.69268-.1174-1.35795-.3333-1.97699C16.8495 4.68061 14.621 3 12 3 8.68629 3 6 5.68629 6 9v3h6M6 15c0 .6927.11738 1.3579.33333 1.977C7.15047 19.3194 9.37897 21 12 21c3.3137 0 6-2.6863 6-6v-3h-6" android:strokeColor="#000000" android:strokeWidth="2" android:fillColor="#00000000"/>
-  <path android:fillColor="#000000" android:pathData="M10 7a1 1 0 1 0 0 2 1 1 0 1 0 0-2zM14 7a1 1 0 1 0 0 2 1 1 0 1 0 0-2z"/>
-  <path android:pathData="M6 3l1.5 1.5M18 3l-1.5 1.5" android:strokeColor="#000000" android:strokeWidth="2" android:fillColor="#000000"/>
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:strokeColor="#000000"
+        android:strokeWidth="2"
+        android:pathData="M18 9c0-.69268-.1174-1.35795-.3333-1.97699C16.8495 4.68061 14.621 3 12 3 8.68629 3 6 5.68629 6 9v3h6M6 15c0 .6927.11738 1.3579.33333 1.977C7.15047 19.3194 9.37897 21 12 21c3.3137 0 6-2.6863 6-6v-3h-6" />
+    <path
+        android:fillColor="#E62100"
+        android:pathData="M10 7a1 1 0 1 0 0 2 1 1 0 1 0 0-2zM14 7a1 1 0 1 0 0 2 1 1 0 1 0 0-2z" />
+    <path
+        android:fillColor="#000000"
+        android:strokeColor="#000000"
+        android:pathData="M6 3l1.5 1.5M18 3l-1.5 1.5" />
 </vector>

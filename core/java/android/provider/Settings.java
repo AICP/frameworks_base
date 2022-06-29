@@ -6135,6 +6135,12 @@ public final class Settings {
         @Readable
         public static final String TOAST_ICON = "toast_icon";
 
+        /**
+         * Whether to enable fingerprint wake-and-unlock.
+         * @hide
+         */
+        public static final String FINGERPRINT_WAKE_UNLOCK = "fingerprint_wake_unlock";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6335,6 +6341,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(NAVIGATION_BAR_IME_SPACE);
             PRIVATE_SETTINGS.add(BACK_GESTURE_HEIGHT);
             PRIVATE_SETTINGS.add(TOAST_ICON);
+            PRIVATE_SETTINGS.add(FINGERPRINT_WAKE_UNLOCK);
         }
 
         /**

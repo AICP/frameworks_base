@@ -135,6 +135,7 @@ public class SystemSettings {
         Settings.System.DOZE_ON_CHARGE_NOW,
         Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL,
         Settings.System.FINGERPRINT_SUCCESS_VIB,
+        Settings.System.FINGERPRINT_WAKE_UNLOCK,
         Settings.System.SCREEN_OFF_ANIMATION,
         Settings.System.QS_TILE_VERTICAL_LAYOUT,
         Settings.System.QS_LAYOUT_COLUMNS_LANDSCAPE,

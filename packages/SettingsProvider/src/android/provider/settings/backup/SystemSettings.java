@@ -166,5 +166,6 @@ public class SystemSettings {
         Settings.System.NAVIGATION_BAR_IME_SPACE,
         Settings.System.BACK_GESTURE_HEIGHT,
         Settings.System.TOAST_ICON,
+        Settings.System.FINGERPRINT_WAKE_UNLOCK,
     };
 }

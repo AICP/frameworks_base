@@ -174,6 +174,8 @@ public class KeyguardIndicationController {
     private String mMessageToShowOnScreenOn;
     private boolean mInited;
 
+    private int mCurrentDivider;
+
     private KeyguardUpdateMonitorCallback mUpdateMonitorCallback;
 
     private boolean mDozing;
@@ -268,6 +270,8 @@ public class KeyguardIndicationController {
         mKeyguardStateController.addCallback(mKeyguardStateCallback);
 
         mStatusBarStateListener.onDozingChanged(mStatusBarStateController.isDozing());
+
+        mCurrentDivider = mContext.getResources().getInteger(R.integer.config_currentInfoDivider);
     }
 
     public void setIndicationArea(ViewGroup indicationArea) {
@@ -441,7 +445,7 @@ public class KeyguardIndicationController {
         if (mPowerPluggedIn || mEnableBatteryDefender) {
             String powerIndication = computePowerIndication();
             if (DEBUG_CHARGING_SPEED) {
-                powerIndication += ",  " + (mChargingWattage / 1000) + " mW";
+                powerIndication += ",  " + (mChargingWattage / mCurrentDivider) + " mW";
             }
 
             mRotateTextViewController.updateIndication(
@@ -891,7 +895,11 @@ public class KeyguardIndicationController {
             if (mChargingCurrent > 0) {
                 batteryInfo = batteryInfo + (mChargingCurrent < 5 ?
                           (mChargingCurrent * 1000) : (mChargingCurrent < 4000 ?
-                          mChargingCurrent : (mChargingCurrent / 1000))) + "mA" ;
+                          mChargingCurrent : (mChargingCurrent / mCurrentDivider))) + "mA" ;
+            }
+            if (mChargingWattage > 0) {
+                batteryInfo = (batteryInfo == "" ? "" : batteryInfo + " · ") +
+                        String.format("%.1f", (float) (mChargingWattage / mCurrentDivider / 1000)) + "W";
             }
             if (mChargingVoltage > 0) {
                 batteryInfo = (batteryInfo == "" ? "" : batteryInfo + " · ") +

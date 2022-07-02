@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt" android:height="29.5dp" android:width="32dp" android:viewportWidth="26" android:viewportHeight="24">
+    <path android:name="wifi_4" android:fillColor="#ffffffff" android:pathData="M22.7,9.4l2.4,-3.1c0,0 -4.3,-4.1 -12.1,-4.1C5.6,2.1 0.9,6.2 0.9,6.2l2.4,3.1C6,7.3 9.4,6.1 13,6.1C16.7,6.1 20.1,7.3 22.7,9.4z" android:fillAlpha="0.5"/>
+    <path android:name="wifi_3" android:fillColor="#ffffffff" android:pathData="M3.9,10.2l2.4,3.2C8.2,11.9 10.5,11 13,11s4.8,0.9 6.7,2.3l2.4,-3.2c-2.5,-1.9 -5.7,-3.1 -9.1,-3.1S6.4,8.2 3.9,10.2z" android:fillAlpha="0.5"/>
+    <path android:name="wifi_2" android:fillColor="#ffffffff" android:pathData="M7,14.1l2.4,3.1c1,-0.8 2.3,-1.3 3.7,-1.3s2.7,0.5 3.7,1.3l2.4,-3.1c-1.7,-1.3 -3.8,-2.1 -6.1,-2.1S8.7,12.8 7,14.1z" android:fillAlpha="0.5"/>
+    <path android:name="wifi_1" android:fillColor="#ffffffff" android:pathData="M9.9,18l3.1,4l3.1,-4c-0.9,-0.7 -1.9,-1.1 -3.1,-1.1S10.8,17.3 9.9,18z" android:fillAlpha="0.5"/>
+</vector>

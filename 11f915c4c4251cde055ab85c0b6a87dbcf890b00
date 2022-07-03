@@ -16,6 +16,24 @@
       "message": "not sure we need this with current qs animations pack... George?",
       "revId": "11f915c4c4251cde055ab85c0b6a87dbcf890b00",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd04f76e_df6f8f77",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2022-07-03T07:05:26Z",
+      "side": 1,
+      "message": "Remove the topic and abandon, will pick up later as this might fix issues with QS layouts",
+      "parentUuid": "a22c38f0_df6aef1c",
+      "revId": "11f915c4c4251cde055ab85c0b6a87dbcf890b00",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

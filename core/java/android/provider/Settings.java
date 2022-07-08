@@ -11384,6 +11384,12 @@ public final class Settings {
          */
         public static final String PULSE_AMBIENT_LIGHT_WIDTH = "pulse_ambient_light_width";
 
+        /**
+         * Wheter to show Wi-Fi standard icon
+         * @hide
+         */
+        public static final String SHOW_WIFI_STANDARD_ICON = "show_wifi_standard_icon";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

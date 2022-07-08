@@ -24,6 +24,8 @@ import static com.android.systemui.statusbar.StatusBarIconView.STATE_ICON;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Rect;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -50,6 +52,7 @@ public class StatusBarWifiView extends FrameLayout implements DarkReceiver,
     /// Contains the main icon layout
     private LinearLayout mWifiGroup;
     private ImageView mWifiIcon;
+    private ImageView mWifiStandard;
     private ImageView mIn;
     private ImageView mOut;
     private View mInoutContainer;
@@ -58,6 +61,8 @@ public class StatusBarWifiView extends FrameLayout implements DarkReceiver,
     private WifiIconState mState;
     private String mSlot;
     private int mVisibleState = -1;
+    private boolean mShowWifiStandard;
+    private WifiManager mWifiManager;
 
     public static StatusBarWifiView fromContext(Context context, String slot) {
         LayoutInflater inflater = LayoutInflater.from(context);
@@ -69,20 +74,21 @@ public class StatusBarWifiView extends FrameLayout implements DarkReceiver,
     }
 
     public StatusBarWifiView(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public StatusBarWifiView(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
     }
 
     public StatusBarWifiView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
+        this(context, attrs, defStyleAttr, 0);
     }
 
     public StatusBarWifiView(Context context, AttributeSet attrs, int defStyleAttr,
             int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
+        mWifiManager = context.getSystemService(WifiManager.class);
     }
 
     public void setSlot(String slot) {
@@ -93,6 +99,7 @@ public class StatusBarWifiView extends FrameLayout implements DarkReceiver,
     public void setStaticDrawableColor(int color) {
         ColorStateList list = ColorStateList.valueOf(color);
         mWifiIcon.setImageTintList(list);
+        mWifiStandard.setImageTintList(list);
         mIn.setImageTintList(list);
         mOut.setImageTintList(list);
         mDotView.setDecorColor(color);
@@ -156,6 +163,7 @@ public class StatusBarWifiView extends FrameLayout implements DarkReceiver,
     private void init() {
         mWifiGroup = findViewById(R.id.wifi_group);
         mWifiIcon = findViewById(R.id.wifi_signal);
+        mWifiStandard = findViewById(R.id.wifi_standard);
         mIn = findViewById(R.id.wifi_in);
         mOut = findViewById(R.id.wifi_out);
         mSignalSpacer = findViewById(R.id.wifi_signal_spacer);
@@ -197,6 +205,12 @@ public class StatusBarWifiView extends FrameLayout implements DarkReceiver,
 
     private boolean updateState(WifiIconState state) {
         setContentDescription(state.contentDescription);
+        if (mShowWifiStandard) {
+            mWifiStandard.setVisibility(View.VISIBLE);
+            setWifiStandard();
+        } else {
+            mWifiStandard.setVisibility(View.GONE);
+        }
         if (mState.resId != state.resId && state.resId >= 0) {
             mWifiIcon.setImageDrawable(mContext.getDrawable(state.resId));
         }
@@ -222,6 +236,12 @@ public class StatusBarWifiView extends FrameLayout implements DarkReceiver,
 
     private void initViewState() {
         setContentDescription(mState.contentDescription);
+        if (mShowWifiStandard) {
+            mWifiStandard.setVisibility(View.VISIBLE);
+            setWifiStandard();
+        } else {
+            mWifiStandard.setVisibility(View.GONE);
+        }
         if (mState.resId >= 0) {
             mWifiIcon.setImageDrawable(mContext.getDrawable(mState.resId));
         }
@@ -235,20 +255,63 @@ public class StatusBarWifiView extends FrameLayout implements DarkReceiver,
         setVisibility(mState.visible ? View.VISIBLE : View.GONE);
     }
 
+    private void setWifiStandard() {
+        int wifiStandard = getWifiStandard(mState);
+        if (wifiStandard >= 4) {
+            int identifier = getResources().getIdentifier("ic_wifi_standard_" + wifiStandard,
+                    "drawable", getContext().getPackageName());
+            if (identifier > 0) {
+                mWifiStandard.setImageDrawable(mContext.getDrawable(identifier));
+            }
+        }
+    }
+
+    private int getWifiStandard(WifiIconState state) {
+        WifiInfo wifiInfo = mWifiManager.getConnectionInfo();
+        return state.visible ? wifiInfo.getWifiStandard() : -1;
+    }
+
     @Override
     public void onDarkChanged(ArrayList<Rect> areas, float darkIntensity, int tint) {
         int areaTint = getTint(areas, this, tint);
         ColorStateList color = ColorStateList.valueOf(areaTint);
         mWifiIcon.setImageTintList(color);
+        mWifiStandard.setImageTintList(color);
         mIn.setImageTintList(color);
         mOut.setImageTintList(color);
         mDotView.setDecorColor(areaTint);
         mDotView.setIconColor(areaTint, false);
     }
 
-
     @Override
     public String toString() {
         return "StatusBarWifiView(slot=" + mSlot + " state=" + mState + ")";
+    }
+
+    public void updateWifiState(boolean showWifiStandard) {
+        boolean needsLayout = false;
+        if (mShowWifiStandard != showWifiStandard) {
+            if (showWifiStandard) {
+                mWifiStandard.setVisibility(View.VISIBLE);
+                setWifiStandard();
+            } else {
+                mWifiStandard.setVisibility(View.GONE);
+            }
+        }
+
+        mIn.setVisibility(mState.activityIn ? View.VISIBLE : View.GONE);
+        mOut.setVisibility(mState.activityOut ? View.VISIBLE : View.GONE);
+        mInoutContainer.setVisibility(
+                (mState.activityIn || mState.activityOut) ? View.VISIBLE : View.GONE);
+        mAirplaneSpacer.setVisibility(mState.airplaneSpacerVisible ? View.VISIBLE : View.GONE);
+        mSignalSpacer.setVisibility(mState.signalSpacerVisible ? View.VISIBLE : View.GONE);
+        setVisibility(mState.visible ? View.VISIBLE : View.GONE);
+
+        needsLayout = mShowWifiStandard != showWifiStandard;
+        mShowWifiStandard = showWifiStandard;
+
+        if (needsLayout) {
+            requestLayout();
+        }
     }
 }

@@ -245,5 +245,6 @@ public class SecureSettings {
         Settings.Secure.STATUSBAR_CLOCK_DATE_POSITION,
         Settings.Secure.LOCK_QS_DISABLED,
         Settings.Secure.FEATURE_TOUCH_HOVERING,
+        Settings.Secure.SHOW_WIFI_STANDARD_ICON,
     };
 }

@@ -239,5 +239,6 @@ public class SecureSettings {
         Settings.Secure.KEYBOARD_BRIGHTNESS,
         Settings.Secure.QSTILE_REQUIRES_UNLOCKING,
         Settings.Secure.WINDOW_IGNORE_SECURE,
+        Settings.Secure.SHOW_WIFI_STANDARD_ICON,
     };
 }

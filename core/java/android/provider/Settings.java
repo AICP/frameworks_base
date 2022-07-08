@@ -12321,6 +12321,12 @@ public final class Settings {
         @Readable
         public static final String WINDOW_IGNORE_SECURE = "window_ignore_secure";
 
+        /**
+         * Whether to show Wi-Fi standard icon
+         * @hide
+         */
+        public static final String SHOW_WIFI_STANDARD_ICON = "show_wifi_standard_icon";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

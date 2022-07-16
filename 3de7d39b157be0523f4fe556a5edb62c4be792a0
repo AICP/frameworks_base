@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "801e4d24_7650ca53",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 343
+      },
+      "writtenOn": "2022-07-16T16:29:25Z",
+      "side": 1,
+      "message": "Ah, then push it and we grab it via patches.txt. 😈",
+      "revId": "3de7d39b157be0523f4fe556a5edb62c4be792a0",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

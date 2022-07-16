@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e6f0a67_100478fc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1393
+      },
+      "writtenOn": "2022-07-16T15:26:56Z",
+      "side": 1,
+      "message": "works fine for me on op8pro - clock is much better centered with this commit.",
+      "revId": "334c11aa4c6e3e20aadc840690fec43fa25e715d",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

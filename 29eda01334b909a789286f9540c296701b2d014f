@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32f42e6f_1e53e809",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-07-17T19:49:32Z",
+      "side": 1,
+      "message": "LoS topic: https://review.lineageos.org/q/topic:twelve-doze-sensors-proximity-check",
+      "revId": "29eda01334b909a789286f9540c296701b2d014f",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

@@ -36,8 +36,7 @@ interface IInputMethodManager {
             int untrustedDisplayId);
 
     // TODO: Use ParceledListSlice instead
-    List<InputMethodInfo> getInputMethodList(int userId);
-    List<InputMethodInfo> getAwareLockedInputMethodList(int userId, int directBootAwareness);
+    List<InputMethodInfo> getInputMethodList(int userId, int directBootAwareness);
     // TODO: Use ParceledListSlice instead
     List<InputMethodInfo> getEnabledInputMethodList(int userId);
     List<InputMethodSubtype> getEnabledInputMethodSubtypeList(in String imiId,

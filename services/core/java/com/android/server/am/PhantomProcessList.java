@@ -421,48 +421,7 @@ public final class PhantomProcessList {
      * order of the oom adjs of their parent process.
      */
     void trimPhantomProcessesIfNecessary() {
-        if (!mService.mSystemReady || !FeatureFlagUtils.isEnabled(mService.mContext,
-                SETTINGS_ENABLE_MONITOR_PHANTOM_PROCS)) {
             return;
-        }
-        synchronized (mService.mProcLock) {
-            synchronized (mLock) {
-                mTrimPhantomProcessScheduled = false;
-                if (mService.mConstants.MAX_PHANTOM_PROCESSES < mPhantomProcesses.size()) {
-                    for (int i = mPhantomProcesses.size() - 1; i >= 0; i--) {
-                        mTempPhantomProcesses.add(mPhantomProcesses.valueAt(i));
-                    }
-                    synchronized (mService.mPidsSelfLocked) {
-                        Collections.sort(mTempPhantomProcesses, (a, b) -> {
-                            final ProcessRecord ra = mService.mPidsSelfLocked.get(a.mPpid);
-                            if (ra == null) {
-                                // parent is gone, this process should have been killed too
-                                return 1;
-                            }
-                            final ProcessRecord rb = mService.mPidsSelfLocked.get(b.mPpid);
-                            if (rb == null) {
-                                // parent is gone, this process should have been killed too
-                                return -1;
-                            }
-                            if (ra.mState.getCurAdj() != rb.mState.getCurAdj()) {
-                                return ra.mState.getCurAdj() - rb.mState.getCurAdj();
-                            }
-                            if (a.mKnownSince != b.mKnownSince) {
-                                // In case of identical oom adj, younger one first
-                                return a.mKnownSince < b.mKnownSince ? 1 : -1;
-                            }
-                            return 0;
-                        });
-                    }
-                    for (int i = mTempPhantomProcesses.size() - 1;
-                            i >= mService.mConstants.MAX_PHANTOM_PROCESSES; i--) {
-                        final PhantomProcessRecord proc = mTempPhantomProcesses.get(i);
-                        proc.killLocked("Trimming phantom processes", true);
-                    }
-                    mTempPhantomProcesses.clear();
-                }
-            }
-        }
     }
 
     /**

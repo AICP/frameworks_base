@@ -80,7 +80,7 @@ public class FeatureFlagUtils {
         DEFAULT_FLAGS.put(SETTINGS_USE_NEW_BACKUP_ELIGIBILITY_RULES, "true");
         DEFAULT_FLAGS.put(SETTINGS_ENABLE_SECURITY_HUB, "true");
         DEFAULT_FLAGS.put(SETTINGS_SUPPORT_LARGE_SCREEN, "true");
-        DEFAULT_FLAGS.put(SETTINGS_ENABLE_MONITOR_PHANTOM_PROCS, "true");
+        DEFAULT_FLAGS.put(SETTINGS_ENABLE_MONITOR_PHANTOM_PROCS, "false");
     }
 
     private static final Set<String> PERSISTENT_FLAGS;

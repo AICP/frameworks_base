@@ -23,6 +23,8 @@ import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.icu.text.NumberFormat;
+import android.os.UserHandle;
+import android.provider.Settings;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
@@ -233,8 +235,15 @@ public class AnimatableClockController extends ViewController<AnimatableClockVie
     }
 
     private void initColors() {
+        boolean isSecondaryColor = Settings.System.getIntForUser(getContext().getContentResolver(),
+                Settings.System.SECONDARY_COLOR_CLOCK, 0, UserHandle.USER_CURRENT) != 0;
+        if (isSecondaryColor) {
+        mLockScreenColor = Utils.getColorAttrDefaultColor(getContext(),
+                com.android.systemui.R.attr.wallpaperTextColorSecondary);
+        } else {
         mLockScreenColor = Utils.getColorAttrDefaultColor(getContext(),
                 com.android.systemui.R.attr.wallpaperTextColorAccent);
+        }
         mView.setColors(mDozingColor, mLockScreenColor);
         mView.animateDoze(mIsDozing, false);
     }

@@ -6641,6 +6641,11 @@ public final class Settings {
          */
         public static final String SEEK_BAR_BATTERY_CHARGE_LEVEL_SOUND = "battery_level_charge_seek_bar";
 
+        /**
+         * @hide
+         */
+        public static final String SECONDARY_COLOR_CLOCK = "use_secondary_color_clock";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6907,6 +6912,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(QS_DATA_USAGE_PANEL);
             PRIVATE_SETTINGS.add(FORCE_FULLSCREEN_CUTOUT_APPS);
             PRIVATE_SETTINGS.add(CHARGING_ANIMATION);
+            PRIVATE_SETTINGS.add(SECONDARY_COLOR_CLOCK);
         }
 
         /**

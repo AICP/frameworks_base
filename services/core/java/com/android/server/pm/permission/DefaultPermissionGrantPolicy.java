@@ -487,6 +487,23 @@ final class DefaultPermissionGrantPolicy {
                     0,
                     UserHandle.of(userId));
         }
+        
+        // Grant ACCESS_COARSE_LOCATION to all system apps that have ACCESS_FINE_LOCATION
+        for (PackageInfo locPkg : packages) {
+            if (locPkg == null
+                    || !doesPackageSupportRuntimePermissions(locPkg)
+                    || ArrayUtils.isEmpty(locPkg.requestedPermissions)
+                    || !pm.isGranted(Manifest.permission.ACCESS_FINE_LOCATION,
+                            locPkg, UserHandle.of(userId))
+                    || pm.isSysComponentOrPersistentPlatformSignedPrivApp(locPkg)) {
+                continue;
+            }
+                    
+            grantRuntimePermissions(pm, locPkg,
+                    Collections.singleton(Manifest.permission.ACCESS_COARSE_LOCATION),
+                    true, // systemFixed
+                    userId);
+        }
 
     }
 

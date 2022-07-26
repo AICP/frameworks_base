@@ -54,6 +54,20 @@ applications that come with the platform
         <permission name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
         <permission name="android.permission.RECEIVE_EMERGENCY_BROADCAST"/>
         <permission name="android.permission.START_ACTIVITIES_FROM_BACKGROUND"/>
+	<!-- added -->
+        <permission name="android.permission.RECEIVE_SMS"/>
+        <permission name="android.permission.DISABLE_KEYGUARD"/>
+        <permission name="android.permission.VIBRATE"/>
+        <permission name="android.permission.DEVICE_POWER"/>
+        <permission name="android.permission.READ_CELL_BROADCASTS"/>
+        <permission name="android.permission.DISABLE_KEYGUARD"/>
+        <permission name="android.permission.READ_SMS"/>
+        <permission name="android.permission.HIDE_NON_SYSTEM_OVERLAY_WINDOWS"/>
+        <permission name="com.android.cellbroadcastservice.FULL_ACCESS_CELL_BROADCAST_HISTORY"/>
+        <permission name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+        <permission name="android.permission.BLUETOOTH"/>
+        <permission name="android.permission.BLUETOOTH_CONNECT"/>
+        <permission name="android.permission.ACCESS_FINE_LOCATION"/>
     </privapp-permissions>
 
     <privapp-permissions package="com.android.cellbroadcastservice">

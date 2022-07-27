@@ -46,6 +46,7 @@ import com.android.systemui.doze.DozeMachine.State;
 import com.android.systemui.doze.dagger.DozeScope;
 import com.android.systemui.log.SessionTracker;
 import com.android.systemui.statusbar.phone.DozeParameters;
+import com.android.systemui.statusbar.phone.KeyguardLiftController;
 import com.android.systemui.statusbar.policy.DevicePostureController;
 import com.android.systemui.statusbar.policy.KeyguardStateController;
 import com.android.systemui.util.Assert;
@@ -99,6 +100,7 @@ public class DozeTriggers implements DozeMachine.Part {
     private final BroadcastDispatcher mBroadcastDispatcher;
     private final AuthController mAuthController;
     private final KeyguardStateController mKeyguardStateController;
+    private final KeyguardLiftController mKeyguardLiftController;
     private final UiEventLogger mUiEventLogger;
 
     private long mNotificationPulseTime;
@@ -189,6 +191,7 @@ public class DozeTriggers implements DozeMachine.Part {
             UiEventLogger uiEventLogger,
             SessionTracker sessionTracker,
             KeyguardStateController keyguardStateController,
+            KeyguardLiftController keyguardLiftController,
             DevicePostureController devicePostureController) {
         mContext = context;
         mDozeHost = dozeHost;
@@ -209,6 +212,7 @@ public class DozeTriggers implements DozeMachine.Part {
         mAuthController = authController;
         mUiEventLogger = uiEventLogger;
         mKeyguardStateController = keyguardStateController;
+        mKeyguardLiftController = keyguardLiftController;
     }
 
     @Override
@@ -321,6 +325,7 @@ public class DozeTriggers implements DozeMachine.Part {
                         return;
                     }
                     gentleWakeUp(pulseReason);
+                    mKeyguardLiftController.setPickupWake(true);
                 } else if (isUdfpsLongPress) {
                     final State state = mMachine.getState();
                     if (state == State.DOZE_AOD || state == State.DOZE) {

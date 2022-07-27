@@ -16,11 +16,16 @@
 
 package com.android.systemui.statusbar.phone
 
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.hardware.Sensor
 import android.hardware.TriggerEvent
 import android.hardware.TriggerEventListener
+import android.os.PowerManager
+import android.os.SystemClock
 import com.android.keyguard.ActiveUnlockConfig
 import com.android.keyguard.FaceAuthApiRequestReason
 import com.android.keyguard.KeyguardUpdateMonitor
@@ -35,11 +40,6 @@ import com.android.systemui.util.sensors.AsyncSensorManager
 import java.io.PrintWriter
 import javax.inject.Inject
 
-/**
- * Triggers face auth on lift when the device is showing the lock screen. Only initialized
- * if face auth is supported on the device. Not to be confused with the lift to wake gesture
- * which is handled by {@link com.android.server.policy.PhoneWindowManager}.
- */
 @SysUISingleton
 class KeyguardLiftController @Inject constructor(
     private val context: Context,
@@ -50,11 +50,22 @@ class KeyguardLiftController @Inject constructor(
 ) : Dumpable, CoreStartable(context) {
 
     private val pickupSensor = asyncSensorManager.getDefaultSensor(Sensor.TYPE_PICK_UP_GESTURE)
+    private val powerManager = context.getSystemService(Context.POWER_SERVICE) as PowerManager
+    private val hasFaceFeature = context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_FACE)
+    private val hasDozePickup = context.resources.getBoolean(com.android.internal.R.bool.config_dozePulsePickup)
+    private var isPickupWake = false
     private var isListening = false
     private var bouncerVisible = false
 
+    private val receiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            if (intent.action == Intent.ACTION_SCREEN_OFF)
+                isPickupWake = false
+        }
+    }
+
     override fun start() {
-        if (context.packageManager.hasSystemFeature(PackageManager.FEATURE_FACE)) {
+        if (hasFaceFeature || hasDozePickup) {
             init()
         }
     }
@@ -63,22 +74,29 @@ class KeyguardLiftController @Inject constructor(
         dumpManager.registerDumpable(javaClass.name, this)
         statusBarStateController.addCallback(statusBarStateListener)
         keyguardUpdateMonitor.registerCallback(keyguardUpdateMonitorCallback)
+        context.registerReceiver(receiver, IntentFilter(Intent.ACTION_SCREEN_OFF))
         updateListeningState()
     }
 
     private val listener: TriggerEventListener = object : TriggerEventListener() {
         override fun onTrigger(event: TriggerEvent?) {
             Assert.isMainThread()
+            val ev = event?.values?.get(0)
+            if (ev == 2f) {
+                powerManager.goToSleep(SystemClock.uptimeMillis())
+            } else if (ev == 1f && isFaceEnabled()) {
+                keyguardUpdateMonitor.requestFaceAuth(
+                    true,
+                    FaceAuthApiRequestReason.PICK_UP_GESTURE_TRIGGERED
+                )
+                keyguardUpdateMonitor.requestActiveUnlock(
+                    ActiveUnlockConfig.ACTIVE_UNLOCK_REQUEST_ORIGIN.WAKE,
+                    "KeyguardLiftController")
+            }
             // Not listening anymore since trigger events unregister themselves
             isListening = false
+            isPickupWake = false
             updateListeningState()
-            keyguardUpdateMonitor.requestFaceAuth(
-                true,
-                FaceAuthApiRequestReason.PICK_UP_GESTURE_TRIGGERED
-            )
-            keyguardUpdateMonitor.requestActiveUnlock(
-                ActiveUnlockConfig.ACTIVE_UNLOCK_REQUEST_ORIGIN.WAKE,
-                "KeyguardLiftController")
         }
     }
 
@@ -102,6 +120,7 @@ class KeyguardLiftController @Inject constructor(
     override fun dump(pw: PrintWriter, args: Array<out String>) {
         pw.println("KeyguardLiftController:")
         pw.println("  pickupSensor: $pickupSensor")
+        pw.println("  isPickupWake: $isPickupWake")
         pw.println("  isListening: $isListening")
         pw.println("  bouncerVisible: $bouncerVisible")
     }
@@ -113,9 +132,7 @@ class KeyguardLiftController @Inject constructor(
         val onKeyguard = keyguardUpdateMonitor.isKeyguardVisible &&
                 !statusBarStateController.isDozing
 
-        val userId = KeyguardUpdateMonitor.getCurrentUser()
-        val isFaceEnabled = keyguardUpdateMonitor.isFaceAuthEnabledForUser(userId)
-        val shouldListen = (onKeyguard || bouncerVisible) && isFaceEnabled
+        val shouldListen = (onKeyguard || bouncerVisible) && (isFaceEnabled() || isPickupWake)
         if (shouldListen != isListening) {
             isListening = shouldListen
 
@@ -125,5 +142,18 @@ class KeyguardLiftController @Inject constructor(
                 asyncSensorManager.cancelTriggerSensor(listener, pickupSensor)
             }
         }
+    }
+
+    private fun isFaceEnabled(): Boolean {
+        if (!hasFaceFeature) {
+            return false
+        }
+        val userId = KeyguardUpdateMonitor.getCurrentUser()
+        return keyguardUpdateMonitor.isFaceAuthEnabledForUser(userId);
+    }
+
+    public fun setPickupWake(state: Boolean) {
+        isPickupWake = state
+        updateListeningState()
     }
 }

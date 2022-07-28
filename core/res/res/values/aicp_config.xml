@@ -305,4 +305,7 @@
 
     <!-- Should we filter any display modes which are unmapped? -->
     <bool name="config_filterDisplayModes">false</bool>
+
+    <!-- Paths to OP warp charging status file -->
+    <string name="config_opWarpChargerStatusPaths" translatable="false"></string>
 </resources>

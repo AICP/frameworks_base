@@ -82,4 +82,7 @@
 
     <!-- Path to fast charging status file to detect whether an oem fast charger is active -->
     <java-symbol type="array" name="config_oemFastChargerStatusPaths" />
+
+    <!-- Paths to OP warp charging status file -->
+    <java-symbol type="string" name="config_opWarpChargerStatusPaths" />
 </resources>

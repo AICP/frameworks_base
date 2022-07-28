@@ -239,4 +239,7 @@
 
     <!-- Whether the device supports Smart Pixels -->
     <java-symbol type="bool" name="config_supportSmartPixels" />
+
+    <!-- Paths to OP warp charging status file -->
+    <java-symbol type="string" name="config_opWarpChargerStatusPaths" />
 </resources>

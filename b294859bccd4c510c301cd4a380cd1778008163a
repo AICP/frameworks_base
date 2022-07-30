@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "913129b0_028f95dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2022-07-30T16:57:00Z",
+      "side": 1,
+      "message": "One of the logs passed to me had \n```\nE AndroidRuntime: FATAL EXCEPTION: pool-3-thread-4\nE AndroidRuntime: Process: com.android.statementservice, PID: 10862\nE AndroidRuntime: java.lang.IllegalStateException: Data cannot occupy more than 10240 bytes when serialized\nE AndroidRuntime: \tat androidx.work.Data.toByteArrayInternal(Data.java:417)\nE AndroidRuntime: \tat androidx.work.Data$Builder.build(Data.java:846)\nE AndroidRuntime: \tat androidx.work.OverwritingInputMerger.merge(OverwritingInputMerger.java:44)\nE AndroidRuntime: \tat androidx.work.impl.WorkerWrapper.runWorker(WorkerWrapper.java:227)\nE AndroidRuntime: \tat androidx.work.impl.WorkerWrapper.run(WorkerWrapper.java:137)\nE AndroidRuntime: \tat androidx.work.impl.utils.SerialExecutor$Task.run(SerialExecutor.java:91)\nE AndroidRuntime: \tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)\nE AndroidRuntime: \tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)\nE AndroidRuntime: \tat java.lang.Thread.run(Thread.java:920)\n```\nTest and report",
+      "revId": "b294859bccd4c510c301cd4a380cd1778008163a",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

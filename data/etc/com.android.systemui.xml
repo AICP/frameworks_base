@@ -77,5 +77,8 @@
         <permission name="android.permission.ACCESS_SURFACE_FLINGER" />
         <permission name="android.permission.CAMERA" />
         <permission name="android.permission.SUSPEND_APPS" />
+        <permission name="android.permission.CHANGE_CONFIGURATION" />
+        <permission name="lineageos.permission.HARDWARE_ABSTRACTION_ACCESS" />
+        <permission name="lineageos.permission.MANAGE_LIVEDISPLAY" />
     </privapp-permissions>
 </permissions>

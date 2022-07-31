@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "335de1e9_1f493635",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2022-07-31T14:31:53Z",
+      "side": 1,
+      "message": "This should fix as issue where mapping screenshot function to s/w keys (or gestures actions) wont work as expected, also enables the sound search option",
+      "revId": "63bde15993bb34ab7b61af65b1607fe05c192ec6",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

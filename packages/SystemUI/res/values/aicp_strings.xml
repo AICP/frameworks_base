@@ -256,4 +256,9 @@
     <string name="quick_settings_preferred_network_lte">4g / LTE</string>
     <string name="quick_settings_preferred_network_nr">5g / NR</string>
     <string name="quick_settings_preferred_network_unsupported">Unsupported</string>
+
+    <!-- Data usage panel -->
+    <string name="total_internet_usage">Total internet usage (Since boot)</string>
+    <string name="cellular_usage">Mobile data usage</string>
+    <string name="wifi_usage">Wifi data usage</string>
 </resources>

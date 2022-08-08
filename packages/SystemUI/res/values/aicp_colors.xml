@@ -5,4 +5,6 @@
 -->
 <resources>
     <color name="accent_device_default_light">@*android:color/accent_device_default_light</color>
+
+    <color name="data_usage_panel_color">@*android:color/system_neutral1_100</color>
 </resources>

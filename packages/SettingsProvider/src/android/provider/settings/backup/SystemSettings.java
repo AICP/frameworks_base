@@ -224,5 +224,6 @@ public class SystemSettings {
         Settings.System.QS_LAYOUT_COLUMNS,
         Settings.System.NAVIGATION_BAR_HINT,
         Settings.System.FORCE_FULLSCREEN_CUTOUT_APPS,
+        Settings.System.QS_DATA_USAGE_PANEL,
     };
 }

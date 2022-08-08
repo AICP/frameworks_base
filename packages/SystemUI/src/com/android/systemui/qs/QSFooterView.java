@@ -22,6 +22,7 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.database.ContentObserver;
 import android.net.Uri;
+import android.net.TrafficStats;
 import android.os.Build;
 import android.os.Handler;
 import android.os.UserHandle;
@@ -29,6 +30,7 @@ import android.provider.Settings;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -45,14 +47,18 @@ public class QSFooterView extends FrameLayout {
     private TextView mBuildText;
     private View mEditButton;
 
+    private LinearLayout mDataUsagePanel;
+
     @Nullable
     protected TouchAnimator mFooterAnimator;
 
     private boolean mQsDisabled;
     private boolean mExpanded;
+    private boolean mShowUsagePanel;
     private float mExpansionAmount;
 
     private boolean mShouldShowBuildText;
+    private final Handler mHandler = new Handler();
 
     @Nullable
     private OnClickListener mExpandClickListener;
@@ -76,10 +82,14 @@ public class QSFooterView extends FrameLayout {
         mPageIndicator = findViewById(R.id.footer_page_indicator);
         mBuildText = findViewById(R.id.build);
         mEditButton = findViewById(android.R.id.edit);
+        mDataUsagePanel = findViewById(R.id.qs_data_usage);
 
         updateResources();
         setImportantForAccessibility(IMPORTANT_FOR_ACCESSIBILITY_YES);
         setBuildText();
+        mHandler.post(() -> {
+            getInternetUsage();
+        });
     }
 
     private void setBuildText() {
@@ -99,6 +109,38 @@ public class QSFooterView extends FrameLayout {
         } else {
             mBuildText.setVisibility(View.GONE);
         }
+    }
+
+
+    private void getInternetUsage() {
+        TextView internet_up = findViewById(R.id.internet_up);
+        TextView internet_down = findViewById(R.id.internet_down);
+        TextView mobile_up = findViewById(R.id.mobile_up);
+        TextView mobile_down = findViewById(R.id.mobile_down);
+        TextView wifi_up = findViewById(R.id.wifi_up);
+        TextView wifi_down = findViewById(R.id.wifi_down);
+
+        long mobileUpload = TrafficStats.getMobileTxBytes();
+        long mobileDownload = TrafficStats.getMobileRxBytes();
+
+        long totalDownload = TrafficStats.getTotalRxBytes();
+        long totalUpload = TrafficStats.getTotalTxBytes();
+
+        long wifiUpload = totalUpload - mobileUpload;
+        long wifiDownload = totalDownload - mobileDownload;
+
+        internet_down.setText("Download: " + BytesToMb(totalDownload) + "MB");
+        internet_up.setText("Upload: " + BytesToMb(totalUpload) + "MB");
+
+        mobile_down.setText("Download: " + BytesToMb(mobileDownload) + "MB");
+        mobile_up.setText("Upload: " + BytesToMb(mobileUpload) + "MB");
+
+        wifi_down.setText("Download: " + BytesToMb(wifiDownload) + "MB");
+        wifi_up.setText("Upload: " + BytesToMb(wifiUpload) + "MB");
+    }
+
+    public long BytesToMb(long usage) {
+        return usage / 1048567;
     }
 
     @Override
@@ -124,6 +166,7 @@ public class QSFooterView extends FrameLayout {
                 .addFloat(mPageIndicator, "alpha", 0, 1)
                 .addFloat(mBuildText, "alpha", 0, 1)
                 .addFloat(mEditButton, "alpha", 0, 1)
+                .addFloat(mDataUsagePanel, "alpha", 0, 1)
                 .setStartDelay(0.9f);
         return builder.build();
     }
@@ -189,6 +232,17 @@ public class QSFooterView extends FrameLayout {
     }
 
     private void updateVisibilities() {
+        mShowUsagePanel = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.QS_DATA_USAGE_PANEL, 0,
+                UserHandle.USER_CURRENT) == 1;
+
         mBuildText.setVisibility(mExpanded && mShouldShowBuildText ? View.VISIBLE : View.INVISIBLE);
+
+        if (mExpanded && mShowUsagePanel) {
+            mDataUsagePanel.setVisibility(View.VISIBLE);
+            getInternetUsage();
+        } else {
+            mDataUsagePanel.setVisibility(View.GONE);
+        }
     }
 }

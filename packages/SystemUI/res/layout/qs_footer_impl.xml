@@ -73,6 +73,14 @@
                     android:tint="?android:attr/textColorPrimary" />
             </FrameLayout>
 
-        </LinearLayout>
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="50dp" />
+
+        <include layout="@layout/data_usage_panel"
+            android:id="@+id/qs_data_usage"
+            android:visibility="gone" />
+
+    </LinearLayout>
 
 </com.android.systemui.qs.QSFooterView>

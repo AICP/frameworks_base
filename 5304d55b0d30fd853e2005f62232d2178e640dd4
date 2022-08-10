@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4bfa37e8_7df5c012",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-08-10T08:01:15Z",
+      "side": 1,
+      "message": "Relevant topic on LoS Gerrit: https://review.lineageos.org/q/topic:aug22-aosp-fixes",
+      "revId": "5304d55b0d30fd853e2005f62232d2178e640dd4",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

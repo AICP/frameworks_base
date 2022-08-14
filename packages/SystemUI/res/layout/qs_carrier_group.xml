@@ -25,7 +25,7 @@
     android:orientation="horizontal">
 
 
-    <com.android.systemui.util.AutoMarqueeTextView
+    <TextView
         android:id="@+id/no_carrier_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,7 +34,6 @@
         android:gravity="center_vertical"
         android:textAppearance="@style/TextAppearance.QS.Status.Carriers.NoCarrierText"
         android:textDirection="locale"
-        android:marqueeRepeatLimit="marquee_forever"
         android:singleLine="true"
         android:visibility="gone"/>
 

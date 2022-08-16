@@ -893,9 +893,7 @@ public class KeyguardIndicationController {
 
         if (showbatteryInfo) {
             if (mChargingCurrent > 0) {
-                batteryInfo = batteryInfo + (mChargingCurrent < 5 ?
-                          (mChargingCurrent * 1000) : (mChargingCurrent < 4000 ?
-                          mChargingCurrent : (mChargingCurrent / mCurrentDivider))) + "mA" ;
+                 batteryInfo = batteryInfo + (mChargingCurrent / mCurrentDivider) + "mA";
             }
             if (mChargingWattage > 0) {
                 batteryInfo = (batteryInfo == "" ? "" : batteryInfo + " · ") +

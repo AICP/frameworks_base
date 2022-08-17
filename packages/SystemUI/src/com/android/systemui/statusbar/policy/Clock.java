@@ -83,6 +83,13 @@ public class Clock extends TextView implements
     private static final String VISIBLE_BY_USER = "visible_by_user";
     private static final String SHOW_SECONDS = "show_seconds";
     private static final String VISIBILITY = "visibility";
+    public static final String STATUS_BAR_CLOCK_SIZE =
+            "system:" + Settings.System.STATUS_BAR_CLOCK_SIZE;
+    public static final String QS_HEADER_CLOCK_SIZE =
+            "system:" + Settings.System.QS_HEADER_CLOCK_SIZE;
+
+    private int mClockSize;
+    private int mClockSizeQsHeader;
 
     private final CurrentUserTracker mCurrentUserTracker;
     private final CommandQueue mCommandQueue;
@@ -221,7 +228,9 @@ public class Clock extends TextView implements
                     STATUSBAR_CLOCK_DATE_DISPLAY,
                     STATUSBAR_CLOCK_DATE_STYLE,
                     STATUSBAR_CLOCK_DATE_FORMAT,
-                    STATUSBAR_CLOCK_DATE_POSITION);
+                    STATUSBAR_CLOCK_DATE_POSITION,
+                    STATUS_BAR_CLOCK_SIZE,
+                    QS_HEADER_CLOCK_SIZE);
             mCommandQueue.addCallback(this);
             mCurrentUserTracker.startTracking();
             mCurrentUserId = mCurrentUserTracker.getCurrentUserId();
@@ -235,6 +244,7 @@ public class Clock extends TextView implements
         updateClock();
         updateClockVisibility();
         updateShowSeconds();
+        updateClockSize();
     }
 
     @Override
@@ -345,7 +355,9 @@ public class Clock extends TextView implements
                 || STATUSBAR_CLOCK_DATE_DISPLAY.equals(key)
                 || STATUSBAR_CLOCK_DATE_STYLE.equals(key)
                 || STATUSBAR_CLOCK_DATE_FORMAT.equals(key)
-                || STATUSBAR_CLOCK_DATE_POSITION.equals(key)) {
+                || STATUSBAR_CLOCK_DATE_POSITION.equals(key)
+                || STATUSBAR_STATUS_BAR_CLOCK_SIZE.equals(key)
+                || STATUSBAR_QS_HEADER_CLOCK_SIZE.equals(key)) {
             updateSettings(key, newValue);
         }
     }
@@ -623,6 +635,23 @@ public class Clock extends TextView implements
                 }
                 mClockDatePosition = Integer.parseInt(newValue);
                 break;
+
+            case STATUS_BAR_CLOCK_SIZE:
+                if (newValue == null) {
+                    newValue = 14; // Default Clock Size is 14
+                }
+                mClockSize = Integer.parseInt(newValue);
+                break;
+
+            case QS_HEADER_CLOCK_SIZE:
+                if (newValue == null) {
+                    newValue = 14; // Default Clock Size is 14
+                }
+                mClockSizeQsHeader = Integer.parseInt(newValue);
+                break;
+
+            default:
+                break;
         }
 
         if (mCalendar != null) {
@@ -637,5 +666,14 @@ public class Clock extends TextView implements
     public void setQsHeader() {
         mQsHeader = true;
         setClockVisibleByUser(Integer.parseInt("1") != 0);
+    }
+
+    public void updateClockSize() {
+        if(mQsHeader) {
+            setTextSize(mClockSizeQsHeader);
+        } else {
+            setTextSize(mClockSize);
+        }
+            updateClock();
     }
 }

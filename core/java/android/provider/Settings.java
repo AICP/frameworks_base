@@ -5953,6 +5953,18 @@ public final class Settings {
          */
         public static final String SHOW_QS_DATE = "show_qs_date";
 
+        /**
+         * Clock font size
+         * @hide
+         */
+        public static final String STATUS_BAR_CLOCK_SIZE = "status_bar_clock_size";
+
+        /**
+         * Clock font size QS
+         * @hide
+         */
+        public static final String QS_HEADER_CLOCK_SIZE = "qs_header_clock_size";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6126,6 +6138,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK_AUTO_HIDE_SDURATION);
             PRIVATE_SETTINGS.add(SHOW_QS_CLOCK);
             PRIVATE_SETTINGS.add(SHOW_QS_DATE);
+            PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK_SIZE);
+            PRIVATE_SETTINGS.add(QS_HEADER_CLOCK_SIZE);
         }
 
         /**

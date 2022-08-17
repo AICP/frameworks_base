@@ -139,5 +139,7 @@ public class SystemSettings {
         Settings.System.STATUS_BAR_CLOCK_AUTO_HIDE_SDURATION,
         Settings.System.SHOW_QS_CLOCK,
         Settings.System.SHOW_QS_DATE,
+        Settings.System.STATUS_BAR_CLOCK_SIZE,
+        Settings.System.QS_HEADER_CLOCK_SIZE,
     };
 }

@@ -720,8 +720,8 @@ public final class ProcessList {
                     break;
                 case LMKD_RECONNECT_MSG:
                     if (!sLmkdConnection.connect()) {
-                        Slog.i(TAG, "Failed to connect to lmkd, retry after " +
-                                LMKD_RECONNECT_DELAY_MS + " ms");
+                        //Slog.i(TAG, "Failed to connect to lmkd, retry after " +
+                                //LMKD_RECONNECT_DELAY_MS + " ms");
                         // retry after LMKD_RECONNECT_DELAY_MS
                         sKillHandler.sendMessageDelayed(sKillHandler.obtainMessage(
                                 KillHandler.LMKD_RECONNECT_MSG), LMKD_RECONNECT_DELAY_MS);

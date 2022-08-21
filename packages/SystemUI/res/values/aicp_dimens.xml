@@ -78,9 +78,6 @@
     <!-- Screenrecord dot size-->
     <dimen name="screenrecord_dot_size">48dp</dimen>
 
-    <!-- QQS Brightness slider -->
-    <dimen name="quick_qs_brightness_margin_top">24dp</dimen>
-
     <!-- OmniWeather image size -->
     <dimen name="current_weather_image_size">30dp</dimen>
 

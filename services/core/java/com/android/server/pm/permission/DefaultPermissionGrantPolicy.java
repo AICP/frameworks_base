@@ -51,6 +51,7 @@ import android.os.UserHandle;
 import android.os.storage.StorageManager;
 import android.permission.PermissionManager;
 import android.print.PrintManager;
+import android.provider.AlarmClock;
 import android.provider.CalendarContract;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
@@ -992,6 +993,10 @@ final class DefaultPermissionGrantPolicy {
         grantPermissionsToPackage(pm, "com.google.android.googlequicksearchbox", userId,
                 false /* ignoreSystemPackage */, true /*whitelistRestrictedPermissions*/,
                 PHONE_PERMISSIONS);
+
+        // Clock App
+        String clockAppPackage = getDefaultSystemHandlerActivityPackage(pm, AlarmClock.ACTION_SET_ALARM, userId);
+        grantPermissionsToSystemPackage(pm, clockAppPackage, userId, NOTIFICATION_PERMISSIONS);
     }
 
     private String getDefaultSystemHandlerActivityPackageForCategory(PackageManagerWrapper pm,

@@ -11,11 +11,15 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.android.systemui.Dependency;
+import com.android.systemui.R;
 import com.android.systemui.plugins.DarkIconDispatcher;
+import com.android.systemui.plugins.DarkIconDispatcher.DarkReceiver;
 import com.android.systemui.statusbar.StatusIconDisplayable;
 
 /** @hide */
-public class StatusBarNetworkTraffic extends NetworkTraffic implements StatusIconDisplayable {
+import java.util.ArrayList;
+
+public class StatusBarNetworkTraffic extends NetworkTraffic implements DarkReceiver, StatusIconDisplayable {
 
     public static final String SLOT = "networktraffic";
 
@@ -50,8 +54,9 @@ public class StatusBarNetworkTraffic extends NetworkTraffic implements StatusIco
     }
 
     @Override
-    public void onDarkChanged(Rect area, float darkIntensity, int tint) {
-        mTintColor = DarkIconDispatcher.getTint(area, this, tint);
+    public void onDarkChanged(ArrayList<Rect> areas, float darkIntensity, int tint) {
+        if (!mIsEnabled) return;
+        mTintColor = DarkIconDispatcher.getTint(areas, this, tint);
         setTextColor(mTintColor);
         updateTrafficDrawable();
     }
@@ -66,7 +71,6 @@ public class StatusBarNetworkTraffic extends NetworkTraffic implements StatusIco
     @Override
     public void setDecorColor(int color) {
     }
-
 
     @Override
     public String getSlot() {

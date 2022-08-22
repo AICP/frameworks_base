@@ -161,8 +161,8 @@ public class StatusBarImsView extends FrameLayout implements
     }
 
     @Override
-    public void onDarkChanged(Rect area, float darkIntensity, int tint) {
-        ColorStateList color = ColorStateList.valueOf(getTint(area, this, tint));
+    public void onDarkChanged(ArrayList<Rect> areas, float darkIntensity, int tint) {
+        ColorStateList color = ColorStateList.valueOf(getTint(areas, this, tint));
         mVolteIcon.setImageTintList(color);
         mVowifiIcon.setImageTintList(color);
     }

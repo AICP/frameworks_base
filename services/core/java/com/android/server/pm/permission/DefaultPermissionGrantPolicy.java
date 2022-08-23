@@ -902,6 +902,10 @@ final class DefaultPermissionGrantPolicy {
                     COARSE_BACKGROUND_LOCATION_PERMISSIONS, CONTACTS_PERMISSIONS);
         }
 
+        // AICP Updater3
+        grantSystemFixedPermissionsToSystemPackage(pm, "com.aicp.updater3", userId,
+                    STORAGE_PERMISSIONS, NOTIFICATION_PERMISSIONS);
+
         // There is no real "marker" interface to identify the shared storage backup, it is
         // hardcoded in BackupManagerService.SHARED_BACKUP_AGENT_PACKAGE.
         grantSystemFixedPermissionsToSystemPackage(pm, "com.android.sharedstoragebackup", userId,

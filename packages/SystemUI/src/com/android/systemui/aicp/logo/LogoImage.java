@@ -38,6 +38,8 @@ import com.android.systemui.Dependency;
 import com.android.systemui.plugins.DarkIconDispatcher;
 import com.android.systemui.plugins.DarkIconDispatcher.DarkReceiver;
 
+import java.util.ArrayList;
+
 public abstract class LogoImage extends ImageView
 	implements DarkIconDispatcher.DarkReceiver
 {
@@ -135,8 +137,8 @@ public abstract class LogoImage extends ImageView
         Dependency.get(DarkIconDispatcher.class).removeDarkReceiver(this);
     }
 
-    public void onDarkChanged(Rect area, float darkIntensity, int tint) {
-        mTintColor = DarkIconDispatcher.getTint(area, this, tint);
+    public void onDarkChanged(ArrayList<Rect> areas, float darkIntensity, int tint) {
+        mTintColor = DarkIconDispatcher.getTint(areas, this, tint);
         if (mShowLogo && !isLogoHidden() && mLogoColor == 0xFFFFFFFF) {
             updateLogo();
         }

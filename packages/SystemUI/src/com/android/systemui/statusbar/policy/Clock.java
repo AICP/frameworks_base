@@ -79,9 +79,9 @@ public class Clock extends TextView implements
         DarkReceiver, ConfigurationListener {
 
     public static final String STATUS_BAR_CLOCK_SIZE =
-            "system:" + Settings.System.STATUS_BAR_CLOCK_SIZE;
+            Settings.Secure.STATUS_BAR_CLOCK_SIZE;
     public static final String QS_HEADER_CLOCK_SIZE =
-            "system:" + Settings.System.QS_HEADER_CLOCK_SIZE;
+            Settings.Secure.QS_HEADER_CLOCK_SIZE;
 
     private static final String CLOCK_SUPER_PARCELABLE = "clock_super_parcelable";
     private static final String CURRENT_USER_ID = "current_user_id";

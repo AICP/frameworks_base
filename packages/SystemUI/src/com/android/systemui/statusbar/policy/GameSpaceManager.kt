@@ -30,8 +30,8 @@ import android.os.RemoteException
 import android.os.UserHandle
 import android.provider.Settings
 import com.android.systemui.dagger.SysUISingleton
-import com.android.systemui.shared.system.ActivityManagerWrapper
 import com.android.systemui.shared.system.TaskStackChangeListener
+import com.android.systemui.shared.system.TaskStackChangeListeners
 
 import java.util.Arrays
 import javax.inject.Inject
@@ -43,12 +43,11 @@ class GameSpaceManager @Inject constructor(
 ) {
     private val handler by lazy { GameSpaceHandler(Looper.getMainLooper()) }
     private val taskManager by lazy { ActivityTaskManager.getService() }
-    private val activityManager by lazy { ActivityManagerWrapper.getInstance() }
 
     private var activeGame: String? = null
     private var isRegistered = false
 
-    private val mTaskStackChangeListener = object : TaskStackChangeListener() {
+    private val taskStackChangeListener = object : TaskStackChangeListener {
         override fun onTaskStackChanged() {
             handler.sendEmptyMessage(MSG_UPDATE_FOREGROUND_APP)
         }
@@ -109,10 +108,11 @@ class GameSpaceManager @Inject constructor(
     }
 
     fun observe() {
+        val taskStackChangeListeners = TaskStackChangeListeners.getInstance();
         if (isRegistered) {
-            activityManager.unregisterTaskStackListener(mTaskStackChangeListener)
+            taskStackChangeListeners.unregisterTaskStackListener(taskStackChangeListener)
         }
-        activityManager.registerTaskStackListener(mTaskStackChangeListener)
+        taskStackChangeListeners.registerTaskStackListener(taskStackChangeListener)
         isRegistered = true;
         handler.sendEmptyMessage(MSG_UPDATE_FOREGROUND_APP)
         context.registerReceiver(interactivityReceiver, IntentFilter().apply {

@@ -6088,6 +6088,14 @@ public final class Settings {
         public static final String SCREEN_FLASH_NOTIFICATION_COLOR =
                 "screen_flash_notification_color_global";
 
+        /*****************************
+         * AICP System Settings start
+         *****************************/
+
+        /***************************
+         * AICP System Settings end
+         ***************************/
+
         /**
          * IMPORTANT: If you add a new public settings you also have to add it to
          * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
@@ -11936,6 +11944,14 @@ public final class Settings {
          */
         public static final String HBM_SETTING_KEY =
                 "com.android.server.display.HBM_SETTING_KEY";
+
+        /*****************************
+         * AICP Secure Settings start
+         *****************************/
+
+        /*****************************
+         * AICP Secure Settings end
+         *****************************/
 
         /**
          * Keys we no longer back up under the current schema, but want to continue to

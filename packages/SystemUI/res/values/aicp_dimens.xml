@@ -64,4 +64,5 @@
     <!-- Additional gesture navbar lengths -->
     <dimen name="navigation_home_handle_width_medium">110dp</dimen>
     <dimen name="navigation_home_handle_width_long">140dp</dimen>
+    <dimen name="navigation_home_handle_width_very_long">170dp</dimen>
 </resources>

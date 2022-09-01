@@ -500,6 +500,10 @@ public class NavigationBarInflaterView extends FrameLayout
                 lp.width = getResources().getDimensionPixelSize(
                     R.dimen.navigation_home_handle_width_long);
                 v.setLayoutParams(lp);
+            } else if (mHomeHandleWidthMode == 4) {
+                lp.width = getResources().getDimensionPixelSize(
+                    R.dimen.navigation_home_handle_width_very_long);
+                v.setLayoutParams(lp);
             }
         } else if (IME_SWITCHER.equals(button)) {
             v = inflater.inflate(R.layout.ime_switcher, parent, false);

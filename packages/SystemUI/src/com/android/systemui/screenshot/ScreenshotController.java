@@ -101,8 +101,8 @@ import com.android.systemui.clipboardoverlay.ClipboardOverlayController;
 import com.android.systemui.dagger.qualifiers.Main;
 import com.android.systemui.screenshot.ScreenshotController.SavedImageData.ActionTransition;
 import com.android.systemui.screenshot.TakeScreenshotService.RequestCallback;
-import com.android.systemui.shared.system.ActivityManagerWrapper;
 import com.android.systemui.shared.system.TaskStackChangeListener;
+import com.android.systemui.shared.system.TaskStackChangeListeners;
 import com.android.systemui.util.Assert;
 
 import com.google.common.util.concurrent.ListenableFuture;
@@ -304,17 +304,21 @@ public class ScreenshotController {
     private final TaskStackChangeListener mTaskListener = new TaskStackChangeListener() {
         @Override
         public void onTaskStackChanged() {
-            mBgExecutor.execute(() -> {
-                try {
-                    final ActivityTaskManager.RootTaskInfo focusedStack =
-                            ActivityTaskManager.getService().getFocusedRootTaskInfo();
-                    if (focusedStack != null && focusedStack.topActivity != null) {
-                        mTaskComponentName = focusedStack.topActivity;
-                    }
-                } catch (Exception e) {}
-            });
+            mBgExecutor.execute(() -> updateForegroundTaskSync());
         }
     };
+
+    private void updateForegroundTaskSync() {
+        try {
+            final ActivityTaskManager.RootTaskInfo focusedStack =
+                    ActivityTaskManager.getService().getFocusedRootTaskInfo();
+            if (focusedStack != null && focusedStack.topActivity != null) {
+                mTaskComponentName = focusedStack.topActivity;
+            }
+        } catch (RemoteException e) {
+            Log.e(TAG, "Failed to get foreground task component", e);
+        }
+    }
 
     private String getForegroundAppLabel() {
         try {
@@ -405,10 +409,10 @@ public class ScreenshotController {
         mPm = mContext.getPackageManager();
 
         // Register task stack listener
-        ActivityManagerWrapper.getInstance().registerTaskStackListener(mTaskListener);
+        TaskStackChangeListeners.getInstance().registerTaskStackListener(mTaskListener);
 
         // Initialize current foreground package name
-        mTaskListener.onTaskStackChanged();
+        updateForegroundTaskSync();
     }
 
     @MainThread

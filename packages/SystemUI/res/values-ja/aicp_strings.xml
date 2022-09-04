@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright (c) 2015, The CyanogenMod Project
+ * Copyright (c) 2017-2019, The LineageOS Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="quick_settings_aod_label">Always On Display</string>
+    <string name="quick_settings_caffeine_label">カフェイン</string>
+    <string name="quick_settings_heads_up_label">Heads Up</string>
+    <string name="accessibility_quick_settings_heads_up_off">Heads Up OFF</string>
+    <string name="accessibility_quick_settings_heads_up_on">Heads Up ON</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">Heads Up を OFF にしました</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">Heads Up を ON にしました</string>
+    <string name="quick_settings_sync_label">同期</string>
+    <string name="quick_settings_usb_tether_label">USB\nテザリング</string>
+    <string name="quick_settings_sound_label">音</string>
+    <string name="quick_settings_sound_ring">通常</string>
+    <string name="quick_settings_sound_vibrate">マナー</string>
+    <string name="keyguard_indication_warp_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Warp Charging (充電完了まで残り<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g>)</string>
+    <string name="keyguard_plugged_in_warp_charging"><xliff:g id="percentage">%s</xliff:g> • Warp Charging</string>
+    <string name="keyguard_indication_vooc_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • VOOC Charging (充電完了まで残り<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g>)</string>
+    <string name="keyguard_plugged_in_vooc_charging"><xliff:g id="percentage">%s</xliff:g> • VOOC Charging</string>
+    <string name="keyguard_indication_turbo_power_time"><xliff:g id="percentage">%2$s</xliff:g> • Turbo Charging (充電完了まで残り<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g>)</string>
+    <string name="keyguard_plugged_in_turbo_charging"><xliff:g id="percentage">%s</xliff:g> • Turbo Charging</string>
+    <string name="keyguard_indication_oem_power_time"><xliff:g id="percentage">%2$s</xliff:g> • Fast Charging (充電完了まで残り<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g>)</string>
+    <string name="keyguard_plugged_in_oem_charging"><xliff:g id="percentage">%s</xliff:g> • Fast Charging</string>
+    <string name="quick_settings_reboot_label">再起動</string>
+    <string name="quick_settings_reboot_recovery_label">リカバリー</string>
+    <string name="quick_settings_compass_label">コンパス</string>
+    <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
+    <string name="quick_settings_compass_init">初期化中...</string>
+    <string name="accessibility_quick_settings_compass_off">コンパス OFF</string>
+    <string name="accessibility_quick_settings_compass_on">コンパス ON</string>
+    <string name="accessibility_quick_settings_compass_changed_off">コンパスを OFF にしました</string>
+    <string name="accessibility_quick_settings_compass_changed_on">コンパスを ON にしました</string>
+    <string name="quick_settings_compass_N">北</string>
+    <string name="quick_settings_compass_NE">北東</string>
+    <string name="quick_settings_compass_E">東</string>
+    <string name="quick_settings_compass_SE">南東</string>
+    <string name="quick_settings_compass_S">南</string>
+    <string name="quick_settings_compass_SW">南西</string>
+    <string name="quick_settings_compass_W">西</string>
+    <string name="quick_settings_compass_NW">北西</string>
+    <string name="quick_settings_music_label">音楽</string>
+    <string name="quick_settings_music_play">再生</string>
+    <string name="quick_settings_music_pause">一時停止</string>
+    <string name="qs_data_switch_label">データ SIM の変更</string>
+    <string name="qs_data_switch_changed_1">SIM 1をデータ通信に使用</string>
+    <string name="qs_data_switch_changed_2">SIM 2をデータ通信に使用</string>
+    <string name="global_action_restart_recovery">リカバリー</string>
+    <string name="global_action_restart_bootloader">ブートローダー</string>
+    <string name="global_action_restart_ui">システム UI</string>
+    <string name="volume_ringer_priority_only">優先</string>
+    <string name="volume_ringer_alarms_only">アラーム</string>
+    <string name="volume_ringer_dnd">マナー</string>
+    <string name="tristate_flashlight">トーチ</string>
+    <string name="status_bar_vpn">VPN</string>
+    <string name="accessibility_dpad_left">カーソルを左へ</string>
+    <string name="accessibility_dpad_right">カーソルを右へ</string>
+    <string name="quick_settings_locale_label">言語</string>
+    <string name="quick_settings_locale_more_locales_toast">トグル機能を有効にするには複数の言語を設定して下さい</string>
+    <string name="quick_settings_volume_panel_label">音量パネル</string>
+    <string name="quick_settings_cpuinfo_label">CPU 情報</string>
+    <string name="quick_settings_fpsinfo_label">FPS 情報</string>
+    <string name="quick_aicp_extras_label">AICP エクストラ</string>
+    <string name="quick_aicp_extras_toast">長押しで何か起きると思った? 残念! 何も起こりません!</string>
+    <string name="quick_settings_powershare_label">ワイヤレス PowerShare</string>
+    <string name="quick_settings_powershare_off_powersave_label">ワイヤレス PowerShare OFF\nバッテリー節約</string>
+    <string name="quick_settings_powershare_off_low_battery_label">ワイヤレス PowerShare OFF\nバッテリー残量低下</string>
+    <string name="quick_settings_powershare_enabled_label">ワイヤレス PowerShare は有効です</string>
+    <string name="quick_settings_sound_search">音声検索</string>
+    <string name="quick_settings_full_screenshot_label">全て</string>
+    <string name="quick_settings_screenshot_label">スクリーン\nショット</string>
+    <string name="quick_settings_region_screenshot_label">範囲指定</string>
+    <string name="onthego_notif_ticker">On-The-Go モードを有効化しました</string>
+    <string name="onthego_notif_title">On-The-Go が有効です</string>
+    <string name="onthego_notif_stop">停止</string>
+    <string name="onthego_notif_options">オプション</string>
+    <string name="onthego_notif_error">On-The-Go を開始できません</string>
+    <string name="onthego_notif_restart">On-The-Go を再起動</string>
+    <string name="onthego_notif_camera_changed">カメラモードを変更しました</string>
+    <string name="onthego_transparency">透過度</string>
+    <string name="onthego_front_camera">フロントカメラを使用</string>
+    <string name="onthego_service_toggle">サービスを自動的に再起動する</string>
+    <string name="onthego_channel_name">メイン</string>
+    <string name="global_action_onthego">On-The-Go</string>
+    <string name="quick_settings_onthego_label">On-The-Go</string>
+    <string name="status_bar_camera">カメラ</string>
+    <string name="status_bar_microphone">マイク</string>
+    <string name="screen_pinning_description_custom">固定を解除するまで表示されます。戻るを押し続けると解除されます。</string>
+    <string name="screen_pinning_description_recents_invisible_custom">固定を解除するまで表示されます。戻るを押し続けると解除されます。</string>
+    <string name="screen_pinning_description_accessible_custom">固定を解除するまで表示されます。戻るを押し続けると解除されます。</string>
+    <string name="screen_pinning_description_recents_invisible_accessible_custom">固定を解除するまで表示されます。戻るを押し続けると解除されます。</string>
+    <string name="screen_pinning_toast_custom">画面の固定を解除するには戻るボタンを長押しします</string>
+    <string name="screen_pinning_toast_recents_invisible_custom">画面の固定を解除するには戻るボタンを長押しします</string>
+    <string name="omnijaws_service_error">エラー</string>
+    <string name="omnijaws_service_unkown">天気データがありません</string>
+    <string name="omnijaws_service_error_long">気象データの読み込みエラー</string>
+    <string name="omnijaws_service_disabled">サービスは無効です</string>
+    <string name="omnijaws_detail_header">天気</string>
+    <string name="omnijaws_label_default">天気</string>
+    <string name="omnijaws_current_text">現在</string>
+    <string name="omnijaws_package_not_available">OmniJaws がありません</string>
+    <string name="omnijaws_service_last_update">最終更新:</string>
+    <string name="quick_settings_vpn_label">VPN</string>
+    <string name="quick_settings_vpn_connect_dialog_title">接続先...</string>
+    <string name="vpn_credentials_hint"><xliff:g id="name">%s</xliff:g> への接続の認証情報を入力して下さい</string>
+    <string name="vpn_credentials_username">ユーザー名</string>
+    <string name="vpn_credentials_password">パスワード</string>
+    <string name="vpn_credentials_dialog_connect">接続</string>
+    <string name="app_picker_dialog_title">アプリを選択</string>
+    <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - 通知の表示は1分間一時停止します</string>
+    <string name="heads_up_snooze_message"><xliff:g id="string">%1$s</xliff:g> - 通知の表示は<xliff:g id="number">%2$d</xliff:g>分間停止します</string>
+    <string name="daily_data_usage_title">今日の使用状況</string>
+    <string name="quick_settings_monotoggle_tile">音楽モード</string>
+    <string name="quick_settings_monotoggle_tile_mono">モノラル音声</string>
+    <string name="quick_settings_monotoggle_tile_stereo">ステレオ音声</string>
+</resources>

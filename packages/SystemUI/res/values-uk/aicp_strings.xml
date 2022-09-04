@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright (c) 2015, The CyanogenMod Project
+ * Copyright (c) 2017-2019, The LineageOS Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="quick_settings_aod_label">ЗУЕ</string>
+    <string name="quick_settings_caffeine_label">Заборона сну</string>
+    <string name="quick_settings_heads_up_label">Спливаючі сповіщення</string>
+    <string name="accessibility_quick_settings_heads_up_off">Спливаючі сповіщення вимк.</string>
+    <string name="accessibility_quick_settings_heads_up_on">Спливаючі сповіщення увімк.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">Спливаючі сповіщення вимкнено.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">Спливаючі повідомлення увімкнено.</string>
+    <string name="quick_settings_sync_label">Синхронізація</string>
+    <string name="quick_settings_usb_tether_label">USB-модем</string>
+    <string name="quick_settings_sound_label">Сигнал</string>
+    <string name="quick_settings_sound_ring">Рингтон</string>
+    <string name="quick_settings_sound_vibrate">Вібрація</string>
+    <string name="keyguard_indication_warp_charging_time"><xliff:g id="percentage">%2$s</xliff:g>Warp зарядження (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> до повного заряду)</string>
+    <string name="keyguard_plugged_in_warp_charging"><xliff:g id="percentage">%s</xliff:g> • Warp зарядження</string>
+    <string name="keyguard_indication_vooc_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • VOOC зарядження (<xliff:g id="charging_time_left" example="4 години та 2 хвилини">%1$s</xliff:g> до повної зарядки)</string>
+    <string name="keyguard_plugged_in_vooc_charging"><xliff:g id="percentage">%s</xliff:g> • VOOC зарядження</string>
+    <string name="keyguard_indication_turbo_power_time"><xliff:g id="percentage">%2$s</xliff:g> • Турбо зарядження (<xliff:g id="charging_time_left" example="4 години та 2 хвилини">%1$s</xliff:g> до повної зарядки)</string>
+    <string name="keyguard_plugged_in_turbo_charging"><xliff:g id="percentage">%s</xliff:g> • Турбо зарядження</string>
+    <string name="keyguard_indication_oem_power_time"><xliff:g id="percentage">%2$s</xliff:g> • Швидке заряження (<xliff:g id="charging_time_left" example="4 години та 2 хвилини">%1$s</xliff:g> до повної зарядки)</string>
+    <string name="keyguard_plugged_in_oem_charging"><xliff:g id="percentage">%s</xliff:g> • Швидке зарядження</string>
+    <string name="quick_settings_reboot_label">Перезавантажити</string>
+    <string name="quick_settings_reboot_recovery_label">Recovery</string>
+    <string name="quick_settings_compass_label">Компас</string>
+    <string name="quick_settings_compass_init">Ініціалізація\u2026</string>
+    <string name="accessibility_quick_settings_compass_off">Компас вимк.</string>
+    <string name="accessibility_quick_settings_compass_on">Компас увімк.</string>
+    <string name="accessibility_quick_settings_compass_changed_off">Компас вимкнено.</string>
+    <string name="accessibility_quick_settings_compass_changed_on">Компас увімкнено.</string>
+    <string name="quick_settings_compass_N">Пн</string>
+    <string name="quick_settings_compass_NE">ПнСх</string>
+    <string name="quick_settings_compass_E">Сх</string>
+    <string name="quick_settings_compass_SE">ПдС</string>
+    <string name="quick_settings_compass_S">Пд</string>
+    <string name="quick_settings_compass_SW">ПдЗ</string>
+    <string name="quick_settings_compass_W">З</string>
+    <string name="quick_settings_compass_NW">ПнЗ</string>
+    <string name="quick_settings_music_label">Музика</string>
+    <string name="quick_settings_music_play">Відтворити</string>
+    <string name="quick_settings_music_pause">Пауза</string>
+    <string name="qs_data_switch_label">Перемкнути карту передачі даних</string>
+    <string name="qs_data_switch_changed_1">Використання SIM 1 для передачі даних</string>
+    <string name="qs_data_switch_changed_2">Використання SIM 2 для передачі даних</string>
+    <string name="global_action_restart_recovery">Recovery</string>
+    <string name="global_action_restart_bootloader">Bootloader</string>
+    <string name="global_action_restart_ui">Інтерфейс системи</string>
+    <string name="volume_ringer_priority_only">Пріоритетні</string>
+    <string name="volume_ringer_alarms_only">Будильники</string>
+    <string name="volume_ringer_dnd">Не турбувати</string>
+    <string name="tristate_flashlight">Ліхтарик</string>
+    <string name="status_bar_vpn">Мережа VPN</string>
+    <string name="accessibility_dpad_left">Вказівник ліворуч</string>
+    <string name="accessibility_dpad_right">Вказівник праворуч</string>
+    <string name="quick_settings_locale_label">Мова</string>
+    <string name="quick_settings_locale_more_locales_toast">Будь ласка, налаштуйте кілька мов, щоб активувати функцію</string>
+    <string name="quick_settings_volume_panel_label">Панель гучності</string>
+    <string name="quick_settings_cpuinfo_label">Інформація про ЦП</string>
+    <string name="quick_settings_fpsinfo_label">Інформація про FPS</string>
+    <string name="quick_aicp_extras_label">Додатки AICP</string>
+    <string name="quick_aicp_extras_toast">Лол, ви насправді думали, що затиснення клавіши вас кудись приведе!?!</string>
+    <string name="quick_settings_powershare_label">Бездротовий PowerShare</string>
+    <string name="quick_settings_powershare_off_powersave_label">Бездротовий PowerShare вимкнено\nЕкономія енергії</string>
+    <string name="quick_settings_powershare_off_low_battery_label">Бездротовий PowerShare вимкнено\nЗанадто низький заряд батареї</string>
+    <string name="quick_settings_powershare_enabled_label">Бездротовий PowerShare увімкнено</string>
+    <string name="quick_settings_sound_search">Пошук музики</string>
+    <string name="quick_settings_full_screenshot_label">Повний</string>
+    <string name="quick_settings_screenshot_label">Знімок екрану</string>
+    <string name="quick_settings_region_screenshot_label">Частковий</string>
+    <string name="onthego_notif_ticker">Режим «На ходу» активовано</string>
+    <string name="onthego_notif_title">Режим «На ходу» активний</string>
+    <string name="onthego_notif_stop">Зупинити</string>
+    <string name="onthego_notif_options">Параметри</string>
+    <string name="onthego_notif_error">Не вдається запустити режим \"На ходу\"</string>
+    <string name="onthego_notif_restart">Перезавантажити режим \"На ходу\"</string>
+    <string name="onthego_notif_camera_changed">Режим камери змінено</string>
+    <string name="onthego_transparency">Прозорість</string>
+    <string name="onthego_front_camera">Використовувати фронтальну камеру</string>
+    <string name="onthego_service_toggle">Автоматично перезапустити службу</string>
+    <string name="onthego_channel_name">Головний</string>
+    <string name="global_action_onthego">Режим \"На ходу\"</string>
+    <string name="quick_settings_onthego_label">Режим \"На ходу\"</string>
+    <string name="status_bar_camera">Камера</string>
+    <string name="status_bar_microphone">Мікрофон</string>
+    <string name="screen_pinning_description_custom">Додаток залишається активним, поки ви не скасуєте блокування, натиснувши та утримуючи кнопку \"Назад\".</string>
+    <string name="screen_pinning_description_recents_invisible_custom">Додаток залишається активним, поки ви не скасуєте блокування, натиснувши та утримуючи кнопку \"Назад\".</string>
+    <string name="screen_pinning_description_accessible_custom">Додаток залишається активним, поки ви не скасуєте блокування, натиснувши та утримуючи кнопку \"Назад\".</string>
+    <string name="screen_pinning_description_recents_invisible_accessible_custom">Додаток залишається активним, поки ви не скасуєте блокування, натиснувши та утримуючи кнопку \"Назад\".</string>
+    <string name="screen_pinning_toast_custom">Щоб відкріпити цей додаток, натисніть і утримуйте кнопку \"Назад\"</string>
+    <string name="screen_pinning_toast_recents_invisible_custom">Щоб відкріпити цей додаток, натисніть і утримуйте кнопку \"Назад\"</string>
+    <string name="omnijaws_service_error">Помилка</string>
+    <string name="omnijaws_service_unkown">Немає даних про погоду</string>
+    <string name="omnijaws_service_error_long">Помилка завантаження даних про погоду</string>
+    <string name="omnijaws_service_disabled">Службу вимкнено</string>
+    <string name="omnijaws_detail_header">Погода</string>
+    <string name="omnijaws_label_default">Погода</string>
+    <string name="omnijaws_current_text">Зараз</string>
+    <string name="omnijaws_package_not_available">OmniJaws недоступний</string>
+    <string name="omnijaws_service_last_update">Останнє оновлення:</string>
+    <string name="quick_settings_vpn_label">Мережа VPN</string>
+    <string name="quick_settings_vpn_connect_dialog_title">Під\'єднання до\u2026</string>
+    <string name="vpn_credentials_hint">Будь ласка, введіть ваші дані для під\'єднання до <xliff:g id="name">%s</xliff:g></string>
+    <string name="vpn_credentials_username">Ім\'я користувача</string>
+    <string name="vpn_credentials_password">Пароль</string>
+    <string name="vpn_credentials_dialog_connect">Під’єднатися</string>
+    <string name="app_picker_dialog_title">Оберіть додаток</string>
+    <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Спливаючі сповіщення вимкнено на 1 хвилину.</string>
+    <string name="heads_up_snooze_message"><xliff:g id="string">%1$s</xliff:g> - Спливаючі сповіщення вимкнено на <xliff:g id="number">%2$d</xliff:g> хв.</string>
+    <string name="daily_data_usage_title">Сьогоднішнє використання</string>
+    <string name="quick_settings_monotoggle_tile">Режим звуку</string>
+    <string name="quick_settings_monotoggle_tile_mono">Моно аудіо</string>
+    <string name="quick_settings_monotoggle_tile_stereo">Стерео аудіо</string>
+</resources>

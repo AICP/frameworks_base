@@ -130,5 +130,9 @@ public class SystemSettings {
         Settings.System.STATUS_BAR_AM_PM,
         Settings.System.STATUS_BAR_CLOCK_AUTO_HIDE,
         Settings.System.STATUS_BAR_CLOCK_SECONDS,
+        Settings.System.STATUS_BAR_CLOCK_DATE_DISPLAY,
+        Settings.System.STATUS_BAR_CLOCK_STYLE,
+        Settings.System.STATUS_BAR_CLOCK_POSITION,
+        Settings.System.STATUS_BAR_CLOCK_FORMAT,
     };
 }

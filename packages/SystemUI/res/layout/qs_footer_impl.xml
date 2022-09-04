@@ -54,12 +54,6 @@
                 android:layout_gravity="center_vertical"
                 android:visibility="gone" />
 
-            <View
-                android:id="@+id/spacer"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"

@@ -145,4 +145,7 @@
     <java-symbol type="style" name="GlobalActionsAnimationXylon" />
     <java-symbol type="style" name="GlobalActionsAnimationCard" />
     <java-symbol type="style" name="GlobalActionsAnimationRotate" />
+
+    <!-- Whether to handle audio direction changes between major call states -->
+    <java-symbol type="bool" name="config_handleAudioDirectionChangesBetweenCallStateChanges" />
 </resources>

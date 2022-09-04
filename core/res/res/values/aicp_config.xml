@@ -124,4 +124,7 @@
 
     <!-- Wired/BT headset focus mode -->
     <bool name="config_deviceRingtoneFocusMode">false</bool>
+
+    <!-- Whether to handle audio direction changes between major call states -->
+    <bool name="config_handleAudioDirectionChangesBetweenCallStateChanges">true</bool>
 </resources>

@@ -189,4 +189,7 @@
 
     <!-- Camera key type -->
     <java-symbol type="bool" name="config_singleStageCameraKey" />
+
+    <!-- Location indicator -->
+    <java-symbol type="drawable" name="stat_sys_location" />
 </resources>

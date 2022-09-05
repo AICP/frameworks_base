@@ -6796,6 +6796,11 @@ public final class Settings {
          */
         public static final String STATUSBAR_BATTERY_BAR_COLOR = "statusbar_battery_bar_color";
 
+        /**
+         * @hide
+         */
+        public static final String AE_THEME = "ae_theme";
+
        /**
          * @hide
          */
@@ -7404,6 +7409,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SHOW_BATTERY_PERCENT);
             PRIVATE_SETTINGS.add(DISPLAY_COLOR_MODE);
             PRIVATE_SETTINGS.add(DISPLAY_COLOR_MODE_VENDOR_HINT);
+            PRIVATE_SETTINGS.add(AE_THEME);
             PRIVATE_SETTINGS.add(LOCALE_PREFERENCES);
             PRIVATE_SETTINGS.add(TOUCHPAD_POINTER_SPEED);
             PRIVATE_SETTINGS.add(TOUCHPAD_NATURAL_SCROLLING);

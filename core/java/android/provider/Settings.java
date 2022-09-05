@@ -6803,6 +6803,12 @@ public final class Settings {
         public static final String POWER_MENU_ANIMATIONS = "power_menu_animations";
 
         /**
+         * Show app volume rows in volume panel
+         * @hide
+         */
+        public static final String SHOW_APP_VOLUME = "show_app_volume";
+
+        /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.
          *
@@ -21499,6 +21505,12 @@ public final class Settings {
         @SdkConstant(SdkConstant.SdkConstantType.ACTIVITY_INTENT_ACTION)
         public static final String ACTION_VOLUME =
                 "android.settings.panel.action.VOLUME";
+
+        /**
+         * @hide
+         */
+        public static final String ACTION_APP_VOLUME =
+                "android.settings.panel.action.APP_VOLUME";
     }
 
     /**

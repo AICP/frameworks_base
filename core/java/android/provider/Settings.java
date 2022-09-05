@@ -6096,6 +6096,11 @@ public final class Settings {
         /**
          * @hide
          */
+        public static final String AE_THEME = "ae_theme";
+
+        /**
+         * @hide
+         */
         public static final String OMNI_SYSTEM_PROXI_CHECK_ENABLED = "system_proxi_check_enabled";
 
         /**
@@ -6460,6 +6465,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SHOW_BATTERY_PERCENT);
             PRIVATE_SETTINGS.add(DISPLAY_COLOR_MODE);
             PRIVATE_SETTINGS.add(DISPLAY_COLOR_MODE_VENDOR_HINT);
+            PRIVATE_SETTINGS.add(AE_THEME);
             PRIVATE_SETTINGS.add(LOCALE_PREFERENCES);
             PRIVATE_SETTINGS.add(TOUCHPAD_POINTER_SPEED);
             PRIVATE_SETTINGS.add(TOUCHPAD_NATURAL_SCROLLING);

@@ -193,7 +193,8 @@ public class SystemSettings {
                 Settings.System.SCREEN_OFF_ANIMATION,
                 Settings.System.LOCKSCREEN_SHOW_CUSTOM_CARRIER_TEXT,
                 Settings.System.BACKGROUND_BLUR_RADIUS,
-                Settings.System.ENABLE_BLURS_ON_WINDOWS
+                Settings.System.ENABLE_BLURS_ON_WINDOWS,
+                Settings.System.AE_THEME
         ));
         if (Flags.backUpSmoothDisplayAndForcePeakRefreshRate()) {
             settings.add(Settings.System.PEAK_REFRESH_RATE);

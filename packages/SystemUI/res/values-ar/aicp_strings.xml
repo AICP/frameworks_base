@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright (c) 2015, The CyanogenMod Project
+ * Copyright (c) 2017-2019, The LineageOS Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="quick_settings_aod_label">دائماً على الشاشة</string>
+    <string name="quick_settings_caffeine_label">وضع الكافيين</string>
+    <string name="quick_settings_heads_up_label">التنبيهات العلوية</string>
+    <string name="accessibility_quick_settings_heads_up_off">التنبيهات العلوية متوقفة.</string>
+    <string name="accessibility_quick_settings_heads_up_on">التنبيهات العلوية تعمل.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">تم تعطيل التنبيهات العلوية.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">تم تفعيل التنبيهات العلوية.</string>
+    <string name="quick_settings_sync_label">مزامنة</string>
+    <string name="quick_settings_usb_tether_label">الانترنت عبر USB</string>
+    <string name="quick_settings_sound_label">الصوت</string>
+    <string name="quick_settings_sound_ring">رنين</string>
+    <string name="quick_settings_sound_vibrate">إهتزاز</string>
+    <string name="quick_settings_reboot_label">إعادة التشغيل</string>
+    <string name="quick_settings_reboot_recovery_label">الإسترداد</string>
+    <string name="quick_settings_compass_label">البوصلة</string>
+    <string name="quick_settings_compass_init">تهيئة/u2026</string>
+    <string name="accessibility_quick_settings_compass_off">البوصلة لا تعمل.</string>
+    <string name="accessibility_quick_settings_compass_on">البوصلة تعمل.</string>
+    <string name="accessibility_quick_settings_compass_changed_off">تم تعطيل البوصلة.</string>
+    <string name="accessibility_quick_settings_compass_changed_on">تم تفعيل البوصلة.</string>
+    <string name="quick_settings_compass_N">الشمال</string>
+    <string name="quick_settings_compass_NE">الشمال الشرقي</string>
+    <string name="quick_settings_compass_E">شرق</string>
+    <string name="quick_settings_compass_SE">الجنوب الشرقي</string>
+    <string name="quick_settings_compass_S">الجنوب</string>
+    <string name="quick_settings_compass_SW">الجنوب الغربي</string>
+    <string name="quick_settings_compass_W">الغرب</string>
+    <string name="quick_settings_compass_NW">الشمال الغربي</string>
+    <string name="quick_settings_music_label">موسيقى</string>
+    <string name="quick_settings_music_play">تشغيل</string>
+    <string name="quick_settings_music_pause">إيقاف مؤقت</string>
+    <string name="global_action_restart_recovery">الإسترداد</string>
+    <string name="status_bar_vpn">الشبكة الظاهرية VPN</string>
+    <string name="quick_settings_locale_label">اللّغة</string>
+    <string name="quick_settings_locale_more_locales_toast">قم بإعداد أكثر من لغة لتمكين مفتاح التبديل</string>
+    <string name="quick_settings_cpuinfo_label">معلومات المعالج</string>
+    <string name="quick_aicp_extras_toast">ههه, هل ظننت أن الضغط مطولاً قد يأخذك لخيارات أخرى!!!</string>
+    <string name="quick_settings_screenshot_label">تصوير الشاشة</string>
+    <string name="onthego_notif_ticker">وضع المشي مفعل</string>
+    <string name="onthego_notif_title">وضع المشي نشط</string>
+    <string name="onthego_notif_stop">إيقاف</string>
+    <string name="onthego_notif_options">الخيارات</string>
+    <string name="onthego_notif_error">غير قادر على بدء وضع المشي</string>
+    <string name="onthego_notif_restart">إعادة تشغيل وضع المشي</string>
+    <string name="onthego_notif_camera_changed">تم تغيير وضع الكاميرا</string>
+    <string name="onthego_transparency">الشفافية</string>
+    <string name="onthego_front_camera">استخدام الكاميرا الأمامية</string>
+    <string name="onthego_service_toggle">إعادة تشغيل الخدمة تلقائياً</string>
+    <string name="onthego_channel_name">الأساسية</string>
+    <string name="global_action_onthego">وضع المشي</string>
+    <string name="quick_settings_onthego_label">وضع المشي</string>
+    <string name="omnijaws_service_error">خطأ</string>
+    <string name="omnijaws_service_unkown">لا يوجد بيانات الطقس</string>
+    <string name="omnijaws_service_error_long">خطأ في تحميل بيانات الطقس</string>
+    <string name="omnijaws_service_disabled">الخدمة معطّلة</string>
+    <string name="omnijaws_detail_header">الطقس</string>
+    <string name="omnijaws_label_default">الطقس</string>
+    <string name="omnijaws_current_text">الآن</string>
+    <string name="omnijaws_package_not_available">OmniJaws غير متاح</string>
+    <string name="omnijaws_service_last_update">آخر تحديث:</string>
+    <string name="quick_settings_vpn_label">الشبكة الظاهرية VPN</string>
+    <string name="quick_settings_vpn_connect_dialog_title">الاتصال بـ</string>
+    <string name="vpn_credentials_hint">الرجاء إدخال بيانات الاعتماد الخاصة بك للاتصال ب <xliff:g id="name">%s</xliff:g></string>
+    <string name="vpn_credentials_username">اسم المستخدم</string>
+    <string name="vpn_credentials_password">كلمة المرور</string>
+    <string name="vpn_credentials_dialog_connect">اتصال</string>
+    <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - التنبيهات الخاطفة غافية لدقيقة واحدة.</string>
+</resources>

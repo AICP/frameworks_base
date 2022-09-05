@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright (c) 2015, The CyanogenMod Project
+ * Copyright (c) 2017-2019, The LineageOS Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="quick_settings_compass_label">Kompas</string>
+    <string name="quick_settings_compass_init">Inicijalizacija\u2026</string>
+    <string name="accessibility_quick_settings_compass_off">Kompas isključen.</string>
+    <string name="accessibility_quick_settings_compass_on">Kompas uključen.</string>
+    <string name="accessibility_quick_settings_compass_changed_off">Kompas je isključen.</string>
+    <string name="accessibility_quick_settings_compass_changed_on">Kompas je uključen.</string>
+    <string name="quick_settings_compass_N">S</string>
+    <string name="quick_settings_compass_NE">SI</string>
+    <string name="quick_settings_compass_E">I</string>
+    <string name="quick_settings_compass_SE">JI</string>
+    <string name="quick_settings_compass_S">J</string>
+    <string name="quick_settings_compass_SW">JZ</string>
+    <string name="quick_settings_compass_W">Z</string>
+    <string name="quick_settings_compass_NW">SZ</string>
+    <string name="quick_settings_cpuinfo_label">CPU informacije</string>
+    <string name="quick_aicp_extras_toast">LOL, stvarno ste mislili da će Vas dugi pritisak nekamo odvesti!!!</string>
+    <string name="quick_settings_screenshot_label">Snimka zaslona</string>
+    <string name="omnijaws_service_error">Greška</string>
+    <string name="omnijaws_service_unkown">Nema podataka o vremenu</string>
+    <string name="omnijaws_service_error_long">Greška pri učitavanju podataka o vremenu</string>
+    <string name="omnijaws_service_disabled">Usluga je onemogućena</string>
+    <string name="omnijaws_detail_header">Vrijeme</string>
+    <string name="omnijaws_label_default">Vrijeme</string>
+    <string name="omnijaws_current_text">Sada</string>
+    <string name="omnijaws_package_not_available">OmniJaws nije dostupan</string>
+    <string name="omnijaws_service_last_update">Posljednje ažuriranje:</string>
+    <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - obavijesti koje vire odgođene su na 1 minutu.</string>
+</resources>

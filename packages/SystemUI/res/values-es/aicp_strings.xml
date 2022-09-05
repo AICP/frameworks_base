@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * Copyright (c) 2015, The CyanogenMod Project
+ * Copyright (c) 2017-2019, The LineageOS Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="quick_settings_ambient_display_label">Pantalla ambiente</string>
+    <string name="accessibility_quick_settings_ambient_display_off">Pantalla ambiente desactivada.</string>
+    <string name="accessibility_quick_settings_ambient_display_on">Pantalla ambiente activada.</string>
+    <string name="accessibility_quick_settings_ambient_display_changed_off">Se ha desactivado la pantalla ambiente.</string>
+    <string name="accessibility_quick_settings_ambient_display_changed_on">Se ha activado la pantalla ambiente.</string>
+    <string name="quick_settings_aod_label">AOD</string>
+    <string name="quick_settings_aod_off_powersave_label">AOD apagado\nAhorro de batería</string>
+    <string name="quick_settings_caffeine_label">Cafeína</string>
+    <string name="accessibility_quick_settings_caffeine_off">Caffeine desactivado.</string>
+    <string name="accessibility_quick_settings_caffeine_on">Caffeine activado.</string>
+    <string name="quick_settings_heads_up_label">Notificaciones emergentes</string>
+    <string name="accessibility_quick_settings_heads_up_off">Notificaciones emergentes desactivadas.</string>
+    <string name="accessibility_quick_settings_heads_up_on">Notificaciones emergentes activadas.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_off">Notificaciones emergentes desactivadas.</string>
+    <string name="accessibility_quick_settings_heads_up_changed_on">Notificaciones emergentes activadas.</string>
+    <string name="quick_settings_sync_label">Sinc</string>
+    <string name="accessibility_quick_settings_sync_off">Sincronización desactivada.</string>
+    <string name="accessibility_quick_settings_sync_on">Sincronización activada.</string>
+    <string name="accessibility_quick_settings_sync_changed_off">Sincronización desactivada.</string>
+    <string name="accessibility_quick_settings_sync_changed_on">Sincronización activada.</string>
+    <string name="quick_settings_usb_tether_label">Anclaje USB</string>
+    <string name="quick_settings_sound_label">Sonido</string>
+    <string name="quick_settings_sound_ring">Sonar</string>
+    <string name="quick_settings_sound_vibrate">Vibrar</string>
+    <string name="quick_settings_sound_dnd">Modo no molestar</string>
+    <string name="screenrecord_delete_label">Eliminar</string>
+    <string name="screenrecord_delete_description">Grabación de pantalla eliminada</string>
+    <string name="screenrecord_stopdot_label">Mostrar punto para detener grabación.\nPulsación larga para moverlo</string>
+    <string name="screenrecord_lowquality_label">Menor calidad para que el tamaño del archivo sea más pequeño</string>
+    <string name="screenrecord_longer_timeout_switch_label">Límite de tamaño del archivo más grande\nLímita el tamaño de grabación a 15 Gb</string>
+    <string name="keyguard_indication_dash_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Carga rápida Dash (<xliff:g id="charging_time_left" example="4 horas y 2 minutos">%1$s</xliff:g> para completar)</string>
+    <string name="keyguard_plugged_in_dash_charging"><xliff:g id="percentage">%s</xliff:g> • Carga rápida Dash</string>
+    <string name="keyguard_indication_warp_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Carga Warp (<xliff:g id="charging_time_left" example="4 horas y 2 minutos">%1$s</xliff:g> para completar)</string>
+    <string name="keyguard_plugged_in_warp_charging"><xliff:g id="percentage">%s</xliff:g> • Carga Warp</string>
+    <string name="keyguard_indication_vooc_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Carga VOOC (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> para carga completa)</string>
+    <string name="keyguard_plugged_in_vooc_charging"><xliff:g id="percentage">%s</xliff:g> Carga VOOC</string>
+    <string name="keyguard_indication_turbo_power_time"><xliff:g id="percentage">%2$s</xliff:g> • Carga Turbo (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> para completar)</string>
+    <string name="keyguard_plugged_in_turbo_charging"><xliff:g id="percentage">%s</xliff:g> • Carga Turbo</string>
+    <string name="keyguard_indication_oem_power_time"><xliff:g id="percentage">%2$s</xliff:g> • Carga rápida (<xliff:g id="charging_time_left" example="4 horas y 2 minutos">%1$s</xliff:g> para carga completa)</string>
+    <string name="keyguard_plugged_in_oem_charging"><xliff:g id="percentage">%s</xliff:g> • Carga rápida</string>
+    <string name="quick_settings_reboot_label">Reniciar</string>
+    <string name="quick_settings_reboot_recovery_label">Recuperación</string>
+    <string name="quick_settings_compass_label">Brújula</string>
+    <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
+    <string name="quick_settings_compass_init">Iniciando\u2026</string>
+    <string name="accessibility_quick_settings_compass_off">Brújula deshabilitada.</string>
+    <string name="accessibility_quick_settings_compass_on">Brújula habilitada.</string>
+    <string name="accessibility_quick_settings_compass_changed_off">Brújula apagada.</string>
+    <string name="accessibility_quick_settings_compass_changed_on">Brujula encendida.</string>
+    <string name="quick_settings_compass_N">N</string>
+    <string name="quick_settings_compass_NE">NE</string>
+    <string name="quick_settings_compass_E">E</string>
+    <string name="quick_settings_compass_SE">SE</string>
+    <string name="quick_settings_compass_S">S</string>
+    <string name="quick_settings_compass_SW">SO</string>
+    <string name="quick_settings_compass_W">O</string>
+    <string name="quick_settings_compass_NW">NO</string>
+    <string name="quick_settings_music_label">Música</string>
+    <string name="quick_settings_music_play">Reproducir</string>
+    <string name="quick_settings_music_pause">Pausar</string>
+    <string name="qs_data_switch_label">Cambiar tarjeta de datos</string>
+    <string name="qs_data_switch_changed_1">Utilizando SIM 1 para datos móviles</string>
+    <string name="qs_data_switch_changed_2">Utilizando SIM 2 para datos móviles</string>
+    <string name="global_action_restart_system">Sistema</string>
+    <string name="global_action_restart_recovery">Recuperación</string>
+    <string name="global_action_restart_bootloader">Bootloader</string>
+    <string name="global_action_restart_ui">SystemUI</string>
+    <string name="volume_ringer_priority_only">Prioridad</string>
+    <string name="volume_ringer_alarms_only">Alarmas</string>
+    <string name="volume_ringer_dnd">No Molestar</string>
+    <string name="tristate_flashlight">Linterna</string>
+    <string name="screenshot_delete_label">Eliminar</string>
+    <string name="screenshot_delete_description">Eliminar captura de pantalla</string>
+    <string name="statusbar_items_title">Icono de barra de estado</string>
+    <string name="status_bar_vpn">VPN</string>
+    <string name="accessibility_dpad_left">Cursor izquierdo</string>
+    <string name="accessibility_dpad_right">Cursor derecho</string>
+    <string name="quick_settings_locale_label">Idioma</string>
+    <string name="quick_settings_locale_more_locales_toast">Es necesario configurar múltiples idiomas para que este interruptor funcione</string>
+    <string name="quick_settings_volume_panel_label">Panel de volumen</string>
+    <string name="quick_settings_cpuinfo_label">Información de la CPU</string>
+    <string name="quick_settings_fpsinfo_label">Información de FPS</string>
+    <string name="fps_text_placeholder">FPS: <xliff:g id="fps" example="90">%1$d</xliff:g></string>
+    <string name="quick_aicp_extras_label">AICP Extras</string>
+    <string name="quick_aicp_extras_toast">Jajaja, esperabas que la pulsación larga mostrara algo!!!</string>
+    <string name="battery_detail_charging_summary">El Ahorro de Batería no está disponible durante la carga</string>
+    <string name="battery_panel_title">Uso de la batería</string>
+    <string name="quick_settings_powershare_label">Transferencia de energía inalámbrica</string>
+    <string name="quick_settings_powershare_off_powersave_label">Transferencia de energía inalámbrica desactivada\nAhorro de energía</string>
+    <string name="quick_settings_powershare_off_low_battery_label">Transferencia de energía inalámbrica desactivada\nBatería baja</string>
+    <string name="quick_settings_powershare_enabled_label">Transferencia de energía inalámbrica está activada</string>
+    <string name="quick_settings_sound_search">Búsqueda por voz</string>
+    <string name="quick_settings_full_screenshot_label">Completa</string>
+    <string name="quick_settings_screenshot_label">Captura de pantalla</string>
+    <string name="quick_settings_region_screenshot_label">Parcial</string>
+    <string name="onthego_notif_ticker">Modo En-Marcha activado</string>
+    <string name="onthego_notif_title">El modo En-Marcha está activado</string>
+    <string name="onthego_notif_stop">Detener</string>
+    <string name="onthego_notif_options">Opciones</string>
+    <string name="onthego_notif_error">No se pudo iniciar el modo En-Marcha</string>
+    <string name="onthego_notif_restart">Reiniciar modo En-Marcha</string>
+    <string name="onthego_notif_camera_changed">Modo de cámara cambiado</string>
+    <string name="onthego_transparency">Transparencia</string>
+    <string name="onthego_front_camera">Utilizar la cámara frontal</string>
+    <string name="onthego_service_toggle">Reiniciar el servicio automáticamente</string>
+    <string name="onthego_channel_name">Principal</string>
+    <string name="global_action_onthego">En-marcha</string>
+    <string name="quick_settings_onthego_label">En-marcha</string>
+    <string name="status_bar_camera">Cámara</string>
+    <string name="status_bar_microphone">Micrófono</string>
+    <string name="screen_pinning_description_custom">Fija el contenido en pantalla. Toca &amp; mantén pulsado el botón Atrás para desfijar.</string>
+    <string name="screen_pinning_description_recents_invisible_custom">Fija el contenido en pantalla. Toca &amp; mantén pulsado el botón Atrás para desfijar.</string>
+    <string name="screen_pinning_description_accessible_custom">Fija el contenido en pantalla. Toca &amp; mantén pulsado el botón Atrás para desfijar.</string>
+    <string name="screen_pinning_description_recents_invisible_accessible_custom">Fija el contenido en pantalla. Toca &amp; mantén pulsado el botón Atrás para desfijar.</string>
+    <string name="screen_pinning_toast_custom">Para dejar de fijar esta pantalla, toque &amp; mantenga presionado el botón Atrás</string>
+    <string name="screen_pinning_toast_recents_invisible_custom">Para dejar de fijar esta pantalla, toque &amp; mantenga presionado el botón Atrás</string>
+    <string name="omnijaws_service_error">Error</string>
+    <string name="omnijaws_service_unkown">No hay datos metereológicos</string>
+    <string name="omnijaws_service_error_long">Error al cargar datos meteorológicos</string>
+    <string name="omnijaws_service_disabled">Servicio deshabilitado</string>
+    <string name="omnijaws_detail_header">Clima</string>
+    <string name="omnijaws_label_default">Clima</string>
+    <string name="omnijaws_current_text">Ahora</string>
+    <string name="omnijaws_package_not_available">OmniJaws no disponible</string>
+    <string name="omnijaws_service_last_update">Última actualización:</string>
+    <string name="quick_settings_vpn_label">VPN</string>
+    <string name="quick_settings_vpn_connect_dialog_title">Conectar a\u2026</string>
+    <string name="vpn_credentials_hint">Por favor, introduzca sus credenciales para conectarse a <xliff:g id="name">%s</xliff:g></string>
+    <string name="vpn_credentials_username">Usuario</string>
+    <string name="vpn_credentials_password">Contraseña</string>
+    <string name="vpn_credentials_dialog_connect">Conectar</string>
+    <string name="app_picker_dialog_title">Seleccione una aplicación</string>
+    <string name="heads_up_snooze_message_one_minute"><xliff:g id="string">%s</xliff:g> - Notificaciones emergentes pospuestas 1 minuto.</string>
+    <string name="heads_up_snooze_message"><xliff:g id="string">%1$s</xliff:g> - Notificaciones emergentes pospuestas durante <xliff:g id="number">%2$d</xliff:g> minutos.</string>
+    <string name="daily_data_usage_title">Uso de hoy</string>
+    <string name="quick_settings_monotoggle_tile">Modo de audio</string>
+    <string name="quick_settings_monotoggle_tile_mono">Audio en mono</string>
+    <string name="quick_settings_monotoggle_tile_stereo">Audio en estéreo</string>
+    <string name="lensss">Lens</string>
+</resources>

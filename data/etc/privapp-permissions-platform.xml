@@ -51,6 +51,10 @@ applications that come with the platform
 
     <privapp-permissions package="com.android.launcher3">
         <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
+        <permission name="android.permission.DEVICE_POWER"/>
+        <permission name="android.permission.FORCE_STOP_PACKAGES"/>
+        <permission name="org.omnirom.omnijaws.READ_WEATHER" />
+        <permission name="android.permission.MEDIA_CONTENT_CONTROL"/>
     </privapp-permissions>
 
     <privapp-permissions package="com.android.location.fused">

@@ -5856,6 +5856,12 @@ public final class Settings {
          */
         public static final String QS_FOOTER_TEXT_SHOW = "qs_footer_text_show";
 
+        /**
+         * QS footer text
+         * @hide
+         */
+        public static final String QS_FOOTER_TEXT_STRING = "qs_footer_text_string";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6015,6 +6021,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(OMNI_LOCKSCREEN_WEATHER_ENABLED);
             PRIVATE_SETTINGS.add(AICP_LOCKSCREEN_WEATHER_STYLE);
             PRIVATE_SETTINGS.add(QS_FOOTER_TEXT_SHOW);
+            PRIVATE_SETTINGS.add(QS_FOOTER_TEXT_STRING);
         }
 
         /**

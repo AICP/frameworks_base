@@ -125,5 +125,6 @@ public class SystemSettings {
         Settings.System.OMNI_LOCKSCREEN_WEATHER_ENABLED,
         Settings.System.AICP_LOCKSCREEN_WEATHER_STYLE,
         Settings.System.QS_FOOTER_TEXT_SHOW,
+        Settings.System.QS_FOOTER_TEXT_STRING,
     };
 }

@@ -83,12 +83,18 @@ public class QSFooterView extends FrameLayout {
     }
 
     private void setBuildText() {
-        if (mBuildText == null) return;
-        final boolean isShow = Settings.System.getIntForUser(mContext.getContentResolver(),
+        if (mBuildText == null) {
+            mShouldShowBuildText = false;
+            return;
+        }
+        mShouldShowBuildText = Settings.System.getIntForUser(mContext.getContentResolver(),
                         Settings.System.QS_FOOTER_TEXT_SHOW, 0,
                         UserHandle.USER_CURRENT) == 1;
-        if (isShow) {
-            mBuildText.setText("AICP");
+        final String text = Settings.System.getStringForUser(mContext.getContentResolver(),
+                        Settings.System.QS_FOOTER_TEXT_STRING,
+                        UserHandle.USER_CURRENT);
+        if (mShouldShowBuildText) {
+            mBuildText.setText((text == null || text.isEmpty()) ? "#AICP" : text);
             mBuildText.setVisibility(View.VISIBLE);
         } else {
             mBuildText.setVisibility(View.GONE);
@@ -150,6 +156,9 @@ public class QSFooterView extends FrameLayout {
         super.onAttachedToWindow();
         mContext.getContentResolver().registerContentObserver(
                 Settings.System.getUriFor(Settings.System.QS_FOOTER_TEXT_SHOW), false,
+                mSettingsObserver, UserHandle.USER_ALL);
+        mContext.getContentResolver().registerContentObserver(
+                Settings.System.getUriFor(Settings.System.QS_FOOTER_TEXT_STRING), false,
                 mSettingsObserver, UserHandle.USER_ALL);
     }
 

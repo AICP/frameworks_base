@@ -40,6 +40,7 @@ import com.android.systemui.dump.DumpManager;
 import com.android.systemui.statusbar.CommandQueue;
 import com.android.systemui.statusbar.StatusIconDisplayable;
 import com.android.systemui.statusbar.connectivity.ImsIconState;
+import com.android.systemui.statusbar.phone.PhoneStatusBarPolicy.BluetoothIconState;
 import com.android.systemui.statusbar.phone.StatusBarSignalPolicy.CallIndicatorIconState;
 import com.android.systemui.statusbar.phone.StatusBarSignalPolicy.MobileIconState;
 import com.android.systemui.statusbar.phone.StatusBarSignalPolicy.WifiIconState;
@@ -242,7 +243,6 @@ public class StatusBarIconControllerImpl extends StatusBarIconList implements Tu
      */
     @Override
     public void setSignalIcon(String slot, WifiIconState state) {
-
         int index = getSlotIndex(slot);
 
         if (state == null) {
@@ -256,6 +256,25 @@ public class StatusBarIconControllerImpl extends StatusBarIconList implements Tu
             setIcon(index, holder);
         } else {
             holder.setWifiState(state);
+            handleSet(index, holder);
+        }
+    }
+
+    @Override
+    public void setBluetoothIcon(String slot, BluetoothIconState state) {
+        int index = getSlotIndex(slot);
+
+        if (state == null) {
+            removeIcon(index, 0);
+            return;
+        }
+
+        StatusBarIconHolder holder = getIcon(index, 0);
+        if (holder == null) {
+            holder = StatusBarIconHolder.fromBluetoothIconState(state);
+            setIcon(index, holder);
+        } else {
+            holder.setBluetoothState(state);
             handleSet(index, holder);
         }
     }

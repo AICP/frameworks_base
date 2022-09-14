@@ -33,6 +33,23 @@
       "message": "for reference: https://gerrit.aicp-rom.com/c/AICP/frameworks_base/+/114167",
       "revId": "0c05faf316a994743f8afb5e46177b4cf055c611",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dee83a1d_e6cb9cad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2022-09-14T10:32:28Z",
+      "side": 1,
+      "message": "I wouldn\u0027t mind the changes getting squashed with original change",
+      "revId": "0c05faf316a994743f8afb5e46177b4cf055c611",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

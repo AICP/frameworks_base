@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58c1b5cd_2b60b135",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-09-15T13:51:15Z",
+      "side": 1,
+      "message": "here: https://gerrit.aicp-rom.com/c/AICP/frameworks_base/+/117160",
+      "revId": "8996e513335fb4650ca48b23ab6483e7ec052545",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

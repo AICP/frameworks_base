@@ -18,6 +18,7 @@ package android.app;
 
 import android.Manifest;
 import android.annotation.NonNull;
+import android.annotation.SystemApi;
 import android.annotation.SystemService;
 import android.annotation.RequiresPermission;
 import android.annotation.UserHandleAware;
@@ -26,10 +27,17 @@ import android.os.RemoteException;
 
 import java.util.List;
 
+/**
+ * @hide
+ */
+@SystemApi
 @SystemService(Context.APP_LOCK_SERVICE)
 public final class AppLockManager {
 
+    /** @hide */
     public static final long DEFAULT_TIMEOUT = 10 * 1000;
+
+    /** @hide */
     public static final boolean DEFAULT_BIOMETRICS_ALLOWED = true;
 
     /**
@@ -53,6 +61,7 @@ public final class AppLockManager {
     private final Context mContext;
     private final IAppLockManagerService mService;
 
+    /** @hide */
     AppLockManager(Context context, IAppLockManagerService service) {
         mContext = context;
         mService = service;
@@ -126,51 +135,35 @@ public final class AppLockManager {
     }
 
     /**
-     * Get the list of packages protected with app lock.
+     * Get all the packages protected with app lock.
      * Caller must hold {@link android.permission.MANAGE_APP_LOCK}.
      *
-     * @return a list of package name of the protected apps.
+     * @return a unique list of {@link AppLockData} of the protected apps.
+     * @hide
      */
     @UserHandleAware
     @NonNull
     @RequiresPermission(Manifest.permission.MANAGE_APP_LOCK)
-    public List<String> getPackages() {
+    public List<AppLockData> getPackageData() {
         try {
-            return mService.getPackages(mContext.getUserId());
+            return mService.getPackageData(mContext.getUserId());
         } catch (RemoteException e) {
             throw e.rethrowFromSystemServer();
         }
     }
 
     /**
-     * Set whether notification content should be hidden for a package.
-     * Caller must hold {@link android.permission.MANAGE_APP_LOCK}.
+     * Set whether notification content should be redacted for a package
+     * in locked state. Caller must hold {@link android.permission.MANAGE_APP_LOCK}.
      *
      * @param packageName the package name.
      * @param secure true to hide notification content.
      */
     @UserHandleAware
     @RequiresPermission(Manifest.permission.MANAGE_APP_LOCK)
-    public void setSecureNotification(@NonNull String packageName, boolean secure) {
+    public void setShouldRedactNotification(@NonNull String packageName, boolean secure) {
         try {
-            mService.setSecureNotification(packageName, secure, mContext.getUserId());
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-    }
-
-    /**
-     * Get the list of packages whose notifications contents are secure.
-     * Caller must hold {@link android.permission.MANAGE_APP_LOCK}.
-     *
-     * @return a list of package names with secure notifications.
-     */
-    @UserHandleAware
-    @NonNull
-    @RequiresPermission(Manifest.permission.MANAGE_APP_LOCK)
-    public List<String> getPackagesWithSecureNotifications() {
-        try {
-            return mService.getPackagesWithSecureNotifications(mContext.getUserId());
+            mService.setShouldRedactNotification(packageName, secure, mContext.getUserId());
         } catch (RemoteException e) {
             throw e.rethrowFromSystemServer();
         }

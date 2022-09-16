@@ -133,7 +133,6 @@ public class StatusBarNotification implements Parcelable {
         this.notification = new Notification(in);
         this.user = UserHandle.readFromParcel(in);
         this.postTime = in.readLong();
-        mIsContentSecure = in.readBoolean();
         if (in.readInt() != 0) {
             this.overrideGroupKey = in.readString();
         }
@@ -142,6 +141,7 @@ public class StatusBarNotification implements Parcelable {
         }
         this.key = key();
         this.groupKey = groupKey();
+        mIsContentSecure = in.readBoolean();
     }
 
     /**
@@ -230,7 +230,6 @@ public class StatusBarNotification implements Parcelable {
         this.notification.writeToParcel(out, flags);
         user.writeToParcel(out, flags);
         out.writeLong(this.postTime);
-        out.writeBoolean(mIsContentSecure);
         if (this.overrideGroupKey != null) {
             out.writeInt(1);
             out.writeString(this.overrideGroupKey);
@@ -243,6 +242,7 @@ public class StatusBarNotification implements Parcelable {
         } else {
             out.writeInt(0);
         }
+        out.writeBoolean(mIsContentSecure);
     }
 
     public int describeContents() {

@@ -5917,7 +5917,7 @@ public class NotificationManagerService extends SystemService {
                             pkg, appInfo.uid);
                 }
                 final boolean isContentSecure = mAppLockManagerService != null &&
-                    mAppLockManagerService.isNotificationSecured(pkg, userId);
+                    mAppLockManagerService.shouldRedactNotification(pkg, userId);
                 final StatusBarNotification summarySbn =
                         new StatusBarNotification(adjustedSbn.getPackageName(),
                                 adjustedSbn.getOpPkg(),
@@ -6498,7 +6498,7 @@ public class NotificationManagerService extends SystemService {
         mUsageStats.registerEnqueuedByApp(pkg);
 
         final boolean isContentSecure = mAppLockManagerService != null &&
-            mAppLockManagerService.isNotificationSecured(pkg, userId);
+            mAppLockManagerService.shouldRedactNotification(pkg, userId);
         final StatusBarNotification n = new StatusBarNotification(
                 pkg, opPkg, id, tag, notificationUid, callingPid, notification,
                 user, null, System.currentTimeMillis(), isContentSecure);

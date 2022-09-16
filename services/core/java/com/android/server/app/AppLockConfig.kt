@@ -16,26 +16,38 @@
 
 package com.android.server.app
 
-import android.app.AppLockManager
+import android.app.AppLockData
+import android.app.AppLockManager.DEFAULT_BIOMETRICS_ALLOWED
+import android.app.AppLockManager.DEFAULT_TIMEOUT
 import android.os.FileUtils
 import android.os.FileUtils.S_IRWXU
 import android.os.FileUtils.S_IRWXG
 import android.util.ArrayMap
-import android.util.ArraySet
 import android.util.Slog
 
 import java.io.File
 import java.io.IOException
 
+import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 
 private const val APP_LOCK_DIR_NAME = "app_lock"
 private const val APP_LOCK_CONFIG_FILE = "app_lock_config.json"
 
-private const val KEY_TIMEOUT = "timeout"
+private const val CURRENT_VERSION = 1
+
+// Only in version 0
 private const val KEY_PACKAGES = "packages"
 private const val KEY_SECURE_NOTIFICATION = "secure_notification"
+
+// From version 1 and up. Non existent version key
+// is considered as version 0
+private const val KEY_VERSION = "version"
+private const val KEY_TIMEOUT = "timeout"
+private const val KEY_APP_LOCK_DATA_LIST = "app_lock_data_list"
+private const val KEY_PACKAGE_NAME = "package_name"
+private const val KEY_REDACT_NOTIFICATION = "redact_notification"
 private const val KEY_BIOMETRICS_ALLOWED = "biometrics_allowed"
 
 /**
@@ -50,17 +62,10 @@ internal class AppLockConfig(dataDir: File) {
     private val appLockDir = File(dataDir, APP_LOCK_DIR_NAME)
     private val appLockConfigFile = File(appLockDir, APP_LOCK_CONFIG_FILE)
 
-    private val _appLockPackages = ArraySet<String>()
-    val appLockPackages: Set<String>
-        get() = _appLockPackages.toSet()
+    private val appLockDataMap = ArrayMap<String, AppLockData>()
 
-    var appLockTimeout: Long = AppLockManager.DEFAULT_TIMEOUT
-
-    private val _packageNotificationMap = ArrayMap<String, Boolean>()
-    val packageNotificationMap: Map<String, Boolean>
-        get() = _packageNotificationMap.toMap()
-
-    var biometricsAllowed = AppLockManager.DEFAULT_BIOMETRICS_ALLOWED
+    var appLockTimeout: Long = DEFAULT_TIMEOUT
+    var biometricsAllowed = DEFAULT_BIOMETRICS_ALLOWED
 
     init {
         appLockDir.mkdirs()
@@ -68,42 +73,74 @@ internal class AppLockConfig(dataDir: File) {
     }
 
     /**
-     * Add an application to [appLockPackages].
+     * Add an application to [appLockDataMap].
      *
      * @param packageName the package name of the application.
      * @return true if package was added, false if already exists.
      */
     fun addPackage(packageName: String): Boolean {
-        return _appLockPackages.add(packageName)
+        return appLockDataMap.put(packageName, AppLockData(packageName, false)) == null
     }
 
     /**
-     * Remove an application from [appLockPackages].
+     * Remove an application from [appLockDataMap].
      *
      * @param packageName the package name of the application.
      * @return true if package was removed, false otherwise.
      */
     fun removePackage(packageName: String): Boolean {
-        _packageNotificationMap.remove(packageName)
-        return _appLockPackages.remove(packageName)
+        return appLockDataMap.remove(packageName) != null
+    }
+
+    /**
+     * Get all the packages protected with app lock.
+     *
+     * @return a unique list of package names.
+     */
+    fun getAppLockDataList(): List<AppLockData> {
+        return appLockDataMap.values.toList()
+    }
+
+    /**
+     * Check whether a package is protected with app lock.
+     *
+     * @return true if package is protected, false otherwise.
+     */
+    fun isPackageProtected(packageName: String): Boolean {
+        return appLockDataMap.containsKey(packageName)
     }
 
     /**
      * Set notifications as protected or not for an application
-     * in [appLockPackages].
+     * in [appLockDataMap].
      *
      * @param packageName the package name of the application.
      * @return true if config was changed, false otherwise.
      */
-    fun setSecureNotification(packageName: String, secure: Boolean): Boolean {
-        if (!_appLockPackages.contains(packageName)) {
+    fun setShouldRedactNotification(packageName: String, secure: Boolean): Boolean {
+        return appLockDataMap[packageName]?.let {
+            appLockDataMap[packageName] = AppLockData(
+                it.packageName,
+                secure
+            )
+            true
+        } ?: run {
             Slog.e(TAG, "Attempt to set secure " +
                 "notification field for package that is not in list")
-            return false
+            false
         }
-        if (_packageNotificationMap[packageName] == secure) return false
-        _packageNotificationMap[packageName] = secure
-        return true
+    }
+
+    /**
+     * Check whether notifications are protected or not for an application
+     * in [appLockDataMap].
+     *
+     * @param packageName the package name of the application.
+     * @return true if notification contents are redacted in app locked state,
+     *     false otherwise.
+     */
+    fun shouldRedactNotification(packageName: String): Boolean {
+        return appLockDataMap[packageName]?.shouldRedactNotification == true
     }
 
     /**
@@ -118,14 +155,20 @@ internal class AppLockConfig(dataDir: File) {
         try {
             appLockConfigFile.inputStream().bufferedReader().use {
                 val rootObject = JSONObject(it.readText())
-                appLockTimeout = rootObject.optLong(KEY_TIMEOUT, AppLockManager.DEFAULT_TIMEOUT)
-                biometricsAllowed = rootObject.optBoolean(KEY_BIOMETRICS_ALLOWED,
-                    AppLockManager.DEFAULT_BIOMETRICS_ALLOWED)
-                val packageObject = rootObject.optJSONObject(KEY_PACKAGES) ?: return@use
-                packageObject.keys().forEach { pkg ->
-                    _appLockPackages.add(pkg)
-                    _packageNotificationMap[pkg] = packageObject.optJSONObject(pkg)
-                        ?.optBoolean(KEY_SECURE_NOTIFICATION, false) == true
+
+                val version = rootObject.optInt(KEY_VERSION, 0)
+                migrateData(rootObject, version)
+
+                appLockTimeout = rootObject.optLong(KEY_TIMEOUT, DEFAULT_TIMEOUT)
+                biometricsAllowed = rootObject.optBoolean(KEY_BIOMETRICS_ALLOWED, DEFAULT_BIOMETRICS_ALLOWED)
+                val appLockDataList = rootObject.optJSONArray(KEY_APP_LOCK_DATA_LIST) ?: return@use
+                for (i in 0 until appLockDataList.length()) {
+                    val appLockData = appLockDataList.getJSONObject(i)
+                    val packageName = appLockData.getString(KEY_PACKAGE_NAME)
+                    appLockDataMap[packageName] = AppLockData(
+                        packageName,
+                        appLockData.getBoolean(KEY_REDACT_NOTIFICATION)
+                    )
                 }
             }
         } catch(e: IOException) {
@@ -134,17 +177,42 @@ internal class AppLockConfig(dataDir: File) {
             Slog.wtf(TAG, "Failed to parse config file", e)
         }
         logD {
-            "readConfig: packages = $appLockPackages, " +
-            "packageNotificationMap = $packageNotificationMap, " +
+            "readConfig: data = $appLockDataMap, " +
             "timeout = $appLockTimeout"
         }
     }
 
     private fun reset() {
-        _appLockPackages.clear()
-        appLockTimeout = AppLockManager.DEFAULT_TIMEOUT
-        _packageNotificationMap.clear()
-        biometricsAllowed = AppLockManager.DEFAULT_BIOMETRICS_ALLOWED
+        appLockDataMap.clear()
+        appLockTimeout = DEFAULT_TIMEOUT
+        biometricsAllowed = DEFAULT_BIOMETRICS_ALLOWED
+    }
+
+    private fun migrateData(jsonData: JSONObject, dataVersion: Int) {
+        Slog.i(TAG, "Migrating data from version $dataVersion")
+        when (dataVersion) {
+            0 -> {
+                val packageObject = jsonData.remove(KEY_PACKAGES) as? JSONObject
+                if (packageObject != null) {
+                    val appLockDataList = JSONArray()
+                    packageObject.keys().forEach { pkg ->
+                        val isSecure = packageObject.getJSONObject(pkg)
+                            .optBoolean(KEY_SECURE_NOTIFICATION, false)
+                        appLockDataList.put(
+                            JSONObject()
+                                .put(KEY_PACKAGE_NAME, pkg)
+                                .put(KEY_REDACT_NOTIFICATION, isSecure)
+                        )
+                    }
+                    jsonData.put(KEY_APP_LOCK_DATA_LIST, appLockDataList)
+                }
+            }
+            else -> throw IllegalArgumentException("Unknown data version $dataVersion")
+        }
+        val nextVersion = dataVersion + 1
+        if (nextVersion != CURRENT_VERSION) {
+            migrateData(jsonData, nextVersion)
+        }
     }
 
     /**
@@ -155,14 +223,17 @@ internal class AppLockConfig(dataDir: File) {
         try {
             rootObject.put(KEY_TIMEOUT, appLockTimeout)
             rootObject.put(KEY_BIOMETRICS_ALLOWED, biometricsAllowed)
-            val packageObject = JSONObject()
-            appLockPackages.forEach {
-                val packageConfigObject = JSONObject().apply {
-                    put(KEY_SECURE_NOTIFICATION, _packageNotificationMap[it] == true)
-                }
-                packageObject.put(it, packageConfigObject)
-            }
-            rootObject.put(KEY_PACKAGES, packageObject)
+            rootObject.put(
+                KEY_APP_LOCK_DATA_LIST,
+                JSONArray(
+                    appLockDataMap.values.map {
+                        JSONObject().apply {
+                            put(KEY_PACKAGE_NAME, it.packageName)
+                            put(KEY_REDACT_NOTIFICATION, it.shouldRedactNotification)
+                        }
+                    }
+                )
+            )
         } catch(e: JSONException) {
             Slog.wtf(TAG, "Failed to create json configuration", e)
             return

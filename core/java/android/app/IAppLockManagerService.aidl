@@ -16,6 +16,8 @@
 
 package android.app;
 
+import android.app.AppLockData;
+
 /**
  * Interface for managing app lock.
  * @hide
@@ -30,11 +32,9 @@ interface IAppLockManagerService {
 
     void setTimeout(in long timeout, in int userId);
 
-    List<String> getPackages(in int userId);
+    List<AppLockData> getPackageData(in int userId);
 
-    void setSecureNotification(in String packageName, in boolean secure, in int userId);
-
-    List<String> getPackagesWithSecureNotifications(in int userId);
+    void setShouldRedactNotification(in String packageName, in boolean secure, in int userId);
 
     void setBiometricsAllowed(in boolean biometricsAllowed, in int userId);
 

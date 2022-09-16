@@ -74,6 +74,6 @@ class NotifUiAdjustmentProvider @Inject constructor(
         smartReplies = entry.ranking.smartReplies,
         isConversation = entry.ranking.isConversation,
         isMinimized = isEntryMinimized(entry),
-        needsRedaction = lockscreenUserManager.needsRedaction(entry),
+        needsRedaction = entry.sbn.isContentSecure || lockscreenUserManager.needsRedaction(entry),
     )
 }

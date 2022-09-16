@@ -24,6 +24,7 @@ import android.app.ActivityManagerInternal
 import android.app.ActivityOptions
 import android.app.ActivityTaskManager
 import android.app.AlarmManager
+import android.app.AppLockData
 import android.app.AppLockManager
 import android.app.IAppLockManagerService
 import android.app.KeyguardManager
@@ -187,7 +188,7 @@ class AppLockManagerService(
                     }
                 }
                 mutex.withLock {
-                    if (!config.appLockPackages.contains(packageName)) {
+                    if (!config.isPackageProtected(packageName)) {
                         logD {
                             "Package $packageName not in the list, ignoring"
                         }
@@ -318,7 +319,7 @@ class AppLockManagerService(
                     Slog.e(TAG, "Config unavailable for user $currentUserId")
                     return@launch
                 }
-                if (!config.appLockPackages.contains(pkg)) return@launch
+                if (!config.isPackageProtected(pkg)) return@launch
             }
             logD {
                 "$pkg is locked out, asking user to unlock"
@@ -368,11 +369,11 @@ class AppLockManagerService(
                     scheduledAlarms.remove(packageName)
                 }
                 val isContentSecure = mutex.withLock {
-                    userConfigMap[currentUserId]?.packageNotificationMap?.get(packageName) ?: run {
+                    userConfigMap[currentUserId]?.shouldRedactNotification(packageName) ?: run {
                         Slog.e(TAG, "Config unavailable for user $currentUserId")
                         return@launch
                     }
-                } == true
+                }
                 notificationManagerInternal.updateSecureNotifications(
                     packageName,
                     isContentSecure,
@@ -389,10 +390,10 @@ class AppLockManagerService(
             true /* requireFull */, tag, AppLockManagerService::class.qualifiedName)
     }
 
-    private inline fun <R> clearAndExecute(crossinline body: () -> R): R {
+    private inline fun <R> clearAndExecute(crossinline block: () -> R): R {
         val ident = Binder.clearCallingIdentity()
         try {
-            return body()
+            return block()
         } finally {
             Binder.restoreCallingIdentity(ident)
         }
@@ -577,15 +578,15 @@ class AppLockManagerService(
     }
 
     /**
-     * Get the list of packages protected with app lock.
+     * Get all the packages protected with app lock.
      *
      * @param userId the user id of the caller.
-     * @return list of package name of the protected apps.
+     * @return list of [AppLockData] of the protected apps.
      * @throws [SecurityException] if caller does not have permission
      *     [Manifest.permissions.MANAGE_APP_LOCK].
      */
     @RequiresPermission(Manifest.permission.MANAGE_APP_LOCK)
-    override fun getPackages(userId: Int): List<String> {
+    override fun getPackageData(userId: Int): List<AppLockData> {
         logD {
             "getPackages: userId = $userId"
         }
@@ -593,7 +594,7 @@ class AppLockManagerService(
         val actualUserId = getActualUserId(userId, "getPackages")
         return runBlocking {
             mutex.withLock {
-                userConfigMap[actualUserId]?.appLockPackages?.toList() ?: run {
+                userConfigMap[actualUserId]?.getAppLockDataList() ?: run {
                     Slog.e(TAG, "getPackages requested by unknown user id $actualUserId")
                     emptyList()
                 }
@@ -602,7 +603,8 @@ class AppLockManagerService(
     }
 
     /**
-     * Set whether notification content should be hidden for a package.
+     * Set whether notification content should be redacted for a package
+     * in locked state.
      *
      * @param packageName the package name.
      * @param secure true to hide notification content.
@@ -611,24 +613,24 @@ class AppLockManagerService(
      *     [Manifest.permissions.MANAGE_APP_LOCK].
      */
     @RequiresPermission(Manifest.permission.MANAGE_APP_LOCK)
-    override fun setSecureNotification(
+    override fun setShouldRedactNotification(
         packageName: String,
         secure: Boolean,
         userId: Int,
     ) {
         logD {
-            "setSecureNotification: packageName = $packageName, userId = $userId"
+            "setShouldRedactNotification: packageName = $packageName, userId = $userId"
         }
-        enforceCallingPermission("setSecureNotification")
-        val actualUserId = getActualUserId(userId, "setSecureNotification")
+        enforceCallingPermission("setShouldRedactNotification")
+        val actualUserId = getActualUserId(userId, "setShouldRedactNotification")
         serviceScope.launch {
             mutex.withLock {
                 val config = userConfigMap[actualUserId] ?: run {
-                    Slog.e(TAG, "setSecureNotification requested by unknown " +
+                    Slog.e(TAG, "setShouldRedactNotification requested by unknown " +
                         "user id $actualUserId")
                     return@withLock
                 }
-                if (!config.setSecureNotification(packageName, secure)) return@withLock
+                if (!config.setShouldRedactNotification(packageName, secure)) return@withLock
                 val isLocked = !unlockedPackages.contains(packageName)
                     && !topPackages.contains(packageName)
                 val shouldSecureContent = secure && isLocked
@@ -642,37 +644,6 @@ class AppLockManagerService(
                     config.write()
                 }
             }
-        }
-    }
-
-    /**
-     * Get the list of packages whose notifications contents are secure.
-     *
-     * @param userId the user id of the caller.
-     * @return a list of package names with secure notifications.
-     * @throws [SecurityException] if caller does not have permission
-     *     [Manifest.permissions.MANAGE_APP_LOCK].
-     */
-    @RequiresPermission(Manifest.permission.MANAGE_APP_LOCK)
-    override fun getPackagesWithSecureNotifications(userId: Int): List<String> {
-        logD {
-            "getPackagesWithSecureNotifications: userId = $userId"
-        }
-        enforceCallingPermission("getPackagesWithSecureNotifications")
-        val actualUserId = getActualUserId(userId, "getPackagesWithSecureNotifications")
-        return runBlocking {
-            val pkgNotifMap = mutex.withLock {
-                userConfigMap[actualUserId]?.packageNotificationMap ?: run {
-                    Slog.e(TAG, "getPackagesWithSecureNotifications requested by " +
-                        "unknown user id $actualUserId")
-                    return@runBlocking emptyList()
-                }
-            }
-            pkgNotifMap.entries.filter {
-                it.value
-            }.map {
-                it.key
-            }.toList()
         }
     }
 
@@ -749,7 +720,7 @@ class AppLockManagerService(
                     Slog.e(TAG, "unlockPackage requested by unknown user id $actualUserId")
                     return@launch
                 }
-                if (!config.appLockPackages.contains(packageName)) {
+                if (!config.isPackageProtected(packageName)) {
                     Slog.w(TAG, "Unlock requested for package $packageName " +
                         "that is not in list")
                     return@launch
@@ -805,12 +776,10 @@ class AppLockManagerService(
             mutex.withLock {
                 if (userConfigMap.containsKey(userId)) return@withLock
                 withContext(Dispatchers.IO) {
-                    val config = AppLockConfig(
-                        Environment.getDataSystemDeDirectory(userId))
+                    val config = AppLockConfig(Environment.getDataSystemDeDirectory(userId))
                     userConfigMap[userId] = config
                     config.read()
-                    biometricUnlocker.biometricsAllowed =
-                        config.biometricsAllowed
+                    biometricUnlocker.biometricsAllowed = config.biometricsAllowed
                     verifyPackagesLocked(config)
                 }
             }
@@ -818,7 +787,8 @@ class AppLockManagerService(
     }
 
     private fun verifyPackagesLocked(config: AppLockConfig) {
-        var size = config.appLockPackages.size
+        val currentPackages = config.getAppLockDataList().map { it.packageName }
+        var size = currentPackages.size
         if (size == 0) return
         val installedPackages = pmInternal.getInstalledApplications(
             PackageManager.MATCH_ALL.toLong(),
@@ -827,10 +797,10 @@ class AppLockManagerService(
         ).map { it.packageName }
         var changed = false
         logD {
-            "Current locked packages = ${config.appLockPackages}"
+            "Current packages = $currentPackages"
         }
         for (i in 0 until size) {
-            val pkg = config.appLockPackages.elementAt(i)
+            val pkg = currentPackages[i]
             if (!installedPackages.contains(pkg)) {
                 config.removePackage(pkg)
                 size--
@@ -838,7 +808,8 @@ class AppLockManagerService(
             }
         }
         logD {
-            "Filtered packages = ${config.appLockPackages}"
+            val filteredPackages = config.getAppLockDataList().map { it.packageName }
+            "Filtered packages = $filteredPackages"
         }
         if (changed) {
             config.write()
@@ -927,7 +898,7 @@ class AppLockManagerService(
                         Slog.e(TAG, "requireUnlock queried by unknown user id $actualUserId")
                         return@withLock false
                     }
-                    val requireUnlock = config.appLockPackages.contains(packageName) &&
+                    val requireUnlock = config.isPackageProtected(packageName) &&
                         !unlockedPackages.contains(packageName)
                     logD {
                         "requireUnlock = $requireUnlock"
@@ -953,24 +924,24 @@ class AppLockManagerService(
             }
         }
 
-        override fun isNotificationSecured(
+        override fun shouldRedactNotification(
             packageName: String,
             userId: Int,
         ) : Boolean {
             if (!checkUserAndDeviceStatus(userId)) return false
             logD {
-                "isNotificationSecured: packageName = $packageName, userId = $userId"
+                "shouldRedactNotification: packageName = $packageName, userId = $userId"
             }
-            val actualUserId = getActualUserId(userId, "isNotificationSecured")
+            val actualUserId = getActualUserId(userId, "shouldRedactNotification")
             if (!requireUnlockInternal(packageName, userId, true /* ignoreLockState */)) return false
             return runBlocking {
                 mutex.withLock {
                     val config = userConfigMap[actualUserId] ?: run {
-                        Slog.e(TAG, "isNotificationSecured queried by " +
+                        Slog.e(TAG, "shouldRedactNotification queried by " +
                             "unknown user id $actualUserId")
                         return@withLock false
                     }
-                    val secure = config.packageNotificationMap[packageName] == true
+                    val secure = config.shouldRedactNotification(packageName)
                     logD {
                         "Secure = $secure"
                     }
@@ -1011,14 +982,13 @@ class AppLockManagerService(
                     }
                 } else {
                     mutex.withLock {
-                        if (config.appLockPackages.isEmpty() ||
-                                topPackages.isEmpty()) return@withLock
+                        if (topPackages.isEmpty()) return@withLock
                         // If device is locked with an app in the foreground,
                         // even if it is removed from [unlockedPackages], it will
                         // still be shown when unlocked, so we need to start home
                         // activity as soon as such a condition is detected on unlock.
                         val shouldGoToHome = topPackages.any {
-                            config.appLockPackages.contains(it) &&
+                            config.isPackageProtected(it) &&
                                 !unlockedPackages.contains(it)
                         }
                         if (!shouldGoToHome) return@withLock
@@ -1134,7 +1104,7 @@ interface AppLockManagerServiceInternal {
      * @param userId the user id given by the caller.
      * @return true if notification should be hidden, false otherwise.
      */
-    fun isNotificationSecured(packageName: String, userId: Int): Boolean
+    fun shouldRedactNotification(packageName: String, userId: Int): Boolean
 
     /**
      * Notify that the device is locked for current user.

@@ -40,9 +40,11 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.provider.Settings;
+import android.util.DisplayUtils;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.Display;
+import android.view.DisplayInfo;
 import android.view.OrientationEventListener;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -356,6 +358,15 @@ public class TriStateUiControllerImpl implements TriStateUiController,
     }
 
     private void updateTriStateLayout() {
+
+        DisplayInfo displayInfo = new DisplayInfo();
+        mContext.getDisplay().getDisplayInfo(displayInfo);
+        final Display.Mode maxDisplayMode =
+                DisplayUtils.getMaximumResolutionDisplayMode(displayInfo.supportedModes);
+        final float scaleFactor = DisplayUtils.getPhysicalPixelDisplaySizeRatio(
+                maxDisplayMode.getPhysicalWidth(), maxDisplayMode.getPhysicalHeight(),
+                displayInfo.getNaturalWidth(), displayInfo.getNaturalHeight());
+
         if (mContext != null) {
             int iconId = 0;
             int textId = 0;
@@ -451,22 +462,22 @@ public class TriStateUiControllerImpl implements TriStateUiController,
                         } else {
                             gravity = 83;
                         }
-                        positionY2 = res.getDimensionPixelSize(R.dimen.tri_state_up_dialog_position_deep_land);
+                        positionY2 = (int) (res.getDimensionPixelSize(R.dimen.tri_state_up_dialog_position_deep_land) * scaleFactor);
                         if (isTsKeyRight) {
                             positionY2 += SystemBarUtils.getStatusBarHeight(mContext);
                         }
                         if (mPosition == POSITION_TOP) {
-                            positionX = res.getDimensionPixelSize(R.dimen.tri_state_up_dialog_position_l);
+                            positionX = (int) (res.getDimensionPixelSize(R.dimen.tri_state_up_dialog_position_l) * scaleFactor);
                         } else if (mPosition == POSITION_MIDDLE) {
-                            positionX = res.getDimensionPixelSize(R.dimen.tri_state_middle_dialog_position_l);
+                            positionX = (int) (res.getDimensionPixelSize(R.dimen.tri_state_middle_dialog_position_l) * scaleFactor);
                         } else if (mPosition == POSITION_BOTTOM) {
-                            positionX = res.getDimensionPixelSize(R.dimen.tri_state_down_dialog_position_l);
+                            positionX = (int) (res.getDimensionPixelSize(R.dimen.tri_state_down_dialog_position_l) * scaleFactor);
                         } else if (!mIntentActionSupported && mTriStateMode == RINGER_MODE_SILENT) {
-                            positionX = res.getDimensionPixelSize(R.dimen.tri_state_up_dialog_position_l);
+                            positionX = (int) (res.getDimensionPixelSize(R.dimen.tri_state_up_dialog_position_l) * scaleFactor);
                         } else if (!mIntentActionSupported && mTriStateMode == RINGER_MODE_VIBRATE) {
-                            positionX = res.getDimensionPixelSize(R.dimen.tri_state_middle_dialog_position_l);
+                            positionX = (int) (res.getDimensionPixelSize(R.dimen.tri_state_middle_dialog_position_l) * scaleFactor);
                         } else if (!mIntentActionSupported && mTriStateMode == RINGER_MODE_NORMAL) {
-                            positionX = res.getDimensionPixelSize(R.dimen.tri_state_down_dialog_position_l);
+                            positionX = (int) (res.getDimensionPixelSize(R.dimen.tri_state_down_dialog_position_l) * scaleFactor);
                         }
                         bg = R.drawable.dialog_tri_state_middle_bg;
                         break;
@@ -476,25 +487,25 @@ public class TriStateUiControllerImpl implements TriStateUiController,
                         } else {
                             gravity = 85;
                         }
-                        positionX = res.getDimensionPixelSize(R.dimen.tri_state_up_dialog_position_deep);
+                        positionX = (int) (res.getDimensionPixelSize(R.dimen.tri_state_up_dialog_position_deep) * scaleFactor);
                         positionY = SystemBarUtils.getStatusBarHeight(mContext);
                         if (mPosition == POSITION_TOP) {
-                            positionY += res.getDimensionPixelSize(R.dimen.tri_state_up_dialog_position);
+                            positionY += (int) (res.getDimensionPixelSize(R.dimen.tri_state_up_dialog_position) * scaleFactor);
                             bg = !isTsKeyRight ? R.drawable.right_dialog_tri_state_down_bg : R.drawable.left_dialog_tri_state_down_bg;
                         } else if (mPosition == POSITION_MIDDLE) {
-                            positionY += res.getDimensionPixelSize(R.dimen.tri_state_middle_dialog_position);
+                            positionY += (int) (res.getDimensionPixelSize(R.dimen.tri_state_middle_dialog_position) * scaleFactor);
                             bg = R.drawable.dialog_tri_state_middle_bg;
                         } else if (mPosition == POSITION_BOTTOM) {
-                            positionY += res.getDimensionPixelSize(R.dimen.tri_state_down_dialog_position);
+                            positionY += (int) (res.getDimensionPixelSize(R.dimen.tri_state_down_dialog_position) * scaleFactor);
                             bg = !isTsKeyRight ? R.drawable.right_dialog_tri_state_up_bg : R.drawable.left_dialog_tri_state_up_bg;
                         } else if (!mIntentActionSupported && mTriStateMode == RINGER_MODE_SILENT) {
-                            positionY += res.getDimensionPixelSize(R.dimen.tri_state_up_dialog_position);
+                            positionY += (int) (res.getDimensionPixelSize(R.dimen.tri_state_up_dialog_position) * scaleFactor);
                             bg = !isTsKeyRight ? R.drawable.right_dialog_tri_state_down_bg : R.drawable.left_dialog_tri_state_down_bg;
                         } else if (!mIntentActionSupported && mTriStateMode == RINGER_MODE_VIBRATE) {
-                            positionY += res.getDimensionPixelSize(R.dimen.tri_state_middle_dialog_position);
+                            positionY += (int) (res.getDimensionPixelSize(R.dimen.tri_state_middle_dialog_position) * scaleFactor);
                             bg = R.drawable.dialog_tri_state_middle_bg;
                         } else if (!mIntentActionSupported && mTriStateMode == RINGER_MODE_NORMAL) {
-                            positionY += res.getDimensionPixelSize(R.dimen.tri_state_down_dialog_position);
+                            positionY += (int) (res.getDimensionPixelSize(R.dimen.tri_state_down_dialog_position) * scaleFactor);
                             bg = !isTsKeyRight ? R.drawable.right_dialog_tri_state_up_bg : R.drawable.left_dialog_tri_state_up_bg;
                         }
                         positionY2 = positionY;
@@ -505,22 +516,22 @@ public class TriStateUiControllerImpl implements TriStateUiController,
                         } else {
                             gravity = 53;
                         }
-                        positionY2 = res.getDimensionPixelSize(R.dimen.tri_state_up_dialog_position_deep_land);
+                        positionY2 = (int) (res.getDimensionPixelSize(R.dimen.tri_state_up_dialog_position_deep_land) * scaleFactor);
                         if (!isTsKeyRight) {
                             positionY2 += SystemBarUtils.getStatusBarHeight(mContext);
                         }
                         if (mPosition == POSITION_TOP) {
-                            positionX = res.getDimensionPixelSize(R.dimen.tri_state_up_dialog_position_l);
+                            positionX = (int) (res.getDimensionPixelSize(R.dimen.tri_state_up_dialog_position_l) * scaleFactor);
                         } else if (mPosition == POSITION_MIDDLE) {
-                            positionX = res.getDimensionPixelSize(R.dimen.tri_state_middle_dialog_position_l);
+                            positionX = (int) (res.getDimensionPixelSize(R.dimen.tri_state_middle_dialog_position_l) * scaleFactor);
                         } else if (mPosition == POSITION_BOTTOM) {
-                            positionX = res.getDimensionPixelSize(R.dimen.tri_state_down_dialog_position_l);
+                            positionX = (int) (res.getDimensionPixelSize(R.dimen.tri_state_down_dialog_position_l) * scaleFactor);
                         } else if (!mIntentActionSupported && mTriStateMode == RINGER_MODE_SILENT) {
-                            positionX = res.getDimensionPixelSize(R.dimen.tri_state_up_dialog_position_l);
+                            positionX = (int) (res.getDimensionPixelSize(R.dimen.tri_state_up_dialog_position_l) * scaleFactor);
                         } else if (!mIntentActionSupported && mTriStateMode == RINGER_MODE_VIBRATE) {
-                            positionX = res.getDimensionPixelSize(R.dimen.tri_state_middle_dialog_position_l);
+                            positionX = (int) (res.getDimensionPixelSize(R.dimen.tri_state_middle_dialog_position_l) * scaleFactor);
                         } else if (!mIntentActionSupported && mTriStateMode == RINGER_MODE_NORMAL) {
-                            positionX = res.getDimensionPixelSize(R.dimen.tri_state_down_dialog_position_l);
+                            positionX = (int) (res.getDimensionPixelSize(R.dimen.tri_state_down_dialog_position_l) * scaleFactor);
                         }
                         bg = R.drawable.dialog_tri_state_middle_bg;
                         break;
@@ -530,24 +541,24 @@ public class TriStateUiControllerImpl implements TriStateUiController,
                         } else {
                             gravity = 51;
                         }
-                        positionX = res.getDimensionPixelSize(R.dimen.tri_state_up_dialog_position_deep);
+                        positionX = (int) (res.getDimensionPixelSize(R.dimen.tri_state_up_dialog_position_deep) * scaleFactor);
                         if (mPosition == POSITION_TOP) {
-                            positionY2 = res.getDimensionPixelSize(R.dimen.tri_state_up_dialog_position);
+                            positionY2 = (int) (res.getDimensionPixelSize(R.dimen.tri_state_up_dialog_position) * scaleFactor);
                             bg = isTsKeyRight ? R.drawable.right_dialog_tri_state_up_bg : R.drawable.left_dialog_tri_state_up_bg;
                         } else if (mPosition == POSITION_MIDDLE) {
-                            positionY2 = res.getDimensionPixelSize(R.dimen.tri_state_middle_dialog_position);
+                            positionY2 = (int) (res.getDimensionPixelSize(R.dimen.tri_state_middle_dialog_position) * scaleFactor);
                             bg = R.drawable.dialog_tri_state_middle_bg;
                         } else if (mPosition == POSITION_BOTTOM) {
-                            positionY2 = res.getDimensionPixelSize(R.dimen.tri_state_down_dialog_position);
+                            positionY2 = (int) (res.getDimensionPixelSize(R.dimen.tri_state_down_dialog_position) * scaleFactor);
                             bg = isTsKeyRight ? R.drawable.right_dialog_tri_state_down_bg : R.drawable.left_dialog_tri_state_down_bg;
                         } else if (!mIntentActionSupported && mTriStateMode == RINGER_MODE_SILENT) {
-                            positionY2 = res.getDimensionPixelSize(R.dimen.tri_state_up_dialog_position);
+                            positionY2 = (int) (res.getDimensionPixelSize(R.dimen.tri_state_up_dialog_position) * scaleFactor);
                             bg = isTsKeyRight ? R.drawable.right_dialog_tri_state_up_bg : R.drawable.left_dialog_tri_state_up_bg;
                         } else if (!mIntentActionSupported && mTriStateMode == RINGER_MODE_VIBRATE) {
-                            positionY2 = res.getDimensionPixelSize(R.dimen.tri_state_middle_dialog_position);
+                            positionY2 = (int) (res.getDimensionPixelSize(R.dimen.tri_state_middle_dialog_position) * scaleFactor);
                             bg = R.drawable.dialog_tri_state_middle_bg;
                         } else if (!mIntentActionSupported && mTriStateMode == RINGER_MODE_NORMAL) {
-                            positionY2 = res.getDimensionPixelSize(R.dimen.tri_state_down_dialog_position);
+                            positionY2 = (int) (res.getDimensionPixelSize(R.dimen.tri_state_down_dialog_position) * scaleFactor);
                             bg = isTsKeyRight ? R.drawable.right_dialog_tri_state_down_bg : R.drawable.left_dialog_tri_state_down_bg;
                         }
                         positionY2 += SystemBarUtils.getStatusBarHeight(mContext);;
@@ -574,7 +585,7 @@ public class TriStateUiControllerImpl implements TriStateUiController,
                     }
                     mDialogPosition = positionY2;
                 }
-                positionY = res.getDimensionPixelSize(R.dimen.tri_state_dialog_padding);
+                positionY = (int) (res.getDimensionPixelSize(R.dimen.tri_state_dialog_padding) * scaleFactor);
                 mWindowLayoutParams.gravity = gravity;
                 mWindowLayoutParams.y = positionY2 - positionY;
                 mWindowLayoutParams.x = positionX - positionY;

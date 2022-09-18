@@ -34,16 +34,21 @@ public class PropImitationHooks {
     private static final String sCertifiedFp =
             Resources.getSystem().getString(R.string.config_certifiedFingerprint);
 
+    private static final String sCertifiedModel =
+            Resources.getSystem().getString(R.string.config_certifiedModel);
+
     private static final String sStockFp =
             Resources.getSystem().getString(R.string.config_stockFingerprint);
 
     private static final String PACKAGE_ARCORE = "com.google.ar.core";
     private static final String PACKAGE_FINSKY = "com.android.vending";
+    private static final String PACKAGE_VELVET = "com.google.android.googlequicksearchbox";
     private static final String PACKAGE_GMS = "com.google.android.gms";
     private static final String PROCESS_GMS_UNSTABLE = PACKAGE_GMS + ".unstable";
 
     private static volatile boolean sIsGms = false;
     private static volatile boolean sIsFinsky = false;
+    private static volatile boolean sIsVelvet = false;
 
     public static void setProps(Application app) {
         final String packageName = app.getPackageName();
@@ -55,10 +60,19 @@ public class PropImitationHooks {
 
         sIsGms = packageName.equals(PACKAGE_GMS) && processName.equals(PROCESS_GMS_UNSTABLE);
         sIsFinsky = packageName.equals(PACKAGE_FINSKY);
+        sIsVelvet = packageName.equals(PACKAGE_VELVET);
 
+        /* Set Certified Fingerprint for GMSCore or Finsky
+         * Set Certified Fingerprint and Model for Velvet
+         * Set Stock Fingerprint for ARCore
+         */
         if (!sCertifiedFp.isEmpty() && (sIsGms || sIsFinsky)) {
             dlog("Setting certified fingerprint for: " + packageName);
             setPropValue("FINGERPRINT", sCertifiedFp);
+        } else if (!sCertifiedFp.isEmpty() && (sIsVelvet)) {
+            dlog("Setting certified fingerprint and model for: " + packageName);
+            setPropValue("FINGERPRINT", sCertifiedFp);
+            setPropValue("MODEL", sCertifiedModel);
         } else if (!sStockFp.isEmpty() && packageName.equals(PACKAGE_ARCORE)) {
             dlog("Setting stock fingerprint for: " + packageName);
             setPropValue("FINGERPRINT", sStockFp);
@@ -84,8 +98,8 @@ public class PropImitationHooks {
 
     public static void onEngineGetCertificateChain() {
         // Check stack for SafetyNet or Play Integrity
-        if (isCallerSafetyNet() || sIsFinsky) {
-            dlog("Blocked key attestation sIsGms=" + sIsGms + " sIsFinsky=" + sIsFinsky);
+        if (isCallerSafetyNet() || sIsFinsky || sIsVelvet) {
+            dlog("Blocked key attestation sIsGms=" + sIsGms + " sIsFinsky=" + sIsFinsky + " sIsVelvet=" + sIsVelvet);
             throw new UnsupportedOperationException();
         }
     }

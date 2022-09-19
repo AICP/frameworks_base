@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4fd316c_0fce599d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-09-19T19:37:56Z",
+      "side": 1,
+      "message": "part of https://review.lineageos.org/q/topic:13-qcom-wfd",
+      "revId": "0fcf786445c053ece5038f3f2b4d077a372abd3f",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8473c86f_a9f94b4f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-09-23T21:38:16Z",
+      "side": 1,
+      "message": "works great with https://gerrit.aicp-rom.com/c/AICP/device_oneplus_sm8250-common/+/117392",
+      "revId": "a3a5a085aa3e4b66ef69ef80fc91516dbbcb057c",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

@@ -10839,6 +10839,12 @@ public final class Settings {
         @SuppressLint("NoSettingsProvider")
         public static final String VOLUME_PANEL_ON_LEFT = "volume_panel_on_left";
 
+        /**
+         * Whether tethering is allowed to use VPN upstreams
+         */
+        @SuppressLint("NoSettingsProvider")
+        public static final String TETHERING_ALLOW_VPN_UPSTREAMS = "tethering_allow_vpn_upstreams";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

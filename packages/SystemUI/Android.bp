@@ -127,6 +127,8 @@ android_library {
         "colorkt",
         "themelib",
         "vendor.lineage.powershare-V1.0-java",
+        "colorkt",
+        "themelib",
     ],
     manifest: "AndroidManifest.xml",
     additional_manifests: ["AndroidManifest-Aicp.xml"],

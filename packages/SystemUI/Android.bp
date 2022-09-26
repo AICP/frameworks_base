@@ -125,6 +125,8 @@ android_library {
         "AicpGear-preference",
         "AicpGear-util",
         "vendor.lineage.powershare-V1.0-java",
+        "colorkt",
+        "themelib",
     ],
     manifest: "AndroidManifest.xml",
     additional_manifests: ["AndroidManifest-Aicp.xml"],

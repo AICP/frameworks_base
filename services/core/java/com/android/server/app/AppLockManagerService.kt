@@ -1028,16 +1028,15 @@ class AppLockManagerService(
                     ActivityOptions.makeBasic().toBundle()
                 )
             )
-            val intent = Intent(AppLockManager.ACTION_UNLOCK_APP).apply {
-                setPackage(SETTINGS_PACKAGE)
-                flags = Intent.FLAG_ACTIVITY_NEW_TASK or
-                            Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
-                putExtra(Intent.EXTRA_PACKAGE_NAME, packageName)
-                putExtra(AppLockManager.EXTRA_PACKAGE_LABEL, info.aInfo.loadLabel(packageManager))
-                putExtra(Intent.EXTRA_INTENT, target)
-                putExtra(Intent.EXTRA_USER_ID, info.userId)
-                putExtra(AppLockManager.EXTRA_ALLOW_BIOMETRICS, isBiometricsAllowed(info.userId))
-            }
+            val intent = Intent(AppLockManager.ACTION_UNLOCK_APP)
+                .setPackage(SETTINGS_PACKAGE)
+                .apply {
+                    putExtra(Intent.EXTRA_PACKAGE_NAME, packageName)
+                    putExtra(Intent.EXTRA_INTENT, target)
+                    putExtra(Intent.EXTRA_USER_ID, info.userId)
+                    putExtra(AppLockManager.EXTRA_PACKAGE_LABEL, info.aInfo.loadLabel(packageManager))
+                    putExtra(AppLockManager.EXTRA_ALLOW_BIOMETRICS, isBiometricsAllowed(info.userId))
+                }
             return intent
         }
     }

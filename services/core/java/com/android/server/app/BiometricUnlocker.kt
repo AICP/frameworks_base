@@ -96,6 +96,7 @@ internal class BiometricUnlocker(private val context: Context) {
         val prompt = BiometricPrompt.Builder(context)
             .setTitle(title)
             .setAllowedAuthenticators(authenticators)
+            .setAllowBackgroundAuthentication(true)
             .build()
         prompt.authenticateUser(
             CancellationSignal(),

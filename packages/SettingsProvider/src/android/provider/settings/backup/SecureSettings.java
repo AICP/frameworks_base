@@ -229,6 +229,5 @@ public class SecureSettings {
         Settings.Secure.BUTTON_BRIGHTNESS,
         Settings.Secure.KEYBOARD_BRIGHTNESS,
         Settings.Secure.QSTILE_REQUIRES_UNLOCKING,
-        Settings.Secure.LAUNCHER_HIDDEN_APPS,
     };
 }

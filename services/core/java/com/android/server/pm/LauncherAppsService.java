@@ -68,7 +68,6 @@ import android.content.pm.ShortcutQueryWrapper;
 import android.content.pm.ShortcutServiceInternal;
 import android.content.pm.ShortcutServiceInternal.ShortcutChangeListener;
 import android.content.pm.UserInfo;
-import android.database.ContentObserver;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Binder;
@@ -97,6 +96,7 @@ import com.android.internal.util.CollectionUtils;
 import com.android.internal.util.Preconditions;
 import com.android.server.LocalServices;
 import com.android.server.SystemService;
+import com.android.server.app.AppLockManagerServiceInternal;
 import com.android.server.pm.parsing.pkg.AndroidPackage;
 import com.android.server.wm.ActivityTaskManagerInternal;
 
@@ -105,6 +105,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.Objects;
 import java.util.concurrent.ExecutionException;
@@ -126,7 +127,6 @@ public class LauncherAppsService extends SystemService {
     public void onStart() {
         publishBinderService(Context.LAUNCHER_APPS_SERVICE, mLauncherAppsImpl);
         mLauncherAppsImpl.registerLoadingProgressForIncrementalApps();
-        mLauncherAppsImpl.registerHiddenAppsObserver();
         LocalServices.addService(LauncherAppsServiceInternal.class, mLauncherAppsImpl.mInternal);
     }
 
@@ -188,10 +188,7 @@ public class LauncherAppsService extends SystemService {
 
         final LauncherAppsServiceInternal mInternal;
 
-        private final Object mLock = new Object();
-        @GuardedBy("mLock")
-        private final ArrayList<String> mHiddenPackages = new ArrayList<>();
-        private final ContentObserver mHiddenAppsObserver;
+        private final AppLockManagerServiceInternal mAppLockManagerInternal;
 
         public LauncherAppsImpl(Context context) {
             mContext = context;
@@ -214,13 +211,7 @@ public class LauncherAppsService extends SystemService {
             mShortcutServiceInternal.addShortcutChangeCallback(mShortcutChangeHandler);
             mCallbackHandler = BackgroundThread.getHandler();
             mDpm = (DevicePolicyManager) mContext.getSystemService(Context.DEVICE_POLICY_SERVICE);
-            mHiddenAppsObserver = new ContentObserver(mCallbackHandler) {
-                @Override
-                public void onChange(boolean selfChange) {
-                    super.onChange(selfChange);
-                    updateHiddenApps();
-                }
-            };
+            mAppLockManagerInternal = LocalServices.getService(AppLockManagerServiceInternal.class);
             mInternal = new LocalService();
         }
 
@@ -666,6 +657,7 @@ public class LauncherAppsService extends SystemService {
 
         private List<LauncherActivityInfoInternal> queryIntentLauncherActivities(
                 Intent intent, int callingUid, UserHandle user) {
+            final Set<String> hiddenApps = mAppLockManagerInternal.getHiddenPackages(user.getIdentifier());
             final List<ResolveInfo> apps = mPackageManagerInternal.queryIntentActivities(intent,
                     intent.resolveTypeIfNeeded(mContext.getContentResolver()),
                     PackageManager.MATCH_DIRECT_BOOT_AWARE
@@ -680,11 +672,9 @@ public class LauncherAppsService extends SystemService {
                     // should not happen
                     continue;
                 }
-                synchronized (mLock) {
-                    if (!mHiddenPackages.isEmpty() && mHiddenPackages.contains(packageName)) {
-                        if (DEBUG) Slog.d(TAG, "Skipping package " + packageName);
-                        continue;
-                    }
+                if (hiddenApps.contains(packageName)) {
+                    if (DEBUG) Slog.d(TAG, "Skipping package " + packageName);
+                    continue;
                 }
                 final IncrementalStatesInfo incrementalStatesInfo =
                         mPackageManagerInternal.getIncrementalStatesInfo(packageName, callingUid,
@@ -1442,40 +1432,6 @@ public class LauncherAppsService extends SystemService {
                                 user.getIdentifier());
                     }
                 }, user.getIdentifier());
-            }
-        }
-
-        void registerHiddenAppsObserver() {
-            updateHiddenApps();
-            mContext.getContentResolver().registerContentObserver(
-                Settings.Secure.getUriFor(Settings.Secure.LAUNCHER_HIDDEN_APPS),
-                false /* notifyForDescendents */, mHiddenAppsObserver,
-                UserHandle.USER_ALL);
-        }
-
-        private void updateHiddenApps() {
-            final String apps = Settings.Secure.getStringForUser(
-                mContext.getContentResolver(),
-                Settings.Secure.LAUNCHER_HIDDEN_APPS,
-                UserHandle.USER_CURRENT);
-            synchronized (mLock) {
-                updateHiddenAppsLocked(apps);
-            }
-        }
-
-        private void updateHiddenAppsLocked(@Nullable String apps) {
-            if (DEBUG) {
-                Slog.d(TAG, "Hidden packages before update:");
-                mHiddenPackages.forEach(pkg -> Slog.d(TAG, "Package: " + pkg));
-            }
-            if (!mHiddenPackages.isEmpty()) {
-                mHiddenPackages.clear();
-            }
-            if (apps == null || apps.isEmpty()) return;
-            mHiddenPackages.addAll(Arrays.asList(apps.split(";")));
-            if (DEBUG) {
-                Slog.d(TAG, "Hidden packages:");
-                mHiddenPackages.forEach(pkg -> Slog.d(TAG, "Package: " + pkg));
             }
         }
 

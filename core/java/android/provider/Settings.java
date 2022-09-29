@@ -12222,12 +12222,6 @@ public final class Settings {
          */
         public static final String ENABLE_COMBINED_SIGNAL_ICONS = "enable_combined_signal_icons";
 
-        /**
-         * List of ; separated apps to be hidden from launcher.
-         * @hide
-         */
-        public static final String LAUNCHER_HIDDEN_APPS = "launcher_hidden_apps";
-
         /*****************************
          * AICP Secure Settings end
          *****************************/

@@ -2490,6 +2490,10 @@ public final class SystemServer implements Dumpable {
             mSystemServiceManager.startService(AuthService.class);
             t.traceEnd();
 
+            t.traceBegin("AppLockManagerService");
+            mSystemServiceManager.startService(APP_LOCK_SERVICE_CLASS);
+            t.traceEnd();
+
             if (!isWatch) {
                 // We don't run this on watches as there are no plans to use the data logged
                 // on watch devices.
@@ -2789,10 +2793,6 @@ public final class SystemServer implements Dumpable {
             mSystemServiceManager.startServiceFromJar(UWB_SERVICE_CLASS, UWB_APEX_SERVICE_JAR_PATH);
             t.traceEnd();
         }
-
-        t.traceBegin("AppLockManagerService");
-        mSystemServiceManager.startService(APP_LOCK_SERVICE_CLASS);
-        t.traceEnd();
 
         t.traceBegin("StartBootPhaseDeviceSpecificServicesReady");
         mSystemServiceManager.startBootPhase(t, SystemService.PHASE_DEVICE_SPECIFIC_SERVICES_READY);

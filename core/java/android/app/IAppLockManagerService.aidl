@@ -41,4 +41,8 @@ interface IAppLockManagerService {
     boolean isBiometricsAllowed(in int userId);
 
     void unlockPackage(in String packageName, in int userId);
+
+    void setPackageHidden(in String packageName, boolean hide, in int userId);
+
+    List<String> getHiddenPackages(in int userId);
 }

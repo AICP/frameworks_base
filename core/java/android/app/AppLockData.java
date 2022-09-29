@@ -45,19 +45,23 @@ public final class AppLockData implements Parcelable {
 
     private final String mPackageName;
     private final boolean mShouldRedactNotification;
+    private final boolean mHideFromLauncher;
 
     /** @hide */
     public AppLockData(
         @NonNull final String packageName,
-        final boolean shouldRedactNotification
+        final boolean shouldRedactNotification,
+        final boolean hideFromLauncher
     ) {
         mPackageName = packageName;
         mShouldRedactNotification = shouldRedactNotification;
+        mHideFromLauncher = hideFromLauncher;
     }
 
     private AppLockData(final Parcel in) {
         mPackageName = in.readString();
         mShouldRedactNotification = in.readBoolean();
+        mHideFromLauncher = in.readBoolean();
     }
 
     @NonNull
@@ -69,6 +73,10 @@ public final class AppLockData implements Parcelable {
         return mShouldRedactNotification;
     }
 
+    public boolean getHideFromLauncher() {
+        return mHideFromLauncher;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -78,12 +86,14 @@ public final class AppLockData implements Parcelable {
     public void writeToParcel(final Parcel parcel, final int flags) {
         parcel.writeString(mPackageName);
         parcel.writeBoolean(mShouldRedactNotification);
+        parcel.writeBoolean(mHideFromLauncher);
     }
 
     @Override
     @NonNull
     public String toString() {
         return "AppLockData[ packageName = " + mPackageName +
-            ", shouldRedactNotification = " + mShouldRedactNotification + " ]";
+            ", shouldRedactNotification = " + mShouldRedactNotification +
+            ", hideFromLauncher = " + mHideFromLauncher + " ]";
     }
 }

@@ -736,6 +736,61 @@ class AppLockManagerService(
         }
     }
 
+    /**
+     * Hide or unhide an application from launcher.
+     * Caller must hold {@link android.permission.MANAGE_APP_LOCK}.
+     *
+     * @param packageName the name of the package to hide or unhide.
+     * @param hide whether to hide or not.
+     * @param userId the user id of the caller.
+     * @throws [SecurityException] if caller does not have permission
+     *     [Manifest.permissions.MANAGE_APP_LOCK].
+     */
+    @RequiresPermission(Manifest.permission.MANAGE_APP_LOCK)
+    override fun setPackageHidden(packageName: String, hide: Boolean, userId: Int) {
+        logD {
+            "setPackageHidden: packageName = $packageName, hide = $hide, userId = $userId"
+        }
+        enforceCallingPermission("setPackageHidden")
+        val actualUserId = getActualUserId(userId, "setPackageHidden")
+        serviceScope.launch {
+            mutex.withLock {
+                val config = userConfigMap[actualUserId] ?: run {
+                    Slog.e(TAG, "setPackageHidden requested by unknown user id $userId")
+                    return@withLock
+                }
+                if (!config.isPackageProtected(packageName)) {
+                    Slog.w(TAG, "Hide requested for package $packageName " +
+                        "that is not in list")
+                    return@withLock
+                }
+                if (config.hidePackage(packageName, hide)) {
+                    withContext(Dispatchers.IO) {
+                        config.write()
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Get the list of applications hidden from launcher.
+     * Caller must hold {@link android.permission.MANAGE_APP_LOCK}.
+     *
+     * @param userId the user id of the caller.
+     * @return list of package names of the hidden apps.
+     * @throws [SecurityException] if caller does not have permission
+     *     [Manifest.permissions.MANAGE_APP_LOCK].
+     */
+    @RequiresPermission(Manifest.permission.MANAGE_APP_LOCK)
+    override fun getHiddenPackages(userId: Int): List<String> {
+        logD {
+            "getHiddenPackages: userId = $userId"
+        }
+        enforceCallingPermission("getHiddenPackages")
+        return localService.getHiddenPackages(userId).toList()
+    }
+
     private fun enforceCallingPermission(msg: String) {
         context.enforceCallingPermission(Manifest.permission.MANAGE_APP_LOCK, msg)
     }
@@ -1009,7 +1064,7 @@ class AppLockManagerService(
             logD {
                 "interceptActivity, pkg = $packageName"
             }
-            if (!localService.requireUnlock(packageName, info.userId)) return null
+            if (!requireUnlock(packageName, info.userId)) return null
             val target = IntentSender(
                 atmInternal.getIntentSender(
                     ActivityManager.INTENT_SENDER_ACTIVITY,
@@ -1038,6 +1093,25 @@ class AppLockManagerService(
                     putExtra(AppLockManager.EXTRA_ALLOW_BIOMETRICS, isBiometricsAllowed(info.userId))
                 }
             return intent
+        }
+
+        override fun getHiddenPackages(userId: Int): Set<String> {
+            logD {
+                "getHiddenPackages: userId = $userId"
+            }
+            return runBlocking {
+                val actualUserId = getActualUserId(userId, "getHiddenPackages")
+                val config = mutex.withLock {
+                    userConfigMap[actualUserId] ?: run {
+                        Slog.e(TAG, "Config unavailable for user $userId")
+                        return@runBlocking emptySet()
+                    }
+                }
+                config.getAppLockDataList()
+                    .filter { it.hideFromLauncher }
+                    .map { it.packageName }
+                    .toSet()
+            }
         }
     }
 
@@ -1119,4 +1193,12 @@ interface AppLockManagerServiceInternal {
      *    shouldn't be intercepted.
      */
     fun interceptActivity(info: ActivityInterceptorInfo): Intent?
+
+    /**
+     * Get the list of applications hidden from launcher.
+     *
+     * @param userId the user id given of the caller.
+     * @return a hash set of package names.
+     */
+    fun getHiddenPackages(userId: Int): Set<String>
 }

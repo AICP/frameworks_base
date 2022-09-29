@@ -40,6 +40,12 @@ public final class AppLockManager {
     /** @hide */
     public static final boolean DEFAULT_BIOMETRICS_ALLOWED = true;
 
+    /** @hide */
+    public static final boolean DEFAULT_REDACT_NOTIFICATION = false;
+
+    /** @hide */
+    public static final boolean DEFAULT_HIDE_IN_LAUNCHER = false;
+
     /**
      * Intent action for starting credential activity in SystemUI.
      * @hide
@@ -210,6 +216,40 @@ public final class AppLockManager {
     public void unlockPackage(@NonNull String packageName) {
         try {
             mService.unlockPackage(packageName, mContext.getUserId());
+        } catch (RemoteException e) {
+            throw e.rethrowFromSystemServer();
+        }
+    }
+
+    /**
+     * Hide or unhide an application from launcher.
+     * Caller must hold {@link android.permission.MANAGE_APP_LOCK}.
+     *
+     * @param packageName the name of the package to hide or unhide.
+     * @param hide whether to hide or not.
+     */
+    @UserHandleAware
+    @RequiresPermission(Manifest.permission.MANAGE_APP_LOCK)
+    public void setPackageHidden(@NonNull String packageName, boolean hide) {
+        try {
+            mService.setPackageHidden(packageName, hide, mContext.getUserId());
+        } catch (RemoteException e) {
+            throw e.rethrowFromSystemServer();
+        }
+    }
+
+    /**
+     * Get the list of applications hidden from launcher.
+     * Caller must hold {@link android.permission.MANAGE_APP_LOCK}.
+     *
+     * @return list of package names of the hidden apps.
+     */
+    @UserHandleAware
+    @RequiresPermission(Manifest.permission.MANAGE_APP_LOCK)
+    @NonNull
+    public List<String> getHiddenPackages() {
+        try {
+            return mService.getHiddenPackages(mContext.getUserId());
         } catch (RemoteException e) {
             throw e.rethrowFromSystemServer();
         }

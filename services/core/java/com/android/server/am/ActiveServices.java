@@ -5300,7 +5300,7 @@ public final class ActiveServices {
                     final int numServices = smap.mServicesByInstanceName.size();
                     for (int i = 0; i < numServices; i++) {
                         final ServiceRecord sr = smap.mServicesByInstanceName.valueAt(i);
-                        if (sr.isForeground && callingUid == sr.appInfo.uid) {
+                        if (sr.isForeground) {
                             callback.onForegroundStateChanged(sr, sr.appInfo.packageName,
                                     sr.userId, true);
                         }

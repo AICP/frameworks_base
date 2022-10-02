@@ -165,16 +165,16 @@ internal class AppLockConfig(dataDir: File) {
      */
     fun hidePackage(packageName: String, hide: Boolean): Boolean {
         return appLockDataMap[packageName]?.let {
-            val isHidden = it.hideFromLauncher
-            if (isHidden != hide) {
+            if (it.hideFromLauncher != hide) {
                 appLockDataMap[packageName] = AppLockData(
                     it.packageName,
                     it.shouldRedactNotification,
                     hide
                 )
                 true
+            } else {
+                false
             }
-            false
         } ?: run {
             Slog.e(TAG, "Attempt to hide package that is not in list")
             false

@@ -19,6 +19,9 @@
     <string name="tristate_rotation_0">Portrait</string>
     <string name="tristate_rotation_90">Landscape (90°)</string>
     <string name="tristate_rotation_270">Landscape (270°)</string>
+    <string name="tristate_refresh_auto">Auto-refresh</string>
+    <string name="tristate_refresh_min">Min-refresh</string>
+    <string name="tristate_refresh_max">Max-refresh</string>
 
     <!-- Reader mode QS tile -->
     <string name="quick_settings_reading_mode">Reading mode</string>

@@ -104,6 +104,9 @@ public class TriStateUiControllerImpl implements TriStateUiController,
     private static final int MODE_ROTATION_0 = 641;
     private static final int MODE_ROTATION_90 = 642;
     private static final int MODE_ROTATION_270 = 643;
+    private static final int MODE_REFRESH_AUTO = 644;
+    private static final int MODE_REFRESH_MIN = 645;
+    private static final int MODE_REFRESH_MAX = 646;
 
     private static final String EXTRA_SLIDER_POSITION = "position";
     private static final String EXTRA_SLIDER_POSITION_VALUE = "position_value";
@@ -444,6 +447,18 @@ public class TriStateUiControllerImpl implements TriStateUiController,
                     case MODE_ROTATION_270:
                         iconId = R.drawable.ic_tristate_rotate_landscape;
                         textId = R.string.tristate_rotation_270;
+                        break;
+                    case MODE_REFRESH_AUTO:
+                        iconId = R.drawable.ic_tristate_refresh;
+                        textId = R.string.tristate_refresh_auto;
+                        break;
+                    case MODE_REFRESH_MIN:
+                        iconId = R.drawable.ic_tristate_refresh;
+                        textId = R.string.tristate_refresh_min;
+                        break;
+                    case MODE_REFRESH_MAX:
+                        iconId = R.drawable.ic_tristate_refresh;
+                        textId = R.string.tristate_refresh_max;
                         break;
                 }
 

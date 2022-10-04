@@ -187,7 +187,7 @@ public class CentralSurfacesCommandQueueCallbacks implements CommandQueue.Callba
     public void remQsTile(ComponentName tile) {
         QSPanelController qsPanelController = mCentralSurfaces.getQSPanelController();
         if (qsPanelController != null && qsPanelController.getHost() != null) {
-            qsPanelController.getHost().removeTileByUser(tile);
+            qsPanelController.getHost().removeTile(tile);
         }
     }
 

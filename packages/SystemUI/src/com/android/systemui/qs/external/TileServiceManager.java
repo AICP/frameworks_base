@@ -289,7 +289,7 @@ public class TileServiceManager {
                 }
             }
 
-            mServices.getHost().removeTile(CustomTile.toSpec(component));
+            mServices.getHost().removeTile(component);
         }
     };
 }

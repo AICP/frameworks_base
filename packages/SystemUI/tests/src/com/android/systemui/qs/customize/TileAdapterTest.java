@@ -55,6 +55,6 @@ public class TileAdapterTest extends SysuiTestCase {
     @Test
     public void testResetNotifiesHost() {
         mTileAdapter.resetTileSpecs(Collections.emptyList());
-        verify(mQSTileHost).changeTilesByUser(any(), any());
+        verify(mQSTileHost).changeTiles(any(), any());
     }
 }

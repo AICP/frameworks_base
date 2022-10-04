@@ -29,7 +29,6 @@ import static org.mockito.Mockito.when;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Handler;
-import android.os.HandlerExecutor;
 import android.os.RemoteException;
 import android.os.UserHandle;
 import android.service.quicksettings.IQSTileService;
@@ -66,7 +65,6 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 import java.util.Optional;
-import java.util.concurrent.Executor;
 
 import javax.inject.Provider;
 
@@ -132,16 +130,17 @@ public class TileServicesTest extends SysuiTestCase {
                 .thenReturn(mTileLifecycleManager);
 
         Provider<Handler> provider = () -> new Handler(mTestableLooper.getLooper());
-        Executor executor = new HandlerExecutor(provider.get());
 
         QSTileHost host = new QSTileHost(mContext,
                 mStatusBarIconController,
                 mQSFactory,
-                executor,
+                provider.get(),
+                mTestableLooper.getLooper(),
                 mPluginManager,
                 mTunerService,
                 () -> mAutoTileManager,
                 mDumpManager,
+                mock(BroadcastDispatcher.class),
                 Optional.of(mCentralSurfaces),
                 mQSLogger,
                 mUiEventLogger,

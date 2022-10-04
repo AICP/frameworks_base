@@ -163,13 +163,13 @@ public final class AppLockManager {
      * in locked state. Caller must hold {@link android.permission.MANAGE_APP_LOCK}.
      *
      * @param packageName the package name.
-     * @param secure true to hide notification content.
+     * @param shouldRedactNotification true to hide notification content.
      */
     @UserHandleAware
     @RequiresPermission(Manifest.permission.MANAGE_APP_LOCK)
-    public void setShouldRedactNotification(@NonNull String packageName, boolean secure) {
+    public void setShouldRedactNotification(@NonNull String packageName, boolean shouldRedactNotification) {
         try {
-            mService.setShouldRedactNotification(packageName, secure, mContext.getUserId());
+            mService.setShouldRedactNotification(packageName, shouldRedactNotification, mContext.getUserId());
         } catch (RemoteException e) {
             throw e.rethrowFromSystemServer();
         }

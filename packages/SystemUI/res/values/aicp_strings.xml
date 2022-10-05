@@ -18,28 +18,6 @@
  */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-<<<<<<< HEAD   (1b7a91 Remove package name from SafetyNet logs)
-=======
-    <!-- Alert slider extras -->
-    <string name="volume_ringer_priority_only">Priority</string>
-    <string name="volume_ringer_alarms_only">Alarms</string>
-    <string name="volume_ringer_dnd">DnD</string>
-    <string name="tristate_flashlight">Torch</string>
-    <string name="tristate_flashlight_on">Torch on</string>
-    <string name="tristate_flashlight_off">Torch off</string>
-    <string name="tristate_flashlight_blink">Torch blink</string>
-    <string name="tristate_brightness_bright">Max-brightness</string>
-    <string name="tristate_brightness_dark">Min-brightness</string>
-    <string name="tristate_brightness_auto">Auto-brightness</string>
-    <string name="tristate_rotation_auto">Auto-rotate</string>
-    <string name="tristate_rotation_0">Portrait</string>
-    <string name="tristate_rotation_90">Landscape (90°)</string>
-    <string name="tristate_rotation_270">Landscape (270°)</string>
-    <string name="tristate_refresh_auto">Auto-refresh</string>
-    <string name="tristate_refresh_min">Min-refresh</string>
-    <string name="tristate_refresh_max">Max-refresh</string>
->>>>>>> CHANGE (3f7917 AlertSlider: Add resources for refresh rate modes)
-
     <!-- Custom QS tiles -->
     <!-- Ambient display QS tile -->
     <string name="quick_settings_ambient_display_label">Ambient display</string>
@@ -161,6 +139,9 @@
     <string name="tristate_rotation_0">Portrait</string>
     <string name="tristate_rotation_90">Landscape (90°)</string>
     <string name="tristate_rotation_270">Landscape (270°)</string>
+    <string name="tristate_refresh_auto">Auto-refresh</string>
+    <string name="tristate_refresh_min">Min-refresh</string>
+    <string name="tristate_refresh_max">Max-refresh</string>
 
     <!-- Label for UI element which allows deleting the screenshot [CHAR LIMIT=30] -->
     <string name="screenshot_delete_label">Delete</string>

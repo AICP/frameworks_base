@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd233613_bc86e78b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-10-05T11:50:18Z",
+      "side": 1,
+      "message": "This revert restores usual custom behaviour of QS and tiles. Was broken after android-13.0.0_r8 merge. \nWithout this revert, all tiles resets on every flash to stock only look.",
+      "revId": "9179c3846dcab2ae55bed2c2a525902d468ec8df",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

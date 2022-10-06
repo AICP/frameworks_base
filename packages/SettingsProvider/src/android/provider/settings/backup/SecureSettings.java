@@ -223,5 +223,6 @@ public class SecureSettings {
         Settings.Secure.SECURE_LOCKSCREEN_QS_DISABLED,
         Settings.Secure.LOCKSCREEN_MEDIA_METADATA,
         Settings.Secure.BERRY_BLACK_THEME,
+        Settings.Secure.EXTENDED_MONET_THEMES,
     };
 }

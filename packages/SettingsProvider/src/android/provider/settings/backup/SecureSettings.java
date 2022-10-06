@@ -221,5 +221,6 @@ public class SecureSettings {
         Settings.Secure.DISABLE_SECURE_TILES_ON_LOCKSCREEN,
         Settings.Secure.LOCKSCREEN_MEDIA_METADATA,
         Settings.Secure.BERRY_BLACK_THEME,
+        Settings.Secure.EXTENDED_MONET_THEMES,
     };
 }

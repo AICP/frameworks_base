@@ -11710,6 +11710,11 @@ public final class Settings {
          */
         public static final String BERRY_BLACK_THEME = "berry_black_theme";
 
+        /**
+         * @hide
+         */
+        public static final String EXTENDED_MONET_THEMES = "monet_themes_style";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

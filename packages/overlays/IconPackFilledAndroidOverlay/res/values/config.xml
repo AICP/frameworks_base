@@ -34,11 +34,11 @@
     </string>
     <bool name="config_batterymeterDualTone">true</bool>
     <!-- X path for SignalDrawable as defined on a 24x24 canvas. -->
-    <string name="config_signalXPath" translatable="false">
+    <string name="config_signalAttributionPath" translatable="false">
         M 21.7,20.28 L 19.92,18.5 L 21.7,16.72 C 22.1,16.32 22.1,15.68 21.71,15.29 C 21.32,14.9 20.68,14.9 20.28,15.3 L 18.5,17.08 L 16.72,15.3 C 16.32,14.9 15.68,14.9 15.29,15.29 C 14.9,15.68 14.9,16.32 15.3,16.72 L 17.08,18.5 L 15.3,20.28 C 14.9,20.68 14.9,21.32 15.29,21.71 C 15.68,22.1 16.32,22.1 16.72,21.7 L 18.5,19.92 L 20.28,21.7 C 20.68,22.1 21.32,22.1 21.71,21.71 C 22.1,21.32 22.1,20.68 21.7,20.28
     </string>
     <!-- config_signalCutout{Height,Width}Fraction define fraction of the 24x24 canvas that
-         should be cut out to display config_signalXPath.-->
+         should be cut out to display config_signalAttributionPath.-->
     <item name="config_signalCutoutWidthFraction" format="float" type="dimen">11</item>
     <item name="config_signalCutoutHeightFraction" format="float" type="dimen">11</item>
 </resources>

@@ -6323,6 +6323,12 @@ public final class Settings {
          */
         public static final String STATUS_BAR_LOGO_COLOR_ACCENT = "status_bar_logo_color_accent";
 
+        /**
+         * Whether to play the camera shutter sound on taking a screenshot.
+         * @hide
+         */
+        public static final String SCREENSHOT_SHUTTER_SOUND = "screenshot_shutter_sound";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6546,6 +6552,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUS_BAR_LOGO_POSITION);
             PRIVATE_SETTINGS.add(STATUS_BAR_LOGO_STYLE);
             PRIVATE_SETTINGS.add(STATUS_BAR_LOGO_COLOR_ACCENT);
+            PRIVATE_SETTINGS.add(SCREENSHOT_SHUTTER_SOUND);
         }
 
         /**

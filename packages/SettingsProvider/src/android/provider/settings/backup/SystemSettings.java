@@ -188,5 +188,6 @@ public class SystemSettings {
         Settings.System.STATUS_BAR_LOGO_POSITION,
         Settings.System.STATUS_BAR_LOGO_STYLE,
         Settings.System.STATUS_BAR_LOGO_COLOR_ACCENT,
+        Settings.System.SCREENSHOT_SHUTTER_SOUND,
     };
 }

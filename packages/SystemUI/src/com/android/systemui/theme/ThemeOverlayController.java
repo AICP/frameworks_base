@@ -112,6 +112,8 @@ public class ThemeOverlayController extends CoreStartable implements Dumpable {
             "com.android.system.theme.snowpaintdrop";
     protected static final String OVERLAY_ESPRESSO_THEME =
             "com.android.system.theme.expresso";
+    protected static final String OVERLAY_CLEAR_THEME =
+            "com.android.system.theme.clear";
 
     private static final boolean DEBUG = true;
 
@@ -728,6 +730,9 @@ public class ThemeOverlayController extends CoreStartable implements Dumpable {
         } else if (categoryToPackage.containsKey(OVERLAY_CATEGORY_SYSTEM_PALETTE) && isExtendedTheme == 3) {
             OverlayIdentifier espTheme = new OverlayIdentifier(OVERLAY_ESPRESSO_THEME);
             categoryToPackage.put(OVERLAY_CATEGORY_SYSTEM_PALETTE, espTheme);
+        } else if (categoryToPackage.containsKey(OVERLAY_CATEGORY_SYSTEM_PALETTE) && isExtendedTheme == 4) {
+            OverlayIdentifier clearTheme = new OverlayIdentifier(OVERLAY_CLEAR_THEME);
+            categoryToPackage.put(OVERLAY_CATEGORY_SYSTEM_PALETTE, clearTheme);
         }
 
         Set<UserHandle> managedProfiles = new HashSet<>();

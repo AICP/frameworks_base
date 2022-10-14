@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4698d5f5_bf444a46",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-10-14T08:52:40Z",
+      "side": 1,
+      "message": "looks confusing when on dark theme.. barely visible.",
+      "revId": "04f9fddf040f8821d655befa46b4b0b681e51cb2",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

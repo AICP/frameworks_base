@@ -74,9 +74,10 @@ public class PropImitationHooks {
          * Set Certified Fingerprint and Model for Velvet
          * Set Stock Fingerprint for ARCore
          */
-        if (!sCertifiedFp.isEmpty() && (sIsGms || sIsFinsky)) {
-            dlog("Setting certified fingerprint for: " + packageName);
+        if (!sCertifiedFp.isEmpty() && sIsGms) {
+            dlog("Spoofing buid for GMS");
             setPropValue("FINGERPRINT", sCertifiedFp);
+            setPropValue("MODEL", Build.MODEL + "\u200b");
         } else if (!sCertifiedFp.isEmpty() && (sIsVelvet)) {
             dlog("Setting certified fingerprint and model for: " + packageName);
             setPropValue("FINGERPRINT", sCertifiedFp);

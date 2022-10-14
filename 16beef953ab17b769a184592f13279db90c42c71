@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5115ea4_09390abf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-10-14T20:14:37Z",
+      "side": 1,
+      "message": "replaced with squashed commit: https://review.lineageos.org/c/LineageOS/android_frameworks_base/+/337881\n\nMerged on LoS.",
+      "revId": "16beef953ab17b769a184592f13279db90c42c71",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

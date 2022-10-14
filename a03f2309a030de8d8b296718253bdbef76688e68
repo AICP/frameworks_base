@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf3ac5b5_bdc3672a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-10-14T21:48:23Z",
+      "side": 1,
+      "message": "http://haste.aicp-rom.com/iroduvafuq.sql\n\nCauses troubles on clean flash. abandoned.",
+      "revId": "a03f2309a030de8d8b296718253bdbef76688e68",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

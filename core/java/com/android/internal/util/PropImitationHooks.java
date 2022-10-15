@@ -107,8 +107,8 @@ public class PropImitationHooks {
 
     public static void onEngineGetCertificateChain() {
         // Check stack for SafetyNet or Play Integrity
-        if (isCallerSafetyNet() || sIsFinsky || sIsVelvet) {
-            dlog("Blocked key attestation sIsGms=" + sIsGms + " sIsFinsky=" + sIsFinsky + " sIsVelvet=" + sIsVelvet);
+        if (isCallerSafetyNet() || sIsFinsky) {
+            dlog("Blocked key attestation sIsGms=" + sIsGms + " sIsFinsky=" + sIsFinsky);
             throw new UnsupportedOperationException();
         }
     }

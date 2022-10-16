@@ -801,7 +801,8 @@ public class DozeSensors {
                     screenX = event.values[0];
                     screenY = event.values[1];
                 }
-                mSensorCallback.onSensorPulse(mPulseReason, screenX, screenY, event.values);
+                mSensorCallback.onSensorPulse(mPulseReason, mPerformsProxCheck,
+                        screenX, screenY, event.values);
                 if (!mRegistered && mImmediatelyReRegister) {
                     updateListening();
                 }

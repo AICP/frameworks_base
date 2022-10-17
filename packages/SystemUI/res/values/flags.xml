@@ -36,4 +36,6 @@
       avatar will no longer show on the lockscreen -->
     <bool name="flag_user_switcher_chip">false</bool>
 
+    <bool name="flag_combined_status_bar_signal_icons">true</bool>
+
 </resources>

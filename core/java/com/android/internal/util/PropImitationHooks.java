@@ -40,6 +40,9 @@ public class PropImitationHooks {
     private static final String sStockFp =
             Resources.getSystem().getString(R.string.config_stockFingerprint);
 
+    private static final Boolean sEnablePropImitation =
+            Resources.getSystem().getBoolean(R.bool.config_enablePropImitation);
+
     private static final String PACKAGE_ARCORE = "com.google.ar.core";
     private static final String PACKAGE_FINSKY = "com.android.vending";
     private static final String PACKAGE_VELVET = "com.google.android.googlequicksearchbox";
@@ -51,6 +54,11 @@ public class PropImitationHooks {
     private static volatile boolean sIsVelvet = false;
 
     public static void setProps(Application app) {
+        if (!sEnablePropImitation) {
+            dlog("Prop imitation is disabled by config");
+            return;
+        }
+
         final String packageName = app.getPackageName();
         final String processName = app.getProcessName();
 

@@ -84,6 +84,12 @@
         android:title="@string/status_bar_settings_auto_rotation" />
 
     <com.android.systemui.tuner.StatusBarSwitch
+        android:icon="@drawable/ic_statusbar_nfc"
+        android:key="nfc"
+        android:persistent="false"
+        android:title="@string/status_bar_nfc" />
+
+    <com.android.systemui.tuner.StatusBarSwitch
         android:icon="@drawable/ic_statusbar_volume"
         android:key="volume"
         android:title="@*android:string/volume_unknown" />

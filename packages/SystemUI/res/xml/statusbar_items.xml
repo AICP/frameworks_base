@@ -94,6 +94,12 @@
         android:title="@string/quick_settings_cellular_detail_title" />
 
     <com.android.systemui.tuner.StatusBarSwitch
+        android:icon="@drawable/ic_statusbar_nfc"
+        android:key="nfc"
+        android:persistent="false"
+        android:title="@string/status_bar_nfc" />
+
+    <com.android.systemui.tuner.StatusBarSwitch
         android:icon="@drawable/ic_statusbar_volte"
         android:key="ims"
         android:title="@string/status_bar_ims" />

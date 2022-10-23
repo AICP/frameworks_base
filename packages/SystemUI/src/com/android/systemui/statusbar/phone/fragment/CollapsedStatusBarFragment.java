@@ -627,7 +627,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
      * Hides a view.
      */
     private void animateHide(final View v, boolean animate) {
-        if (v == null || v.getVisibility() == View.GONE)
+        if (v == null)
             return;
         animateHiddenState(v, View.INVISIBLE, animate);
     }
@@ -636,7 +636,7 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
      * Shows a view, and synchronizes the animation with Keyguard exit animations, if applicable.
      */
     private void animateShow(View v, boolean animate) {
-        if (v == null || v.getVisibility() == View.GONE)
+        if (v == null)
             return;
         v.animate().cancel();
         v.setVisibility(View.VISIBLE);

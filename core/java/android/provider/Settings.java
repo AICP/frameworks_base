@@ -12197,6 +12197,13 @@ public final class Settings {
          */
         public static final String ENABLE_COMBINED_SIGNAL_ICONS = "enable_combined_signal_icons";
 
+        /**
+         * Whether to show an overlay in the bottom corner of the screen on copying stuff
+         * into the clipboard.
+         * @hide
+         */
+        public static final String SHOW_CLIPBOARD_OVERLAY = "show_clipboard_overlay";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

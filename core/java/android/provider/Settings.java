@@ -12115,6 +12115,13 @@ public final class Settings {
         @Readable
         public static final String QSTILE_REQUIRES_UNLOCKING = "qstile_requires_unlocking";
 
+        /**
+         * Whether to show an overlay in the bottom corner of the screen on copying stuff
+         * into the clipboard.
+         * @hide
+         */
+        public static final String SHOW_CLIPBOARD_OVERLAY = "show_clipboard_overlay";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

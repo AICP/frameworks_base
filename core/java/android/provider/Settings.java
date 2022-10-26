@@ -12006,6 +12006,13 @@ public final class Settings {
          */
         public static final String KEYBOARD_BRIGHTNESS = "keyboard_brightness";
 
+        /**
+         *  Toggle the media squiggle animation
+         *  0 = 0ff, 1 = on
+         * @hide
+         */
+        public static final String SHOW_MEDIA_SQUIGGLE_ANIMATION = "show_media_squiggle_animation";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

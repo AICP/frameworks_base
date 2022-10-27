@@ -72,4 +72,7 @@
     <!-- BurnIn protection dimens-->
     <dimen name="burnin_protection_horizontal_shift">3dp</dimen>
     <dimen name="burnin_protection_vertical_shift">1dp</dimen>
+
+    <!-- Bluetooth dialog -->
+    <dimen name="bluetooth_dialog_active_device_bottom_margin">4dp</dimen>
 </resources>

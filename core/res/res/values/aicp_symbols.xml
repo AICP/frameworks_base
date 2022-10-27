@@ -71,6 +71,9 @@
     <!-- Paths to OP warp charging status file -->
     <java-symbol type="string" name="config_opWarpChargerStatusPaths" />
 
+    <!-- Path to warp charging status file -->
+    <java-symbol type="string" name="config_DashChargerStatusPath" />
+
     <!-- Light / Regular style fonts -->
     <java-symbol type="string" name="config_lightFontFamily" />
     <java-symbol type="string" name="config_regularFontFamily" />

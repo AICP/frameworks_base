@@ -1586,11 +1586,15 @@ public class CameraDeviceImpl extends CameraDevice
                 Log.w(TAG, "ignore input format/size check for white listed app");
                 return;
             }
-            if (!checkInputConfigurationWithStreamConfigurations(inputConfig, /*maxRes*/false) &&
-                    !checkInputConfigurationWithStreamConfigurations(inputConfig, /*maxRes*/true)) {
-                throw new IllegalArgumentException("Input config with format " +
-                        inputFormat + " and size " + inputConfig.getWidth() + "x" +
-                        inputConfig.getHeight() + " not supported by camera id " + mCameraId);
+            boolean skipInputConfigCheck =
+                SystemProperties.getBoolean("persist.camera.skip_input_config_check", false);
+            if (!skipInputConfigCheck) {
+              if (!checkInputConfigurationWithStreamConfigurations(inputConfig, /*maxRes*/false) &&
+                      !checkInputConfigurationWithStreamConfigurations(inputConfig, /*maxRes*/true)) {
+                  throw new IllegalArgumentException("Input config with format " +
+                          inputFormat + " and size " + inputConfig.getWidth() + "x" +
+                          inputConfig.getHeight() + " not supported by camera id " + mCameraId);
+              }
             }
         }
     }

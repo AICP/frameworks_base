@@ -99,7 +99,7 @@ public class BluetoothTile extends SecureQSTile<BooleanState> {
 
     @Override
     public Intent getLongClickIntent() {
-        return BLUETOOTH_SETTINGS;
+        return new Intent(Settings.ACTION_BLUETOOTH_SETTINGS);
     }
 
     @Override

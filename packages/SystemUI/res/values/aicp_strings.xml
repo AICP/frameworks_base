@@ -22,6 +22,18 @@
     <string name="tristate_refresh_auto">Auto-refresh</string>
     <string name="tristate_refresh_min">Min-refresh</string>
     <string name="tristate_refresh_max">Max-refresh</string>
+    <string name="tristate_extradim_off">Dim off</string>
+    <string name="tristate_extradim_min">Min-dim</string>
+    <string name="tristate_extradim_mid">Mid-dim</string>
+    <string name="tristate_extradim_max">Max-dim</string>
+    <string name="tristate_nightlight_off">Night Light off</string>
+    <string name="tristate_nightlight_min">Min-temp</string>
+    <string name="tristate_nightlight_mid">Mid-temp</string>
+    <string name="tristate_nightlight_max">Max-temp</string>
+    <string name="tristate_colorspace_vivid">Vivid</string>
+    <string name="tristate_colorspace_natural">Natural</string>
+    <string name="tristate_colorspace_cinematic">Cinematic</string>
+    <string name="tristate_colorspace_brilliant">Brilliant</string>
 
     <!-- Reader mode QS tile -->
     <string name="quick_settings_reading_mode">Reading mode</string>

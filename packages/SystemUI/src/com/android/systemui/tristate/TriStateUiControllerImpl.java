@@ -107,6 +107,18 @@ public class TriStateUiControllerImpl implements TriStateUiController,
     private static final int MODE_REFRESH_AUTO = 644;
     private static final int MODE_REFRESH_MIN = 645;
     private static final int MODE_REFRESH_MAX = 646;
+    private static final int MODE_EXTRADIM_OFF = 647;
+    private static final int MODE_EXTRADIM_MIN = 648;
+    private static final int MODE_EXTRADIM_MID = 649;
+    private static final int MODE_EXTRADIM_MAX = 650;
+    private static final int MODE_NIGHTLIGHT_OFF = 651;
+    private static final int MODE_NIGHTLIGHT_MIN = 652;
+    private static final int MODE_NIGHTLIGHT_MID = 653;
+    private static final int MODE_NIGHTLIGHT_MAX = 654;
+    private static final int MODE_COLORSPACE_VIVID = 655;
+    private static final int MODE_COLORSPACE_NATURAL = 656;
+    private static final int MODE_COLORSPACE_CINEMATIC = 657;
+    private static final int MODE_COLORSPACE_BRILLIANT = 658;
 
     private static final String EXTRA_SLIDER_POSITION = "position";
     private static final String EXTRA_SLIDER_POSITION_VALUE = "position_value";
@@ -459,6 +471,54 @@ public class TriStateUiControllerImpl implements TriStateUiController,
                     case MODE_REFRESH_MAX:
                         iconId = R.drawable.ic_tristate_refresh;
                         textId = R.string.tristate_refresh_max;
+                        break;
+                    case MODE_EXTRADIM_OFF:
+                        iconId = R.drawable.ic_tristate_extradim;
+                        textId = R.string.tristate_extradim_off;
+                        break;
+                    case MODE_EXTRADIM_MIN:
+                        iconId = R.drawable.ic_tristate_extradim;
+                        textId = R.string.tristate_extradim_min;
+                        break;
+                    case MODE_EXTRADIM_MID:
+                        iconId = R.drawable.ic_tristate_extradim;
+                        textId = R.string.tristate_extradim_mid;
+                        break;
+                    case MODE_EXTRADIM_MAX:
+                        iconId = R.drawable.ic_tristate_extradim;
+                        textId = R.string.tristate_extradim_max;
+                        break;
+                    case MODE_NIGHTLIGHT_OFF:
+                        iconId = R.drawable.ic_tristate_nightlight;
+                        textId = R.string.tristate_nightlight_off;
+                        break;
+                    case MODE_NIGHTLIGHT_MIN:
+                        iconId = R.drawable.ic_tristate_nightlight;
+                        textId = R.string.tristate_nightlight_min;
+                        break;
+                    case MODE_NIGHTLIGHT_MID:
+                        iconId = R.drawable.ic_tristate_nightlight;
+                        textId = R.string.tristate_nightlight_mid;
+                        break;
+                    case MODE_NIGHTLIGHT_MAX:
+                        iconId = R.drawable.ic_tristate_nightlight;
+                        textId = R.string.tristate_nightlight_max;
+                        break;
+                    case MODE_COLORSPACE_VIVID:
+                        iconId = R.drawable.ic_tristate_colorspace;
+                        textId = R.string.tristate_colorspace_vivid;
+                        break;
+                    case MODE_COLORSPACE_NATURAL:
+                        iconId = R.drawable.ic_tristate_colorspace;
+                        textId = R.string.tristate_colorspace_natural;
+                        break;
+                    case MODE_COLORSPACE_CINEMATIC:
+                        iconId = R.drawable.ic_tristate_colorspace;
+                        textId = R.string.tristate_colorspace_cinematic;
+                        break;
+                    case MODE_COLORSPACE_BRILLIANT:
+                        iconId = R.drawable.ic_tristate_colorspace;
+                        textId = R.string.tristate_colorspace_brilliant;
                         break;
                 }
 

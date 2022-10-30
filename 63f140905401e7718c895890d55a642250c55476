@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b191534a_bfb95141",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2022-10-30T16:34:24Z",
+      "side": 1,
+      "message": "Needs some tweaking for AICP\u0027s usecase",
+      "revId": "63f140905401e7718c895890d55a642250c55476",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

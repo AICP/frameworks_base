@@ -29,6 +29,11 @@
     android:clipChildren="false"
     android:clipToPadding="false">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/qs_footer_height"
@@ -72,10 +77,7 @@
                     android:src="@*android:drawable/ic_mode_edit"
                     android:tint="?android:attr/textColorPrimary" />
             </FrameLayout>
-
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="50dp" />
+    </LinearLayout>
 
         <include layout="@layout/data_usage_panel"
             android:id="@+id/qs_data_usage"

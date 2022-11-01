@@ -33,6 +33,7 @@ import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator;
 import android.annotation.DrawableRes;
 import android.app.StatusBarManager;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Canvas;
@@ -40,6 +41,8 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.RemoteException;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.SparseArray;
@@ -1017,8 +1020,16 @@ public class NavigationBarView extends FrameLayout {
                             com.android.internal.R.dimen.navigation_bar_height_landscape)
                     : getResources().getDimensionPixelSize(
                             com.android.internal.R.dimen.navigation_bar_height);
-            int frameHeight = getResources().getDimensionPixelSize(
-                    com.android.internal.R.dimen.navigation_bar_frame_height);
+	    int frameHeight;
+            boolean IsHideIMESpaceEnabled = Settings.System.getIntForUser(getContext().getContentResolver(),
+                     Settings.System.HIDE_IME_SPACE_ENABLE , 0, UserHandle.USER_CURRENT) != 0;
+	    if (IsHideIMESpaceEnabled) {
+              frameHeight = getResources().getDimensionPixelSize(
+                      com.android.internal.R.dimen.navigation_bar_frame_height_hide_ime);
+	    } else {
+              frameHeight = getResources().getDimensionPixelSize(
+                      com.android.internal.R.dimen.navigation_bar_frame_height);
+	    }
             mBarTransitions.setBackgroundFrame(new Rect(0, frameHeight - height, w, h));
         } else {
             mBarTransitions.setBackgroundFrame(null);

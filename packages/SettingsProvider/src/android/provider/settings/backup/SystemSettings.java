@@ -227,5 +227,6 @@ public class SystemSettings {
         Settings.System.CHARGING_ANIMATION,
         Settings.System.ENABLE_RIPPLE_EFFECT,
         Settings.System.ENABLE_TASKBAR,
+        Settings.System.HIDE_IME_SPACE_ENABLE,
     };
 }

@@ -6637,6 +6637,12 @@ public final class Settings {
          */
         public static final String ENABLE_TASKBAR = "enable_taskbar";
 
+        /**
+         * Whether to show IME space
+         * @hide
+         */
+        public static final String HIDE_IME_SPACE_ENABLE = "hide_ime_space_enable";
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6899,6 +6905,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(CHARGING_ANIMATION);
             PRIVATE_SETTINGS.add(ENABLE_RIPPLE_EFFECT);
             PRIVATE_SETTINGS.add(ENABLE_TASKBAR);
+            PRIVATE_SETTINGS.add(HIDE_IME_SPACE_ENABLE);
         }
 
         /**

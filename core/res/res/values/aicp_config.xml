@@ -241,5 +241,56 @@
 
     <!-- List of system apps that are allowed to be locked with app lock.
          Use with extreme caution. -->
-    <string-array name="config_appLockAllowedSystemApps" translatable="false" />
+    <string-array name="config_appLockAllowedSystemApps" translatable="false">
+        <!-- AICP Specific apps -->
+        <item>com.aicp.extras</item>
+        <item>com.aicp.oplus.OplusParts</item>
+        <item>com.aicp.updater3</item>
+        <!-- Calculator -->
+        <item>com.google.android.calculator</item>
+        <!-- Calendar -->
+        <item>com.google.android.calendar</item>
+        <!-- Camera -->
+        <item>com.google.android.GoogleCamera</item>
+        <!-- OnePlus Camera -->
+        <item>com.oneplus.camera</item>
+        <!-- Camera Go -->
+        <item>com.google.android.apps.cameralite</item>
+        <!-- Chrome -->
+        <item>com.android.chrome</item>
+        <!-- Contact -->
+        <item>com.google.android.contacts</item>
+        <!-- Drive -->
+        <item>com.google.android.apps.docs</item>
+        <!-- Files -->
+        <item>com.google.android.apps.nbu.files</item>
+        <!-- Gallery go -->
+        <item>com.google.android.apps.photosgo</item>
+        <!-- Oneplus Gallery -->
+        <item>com.oneplus.gallery</item>
+        <!-- Gmail -->
+        <item>com.google.android.gm</item>
+        <!-- Maps -->
+        <item>com.google.android.apps.maps</item>
+        <!-- Messaging -->
+        <item>com.google.android.messaging</item>
+        <!-- Play store -->
+        <item>com.android.vending</item>
+        <!-- Photos -->
+        <item>com.google.android.apps.photos</item>
+        <!-- Youtube -->
+        <item>com.google.android.youtube</item>
+        <!-- AOSP apps -->
+        <item>com.android.dialer</item>
+        <item>com.android.messaging</item>
+        <item>com.android.contacts</item>
+        <item>com.android.documentsui</item>
+        <!-- Lineage apps -->
+        <item>org.lineageos.eleven</item>
+        <item>org.lineageos.recorder</item>
+        <item>org.lineageos.etar</item>
+        <!-- CAF/CLO gallery -->
+        <item>org.codeaurora.gallery</item>
+        <item>com.android.calculator2</item>
+    </string-array>
 </resources>

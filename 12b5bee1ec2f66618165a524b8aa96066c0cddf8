@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d289af64_073c41d2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-11-04T19:37:26Z",
+      "side": 1,
+      "message": "LoS topic: https://review.lineageos.org/q/topic:camera-aux-res",
+      "revId": "12b5bee1ec2f66618165a524b8aa96066c0cddf8",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

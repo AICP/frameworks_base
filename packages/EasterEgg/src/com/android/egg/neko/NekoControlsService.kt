@@ -125,6 +125,7 @@ public class NekoControlsService : ControlsProviderService(), PrefState.PrefsLis
     private fun makeToyControl(icon: Icon?, thrown: Boolean): Control {
         return Control.StatefulBuilder(CONTROL_ID_TOY, getPendingIntent())
                 .setDeviceType(DeviceTypes.TYPE_UNKNOWN)
+                .setAuthRequired(false)
                 .setCustomIcon(icon)
                         //  ?.setTint(COLOR_TOY_FG)) // TODO(b/159559045): uncomment when fixed
                 .setCustomColor(ColorStateList.valueOf(COLOR_TOY_BG))
@@ -141,6 +142,7 @@ public class NekoControlsService : ControlsProviderService(), PrefState.PrefsLis
 
     private fun makeWaterBowlControl(fillLevel: Float): Control {
         return Control.StatefulBuilder(CONTROL_ID_WATER, getPendingIntent())
+                .setAuthRequired(true)
                 .setDeviceType(DeviceTypes.TYPE_KETTLE)
                 .setTitle(colorize(getString(R.string.control_water_title), COLOR_WATER_FG))
                 .setCustomColor(ColorStateList.valueOf(COLOR_WATER_BG))
@@ -156,6 +158,7 @@ public class NekoControlsService : ControlsProviderService(), PrefState.PrefsLis
 
     private fun makeFoodBowlControl(filled: Boolean): Control {
         return Control.StatefulBuilder(CONTROL_ID_FOOD, getPendingIntent())
+                .setAuthRequired(true)
                 .setDeviceType(DeviceTypes.TYPE_UNKNOWN)
                 .setCustomColor(ColorStateList.valueOf(COLOR_FOOD_BG))
                 .setTitle(colorize(getString(R.string.control_food_title), COLOR_FOOD_FG))

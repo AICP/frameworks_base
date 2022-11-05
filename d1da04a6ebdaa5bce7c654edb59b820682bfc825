@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bd04988_6aaad1aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-11-05T21:25:30Z",
+      "side": 1,
+      "message": "not needed after: https://gerrit.aicp-rom.com/q/topic:t-combined-signal-icons",
+      "revId": "d1da04a6ebdaa5bce7c654edb59b820682bfc825",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

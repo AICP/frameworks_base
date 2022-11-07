@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58d665a1_b912700d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2022-11-07T04:36:44Z",
+      "side": 1,
+      "message": "Wont cover our use\"rdebug\"-case\n",
+      "revId": "ad2516ee47d98cdd22a0c558993ef7899c4bda4d",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

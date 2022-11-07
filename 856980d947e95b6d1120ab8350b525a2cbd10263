@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42ba4ef1_a6c830c5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-11-07T05:57:07Z",
+      "side": 1,
+      "message": "new open commit is here: https://gerrit.aicp-rom.com/c/AICP/frameworks_base/+/118366",
+      "revId": "856980d947e95b6d1120ab8350b525a2cbd10263",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

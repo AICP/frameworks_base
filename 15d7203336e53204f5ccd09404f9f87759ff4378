@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64b04fde_f98fd048",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-11-07T05:58:45Z",
+      "side": 1,
+      "message": "To follow: Original commit: https://review.lineageos.org/c/LineageOS/android_frameworks_base/+/343791\n\nAlso requires: https://review.lineageos.org/c/LineageOS/android_vendor_qcom_opensource_usb/+/343790\n\n",
+      "revId": "15d7203336e53204f5ccd09404f9f87759ff4378",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

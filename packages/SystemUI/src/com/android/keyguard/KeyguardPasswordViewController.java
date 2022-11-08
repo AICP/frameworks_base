@@ -370,7 +370,7 @@ public class KeyguardPasswordViewController
     private void runQuickUnlock(Boolean matched) {
         if (matched) {
             mKeyguardSecurityCallback.reportUnlockAttempt(userId, true, 0);
-            mKeyguardSecurityCallback.dismiss(true, userId);
+            mKeyguardSecurityCallback.dismiss(true, userId, SecurityMode.Password);
             mView.resetPasswordText(true, true);
         }
     }

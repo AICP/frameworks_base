@@ -12186,6 +12186,11 @@ public final class Settings {
         @Readable
         public static final String QSTILE_REQUIRES_UNLOCKING = "qstile_requires_unlocking";
 
+        /**
+         * @hide
+         */
+        public static final String ENABLE_COMBINED_SIGNAL_ICONS = "enable_combined_signal_icons";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

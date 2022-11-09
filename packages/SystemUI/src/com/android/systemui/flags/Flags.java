@@ -129,8 +129,8 @@ public class Flags {
 
     /***************************************/
     // 600- status bar
-    public static final BooleanFlag COMBINED_STATUS_BAR_SIGNAL_ICONS =
-            new BooleanFlag(601, false);
+    public static final SysPropBooleanFlag COMBINED_STATUS_BAR_SIGNAL_ICONS =
+            new SysPropBooleanFlag(601, "persist.sys.enable.combined_signal_icons", false);
 
     public static final ResourceBooleanFlag STATUS_BAR_USER_SWITCHER =
             new ResourceBooleanFlag(602, R.bool.flag_user_switcher_chip);

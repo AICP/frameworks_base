@@ -12196,6 +12196,11 @@ public final class Settings {
          */
         public static final String SHOW_CLIPBOARD_OVERLAY = "show_clipboard_overlay";
 
+        /**
+         * @hide
+         */
+        public static final String ENABLE_COMBINED_SIGNAL_ICONS = "enable_combined_signal_icons";
+
         /*****************************
          * AICP Secure Settings end
          *****************************/

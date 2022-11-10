@@ -1370,7 +1370,7 @@ public class NavigationBar extends ViewController<NavigationBarView> implements 
                     com.android.internal.R.bool.config_navBarCanMove);
         }
         if (!navBarCanMove) {
-	    if (IsHideIMESpaceEnabled) {
+	    if (IsHideIMESpaceEnabled && isGesturalMode(mNavBarMode)) {
               height = userContext.getResources().getDimensionPixelSize(
                       com.android.internal.R.dimen.navigation_bar_frame_height_hide_ime);
             } else {
@@ -1384,7 +1384,7 @@ public class NavigationBar extends ViewController<NavigationBarView> implements 
                 case ROTATION_UNDEFINED:
                 case Surface.ROTATION_0:
                 case Surface.ROTATION_180:
-                    if (IsHideIMESpaceEnabled) {
+                    if (IsHideIMESpaceEnabled && isGesturalMode(mNavBarMode)) {
                       height = userContext.getResources().getDimensionPixelSize(
                               com.android.internal.R.dimen.navigation_bar_frame_height_hide_ime);
                     } else {

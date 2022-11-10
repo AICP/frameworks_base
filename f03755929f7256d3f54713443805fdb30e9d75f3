@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f442c23_7f4ae77d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1393
+      },
+      "writtenOn": "2022-11-10T12:29:04Z",
+      "side": 1,
+      "message": "topic working fine here on instantnoodlep.\n\ntest:\nwith enabled combined network icons, connect and disconnect from WiFi both manually and by going out-of-range. WiFi icon is always replaced, neither are duplicated. At no point are both shown at the same time.",
+      "revId": "f03755929f7256d3f54713443805fdb30e9d75f3",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

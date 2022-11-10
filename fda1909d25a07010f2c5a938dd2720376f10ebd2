@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c25b0e36_009908ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1393
+      },
+      "writtenOn": "2022-11-10T12:30:54Z",
+      "side": 1,
+      "message": "Working fine here on instantnoodlep.\n\nTest:\nEnabled QR code scanner on LS with only one other option selected.\nProve icon appears on lockscreen\nTapping icon brings up QR code scanner",
+      "revId": "fda1909d25a07010f2c5a938dd2720376f10ebd2",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

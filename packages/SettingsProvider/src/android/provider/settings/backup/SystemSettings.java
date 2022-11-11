@@ -116,6 +116,7 @@ public class SystemSettings {
         Settings.System.TORCH_LONG_PRESS_POWER_TIMEOUT,
         Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN,
         Settings.System.DOUBLE_TAP_SLEEP_GESTURE,
+        Settings.System.QS_SMART_PULLDOWN,
         Settings.System.POWERMENU_SOUNDPANEL,
         Settings.System.POWERMENU_SCREENSHOT,
         Settings.System.POWERMENU_SETTINGS,

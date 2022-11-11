@@ -159,6 +159,8 @@ public class Clock extends TextView implements
     private int mHideDuration = HIDE_DURATION, mShowDuration = SHOW_DURATION;
     private boolean mQsHeader;
 
+    private boolean mIsStatusBar;
+
     // Fields to cache the width so the clock remains at an approximately constant width
     private int mCharsAtCurrentWidth = -1;
     private int mCachedWidth = -1;
@@ -183,6 +185,7 @@ public class Clock extends TextView implements
                 0, 0);
         try {
             mAmPmStyle = a.getInt(R.styleable.Clock_amPmStyle, mAmPmStyle);
+            mIsStatusBar = a.getBoolean(R.styleable.Clock_isStatusBar, mIsStatusBar);
             mNonAdaptedColor = getCurrentTextColor();
         } finally {
             a.recycle();
@@ -305,6 +308,10 @@ public class Clock extends TextView implements
     }
 
     private void handleTaskStackListener(boolean register) {
+        if (!mIsStatusBar) {
+            // We don't support clock auto hide for quick settings.
+            return;
+        }
         if (register && mTaskStackListener == null) {
             mTaskStackListener = new TaskStackListener() {
                 @Override

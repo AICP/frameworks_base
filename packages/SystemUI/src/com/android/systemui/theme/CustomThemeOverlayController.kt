@@ -27,6 +27,7 @@ import android.os.UserManager
 import android.provider.Settings
 import android.util.Log
 import android.util.TypedValue
+import com.android.internal.statusbar.IStatusBarService
 import com.android.systemui.Dependency
 import com.android.systemui.broadcast.BroadcastDispatcher
 import com.android.systemui.dagger.SysUISingleton
@@ -77,7 +78,8 @@ class CustomThemeOverlayController @Inject constructor(
     @Main resources: Resources,
     wakefulnessLifecycle: WakefulnessLifecycle,
     systemSettings: SystemSettings,
-    configurationController: ConfigurationController
+    configurationController: ConfigurationController,
+    barService: IStatusBarService
 ) : ThemeOverlayController(
     context,
     broadcastDispatcher,
@@ -96,6 +98,7 @@ class CustomThemeOverlayController @Inject constructor(
     wakefulnessLifecycle,
     systemSettings,
     configurationController,
+    barService,
 ), Tunable {
     private lateinit var cond: Zcam.ViewingConditions
     private lateinit var targets: MaterialYouTargets

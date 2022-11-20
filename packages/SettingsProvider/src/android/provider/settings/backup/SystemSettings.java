@@ -196,7 +196,9 @@ public class SystemSettings {
                 Settings.System.DOUBLE_TAP_SLEEP_GESTURE,
                 Settings.System.DOUBLE_TAP_SLEEP_LOCKSCREEN,
                 Settings.System.VOLUME_DIALOG_TIMEOUT,
-                Settings.System.CHARGING_ANIMATION
+                Settings.System.CHARGING_ANIMATION,
+                Settings.System.LOCK_SCREEN_CUSTOM_NOTIF,
+                Settings.System.LOCKSCREEN_MAX_NOTIF_CONFIG
         ));
         if (Flags.backUpSmoothDisplayAndForcePeakRefreshRate()) {
             settings.add(Settings.System.PEAK_REFRESH_RATE);

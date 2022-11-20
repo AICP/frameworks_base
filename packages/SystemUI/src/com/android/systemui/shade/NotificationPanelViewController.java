@@ -67,6 +67,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.PowerManager;
 import android.os.Trace;
+import android.os.UserHandle;
 import android.os.UserManager;
 import android.provider.Settings;
 import android.util.IndentingPrintWriter;
@@ -401,6 +402,10 @@ public final class NotificationPanelViewController implements ShadeSurface, Dump
     private TrackingStartedListener mTrackingStartedListener;
     private OpenCloseListener mOpenCloseListener;
     private GestureRecorder mGestureRecorder;
+
+    //Lockscreen Notifications
+    private int mMaxKeyguardNotifConfig;
+    private boolean mCustomMaxKeyguard;
 
     private boolean mKeyguardQsUserSwitchEnabled;
     private boolean mKeyguardUserSwitcherEnabled;
@@ -1552,16 +1557,24 @@ public final class NotificationPanelViewController implements ShadeSurface, Dump
         return mIsFlinging;
     }
 
-    private void updateMaxDisplayedNotifications(boolean recompute) {
+    public void updateMaxDisplayedNotifications(boolean recompute) {
         if (migrateClocksToBlueprint()) {
             return;
         }
 
-        if (recompute) {
-            setMaxDisplayedNotifications(Math.max(computeMaxKeyguardNotifications(), 1));
+        mCustomMaxKeyguard = Settings.System.getIntForUser(mView.getContext().getContentResolver(),
+            Settings.System.LOCK_SCREEN_CUSTOM_NOTIF, 0, UserHandle.USER_CURRENT) == 1;
+        mMaxKeyguardNotifConfig = Settings.System.getIntForUser(mView.getContext().getContentResolver(),
+                 Settings.System.LOCKSCREEN_MAX_NOTIF_CONFIG, 3, UserHandle.USER_CURRENT);
+        if (mCustomMaxKeyguard) {
+                mMaxAllowedKeyguardNotifications = mMaxKeyguardNotifConfig;
         } else {
-            if (SPEW_LOGCAT) Log.d(TAG, "Skipping computeMaxKeyguardNotifications() by request");
-        }
+            if (recompute) {
+                mMaxAllowedKeyguardNotifications = Math.max(computeMaxKeyguardNotifications(), 1);
+            } else {
+                if (SPEW_LOGCAT) Log.d(TAG, "Skipping computeMaxKeyguardNotifications() by request");
+            }
+	}
 
         if (isKeyguardShowing() && !mKeyguardBypassController.getBypassEnabled()) {
             mNotificationStackScrollLayoutController.setMaxDisplayedNotifications(

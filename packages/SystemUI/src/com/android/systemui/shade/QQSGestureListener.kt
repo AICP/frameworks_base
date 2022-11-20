@@ -50,8 +50,8 @@ class QQSGestureListener @Inject constructor(
                 false, contentObserver)
         contentObserver.onChange(true)
 
-        quickQsOffsetHeight = context.resources.getDimensionPixelSize(
-                com.android.internal.R.dimen.quick_qs_offset_height)
+        quickQsOffsetHeight = 3000 // context.resources.getDimensionPixelSize(
+            //    com.android.internal.R.dimen.quick_qs_offset_height)
     }
 
     override fun onDoubleTapEvent(e: MotionEvent): Boolean {

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1239674c_801448d3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-11-22T07:32:28Z",
+      "side": 1,
+      "message": "This method may be scary for regular users. Causes soft reboot even on clean flash. Better to go with other one IMHO.",
+      "revId": "f53928ef61d2cb760fb7eaebd40dd7069e2fc82b",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48ce2612_853effa7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-11-24T21:11:24Z",
+      "side": 1,
+      "message": "https://review.lineageos.org/c/LineageOS/android_vendor_qcom_opensource_usb/+/343790 merged.",
+      "revId": "f8e6ceee83e1553b6d7856d32841f8eb57f48c93",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

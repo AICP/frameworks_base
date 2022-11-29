@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30a4c3c9_551faadd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-11-29T09:39:39Z",
+      "side": 1,
+      "message": "Under review at AOSP Gerrit: https://android-review.googlesource.com/c/platform/frameworks/base/+/2319072\n\nLoS Gerrit: https://review.lineageos.org/c/LineageOS/android_frameworks_base/+/344762\n\nNote from teh author: This change is currently being reviewed on AOSP Gerrit. As a result more patchsets may be uploaded in the coming days.\n\nMarking with -2 to avoid merge.",
+      "revId": "069832048b8c3941a5d5f7185016163e5d728800",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

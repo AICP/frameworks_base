@@ -1105,14 +1105,6 @@ public class NetworkPolicyManagerService extends INetworkPolicyManager.Stub {
                     ACTION_CARRIER_CONFIG_CHANGED);
             mContext.registerReceiver(mCarrierConfigReceiver, carrierConfigFilter, null, mHandler);
 
-            for (UserInfo userInfo : mUserManager.getAliveUsers()) {
-                mConnManager.registerDefaultNetworkCallbackForUid(
-                        UserHandle.getUid(userInfo.id, Process.myUid()),
-                        mDefaultNetworkCallback,
-                        mUidEventHandler
-                );
-            }
-
             // listen for meteredness changes
             mConnManager.registerNetworkCallback(
                     new NetworkRequest.Builder().build(), mNetworkCallback);
@@ -1303,11 +1295,6 @@ public class NetworkPolicyManagerService extends INetworkPolicyManager.Stub {
                                 ConnectivitySettingsManager.getUidsAllowedOnRestrictedNetworks(
                                         mContext);
                         if (action == ACTION_USER_ADDED) {
-                            mConnManager.registerDefaultNetworkCallbackForUid(
-                                    UserHandle.getUid(userId, Process.myUid()),
-                                    mDefaultNetworkCallback,
-                                    mUidEventHandler
-                            );
                             // Add apps that are allowed by default.
                             addDefaultRestrictBackgroundAllowlistUidsUL(userId);
                             try {
@@ -1442,24 +1429,6 @@ public class NetworkPolicyManagerService extends INetworkPolicyManager.Stub {
         }
         return changed;
     }
-
-    private final NetworkCallback mDefaultNetworkCallback = new NetworkCallback() {
-        @Override
-        public void onAvailable(@NonNull Network network) {
-            updateRestrictedModeAllowlistUL();
-        }
-
-        @Override
-        public void onCapabilitiesChanged(@NonNull Network network,
-                @NonNull NetworkCapabilities networkCapabilities) {
-            final int[] newTransports = networkCapabilities.getTransportTypes();
-            final boolean transportsChanged = updateTransportChange(
-                    mNetworkTransports, newTransports, network);
-            if (transportsChanged) {
-                updateRestrictedModeAllowlistUL();
-            }
-        }
-    };
 
     private final NetworkCallback mNetworkCallback = new NetworkCallback() {
         @Override
@@ -1888,6 +1857,18 @@ public class NetworkPolicyManagerService extends INetworkPolicyManager.Stub {
         updateSubscriptions();
 
         synchronized (mUidRulesFirstLock) {
+            /* With split-tunnel VPNs (those that only include specific apps),
+             * the usual NetworkCallback handlers are never called, because the call to
+             * registerDefaultNetworkCallbackForUid only detects changes that affect this
+             * process; if this process is not covered by the VPN, it won't get callbacks.
+             * Ordinarily, updateRestrictedModeAllowlistUL() would be called from those.
+             * Firewall restrictions for apps will not be updated properly on VPN connect
+             * or disconnect if we don't call it from somewhere else, like here. */
+            // TODO: Come up with an appropriate callback that runs more promptly.
+            // updateNetworksInternal runs later than NetworkCallback handlers run, so
+            // this may present a window of opportunity for unauthorized network access.
+            updateRestrictedModeAllowlistUL();
+
             synchronized (mNetworkPoliciesSecondLock) {
                 ensureActiveCarrierPolicyAL();
                 normalizePoliciesNL();

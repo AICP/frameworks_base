@@ -1234,8 +1234,8 @@ public class NetworkPolicyManagerService extends INetworkPolicyManager.Stub {
             final int uid = intent.getIntExtra(EXTRA_UID, -1);
             if (uid == -1) return;
 
-            if (intent.getBooleanExtra(EXTRA_REPLACING, false)) {
-                if (LOGV) Slog.v(TAG, "ACTION_PACKAGE_ADDED Not new app, skip it uid=" + uid);
+            if (intent.getBooleanExtra(EXTRA_REPLACING, false)
+                    || !intent.getBooleanExtra(Intent.EXTRA_DATA_REMOVED, true)) {
                 return;
             }
 

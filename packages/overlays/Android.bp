@@ -82,6 +82,7 @@ phony {
         "NavigationBarModeGesturalOverlay",
         "TransparentNavigationBarOverlay",
         "NotesRoleEnabledOverlay",
+        "VShapedNotch",
         "NotchBarKillerLeftrOverlay",
         "NotchBarKillerOverlay",
         "preinstalled-packages-platform-overlays.xml",

@@ -9,9 +9,6 @@
       aicp_extras,livedisplay,reading_mode,anti_flicker,refresh_rate,caffeine,heads_up,sync,ambient_display,usb_tether,aod,powershare,reboot,compass,music,dataswitch,sound,vpn,onthego,smartpixels,screenshot,preferred_network
     </string>
 
-    <!-- Udfps HBM provider class name -->
-    <string name="config_udfpsHbmProviderComponent">com.android.systemui.biometrics.DummyUdfpsHbmProvider</string>
-
     <!-- Max visible notification icons -->
     <integer name="config_maxVisibleNotificationIcons">4</integer>
     <integer name="config_maxVisibleNotificationIconsOnLock">5</integer>

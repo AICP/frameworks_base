@@ -301,8 +301,6 @@ public class NotificationPanelViewController extends PanelViewController {
             Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN;
     private static final String DOUBLE_TAP_SLEEP_GESTURE =
             Settings.System.DOUBLE_TAP_SLEEP_GESTURE;
-    private static final String DOUBLE_TAP_SLEEP_LOCKSCREEN =
-            Settings.System.DOUBLE_TAP_SLEEP_LOCKSCREEN;
     private static final String QS_SMART_PULLDOWN =
             Settings.System.QS_SMART_PULLDOWN;
 
@@ -551,8 +549,6 @@ public class NotificationPanelViewController extends PanelViewController {
     private int mDisplayId;
     private boolean mDoubleTapToSleepEnabled;
     private GestureDetector mDoubleTapGesture;
-
-    private boolean mIsLockscreenDoubleTapEnabled;
 
     /**
      * Cache the resource id of the theme to avoid unnecessary work in onThemeChanged.
@@ -4276,10 +4272,7 @@ public class NotificationPanelViewController extends PanelViewController {
                     return false;
                 }
 
-                if ((mIsLockscreenDoubleTapEnabled && !mPulsing && !mDozing
-                        && mBarState == StatusBarState.KEYGUARD) ||
-                        (!mQsExpanded && mDoubleTapToSleepEnabled
-                        && event.getY() < mStatusBarHeaderHeightKeyguard)) {
+                if (mDoubleTapToSleepEnabled && !mPulsing && !mDozing) {
                     mDoubleTapGesture.onTouchEvent(event);
                 }
 
@@ -4988,7 +4981,6 @@ public class NotificationPanelViewController extends PanelViewController {
             mConfigurationController.addCallback(mConfigurationListener);
             mTunerService.addTunable(this, STATUS_BAR_QUICK_QS_PULLDOWN);
             mTunerService.addTunable(this, DOUBLE_TAP_SLEEP_GESTURE);
-            mTunerService.addTunable(this, DOUBLE_TAP_SLEEP_LOCKSCREEN);
             mTunerService.addTunable(this, QS_SMART_PULLDOWN);
             // Theme might have changed between inflating this view and attaching it to the
             // window, so
@@ -5019,10 +5011,6 @@ public class NotificationPanelViewController extends PanelViewController {
                     break;
                 case DOUBLE_TAP_SLEEP_GESTURE:
                     mDoubleTapToSleepEnabled =
-                            TunerService.parseIntegerSwitch(newValue, true);
-                    break;
-                case DOUBLE_TAP_SLEEP_LOCKSCREEN:
-                    mIsLockscreenDoubleTapEnabled =
                             TunerService.parseIntegerSwitch(newValue, true);
                     break;
                 case QS_SMART_PULLDOWN:

@@ -6311,16 +6311,6 @@ public final class Settings {
         public static final String SCREENSHOT_SHUTTER_SOUND = "screenshot_shutter_sound";
 
         /**
-         * @hide
-         */
-        public static final String AICP_ASPECT_RATIO_APPS_LIST = "aspect_ratio_apps_list";
-
-        /**
-         * @hide
-         */
-        public static final String AICP_ASPECT_RATIO_APPS_ENABLED = "aspect_ratio_apps_enabled";
-
-        /**
          * Whether to scramble a pin unlock layout
          * @hide
          */
@@ -6746,8 +6736,6 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUS_BAR_LOGO_STYLE);
             PRIVATE_SETTINGS.add(STATUS_BAR_LOGO_COLOR_ACCENT);
             PRIVATE_SETTINGS.add(SCREENSHOT_SHUTTER_SOUND);
-            PRIVATE_SETTINGS.add(AICP_ASPECT_RATIO_APPS_LIST);
-            PRIVATE_SETTINGS.add(AICP_ASPECT_RATIO_APPS_ENABLED);
             PRIVATE_SETTINGS.add(LOCKSCREEN_PIN_SCRAMBLE_LAYOUT);
             PRIVATE_SETTINGS.add(LOCKSCREEN_QUICK_UNLOCK_CONTROL);
             PRIVATE_SETTINGS.add(BUTTON_BACKLIGHT_ONLY_WHEN_PRESSED);

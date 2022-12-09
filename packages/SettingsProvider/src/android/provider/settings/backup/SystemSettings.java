@@ -186,8 +186,6 @@ public class SystemSettings {
         Settings.System.STATUS_BAR_LOGO_STYLE,
         Settings.System.STATUS_BAR_LOGO_COLOR_ACCENT,
         Settings.System.SCREENSHOT_SHUTTER_SOUND,
-        Settings.System.AICP_ASPECT_RATIO_APPS_LIST,
-        Settings.System.AICP_ASPECT_RATIO_APPS_ENABLED,
         Settings.System.LOCKSCREEN_PIN_SCRAMBLE_LAYOUT,
         Settings.System.LOCKSCREEN_QUICK_UNLOCK_CONTROL,
         Settings.System.BUTTON_BACKLIGHT_ONLY_WHEN_PRESSED,

@@ -49,7 +49,6 @@ import android.app.ActivityManager;
 import android.app.Fragment;
 import android.app.StatusBarManager;
 import android.content.ContentResolver;
-import android.content.Context;
 import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -78,7 +77,6 @@ import android.transition.TransitionManager;
 import android.util.IndentingPrintWriter;
 import android.util.Log;
 import android.util.MathUtils;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
@@ -299,8 +297,6 @@ public class NotificationPanelViewController extends PanelViewController {
 
     private static final String STATUS_BAR_QUICK_QS_PULLDOWN =
             Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN;
-    private static final String DOUBLE_TAP_SLEEP_GESTURE =
-            Settings.System.DOUBLE_TAP_SLEEP_GESTURE;
     private static final String QS_SMART_PULLDOWN =
             Settings.System.QS_SMART_PULLDOWN;
 
@@ -547,8 +543,6 @@ public class NotificationPanelViewController extends PanelViewController {
 
     private NotificationShadeDepthController mDepthController;
     private int mDisplayId;
-    private boolean mDoubleTapToSleepEnabled;
-    private GestureDetector mDoubleTapGesture;
 
     /**
      * Cache the resource id of the theme to avoid unnecessary work in onThemeChanged.
@@ -795,7 +789,7 @@ public class NotificationPanelViewController extends PanelViewController {
             UnlockedScreenOffAnimationController unlockedScreenOffAnimationController,
             ShadeTransitionController shadeTransitionController,
             SystemClock systemClock,
-            TunerService tunerService, Context context) {
+            TunerService tunerService) {
         super(view,
                 falsingManager,
                 dozeLog,
@@ -895,16 +889,6 @@ public class NotificationPanelViewController extends PanelViewController {
         });
         mBottomAreaShadeAlphaAnimator.setDuration(160);
         mBottomAreaShadeAlphaAnimator.setInterpolator(Interpolators.ALPHA_OUT);
-        mDoubleTapGesture = new GestureDetector(context,
-                new GestureDetector.SimpleOnGestureListener() {
-            @Override
-            public boolean onDoubleTap(MotionEvent e) {
-                if (mPowerManager != null) {
-                    mPowerManager.goToSleep(e.getEventTime());
-                }
-                return true;
-            }
-        });
         mEntryManager = notificationEntryManager;
         mConversationNotificationManager = conversationNotificationManager;
         mAuthController = authController;
@@ -4272,10 +4256,6 @@ public class NotificationPanelViewController extends PanelViewController {
                     return false;
                 }
 
-                if (mDoubleTapToSleepEnabled && mBarState == StatusBarState.KEYGUARD) {
-                    mDoubleTapGesture.onTouchEvent(event);
-                }
-
                 // Make sure the next touch won't the blocked after the current ends.
                 if (event.getAction() == MotionEvent.ACTION_UP
                         || event.getAction() == MotionEvent.ACTION_CANCEL) {
@@ -4980,7 +4960,6 @@ public class NotificationPanelViewController extends PanelViewController {
             mStatusBarStateListener.onStateChanged(mStatusBarStateController.getState());
             mConfigurationController.addCallback(mConfigurationListener);
             mTunerService.addTunable(this, STATUS_BAR_QUICK_QS_PULLDOWN);
-            mTunerService.addTunable(this, DOUBLE_TAP_SLEEP_GESTURE);
             mTunerService.addTunable(this, QS_SMART_PULLDOWN);
             // Theme might have changed between inflating this view and attaching it to the
             // window, so
@@ -5008,10 +4987,6 @@ public class NotificationPanelViewController extends PanelViewController {
                 case STATUS_BAR_QUICK_QS_PULLDOWN:
                     mOneFingerQuickSettingsIntercept =
                             TunerService.parseInteger(newValue, 1);
-                    break;
-                case DOUBLE_TAP_SLEEP_GESTURE:
-                    mDoubleTapToSleepEnabled =
-                            TunerService.parseIntegerSwitch(newValue, true);
                     break;
                 case QS_SMART_PULLDOWN:
                     mQsSmartPullDown =

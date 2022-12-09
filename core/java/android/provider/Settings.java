@@ -5865,12 +5865,6 @@ public final class Settings {
         public static final String DOUBLE_TAP_SLEEP_GESTURE = "double_tap_sleep_gesture";
 
         /**
-         * Double tap on lockscreen to sleep
-         * @hide
-         */
-        public static final String DOUBLE_TAP_SLEEP_LOCKSCREEN = "double_tap_sleep_lockscreen";
-
-        /**
          * Quick Settings Smart Pulldown
          * @hide
          */
@@ -6704,7 +6698,6 @@ public final class Settings {
             PRIVATE_SETTINGS.add(POWERMENU_LOGOUT);
             PRIVATE_SETTINGS.add(POWERMENU_EMERGENCY);
             PRIVATE_SETTINGS.add(POWERMENU_TORCH);
-            PRIVATE_SETTINGS.add(DOUBLE_TAP_SLEEP_LOCKSCREEN);
             PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK_POSITION);
             PRIVATE_SETTINGS.add(STATUS_BAR_AM_PM);
             PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK_AUTO_HIDE_LAUNCHER);

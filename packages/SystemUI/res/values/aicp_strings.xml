@@ -52,7 +52,6 @@
     <string name="status_bar_camera">Camera</string>
     <string name="status_bar_microphone">Microphone</string>
     <string name="status_bar_vpn">VPN</string>
-    <string name="status_bar_ims">VoLTE/VoWiFi</string>
     <string name="status_bar_call_strength">Call strength</string>
 
     <!-- Screen record -->

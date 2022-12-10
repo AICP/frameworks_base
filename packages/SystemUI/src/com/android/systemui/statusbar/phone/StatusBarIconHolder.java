@@ -22,7 +22,6 @@ import android.graphics.drawable.Icon;
 import android.os.UserHandle;
 
 import com.android.internal.statusbar.StatusBarIcon;
-import com.android.systemui.statusbar.connectivity.ImsIconState;
 import com.android.systemui.statusbar.phone.PhoneStatusBarPolicy.BluetoothIconState;
 import com.android.systemui.statusbar.phone.StatusBarSignalPolicy.CallIndicatorIconState;
 import com.android.systemui.statusbar.phone.StatusBarSignalPolicy.MobileIconState;
@@ -35,14 +34,12 @@ public class StatusBarIconHolder {
     public static final int TYPE_ICON = 0;
     public static final int TYPE_WIFI = 1;
     public static final int TYPE_MOBILE = 2;
-    public static final int TYPE_IMS = 3;
     public static final int TYPE_BLUETOOTH = 4;
     public static final int TYPE_NETWORK_TRAFFIC = 42;
 
     private StatusBarIcon mIcon;
     private WifiIconState mWifiState;
     private MobileIconState mMobileState;
-    private ImsIconState mImsState;
     private BluetoothIconState mBluetoothState;
 
     private int mType = TYPE_ICON;
@@ -67,13 +64,6 @@ public class StatusBarIconHolder {
         StatusBarIconHolder holder = new StatusBarIconHolder();
         holder.mIcon = new StatusBarIcon(UserHandle.SYSTEM, context.getPackageName(),
                 Icon.createWithResource( context, resId), 0, 0, contentDescription);
-        return holder;
-    }
-
-    public static StatusBarIconHolder fromImsIconState(ImsIconState state) {
-        StatusBarIconHolder holder = new StatusBarIconHolder();
-        holder.mImsState = state;
-        holder.mType = TYPE_IMS;
         return holder;
     }
 
@@ -155,14 +145,6 @@ public class StatusBarIconHolder {
         mMobileState = state;
     }
 
-    public ImsIconState getImsState() {
-        return mImsState;
-    }
-
-    public void setImsState(ImsIconState state) {
-        mImsState = state;
-    }
-
     @Nullable
     public BluetoothIconState getBluetoothState() {
         return mBluetoothState;
@@ -180,8 +162,6 @@ public class StatusBarIconHolder {
                 return mWifiState.visible;
             case TYPE_MOBILE:
                 return mMobileState.visible;
-            case TYPE_IMS:
-                return mImsState.visible;
             case TYPE_BLUETOOTH:
                 return mBluetoothState.visible;
             case TYPE_NETWORK_TRAFFIC:
@@ -207,10 +187,6 @@ public class StatusBarIconHolder {
 
             case TYPE_MOBILE:
                 mMobileState.visible = visible;
-                break;
-
-            case TYPE_IMS:
-                mImsState.visible = visible;
                 break;
 
             case TYPE_BLUETOOTH:

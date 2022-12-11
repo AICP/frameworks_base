@@ -19,15 +19,12 @@ package com.android.keyguard;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.os.UserHandle;
 import android.provider.Settings;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
-
-import androidx.core.graphics.ColorUtils;
 
 import com.android.systemui.Dependency;
 import com.android.systemui.R;
@@ -62,7 +59,6 @@ public class KeyguardStatusView extends GridLayout implements
     private boolean mOmniStyle;
 
     private float mDarkAmount = 0;
-    private int mTextColor;
 
     public KeyguardStatusView(Context context) {
         this(context, null, 0);
@@ -93,8 +89,6 @@ public class KeyguardStatusView extends GridLayout implements
 
         mWeatherView = (CurrentWeatherView) findViewById(R.id.weather_container);
 
-        mTextColor = mClockView.getCurrentTextColor();
-
         mMediaHostContainer = findViewById(R.id.status_view_media_container);
 
         updateDark();
@@ -109,15 +103,12 @@ public class KeyguardStatusView extends GridLayout implements
             return;
         }
         mDarkAmount = darkAmount;
-        mClockView.setDarkAmount(darkAmount);
         CrossFadeHelper.fadeOut(mMediaHostContainer, darkAmount);
         updateDark();
     }
 
     void updateDark() {
-        final int blendedTextColor = ColorUtils.blendARGB(mTextColor, Color.WHITE, mDarkAmount);
         mKeyguardSlice.setDarkAmount(mDarkAmount);
-        mClockView.setTextColor(blendedTextColor);
         if (mWeatherView != null) {
             mWeatherView.blendARGB(mDarkAmount);
         }
@@ -142,7 +133,6 @@ public class KeyguardStatusView extends GridLayout implements
     public void dump(PrintWriter pw, String[] args) {
         pw.println("KeyguardStatusView:");
         pw.println("  mDarkAmount: " + mDarkAmount);
-        pw.println("  mTextColor: " + Integer.toHexString(mTextColor));
         if (mClockView != null) {
             mClockView.dump(pw, args);
         }

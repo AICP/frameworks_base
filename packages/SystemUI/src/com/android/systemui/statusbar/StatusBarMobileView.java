@@ -39,6 +39,7 @@ import com.android.settingslib.graph.SignalDrawable;
 import com.android.systemui.DualToneHandler;
 import com.android.systemui.R;
 import com.android.systemui.plugins.DarkIconDispatcher.DarkReceiver;
+import com.android.systemui.statusbar.phone.StatusBarIconController;
 import com.android.systemui.statusbar.phone.StatusBarSignalPolicy.MobileIconState;
 
 import java.util.ArrayList;
@@ -60,26 +61,34 @@ public class StatusBarMobileView extends FrameLayout implements DarkReceiver,
     private ImageView mMobile, mMobileType, mMobileRoaming;
     private View mMobileSignalType;
     private View mMobileRoamingSpace;
-    private int mVisibleState = -1;
+    @StatusBarIconView.VisibleState
+    private int mVisibleState = STATE_HIDDEN;
     private DualToneHandler mDualToneHandler;
     private boolean mForceHidden;
-    private boolean mProviderModel;
     private boolean mOldStyleType;
     private ImageView mMobileTypeSmall;
 
     /**
      * Designated constructor
+     *
+     * This view is special, in that it is the only view in SystemUI that allows for a configuration
+     * override on a MCC/MNC-basis. This means that for every mobile view inflated, we have to
+     * construct a context with that override, since the resource system doesn't have a way to
+     * handle this for us.
+     *
+     * @param context A context with resources configured by MCC/MNC
+     * @param slot The string key defining which slot this icon refers to. Always "mobile" for the
+     *             mobile icon
      */
     public static StatusBarMobileView fromContext(
             Context context,
-            String slot,
-            boolean providerModel
+            String slot
     ) {
         LayoutInflater inflater = LayoutInflater.from(context);
         StatusBarMobileView v = (StatusBarMobileView)
                 inflater.inflate(R.layout.status_bar_mobile_signal_group, null);
         v.setSlot(slot);
-        v.init(providerModel);
+        v.init();
         v.setVisibleState(STATE_ICON);
         return v;
     }
@@ -112,17 +121,12 @@ public class StatusBarMobileView extends FrameLayout implements DarkReceiver,
         outRect.bottom += translationY;
     }
 
-    private void init(boolean providerModel) {
-        mProviderModel = providerModel;
+    private void init() {
         mDualToneHandler = new DualToneHandler(getContext());
         mMobileGroup = findViewById(R.id.mobile_group);
         mMobile = findViewById(R.id.mobile_signal);
         mMobileType = findViewById(R.id.mobile_type);
-        if (mProviderModel) {
-            mMobileRoaming = findViewById(R.id.mobile_roaming_large);
-        } else {
-            mMobileRoaming = findViewById(R.id.mobile_roaming);
-        }
+        mMobileRoaming = findViewById(R.id.mobile_roaming);
         mMobileRoamingSpace = findViewById(R.id.mobile_roaming_space);
         mIn = findViewById(R.id.mobile_in);
         mOut = findViewById(R.id.mobile_out);
@@ -317,7 +321,7 @@ public class StatusBarMobileView extends FrameLayout implements DarkReceiver,
     }
 
     @Override
-    public void setVisibleState(int state, boolean animate) {
+    public void setVisibleState(@StatusBarIconView.VisibleState int state, boolean animate) {
         if (state == mVisibleState) {
             return;
         }
@@ -358,6 +362,7 @@ public class StatusBarMobileView extends FrameLayout implements DarkReceiver,
     }
 
     @Override
+    @StatusBarIconView.VisibleState
     public int getVisibleState() {
         return mVisibleState;
     }

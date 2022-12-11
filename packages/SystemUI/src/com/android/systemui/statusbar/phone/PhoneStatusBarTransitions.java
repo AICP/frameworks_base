@@ -31,7 +31,7 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
 
     private final float mIconAlphaWhenOpaque;
 
-    private View mLeftSide, mStatusIcons, mBattery, mStatusBarLogo, mStatusBarLogoRight;
+    private View mStartSide, mStatusIcons, mBattery, mStatusBarLogo, mStatusBarLogoRight;
     private View mBatteryBars[] = new View[2];
 
     private Animator mCurrentAnimation;
@@ -43,7 +43,7 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
         super(backgroundView, R.drawable.status_background);
         final Resources res = statusBarView.getContext().getResources();
         mIconAlphaWhenOpaque = res.getFraction(R.dimen.status_bar_icon_drawing_alpha, 1, 1);
-        mLeftSide = statusBarView.findViewById(R.id.status_bar_left_side);
+        mStartSide = statusBarView.findViewById(R.id.status_bar_start_side_except_heads_up);
         mStatusIcons = statusBarView.findViewById(R.id.statusIcons);
         mBattery = statusBarView.findViewById(R.id.battery);
         mBatteryBars[0] = statusBarView.findViewById(R.id.battery_bar);
@@ -81,7 +81,7 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
     }
 
     private void applyMode(int mode, boolean animate) {
-        if (mLeftSide == null) return; // pre-init
+        if (mStartSide == null) return; // pre-init
         float newAlpha = getNonBatteryClockAlphaFor(mode);
         float newAlphaBC = getBatteryClockAlpha(mode);
         if (mCurrentAnimation != null) {
@@ -92,7 +92,7 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
             anims.playTogether(
                     animateTransitionTo(mStatusBarLogo, newAlphaBC),
                     animateTransitionTo(mStatusBarLogoRight, newAlphaBC),
-                    animateTransitionTo(mLeftSide, newAlpha),
+                    animateTransitionTo(mStartSide, newAlpha),
                     animateTransitionTo(mStatusIcons, newAlpha),
                     animateTransitionTo(mBattery, newAlphaBC),
                     animateTransitionTo(mBatteryBars[0], newAlphaBC),
@@ -106,7 +106,7 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
         } else {
             mStatusBarLogo.setAlpha(newAlphaBC);
             mStatusBarLogoRight.setAlpha(newAlphaBC);
-            mLeftSide.setAlpha(newAlpha);
+            mStartSide.setAlpha(newAlpha);
             mStatusIcons.setAlpha(newAlpha);
             mBattery.setAlpha(newAlphaBC);
             mBatteryBars[0].setAlpha(newAlphaBC);

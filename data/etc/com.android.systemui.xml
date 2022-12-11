@@ -84,5 +84,6 @@
         <permission name="android.permission.REBOOT"/>
         <permission name="android.permission.RECOVERY"/>
         <permission name="android.permission.WRITE_APN_SETTINGS" />
+        <permission name="android.permission.READ_SEARCH_INDEXABLES" />
     </privapp-permissions>
 </permissions>

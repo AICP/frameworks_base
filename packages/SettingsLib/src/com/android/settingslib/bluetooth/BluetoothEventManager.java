@@ -34,6 +34,7 @@ import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 
@@ -208,19 +209,19 @@ public class BluetoothEventManager {
         return deviceAdded;
     }
 
-    void dispatchDeviceAdded(CachedBluetoothDevice cachedDevice) {
+    void dispatchDeviceAdded(@NonNull CachedBluetoothDevice cachedDevice) {
         for (BluetoothCallback callback : mCallbacks) {
             callback.onDeviceAdded(cachedDevice);
         }
     }
 
-    void dispatchDeviceRemoved(CachedBluetoothDevice cachedDevice) {
+    void dispatchDeviceRemoved(@NonNull CachedBluetoothDevice cachedDevice) {
         for (BluetoothCallback callback : mCallbacks) {
             callback.onDeviceDeleted(cachedDevice);
         }
     }
 
-    void dispatchProfileConnectionStateChanged(CachedBluetoothDevice device, int state,
+    void dispatchProfileConnectionStateChanged(@NonNull CachedBluetoothDevice device, int state,
             int bluetoothProfile) {
         for (BluetoothCallback callback : mCallbacks) {
             callback.onProfileConnectionStateChanged(device, state, bluetoothProfile);
@@ -243,7 +244,8 @@ public class BluetoothEventManager {
     }
 
     @VisibleForTesting
-    void dispatchActiveDeviceChanged(CachedBluetoothDevice activeDevice,
+    void dispatchActiveDeviceChanged(
+            @Nullable CachedBluetoothDevice activeDevice,
             int bluetoothProfile) {
         for (CachedBluetoothDevice cachedDevice : mDeviceManager.getCachedDevicesCopy()) {
             boolean isActive = Objects.equals(cachedDevice, activeDevice);
@@ -254,7 +256,7 @@ public class BluetoothEventManager {
         }
     }
 
-    private void dispatchAclStateChanged(CachedBluetoothDevice activeDevice, int state) {
+    private void dispatchAclStateChanged(@NonNull CachedBluetoothDevice activeDevice, int state) {
         for (BluetoothCallback callback : mCallbacks) {
             callback.onAclConnectionStateChanged(activeDevice, state);
         }
@@ -394,8 +396,14 @@ public class BluetoothEventManager {
             if (bondState == BluetoothDevice.BOND_NONE) {
                 // Check if we need to remove other Coordinated set member devices / Hearing Aid
                 // devices
+                if (DEBUG) {
+                    Log.d(TAG, "BondStateChangedHandler: cachedDevice.getGroupId() = "
+                            + cachedDevice.getGroupId() + ", cachedDevice.getHiSyncId()= "
+                            + cachedDevice.getHiSyncId());
+                }
                 if (cachedDevice.getGroupId() != BluetoothCsipSetCoordinator.GROUP_ID_INVALID
                         || cachedDevice.getHiSyncId() != BluetoothHearingAid.HI_SYNC_ID_INVALID) {
+                    Log.d(TAG, "BondStateChangedHandler: Start onDeviceUnpaired");
                     mDeviceManager.onDeviceUnpaired(cachedDevice);
                 }
                 int reason = intent.getIntExtra(BluetoothDevice.EXTRA_UNBOND_REASON,
@@ -477,6 +485,7 @@ public class BluetoothEventManager {
                 Log.w(TAG, "ActiveDeviceChangedHandler: action is null");
                 return;
             }
+            @Nullable
             CachedBluetoothDevice activeDevice = mDeviceManager.findDevice(device);
             int bluetoothProfile = 0;
             if (Objects.equals(action, BluetoothA2dp.ACTION_ACTIVE_DEVICE_CHANGED)) {

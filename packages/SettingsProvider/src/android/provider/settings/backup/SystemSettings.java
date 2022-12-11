@@ -193,7 +193,8 @@ public class SystemSettings {
                 Settings.System.SCREEN_OFF_ANIMATION,
                 Settings.System.LOCKSCREEN_BATTERY_INFO,
                 Settings.System.LOCKSCREEN_BATTERY_INFO_TEMP_UNIT,
-                Settings.System.DOUBLE_TAP_SLEEP_GESTURE
+                Settings.System.DOUBLE_TAP_SLEEP_GESTURE,
+                Settings.System.DOUBLE_TAP_SLEEP_LOCKSCREEN
         ));
         if (Flags.backUpSmoothDisplayAndForcePeakRefreshRate()) {
             settings.add(Settings.System.PEAK_REFRESH_RATE);

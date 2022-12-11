@@ -318,6 +318,9 @@ public final class NotificationPanelViewController implements ShadeSurface, Dump
     private final NotificationStackScrollLayoutController mNotificationStackScrollLayoutController;
     private static final String DOUBLE_TAP_SLEEP_GESTURE =
             Settings.System.DOUBLE_TAP_SLEEP_GESTURE;
+    private static final String DOUBLE_TAP_SLEEP_LOCKSCREEN =
+            Settings.System.DOUBLE_TAP_SLEEP_LOCKSCREEN;
+
     private final LayoutInflater mLayoutInflater;
     private final FeatureFlags mFeatureFlags;
     private final AccessibilityManager mAccessibilityManager;
@@ -502,9 +505,11 @@ public final class NotificationPanelViewController implements ShadeSurface, Dump
     private final NavigationBarController mNavigationBarController;
     private final int mDisplayId;
     private boolean mDoubleTapToSleepEnabled;
+    private boolean mIsLockscreenDoubleTapEnabled;
     private GestureDetector mDoubleTapGesture;
 
     private final KeyguardIndicationController mKeyguardIndicationController;
+
     private int mHeadsUpInset;
     private boolean mHeadsUpPinnedMode;
     private boolean mAllowExpandForSmallExpansion;
@@ -4622,6 +4627,7 @@ public final class NotificationPanelViewController implements ShadeSurface, Dump
             }
             mConfigurationController.addCallback(mConfigurationListener);
             mTunerService.addTunable(this, DOUBLE_TAP_SLEEP_GESTURE);
+            mTunerService.addTunable(this, DOUBLE_TAP_SLEEP_LOCKSCREEN);
             // Theme might have changed between inflating this view and attaching it to the
             // window, so
             // force a call to onThemeChanged
@@ -4646,6 +4652,10 @@ public final class NotificationPanelViewController implements ShadeSurface, Dump
             switch (key) {
                 case DOUBLE_TAP_SLEEP_GESTURE:
                     mDoubleTapToSleepEnabled =
+                            TunerService.parseIntegerSwitch(newValue, true);
+                    break;
+                case DOUBLE_TAP_SLEEP_LOCKSCREEN:
+                    mIsLockscreenDoubleTapEnabled =
                             TunerService.parseIntegerSwitch(newValue, true);
                     break;
                 default:
@@ -5035,7 +5045,10 @@ public final class NotificationPanelViewController implements ShadeSurface, Dump
                 return false;
             }
 
-            if (mDoubleTapToSleepEnabled && !mPulsing && !mDozing) {
+            if ((mIsLockscreenDoubleTapEnabled && !mPulsing && !mDozing
+                    && mBarState == StatusBarState.KEYGUARD) ||
+                    (!mQsExpanded && mDoubleTapToSleepEnabled
+                    && event.getY() < mStatusBarHeaderHeightKeyguard)) {
                 mDoubleTapGesture.onTouchEvent(event);
             }
 

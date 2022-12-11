@@ -63,7 +63,7 @@ public class TunerActivity extends CollapsingToolbarBaseActivity implements
             final PreferenceFragment fragment = showDemoMode
                     ? new DemoModeFragment(mDemoModeController)
                     : new TunerFragment(mTunerService);
-            getFragmentManager().beginTransaction().replace(com.android.settingslib.collapsingtoolbar.R.id.content_frame,
+            getFragmentManager().beginTransaction().replace(com.android.settingslib.widget.R.id.content_frame,
                     fragment, TAG_TUNER).commit();
         }
     }
@@ -100,7 +100,7 @@ public class TunerActivity extends CollapsingToolbarBaseActivity implements
             fragment.setArguments(b);
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             setTitle(pref.getTitle());
-            transaction.replace(com.android.settingslib.collapsingtoolbar.R.id.content_frame, fragment);
+            transaction.replace(com.android.settingslib.widget.R.id.content_frame, fragment);
             transaction.addToBackStack("PreferenceFragment");
             transaction.commit();
             return true;
@@ -118,7 +118,7 @@ public class TunerActivity extends CollapsingToolbarBaseActivity implements
         b.putString(PreferenceFragment.ARG_PREFERENCE_ROOT, pref.getKey());
         fragment.setArguments(b);
         fragment.setTargetFragment(caller, 0);
-        transaction.replace(com.android.settingslib.collapsingtoolbar.R.id.content_frame, fragment);
+        transaction.replace(com.android.settingslib.widget.R.id.content_frame, fragment);
         transaction.addToBackStack("PreferenceFragment");
         transaction.commit();
         return true;

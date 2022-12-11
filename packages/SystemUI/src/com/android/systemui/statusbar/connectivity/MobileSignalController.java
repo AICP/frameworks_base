@@ -61,7 +61,8 @@ import java.util.Map;
 /**
  * Monitors the mobile signal changes and update the SysUI icons.
  */
-public class MobileSignalController extends SignalController<MobileState, MobileIconGroup> {
+public class MobileSignalController extends SignalController<MobileState, MobileIconGroup>
+        implements TunerService.Tunable {
     private static final SimpleDateFormat SSDF = new SimpleDateFormat("MM-dd HH:mm:ss.SSS");
     private static final int STATUS_HISTORY_SIZE = 64;
     private final TelephonyManager mPhone;

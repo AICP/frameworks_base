@@ -88,7 +88,7 @@ public class StatusBarIconControllerImpl implements Tunable,
             TunerService tunerService,
             DumpManager dumpManager,
             @Main Handler handler,
-            SystemSettings systemSettings),
+            SystemSettings systemSettings,
             StatusBarIconList statusBarIconList) {
         mStatusBarIconList = statusBarIconList;
         mContext = context;
@@ -253,20 +253,18 @@ public class StatusBarIconControllerImpl implements Tunable,
 
     @Override
     public void setBluetoothIcon(String slot, BluetoothIconState state) {
-        int index = getSlotIndex(slot);
-
         if (state == null) {
-            removeIcon(index, 0);
+            removeIcon(slot, 0);
             return;
         }
 
-        StatusBarIconHolder holder = getIcon(index, 0);
+        StatusBarIconHolder holder = mStatusBarIconList.getIconHolder(slot, 0);
         if (holder == null) {
             holder = StatusBarIconHolder.fromBluetoothIconState(state);
-            setIcon(index, holder);
+            setIcon(slot, holder);
         } else {
             holder.setBluetoothState(state);
-            handleSet(index, holder);
+            handleSet(slot, holder);
         }
     }
 

@@ -16,6 +16,7 @@
 
 package com.android.systemui.statusbar.notification.interruption
 
+import android.service.notification.StatusBarNotification
 import com.android.systemui.log.LogBuffer
 import com.android.systemui.log.LogLevel.DEBUG
 import com.android.systemui.log.LogLevel.INFO

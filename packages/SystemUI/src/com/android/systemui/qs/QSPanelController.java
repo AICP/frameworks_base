@@ -138,7 +138,6 @@ public class QSPanelController extends QSPanelControllerBase<QSPanel> {
 
     @Override
     protected void onViewDetached() {
-        mTunerService.removeTunable(mView);
         mBrightnessMirrorHandler.onQsPanelDettached();
         super.onViewDetached();
     }

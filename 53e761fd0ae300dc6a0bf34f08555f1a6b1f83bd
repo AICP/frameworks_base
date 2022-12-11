@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e29ea2e_cb965fb2",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/notification/interruption/NotificationInterruptStateProviderImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1986
+      },
+      "writtenOn": "2022-12-11T13:39:12Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be true? Or was this intentional to disable heads up entirely?",
+      "range": {
+        "startLine": 61,
+        "startChar": 51,
+        "endLine": 61,
+        "endChar": 56
+      },
+      "revId": "53e761fd0ae300dc6a0bf34f08555f1a6b1f83bd",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

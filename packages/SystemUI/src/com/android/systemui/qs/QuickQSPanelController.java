@@ -48,22 +48,16 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.inject.Provider;
 
 /** Controller for {@link QuickQSPanel}. */
 @QSScope
 public class QuickQSPanelController extends QSPanelControllerBase<QuickQSPanel> {
 
-    private final QSPanel.OnConfigurationChangedListener mOnConfigurationChangedListener =
-            newConfig -> {
-                int newMaxTiles = getResources().getInteger(R.integer.quick_qs_panel_max_tiles);
-                if (newMaxTiles != mView.getNumQuickTiles()) {
-                    setMaxTiles(newMaxTiles);
-                }
-            };
-
+    private final Provider<Boolean> mUsingCollapsedLandscapeMediaProvider;
     private final QuickQSBrightnessController mBrightnessController;
     private final BrightnessMirrorHandler mBrightnessMirrorHandler;
-    private final boolean mUsingCollapsedLandscapeMedia;
+
 
     private boolean mForceShowSlider = false;
 
@@ -72,7 +66,8 @@ public class QuickQSPanelController extends QSPanelControllerBase<QuickQSPanel> 
             QSCustomizerController qsCustomizerController,
             @Named(QS_USING_MEDIA_PLAYER) boolean usingMediaPlayer,
             @Named(QUICK_QS_PANEL) MediaHost mediaHost,
-            @Named(QS_USING_COLLAPSED_LANDSCAPE_MEDIA) boolean usingCollapsedLandscapeMedia,
+            @Named(QS_USING_COLLAPSED_LANDSCAPE_MEDIA)
+                    Provider<Boolean> usingCollapsedLandscapeMediaProvider,
             MetricsLogger metricsLogger, UiEventLogger uiEventLogger, QSLogger qsLogger,
             DumpManager dumpManager,
             QuickQSBrightnessController quickQSBrightnessController,
@@ -83,7 +78,7 @@ public class QuickQSPanelController extends QSPanelControllerBase<QuickQSPanel> 
                 uiEventLogger, qsLogger, dumpManager, mainHandler, systemSettings);
         mBrightnessController = quickQSBrightnessController;
         mBrightnessMirrorHandler = new BrightnessMirrorHandler(mBrightnessController);
-        mUsingCollapsedLandscapeMedia = usingCollapsedLandscapeMedia;
+        mUsingCollapsedLandscapeMediaProvider = usingCollapsedLandscapeMediaProvider;
     }
 
     @Override
@@ -100,7 +95,8 @@ public class QuickQSPanelController extends QSPanelControllerBase<QuickQSPanel> 
         int rotation = getRotation();
         boolean isLandscape = rotation == RotationUtils.ROTATION_LANDSCAPE
                 || rotation == RotationUtils.ROTATION_SEASCAPE;
-        if (!mUsingCollapsedLandscapeMedia || !isLandscape) {
+        boolean usingCollapsedLandscapeMedia = mUsingCollapsedLandscapeMediaProvider.get();
+        if (!usingCollapsedLandscapeMedia || !isLandscape) {
             mMediaHost.setExpansion(MediaHost.EXPANDED);
         } else {
             mMediaHost.setExpansion(MediaHost.COLLAPSED);
@@ -142,7 +138,6 @@ public class QuickQSPanelController extends QSPanelControllerBase<QuickQSPanel> 
     @Override
     protected void onViewAttached() {
         super.onViewAttached();
-        mView.addOnConfigurationChangedListener(mOnConfigurationChangedListener);
         mBrightnessMirrorHandler.onQsPanelAttached();
         updateSliderVisibility();
         registerObserver(Settings.System.QQS_SHOW_BRIGHTNESS);
@@ -151,7 +146,6 @@ public class QuickQSPanelController extends QSPanelControllerBase<QuickQSPanel> 
     @Override
     protected void onViewDetached() {
         super.onViewDetached();
-        mView.removeOnConfigurationChangedListener(mOnConfigurationChangedListener);
         mBrightnessMirrorHandler.onQsPanelDettached();
     }
 
@@ -172,6 +166,10 @@ public class QuickQSPanelController extends QSPanelControllerBase<QuickQSPanel> 
 
     @Override
     protected void onConfigurationChanged() {
+        int newMaxTiles = getResources().getInteger(R.integer.quick_qs_panel_max_tiles);
+        if (newMaxTiles != mView.getNumQuickTiles()) {
+            setMaxTiles(newMaxTiles);
+        }
         updateMediaExpansion();
         mBrightnessController.refreshVisibility(mForceShowSlider,
             mShouldUseSplitNotificationShade);
@@ -189,7 +187,6 @@ public class QuickQSPanelController extends QSPanelControllerBase<QuickQSPanel> 
         super.setTiles(tiles, /* collapsedView */ true);
     }
 
-    /** */
     public void setContentMargins(int marginStart, int marginEnd) {
         mView.setContentMargins(marginStart, marginEnd, mMediaHost.getHostView());
     }

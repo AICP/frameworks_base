@@ -218,5 +218,6 @@ public class SystemSettings {
         Settings.System.STATUSBAR_BATTERY_BAR_ANIMATE,
         Settings.System.STATUSBAR_BATTERY_BAR_LOCATION,
         Settings.System.DOUBLE_TAP_SLEEP_GESTURE,
+        Settings.System.DOUBLE_TAP_SLEEP_LOCKSCREEN,
     };
 }

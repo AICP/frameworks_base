@@ -1847,8 +1847,6 @@ public class PackageManagerService implements PackageSender, TestUtilityService 
         mAppDataHelper = new AppDataHelper(this);
         mInstallPackageHelper = new InstallPackageHelper(this, mAppDataHelper);
         mRemovePackageHelper = new RemovePackageHelper(this, mAppDataHelper);
-        mInitAppsHelper = new InitAppsHelper(this, mApexManager, mInstallPackageHelper,
-                mInjector.getSystemPartitions());
         mDeletePackageHelper = new DeletePackageHelper(this, mRemovePackageHelper,
                 mAppDataHelper);
         mSharedLibraries.setDeletePackageHelper(mDeletePackageHelper);
@@ -1968,6 +1966,9 @@ public class PackageManagerService implements PackageSender, TestUtilityService 
                 PackageManagerServiceUtils.logCriticalInfo(Log.INFO, "Upgrading from "
                         + ver.fingerprint + " to " + Build.VERSION.INCREMENTAL);
             }
+
+            mInitAppsHelper = new InitAppsHelper(this, mApexManager, mInstallPackageHelper,
+                mInjector.getSystemPartitions());
 
             // when upgrading from pre-M, promote system app permissions from install to runtime
             mPromoteSystemApps =
@@ -5808,6 +5809,11 @@ public class PackageManagerService implements PackageSender, TestUtilityService 
             final Computer snapshot = snapshotComputer();
             enforceOwnerRights(snapshot, packageName, Binder.getCallingUid());
             mimeTypes = CollectionUtils.emptyIfNull(mimeTypes);
+            for (String mimeType : mimeTypes) {
+                if (mimeType.length() > 255) {
+                    throw new IllegalArgumentException("MIME type length exceeds 255 characters");
+                }
+            }
             final PackageStateInternal packageState = snapshot.getPackageStateInternal(packageName);
             Set<String> existingMimeTypes = packageState.getMimeGroups().get(mimeGroup);
             if (existingMimeTypes == null) {
@@ -5817,6 +5823,10 @@ public class PackageManagerService implements PackageSender, TestUtilityService 
             if (existingMimeTypes.size() == mimeTypes.size()
                     && existingMimeTypes.containsAll(mimeTypes)) {
                 return;
+            }
+            if (mimeTypes.size() > 500) {
+                throw new IllegalStateException("Max limit on MIME types for MIME group "
+                        + mimeGroup + " exceeded for package " + packageName);
             }
 
             ArraySet<String> mimeTypesSet = new ArraySet<>(mimeTypes);
@@ -6547,7 +6557,7 @@ public class PackageManagerService implements PackageSender, TestUtilityService 
                         if (dependentState == null) {
                             continue;
                         }
-                        if (!Objects.equals(dependentState.getUserStateOrDefault(userId)
+                        if (canSetOverlayPaths(dependentState.getUserStateOrDefault(userId)
                                 .getSharedLibraryOverlayPaths()
                                 .get(libName), newOverlayPaths)) {
                             String dependentPackageName = dependent.getPackageName();
@@ -6563,7 +6573,10 @@ public class PackageManagerService implements PackageSender, TestUtilityService 
                 }
             }
 
-            outUpdatedPackageNames.add(targetPackageName);
+            if (canSetOverlayPaths(packageState.getUserStateOrDefault(userId).getOverlayPaths(),
+                    newOverlayPaths)) {
+                outUpdatedPackageNames.add(targetPackageName);
+            }
 
             commitPackageStateMutation(null, mutator -> {
                 mutator.forPackage(targetPackageName)
@@ -6591,6 +6604,17 @@ public class PackageManagerService implements PackageSender, TestUtilityService 
 
         invalidatePackageInfoCache();
 
+        return true;
+    }
+
+    private boolean canSetOverlayPaths(OverlayPaths origPaths, OverlayPaths newPaths) {
+        if (Objects.equals(origPaths, newPaths)) {
+            return false;
+        }
+        if ((origPaths == null && newPaths.isEmpty())
+                || (newPaths == null && origPaths.isEmpty())) {
+            return false;
+        }
         return true;
     }
 
@@ -7061,7 +7085,8 @@ public class PackageManagerService implements PackageSender, TestUtilityService 
             mResolveActivity.processName = pkg.getProcessName();
             mResolveActivity.launchMode = ActivityInfo.LAUNCH_MULTIPLE;
             mResolveActivity.flags = ActivityInfo.FLAG_EXCLUDE_FROM_RECENTS
-                    | ActivityInfo.FLAG_FINISH_ON_CLOSE_SYSTEM_DIALOGS;
+                    | ActivityInfo.FLAG_FINISH_ON_CLOSE_SYSTEM_DIALOGS
+                    | ActivityInfo.FLAG_CAN_DISPLAY_ON_REMOTE_DEVICES;
             mResolveActivity.theme = 0;
             mResolveActivity.exported = true;
             mResolveActivity.enabled = true;
@@ -7094,7 +7119,8 @@ public class PackageManagerService implements PackageSender, TestUtilityService 
                 mResolveActivity.launchMode = ActivityInfo.LAUNCH_MULTIPLE;
                 mResolveActivity.documentLaunchMode = ActivityInfo.DOCUMENT_LAUNCH_NEVER;
                 mResolveActivity.flags = ActivityInfo.FLAG_EXCLUDE_FROM_RECENTS
-                        | ActivityInfo.FLAG_RELINQUISH_TASK_IDENTITY;
+                        | ActivityInfo.FLAG_RELINQUISH_TASK_IDENTITY
+                        | ActivityInfo.FLAG_CAN_DISPLAY_ON_REMOTE_DEVICES;
                 mResolveActivity.theme = R.style.Theme_Material_Dialog_Alert;
                 mResolveActivity.exported = true;
                 mResolveActivity.enabled = true;

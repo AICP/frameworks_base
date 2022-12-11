@@ -103,7 +103,7 @@ import java.util.concurrent.Executor;
 @SuppressLint("ValidFragment")
 public class CollapsedStatusBarFragment extends Fragment implements CommandQueue.Callbacks,
         StatusBarStateController.StateListener,
-        SystemStatusAnimationCallback, Dumpable {
+        SystemStatusAnimationCallback, Dumpable, TunerService.Tunable {
 
     private static final String STATUSBAR_CLOCK_CHIP =
             "system:" + Settings.System.STATUSBAR_CLOCK_CHIP;
@@ -120,7 +120,6 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
     private final NotificationPanelViewController mNotificationPanelViewController;
     private final NetworkController mNetworkController;
     private LinearLayout mEndSideContent;
-    private View mClockView;
     private LinearLayout mCustomIconArea;
     private LinearLayout mCenterClockLayout;
     private View mStatusBarLogo, mStatusBarLogoRight;

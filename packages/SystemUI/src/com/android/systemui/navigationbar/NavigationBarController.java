@@ -56,7 +56,6 @@ import com.android.systemui.flags.Flags;
 import com.android.systemui.model.SysUiState;
 import com.android.systemui.recents.OverviewProxyService;
 import com.android.systemui.shared.system.QuickStepContract;
-import com.android.systemui.shared.system.WindowManagerWrapper;
 import com.android.systemui.statusbar.CommandQueue;
 import com.android.systemui.statusbar.CommandQueue.Callbacks;
 import com.android.systemui.statusbar.phone.AutoHideController;
@@ -316,13 +315,12 @@ public class NavigationBarController implements
             return;
         }
 
-        final WindowManagerWrapper wm = WindowManagerWrapper.getInstance();
         final IWindowManager wms = WindowManagerGlobal.getWindowManagerService();
 
         final Context context = isOnDefaultDisplay
                 ? mContext
                 : mContext.createDisplayContext(display);
-        if (!wm.hasSoftNavigationBar(context, displayId)) {
+        if (!hasSoftNavigationBar(context, displayId)) {
             return;
         }
         NavigationBarComponent component = mNavigationBarComponentFactory.create(
@@ -445,6 +443,26 @@ public class NavigationBarController implements
             return navBarView.isOverviewEnabled();
         } else {
             return mTaskbarDelegate.isOverviewEnabled();
+        }
+    }
+
+    /**
+     * @param displayId the id of display to check if there is a software navigation bar.
+     *
+     * @return whether there is a soft nav bar on specific display.
+     */
+    private boolean hasSoftNavigationBar(Context context, int displayId) {
+        if (displayId == DEFAULT_DISPLAY &&
+                Settings.System.getIntForUser(context.getContentResolver(),
+                        Settings.System.NAVIGATION_BAR_SHOW, 0,
+                        UserHandle.USER_CURRENT) == 1) {
+            return true;
+        }
+        try {
+            return WindowManagerGlobal.getWindowManagerService().hasNavigationBar(displayId);
+        } catch (RemoteException e) {
+            Log.e(TAG, "Failed to check soft navigation bar", e);
+            return false;
         }
     }
 

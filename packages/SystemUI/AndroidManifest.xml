@@ -996,6 +996,7 @@
                 <action android:name="android.settings.panel.action.VOLUME" />
                 <action android:name="com.android.systemui.action.LAUNCH_VOLUME_PANEL_DIALOG" />
                 <action android:name="com.android.systemui.action.DISMISS_VOLUME_PANEL_DIALOG" />
+            </intent-filter>
         </receiver>
     </application>
 </manifest>

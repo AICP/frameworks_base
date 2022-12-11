@@ -39555,7 +39555,6 @@ package android.service.wallpaper {
     method public void onVisibilityChanged(boolean);
     method public void onZoomChanged(@FloatRange(from=0.0f, to=1.0f) float);
     method public void setOffsetNotificationsEnabled(boolean);
-    method public void setShouldZoomOut(boolean);
     method public void setTouchEventsEnabled(boolean);
   }
 

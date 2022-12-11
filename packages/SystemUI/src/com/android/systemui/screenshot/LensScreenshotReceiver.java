@@ -83,7 +83,7 @@ public class LensScreenshotReceiver extends BroadcastReceiver {
 
         if (intent.getBooleanExtra(EXTRA_SMART_ACTIONS_ENABLED, false)) {
             mScreenshotSmartActions.notifyScreenshotAction(
-                    context, intent.getStringExtra(EXTRA_ID), ACTION_TYPE_LENS, false, null);
+                    intent.getStringExtra(EXTRA_ID), ACTION_TYPE_LENS, false, null);
         }
     }
 }

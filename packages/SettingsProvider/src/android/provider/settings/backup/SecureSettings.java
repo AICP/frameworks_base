@@ -227,7 +227,6 @@ public class SecureSettings {
         Settings.Secure.ENABLE_LOCATION_PRIVACY_INDICATOR,
         Settings.Secure.ENABLE_CAMERA_PRIVACY_INDICATOR,
         Settings.Secure.ENABLE_PROJECTION_PRIVACY_INDICATOR,
-        Settings.Secure.SHOW_WIFI_STANDARD_ICON,
         Settings.Secure.VOLUME_LINK_NOTIFICATION,
         Settings.Secure.GESTURE_NAVBAR_LENGTH_MODE,
         Settings.Secure.SHOW_BACK_ARROW_GESTURE,

@@ -675,6 +675,10 @@ class BackPanelController private constructor(
         updateArrowState(GestureState.GONE, force = true)
     }
 
+    // TODO DEC2020
+    override fun setBackArrowVisibility(backArrowVisibility: Boolean) {
+    }
+
     override fun dump(pw: PrintWriter) {
         pw.println("$TAG:")
         pw.println("  currentState=$currentState")

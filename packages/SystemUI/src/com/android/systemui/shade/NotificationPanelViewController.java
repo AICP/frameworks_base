@@ -312,12 +312,15 @@ public final class NotificationPanelViewController implements ShadeSurface, Dump
     private final NotificationPanelView mView;
     private final VibratorHelper mVibratorHelper;
     private final ContentObserver mDoubleTapToSleepObserver;
+    private final ContentObserver mDoubleTapToSleepLockscreenObserver;
     private final MetricsLogger mMetricsLogger;
     private final ConfigurationController mConfigurationController;
     private final Provider<FlingAnimationUtils.Builder> mFlingAnimationUtilsBuilder;
     private final NotificationStackScrollLayoutController mNotificationStackScrollLayoutController;
     private static final String DOUBLE_TAP_SLEEP_GESTURE =
             Settings.System.DOUBLE_TAP_SLEEP_GESTURE;
+    private static final String DOUBLE_TAP_SLEEP_LOCKSCREEN =
+            Settings.System.DOUBLE_TAP_SLEEP_LOCKSCREEN;
     private final LayoutInflater mLayoutInflater;
     private final FeatureFlags mFeatureFlags;
     private final AccessibilityManager mAccessibilityManager;
@@ -501,6 +504,7 @@ public final class NotificationPanelViewController implements ShadeSurface, Dump
     private final NavigationBarController mNavigationBarController;
     private final int mDisplayId;
     private boolean mDoubleTapToSleepEnabled;
+    private boolean mIsLockscreenDoubleTapEnabled;
     private GestureDetector mDoubleTapGesture;
 
     private final KeyguardIndicationController mKeyguardIndicationController;
@@ -948,6 +952,16 @@ public final class NotificationPanelViewController implements ShadeSurface, Dump
                                 true ? 1 : 0) != 0;
             }
         };
+
+        mDoubleTapToSleepLockscreenObserver = new ContentObserver(handler) {
+            @Override
+            public void onChange(boolean selfChange) {
+                mIsLockscreenDoubleTapEnabled = Settings.System.getInt(mContentResolver,
+                        Settings.System.DOUBLE_TAP_SLEEP_LOCKSCREEN,
+                                true ? 1 : 0) != 0;
+            }
+        };
+
 
         mConversationNotificationManager = conversationNotificationManager;
         mAuthController = authController;
@@ -4632,6 +4646,10 @@ public final class NotificationPanelViewController implements ShadeSurface, Dump
                 Settings.System.DOUBLE_TAP_SLEEP_GESTURE), false,
                 mDoubleTapToSleepObserver);
             mDoubleTapToSleepObserver.onChange(true);
+            mContentResolver.registerContentObserver(Settings.System.getUriFor(
+                Settings.System.DOUBLE_TAP_SLEEP_LOCKSCREEN), false,
+                mDoubleTapToSleepLockscreenObserver);
+            mDoubleTapToSleepLockscreenObserver.onChange(true);
 
             // Theme might have changed between inflating this view and attaching it to the
             // window, so
@@ -5036,7 +5054,10 @@ public final class NotificationPanelViewController implements ShadeSurface, Dump
                 return false;
             }
 
-            if (mDoubleTapToSleepEnabled && !mPulsing && !mDozing) {
+            if ((mIsLockscreenDoubleTapEnabled && !mPulsing && !mDozing
+                    && mBarState == StatusBarState.KEYGUARD) ||
+                    (mDoubleTapToSleepEnabled
+                    && event.getY() < mStatusBarHeaderHeightKeyguard)) {
                 mDoubleTapGesture.onTouchEvent(event);
             }
 

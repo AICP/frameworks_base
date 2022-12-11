@@ -667,9 +667,6 @@ public final class NotificationPanelViewController extends PanelViewController {
     private int mOneFingerQuickSettingsIntercept;
     private int mQsSmartPullDown;
 
-    private final Executor mUiExecutor;
-    private final SecureSettings mSecureSettings;
-
     private final KeyguardMediaController mKeyguardMediaController;
 
     private boolean mStatusViewCentered = true;
@@ -2234,12 +2231,12 @@ public final class NotificationPanelViewController extends PanelViewController {
                 break;
         }
 
-        if (mQsSmartPullDown == 1 && !hasActiveClearableNotifications()
-                || mQsSmartPullDown == 2 &&
-                !mEntryManager.hasActiveOngoingNotifications()
-                || mQsSmartPullDown == 3 && !mEntryManager.hasActiveVisibleNotifications()) {
-                showQsOverride = true;
-        }
+        // if (mQsSmartPullDown == 1 && !hasActiveClearableNotifications()
+        //         || mQsSmartPullDown == 2 &&
+        //         !mEntryManager.hasActiveOngoingNotifications()
+        //         || mQsSmartPullDown == 3 && !mEntryManager.hasActiveVisibleNotifications()) {
+        //         showQsOverride = true;
+        // }
 
         showQsOverride &= mBarState == StatusBarState.SHADE;
 

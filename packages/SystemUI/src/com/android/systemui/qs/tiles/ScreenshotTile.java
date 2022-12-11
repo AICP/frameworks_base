@@ -89,7 +89,8 @@ public class ScreenshotTile extends QSTileImpl<BooleanState> {
         mHost.collapsePanels();
         final ScreenshotHelper screenshotHelper = new ScreenshotHelper(mContext);
         mHandler.postDelayed(() -> {
-            screenshotHelper.takeScreenshot(TAKE_SCREENSHOT_FULLSCREEN, true, true, mHandler, null);
+            screenshotHelper.takeScreenshot(TAKE_SCREENSHOT_FULLSCREEN,
+                    WindowManager.ScreenshotSource.SCREENSHOT_OTHER, mHandler, null);
         }, 1000);
     }
 
@@ -103,7 +104,8 @@ public class ScreenshotTile extends QSTileImpl<BooleanState> {
         mHost.collapsePanels();
         final ScreenshotHelper screenshotHelper = new ScreenshotHelper(mContext);
         mHandler.postDelayed(() -> {
-            screenshotHelper.takeScreenshot(TAKE_SCREENSHOT_SELECTED_REGION, true, true, mHandler, null);
+            screenshotHelper.takeScreenshot(TAKE_SCREENSHOT_SELECTED_REGION,
+                    WindowManager.ScreenshotSource.SCREENSHOT_OTHER, mHandler, null);
         }, 1000);
         refreshState();
     }

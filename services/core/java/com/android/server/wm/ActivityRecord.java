@@ -8746,7 +8746,7 @@ final class ActivityRecord extends WindowToken implements WindowManagerService.A
      */
     // TODO(b/36505427): Consider moving this method and similar ones to ConfigurationContainer.
     private boolean applyAspectRatio(Rect outBounds, Rect containingAppBounds,
-            Rect containingBounds, float desiredAspectRatio {
+            Rect containingBounds, float desiredAspectRatio) {
         final boolean higherAspectRatio = Resources.getSystem().getBoolean(
                 com.android.internal.R.bool.config_haveHigherAspectRatioScreen);
         final float maxAspectRatio = higherAspectRatio ? mFullScreenAspectRatio : info.getMaxAspectRatio();

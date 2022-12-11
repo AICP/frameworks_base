@@ -35,7 +35,6 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.SystemClock;
 import android.os.Trace;
-import android.provider.Settings;
 import android.service.wallpaper.WallpaperService;
 import android.util.ArraySet;
 import android.util.Log;
@@ -54,7 +53,6 @@ import com.android.systemui.flags.FeatureFlags;
 import com.android.systemui.wallpapers.canvas.ImageCanvasWallpaperRenderer;
 import com.android.systemui.wallpapers.gl.EglHelper;
 import com.android.systemui.wallpapers.gl.ImageWallpaperRenderer;
-import com.android.systemui.tuner.TunerService;
 
 import java.io.FileDescriptor;
 import java.io.IOException;
@@ -111,12 +109,7 @@ public class ImageWallpaper extends WallpaperService {
         mMiniBitmap = null;
     }
 
-    class GLEngine extends Engine implements DisplayListener, TunerService.Tunable {
-
-        private static final String DISPLAY_SETTINGS_WALLPAPER_ZOOM = 
-                Settings.Secure.DISPLAY_SETTINGS_WALLPAPER_ZOOM;
-        private boolean mWallpaperZoomEnabled = true;
-
+    class GLEngine extends Engine implements DisplayListener {
         // Surface is rejected if size below a threshold on some devices (ie. 8px on elfin)
         // set min to 64 px (CTS covers this), please refer to ag/4867989 for detail.
         @VisibleForTesting
@@ -162,17 +155,6 @@ public class ImageWallpaper extends WallpaperService {
             getDisplayContext().getSystemService(DisplayManager.class)
                     .registerDisplayListener(this, mWorker.getThreadHandler());
             Trace.endSection();
-
-            final TunerService tunerService = Dependency.get(TunerService.class);
-            tunerService.addTunable(this, DISPLAY_SETTINGS_WALLPAPER_ZOOM);
-        }
-
-        @Override
-        public void onTuningChanged(String key, String newValue) {
-            if (DISPLAY_SETTINGS_WALLPAPER_ZOOM.equals(key)) {
-                mWallpaperZoomEnabled = TunerService.parseIntegerSwitch(newValue, true);
-                setEnginesShouldZoomOut(mWallpaperZoomEnabled);
-            }
         }
 
         @Override
@@ -240,8 +222,7 @@ public class ImageWallpaper extends WallpaperService {
 
         @Override
         public boolean shouldZoomOutWallpaper() {
-            // Wallpaper zoom controlled by tuner now
-            return mWallpaperZoomEnabled;
+            return true;
         }
 
         @Override

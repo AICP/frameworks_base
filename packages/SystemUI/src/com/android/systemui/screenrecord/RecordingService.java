@@ -143,7 +143,7 @@ public class RecordingService extends Service implements ScreenMediaRecorderList
     public static Intent getStartIntent(Context context, int resultCode,
             int audioSource, boolean showTaps,
             boolean showStopDot, boolean lowQuality,
-            boolean longerDuration) {
+            boolean longerDuration,
             @Nullable MediaProjectionCaptureTarget captureTarget) {
         return new Intent(context, RecordingService.class)
                 .setAction(ACTION_START)
@@ -152,7 +152,7 @@ public class RecordingService extends Service implements ScreenMediaRecorderList
                 .putExtra(EXTRA_SHOW_TAPS, showTaps)
                 .putExtra(EXTRA_SHOW_STOP_DOT, showStopDot)
                 .putExtra(EXTRA_LOW_QUALITY, lowQuality)
-                .putExtra(EXTRA_LONGER_DURATION, longerDuration);
+                .putExtra(EXTRA_LONGER_DURATION, longerDuration)
                 .putExtra(EXTRA_CAPTURE_TARGET, captureTarget);
     }
 

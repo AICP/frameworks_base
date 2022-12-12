@@ -22,6 +22,30 @@
       },
       "revId": "53e761fd0ae300dc6a0bf34f08555f1a6b1f83bd",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c178ee8_f5e4474e",
+        "filename": "packages/SystemUI/src/com/android/systemui/statusbar/notification/interruption/NotificationInterruptStateProviderImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2022-12-12T03:48:36Z",
+      "side": 1,
+      "message": "That definitely looks like a oversight from our part, will fix it shortly",
+      "parentUuid": "8e29ea2e_cb965fb2",
+      "range": {
+        "startLine": 61,
+        "startChar": 51,
+        "endLine": 61,
+        "endChar": 56
+      },
+      "revId": "53e761fd0ae300dc6a0bf34f08555f1a6b1f83bd",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

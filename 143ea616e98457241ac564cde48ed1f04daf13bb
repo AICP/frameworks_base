@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39a8c175_8ecf617c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-12-13T22:00:43Z",
+      "side": 1,
+      "message": "PS2: fixed duplicated left statusbar clock.",
+      "revId": "143ea616e98457241ac564cde48ed1f04daf13bb",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ea384c9_4e3bd988",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-12-14T17:59:19Z",
+      "side": 1,
+      "message": "PS5: Removed BatteryController class dependency. And http://haste.aicp-rom.com/izakikamij.bash fixed with https://gerrit.aicp-rom.com/c/AICP/frameworks_base/+/118816/1.",
+      "revId": "0dc0c1e80cd64f6454b981eb03bf70a2d77156ae",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

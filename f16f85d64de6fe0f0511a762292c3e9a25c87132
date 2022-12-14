@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65b8405f_41ab87e2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2022-12-14T11:41:41Z",
+      "side": 1,
+      "message": "PS4: fixed http://haste.aicp-rom.com/izakikamij.bash. Added back BatteryController class to Dependency.java",
+      "revId": "f16f85d64de6fe0f0511a762292c3e9a25c87132",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

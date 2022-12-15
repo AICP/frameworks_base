@@ -40,4 +40,7 @@
 
     <!-- If AOD can show an ambient version of the wallpaper (-1 means ignore) -->
     <integer name="config_dozeSupportsAodWallpaperOverride">-1</integer>
+
+    <!-- Whether to disable Smart Pixels on UDFPS -->
+    <bool name="config_disableSmartPixelsOnUDFPS">false</bool>
 </resources>

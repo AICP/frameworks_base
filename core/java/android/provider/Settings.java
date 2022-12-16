@@ -5866,12 +5866,6 @@ public final class Settings {
         public static final String STATUS_BAR_QUICK_QS_PULLDOWN = "qs_quick_pulldown";
 
         /**
-         * Quick Settings Smart Pulldown
-         * @hide
-         */
-        public static final String QS_SMART_PULLDOWN = "qs_smart_pulldown";
-
-        /**
          * Whether to show the clock in the right or left position or show it in the center
          * 0: show the clock in the right position (LTR)
          * 1: show the clock in the center

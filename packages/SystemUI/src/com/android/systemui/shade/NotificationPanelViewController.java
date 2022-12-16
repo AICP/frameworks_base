@@ -311,8 +311,6 @@ public final class NotificationPanelViewController extends PanelViewController {
 
     private static final String STATUS_BAR_QUICK_QS_PULLDOWN =
             Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN;
-    private static final String QS_SMART_PULLDOWN =
-            Settings.System.QS_SMART_PULLDOWN;
     private static final String DOUBLE_TAP_SLEEP_GESTURE =
             Settings.System.DOUBLE_TAP_SLEEP_GESTURE;
     private static final String DOUBLE_TAP_SLEEP_LOCKSCREEN =
@@ -665,7 +663,6 @@ public final class NotificationPanelViewController extends PanelViewController {
     private float mMinFraction;
 
     private int mOneFingerQuickSettingsIntercept;
-    private int mQsSmartPullDown;
 
     private final KeyguardMediaController mKeyguardMediaController;
 
@@ -2230,14 +2227,6 @@ public final class NotificationPanelViewController extends PanelViewController {
                 showQsOverride = mView.isLayoutRtl() ? w - region < x : x < region;
                 break;
         }
-
-        // if (mQsSmartPullDown == 1 && !hasActiveClearableNotifications()
-        //         || mQsSmartPullDown == 2 &&
-        //         !mEntryManager.hasActiveOngoingNotifications()
-        //         || mQsSmartPullDown == 3 && !mEntryManager.hasActiveVisibleNotifications()) {
-        //         showQsOverride = true;
-        // }
-
         showQsOverride &= mBarState == StatusBarState.SHADE;
 
         return twoFingerDrag || showQsOverride || stylusButtonClickDrag || mouseButtonClickDrag;
@@ -4870,7 +4859,6 @@ public final class NotificationPanelViewController extends PanelViewController {
             mStatusBarStateListener.onStateChanged(mStatusBarStateController.getState());
             mConfigurationController.addCallback(mConfigurationListener);
             mTunerService.addTunable(this, STATUS_BAR_QUICK_QS_PULLDOWN);
-            mTunerService.addTunable(this, QS_SMART_PULLDOWN);
             mTunerService.addTunable(this, DOUBLE_TAP_SLEEP_GESTURE);
             mTunerService.addTunable(this, DOUBLE_TAP_SLEEP_LOCKSCREEN);
             // Theme might have changed between inflating this view and attaching it to the
@@ -4899,10 +4887,6 @@ public final class NotificationPanelViewController extends PanelViewController {
                 case STATUS_BAR_QUICK_QS_PULLDOWN:
                     mOneFingerQuickSettingsIntercept =
                             TunerService.parseInteger(newValue, 1);
-                    break;
-                case QS_SMART_PULLDOWN:
-                    mQsSmartPullDown =
-                            TunerService.parseInteger(newValue, 0);
                     break;
                 case DOUBLE_TAP_SLEEP_GESTURE:
                     mDoubleTapToSleepEnabled =

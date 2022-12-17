@@ -509,6 +509,9 @@ applications that come with the platform
     <privapp-permissions package="com.android.systemui">
         <permission name="android.permission.REBOOT"/>
         <permission name="android.permission.RECOVERY"/>
+        <permission name="android.permission.ACCESS_SURFACE_FLINGER" />
+        <permission name="android.permission.ROTATE_SURFACE_FLINGER" />
+        <permission name="android.permission.INTERNAL_SYSTEM_WINDOW" />
     </privapp-permissions>
 
     <privapp-permissions package="com.android.tv">

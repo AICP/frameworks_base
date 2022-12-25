@@ -47,6 +47,7 @@ class NotificationsQSContainerController @Inject constructor(
                 mView.invalidate()
             }
         }
+
     private var splitShadeEnabled = false
     private var isQSDetailShowing = false
     private var isQSCustomizing = false
@@ -61,6 +62,7 @@ class NotificationsQSContainerController @Inject constructor(
     private var bottomCutoutInsets = 0
     private var panelMarginHorizontal = 0
     private var topMargin = 0
+    private var qsTopMargin = 0
 
     private val useCombinedQSHeaders = featureFlags.isEnabled(Flags.COMBINED_QS_HEADERS)
 
@@ -132,7 +134,13 @@ class NotificationsQSContainerController @Inject constructor(
         topMargin = if (largeScreenShadeHeaderActive) {
             largeScreenShadeHeaderHeight
         } else {
-            resources.getDimensionPixelSize(R.dimen.notification_panel_margin_top)
+            resources.getDimensionPixelSize(
+                if (useCombinedQSHeaders) {
+                    R.dimen.notification_panel_margin_top_combined_headers
+                } else {
+                    R.dimen.notification_panel_margin_top
+                }
+            )
         }
         updateConstraints()
 

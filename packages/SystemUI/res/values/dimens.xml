@@ -415,6 +415,7 @@
          On phones it's always 0dp but it's overridden in Car UI
     -->
     <dimen name="notification_panel_margin_top">0dp</dimen>
+    <dimen name="notification_panel_margin_top_combined_headers">8dp</dimen>
 
     <!-- The minimum content height for the split shade NSSL.
          It is used because if the height is too small, the expansion motion is too fast.
@@ -560,7 +561,7 @@
     <dimen name="qs_panel_elevation">4dp</dimen>
     <dimen name="qs_panel_padding_bottom">@dimen/footer_actions_height</dimen>
     <dimen name="qs_panel_padding_top">48dp</dimen>
-    <dimen name="qs_panel_padding_top_combined_headers">80dp</dimen>
+    <dimen name="qs_panel_padding_top_combined_headers">72dp</dimen>
 
     <dimen name="qs_data_usage_text_size">14sp</dimen>
     <dimen name="qs_data_usage_usage_text_size">36sp</dimen>

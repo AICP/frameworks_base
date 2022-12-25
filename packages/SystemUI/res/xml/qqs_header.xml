@@ -44,6 +44,7 @@
         <Layout
             android:layout_width="0dp"
             android:layout_height="@dimen/qs_header_non_clickable_element_height"
+            android:layout_marginStart="2dp"
             app:layout_constrainedWidth="true"
             app:layout_constraintStart_toEndOf="@id/clock"
             app:layout_constraintEnd_toStartOf="@id/barrier"

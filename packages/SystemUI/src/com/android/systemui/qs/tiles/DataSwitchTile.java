@@ -1,6 +1,7 @@
 package com.android.systemui.qs.tiles;
 
 import android.annotation.Nullable;
+import android.annotation.NonNull;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -27,22 +28,27 @@ import com.android.systemui.dagger.qualifiers.Main;
 import com.android.systemui.plugins.ActivityStarter;
 import com.android.systemui.plugins.FalsingManager;
 import com.android.systemui.R;
-import com.android.systemui.plugins.qs.QSTile.BooleanState;
+import com.android.systemui.plugins.qs.QSTile.SignalState;
 import com.android.systemui.plugins.statusbar.StatusBarStateController;
 import com.android.systemui.qs.logging.QSLogger;
 import com.android.systemui.qs.QSHost;
 import com.android.systemui.qs.tileimpl.QSTileImpl;
 import com.android.systemui.qs.tileimpl.QSTileImpl.ResourceIcon;
+import com.android.systemui.statusbar.connectivity.MobileDataIndicators;
+import com.android.systemui.statusbar.connectivity.NetworkController;
+import com.android.systemui.statusbar.connectivity.SignalCallback;
 
 import java.util.concurrent.Executors;
 import java.util.List;
 
 import javax.inject.Inject;
 
-public class DataSwitchTile extends QSTileImpl<BooleanState> {
+public class DataSwitchTile extends QSTileImpl<SignalState> {
     private boolean mCanSwitch = true;
     private boolean mRegistered;
     private int mSimCount;
+    private final NetworkController mController;
+    private final DataSwitchCallback mDataSwitchCallback = new DataSwitchCallback();
 
     private final Intent mLongClickIntent;
     private final String mTileLabel;
@@ -66,7 +72,8 @@ public class DataSwitchTile extends QSTileImpl<BooleanState> {
         MetricsLogger metricsLogger,
         StatusBarStateController statusBarStateController,
         ActivityStarter activityStarter,
-        QSLogger qsLogger
+        QSLogger qsLogger,
+        NetworkController networkController
     ) {
         super(host, backgroundLooper, mainHandler, falsingManager, metricsLogger,
                 statusBarStateController, activityStarter, qsLogger);
@@ -81,6 +88,8 @@ public class DataSwitchTile extends QSTileImpl<BooleanState> {
                 refreshState();
             }
         };
+        mController = networkController;
+        mController.observe(getLifecycle(), mDataSwitchCallback);
     }
 
     @Override
@@ -91,8 +100,8 @@ public class DataSwitchTile extends QSTileImpl<BooleanState> {
     }
 
     @Override
-    public BooleanState newTileState() {
-        final BooleanState state = new BooleanState();
+    public SignalState newTileState() {
+        final SignalState state = new SignalState();
         state.label = mContext.getString(R.string.qs_data_switch_label);
         return state;
     }
@@ -164,27 +173,32 @@ public class DataSwitchTile extends QSTileImpl<BooleanState> {
     }
 
     @Override
-    protected void handleUpdateState(BooleanState state, Object arg) {
-        boolean activeSIMZero;
-        if (arg == null) {
-            int defaultPhoneId = mSubscriptionManager.getDefaultDataPhoneId();
-            if (DEBUG) Log.d(TAG, "default data phone id=" + defaultPhoneId);
-            activeSIMZero = defaultPhoneId == 0;
-        } else {
-            activeSIMZero = (Boolean) arg;
+    protected void handleUpdateState(SignalState state, Object arg) {
+        int defaultPhoneId = mSubscriptionManager.getDefaultDataPhoneId();
+        if (DEBUG) Log.d(TAG, "default data phone id=" + defaultPhoneId);
+        boolean activeSIMZero = defaultPhoneId == 0;
+
+        CallbackInfo cb = (CallbackInfo) arg;
+        if (cb == null) {
+            cb = mDataSwitchCallback.mInfo;
         }
+
         updateSimCount();
         state.value = mSimCount == 2;
         if (mSimCount == 1 || mSimCount == 2) {
             state.icon = ResourceIcon.get(activeSIMZero
                     ? R.drawable.ic_qs_data_switch_1
                     : R.drawable.ic_qs_data_switch_2);
-            state.secondaryLabel = mContext.getString(activeSIMZero
-                    ? R.string.qs_data_sim_1
-                    : R.string.qs_data_sim_2);
+            if (cb.dataSubscriptionName != null) {
+                state.secondaryLabel = cb.dataSubscriptionName;
+            } else {
+                state.secondaryLabel = mContext.getString(activeSIMZero
+                        ? R.string.qs_data_sim_1
+                        : R.string.qs_data_sim_2);
+            }
         } else {
             state.icon = ResourceIcon.get(R.drawable.ic_qs_data_switch_1);
-            state.secondaryLabel = mContext.getString(R.string.qs_data_sim_1);
+            state.secondaryLabel = mContext.getString(R.string.qs_data_sim_none);
         }
         if (mSimCount < 2 || !mCanSwitch) {
             state.state = 0;
@@ -229,6 +243,21 @@ public class DataSwitchTile extends QSTileImpl<BooleanState> {
                     mTelephonyManager.createForSubscriptionId(id).setDataEnabled(false);
                     if (DEBUG) Log.d(TAG, "Disabled subID: " + id);
                 });
+        }
+    }
+
+    private static final class CallbackInfo {
+        @Nullable
+        CharSequence dataSubscriptionName;
+    }
+
+    private final class DataSwitchCallback implements SignalCallback {
+        private final CallbackInfo mInfo = new CallbackInfo();
+
+        @Override
+        public void setMobileDataIndicators(@NonNull MobileDataIndicators indicators) {
+            mInfo.dataSubscriptionName = mController.getMobileDataNetworkName();
+            refreshState(mInfo);
         }
     }
 }

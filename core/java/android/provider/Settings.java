@@ -6104,27 +6104,6 @@ public final class Settings {
         public static final String NOTIFICATION_MATERIAL_DISMISS_BGSTYLE = "notification_material_dismiss_bgstyle";
 
         /**
-         * Whether to inverse keys in navigation bar
-         * Default 0
-         * @hide
-         */
-        public static final String NAVIGATION_BAR_INVERSE = "navigation_bar_inverse";
-
-        /**
-         * boolean value. toggles compact layout in navigation bar
-         * @hide
-         */
-        public static final String NAV_BAR_COMPACT_LAYOUT = "navigation_bar_compact_layout";
-
-        /**
-         * Gesture navbar IME space.
-         * Supported modes: 0 for normal length, 1 for narrow and 2 for hidden.
-         * Default 0.
-         * @hide
-         */
-        public static final String NAVIGATION_BAR_IME_SPACE = "navigation_bar_ime_space";
-
-        /**
          * @hide
          */
         public static final String BACK_GESTURE_HEIGHT = "back_gesture_height";
@@ -6726,9 +6705,6 @@ public final class Settings {
             PRIVATE_SETTINGS.add(NOTIFICATION_MATERIAL_DISMISS);
             PRIVATE_SETTINGS.add(NOTIFICATION_MATERIAL_DISMISS_STYLE);
             PRIVATE_SETTINGS.add(NOTIFICATION_MATERIAL_DISMISS_BGSTYLE);
-            PRIVATE_SETTINGS.add(NAVIGATION_BAR_INVERSE);
-            PRIVATE_SETTINGS.add(NAV_BAR_COMPACT_LAYOUT);
-            PRIVATE_SETTINGS.add(NAVIGATION_BAR_IME_SPACE);
             PRIVATE_SETTINGS.add(BACK_GESTURE_HEIGHT);
             PRIVATE_SETTINGS.add(TOAST_ICON);
             PRIVATE_SETTINGS.add(FINGERPRINT_WAKE_UNLOCK);
@@ -12130,14 +12106,6 @@ public final class Settings {
          * @hide
          */
         public static final String VOLUME_LINK_NOTIFICATION = "volume_link_notification";
-
-        /**
-         * Gesture navbar length mode.
-         * Supported modes: 0 for hidden, 1 for normal length, 2 for medium and 3 for long.
-         * Default 0.
-         * @hide
-         */
-        public static final String GESTURE_NAVBAR_LENGTH_MODE = "gesture_navbar_length_mode";
 
         /**
          * Whether to show or hide the arrow for back gesture

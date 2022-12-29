@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/weather_container"
         android:paddingStart="@dimen/clock_padding_start" />
     <FrameLayout
         android:id="@+id/lockscreen_clock_view_large"

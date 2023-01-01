@@ -524,6 +524,18 @@ public class ThemeOverlayController implements CoreStartable, Dumpable {
             return;
         }
 
+        mSystemSettings.registerContentObserverForUser(
+                Settings.System.getUriFor(Settings.System.HIDE_IME_SPACE_ENABLE),
+                false,
+                new ContentObserver(mBgHandler) {
+                    @Override
+                    public void onChange(boolean selfChange, Collection<Uri> collection, int flags,
+                            int userId) {
+                        reevaluateSystemTheme(true /* forceReload */);
+                    }
+                },
+                UserHandle.USER_ALL);
+
         mUserTracker.addCallback(mUserTrackerCallback, mMainExecutor);
 
         mConfigurationController.addCallback(mConfigurationListener);

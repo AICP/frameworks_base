@@ -226,5 +226,6 @@ public class SystemSettings {
         Settings.System.STATUS_BAR_BATTERY_TEXT_CHARGING,
         Settings.System.NAV_BAR_COMPACT_LAYOUT,
         Settings.System.NAVIGATION_BAR_MENU_ARROW_KEYS,
+        Settings.System.HIDE_IME_SPACE_ENABLE,
     };
 }

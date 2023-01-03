@@ -1,4 +1,22 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10d72555_d216e393",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2023-01-03T19:48:42Z",
+      "side": 1,
+      "message": "not needed after https://github.com/AICP/packages_apps_Settings/commit/550efb4bd0a8e9c3c3641924fff3f15d52b256fc",
+      "revId": "8abf19a11b4273845a970c55d858b1e276bf15e2",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ],
   "submitRequirementResults": []
 }

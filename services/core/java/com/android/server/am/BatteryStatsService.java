@@ -2980,4 +2980,17 @@ public final class BatteryStatsService extends IBatteryStats.Stub
     public void suspendBatteryInput() {
         mBatteryManagerInternal.suspendBatteryInput();
     }
+
+    /**
+     * Battery stats and history reset
+     */
+    @Override
+    public void resetStatistics() {
+        mContext.enforceCallingPermission(
+                android.Manifest.permission.RESET_BATTERY_STATS, null);
+        synchronized (mStats) {
+            mStats.resetAllStatsCmdLocked();
+            mBatteryUsageStatsStore.removeAllSnapshots();
+        }
+    }
 }

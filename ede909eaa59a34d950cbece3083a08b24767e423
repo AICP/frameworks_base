@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "069d756c_96b89838",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2023-01-03T20:48:15Z",
+      "side": 1,
+      "message": "Part of https://gerrit.omnirom.org/q/topic:fingerprint_check topic. \nThis topic is the fix for Search failure in Settings app. External repos can be forked if we decide to merge.",
+      "revId": "ede909eaa59a34d950cbece3083a08b24767e423",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

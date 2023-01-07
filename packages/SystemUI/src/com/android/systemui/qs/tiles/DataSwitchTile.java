@@ -42,6 +42,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 public class DataSwitchTile extends QSTileImpl<BooleanState> {
+    private static final String SETTING_USER_PREF_DATA_SUB = "user_preferred_data_sub";
     private final SubscriptionManager mSubscriptionManager;
     private final TelephonyManager mTelephonyManager;
 
@@ -229,6 +230,7 @@ public class DataSwitchTile extends QSTileImpl<BooleanState> {
                 mTelephonyManager.createForSubscriptionId(subId);
         telephonyManager.setDataEnabled(true);
         mSubscriptionManager.setDefaultDataSubId(subId);
+        Settings.Global.putInt(mContext.getContentResolver(), SETTING_USER_PREF_DATA_SUB, subId);
         Log.d(TAG, "Enabled subID: " + subId);
 
         List<SubscriptionInfo> subInfoList = mSubscriptionManager.getActiveSubscriptionInfoList(

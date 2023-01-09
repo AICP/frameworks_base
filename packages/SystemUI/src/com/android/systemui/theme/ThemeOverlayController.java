@@ -114,7 +114,7 @@ public class ThemeOverlayController extends CoreStartable implements Dumpable {
     protected static final String OVERLAY_ESPRESSO_THEME =
             "com.android.system.theme.expresso";
 
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
 
     protected static final int NEUTRAL = 0;
     protected static final int ACCENT = 1;

@@ -48,7 +48,7 @@ public class CoexCoordinator {
             "com.android.server.biometrics.sensors.CoexCoordinator.enable";
     public static final String FACE_HAPTIC_DISABLE =
             "com.android.server.biometrics.sensors.CoexCoordinator.disable_face_haptics";
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
 
     // Successful authentications should be used within this amount of time.
     static final long SUCCESSFUL_AUTH_VALID_DURATION_MS = 5000;

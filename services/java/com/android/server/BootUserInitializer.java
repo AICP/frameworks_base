@@ -39,7 +39,7 @@ final class BootUserInitializer {
     private static final String TAG = BootUserInitializer.class.getSimpleName();
 
      // TODO(b/204091126): STOPSHIP - set to false or dynamic value
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
 
     private final ActivityManagerService mAms;
     private final ContentResolver mContentResolver;

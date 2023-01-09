@@ -252,7 +252,7 @@ import java.util.function.Function;
  */
 public class StatsPullAtomService extends SystemService {
     private static final String TAG = "StatsPullAtomService";
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
 
     // Random seed stable for StatsPullAtomService life cycle - can be used for stable sampling
     private static final int RANDOM_SEED = new Random().nextInt();

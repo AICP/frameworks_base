@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f7d0d83_dd46df14",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 562
+      },
+      "writtenOn": "2023-01-17T21:38:52Z",
+      "side": 1,
+      "message": "Fix some apps cannot find external sd.",
+      "revId": "2a7fea986cc5380e05d54ba0a32b23098868f16e",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

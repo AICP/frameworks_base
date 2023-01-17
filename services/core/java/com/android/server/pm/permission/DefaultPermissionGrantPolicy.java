@@ -51,6 +51,7 @@ import android.os.UserHandle;
 import android.os.storage.StorageManager;
 import android.permission.PermissionManager;
 import android.print.PrintManager;
+import android.provider.AlarmClock;
 import android.provider.CalendarContract;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
@@ -486,6 +487,23 @@ final class DefaultPermissionGrantPolicy {
                     PackageManager.FLAG_PERMISSION_SYSTEM_FIXED,
                     0,
                     UserHandle.of(userId));
+        }
+        
+        // Grant ACCESS_COARSE_LOCATION to all system apps that have ACCESS_FINE_LOCATION
+        for (PackageInfo locPkg : packages) {
+            if (locPkg == null
+                    || !doesPackageSupportRuntimePermissions(locPkg)
+                    || ArrayUtils.isEmpty(locPkg.requestedPermissions)
+                    || !pm.isGranted(Manifest.permission.ACCESS_FINE_LOCATION,
+                            locPkg, UserHandle.of(userId))
+                    || pm.isSysComponentOrPersistentPlatformSignedPrivApp(locPkg)) {
+                continue;
+            }
+                    
+            grantRuntimePermissions(pm, locPkg,
+                    Collections.singleton(Manifest.permission.ACCESS_COARSE_LOCATION),
+                    true, // systemFixed
+                    userId);
         }
 
     }
@@ -979,6 +997,25 @@ final class DefaultPermissionGrantPolicy {
         grantPermissionsToPackage(pm, "com.google.android.googlequicksearchbox", userId,
                 false /* ignoreSystemPackage */, true /*whitelistRestrictedPermissions*/,
                 PHONE_PERMISSIONS);
+
+        // Clock App
+        String clockAppPackage = getDefaultSystemHandlerActivityPackage(pm, AlarmClock.ACTION_SET_ALARM, userId);
+        grantPermissionsToSystemPackage(pm, clockAppPackage, userId, NOTIFICATION_PERMISSIONS);
+
+        // ThemePicker
+        grantSystemFixedPermissionsToSystemPackage(pm, "com.android.wallpaper", userId, STORAGE_PERMISSIONS);
+
+        String[] notifPackages = {
+            "com.android.camera2",
+            "com.google.android.apps.safetyhub",
+            "com.google.android.calendar",
+            "com.google.android.contacts",
+            "com.google.android.dialer",
+            "com.google.android.markup",
+        };
+        for (String pkg : notifPackages) {
+            grantPermissionsToSystemPackage(pm, pkg, userId, NOTIFICATION_PERMISSIONS);
+        }
     }
 
     private String getDefaultSystemHandlerActivityPackageForCategory(PackageManagerWrapper pm,

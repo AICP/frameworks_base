@@ -70,7 +70,7 @@ public class EglHelper {
     // Below two constants make drawing at low priority, so other things can preempt our drawing.
     private static final int EGL_CONTEXT_PRIORITY_LEVEL_IMG = 0x3100;
     private static final int EGL_CONTEXT_PRIORITY_LOW_IMG = 0x3103;
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
 
     private static final int EGL_GL_COLORSPACE_KHR = 0x309D;
     private static final int EGL_GL_COLORSPACE_DISPLAY_P3_PASSTHROUGH_EXT = 0x3490;

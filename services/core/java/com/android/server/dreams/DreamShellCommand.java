@@ -31,7 +31,7 @@ import java.io.PrintWriter;
  * {@link DreamShellCommand} allows accessing dream functionality, including toggling dream state.
  */
 public class DreamShellCommand extends ShellCommand {
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
     private static final String TAG = "DreamShellCommand";
     private final @NonNull DreamManagerService mService;
     private final @NonNull PowerManager mPowerManager;

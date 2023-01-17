@@ -61,7 +61,7 @@ import java.util.UUID;
 public class SpatializerHelper {
 
     private static final String TAG = "AS.SpatializerHelper";
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
     private static final boolean DEBUG_MORE = false;
 
     private static void logd(String s) {

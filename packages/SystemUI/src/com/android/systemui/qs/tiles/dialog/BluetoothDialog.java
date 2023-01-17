@@ -77,7 +77,7 @@ import java.util.concurrent.Executor;
 @SysUISingleton
 public class BluetoothDialog extends SystemUIDialog implements Window.Callback {
     private static final String TAG = "BluetoothDialog";
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
 
     public static final int MAX_DEVICES_COUNT = 4;
     private static final String SAVED_DEVICES_INTENT = "android.settings.SAVED_DEVICES";

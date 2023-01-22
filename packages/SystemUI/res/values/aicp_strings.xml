@@ -261,4 +261,8 @@
     <string name="total_internet_usage">Total internet usage (Since boot)</string>
     <string name="cellular_usage">Mobile data usage</string>
     <string name="wifi_usage">Wifi data usage</string>
+
+    <!-- Language toggle tile -->
+    <string name="quick_settings_locale_label">Language</string>
+    <string name="quick_settings_locale_more_locales_toast">Please configure multiple languages to enable toggle functionality</string>
 </resources>

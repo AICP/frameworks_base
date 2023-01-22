@@ -53,6 +53,7 @@ import com.android.systemui.qs.tiles.HeadsUpTile;
 import com.android.systemui.qs.tiles.HotspotTile;
 import com.android.systemui.qs.tiles.InternetTile;
 import com.android.systemui.qs.tiles.LiveDisplayTile;
+import com.android.systemui.qs.tiles.LocaleTile;
 import com.android.systemui.qs.tiles.LocationTile;
 import com.android.systemui.qs.tiles.MicrophoneToggleTile;
 import com.android.systemui.qs.tiles.MusicTile;
@@ -143,6 +144,7 @@ public class QSFactoryImpl implements QSFactory {
     private final Provider<SmartPixelsTile> mSmartPixelsTileProvider;
     private final Provider<ScreenshotTile> mScreenshotTileProvider;
     private final Provider<PreferredNetworkTile> mPreferredNetworkTileProvider;
+    private final Provider<LocaleTile> mLocaleTileProvider;
 
     private final Lazy<QSHost> mQsHostLazy;
     private final Provider<CustomTile.Builder> mCustomTileBuilderProvider;
@@ -202,7 +204,8 @@ public class QSFactoryImpl implements QSFactory {
             Provider<OnTheGoTile> onTheGoTileProvider,
             Provider<SmartPixelsTile> smartPixelsTileProvider,
             Provider<ScreenshotTile> screenshotTileProvider,
-            Provider<PreferredNetworkTile> preferredNetworkTileProvider) {
+            Provider<PreferredNetworkTile> preferredNetworkTileProvider,
+            Provider<LocaleTile> localeTileProvider) {
         mQsHostLazy = qsHostLazy;
         mCustomTileBuilderProvider = customTileBuilderProvider;
 
@@ -258,6 +261,7 @@ public class QSFactoryImpl implements QSFactory {
         mSmartPixelsTileProvider = smartPixelsTileProvider;
         mScreenshotTileProvider = screenshotTileProvider;
         mPreferredNetworkTileProvider = preferredNetworkTileProvider;
+        mLocaleTileProvider = localeTileProvider;
     }
 
     /** Creates a tile with a type based on {@code tileSpec} */
@@ -378,6 +382,8 @@ public class QSFactoryImpl implements QSFactory {
                 return mScreenshotTileProvider.get();
             case "preferred_network":
                 return mPreferredNetworkTileProvider.get();
+            case "locale":
+                return mLocaleTileProvider.get();
         }
 
         // Custom tiles

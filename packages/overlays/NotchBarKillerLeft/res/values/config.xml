@@ -21,9 +21,25 @@
      -->
     <bool name="config_fillMainBuiltInDisplayCutout">true</bool>
 
-    <string translatable="false" name="config_mainBuiltInDisplayCutout">M 0,0 L 0, 0 C 0,0 0,0 0,0</string>
-    <string translatable="false" name="config_mainBuiltInDisplayCutoutRectApproximation">M 0.0,0.0 h 0 v 0 h 0 Z @left</string>
+    <string translatable="false" name="config_mainBuiltInDisplayCutout">
+        M 0,0
+        L 0, 0
+        L 0, 0
+        C 0, 0 0, 0 0, 0
+        L 0, 0
+        C 0, 0 0, 0 0, 0
+        L 0, 0
+        Z
+        @dp
+        @left
+    </string>
 
+    <string translatable="false" name="config_mainBuiltInDisplayCutoutRectApproximation">@*android:string/config_mainBuiltInDisplayCutout</string>
+
+    <!-- Height of the status bar -->
+    <dimen name="status_bar_height_portrait">48dp</dimen>
+    <dimen name="status_bar_height_landscape">28dp</dimen>
+    
 </resources>
 
 

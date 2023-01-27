@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "adf490c8_34baeb7c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2023-01-27T17:19:36Z",
+      "side": 1,
+      "message": "just too less info to add a new preference, I will suggest adding the info into the uptime preference itself",
+      "revId": "6eb6723ef2f2bd9cf81841947cc4c575d68c81f7",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c429d00e_5b201c6f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 209
+      },
+      "writtenOn": "2023-02-03T09:20:46Z",
+      "side": 1,
+      "message": "Works here. Though if I understand this correctly, this way MicroG will only work if built into the ROM from the beginning (while previous solutions allowed users to install it afterwards). So not sure if I prefer that to previous solutions from a user-friendliness perspective.\n\nFor reference, I used https://github.com/lineageos4microg/android_vendor_partner_gms to test.",
+      "revId": "c070cc0422ac0ecb5b72fcf5fb546064e5dc4786",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

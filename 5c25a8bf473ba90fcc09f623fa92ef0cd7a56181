@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "160746eb_75aaccd1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2023-02-05T18:52:11Z",
+      "side": 1,
+      "message": "Noot needed after https://gerrit.aicp-rom.com/c/AICP/frameworks_base/+/119230.",
+      "revId": "5c25a8bf473ba90fcc09f623fa92ef0cd7a56181",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

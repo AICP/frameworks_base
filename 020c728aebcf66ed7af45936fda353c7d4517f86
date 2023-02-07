@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0411acee_6cc655fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2023-02-07T01:17:54Z",
+      "side": 1,
+      "message": "can confirm this doesnt work. Ihave full gps lock even when tile is set on battery saving mode",
+      "revId": "020c728aebcf66ed7af45936fda353c7d4517f86",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

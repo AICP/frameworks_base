@@ -30,5 +30,6 @@
         <permission name="android.permission.FORCE_STOP_PACKAGES"/>
         <permission name="org.omnirom.omnijaws.READ_WEATHER" />
         <permission name="android.permission.MEDIA_CONTENT_CONTROL"/>
+        <permission name="android.permission.REGISTER_STATS_PULL_ATOM" />
     </privapp-permissions>
 </permissions>

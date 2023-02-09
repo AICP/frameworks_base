@@ -117,10 +117,8 @@
     <!-- Whether prop imitation is enabled -->
     <java-symbol type="bool" name="config_enablePropImitation" />
 
-    <!-- Fingerprint from a certified device against current platform SPL level -->
-    <java-symbol type="string" name="config_certifiedFingerprint" />
-
-    <!-- Fingerprint from stock ROM -->
+    <!-- PropImitationHooks -->
+    <java-symbol type="array" name="config_certifiedBuildProperties" />
     <java-symbol type="string" name="config_stockFingerprint" />
 
     <!-- Pocket Lock -->

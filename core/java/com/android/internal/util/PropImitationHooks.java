@@ -33,8 +33,8 @@ public class PropImitationHooks {
     private static final String TAG = "PropImitationHooks";
     private static final boolean DEBUG = false;
 
-    private static final String sCertifiedFp =
-            Resources.getSystem().getString(R.string.config_certifiedFingerprint);
+    private static final String[] sCertifiedProps =
+            Resources.getSystem().getStringArray(R.array.config_certifiedBuildProperties);
 
     private static final String sStockFp =
             Resources.getSystem().getString(R.string.config_stockFingerprint);
@@ -66,13 +66,15 @@ public class PropImitationHooks {
         sIsGms = packageName.equals(PACKAGE_GMS) && processName.equals(PROCESS_GMS_UNSTABLE);
         sIsFinsky = packageName.equals(PACKAGE_FINSKY);
 
-        /* Set Certified Fingerprint for GMSCore or Finsky
+        /* Set Certified Properties for GMSCore
          * Set Stock Fingerprint for ARCore
          */
-        if (!sCertifiedFp.isEmpty() && sIsGms) {
-            dlog("Spoofing buid for GMS");
-            setPropValue("FINGERPRINT", sCertifiedFp);
-            setPropValue("MODEL", Build.MODEL + "\u200b");
+        if (sCertifiedProps.length == 4 && sIsGms) {
+            dlog("Spoofing build for GMS");
+            setPropValue("DEVICE", sCertifiedProps[0]);
+            setPropValue("PRODUCT", sCertifiedProps[1]);
+            setPropValue("MODEL", sCertifiedProps[2]);
+            setPropValue("FINGERPRINT", sCertifiedProps[3]);
         } else if (!sStockFp.isEmpty() && packageName.equals(PACKAGE_ARCORE)) {
             dlog("Setting stock fingerprint for: " + packageName);
             setPropValue("FINGERPRINT", sStockFp);

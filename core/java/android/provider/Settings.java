@@ -19982,6 +19982,15 @@ public final class Settings {
                 "stem_primary_button_double_press";
 
         /**
+         * Force disable Secure User Plane Location (SUPL), 0 or 1.
+         * @hide
+         */
+        public static final String FORCE_DISABLE_SUPL = "force_disable_supl";
+
+        /** @hide */
+        public static final int FORCE_DISABLE_SUPL_DEFAULT = 0;
+
+        /**
          * Overrides internal R.integer.config_triplePressOnStemPrimaryBehavior.
          * Allowable values detailed in frameworks/base/core/res/res/values/config.xml.
          * Used by PhoneWindowManager.

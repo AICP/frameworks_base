@@ -1050,7 +1050,10 @@ public class AlarmManager {
             String listenerTag, Executor targetExecutor, WorkSource workSource,
             AlarmClockInfo alarmClock) {
 
-        if (mPackageName.equals("com.google.android.gms")) {
+        if (mPackageName.equals("com.google.android.gms")
+            || mPackageName.equals("com.google.android.keep")
+            || mPackageName.equals("com.google.android.deskclock")
+            || mPackageName.equals("com.android.deskclock")) {
             if (windowMillis == WINDOW_EXACT && !canScheduleExactAlarms()) {
                 windowMillis = WINDOW_HEURISTIC;
             }

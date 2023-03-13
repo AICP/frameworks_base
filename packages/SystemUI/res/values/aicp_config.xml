@@ -9,9 +9,6 @@
       aicp_extras,livedisplay,reading_mode,anti_flicker,refresh_rate,caffeine,heads_up,sync,ambient_display,usb_tether,aod,powershare,reboot,compass,music,dataswitch,sound,vpn,onthego,smartpixels,screenshot,preferred_network,locale
     </string>
 
-    <!-- Udfps display mode provider class name -->
-    <string name="config_udfpsDisplayModeProviderComponent">com.android.systemui.biometrics.DummyUdfpsDisplayModeProvider</string>
-
     <!-- Color of the UDFPS pressed view -->
     <color name="config_udfpsColor">#ffffffff</color>
 

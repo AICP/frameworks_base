@@ -45,6 +45,7 @@ import com.android.systemui.theme.ThemeOverlayController
 import com.android.systemui.tuner.TunerService
 import com.android.systemui.tuner.TunerService.Tunable
 import com.android.systemui.util.settings.SecureSettings
+import com.android.systemui.util.settings.SystemSettings
 
 import dev.kdrag0n.colorkt.Color
 import dev.kdrag0n.colorkt.cam.Zcam
@@ -69,6 +70,7 @@ class CustomThemeOverlayController @Inject constructor(
     @Background bgExecutor: Executor,
     themeOverlayApplier: ThemeOverlayApplier,
     secureSettings: SecureSettings,
+    systemSettings: SystemSettings,
     wallpaperManager: WallpaperManager,
     userManager: UserManager,
     deviceProvisionedController: DeviceProvisionedController,
@@ -86,6 +88,7 @@ class CustomThemeOverlayController @Inject constructor(
     bgExecutor,
     themeOverlayApplier,
     secureSettings,
+    systemSettings,
     wallpaperManager,
     userManager,
     deviceProvisionedController,

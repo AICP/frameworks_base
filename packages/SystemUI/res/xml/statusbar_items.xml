@@ -33,6 +33,12 @@
         android:key="rotate"
         android:title="@string/status_bar_settings_auto_rotation" />
 
+    <!-- secure -->
+    <com.android.systemui.tuner.StatusBarSwitch
+        android:icon="@*android:drawable/ic_battery"
+        android:key="battery"
+        android:title="@string/battery" />
+
     <com.android.systemui.tuner.StatusBarSwitch
         android:icon="@*android:drawable/ic_qs_bluetooth"
         android:key="bluetooth"
@@ -123,12 +129,5 @@
         android:icon="@drawable/ic_statusbar_work"
         android:key="managed_profile"
         android:title="@string/status_bar_work" />
-
-    <!-- secure -->
-    <!--com.android.systemui.tuner.BatteryPreference
-        android:icon="@*android:drawable/ic_battery"
-        android:title="@string/battery"
-        android:summary="%s"
-        android:entries="@array/battery_options" /-->
 
 </PreferenceScreen>

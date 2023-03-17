@@ -221,5 +221,8 @@ public class SystemSettings {
         Settings.System.CHARGING_ANIMATION,
         Settings.System.ENABLE_RIPPLE_EFFECT,
         Settings.System.ENABLE_TASKBAR,
+        Settings.System.STATUS_BAR_BATTERY_STYLE,
+        Settings.System.STATUS_BAR_SHOW_BATTERY_PERCENT,
+        Settings.System.STATUS_BAR_BATTERY_TEXT_CHARGING,
     };
 }

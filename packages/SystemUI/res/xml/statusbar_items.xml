@@ -124,4 +124,11 @@
         android:key="managed_profile"
         android:title="@string/status_bar_work" />
 
+    <!-- secure -->
+    <!--com.android.systemui.tuner.BatteryPreference
+        android:icon="@*android:drawable/ic_battery"
+        android:title="@string/battery"
+        android:summary="%s"
+        android:entries="@array/battery_options" /-->
+
 </PreferenceScreen>

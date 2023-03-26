@@ -45,7 +45,7 @@ import com.android.systemui.theme.ThemeOverlayController
 import com.android.systemui.tuner.TunerService
 import com.android.systemui.tuner.TunerService.Tunable
 import com.android.systemui.util.settings.SecureSettings
-import com.android.systemui.util.settings.SystemSettings
+
 import dev.kdrag0n.colorkt.Color
 import dev.kdrag0n.colorkt.cam.Zcam
 import dev.kdrag0n.colorkt.conversion.ConversionGraph.convert
@@ -77,7 +77,6 @@ class CustomThemeOverlayController @Inject constructor(
     featureFlags: FeatureFlags,
     @Main resources: Resources,
     wakefulnessLifecycle: WakefulnessLifecycle,
-    systemSettings: SystemSettings,
     configurationController: ConfigurationController
 ) : ThemeOverlayController(
     context,
@@ -95,7 +94,6 @@ class CustomThemeOverlayController @Inject constructor(
     featureFlags,
     resources,
     wakefulnessLifecycle,
-    systemSettings,
     configurationController,
 ), Tunable {
     private lateinit var cond: Zcam.ViewingConditions

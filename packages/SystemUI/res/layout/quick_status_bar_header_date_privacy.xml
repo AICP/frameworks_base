@@ -80,15 +80,4 @@
         android:singleLine="false"
         android:lineSpacingMultiplier="1.2"
         systemui:showDark="false" />
-
-    <com.android.systemui.battery.BatteryMeterView
-        android:id="@+id/batteryIcon"
-        android:layout_height="match_parent"
-        android:layout_width="wrap_content"
-        android:gravity="center_vertical|end"
-        android:singleLine="true"
-        systemui:textAppearance="@style/TextAppearance.QS.Status"
-        android:paddingStart="2dp"
-        android:visibility="gone" />
-
 </LinearLayout>

@@ -227,7 +227,6 @@ public class SecureSettings {
         Settings.Secure.ENABLE_LOCATION_PRIVACY_INDICATOR,
         Settings.Secure.ENABLE_CAMERA_PRIVACY_INDICATOR,
         Settings.Secure.ENABLE_PROJECTION_PRIVACY_INDICATOR,
-        Settings.Secure.VOLUME_LINK_NOTIFICATION,
         Settings.Secure.SHOW_BACK_ARROW_GESTURE,
         Settings.Secure.SECURE_LOCKSCREEN_QS_DISABLED,
         Settings.Secure.LOCKSCREEN_MEDIA_METADATA,

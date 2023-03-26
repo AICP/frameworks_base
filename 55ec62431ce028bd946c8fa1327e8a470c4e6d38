@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a23a673d_bb529399",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2023-03-26T18:14:19Z",
+      "side": 1,
+      "message": "From this topic: https://gerrit.aicp-rom.com/q/topic:t-battery-customizations",
+      "revId": "55ec62431ce028bd946c8fa1327e8a470c4e6d38",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

@@ -6616,6 +6616,12 @@ public final class Settings {
          */
         public static final String HIDE_IME_SPACE_ENABLE = "hide_ime_space_enable";
 
+        /**
+         * QS Header
+         * @hide
+         */
+        public static final String QS_HEADER_IMAGE = "qs_header_image";
+
         /***************************
          * AICP System Settings end
          ***************************/

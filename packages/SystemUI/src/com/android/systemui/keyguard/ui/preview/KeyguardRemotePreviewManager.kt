@@ -139,7 +139,11 @@ constructor(
             isDestroyedOrDestroying = true
             val hostToken = renderer.hostToken
             hostToken?.unlinkToDeath(this, 0)
+            try {
             scope.launch(mainDispatcher) { renderer.destroy() }
+            } catch (e: InterruptedException) {
+                Log.w(TAG, "Interrupted while destroying observer", e)
+            }
             return hostToken
         }
     }

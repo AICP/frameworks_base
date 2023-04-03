@@ -33,9 +33,9 @@ import com.android.internal.logging.UiEventLogger;
 import com.android.systemui.dagger.qualifiers.Main;
 import com.android.systemui.dump.DumpManager;
 import com.android.systemui.flags.FeatureFlags;
-import com.android.systemui.media.MediaHierarchyManager;
-import com.android.systemui.media.MediaHost;
-import com.android.systemui.media.MediaHostState;
+import com.android.systemui.media.controls.ui.MediaHierarchyManager;
+import com.android.systemui.media.controls.ui.MediaHost;
+import com.android.systemui.media.controls.ui.MediaHostState;
 import com.android.systemui.plugins.FalsingManager;
 import com.android.systemui.qs.customize.QSCustomizerController;
 import com.android.systemui.qs.dagger.QSScope;
@@ -86,7 +86,8 @@ public class QSPanelController extends QSPanelControllerBase<QSPanel> {
             FalsingManager falsingManager,
             StatusBarKeyguardViewManager statusBarKeyguardViewManager,
             FeatureFlags featureFlags,
-            @Main Handler mainHandler, SystemSettings systemSettings) {
+            @Main Handler mainHandler,
+            SystemSettings systemSettings) {
         super(view, qstileHost, qsCustomizerController, usingMediaPlayer, mediaHost,
                 metricsLogger, uiEventLogger, qsLogger, dumpManager, mainHandler, systemSettings);
         mQsCustomizerController = qsCustomizerController;
@@ -125,9 +126,8 @@ public class QSPanelController extends QSPanelControllerBase<QSPanel> {
         }
         switchTileLayout(true);
         mBrightnessMirrorHandler.onQsPanelAttached();
-
-        ((PagedTileLayout) mView.getOrCreateTileLayout())
-                .setOnTouchListener(mTileLayoutTouchListener);
+        PagedTileLayout pagedTileLayout= ((PagedTileLayout) mView.getOrCreateTileLayout());
+        pagedTileLayout.setOnTouchListener(mTileLayoutTouchListener);
     }
 
     @Override
@@ -161,6 +161,12 @@ public class QSPanelController extends QSPanelControllerBase<QSPanel> {
     @Override
     protected void updateBrightnessMirror() {
         mBrightnessMirrorHandler.updateBrightnessMirror();
+    }
+
+    @Override
+    protected void onSplitShadeChanged() {
+        ((PagedTileLayout) mView.getOrCreateTileLayout())
+                .forceTilesRedistribution("Split shade state changed");
     }
 
     /** */
@@ -252,7 +258,11 @@ public class QSPanelController extends QSPanelControllerBase<QSPanel> {
      * @return if bouncer is in transit
      */
     public boolean isBouncerInTransit() {
-        return mStatusBarKeyguardViewManager.isBouncerInTransit();
+        return mStatusBarKeyguardViewManager.isPrimaryBouncerInTransit();
+    }
+
+    public int getPaddingBottom() {
+        return mView.getPaddingBottom();
     }
 }
 

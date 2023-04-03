@@ -115,18 +115,18 @@ class CustomThemeOverlayController @Inject constructor(
     override fun onTuningChanged(key: String?, newValue: String?) {
         key?.let {
             if (it.contains(PREF_PREFIX)) {
-                customColor = Settings.Secure.getInt(mContext.contentResolver, PREF_CUSTOM_COLOR, 0) == 1
-                colorOverride = Settings.Secure.getInt(mContext.contentResolver,
+                customColor = Settings.Secure.getInt(context.contentResolver, PREF_CUSTOM_COLOR, 0) == 1
+                colorOverride = Settings.Secure.getInt(context.contentResolver,
                         PREF_COLOR_OVERRIDE, -1)
-                chromaFactor = (Settings.Secure.getFloat(mContext.contentResolver,
+                chromaFactor = (Settings.Secure.getFloat(context.contentResolver,
                         PREF_CHROMA_FACTOR, 100.0f) / 100f).toDouble()
-                accurateShades = Settings.Secure.getInt(mContext.contentResolver, PREF_ACCURATE_SHADES, 1) != 0
+                accurateShades = Settings.Secure.getInt(context.contentResolver, PREF_ACCURATE_SHADES, 1) != 0
 
                 whiteLuminance = parseWhiteLuminanceUser(
-                    Settings.Secure.getInt(mContext.contentResolver,
+                    Settings.Secure.getInt(context.contentResolver,
                             PREF_WHITE_LUMINANCE, WHITE_LUMINANCE_USER_DEFAULT)
                 )
-                linearLightness = Settings.Secure.getInt(mContext.contentResolver,
+                linearLightness = Settings.Secure.getInt(context.contentResolver,
                         PREF_LINEAR_LIGHTNESS, 0) != 0
                 reevaluateSystemTheme(true /* forceReload */)
             }

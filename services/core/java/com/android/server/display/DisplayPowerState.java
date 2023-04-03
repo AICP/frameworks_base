@@ -157,7 +157,7 @@ final class DisplayPowerState {
     public void setScreenState(int state) {
         if (mScreenState != state) {
             if (DEBUG) {
-                Slog.d(TAG, "setScreenState: state=" + state);
+                Slog.w(TAG, "setScreenState: state=" + Display.stateToString(state));
             }
 
             mScreenState = state;
@@ -351,6 +351,15 @@ final class DisplayPowerState {
         if (mColorFade != null) mColorFade.dump(pw);
     }
 
+    /**
+     * Resets the screen state to unknown. Useful when the underlying display-device changes for the
+     * LogicalDisplay and we do not know the last state that was sent to it.
+     */
+    void resetScreenState() {
+        mScreenState = Display.STATE_UNKNOWN;
+        mScreenReady = false;
+    }
+
     private void scheduleScreenUpdate() {
         if (!mScreenUpdatePending) {
             mScreenUpdatePending = true;
@@ -509,6 +518,8 @@ final class DisplayPowerState {
                     boolean valid = state != Display.STATE_UNKNOWN && !Float.isNaN(brightnessState);
                     boolean changed = stateChanged || backlightChanged;
                     if (!valid || !changed) {
+                        mStateChangeInProgress = false;
+                        mBacklightChangeInProgress = false;
                         try {
                             mLock.wait();
                         } catch (InterruptedException ex) {

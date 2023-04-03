@@ -641,6 +641,10 @@ final class DefaultPermissionGrantPolicy {
         grantPermissionsToSystemPackage(pm, getDefaultCaptivePortalLoginPackage(), userId,
                 NOTIFICATION_PERMISSIONS);
 
+        // Dock Manager
+        grantPermissionsToSystemPackage(pm, getDefaultDockManagerPackage(), userId,
+                NOTIFICATION_PERMISSIONS);
+
         // Camera
         grantPermissionsToSystemPackage(pm,
                 getDefaultSystemHandlerActivityPackage(pm, MediaStore.ACTION_IMAGE_CAPTURE, userId),
@@ -1030,6 +1034,10 @@ final class DefaultPermissionGrantPolicy {
 
     private String getDefaultCaptivePortalLoginPackage() {
         return mContext.getString(R.string.config_defaultCaptivePortalLoginPackageName);
+    }
+
+    private String getDefaultDockManagerPackage() {
+        return mContext.getString(R.string.config_defaultDockManagerPackageName);
     }
 
     @SafeVarargs

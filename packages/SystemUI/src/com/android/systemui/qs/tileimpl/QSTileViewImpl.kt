@@ -52,6 +52,7 @@ import com.android.systemui.plugins.qs.QSIconView
 import com.android.systemui.plugins.qs.QSTile
 import com.android.systemui.plugins.qs.QSTile.BooleanState
 import com.android.systemui.plugins.qs.QSTileView
+import com.android.systemui.qs.logging.QSLogger
 import com.android.systemui.qs.tileimpl.QSIconViewImpl.QS_ANIM_LENGTH
 import java.util.Objects
 
@@ -118,7 +119,7 @@ open class QSTileViewImpl @JvmOverloads constructor(
     protected lateinit var sideView: ViewGroup
     private lateinit var customDrawableView: ImageView
     private lateinit var chevronView: ImageView
-
+    private var mQsLogger: QSLogger? = null
     protected var showRippleEffect = true
 
     private lateinit var ripple: RippleDrawable
@@ -146,7 +147,6 @@ open class QSTileViewImpl @JvmOverloads constructor(
     private val launchableViewDelegate = LaunchableViewDelegate(
         this,
         superSetVisibility = { super.setVisibility(it) },
-        superSetTransitionVisibility = { super.setTransitionVisibility(it) },
     )
     private var lastDisabledByPolicy = false
 
@@ -201,6 +201,10 @@ open class QSTileViewImpl @JvmOverloads constructor(
     override fun resetOverride() {
         heightOverride = HeightOverrideable.NO_OVERRIDE
         updateHeight()
+    }
+
+    fun setQsLogger(qsLogger: QSLogger) {
+        mQsLogger = qsLogger
     }
 
     fun updateResources() {
@@ -385,10 +389,6 @@ open class QSTileViewImpl @JvmOverloads constructor(
         launchableViewDelegate.setVisibility(visibility)
     }
 
-    override fun setTransitionVisibility(visibility: Int) {
-        launchableViewDelegate.setTransitionVisibility(visibility)
-    }
-
     // Accessibility
 
     override fun onInitializeAccessibilityEvent(event: AccessibilityEvent) {
@@ -521,6 +521,11 @@ open class QSTileViewImpl @JvmOverloads constructor(
         // Colors
         if (state.state != lastState || state.disabledByPolicy || lastDisabledByPolicy) {
             singleAnimator.cancel()
+            mQsLogger?.logTileBackgroundColorUpdateIfInternetTile(
+                    state.spec,
+                    state.state,
+                    state.disabledByPolicy,
+                    getBackgroundColorForState(state.state, state.disabledByPolicy))
             if (allowAnimations) {
                 singleAnimator.setValues(
                         colorValuesHolder(

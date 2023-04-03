@@ -35,6 +35,7 @@ import com.android.systemui.Dependency;
 import com.android.systemui.R;
 import com.android.systemui.demomode.DemoModeController;
 import com.android.systemui.fragments.FragmentService;
+import com.android.systemui.util.settings.GlobalSettings;
 
 import javax.inject.Inject;
 
@@ -46,12 +47,18 @@ public class TunerActivity extends CollapsingToolbarBaseActivity implements
 
     private final DemoModeController mDemoModeController;
     private final TunerService mTunerService;
+    private final GlobalSettings mGlobalSettings;
 
     @Inject
-    TunerActivity(DemoModeController demoModeController, TunerService tunerService) {
+    TunerActivity(
+            DemoModeController demoModeController,
+            TunerService tunerService,
+            GlobalSettings globalSettings
+    ) {
         super();
         mDemoModeController = demoModeController;
         mTunerService = tunerService;
+        mGlobalSettings = globalSettings;
     }
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +68,7 @@ public class TunerActivity extends CollapsingToolbarBaseActivity implements
             boolean showDemoMode = action != null && action.equals(
                     "com.android.settings.action.DEMO_MODE");
             final PreferenceFragment fragment = showDemoMode
-                    ? new DemoModeFragment(mDemoModeController)
+                    ? new DemoModeFragment(mDemoModeController, mGlobalSettings)
                     : new TunerFragment(mTunerService);
             getFragmentManager().beginTransaction().replace(com.android.settingslib.widget.R.id.content_frame,
                     fragment, TAG_TUNER).commit();

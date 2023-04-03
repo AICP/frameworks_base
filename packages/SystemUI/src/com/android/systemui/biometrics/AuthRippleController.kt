@@ -31,6 +31,8 @@ import com.android.keyguard.KeyguardUpdateMonitorCallback
 import com.android.settingslib.Utils
 import com.android.systemui.R
 import com.android.systemui.animation.Interpolators
+import com.android.systemui.flags.FeatureFlags
+import com.android.systemui.flags.Flags
 import com.android.systemui.keyguard.WakefulnessLifecycle
 import com.android.systemui.plugins.statusbar.StatusBarStateController
 import com.android.systemui.statusbar.CircleReveal
@@ -73,7 +75,8 @@ class AuthRippleController @Inject constructor(
     private val biometricUnlockController: BiometricUnlockController,
     private val udfpsControllerProvider: Provider<UdfpsController>,
     private val statusBarStateController: StatusBarStateController,
-    rippleView: AuthRippleView?
+    private val featureFlags: FeatureFlags,
+        rippleView: AuthRippleView?
 ) : ViewController<AuthRippleView>(rippleView), KeyguardStateController.Callback,
     WakefulnessLifecycle.Observer {
 
@@ -122,9 +125,9 @@ class AuthRippleController @Inject constructor(
         notificationShadeWindowController.setForcePluginOpen(false, this)
     }
 
-    fun showUnlockRipple(biometricSourceType: BiometricSourceType?) {
-        if (!(keyguardUpdateMonitor.isKeyguardVisible || keyguardUpdateMonitor.isDreaming) ||
-            keyguardUpdateMonitor.userNeedsStrongAuth()) {
+    fun showUnlockRipple(biometricSourceType: BiometricSourceType) {
+        if (!keyguardStateController.isShowing ||
+                !keyguardUpdateMonitor.isUnlockingWithBiometricAllowed(biometricSourceType)) {
             return
         }
 
@@ -167,12 +170,17 @@ class AuthRippleController @Inject constructor(
         if (!isRippleEnabled) return
 
         notificationShadeWindowController.setForcePluginOpen(true, this)
-        val lightRevealScrim = centralSurfaces.lightRevealScrim
-        if (statusBarStateController.isDozing || biometricUnlockController.isWakeAndUnlock) {
-            circleReveal?.let {
-                lightRevealScrim?.revealAmount = 0f
-                lightRevealScrim?.revealEffect = it
-                startLightRevealScrimOnKeyguardFadingAway = true
+
+        // This code path is not used if the KeyguardTransitionRepository is managing the light
+        // reveal scrim.
+        if (!featureFlags.isEnabled(Flags.LIGHT_REVEAL_MIGRATION)) {
+            val lightRevealScrim = centralSurfaces.lightRevealScrim
+            if (statusBarStateController.isDozing || biometricUnlockController.isWakeAndUnlock) {
+                circleReveal?.let {
+                    lightRevealScrim?.revealAmount = 0f
+                    lightRevealScrim?.revealEffect = it
+                    startLightRevealScrimOnKeyguardFadingAway = true
+                }
             }
         }
 
@@ -185,6 +193,10 @@ class AuthRippleController @Inject constructor(
     }
 
     override fun onKeyguardFadingAwayChanged() {
+        if (featureFlags.isEnabled(Flags.LIGHT_REVEAL_MIGRATION)) {
+            return
+        }
+
         if (!isRippleEnabled) {
             // reset and hide the scrim so it doesn't appears on
             // the next notification shade usage
@@ -262,7 +274,7 @@ class AuthRippleController @Inject constructor(
         object : KeyguardUpdateMonitorCallback() {
             override fun onBiometricAuthenticated(
                 userId: Int,
-                biometricSourceType: BiometricSourceType?,
+                biometricSourceType: BiometricSourceType,
                 isStrongBiometric: Boolean
             ) {
                 if (biometricSourceType == BiometricSourceType.FINGERPRINT) {
@@ -271,14 +283,14 @@ class AuthRippleController @Inject constructor(
                 showUnlockRipple(biometricSourceType)
             }
 
-        override fun onBiometricAuthFailed(biometricSourceType: BiometricSourceType?) {
+        override fun onBiometricAuthFailed(biometricSourceType: BiometricSourceType) {
             if (biometricSourceType == BiometricSourceType.FINGERPRINT) {
                 mView.retractDwellRipple()
             }
         }
 
         override fun onBiometricAcquired(
-            biometricSourceType: BiometricSourceType?,
+            biometricSourceType: BiometricSourceType,
             acquireInfo: Int
         ) {
             if (biometricSourceType == BiometricSourceType.FINGERPRINT &&

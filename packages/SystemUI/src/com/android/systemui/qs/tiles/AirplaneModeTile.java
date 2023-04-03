@@ -48,6 +48,7 @@ import com.android.systemui.qs.QSHost;
 import com.android.systemui.qs.SettingObserver;
 import com.android.systemui.qs.logging.QSLogger;
 import com.android.systemui.qs.tileimpl.QSTileImpl;
+import com.android.systemui.settings.UserTracker;
 import com.android.systemui.util.settings.GlobalSettings;
 import com.android.systemui.statusbar.policy.KeyguardStateController;
 
@@ -77,6 +78,7 @@ public class AirplaneModeTile extends SecureQSTile<BooleanState> {
             BroadcastDispatcher broadcastDispatcher,
             Lazy<ConnectivityManager> lazyConnectivityManager,
             GlobalSettings globalSettings,
+            UserTracker userTracker,
             KeyguardStateController keyguardStateController
     ) {
         super(host, backgroundLooper, mainHandler, falsingManager, metricsLogger,
@@ -84,7 +86,8 @@ public class AirplaneModeTile extends SecureQSTile<BooleanState> {
         mBroadcastDispatcher = broadcastDispatcher;
         mLazyConnectivityManager = lazyConnectivityManager;
 
-        mSetting = new SettingObserver(globalSettings, mHandler, Global.AIRPLANE_MODE_ON) {
+        mSetting = new SettingObserver(globalSettings, mHandler, Global.AIRPLANE_MODE_ON,
+                userTracker.getUserId()) {
             @Override
             protected void handleValueChanged(int value, boolean observedChange) {
                 // mHandler is the background handler so calling this is OK

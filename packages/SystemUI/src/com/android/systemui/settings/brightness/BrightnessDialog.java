@@ -20,11 +20,13 @@ import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 import android.app.Activity;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
@@ -32,8 +34,12 @@ import android.widget.FrameLayout;
 import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 import com.android.systemui.R;
-import com.android.systemui.broadcast.BroadcastDispatcher;
 import com.android.systemui.dagger.qualifiers.Background;
+import com.android.systemui.dagger.qualifiers.Main;
+import com.android.systemui.settings.UserTracker;
+
+import java.util.List;
+import java.util.concurrent.Executor;
 
 import javax.inject.Inject;
 
@@ -42,18 +48,21 @@ public class BrightnessDialog extends Activity {
 
     private BrightnessController mBrightnessController;
     private final BrightnessSliderController.Factory mToggleSliderFactory;
-    private final BroadcastDispatcher mBroadcastDispatcher;
+    private final UserTracker mUserTracker;
+    private final Executor mMainExecutor;
     private final Handler mBackgroundHandler;
     private final AutoBrightnessController.Factory mAutoBrightnessFactory;
 
     @Inject
     public BrightnessDialog(
-            BroadcastDispatcher broadcastDispatcher,
+            UserTracker userTracker,
             BrightnessSliderController.Factory factory,
+            @Main Executor mainExecutor,
             @Background Handler bgHandler,
             AutoBrightnessController.Factory autoBrightnessFactory) {
-        mBroadcastDispatcher = broadcastDispatcher;
+        mUserTracker = userTracker;
         mToggleSliderFactory = factory;
+        mMainExecutor = mainExecutor;
         mBackgroundHandler = bgHandler;
         mAutoBrightnessFactory = autoBrightnessFactory;
     }
@@ -79,6 +88,21 @@ public class BrightnessDialog extends Activity {
         FrameLayout frame = findViewById(R.id.brightness_mirror_container);
         // The brightness mirror container is INVISIBLE by default.
         frame.setVisibility(View.VISIBLE);
+        ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) frame.getLayoutParams();
+        int horizontalMargin =
+                getResources().getDimensionPixelSize(R.dimen.notification_side_paddings);
+        lp.leftMargin = horizontalMargin;
+        lp.rightMargin = horizontalMargin;
+        frame.setLayoutParams(lp);
+        Rect bounds = new Rect();
+        frame.addOnLayoutChangeListener(
+                (v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
+                    // Exclude this view (and its horizontal margins) from triggering gestures.
+                    // This prevents back gesture from being triggered by dragging close to the
+                    // edge of the slider (0% or 100%).
+                    bounds.set(-horizontalMargin, 0, right - left + horizontalMargin, bottom - top);
+                    v.setSystemGestureExclusionRects(List.of(bounds));
+                });
 
         BrightnessSliderController controller = mToggleSliderFactory.create(this, frame);
         controller.init();
@@ -86,9 +110,12 @@ public class BrightnessDialog extends Activity {
             mAutoBrightnessFactory.create(controller.getRootView());
         frame.addView(controller.getRootView(), MATCH_PARENT, WRAP_CONTENT);
 
+//         mBrightnessController = new BrightnessController(
+//                 this, controller,
+//                 mBackgroundHandler, autoBrightnessController);
+
         mBrightnessController = new BrightnessController(
-                this, controller, mBroadcastDispatcher,
-                mBackgroundHandler, autoBrightnessController);
+                this, controller, mUserTracker, mMainExecutor, mBackgroundHandler, autoBrightnessController);
     }
 
     @Override

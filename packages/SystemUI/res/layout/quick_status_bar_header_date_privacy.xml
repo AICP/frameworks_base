@@ -25,7 +25,9 @@
     android:gravity="center"
     android:layout_gravity="top"
     android:orientation="horizontal"
-    android:clickable="true">
+    android:importantForAccessibility="no"
+    android:clickable="true"
+    android:minHeight="48dp">
 
     <FrameLayout
         android:id="@+id/date_container"

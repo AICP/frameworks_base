@@ -19,12 +19,17 @@ package com.android.systemui.statusbar.phone;
 import static com.android.systemui.statusbar.phone.fragment.dagger.StatusBarFragmentModule.OPERATOR_NAME_FRAME_VIEW;
 
 import android.graphics.Rect;
+import android.util.MathUtils;
 import android.view.View;
 import android.widget.LinearLayout;
+
+import androidx.annotation.NonNull;
 
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.internal.widget.ViewClippingUtil;
 import com.android.systemui.R;
+import com.android.systemui.flags.FeatureFlags;
+import com.android.systemui.flags.Flags;
 import com.android.systemui.dagger.qualifiers.RootView;
 import com.android.systemui.plugins.DarkIconDispatcher;
 import com.android.systemui.plugins.statusbar.StatusBarStateController;
@@ -34,8 +39,10 @@ import com.android.systemui.statusbar.CrossFadeHelper;
 import com.android.systemui.statusbar.HeadsUpStatusBarView;
 import com.android.systemui.statusbar.StatusBarState;
 import com.android.systemui.statusbar.notification.NotificationWakeUpCoordinator;
+import com.android.systemui.statusbar.notification.SourceType;
 import com.android.systemui.statusbar.notification.collection.NotificationEntry;
 import com.android.systemui.statusbar.notification.row.ExpandableNotificationRow;
+import com.android.systemui.statusbar.notification.stack.NotificationRoundnessManager;
 import com.android.systemui.statusbar.notification.stack.NotificationStackScrollLayoutController;
 import com.android.systemui.statusbar.phone.fragment.dagger.StatusBarFragmentScope;
 import com.android.systemui.statusbar.policy.Clock;
@@ -53,6 +60,7 @@ import javax.inject.Named;
 
 /**
  * Controls the appearance of heads up notifications in the icon area and the header itself.
+ * It also controls the roundness of the heads up notifications and the pulsing notifications.
  */
 @StatusBarFragmentScope
 public class HeadsUpAppearanceController extends ViewController<HeadsUpStatusBarView>
@@ -61,6 +69,9 @@ public class HeadsUpAppearanceController extends ViewController<HeadsUpStatusBar
         NotificationWakeUpCoordinator.WakeUpListener {
     public static final int CONTENT_FADE_DURATION = 110;
     public static final int CONTENT_FADE_DELAY = 100;
+
+    private static final SourceType HEADS_UP = SourceType.from("HeadsUp");
+    private static final SourceType PULSING = SourceType.from("Pulsing");
     private final NotificationIconAreaController mNotificationIconAreaController;
     private final HeadsUpManagerPhone mHeadsUpManager;
     private final NotificationStackScrollLayoutController mStackScrollerController;
@@ -68,6 +79,8 @@ public class HeadsUpAppearanceController extends ViewController<HeadsUpStatusBar
     private final LinearLayout mCustomIconArea;
     private final DarkIconDispatcher mDarkIconDispatcher;
     private final NotificationPanelViewController mNotificationPanelViewController;
+    private final NotificationRoundnessManager mNotificationRoundnessManager;
+    private final boolean mUseRoundnessSourceTypes;
     private final Consumer<ExpandableNotificationRow>
             mSetTrackingHeadsUp = this::setTrackingHeadsUp;
     private final BiConsumer<Float, Float> mSetExpandedHeight = this::setAppearFraction;
@@ -108,12 +121,16 @@ public class HeadsUpAppearanceController extends ViewController<HeadsUpStatusBar
             CommandQueue commandQueue,
             NotificationStackScrollLayoutController stackScrollerController,
             NotificationPanelViewController notificationPanelViewController,
+            NotificationRoundnessManager notificationRoundnessManager,
+            FeatureFlags featureFlags,
             HeadsUpStatusBarView headsUpStatusBarView,
             Clock clockView,
             @Named(OPERATOR_NAME_FRAME_VIEW) Optional<View> operatorNameViewOptional,
             @RootView PhoneStatusBarView statusBarView) {
         super(headsUpStatusBarView);
         mNotificationIconAreaController = notificationIconAreaController;
+        mNotificationRoundnessManager = notificationRoundnessManager;
+        mUseRoundnessSourceTypes = featureFlags.isEnabled(Flags.USE_ROUNDNESS_SOURCETYPES);
         mHeadsUpManager = headsUpManager;
 
         // We may be mid-HUN-expansion when this controller is re-created (for example, if the user
@@ -184,6 +201,12 @@ public class HeadsUpAppearanceController extends ViewController<HeadsUpStatusBar
     public void onHeadsUpPinned(NotificationEntry entry) {
         updateTopEntry();
         updateHeader(entry);
+        updateHeadsUpAndPulsingRoundness(entry);
+    }
+
+    @Override
+    public void onHeadsUpStateChanged(@NonNull NotificationEntry entry, boolean isHeadsUp) {
+        updateHeadsUpAndPulsingRoundness(entry);
     }
 
     private void updateTopEntry() {
@@ -325,6 +348,7 @@ public class HeadsUpAppearanceController extends ViewController<HeadsUpStatusBar
     public void onHeadsUpUnPinned(NotificationEntry entry) {
         updateTopEntry();
         updateHeader(entry);
+        updateHeadsUpAndPulsingRoundness(entry);
     }
 
     public void setAppearFraction(float expandedHeight, float appearFraction) {
@@ -355,7 +379,9 @@ public class HeadsUpAppearanceController extends ViewController<HeadsUpStatusBar
         ExpandableNotificationRow previousTracked = mTrackedChild;
         mTrackedChild = trackedChild;
         if (previousTracked != null) {
-            updateHeader(previousTracked.getEntry());
+            NotificationEntry entry = previousTracked.getEntry();
+            updateHeader(entry);
+            updateHeadsUpAndPulsingRoundness(entry);
         }
     }
 
@@ -366,6 +392,7 @@ public class HeadsUpAppearanceController extends ViewController<HeadsUpStatusBar
     private void updateHeadsUpHeaders() {
         mHeadsUpManager.getAllEntries().forEach(entry -> {
             updateHeader(entry);
+            updateHeadsUpAndPulsingRoundness(entry);
         });
     }
 
@@ -378,6 +405,31 @@ public class HeadsUpAppearanceController extends ViewController<HeadsUpStatusBar
         }
         row.setHeaderVisibleAmount(headerVisibleAmount);
     }
+
+    /**
+     * Update the HeadsUp and the Pulsing roundness based on current state
+     * @param entry target notification
+     */
+    public void updateHeadsUpAndPulsingRoundness(NotificationEntry entry) {
+        if (mUseRoundnessSourceTypes) {
+            ExpandableNotificationRow row = entry.getRow();
+            boolean isTrackedChild = row == mTrackedChild;
+            if (row.isPinned() || row.isHeadsUpAnimatingAway() || isTrackedChild) {
+                float roundness = MathUtils.saturate(1f - mAppearFraction);
+                row.requestRoundness(roundness, roundness, HEADS_UP);
+            } else {
+                row.requestRoundnessReset(HEADS_UP);
+            }
+            if (mNotificationRoundnessManager.shouldRoundNotificationPulsing()) {
+                if (row.showingPulsing()) {
+                    row.requestRoundness(/* top = */ 1f, /* bottom = */ 1f, PULSING);
+                } else {
+                    row.requestRoundnessReset(PULSING);
+                }
+            }
+        }
+    }
+
 
     @Override
     public void onDarkChanged(ArrayList<Rect> areas, float darkIntensity, int tint) {

@@ -24,7 +24,6 @@ import android.os.UserHandle;
 import android.view.MotionEvent;
 
 import com.android.systemui.shared.recents.model.Task;
-import com.android.systemui.shared.system.RemoteTransitionCompat;
 
 /**
  * Temporary callbacks into SystemUI.
@@ -80,11 +79,6 @@ interface ISystemUiProxy {
      * Ends the system screen pinning.
      */
     void stopScreenPinning() = 17;
-
-    /*
-     * Notifies that the swipe-to-home (recents animation) is finished.
-     */
-    void notifySwipeToHomeFinished() = 23;
 
     /**
      * Notifies that quickstep will switch to a new task

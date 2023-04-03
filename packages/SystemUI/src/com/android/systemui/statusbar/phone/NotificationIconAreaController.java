@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 import androidx.collection.ArrayMap;
@@ -70,6 +71,8 @@ public class NotificationIconAreaController implements
 
     public static final String HIGH_PRIORITY = "high_priority";
     private static final long AOD_ICONS_APPEAR_DURATION = 200;
+    @ColorInt
+    private static final int DEFAULT_AOD_ICON_COLOR = 0xffffffff;
 
     private final ContrastColorUtil mContrastColorUtil;
     private final Runnable mUpdateStatusBarIcons = this::updateStatusBarIcons;
@@ -92,7 +95,7 @@ public class NotificationIconAreaController implements
     private NotificationIconContainer mShelfIcons;
     private NotificationIconContainer mAodIcons;
     private final ArrayList<Rect> mTintAreas = new ArrayList<>();
-    private Context mContext;
+    private final Context mContext;
 
     private final DemoModeController mDemoModeController;
 
@@ -604,7 +607,7 @@ public class NotificationIconAreaController implements
 
     private void reloadAodColor() {
         mAodIconTint = Utils.getColorAttrDefaultColor(mContext,
-                R.attr.wallpaperTextColor);
+                R.attr.wallpaperTextColor, DEFAULT_AOD_ICON_COLOR);
     }
 
     private void updateAodIconColors() {

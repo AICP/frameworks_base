@@ -55,6 +55,7 @@ class PulsingGestureListener @Inject constructor(
         private val ambientDisplayConfiguration: AmbientDisplayConfiguration,
         private val statusBarStateController: StatusBarStateController,
         private val powerManager: PowerManager,
+        private val shadeLogger: ShadeLogger,
         tunerService: TunerService,
         dumpManager: DumpManager,
         context: Context
@@ -98,18 +99,24 @@ class PulsingGestureListener @Inject constructor(
     }
 
     override fun onSingleTapUp(e: MotionEvent): Boolean {
-        if (statusBarStateController.isDozing &&
-                singleTapEnabled &&
-                !dockManager.isDocked &&
-                !falsingManager.isProximityNear &&
-                !falsingManager.isFalseTap(LOW_PENALTY)
-        ) {
-            centralSurfaces.wakeUpIfDozing(
+        val isNotDocked = !dockManager.isDocked
+        shadeLogger.logSingleTapUp(statusBarStateController.isDozing, singleTapEnabled, isNotDocked)
+        if (statusBarStateController.isDozing && singleTapEnabled && isNotDocked) {
+            val proximityIsNotNear = !falsingManager.isProximityNear
+            val isNotAFalseTap = !falsingManager.isFalseTap(LOW_PENALTY)
+            shadeLogger.logSingleTapUpFalsingState(proximityIsNotNear, isNotAFalseTap)
+            if (proximityIsNotNear && isNotAFalseTap) {
+                shadeLogger.d("Single tap handled, requesting centralSurfaces.wakeUpIfDozing")
+                centralSurfaces.wakeUpIfDozing(
                     SystemClock.uptimeMillis(),
                     notificationShadeWindowView,
-                    "PULSING_SINGLE_TAP")
+                    "PULSING_SINGLE_TAP",
+                    PowerManager.WAKE_REASON_TAP
+                )
+            }
             return true
         }
+        shadeLogger.d("onSingleTapUp event ignored")
         return false
     }
 
@@ -128,7 +135,8 @@ class PulsingGestureListener @Inject constructor(
                 centralSurfaces.wakeUpIfDozing(
                         SystemClock.uptimeMillis(),
                         notificationShadeWindowView,
-                        "PULSING_DOUBLE_TAP")
+                        "PULSING_DOUBLE_TAP",
+                        PowerManager.WAKE_REASON_TAP)
                 return true
             } else if (!statusBarStateController.isDozing &&
                 doubleTapToSleepEnabled &&

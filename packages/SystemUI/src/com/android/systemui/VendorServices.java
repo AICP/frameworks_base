@@ -23,12 +23,11 @@ import com.android.systemui.smartpixels.SmartPixelsReceiver;
 /**
  * Placeholder for any vendor-specific services.
  */
-public class VendorServices extends CoreStartable {
+public class VendorServices implements CoreStartable {
 
     private SmartPixelsReceiver mSmartPixelsReceiver;
-
     public VendorServices(Context context) {
-        super(context);
+        // super(context);
         mSmartPixelsReceiver = new SmartPixelsReceiver(context);
     }
 

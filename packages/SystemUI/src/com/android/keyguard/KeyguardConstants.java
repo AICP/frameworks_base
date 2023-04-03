@@ -29,5 +29,4 @@ public class KeyguardConstants {
      */
     public static final boolean DEBUG = false;
     public static final boolean DEBUG_SIM_STATES = false;
-    public static final boolean DEBUG_BIOMETRIC_WAKELOCK = false;
 }

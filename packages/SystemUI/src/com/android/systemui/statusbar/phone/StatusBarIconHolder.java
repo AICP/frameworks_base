@@ -16,6 +16,7 @@
 
 package com.android.systemui.statusbar.phone;
 
+import android.annotation.IntDef;
 import android.annotation.Nullable;
 import android.content.Context;
 import android.graphics.drawable.Icon;
@@ -26,6 +27,10 @@ import com.android.systemui.statusbar.phone.PhoneStatusBarPolicy.BluetoothIconSt
 import com.android.systemui.statusbar.phone.StatusBarSignalPolicy.CallIndicatorIconState;
 import com.android.systemui.statusbar.phone.StatusBarSignalPolicy.MobileIconState;
 import com.android.systemui.statusbar.phone.StatusBarSignalPolicy.WifiIconState;
+import com.android.systemui.statusbar.pipeline.mobile.ui.viewmodel.MobileIconViewModel;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 /**
  * Wraps {@link com.android.internal.statusbar.StatusBarIcon} so we can still have a uniform list
@@ -34,19 +39,52 @@ public class StatusBarIconHolder {
     public static final int TYPE_ICON = 0;
     public static final int TYPE_WIFI = 1;
     public static final int TYPE_MOBILE = 2;
-    public static final int TYPE_BLUETOOTH = 4;
+    /**
+     * TODO (b/249790733): address this once the new pipeline is in place
+     * This type exists so that the new pipeline (see {@link MobileIconViewModel}) can be used
+     * to inform the old view system about changes to the data set (the list of mobile icons). The
+     * design of the new pipeline should allow for removal of this icon holder type, and obsolete
+     * the need for this entire class.
+     *
+     * @deprecated This field only exists so the new status bar pipeline can interface with the
+     * view holder system.
+     */
+    @Deprecated
+    public static final int TYPE_MOBILE_NEW = 3;
+    public static final int TYPE_BLUETOOTH = 5;
     public static final int TYPE_NETWORK_TRAFFIC = 42;
+
+    /**
+     * TODO (b/238425913): address this once the new pipeline is in place
+     * This type exists so that the new wifi pipeline can be used to inform the old view system
+     * about the existence of the wifi icon. The design of the new pipeline should allow for removal
+     * of this icon holder type, and obsolete the need for this entire class.
+     *
+     * @deprecated This field only exists so the new status bar pipeline can interface with the
+     * view holder system.
+     */
+    @Deprecated
+    public static final int TYPE_WIFI_NEW = 4;
+
+    @IntDef({
+            TYPE_ICON,
+            TYPE_WIFI,
+            TYPE_MOBILE,
+            TYPE_MOBILE_NEW,
+            TYPE_WIFI_NEW
+    })
+    @Retention(RetentionPolicy.SOURCE)
+    @interface IconType {}
 
     private StatusBarIcon mIcon;
     private WifiIconState mWifiState;
     private MobileIconState mMobileState;
     private BluetoothIconState mBluetoothState;
 
-    private int mType = TYPE_ICON;
+    private @IconType int mType = TYPE_ICON;
     private int mTag = 0;
 
     private StatusBarIconHolder() {
-
     }
 
     public static StatusBarIconHolder fromIcon(StatusBarIcon icon) {
@@ -75,6 +113,13 @@ public class StatusBarIconHolder {
         return holder;
     }
 
+    /** Creates a new holder with for the new wifi icon. */
+    public static StatusBarIconHolder forNewWifiIcon() {
+        StatusBarIconHolder holder = new StatusBarIconHolder();
+        holder.mType = TYPE_WIFI_NEW;
+        return holder;
+    }
+
     /** */
     public static StatusBarIconHolder fromMobileIconState(MobileIconState state) {
         StatusBarIconHolder holder = new StatusBarIconHolder();
@@ -99,6 +144,18 @@ public class StatusBarIconHolder {
     }
 
     /**
+     * ONLY for use with the new connectivity pipeline, where we only need a subscriptionID to
+     * determine icon ordering and building the correct view model
+     */
+    public static StatusBarIconHolder fromSubIdForModernMobileIcon(int subId) {
+        StatusBarIconHolder holder = new StatusBarIconHolder();
+        holder.mType = TYPE_MOBILE_NEW;
+        holder.mTag = subId;
+
+        return holder;
+    }
+
+    /**
      * Creates a new StatusBarIconHolder from a CallIndicatorIconState.
      */
     public static StatusBarIconHolder fromCallIndicatorState(
@@ -114,7 +171,7 @@ public class StatusBarIconHolder {
         return holder;
     }
 
-    public int getType() {
+    public @IconType int getType() {
         return mType;
     }
 
@@ -162,12 +219,18 @@ public class StatusBarIconHolder {
                 return mWifiState.visible;
             case TYPE_MOBILE:
                 return mMobileState.visible;
+            case TYPE_MOBILE_NEW:
+            case TYPE_WIFI_NEW:
+                // The new pipeline controls visibilities via the view model and view binder, so
+                // this is effectively an unused return value.
+                return true;
             case TYPE_BLUETOOTH:
                 return mBluetoothState.visible;
             case TYPE_NETWORK_TRAFFIC:
                 return true;
 
-            default: return true;
+            default:
+                return true;
         }
     }
 
@@ -187,6 +250,12 @@ public class StatusBarIconHolder {
 
             case TYPE_MOBILE:
                 mMobileState.visible = visible;
+                break;
+
+            case TYPE_MOBILE_NEW:
+            case TYPE_WIFI_NEW:
+                // The new pipeline controls visibilities via the view model and view binder, so
+                // ignore setVisible.
                 break;
 
             case TYPE_BLUETOOTH:

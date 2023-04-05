@@ -48,3 +48,7 @@
   static *** v(...);
 }
 -maximumremovedandroidloglevel 2
+
+-keep class com.android.systemui.globalactions.MinHeightScrollView {
+    *;
+}

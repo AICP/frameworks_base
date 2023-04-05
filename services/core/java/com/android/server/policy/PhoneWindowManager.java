@@ -2791,6 +2791,15 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         filter = new IntentFilter(ACTION_CONNECTION_STATE_CHANGED);
         mContext.registerReceiver(mBluetoothHidReceiver, filter);
 
+        // register power menu broadcast
+        filter = new IntentFilter("android.intent.action.POWER_MENU");
+        mContext.registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                showGlobalActionsInternal();
+            }
+        }, filter, Context.RECEIVER_EXPORTED);
+
         mVibrator = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
 
         mAssistUtils = new AssistUtils(mContext);

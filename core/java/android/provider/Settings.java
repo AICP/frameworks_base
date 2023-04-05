@@ -8670,6 +8670,17 @@ public final class Settings {
         }
 
         /**
+         * Int value specifying the power menu type (default is 0)
+         * 0 - Lite
+         * 1 - Full
+         * 2 - Classic
+         * 3 - Grid
+         * 4 - Legacy
+         * @hide
+         */
+        public static final String POWER_MENU_TYPE = "power_menu_type";
+
+        /**
          * Control whether to enable adaptive sleep mode.
          * @hide
          */

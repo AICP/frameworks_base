@@ -172,12 +172,16 @@ constructor(
         expandable: Expandable,
     ) {
         uiEventLogger.log(GlobalActionsDialogLite.GlobalActionsEvent.GA_OPEN_QS)
-        globalActionsDialogLite.showOrHideDialog(
-            keyguardStateController.isShowing(),
-            /* isDeviceProvisioned= */ true,
-            expandable,
-            context.displayId,
-        )
+        if (Settings.Secure.getInt(globalActionsDialogLite.context.getContentResolver(),
+                Settings.Secure.POWER_MENU_TYPE, 0) == 0)
+            globalActionsDialogLite.showOrHideDialog(
+                keyguardStateController.isShowing(),
+                /* isDeviceProvisioned= */ true,
+                expandable,
+                context.displayId,
+            )
+        else
+            globalActionsDialogLite.context.sendBroadcast(Intent("android.intent.action.POWER_MENU"))
     }
 
     override fun showSettings(expandable: Expandable) {

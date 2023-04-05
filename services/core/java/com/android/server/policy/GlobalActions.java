@@ -16,11 +16,14 @@ package com.android.server.policy;
 
 import android.content.Context;
 import android.os.Handler;
+import android.provider.Settings;
 import android.util.Slog;
 
 import com.android.server.LocalServices;
 import com.android.server.policy.WindowManagerPolicy.WindowManagerFuncs;
 import com.android.server.policy.GlobalActionsProvider;
+
+import com.libremobileos.providers.LMOSettings;
 
 class GlobalActions implements GlobalActionsProvider.GlobalActionsListener {
 
@@ -64,7 +67,8 @@ class GlobalActions implements GlobalActionsProvider.GlobalActionsListener {
         mKeyguardShowing = keyguardShowing;
         mDeviceProvisioned = deviceProvisioned;
         mShowing = true;
-        if (mGlobalActionsAvailable) {
+        if (mGlobalActionsAvailable && Settings.Secure.getInt(mContext.getContentResolver(),
+                LMOSettings.Secure.POWER_MENU_TYPE, 0) != 4) {
             mHandler.postDelayed(mShowTimeout, 5000);
             mGlobalActionsProvider.showGlobalActions();
         } else {

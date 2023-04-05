@@ -42,7 +42,8 @@ public class GlobalActionsColumnLayout extends GlobalActionsLayout {
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
 
-        post(() -> updateSnap());
+        // TODO re-add this when adding animation for it
+        // post(() -> updateSnap());
     }
 
     @Override

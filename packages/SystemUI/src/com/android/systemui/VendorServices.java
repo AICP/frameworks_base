@@ -16,19 +16,12 @@
 
 package com.android.systemui;
 
-import android.content.Context;
-
-import com.android.systemui.smartpixels.SmartPixelsReceiver;
-
 /**
  * Placeholder for any vendor-specific services.
  */
 public class VendorServices implements CoreStartable {
 
-    private SmartPixelsReceiver mSmartPixelsReceiver;
-    public VendorServices(Context context) {
-        // super(context);
-        mSmartPixelsReceiver = new SmartPixelsReceiver(context);
+    public VendorServices() {
     }
 
     @Override

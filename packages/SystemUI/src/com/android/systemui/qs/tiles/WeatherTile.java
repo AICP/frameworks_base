@@ -181,7 +181,7 @@ public class WeatherTile extends QSTileImpl<BooleanState> implements OmniJawsCli
                     Intent intentThird = pm.getLaunchIntentForPackage(app);
                     if (intentThird != null) {
                         mActivityStarter.postStartActivityDismissingKeyguard(intentThird, 0);
-                        break;
+                        return;
                     }
                 }
             }

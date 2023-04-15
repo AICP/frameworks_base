@@ -540,6 +540,7 @@ class LargeScreenShadeHeaderController @Inject constructor(
             qsCarrierGroup.updateColors(textColorPrimary, colorStateList)
             batteryIcon.updateColors(textColorPrimary, textColorSecondary, textColorPrimary)
             networkTraffic.setTintColor(textColorPrimary)
+            networkTraffic.setTextColor(textColorPrimary);
         }
     }
 

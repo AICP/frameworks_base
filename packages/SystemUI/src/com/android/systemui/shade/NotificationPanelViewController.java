@@ -4847,13 +4847,6 @@ public final class NotificationPanelViewController implements Dumpable {
 //                     return false;
 //                 }
 //
-//                 if ((mIsLockscreenDoubleTapEnabled && !mPulsing && !mDozing
-//                         && mBarState == StatusBarState.KEYGUARD) ||
-//                         (!mQsExpanded && mDoubleTapToSleepEnabled
-//                         && event.getY() < mStatusBarHeaderHeightKeyguard)) {
-//                     mDoubleTapGesture.onTouchEvent(event);
-//                 }
-//
 //                 Make sure the next touch won't the blocked after the current ends.
 //                 if (event.getAction() == MotionEvent.ACTION_UP
 //                         || event.getAction() == MotionEvent.ACTION_CANCEL) {
@@ -6406,6 +6399,13 @@ public final class NotificationPanelViewController implements Dumpable {
                 mShadeLog.logMotionEvent(event,
                         "onTouch: ignore touch, bouncer scrimmed or showing over dream");
                 return false;
+            }
+
+            if ((mIsLockscreenDoubleTapEnabled && !mPulsing && !mDozing
+                    && mBarState == StatusBarState.KEYGUARD) ||
+                    (!mQsExpanded && mDoubleTapToSleepEnabled
+                    && event.getY() < mStatusBarHeaderHeightKeyguard)) {
+                mDoubleTapGesture.onTouchEvent(event);
             }
 
             // Make sure the next touch won't the blocked after the current ends.

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6de54f6_84f4d64b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2023-04-19T02:55:38Z",
+      "side": 1,
+      "message": "We skip tests compilation, so shouldnt hurt",
+      "revId": "e204db7a717b8bbd52770bbe1f57173e42adb421",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

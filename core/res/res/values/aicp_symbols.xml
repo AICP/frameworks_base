@@ -72,6 +72,9 @@
     <java-symbol type="string" name="config_opWarpChargerStatusPaths" />
 
     <!-- Path to warp charging status file -->
+    <java-symbol type="string" name="config_voocChargerStatusPaths" />
+
+    <!-- Path to warp charging status file -->
     <java-symbol type="string" name="config_DashChargerStatusPath" />
 
     <!-- Light / Regular style fonts -->

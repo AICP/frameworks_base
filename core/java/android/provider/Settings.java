@@ -6113,16 +6113,6 @@ public final class Settings {
         /**
          * @hide
          */
-        public static final String NOTIFICATION_MATERIAL_DISMISS_STYLE = "notification_material_dismiss_style";
-
-        /**
-         * @hide
-         */
-        public static final String NOTIFICATION_MATERIAL_DISMISS_BGSTYLE = "notification_material_dismiss_bgstyle";
-
-        /**
-         * @hide
-         */
         public static final String BACK_GESTURE_HEIGHT = "back_gesture_height";
 
         /**
@@ -6791,8 +6781,6 @@ public final class Settings {
             PRIVATE_SETTINGS.add(ANIM_TILE_DURATION);
             PRIVATE_SETTINGS.add(ANIM_TILE_INTERPOLATOR);
             PRIVATE_SETTINGS.add(NOTIFICATION_MATERIAL_DISMISS);
-            PRIVATE_SETTINGS.add(NOTIFICATION_MATERIAL_DISMISS_STYLE);
-            PRIVATE_SETTINGS.add(NOTIFICATION_MATERIAL_DISMISS_BGSTYLE);
             PRIVATE_SETTINGS.add(BACK_GESTURE_HEIGHT);
             PRIVATE_SETTINGS.add(TOAST_ICON);
             PRIVATE_SETTINGS.add(POCKET_JUDGE);

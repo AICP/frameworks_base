@@ -1553,10 +1553,11 @@ public class CentralSurfacesImpl implements CoreStartable, CentralSurfaces, Tune
             mDismissAllButton.getBackground().setAlpha(0);
             mDismissAllButton.setVisibility(View.GONE);
         } else {
-            mDismissAllButton.setVisibility(View.VISIBLE);
+            updateDismissAllButton();
             int alpha = Math.round(mNotificationPanelViewController.getExpandedFraction() * 255.0f);
             mDismissAllButton.setAlpha(alpha);
             mDismissAllButton.getBackground().setAlpha(alpha);
+            mDismissAllButton.setVisibility(View.VISIBLE);
         }
     }
 
@@ -4503,9 +4504,6 @@ public class CentralSurfacesImpl implements CoreStartable, CentralSurfaces, Tune
 
                 @Override
                 public void onStateChanged(int newState) {
-                    if (mState != newState) {
-                        updateDismissAllVisibility(newState != StatusBarState.KEYGUARD);
-                    }
                     mState = newState;
                     updateReportRejectedTouchVisibility();
                     mDozeServiceHost.updateDozing();

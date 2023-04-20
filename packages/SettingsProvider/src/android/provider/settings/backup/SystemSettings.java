@@ -156,8 +156,6 @@ public class SystemSettings {
         Settings.System.ANIM_TILE_DURATION,
         Settings.System.ANIM_TILE_INTERPOLATOR,
         Settings.System.NOTIFICATION_MATERIAL_DISMISS,
-        Settings.System.NOTIFICATION_MATERIAL_DISMISS_STYLE,
-        Settings.System.NOTIFICATION_MATERIAL_DISMISS_BGSTYLE,
         Settings.System.BACK_GESTURE_HEIGHT,
         Settings.System.TOAST_ICON,
         Settings.System.OMNI_LOCKSCREEN_MEDIA_BLUR,

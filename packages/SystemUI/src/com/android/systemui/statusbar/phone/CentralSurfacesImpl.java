@@ -285,9 +285,6 @@ import dagger.Lazy;
 @SysUISingleton
 public class CentralSurfacesImpl implements CoreStartable, CentralSurfaces, TunerService.Tunable {
 
-    private static final String NOTIFICATION_MATERIAL_DISMISS =
-            "system:" + Settings.System.NOTIFICATION_MATERIAL_DISMISS;
-
     private static final String BANNER_ACTION_CANCEL =
             "com.android.systemui.statusbar.banner_action_cancel";
     private static final String BANNER_ACTION_SETUP =
@@ -583,7 +580,6 @@ public class CentralSurfacesImpl implements CoreStartable, CentralSurfaces, Tune
     private final MetricsLogger mMetricsLogger;
 
     private ImageButton mDismissAllButton;
-    private boolean mShowDimissButton;
 
     // ensure quick settings is disabled until the current user makes it through the setup wizard
     @VisibleForTesting
@@ -944,7 +940,6 @@ public class CentralSurfacesImpl implements CoreStartable, CentralSurfaces, Tune
         mTunerService.addTunable(this, LESS_BORING_HEADS_UP);
         mTunerService.addTunable(this, QS_TRANSPARENCY);
         mTunerService.addTunable(this, NAVIGATION_BAR_SHOW);
-        mTunerService.addTunable(this, NOTIFICATION_MATERIAL_DISMISS);
 
         mWindowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
         mDisplay = mContext.getDisplay();
@@ -1539,8 +1534,8 @@ public class CentralSurfacesImpl implements CoreStartable, CentralSurfaces, Tune
     @Override
     public void updateDismissAllVisibility(boolean visible) {
         if (mDismissAllButton == null) return;
-        if (!mShowDimissButton || !mStackScrollerController.hasActiveClearableNotifications(ROWS_ALL)
-                     || !visible || mState == StatusBarState.KEYGUARD || mQSPanelController.isExpanded()) {
+        if (!visible || !mStackScrollerController.hasActiveClearableNotifications(ROWS_ALL)
+                || (mQSPanelController != null && mQSPanelController.isExpanded())) {
             mDismissAllButton.setAlpha(0);
             mDismissAllButton.getBackground().setAlpha(0);
             mDismissAllButton.setVisibility(View.GONE);
@@ -4252,10 +4247,6 @@ public class CentralSurfacesImpl implements CoreStartable, CentralSurfaces, Tune
                         mNavigationBarController.onDisplayRemoved(mDisplayId);
                     }
                 }
-                break;
-            case NOTIFICATION_MATERIAL_DISMISS:
-                mShowDimissButton =
-                        TunerService.parseIntegerSwitch(newValue, false);
                 break;
             default:
                 break;

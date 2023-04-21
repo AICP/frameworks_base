@@ -300,6 +300,8 @@ public final class NotificationPanelViewController implements Dumpable {
             Settings.System.DOUBLE_TAP_SLEEP_GESTURE;
     private static final String DOUBLE_TAP_SLEEP_LOCKSCREEN =
             Settings.System.DOUBLE_TAP_SLEEP_LOCKSCREEN;
+    private static final String NOTIFICATION_MATERIAL_DISMISS =
+            "system:" + Settings.System.NOTIFICATION_MATERIAL_DISMISS;
 
     private static final Rect M_DUMMY_DIRTY_RECT = new Rect(0, 0, 1, 1);
     private static final Rect EMPTY_RECT = new Rect();
@@ -725,6 +727,8 @@ public final class NotificationPanelViewController implements Dumpable {
     private int mDreamingToLockscreenTransitionTranslationY;
     private int mOccludedToLockscreenTransitionTranslationY;
     private boolean mUnocclusionTransitionFlagEnabled = false;
+
+    private boolean mShowDimissButton;
 
     private final Runnable mFlingCollapseRunnable = () -> fling(0, false /* expand */,
             mNextCollapseSpeedUpFactor, false /* expandBecauseOfFalsing */);
@@ -2901,6 +2905,7 @@ public final class NotificationPanelViewController implements Dumpable {
         mLargeScreenShadeHeaderController.setShadeExpandedFraction(shadeExpandedFraction);
         mLargeScreenShadeHeaderController.setQsExpandedFraction(qsExpansionFraction);
         mLargeScreenShadeHeaderController.setQsVisible(mQsVisible);
+        updateDismissAllVisibility();
     }
 
     private float getLockscreenShadeDragProgress() {
@@ -3692,9 +3697,6 @@ public final class NotificationPanelViewController implements Dumpable {
             alpha = 0f;
         }
         mNotificationStackScrollLayoutController.setAlpha(alpha);
-        if (mBarState != StatusBarState.KEYGUARD && !isFullyCollapsed() && !isPanelVisibleBecauseOfHeadsUp()) {
-            mCentralSurfaces.updateDismissAllVisibility(true);
-        }
     }
 
     private float getFadeoutAlpha() {
@@ -6021,6 +6023,7 @@ public final class NotificationPanelViewController implements Dumpable {
             mTunerService.addTunable(this, STATUS_BAR_QUICK_QS_PULLDOWN);
             mTunerService.addTunable(this, DOUBLE_TAP_SLEEP_GESTURE);
             mTunerService.addTunable(this, DOUBLE_TAP_SLEEP_LOCKSCREEN);
+            mTunerService.addTunable(this, NOTIFICATION_MATERIAL_DISMISS);
             // Theme might have changed between inflating this view and attaching it to the
             // window, so
             // force a call to onThemeChanged
@@ -6055,6 +6058,11 @@ public final class NotificationPanelViewController implements Dumpable {
                 case DOUBLE_TAP_SLEEP_LOCKSCREEN:
                     mIsLockscreenDoubleTapEnabled =
                             TunerService.parseIntegerSwitch(newValue, true);
+                    break;
+                case NOTIFICATION_MATERIAL_DISMISS:
+                    mShowDimissButton =
+                            TunerService.parseIntegerSwitch(newValue, false);
+                    updateDismissAllVisibility();
                     break;
                 default:
                     break;
@@ -6709,5 +6717,16 @@ public final class NotificationPanelViewController implements Dumpable {
         void onClosingFinished();
         /** Called when the shade starts opening. */
         void onOpenStarted();
+    }
+
+    private void updateDismissAllVisibility() {
+        if (mCentralSurfaces == null) return;
+
+        if (mShowDimissButton && mBarState != StatusBarState.KEYGUARD && !isFullyCollapsed()
+                && !isPanelVisibleBecauseOfHeadsUp()) {
+            mCentralSurfaces.updateDismissAllVisibility(true);
+        } else {
+            mCentralSurfaces.updateDismissAllVisibility(false);
+        }
     }
 }

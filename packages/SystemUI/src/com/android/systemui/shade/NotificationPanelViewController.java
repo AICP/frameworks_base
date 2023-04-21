@@ -1321,6 +1321,7 @@ public final class NotificationPanelViewController implements Dumpable {
                 mResources.getDimensionPixelSize(R.dimen.split_shade_full_transition_distance);
 
         mEnableQsClipping = mResources.getBoolean(R.bool.qs_enable_clipping);
+        mCentralSurfaces.updateDismissAllVisibility(mBarState != StatusBarState.KEYGUARD && !isFullyCollapsed() && !isPanelVisibleBecauseOfHeadsUp());
     }
 
     private void onSplitShadeEnabledChanged() {
@@ -3692,7 +3693,7 @@ public final class NotificationPanelViewController implements Dumpable {
             alpha = 0f;
         }
         mNotificationStackScrollLayoutController.setAlpha(alpha);
-        if (mBarState != StatusBarState.KEYGUARD && !isFullyCollapsed()) {
+        if (mBarState != StatusBarState.KEYGUARD && !isFullyCollapsed() && !isPanelVisibleBecauseOfHeadsUp()) {
             mCentralSurfaces.updateDismissAllVisibility(true);
         }
     }
@@ -4236,7 +4237,7 @@ public final class NotificationPanelViewController implements Dumpable {
     }
 
     private boolean isPanelVisibleBecauseOfHeadsUp() {
-        return (mHeadsUpManager.hasPinnedHeadsUp() || mHeadsUpAnimatingAway)
+        return mHeadsUpManager != null && (mHeadsUpManager.hasPinnedHeadsUp() || mHeadsUpAnimatingAway)
                 && mBarState == StatusBarState.SHADE;
     }
 
@@ -5800,6 +5801,13 @@ public final class NotificationPanelViewController implements Dumpable {
         public void onThemeChanged() {
             debugLog("onThemeChanged");
             reInflateViews();
+        }
+
+        @Override
+        public void onUiModeChanged() {
+            if (DEBUG_LOGCAT) Log.d(TAG, "onUiModeChanged");
+            resetViews(true);
+            mCentralSurfaces.updateDismissAllVisibility(false);
         }
 
         @Override

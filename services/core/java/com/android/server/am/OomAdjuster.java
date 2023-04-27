@@ -96,6 +96,7 @@ import android.os.IBinder;
 import android.os.PowerManagerInternal;
 import android.os.Process;
 import android.os.RemoteException;
+import android.os.StrictMode;
 import android.os.SystemClock;
 import android.os.SystemProperties;
 import android.os.Trace;
@@ -319,12 +320,20 @@ public class OomAdjuster {
     }
 
     private boolean conditionallyEnableProactiveKills() {
-        File mglru = new File("/sys/kernel/mm/lru_gen/enabled");
-        File psi = new File("/proc/pressure/memory");
-        File lmk_kernel = new File("/sys/module/lowmemorykiller/parameters/minfree");
-
-        boolean isModernKernel = !lmk_kernel.exists() && mglru.exists() && psi.exists();
-        Slog.i(TAG, "Detected kernel with " + (isModernKernel ? "modern" : "legacy") + " mm setup,  " + (isModernKernel ? "enabling" : "disabling") + " Proactive Kills.");
+        boolean isModernKernel = false;
+        StrictMode.ThreadPolicy oldPolicy = StrictMode.allowThreadDiskReads();
+        try {
+            final File mglru = new File("/sys/kernel/mm/lru_gen/enabled");
+            final File psi = new File("/proc/pressure/memory");
+            final File lmk_kernel = new File("/sys/module/lowmemorykiller/parameters/minfree");
+            isModernKernel = !lmk_kernel.exists() && mglru.exists() && psi.exists();
+        } catch (Exception e) {
+        } finally {
+            StrictMode.setThreadPolicy(oldPolicy);
+        }
+        if (DEBUG_OOM_ADJ) {
+            Slog.i(TAG, "Detected kernel with " + (isModernKernel ? "modern" : "legacy") + " mm setup,  " + (isModernKernel ? "enabling" : "disabling") + " Proactive Kills.");
+        }
         return isModernKernel;
     }
 

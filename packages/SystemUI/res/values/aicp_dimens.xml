@@ -9,4 +9,8 @@
 
     <!-- Maximum vertical offset of statusbar for burn-in protection -->
     <dimen name="status_bar_offset_max_y">4dp</dimen>
+
+    <!-- Weather -->  
+    <dimen name="weather_image_max_size">24dp</dimen>
+    <dimen name="weather_humidity_margin_start">16dp</dimen>
 </resources>

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d8c9f98_ef77df3e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2023-05-03T08:04:32Z",
+      "side": 1,
+      "message": "If we drop this commit, rest of the related commits can be avoided\nIf any of the devices do indeed supports this proactive kills, it can be enable by SimpleDeviceConfig overlay on device side",
+      "revId": "b1d73251307f0d06d6f1fa4c0d3760db8847158c",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

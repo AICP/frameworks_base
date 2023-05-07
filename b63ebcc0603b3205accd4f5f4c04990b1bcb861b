@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47ca51c6_0aa51f42",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3
+      },
+      "writtenOn": "2023-05-07T12:26:54Z",
+      "side": 1,
+      "message": "LoS topic: https://review.lineageos.org/q/topic:13-lockscreen-shortcuts",
+      "revId": "b63ebcc0603b3205accd4f5f4c04990b1bcb861b",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

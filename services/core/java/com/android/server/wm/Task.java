@@ -3482,7 +3482,6 @@ class Task extends TaskFragment {
 
         if (info.topActivityInfo != null
                 && task.effectiveUid != info.topActivityInfo.applicationInfo.uid) {
-
             // Making a copy to prevent eliminating the info in the original ActivityRecord.
             info.topActivityInfo = new ActivityInfo(info.topActivityInfo);
             info.topActivityInfo.applicationInfo =

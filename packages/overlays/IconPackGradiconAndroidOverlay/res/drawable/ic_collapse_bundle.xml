@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt" android:height="24dp" android:width="24dp" android:viewportWidth="24" android:viewportHeight="24">
+    <group android:pivotX="12" android:pivotY="7" android:scaleY="1" android:rotation="-90">
+        <path android:fillColor="@drawable/ic_collapse_bundle_2" android:pathData="M9.06,9.00C7.56,8.00,7.56,6.00,9.06,5.00L11.75,3.25C13.44,2.13,16.06,3.00,16.06,5.50L16.06,8.50C16.06,11.00,13.44,11.87,11.75,10.75L9.06,9.00zM4.94,9.00L2.25,10.75C0.56,11.87,-2.06,11.00,-2.06,8.50L-2.06,5.50C-2.06,3.00,0.56,2.13,2.25,3.25L4.94,5.00C6.44,6.00,6.44,8.00,4.94,9.00z" android:strokeColor="@drawable/ic_collapse_bundle_1" android:strokeLineCap="round" android:strokeLineJoin="round"/>
+    </group>
+</vector>

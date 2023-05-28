@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt" android:height="24dp" android:width="24dp" android:viewportWidth="24" android:viewportHeight="24">
+    <group android:pivotX="12" android:pivotY="9.531" android:scaleY="1" android:rotation="-270">
+        <path android:fillColor="@drawable/ic_eject_24dp_2" android:pathData="M9.06,7.53C7.56,8.53,7.56,10.53,9.06,11.53L11.75,13.28C13.44,14.41,16.06,13.53,16.06,11.03L16.06,8.03C16.06,5.53,13.44,4.66,11.75,5.78L9.06,7.53zM19.50,13.78L19.50,13.78A1.50 1.50 0 0 0 21.00,12.28L21.00,6.78A1.50 1.50 0 0 0 19.50,5.28L19.50,5.28A1.50 1.50 0 0 0 18.00,6.78L18.00,12.28A1.50 1.50 0 0 0 19.50,13.78z" android:strokeColor="@drawable/ic_eject_24dp_1" android:strokeLineCap="round" android:strokeLineJoin="round"/>
+    </group>
+</vector>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt" android:height="24dp" android:width="24dp" android:viewportWidth="24" android:viewportHeight="24">
+    <group android:pivotX="12" android:pivotY="12" android:scaleY="1" android:rotation="-270">
+        <path android:fillColor="@drawable/ic_collapse_notification_2" android:pathData="M9.06,10.00C7.56,11.00,7.56,13.00,9.06,14.00L11.75,15.75C13.44,16.88,16.06,16.00,16.06,13.50L16.06,10.50C16.06,8.00,13.44,7.13,11.75,8.25L9.06,10.00z" android:strokeColor="@drawable/ic_collapse_notification_1" android:strokeLineCap="round" android:strokeLineJoin="round"/>
+    </group>
+</vector>

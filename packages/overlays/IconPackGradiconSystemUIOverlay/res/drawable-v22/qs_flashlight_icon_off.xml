@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt" android:height="24dp" android:width="24dp" android:viewportWidth="24" android:viewportHeight="24">
+    <group android:pivotX="12" android:pivotY="12" android:scaleY="1" android:rotation="0">
+        <path android:fillColor="@drawable/qs_flashlight_icon_off_2" android:pathData="M7.44,21.57L19.19,9.20C19.59,8.79,19.30,8.14,18.66,8.14L14.44,8.14Q14.09,8.14,14.19,7.82L15.69,3.32Q16.11,2.07,14.94,2.07L8.44,2.07Q7.78,2.07,7.53,2.82L4.69,12.82C4.44,13.70,4.94,14.07,5.44,14.07L7.44,14.07Q7.94,14.07,7.82,14.45L6.07,21.07C5.94,21.91,6.78,22.24,7.44,21.57z" android:strokeColor="@drawable/qs_flashlight_icon_off_1" android:strokeLineCap="square" android:strokeLineJoin="miter" android:fillType="nonZero"/>
+    </group>
+</vector>

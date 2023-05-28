@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt" android:height="24dp" android:width="24dp" android:viewportWidth="24" android:viewportHeight="24">
+    <group android:pivotX="12" android:pivotY="12" android:scaleY="1" android:rotation="0">
+        <path android:fillColor="@drawable/ic_qs_night_display_on_2" android:pathData="M10.64,3.82C7.68,10.64,13.80,16.78,19.89,15.44C21.01,15.24,22.03,15.95,21.51,17.15Q20.37,19.12,18.39,20.34C6.80,26.80,-2.87,12.47,5.52,4.28Q7.00,2.86,8.86,2.16C10.31,1.69,11.12,2.59,10.64,3.82z" android:strokeColor="@drawable/ic_qs_night_display_on_1" android:strokeLineCap="square" android:strokeLineJoin="miter" android:fillType="nonZero"/>
+    </group>
+</vector>

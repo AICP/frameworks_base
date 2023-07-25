@@ -63,6 +63,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
+import javax.annotation.concurrent.GuardedBy;
+
 /**
  * Default implementation of a {@link BatteryController}. This controller monitors for battery
  * level change events that are broadcasted by the system.
@@ -100,7 +102,10 @@ public class BatteryControllerImpl extends BroadcastReceiver implements BatteryC
     private boolean mTestMode = false;
     @VisibleForTesting
     boolean mHasReceivedBattery = false;
+    @GuardedBy("mEstimateLock")
     private Estimate mEstimate;
+    private final Object mEstimateLock = new Object();
+
     private boolean mFetchingEstimate = false;
     private int mLastLevel = 0;
 
@@ -332,7 +337,7 @@ public class BatteryControllerImpl extends BroadcastReceiver implements BatteryC
 
     @Nullable
     private String generateTimeRemainingString() {
-        synchronized (mFetchCallbacks) {
+        synchronized (mEstimateLock) {
             if (mEstimate == null) {
                 return null;
             }
@@ -351,7 +356,7 @@ public class BatteryControllerImpl extends BroadcastReceiver implements BatteryC
         mFetchingEstimate = true;
         mBgHandler.post(() -> {
             // Only fetch the estimate if they are enabled
-            synchronized (mFetchCallbacks) {
+            synchronized (mEstimateLock) {
                 mEstimate = null;
                 if (mEstimates.isHybridNotificationEnabled()) {
                     updateEstimate();
@@ -374,6 +379,7 @@ public class BatteryControllerImpl extends BroadcastReceiver implements BatteryC
     }
 
     @WorkerThread
+    @GuardedBy("mEstimateLock")
     private void updateEstimate() {
         Assert.isNotMainThread();
         // if the estimate has been cached we can just use that, otherwise get a new one and

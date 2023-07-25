@@ -52,6 +52,7 @@ import javax.inject.Inject;
 /** Quick settings tile: Hotspot **/
 public class HotspotTile extends SecureQSTile<BooleanState> {
 
+    public static final String TILE_SPEC = "hotspot";
     private final HotspotController mHotspotController;
     private final DataSaverController mDataSaverController;
 

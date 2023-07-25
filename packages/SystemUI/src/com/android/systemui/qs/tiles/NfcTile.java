@@ -52,7 +52,9 @@ import javax.inject.Inject;
 /** Quick settings tile: Enable/Disable NFC **/
 public class NfcTile extends SecureQSTile<BooleanState> {
 
-    private static final String NFC = "nfc";
+    public static final String TILE_SPEC = "nfc";
+
+    private static final String NFC = TILE_SPEC;
     private final Icon mIcon = ResourceIcon.get(R.drawable.ic_qs_nfc);
 
     @Nullable
@@ -98,9 +100,9 @@ public class NfcTile extends SecureQSTile<BooleanState> {
 
     @Override
     public boolean isAvailable() {
-        String stockTiles = mContext.getString(R.string.quick_settings_tiles_stock);
+        String stockTiles = mContext.getString(R.string.quick_settings_tiles_extra);
         // For the restore from backup case
-        // Return false when "nfc" is not listed in quick_settings_tiles_stock.
+        // Return false when "nfc" is not listed in quick_settings_tiles_extra.
         if (stockTiles.contains(NFC)) {
             return mContext.getPackageManager().hasSystemFeature(PackageManager.FEATURE_NFC);
         }

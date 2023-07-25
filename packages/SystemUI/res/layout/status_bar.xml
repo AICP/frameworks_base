@@ -199,13 +199,6 @@
         />
     </com.android.keyguard.AlphaOptimizedLinearLayout>
 
-    <ViewStub
-        android:id="@+id/emergency_cryptkeeper_text"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout="@layout/emergency_cryptkeeper_text"
-    />
-
     <com.android.systemui.statusbar.policy.BatteryBarController
         android:id="@+id/battery_bar"
         android:layout_width="match_parent"

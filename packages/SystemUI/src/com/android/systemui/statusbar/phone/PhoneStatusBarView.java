@@ -45,6 +45,7 @@ import android.widget.LinearLayout;
 import com.android.internal.policy.SystemBarUtils;
 import com.android.settingslib.Utils;
 import com.android.systemui.Dependency;
+import com.android.systemui.Gefingerpoken;
 import com.android.systemui.R;
 import com.android.systemui.plugins.DarkIconDispatcher;
 import com.android.systemui.plugins.DarkIconDispatcher.DarkReceiver;
@@ -83,7 +84,7 @@ public class PhoneStatusBarView extends FrameLayout implements Callbacks {
     private Rect mDisplaySize;
     private int mStatusBarHeight;
     @Nullable
-    private TouchEventHandler mTouchEventHandler;
+    private Gefingerpoken mTouchEventHandler;
 
     /**
      * Draw this many pixels into the left/right side of the cutout to optimally use the space
@@ -112,7 +113,8 @@ public class PhoneStatusBarView extends FrameLayout implements Callbacks {
                     R.dimen.rounded_corner_content_padding,
                     R.dimen.floating_rotation_button_taskbar_left_margin,
                     R.dimen.floating_rotation_button_taskbar_bottom_margin,
-                    R.dimen.floating_rotation_button_diameter, R.dimen.key_button_ripple_max_width);
+                    R.dimen.floating_rotation_button_diameter, R.dimen.key_button_ripple_max_width,
+                    R.bool.floating_rotation_button_position_left);
 
             mRotationButtonController = new RotationButtonController(lightContext, lightIconColor,
                     darkIconColor, R.drawable.ic_sysbar_rotate_button_ccw_start_0,
@@ -139,7 +141,7 @@ public class PhoneStatusBarView extends FrameLayout implements Callbacks {
         return false;
     }
 
-    void setTouchEventHandler(TouchEventHandler handler) {
+    void setTouchEventHandler(Gefingerpoken handler) {
         mTouchEventHandler = handler;
     }
 
@@ -287,7 +289,7 @@ public class PhoneStatusBarView extends FrameLayout implements Callbacks {
             );
             return true;
         }
-        return mTouchEventHandler.handleTouchEvent(event);
+        return mTouchEventHandler.onTouchEvent(event);
     }
 
     @Override

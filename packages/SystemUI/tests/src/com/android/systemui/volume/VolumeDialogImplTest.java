@@ -16,6 +16,7 @@
 
 package com.android.systemui.volume;
 
+import static com.android.systemui.volume.Events.DISMISS_REASON_UNKNOWN;
 import static com.android.systemui.volume.VolumeDialogControllerImpl.STREAMS;
 
 import static junit.framework.Assert.assertTrue;
@@ -297,6 +298,44 @@ public class VolumeDialogImplTest extends SysuiTestCase {
         // Make sure we've actually changed the ringer mode.
         verify(mVolumeDialogController, times(1)).setRingerMode(
                 AudioManager.RINGER_MODE_NORMAL, false);
+    }
+
+    /**
+     * Ideally we would look at the ringer ImageView and check its assigned drawable id, but that
+     * API does not exist. So we do the next best thing; we check the cached icon id.
+     */
+    @Test
+    public void notificationVolumeSeparated_theRingerIconChanges() {
+        mDeviceConfigProxy.setProperty(DeviceConfig.NAMESPACE_SYSTEMUI,
+                SystemUiDeviceConfigFlags.VOLUME_SEPARATE_NOTIFICATION, "true", false);
+
+        mExecutor.runAllReady(); // for the config change to take effect
+
+        // assert icon is new based on res id
+        assertEquals(mDialog.mVolumeRingerIconDrawableId,
+                R.drawable.ic_speaker_on);
+        assertEquals(mDialog.mVolumeRingerMuteIconDrawableId,
+                R.drawable.ic_speaker_mute);
+    }
+
+    @Test
+    public void notificationVolumeNotSeparated_theRingerIconRemainsTheSame() {
+        mDeviceConfigProxy.setProperty(DeviceConfig.NAMESPACE_SYSTEMUI,
+                SystemUiDeviceConfigFlags.VOLUME_SEPARATE_NOTIFICATION, "false", false);
+
+        mExecutor.runAllReady();
+
+        assertEquals(mDialog.mVolumeRingerIconDrawableId, R.drawable.ic_volume_ringer);
+        assertEquals(mDialog.mVolumeRingerMuteIconDrawableId, R.drawable.ic_volume_ringer_mute);
+    }
+
+    @Test
+    public void testDialogDismissAnimation_notifyVisibleIsNotCalledBeforeAnimation() {
+        mDialog.dismissH(DISMISS_REASON_UNKNOWN);
+        // notifyVisible(false) should not be called immediately but only after the dismiss
+        // animation has ended.
+        verify(mVolumeDialogController, times(0)).notifyVisible(false);
+        mDialog.getDialogView().animate().cancel();
     }
 
 /*

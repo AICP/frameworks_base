@@ -1602,6 +1602,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
             @Override
             public void onAnimationCancel(@NonNull Animator animation) {
                 mInteractionJankMonitor.cancel(CUJ_VOLUME_CONTROL);
+                Log.d(TAG, "onAnimationCancel");
             }
 
             @Override
@@ -1686,6 +1687,8 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
         mHandler.removeMessages(H.DISMISS);
         mHandler.removeMessages(H.SHOW);
         if (mIsAnimatingDismiss) {
+            Log.d(TAG, "dismissH: isAnimatingDismiss");
+            Trace.endSection();
             return;
         }
         mIsAnimatingDismiss = true;
@@ -1702,6 +1705,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
                 .setDuration(mDialogHideAnimationDurationMs)
                 .setInterpolator(new SystemUIInterpolators.LogAccelerateInterpolator())
                 .withEndAction(() -> mHandler.postDelayed(() -> {
+                    mController.notifyVisible(false);
                     mDialog.dismiss();
                     tryToRemoveCaptionsTooltip();
                     mExpanded = false;

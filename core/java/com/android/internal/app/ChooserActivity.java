@@ -1397,7 +1397,7 @@ public class ChooserActivity extends ResolverActivity implements
 
             ImageView previewThumbnailView = contentPreviewLayout.findViewById(
                     R.id.content_preview_thumbnail);
-            if (previewThumbnail == null) {
+            if (!validForContentPreview(previewThumbnail)) {
                 previewThumbnailView.setVisibility(View.GONE);
             } else {
                 mPreviewCoord = new ContentPreviewCoordinator(contentPreviewLayout, false);
@@ -1429,7 +1429,7 @@ public class ChooserActivity extends ResolverActivity implements
         mPreviewCoord = new ContentPreviewCoordinator(contentPreviewLayout, false);
 
         if (Intent.ACTION_SEND.equals(action)) {
-            Uri uri = targetIntent.getParcelableExtra(Intent.EXTRA_STREAM, android.net.Uri.class);
+            Uri uri = targetIntent.getParcelableExtra(Intent.EXTRA_STREAM);
             if (!validForContentPreview(uri)) {
                 contentPreviewLayout.setVisibility(View.GONE);
                 return contentPreviewLayout;
@@ -2987,9 +2987,21 @@ public class ChooserActivity extends ResolverActivity implements
 
     private boolean shouldShowStickyContentPreviewNoOrientationCheck() {
         return shouldShowTabs()
-                && mMultiProfilePagerAdapter.getListAdapterForUserHandle(
-                UserHandle.of(UserHandle.myUserId())).getCount() > 0
+                && (mMultiProfilePagerAdapter.getListAdapterForUserHandle(
+                        UserHandle.of(UserHandle.myUserId())).getCount() > 0
+                    || shouldShowContentPreviewWhenEmpty())
                 && shouldShowContentPreview();
+    }
+
+    /**
+     * This method could be used to override the default behavior when we hide the preview area
+     * when the current tab doesn't have any items.
+     *
+     * @return true if we want to show the content preview area even if the tab for the current
+     *         user is empty
+     */
+    protected boolean shouldShowContentPreviewWhenEmpty() {
+        return false;
     }
 
     /**

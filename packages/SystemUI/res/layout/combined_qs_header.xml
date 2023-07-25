@@ -141,10 +141,10 @@
         android:layout_width="wrap_content"
         android:layout_height="@dimen/large_screen_shade_header_min_height"
         android:gravity="center"
-        app:layout_constraintEnd_toEndOf="@id/end_guide"
-        app:layout_constraintTop_toTopOf="@id/date"
         app:layout_constraintBottom_toBottomOf="@id/date"
-        >
+        app:layout_constraintEnd_toEndOf="@id/end_guide"
+        app:layout_constraintTop_toTopOf="@id/date">
+
 
         <com.android.systemui.statusbar.policy.NetworkTraffic
             android:id="@+id/networkTraffic"
@@ -154,7 +154,10 @@
             android:layout_marginEnd="2dp"
             android:layout_gravity="center_vertical|right" />
 
-        <include layout="@layout/ongoing_privacy_chip"/>
+        <com.android.systemui.privacy.OngoingPrivacyChip
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
     </FrameLayout>
 
 </com.android.systemui.util.NoRemeasureMotionLayout>

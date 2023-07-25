@@ -825,6 +825,11 @@ public abstract class Window {
     /** @hide */
     public final void destroy() {
         mDestroyed = true;
+        onDestroy();
+    }
+
+    /** @hide */
+    protected void onDestroy() {
     }
 
     /** @hide */

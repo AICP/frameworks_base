@@ -64,7 +64,7 @@ public class QuickQSPanelController extends QSPanelControllerBase<QuickQSPanel> 
     private boolean mForceShowSlider = false;
 
     @Inject
-    QuickQSPanelController(QuickQSPanel view, QSTileHost qsTileHost,
+    QuickQSPanelController(QuickQSPanel view, QSHost qsHost,
             QSCustomizerController qsCustomizerController,
             @Named(QS_USING_MEDIA_PLAYER) boolean usingMediaPlayer,
             @Named(QUICK_QS_PANEL) MediaHost mediaHost,
@@ -76,7 +76,7 @@ public class QuickQSPanelController extends QSPanelControllerBase<QuickQSPanel> 
             @Main Handler mainHandler,
             SystemSettings systemSettings
     ) {
-        super(view, qsTileHost, qsCustomizerController, usingMediaPlayer, mediaHost, metricsLogger,
+        super(view, qsHost, qsCustomizerController, usingMediaPlayer, mediaHost, metricsLogger,
                 uiEventLogger, qsLogger, dumpManager, mainHandler, systemSettings);
         mBrightnessController = quickQSBrightnessController;
         mBrightnessMirrorHandler = new BrightnessMirrorHandler(mBrightnessController);

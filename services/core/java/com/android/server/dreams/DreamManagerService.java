@@ -660,6 +660,10 @@ public final class DreamManagerService extends SystemService {
 
         if (DEBUG) Slog.i(TAG, "Entering dreamland.");
 
+        if (mCurrentDream != null && mCurrentDream.isDozing) {
+            stopDozingInternal(mCurrentDream.token);
+        }
+
         mCurrentDream = new DreamRecord(name, userId, isPreviewMode, canDoze);
 
         if (!mCurrentDream.name.equals(mAmbientDisplayComponent)) {

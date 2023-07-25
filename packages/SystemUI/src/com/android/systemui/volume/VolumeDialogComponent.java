@@ -25,6 +25,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.view.WindowManager.LayoutParams;
 
+import com.android.internal.R;
 import com.android.settingslib.applications.InterestingConfigChanges;
 import com.android.systemui.dagger.SysUISingleton;
 import com.android.systemui.demomode.DemoMode;
@@ -57,7 +58,7 @@ public class VolumeDialogComponent implements VolumeComponent, TunerService.Tuna
     public static final String VOLUME_UP_SILENT = "sysui_volume_up_silent";
     public static final String VOLUME_SILENT_DO_NOT_DISTURB = "sysui_do_not_disturb";
 
-    public static final boolean DEFAULT_VOLUME_DOWN_TO_ENTER_SILENT = false;
+    private final boolean mDefaultVolumeDownToEnterSilent;
     public static final boolean DEFAULT_VOLUME_UP_TO_EXIT_SILENT = false;
     public static final boolean DEFAULT_DO_NOT_DISTURB_WHEN_SILENT = false;
 
@@ -75,12 +76,7 @@ public class VolumeDialogComponent implements VolumeComponent, TunerService.Tuna
     private final KeyguardViewMediator mKeyguardViewMediator;
     private final ActivityStarter mActivityStarter;
     private VolumeDialog mDialog;
-    private VolumePolicy mVolumePolicy = new VolumePolicy(
-            DEFAULT_VOLUME_DOWN_TO_ENTER_SILENT,  // volumeDownToEnterSilent
-            DEFAULT_VOLUME_UP_TO_EXIT_SILENT,  // volumeUpToExitSilent
-            DEFAULT_DO_NOT_DISTURB_WHEN_SILENT,  // doNotDisturbWhenSilent
-            400    // vibrateToSilentDebounce
-    );
+    private VolumePolicy mVolumePolicy;
 
     @Inject
     public VolumeDialogComponent(
@@ -119,7 +115,20 @@ public class VolumeDialogComponent implements VolumeComponent, TunerService.Tuna
                         mTriStateController.init(LayoutParams.TYPE_VOLUME_OVERLAY, this);
                     }
                 }).build();
+
+
+        mDefaultVolumeDownToEnterSilent = mContext.getResources()
+                .getBoolean(R.bool.config_volume_down_to_enter_silent);
+
+        mVolumePolicy = new VolumePolicy(
+                mDefaultVolumeDownToEnterSilent,  // volumeDownToEnterSilent
+                DEFAULT_VOLUME_UP_TO_EXIT_SILENT,  // volumeUpToExitSilent
+                DEFAULT_DO_NOT_DISTURB_WHEN_SILENT,  // doNotDisturbWhenSilent
+                400    // vibrateToSilentDebounce
+        );
+
         applyConfiguration();
+
         tunerService.addTunable(this, VOLUME_DOWN_SILENT, VOLUME_UP_SILENT,
                 VOLUME_SILENT_DO_NOT_DISTURB);
         demoModeController.addCallback(this);
@@ -133,7 +142,7 @@ public class VolumeDialogComponent implements VolumeComponent, TunerService.Tuna
 
         if (VOLUME_DOWN_SILENT.equals(key)) {
             volumeDownToEnterSilent =
-                TunerService.parseIntegerSwitch(newValue, DEFAULT_VOLUME_DOWN_TO_ENTER_SILENT);
+                TunerService.parseIntegerSwitch(newValue, mDefaultVolumeDownToEnterSilent);
         } else if (VOLUME_UP_SILENT.equals(key)) {
             volumeUpToExitSilent =
                 TunerService.parseIntegerSwitch(newValue, DEFAULT_VOLUME_UP_TO_EXIT_SILENT);

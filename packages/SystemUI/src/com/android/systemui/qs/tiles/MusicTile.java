@@ -54,6 +54,8 @@ import javax.inject.Inject;
 /** Quick settings tile: Music **/
 public class MusicTile extends QSTileImpl<BooleanState> {
 
+    public static final String TILE_SPEC = "music";
+
     private final String TAG = "MusicTile";
     private final boolean DBG = false;
     private final AudioManager mAudioManager;

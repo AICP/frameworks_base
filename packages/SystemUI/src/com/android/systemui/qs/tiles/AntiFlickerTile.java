@@ -48,6 +48,9 @@ import javax.inject.Inject;
 
 
 public class AntiFlickerTile extends QSTileImpl<BooleanState> {
+
+    public static final String TILE_SPEC = "anti_flicker";
+
     private boolean mAntiFlickerEnabled = true;
     private boolean mReceiverRegistered;
 

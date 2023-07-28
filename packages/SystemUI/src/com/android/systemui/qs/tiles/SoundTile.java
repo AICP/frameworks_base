@@ -49,6 +49,8 @@ import javax.inject.Inject;
 
 public class SoundTile extends QSTileImpl<BooleanState> {
 
+    public static final String TILE_SPEC = "sound";
+
     private final ZenModeController mZenController;
     private final AudioManager mAudioManager;
 

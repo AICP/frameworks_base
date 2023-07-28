@@ -51,6 +51,8 @@ import javax.inject.Inject;
 /** Quick settings tile: Screenshot **/
 public class ScreenshotTile extends QSTileImpl<BooleanState> {
 
+    public static final String TILE_SPEC = "screenshot";
+
     @Inject
     public ScreenshotTile(
             QSHost host,

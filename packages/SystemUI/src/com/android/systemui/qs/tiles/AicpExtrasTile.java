@@ -47,6 +47,9 @@ import com.android.systemui.statusbar.policy.KeyguardStateController;
 import javax.inject.Inject;
 
 public class AicpExtrasTile extends SecureQSTile<State> {
+
+    public static final String TILE_SPEC = "aicp_extras";
+
     private boolean mListening;
     private final ActivityStarter mActivityStarter;
 

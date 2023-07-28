@@ -61,6 +61,8 @@ import com.android.internal.R;
  **/
 public class LiveDisplayTile extends QSTileImpl<LiveDisplayState> {
 
+    public static final String TILE_SPEC = "live_dislay";
+
     private static final Intent DISPLAY_SETTINGS = new Intent("android.settings.DISPLAY_SETTINGS");
 
     private final LiveDisplayObserver mObserver;

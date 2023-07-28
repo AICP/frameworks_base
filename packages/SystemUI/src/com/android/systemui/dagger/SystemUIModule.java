@@ -29,6 +29,7 @@ import com.android.keyguard.dagger.KeyguardBouncerComponent;
 import com.android.systemui.BootCompleteCache;
 import com.android.systemui.BootCompleteCacheImpl;
 import com.android.systemui.accessibility.AccessibilityModule;
+import com.android.systemui.aicp.AicpModule;
 import com.android.systemui.appops.dagger.AppOpsModule;
 import com.android.systemui.assist.AssistModule;
 import com.android.systemui.biometrics.AlternateUdfpsTouchProvider;
@@ -136,6 +137,7 @@ import dagger.Provides;
  * may not appreciate that.
  */
 @Module(includes = {
+            AicpModule.class,
             AccessibilityModule.class,
             AppOpsModule.class,
             AssistModule.class,

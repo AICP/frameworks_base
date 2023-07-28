@@ -48,6 +48,8 @@ import javax.inject.Inject;
 /** Quick settings tile: Heads up **/
 public class HeadsUpTile extends QSTileImpl<BooleanState> {
 
+    public static final String TILE_SPEC = "headsup";
+
     private final Icon mIcon = ResourceIcon.get(R.drawable.ic_qs_heads_up);
 
     private static final Intent NOTIFICATION_SETTINGS =

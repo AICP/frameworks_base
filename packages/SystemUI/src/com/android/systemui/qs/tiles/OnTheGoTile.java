@@ -47,6 +47,8 @@ import javax.inject.Inject;
 /** Quick settings tile: Enable/Disable OnTheGo Mode **/
 public class OnTheGoTile extends QSTileImpl<BooleanState> {
 
+    public static final String TILE_SPEC = "onthego";
+
     private final Icon mIcon = ResourceIcon.get(drawable.ic_qs_onthego);
     private boolean mIsEnabled;
 

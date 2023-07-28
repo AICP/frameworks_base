@@ -58,6 +58,8 @@ import javax.inject.Inject;
 /** Quick settings tile: Locale **/
 public class LocaleTile extends QSTileImpl<State> {
 
+    public static final String TILE_SPEC = "locale";
+
     private boolean mListening;
 
     private LocaleList mLocaleList;

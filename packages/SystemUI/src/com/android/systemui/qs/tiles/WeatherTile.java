@@ -71,6 +71,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class WeatherTile extends QSTileImpl<BooleanState> implements OmniJawsClient.OmniJawsObserver {
+
+    public static final String TILE_SPEC = "weather";
+
     private static final String TAG = "WeatherTile";
     private static final boolean DEBUG = false;
     private OmniJawsClient mWeatherClient;

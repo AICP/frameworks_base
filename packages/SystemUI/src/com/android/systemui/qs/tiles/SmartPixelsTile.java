@@ -47,6 +47,8 @@ import javax.inject.Inject;
 public class SmartPixelsTile extends QSTileImpl<BooleanState> implements
         BatteryController.BatteryStateChangeCallback {
 
+    public static final String TILE_SPEC = "smart_pixels";
+
     private final BatteryController mBatteryController;
 
     private boolean mSmartPixelsEnable;

@@ -42,6 +42,8 @@ import javax.inject.Inject;
 
 public class RebootTile extends QSTileImpl<BooleanState> {
 
+    public static final String TILE_SPEC = "reboot";
+
     private boolean mRebootToRecovery = false;
 
     @Inject

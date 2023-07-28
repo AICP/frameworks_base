@@ -43,6 +43,8 @@ import javax.inject.Inject;
 
 public class DataSwitchTile extends QSTileImpl<BooleanState> {
 
+    public static final String TILE_SPEC = "data_switch";
+
     private static final String TAG = "DataSwitchTile";
     private static final boolean DEBUG = false;
 

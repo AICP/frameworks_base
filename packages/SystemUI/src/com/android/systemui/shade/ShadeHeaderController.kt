@@ -101,6 +101,7 @@ constructor(
     private val combinedShadeHeadersConstraintManager: CombinedShadeHeadersConstraintManager,
     private val demoModeController: DemoModeController,
     private val qsBatteryModeController: QsBatteryModeController,
+    private val activityStarter: ActivityStarter
 ) : ViewController<View>(header), Dumpable {
 
     companion object {

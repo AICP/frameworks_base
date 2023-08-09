@@ -3051,7 +3051,6 @@ public final class NotificationPanelViewController implements Dumpable {
     /** Set whether the bouncer is showing. */
     public void setBouncerShowing(boolean bouncerShowing) {
         mBouncerShowing = bouncerShowing;
-        mNotificationStackScrollLayoutController.updateShowEmptyShadeView();
         updateVisibility();
     }
 

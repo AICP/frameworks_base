@@ -122,16 +122,16 @@ constructor(
                     Log.e(TAG, "Error getting package information", e)
                 }
 
-            Log.d(TAG, "Adding resume controls for ${browser.userId}: $desc")
-            mediaDataManager.addResumptionControls(
-                browser.userId,
-                desc,
-                resumeAction,
-                token,
-                appName.toString(),
-                appIntent,
-                component.packageName
-            )
+                Log.d(TAG, "Adding resume controls for ${browser.userId}: $desc")
+                mediaDataManager.addResumptionControls(
+                    browser.userId,
+                    desc,
+                    resumeAction,
+                    token,
+                    appName.toString(),
+                    appIntent,
+                    component.packageName
+                )
         }
     }
 

@@ -86,15 +86,16 @@ public class ResumeMediaBrowserTest : SysuiTestCase() {
         whenever(mediaController.transportControls).thenReturn(transportControls)
         whenever(mediaController.sessionToken).thenReturn(token)
 
-        resumeBrowser = TestableResumeMediaBrowser(
-            context,
-            callback,
-            component,
-            browserFactory,
-            logger,
-            mediaController,
-            context.userId
-        )
+        resumeBrowser =
+            TestableResumeMediaBrowser(
+                context,
+                callback,
+                component,
+                browserFactory,
+                logger,
+                mediaController,
+                context.userId,
+            )
     }
 
     @Test
@@ -382,7 +383,7 @@ public class ResumeMediaBrowserTest : SysuiTestCase() {
         browserFactory: MediaBrowserFactory,
         logger: ResumeMediaBrowserLogger,
         private val fakeController: MediaController,
-        userId: Int
+        userId: Int,
     ) : ResumeMediaBrowser(context, callback, componentName, browserFactory, logger, userId) {
 
         override fun createMediaController(token: MediaSession.Token): MediaController {

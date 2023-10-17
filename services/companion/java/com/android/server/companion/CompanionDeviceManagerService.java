@@ -554,9 +554,8 @@ public class CompanionDeviceManagerService extends SystemService implements Bind
         public PendingIntent requestNotificationAccess(ComponentName component)
                 throws RemoteException {
             String callingPackage = component.getPackageName();
-            checkCanCallNotificationApi(callingPackage);
             int userId = getCallingUserId();
-            // TODO: check userId.
+            checkCanCallNotificationApi(callingPackage, userId);
             if (component.flattenToString().length() > MAX_CN_LENGTH) {
                 throw new IllegalArgumentException("Component name is too long.");
             }
@@ -577,7 +576,7 @@ public class CompanionDeviceManagerService extends SystemService implements Bind
 
         @Override
         public boolean hasNotificationAccess(ComponentName component) throws RemoteException {
-            checkCanCallNotificationApi(component.getPackageName());
+            checkCanCallNotificationApi(component.getPackageName(), getCallingUserId());
             String setting = Settings.Secure.getString(getContext().getContentResolver(),
                     Settings.Secure.ENABLED_NOTIFICATION_LISTENERS);
             return new ComponentNameSet(setting).contains(component);
@@ -668,9 +667,8 @@ public class CompanionDeviceManagerService extends SystemService implements Bind
                     System.currentTimeMillis()), userId);
         }
 
-        private void checkCanCallNotificationApi(String callingPackage) throws RemoteException {
+        private void checkCanCallNotificationApi(String callingPackage, int userId) throws RemoteException {
             checkCallerIsSystemOr(callingPackage);
-            int userId = getCallingUserId();
             checkState(!ArrayUtils.isEmpty(getAllAssociations(userId, callingPackage)),
                     "App must have an association before calling this API");
             checkUsesFeature(callingPackage, userId);

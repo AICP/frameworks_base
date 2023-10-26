@@ -94,11 +94,12 @@ public final class Helper {
             @UserIdInt int userId, @NonNull RemoteViews rView) {
         final AtomicBoolean permissionsOk = new AtomicBoolean(true);
 
-        rView.visitUris(uri -> {
-            int uriOwnerId = android.content.ContentProvider.getUserIdFromUri(uri, userId);
-            boolean allowed = uriOwnerId == userId;
-            permissionsOk.set(allowed & permissionsOk.get());
-        });
+        rView.visitUris(
+                uri -> {
+                    int uriOwnerId = android.content.ContentProvider.getUserIdFromUri(uri, userId);
+                    boolean allowed = uriOwnerId == userId;
+                    permissionsOk.set(allowed & permissionsOk.get());
+                });
 
         return permissionsOk.get();
     }
@@ -152,7 +153,7 @@ public final class Helper {
             }
 
             Icon icon = sliceItem.getIcon();
-            if (icon.getType() !=  Icon.TYPE_URI
+            if (icon.getType() != Icon.TYPE_URI
                     && icon.getType() != Icon.TYPE_URI_ADAPTIVE_BITMAP) {
                 // No URIs to sanitize
                 continue;
@@ -168,7 +169,6 @@ public final class Helper {
 
         return slice;
     }
-
 
     @Nullable
     static AutofillId[] toArray(@Nullable ArraySet<AutofillId> set) {

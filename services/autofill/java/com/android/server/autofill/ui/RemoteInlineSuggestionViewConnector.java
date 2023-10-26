@@ -28,6 +28,7 @@ import android.util.Slog;
 
 import com.android.server.LocalServices;
 import com.android.server.autofill.Helper;
+import com.android.server.autofill.Helper;
 import com.android.server.autofill.RemoteInlineSuggestionRenderService;
 import com.android.server.inputmethod.InputMethodManagerInternal;
 
@@ -75,8 +76,8 @@ final class RemoteInlineSuggestionViewConnector {
      *
      * @return true if the call is made to the remote renderer service, false otherwise.
      */
-    public boolean renderSuggestion(
-            int width, int height, @NonNull IInlineSuggestionUiCallback callback) {
+    public boolean renderSuggestion(int width, int height,
+            @NonNull IInlineSuggestionUiCallback callback) {
         if (Helper.sanitizeSlice(mInlinePresentation.getSlice()) == null) {
             if (sDebug) Slog.d(TAG, "Skipped rendering inline suggestion.");
             return false;

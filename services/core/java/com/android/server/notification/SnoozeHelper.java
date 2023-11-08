@@ -118,12 +118,30 @@ public final class SnoozeHelper {
 
     protected boolean canSnooze(int numberToSnooze) {
         synchronized (mLock) {
-            if ((mSnoozedNotifications.size() + numberToSnooze) > CONCURRENT_SNOOZE_LIMIT) {
+            if ((mSnoozedNotifications.size() + numberToSnooze) > CONCURRENT_SNOOZE_LIMIT
+                || (countPersistedNotificationsLocked() + numberToSnooze)
+                > CONCURRENT_SNOOZE_LIMIT) {
                 return false;
             }
         }
         return true;
     }
+
+    private int countPersistedNotificationsLocked() {
+        int numNotifications = 0;
+        // for (ArrayMap<String, String> persistedWithContext :
+        //         mPersistedSnoozedNotificationsWithContext.values()) {
+        //     numNotifications += persistedWithContext.size();
+        // }
+        numNotifications += mPersistedSnoozedNotificationsWithContext.size();
+        // for (ArrayMap<String, Long> persistedWithDuration :
+        //         mPersistedSnoozedNotifications.values()) {
+        //     numNotifications += persistedWithDuration.size();
+        // }
+        numNotifications += mPersistedSnoozedNotifications.size();
+        return numNotifications;
+    }
+
 
     @NonNull
     protected Long getSnoozeTimeForUnpostedNotification(int userId, String pkg, String key) {
@@ -343,6 +361,13 @@ public final class SnoozeHelper {
 
             if (groupSummaryKey != null) {
                 NotificationRecord record = mSnoozedNotifications.remove(groupSummaryKey);
+
+                final String trimmedKey = getTrimmedString(groupSummaryKey);
+                // removeRecordLocked(pkg, trimmedKey, userId, mPersistedSnoozedNotifications);
+                // removeRecordLocked(pkg, trimmedKey, userId,
+                //       mPersistedSnoozedNotificationsWithContext);
+                mPersistedSnoozedNotifications.remove(trimmedKey);
+                mPersistedSnoozedNotificationsWithContext.remove(trimmedKey);
 
                 if (record != null && !record.isCanceled) {
                     Runnable runnable = () -> {

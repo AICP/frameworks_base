@@ -40,15 +40,6 @@ public class PropImitationHooks {
     private static final String TAG = "PropImitationHooks";
     private static final boolean DEBUG = false;
 
-    private static final String[] sCertifiedProps =
-            Resources.getSystem().getStringArray(R.array.config_certifiedBuildProperties);
-
-    private static final String sStockFp =
-            Resources.getSystem().getString(R.string.config_stockFingerprint);
-
-    private static final String sNetflixModel =
-            Resources.getSystem().getString(R.string.config_netflixSpoofModel);
-
     private static final String PACKAGE_ARCORE = "com.google.ar.core";
     private static final String PACKAGE_FINSKY = "com.android.vending";
     private static final String PACKAGE_GMS = "com.google.android.gms";
@@ -57,6 +48,9 @@ public class PropImitationHooks {
 
     private static final ComponentName GMS_ADD_ACCOUNT_ACTIVITY = ComponentName.unflattenFromString(
             "com.google.android.gms/.auth.uiflows.minutemaid.MinuteMaidActivity");
+
+    private static volatile String[] sCertifiedProps;
+    private static volatile String sStockFp, sNetflixModel;
 
     private static volatile String sProcessName;
     private static volatile boolean sIsGms, sIsFinsky, sIsPhotos;
@@ -69,6 +63,16 @@ public class PropImitationHooks {
             Log.e(TAG, "Null package or process name");
             return;
         }
+
+        final Resources res = context.getResources();
+        if (res == null) {
+            Log.e(TAG, "Null resources");
+            return;
+        }
+
+        sCertifiedProps = res.getStringArray(R.array.config_certifiedBuildProperties);
+        sStockFp = res.getString(R.string.config_stockFingerprint);
+        sNetflixModel = res.getString(R.string.config_netflixSpoofModel);
 
         sProcessName = processName;
         sIsGms = packageName.equals(PACKAGE_GMS) && processName.equals(PROCESS_GMS_UNSTABLE);

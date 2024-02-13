@@ -27,4 +27,15 @@
             <corners android:radius="@dimen/volume_seekbar_progress_corner_radius"/>
         </shape>
     </item>
+    <item
+        android:id="@+id/volume_seekbar_progress_icon"
+        android:gravity="center_vertical|right"
+        android:height="@dimen/rounded_slider_icon_size"
+        android:width="@dimen/rounded_slider_icon_size"
+        android:right="@dimen/volume_slider_icon_inset">
+        <rotate
+            android:fromDegrees="-270"
+            android:toDegrees="-270"
+            android:drawable="@drawable/volume_row_seekbar_progress_icon" />
+    </item>
 </layer-list>

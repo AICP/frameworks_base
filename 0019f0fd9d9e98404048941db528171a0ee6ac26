@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb868430_75268e40",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2024-02-17T10:10:06Z",
+      "side": 1,
+      "message": "Very device specific, right? Can be picked with patches.txt?",
+      "revId": "0019f0fd9d9e98404048941db528171a0ee6ac26",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

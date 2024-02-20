@@ -44,6 +44,7 @@ import com.android.settingslib.utils.ThreadUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AppUtils {
     private static final String TAG = "AppUtils";
@@ -324,5 +325,17 @@ public class AppUtils {
             }
         }
         return -1;
+    }
+
+    /**
+     * Returns list of clonable non-system, non-overlay app package names.
+     */
+    public static List<String> getCloneableAppList(Context context) {
+        return context.getPackageManager().getInstalledPackagesAsUser(0, UserHandle.myUserId())
+                .stream()
+                .filter(packageInfo -> !packageInfo.applicationInfo.isSystemApp()
+                        && !packageInfo.applicationInfo.isResourceOverlay())
+                .map(packageInfo -> packageInfo.packageName)
+                .collect(Collectors.toList());
     }
 }

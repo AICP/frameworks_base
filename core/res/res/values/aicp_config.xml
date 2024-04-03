@@ -115,9 +115,6 @@
     <bool name="config_haveHigherAspectRatioScreen">false</bool>
     <item name="config_screenAspectRatio" format="float" type="dimen">2.1</item>
 
-    <!-- Whether prop imitation is enabled -->
-    <bool name="config_enablePropImitation">true</bool>
-
     <!-- Build properties from a GMS certified device against current platform SPL level -->
     <string-array name="config_certifiedBuildProperties" translatable="false">
       <!--

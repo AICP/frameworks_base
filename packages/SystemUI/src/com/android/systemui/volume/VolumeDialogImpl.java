@@ -362,7 +362,7 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
     private @DevicePostureController.DevicePostureInt int mDevicePosture;
     private int mOrientation;
     private final Lazy<SecureSettings> mSecureSettings;
-    private int mDialogTimeoutMillis;
+    private int mDialogTimeoutMillis = DIALOG_TIMEOUT_MILLIS;
     private final VibratorHelper mVibratorHelper;
     private final com.android.systemui.util.time.SystemClock mSystemClock;
 
@@ -415,7 +415,6 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
         mVolumePanelNavigationInteractor = volumePanelNavigationInteractor;
         mVolumeNavigator = volumeNavigator;
         mSecureSettings = secureSettings;
-        mDialogTimeoutMillis = DIALOG_TIMEOUT_MILLIS;
 
         dumpManager.registerDumpable("VolumeDialogImpl", this);
 
@@ -449,6 +448,19 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
                     false, volumePanelOnLeftObserver);
             volumePanelOnLeftObserver.onChange(true);
         }
+
+        ContentObserver volumeTimeoutObserver = new ContentObserver(null) {
+            @Override
+            public void onChange(boolean selfChange) {
+                mDialogTimeoutMillis = mSecureSettings.get().getIntForUser(
+                        Settings.Secure.VOLUME_DIALOG_DISMISS_TIMEOUT,
+                        DIALOG_TIMEOUT_MILLIS, UserHandle.USER_CURRENT);
+            }
+        };
+        mContext.getContentResolver().registerContentObserver(
+                Settings.Secure.getUriFor(Settings.Secure.VOLUME_DIALOG_DISMISS_TIMEOUT),
+                false, volumeTimeoutObserver);
+        volumeTimeoutObserver.onChange(true);
 
         initDimens();
 

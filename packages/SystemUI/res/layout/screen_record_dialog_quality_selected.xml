@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright (C) 2020 The Android Open Source Project
+  ~ Copyright (C) 2024 Yet Another AOSP Project
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/screenrecord_audio_label"
+        android:text="@string/screenrecord_lowquality_label"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:fontFamily="@*android:string/config_headlineFontFamily"
         android:textColor="?android:attr/textColorPrimary"/>

@@ -722,7 +722,14 @@ public class RecordingService extends Service implements ScreenMediaRecorderList
     @Override
     public void onInfo(MediaRecorder mr, int what, int extra) {
         Log.d(getTag(), "Media recorder info: " + what);
+        if (what == MediaRecorder.MEDIA_RECORDER_INFO_MAX_FILESIZE_APPROACHING) {
+            Log.d(getTag(), "Not stopping for " + what);
+            showErrorToast(R.string.screenrecord_limit_reaching);
+            return;
+        }
         onStartCommand(getStopIntent(this), 0, 0);
+        if (what == MediaRecorder.MEDIA_RECORDER_INFO_MAX_FILESIZE_REACHED)
+            showErrorToast(R.string.screenrecord_limit_reached);
     }
 
     @Override

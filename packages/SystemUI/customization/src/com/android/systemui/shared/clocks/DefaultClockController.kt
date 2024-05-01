@@ -18,6 +18,8 @@ import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.Rect
 import android.icu.text.NumberFormat
+import android.os.UserHandle
+import android.provider.Settings.System
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -37,6 +39,8 @@ import com.android.systemui.plugins.clocks.ClockSettings
 import com.android.systemui.plugins.clocks.DefaultClockFaceLayout
 import com.android.systemui.plugins.clocks.WeatherData
 import com.android.systemui.plugins.clocks.ZenData
+import org.omnirom.omnilib.utils.OmniSettings
+
 import java.io.PrintWriter
 import java.util.Locale
 import java.util.TimeZone
@@ -50,7 +54,7 @@ private val TAG = DefaultClockController::class.simpleName
  * existing lockscreen clock.
  */
 class DefaultClockController(
-    ctx: Context,
+    val ctx: Context,
     private val layoutInflater: LayoutInflater,
     private val resources: Resources,
     private val settings: ClockSettings?,
@@ -164,13 +168,21 @@ class DefaultClockController(
         open fun recomputePadding(targetRegion: Rect?) {}
 
         fun updateColor() {
+            val coloredClock = System.getInt(ctx.getContentResolver(),
+                    OmniSettings.OMNI_LOCKSCREEN_CLOCK_COLORED, 1) != 0
             val color =
                 if (seedColor != null) {
                     seedColor!!
                 } else if (isRegionDark) {
-                    resources.getColor(android.R.color.system_accent1_100)
+                    if (coloredClock)
+                        resources.getColor(android.R.color.system_accent1_100)
+                    else
+                        resources.getColor(com.android.internal.R.color.primary_text_material_dark)
                 } else {
-                    resources.getColor(android.R.color.system_accent2_600)
+                    if (coloredClock)
+                        resources.getColor(android.R.color.system_accent2_600)
+                    else
+                        resources.getColor(com.android.internal.R.color.primary_text_material_light)
                 }
 
             if (currentColor == color) {

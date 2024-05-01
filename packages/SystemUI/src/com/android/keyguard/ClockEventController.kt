@@ -33,6 +33,7 @@ import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.repeatOnLifecycle
+import com.android.systemui.Dependency
 import com.android.systemui.broadcast.BroadcastDispatcher
 import com.android.systemui.customization.R
 import com.android.systemui.dagger.qualifiers.Background
@@ -49,6 +50,7 @@ import com.android.systemui.log.LogBuffer
 import com.android.systemui.log.core.LogLevel.DEBUG
 import com.android.systemui.log.dagger.KeyguardLargeClockLog
 import com.android.systemui.log.dagger.KeyguardSmallClockLog
+import com.android.systemui.omni.OmniSettingsService
 import com.android.systemui.plugins.clocks.ClockController
 import com.android.systemui.plugins.clocks.ClockFaceController
 import com.android.systemui.plugins.clocks.ClockTickRate
@@ -63,6 +65,7 @@ import com.android.systemui.statusbar.policy.BatteryController.BatteryStateChang
 import com.android.systemui.statusbar.policy.ConfigurationController
 import com.android.systemui.statusbar.policy.ZenModeController
 import com.android.systemui.util.concurrency.DelayableExecutor
+import org.omnirom.omnilib.utils.OmniSettings
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.DisposableHandle
 import kotlinx.coroutines.Job
@@ -345,6 +348,13 @@ constructor(
             }
         }
 
+    private val settingsListener = object : OmniSettingsService.OmniSettingsObserver {
+        override fun onIntSettingChanged(key: String, newValue: Int) {
+            clock?.events?.onColorPaletteChanged(resources)
+            updateColors()
+        }
+    }
+
     private val zenModeCallback = object : ZenModeController.Callback {
         override fun onZenChanged(zen: Int) {
             var mode = ZenMode.fromInt(zen)
@@ -400,6 +410,7 @@ constructor(
             }
         smallTimeListener?.update(shouldTimeListenerRun)
         largeTimeListener?.update(shouldTimeListenerRun)
+        Dependency.get(OmniSettingsService::class.java).addIntObserver(settingsListener, OmniSettings.OMNI_LOCKSCREEN_CLOCK_COLORED)
 
         // Query ZenMode data
         zenModeCallback.onZenChanged(zenModeController.zen)
@@ -422,6 +433,7 @@ constructor(
         largeRegionSampler?.stopRegionSampler()
         smallTimeListener?.stop()
         largeTimeListener?.stop()
+        Dependency.get(OmniSettingsService::class.java).removeObserver(settingsListener)
         clock?.smallClock?.view
                 ?.removeOnAttachStateChangeListener(smallClockOnAttachStateChangeListener)
         smallClockFrame?.viewTreeObserver

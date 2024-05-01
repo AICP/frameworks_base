@@ -39,6 +39,7 @@ import com.android.systemui.fragments.FragmentService;
 import com.android.systemui.model.SysUiState;
 import com.android.systemui.navigationbar.NavigationBarController;
 import com.android.systemui.navigationbar.NavigationModeController;
+import com.android.systemui.omni.OmniSettingsService;
 import com.android.systemui.plugins.DarkIconDispatcher;
 import com.android.systemui.plugins.PluginManager;
 import com.android.systemui.plugins.VolumeDialogController;
@@ -172,6 +173,7 @@ public class Dependency {
     @Inject Lazy<SystemUIDialogManager> mSystemUIDialogManagerLazy;
     @Inject Lazy<DialogLaunchAnimator> mDialogLaunchAnimatorLazy;
     @Inject Lazy<UserTracker> mUserTrackerLazy;
+    @Inject Lazy<OmniSettingsService> mOmniSettingsService;
 
     @Inject
     public Dependency() {
@@ -226,6 +228,8 @@ public class Dependency {
         mProviders.put(SystemUIDialogManager.class, mSystemUIDialogManagerLazy::get);
         mProviders.put(DialogLaunchAnimator.class, mDialogLaunchAnimatorLazy::get);
         mProviders.put(UserTracker.class, mUserTrackerLazy::get);
+
+        mProviders.put(OmniSettingsService.class, mOmniSettingsService::get);
 
         Dependency.setInstance(this);
     }

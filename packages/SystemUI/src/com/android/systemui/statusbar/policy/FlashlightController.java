@@ -24,6 +24,7 @@ public interface FlashlightController extends CallbackController<FlashlightListe
     void setFlashlight(boolean newState);
     boolean isAvailable();
     boolean isEnabled();
+    void initFlashLight();
 
     @WeaklyReferencedCallback
     public interface FlashlightListener {

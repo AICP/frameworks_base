@@ -42,6 +42,14 @@ class NormalBrightnessModeController {
         return recalculateMaxBrightness();
     }
 
+    void dump(PrintWriter pw) {
+        pw.println("NormalBrightnessModeController:");
+        pw.println("  mAutoBrightnessEnabled=" + mAutoBrightnessEnabled);
+        pw.println("  mAmbientLux=" + mAmbientLux);
+        pw.println("  mMaxBrightness=" + mMaxBrightness);
+        pw.println("  mMaxBrightnessLimits=" + mMaxBrightnessLimits);
+    }
+
     boolean setAutoBrightnessState(int state) {
         boolean isEnabled = state == AutomaticBrightnessController.AUTO_BRIGHTNESS_ENABLED;
         if (isEnabled != mAutoBrightnessEnabled) {
@@ -59,14 +67,6 @@ class NormalBrightnessModeController {
             @NonNull Map<BrightnessLimitMapType, Map<Float, Float>> maxBrightnessLimits) {
         mMaxBrightnessLimits = maxBrightnessLimits;
         return recalculateMaxBrightness();
-    }
-
-    void dump(PrintWriter pw) {
-        pw.println("NormalBrightnessModeController:");
-        pw.println("  mAutoBrightnessEnabled=" + mAutoBrightnessEnabled);
-        pw.println("  mAmbientLux=" + mAmbientLux);
-        pw.println("  mMaxBrightness=" + mMaxBrightness);
-        pw.println("  mMaxBrightnessLimits=" + mMaxBrightnessLimits);
     }
 
     private boolean recalculateMaxBrightness() {

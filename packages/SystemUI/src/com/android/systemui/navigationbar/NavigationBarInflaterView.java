@@ -23,6 +23,8 @@ import android.annotation.Nullable;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.drawable.Icon;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.SparseArray;
@@ -41,14 +43,19 @@ import com.android.systemui.navigationbar.buttons.ButtonDispatcher;
 import com.android.systemui.navigationbar.buttons.KeyButtonView;
 import com.android.systemui.navigationbar.buttons.ReverseLinearLayout;
 import com.android.systemui.navigationbar.buttons.ReverseLinearLayout.ReverseRelativeLayout;
+import com.android.systemui.omni.OmniSettingsService;
 import com.android.systemui.recents.OverviewProxyService;
 import com.android.systemui.shared.system.QuickStepContract;
+
+import org.omnirom.omnilib.utils.OmniSettings;
 
 import java.io.PrintWriter;
 import java.lang.ref.WeakReference;
 import java.util.Objects;
 
-public class NavigationBarInflaterView extends FrameLayout {
+public class NavigationBarInflaterView extends FrameLayout
+        implements OmniSettingsService.OmniSettingsObserver {
+
     private static final String TAG = "NavBarInflater";
 
     public static final String NAV_BAR_VIEWS = "sysui_nav_bar";
@@ -156,12 +163,21 @@ public class NavigationBarInflaterView extends FrameLayout {
     }
 
     protected String getDefaultLayout() {
-        final int defaultResource = QuickStepContract.isGesturalMode(mNavBarMode)
-                ? R.string.config_navBarLayoutHandle
-                : mOverviewProxyService.shouldShowSwipeUpUI()
-                        ? R.string.config_navBarLayoutQuickstep
-                        : R.string.config_navBarLayout;
-        return getContext().getString(defaultResource);
+        if (QuickStepContract.isGesturalMode(mNavBarMode)) {
+            String navbarLayout = getContext().getString(showDpadArrowKeys()
+                    ? R.string.config_navBarLayoutHandleArrows
+                    : R.string.config_navBarLayoutHandle);
+            if (hideGestureHandle()) {
+                return navbarLayout.replace(HOME_HANDLE, NAVSPACE);
+            } else {
+                return navbarLayout;
+            }
+        } else {
+            final int defaultResource = mOverviewProxyService.shouldShowSwipeUpUI()
+                            ? R.string.config_navBarLayoutQuickstep
+                            : R.string.config_navBarLayout;
+            return getContext().getString(defaultResource);
+        }
     }
 
     private void onNavigationModeChanged(int mode) {
@@ -171,7 +187,19 @@ public class NavigationBarInflaterView extends FrameLayout {
     @Override
     protected void onDetachedFromWindow() {
         Dependency.get(NavigationModeController.class).removeListener(mListener);
+        Dependency.get(OmniSettingsService.class).removeObserver(this);
         super.onDetachedFromWindow();
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        Dependency.get(OmniSettingsService.class).addIntObserver(this,
+            OmniSettings.OMNI_NAVIGATION_BAR_ARROW_KEYS);
+        Dependency.get(OmniSettingsService.class).addIntObserver(this,
+            OmniSettings.OMNI_GESTURE_HANDLE_HIDE);
+        Dependency.get(OmniSettingsService.class).addIntObserver(this, 
+            OmniSettings.OMNI_GESTURE_HANDLE_SMALL);
     }
 
     public void onLikelyDefaultLayoutChange() {
@@ -181,6 +209,12 @@ public class NavigationBarInflaterView extends FrameLayout {
             clearViews();
             inflateLayout(newValue);
         }
+    }
+
+    private void onForceDefaultLayoutChange() {
+        final String newValue = getDefaultLayout();
+        clearViews();
+        inflateLayout(newValue);
     }
 
     public void setButtonDispatchers(SparseArray<ButtonDispatcher> buttonDispatchers) {
@@ -401,7 +435,7 @@ public class NavigationBarInflaterView extends FrameLayout {
         } else if (CONTEXTUAL.equals(button)) {
             v = inflater.inflate(R.layout.contextual, parent, false);
         } else if (HOME_HANDLE.equals(button)) {
-            v = inflater.inflate(R.layout.home_handle, parent, false);
+            v = inflater.inflate(isSmallGestureHandle() ? R.layout.home_handle_small : R.layout.home_handle, parent, false);
         } else if (IME_SWITCHER.equals(button)) {
             v = inflater.inflate(R.layout.ime_switcher, parent, false);
         } else if (button.startsWith(KEY)) {
@@ -488,12 +522,34 @@ public class NavigationBarInflaterView extends FrameLayout {
 
     private void clearAllChildren(ViewGroup group) {
         for (int i = 0; i < group.getChildCount(); i++) {
-            ((ViewGroup) group.getChildAt(i)).removeAllViews();
+            if (group.getChildAt(i).getId() != R.id.dpad_group) {
+                ((ViewGroup) group.getChildAt(i)).removeAllViews();
+            }
         }
     }
 
     private static float convertDpToPx(Context context, float dp) {
         return dp * context.getResources().getDisplayMetrics().density;
+    }
+
+    private boolean showDpadArrowKeys() {
+        return Settings.System.getIntForUser(getContext().getContentResolver(),
+                OmniSettings.OMNI_NAVIGATION_BAR_ARROW_KEYS, 0, UserHandle.USER_CURRENT) != 0;
+    }
+
+    private boolean hideGestureHandle() {
+        return Settings.System.getIntForUser(getContext().getContentResolver(),
+                OmniSettings.OMNI_GESTURE_HANDLE_HIDE, 0, UserHandle.USER_CURRENT) != 0;
+    }
+
+    private boolean isSmallGestureHandle() {
+        return Settings.System.getIntForUser(getContext().getContentResolver(),
+                OmniSettings.OMNI_GESTURE_HANDLE_SMALL, 0, UserHandle.USER_CURRENT) != 0;
+    }
+
+    @Override
+    public void onIntSettingChanged(String key, Integer newValue) {
+        onForceDefaultLayoutChange();
     }
 
     public void dump(PrintWriter pw) {

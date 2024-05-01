@@ -164,6 +164,8 @@ import com.android.wm.shell.pip.Pip;
 
 import dagger.Lazy;
 
+import org.omnirom.omnilib.utils.TaskUtils;
+
 import java.io.PrintWriter;
 import java.util.Locale;
 import java.util.Map;
@@ -1313,6 +1315,10 @@ public class NavigationBar extends ViewController<NavigationBarView> implements 
         ButtonDispatcher homeButton = mView.getHomeButton();
         homeButton.setOnTouchListener(this::onHomeTouch);
 
+        ButtonDispatcher homeHandleButton = mView.getHomeHandle();
+        homeHandleButton.setLongClickable(true);
+        homeHandleButton.setOnLongClickListener(this::onHomeHandleLongClick);
+
         reconfigureHomeLongClick();
 
         ButtonDispatcher accessibilityButton = mView.getAccessibilityButton();
@@ -1860,6 +1866,10 @@ public class NavigationBar extends ViewController<NavigationBarView> implements 
         updateButtonLocation(
                 region, touchRegionCache, mView.getAccessibilityButton(), inScreenSpace,
                 useNearestRegion);
+        updateButtonLocation(region, mView.getKeyButtonViewById(R.id.dpad_left), inScreenSpace);
+        updateButtonLocation(region, mView.getKeyButtonViewById(R.id.dpad_right), inScreenSpace);
+        updateButtonLocation(
+                region, touchRegionCache, mView.getHomeHandle(), inScreenSpace, useNearestRegion);
         if (includeFloatingButtons && mView.getFloatingRotationButton().isVisible()) {
             // Note: this button is floating so the nearest region doesn't apply
             updateButtonLocation(
@@ -2026,4 +2036,9 @@ public class NavigationBar extends ViewController<NavigationBarView> implements 
             return false;
         }
     };
+
+    private boolean onHomeHandleLongClick(View v) {
+        TaskUtils.toggleLastApp(mContext, mUserTracker.getUserId());
+        return true;
+    }
 }

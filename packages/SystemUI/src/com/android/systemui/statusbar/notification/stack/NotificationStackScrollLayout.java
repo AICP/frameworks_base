@@ -126,6 +126,8 @@ import com.android.systemui.util.DumpUtilsKt;
 
 import com.google.errorprone.annotations.CompileTimeConstant;
 
+import org.omnirom.omnilib.utils.OmniUtils;
+
 import java.io.PrintWriter;
 import java.lang.annotation.Retention;
 import java.util.ArrayList;
@@ -466,6 +468,7 @@ public class NotificationStackScrollLayout extends ViewGroup implements Dumpable
     private final Runnable mReflingAndAnimateScroll = this::animateScroll;
     private int mCornerRadius;
     private int mMinimumPaddings;
+    private int mQsTileColumns;
     private int mQsTilePadding;
     private boolean mSkinnyNotifsInLandscape;
     private int mSidePaddings;
@@ -1074,6 +1077,8 @@ public class NotificationStackScrollLayout extends ViewGroup implements Dumpable
         mBottomPadding = res.getDimensionPixelSize(R.dimen.notification_panel_padding_bottom);
         mMinimumPaddings = res.getDimensionPixelSize(R.dimen.notification_side_paddings);
         mQsTilePadding = res.getDimensionPixelOffset(R.dimen.qs_tile_margin_horizontal);
+        mQsTileColumns = res.getInteger(R.integer.quick_settings_num_columns);
+        mQsTileColumns = OmniUtils.getQSColumnsCount(mContext, mQsTileColumns);
         mSidePaddings = mMinimumPaddings;  // Updated in onMeasure by updateSidePadding()
         mMinInteractionHeight = res.getDimensionPixelSize(
                 R.dimen.notification_min_interaction_height);
@@ -1094,7 +1099,7 @@ public class NotificationStackScrollLayout extends ViewGroup implements Dumpable
             return;
         }
         final int innerWidth = viewWidth - mMinimumPaddings * 2;
-        final int qsTileWidth = (innerWidth - mQsTilePadding * 3) / 4;
+        final int qsTileWidth = (innerWidth - mQsTilePadding * (mQsTileColumns - 1)) / mQsTileColumns;
         mSidePaddings = mMinimumPaddings + qsTileWidth + mQsTilePadding;
     }
 

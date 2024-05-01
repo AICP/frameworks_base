@@ -19,29 +19,11 @@
     xmlns:priv-android="http://schemas.android.com/apk/prv/res/android"
     android:autoMirrored="true">
     <item android:id="@+id/slider_foreground"
-        android:height="@dimen/rounded_slider_height">
+        android:gravity="center_vertical|fill_horizontal">
         <shape>
-            <size android:height="@dimen/rounded_slider_height" />
+            <size android:height="@dimen/rounded_slider_progress_width" />
             <solid android:color="?attr/shadeActive" />
-            <corners android:radius="@dimen/rounded_slider_corner_radius"/>
+            <corners android:radius="@dimen/rounded_slider_progress_corner_radius" />
         </shape>
-    </item>
-    <item>
-        <shape>
-            <corners android:radius="@dimen/rounded_slider_corner_radius" />
-            <size android:height="@dimen/rounded_slider_height" />
-            <solid android:color="@color/brightness_slider_overlay_color" />
-        </shape>
-    </item>
-    <item
-        android:id="@+id/slider_icon"
-        android:gravity="center_vertical|right"
-        android:height="@dimen/rounded_slider_icon_size"
-        android:width="@dimen/rounded_slider_icon_size"
-        android:right="@dimen/rounded_slider_icon_inset">
-        <com.android.systemui.util.AlphaTintDrawableWrapper
-            android:drawable="@drawable/ic_brightness"
-            android:tint="?attr/onShadeActive"
-        />
     </item>
 </layer-list>

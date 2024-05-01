@@ -22,19 +22,32 @@ import android.annotation.Nullable;
 import android.app.ActivityTaskManager;
 import android.app.AlarmManager;
 import android.app.AlarmManager.AlarmClockInfo;
+import android.app.NotificationManager;
 import android.app.admin.DevicePolicyManager;
+import android.bluetooth.BluetoothClass;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothProfile;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PaintFlagsDrawFilter;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.Icon;
 import android.media.AudioManager;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.RemoteException;
+import android.os.UserHandle;
 import android.os.UserManager;
 import android.provider.Settings.Global;
+import android.provider.Settings.System;
 import android.service.notification.ZenModeConfig;
 import android.telecom.TelecomManager;
 import android.text.format.DateFormat;
@@ -43,12 +56,19 @@ import android.view.View;
 
 import androidx.lifecycle.Observer;
 
+import com.android.internal.statusbar.StatusBarIcon;
+import com.android.internal.telephony.IccCardConstants;
+import com.android.internal.telephony.TelephonyIntents;
+import com.android.settingslib.bluetooth.CachedBluetoothDevice;
+import com.android.settingslib.graph.BluetoothDeviceLayerDrawable;
+import com.android.systemui.Dependency;
 import com.android.systemui.res.R;
 import com.android.systemui.broadcast.BroadcastDispatcher;
 import com.android.systemui.dagger.qualifiers.DisplayId;
 import com.android.systemui.dagger.qualifiers.Main;
 import com.android.systemui.dagger.qualifiers.UiBackground;
 import com.android.systemui.display.domain.interactor.ConnectedDisplayInteractor;
+import com.android.systemui.omni.OmniSettingsService;
 import com.android.systemui.privacy.PrivacyItem;
 import com.android.systemui.privacy.PrivacyItemController;
 import com.android.systemui.privacy.PrivacyType;
@@ -78,6 +98,8 @@ import com.android.systemui.util.RingerModeTracker;
 import com.android.systemui.util.kotlin.JavaAdapter;
 import com.android.systemui.util.time.DateFormatUtil;
 
+import org.omnirom.omnilib.utils.OmniSettings;
+
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.List;
@@ -100,7 +122,8 @@ public class PhoneStatusBarPolicy
                 KeyguardStateController.Callback,
                 PrivacyItemController.Callback,
                 LocationController.LocationChangeCallback,
-                RecordingController.RecordingStateChangeCallback {
+                RecordingController.RecordingStateChangeCallback,
+                OmniSettingsService.OmniSettingsObserver {
     private static final String TAG = "PhoneStatusBarPolicy";
     private static final boolean DEBUG = Log.isLoggable(TAG, Log.DEBUG);
 
@@ -167,6 +190,9 @@ public class PhoneStatusBarPolicy
 
     private BluetoothController mBluetooth;
     private AlarmManager.AlarmClockInfo mNextAlarm;
+    private Context mContext;
+    private boolean mShowAlarm;
+    private boolean mShowBtBattery;
 
     @Inject
     public PhoneStatusBarPolicy(StatusBarIconController iconController,
@@ -189,7 +215,8 @@ public class PhoneStatusBarPolicy
             PrivacyItemController privacyItemController,
             PrivacyLogger privacyLogger,
             ConnectedDisplayInteractor connectedDisplayInteractor,
-            JavaAdapter javaAdapter
+            JavaAdapter javaAdapter,
+            Context context
     ) {
         mIconController = iconController;
         mCommandQueue = commandQueue;
@@ -247,6 +274,7 @@ public class PhoneStatusBarPolicy
         mDisplayId = displayId;
         mSharedPreferences = sharedPreferences;
         mDateFormatUtil = dateFormatUtil;
+        mContext = context;
     }
 
     /** Initialize the object after construction. */
@@ -255,6 +283,7 @@ public class PhoneStatusBarPolicy
         IntentFilter filter = new IntentFilter();
 
         filter.addAction(AudioManager.ACTION_HEADSET_PLUG);
+        filter.addAction(BluetoothDevice.ACTION_BATTERY_LEVEL_CHANGED);
         filter.addAction(Intent.ACTION_SIM_STATE_CHANGED);
         filter.addAction(TelecomManager.ACTION_CURRENT_TTY_MODE_CHANGED);
         filter.addAction(Intent.ACTION_MANAGED_PROFILE_AVAILABLE);
@@ -361,6 +390,8 @@ public class PhoneStatusBarPolicy
         mSensorPrivacyController.addCallback(mSensorPrivacyListener);
         mLocationController.addCallback(this);
         mRecordingController.addCallback(this);
+        Dependency.get(OmniSettingsService.class).addIntObserver(this, OmniSettings.OMNI_STATUS_BAR_ALARM);
+        Dependency.get(OmniSettingsService.class).addIntObserver(this, OmniSettings.OMNI_STATUS_BAR_BT_BATTERY);
         mJavaAdapter.alwaysCollectFlow(mConnectedDisplayInteractor.getConnectedDisplayState(),
                 this::onConnectedDisplayAvailabilityChanged);
 
@@ -386,11 +417,10 @@ public class PhoneStatusBarPolicy
     private void updateAlarm() {
         final AlarmClockInfo alarm = mAlarmManager.getNextAlarmClock(mUserTracker.getUserId());
         final boolean hasAlarm = alarm != null && alarm.getTriggerTime() > 0;
-        int zen = mZenController.getZen();
-        final boolean zenNone = zen == Global.ZEN_MODE_NO_INTERRUPTIONS;
+        final boolean zenNone = !zenAllowsAlarm();
         mIconController.setIcon(mSlotAlarmClock, zenNone ? R.drawable.stat_sys_alarm_dim
                 : R.drawable.stat_sys_alarm, buildAlarmContentDescription());
-        mIconController.setIconVisibility(mSlotAlarmClock, mCurrentUserSetup && hasAlarm);
+        mIconController.setIconVisibility(mSlotAlarmClock, mCurrentUserSetup && hasAlarm && mShowAlarm);
     }
 
     private String buildAlarmContentDescription() {
@@ -476,17 +506,47 @@ public class PhoneStatusBarPolicy
         String contentDescription =
                 mResources.getString(R.string.accessibility_quick_settings_bluetooth_on);
         boolean bluetoothVisible = false;
+        StatusBarIcon icon = null;
         if (mBluetooth != null) {
             if (mBluetooth.isBluetoothConnected()
                     && (mBluetooth.isBluetoothAudioActive()
                     || !mBluetooth.isBluetoothAudioProfileOnly())) {
                 contentDescription = mResources.getString(
                         R.string.accessibility_bluetooth_connected);
+                }
+
+            if (mBluetooth.isBluetoothConnected()) {
+                final List<CachedBluetoothDevice> devices = mBluetooth.getConnectedDevices();
+                if (mShowBtBattery && devices != null) {
+                    // get battery level for the first device with battery level support
+                    for (CachedBluetoothDevice device : devices) {
+                        // don't get the level if still pairing
+                        int state = device.getMaxConnectionState();
+                        if (state == BluetoothProfile.STATE_CONNECTED) {
+                            int batteryLevel = device.getBatteryLevel();
+                            contentDescription = mResources.getString(R.string.accessibility_bluetooth_connected);
+                            if (batteryLevel != BluetoothDevice.BATTERY_LEVEL_UNKNOWN) {
+                                final int padding = mResources.getDimensionPixelSize(com.android.settingslib.R.dimen.bt_battery_padding);
+                                Drawable d = BluetoothDeviceLayerDrawable.createLayerDrawable(mContext,
+                                        R.drawable.ic_bluetooth_connected, batteryLevel, 1, -padding, padding, 0);
+                                icon = new StatusBarIcon(UserHandle.SYSTEM, mContext.getPackageName(),
+                                        Icon.createWithBitmap(getBitmapFromDrawable(d)), 0, 0, contentDescription);
+                            } else {
+                                iconId = R.drawable.stat_sys_data_bluetooth_connected;
+                            }
+                            break;
+                        }
+                    }
+                }
                 bluetoothVisible = mBluetooth.isBluetoothEnabled();
             }
         }
 
-        mIconController.setIcon(mSlotBluetooth, iconId, contentDescription);
+        if (icon != null) {
+            mIconController.setCustomIcon(mSlotBluetooth, icon);
+        } else {
+            mIconController.setIcon(mSlotBluetooth, iconId, contentDescription);
+        }
         mIconController.setIconVisibility(mSlotBluetooth, bluetoothVisible);
     }
 
@@ -769,6 +829,9 @@ public class PhoneStatusBarPolicy
                 case AudioManager.ACTION_HEADSET_PLUG:
                     updateHeadsetPlug(intent);
                     break;
+                case BluetoothDevice.ACTION_BATTERY_LEVEL_CHANGED:
+                    updateBluetooth();
+                    break;
             }
         }
     };
@@ -829,6 +892,50 @@ public class PhoneStatusBarPolicy
         // Ensure this is on the main thread
         if (DEBUG) Log.d(TAG, "screenrecord: hiding icon");
         mHandler.post(() -> mIconController.setIconVisibility(mSlotScreenRecord, false));
+    }
+
+    @Override
+    public void onIntSettingChanged(String key, Integer newValue) {
+        mShowAlarm = System.getIntForUser(mContext.getContentResolver(),
+                OmniSettings.OMNI_STATUS_BAR_ALARM, 0, mUserTracker.getUserId()) != 0;
+        updateAlarm();
+        mShowBtBattery = System.getIntForUser(mContext.getContentResolver(),
+                OmniSettings.OMNI_STATUS_BAR_BT_BATTERY, 0, mUserTracker.getUserId()) != 0;
+        updateBluetooth();
+    }
+
+    @Override
+    public void onConsolidatedPolicyChanged(NotificationManager.Policy policy) {
+        updateVolumeZen();
+    }
+
+    private boolean zenAllowsAlarm() {
+        int zen = mZenController.getZen();
+        if (zen == Global.ZEN_MODE_OFF) {
+            return true;
+        }
+        if (zen == Global.ZEN_MODE_NO_INTERRUPTIONS) {
+            return false;
+        }
+        if (zen == Global.ZEN_MODE_ALARMS) {
+            return true;
+        }
+        boolean allowAlarms = (mZenController.getConsolidatedPolicy().priorityCategories & NotificationManager.Policy
+                .PRIORITY_CATEGORY_ALARMS) != 0;
+        return allowAlarms;
+    }
+
+    private Bitmap getBitmapFromDrawable(Drawable image) {
+        final Canvas canvas = new Canvas();
+        canvas.setDrawFilter(new PaintFlagsDrawFilter(Paint.ANTI_ALIAS_FLAG,
+                Paint.FILTER_BITMAP_FLAG));
+
+        Bitmap bmResult = Bitmap.createBitmap(image.getIntrinsicWidth(), image.getIntrinsicHeight(),
+                Bitmap.Config.ARGB_8888);
+        canvas.setBitmap(bmResult);
+        image.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        image.draw(canvas);
+        return bmResult;
     }
 
     private void onConnectedDisplayAvailabilityChanged(ConnectedDisplayInteractor.State state) {

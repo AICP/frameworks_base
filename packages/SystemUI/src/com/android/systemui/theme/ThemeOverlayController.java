@@ -94,6 +94,8 @@ import com.google.ux.material.libmonet.scheme.SchemeRainbow;
 import com.google.ux.material.libmonet.scheme.SchemeTonalSpot;
 import com.google.ux.material.libmonet.scheme.SchemeVibrant;
 
+import org.omnirom.omnilib.utils.OmniSettings;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -816,14 +818,15 @@ public class ThemeOverlayController implements CoreStartable, Dumpable {
                     .map(key -> key + " -> " + categoryToPackage.get(key)).collect(
                             Collectors.joining(", ")));
         }
+        final boolean enableOverlays = Settings.System.getIntForUser(mContext.getContentResolver(), OmniSettings.OMNI_MONET_DISABLE, 0, currentUser) == 0;
         if (mNeedsOverlayCreation) {
             mNeedsOverlayCreation = false;
             mThemeManager.applyCurrentUserOverlays(categoryToPackage, new FabricatedOverlay[]{
                     mSecondaryOverlay, mNeutralOverlay, mDynamicOverlay
-            }, currentUser, managedProfiles);
+            }, currentUser, managedProfiles, enableOverlays);
         } else {
             mThemeManager.applyCurrentUserOverlays(categoryToPackage, null, currentUser,
-                    managedProfiles);
+                    managedProfiles, enableOverlays);
         }
     }
 

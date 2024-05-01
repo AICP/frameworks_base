@@ -16,6 +16,7 @@
 package com.android.systemui.battery;
 
 import static android.provider.Settings.System.SHOW_BATTERY_PERCENT;
+import static org.omnirom.omnilib.utils.OmniSettings.OMNI_SHOW_BATTERY_IMAGE;
 
 import static com.android.systemui.DejankUtils.whitelistIpcs;
 
@@ -38,6 +39,8 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -83,6 +86,7 @@ public class BatteryMeterView extends LinearLayout implements DarkReceiver {
     private boolean mDisplayShieldEnabled;
     // Error state where we know nothing about the current battery state
     private boolean mBatteryStateUnknown;
+    private boolean mHideBatteryOnUnknown;
     // Lazily-loaded since this is expected to be a rare-if-ever state
     private Drawable mUnknownStateDrawable;
 
@@ -111,6 +115,8 @@ public class BatteryMeterView extends LinearLayout implements DarkReceiver {
 
         mShowPercentAvailable = context.getResources().getBoolean(
                 com.android.internal.R.bool.config_battery_percentage_setting_available);
+        mHideBatteryOnUnknown = context.getResources().getBoolean(
+                R.bool.config_battery_hide_on_unknown);
 
         setupLayoutTransition();
 
@@ -124,6 +130,7 @@ public class BatteryMeterView extends LinearLayout implements DarkReceiver {
         addView(mBatteryIconView, mlp);
 
         updateShowPercent();
+
         mDualToneHandler = new DualToneHandler(context);
         // Init to not dark at all.
         onDarkChanged(new ArrayList<Rect>(), 0, DarkIconDispatcher.DEFAULT_ICON_TINT);
@@ -369,6 +376,16 @@ public class BatteryMeterView extends LinearLayout implements DarkReceiver {
         }
     }
 
+    void updateShowImage() {
+        final boolean hideImage = Settings.System.getIntForUser(getContext().getContentResolver(),
+                OMNI_SHOW_BATTERY_IMAGE, 1, UserHandle.USER_CURRENT) == 0;
+        mBatteryIconView.setVisibility(hideImage ? View.GONE : View.VISIBLE);
+        //int padding = getResources().getDimensionPixelSize(R.dimen.signal_cluster_battery_padding);
+        //LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) getLayoutParams();
+        //lp.setMargins(hideImage ? -padding : 0, 0, 0, 0);
+        //setLayoutParams(lp);
+    }
+
     private Drawable getUnknownStateDrawable() {
         if (mUnknownStateDrawable == null) {
             mUnknownStateDrawable = mContext.getDrawable(R.drawable.ic_battery_unknown);
@@ -388,11 +405,27 @@ public class BatteryMeterView extends LinearLayout implements DarkReceiver {
 
         if (mBatteryStateUnknown) {
             mBatteryIconView.setImageDrawable(getUnknownStateDrawable());
+            if (mHideBatteryOnUnknown) {
+                setVisibility(View.GONE);
+            }
         } else {
             mBatteryIconView.setImageDrawable(mDrawable);
+            setVisibility(View.VISIBLE);
         }
 
         updateShowPercent();
+    }
+
+    @Override
+    public void setVisibility(@Visibility int visibility) {
+        if (visibility == View.VISIBLE && isBatteryHidden()) {
+            return;
+        }
+        super.setVisibility(visibility);
+    }
+
+    boolean isBatteryHidden() {
+        return mBatteryStateUnknown && mHideBatteryOnUnknown;
     }
 
     /**

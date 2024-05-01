@@ -625,14 +625,14 @@ public class StatusBarManagerService extends IStatusBarService.Stub implements D
         }
 
         @Override
-        public boolean showShutdownUi(boolean isReboot, String reason) {
+        public boolean showShutdownUi(boolean isReboot, String reason, boolean rebootCustom) {
             if (!mContext.getResources().getBoolean(R.bool.config_showSysuiShutdown)) {
                 return false;
             }
             IStatusBar bar = mBar;
             if (bar != null) {
                 try {
-                    bar.showShutdownUi(isReboot, reason);
+                    bar.showShutdownUi(isReboot, reason, rebootCustom);
                     return true;
                 } catch (RemoteException ex) {}
             }
@@ -1130,6 +1130,26 @@ public class StatusBarManagerService extends IStatusBarService.Stub implements D
         return mTracingEnabled;
     }
 
+    @Override
+    public void toggleCameraFlash() {
+        if (mBar != null) {
+            try {
+                mBar.toggleCameraFlash();
+            } catch (RemoteException ex) {
+            }
+        }
+    }
+
+    @Override
+    public void toggleCameraFlashState(boolean enable) {
+        if (mBar != null) {
+            try {
+                mBar.toggleCameraFlashState(enable);
+            } catch (RemoteException ex) {
+            }
+        }
+    }
+
     // TODO(b/117478341): make it aware of multi-display if needed.
     @Override
     public void disable(int what, IBinder token, String pkg) {
@@ -1600,11 +1620,8 @@ public class StatusBarManagerService extends IStatusBarService.Stub implements D
      * Allows the status bar to reboot the device.
      */
     @Override
-    public void reboot(boolean safeMode) {
+    public void reboot(boolean safeMode, String reason) {
         enforceStatusBarService();
-        String reason = safeMode
-                ? PowerManager.REBOOT_SAFE_MODE
-                : PowerManager.SHUTDOWN_USER_REQUESTED;
         ShutdownCheckPoints.recordCheckPoint(Binder.getCallingPid(), reason);
         final long identity = Binder.clearCallingIdentity();
         try {
@@ -1614,7 +1631,7 @@ public class StatusBarManagerService extends IStatusBarService.Stub implements D
                 if (safeMode) {
                     ShutdownThread.rebootSafeMode(getUiContext(), true);
                 } else {
-                    ShutdownThread.reboot(getUiContext(), reason, false);
+                    ShutdownThread.rebootCustom(getUiContext(), reason, false);
                 }
             });
         } finally {
@@ -2174,6 +2191,11 @@ public class StatusBarManagerService extends IStatusBarService.Stub implements D
     public void unregisterSessionListener(@SessionFlags int sessionFlags,
             ISessionListener listener) {
         mSessionMonitor.unregisterSessionListener(sessionFlags, listener);
+    }
+
+    @Override
+    public boolean getSessionStatus(@SessionFlags int sessionType) {
+        return  mSessionMonitor.getSessionStatus(sessionType);
     }
 
     public String[] getStatusBarIcons() {

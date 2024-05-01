@@ -16,6 +16,7 @@
 package com.android.systemui.battery;
 
 import static android.provider.Settings.System.SHOW_BATTERY_PERCENT;
+import static org.omnirom.omnilib.utils.OmniSettings.OMNI_SHOW_BATTERY_IMAGE;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -75,7 +76,7 @@ public class BatteryMeterViewController extends ViewController<BatteryMeterView>
             if (StatusBarIconController.ICON_HIDE_LIST.equals(key)) {
                 ArraySet<String> icons = StatusBarIconController.getIconHideList(
                         getContext(), newValue);
-                mView.setVisibility(icons.contains(mSlotBattery) ? View.GONE : View.VISIBLE);
+                mView.setVisibility((icons.contains(mSlotBattery) || mView.isBatteryHidden()) ? View.GONE : View.VISIBLE);
             }
         }
     };
@@ -171,6 +172,7 @@ public class BatteryMeterViewController extends ViewController<BatteryMeterView>
         mUserTracker.addCallback(mUserChangedCallback, new HandlerExecutor(mMainHandler));
 
         mView.updateShowPercent();
+        mView.updateShowImage();
     }
 
     @Override
@@ -216,6 +218,11 @@ public class BatteryMeterViewController extends ViewController<BatteryMeterView>
                 false,
                 mSettingObserver,
                 user);
+        mContentResolver.registerContentObserver(
+                Settings.System.getUriFor(OMNI_SHOW_BATTERY_IMAGE),
+                false,
+                mSettingObserver,
+                user);
     }
 
     private void registerGlobalBatteryUpdateObserver() {
@@ -234,6 +241,7 @@ public class BatteryMeterViewController extends ViewController<BatteryMeterView>
         public void onChange(boolean selfChange, Uri uri) {
             super.onChange(selfChange, uri);
             mView.updateShowPercent();
+            mView.updateShowImage();
             if (TextUtils.equals(uri.getLastPathSegment(),
                     Settings.Global.BATTERY_ESTIMATES_LAST_UPDATE_TIME)) {
                 // update the text for sure if the estimate in the cache was updated

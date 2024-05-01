@@ -60,6 +60,7 @@ using PolicyBitmask = android::ResTable_overlayable_policy_header::PolicyBitmask
 namespace {
 
 constexpr std::string_view kFrameworkPath = "/system/framework/framework-res.apk";
+constexpr std::string_view kOmniRomPath = "/system/framework/omnirom-res.apk";
 
 Status ok() {
   return Status::ok();
@@ -208,9 +209,10 @@ Status Idmap2Service::createIdmap(const std::string& target_path, const std::str
 idmap2::Result<Idmap2Service::TargetResourceContainerPtr> Idmap2Service::GetTargetContainer(
     const std::string& target_path) {
   const bool is_framework = target_path == kFrameworkPath;
+  const bool is_OmniRomPath = target_path == kOmniRomPath;
   bool use_cache;
   struct stat st = {};
-  if (is_framework || !::stat(target_path.c_str(), &st)) {
+  if (is_framework || is_OmniRomPath || !::stat(target_path.c_str(), &st)) {
     use_cache = true;
   } else {
     LOG(WARNING) << "failed to stat target path '" << target_path << "' for the cache";
@@ -221,7 +223,7 @@ idmap2::Result<Idmap2Service::TargetResourceContainerPtr> Idmap2Service::GetTarg
     std::lock_guard lock(container_cache_mutex_);
     if (auto cache_it = container_cache_.find(target_path); cache_it != container_cache_.end()) {
       const auto& item = cache_it->second;
-      if (is_framework ||
+      if (is_framework || is_OmniRomPath ||
         (item.dev == st.st_dev && item.inode == st.st_ino && item.size == st.st_size
           && item.mtime.tv_sec == st.st_mtim.tv_sec && item.mtime.tv_nsec == st.st_mtim.tv_nsec)) {
         return {item.apk.get()};

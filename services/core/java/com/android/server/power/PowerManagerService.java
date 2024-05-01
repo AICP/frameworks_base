@@ -141,6 +141,8 @@ import com.android.server.power.batterysaver.BatterySavingStats;
 
 import dalvik.annotation.optimization.NeverCompile;
 
+import org.omnirom.omnilib.utils.OmniSettings;
+
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.lang.annotation.Retention;
@@ -546,6 +548,8 @@ public final class PowerManagerService extends SystemService
     // True if doze should not be started until after the screen off transition.
     private boolean mDozeAfterScreenOff;
 
+    private boolean mEnableAutoSuspendConfig;
+
     // True if bright policy should be applied when we have entered dozing wakefulness but haven't
     // started doze component.
     private boolean mBrightWhenDozingConfig;
@@ -708,6 +712,10 @@ public final class PowerManagerService extends SystemService
             }
         }
     }
+
+    // omni additions start
+    // doze on charge
+    private boolean mDozeOnChargeEnabled;
 
     private final class PowerGroupWakefulnessChangeListener implements
             PowerGroup.PowerGroupListener {
@@ -1319,6 +1327,10 @@ public final class PowerManagerService extends SystemService
     }
 
     private void systemReady() {
+        // set initial value
+        Settings.System.putIntForUser(mContext.getContentResolver(),
+                OmniSettings.OMNI_DOZE_ON_CHARGE_NOW, 0, UserHandle.USER_CURRENT);
+
         synchronized (mLock) {
             mSystemReady = true;
             mDreamManager = getLocalService(DreamManagerInternal.class);
@@ -1436,6 +1448,12 @@ public final class PowerManagerService extends SystemService
         resolver.registerContentObserver(Settings.Global.getUriFor(
                 Settings.Global.DEVICE_DEMO_MODE),
                 false, mSettingsObserver, UserHandle.USER_SYSTEM);
+        resolver.registerContentObserver(Settings.System.getUriFor(
+                OmniSettings.OMNI_DOZE_ON_CHARGE_NOW),
+                false, mSettingsObserver, UserHandle.USER_ALL);
+        resolver.registerContentObserver(Settings.System.getUriFor(
+                OmniSettings.OMNI_DOZE_ON_CHARGE),
+                false, mSettingsObserver, UserHandle.USER_ALL);
 
         // Register for broadcasts from other components of the system.
         IntentFilter filter = new IntentFilter();
@@ -1466,6 +1484,8 @@ public final class PowerManagerService extends SystemService
                 com.android.internal.R.bool.config_powerDecoupleAutoSuspendModeFromDisplay);
         mDecoupleHalInteractiveModeFromDisplayConfig = resources.getBoolean(
                 com.android.internal.R.bool.config_powerDecoupleInteractiveModeFromDisplay);
+        mEnableAutoSuspendConfig = resources.getBoolean(
+                org.omnirom.omnilib.R.bool.config_enableAutoSuspend);
         mWakeUpWhenPluggedOrUnpluggedConfig = resources.getBoolean(
                 com.android.internal.R.bool.config_unplugTurnsOnScreen);
         mWakeUpWhenPluggedOrUnpluggedInTheaterModeConfig = resources.getBoolean(
@@ -1538,6 +1558,10 @@ public final class PowerManagerService extends SystemService
         mTheaterModeEnabled = Settings.Global.getInt(mContext.getContentResolver(),
                 Settings.Global.THEATER_MODE_ON, 0) == 1;
         mAlwaysOnEnabled = mAmbientDisplayConfiguration.alwaysOnEnabled(UserHandle.USER_CURRENT);
+        mDozeOnChargeEnabled = Settings.System.getIntForUser(resolver,
+                OmniSettings.OMNI_DOZE_ON_CHARGE, 0, UserHandle.USER_CURRENT) != 0;
+        Settings.System.putIntForUser(resolver, OmniSettings.OMNI_DOZE_ON_CHARGE_NOW,
+                mDozeOnChargeEnabled && mIsPowered ? 1 : 0, UserHandle.USER_CURRENT);
 
         if (mSupportsDoubleTapWakeConfig) {
             boolean doubleTapWakeEnabled = Settings.Secure.getIntForUser(resolver,
@@ -2575,6 +2599,11 @@ public final class PowerManagerService extends SystemService
                 final boolean dockedOnWirelessCharger = mWirelessChargerDetector.update(
                         mIsPowered, mPlugType);
 
+                if (mDozeOnChargeEnabled) {
+                    Settings.System.putIntForUser(mContext.getContentResolver(),
+                            OmniSettings.OMNI_DOZE_ON_CHARGE_NOW, mIsPowered ? 1 : 0,
+                            UserHandle.USER_CURRENT);
+                }
                 // Treat plugging and unplugging the devices as a user activity.
                 // Users find it disconcerting when they plug or unplug the device
                 // and it shuts off right away.
@@ -2625,10 +2654,11 @@ public final class PowerManagerService extends SystemService
                 && wasPowered && !mIsPowered) {
             return false;
         }
-        // Don't wake when undocked from wireless charger.
+        // Don't wake when undocked from wireless charger unless we are certain of it.
         // See WirelessChargerDetector for justification.
         if (wasPowered && !mIsPowered
-                && oldPlugType == BatteryManager.BATTERY_PLUGGED_WIRELESS) {
+                && oldPlugType == BatteryManager.BATTERY_PLUGGED_WIRELESS
+                && dockedOnWirelessCharger) {
             return false;
         }
 
@@ -3834,6 +3864,12 @@ public final class PowerManagerService extends SystemService
 
     @GuardedBy("mLock")
     private void setHalAutoSuspendModeLocked(boolean enable) {
+        if (!mEnableAutoSuspendConfig) {
+            if (DEBUG) {
+                Slog.d(TAG, "Setting HAL auto-suspend mode to " + enable + " blocked by config_enableAutoSuspend=false");
+            }
+            return;
+        }
         if (enable != mHalAutoSuspendModeEnabled) {
             if (DEBUG) {
                 Slog.d(TAG, "Setting HAL auto-suspend mode to " + enable);
@@ -3924,7 +3960,7 @@ public final class PowerManagerService extends SystemService
     }
 
     private void shutdownOrRebootInternal(final @HaltMode int haltMode, final boolean confirm,
-            @Nullable final String reason, boolean wait) {
+            @Nullable final String reason, boolean wait, final boolean custom) {
         if (PowerManager.REBOOT_USERSPACE.equals(reason)) {
             if (!PowerManager.isRebootingUserspaceSupportedImpl()) {
                 throw new UnsupportedOperationException(
@@ -3951,7 +3987,11 @@ public final class PowerManagerService extends SystemService
                     if (haltMode == HALT_MODE_REBOOT_SAFE_MODE) {
                         ShutdownThread.rebootSafeMode(getUiContext(), confirm);
                     } else if (haltMode == HALT_MODE_REBOOT) {
-                        ShutdownThread.reboot(getUiContext(), reason, confirm);
+                        if (custom) {
+                            ShutdownThread.rebootCustom(getUiContext(), reason, confirm);
+                        } else {
+                            ShutdownThread.reboot(getUiContext(), reason, confirm);
+                        }
                     } else {
                         ShutdownThread.shutdown(getUiContext(), reason, confirm);
                     }
@@ -6547,7 +6587,7 @@ public final class PowerManagerService extends SystemService
             ShutdownCheckPoints.recordCheckPoint(Binder.getCallingPid(), reason);
             final long ident = Binder.clearCallingIdentity();
             try {
-                shutdownOrRebootInternal(HALT_MODE_REBOOT, confirm, reason, wait);
+                shutdownOrRebootInternal(HALT_MODE_REBOOT, confirm, reason, wait, false);
             } finally {
                 Binder.restoreCallingIdentity(ident);
             }
@@ -6567,7 +6607,29 @@ public final class PowerManagerService extends SystemService
             ShutdownCheckPoints.recordCheckPoint(Binder.getCallingPid(), reason);
             final long ident = Binder.clearCallingIdentity();
             try {
-                shutdownOrRebootInternal(HALT_MODE_REBOOT_SAFE_MODE, confirm, reason, wait);
+                shutdownOrRebootInternal(HALT_MODE_REBOOT_SAFE_MODE, confirm, reason, wait, false);
+            } finally {
+                Binder.restoreCallingIdentity(ident);
+            }
+        }
+
+        /**
+         * Reboots the device with custom progress message.
+         *
+         * @param confirm If true, shows a reboot confirmation dialog.
+         * @param reason The reason for the reboot, or null if none.
+         * @param wait If true, this call waits for the reboot to complete and does not return.
+         */
+        @Override // Binder call
+        public void rebootCustom(boolean confirm, String reason, boolean wait) {
+            mContext.enforceCallingOrSelfPermission(android.Manifest.permission.REBOOT, null);
+            if (PowerManager.REBOOT_RECOVERY.equals(reason)) {
+                mContext.enforceCallingOrSelfPermission(android.Manifest.permission.RECOVERY, null);
+            }
+
+            final long ident = Binder.clearCallingIdentity();
+            try {
+                shutdownOrRebootInternal(HALT_MODE_REBOOT, confirm, reason, wait, true);
             } finally {
                 Binder.restoreCallingIdentity(ident);
             }
@@ -6586,7 +6648,7 @@ public final class PowerManagerService extends SystemService
             ShutdownCheckPoints.recordCheckPoint(Binder.getCallingPid(), reason);
             final long ident = Binder.clearCallingIdentity();
             try {
-                shutdownOrRebootInternal(HALT_MODE_SHUTDOWN, confirm, reason, wait);
+                shutdownOrRebootInternal(HALT_MODE_SHUTDOWN, confirm, reason, wait, false);
             } finally {
                 Binder.restoreCallingIdentity(ident);
             }

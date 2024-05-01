@@ -45,7 +45,9 @@ import android.os.RemoteException;
 import android.os.SystemClock;
 import android.os.SystemProperties;
 import android.os.Trace;
+import android.os.UserHandle;
 import android.provider.DeviceConfig;
+import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
@@ -93,6 +95,8 @@ import com.android.systemui.util.Assert;
 import com.android.wm.shell.back.BackAnimation;
 import com.android.wm.shell.desktopmode.DesktopMode;
 import com.android.wm.shell.pip.Pip;
+
+import org.omnirom.omnilib.utils.OmniSettings;
 
 import java.io.PrintWriter;
 import java.util.ArrayDeque;
@@ -340,6 +344,9 @@ public class EdgeBackGestureHandler implements PluginListener<NavigationEdgeBack
     private final Consumer<Boolean> mOnIsInPipStateChangedListener =
             (isInPip) -> mIsInPip = isInPip;
 
+    // omni additions start
+    private int mEdgeHeight;
+
     private final Consumer<Region> mDesktopCornersChangedListener =
             (desktopExcludeRegion) -> mDesktopModeExcludeRegion.set(desktopExcludeRegion);
 
@@ -524,6 +531,7 @@ public class EdgeBackGestureHandler implements PluginListener<NavigationEdgeBack
         mNonLinearFactor = getDimenFloat(res,
                 R.dimen.back_progress_non_linear_factor);
         updateBackAnimationThresholds();
+        updateEdgeHeightValue();
     }
 
     private float getDimenFloat(Resources res, @DimenRes int resId) {
@@ -541,6 +549,25 @@ public class EdgeBackGestureHandler implements PluginListener<NavigationEdgeBack
         updateCurrentUserResources();
         if (mStateChangeCallback != null && wasBackAllowed != isHandlingGestures()) {
             mStateChangeCallback.run();
+        }
+    }
+
+    private void updateEdgeHeightValue() {
+        int edgeHeightSetting = Settings.System.getIntForUser(mContext.getContentResolver(),
+                OmniSettings.OMNI_BACK_GESTURE_HEIGHT, 0, UserHandle.USER_CURRENT);
+        // edgeHeigthSettings cant be range 0 - 3
+        // 0 means full height
+        // 1 measns half of the screen
+        // 2 means lower third of the screen
+        // 3 means lower sicth of the screen
+        if (edgeHeightSetting == 0) {
+            mEdgeHeight = mDisplaySize.y;
+        } else if (edgeHeightSetting == 1) {
+            mEdgeHeight = mDisplaySize.y / 2;
+        } else if (edgeHeightSetting == 2) {
+            mEdgeHeight = mDisplaySize.y / 3;
+        } else {
+            mEdgeHeight = mDisplaySize.y / 6;
         }
     }
 
@@ -855,6 +882,12 @@ public class EdgeBackGestureHandler implements PluginListener<NavigationEdgeBack
         if (y >= (mDisplaySize.y - mBottomGestureHeight)) {
             return false;
         }
+        if (mEdgeHeight != 0) {
+            if (y < (mDisplaySize.y - mBottomGestureHeight - mEdgeHeight)) {
+                return false;
+            }
+        }
+
         // If the point is way too far (twice the margin), it is
         // not interesting to us for logging purposes, nor we
         // should process it.  Simply return false and keep
@@ -1198,6 +1231,7 @@ public class EdgeBackGestureHandler implements PluginListener<NavigationEdgeBack
             mEdgeBackPlugin.setDisplaySize(mDisplaySize);
         }
         updateBackAnimationThresholds();
+        updateEdgeHeightValue();
     }
 
     private void updateBackAnimationThresholds() {

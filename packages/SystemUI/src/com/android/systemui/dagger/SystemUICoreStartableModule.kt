@@ -45,6 +45,7 @@ import com.android.systemui.media.dialog.MediaOutputSwitcherDialogUI
 import com.android.systemui.media.taptotransfer.MediaTttCommandLineHelper
 import com.android.systemui.media.taptotransfer.receiver.MediaTttChipControllerReceiver
 import com.android.systemui.media.taptotransfer.sender.MediaTttSenderCoordinator
+import com.android.systemui.omni.CPUInfoManager
 import com.android.systemui.mediaprojection.taskswitcher.MediaProjectionTaskSwitcherCoreStartable
 import com.android.systemui.power.PowerUI
 import com.android.systemui.reardisplay.RearDisplayDialogController
@@ -329,6 +330,12 @@ abstract class SystemUICoreStartableModule {
     @IntoMap
     @ClassKey(AssistantAttentionMonitor::class)
     abstract fun bindAssistantAttentionMonitor(sysui: AssistantAttentionMonitor): CoreStartable
+
+    /** Inject into CPUInfoManager.  */
+    @Binds
+    @IntoMap
+    @ClassKey(CPUInfoManager::class)
+    abstract fun bindCPUInfoManager(sysui: CPUInfoManager): CoreStartable
 
     @Binds
     @IntoMap

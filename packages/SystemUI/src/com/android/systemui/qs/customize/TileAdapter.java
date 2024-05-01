@@ -23,9 +23,11 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLayoutChangeListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -57,6 +59,8 @@ import com.android.systemui.qs.dagger.QSScope;
 import com.android.systemui.qs.dagger.QSThemedContext;
 import com.android.systemui.qs.external.CustomTile;
 import com.android.systemui.qs.tileimpl.QSTileViewImpl;
+
+import org.omnirom.omnilib.utils.OmniUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -140,6 +144,7 @@ public class TileAdapter extends RecyclerView.Adapter<Holder> implements TileSta
                 ? context.getResources().getInteger(
                         R.integer.small_land_lockscreen_quick_settings_num_columns)
                 : context.getResources().getInteger(NUM_COLUMNS_ID);
+        mNumColumns = OmniUtils.getQSColumnsCount(mContext, mNumColumns);
         mAccessibilityDelegate = new TileAdapterDelegate();
         mSizeLookup.setSpanIndexCacheEnabled(true);
         mTempTextView = new TextView(context);
@@ -166,6 +171,7 @@ public class TileAdapter extends RecyclerView.Adapter<Holder> implements TileSta
                 ? mContext.getResources().getInteger(
                         R.integer.small_land_lockscreen_quick_settings_num_columns)
                 : mContext.getResources().getInteger(NUM_COLUMNS_ID);
+        numColumns = OmniUtils.getQSColumnsCount(mContext, numColumns);
         if (numColumns != mNumColumns) {
             mNumColumns = numColumns;
             return true;
@@ -364,7 +370,7 @@ public class TileAdapter extends RecyclerView.Adapter<Holder> implements TileSta
             final String titleText;
             Resources res = mContext.getResources();
             if (mCurrentDrag == null) {
-                titleText = res.getString(R.string.drag_to_add_tiles);
+                titleText = res.getString(R.string.drag_or_tap_to_add_tiles);
             } else if (!canRemoveTiles() && mCurrentDrag.getAdapterPosition() < mEditIndex) {
                 titleText = res.getString(R.string.drag_to_remove_disabled, mMinNumTiles);
             } else {
@@ -445,6 +451,18 @@ public class TileAdapter extends RecyclerView.Adapter<Holder> implements TileSta
         if (position == mFocusIndex) {
             focusOnHolder(holder);
         }
+        holder.mTileView.setOnTouchListener(new OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent ev) {
+                if (ev.getAction() == MotionEvent.ACTION_UP) {
+                    int position = holder.getLayoutPosition();
+                    if (position >= mEditIndex || canRemoveTiles()) {
+                        move(position, mEditIndex, true);
+                    }
+                }
+                return false;
+            }
+        });
     }
 
     private void focusOnHolder(Holder holder) {

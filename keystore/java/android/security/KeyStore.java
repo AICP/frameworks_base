@@ -16,7 +16,10 @@
 
 package android.security;
 
+import android.app.ActivityThread;
+import android.app.Application;
 import android.compat.annotation.UnsupportedAppUsage;
+import android.content.Context;
 import android.os.Build;
 import android.os.StrictMode;
 
@@ -36,6 +39,17 @@ public class KeyStore {
     public static final int UID_SELF = -1;
 
     private static final KeyStore KEY_STORE = new KeyStore();
+
+    /** @hide */
+    @UnsupportedAppUsage
+    public static Context getApplicationContext() {
+        Application application = ActivityThread.currentApplication();
+        if (application == null) {
+            throw new IllegalStateException(
+                    "Failed to obtain application Context from ActivityThread");
+        }
+        return application;
+    }
 
     @UnsupportedAppUsage
     public static KeyStore getInstance() {

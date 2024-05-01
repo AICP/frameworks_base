@@ -63,6 +63,7 @@ static const bool kIsDebug = false;
 static const char* kAssetsRoot = "assets";
 static const char* kAppZipName = NULL; //"classes.jar";
 static const char* kSystemAssets = "framework/framework-res.apk";
+static const char* kOmniRomAssets = "framework/omnirom-res.apk";
 static const char* kResourceCache = "resource-cache";
 
 static const char* kExcludeExtension = ".EXCLUDE";
@@ -367,10 +368,19 @@ bool AssetManager::addDefaultAssets()
     const char* root = getenv("ANDROID_ROOT");
     LOG_ALWAYS_FATAL_IF(root == NULL, "ANDROID_ROOT not set");
 
-    String8 path(root);
-    appendPath(path, kSystemAssets);
+    bool success = true;
+    {
+       String8 path(root);
+       appendPath(path, kSystemAssets);
+       success &= addAssetPath(path, NULL, false /* appAsLib */, true /* isSystemAsset */);
+    }
+    {
+       String8 path(root);
+       appendPath(path, kOmniRomAssets);
+       success &= addAssetPath(path, NULL, false /* appAsLib */, true /* isSystemAsset */);
+    }
 
-    return addAssetPath(path, NULL, false /* appAsLib */, true /* isSystemAsset */);
+    return success;
 }
 
 int32_t AssetManager::nextAssetPath(const int32_t cookie) const

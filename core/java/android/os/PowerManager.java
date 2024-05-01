@@ -845,6 +845,17 @@ public final class PowerManager {
     public static final String REBOOT_RECOVERY = "recovery";
 
     /**
+     * The value to pass as the 'reason' argument to reboot() to
+     * reboot into bootloader mode
+     * <p>
+     * Requires the permission
+     * {@link android.Manifest.permission#REBOOT}).
+     * </p>
+     * @hide
+     */
+    public static final String REBOOT_BOOTLOADER = "bootloader";
+
+    /**
      * The value to pass as the 'reason' argument to reboot() to reboot into
      * recovery mode for applying system updates.
      * <p>
@@ -855,6 +866,17 @@ public final class PowerManager {
      * @hide
      */
     public static final String REBOOT_RECOVERY_UPDATE = "recovery-update";
+
+    /**
+     * The value to pass as the 'reason' argument to reboot() to
+     * reboot into fastboot mode
+     * <p>
+     * Requires the permission
+     * {@link android.Manifest.permission#REBOOT}).
+     * </p>
+     * @hide
+     */
+    public static final String REBOOT_FASTBOOT = "fastboot";
 
     /**
      * The value to pass as the 'reason' argument to reboot() when device owner requests a reboot on
@@ -1871,7 +1893,7 @@ public final class PowerManager {
                     "Attempted userspace reboot on a device that doesn't support it");
         }
         try {
-            mService.reboot(false, reason, true);
+            mService.rebootCustom(false, reason, true);
         } catch (RemoteException e) {
             throw e.rethrowFromSystemServer();
         }
@@ -1905,6 +1927,24 @@ public final class PowerManager {
             return mService.areAutoPowerSaveModesEnabled();
         } catch (RemoteException e) {
             throw e.rethrowFromSystemServer();
+        }
+    }
+    
+    /**
+     * Reboot the device with custom progress meassges.
+     * Will not return if the reboot is successful.
+     * <p>
+     * Requires the {@link android.Manifest.permission#REBOOT} permission.
+     * </p>
+     *
+     * @param reason code to pass to the kernel (e.g., "recovery") to
+     *               request special boot modes, or null.
+     * @hide
+     */
+    public void rebootCustom(String reason) {
+        try {
+            mService.rebootCustom(false, reason, true);
+        } catch (RemoteException e) {
         }
     }
 

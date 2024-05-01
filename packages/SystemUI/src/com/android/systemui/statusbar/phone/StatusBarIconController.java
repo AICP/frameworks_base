@@ -85,6 +85,11 @@ public interface StatusBarIconController {
     void setIcon(String slot, int resourceId, CharSequence contentDescription);
 
     /**
+     * @hide
+     */
+    void setCustomIcon(String slot, StatusBarIcon icon);
+
+    /**
      * Sets up a wifi icon using the new data pipeline. No effect if the wifi icon has already been
      * set up (inflated and added to the view hierarchy).
      */

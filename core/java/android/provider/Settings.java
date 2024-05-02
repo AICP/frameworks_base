@@ -112,6 +112,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -6092,6 +6093,223 @@ public final class Settings {
          * AICP System Settings start
          *****************************/
 
+        /**
+         * @hide
+         */
+        public static final String OMNI_SYSTEM_PROXI_CHECK_ENABLED = "system_proxi_check_enabled";
+
+        /**
+         * Enable proxi check for wake keys - must be implemented in a device
+         * KeyHandler
+         * @hide
+         */
+        public static final String OMNI_DEVICE_PROXI_CHECK_ENABLED = "device_proxi_check_enabled";
+
+        /**
+         * some devices have a extra hw button e.g. n3 on the back on the
+         * fingerprint sensor. allow mapping button to key
+         *
+         * @hide
+         */
+        public static final String OMNI_BUTTON_EXTRA_KEY_MAPPING = "button_extra_mapping";
+
+        /**
+         * @hide
+         */
+        public static final String OMNI_DEVICE_FEATURE_SETTINGS = "device_feature_settings";
+
+        /**
+         * @hide
+         */
+        public static final String OMNI_LONG_PRESS_POWER_TORCH = "long_press_power_torch";
+
+        /**
+         * @hide
+         */
+        public static final String OMNI_ADVANCED_REBOOT = "advanced_reboot";
+
+        /**
+         * @hide
+         */
+        public static final String OMNI_MONET_DISABLE = "monet_disable";
+
+        /**
+         * @hide
+         */
+        public static final String OMNI_SHOW_BATTERY_IMAGE = "show_battery_image";
+
+        /**
+         * @hide
+         */
+        public static final String OMNI_LOCKSCREEN_WEATHER_ENABLED = "lockscreen_weather_enabled";
+
+        /** @hide */
+        public static final String OMNI_BACK_GESTURE_HEIGHT = "back_gesture_height";
+
+        /**
+         * @hide
+         */
+        public static final String OMNI_STATUS_BAR_ALARM = "status_bar_alarm";
+
+        /**
+         * @hide
+         */
+        public static final String OMNI_ENABLE_TASKBAR = "enable_taskbar";
+
+        /**
+         * Whether to show arrow keys in navigation bar
+         * @hide
+         */
+        public static final String OMNI_NAVIGATION_BAR_ARROW_KEYS = "navigation_bar_menu_arrow_keys";
+
+        /**
+         * @hide
+         */
+        public static final String OMNI_GESTURE_HANDLE_HIDE = "navbar_gesture_handle_hide";
+
+        /**
+         * just for triggering an update - DOES NOT need a backup
+         * @hide
+         */
+        public static final String OMNI_CUSTOM_FP_ICON_UPDATE = "custom_fingerprint_icon_update";
+
+        /**
+         * @hide
+         */
+        public static final String OMNI_GESTURE_HANDLE_SMALL = "navbar_gesture_handle_small";
+
+                /**
+         * Whether the battery light should be enabled (if hardware supports it)
+         * The value is boolean (1 or 0).
+         * @hide
+         */
+        public static final String OMNI_BATTERY_LIGHT_ENABLED = "battery_light_enabled";
+
+        /**
+         * Whether to show battery light when DND mode is active
+         * @hide
+         */
+        public static final String OMNI_BATTERY_LIGHT_ALLOW_ON_DND = "battery_light_allow_on_dnd";
+
+        /**
+         * Whether to show blinking light when battery is low
+         * @hide
+         */
+        public static final String OMNI_BATTERY_LIGHT_LOW_BLINKING = "battery_light_low_blinking";
+
+        /**
+         * Low battery charging color
+         * @hide
+         */
+        public static final String OMNI_BATTERY_LIGHT_LOW_COLOR = "battery_light_low_color";
+
+        /**
+         * Medium battery charging color
+         * @hide
+         */
+        public static final String OMNI_BATTERY_LIGHT_MEDIUM_COLOR = "battery_light_medium_color";
+
+        /**
+         * Full battery charging color
+        * @hide
+        */
+        public static final String OMNI_BATTERY_LIGHT_FULL_COLOR = "battery_light_full_color";
+
+        /**
+         * Really full 100 battery charging color
+         * @hide
+         */
+        public static final String OMNI_BATTERY_LIGHT_REALLY_FULL_COLOR =
+                "battery_light_really_full_color";
+
+        /**
+         * Whether the battery light should only be enabled on fully charged battery.
+         * The value is boolean (1 or 0).
+         * @hide
+         */
+        public static final String OMNI_BATTERY_LIGHT_ONLY_FULLY_CHARGED =
+                "battery_light_only_fully_charged";
+
+        /**
+         * What color to use for the battery LED while charging - low
+         * @hide
+         */
+        public static final String OMNI_FAST_BATTERY_LIGHT_COLOR = "fast_battery_light_color";
+
+        /**
+         * Whether the fast charging battery light is enabled
+         * The value is boolean (1 or 0).
+         * @hide
+         */
+        public static final String OMNI_FAST_CHARGING_LED_ENABLED = "fast_charging_led_enabled";
+
+        /**
+         * @hide
+         */
+        public static final String OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE = "qs_layout_columns_landscape";
+
+        /**
+         * @hide
+         */
+        public static final String OMNI_QS_LAYOUT_COLUMNS = "qs_layout_columns";
+
+        /**
+         * @hide
+         */
+        public static final String OMNI_QS_TILE_VERTICAL_LAYOUT = "qs_tile_vertical_layout";
+
+        /**
+         * @hide
+         */
+        public static final String OMNI_QS_TILE_LABEL_HIDE = "qs_tile_label_hide";
+
+        /**
+         * @hide
+         */
+        public static final String OMNI_LOW_BATTERY_BEHAVIOR = "battery_low_behavior";
+
+        /**
+         * Whether to enable DOZE only when charging
+         * @hide
+         */
+        public static final String OMNI_DOZE_ON_CHARGE = "doze_on_charge";
+
+        /**
+         * hidden string of the current state of DOZE only when charging
+         * @hide
+         */
+        public static final String OMNI_DOZE_ON_CHARGE_NOW = "doze_on_charge_now";
+
+        /**
+         * @hide
+         */
+        public static final String OMNI_STATUS_BAR_BT_BATTERY = "status_bar_bt_battery";
+
+        /**
+         * @hide
+         */
+        public static final String OMNI_LOCKSCREEN_CLOCK_COLORED = "lockscreen_clock_colored";
+
+        /**
+         * @hide
+         * Whether the phone vibrates on call connect
+         * @hide
+         */
+        public static final String OMNI_VIBRATE_ON_CONNECT = "vibrate_on_connect";
+
+        /**
+         * Whether the phone vibrates on call waiting
+         * @hide
+         */
+        public static final String OMNI_VIBRATE_ON_CALLWAITING = "vibrate_on_callwaiting";
+
+        /**
+         * Whether the phone vibrates on disconnect
+         * @hide
+         */
+        public static final String OMNI_VIBRATE_ON_DISCONNECT = "vibrate_on_disconnect";
+
+
         /***************************
          * AICP System Settings end
          ***************************/
@@ -6235,6 +6453,42 @@ public final class Settings {
             PRIVATE_SETTINGS.add(CAMERA_FLASH_NOTIFICATION);
             PRIVATE_SETTINGS.add(SCREEN_FLASH_NOTIFICATION);
             PRIVATE_SETTINGS.add(SCREEN_FLASH_NOTIFICATION_COLOR);
+
+            // AICP Settings start
+            PRIVATE_SETTINGS.add(OMNI_SYSTEM_PROXI_CHECK_ENABLED);
+            PRIVATE_SETTINGS.add(OMNI_DEVICE_PROXI_CHECK_ENABLED);
+            PRIVATE_SETTINGS.add(OMNI_BUTTON_EXTRA_KEY_MAPPING);
+            PRIVATE_SETTINGS.add(OMNI_DEVICE_FEATURE_SETTINGS);
+            PRIVATE_SETTINGS.add(OMNI_LONG_PRESS_POWER_TORCH);
+            PRIVATE_SETTINGS.add(OMNI_ADVANCED_REBOOT);
+            PRIVATE_SETTINGS.add(OMNI_MONET_DISABLE);
+            PRIVATE_SETTINGS.add(OMNI_SHOW_BATTERY_IMAGE);
+            PRIVATE_SETTINGS.add(OMNI_LOCKSCREEN_WEATHER_ENABLED);
+            PRIVATE_SETTINGS.add(OMNI_BACK_GESTURE_HEIGHT);
+            PRIVATE_SETTINGS.add(OMNI_STATUS_BAR_ALARM);
+            PRIVATE_SETTINGS.add(OMNI_ENABLE_TASKBAR);
+            PRIVATE_SETTINGS.add(OMNI_NAVIGATION_BAR_ARROW_KEYS);
+            PRIVATE_SETTINGS.add(OMNI_GESTURE_HANDLE_HIDE);
+            PRIVATE_SETTINGS.add(OMNI_GESTURE_HANDLE_SMALL);
+            PRIVATE_SETTINGS.add(OMNI_BATTERY_LIGHT_ENABLED);
+            PRIVATE_SETTINGS.add(OMNI_BATTERY_LIGHT_ALLOW_ON_DND);
+            PRIVATE_SETTINGS.add(OMNI_BATTERY_LIGHT_LOW_BLINKING);
+            PRIVATE_SETTINGS.add(OMNI_BATTERY_LIGHT_LOW_COLOR);
+            PRIVATE_SETTINGS.add(OMNI_BATTERY_LIGHT_MEDIUM_COLOR);
+            PRIVATE_SETTINGS.add(OMNI_BATTERY_LIGHT_FULL_COLOR);
+            PRIVATE_SETTINGS.add(OMNI_BATTERY_LIGHT_REALLY_FULL_COLOR);
+            PRIVATE_SETTINGS.add(OMNI_BATTERY_LIGHT_ONLY_FULLY_CHARGED);
+            PRIVATE_SETTINGS.add(OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE);
+            PRIVATE_SETTINGS.add(OMNI_QS_LAYOUT_COLUMNS);
+            PRIVATE_SETTINGS.add(OMNI_QS_TILE_VERTICAL_LAYOUT);
+            PRIVATE_SETTINGS.add(OMNI_QS_TILE_LABEL_HIDE);
+            PRIVATE_SETTINGS.add(OMNI_LOW_BATTERY_BEHAVIOR);
+            PRIVATE_SETTINGS.add(OMNI_DOZE_ON_CHARGE);
+            PRIVATE_SETTINGS.add(OMNI_STATUS_BAR_BT_BATTERY);
+            PRIVATE_SETTINGS.add(OMNI_LOCKSCREEN_CLOCK_COLORED);
+            PRIVATE_SETTINGS.add(OMNI_VIBRATE_ON_CONNECT);
+            PRIVATE_SETTINGS.add(OMNI_VIBRATE_ON_CALLWAITING);
+            PRIVATE_SETTINGS.add(OMNI_VIBRATE_ON_DISCONNECT);
         }
 
         /**

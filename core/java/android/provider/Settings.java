@@ -6309,6 +6309,15 @@ public final class Settings {
          */
         public static final String OMNI_VIBRATE_ON_DISCONNECT = "vibrate_on_disconnect";
 
+        /**
+         * @hide
+        */
+        public static final String OMNI_LOCKSCREEN_ALARM_ENABLED = "lockscreen_alarm_enabled";
+
+        /**
+         * @hide
+        */
+        public static final String OMNI_LOCKSCREEN_DND_ENABLED = "lockscreen_dnd_enabled";
 
         /***************************
          * AICP System Settings end
@@ -6489,6 +6498,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(OMNI_VIBRATE_ON_CONNECT);
             PRIVATE_SETTINGS.add(OMNI_VIBRATE_ON_CALLWAITING);
             PRIVATE_SETTINGS.add(OMNI_VIBRATE_ON_DISCONNECT);
+            PRIVATE_SETTINGS.add(OMNI_LOCKSCREEN_ALARM_ENABLED);
+            PRIVATE_SETTINGS.add(OMNI_LOCKSCREEN_DND_ENABLED);
         }
 
         /**

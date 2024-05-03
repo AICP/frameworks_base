@@ -7445,7 +7445,14 @@ message MetricsEvent {
     // Add new aosp constants above this line.
     // END OF AOSP CONSTANTS
 
-    // ACTION: Custom Omni metrics
+    // Panel for Mobile Data
+    PANEL_MOBILE_DATA = 2002;
+
+    // Panel for Bluetooth
+    PANEL_BLUETOOTH = 2003;
+
+    // ACTION: Custom AICP metrics
+    AICP_METRICS = 10000;
     CUSTOM_QUICK_TILES = 9001;
   }
 }

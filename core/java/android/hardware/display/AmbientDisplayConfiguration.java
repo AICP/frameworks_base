@@ -28,8 +28,6 @@ import android.util.SparseArray;
 import com.android.internal.R;
 import com.android.internal.util.ArrayUtils;
 
-import org.omnirom.omnilib.utils.OmniSettings;
-
 import java.util.Map;
 
 /**
@@ -54,7 +52,7 @@ public class AmbientDisplayConfiguration {
             Settings.Secure.DOZE_WAKE_LOCK_SCREEN_GESTURE,
             Settings.Secure.DOZE_WAKE_DISPLAY_GESTURE,
             Settings.Secure.DOZE_TAP_SCREEN_GESTURE,
-            OmniSettings.OMNI_DOZE_ON_CHARGE
+            Settings.System.OMNI_DOZE_ON_CHARGE
     };
 
     /** Non-user configurable doze settings */
@@ -351,9 +349,9 @@ public class AmbientDisplayConfiguration {
 
     /** @hide */
     public boolean alwaysOnChargingEnabled(int user) {
-        final boolean dozeOnChargeEnabled = boolSettingSystem(OmniSettings.OMNI_DOZE_ON_CHARGE, user, 0);
+        final boolean dozeOnChargeEnabled = boolSettingSystem(Settings.System.OMNI_DOZE_ON_CHARGE, user, 0);
         if (dozeOnChargeEnabled) {
-            final boolean dozeOnChargeEnabledNow = boolSettingSystem(OmniSettings.OMNI_DOZE_ON_CHARGE_NOW, user, 0);
+            final boolean dozeOnChargeEnabledNow = boolSettingSystem(Settings.System.OMNI_DOZE_ON_CHARGE_NOW, user, 0);
             return dozeOnChargeEnabledNow && alwaysOnAvailable() && !accessibilityInversionEnabled(user);
         }
         return false;

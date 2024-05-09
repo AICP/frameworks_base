@@ -73,7 +73,7 @@ import com.android.systemui.navigationbar.NavigationBarComponent;
 import com.android.systemui.notetask.NoteTaskModule;
 import com.android.systemui.people.PeopleModule;
 import com.android.systemui.plugins.BcSmartspaceConfigPlugin;
-import com.android.systemui.omni.dagger.OmniModule;
+import com.android.systemui.aicp.dagger.AicpModule;
 import com.android.systemui.plugins.BcSmartspaceDataPlugin;
 import com.android.systemui.privacy.PrivacyModule;
 import com.android.systemui.process.condition.SystemProcessCondition;
@@ -238,7 +238,7 @@ import javax.inject.Named;
         UtilModule.class,
         NoteTaskModule.class,
         WalletModule.class,
-        OmniModule.class
+        AicpModule.class
         },
         subcomponents = {
             ComplicationComponent.class,

@@ -24,6 +24,7 @@ import android.content.ComponentName;
 import android.content.res.Configuration;
 import android.content.res.Configuration.Orientation;
 import android.metrics.LogMaker;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 
@@ -44,8 +45,6 @@ import com.android.systemui.qs.tileimpl.QSTileViewImpl;
 import com.android.systemui.statusbar.policy.SplitShadeStateController;
 import com.android.systemui.util.ViewController;
 import com.android.systemui.util.animation.DisappearParameters;
-
-import org.omnirom.omnilib.utils.OmniSettings;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -206,13 +205,13 @@ public abstract class QSPanelControllerBase<T extends QSPanel> extends ViewContr
 
         mDumpManager.registerDumpable(mView.getDumpableTag(), this);
         Dependency.get(OmniSettingsService.class).addIntObserver(this,
-                OmniSettings.OMNI_QS_TILE_VERTICAL_LAYOUT);
+                Settings.System.OMNI_QS_TILE_VERTICAL_LAYOUT);
         Dependency.get(OmniSettingsService.class).addIntObserver(this,
-                OmniSettings.OMNI_QS_LAYOUT_COLUMNS);
+                Settings.System.OMNI_QS_LAYOUT_COLUMNS);
         Dependency.get(OmniSettingsService.class).addIntObserver(this,
-                OmniSettings.OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE);
+                Settings.System.OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE);
         Dependency.get(OmniSettingsService.class).addIntObserver(this,
-                OmniSettings.OMNI_QS_TILE_LABEL_HIDE);
+                Settings.System.OMNI_QS_TILE_LABEL_HIDE);
     }
 
     @Override

@@ -75,7 +75,7 @@ public class NavbarUtils {
 
     public static boolean isEnabled(Context context) {
         return Settings.System.getIntForUser(context.getContentResolver(),
-                Settings.System.NAVIGATION_BAR_SHOW, hasNavbarByDefault(context) ? 1 : 0, UserHandle.USER_CURRENT) != 0;
+        "navigation_bar_show", hasNavbarByDefault(context) ? 1 : 0, UserHandle.USER_CURRENT) != 0;
     }
 
     public static void setEnabled(Context context, boolean enabled) {
@@ -83,7 +83,7 @@ public class NavbarUtils {
             return;
         }
         Settings.System.putIntForUser(context.getContentResolver(),
-                Settings.System.NAVIGATION_BAR_SHOW, enabled ? 1 : 0, UserHandle.USER_CURRENT);
+        "navigation_bar_show", enabled ? 1 : 0, UserHandle.USER_CURRENT);
     }
 
     public static boolean canDisable(Context context) {

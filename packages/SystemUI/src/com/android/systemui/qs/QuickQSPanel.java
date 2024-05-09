@@ -28,7 +28,7 @@ import com.android.systemui.FontSizeUtils;
 import com.android.systemui.res.R;
 import com.android.systemui.plugins.qs.QSTile;
 
-import org.omnirom.omnilib.utils.OmniUtils;
+import com.android.internal.util.omni.OmniUtils;
 
 /**
  * Version of QSPanel that only shows N Quick Tiles in the QS Header.

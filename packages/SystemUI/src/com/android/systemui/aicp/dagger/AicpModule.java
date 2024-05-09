@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.systemui.omni.dagger;
+package com.android.systemui.aicp.dagger;
 
 import android.app.Service;
 
@@ -38,7 +38,7 @@ import dagger.multibindings.StringKey;
 
 /** Dagger Module for code in the systemui package. */
 @Module
-public interface OmniModule {
+public interface AicpModule {
     /** */
     @Binds
     OmniSettingsService provideOmniSettingsService(OmniSettingsServiceImpl impl);

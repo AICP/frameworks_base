@@ -73,8 +73,6 @@ import com.android.server.health.HealthServiceWrapper;
 import com.android.server.lights.LightsManager;
 import com.android.server.lights.LogicalLight;
 
-import org.omnirom.omnilib.utils.OmniSettings;
-
 import java.io.File;
 import java.io.FileDescriptor;
 import java.io.FileOutputStream;
@@ -257,7 +255,7 @@ public final class BatteryService extends SystemService {
         mShutdownBatteryTemperature = mContext.getResources().getInteger(
                 com.android.internal.R.integer.config_shutdownBatteryTemperature);
         mFastChargingLedSupported = context.getResources().getBoolean(
-                org.omnirom.omnilib.R.bool.config_FastChargingLedSupported);
+                com.android.internal.R.bool.config_FastChargingLedSupported);
         mShutdownIfNoPower = mContext.getResources().getBoolean(
                 com.android.internal.R.bool.config_shutdownIfNoPower);
         sSystemUiPackage = mContext.getResources().getString(
@@ -336,42 +334,42 @@ public final class BatteryService extends SystemService {
 
             // Battery light enabled
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    OmniSettings.OMNI_BATTERY_LIGHT_ENABLED),
+                    Settings.System.OMNI_BATTERY_LIGHT_ENABLED),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    OmniSettings.OMNI_BATTERY_LIGHT_ALLOW_ON_DND),
+                    Settings.System.OMNI_BATTERY_LIGHT_ALLOW_ON_DND),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(
                     Settings.Global.getUriFor(Settings.Global.ZEN_MODE),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    OmniSettings.OMNI_BATTERY_LIGHT_ONLY_FULLY_CHARGED),
+                    Settings.System.OMNI_BATTERY_LIGHT_ONLY_FULLY_CHARGED),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    OmniSettings.OMNI_LOW_BATTERY_BEHAVIOR),
+                    Settings.System.OMNI_LOW_BATTERY_BEHAVIOR),
                     false, this, UserHandle.USER_ALL);
             if (mMultiColorLed) {
                 resolver.registerContentObserver(Settings.System.getUriFor(
-                        OmniSettings.OMNI_BATTERY_LIGHT_LOW_COLOR),
+                        Settings.System.OMNI_BATTERY_LIGHT_LOW_COLOR),
                         false, this, UserHandle.USER_ALL);
                 resolver.registerContentObserver(Settings.System.getUriFor(
-                        OmniSettings.OMNI_BATTERY_LIGHT_MEDIUM_COLOR),
+                        Settings.System.OMNI_BATTERY_LIGHT_MEDIUM_COLOR),
                         false, this, UserHandle.USER_ALL);
                 resolver.registerContentObserver(Settings.System.getUriFor(
-                        OmniSettings.OMNI_BATTERY_LIGHT_FULL_COLOR),
+                        Settings.System.OMNI_BATTERY_LIGHT_FULL_COLOR),
                         false, this, UserHandle.USER_ALL);
                 resolver.registerContentObserver(Settings.System.getUriFor(
-                        OmniSettings.OMNI_BATTERY_LIGHT_REALLY_FULL_COLOR),
+                        Settings.System.OMNI_BATTERY_LIGHT_REALLY_FULL_COLOR),
                         false, this, UserHandle.USER_ALL);
 
                 if (mFastChargingLedSupported) {
                     //Fast Charging LED
                     resolver.registerContentObserver(Settings.System.getUriFor(
-                            OmniSettings.OMNI_FAST_CHARGING_LED_ENABLED), false, this,
+                            Settings.System.OMNI_FAST_CHARGING_LED_ENABLED), false, this,
                             UserHandle.USER_ALL);
                      // Register observer if we have a device that supports fast charging
                     resolver.registerContentObserver(Settings.System.getUriFor(
-                            OmniSettings.OMNI_FAST_BATTERY_LIGHT_COLOR), false, this,
+                            Settings.System.OMNI_FAST_BATTERY_LIGHT_COLOR), false, this,
                             UserHandle.USER_ALL);
                 }
             }
@@ -388,39 +386,39 @@ public final class BatteryService extends SystemService {
 
             // Battery light enabled
             mLightEnabled = Settings.System.getIntForUser(resolver,
-                    OmniSettings.OMNI_BATTERY_LIGHT_ENABLED, 1,
+                    Settings.System.OMNI_BATTERY_LIGHT_ENABLED, 1,
                     UserHandle.USER_CURRENT) != 0;
             mAllowBatteryLightOnDnd = Settings.System.getIntForUser(resolver,
-                    OmniSettings.OMNI_BATTERY_LIGHT_ALLOW_ON_DND, 0,
+                    Settings.System.OMNI_BATTERY_LIGHT_ALLOW_ON_DND, 0,
                     UserHandle.USER_CURRENT) == 1;
             mIsDndActive = Settings.Global.getInt(resolver,
                     Settings.Global.ZEN_MODE, Settings.Global.ZEN_MODE_OFF)
                     != Settings.Global.ZEN_MODE_OFF;
             mBatteryLowARGB = Settings.System.getIntForUser(resolver,
-                    OmniSettings.OMNI_BATTERY_LIGHT_LOW_COLOR, 0xFFFF0000,
+                    Settings.System.OMNI_BATTERY_LIGHT_LOW_COLOR, 0xFFFF0000,
                     UserHandle.USER_CURRENT);
             mBatteryMediumARGB = Settings.System.getIntForUser(resolver,
-                    OmniSettings.OMNI_BATTERY_LIGHT_MEDIUM_COLOR, 0xFFFFFF00,
+                    Settings.System.OMNI_BATTERY_LIGHT_MEDIUM_COLOR, 0xFFFFFF00,
                     UserHandle.USER_CURRENT);
             mBatteryFullARGB = Settings.System.getIntForUser(resolver,
-                    OmniSettings.OMNI_BATTERY_LIGHT_FULL_COLOR, 0xFFFFFF00,
+                    Settings.System.OMNI_BATTERY_LIGHT_FULL_COLOR, 0xFFFFFF00,
                     UserHandle.USER_CURRENT);
             mBatteryReallyFullARGB = Settings.System.getIntForUser(resolver,
-                    OmniSettings.OMNI_BATTERY_LIGHT_REALLY_FULL_COLOR, 0xFF00FF00,
+                    Settings.System.OMNI_BATTERY_LIGHT_REALLY_FULL_COLOR, 0xFF00FF00,
                     UserHandle.USER_CURRENT);
             mFastBatteryLightEnabled = Settings.System.getIntForUser(resolver,
-                    OmniSettings.OMNI_FAST_CHARGING_LED_ENABLED, 0,
+                    Settings.System.OMNI_FAST_CHARGING_LED_ENABLED, 0,
                     UserHandle.USER_CURRENT) != 0;
             mFastBatteryARGB = Settings.System.getIntForUser(resolver,
-                    OmniSettings.OMNI_FAST_BATTERY_LIGHT_COLOR,
+                    Settings.System.OMNI_FAST_BATTERY_LIGHT_COLOR,
                     mContext.getResources().getInteger(
-                        org.omnirom.omnilib.R.integer.config_notificationsFastBatteryARGB),
+                        com.android.internal.R.integer.config_notificationsFastBatteryARGB),
                     UserHandle.USER_CURRENT);
             mLightOnlyFullyCharged = Settings.System.getIntForUser(resolver,
-                    OmniSettings.OMNI_BATTERY_LIGHT_ONLY_FULLY_CHARGED, 0,
+                    Settings.System.OMNI_BATTERY_LIGHT_ONLY_FULLY_CHARGED, 0,
                     UserHandle.USER_CURRENT) != 0;
             mBatteryLowBehaviorCustom = Settings.System.getIntForUser(resolver,
-                    OmniSettings.OMNI_LOW_BATTERY_BEHAVIOR, 0,
+                    Settings.System.OMNI_LOW_BATTERY_BEHAVIOR, 0,
                     UserHandle.USER_CURRENT);
 
             updateLed();
@@ -1454,7 +1452,7 @@ public final class BatteryService extends SystemService {
 
             // Does the Device support changing battery LED colors?
             mMultiColorLed = context.getResources().getBoolean(
-                    org.omnirom.omnilib.R.bool.config_multiColorBatteryLed);
+                    com.android.internal.R.bool.config_multiColorBatteryLed);
             mBatteryLedOn = context.getResources().getInteger(
                     com.android.internal.R.integer.config_notificationsBatteryLedOn);
             mBatteryLedOff = context.getResources().getInteger(
@@ -1484,7 +1482,7 @@ public final class BatteryService extends SystemService {
                 mBatteryLight.turnOff();
             } else if (level < mLowBatteryWarningLevel) {
                 if (mContext.getResources().getBoolean(
-                            org.omnirom.omnilib.R.bool.config_intrusiveBatteryLed)) {
+                            com.android.internal.R.bool.config_intrusiveBatteryLed)) {
                     mBatteryLowBehavior = mBatteryLowBehaviorCustom;
                 }
                 switch (mBatteryLowBehavior) {

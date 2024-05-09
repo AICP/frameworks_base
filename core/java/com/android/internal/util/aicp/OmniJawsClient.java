@@ -166,7 +166,7 @@ public class OmniJawsClient {
 
         void observe() {
             mContext.getContentResolver().registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.OMNIJAWS_WEATHER_ICON_PACK),
+                "omnijaws_weather_icon_pack"),
                     false, this, UserHandle.USER_ALL);
             update();
         }
@@ -506,7 +506,7 @@ public class OmniJawsClient {
     private void updateSettings() {
         if (isOmniJawsServiceInstalled()) {
             final String iconPack = Settings.System.getStringForUser(mContext.getContentResolver(),
-                    Settings.System.OMNIJAWS_WEATHER_ICON_PACK, UserHandle.USER_CURRENT);
+            "omnijaws_weather_icon_pack", UserHandle.USER_CURRENT);
             if (iconPack == null) {
                 loadDefaultIconsPackage();
             } else if (mSettingIconPackage == null || !iconPack.equals(mSettingIconPackage)) {

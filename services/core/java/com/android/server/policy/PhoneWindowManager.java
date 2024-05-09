@@ -202,8 +202,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.autofill.AutofillManagerInternal;
 import android.widget.Toast;
-import org.omnirom.omnilib.utils.DeviceKeyHandler;
-import org.omnirom.omnilib.utils.OmniUtils;
+import com.android.internal.util.omni.DeviceKeyHandler;
+import com.android.internal.util.omni.OmniUtils;
 
 import dalvik.system.PathClassLoader;
 
@@ -249,8 +249,6 @@ import com.android.server.wm.DisplayPolicy;
 import com.android.server.wm.DisplayRotation;
 import com.android.server.wm.WindowManagerInternal;
 import com.android.server.wm.WindowManagerInternal.AppTransitionListener;
-
-import org.omnirom.omnilib.utils.OmniSettings;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -933,10 +931,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     Settings.Secure.STYLUS_BUTTONS_ENABLED), false, this,
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    OmniSettings.OMNI_SYSTEM_PROXI_CHECK_ENABLED), false, this,
+                    Settings.System.OMNI_SYSTEM_PROXI_CHECK_ENABLED), false, this,
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    OmniSettings.OMNI_LONG_PRESS_POWER_TORCH), false, this,
+                    Settings.System.OMNI_LONG_PRESS_POWER_TORCH), false, this,
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.Secure.getUriFor(
                     Settings.Secure.NAV_BAR_KIDS_MODE), false, this,
@@ -2513,10 +2511,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         mSideFpsEventHandler = new SideFpsEventHandler(mContext, mHandler, mPowerManager);
 
         String deviceKeyHandlerLib = mContext.getResources().getString(
-                org.omnirom.omnilib.R.string.config_deviceKeyHandlerLib);
+                com.android.internal.R.string.config_deviceKeyHandlerLib);
 
         String deviceKeyHandlerClass = mContext.getResources().getString(
-                org.omnirom.omnilib.R.string.config_deviceKeyHandlerClass);
+                com.android.internal.R.string.config_deviceKeyHandlerClass);
 
         if (!deviceKeyHandlerLib.isEmpty() && !deviceKeyHandlerClass.isEmpty()) {
             try {
@@ -2535,7 +2533,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             }
         }
         boolean supportPowerButtonProxyCheck = mContext.getResources().getBoolean(
-                org.omnirom.omnilib.R.bool.config_proxiSensorWakupCheck);
+                com.android.internal.R.bool.config_proxiSensorWakupCheck);
         if (supportPowerButtonProxyCheck) {
             mSensorManager = (SensorManager) mContext.getSystemService(Context.SENSOR_SERVICE);
             if (mDeviceKeyHandler != null && mDeviceKeyHandler.getCustomProxiSensor() != null) {
@@ -3052,10 +3050,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             mInputManagerInternal.setStylusButtonMotionEventsEnabled(mStylusButtonsEnabled);
 
             mProxiWakeupCheckEnabled = Settings.System.getIntForUser(resolver,
-                    OmniSettings.OMNI_SYSTEM_PROXI_CHECK_ENABLED, 0,
+                    Settings.System.OMNI_SYSTEM_PROXI_CHECK_ENABLED, 0,
                     UserHandle.USER_CURRENT) != 0;
             mLongPressPowerTorch = Settings.System.getIntForUser(resolver,
-                    OmniSettings.OMNI_LONG_PRESS_POWER_TORCH, 0,
+                    Settings.System.OMNI_LONG_PRESS_POWER_TORCH, 0,
                     UserHandle.USER_CURRENT) != 0;
 
             final boolean kidsModeEnabled = Settings.Secure.getIntForUser(resolver,

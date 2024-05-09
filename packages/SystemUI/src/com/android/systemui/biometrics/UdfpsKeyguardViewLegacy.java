@@ -34,6 +34,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.MathUtils;
@@ -56,8 +57,6 @@ import com.android.systemui.res.R;
 import com.airbnb.lottie.LottieAnimationView;
 import com.airbnb.lottie.LottieProperty;
 import com.airbnb.lottie.model.KeyPath;
-
-import org.omnirom.omnilib.utils.OmniSettings;
 
 import java.io.File;
 import java.io.FileDescriptor;
@@ -118,7 +117,7 @@ public class UdfpsKeyguardViewLegacy extends UdfpsAnimationView implements
         inflater.inflate(R.layout.udfps_keyguard_view_internal, this,
                 mLayoutInflaterFinishListener);
         Dependency.get(OmniSettingsService.class).addStringObserver(this,
-                OmniSettings.OMNI_CUSTOM_FP_ICON_UPDATE);
+                Settings.System.OMNI_CUSTOM_FP_ICON_UPDATE);
     }
 
     @Override

@@ -90,8 +90,6 @@ import com.android.systemui.statusbar.phone.LightBarTransitionsController;
 import com.android.wm.shell.back.BackAnimation;
 import com.android.wm.shell.pip.Pip;
 
-import org.omnirom.omnilib.utils.OmniSettings;
-
 import java.io.PrintWriter;
 import java.util.Map;
 import java.util.Optional;
@@ -1120,7 +1118,7 @@ public class NavigationBarView extends FrameLayout implements
 
         updateNavButtonIcons();
         Dependency.get(OmniSettingsService.class).addIntObserver(this,
-                OmniSettings.OMNI_NAVIGATION_BAR_ARROW_KEYS);
+                Settings.System.OMNI_NAVIGATION_BAR_ARROW_KEYS);
     }
 
     @Override
@@ -1260,7 +1258,7 @@ public class NavigationBarView extends FrameLayout implements
 
     private boolean showDpadArrowKeys() {
         return Settings.System.getIntForUser(getContext().getContentResolver(),
-                OmniSettings.OMNI_NAVIGATION_BAR_ARROW_KEYS, 0, UserHandle.USER_CURRENT) != 0;
+                Settings.System.OMNI_NAVIGATION_BAR_ARROW_KEYS, 0, UserHandle.USER_CURRENT) != 0;
     }
 
     @Override

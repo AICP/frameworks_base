@@ -98,8 +98,6 @@ import com.android.systemui.util.RingerModeTracker;
 import com.android.systemui.util.kotlin.JavaAdapter;
 import com.android.systemui.util.time.DateFormatUtil;
 
-import org.omnirom.omnilib.utils.OmniSettings;
-
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.List;
@@ -390,8 +388,8 @@ public class PhoneStatusBarPolicy
         mSensorPrivacyController.addCallback(mSensorPrivacyListener);
         mLocationController.addCallback(this);
         mRecordingController.addCallback(this);
-        Dependency.get(OmniSettingsService.class).addIntObserver(this, OmniSettings.OMNI_STATUS_BAR_ALARM);
-        Dependency.get(OmniSettingsService.class).addIntObserver(this, OmniSettings.OMNI_STATUS_BAR_BT_BATTERY);
+        Dependency.get(OmniSettingsService.class).addIntObserver(this, System.OMNI_STATUS_BAR_ALARM);
+        Dependency.get(OmniSettingsService.class).addIntObserver(this, System.OMNI_STATUS_BAR_BT_BATTERY);
         mJavaAdapter.alwaysCollectFlow(mConnectedDisplayInteractor.getConnectedDisplayState(),
                 this::onConnectedDisplayAvailabilityChanged);
 
@@ -897,10 +895,10 @@ public class PhoneStatusBarPolicy
     @Override
     public void onIntSettingChanged(String key, Integer newValue) {
         mShowAlarm = System.getIntForUser(mContext.getContentResolver(),
-                OmniSettings.OMNI_STATUS_BAR_ALARM, 0, mUserTracker.getUserId()) != 0;
+                System.OMNI_STATUS_BAR_ALARM, 0, mUserTracker.getUserId()) != 0;
         updateAlarm();
         mShowBtBattery = System.getIntForUser(mContext.getContentResolver(),
-                OmniSettings.OMNI_STATUS_BAR_BT_BATTERY, 0, mUserTracker.getUserId()) != 0;
+                System.OMNI_STATUS_BAR_BT_BATTERY, 0, mUserTracker.getUserId()) != 0;
         updateBluetooth();
     }
 

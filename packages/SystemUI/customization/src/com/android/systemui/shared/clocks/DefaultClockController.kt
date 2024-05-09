@@ -39,7 +39,6 @@ import com.android.systemui.plugins.clocks.ClockSettings
 import com.android.systemui.plugins.clocks.DefaultClockFaceLayout
 import com.android.systemui.plugins.clocks.WeatherData
 import com.android.systemui.plugins.clocks.ZenData
-import org.omnirom.omnilib.utils.OmniSettings
 
 import java.io.PrintWriter
 import java.util.Locale
@@ -169,7 +168,7 @@ class DefaultClockController(
 
         fun updateColor() {
             val coloredClock = System.getInt(ctx.getContentResolver(),
-                    OmniSettings.OMNI_LOCKSCREEN_CLOCK_COLORED, 1) != 0
+                    System.OMNI_LOCKSCREEN_CLOCK_COLORED, 1) != 0
             val color =
                 if (seedColor != null) {
                     seedColor!!

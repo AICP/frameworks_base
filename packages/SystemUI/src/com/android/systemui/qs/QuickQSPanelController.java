@@ -35,7 +35,7 @@ import com.android.systemui.res.R;
 import com.android.systemui.statusbar.policy.SplitShadeStateController;
 import com.android.systemui.util.leak.RotationUtils;
 
-import org.omnirom.omnilib.utils.OmniUtils;
+import com.android.internal.util.omni.OmniUtils;
 
 import java.util.ArrayList;
 import java.util.List;

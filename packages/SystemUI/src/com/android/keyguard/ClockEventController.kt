@@ -22,6 +22,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.res.Resources
+import android.provider.Settings
 import android.text.format.DateFormat
 import android.util.Log
 import android.util.TypedValue
@@ -65,7 +66,6 @@ import com.android.systemui.statusbar.policy.BatteryController.BatteryStateChang
 import com.android.systemui.statusbar.policy.ConfigurationController
 import com.android.systemui.statusbar.policy.ZenModeController
 import com.android.systemui.util.concurrency.DelayableExecutor
-import org.omnirom.omnilib.utils.OmniSettings
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.DisposableHandle
 import kotlinx.coroutines.Job
@@ -410,7 +410,7 @@ constructor(
             }
         smallTimeListener?.update(shouldTimeListenerRun)
         largeTimeListener?.update(shouldTimeListenerRun)
-        Dependency.get(OmniSettingsService::class.java).addIntObserver(settingsListener, OmniSettings.OMNI_LOCKSCREEN_CLOCK_COLORED)
+        Dependency.get(OmniSettingsService::class.java).addIntObserver(settingsListener, Settings.System.OMNI_LOCKSCREEN_CLOCK_COLORED)
 
         // Query ZenMode data
         zenModeCallback.onZenChanged(zenModeController.zen)

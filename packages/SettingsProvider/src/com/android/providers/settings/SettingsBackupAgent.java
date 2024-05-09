@@ -59,8 +59,6 @@ import com.android.internal.util.ArrayUtils;
 import com.android.internal.widget.LockPatternUtils;
 import com.android.settingslib.display.DisplayDensityConfiguration;
 
-import org.omnirom.omnilib.utils.OmniSettings;
-
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -645,9 +643,7 @@ public class SettingsBackupAgent extends BackupAgentHelper {
         Cursor cursor = getContentResolver().query(Settings.System.CONTENT_URI, PROJECTION, null,
                 null, null);
         try {
-            String[] settings = ArrayUtils.concat(String.class, SystemSettings.SETTINGS_TO_BACKUP,
-                    OmniSettings.OMNI_SETTINGS_TO_BACKUP);
-            return extractRelevantValues(cursor, settings);
+            return extractRelevantValues(cursor, SystemSettings.SETTINGS_TO_BACKUP);
         } finally {
             cursor.close();
         }
@@ -942,23 +938,8 @@ public class SettingsBackupAgent extends BackupAgentHelper {
             validators = SecureSettingsValidators.VALIDATORS;
         } else if (contentUri.equals(Settings.System.CONTENT_URI)) {
             whitelist = ArrayUtils.concat(String.class, SystemSettings.SETTINGS_TO_BACKUP,
-                    Settings.System.LEGACY_RESTORE_SETTINGS, OmniSettings.OMNI_SETTINGS_TO_BACKUP);
+                    Settings.System.LEGACY_RESTORE_SETTINGS);
             validators = SystemSettingsValidators.VALIDATORS;
-
-            final Map<String, Integer> omniValidators = OmniSettings.OMNI_SETTINGS_VALIDATORS;
-            // BOOLEAN_VALIDATOR == 0
-            // ANY_INTEGER_VALIDATOR == 1
-            // ANY_STRING_VALIDATOR == 2
-            for (String key : omniValidators.keySet()) {
-                Integer validatorId = omniValidators.get(key);
-                if (validatorId == 0) {
-                    validators.put(key, SettingsValidators.BOOLEAN_VALIDATOR);
-                } else if (validatorId == 1) {
-                    validators.put(key, SettingsValidators.ANY_INTEGER_VALIDATOR);
-                } else if (validatorId == 2) {
-                    validators.put(key, SettingsValidators.ANY_STRING_VALIDATOR);
-                }
-            }
         } else if (contentUri.equals(Settings.Global.CONTENT_URI)) {
             whitelist = ArrayUtils.concat(String.class, GlobalSettings.SETTINGS_TO_BACKUP,
                     Settings.Global.LEGACY_RESTORE_SETTINGS);

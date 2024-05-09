@@ -204,7 +204,6 @@ android_library {
         "lottie",
         "LowLightDreamLib",
         "motion_tool_lib",
-        "OmniLib",
         "notification_flags_lib",
     ],
     libs: [

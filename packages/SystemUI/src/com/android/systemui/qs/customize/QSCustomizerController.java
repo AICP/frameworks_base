@@ -22,6 +22,7 @@ import static com.android.systemui.qs.customize.QSCustomizer.MENU_RESET;
 import android.content.res.Configuration;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -49,8 +50,6 @@ import com.android.systemui.statusbar.policy.ConfigurationController;
 import com.android.systemui.statusbar.policy.ConfigurationController.ConfigurationListener;
 import com.android.systemui.statusbar.policy.KeyguardStateController;
 import com.android.systemui.util.ViewController;
-
-import org.omnirom.omnilib.utils.OmniSettings;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -166,9 +165,9 @@ public class QSCustomizerController extends ViewController<QSCustomizer>
         mToolbar.setNavigationOnClickListener(v -> hide());
 
         Dependency.get(OmniSettingsService.class).addIntObserver(this,
-                OmniSettings.OMNI_QS_LAYOUT_COLUMNS);
+                Settings.System.OMNI_QS_LAYOUT_COLUMNS);
         Dependency.get(OmniSettingsService.class).addIntObserver(this,
-                OmniSettings.OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE);
+                Settings.System.OMNI_QS_LAYOUT_COLUMNS_LANDSCAPE);
     }
 
     @Override

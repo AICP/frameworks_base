@@ -26,7 +26,7 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.os.RemoteException;
 
-import omnirom.platform.R;
+import com.android.internal.R;
 
 import java.util.List;
 

@@ -60,7 +60,7 @@ import com.android.systemui.qs.dagger.QSThemedContext;
 import com.android.systemui.qs.external.CustomTile;
 import com.android.systemui.qs.tileimpl.QSTileViewImpl;
 
-import org.omnirom.omnilib.utils.OmniUtils;
+import com.android.internal.util.omni.OmniUtils;
 
 import java.util.ArrayList;
 import java.util.List;

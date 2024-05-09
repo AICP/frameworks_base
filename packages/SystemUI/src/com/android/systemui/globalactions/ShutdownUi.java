@@ -145,11 +145,11 @@ public class ShutdownUi {
         } else if (reason != null && !custom && reason.equals(PowerManager.REBOOT_RECOVERY)) {
             return R.string.reboot_to_reset_message;
         } else if (reason != null && reason.equals(PowerManager.REBOOT_RECOVERY)) {
-            return org.omnirom.omnilib.R.string.reboot_to_recovery_message;
+            return com.android.internal.R.string.reboot_to_recovery_message;
         } else if (reason != null && reason.equals(PowerManager.REBOOT_BOOTLOADER)) {
-            return org.omnirom.omnilib.R.string.reboot_to_bootloader_message;
+            return com.android.internal.R.string.reboot_to_bootloader_message;
         } else if (reason != null && reason.equals(PowerManager.REBOOT_FASTBOOT)) {
-            return org.omnirom.omnilib.R.string.reboot_to_fastboot_message;
+            return com.android.internal.R.string.reboot_to_fastboot_message;
         } else if (isReboot) {
             return R.string.reboot_to_reset_message;
         } else {

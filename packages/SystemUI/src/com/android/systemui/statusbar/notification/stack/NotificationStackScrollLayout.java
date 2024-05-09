@@ -126,7 +126,7 @@ import com.android.systemui.util.DumpUtilsKt;
 
 import com.google.errorprone.annotations.CompileTimeConstant;
 
-import org.omnirom.omnilib.utils.OmniUtils;
+import com.android.internal.util.omni.OmniUtils;
 
 import java.io.PrintWriter;
 import java.lang.annotation.Retention;

@@ -141,8 +141,6 @@ import com.android.server.power.batterysaver.BatterySavingStats;
 
 import dalvik.annotation.optimization.NeverCompile;
 
-import org.omnirom.omnilib.utils.OmniSettings;
-
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.lang.annotation.Retention;
@@ -1329,7 +1327,7 @@ public final class PowerManagerService extends SystemService
     private void systemReady() {
         // set initial value
         Settings.System.putIntForUser(mContext.getContentResolver(),
-                OmniSettings.OMNI_DOZE_ON_CHARGE_NOW, 0, UserHandle.USER_CURRENT);
+                Settings.System.OMNI_DOZE_ON_CHARGE_NOW, 0, UserHandle.USER_CURRENT);
 
         synchronized (mLock) {
             mSystemReady = true;
@@ -1449,10 +1447,10 @@ public final class PowerManagerService extends SystemService
                 Settings.Global.DEVICE_DEMO_MODE),
                 false, mSettingsObserver, UserHandle.USER_SYSTEM);
         resolver.registerContentObserver(Settings.System.getUriFor(
-                OmniSettings.OMNI_DOZE_ON_CHARGE_NOW),
+                Settings.System.OMNI_DOZE_ON_CHARGE_NOW),
                 false, mSettingsObserver, UserHandle.USER_ALL);
         resolver.registerContentObserver(Settings.System.getUriFor(
-                OmniSettings.OMNI_DOZE_ON_CHARGE),
+                Settings.System.OMNI_DOZE_ON_CHARGE),
                 false, mSettingsObserver, UserHandle.USER_ALL);
 
         // Register for broadcasts from other components of the system.
@@ -1485,7 +1483,7 @@ public final class PowerManagerService extends SystemService
         mDecoupleHalInteractiveModeFromDisplayConfig = resources.getBoolean(
                 com.android.internal.R.bool.config_powerDecoupleInteractiveModeFromDisplay);
         mEnableAutoSuspendConfig = resources.getBoolean(
-                org.omnirom.omnilib.R.bool.config_enableAutoSuspend);
+                com.android.internal.R.bool.config_enableAutoSuspend);
         mWakeUpWhenPluggedOrUnpluggedConfig = resources.getBoolean(
                 com.android.internal.R.bool.config_unplugTurnsOnScreen);
         mWakeUpWhenPluggedOrUnpluggedInTheaterModeConfig = resources.getBoolean(
@@ -1559,8 +1557,8 @@ public final class PowerManagerService extends SystemService
                 Settings.Global.THEATER_MODE_ON, 0) == 1;
         mAlwaysOnEnabled = mAmbientDisplayConfiguration.alwaysOnEnabled(UserHandle.USER_CURRENT);
         mDozeOnChargeEnabled = Settings.System.getIntForUser(resolver,
-                OmniSettings.OMNI_DOZE_ON_CHARGE, 0, UserHandle.USER_CURRENT) != 0;
-        Settings.System.putIntForUser(resolver, OmniSettings.OMNI_DOZE_ON_CHARGE_NOW,
+                Settings.System.OMNI_DOZE_ON_CHARGE, 0, UserHandle.USER_CURRENT) != 0;
+        Settings.System.putIntForUser(resolver, Settings.System.OMNI_DOZE_ON_CHARGE_NOW,
                 mDozeOnChargeEnabled && mIsPowered ? 1 : 0, UserHandle.USER_CURRENT);
 
         if (mSupportsDoubleTapWakeConfig) {
@@ -2601,7 +2599,7 @@ public final class PowerManagerService extends SystemService
 
                 if (mDozeOnChargeEnabled) {
                     Settings.System.putIntForUser(mContext.getContentResolver(),
-                            OmniSettings.OMNI_DOZE_ON_CHARGE_NOW, mIsPowered ? 1 : 0,
+                            Settings.System.OMNI_DOZE_ON_CHARGE_NOW, mIsPowered ? 1 : 0,
                             UserHandle.USER_CURRENT);
                 }
                 // Treat plugging and unplugging the devices as a user activity.

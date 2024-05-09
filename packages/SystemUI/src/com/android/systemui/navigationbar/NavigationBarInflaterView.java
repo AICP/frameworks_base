@@ -47,8 +47,6 @@ import com.android.systemui.omni.OmniSettingsService;
 import com.android.systemui.recents.OverviewProxyService;
 import com.android.systemui.shared.system.QuickStepContract;
 
-import org.omnirom.omnilib.utils.OmniSettings;
-
 import java.io.PrintWriter;
 import java.lang.ref.WeakReference;
 import java.util.Objects;
@@ -195,11 +193,11 @@ public class NavigationBarInflaterView extends FrameLayout
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         Dependency.get(OmniSettingsService.class).addIntObserver(this,
-            OmniSettings.OMNI_NAVIGATION_BAR_ARROW_KEYS);
+            Settings.System.OMNI_NAVIGATION_BAR_ARROW_KEYS);
         Dependency.get(OmniSettingsService.class).addIntObserver(this,
-            OmniSettings.OMNI_GESTURE_HANDLE_HIDE);
+            Settings.System.OMNI_GESTURE_HANDLE_HIDE);
         Dependency.get(OmniSettingsService.class).addIntObserver(this, 
-            OmniSettings.OMNI_GESTURE_HANDLE_SMALL);
+            Settings.System.OMNI_GESTURE_HANDLE_SMALL);
     }
 
     public void onLikelyDefaultLayoutChange() {
@@ -534,17 +532,17 @@ public class NavigationBarInflaterView extends FrameLayout
 
     private boolean showDpadArrowKeys() {
         return Settings.System.getIntForUser(getContext().getContentResolver(),
-                OmniSettings.OMNI_NAVIGATION_BAR_ARROW_KEYS, 0, UserHandle.USER_CURRENT) != 0;
+                Settings.System.OMNI_NAVIGATION_BAR_ARROW_KEYS, 0, UserHandle.USER_CURRENT) != 0;
     }
 
     private boolean hideGestureHandle() {
         return Settings.System.getIntForUser(getContext().getContentResolver(),
-                OmniSettings.OMNI_GESTURE_HANDLE_HIDE, 0, UserHandle.USER_CURRENT) != 0;
+                Settings.System.OMNI_GESTURE_HANDLE_HIDE, 0, UserHandle.USER_CURRENT) != 0;
     }
 
     private boolean isSmallGestureHandle() {
         return Settings.System.getIntForUser(getContext().getContentResolver(),
-                OmniSettings.OMNI_GESTURE_HANDLE_SMALL, 0, UserHandle.USER_CURRENT) != 0;
+                Settings.System.OMNI_GESTURE_HANDLE_SMALL, 0, UserHandle.USER_CURRENT) != 0;
     }
 
     @Override

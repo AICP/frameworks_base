@@ -24,7 +24,7 @@ import com.android.systemui.qs.tileimpl.HeightOverrideable;
 import com.android.systemui.qs.tileimpl.QSTileViewImplKt;
 import com.android.systemui.res.R;
 
-import org.omnirom.omnilib.utils.OmniUtils;
+import com.android.internal.util.omni.OmniUtils;
 
 import java.util.ArrayList;
 

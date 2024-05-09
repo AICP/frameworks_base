@@ -96,8 +96,6 @@ import com.android.wm.shell.back.BackAnimation;
 import com.android.wm.shell.desktopmode.DesktopMode;
 import com.android.wm.shell.pip.Pip;
 
-import org.omnirom.omnilib.utils.OmniSettings;
-
 import java.io.PrintWriter;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -554,7 +552,7 @@ public class EdgeBackGestureHandler implements PluginListener<NavigationEdgeBack
 
     private void updateEdgeHeightValue() {
         int edgeHeightSetting = Settings.System.getIntForUser(mContext.getContentResolver(),
-                OmniSettings.OMNI_BACK_GESTURE_HEIGHT, 0, UserHandle.USER_CURRENT);
+                Settings.System.OMNI_BACK_GESTURE_HEIGHT, 0, UserHandle.USER_CURRENT);
         // edgeHeigthSettings cant be range 0 - 3
         // 0 means full height
         // 1 measns half of the screen

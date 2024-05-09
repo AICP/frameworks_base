@@ -142,8 +142,6 @@ import com.android.systemui.util.RingerModeTracker;
 import com.android.systemui.util.settings.GlobalSettings;
 import com.android.systemui.util.settings.SecureSettings;
 
-import org.omnirom.omnilib.utils.OmniSettings;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -449,7 +447,7 @@ public class GlobalActionsDialogLite implements DialogInterface.OnDismissListene
         mRootMenuActions = mContext.getResources().getStringArray(
                 R.array.config_globalActionsList);
         mRebootMenuActions = mContext.getResources().getStringArray(
-                org.omnirom.omnilib.R.array.config_rebootActionsList);
+                com.android.internal.R.array.config_rebootActionsList);
     }
 
     /**
@@ -766,7 +764,7 @@ public class GlobalActionsDialogLite implements DialogInterface.OnDismissListene
 
     private boolean advancedRebootEnabled(Context context) {
         boolean advancedRebootEnabled = Settings.System.getIntForUser(context.getContentResolver(),
-                OmniSettings.OMNI_ADVANCED_REBOOT, 0, UserHandle.USER_CURRENT) == 1;
+                Settings.System.OMNI_ADVANCED_REBOOT, 0, UserHandle.USER_CURRENT) == 1;
         return advancedRebootEnabled;
     }
 

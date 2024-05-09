@@ -70,8 +70,7 @@ import com.android.systemui.util.wakelock.SettableWakeLock;
 import com.android.systemui.util.wakelock.WakeLock;
 import com.android.systemui.util.wakelock.WakeLockLogger;
 
-import org.omnirom.omnilib.utils.OmniSettings;
-import org.omnirom.omnilib.weather.OmniJawsClient;
+import com.android.internal.util.omni.OmniJawsClient;
 
 import java.util.Date;
 import java.util.Locale;
@@ -367,8 +366,8 @@ public class KeyguardSliceProvider extends SliceProvider implements
             registerClockUpdate();
             updateClockLocked();
 
-            Dependency.get(OmniSettingsService.class).addIntObserver(this, OmniSettings.OMNI_LOCKSCREEN_WEATHER_ENABLED,
-                    OmniSettings.OMNI_LOCKSCREEN_ALARM_ENABLED, OmniSettings.OMNI_LOCKSCREEN_DND_ENABLED);
+            Dependency.get(OmniSettingsService.class).addIntObserver(this, Settings.System.OMNI_LOCKSCREEN_WEATHER_ENABLED,
+                    Settings.System.OMNI_LOCKSCREEN_ALARM_ENABLED, Settings.System.OMNI_LOCKSCREEN_DND_ENABLED);
 
             enableWeatherUpdates();
         }
@@ -657,13 +656,13 @@ public class KeyguardSliceProvider extends SliceProvider implements
     @Override
     public void onIntSettingChanged(String key, Integer newValue) {
         mShowWeatherSlice = Settings.System.getIntForUser(mContentResolver,
-                    OmniSettings.OMNI_LOCKSCREEN_WEATHER_ENABLED,
+                    Settings.System.OMNI_LOCKSCREEN_WEATHER_ENABLED,
                     0, UserHandle.USER_CURRENT) != 0;
         mShowAlarmSlice = Settings.System.getIntForUser(mContentResolver,
-                    OmniSettings.OMNI_LOCKSCREEN_ALARM_ENABLED,
+                    Settings.System.OMNI_LOCKSCREEN_ALARM_ENABLED,
                     1, UserHandle.USER_CURRENT) != 0;
         mShowDndSlice = Settings.System.getIntForUser(mContentResolver,
-                    OmniSettings.OMNI_LOCKSCREEN_DND_ENABLED,
+                    Settings.System.OMNI_LOCKSCREEN_DND_ENABLED,
                     0, UserHandle.USER_CURRENT) != 0;
         notifyChange();
     }

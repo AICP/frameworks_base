@@ -22,9 +22,12 @@ import static android.view.WindowManager.LayoutParams.TYPE_SYSTEM_DIALOG;
 
 import android.annotation.NonNull;
 import android.annotation.Nullable;
+import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.AppGlobals;
 import android.app.Dialog;
+import android.app.SynchronousUserSwitchObserver;
+import android.app.UserSwitchObserver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -40,6 +43,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.hardware.input.InputManager;
 import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.Looper;
 import android.os.RemoteException;
 import android.util.Log;
@@ -94,6 +98,8 @@ public final class KeyboardShortcuts {
     };
 
     private final Handler mHandler = new Handler(Looper.getMainLooper());
+    private final HandlerThread mHandlerThread = new HandlerThread("KeyboardShortcutHelper");
+    @VisibleForTesting Handler mBackgroundHandler;
     @VisibleForTesting Context mContext;
     private final IPackageManager mPackageManager;
     private final OnClickListener mDialogCloseListener = new DialogInterface.OnClickListener() {
@@ -129,6 +135,13 @@ public final class KeyboardShortcuts {
 
     @Nullable private List<KeyboardShortcutGroup> mReceivedAppShortcutGroups = null;
     @Nullable private List<KeyboardShortcutGroup> mReceivedImeShortcutGroups = null;
+
+    private final UserSwitchObserver mUserSwitchObserver = new SynchronousUserSwitchObserver() {
+            @Override
+            public void onUserSwitching(int newUserId) throws RemoteException {
+                dismiss();
+            }
+    };
 
     @VisibleForTesting
     KeyboardShortcuts(Context context, WindowManager windowManager) {
@@ -375,19 +388,60 @@ public final class KeyboardShortcuts {
 
     @VisibleForTesting
     void showKeyboardShortcuts(int deviceId) {
+        if (mBackgroundHandler == null) {
+            mHandlerThread.start();
+            mBackgroundHandler = new Handler(mHandlerThread.getLooper());
+        }
+
+        try {
+            ActivityManager.getService().registerUserSwitchObserver(mUserSwitchObserver, TAG);
+        } catch (RemoteException e) {
+            Log.e(TAG, "could not register user switch observer", e);
+        }
+
         retrieveKeyCharacterMap(deviceId);
+
         mReceivedAppShortcutGroups = null;
         mReceivedImeShortcutGroups = null;
+
         mWindowManager.requestAppKeyboardShortcuts(
                 result -> {
-                    mReceivedAppShortcutGroups = result;
-                    maybeMergeAndShowKeyboardShortcuts();
+                    mBackgroundHandler.post(() -> {
+                        onAppSpecificShortcutsReceived(result);
+                    });
                 }, deviceId);
         mWindowManager.requestImeKeyboardShortcuts(
                 result -> {
-                    mReceivedImeShortcutGroups = result;
-                    maybeMergeAndShowKeyboardShortcuts();
+                    mBackgroundHandler.post(() -> {
+                        onImeSpecificShortcutsReceived(result);
+                    });
                 }, deviceId);
+    }
+
+    private void onAppSpecificShortcutsReceived(List<KeyboardShortcutGroup> result) {
+        mReceivedAppShortcutGroups =
+                result == null ? Collections.emptyList() : result;
+
+        sanitiseShortcuts(mReceivedAppShortcutGroups);
+
+        maybeMergeAndShowKeyboardShortcuts();
+    }
+
+    private void onImeSpecificShortcutsReceived(List<KeyboardShortcutGroup> result) {
+        mReceivedImeShortcutGroups =
+                result == null ? Collections.emptyList() : result;
+
+        sanitiseShortcuts(mReceivedImeShortcutGroups);
+
+        maybeMergeAndShowKeyboardShortcuts();
+    }
+
+    static void sanitiseShortcuts(List<KeyboardShortcutGroup> shortcutGroups) {
+        for (KeyboardShortcutGroup group : shortcutGroups) {
+            for (KeyboardShortcutInfo info : group.getItems()) {
+                info.clearIcon();
+            }
+        }
     }
 
     private void maybeMergeAndShowKeyboardShortcuts() {
@@ -412,6 +466,12 @@ public final class KeyboardShortcuts {
         if (mKeyboardShortcutsDialog != null) {
             mKeyboardShortcutsDialog.dismiss();
             mKeyboardShortcutsDialog = null;
+        }
+        mHandlerThread.quit();
+        try {
+            ActivityManager.getService().unregisterUserSwitchObserver(mUserSwitchObserver);
+        } catch (RemoteException e) {
+            Log.e(TAG, "Could not unregister user switch observer", e);
         }
     }
 

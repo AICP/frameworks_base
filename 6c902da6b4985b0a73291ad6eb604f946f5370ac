@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a99eb3e8_21a09978",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1646
+      },
+      "writtenOn": "2024-06-05T13:50:07Z",
+      "side": 1,
+      "message": "required for Elmyraservice\n\nhttps://github.com/LineageOS/android_packages_apps_ElmyraService",
+      "revId": "6c902da6b4985b0a73291ad6eb604f946f5370ac",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

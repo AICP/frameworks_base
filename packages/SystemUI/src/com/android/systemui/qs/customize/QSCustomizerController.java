@@ -45,6 +45,7 @@ import com.android.systemui.qs.QSEditEvent;
 import com.android.systemui.qs.QSHost;
 import com.android.systemui.qs.dagger.QSScope;
 import com.android.systemui.res.R;
+import com.android.systemui.scene.shared.flag.SceneContainerFlags;
 import com.android.systemui.statusbar.phone.LightBarController;
 import com.android.systemui.statusbar.policy.ConfigurationController;
 import com.android.systemui.statusbar.policy.ConfigurationController.ConfigurationListener;
@@ -105,7 +106,8 @@ public class QSCustomizerController extends ViewController<QSCustomizer>
     protected QSCustomizerController(QSCustomizer view, TileQueryHelper tileQueryHelper,
             QSHost qsHost, TileAdapter tileAdapter, ScreenLifecycle screenLifecycle,
             KeyguardStateController keyguardStateController, LightBarController lightBarController,
-            ConfigurationController configurationController, UiEventLogger uiEventLogger) {
+            ConfigurationController configurationController, UiEventLogger uiEventLogger,
+            SceneContainerFlags sceneContainerFlags) {
         super(view);
         mTileQueryHelper = tileQueryHelper;
         mQsHost = qsHost;
@@ -115,10 +117,14 @@ public class QSCustomizerController extends ViewController<QSCustomizer>
         mLightBarController = lightBarController;
         mConfigurationController = configurationController;
         mUiEventLogger = uiEventLogger;
+        view.setSceneContainerEnabled(sceneContainerFlags.isEnabled());
 
         mToolbar = mView.findViewById(com.android.internal.R.id.action_bar);
     }
 
+    public void applyBottomNavBarSizeToRecyclerViewPadding(int padding) {
+        mView.applyBottomNavBarToPadding(padding);
+    }
 
     @Override
     protected void onViewAttached() {

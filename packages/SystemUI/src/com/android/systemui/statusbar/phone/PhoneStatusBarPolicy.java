@@ -407,11 +407,6 @@ public class PhoneStatusBarPolicy
         updateVolumeZen();
     }
 
-    @Override
-    public void onConfigChanged(ZenModeConfig config) {
-        updateVolumeZen();
-    }
-
     private void updateAlarm() {
         final AlarmClockInfo alarm = mAlarmManager.getNextAlarmClock(mUserTracker.getUserId());
         final boolean hasAlarm = alarm != null && alarm.getTriggerTime() > 0;

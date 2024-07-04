@@ -50,6 +50,8 @@ import com.android.systemui.statusbar.phone.SystemUIDialog;
 import com.android.systemui.statusbar.policy.Clock;
 import com.android.systemui.util.leak.LeakDetector;
 
+import dagger.Lazy;
+
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -95,6 +97,7 @@ public class TunerServiceImpl extends TunerService {
     // Set of all tunables, used for leak detection.
     private final HashSet<Tunable> mTunables = LeakDetector.ENABLED ? new HashSet<>() : null;
     private final Context mContext;
+    private final Lazy<SystemUIDialog.Factory> mSystemUIDialogFactoryLazy;
     private final LeakDetector mLeakDetector;
     private final DemoModeController mDemoModeController;
 
@@ -112,9 +115,11 @@ public class TunerServiceImpl extends TunerService {
             @Main Handler mainHandler,
             LeakDetector leakDetector,
             DemoModeController demoModeController,
-            UserTracker userTracker) {
+            UserTracker userTracker,
+            Lazy<SystemUIDialog.Factory> systemUIDialogFactoryLazy) {
         super(context);
         mContext = context;
+        mSystemUIDialogFactoryLazy = systemUIDialogFactoryLazy;
         mContentResolver = mContext.getContentResolver();
         mLeakDetector = leakDetector;
         mDemoModeController = demoModeController;
@@ -348,7 +353,7 @@ public class TunerServiceImpl extends TunerService {
 
     @Override
     public void showResetRequest(Runnable onDisabled) {
-        SystemUIDialog dialog = new SystemUIDialog(mContext);
+        SystemUIDialog dialog = mSystemUIDialogFactoryLazy.get().create();
         dialog.setShowForAllUsers(true);
         dialog.setMessage(R.string.remove_from_settings_prompt);
         dialog.setButton(DialogInterface.BUTTON_NEGATIVE, mContext.getString(R.string.cancel),

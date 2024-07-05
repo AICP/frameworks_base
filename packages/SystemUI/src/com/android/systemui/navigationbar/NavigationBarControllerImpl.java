@@ -166,9 +166,6 @@ public class NavigationBarControllerImpl implements
                 + " mTaskbarDelegate initialized=" + mTaskbarDelegate.isInitialized()
                 + " willApplyConfigToNavbars=" + willApplyConfig
                 + " navBarCount=" + mNavigationBars.size());
-        if (mTaskbarDelegate.isInitialized()) {
-            mTaskbarDelegate.onConfigurationChanged(newConfig);
-        }
         // If we folded/unfolded while in 3 button, show navbar in folded state, hide in unfolded
         if (largeScreenChanged && updateNavbarForTaskbar()) {
             return;

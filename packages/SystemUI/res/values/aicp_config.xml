@@ -38,4 +38,7 @@
 
     <!-- Same as above but for low setting -->
     <string name="config_screenRecorderHEVCProfileLevelLow" translatable="false">3.1</string>
+
+    <!-- Whether to enable HEVC toggle for screenrecord -->
+    <bool name="config_screenRecordHEVC">true</bool>
 </resources>

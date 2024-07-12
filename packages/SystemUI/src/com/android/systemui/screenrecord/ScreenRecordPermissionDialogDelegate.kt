@@ -68,6 +68,7 @@ class ScreenRecordPermissionDialogDelegate(
         R.color.screenrecord_icon_color
     ),
     SystemUIDialog.Delegate {
+    private val isHEVCAllowed: Boolean = controller.isHEVCAllowed()
     private lateinit var screenShareModeSpinner: Spinner
     private lateinit var tapsSwitch: Switch
     private lateinit var tapsView: View
@@ -189,6 +190,11 @@ class ScreenRecordPermissionDialogDelegate(
             }
         lowQualitySpinner.isLongClickable = false
 
+        if (!isHEVCAllowed) {
+            val hevcView: View = dialog.requireViewById(R.id.show_hevc)
+            hevcView.visibility = GONE
+        }
+
         val userContext = userContextProvider.userContext
         screenShareModeSpinner.setSelection(Prefs.getInt(userContext, PREF_SHARE_MODE, 0))
         tapsSwitch.isChecked = Prefs.getInt(userContext, PREF_TAPS, 0) == 1
@@ -197,7 +203,7 @@ class ScreenRecordPermissionDialogDelegate(
         audioSwitch.isChecked = Prefs.getInt(userContext, PREF_AUDIO, 0) == 1
         options.setSelection(Prefs.getInt(userContext, PREF_AUDIO_SOURCE, 0))
         skipTimeSwitch.isChecked = Prefs.getInt(userContext, PREF_SKIP, 0) == 1
-        hevcSwitch.isChecked = Prefs.getInt(userContext, PREF_HEVC, 1) == 1
+        hevcSwitch.isChecked = isHEVCAllowed && Prefs.getInt(userContext, PREF_HEVC, 1) == 1
     }
 
     override fun onItemSelected(adapterView: AdapterView<*>?, view: View, pos: Int, id: Long) {
@@ -223,7 +229,7 @@ class ScreenRecordPermissionDialogDelegate(
             else ScreenRecordingAudioSource.NONE
         val showStopDot = stopDotSwitch.isChecked
         val lowQuality = lowQualitySpinner.selectedItemPosition
-        val hevc = hevcSwitch.isChecked
+        val hevc = isHEVCAllowed && hevcSwitch.isChecked
         val skipTime = skipTimeSwitch.isChecked
         val startIntent =
             PendingIntent.getForegroundService(

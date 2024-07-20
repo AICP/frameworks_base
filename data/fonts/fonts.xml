@@ -1792,4 +1792,72 @@
             <axis tag="wght" stylevalue="700"/>
         </font>
     </family>
+
+    <!-- AOSPA Edit -->
+    <family lang="und-Aghb">
+        <font weight="400" style="normal">NotoSansCaucasianAlbanian-Regular.ttf</font>
+    </family>
+    <family lang="und-Chrs">
+        <font weight="400" style="normal">NotoSansChorasmian-Regular.ttf</font>
+    </family>
+    <family lang="und-Elym">
+        <font weight="400" style="normal">NotoSansElymaic-Regular.ttf</font>
+    </family>
+    <family lang="und-Arab">
+        <font weight="400" style="normal">NotoSansIndicSiyaqNumbers-Regular.ttf</font>
+    </family>
+    <family lang="und-Sind">
+        <font weight="400" style="normal">NotoSansKhudawadi-Regular.ttf</font>
+    </family>
+    <family lang="und-Mahj">
+        <font weight="400" style="normal">NotoSansMahajani-Regular.ttf</font>
+    </family>
+    <family lang="und-Mayn">
+        <font weight="400" style="normal">NotoSansMayanNumerals-Regular.ttf</font>
+    </family>
+    <family lang="und-Mend">
+        <font weight="400" style="normal">NotoSansMendeKikakui-Regular.ttf</font>
+    </family>
+    <family lang="und-Snus">
+        <font weight="400" style="normal">NotoSansNushu-Regular.ttf</font>
+    </family>
+    <family lang="und-Hung">
+        <font weight="400" style="normal">NotoSansOldHungarian-Regular.ttf</font>
+    </family>
+    <family lang="und-Sogo">
+        <font weight="400" style="normal">NotoSansOldSogdian-Regular.ttf</font>
+    </family>
+    <family lang="und-Phlp">
+        <font weight="400" style="normal">NotoSansPsalterPahlavi-Regular.ttf</font>
+    </family>
+    <family lang="und-Sidd">
+        <font weight="400" style="normal">NotoSansSiddham-Regular.ttf</font>
+    </family>
+    <family lang="und-Sgnw">
+        <font weight="400" style="normal">NotoSansSignWriting-Regular.ttf</font>
+    </family>
+    <family lang="und-Taml">
+        <font weight="400" style="normal">NotoSansTamilSupplement-Regular.ttf</font>
+    </family>
+    <family lang="und-Stan">
+        <font weight="400" style="normal">NotoSansTangsa-Regular.ttf</font>
+    </family>
+    <family lang="und-Tirh">
+        <font weight="400" style="normal">NotoSansTirhuta-Regular.ttf</font>
+    </family>
+    <family lang="und-Vith">
+        <font weight="400" style="normal">NotoSansVithkuqi-Regular.ttf</font>
+    </family>
+    <family lang="und-Zanb">
+        <font weight="400" style="normal">NotoSansZanabazarSquare-Regular.ttf</font>
+    </family>
+    <family lang="und-Tang">
+        <font weight="400" style="normal">NotoSerifTangut-Regular.ttf</font>
+    </family>
+    <family lang="und-Toto">
+        <font weight="400" style="normal">NotoSerifToto-Regular.ttf</font>
+    </family>
+    <family lang="und-Tnus">
+        <font weight="400" style="normal">NotoTraditionalNushu-Regular.ttf</font>
+    </family>
 </familyset>

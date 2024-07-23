@@ -109,11 +109,8 @@ public class TileQueryHelper {
         if (current != null) {
             possibleTiles.addAll(Arrays.asList(current.split(",")));
         }
-        String[] stockSplit =  stock.split(",");
-        for (String spec : stockSplit) {
-            if (!current.contains(spec)) {
-                possibleTiles.add(spec);
-            }
+        if (possible != null) {
+            possibleTiles.addAll(Arrays.asList(possible.split(",")));
         }
 
         final ArrayList<QSTile> tilesToAdd = new ArrayList<>();

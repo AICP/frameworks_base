@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.systemui.lineage
+package com.android.systemui.aicp
 
 import com.android.systemui.qs.QsEventLogger
 import com.android.systemui.qs.pipeline.shared.TileSpec
@@ -41,7 +41,7 @@ import dagger.multibindings.IntoMap
 import dagger.multibindings.StringKey
 
 @Module
-interface LineageModule {
+interface AicpModule {
     /** Inject AmbientDisplayTile into tileMap in QSModule */
     @Binds
     @IntoMap

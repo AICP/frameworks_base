@@ -27,11 +27,6 @@
 
     <bool name="always_show_screenshot_dismiss_button">false</bool>
 
-    <!-- The default tiles to display in QuickSettings -->
-    <string name="quick_settings_tiles_extra" translatable="false">
-        aod,nfc,screenshot,caffeine,dataswitch,heads_up,compass
-    </string>
-
     <!-- The CPU temperature sensor path, defaults to empty -->
     <string name="config_cpuTempSensor" translatable="false"></string>
     <!-- The battery temperature divider, if needed -->

@@ -4,5 +4,9 @@
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
+    <!-- The default tiles to display in QuickSettings -->
+    <string name="quick_settings_tiles_extra" translatable="false">
+        aod,nfc,screenshot,caffeine,dataswitch,heads_up,compass
+    </string>
 
 </resources>

@@ -451,7 +451,7 @@ public class GlobalActionsDialogLite implements DialogInterface.OnDismissListene
         mConfigurationController.addCallback(this);
 
         mRootMenuActions = mContext.getResources().getStringArray(
-                R.array.config_globalActionsList);
+                R.array.custom_config_globalActionsList);
         mRebootMenuActions = mContext.getResources().getStringArray(
                 com.android.internal.R.array.config_rebootActionsList);
     }

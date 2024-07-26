@@ -30,6 +30,7 @@
     <java-symbol name="reboot_system_title" type="string" />
     <java-symbol name="reboot_system_message" type="string" />
     <java-symbol type="array" name="config_rebootActionsList" />
+    <java-symbol type="array" name="custom_config_globalActionsList" />
 
     <!-- Whether device can force navbar disabling -->
     <java-symbol type="bool" name="config_canForceDisableNavigationBar" />

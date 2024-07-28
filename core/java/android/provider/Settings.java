@@ -6477,6 +6477,12 @@ public final class Settings {
         public static final String STATUS_BAR_CLOCK_POSITION = "status_bar_clock_position";
 
         /**
+         * Whether to display screenshot in the power menu
+         * @hide
+         */
+        public static final String POWERMENU_SCREENSHOT = "powermenu_screenshot";
+
+        /**
          * Whether to display the on-the-go option in the power menu
          * @hide
          */

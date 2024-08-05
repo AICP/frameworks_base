@@ -26,7 +26,10 @@ import java.util.Set;
 
 import com.android.internal.util.ArrayUtils;
 
-public class DeviceConfigUtils {
+/**
+ * @hide
+ */
+public final class DeviceConfigUtils {
 
     private static final String TAG = DeviceConfigUtils.class.getSimpleName();
 

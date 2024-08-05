@@ -26,7 +26,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GamesPropsUtils {
+/**
+ * @hide
+ */
+public final class GamesPropsUtils {
 
     private static final String TAG = GamesPropsUtils.class.getSimpleName();
     private static final boolean DEBUG = false;

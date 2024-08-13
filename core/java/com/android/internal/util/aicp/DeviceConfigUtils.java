@@ -17,8 +17,10 @@
 package com.android.internal.util.aicp;
 
 import android.content.res.Resources;
+import android.os.SystemProperties;
 import android.provider.Settings;
 import android.util.Log;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,8 +34,10 @@ import com.android.internal.util.ArrayUtils;
 public final class DeviceConfigUtils {
 
     private static final String TAG = DeviceConfigUtils.class.getSimpleName();
-
     private static final boolean DEBUG = false;
+
+    private static Boolean sEnableDeviceConfigUtils =
+            SystemProperties.getBoolean("persist.sys.dchooks.enable", true);
 
     private static String[] getDeviceConfigsOverride() {
         String[] globalDeviceConfigs =
@@ -46,6 +50,8 @@ public final class DeviceConfigUtils {
     }
 
     public static boolean shouldDenyDeviceConfigControl(String namespace, String property) {
+        if (!sEnableDeviceConfigUtils) return false;
+
         if (DEBUG) Log.d(TAG, "shouldAllowDeviceConfigControl, namespace=" + namespace + ", property=" + property);
         for (String p : getDeviceConfigsOverride()) {
             String[] kv = p.split("=");
@@ -61,6 +67,8 @@ public final class DeviceConfigUtils {
     }
 
     public static void setDefaultProperties(String filterNamespace, String filterProperty) {
+        if (!sEnableDeviceConfigUtils) return;
+
         logd("setDefaultProperties");
         for (String p : getDeviceConfigsOverride()) {
             String[] kv = p.split("=");

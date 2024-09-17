@@ -19,6 +19,7 @@ import android.annotation.NonNull;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.res.Resources;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +57,28 @@ public class GlobalActionsPowerDialog {
                 com.android.systemui.res.R.drawable.control_background, context.getTheme()));
         window.addFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
 
+        WindowManager.LayoutParams attrs = window.getAttributes();
+        if (attrs != null) {
+            attrs.alpha = setPowerMenuAlpha(context);
+            window.setAttributes(attrs);
+        }
+
         return dialog;
+    }
+
+    private static float setPowerMenuAlpha(Context context) {
+        int mPowerMenuAlpha = Settings.System.getInt(context.getContentResolver(),
+                Settings.System.TRANSPARENT_POWER_MENU, 100);
+        double dAlpha = mPowerMenuAlpha / 100.0;
+        float alpha = (float) dAlpha;
+        return alpha;
+    }
+
+    private static float setPowerMenuDialogDim(Context context) {
+        int mPowerMenuDialogDim = Settings.System.getInt(context.getContentResolver(),
+                Settings.System.TRANSPARENT_POWER_DIALOG_DIM, 50);
+        double dDim = mPowerMenuDialogDim / 100.0;
+        float dim = (float) dDim;
+        return dim;
     }
 }

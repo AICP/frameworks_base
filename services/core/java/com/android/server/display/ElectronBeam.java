@@ -18,7 +18,7 @@
 
 package com.android.server.display;
 
-import static com.android.server.wm.utils.RotationAnimationUtils.hasProtectedContent;
+import static com.android.internal.policy.TransitionAnimation.hasProtectedContent;
 
 import android.content.Context;
 import android.graphics.PixelFormat;
@@ -42,7 +42,7 @@ import android.view.Surface;
 import android.view.SurfaceControl.Transaction;
 import android.view.SurfaceControl;
 import android.view.SurfaceSession;
-
+import android.window.ScreenCapture;
 import com.android.server.LocalServices;
 
 import java.io.PrintWriter;
@@ -167,19 +167,19 @@ final class ElectronBeam implements ScreenStateAnimator {
         mDisplayWidth = displayInfo.getNaturalWidth();
         mDisplayHeight = displayInfo.getNaturalHeight();
 
-        final IBinder token = SurfaceControl.getInternalDisplayToken();
-        if (token == null) {
+ //       final IBinder token = SurfaceControl.getInternalDisplayToken();
+ /*       if (token == null) {
             Slog.e(TAG,
                     "Failed to take screenshot because internal display is disconnected");
             return false;
         }
         final boolean isWideColor = SurfaceControl.getDynamicDisplayInfo(token).activeColorMode
                 == Display.COLOR_MODE_DISPLAY_P3;
-
+*/
         // Set mPrepared here so if initialization fails, resources can be cleaned up.
         mPrepared = true;
 
-        final SurfaceControl.ScreenshotHardwareBuffer hardwareBuffer = captureScreen();
+        final ScreenCapture.ScreenshotHardwareBuffer hardwareBuffer = captureScreen();
         if (hardwareBuffer == null) {
             dismiss();
             return false;
@@ -196,15 +196,15 @@ final class ElectronBeam implements ScreenStateAnimator {
             return true;
         }
 
-        if (!(createEglContext(isProtected) && createEglSurface(isProtected, isWideColor)
+/*        if (!(createEglContext(isProtected) && createEglSurface(isProtected, isWideColor)
                 && setScreenshotTextureAndSetViewport(hardwareBuffer))) {
             dismiss();
             return false;
         }
-
+*/
         // Done.
         mLastWasProtectedContent = isProtected;
-        mLastWasWideColor = isWideColor;
+     //   mLastWasWideColor = isWideColor;
 
         // Dejanking optimization.
         // Some GL drivers can introduce a lot of lag in the first few frames as they
@@ -476,7 +476,7 @@ final class ElectronBeam implements ScreenStateAnimator {
     }
 
     private boolean setScreenshotTextureAndSetViewport(
-            SurfaceControl.ScreenshotHardwareBuffer screenshotBuffer) {
+            ScreenCapture.ScreenshotHardwareBuffer screenshotBuffer) {
         if (!attachEglContext()) {
             return false;
         }
@@ -540,8 +540,8 @@ final class ElectronBeam implements ScreenStateAnimator {
         }
     }
 
-    private SurfaceControl.ScreenshotHardwareBuffer captureScreen() {
-        SurfaceControl.ScreenshotHardwareBuffer screenshotBuffer =
+    private ScreenCapture.ScreenshotHardwareBuffer captureScreen() {
+        ScreenCapture.ScreenshotHardwareBuffer screenshotBuffer =
                 mDisplayManagerInternal.systemScreenshot(mDisplayId);
         if (screenshotBuffer == null) {
             Slog.e(TAG, "Failed to take screenshot. Buffer is null");

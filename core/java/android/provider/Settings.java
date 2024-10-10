@@ -12715,7 +12715,7 @@ public final class Settings {
          * Control whether the process CPU info meter should be shown.
          * @hide
          */
-        public static final String SHOW_CPU_OVERLAY = "show_cpu_overlay";
+        public static final String SHOW_CPU_OVERLAY = "show_cpu_info";
 
         /**
          * Keys we no longer back up under the current schema, but want to continue to

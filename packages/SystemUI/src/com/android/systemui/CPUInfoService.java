@@ -63,7 +63,7 @@ public class CPUInfoService extends Service {
 
     private static final String NUM_OF_CPUS_PATH = "/sys/devices/system/cpu/present";
     private static final String CURRENT_CPU = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq";
-    private static final String CPU_ROOT = "/sys/devices/system/cpu/cpu";
+    private static final String CPU_ROOT = "/sys/devices/system/cpu";
     private static final String CPU_CUR_TAIL = "/cpufreq/scaling_cur_freq";
     private static final String CPU_GOV_TAIL = "/cpufreq/scaling_governor";
 

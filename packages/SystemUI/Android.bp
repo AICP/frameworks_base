@@ -154,6 +154,8 @@ android_library {
         "jsr305",
         "jsr330",
         "lottie",
+        "AicpGear-preference",
+        "AicpGear-util",
         "LowLightDreamLib",
         "motion_tool_lib",
         "notification_flags_lib",
@@ -169,6 +171,7 @@ android_library {
         "keepanno-annotations",
     ],
     manifest: "AndroidManifest.xml",
+    additional_manifests: ["AndroidManifest-Aicp.xml"],
 
     javacflags: [
         "-Adagger.fastInit=enabled",

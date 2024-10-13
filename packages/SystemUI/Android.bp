@@ -498,6 +498,8 @@ android_library {
         "jsr330",
         "lottie",
         "lottie_compose",
+        "AicpGear-preference",
+        "AicpGear-util",
         "LowLightDreamLib",
         "TraceurCommon",
         "Traceur-res",
@@ -518,7 +520,7 @@ android_library {
         "keepanno-annotations",
     ],
     manifest: "AndroidManifest.xml",
-    additional_manifests: ["LineageManifest.xml"],
+    additional_manifests: ["LineageManifest.xml","AndroidManifest-Aicp.xml"],
 
     javacflags: [
         "-Adagger.fastInit=enabled",

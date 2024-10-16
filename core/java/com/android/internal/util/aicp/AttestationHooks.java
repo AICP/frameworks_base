@@ -43,7 +43,17 @@ public final class AttestationHooks {
     private static final boolean DEBUG = false;
 
     private static final String PACKAGE_GPHOTOS = "com.google.android.apps.photos";
+    private static final String PACKAGE_VENDING = "com.android.vending";
     private static final String PACKAGE_SNAPCHAT = "com.snapchat.android";
+
+    private static final Map<String, Object> sMainlineDeviceProps = Map.of(
+        "BRAND", "google",
+        "MANUFACTURER", "Google",
+        "DEVICE", "komodo",
+        "PRODUCT", "komodo",
+        "MODEL", "Pixel 9 Pro XL",
+        "FINGERPRINT", "google/komodo/komodo:14/AD1A.240905.004/12196292:user/release-keys"
+    );
 
     private static final Map<String, Object> sPixel5aProps = Map.of(
         "BRAND", "google",
@@ -65,6 +75,10 @@ public final class AttestationHooks {
 
     // Codenames for currently supported Pixels by Google
     private static final String[] pixelCodenames = {
+            "rango",
+            "mustang",
+            "blazer",
+            "frankel",
             "komodo",
             "caiman",
             "tokay",
@@ -105,6 +119,12 @@ public final class AttestationHooks {
                 if (!isPixelDevice) {
                     sPixel5aProps.forEach(AttestationHooks::setPropValue);
                 }
+            }
+        }
+
+        if (packageName.equals(PACKAGE_VENDING)) {
+            if (SystemProperties.getBoolean("persist.sys.vending.enable", false)) {
+                sMainlineDeviceProps.forEach(AttestationHooks::setPropValue);
             }
         }
 

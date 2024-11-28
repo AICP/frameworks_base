@@ -1068,7 +1068,7 @@ class ActivityStarter {
         mInterceptor.setStates(userId, realCallingPid, realCallingUid, startFlags, callingPackage,
                 callingFeatureId);
         if (mInterceptor.intercept(intent, rInfo, aInfo, resolvedType, inTask, inTaskFragment,
-                callingPid, callingUid, checkedOptions)) {
+                callingPid, callingUid, checkedOptions, request.componentSpecified)) {
             // activity start was intercepted, e.g. because the target user is currently in quiet
             // mode (turn off work) or the target application is suspended
             intent = mInterceptor.mIntent;

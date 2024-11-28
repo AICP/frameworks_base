@@ -229,6 +229,18 @@ public class ActivityStartInterceptorTest {
     }
 
     @Test
+    public void testInterceptIncorrectHomeIntent() {
+        // Create a non-standard home intent
+        final Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+        homeIntent.addCategory(Intent.CATEGORY_HOME);
+        homeIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+
+        // Ensure the intent is intercepted and normalized to standard home intent.
+        assertTrue(mInterceptor.intercept(homeIntent, null, mAInfo, null, null, 0, 0, null, false));
+        assertTrue(ActivityRecord.isHomeIntent(homeIntent));
+    }
+
+    @Test
     public void testInterceptLockTaskModeViolationPackage() {
         when(mLockTaskController.isActivityAllowed(
                 TEST_USER_ID, TEST_PACKAGE_NAME, LOCK_TASK_LAUNCH_MODE_DEFAULT))

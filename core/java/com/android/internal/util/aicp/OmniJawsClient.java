@@ -385,7 +385,7 @@ public class OmniJawsClient {
 
     private void updateSettings() {
         final String iconPack = mCachedInfo != null ? mCachedInfo.iconPack : null;
-        if (TextUtils.isEmpty(iconPack)) {
+        if (iconPack == null || TextUtils.isEmpty(iconPack)) {
             loadDefaultIconsPackage();
         } else if (mSettingIconPackage == null || !iconPack.equals(mSettingIconPackage)) {
             mSettingIconPackage = iconPack;

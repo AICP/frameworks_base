@@ -16,11 +16,17 @@
 
 package com.android.server.am;
 
+import static android.os.PowerWhitelistManager.REASON_NOTIFICATION_SERVICE;
+import static android.os.PowerWhitelistManager.TEMPORARY_ALLOWLIST_TYPE_FOREGROUND_SERVICE_ALLOWED;
+import static android.os.PowerWhitelistManager.TEMPORARY_ALLOWLIST_TYPE_FOREGROUND_SERVICE_NOT_ALLOWED;
+
 import static com.android.dx.mockito.inline.extended.ExtendedMockito.doReturn;
 import static com.android.dx.mockito.inline.extended.ExtendedMockito.mockitoSession;
 import static com.android.dx.mockito.inline.extended.ExtendedMockito.verify;
+import static com.android.server.am.PendingIntentRecord.FLAG_ACTIVITY_SENDER;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.eq;
@@ -33,6 +39,7 @@ import android.app.AppGlobals;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.pm.IPackageManager;
+import android.os.Binder;
 import android.os.Looper;
 
 import androidx.test.runner.AndroidJUnit4;
@@ -124,6 +131,37 @@ public class PendingIntentControllerTest {
         verify(mAlarmManagerInternal).remove(piCaptor.capture());
         assertEquals("Wrong target for pending intent passed to alarm manager", pir,
                 piCaptor.getValue().getTarget());
+    }
+
+    @Test
+    public void testClearAllowBgActivityStartsClearsToken() {
+        final PendingIntentRecord pir = createPendingIntentRecord(0);
+        Binder token = new Binder();
+        pir.setAllowBgActivityStarts(token, FLAG_ACTIVITY_SENDER);
+        assertEquals(true, pir.getBackgroundStartPrivilegesForActivitySender(token));
+        pir.clearAllowBgActivityStarts(token);
+        assertEquals(false, pir.getBackgroundStartPrivilegesForActivitySender(token));
+    }
+
+    @Test
+    public void testClearAllowBgActivityStartsClearsDuration() {
+        final PendingIntentRecord pir = createPendingIntentRecord(0);
+        Binder token = new Binder();
+        pir.setAllowlistDurationLocked(token, 1000,
+                TEMPORARY_ALLOWLIST_TYPE_FOREGROUND_SERVICE_ALLOWED, REASON_NOTIFICATION_SERVICE,
+                "NotificationManagerService");
+        PendingIntentRecord.TempAllowListDuration allowlistDurationLocked =
+                pir.getAllowlistDurationLocked(token);
+        assertEquals(1000, allowlistDurationLocked.duration);
+        assertEquals(TEMPORARY_ALLOWLIST_TYPE_FOREGROUND_SERVICE_ALLOWED,
+                allowlistDurationLocked.type);
+        pir.clearAllowBgActivityStarts(token);
+        PendingIntentRecord.TempAllowListDuration allowlistDurationLockedAfterClear =
+                pir.getAllowlistDurationLocked(token);
+        assertNotNull(allowlistDurationLockedAfterClear);
+        assertEquals(1000, allowlistDurationLockedAfterClear.duration);
+        assertEquals(TEMPORARY_ALLOWLIST_TYPE_FOREGROUND_SERVICE_NOT_ALLOWED,
+                allowlistDurationLocked.type);
     }
 
     @After

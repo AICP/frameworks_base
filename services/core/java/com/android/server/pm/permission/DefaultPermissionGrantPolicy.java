@@ -1393,8 +1393,7 @@ final class DefaultPermissionGrantPolicy {
                 // Unless the caller wants to override user choices. The override is
                 // to make sure we can grant the needed permission to the default
                 // sms and phone apps after the user chooses this in the UI.
-                if (!isFixedOrUserSet(flags) || ignoreSystemPackage
-                        || changingGrantForSystemFixed) {
+                if (!isFixedOrUserSet(flags) || ignoreSystemPackage || systemFixed) {
                     // Never clobber policy fixed permissions.
                     // We must allow the grant of a system-fixed permission because
                     // system-fixed is sticky, but the permission itself may be revoked.

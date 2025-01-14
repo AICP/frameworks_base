@@ -254,4 +254,9 @@ interface IStatusBarService
      * Slim recents
      */
     void showScreenPinningRequest(int taskId);
+
+    /**
+     * Toggle recent apps.
+     */
+    void toggleRecentApps();
 }

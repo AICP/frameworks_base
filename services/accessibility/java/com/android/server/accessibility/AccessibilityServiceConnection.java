@@ -253,6 +253,16 @@ class AccessibilityServiceConnection extends AbstractAccessibilityServiceConnect
     }
 
     @Override
+    public void onNullBinding(ComponentName componentName) {
+        // Per guidance from ServiceConnection we must call Context#unbindService here to
+        // release the tracking resources associated with the ServiceConnection, to prevent
+        // Background Activity Launches (BAL).
+        synchronized (mLock) {
+            unbindLocked();
+        }
+    }
+
+    @Override
     protected boolean hasRightsToCurrentUserLocked() {
         // We treat calls from a profile as if made by its parent as profiles
         // share the accessibility state of the parent. The call below

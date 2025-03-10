@@ -27,6 +27,7 @@ import static junit.framework.TestCase.assertTrue;
 import android.app.NotificationManager.Policy;
 import android.content.ComponentName;
 import android.net.Uri;
+import android.os.Parcel;
 import android.provider.Settings;
 import android.service.notification.Condition;
 import android.service.notification.ZenModeConfig;
@@ -54,6 +55,40 @@ import java.io.IOException;
 @SmallTest
 @RunWith(AndroidJUnit4.class)
 public class ZenModeConfigTest extends UiServiceTestCase {
+
+    @Test
+    public void testWriteConfigToParcel() {
+        ZenModeConfig config = new ZenModeConfig();
+        config.allowAlarms = false;
+        config.allowMedia = true;
+        ZenModeConfig.ZenRule rule1 = new ZenModeConfig.ZenRule();
+        rule1.id = "id1";
+        rule1.name = "rule1";
+        rule1.configurationActivity = new ComponentName("pkg", "activity");
+        rule1.component = new ComponentName("pkg", "cps");
+        rule1.conditionId = Uri.parse("condition1");
+        rule1.enabled = true;
+        rule1.zenMode = Settings.Global.ZEN_MODE_IMPORTANT_INTERRUPTIONS;
+        rule1.pkg = "pkg";
+        config.automaticRules.put(rule1.id, rule1);
+        ZenModeConfig.ZenRule rule2 = new ZenModeConfig.ZenRule();
+        rule2.id = "id2";
+        rule2.name = "rule2";
+        rule2.configurationActivity = new ComponentName("pkg2", "activity2");
+        rule2.component = new ComponentName("pkg2", "cps2");
+        rule2.conditionId = Uri.parse("condition2");
+        rule2.enabled = false;
+        rule2.zenMode = Settings.Global.ZEN_MODE_ALARMS;
+        rule2.pkg = "pkg2";
+        config.automaticRules.put(rule2.id, rule2);
+
+        Parcel parcel = Parcel.obtain();
+        config.writeToParcel(parcel, 0);
+        parcel.setDataPosition(0);
+        ZenModeConfig parceled = new ZenModeConfig(parcel);
+
+        assertEquals(config, parceled);
+    }
 
     @Test
     public void testPriorityOnlyMutingAllNotifications() {

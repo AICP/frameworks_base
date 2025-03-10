@@ -1207,9 +1207,9 @@ public class NotificationManager {
     public Map<String, AutomaticZenRule> getAutomaticZenRules() {
         INotificationManager service = getService();
         try {
-            List<ZenModeConfig.ZenRule> rules = service.getZenRules();
+            ParceledListSlice<ZenModeConfig.ZenRule> rules = service.getZenRules();
             Map<String, AutomaticZenRule> ruleMap = new HashMap<>();
-            for (ZenModeConfig.ZenRule rule : rules) {
+            for (ZenModeConfig.ZenRule rule : rules.getList()) {
                 AutomaticZenRule azr = new AutomaticZenRule(rule.name, rule.component,
                         rule.configurationActivity, rule.conditionId, rule.zenPolicy,
                         zenModeToInterruptionFilter(rule.zenMode), rule.enabled,

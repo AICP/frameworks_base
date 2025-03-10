@@ -210,7 +210,7 @@ interface INotificationManager
     void setNotificationPolicyAccessGranted(String pkg, boolean granted);
     void setNotificationPolicyAccessGrantedForUser(String pkg, int userId, boolean granted);
     AutomaticZenRule getAutomaticZenRule(String id);
-    List<ZenModeConfig.ZenRule> getZenRules();
+    ParceledListSlice<ZenModeConfig.ZenRule> getZenRules();
     String addAutomaticZenRule(in AutomaticZenRule automaticZenRule, String pkg);
     boolean updateAutomaticZenRule(String id, in AutomaticZenRule automaticZenRule);
     boolean removeAutomaticZenRule(String id);

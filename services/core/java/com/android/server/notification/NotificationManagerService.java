@@ -4969,9 +4969,9 @@ public class NotificationManagerService extends SystemService {
         }
 
         @Override
-        public List<ZenModeConfig.ZenRule> getZenRules() throws RemoteException {
+        public ParceledListSlice<ZenModeConfig.ZenRule> getZenRules() throws RemoteException {
             enforcePolicyAccess(Binder.getCallingUid(), "getAutomaticZenRules");
-            return mZenModeHelper.getZenRules();
+            return new ParceledListSlice<ZenModeConfig.ZenRule>(mZenModeHelper.getZenRules());
         }
 
         @Override

@@ -122,7 +122,7 @@ public final class AutomaticZenRule implements Parcelable {
     public AutomaticZenRule(Parcel source) {
         enabled = source.readInt() == ENABLED;
         if (source.readInt() == ENABLED) {
-            name = getTrimmedString(source.readString());
+            name = getTrimmedString(source.readString8());
         }
         interruptionFilter = source.readInt();
         conditionId = getTrimmedUri(source.readParcelable(null, android.net.Uri.class));
@@ -133,7 +133,7 @@ public final class AutomaticZenRule implements Parcelable {
         creationTime = source.readLong();
         mZenPolicy = source.readParcelable(null, android.service.notification.ZenPolicy.class);
         mModified = source.readInt() == ENABLED;
-        mPkg = source.readString();
+        mPkg = source.readString8();
     }
 
     /**
@@ -279,7 +279,7 @@ public final class AutomaticZenRule implements Parcelable {
         dest.writeInt(enabled ? ENABLED : DISABLED);
         if (name != null) {
             dest.writeInt(1);
-            dest.writeString(name);
+            dest.writeString8(name);
         } else {
             dest.writeInt(0);
         }
@@ -290,7 +290,7 @@ public final class AutomaticZenRule implements Parcelable {
         dest.writeLong(creationTime);
         dest.writeParcelable(mZenPolicy, 0);
         dest.writeInt(mModified ? ENABLED : DISABLED);
-        dest.writeString(mPkg);
+        dest.writeString8(mPkg);
     }
 
     @Override

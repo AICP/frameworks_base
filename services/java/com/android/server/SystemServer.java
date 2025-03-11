@@ -509,6 +509,7 @@ public final class SystemServer implements Dumpable {
     private DataLoaderManagerService mDataLoaderManagerService;
     private long mIncrementalServiceHandle = 0;
 
+    private boolean mOnlyCore;
     private boolean mFirstBoot;
     private final int mStartCount;
     private final boolean mRuntimeRestart;

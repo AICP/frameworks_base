@@ -76,7 +76,7 @@ public final class TwilightTracker {
         filter.addAction(Intent.ACTION_TIME_CHANGED);
         filter.addAction(Intent.ACTION_TIMEZONE_CHANGED);
         filter.addAction(ACTION_UPDATE_TWILIGHT_STATE);
-        mContext.registerReceiver(mUpdateLocationReceiver, filter);
+        mContext.registerReceiver(mUpdateLocationReceiver, filter, Context.RECEIVER_NOT_EXPORTED);
     }
 
     /**

@@ -46,4 +46,7 @@
     <java-symbol type="id" name="aerr_copy" />
     <java-symbol type="string" name="url_copy_success" />
     <java-symbol type="string" name="url_copy_failed" />
+
+    <!-- GameSpace -->
+    <java-symbol type="string" name="gamespace_new_game_added" />
 </resources>

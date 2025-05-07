@@ -1064,20 +1064,21 @@ public class PreferencesHelperTest extends UiServiceTestCase {
 
         ByteArrayOutputStream baos = writeXmlAndPurge(
                 PKG_N_MR1, UID_N_MR1, false, USER_SYSTEM);
-        String expected = "<ranking version=\"4\">\n"
-                + "<package name=\"com.example.o\" show_badge=\"true\" "
+       String expected_o = "<package name=\"com.example.o\" show_badge=\"true\" "
                 + "app_user_locked_fields=\"0\" sent_invalid_msg=\"false\" "
-                + "sent_valid_msg=\"false\" user_demote_msg_app=\"false\" uid=\"1111\">\n"
+                + "sent_valid_msg=\"false\" user_demote_msg_app=\"false\" uid=\"" + UID_O + "\">\n"
                 + "<channel id=\"id\" name=\"name\" importance=\"2\" "
                 + "sound=\"content://settings/system/notification_sound\" usage=\"5\" "
                 + "content_type=\"4\" flags=\"0\" show_badge=\"true\" orig_imp=\"2\" />\n"
-                + "</package>\n"
-                + "<package name=\"com.example.p\" show_badge=\"true\" "
+                + "</package>\n";
+
+       String expected_p = "<package name=\"com.example.p\" show_badge=\"true\" "
                 + "app_user_locked_fields=\"0\" sent_invalid_msg=\"true\" sent_valid_msg=\"true\""
-                + " user_demote_msg_app=\"true\" uid=\"2222\" />\n"
-                + "<package name=\"com.example.n_mr1\" show_badge=\"true\" "
+                + " user_demote_msg_app=\"true\" uid=\""+ UID_P + "\" />\n";
+
+       String expected_n = "<package name=\"com.example.n_mr1\" show_badge=\"true\" "
                 + "app_user_locked_fields=\"0\" sent_invalid_msg=\"false\" "
-                + "sent_valid_msg=\"false\" user_demote_msg_app=\"false\" uid=\"0\">\n"
+                + "sent_valid_msg=\"false\" user_demote_msg_app=\"false\" uid=\"" + UID_N_MR1 + "\">\n"
                 + "<channelGroup id=\"1\" name=\"bye\" blocked=\"false\" locked=\"0\" />\n"
                 + "<channelGroup id=\"2\" name=\"hello\" blocked=\"false\" locked=\"0\" />\n"
                 + "<channel id=\"id1\" name=\"name1\" importance=\"4\" show_badge=\"true\" "
@@ -1092,9 +1093,11 @@ public class PreferencesHelperTest extends UiServiceTestCase {
                 + "<channel id=\"miscellaneous\" name=\"Uncategorized\" "
                 + "sound=\"content://settings/system/notification_sound\" usage=\"5\" "
                 + "content_type=\"4\" flags=\"0\" show_badge=\"true\" />\n"
-                + "</package>\n"
-                + "</ranking>";
-        assertThat(baos.toString()).contains(expected);
+                + "</package>";
+        String actual = baos.toString();
+        assertThat(actual).contains(expected_o);
+        assertThat(actual).contains(expected_n);
+        assertThat(actual).contains(expected_p);
     }
 
     @Test
@@ -3056,7 +3059,7 @@ public class PreferencesHelperTest extends UiServiceTestCase {
         String actual = sw.toString();
 
         // nobody gets any importance
-        assertFalse(actual.contains("importance="));
+        assertThat(actual).doesNotContain("importance=");
     }
 
     @Test

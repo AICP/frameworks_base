@@ -151,7 +151,6 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.IPackageManager;
 import android.content.pm.LauncherApps;
 import android.content.pm.PackageManager;
-import android.content.pm.PackageManagerInternal;
 import android.content.pm.ParceledListSlice;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutServiceInternal;
@@ -212,6 +211,9 @@ import androidx.test.InstrumentationRegistry;
 
 import com.android.internal.app.IAppOpsService;
 import com.android.internal.config.sysui.SystemUiDeviceConfigFlags;
+import com.android.compatibility.common.util.SystemUtil;
+import com.android.compatibility.common.util.ThrowingRunnable;
+import com.android.internal.R;
 import com.android.internal.logging.InstanceIdSequence;
 import com.android.internal.logging.InstanceIdSequenceFake;
 import com.android.internal.messages.nano.SystemMessageProto;
@@ -247,6 +249,7 @@ import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.mockito.Mockito;
 import org.mockito.stubbing.Answer;
 
 import java.io.BufferedInputStream;
@@ -289,8 +292,6 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
     private IPackageManager mPackageManager;
     @Mock
     private PackageManager mPackageManagerClient;
-    @Mock
-    private PackageManagerInternal mPackageManagerInternal;
     @Mock
     private PermissionPolicyInternal mPermissionPolicyInternal;
     @Mock
@@ -404,15 +405,13 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUpNMS() throws Exception {
         // Shell permisssions will override permissions of our app, so add all necessary permissions
         // for this test here:
         InstrumentationRegistry.getInstrumentation().getUiAutomation().adoptShellPermissionIdentity(
                 "android.permission.WRITE_DEVICE_CONFIG",
                 "android.permission.READ_DEVICE_CONFIG",
                 "android.permission.READ_CONTACTS");
-
-        MockitoAnnotations.initMocks(this);
 
         DeviceIdleInternal deviceIdleInternal = mock(DeviceIdleInternal.class);
         when(deviceIdleInternal.getNotificationAllowlistDuration()).thenReturn(3000L);
@@ -429,8 +428,6 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
         LocalServices.addService(DeviceIdleInternal.class, deviceIdleInternal);
         LocalServices.removeServiceForTest(ActivityManagerInternal.class);
         LocalServices.addService(ActivityManagerInternal.class, mAmi);
-        LocalServices.removeServiceForTest(PackageManagerInternal.class);
-        LocalServices.addService(PackageManagerInternal.class, mPackageManagerInternal);
         LocalServices.removeServiceForTest(PermissionPolicyInternal.class);
         LocalServices.addService(PermissionPolicyInternal.class, mPermissionPolicyInternal);
         mContext.addMockSystemService(Context.ALARM_SERVICE, mAlarmManager);
@@ -462,13 +459,7 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
         when(mPackageManagerClient.getPackageUidAsUser(any(), anyInt())).thenReturn(mUid);
         when(mPackageManagerClient.getPackageUidAsUser(eq(MISSING_PACKAGE), anyInt()))
                 .thenThrow(new PackageManager.NameNotFoundException("Missing package!"));
-        when(mPackageManagerInternal.isSameApp(anyString(), anyInt(), anyInt())).thenAnswer(
-                (Answer<Boolean>) invocation -> {
-                    Object[] args = invocation.getArguments();
-                    return (int) args[1] == mUid;
-                });
-        final LightsManager mockLightsManager = mock(LightsManager.class);
-        when(mockLightsManager.getLight(anyInt())).thenReturn(mock(LogicalLight.class));
+        when(mLightsManager.getLight(anyInt())).thenReturn(mock(LogicalLight.class));
         when(mAudioManager.getRingerModeInternal()).thenReturn(AudioManager.RINGER_MODE_NORMAL);
         when(mPackageManagerClient.hasSystemFeature(FEATURE_WATCH)).thenReturn(false);
         when(mUgmInternal.newUriPermissionOwner(anyString())).thenReturn(mPermOwner);
@@ -615,7 +606,7 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
         assertNotNull(mBinderService.getNotificationChannel(
                 PKG, mContext.getUserId(), PKG, TEST_CHANNEL_ID));
         clearInvocations(mRankingHandler);
-        when(mPermissionHelper.hasPermission(mUid)).thenReturn(true);
+        when(mPermissionHelper.hasPermission(anyInt())).thenReturn(true);
     }
 
     @After
@@ -723,7 +714,8 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
     }
 
     private StatusBarNotification generateSbn(String pkg, int uid, long postTime, int userId) {
-        Notification.Builder nb = new Notification.Builder(mContext, "a")
+        Notification.Builder nb = new Notification.Builder(mContext,
+                mTestNotificationChannel.getId())
                 .setContentTitle("foo")
                 .setSmallIcon(android.R.drawable.sym_def_app_icon);
         StatusBarNotification sbn = new StatusBarNotification(pkg, pkg, uid,
@@ -1020,6 +1012,7 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
     @Test
     public void testCreateNotificationChannels_FirstChannelWithFgndTaskStartsPermDialog()
             throws Exception {
+        when(mPmi.getPackageUid(PKG_NO_CHANNELS, 0L, mUserId)).thenReturn(mUid);
         when(mAtm.getTaskToShowPermissionDialogOn(anyString(), anyInt())).thenReturn(TEST_TASK_ID);
         final NotificationChannel channel =
                 new NotificationChannel("id", "name", IMPORTANCE_DEFAULT);
@@ -4901,15 +4894,7 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
 
     @Test
     public void testBumpFGImportance_noChannelChangePreOApp() throws Exception {
-        String preOPkg = PKG_N_MR1;
-        final ApplicationInfo legacy = new ApplicationInfo();
-        legacy.targetSdkVersion = Build.VERSION_CODES.N_MR1;
-        when(mPackageManagerClient.getApplicationInfoAsUser(eq(preOPkg), anyInt(), anyInt()))
-                .thenReturn(legacy);
-        when(mPackageManagerClient.getPackageUidAsUser(eq(preOPkg), anyInt()))
-                .thenReturn(Binder.getCallingUid());
-        getContext().setMockPackageManager(mPackageManagerClient);
-
+        when(mPackageManagerClient.getPackageUidAsUser(PKG_N_MR1, mUserId)).thenReturn(UID_N_MR1);
         Notification.Builder nb = new Notification.Builder(mContext,
                 NotificationChannel.DEFAULT_CHANNEL_ID)
                 .setContentTitle("foo")
@@ -4919,11 +4904,11 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
 
         StatusBarNotification sbn = new StatusBarNotification(preOPkg, preOPkg, 9,
                 "testBumpFGImportance_noChannelChangePreOApp",
-                Binder.getCallingUid(), 0, nb.build(),
-                UserHandle.getUserHandleForUid(Binder.getCallingUid()), null, 0);
+                UID_N_MR1, 0, nb.build(),
+                mUser, null, 0);
 
-        mBinderService.enqueueNotificationWithTag(sbn.getPackageName(), sbn.getOpPkg(),
-                sbn.getTag(), sbn.getId(), sbn.getNotification(), sbn.getUserId());
+        mService.enqueueNotificationInternal(sbn.getPackageName(), sbn.getOpPkg(), UID_N_MR1, 0,
+                sbn.getTag(), sbn.getId(), sbn.getNotification(), sbn.getUserId(), false, true);
         waitForIdle();
 
         assertEquals(IMPORTANCE_LOW,
@@ -4937,20 +4922,24 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
                 .setFlag(FLAG_FOREGROUND_SERVICE, true)
                 .setPriority(Notification.PRIORITY_MIN);
 
-        sbn = new StatusBarNotification(preOPkg, preOPkg, 9,
-                "testBumpFGImportance_noChannelChangePreOApp", Binder.getCallingUid(),
-                0, nb.build(), UserHandle.getUserHandleForUid(Binder.getCallingUid()), null, 0);
-
-        mBinderService.enqueueNotificationWithTag(preOPkg, preOPkg,
-                "testBumpFGImportance_noChannelChangePreOApp",
-                sbn.getId(), sbn.getNotification(), sbn.getUserId());
+        sbn = new StatusBarNotification(PKG_N_MR1, PKG_N_MR1, 9,
+                "testBumpFGImportance_channelChangePreOApp", UID_N_MR1,
+                0, nb.build(), mUser, null, 0);
+        mService.enqueueNotificationInternal(PKG_N_MR1, PKG_N_MR1, UID_N_MR1, 0,
+                "testBumpFGImportance_channelChangePreOApp",
+                sbn.getId(), sbn.getNotification(), sbn.getUserId(), false, true);
         waitForIdle();
         assertEquals(IMPORTANCE_LOW,
                 mService.getNotificationRecord(sbn.getKey()).getImportance());
 
-        NotificationChannel defaultChannel = mBinderService.getNotificationChannel(
-                preOPkg, mContext.getUserId(), preOPkg, NotificationChannel.DEFAULT_CHANNEL_ID);
-        assertEquals(IMPORTANCE_UNSPECIFIED, defaultChannel.getImportance());
+        SystemUtil.runWithShellPermissionIdentity(
+                () -> {
+                    NotificationChannel defaultChannel = mBinderService.getNotificationChannel(
+                            "shell", mContext.getUserId(), PKG_N_MR1,
+                            NotificationChannel.DEFAULT_CHANNEL_ID);
+                    assertEquals(IMPORTANCE_LOW, defaultChannel.getImportance());
+                }
+        );
     }
 
     @Test
@@ -6199,8 +6188,8 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
         mService.addNotification(notif1);
         mService.addNotification(notif2);
 
-        // on broadcast, nothing is hidden since no notifications are of package "test_package"
-        simulatePackageSuspendBroadcast(true, "test_package", notif1.getUid());
+        // on broadcast, nothing is hidden since no notifications are of package "PKG_P"
+        simulatePackageSuspendBroadcast(true, "PKG_P", notif1.getUid());
         ArgumentCaptor<List> captor = ArgumentCaptor.forClass(List.class);
         verify(mListeners, times(1)).notifyHiddenLocked(captor.capture());
         assertEquals(0, captor.getValue().size());
@@ -6294,9 +6283,9 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
                 mTestNotificationChannel, 1, null, true);
         mService.addNotification(notif1);
 
-        // on broadcast, nothing is hidden since no notifications are of package "test_package"
+        // on broadcast, nothing is hidden since no notifications are of package "PKG_P"
         simulatePackageDistractionBroadcast(
-                PackageManager.RESTRICTION_HIDE_NOTIFICATIONS, new String[] {"test_package"},
+                PackageManager.RESTRICTION_HIDE_NOTIFICATIONS, new String[] {"PKG_P"},
                 new int[]{notif1.getUid()});
         ArgumentCaptor<List> captor = ArgumentCaptor.forClass(List.class);
         verify(mListeners, times(1)).notifyHiddenLocked(captor.capture());
@@ -6573,6 +6562,8 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
         info.uid = Binder.getCallingUid();
         when(mPackageManager.getApplicationInfo(anyString(), anyLong(), eq(10))).thenReturn(info);
         when(mPackageManager.getApplicationInfo(anyString(), anyLong(), eq(0))).thenReturn(null);
+        when(mPmi.getPackageUid(eq("caller"), anyLong(), eq(mUserId))).thenReturn(info.uid);
+        when(mPmi.getPackageUid(eq("caller"), anyLong(), eq(10))).thenReturn(info.uid);
 
         int actualUid = mService.resolveNotificationUid("caller", "caller", info.uid, 10);
 
@@ -6583,9 +6574,11 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
     public void testResolveNotificationUid_sameApp() throws Exception {
         ApplicationInfo info = new ApplicationInfo();
         info.uid = Binder.getCallingUid();
-        when(mPackageManager.getApplicationInfo(anyString(), anyLong(), eq(0))).thenReturn(info);
+        when(mPackageManager.getApplicationInfo(anyString(), anyLong(), eq(mUserId)))
+                .thenReturn(info);
+        when(mPmi.getPackageUid(eq("caller"), anyLong(), eq(mUserId))).thenReturn(info.uid);
 
-        int actualUid = mService.resolveNotificationUid("caller", "caller", info.uid, 0);
+        int actualUid = mService.resolveNotificationUid("caller", "caller", info.uid, mUserId);
 
         assertEquals(info.uid, actualUid);
     }
@@ -6594,9 +6587,12 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
     public void testResolveNotificationUid_sameAppDiffPackage() throws Exception {
         ApplicationInfo info = new ApplicationInfo();
         info.uid = Binder.getCallingUid();
-        when(mPackageManager.getApplicationInfo(anyString(), anyLong(), eq(0))).thenReturn(info);
+        when(mPackageManager.getApplicationInfo(anyString(), anyLong(), eq(mUserId)))
+                .thenReturn(info);
+        when(mPmi.getPackageUid(eq("caller"), anyLong(), eq(mUserId))).thenReturn(info.uid);
+        when(mPmi.getPackageUid(eq("callerAlso"), anyLong(), eq(mUserId))).thenReturn(info.uid);
 
-        int actualUid = mService.resolveNotificationUid("caller", "callerAlso", info.uid, 0);
+        int actualUid = mService.resolveNotificationUid("caller", "callerAlso", info.uid, mUserId);
 
         assertEquals(info.uid, actualUid);
     }
@@ -6631,10 +6627,11 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
     public void testResolveNotificationUid_androidAllowed() throws Exception {
         int expectedUid = 123;
 
-        when(mPackageManagerClient.getPackageUidAsUser("target", 0)).thenReturn(expectedUid);
+        when(mPackageManagerClient.getPackageUidAsUser("target", mUserId)).thenReturn(expectedUid);
+        when(mPmi.getPackageUid("target", 0, mUserId)).thenReturn(expectedUid);
         // no delegate
 
-        assertEquals(expectedUid, mService.resolveNotificationUid("android", "target", 0, 0));
+        assertEquals(expectedUid, mService.resolveNotificationUid("android", "target", 0, mUserId));
     }
 
     @Test
@@ -6642,6 +6639,7 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
         final String notReal = "NOT REAL";
         when(mPackageManagerClient.getPackageUidAsUser(anyString(), anyInt())).thenThrow(
                 PackageManager.NameNotFoundException.class);
+        when(mPmi.getPackageUid(eq("android"), anyLong(), anyInt())).thenReturn(1000);
         ApplicationInfo ai = new ApplicationInfo();
         ai.uid = -1;
         when(mPackageManager.getApplicationInfo(anyString(), anyLong(), anyInt())).thenReturn(ai);
@@ -6803,6 +6801,7 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
         mService.isSystemUid = false;
         setToastRateIsWithinQuota(true);
         setIfPackageHasPermissionToAvoidToastRateLimiting(testPackage, false);
+        when(mPmi.getPackageUid(testPackage, 0L, mUserId)).thenReturn(mUid);
 
         // package is not suspended
         when(mPackageManager.isPackageSuspendedForUser(testPackage, UserHandle.getUserId(mUid)))
@@ -6826,6 +6825,7 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
         mService.isSystemUid = false;
         setToastRateIsWithinQuota(true);
         setIfPackageHasPermissionToAvoidToastRateLimiting(testPackage, false);
+        when(mPmi.getPackageUid(testPackage, 0L, mUserId)).thenReturn(mUid);
 
         // package is not suspended
         when(mPackageManager.isPackageSuspendedForUser(testPackage, UserHandle.getUserId(mUid)))
@@ -6846,6 +6846,7 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
         mService.isSystemUid = false;
         setToastRateIsWithinQuota(true);
         setIfPackageHasPermissionToAvoidToastRateLimiting(testPackage, false);
+        when(mPmi.getPackageUid(testPackage, 0L, mUserId)).thenReturn(mUid);
 
         // package is not suspended
         when(mPackageManager.isPackageSuspendedForUser(testPackage, UserHandle.getUserId(mUid)))
@@ -6875,6 +6876,7 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
         mService.isSystemUid = false;
         setToastRateIsWithinQuota(false); // rate limit reached
         setIfPackageHasPermissionToAvoidToastRateLimiting(testPackage, false);
+        when(mPmi.getPackageUid(testPackage, 0L, mUserId)).thenReturn(mUid);
 
         // package is not suspended
         when(mPackageManager.isPackageSuspendedForUser(testPackage, UserHandle.getUserId(mUid)))
@@ -6898,6 +6900,7 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
         mService.isSystemUid = false;
         setToastRateIsWithinQuota(true);
         setIfPackageHasPermissionToAvoidToastRateLimiting(testPackage, false);
+        when(mPmi.getPackageUid(testPackage, 0L, mUserId)).thenReturn(mUid);
 
         // package is not suspended
         when(mPackageManager.isPackageSuspendedForUser(testPackage, UserHandle.getUserId(mUid)))
@@ -6932,6 +6935,7 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
         mService.isSystemUid = false;
         setToastRateIsWithinQuota(true);
         setIfPackageHasPermissionToAvoidToastRateLimiting(testPackage, false);
+        when(mPmi.getPackageUid(testPackage, 0L, mUserId)).thenReturn(mUid);
 
         // package is not suspended
         when(mPackageManager.isPackageSuspendedForUser(testPackage, UserHandle.getUserId(mUid)))
@@ -6952,6 +6956,7 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
         mService.isSystemUid = false;
         setToastRateIsWithinQuota(true);
         setIfPackageHasPermissionToAvoidToastRateLimiting(testPackage, false);
+        when(mPmi.getPackageUid(testPackage, 0L, mUserId)).thenReturn(mUid);
 
         // package is not suspended
         when(mPackageManager.isPackageSuspendedForUser(testPackage, UserHandle.getUserId(mUid)))
@@ -6972,6 +6977,7 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
         mService.isSystemUid = false;
         setToastRateIsWithinQuota(true);
         setIfPackageHasPermissionToAvoidToastRateLimiting(testPackage, false);
+        when(mPmi.getPackageUid(testPackage, 0L, mUserId)).thenReturn(mUid);
 
         // package is not suspended
         when(mPackageManager.isPackageSuspendedForUser(testPackage, UserHandle.getUserId(mUid)))
@@ -7003,15 +7009,13 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
         setToastRateIsWithinQuota(false); // rate limit reached
         setIfPackageHasPermissionToAvoidToastRateLimiting(testPackage, false);
         setAppInForegroundForToasts(mUid, false);
+        when(mPmi.getPackageUid(testPackage, 0L, mUserId)).thenReturn(mUid);
 
         // package is not suspended
         when(mPackageManager.isPackageSuspendedForUser(testPackage, UserHandle.getUserId(mUid)))
                 .thenReturn(false);
 
-        Binder token = new Binder();
-        INotificationManager nmService = (INotificationManager) mService.mService;
-
-        nmService.enqueueTextToast(testPackage, token, "Text", 2000, 0, null);
+        enqueueTextToast(testPackage, "Text");
         verify(mStatusBar, times(0))
                 .showToast(anyInt(), any(), any(), any(), any(), anyInt(), any(), anyInt());
     }
@@ -7025,6 +7029,7 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
         setToastRateIsWithinQuota(false); // rate limit reached
         setIfPackageHasPermissionToAvoidToastRateLimiting(testPackage, false);
         setAppInForegroundForToasts(mUid, true);
+        when(mPmi.getPackageUid(testPackage, 0L, mUserId)).thenReturn(mUid);
 
         // package is not suspended
         when(mPackageManager.isPackageSuspendedForUser(testPackage, UserHandle.getUserId(mUid)))
@@ -7040,21 +7045,17 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
 
     @Test
     public void testTextToastRateLimiterAllowsLimitAvoidanceWithPermission() throws Exception {
-        final String testPackage = "testPackageName";
         assertEquals(0, mService.mToastQueue.size());
         mService.isSystemUid = false;
         setToastRateIsWithinQuota(false); // rate limit reached
-        setIfPackageHasPermissionToAvoidToastRateLimiting(testPackage, true);
+        setIfPackageHasPermissionToAvoidToastRateLimiting(PKG_P, true);
         setAppInForegroundForToasts(mUid, false);
 
         // package is not suspended
-        when(mPackageManager.isPackageSuspendedForUser(testPackage, UserHandle.getUserId(mUid)))
+        when(mPackageManager.isPackageSuspendedForUser(PKG_P, mUserId))
                 .thenReturn(false);
 
-        Binder token = new Binder();
-        INotificationManager nmService = (INotificationManager) mService.mService;
-
-        nmService.enqueueTextToast(testPackage, token, "Text", 2000, 0, null);
+        enqueueTextToast(mPkg, "Text");
         verify(mStatusBar).showToast(anyInt(), any(), any(), any(), any(), anyInt(), any(),
                 anyInt());
     }
@@ -7067,6 +7068,7 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
         setToastRateIsWithinQuota(false); // rate limit reached
         setIfPackageHasPermissionToAvoidToastRateLimiting(testPackage, false);
         setAppInForegroundForToasts(mUid, false);
+        when(mPmi.getPackageUid(testPackage, 0L, mUserId)).thenReturn(mUid);
 
         // package is not suspended
         when(mPackageManager.isPackageSuspendedForUser(testPackage, UserHandle.getUserId(mUid)))
@@ -7100,6 +7102,7 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
         mService.isSystemUid = true;
         setToastRateIsWithinQuota(true);
         setIfPackageHasPermissionToAvoidToastRateLimiting(testPackage, false);
+        when(mPmi.getPackageUid(testPackage, 0L, mUserId)).thenReturn(mUid);
 
         // package is not suspended
         when(mPackageManager.isPackageSuspendedForUser(testPackage, UserHandle.getUserId(mUid)))
@@ -7125,6 +7128,7 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
         mService.isSystemUid = false;
         setToastRateIsWithinQuota(true);
         setIfPackageHasPermissionToAvoidToastRateLimiting(testPackage, false);
+        when(mPmi.getPackageUid(testPackage, 0L, mUserId)).thenReturn(mUid);
 
         // package is not suspended
         when(mPackageManager.isPackageSuspendedForUser(testPackage, UserHandle.getUserId(mUid)))
@@ -7147,6 +7151,7 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
         mService.isSystemUid = false;
         setToastRateIsWithinQuota(true);
         setIfPackageHasPermissionToAvoidToastRateLimiting(testPackage, false);
+        when(mPmi.getPackageUid(testPackage, 0L, mUserId)).thenReturn(mUid);
 
         // package is not suspended
         when(mPackageManager.isPackageSuspendedForUser(testPackage, UserHandle.getUserId(mUid)))
@@ -7163,11 +7168,14 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
 
     @Test
     public void testTextToastsCallStatusBar() throws Exception {
+
         final String testPackage = "testPackageName";
         assertEquals(0, mService.mToastQueue.size());
         mService.isSystemUid = false;
         setToastRateIsWithinQuota(true);
         setIfPackageHasPermissionToAvoidToastRateLimiting(testPackage, false);
+
+        when(mPmi.getPackageUid(eq(testPackage), anyLong(), eq(mUserId))).thenReturn(mUid);
 
         // package is not suspended
         when(mPackageManager.isPackageSuspendedForUser(testPackage, UserHandle.getUserId(mUid)))
@@ -7187,6 +7195,7 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
         mService.isSystemUid = false;
         setToastRateIsWithinQuota(true);
         setIfPackageHasPermissionToAvoidToastRateLimiting(testPackage, false);
+        when(mPmi.getPackageUid(eq(testPackage), anyLong(), eq(mUserId))).thenReturn(mUid);
 
         // package is suspended
         when(mPackageManager.isPackageSuspendedForUser(testPackage, UserHandle.getUserId(mUid)))
@@ -7208,6 +7217,7 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
         mService.isSystemUid = false;
         setToastRateIsWithinQuota(true);
         setIfPackageHasPermissionToAvoidToastRateLimiting(testPackage, false);
+        when(mPmi.getPackageUid(eq(testPackage), anyLong(), eq(mUserId))).thenReturn(mUid);
 
         // package is not suspended
         when(mPackageManager.isPackageSuspendedForUser(testPackage, UserHandle.getUserId(mUid)))
@@ -7231,6 +7241,7 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
         mService.isSystemUid = true;
         setToastRateIsWithinQuota(true);
         setIfPackageHasPermissionToAvoidToastRateLimiting(testPackage, false);
+        when(mPmi.getPackageUid(eq(testPackage), anyLong(), eq(mUserId))).thenReturn(mUid);
 
         // package is suspended
         when(mPackageManager.isPackageSuspendedForUser(testPackage, UserHandle.getUserId(mUid)))
@@ -7254,6 +7265,7 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
         mService.isSystemUid = false;
         setToastRateIsWithinQuota(true);
         setIfPackageHasPermissionToAvoidToastRateLimiting(testPackage, false);
+        when(mPmi.getPackageUid(eq(testPackage), anyLong(), eq(mUserId))).thenReturn(mUid);
 
         // package is not suspended
         when(mPackageManager.isPackageSuspendedForUser(testPackage, UserHandle.getUserId(mUid)))
@@ -7284,6 +7296,7 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
         mService.isSystemAppId = false;
         setToastRateIsWithinQuota(true);
         setIfPackageHasPermissionToAvoidToastRateLimiting(testPackage, false);
+        when(mPmi.getPackageUid(eq(testPackage), anyLong(), eq(mUserId))).thenReturn(mUid);
 
         // package is not suspended
         when(mPackageManager.isPackageSuspendedForUser(testPackage, UserHandle.getUserId(mUid)))
@@ -7302,6 +7315,7 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
         setIfPackageHasPermissionToAvoidToastRateLimiting(testPackageSystem, false);
         when(mPackageManager.isPackageSuspendedForUser(testPackageSystem, UserHandle.getUserId(mUid)))
                 .thenReturn(false);
+        when(mPmi.getPackageUid(eq(testPackageSystem), anyLong(), eq(mUserId))).thenReturn(mUid);
 
         nmService.enqueueToast(testPackageSystem, new Binder(), new TestableToastCallback(), 2000, 0);
 
@@ -7317,6 +7331,7 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
         mService.isSystemUid = true;
         setToastRateIsWithinQuota(true);
         setIfPackageHasPermissionToAvoidToastRateLimiting(testPackageSystem1, false);
+        when(mPmi.getPackageUid(eq(testPackageSystem1), anyLong(), eq(mUserId))).thenReturn(mUid);
 
         // package is not suspended
         when(mPackageManager.isPackageSuspendedForUser(testPackageSystem1, UserHandle.getUserId(mUid)))
@@ -7335,6 +7350,7 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
         setIfPackageHasPermissionToAvoidToastRateLimiting(testPackageSystem2, false);
         when(mPackageManager.isPackageSuspendedForUser(testPackageSystem2, UserHandle.getUserId(mUid)))
                 .thenReturn(false);
+        when(mPmi.getPackageUid(eq(testPackageSystem2), anyLong(), eq(mUserId))).thenReturn(mUid);
 
         nmService.enqueueToast(testPackageSystem2, new Binder(), new TestableToastCallback(), 2000, 0);
 
@@ -7541,6 +7557,8 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
 
     @Test
     public void testCanNotifyAsUser_crossUser() throws Exception {
+        when(mPmi.getPackageUid("src", 0L, mUserId)).thenReturn(mUid);
+        when(mPmi.getPackageUid("src", 0L, mUserId + 1)).thenReturn(mUid);
         // same user no problem
         mBinderService.canNotifyAsPackage("src", "target", mContext.getUserId());
 
@@ -7559,6 +7577,8 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
 
     @Test
     public void testGetNotificationChannels_crossUser() throws Exception {
+        when(mPmi.getPackageUid("src", 0L, mUserId)).thenReturn(mUid);
+        when(mPmi.getPackageUid("src", 0L, mUserId + 1)).thenReturn(mUid);
         // same user no problem
         mBinderService.getNotificationChannels("src", "target", mContext.getUserId());
 
@@ -8216,10 +8236,9 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
     @Test
     public void testAddAutomaticZenRule_systemCallTakesPackageFromOwner() throws Exception {
         mService.isSystemUid = true;
-        ZenModeHelper mockZenModeHelper = mock(ZenModeHelper.class);
-        when(mConditionProviders.isPackageOrComponentAllowed(anyString(), anyInt()))
-                .thenReturn(true);
-        mService.setZenHelper(mockZenModeHelper);
+        ZenModeHelper zenModeHelper = setUpMockZenTest();
+        when(mPmi.getPackageUid(eq("com.android.settings"), anyLong(), eq(mUserId)))
+                .thenReturn(mUid);
         ComponentName owner = new ComponentName("android", "ProviderName");
         ZenPolicy zenPolicy = new ZenPolicy.Builder().allowAlarms(true).build();
         boolean isEnabled = true;
@@ -8235,6 +8254,7 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
     public void testAddAutomaticZenRule_systemAppIdCallTakesPackageFromOwner() throws Exception {
         // The multi-user case: where the calling uid doesn't match the system uid, but the calling
         // *appid* is the system.
+        when(mPmi.getPackageUid("com.android.settings", 0L, mUserId)).thenReturn(mUid);
         mService.isSystemUid = false;
         mService.isSystemAppId = true;
         ZenModeHelper mockZenModeHelper = mock(ZenModeHelper.class);
@@ -8256,10 +8276,9 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
     public void testAddAutomaticZenRule_nonSystemCallTakesPackageFromArg() throws Exception {
         mService.isSystemUid = false;
         mService.isSystemAppId = false;
-        ZenModeHelper mockZenModeHelper = mock(ZenModeHelper.class);
-        when(mConditionProviders.isPackageOrComponentAllowed(anyString(), anyInt()))
-                .thenReturn(true);
-        mService.setZenHelper(mockZenModeHelper);
+        when(mPmi.getPackageUid(eq("another.package"), anyLong(), anyInt())).thenReturn(mUid);
+
+        ZenModeHelper zenModeHelper = setUpMockZenTest();
         ComponentName owner = new ComponentName("android", "ProviderName");
         ZenPolicy zenPolicy = new ZenPolicy.Builder().allowAlarms(true).build();
         boolean isEnabled = true;
@@ -8673,6 +8692,12 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
     public void testGrantInlineReplyUriPermission_acrossUsers() throws Exception {
         // generate a NotificationRecord for USER_ALL to make sure it's converted into USER_SYSTEM
         int otherUserId = 11;
+        int uid = 0; // sysui on primary user
+        int otherUserUid = (otherUserId * 100000) + 1; // sysui as a different user
+        String sysuiPackage = "sysui";
+        final String[] sysuiPackages = new String[] { sysuiPackage };
+        when(mPmi.getPackageUid(mContext.getPackageName(), 0L, otherUserId)).thenReturn(mUid);
+
         NotificationRecord nr =
                 generateNotificationRecord(mTestNotificationChannel, otherUserId);
         mBinderService.enqueueNotificationWithTag(PKG, PKG, "tag",
@@ -8688,10 +8713,6 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
 
         Uri uri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, 1);
 
-        int uid = 0; // sysui on primary user
-        int otherUserUid = (otherUserId * 100000) + 1; // sysui as a different user
-        String sysuiPackage = "sysui";
-        final String[] sysuiPackages = new String[] { sysuiPackage };
         when(mPackageManager.getPackagesForUid(uid)).thenReturn(sysuiPackages);
 
         // Make sure to mock call for USER_SYSTEM and not USER_ALL, since it's been replaced by the
@@ -9452,24 +9473,29 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
 
     @Test
     public void testRecordMessages_invalidMsg() throws RemoteException {
+        mService.mPreferencesHelper.createNotificationChannel(
+                PKG_P, UID_P, mTestNotificationChannel, true, true, UID_P, false);
         Notification.Builder nb = getMessageStyleNotifBuilder(false /* addDefaultMetadata */,
                 null /* groupKey */, false /* isSummary */);
         nb.setShortcutId(null);
         StatusBarNotification sbn = new StatusBarNotification(PKG_P, PKG_P, 1,
-                "testRecordMessages_invalidMsg", mUid, 0, nb.build(),
-                UserHandle.getUserHandleForUid(mUid), null, 0);
+                "testRecordMessages_invalidMsg", UID_P, 0, nb.build(),
+                UserHandle.getUserHandleForUid(UID_P), null, 0);
         NotificationRecord nr = new NotificationRecord(mContext, sbn, mTestNotificationChannel);
 
         when(mLauncherApps.getShortcuts(any(), any())).thenReturn(null);
-        mBinderService.enqueueNotificationWithTag(PKG_P, PKG_P, nr.getSbn().getTag(),
-                nr.getSbn().getId(), nr.getSbn().getNotification(), nr.getSbn().getUserId());
+        mService.enqueueNotificationInternal(PKG_P, PKG_P, UID_P, 0, nr.getSbn().getTag(),
+                nr.getSbn().getId(), nr.getSbn().getNotification(), nr.getSbn().getUserId(),
+                false, true);
         waitForIdle();
 
-        assertTrue(mBinderService.isInInvalidMsgState(PKG_P, mUid));
+        assertTrue(mBinderService.isInInvalidMsgState(PKG_P, UID_P));
     }
 
     @Test
     public void testRecordMessages_invalidMsg_notMessageStyle() throws RemoteException {
+        mService.mPreferencesHelper.createNotificationChannel(
+                PKG_O, UID_O, mTestNotificationChannel, true, true, UID_O, false);
         Notification.Builder nb = new Notification.Builder(mContext,
                 mTestNotificationChannel.getId())
                 .setContentTitle("foo")
@@ -9477,44 +9503,50 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
                 .setSmallIcon(android.R.drawable.sym_def_app_icon)
                 .setCategory(Notification.CATEGORY_MESSAGE);
         StatusBarNotification sbn = new StatusBarNotification(PKG_O, PKG_O, 1,
-                "testRecordMessages_invalidMsg_notMessageStyle", mUid, 0, nb.build(),
-                UserHandle.getUserHandleForUid(mUid), null, 0);
+                "testRecordMessages_invalidMsg_notMessageStyle", UID_O, 0, nb.build(),
+                mUser, null, 0);
         NotificationRecord nr = new NotificationRecord(mContext, sbn, mTestNotificationChannel);
 
         when(mLauncherApps.getShortcuts(any(), any())).thenReturn(null);
-        mBinderService.enqueueNotificationWithTag(PKG_O, PKG_O, nr.getSbn().getTag(),
-                nr.getSbn().getId(), nr.getSbn().getNotification(), nr.getSbn().getUserId());
+        mService.enqueueNotificationInternal(PKG_O, PKG_O, UID_O, 0, nr.getSbn().getTag(),
+                nr.getSbn().getId(), nr.getSbn().getNotification(), nr.getSbn().getUserId(),
+                false, true);
         waitForIdle();
 
         // PKG_O is allowed to be in conversation space b/c of override in
         // TestableNotificationManagerService
-        assertTrue(mBinderService.isInInvalidMsgState(PKG_O, mUid));
+        assertTrue(mBinderService.isInInvalidMsgState(PKG_O, UID_O));
     }
 
     @Test
     public void testRecordMessages_validMsg() throws RemoteException {
+        mService.mPreferencesHelper.createNotificationChannel(
+                PKG_P, UID_P, mTestNotificationChannel, true, true, UID_P, false);
         Notification.Builder nb = getMessageStyleNotifBuilder(false /* addDefaultMetadata */,
                 null /* groupKey */, false /* isSummary */);
         nb.setShortcutId(null);
         StatusBarNotification sbn = new StatusBarNotification(PKG_P, PKG_P, 1,
-                "testRecordMessages_validMsg", mUid, 0, nb.build(),
-                UserHandle.getUserHandleForUid(mUid), null, 0);
+                "testRecordMessages_validMsg", UID_P, 0, nb.build(),
+                mUser, null, 0);
         NotificationRecord nr = new NotificationRecord(mContext, sbn, mTestNotificationChannel);
 
-        mBinderService.enqueueNotificationWithTag(PKG_P, PKG_P, nr.getSbn().getTag(),
-                nr.getSbn().getId(), nr.getSbn().getNotification(), nr.getSbn().getUserId());
+        mService.enqueueNotificationInternal(PKG_P, PKG_P, UID_P, 0, nr.getSbn().getTag(),
+                nr.getSbn().getId(), nr.getSbn().getNotification(), nr.getSbn().getUserId(),
+                false, true);
         waitForIdle();
 
-        assertTrue(mBinderService.isInInvalidMsgState(PKG_P, mUid));
+        assertThat(mService.mNotificationsByKey.size()).isEqualTo(1);
+        assertTrue(mBinderService.isInInvalidMsgState(PKG_P, UID_P));
 
         nr = generateMessageBubbleNotifRecord(mTestNotificationChannel,
                 "testRecordMessages_validMsg");
 
-        mBinderService.enqueueNotificationWithTag(PKG_P, PKG_P, nr.getSbn().getTag(),
-                nr.getSbn().getId(), nr.getSbn().getNotification(), nr.getSbn().getUserId());
+        mService.enqueueNotificationInternal(PKG_P, PKG_P, UID_P, 0, nr.getSbn().getTag(),
+                nr.getSbn().getId(), nr.getSbn().getNotification(), nr.getSbn().getUserId(),
+                false, true);
         waitForIdle();
 
-        assertFalse(mBinderService.isInInvalidMsgState(PKG_P, mUid));
+        assertFalse(mBinderService.isInInvalidMsgState(PKG_P, UID_P));
     }
 
     @Test
@@ -10453,28 +10485,49 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
 
     @Test
     public void testGetActiveNotification_filtersUsers() throws Exception {
-        when(mUm.getProfileIds(0, false)).thenReturn(new int[]{0, 10});
+        int userIdProfile = mUserId + 10;
+        int userIdProfileUid = UserHandle.getUid(userIdProfile, mUid);
+        int secondUser = mUserId + 100;
+        int secondUserUid =  UserHandle.getUid(secondUser, mUid);
+
+        when(mUm.getProfileIds(mUserId, false)).thenReturn(new int[]{mUserId, userIdProfile});
+        when(mPmi.getPackageUid(eq(mContext.getPackageName()), anyLong(), eq(userIdProfile)))
+                .thenReturn(userIdProfileUid);
+        when(mPmi.getPackageUid(eq(mContext.getPackageName()), anyLong(), eq(secondUser)))
+                .thenReturn(secondUserUid);
 
         NotificationRecord nr0 =
                 generateNotificationRecord(mTestNotificationChannel, 0);
         mBinderService.enqueueNotificationWithTag(PKG, PKG, "tag0",
                 nr0.getSbn().getId(), nr0.getSbn().getNotification(), nr0.getSbn().getUserId());
 
-        NotificationRecord nr10 =
-                generateNotificationRecord(mTestNotificationChannel, 10);
-        mBinderService.enqueueNotificationWithTag(PKG, PKG, "tag10",
-                nr10.getSbn().getId(), nr10.getSbn().getNotification(), nr10.getSbn().getUserId());
+        SystemUtil.runWithShellPermissionIdentity(
+                () -> {
+                    mBinderService.createNotificationChannelsForPackage(mPkg, userIdProfileUid,
+                            new ParceledListSlice(Arrays.asList(mTestNotificationChannel)));
+                    mBinderService.createNotificationChannelsForPackage(mPkg, secondUserUid,
+                            new ParceledListSlice(Arrays.asList(mTestNotificationChannel)));
 
-        NotificationRecord nr11 =
-                generateNotificationRecord(mTestNotificationChannel, 11);
-        mBinderService.enqueueNotificationWithTag(PKG, PKG, "tag11",
-                nr11.getSbn().getId(), nr11.getSbn().getNotification(), nr11.getSbn().getUserId());
+                    StatusBarNotification profileSbn = generateSbn(
+                            mPkg, userIdProfileUid, System.currentTimeMillis(), userIdProfile);
+                    mService.enqueueNotificationInternal(profileSbn.getPackageName(),
+                            profileSbn.getOpPkg(),
+                            userIdProfileUid, 0, "tagUserIdProfile", profileSbn.getId(),
+                            profileSbn.getNotification(), profileSbn.getUserId(), false, true);
+
+                    StatusBarNotification user2Sbn = generateSbn(
+                            mPkg, secondUserUid, System.currentTimeMillis(), secondUser);
+                    mService.enqueueNotificationInternal(user2Sbn.getPackageName(),
+                            user2Sbn.getOpPkg(), secondUserUid, 0, "tagSecondUser",
+                            user2Sbn.getId(), user2Sbn.getNotification(), user2Sbn.getUserId(),
+                            false, true);
+                });
         waitForIdle();
 
         StatusBarNotification[] notifs = mBinderService.getActiveNotifications(PKG);
         assertEquals(2, notifs.length);
         for (StatusBarNotification sbn : notifs) {
-            if (sbn.getUserId() == 11) {
+            if (sbn.getUserId() == secondUser) {
                 fail("leaked data across users");
             }
         }
@@ -10483,9 +10536,9 @@ public class NotificationManagerServiceTest extends UiServiceTestCase {
     @Test
     public void testUngroupingOngoingAutoSummary() throws Exception {
         NotificationRecord nr0 =
-                generateNotificationRecord(mTestNotificationChannel, 0);
+                generateNotificationRecord(mTestNotificationChannel, mUserId);
         NotificationRecord nr1 =
-                generateNotificationRecord(mTestNotificationChannel, 0);
+                generateNotificationRecord(mTestNotificationChannel, mUserId);
         nr1.getSbn().getNotification().flags |= FLAG_ONGOING_EVENT;
 
         mService.addNotification(nr0);

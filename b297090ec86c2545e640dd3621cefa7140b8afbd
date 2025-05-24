@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87214690_20355b07",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1375
+      },
+      "writtenOn": "2025-05-24T15:26:26Z",
+      "side": 1,
+      "message": "eworks/base/packages/SystemUI/SystemUI-core/android_common/javac/srcjars\" \"out/soong/.intermediates/frameworks/base/packages/SystemUI/SystemUI-core/android_common/javac/classes\"\nframeworks/base/packages/SystemUI/src/com/android/systemui/qs/QSPanel.java:979: error: incompatible types: View cannot be converted to Expandable\n                    t.click(expandable);\n                            ^",
+      "revId": "b297090ec86c2545e640dd3621cefa7140b8afbd",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

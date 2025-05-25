@@ -7444,5 +7444,10 @@ message MetricsEvent {
     // ---- End Q Constants, all Q constants go above this line ----
     // Add new aosp constants above this line.
     // END OF AOSP CONSTANTS
+
+    // ACTION: Custom AICP metrics
+    AICP_METRICS = 10000;
+    AICP_SETTINGS = 4000;
+    CUSTOM_QUICK_TILES = 9001;
   }
 }

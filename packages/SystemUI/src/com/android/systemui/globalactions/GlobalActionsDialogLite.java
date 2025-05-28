@@ -476,7 +476,6 @@ public class GlobalActionsDialogLite implements DialogInterface.OnDismissListene
                 });
 
         mActions = mLineageGlobalActions.getUserActionsArray();
-        mActions.add(GLOBAL_ACTION_KEY_ONTHEGO);
     }
 
     /**

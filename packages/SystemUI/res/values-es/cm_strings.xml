@@ -77,4 +77,6 @@
     <string name="battery_notification_channel_tv">Advertencia de batería</string>
     <string name="screenshot_delete_label">Eliminar</string>
     <string name="screenshot_delete_description">Eliminar captura de pantalla</string>
+    <string name="screen_pinning_description_no_navbar">Esto mantendrá la pantalla visible hasta que dejes de fijarla, para ello, mantén pulsado el botón «Atrás».</string>
+    <string name="screen_pinning_toast_no_navbar">Para desanclar esta pantalla, toca y mantén presionado el botón «Atrás»</string>
 </resources>

@@ -24,6 +24,7 @@ import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.UiEventLogger;
 import com.android.internal.util.Preconditions;
 import com.android.keyguard.KeyguardUpdateMonitor;
+import com.android.systemui.aicp.AicpSettingsService;
 import com.android.systemui.animation.DialogTransitionAnimator;
 import com.android.systemui.assist.AssistManager;
 import com.android.systemui.broadcast.BroadcastDispatcher;
@@ -115,6 +116,7 @@ public class Dependency {
 
     @Inject DumpManager mDumpManager;
 
+    @Inject Lazy<AicpSettingsService> mAicpSettingsService;
     @Inject Lazy<BroadcastDispatcher> mBroadcastDispatcher;
     @Inject Lazy<BluetoothController> mBluetoothController;
     @Inject Lazy<KeyguardUpdateMonitor> mKeyguardUpdateMonitor;
@@ -162,6 +164,7 @@ public class Dependency {
         // on imports.
         mProviders.put(TIME_TICK_HANDLER, mTimeTickHandler::get);
         mProviders.put(BG_LOOPER, mBgLooper::get);
+        mProviders.put(AicpSettingsService.class, mAicpSettingsService::get);
         mProviders.put(BroadcastDispatcher.class, mBroadcastDispatcher::get);
         mProviders.put(BluetoothController.class, mBluetoothController::get);
         mProviders.put(KeyguardUpdateMonitor.class, mKeyguardUpdateMonitor::get);

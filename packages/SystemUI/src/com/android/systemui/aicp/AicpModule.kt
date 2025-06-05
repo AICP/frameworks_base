@@ -43,6 +43,11 @@ import dagger.multibindings.StringKey
 
 @Module
 interface AicpModule {
+
+    /** */
+    @BindsAdd commentMore actions
+    AicpSettingsService provideAicpSettingsService(AicpSettingsServiceImpl impl);
+
     /** Inject Aicp_extrasTile into tileMap in QSModule */
     @Binds
     @IntoMap

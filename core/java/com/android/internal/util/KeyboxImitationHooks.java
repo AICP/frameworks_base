@@ -35,6 +35,7 @@ public class KeyboxImitationHooks {
     private static final boolean DEBUG = Log.isLoggable(TAG, Log.DEBUG);
     private static boolean mFailed = false;
     private static boolean mIsAttestation = false;
+    private static boolean hasAttestKeyDescriptor = false;
     private static Integer keyAlgo;
 
     public static KeyEntryResponse onGetKeyEntry(KeyDescriptor descriptor) {
@@ -51,6 +52,10 @@ public class KeyboxImitationHooks {
         }
 
         if (!mIsAttestation) {
+            return null;
+        }
+
+        if (hasAttestKeyDescriptor) {
             return null;
         }
 
@@ -88,7 +93,6 @@ public class KeyboxImitationHooks {
             KeyboxUtils.append(uid, descriptor.alias, response);
             mFailed = false;
             putAlgo(params.algorithm);
-            mIsAttestation = true;
             return response.metadata;
         } catch (Exception e) {
             Log.e(TAG, "Failed to generate key", e);
@@ -186,6 +190,10 @@ public class KeyboxImitationHooks {
 
     public static void setAttestationFlag(boolean flag) {
         mIsAttestation = flag;
+    }
+
+    public static void setAttestKeyFlag(boolean flag) {
+        hasAttestKeyDescriptor = flag;
     }
 
     private static void dlog(String msg) {

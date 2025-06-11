@@ -6650,6 +6650,12 @@ public final class Settings {
         public static final String STATUS_BAR_LOGO_COLOR_ACCENT = "status_bar_logo_color_accent";
 
         /**
+         * Hide Statusbar on LockScreen
+         * @hide
+         */
+        public static final String HIDE_LOCKSCREEN_STATUS_BAR = "hide_lockscreen_status_bar";
+
+        /**
          * IMPORTANT: If you add a new public settings you also have to add it to
          * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
          * it to PRIVATE_SETTINGS below. Also add a validator that can validate
@@ -6890,6 +6896,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUSBAR_BATTERY_BAR_BLEND_DARK_COLORS_REVERSE);
             PRIVATE_SETTINGS.add(QS_FOOTER_TEXT_SHOW);
             PRIVATE_SETTINGS.add(QS_FOOTER_TEXT_STRING);
+            PRIVATE_SETTINGS.add(HIDE_LOCKSCREEN_STATUS_BAR);
         }
 
         /**

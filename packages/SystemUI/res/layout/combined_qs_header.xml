@@ -80,7 +80,7 @@ frame when animating QS <-> QQS transition
         android:id="@+id/clock"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:gravity="start|center_vertical"
+        android:gravity="center_vertical"
         android:paddingStart="@dimen/status_bar_left_clock_starting_padding"
         android:paddingEnd="@dimen/status_bar_left_clock_end_padding"
         android:singleLine="true"
@@ -95,6 +95,7 @@ frame when animating QS <-> QQS transition
         android:id="@+id/statusbar_logo"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_gravity="start|center_vertical"
         android:paddingEnd="1dip"
         android:scaleType="center"
         android:visibility="gone" />
@@ -103,7 +104,7 @@ frame when animating QS <-> QQS transition
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_gravity="start|center_vertical"
+        android:layout_gravity="center_vertical"
         android:gravity="center_vertical"
         android:singleLine="true"
         android:textDirection="locale"
@@ -132,6 +133,16 @@ frame when animating QS <-> QQS transition
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/privacy_container"
         app:layout_constraintTop_toTopOf="@id/clock">
+
+    <com.android.systemui.aicp.logo.LogoImageViewQuick
+        android:id="@+id/statusbar_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingEnd="1dip"
+        android:gravity="left"
+        android:scaleType="center"
+        android:visibility="gone" />
+
         <LinearLayout
             android:id="@+id/hover_system_icons_container"
             android:layout_width="wrap_content"

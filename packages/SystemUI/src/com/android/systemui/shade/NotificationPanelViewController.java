@@ -117,6 +117,7 @@ import com.android.keyguard.dagger.KeyguardUserSwitcherComponent;
 import com.android.systemui.DejankUtils;
 import com.android.systemui.Dumpable;
 import com.android.systemui.Gefingerpoken;
+import com.android.systemui.animation.Interpolators;
 import com.android.systemui.biometrics.AuthController;
 import com.android.systemui.bouncer.domain.interactor.AlternateBouncerInteractor;
 import com.android.systemui.bouncer.shared.constants.KeyguardBouncerConstants;
@@ -4645,6 +4646,9 @@ public final class NotificationPanelViewController implements ShadeSurface, Dump
                     mKeyguardStatusBarViewController.updateViewState(
                             /* alpha= */ 1f,
                             keyguardShowing ? View.VISIBLE : View.INVISIBLE);
+                }
+                if (keyguardShowing) {
+                    mKeyguardStatusBar.toggleContents(true);
                 }
                 if (keyguardShowing && oldState != mBarState) {
                     mQsController.hideQsImmediately();

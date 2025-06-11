@@ -219,6 +219,7 @@ import com.android.systemui.statusbar.phone.KeyguardBottomAreaView;
 import com.android.systemui.statusbar.phone.KeyguardBottomAreaViewController;
 import com.android.systemui.statusbar.phone.KeyguardBypassController;
 import com.android.systemui.statusbar.phone.KeyguardClockPositionAlgorithm;
+import com.android.systemui.statusbar.phone.KeyguardStatusBarView;
 import com.android.systemui.statusbar.phone.KeyguardStatusBarViewController;
 import com.android.systemui.statusbar.phone.LockscreenGestureLogger;
 import com.android.systemui.statusbar.phone.LockscreenGestureLogger.LockscreenUiEvent;
@@ -398,6 +399,7 @@ public final class NotificationPanelViewController implements ShadeSurface, Dump
     private KeyguardUserSwitcherController mKeyguardUserSwitcherController;
     private KeyguardStatusBarViewController mKeyguardStatusBarViewController;
     private KeyguardStatusViewController mKeyguardStatusViewController;
+    private KeyguardStatusBarView mKeyguardStatusBar;
     private final LockIconViewController mLockIconViewController;
     private NotificationsQuickSettingsContainer mNotificationContainerParent;
     private final NotificationsQSContainerController mNotificationsQSContainerController;
@@ -1068,6 +1070,7 @@ public final class NotificationPanelViewController implements ShadeSurface, Dump
 
         FrameLayout userAvatarContainer = null;
         KeyguardUserSwitcherView keyguardUserSwitcherView = null;
+        mKeyguardStatusBar = mView.findViewById(R.id.keyguard_header);
 
         if (mKeyguardUserSwitcherEnabled && mUserManager.isUserSwitcherEnabled(
                 mResources.getBoolean(R.bool.qs_show_user_switcher_for_single_user))) {
@@ -1082,7 +1085,7 @@ public final class NotificationPanelViewController implements ShadeSurface, Dump
 
         mKeyguardStatusBarViewController =
                 mKeyguardStatusBarViewComponentFactory.build(
-                                mView.findViewById(R.id.keyguard_header),
+                                mKeyguardStatusBar,
                                 mShadeViewStateProvider)
                         .getKeyguardStatusBarViewController();
         mKeyguardStatusBarViewController.init();
@@ -4645,6 +4648,9 @@ public final class NotificationPanelViewController implements ShadeSurface, Dump
                     mKeyguardStatusBarViewController.updateViewState(
                             /* alpha= */ 1f,
                             keyguardShowing ? View.VISIBLE : View.INVISIBLE);
+                }
+                if (keyguardShowing) {
+                    mKeyguardStatusBar.toggleContents(true);
                 }
                 if (keyguardShowing && oldState != mBarState) {
                     mQsController.hideQsImmediately();

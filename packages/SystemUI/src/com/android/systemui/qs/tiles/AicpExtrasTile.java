@@ -56,7 +56,7 @@ public class AicpExtrasTile extends QSTileImpl<State> {
     private static final String TAG = "AicpExtrasTile";
     public static final String TILE_SPEC = "aicp_extras";
     private static final String AE_PKG_NAME = "com.aicp.extras";
-    private static final String OTA_PKG_NAME = "com.aicp.updater3";
+    private static final String OTA_PKG_NAME = "org.lineageos.updater";
 
     private static final Intent AE_INTENT = new Intent()
             .setComponent(new ComponentName(AE_PKG_NAME,

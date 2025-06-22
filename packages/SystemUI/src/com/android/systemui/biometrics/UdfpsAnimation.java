@@ -259,7 +259,9 @@ public class UdfpsAnimation extends ImageView {
                 recognizingAnim.selectDrawable(0);
                 clearAnimation();
             }
-            mWindowManager.removeView(this);
+            try {
+                mWindowManager.removeView(this);
+            } catch (IllegalArgumentException ignored) {}
             mShowing = false;
         } catch (RuntimeException e) {
             Log.e(LOG_TAG, "Error removing view from WindowManager", e);

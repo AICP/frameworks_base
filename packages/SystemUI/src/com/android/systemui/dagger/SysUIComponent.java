@@ -26,6 +26,7 @@ import com.android.systemui.dagger.qualifiers.Main;
 import com.android.systemui.dagger.qualifiers.PerUser;
 import com.android.systemui.dump.DumpManager;
 import com.android.systemui.keyguard.KeyguardSliceProvider;
+import com.android.systemui.media.MediaViewController;
 import com.android.systemui.people.PeopleProvider;
 import com.android.systemui.settings.MultiUserUtilsModule;
 import com.android.systemui.startable.Dependencies;
@@ -208,4 +209,7 @@ public interface SysUIComponent {
      * Member injection into the supplied argument.
      */
     void inject(PeopleProvider peopleProvider);
+
+    @SysUISingleton
+    MediaViewController mediaViewController();
 }

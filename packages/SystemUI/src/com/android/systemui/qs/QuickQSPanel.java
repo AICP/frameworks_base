@@ -40,7 +40,7 @@ public class QuickQSPanel extends QSPanel {
     public static final int TUNER_MAX_TILES_FALLBACK = 6;
     // A default value so that we never return 0.
     public static final int DEFAULT_MAX_TILES = 42;
-    public static final int DEFAULT_MIN_TILES = 4;
+    public int DEFAULT_MIN_TILES = AicpUtils.getQuickQSColumnsCount(mContext, DEFAULT_MAX_TILES) * 2;
 
     private boolean mDisabledByPolicy;
     private int mMaxTiles;

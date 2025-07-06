@@ -29,7 +29,6 @@ import com.android.systemui.plugins.qs.QSTile;
 import com.android.systemui.res.R;
 
 import com.aicp.gear.util.AicpUtils;
-
 /**
  * Version of QSPanel that only shows N Quick Tiles in the QS Header.
  */
@@ -40,7 +39,8 @@ public class QuickQSPanel extends QSPanel {
     public static final int TUNER_MAX_TILES_FALLBACK = 6;
     // A default value so that we never return 0.
     public static final int DEFAULT_MAX_TILES = 42;
-    public int DEFAULT_MIN_TILES = AicpUtils.getQuickQSColumnsCount(mContext, DEFAULT_MAX_TILES) * 2;
+    public int QsRows = AicpUtils.getQSTileLayoutRows(mContext);
+    public int DEFAULT_MIN_TILES = AicpUtils.getQuickQSColumnsCount(mContext, DEFAULT_MAX_TILES) * QsRows;
 
     private boolean mDisabledByPolicy;
     private int mMaxTiles;

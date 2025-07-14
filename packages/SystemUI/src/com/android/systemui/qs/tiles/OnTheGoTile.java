@@ -115,7 +115,7 @@ public class OnTheGoTile extends QSTileImpl<BooleanState> {
 
     @Override
     protected void handleUpdateState(BooleanState state, Object arg) {
-        state.value = mIsEnabled;
+        state.value = mIsEnabled && isOnTheGoEnabled();
         state.state = state.value ? Tile.STATE_ACTIVE : Tile.STATE_INACTIVE;
         state.label = mContext.getString(R.string.quick_settings_onthego_label);
         state.icon = mIcon;

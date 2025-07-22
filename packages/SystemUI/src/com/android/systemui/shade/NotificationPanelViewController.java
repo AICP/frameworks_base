@@ -206,6 +206,7 @@ import com.android.systemui.statusbar.policy.ConfigurationController;
 import com.android.systemui.statusbar.policy.KeyguardStateController;
 import com.android.systemui.statusbar.policy.SplitShadeStateController;
 import com.android.systemui.unfold.SysUIUnfoldComponent;
+import com.android.systemui.util.ScrimUtils;
 import com.android.systemui.util.Utils;
 import com.android.systemui.util.time.SystemClock;
 import com.android.systemui.window.domain.interactor.WindowRootViewBlurInteractor;
@@ -3171,6 +3172,7 @@ public final class NotificationPanelViewController implements
             }
             mExpandedFraction = Math.min(1f,
                     maxPanelHeight == 0 ? 0 : mExpandedHeight / maxPanelHeight);
+            ScrimUtils.get().setExpandedFraction(mExpandedFraction);
             if (mExpandedFraction > 0f && mExpectingSynthesizedDown) {
                 mExpectingSynthesizedDown = false;
             }
@@ -3611,6 +3613,7 @@ public final class NotificationPanelViewController implements
 
             // TODO: maybe add a listener for barstate
             mBarState = statusBarState;
+            ScrimUtils.get().setBarState(mBarState);
             mQsController.setBarState(statusBarState);
 
             boolean fromShadeToKeyguard = statusBarState == KEYGUARD

@@ -162,6 +162,7 @@ class MobileConnectionsRepositoryKairosTest : SysuiTestCase() {
                     wifiManager,
                     wifiLogBuffer,
                     wifiTableLogBuffer,
+                    mock(),
                 )
             subscriptionManager.stub {
                 // For convenience, set up the subscription info callbacks

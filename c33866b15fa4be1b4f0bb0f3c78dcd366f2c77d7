@@ -69,6 +69,29 @@
       "message": "out/soong/.intermediates/frameworks/base/services/core/services.core.unboosted/android_common/javac/shard32/srcjars/frameworks/base/services/core/java/com/android/server/wm/ActivityStartInterceptor.java:195: error: no suitable method found for intercept(Intent,ResolveInfo,ActivityInfo,String,Task,int,int,ActivityOptions,boolean)\n        return intercept(intent, rInfo, aInfo, resolvedType, inTask, callingPid,\n               ^\n    method ActivityStartInterceptor.intercept(Intent,ResolveInfo,ActivityInfo,String,Task,int,int,ActivityOptions) is not applicable\n      (actual and formal argument lists differ in length)\n    method ActivityStartInterceptor.intercept(Intent,ResolveInfo,ActivityInfo,String,Task,TaskFragment,int,int,ActivityOptions,boolean) is not applicable\n      (actual and formal argument lists differ in length)\n1 error",
       "revId": "c33866b15fa4be1b4f0bb0f3c78dcd366f2c77d7",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55c024e4_e582834c",
+        "filename": "services/core/java/com/android/server/wm/ActivityStartInterceptor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1375
+      },
+      "writtenOn": "2025-07-29T20:12:35Z",
+      "side": 1,
+      "message": "remove this.",
+      "range": {
+        "startLine": 206,
+        "startChar": 25,
+        "endLine": 206,
+        "endChar": 53
+      },
+      "revId": "c33866b15fa4be1b4f0bb0f3c78dcd366f2c77d7",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

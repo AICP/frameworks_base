@@ -73,6 +73,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "83bcabaf_7c886017",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2057
+      },
+      "writtenOn": "2025-07-31T12:32:28Z",
+      "side": 1,
+      "message": "@claymore1298@gmail.com I removed the parameter you mentioned, but now I get two errors complaining about the missing parameter..\n\nwarning: Supported source version \u0027RELEASE_9\u0027 from annotation processor \u0027android.processor.compat.changeid.ChangeIdProcessor\u0027 less than -source \u002711\u0027\nout/soong/.intermediates/frameworks/base/services/core/services.core.unboosted/android_common/javac/shard32/srcjars/frameworks/base/services/core/java/com/android/server/wm/ActivityStarter.java:1070: error: no suitable method found for intercept(Intent,ResolveInfo,ActivityInfo,String,Task,TaskFragment,int,int,ActivityOptions,boolean)\n        if (mInterceptor.intercept(intent, rInfo, aInfo, resolvedType, inTask, inTaskFragment,\n                        ^\n    method ActivityStartInterceptor.intercept(Intent,ResolveInfo,ActivityInfo,String,Task,int,int,ActivityOptions) is not applicable\n      (actual and formal argument lists differ in length)\n    method ActivityStartInterceptor.intercept(Intent,ResolveInfo,ActivityInfo,String,Task,int,int,ActivityOptions,boolean) is not applicable\n      (actual and formal argument lists differ in length)\nout/soong/.intermediates/frameworks/base/services/core/services.core.unboosted/android_common/javac/shard32/srcjars/frameworks/base/services/core/java/com/android/server/wm/ActivityStartInterceptor.java:217: error: cannot find symbol\n        mInTaskFragment \u003d inTaskFragment;\n                          ^\n  symbol:   variable inTaskFragment\n  location: class ActivityStartInterceptor\n2 errors",
+      "revId": "c33866b15fa4be1b4f0bb0f3c78dcd366f2c77d7",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "55c024e4_e582834c",
         "filename": "services/core/java/com/android/server/wm/ActivityStartInterceptor.java",
         "patchSetId": 1
@@ -84,6 +101,30 @@
       "writtenOn": "2025-07-29T20:12:35Z",
       "side": 1,
       "message": "remove this.",
+      "range": {
+        "startLine": 206,
+        "startChar": 25,
+        "endLine": 206,
+        "endChar": 53
+      },
+      "revId": "c33866b15fa4be1b4f0bb0f3c78dcd366f2c77d7",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "deb11b1b_7ded1ef5",
+        "filename": "services/core/java/com/android/server/wm/ActivityStartInterceptor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 2057
+      },
+      "writtenOn": "2025-07-31T12:32:28Z",
+      "side": 1,
+      "message": "@claymore1298@gmail.com If I do a git rebase, modify the commit, and when I try to push to the AICP Gerrit, will it take into account the change to the commit ??\nFirst time I have done this type of action (in relation to gerrit) :)",
+      "parentUuid": "55c024e4_e582834c",
       "range": {
         "startLine": 206,
         "startChar": 25,

@@ -7301,8 +7301,14 @@ public final class Settings {
         public static final String LOCKSCREEN_WEATHER_LOCATION = "lockscreen_weather_location";
 
         /**
+         * Hide Statusbar on LockScreen
          * @hide
          */
+        public static final String HIDE_LOCKSCREEN_STATUS_BAR = "hide_lockscreen_status_bar";
+
+        /**
+	 * @hide
+	*/
         public static final String LOCKSCREEN_WEATHER_TEXT = "lockscreen_weather_text";
 
         /**

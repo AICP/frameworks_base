@@ -180,6 +180,9 @@ public class PropImitationHooks {
         }
 
         sStockFp = res.getString(R.string.config_stockFingerprint);
+        if (sStockFp == null || sStockFp.isEmpty()) {
+            sStockFp = SystemProperties.get("ro.build.fingerprint", "");
+        }
         sNetflixModel = res.getString(R.string.config_netflixSpoofModel);
 
         sProcessName = processName;

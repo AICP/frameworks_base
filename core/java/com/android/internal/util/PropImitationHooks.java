@@ -77,7 +77,6 @@ public class PropImitationHooks {
     private static final String PACKAGE_WALLPAPER = "com.google.android.apps.wallpaper";
     private static final String PACKAGE_WALLPAPEREFFECTS = "com.google.android.wallpaper.effects";
     private static final String PACKAGE_WEATHER = "com.google.android.apps.weather";
-    private static final String PROCESS_GMS_GAPPS = PACKAGE_GMS + ".gapps";
     private static final String PROCESS_GMS_UNSTABLE = PACKAGE_GMS + ".unstable";
 
     private static final String PROP_SECURITY_PATCH = "persist.sys.pihooks.security_patch";
@@ -97,17 +96,6 @@ public class PropImitationHooks {
             "MODEL", "Pixel 9 Pro XL",
             "ID", "BP2A.250805.005",
             "FINGERPRINT", "google/komodo/komodo:16/BP2A.250805.005/13691446:user/release-keys"
-    );
-
-    private static final Map<String, String> sPixelFiveProps = Map.of(
-            "PRODUCT", "barbet",
-            "DEVICE", "barbet",
-            "HARDWARE", "barbet",
-            "MANUFACTURER", "Google",
-            "BRAND", "google",
-            "MODEL", "Pixel 5a",
-            "ID", "AP2A.240805.005",
-            "FINGERPRINT", "google/barbet/barbet:14/AP2A.240805.005/12025142:user/release-keys"
     );
 
     private static final Map<String, String> sPixelXLProps = Map.of(
@@ -162,7 +150,7 @@ public class PropImitationHooks {
     private static volatile String sNetflixModel;
 
     private static volatile String sProcessName;
-    private static volatile boolean sIsGms, sIsFinsky, sIsPhotos;
+    private static volatile boolean sIsPhotos;
 
     public static void setProps(Context context) {
         final String packageName = context.getPackageName();
@@ -186,8 +174,6 @@ public class PropImitationHooks {
         sNetflixModel = res.getString(R.string.config_netflixSpoofModel);
 
         sProcessName = processName;
-        sIsGms = packageName.equals(PACKAGE_GMS) && processName.equals(PROCESS_GMS_UNSTABLE);
-        sIsFinsky = packageName.equals(PACKAGE_FINSKY);
         sIsPhotos = packageName.equals(PACKAGE_GPHOTOS);
 
         /* Set certified properties for GMSCore

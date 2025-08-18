@@ -198,6 +198,7 @@ public class PropImitationHooks {
             case PACKAGE_BARD:
             case PACKAGE_EMOJIWALLPAPER:
             case PACKAGE_LIVEWALLPAPER:
+            case PACKAGE_GPHOTOS:
             case PACKAGE_PIXELCREATIVE:
             case PACKAGE_PIXELTHEMES:
             case PACKAGE_PIXELWALLPAPER:

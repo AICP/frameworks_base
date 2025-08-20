@@ -16,6 +16,23 @@
       "message": "I need my QS clicks to not trigger longpresses at the same time. However we should probably either fix it in a way that does not interfer with QS animations, or we should revert the QS animations completely. I don\u0027t care about animations so I\u0027m using this patch for now.",
       "revId": "002c4bf570a54deebbd7d86dceeef3628d010543",
       "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6df9126_54eea773",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 209
+      },
+      "writtenOn": "2025-08-20T17:11:09Z",
+      "side": 1,
+      "message": "Listener was added in https://gerrit.aicp-rom.com/c/AICP/frameworks_base/+/122091",
+      "revId": "002c4bf570a54deebbd7d86dceeef3628d010543",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
     }
   ]
 }

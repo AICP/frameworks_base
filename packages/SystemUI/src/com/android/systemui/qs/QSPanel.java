@@ -610,7 +610,7 @@ public class QSPanel extends LinearLayout implements Tunable {
 
         if (mTileLayout != null) {
             mTileLayout.addTile(tileRecord);
-            tileClickListener(tileRecord.tile, tileRecord.tileView);
+            //tileClickListener(tileRecord.tile, tileRecord.tileView);
         }
     }
 

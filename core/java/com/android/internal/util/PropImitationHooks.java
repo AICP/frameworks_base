@@ -190,10 +190,6 @@ public class PropImitationHooks {
         }
 
         switch (packageName) {
-            case PACKAGE_GMS:
-                dlog("Setting certified props for: " + packageName + " process: " + processName);
-                setCertifiedPropsForGms(context);
-                return;
             case PACKAGE_AIWALLPAPERS:
             case PACKAGE_BARD:
             case PACKAGE_EMOJIWALLPAPER:

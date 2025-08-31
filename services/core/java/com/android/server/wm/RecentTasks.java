@@ -40,6 +40,7 @@ import static android.view.WindowManager.LayoutParams.TYPE_INPUT_METHOD;
 import static android.view.WindowManager.LayoutParams.TYPE_INPUT_METHOD_DIALOG;
 
 import static com.android.internal.protolog.WmProtoLogGroups.WM_DEBUG_TASKS;
+import static com.android.server.display.LMOFreeformDisplayAdapter.UNIQUE_ID_PREFIX;
 import static com.android.server.wm.ActivityRecord.State.RESUMED;
 import static com.android.server.wm.ActivityTaskManagerDebugConfig.DEBUG_RECENTS;
 import static com.android.server.wm.ActivityTaskManagerDebugConfig.DEBUG_RECENTS_TRIM_TASKS;
@@ -1513,6 +1514,12 @@ class RecentTasks {
         // Recents.
         if (task.getDisplayContent() != null
                 && !task.getDisplayContent().canShowTasksInHostDeviceRecents()) {
+            return false;
+        }
+
+        // Do not show floating window tasks in recents.
+        if (task.getDisplayContent() != null
+                && task.getDisplayInfo().uniqueId.startsWith(UNIQUE_ID_PREFIX)) {
             return false;
         }
 

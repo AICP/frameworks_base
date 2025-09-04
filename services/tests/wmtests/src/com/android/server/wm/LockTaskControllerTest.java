@@ -49,6 +49,7 @@ import static com.android.dx.mockito.inline.extended.ExtendedMockito.never;
 import static com.android.dx.mockito.inline.extended.ExtendedMockito.reset;
 import static com.android.dx.mockito.inline.extended.ExtendedMockito.times;
 import static com.android.dx.mockito.inline.extended.ExtendedMockito.verify;
+import static com.android.dx.mockito.inline.extended.ExtendedMockito.verifyNoInteractions;
 import static com.android.dx.mockito.inline.extended.ExtendedMockito.when;
 import static com.android.server.wm.LockTaskController.LOCK_TASK_AUTH_ALLOWLISTED;
 import static com.android.server.wm.LockTaskController.LOCK_TASK_AUTH_DONT_LOCK;
@@ -316,6 +317,67 @@ public class LockTaskControllerTest {
 
         // THEN the cellbroadcast task should all be allowed
         assertFalse(mLockTaskController.isLockTaskModeViolation(cellbroadcastreceiver));
+    }
+
+    @Test
+    public void testRebuildSystemLockTaskPinnedMode_lockTaskModeTasksEmpty_noop() {
+        // GIVEN no tasks in lockTaskMode
+
+        // WHEN calling rebuildSystemLockTaskPinnedMode
+        mLockTaskController.rebuildSystemLockTaskPinnedMode();
+
+        // THEN mSupervisor should not be interacted with
+        verifyNoInteractions(mSupervisor);
+    }
+
+    @Test
+    public void testRebuildSystemLockTaskPinnedMode_taskDontLock_noop() {
+        // GIVEN in started lock task mode (DONT_LOCK)
+        Task tr = getTask(LOCK_TASK_AUTH_DONT_LOCK);
+        mLockTaskController.startLockTaskMode(tr, true, TEST_UID);
+
+        // WHEN calling rebuildSystemLockTaskPinnedMode
+        mLockTaskController.rebuildSystemLockTaskPinnedMode();
+
+        // THEN mSupervisor should not be interacted with
+        verifyNoInteractions(mSupervisor);
+    }
+
+    @Test
+    public void testRebuildSystemLockTaskPinnedMode_notInPinnedMode_noop() {
+        // GIVEN in lock task mode (not PINNED)
+        Task tr = getTask(LOCK_TASK_AUTH_LAUNCHABLE_PRIV);
+        mLockTaskController.startLockTaskMode(tr, false, TEST_UID);
+
+        // WHEN calling rebuildSystemLockTaskPinnedMode
+        mLockTaskController.rebuildSystemLockTaskPinnedMode();
+
+        // THEN notifyLockTaskModeChanged called only once, for the startLockTaskMode call
+        verify(mTaskChangeNotificationController).notifyLockTaskModeChanged(anyInt());
+    }
+
+    @Test
+    public void testRebuildSystemLockTaskPinnedMode_pinnedMode_rebuild() throws Exception {
+        // GIVEN in lock task mode (PINNED)
+        Task tr = getTask(LOCK_TASK_AUTH_PINNABLE);
+        mLockTaskController.startLockTaskMode(tr, true, TEST_UID);
+
+        // WHEN calling rebuildSystemLockTaskPinnedMode
+        mLockTaskController.rebuildSystemLockTaskPinnedMode();
+
+        // THEN these below items are called TWICE, once for startLocktaskMode, once for rebuild
+        // THEN notifyLockTaskModeChanged
+        verify(mTaskChangeNotificationController, times(2)).notifyLockTaskModeChanged(anyInt());
+        // THEN the keyguard should have been disabled
+        verify(mWindowManager, times(2)).disableKeyguard(any(IBinder.class), anyString(),
+                eq(TEST_USER_ID));
+        // THEN the status bar should have been disabled
+        verify(mStatusBarService, times(2)).disable(eq(STATUS_BAR_MASK_PINNED),
+                any(IBinder.class), eq(mPackageName));
+        verify(mStatusBarService, times(2)).disable2(eq(DISABLE2_NONE), any(IBinder.class),
+                eq(mPackageName));
+        // THEN recents should have been notified
+        verify(mRecentTasks, times(2)).onLockTaskModeStateChanged(anyInt(), eq(TEST_USER_ID));
     }
 
     @Test

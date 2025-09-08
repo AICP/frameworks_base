@@ -188,9 +188,13 @@ public class PropImitationHooks {
 
         switch (processName) {
             case PROCESS_GMS_UNSTABLE:
+            if (!android.os.Process.isIsolated()) {
                 dlog("Setting certified props for: " + packageName + " process: " + processName);
                 setCertifiedPropsForGms(context);
+                 } else {
+                dlog("Not setting Play Integrity props in isolated process");
                 return;
+		}
         }
 
         switch (packageName) {
@@ -252,6 +256,11 @@ public class PropImitationHooks {
     private static void setCertifiedPropsForGms(Context context) {
         if (!SystemProperties.getBoolean(SPOOF_PIHOOKS_PI, true))
             return;
+        // Guard: isolated processes cannot access content providers (Settings.*).
+        if (android.os.Process.isIsolated()) {
+            dlog("Skipping setPlayIntegrityProps in isolated process");
+            return;
+        }
 
         File dataFile = new File(Environment.getDataSystemDirectory(), DATA_FILE);
         String savedProps = readFromFile(dataFile);

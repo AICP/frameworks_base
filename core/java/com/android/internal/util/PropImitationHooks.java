@@ -355,17 +355,23 @@ public class PropImitationHooks {
     }
 
     public static boolean shouldBypassTaskPermission(Context context) {
-        // GMS doesn't have MANAGE_ACTIVITY_TASKS permission
+        // GMS/Finsky don't have MANAGE_ACTIVITY_TASKS permission
         final int callingUid = Binder.getCallingUid();
-        final int gmsUid;
         try {
-            gmsUid = context.getPackageManager().getApplicationInfo(PACKAGE_GMS, 0).uid;
-            dlog("shouldBypassTaskPermission: gmsUid:" + gmsUid + " callingUid:" + callingUid);
+            int gmsUid = context.getPackageManager()
+                    .getApplicationInfo(PACKAGE_GMS, 0).uid;
+            int finskyUid = context.getPackageManager()
+                    .getApplicationInfo(PACKAGE_FINSKY, 0).uid;
+
+            dlog("shouldBypassTaskPermission: gmsUid:" + gmsUid +
+                    " finskyUid:" + finskyUid +
+                    " callingUid:" + callingUid);
+
+            return (callingUid == gmsUid || callingUid == finskyUid);
         } catch (Exception e) {
-            Log.e(TAG, "shouldBypassTaskPermission: unable to get gms uid", e);
+            Log.e(TAG, "shouldBypassTaskPermission: unable to get gms/finsky uid", e);
             return false;
         }
-        return gmsUid == callingUid;
     }
 
     public static boolean hasSystemFeature(String name, boolean has) {

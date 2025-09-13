@@ -84,4 +84,9 @@
   <!-- Refresh Rate Tile -->
     <string name="refresh_rate_tile_label">Refresh rate</string>
     <string name="auto_mode_label">Auto</string>
+
+   <!-- Flashlight Strength -->
+    <string name="flashlight_strength_title">Flashlight Strength</string>
+    <string name="flashlight_strength_turn_off">Turn off</string>
+    <string name="flashlight_strength_turn_on">Turn on</string>
 </resources>

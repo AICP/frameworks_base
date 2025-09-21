@@ -31,6 +31,7 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.UserHandle;
@@ -48,6 +49,7 @@ import androidx.annotation.StyleRes;
 import androidx.annotation.VisibleForTesting;
 
 import com.android.app.animation.Interpolators;
+import com.android.settingslib.Utils;
 import com.android.systemui.DualToneHandler;
 import com.android.systemui.battery.unified.BatteryColors;
 import com.android.systemui.battery.unified.BatteryDrawableState;
@@ -699,29 +701,43 @@ public class BatteryMeterView extends LinearLayout implements DarkReceiver {
             return;
         }
 
+        // Use default behavior (when NewStatusBarIcons is enabled, Compose battery is used instead)
         if (DarkIconDispatcher.isInAreas(areas, this)) {
             if (darkIntensity < 0.5) {
                 mUnifiedBatteryColors = BatteryColors.DARK_THEME_COLORS;
             } else {
                 mUnifiedBatteryColors = BatteryColors.LIGHT_THEME_COLORS;
             }
-
-            mUnifiedBattery.setColors(mUnifiedBatteryColors);
         } else  {
             // Same behavior as the legacy code when not isInArea
             mUnifiedBatteryColors = BatteryColors.DARK_THEME_COLORS;
-            mUnifiedBattery.setColors(mUnifiedBatteryColors);
         }
+
+        mUnifiedBattery.setColors(mUnifiedBatteryColors);
     }
 
     private void onDarkChangedLegacy(ArrayList<Rect> areas, float darkIntensity, int tint) {
-        float intensity = DarkIconDispatcher.isInAreas(areas, this) ? darkIntensity : 0;
-        int nonAdaptedSingleToneColor = mDualToneHandler.getSingleColor(intensity);
-        int nonAdaptedForegroundColor = mDualToneHandler.getFillColor(intensity);
-        int nonAdaptedBackgroundColor = mDualToneHandler.getBackgroundColor(intensity);
+        // Check if accent color tinting is enabled
+        boolean useAccentColor = Settings.System.getIntForUser(
+                getContext().getContentResolver(),
+                Settings.System.TINT_STATUSBAR_ICONS_WITH_ACCENT,
+                0,
+                UserHandle.USER_CURRENT) == 1;
 
-        updateColors(nonAdaptedForegroundColor, nonAdaptedBackgroundColor,
-                nonAdaptedSingleToneColor);
+        if (useAccentColor) {
+            // Use system accent color for battery tinting
+            int accentColor = Utils.getColorAccentDefaultColor(getContext());
+            updateColors(accentColor, accentColor, accentColor);
+        } else {
+            // Use default behavior
+            float intensity = DarkIconDispatcher.isInAreas(areas, this) ? darkIntensity : 0;
+            int nonAdaptedSingleToneColor = mDualToneHandler.getSingleColor(intensity);
+            int nonAdaptedForegroundColor = mDualToneHandler.getFillColor(intensity);
+            int nonAdaptedBackgroundColor = mDualToneHandler.getBackgroundColor(intensity);
+
+            updateColors(nonAdaptedForegroundColor, nonAdaptedBackgroundColor,
+                    nonAdaptedSingleToneColor);
+        }
     }
 
     public void setStaticColor(boolean isStaticColor) {

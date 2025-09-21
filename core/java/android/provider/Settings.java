@@ -7223,6 +7223,12 @@ public final class Settings {
         public static final String THEMING_SETTINGS_DASHBOARD_ICONS = "theming_settings_dashboard_icons";
 
         /**
+         * Tint statusbar icons with system accent color
+         * @hide
+         */
+        public static final String TINT_STATUSBAR_ICONS_WITH_ACCENT = "tint_statusbar_icons_with_accent";
+
+        /**
          * Whether to show the carrier name on the lockscreen
          * @hide
          */

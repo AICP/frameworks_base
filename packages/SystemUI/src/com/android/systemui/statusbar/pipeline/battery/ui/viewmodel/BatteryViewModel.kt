@@ -24,6 +24,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
+import com.android.settingslib.Utils
 import com.android.systemui.Flags
 import com.android.systemui.common.shared.model.ContentDescription
 import com.android.systemui.dagger.qualifiers.Application
@@ -54,7 +55,7 @@ import kotlinx.coroutines.flow.map
 sealed class BatteryViewModel(
     val interactor: BatteryInteractor,
     shouldShowPercent: Flow<Boolean>,
-    @Application context: Context,
+    @Application private val context: Context,
 ) : ExclusiveActivatable() {
     protected val hydrator: Hydrator = Hydrator("BatteryViewModel.hydrator")
 
@@ -141,8 +142,13 @@ sealed class BatteryViewModel(
         )
 
     private val _colorProfile: Flow<ColorProfile> =
-        combine(interactor.batteryAttributionType, interactor.isCritical) { attr, isCritical ->
-            when (attr) {
+        combine(
+            interactor.batteryAttributionType,
+            interactor.isCritical,
+            interactor.tintStatusBarIconsWithAccent,
+            interactor.themeChanged
+        ) { attr, isCritical, useAccentColor, _ ->
+            val baseProfile = when (attr) {
                 Charging,
                 Defend ->
                     ColorProfile(
@@ -168,6 +174,14 @@ sealed class BatteryViewModel(
                             light = BatteryColors.LightTheme.Default,
                         )
                     }
+            }
+            
+            if (useAccentColor) {
+                val accentColorInt = Utils.getColorAccentDefaultColor(context)
+                val (accentLight, accentDark) = BatteryColors.createAccentThemes(accentColorInt)
+                ColorProfile(dark = accentDark, light = accentLight)
+            } else {
+                baseProfile
             }
         }
 

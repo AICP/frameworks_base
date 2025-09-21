@@ -7237,6 +7237,12 @@ public final class Settings {
         public static final String LOCKSCREEN_SHOW_CUSTOM_CARRIER_TEXT = "lockscreen_show_custom_carrier_text";
 
         /**
+	* Tint statusbar icons with system accent color
+         * @hide
+         */
+        public static final String TINT_STATUSBAR_ICONS_WITH_ACCENT = "tint_statusbar_icons_with_accent";
+
+        /**
          * Haptic feedback on QS tiles
          * @hide
          */

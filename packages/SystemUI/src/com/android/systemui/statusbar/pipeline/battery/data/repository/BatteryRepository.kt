@@ -21,6 +21,7 @@ import android.database.ContentObserver
 import android.os.Handler
 import android.os.Looper
 import android.os.UserHandle
+import android.provider.Settings
 import com.android.systemui.Flags
 import com.android.systemui.dagger.SysUISingleton
 import com.android.systemui.dagger.qualifiers.Application
@@ -88,6 +89,12 @@ interface BatteryRepository {
      * we should show the battery percentage in the home screen status bar
      */
     val showBatteryPercentMode: StateFlow<Int>
+
+    /**
+     * [Settings.System.TINT_STATUSBAR_ICONS_WITH_ACCENT]. A user setting to indicate whether
+     * status bar icons should be tinted with the system accent color
+     */
+    val tintStatusBarIconsWithAccent: StateFlow<Boolean>
 
     companion object {
         const val ICON_STYLE_DEFAULT = 0
@@ -384,6 +391,50 @@ constructor(
                 scope = scope,
                 started = SharingStarted.Lazily,
                 initialValue = BatteryRepository.SHOW_PERCENT_HIDDEN,
+            )
+
+    override val tintStatusBarIconsWithAccent =
+        callbackFlow {
+                val resolver = context.contentResolver
+                val uri =
+                    Settings.System.getUriFor(
+                        Settings.System.TINT_STATUSBAR_ICONS_WITH_ACCENT
+                    )
+
+                fun readSetting(): Boolean {
+                    return Settings.System.getIntForUser(
+                        resolver,
+                        Settings.System.TINT_STATUSBAR_ICONS_WITH_ACCENT,
+                        0,
+                        UserHandle.USER_CURRENT,
+                    ) == 1
+                }
+
+                val observer =
+                    object : ContentObserver(Handler(Looper.getMainLooper())) {
+                        override fun onChange(selfChange: Boolean) {
+                            trySend(readSetting())
+                        }
+                    }
+
+                resolver.registerContentObserver(
+                    uri,
+                    /* notifyForDescendants = */ false,
+                    observer,
+                    UserHandle.USER_ALL,
+                )
+
+                // Emit current value immediately
+                trySend(readSetting())
+
+                awaitClose { resolver.unregisterContentObserver(observer) }
+            }
+            .distinctUntilChanged()
+            .flowOn(bgDispatcher)
+            .stateIn(
+                scope = scope,
+                started = SharingStarted.Lazily,
+                initialValue = false,
             )
 
     /** Get and re-fetch the estimate every 2 minutes while active */

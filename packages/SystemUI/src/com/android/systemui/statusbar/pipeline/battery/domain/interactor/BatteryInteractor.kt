@@ -18,10 +18,14 @@ package com.android.systemui.statusbar.pipeline.battery.domain.interactor
 
 import com.android.systemui.dagger.SysUISingleton
 import com.android.systemui.dagger.qualifiers.Background
+import com.android.systemui.dagger.qualifiers.Main
 import com.android.systemui.statusbar.pipeline.battery.data.repository.BatteryRepository
+import com.android.systemui.statusbar.policy.ConfigurationController
+import com.android.systemui.statusbar.policy.onThemeChanged
 import javax.inject.Inject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
@@ -33,6 +37,7 @@ import kotlinx.coroutines.flow.stateIn
 class BatteryInteractor @Inject constructor(
     private val repo: BatteryRepository,
     @Background private val appScope: CoroutineScope,
+    @Main private val configurationController: ConfigurationController,
 ) {
     /** The current level in the range of [0-100], or null if we don't know the level yet */
     val level =
@@ -84,6 +89,12 @@ class BatteryInteractor @Inject constructor(
 
     /** @see [BatteryRepository.showBatteryPercentMode] */
     val showBatteryPercentMode: StateFlow<Int> = repo.showBatteryPercentMode
+
+    /** @see [BatteryRepository.tintStatusBarIconsWithAccent] */
+    val tintStatusBarIconsWithAccent: StateFlow<Boolean> = repo.tintStatusBarIconsWithAccent
+
+    /** Flow that emits whenever the theme changes */
+    val themeChanged: Flow<Unit> = configurationController.onThemeChanged
 
     // Mode == 1
     val showPercentInsideIcon: StateFlow<Boolean> =

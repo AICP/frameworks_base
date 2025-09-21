@@ -140,10 +140,35 @@ sealed interface BatteryColors {
         override val errorFill = Color.parseColor("#C5221F")
     }
 
+    /** Custom BatteryColors implementation that uses accent color */
+    class AccentColors(private val accentColor: Int) : BatteryColors {
+        override val fg: Int = accentColor
+        // 22% alpha accent color for background
+        override val bg: Int = Color.argb(
+            (0.22f * 255).toInt(),
+            Color.red(accentColor),
+            Color.green(accentColor),
+            Color.blue(accentColor)
+        )
+        // Use accent color for fill
+        override val fill: Int = accentColor
+        override val fillOnly: Int = accentColor
+        // Use accent color for all states
+        override val activeFill: Int = accentColor
+        override val warnFill: Int = accentColor
+        override val errorFill: Int = accentColor
+    }
+
     companion object {
         /** For use from java */
         @JvmField val LIGHT_THEME_COLORS = LightThemeColors
 
         @JvmField val DARK_THEME_COLORS = DarkThemeColors
+
+        /** Create a BatteryColors instance using accent color */
+        @JvmStatic
+        fun createAccentColors(accentColor: Int): BatteryColors {
+            return AccentColors(accentColor)
+        }
     }
 }

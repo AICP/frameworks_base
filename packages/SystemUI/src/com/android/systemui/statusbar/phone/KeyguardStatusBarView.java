@@ -476,13 +476,32 @@ public class KeyguardStatusBarView extends RelativeLayout {
         @ColorInt int textColor = Utils.getColorAttrDefaultColor(mContext,
                 R.attr.wallpaperTextColor);
         float luminance = Color.luminance(textColor);
-        @ColorInt int iconColor = Utils.getColorStateListDefaultColor(mContext,
-                    luminance < 0.5
-                        ? com.android.settingslib.R.color.dark_mode_icon_color_single_tone
-                        : com.android.settingslib.R.color.light_mode_icon_color_single_tone);
-        @ColorInt int contrastColor = luminance < 0.5
-                ? DarkIconDispatcherImpl.DEFAULT_ICON_TINT
-                : DarkIconDispatcherImpl.DEFAULT_INVERSE_ICON_TINT;
+        
+        // Check if accent color tinting is enabled
+        boolean useAccentColor = android.provider.Settings.System.getIntForUser(
+                mContext.getContentResolver(),
+                android.provider.Settings.System.TINT_STATUSBAR_ICONS_WITH_ACCENT,
+                0,
+                android.os.UserHandle.USER_CURRENT) == 1;
+
+        @ColorInt int iconColor;
+        @ColorInt int contrastColor;
+        
+        if (useAccentColor) {
+            // Use system accent color for tinting
+            iconColor = Utils.getColorAccentDefaultColor(mContext);
+            contrastColor = iconColor;
+        } else {
+            // Use default behavior
+            iconColor = Utils.getColorStateListDefaultColor(mContext,
+                        luminance < 0.5
+                            ? com.android.settingslib.R.color.dark_mode_icon_color_single_tone
+                            : com.android.settingslib.R.color.light_mode_icon_color_single_tone);
+            contrastColor = luminance < 0.5
+                    ? DarkIconDispatcherImpl.DEFAULT_ICON_TINT
+                    : DarkIconDispatcherImpl.DEFAULT_INVERSE_ICON_TINT;
+        }
+        
         float intensity = textColor == Color.WHITE ? 0 : 1;
         mCarrierLabel.setTextColor(iconColor);
 

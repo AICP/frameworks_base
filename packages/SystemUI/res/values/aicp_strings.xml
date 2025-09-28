@@ -128,4 +128,7 @@
     <string name="mic_camera_privacy_indicator_title">Mic and camera privacy indicator</string>
     <string name="location_privacy_indicator_title">Location privacy indicator</string>
     <string name="projection_privacy_indicator_title">Media projection privacy indicator</string>
+
+    <!-- Data disabled icon -->
+    <string name="data_disabled_icon_title">Data disabled icon</string>
 </resources>

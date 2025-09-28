@@ -148,6 +148,24 @@
         android:title="@string/clock" />
 
     <com.android.systemui.tuner.TunerSwitch
+        android:icon="@drawable/ic_statusbar_mic"
+        android:key="mic_camera_privacy_indicators_enabled"
+        android:title="@string/mic_camera_privacy_indicator_title"
+        sysui:defValue="true" />
+
+    <com.android.systemui.tuner.TunerSwitch
+        android:icon="@drawable/ic_statusbar_location"
+        android:key="location_privacy_indicator_enabled"
+        android:title="@string/location_privacy_indicator_title"
+        sysui:defValue="true" />
+
+    <com.android.systemui.tuner.TunerSwitch
+        android:icon="@drawable/ic_statusbar_cast"
+        android:key="enable_projection_privacy_indicator"
+        android:title="@string/projection_privacy_indicator_title"
+        sysui:defValue="true" />
+
+    <com.android.systemui.tuner.TunerSwitch
         android:icon="@drawable/ic_statusbar_priority"
         android:key="low_priority"
         android:title="@string/tuner_low_priority"

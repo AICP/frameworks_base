@@ -805,11 +805,6 @@ public class GlobalActionsDialogLite implements DialogInterface.OnDismissListene
             } else if (GLOBAL_ACTION_KEY_SCREENSHOT.equals(actionKey)) {
                 addIfShouldShowAction(tempActions, new ScreenshotAction());
 		} 
-            } else if (GLOBAL_ACTION_KEY_ONTHEGO.equals(actionKey)) {
-                if (Settings.System.getInt(mContext.getContentResolver(),
-                        Settings.System.POWERMENU_ONTHEGO, 0) == 1) {
-                    addIfShouldShowAction(tempActions, new getOnTheGoAction());
-                }
             } else if (GLOBAL_ACTION_KEY_LOGOUT.equals(actionKey)) {
                 if (mLogoutInteractor.isLogoutEnabled().getValue()) {
                     addIfShouldShowAction(tempActions, new LogoutAction());
@@ -827,6 +822,10 @@ public class GlobalActionsDialogLite implements DialogInterface.OnDismissListene
             }
             // Add here so we don't add more than one.
             addedKeys.add(actionKey);
+        }
+        if (Settings.System.getInt(mContext.getContentResolver(),
+            Settings.System.POWERMENU_ONTHEGO, 0) == 1) {
+            addIfShouldShowAction(tempActions, new getOnTheGoAction());
         }
 
         // replace power and restart with a single power options action, if needed

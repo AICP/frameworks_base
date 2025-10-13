@@ -1676,9 +1676,10 @@ public class PermissionManagerServiceImpl implements PermissionManagerServiceInt
      *
      * @param pkg The package for which to reset.
      * @param userId The device user for which to do a reset.
+     * @param restorePregrantedPermissions Whether to restore pregranted permissions after resetting
      */
     private void resetRuntimePermissionsInternal(@NonNull AndroidPackage pkg,
-            @UserIdInt int userId) {
+            @UserIdInt int userId, boolean restorePregrantedPermissions) {
         final String packageName = pkg.getPackageName();
 
         // These are flags that can change base on user actions.
@@ -1822,13 +1823,15 @@ public class PermissionManagerServiceImpl implements PermissionManagerServiceInt
                 continue;
             }
 
-            // If this permission was granted by default or role, make sure it is.
+            // If this permission was granted by default or role, possibly restore it
             if ((oldFlags & FLAG_PERMISSION_GRANTED_BY_DEFAULT) != 0
                     || (oldFlags & FLAG_PERMISSION_GRANTED_BY_ROLE) != 0
                     || isSpecialRuntimePermission(permName)) {
-                // PermissionPolicyService will handle the app op for runtime permissions later.
+		    if (restorePregrantedPermissions) {
+                    // PermissionPolicyService will handle the app op for runtime permissions later.
                 grantRuntimePermissionInternal(packageName, permName, false,
                         Process.SYSTEM_UID, userId, delayingPermCallback);
+                        }
             // In certain cases we should leave the state unchanged:
             // -- If permission review is enabled the permissions for a legacy apps
             // are represented as constantly granted runtime ones
@@ -5064,7 +5067,7 @@ public class PermissionManagerServiceImpl implements PermissionManagerServiceInt
             // pregranted permission state so that it still works once it gets reinstalled, thus
             // only reset the user modifications to its permission state.
             for (final int userId : userIds) {
-                resetRuntimePermissionsInternal(pkg, userId);
+                resetRuntimePermissionsInternal(pkg, userId, true);
             }
             return;
         }
@@ -5200,10 +5203,11 @@ public class PermissionManagerServiceImpl implements PermissionManagerServiceInt
     }
 
     @Override
-    public void resetRuntimePermissions(@NonNull AndroidPackage pkg, @UserIdInt int userId) {
+    public void resetRuntimePermissions(@NonNull AndroidPackage pkg, @UserIdInt int userId,
+        boolean restorePregrantedPermissions) {
         Objects.requireNonNull(pkg, "pkg");
         Preconditions.checkArgumentNonNegative(userId, "userId");
-        resetRuntimePermissionsInternal(pkg, userId);
+        resetRuntimePermissionsInternal(pkg, userId, restorePregrantedPermissions);
     }
 
     @Override

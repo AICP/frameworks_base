@@ -337,7 +337,7 @@ public class LegacyPermissionManagerService extends ILegacyPermissionManager.Stu
                     LocalServices.getService(PermissionManagerServiceInternal.class);
             for (final int userId : UserManagerService.getInstance().getUserIds()) {
                 packageManagerInternal.forEachPackage(pkg ->
-                        permissionManagerInternal.resetRuntimePermissions(pkg, userId));
+                        permissionManagerInternal.resetRuntimePermissions(pkg, userId, true));
             }
         }
 

@@ -604,7 +604,7 @@ final class PreferredActivityHelper {
                 final int numPackages = mPm.mPackages.size();
                 for (int i = 0; i < numPackages; i++) {
                     final AndroidPackage pkg = mPm.mPackages.valueAt(i);
-                    mPm.mPermissionManager.resetRuntimePermissions(pkg, userId);
+                    mPm.mPermissionManager.resetRuntimePermissions(pkg, userId, true);
                 }
             }
             updateDefaultHomeNotLocked(mPm.snapshotComputer(), userId);

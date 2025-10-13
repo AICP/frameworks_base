@@ -99,7 +99,7 @@ public interface PermissionManagerServiceInternal extends PermissionManagerInter
      */
     //@SystemApi(client = SystemApi.Client.SYSTEM_SERVER)
     void resetRuntimePermissions(@NonNull AndroidPackage pkg,
-            @UserIdInt int userId);
+            @UserIdInt int userId, boolean restorePregrants);
 
     /**
      * Read legacy permission state from package settings.

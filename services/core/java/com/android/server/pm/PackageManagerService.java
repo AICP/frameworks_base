@@ -22714,7 +22714,8 @@ public class PackageManagerService extends IPackageManager.Stub
 
     @Override
     public void clearApplicationUserData(final String packageName,
-            final IPackageDataObserver observer, final int userId) {
+            final IPackageDataObserver observer, final int userId,
+            boolean restorePregrantedPermissions) {
         mContext.enforceCallingOrSelfPermission(
                 android.Manifest.permission.CLEAR_APP_USER_DATA, null);
 
@@ -22740,7 +22741,8 @@ public class PackageManagerService extends IPackageManager.Stub
                     try (PackageFreezer freezer = freezePackage(packageName,
                             "clearApplicationUserData")) {
                         synchronized (mInstallLock) {
-                            succeeded = clearApplicationUserDataLIF(packageName, userId);
+                            succeeded = clearApplicationUserDataLIF(packageName, userId,
+                                    restorePregrantedPermissions);
                         }
                         synchronized (mLock) {
                             mInstantAppRegistry.deleteInstantApplicationMetadataLPw(
@@ -22775,7 +22777,8 @@ public class PackageManagerService extends IPackageManager.Stub
         });
     }
 
-    private boolean clearApplicationUserDataLIF(String packageName, int userId) {
+    private boolean clearApplicationUserDataLIF(String packageName, int userId,
+                    boolean restorePregrantedPermissions) {
         if (packageName == null) {
             Slog.w(TAG, "Attempt to delete null packageName.");
             return false;
@@ -22797,7 +22800,7 @@ public class PackageManagerService extends IPackageManager.Stub
             Slog.w(TAG, "Package named '" + packageName + "' doesn't exist.");
             return false;
         }
-        mPermissionManager.resetRuntimePermissions(pkg, userId);
+        mPermissionManager.resetRuntimePermissions(pkg, userId, restorePregrantedPermissions);
 
         clearAppDataLIF(pkg, userId,
                 FLAG_STORAGE_DE | FLAG_STORAGE_CE | FLAG_STORAGE_EXTERNAL);
@@ -23237,7 +23240,7 @@ public class PackageManagerService extends IPackageManager.Stub
                 final int numPackages = mPackages.size();
                 for (int i = 0; i < numPackages; i++) {
                     final AndroidPackage pkg = mPackages.valueAt(i);
-                    mPermissionManager.resetRuntimePermissions(pkg, userId);
+                    mPermissionManager.resetRuntimePermissions(pkg, userId, true);
                 }
             }
             updateDefaultHomeNotLocked(userId);

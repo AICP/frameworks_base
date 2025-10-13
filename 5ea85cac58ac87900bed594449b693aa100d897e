@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbabdc4c_8bb2a5fe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 375
+      },
+      "writtenOn": "2025-10-13T19:45:58Z",
+      "side": 1,
+      "message": "Hey thanks, here’s a working link of the code for future reference:\n\nhttps://github.com/AOSiP/platform_frameworks_base/commit/22dd659b75a97daedda74d6bcfb72497b55e6021",
+      "revId": "5ea85cac58ac87900bed594449b693aa100d897e",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

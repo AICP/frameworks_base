@@ -21,6 +21,9 @@ import static android.provider.Settings.Secure.SCREEN_OFF_UNLOCK_UDFPS_ENABLED;
 import android.annotation.TestApi;
 import android.content.Context;
 import android.hardware.biometrics.Flags;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.BatteryManager;
 import android.os.Build;
 import android.os.SystemProperties;
 import android.provider.Settings;
@@ -45,6 +48,7 @@ public class AmbientDisplayConfiguration {
     private final boolean mAlwaysOnByDefault;
     private final boolean mPickupGestureEnabledByDefault;
     private final boolean mScreenOffUdfpsAvailable;
+    private final boolean mScreenOffUdfpsDefaultOn;
     private final boolean mDozeEnabledByDefault;
     private final boolean mTapGestureEnabledByDefault;
     private final boolean mDoubleTapGestureEnabledByDefault;
@@ -77,6 +81,8 @@ public class AmbientDisplayConfiguration {
                 mContext.getResources().getBoolean(R.bool.config_dozePickupGestureEnabled);
         mScreenOffUdfpsAvailable =
                 mContext.getResources().getBoolean(R.bool.config_screen_off_udfps_enabled);
+        mScreenOffUdfpsDefaultOn =
+                mContext.getResources().getBoolean(R.bool.config_screen_off_udfps_default_on);
         mDozeEnabledByDefault =
                 !com.android.server.display.feature.flags.Flags.configurableDefaultDozeValues()
                         || mContext.getResources().getBoolean(R.bool.config_dozeEnabled);
@@ -173,11 +179,10 @@ public class AmbientDisplayConfiguration {
 
     /** @hide */
     public boolean screenOffUdfpsEnabled(int user) {
-        return !TextUtils.isEmpty(udfpsLongPressSensorType())
-                && ((mScreenOffUdfpsAvailable && Flags.screenOffUnlockUdfps())
-                && mContext.getResources().getBoolean(R.bool.config_screen_off_udfps_default_on)
+        if (!mScreenOffUdfpsAvailable) return false;
+        return mScreenOffUdfpsDefaultOn
                 ? boolSettingDefaultOn(SCREEN_OFF_UNLOCK_UDFPS_ENABLED, user)
-                : boolSettingDefaultOff(SCREEN_OFF_UNLOCK_UDFPS_ENABLED, user));
+                : boolSettingDefaultOff(SCREEN_OFF_UNLOCK_UDFPS_ENABLED, user);
     }
 
     /** @hide */

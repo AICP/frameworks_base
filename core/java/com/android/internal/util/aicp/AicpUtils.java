@@ -18,6 +18,7 @@
 package com.android.internal.util.aicp;
 
 import android.app.ActivityManager;
+import android.app.ActivityThread;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -37,6 +38,7 @@ import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemClock;
 import android.os.SystemProperties;
+import android.provider.Settings;
 import android.text.format.Time;
 import android.util.DisplayMetrics;
 import android.view.InputDevice;
@@ -363,6 +365,22 @@ public class AicpUtils {
             return mStatusBarService;
         }
     }
+
+    public static boolean ambientAod() {
+        try {
+             Context ctx = ActivityThread.currentApplication() != null
+                     ? ActivityThread.currentApplication().getApplicationContext()
+                     : null;
+             if (ctx == null) return false;
+             return Settings.Secure.getIntForUser(ctx.getContentResolver(),
+                 Settings.Secure.DOZE_ALWAYS_ON_WALLPAPER_ENABLED,
+                 ctx.getResources().getBoolean(
+                     com.android.internal.R.bool.config_dozeSupportsAodWallpaper) ? 1 : 0,
+                 UserHandle.USER_CURRENT) == 1;
+         } catch (Throwable t) {
+             return false;
+         }
+     }
 
 /*
     public static void killForegroundApp() {

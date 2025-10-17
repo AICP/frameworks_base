@@ -16,9 +16,9 @@ package com.android.systemui.plugins.keyguard.ui.clocks
 import android.content.Context
 import android.graphics.Color
 import android.graphics.Rect
+import com.android.internal.util.aicp.AicpUtils.ambientAod
 import com.android.systemui.monet.ColorScheme
 import com.android.systemui.plugins.annotations.ProtectedInterface
-import com.android.systemui.shared.Flags.ambientAod
 
 /** Events that have specific data about the related face */
 @ProtectedInterface

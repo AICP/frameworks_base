@@ -37,6 +37,7 @@ import android.widget.TextView
 import com.android.app.animation.Interpolators
 import com.android.internal.annotations.VisibleForTesting
 import com.android.systemui.Flags.clockFidgetAnimation
+import com.android.internal.util.aicp.AicpUtils.ambientAod
 import com.android.systemui.animation.AxisDefinition
 import com.android.systemui.animation.GSFAxes
 import com.android.systemui.animation.TextAnimator
@@ -58,7 +59,6 @@ import com.android.systemui.plugins.keyguard.VPointF.Companion.size
 import com.android.systemui.plugins.keyguard.VRectF
 import com.android.systemui.plugins.keyguard.ui.clocks.ClockAxisStyle
 import com.android.systemui.plugins.keyguard.ui.clocks.ClockViewIds
-import com.android.systemui.shared.Flags.ambientAod
 import java.lang.Thread
 import kotlin.math.max
 import kotlin.math.min

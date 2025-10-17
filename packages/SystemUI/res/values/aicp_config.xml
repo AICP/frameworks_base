@@ -36,4 +36,8 @@
     
     <!-- Update battery info every second when device is charging -->
     <bool name="config_alternateFastchargeInfoUpdate">false</bool>
+
+
+    <!-- If AOD can show an ambient version of the wallpaper (-1 means ignore) -->
+    <integer name="config_dozeSupportsAodWallpaperOverride">-1</integer>
 </resources>

@@ -206,6 +206,7 @@ public final class InputMethodInfo implements Parcelable {
         boolean suppressesSpellChecker = false; // false as default
         boolean showInInputMethodPicker = true; // true as default
         mForceDefault = false;
+        int handledConfigChanges = 0;
 
         PackageManager pm = context.getPackageManager();
         String settingsActivityComponent = null;
@@ -252,7 +253,7 @@ public final class InputMethodInfo implements Parcelable {
                     com.android.internal.R.styleable.InputMethod_suppressesSpellChecker, false);
             showInInputMethodPicker = sa.getBoolean(
                     com.android.internal.R.styleable.InputMethod_showInInputMethodPicker, true);
-            mHandledConfigChanges = sa.getInt(
+            handledConfigChanges = sa.getInt(
                     com.android.internal.R.styleable.InputMethod_configChanges, 0);
             sa.recycle();
 
@@ -328,6 +329,7 @@ public final class InputMethodInfo implements Parcelable {
         mSuppressesSpellChecker = suppressesSpellChecker;
         mShowInInputMethodPicker = showInInputMethodPicker;
         mIsVrOnly = isVrOnly;
+        mHandledConfigChanges = handledConfigChanges;
     }
 
     /**

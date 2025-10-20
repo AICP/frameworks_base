@@ -80,8 +80,7 @@ class BackgroundLaunchProcessController {
     @BackgroundActivityStartController.BalCode
     int areBackgroundActivityStartsAllowed(int pid, int uid, String packageName,
             int appSwitchState, boolean isCheckingForFgsStart,
-            boolean hasActivityInVisibleTask, boolean inPinnedWindow,
-            boolean hasBackgroundActivityStartPrivileges,
+            boolean hasActivityInVisibleTask, boolean hasBackgroundActivityStartPrivileges,
             long lastStopAppSwitchesTime, long lastActivityLaunchTime,
             long lastActivityFinishTime) {
         // If app switching is not allowed, we ignore all the start activity grace period
@@ -117,8 +116,7 @@ class BackgroundLaunchProcessController {
                         + "activity starts privileges");
         }
         // Allow if the caller has an activity in any foreground task.
-        if ((isCheckingForFgsStart || !inPinnedWindow)
-                && hasActivityInVisibleTask
+        if (hasActivityInVisibleTask
                 && (appSwitchState == APP_SWITCH_ALLOW || appSwitchState == APP_SWITCH_FG_ONLY)) {
             return BackgroundActivityStartController.logStartAllowedAndReturnCode(
                     BAL_ALLOW_FOREGROUND, /*background*/ false, uid, uid, /*intent*/ null,

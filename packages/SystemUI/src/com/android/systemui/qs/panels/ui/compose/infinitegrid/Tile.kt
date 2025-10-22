@@ -30,22 +30,27 @@ import android.service.quicksettings.Tile.STATE_UNAVAILABLE
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.indication
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Arrangement.spacedBy
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
@@ -72,6 +77,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.onClick
+import androidx.compose.ui.semantics.onLongClick
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
@@ -205,8 +212,10 @@ fun ContentScope.Tile(
             }
 
         val shapeMode = rememberTileShapeMode()
-        // TODO(b/361789146): Draw the shapes instead of clipping
-        val tileShape by TileDefaults.animateTileShapeAsState(uiState.state, shapeMode)
+        val wantCircle = shapeMode == 4 && iconOnly
+        val tileShape =
+            if (wantCircle) CircleShape
+            else TileDefaults.animateTileShapeAsState(uiState.state, shapeMode).value
         val animatedColor by animateColorAsState(colors.background, label = "QSTileBackgroundColor")
         val isDualTarget = uiState.handlesSecondaryClick
 
@@ -224,15 +233,21 @@ fun ContentScope.Tile(
             contentRevealModifier = Modifier
         }
 
+        val outerShape = if (wantCircle) RoundedCornerShape(0.dp) else tileShape
+        val outerColor: () -> Color = if (wantCircle) { { Color.Transparent } } else { { animatedColor } }
+        val focusBorderColor = MaterialTheme.colorScheme.secondary
+
         TileExpandable(
-            color = { animatedColor },
-            shape = tileShape,
+            color = outerColor,
+            shape = outerShape,
             squishiness = squishiness,
             hapticsViewModel = hapticsViewModel,
             modifier =
                 modifier
                     .then(surfaceRevealModifier)
-                    .borderOnFocus(color = MaterialTheme.colorScheme.secondary, tileShape.topEnd)
+                    .thenIf(!wantCircle) { 
+                        modifier.borderOnFocus(color = focusBorderColor, outerShape.topEnd) 
+                    }
                     .fillMaxWidth()
                     .thenIf(currentBounceableInfo != null) {
                         Modifier.bounceable(
@@ -268,9 +283,8 @@ fun ContentScope.Tile(
                 remember(currentBounceableInfo) {
                     currentBounceableInfo?.bounceable ?: BounceableTileViewModel()
                 }
-            TileContainer(
-                interactionSource = interactionSource.takeIf { bounceContainer },
-                onClick = onClick@{
+            val click: (() -> Unit)? =
+                onClick@{
                         if (!isClickable) return@onClick
 
                         val hasDetails =
@@ -306,49 +320,108 @@ fun ContentScope.Tile(
                             // And show footer text feedback for icons
                             requestToggleTextFeedback(tile.spec)
                         }
-                    },
-                onLongClick = longClick,
-                accessibilityUiState = uiState.accessibilityUiState,
-                iconOnly = iconOnly,
-                isDualTarget = isDualTarget,
+                }
+
+            if (wantCircle) {
+                val interaction = remember { MutableInteractionSource() }
+
+                Box(Modifier.fillMaxSize()) {
+                    Box(
                 modifier = contentRevealModifier,
-            ) {
-                val iconProvider: Context.() -> Icon = { getTileIcon(icon = icon) }
-                if (iconOnly) {
-                    SmallTileContent(
-                        iconProvider = iconProvider,
-                        color = colors.icon,
-                        modifier =
-                            Modifier.align(Alignment.Center).bounceScale {
-                                contentBounceable.iconBounceScale
-                            },
-                    )
-                } else {
-                    val iconShape by TileDefaults.animateIconShapeAsState(uiState.state, shapeMode)
-                    val secondaryClick: (() -> Unit)? =
-                        {
-                                hapticsViewModel?.setTileInteractionState(
-                                    TileHapticsViewModel.TileInteractionState.CLICKED
-                                )
-                                tile.toggleClick()
+                            .size(CommonTileDefaults.TileHeight)
+                            .align(Alignment.Center)
+                            .clip(CircleShape)
+                            .background(animatedColor)
+                            .semantics(mergeDescendants = true) {
+                                role = Role.Button
+                                onClick(label = uiState.label?.toString()) {
+                                    click?.invoke()
+                                    true
+                                }
+                                if (longClick != null) {
+                                    onLongClick(label = uiState.label?.toString()) {
+                                        longClick?.invoke()
+                                        true
+                                    }
+                                }
                             }
-                            .takeIf { isDualTarget }
-                    LargeTileContent(
-                        label = uiState.label,
-                        secondaryLabel = uiState.secondaryLabel,
-                        iconProvider = iconProvider,
-                        sideDrawable = uiState.sideDrawable,
-                        colors = colors,
-                        iconShape = iconShape,
-                        toggleClick = secondaryClick,
-                        onLongClick = longClick,
-                        accessibilityUiState = uiState.accessibilityUiState,
-                        squishiness = squishiness,
-                        isVisible = isVisible,
-                        textScale = { contentBounceable.textBounceScale },
-                        modifier =
-                            Modifier.largeTilePadding(isDualTarget = uiState.handlesLongClick),
-                    )
+                            .indication(interaction, LocalIndication.current)
+                            .combinedClickable(
+                                interactionSource = interaction,
+                                indication = null,
+                                onClick = { click?.invoke() },
+                                onLongClick = { longClick?.invoke() },
+                                onClickLabel = uiState.accessibilityUiState.clickLabel,
+                                onLongClickLabel = longPressLabel(),
+                                hapticFeedbackEnabled = !Flags.msdlFeedback(),
+                            )
+                    ) {
+                        val iconProvider: Context.() -> Icon = { getTileIcon(icon = icon) }
+                        SmallTileContent(
+                            iconProvider = iconProvider,
+                            color = colors.icon,
+                            modifier =
+                                Modifier.align(Alignment.Center).bounceScale {
+                                    bounceableInfo.bounceable.iconBounceScale
+                                },
+                        )
+                    }
+                }
+            } else {
+                TileContainer(
+                    onClick = click,
+                    onLongClick = longClick,
+                    accessibilityUiState = uiState.accessibilityUiState,
+                    iconOnly = iconOnly,
+                    isDualTarget = isDualTarget,
+                    modifier =
+                        if (verticalFadeContentReveal) {
+                            Modifier.verticalFadeContentReveal(
+                                contentScope = this,
+                                motionBuilderContext = rememberMotionBuilderContext(),
+                                container = QuickSettingsShade.Elements.Panel,
+                            )
+                        } else {
+                            Modifier
+                        },
+                ) {
+                    val iconProvider: Context.() -> Icon = { getTileIcon(icon = icon) }
+                    if (iconOnly) {
+                        SmallTileContent(
+                            iconProvider = iconProvider,
+                            color = colors.icon,
+                            modifier =
+                                Modifier.align(Alignment.Center).bounceScale {
+                                    bounceableInfo.bounceable.iconBounceScale
+                                },
+                        )
+                    } else {
+                        val iconShape by TileDefaults.animateIconShapeAsState(uiState.state, shapeMode)
+                        val secondaryClick: (() -> Unit)? =
+                            {
+                                    hapticsViewModel?.setTileInteractionState(
+                                        TileHapticsViewModel.TileInteractionState.CLICKED
+                                    )
+                                    tile.toggleClick()
+                                }
+                                .takeIf { isDualTarget }
+                        LargeTileContent(
+                            label = uiState.label,
+                            secondaryLabel = uiState.secondaryLabel,
+                            iconProvider = iconProvider,
+                            sideDrawable = uiState.sideDrawable,
+                            colors = colors,
+                            iconShape = iconShape,
+                            toggleClick = secondaryClick,
+                            onLongClick = longClick,
+                            accessibilityUiState = uiState.accessibilityUiState,
+                            squishiness = squishiness,
+                            isVisible = isVisible,
+                            textScale = { bounceableInfo.bounceable.textBounceScale },
+                            modifier =
+                                Modifier.largeTilePadding(isDualTarget = uiState.handlesLongClick),
+                        )
+                    }
                 }
             }
         }
@@ -646,9 +719,10 @@ private object TileDefaults {
         val animatedCornerRadius by
             animateDpAsState(
                 targetValue = when (shapeMode) {
-                        1 -> InactiveCornerRadius /* Circle */
-                        2 -> activeCornerRadius /* Rounded Square */
-                        3 -> 0.dp /* Square */
+                        1 -> InactiveCornerRadius // Circle-ish
+                        2 -> activeCornerRadius // Rounded Square
+                        3 -> 0.dp // Square
+                        4 -> InactiveCornerRadius // Circle
                         else -> if (state == STATE_ACTIVE) activeCornerRadius else InactiveCornerRadius
                     },
                 label = label,

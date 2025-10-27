@@ -171,6 +171,7 @@ public class KeyboxImitationHooks {
             // CREATION_DATETIME, USER_ID
 
             metadata.authorizations = authorizations.toArray(new Authorization[0]);
+            metadata.modificationTimeMs = System.currentTimeMillis();
             response.metadata = metadata;
             response.iSecurityLevel = level;
             return response;

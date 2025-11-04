@@ -90,6 +90,7 @@ import android.view.autofill.AutofillManager;
 import com.android.internal.annotations.GuardedBy;
 import com.android.internal.inputmethod.InputMethodDebug;
 import com.android.internal.inputmethod.InputMethodInfoSafeList;
+import com.android.internal.inputmethod.InputMethodSubtypeSafeList;
 import com.android.internal.inputmethod.InputMethodPrivilegedOperationsRegistry;
 import com.android.internal.inputmethod.SoftInputShowHideReason;
 import com.android.internal.inputmethod.StartInputFlags;
@@ -1305,9 +1306,9 @@ public final class InputMethodManager {
     public List<InputMethodSubtype> getEnabledInputMethodSubtypeList(InputMethodInfo imi,
             boolean allowsImplicitlySelectedSubtypes) {
         try {
-            return mService.getEnabledInputMethodSubtypeList(
-                    imi == null ? null : imi.getId(),
-                    allowsImplicitlySelectedSubtypes);
+            return InputMethodSubtypeSafeList.extractFrom(
+                    mService.getEnabledInputMethodSubtypeList(
+                        imi == null ? null : imi.getId(), allowsImplicitlySelectedSubtypes));
         } catch (RemoteException e) {
             throw e.rethrowFromSystemServer();
         }
@@ -2895,7 +2896,8 @@ public final class InputMethodManager {
         }
         final List<InputMethodSubtype> enabledSubtypes;
         try {
-            enabledSubtypes = mService.getEnabledInputMethodSubtypeList(imeId, true);
+            enabledSubtypes = InputMethodSubtypeSafeList.extractFrom(
+                                mService.getEnabledInputMethodSubtypeList(imeId, true));
         } catch (RemoteException e) {
             return false;
         }

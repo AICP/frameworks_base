@@ -22,6 +22,7 @@ import android.view.inputmethod.InputMethodSubtype;
 import android.view.inputmethod.EditorInfo;
 
 import com.android.internal.inputmethod.InputMethodInfoSafeList;
+import com.android.internal.inputmethod.InputMethodSubtypeSafeList;
 import com.android.internal.view.InputBindResult;
 import com.android.internal.view.IInputContext;
 import com.android.internal.view.IInputMethodClient;
@@ -36,7 +37,7 @@ interface IInputMethodManager {
 
     InputMethodInfoSafeList getInputMethodList(int userId);
     InputMethodInfoSafeList getEnabledInputMethodList(int userId);
-    List<InputMethodSubtype> getEnabledInputMethodSubtypeList(in String imiId,
+    InputMethodSubtypeSafeList getEnabledInputMethodSubtypeList(in String imiId,
             boolean allowsImplicitlySelectedSubtypes);
     InputMethodSubtype getLastInputMethodSubtype();
 

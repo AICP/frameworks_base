@@ -24,6 +24,7 @@ import android.window.ImeOnBackInvokedDispatcher;
 
 import com.android.internal.inputmethod.InputBindResult;
 import com.android.internal.inputmethod.InputMethodInfoSafeList;
+import com.android.internal.inputmethod.InputMethodSubtypeSafeList;
 import com.android.internal.inputmethod.IRemoteAccessibilityInputConnection;
 import com.android.internal.view.IInputContext;
 import com.android.internal.view.IInputMethodClient;
@@ -38,7 +39,7 @@ interface IInputMethodManager {
 
     InputMethodInfoSafeList getInputMethodList(int userId, int directBootAwareness);
     InputMethodInfoSafeList getEnabledInputMethodList(int userId);
-    List<InputMethodSubtype> getEnabledInputMethodSubtypeList(in String imiId,
+    InputMethodSubtypeSafeList getEnabledInputMethodSubtypeList(in String imiId,
             boolean allowsImplicitlySelectedSubtypes);
     InputMethodSubtype getLastInputMethodSubtype();
 

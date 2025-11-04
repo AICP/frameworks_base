@@ -28,6 +28,7 @@ import com.android.internal.inputmethod.DirectBootAwareness;
 import com.android.internal.inputmethod.IRemoteAccessibilityInputConnection;
 import com.android.internal.inputmethod.InputBindResult;
 import com.android.internal.inputmethod.InputMethodInfoSafeList;
+import com.android.internal.inputmethod.InputMethodSubtypeSafeList;
 import com.android.internal.inputmethod.SoftInputShowHideReason;
 import com.android.internal.inputmethod.StartInputFlags;
 import com.android.internal.inputmethod.StartInputReason;
@@ -89,8 +90,9 @@ final class IInputMethodManagerInvoker {
     List<InputMethodSubtype> getEnabledInputMethodSubtypeList(String imiId,
             boolean allowsImplicitlySelectedSubtypes) {
         try {
-            return mTarget.getEnabledInputMethodSubtypeList(imiId,
-                    allowsImplicitlySelectedSubtypes);
+            return InputMethodSubtypeSafeList.extractFrom(
+                    mTarget.getEnabledInputMethodSubtypeList(imiId,
+                    allowsImplicitlySelectedSubtypes));
         } catch (RemoteException e) {
             throw e.rethrowFromSystemServer();
         }

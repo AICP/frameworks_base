@@ -63,7 +63,7 @@ import java.util.function.Predicate;
  *
  * @see StageCoordinator
  */
-class StageTaskListener implements ShellTaskOrganizer.TaskListener {
+public class StageTaskListener implements ShellTaskOrganizer.TaskListener {
     private static final String TAG = StageTaskListener.class.getSimpleName();
 
     /** Callback interface for listening to changes in a split-screen stage. */

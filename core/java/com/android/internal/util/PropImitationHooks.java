@@ -77,6 +77,10 @@ public class PropImitationHooks {
     private static final String PACKAGE_WALLPAPER = "com.google.android.apps.wallpaper";
     private static final String PACKAGE_WALLPAPEREFFECTS = "com.google.android.wallpaper.effects";
     private static final String PACKAGE_WEATHER = "com.google.android.apps.weather";
+    private static final String PACKAGE_CUSTOMIZATION = "com.google.android.apps.pixel.customizationbundle";
+    private static final String PACKAGE_MAGICPORTRAIT = "com.google.android.apps.magicportrait";
+    private static final String PACKAGE_MAPS = "com.google.android.apps.maps";
+
     private static final String PROCESS_GMS_UNSTABLE = PACKAGE_GMS + ".unstable";
 
     private static final String PROP_SECURITY_PATCH = "persist.sys.pihooks.security_patch";
@@ -87,15 +91,15 @@ public class PropImitationHooks {
     private static final ComponentName GMS_ADD_ACCOUNT_ACTIVITY = ComponentName.unflattenFromString(
             "com.google.android.gms/.auth.uiflows.minutemaid.MinuteMaidActivity");
 
-    private static final Map<String, String> sPixelNineXLProps = Map.of(
-            "PRODUCT", "komodo",
-            "DEVICE", "komodo",
-            "HARDWARE", "komodo",
+    private static final Map<String, String> sPixelTenXLProps = Map.of(
+            "PRODUCT", "mustang",
+            "DEVICE", "mustang",
+            "HARDWARE", "mustang",
             "MANUFACTURER", "Google",
             "BRAND", "google",
-            "MODEL", "Pixel 9 Pro XL",
-            "ID", "BP2A.250805.005",
-            "FINGERPRINT", "google/komodo/komodo:16/BP2A.250805.005/13691446:user/release-keys"
+            "MODEL", "Pixel 10 Pro XL",
+            "ID", "BD3A.251105.010.E1",
+            "FINGERPRINT", "google/mustang/mustang:16/BD3A.251105.010.E1/14337626:user/release-keys"
     );
 
     private static final Map<String, String> sPixelXLProps = Map.of(
@@ -178,7 +182,7 @@ public class PropImitationHooks {
 
         /* Set certified properties for GMSCore
          * Set stock fingerprint for ARCore
-         * Set Pixel 9 Pro XL for Specific Google apps
+         * Set Pixel 10 Pro XL for Specific Google apps
          * Set custom model for Netflix
          */
 
@@ -202,8 +206,11 @@ public class PropImitationHooks {
             case PACKAGE_WALLPAPER:
             case PACKAGE_WALLPAPEREFFECTS:
             case PACKAGE_WEATHER:
-                dlog("Spoofing Pixel 9 Pro XL for: " + packageName + " process: " + processName);
-                setProps(sPixelNineXLProps);
+            case PACKAGE_CUSTOMIZATION:
+            case PACKAGE_MAGICPORTRAIT:
+            case PACKAGE_MAPS:
+                dlog("Spoofing Pixel 10 Pro XL for: " + packageName + " process: " + processName);
+                setProps(sPixelTenXLProps);
                 return;
             case PACKAGE_NETFLIX:
                 if (!sNetflixModel.isEmpty()) {

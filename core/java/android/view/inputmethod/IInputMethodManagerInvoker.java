@@ -27,6 +27,7 @@ import android.window.ImeOnBackInvokedDispatcher;
 import com.android.internal.inputmethod.DirectBootAwareness;
 import com.android.internal.inputmethod.IRemoteAccessibilityInputConnection;
 import com.android.internal.inputmethod.InputBindResult;
+import com.android.internal.inputmethod.InputMethodInfoSafeList;
 import com.android.internal.inputmethod.SoftInputShowHideReason;
 import com.android.internal.inputmethod.StartInputFlags;
 import com.android.internal.inputmethod.StartInputReason;
@@ -67,7 +68,8 @@ final class IInputMethodManagerInvoker {
     List<InputMethodInfo> getInputMethodList(@UserIdInt int userId,
             @DirectBootAwareness int directBootAwareness) {
         try {
-            return mTarget.getInputMethodList(userId, directBootAwareness);
+            return InputMethodInfoSafeList.extractFrom(
+                    mTarget.getInputMethodList(userId, directBootAwareness));
         } catch (RemoteException e) {
             throw e.rethrowFromSystemServer();
         }
@@ -76,7 +78,8 @@ final class IInputMethodManagerInvoker {
     @AnyThread
     List<InputMethodInfo> getEnabledInputMethodList(@UserIdInt int userId) {
         try {
-            return mTarget.getEnabledInputMethodList(userId);
+            return InputMethodInfoSafeList.extractFrom(
+                    mTarget.getEnabledInputMethodList(userId));
         } catch (RemoteException e) {
             throw e.rethrowFromSystemServer();
         }

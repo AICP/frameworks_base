@@ -21,6 +21,7 @@ import android.view.inputmethod.InputMethodInfo;
 import android.view.inputmethod.InputMethodSubtype;
 import android.view.inputmethod.EditorInfo;
 
+import com.android.internal.inputmethod.InputMethodInfoSafeList;
 import com.android.internal.view.InputBindResult;
 import com.android.internal.view.IInputContext;
 import com.android.internal.view.IInputMethodClient;
@@ -33,10 +34,8 @@ interface IInputMethodManager {
     void addClient(in IInputMethodClient client, in IInputContext inputContext,
             int untrustedDisplayId);
 
-    // TODO: Use ParceledListSlice instead
-    List<InputMethodInfo> getInputMethodList(int userId);
-    // TODO: Use ParceledListSlice instead
-    List<InputMethodInfo> getEnabledInputMethodList(int userId);
+    InputMethodInfoSafeList getInputMethodList(int userId);
+    InputMethodInfoSafeList getEnabledInputMethodList(int userId);
     List<InputMethodSubtype> getEnabledInputMethodSubtypeList(in String imiId,
             boolean allowsImplicitlySelectedSubtypes);
     InputMethodSubtype getLastInputMethodSubtype();

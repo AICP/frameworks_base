@@ -162,6 +162,7 @@ import com.android.internal.inputmethod.IInputContentUriToken;
 import com.android.internal.inputmethod.IInputMethodPrivilegedOperations;
 import com.android.internal.inputmethod.IVoidResultCallback;
 import com.android.internal.inputmethod.InputMethodDebug;
+import com.android.internal.inputmethod.InputMethodInfoSafeList;
 import com.android.internal.inputmethod.SoftInputShowHideReason;
 import com.android.internal.inputmethod.StartInputFlags;
 import com.android.internal.inputmethod.StartInputReason;
@@ -1940,7 +1941,7 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
     }
 
     @Override
-    public List<InputMethodInfo> getInputMethodList(@UserIdInt int userId) {
+    public InputMethodInfoSafeList getInputMethodList(@UserIdInt int userId) {
         if (UserHandle.getCallingUserId() != userId) {
             mContext.enforceCallingPermission(
                     Manifest.permission.INTERACT_ACROSS_USERS_FULL, null);
@@ -1949,19 +1950,21 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
             final int[] resolvedUserIds = InputMethodUtils.resolveUserId(userId,
                     mSettings.getCurrentUserId(), null);
             if (resolvedUserIds.length != 1) {
-                return Collections.emptyList();
+                return InputMethodInfoSafeList.empty();
             }
             final long ident = Binder.clearCallingIdentity();
             try {
-                return getInputMethodListLocked(resolvedUserIds[0]);
+                return InputMethodInfoSafeList.create(getInputMethodListLocked(resolvedUserIds[0]));
             } finally {
                 Binder.restoreCallingIdentity(ident);
             }
         }
     }
 
+    @BinderThread
+    @NonNull
     @Override
-    public List<InputMethodInfo> getEnabledInputMethodList(@UserIdInt int userId) {
+    public InputMethodInfoSafeList getEnabledInputMethodList(@UserIdInt int userId) {
         if (UserHandle.getCallingUserId() != userId) {
             mContext.enforceCallingPermission(
                     Manifest.permission.INTERACT_ACROSS_USERS_FULL, null);
@@ -1970,11 +1973,12 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
             final int[] resolvedUserIds = InputMethodUtils.resolveUserId(userId,
                     mSettings.getCurrentUserId(), null);
             if (resolvedUserIds.length != 1) {
-                return Collections.emptyList();
+                return InputMethodInfoSafeList.empty();
             }
             final long ident = Binder.clearCallingIdentity();
             try {
-                return getEnabledInputMethodListLocked(resolvedUserIds[0]);
+                return InputMethodInfoSafeList.create(
+                        getEnabledInputMethodListLocked(resolvedUserIds[0]));
             } finally {
                 Binder.restoreCallingIdentity(ident);
             }

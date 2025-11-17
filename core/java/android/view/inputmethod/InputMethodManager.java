@@ -89,6 +89,7 @@ import android.view.autofill.AutofillManager;
 
 import com.android.internal.annotations.GuardedBy;
 import com.android.internal.inputmethod.InputMethodDebug;
+import com.android.internal.inputmethod.InputMethodInfoSafeList;
 import com.android.internal.inputmethod.InputMethodPrivilegedOperationsRegistry;
 import com.android.internal.inputmethod.SoftInputShowHideReason;
 import com.android.internal.inputmethod.StartInputFlags;
@@ -1229,7 +1230,8 @@ public final class InputMethodManager {
             // We intentionally do not use UserHandle.getCallingUserId() here because for system
             // services InputMethodManagerInternal.getInputMethodListAsUser() should be used
             // instead.
-            return mService.getInputMethodList(UserHandle.myUserId());
+            return InputMethodInfoSafeList.extractFrom(
+                    mService.getInputMethodList(UserHandle.myUserId()));
         } catch (RemoteException e) {
             throw e.rethrowFromSystemServer();
         }
@@ -1247,7 +1249,8 @@ public final class InputMethodManager {
     @NonNull
     public List<InputMethodInfo> getInputMethodListAsUser(@UserIdInt int userId) {
         try {
-            return mService.getInputMethodList(userId);
+            return InputMethodInfoSafeList.extractFrom(
+                    mService.getInputMethodList(userId));
         } catch (RemoteException e) {
             throw e.rethrowFromSystemServer();
         }
@@ -1265,7 +1268,8 @@ public final class InputMethodManager {
             // We intentionally do not use UserHandle.getCallingUserId() here because for system
             // services InputMethodManagerInternal.getEnabledInputMethodListAsUser() should be used
             // instead.
-            return mService.getEnabledInputMethodList(UserHandle.myUserId());
+            return InputMethodInfoSafeList.extractFrom(
+                    mService.getEnabledInputMethodList(UserHandle.myUserId()));
         } catch (RemoteException e) {
             throw e.rethrowFromSystemServer();
         }
@@ -1281,7 +1285,8 @@ public final class InputMethodManager {
     @RequiresPermission(INTERACT_ACROSS_USERS_FULL)
     public List<InputMethodInfo> getEnabledInputMethodListAsUser(@UserIdInt int userId) {
         try {
-            return mService.getEnabledInputMethodList(userId);
+            return InputMethodInfoSafeList.extractFrom(
+                    mService.getEnabledInputMethodList(userId));
         } catch (RemoteException e) {
             throw e.rethrowFromSystemServer();
         }

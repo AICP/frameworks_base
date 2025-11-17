@@ -75,6 +75,7 @@ import com.android.internal.annotations.VisibleForTesting;
 import com.android.internal.inputmethod.IMultiClientInputMethod;
 import com.android.internal.inputmethod.IMultiClientInputMethodPrivilegedOperations;
 import com.android.internal.inputmethod.IMultiClientInputMethodSession;
+import com.android.internal.inputmethod.InputMethodInfoSafeList;
 import com.android.internal.inputmethod.SoftInputShowHideReason;
 import com.android.internal.inputmethod.StartInputFlags;
 import com.android.internal.inputmethod.StartInputReason;
@@ -1459,20 +1460,20 @@ public final class MultiClientInputMethodManagerService {
 
         @BinderThread
         @Override
-        public List<InputMethodInfo> getInputMethodList(@UserIdInt int userId) {
+        public InputMethodInfoSafeList getInputMethodList(@UserIdInt int userId) {
             if (UserHandle.getCallingUserId() != userId) {
                 mContext.enforceCallingPermission(INTERACT_ACROSS_USERS_FULL, null);
             }
-            return mInputMethodInfoMap.getAsList(userId);
+            return InputMethodInfoSafeList.create(mInputMethodInfoMap.getAsList(userId));
         }
 
         @BinderThread
         @Override
-        public List<InputMethodInfo> getEnabledInputMethodList(@UserIdInt int userId) {
+        public InputMethodInfoSafeList getEnabledInputMethodList(@UserIdInt int userId) {
             if (UserHandle.getCallingUserId() != userId) {
                 mContext.enforceCallingPermission(INTERACT_ACROSS_USERS_FULL, null);
             }
-            return mInputMethodInfoMap.getAsList(userId);
+            return InputMethodInfoSafeList.create(mInputMethodInfoMap.getAsList(userId));
         }
 
         @BinderThread

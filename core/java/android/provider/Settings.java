@@ -6877,6 +6877,13 @@ public final class Settings {
         public static final String QS_LAYOUT_COLUMNS_ROWS = "qs_layout_columns_rows";
 
         /**
+         * Sensor block per-package
+         * @hide
+         */
+        @Readable
+        public static final String SENSOR_BLOCK = "sensor_block";
+
+        /**
          * IMPORTANT: If you add a new public settings you also have to add it to
          * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
          * it to PRIVATE_SETTINGS below. Also add a validator that can validate
@@ -7162,6 +7169,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SLIM_RECENT_ENTER_EXIT_ANIMATION);
             // SLIM RECENTS END
             PRIVATE_SETTINGS.add(QS_LAYOUT_COLUMNS_ROWS);
+            PRIVATE_SETTINGS.add(SENSOR_BLOCK);
         }
 
         /**

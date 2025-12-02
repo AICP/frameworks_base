@@ -9940,6 +9940,8 @@ public class DevicePolicyManagerService extends BaseIDevicePolicyManager {
                 R.array.config_packagesExemptFromSuspension);
         dumpResources(pw, mContext, "policy_exempt_apps", R.array.policy_exempt_apps);
         dumpResources(pw, mContext, "vendor_policy_exempt_apps", R.array.vendor_policy_exempt_apps);
+        dumpResources(pw, mContext, "application_hidden_policy_exempt_apps",
+                R.array.application_hidden_policy_exempt_apps);
         pw.decreaseIndent();
         pw.println();
     }
@@ -11628,7 +11630,7 @@ public class DevicePolicyManagerService extends BaseIDevicePolicyManager {
                 || (caller.hasPackage() && isCallerDelegate(caller, DELEGATION_PACKAGE_ACCESS)));
 
         List<String> exemptApps = listPolicyExemptAppsUnchecked();
-        if (exemptApps.contains(packageName)) {
+        if (exemptApps.contains(packageName) || isPackageExemptFromHiding(packageName)) {
             Slogf.d(LOG_TAG, "setApplicationHidden(): ignoring %s as it's on policy-exempt list",
                     packageName);
             return false;
@@ -11930,6 +11932,17 @@ public class DevicePolicyManagerService extends BaseIDevicePolicyManager {
             }
             return resultSet.toArray(new String[resultSet.size()]);
         }
+    }
+
+    private boolean isPackageExemptFromHiding(@NonNull String packageName) {
+        var exemptPackages = mContext.getResources().getStringArray(
+                R.array.application_hidden_policy_exempt_apps);
+        for (var exemptPackage : exemptPackages) {
+            if (packageName.equals(exemptPackage)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

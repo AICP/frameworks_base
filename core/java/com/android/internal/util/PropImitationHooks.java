@@ -98,8 +98,8 @@ public class PropImitationHooks {
             "MANUFACTURER", "Google",
             "BRAND", "google",
             "MODEL", "Pixel 10 Pro XL",
-            "ID", "BD3A.251105.010.E1",
-            "FINGERPRINT", "google/mustang/mustang:16/BD3A.251105.010.E1/14337626:user/release-keys"
+            "ID", "BP4A.251205.006",
+            "FINGERPRINT", "google/mustang/mustang:16/BP4A.251205.006/14401865:user/release-keys"
     );
 
     private static final Map<String, String> sPixelXLProps = Map.of(

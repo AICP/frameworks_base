@@ -228,9 +228,6 @@ object MobileIconBinder {
                         viewModel.isRoamingVisible.distinctUntilChanged().collect { isRoaming ->
                             if (NewStatusBarIcons.isEnabled) {
                                 endSideRoamingView.isVisible = isRoaming
-                            } else {
-                                roamingView.isVisible = isRoaming
-                                roamingSpace.isVisible = isRoaming
                             }
                         }
                     }
@@ -281,8 +278,10 @@ object MobileIconBinder {
                                 networkTypeView.imageTintList = tint
                             }
 
-                            roamingView.imageTintList = tint
-                            endSideRoamingView.imageTintList = tint
+                            if (NewStatusBarIcons.isEnabled) {
+                                val endSideRoamingView = view.requireViewById<ImageView>(R.id.mobile_roaming_updated)
+                                endSideRoamingView.imageTintList = tint
+                            }
                             activityIn.imageTintList = tint
                             activityOut.imageTintList = tint
                             dotView.setDecorColor(colors.tint)

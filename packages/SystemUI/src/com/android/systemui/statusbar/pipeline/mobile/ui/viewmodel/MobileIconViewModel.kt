@@ -58,6 +58,7 @@ interface MobileIconViewModelCommon {
     val activityInVisible: Flow<Boolean>
     val activityOutVisible: Flow<Boolean>
     val activityContainerVisible: Flow<Boolean>
+    val isRoamingVisible: Flow<Boolean>
 }
 
 /**
@@ -142,6 +143,8 @@ class MobileIconViewModel(
 
     override val activityContainerVisible: Flow<Boolean> =
         vmProvider.flatMapLatest { it.activityContainerVisible }
+
+    override val isRoamingVisible: Flow<Boolean> = vmProvider.flatMapLatest { it.isRoamingVisible }
 }
 
 /** Representation of this network when it is non-terrestrial (e.g., satellite) */
@@ -167,6 +170,7 @@ private class CarrierBasedSatelliteViewModelImpl(
     override val activityInVisible: Flow<Boolean> = flowOf(false)
     override val activityOutVisible: Flow<Boolean> = flowOf(false)
     override val activityContainerVisible: Flow<Boolean> = flowOf(false)
+    override val isRoamingVisible: Flow<Boolean> = flowOf(false)
 }
 
 /** Terrestrial (cellular) icon. */
@@ -338,4 +342,17 @@ private class CellularIconViewModel(
                 activity.map { it != null && (it.hasActivityIn || it.hasActivityOut) }
             }
             .stateIn(scope, SharingStarted.WhileSubscribed(), false)
+
+    override val isRoamingVisible: StateFlow<Boolean> =
+        combine(
+                roaming,
+                iconInteractor.isRoamingForceHidden
+            ) { isRoaming, isHidden ->
+                // If it's force hidden, just hide.
+                // Otherwise follow roaming state
+                isRoaming && !isHidden
+            }
+            .distinctUntilChanged()
+            .stateIn(scope, SharingStarted.WhileSubscribed(), false)
+
 }

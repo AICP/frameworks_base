@@ -80,6 +80,7 @@ public class PropImitationHooks {
     private static final String PACKAGE_CUSTOMIZATION = "com.google.android.apps.pixel.customizationbundle";
     private static final String PACKAGE_MAGICPORTRAIT = "com.google.android.apps.magicportrait";
     private static final String PACKAGE_MAPS = "com.google.android.apps.maps";
+    private static final String PACKAGE_VELVET = "com.google.android.googlequicksearchbox";
 
     private static final String PROCESS_GMS_UNSTABLE = PACKAGE_GMS + ".unstable";
 
@@ -213,6 +214,7 @@ public class PropImitationHooks {
             case PACKAGE_CUSTOMIZATION:
             case PACKAGE_MAGICPORTRAIT:
             case PACKAGE_MAPS:
+            case PACKAGE_VELVET:
                 dlog("Spoofing Pixel 10 Pro XL for: " + packageName + " process: " + processName);
                 setProps(sPixelTenXLProps);
                 return;

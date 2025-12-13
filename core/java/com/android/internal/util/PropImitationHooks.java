@@ -103,41 +103,6 @@ public class PropImitationHooks {
             "FINGERPRINT", "google/mustang/mustang:16/BP4A.251205.006/14401865:user/release-keys"
     );
 
-    private static final Map<String, String> sPixelXLProps = Map.of(
-            "PRODUCT", "marlin",
-            "DEVICE", "marlin",
-            "HARDWARE", "marlin",
-            "MANUFACTURER", "Google",
-            "BRAND", "google",
-            "MODEL", "Pixel XL",
-            "ID", "QP1A.191005.007.A3",
-            "FINGERPRINT", "google/marlin/marlin:10/QP1A.191005.007.A3/5972272:user/release-keys"
-    );
-
-    private static final Set<String> sNexusFeatures = Set.of(
-            "NEXUS_PRELOAD",
-            "nexus_preload",
-            "GOOGLE_BUILD",
-            "GOOGLE_EXPERIENCE",
-            "PIXEL_EXPERIENCE"
-    );
-
-    private static final Set<String> sPixelFeatures = Set.of(
-            "GOOGLE_BUILD",
-            "GOOGLE_EXPERIENCE",
-            "PIXEL_2017_EXPERIENCE",
-            "PIXEL_2017_PRELOAD",
-            "PIXEL_2018_EXPERIENCE",
-            "PIXEL_2018_PRELOAD",
-            "PIXEL_2019_EXPERIENCE",
-            "PIXEL_2019_MIDYEAR_EXPERIENCE",
-            "PIXEL_2019_MIDYEAR_PRELOAD",
-            "PIXEL_2019_PRELOAD",
-            "PIXEL_2020_EXPERIENCE",
-            "PIXEL_2020_MIDYEAR_EXPERIENCE",
-            "PIXEL_2021_MIDYEAR_EXPERIENCE"
-    );
-
     private static final Set<String> sTensorFeatures = Set.of(
             "PIXEL_2021_EXPERIENCE",
             "PIXEL_2022_EXPERIENCE",
@@ -155,7 +120,7 @@ public class PropImitationHooks {
     private static volatile String sNetflixModel;
 
     private static volatile String sProcessName;
-    private static volatile boolean sIsPhotos;
+    private static volatile boolean sIsPixelTenXLSpoof;
 
     public static void setProps(Context context) {
         final String packageName = context.getPackageName();
@@ -179,7 +144,6 @@ public class PropImitationHooks {
         sNetflixModel = res.getString(R.string.config_netflixSpoofModel);
 
         sProcessName = processName;
-        sIsPhotos = packageName.equals(PACKAGE_GPHOTOS);
 
         /* Set certified properties for GMSCore
          * Set stock fingerprint for ARCore
@@ -217,6 +181,7 @@ public class PropImitationHooks {
             case PACKAGE_VELVET:
                 dlog("Spoofing Pixel 10 Pro XL for: " + packageName + " process: " + processName);
                 setProps(sPixelTenXLProps);
+                sIsPixelTenXLSpoof = true;
                 return;
             case PACKAGE_NETFLIX:
                 if (!sNetflixModel.isEmpty()) {
@@ -386,19 +351,17 @@ public class PropImitationHooks {
     }
 
     public static boolean hasSystemFeature(String name, boolean has) {
-        if (sIsPhotos) {
-            if (has && (sPixelFeatures.stream().anyMatch(name::contains)
-                    || sNexusFeatures.stream().anyMatch(name::contains))) {
-                dlog("Blocked system feature " + name + " for Google Photos");
-                has = true;
-            } else if (!has && sTensorFeatures.stream().anyMatch(name::contains)) {
-                dlog("Enabled system feature " + name + " for Google Photos");
-                has = false;
-            }
+        if (sTensorFeatures.stream().anyMatch(name::contains)) {
+        if (sIsPixelTenXLSpoof) {
+            dlog("Tensor feature " + name + " => true (Pixel 10 XL spoof)");
+            return true;
+        } else {
+            dlog("Tensor feature " + name + " => false (not Pixel 10 XL spoof)");
+            return false;
         }
-        return has;
     }
-
+    return has;
+}
     public static void dlog(String msg) {
         if (DEBUG) Log.d(TAG, "[" + sProcessName + "] " + msg);
     }

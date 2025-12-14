@@ -17,7 +17,10 @@
 package com.android.systemui.statusbar.pipeline.battery.data.repository
 
 import android.content.Context
-import android.provider.Settings
+import android.database.ContentObserver
+import android.os.Handler
+import android.os.Looper
+import android.os.UserHandle
 import com.android.systemui.dagger.SysUISingleton
 import com.android.systemui.dagger.qualifiers.Application
 import com.android.systemui.dagger.qualifiers.Background
@@ -34,12 +37,16 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.scan
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.suspendCancellableCoroutine
+
+import lineageos.providers.LineageSettings
 
 /** Repository-style state for battery information. */
 interface BatteryRepository {
@@ -63,11 +70,17 @@ interface BatteryRepository {
     /** State unknown means that we can't detect a battery */
     val isStateUnknown: Flow<Boolean>
 
+    companion object {
+        const val SHOW_PERCENT_HIDDEN = 0
+        const val SHOW_PERCENT_INSIDE = 1
+        const val SHOW_PERCENT_NEXT_TO = 2
+    }
+
     /**
-     * [Settings.System.SHOW_BATTERY_PERCENT]. A user setting to indicate whether we should show the
-     * battery percentage in the home screen status bar
+     * [LineageSettings.System.STATUS_BAR_SHOW_BATTERY_PERCENT]. A user setting to indicate whether
+     * we should show the battery percentage in the home screen status bar
      */
-    val isShowBatteryPercentSettingEnabled: StateFlow<Boolean>
+    val showBatteryPercentMode: StateFlow<Int>
 
     /**
      * If available, this flow yields a string that describes the approximate time remaining for the
@@ -153,16 +166,45 @@ constructor(
 
     override val isStateUnknown = batteryState.map { it.isStateUnknown }
 
-    override val isShowBatteryPercentSettingEnabled = run {
-        val default =
-            context.resources.getBoolean(
-                com.android.internal.R.bool.config_defaultBatteryPercentageSetting
-            )
-        settingsRepository
-            .boolSetting(name = Settings.System.SHOW_BATTERY_PERCENT, defaultValue = default)
+    override val showBatteryPercentMode =
+        callbackFlow {
+                val resolver = context.contentResolver
+                val uri =
+                    LineageSettings.System.getUriFor(
+                        LineageSettings.System.STATUS_BAR_SHOW_BATTERY_PERCENT
+                    )
+
+                fun readMode(): Int {
+                    return LineageSettings.System.getIntForUser(
+                        resolver,
+                        LineageSettings.System.STATUS_BAR_SHOW_BATTERY_PERCENT,
+                        /* def = */ BatteryRepository.SHOW_PERCENT_HIDDEN,
+                        UserHandle.USER_CURRENT
+                    )
+                }
+
+                val observer =
+                    object : ContentObserver(Handler(Looper.getMainLooper())) {
+                        override fun onChange(selfChange: Boolean) {
+                            trySend(readMode())
+                        }
+                    }
+
+                resolver.registerContentObserver(uri, /* notifyForDescendants = */ false,
+                    observer, UserHandle.USER_ALL)
+
+                // Emit current value immediately
+                trySend(readMode())
+
+                awaitClose { resolver.unregisterContentObserver(observer) }
+            }
+            .distinctUntilChanged()
             .flowOn(bgDispatcher)
-            .stateIn(scope, SharingStarted.Lazily, default)
-    }
+            .stateIn(
+                scope = scope,
+                started = SharingStarted.Lazily,
+                initialValue = BatteryRepository.SHOW_PERCENT_HIDDEN
+            )
 
     /** Get and re-fetch the estimate every 2 minutes while active */
     private val estimate: Flow<String?> = flow {

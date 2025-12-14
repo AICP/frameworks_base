@@ -162,6 +162,7 @@ fun UnifiedBattery(
     viewModel: BatteryViewModel,
     isDarkProvider: () -> IsAreaDark,
     modifier: Modifier,
+    suppressAttribution: Boolean = false,
 ) {
     var bounds by remember { mutableStateOf(Rect()) }
 
@@ -174,7 +175,7 @@ fun UnifiedBattery(
     }
 
     BatteryLayout(
-        attribution = viewModel.attribution,
+        attribution = if (suppressAttribution) null else viewModel.attribution,
         levelProvider = { viewModel.level },
         isFullProvider = { viewModel.isFull },
         glyphsProvider = { viewModel.glyphList },

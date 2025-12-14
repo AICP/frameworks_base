@@ -74,8 +74,8 @@ sealed class BatteryViewModel(
     val isBatteryPercentSettingEnabled: Boolean by
         hydrator.hydratedStateOf(
             traceName = "isBatteryPercentSettingEnabled",
-            initialValue = interactor.isBatteryPercentSettingEnabled.value,
-            source = interactor.isBatteryPercentSettingEnabled,
+            initialValue = interactor.showPercentNextToIcon.value,
+            source = interactor.showPercentNextToIcon,
         )
 
     /** A [List<BatteryGlyph>] representation of the current [level] */
@@ -228,6 +228,20 @@ sealed class BatteryViewModel(
                 },
         )
 
+    val batteryPercent: String? by
+        hydrator.hydratedStateOf(
+            traceName = "batteryPercent",
+            initialValue = null,
+            source =
+                interactor.level.map { level ->
+                    if (level == null) {
+                        null
+                    } else {
+                        NumberFormat.getPercentInstance().format(level / 100f)
+                    }
+                },
+        )
+
     override suspend fun onActivated(): Nothing {
         hydrator.activate()
     }
@@ -243,7 +257,7 @@ sealed class BatteryViewModel(
     constructor(interactor: BatteryInteractor, @Application context: Context) :
         BatteryViewModel(
             interactor = interactor,
-            shouldShowPercent = interactor.isBatteryPercentSettingEnabled,
+            shouldShowPercent = interactor.showPercentInsideIcon,
             context = context,
         ) {
 
@@ -263,7 +277,7 @@ sealed class BatteryViewModel(
         BatteryViewModel(
             interactor = interactor,
             shouldShowPercent =
-                combine(interactor.isCharging, interactor.isBatteryPercentSettingEnabled) {
+                combine(interactor.isCharging, interactor.showPercentNextToIcon) {
                     charging,
                     settingEnabled ->
                     charging || settingEnabled
@@ -330,20 +344,6 @@ class BatteryNextToPercentViewModel
 @AssistedInject
 constructor(interactor: BatteryInteractor, @Application context: Context) :
     BatteryViewModel(interactor = interactor, shouldShowPercent = flowOf(true), context = context) {
-
-    val batteryPercent: String? by
-        hydrator.hydratedStateOf(
-            traceName = "batteryPercent",
-            initialValue = null,
-            source =
-                interactor.level.map { level ->
-                    if (level == null) {
-                        null
-                    } else {
-                        NumberFormat.getPercentInstance().format(level / 100f)
-                    }
-                },
-        )
 
     private val _attributionAsList: Flow<List<BatteryGlyph>> =
         attributionGlyph.map { it?.let { listOf(it) } ?: emptyList() }

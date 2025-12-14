@@ -78,8 +78,8 @@ import com.android.systemui.statusbar.phone.ongoingcall.StatusBarChipsModernizat
 import com.android.systemui.statusbar.phone.ui.DarkIconManager
 import com.android.systemui.statusbar.phone.ui.StatusBarIconController
 import com.android.systemui.statusbar.pipeline.battery.ui.composable.BatteryWithChargeStatus
+import com.android.systemui.statusbar.pipeline.battery.ui.composable.BatteryWithPercent
 import com.android.systemui.statusbar.pipeline.battery.ui.composable.ShowPercentMode
-import com.android.systemui.statusbar.pipeline.battery.ui.composable.UnifiedBattery
 import com.android.systemui.statusbar.pipeline.battery.ui.viewmodel.BatteryViewModel.Companion.STATUS_BAR_BATTERY_HEIGHT
 import com.android.systemui.statusbar.pipeline.shared.ui.binder.HomeStatusBarIconBlockListBinder
 import com.android.systemui.statusbar.pipeline.shared.ui.binder.HomeStatusBarViewBinder
@@ -451,11 +451,12 @@ private fun addBatteryComposable(
                         rememberViewModel(traceName = "UnifiedBattery") {
                             statusBarViewModel.unifiedBatteryViewModel.create()
                         }
-                    UnifiedBattery(
+                    BatteryWithPercent(
                         modifier =
-                            Modifier.sysUiResTagContainer().height(height).wrapContentWidth(),
+                            Modifier.sysUiResTagContainer().wrapContentWidth(),
                         viewModel = viewModel,
                         isDarkProvider = { statusBarViewModel.areaDark },
+                        showPercent = viewModel.isBatteryPercentSettingEnabled,
                     )
                 }
             }
@@ -498,11 +499,12 @@ private fun addSystemStatusIconsComposable(
                             rememberViewModel(traceName = "UnifiedBattery") {
                                 statusBarViewModel.unifiedBatteryViewModel.create()
                             }
-                        UnifiedBattery(
+                        BatteryWithPercent(
                             viewModel = viewModel,
                             isDarkProvider = { statusBarViewModel.areaDark },
                             modifier =
-                                Modifier.sysUiResTagContainer().height(height).wrapContentWidth(),
+                                Modifier.sysUiResTagContainer().wrapContentWidth(),
+                            showPercent = viewModel.isBatteryPercentSettingEnabled,
                         )
                     }
                 }

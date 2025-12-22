@@ -214,7 +214,7 @@ object Flags {
         sysPropBooleanFlag("persist.wm.debug.shell_transit", default = true)
 
     // TODO(b/293252410) : Tracking Bug
-    @JvmField val LOCKSCREEN_ENABLE_LANDSCAPE = unreleasedFlag("lockscreen.enable_landscape")
+    @JvmField val LOCKSCREEN_ENABLE_LANDSCAPE = releasedFlag("lockscreen.enable_landscape")
 
     // 1200 - predictive back
     @Keep

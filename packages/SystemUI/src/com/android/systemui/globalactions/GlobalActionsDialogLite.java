@@ -822,7 +822,6 @@ public class GlobalActionsDialogLite implements DialogInterface.OnDismissListene
             }
             // Add here so we don't add more than one.
             addedKeys.add(actionKey);
-        }
         if (Settings.System.getInt(mContext.getContentResolver(),
             Settings.System.POWERMENU_ONTHEGO, 0) == 1) {
             addIfShouldShowAction(tempActions, new getOnTheGoAction());

@@ -35,6 +35,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import com.android.systemui.statusbar.phone.domain.interactor.IsAreaDark
+import com.android.systemui.statusbar.pipeline.battery.data.repository.BatteryRepository
 import com.android.systemui.statusbar.pipeline.battery.shared.ui.BatteryColors
 import com.android.systemui.statusbar.pipeline.battery.ui.viewmodel.BatteryViewModel
 
@@ -43,7 +44,6 @@ fun BatteryWithPercent(
     viewModel: BatteryViewModel,
     isDarkProvider: () -> IsAreaDark,
     modifier: Modifier = Modifier,
-    showIcon: Boolean = true,
     showPercent: Boolean = true,
     showEstimate: Boolean = false,
 ) {
@@ -76,7 +76,7 @@ fun BatteryWithPercent(
         horizontalArrangement = Arrangement.spacedBy(4.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        if (showIcon) {
+        if (viewModel.batteryIconStyle != BatteryRepository.ICON_STYLE_TEXT) {
             UnifiedBattery(
                 viewModel = viewModel,
                 isDarkProvider = isDarkProvider,

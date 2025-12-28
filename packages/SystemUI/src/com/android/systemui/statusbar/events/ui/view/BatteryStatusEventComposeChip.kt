@@ -22,10 +22,9 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.LinearLayout
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.MaterialTheme
@@ -40,8 +39,8 @@ import androidx.compose.ui.unit.dp
 import com.android.compose.theme.PlatformTheme
 import com.android.systemui.res.R
 import com.android.systemui.statusbar.core.NewStatusBarIcons
-import com.android.systemui.statusbar.core.RudimentaryBattery
 import com.android.systemui.statusbar.events.BackgroundAnimatableView
+import com.android.systemui.statusbar.pipeline.battery.data.repository.BatteryRepository
 import com.android.systemui.statusbar.pipeline.battery.domain.interactor.BatteryInteractor
 import com.android.systemui.statusbar.pipeline.battery.shared.ui.BatteryColors
 import com.android.systemui.statusbar.pipeline.battery.shared.ui.BatteryGlyph
@@ -59,8 +58,13 @@ import java.text.NumberFormat
 @SuppressLint("ViewConstructor")
 class BatteryStatusEventComposeChip
 @JvmOverloads
-constructor(level: Int, context: Context, attrs: AttributeSet? = null) :
-    FrameLayout(context, attrs), BackgroundAnimatableView {
+constructor(
+    level: Int,
+    batteryIconStyle: Int,
+    showPercentNextToIcon: Boolean,
+    context: Context,
+    attrs: AttributeSet? = null,
+) : FrameLayout(context, attrs), BackgroundAnimatableView {
     private val roundedContainer: LinearLayout
     private val composeInner: ComposeView
     override val contentView: View
@@ -75,11 +79,7 @@ constructor(level: Int, context: Context, attrs: AttributeSet? = null) :
         composeInner.apply {
             setContent {
                 PlatformTheme {
-                    if (RudimentaryBattery.isEnabled) {
-                        BatteryAndPercentChip(level)
-                    } else {
-                        UnifiedBatteryChip(level)
-                    }
+                    BatteryAndPercentChip(level, batteryIconStyle, showPercentNextToIcon)
                 }
             }
         }
@@ -110,7 +110,9 @@ private fun UnifiedBatteryChip(level: Int) {
         }
     BatteryLayout(
         attribution = BatteryGlyph.Bolt, // Always charging
+        iconStyleProvider = { BatteryRepository.ICON_STYLE_DEFAULT },
         levelProvider = { level },
+        showLevelProvider = { false },
         isFullProvider = { isFull },
         glyphsProvider = { level.glyphRepresentation() },
         colorsProvider = { BatteryColors.DarkTheme.Charging },
@@ -122,27 +124,40 @@ private fun UnifiedBatteryChip(level: Int) {
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
-private fun BatteryAndPercentChip(level: Int) {
+private fun BatteryAndPercentChip(
+    level: Int,
+    batteryIconStyle: Int,
+    showPercentNextToIcon: Boolean,
+) {
     val isFull = BatteryInteractor.isBatteryFull(level)
     val height =
         with(LocalDensity.current) {
             BatteryViewModel.getStatusBarBatteryHeight(LocalContext.current).toDp()
         }
-    Row(verticalAlignment = Alignment.CenterVertically) {
-        BatteryLayout(
-            attribution = BatteryGlyph.Bolt, // Always charging
-            levelProvider = { level },
-            isFullProvider = { isFull },
-            glyphsProvider = { emptyList() },
-            colorsProvider = { BatteryColors.DarkTheme.Charging },
-            modifier = Modifier.height(height).wrapContentWidth(),
-            contentDescription = "",
-        )
-        Spacer(modifier = Modifier.width(4.dp))
-        Text(
-            text = NumberFormat.getPercentInstance().format(level / 100f),
-            color = BatteryColors.DarkTheme.Default.fill,
-            style = MaterialTheme.typography.labelLargeEmphasized,
-        )
+    Row(
+        horizontalArrangement = Arrangement.spacedBy(4.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        val isText = batteryIconStyle == BatteryRepository.ICON_STYLE_TEXT
+        if (!isText) {
+            BatteryLayout(
+                attribution = BatteryGlyph.Bolt, // Always charging
+                iconStyleProvider = { batteryIconStyle },
+                levelProvider = { level },
+                showLevelProvider = { false },
+                isFullProvider = { isFull },
+                glyphsProvider = { emptyList() },
+                colorsProvider = { BatteryColors.DarkTheme.Charging },
+                modifier = Modifier.height(height).wrapContentWidth(),
+                contentDescription = "",
+            )
+        }
+        if (isText || showPercentNextToIcon) {
+            Text(
+                text = NumberFormat.getPercentInstance().format(level / 100f),
+                color = BatteryColors.DarkTheme.Default.fill,
+                style = MaterialTheme.typography.labelLargeEmphasized,
+            )
+        }
     }
 }

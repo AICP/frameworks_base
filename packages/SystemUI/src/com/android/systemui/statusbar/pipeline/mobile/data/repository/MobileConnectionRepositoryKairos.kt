@@ -174,6 +174,11 @@ interface MobileConnectionRepositoryKairos {
      */
     val isInEcmMode: State<Boolean>
 
+    /**
+     * The current state of the IMS with its capabilities
+     */
+    val imsState: State<com.android.systemui.statusbar.pipeline.ims.data.model.ImsStateModel>
+
     companion object {
         /** The default number of levels to use for [numberOfLevels]. */
         val DEFAULT_NUM_LEVELS = CellSignalStrength.getNumSignalStrengthLevels()

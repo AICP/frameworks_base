@@ -413,6 +413,9 @@ constructor(
 
     override val isInEcmMode: State<Boolean> = activeRepo.flatMap { it.isInEcmMode }
 
+    override val imsState: State<com.android.systemui.statusbar.pipeline.ims.data.model.ImsStateModel> =
+        activeRepo.flatMap { it.imsState }
+
     fun dump(pw: PrintWriter) {
         val cache = dumpCache ?: return
         val ipw = IndentingPrintWriter(pw, "  ")

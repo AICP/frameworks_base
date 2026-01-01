@@ -127,6 +127,12 @@ interface MobileIconsInteractorKairos {
     /** True if we're configured to force-hide the roaming icon and false otherwise. */
     val isRoamingForceHidden: State<Boolean>
 
+    /** True if we're configured to force-hide the hd (VoLTE/VoNR) icon and false otherwise. */
+    val isMobileHdForceHidden: State<Boolean>
+
+    /** True if we're configured to force-hide the VoWifi icon and false otherwise. */
+    val isVoWifiForceHidden: State<Boolean>
+
     /**
      * True if the device-level service state (with -1 subscription id) reports emergency calls
      * only. This value is only useful when there are no other subscriptions OR all existing
@@ -438,6 +444,18 @@ constructor(
             .map { it.contains(ConnectivitySlot.ROAMING) }
     }
 
+    override val isMobileHdForceHidden: State<Boolean> = buildState {
+        connectivityRepository.forceHiddenSlots
+            .toState(nameTag("MobileIconsInteractorKairosImpl.isMobileHdForceHidden"))
+            .map { it.contains(ConnectivitySlot.HD_CALLING) }
+    }
+
+    override val isVoWifiForceHidden: State<Boolean> = buildState {
+        connectivityRepository.forceHiddenSlots
+            .toState(nameTag("MobileIconsInteractorKairosImpl.isVoWifiForceHidden"))
+            .map { it.contains(ConnectivitySlot.VOWIFI) }
+    }
+
     override val isDeviceInEmergencyCallsOnlyMode: State<Boolean>
         get() = mobileConnectionsRepo.isDeviceEmergencyCallCapable
 
@@ -456,6 +474,8 @@ constructor(
             isDefaultConnectionFailed,
             isForceHidden,
             isRoamingForceHidden,
+            isMobileHdForceHidden,
+            isVoWifiForceHidden,
             repo,
             context,
         )

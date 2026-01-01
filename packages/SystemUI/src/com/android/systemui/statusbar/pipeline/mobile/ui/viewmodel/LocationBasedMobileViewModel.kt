@@ -42,6 +42,8 @@ abstract class LocationBasedMobileViewModel(
 ) : MobileIconViewModelCommon by commonImpl {
     val defaultColor: Int = Color.WHITE
 
+    override val isRoamingVisible: kotlinx.coroutines.flow.Flow<Boolean> = commonImpl.isRoamingVisible
+
     companion object {
         fun viewModelForLocation(
             commonImpl: MobileIconViewModelCommon,

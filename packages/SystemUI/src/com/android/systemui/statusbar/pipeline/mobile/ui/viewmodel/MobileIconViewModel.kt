@@ -58,7 +58,6 @@ interface MobileIconViewModelCommon {
     val activityInVisible: Flow<Boolean>
     val activityOutVisible: Flow<Boolean>
     val activityContainerVisible: Flow<Boolean>
-    val isRoamingVisible: Flow<Boolean>
 }
 
 /**
@@ -341,18 +340,6 @@ private class CellularIconViewModel(
             } else {
                 activity.map { it != null && (it.hasActivityIn || it.hasActivityOut) }
             }
-            .stateIn(scope, SharingStarted.WhileSubscribed(), false)
-
-    override val isRoamingVisible: StateFlow<Boolean> =
-        combine(
-                roaming,
-                iconInteractor.isRoamingForceHidden
-            ) { isRoaming, isHidden ->
-                // If it's force hidden, just hide.
-                // Otherwise follow roaming state
-                isRoaming && !isHidden
-            }
-            .distinctUntilChanged()
             .stateIn(scope, SharingStarted.WhileSubscribed(), false)
 
 }

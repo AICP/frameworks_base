@@ -211,7 +211,13 @@ constructor(
     override val isDeviceInEmergencyCallsOnlyMode: Flow<Boolean>
         get() = repo.isDeviceEmergencyCallCapable
 
-    override val isRoamingForceHidden: StateFlow<Boolean> = MutableStateFlow(false)
+    override val isRoamingForceHidden: Flow<Boolean> =
+        kairosInteractor.isRoamingForceHidden
+            .toColdConflatedFlow(
+                kairosNetwork,
+                nameTag("MobileIconsInteractorKairosAdapter.isRoamingForceHidden"),
+            )
+            .stateIn(scope, SharingStarted.WhileSubscribed(), false)
 
     override fun getMobileConnectionInteractorForSubId(subId: Int): MobileIconInteractor =
         object : MobileIconInteractor {

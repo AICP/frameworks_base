@@ -92,6 +92,10 @@ class FakeMobileIconsInteractor(
     
     override val isDeviceInEmergencyCallsOnlyMode = MutableStateFlow(false)
 
+    override val isMobileHdForceHidden = MutableStateFlow(false)
+
+    override val isVoWifiForceHidden = MutableStateFlow(false)
+
     override fun getMobileConnectionInteractorForSubId(subId: Int): FakeMobileIconInteractor {
         return interactorCache
             .getOrElse(subId) { FakeMobileIconInteractor(tableLogBuffer) }

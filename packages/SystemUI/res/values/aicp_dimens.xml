@@ -20,4 +20,7 @@
     <!-- Udfps fingerprint animation -->
     <dimen name="udfps_animation_size">280dp</dimen>
     <dimen name="udfps_animation_offset">0dp</dimen>
+
+    <!-- HD calling icon -->
+    <dimen name="signal_icon_viewport_size">24dp</dimen>
 </resources>

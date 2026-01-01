@@ -44,6 +44,8 @@ class FakeWifiRepository : WifiRepository {
     override val wifiScanResults: MutableStateFlow<List<WifiScanEntry>> =
         MutableStateFlow(emptyList())
 
+    override val imsStates = MutableStateFlow<List<ImsStateModel>>(emptyList())
+
     override val wifiToggleState: StateFlow<WifiToggleState> =
         MutableStateFlow(WifiToggleState.Normal)
 

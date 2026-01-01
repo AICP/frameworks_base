@@ -70,6 +70,8 @@ class MobileIconInteractorTest : MobileIconInteractorTestBase() {
             mobileIconsInteractor.isDefaultConnectionFailed,
             mobileIconsInteractor.isForceHidden,
             mobileIconsInteractor.isRoamingForceHidden,
+            mobileIconsInteractor.isMobileHdForceHidden,
+            mobileIconsInteractor.isVoWifiForceHidden,
             connectionRepository,
             context,
             overrides,

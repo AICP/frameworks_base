@@ -129,6 +129,11 @@ constructor(
             .flatMapLatest { it.wifiScanResults }
             .stateIn(scope, SharingStarted.WhileSubscribed(), realImpl.wifiScanResults.value)
 
+    override val imsStates: StateFlow<List<ImsStateModel>> =
+        activeRepo
+            .flatMapLatest { it.imsStates }
+            .stateIn(scope, SharingStarted.WhileSubscribed(), realImpl.imsStates.value)
+
     override val wifiToggleState: StateFlow<WifiToggleState> =
         activeRepo
             .flatMapLatest { it.wifiToggleState }

@@ -25,12 +25,16 @@ import com.android.systemui.log.table.logDiffsForTable
 import com.android.systemui.statusbar.pipeline.airplane.ui.viewmodel.AirplaneModeViewModel
 import com.android.systemui.statusbar.pipeline.dagger.StatusBarPipelineModule.Companion.FIRST_MOBILE_SUB_SHOWING_NETWORK_TYPE_ICON
 import com.android.systemui.statusbar.pipeline.dagger.WifiTableLog
+import com.android.systemui.statusbar.pipeline.netspeed.ui.model.NetworkSpeedIcon
+import com.android.systemui.statusbar.pipeline.netspeed.ui.viewmodel.NetworkSpeedViewModel
 import com.android.systemui.statusbar.pipeline.shared.ConnectivityConstants
 import com.android.systemui.statusbar.pipeline.shared.data.model.DataActivityModel
 import com.android.systemui.statusbar.pipeline.wifi.domain.interactor.WifiInteractor
 import com.android.systemui.statusbar.pipeline.wifi.shared.WifiConstants
 import com.android.systemui.statusbar.pipeline.wifi.shared.model.WifiNetworkModel
+import com.android.systemui.statusbar.pipeline.wifi.ui.model.VoWifiIcon
 import com.android.systemui.statusbar.pipeline.wifi.ui.model.WifiIcon
+import com.android.systemui.statusbar.pipeline.wifi.ui.model.icon
 import java.util.function.Supplier
 import javax.inject.Inject
 import javax.inject.Named
@@ -65,6 +69,7 @@ constructor(
     interactor: WifiInteractor,
     @Background scope: CoroutineScope,
     wifiConstants: WifiConstants,
+    networkSpeedViewModel: NetworkSpeedViewModel,
 ) : WifiViewModelCommon {
     override val wifiIcon: StateFlow<WifiIcon> =
         combine(
@@ -135,4 +140,18 @@ constructor(
         airplaneModeViewModel.isAirplaneModeIconVisible
 
     override val isSignalSpacerVisible: Flow<Boolean> = shouldShowSignalSpacerProvider.get()
+
+    override val networkSpeedIcon: Flow<NetworkSpeedIcon> = networkSpeedViewModel.icon
+
+    override val voWifiIcon: Flow<VoWifiIcon> =
+        combine(
+                interactor.voWifiState,
+                interactor.isVoWifiForceHidden
+            ) { state, isHidden ->
+                // If it's force hidden, just hide.
+                // Otherwise follow VoWifi state
+                if (isHidden) VoWifiIcon.Hidden else state.icon
+            }
+            .distinctUntilChanged()
+            .stateIn(scope, SharingStarted.WhileSubscribed(), VoWifiIcon.Hidden)
 }

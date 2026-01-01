@@ -25,6 +25,7 @@ import com.android.systemui.demomode.DemoModeController
 import com.android.systemui.log.LogBuffer
 import com.android.systemui.log.table.TableLogBuffer
 import com.android.systemui.statusbar.connectivity.WifiPickerTrackerFactory
+import com.android.systemui.statusbar.pipeline.ims.data.repository.CommonImsRepositoryImpl
 import com.android.systemui.statusbar.pipeline.shared.data.repository.connectivityRepository
 import com.android.systemui.statusbar.pipeline.wifi.data.repository.demo.DemoModeWifiDataSource
 import com.android.systemui.statusbar.pipeline.wifi.data.repository.demo.DemoWifiRepository
@@ -102,6 +103,7 @@ class WifiRepositorySwitcherTest : SysuiTestCase() {
                 wifiManager,
                 wifiLogBuffer,
                 tableLogger,
+                commonImsRepo,
             )
 
         whenever(demoModeWifiDataSource.wifiEvents).thenReturn(demoModelFlow)

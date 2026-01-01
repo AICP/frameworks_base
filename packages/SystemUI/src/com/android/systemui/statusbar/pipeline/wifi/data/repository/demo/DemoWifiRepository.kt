@@ -18,6 +18,7 @@ package com.android.systemui.statusbar.pipeline.wifi.data.repository.demo
 
 import com.android.app.tracing.coroutines.launchTraced as launch
 import com.android.systemui.dagger.qualifiers.Application
+import com.android.systemui.statusbar.pipeline.ims.data.model.ImsStateModel
 import com.android.systemui.statusbar.pipeline.shared.data.model.DataActivityModel
 import com.android.systemui.statusbar.pipeline.shared.data.model.toWifiDataActivityModel
 import com.android.systemui.statusbar.pipeline.shared.ui.model.WifiToggleState
@@ -60,6 +61,10 @@ constructor(
     private val _wifiScanResults: MutableStateFlow<List<WifiScanEntry>> =
         MutableStateFlow(emptyList())
     override val wifiScanResults: StateFlow<List<WifiScanEntry>> = _wifiScanResults
+
+    private val _imsStates: MutableStateFlow<List<ImsStateModel>> =
+        MutableStateFlow(emptyList())
+    override val imsStates: StateFlow<List<ImsStateModel>> = _imsStates
 
     private val _wifiToggleState = MutableStateFlow<WifiToggleState>(WifiToggleState.Normal)
     override val wifiToggleState: StateFlow<WifiToggleState> = _wifiToggleState

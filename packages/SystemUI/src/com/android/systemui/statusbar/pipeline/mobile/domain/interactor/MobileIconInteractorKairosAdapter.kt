@@ -125,7 +125,13 @@ fun BuildScope.MobileIconInteractorKairosAdapter(
                 isRoaming.toStateFlow(
                     nameTag { "MobileIconInteractorKairosAdapter(subId=$subscriptionId).isRoaming" }
                 ),
-            isRoamingForceHidden = MutableStateFlow(false),
+            isRoamingForceHidden =
+                isRoamingForceHidden.toColdConflatedFlow(
+                    kairosNetwork,
+                    nameTag {
+                        "MobileIconInteractorKairosAdapter(subId=$subscriptionId).isRoamingForceHidden"
+                    },
+                ),
             isForceHidden =
                 isForceHidden.toColdConflatedFlow(
                     kairosNetwork,

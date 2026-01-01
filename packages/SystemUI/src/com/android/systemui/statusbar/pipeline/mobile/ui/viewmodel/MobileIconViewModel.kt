@@ -59,7 +59,6 @@ interface MobileIconViewModelCommon {
     val activityOutVisible: Flow<Boolean>
     val activityContainerVisible: Flow<Boolean>
     val networkSpeedIcon: Flow<NetworkSpeedIcon>
-    val isRoamingVisible: Flow<Boolean>
     val showHd: Flow<Boolean>
 }
 

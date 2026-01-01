@@ -351,6 +351,15 @@ class MobileIconInteractorImpl(
     private val satelliteShownLevel: StateFlow<Int> =
         connectionRepository.satelliteLevel.stateIn(scope, SharingStarted.WhileSubscribed(), 0)
 
+    private val showRoaming: StateFlow<Boolean> =
+        combine(
+                isRoaming,
+                isRoamingForceHidden
+        ) { roaming, roamingForceHidden ->
+            roaming && !roamingForceHidden
+        }
+        .stateIn(scope, SharingStarted.WhileSubscribed(), false)
+
     private val cellularIcon: Flow<SignalIconModel.Cellular> =
         combine(
             cellularShownLevel,

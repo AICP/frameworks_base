@@ -219,8 +219,21 @@ constructor(
             )
             .stateIn(scope, SharingStarted.WhileSubscribed(), false)
 
-    override val isMobileHdForceHidden: StateFlow<Boolean> = MutableStateFlow(false)
-    override val isVoWifiForceHidden: StateFlow<Boolean> = MutableStateFlow(false)
+    override val isMobileHdForceHidden: Flow<Boolean> =
+        kairosInteractor.isMobileHdForceHidden
+            .toColdConflatedFlow(
+                kairosNetwork,
+                nameTag("MobileIconsInteractorKairosAdapter.isMobileHdForceHidden"),
+            )
+            .stateIn(scope, SharingStarted.WhileSubscribed(), false)
+
+    override val isVoWifiForceHidden: Flow<Boolean> =
+        kairosInteractor.isVoWifiForceHidden
+            .toColdConflatedFlow(
+                kairosNetwork,
+                nameTag("MobileIconsInteractorKairosAdapter.isVoWifiForceHidden"),
+            )
+            .stateIn(scope, SharingStarted.WhileSubscribed(), false)
 
     override fun getMobileConnectionInteractorForSubId(subId: Int): MobileIconInteractor =
         object : MobileIconInteractor {

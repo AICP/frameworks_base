@@ -127,6 +127,18 @@ interface MobileIconInteractorKairos {
     /** See [MobileIconsInteractor.isRoamingForceHidden]. */
     val isRoamingForceHidden: State<Boolean>
 
+    /** True when VoLTE/VONR available */
+    val isMobileHd: State<Boolean>
+
+    /** See [MobileIconsInteractor.isMobileHdForceHidden]. */
+    val isMobileHdForceHidden: State<Boolean>
+
+    /** True when VoWifi available */
+    val isVoWifi: State<Boolean>
+
+    /** See [MobileIconsInteractor.isVoWifiForceHidden]. */
+    val isVoWifiForceHidden: State<Boolean>
+
     /** See [MobileConnectionRepository.isAllowedDuringAirplaneMode]. */
     val isAllowedDuringAirplaneMode: State<Boolean>
 
@@ -147,6 +159,8 @@ class MobileIconInteractorKairosImpl(
     isDefaultConnectionFailed: State<Boolean>,
     override val isForceHidden: State<Boolean>,
     override val isRoamingForceHidden: State<Boolean>,
+    override val isMobileHdForceHidden: State<Boolean>,
+    override val isVoWifiForceHidden: State<Boolean>,
     private val connectionRepository: MobileConnectionRepositoryKairos,
     private val context: Context,
     private val carrierIdOverrides: MobileIconCarrierIdOverrides =
@@ -377,4 +391,12 @@ class MobileIconInteractorKairosImpl(
                     )
                 }
             }
+
+    override val isMobileHd: State<Boolean> =
+        connectionRepository.imsState
+            .map { it.isHdVoiceCapable() }
+
+    override val isVoWifi: State<Boolean> =
+        connectionRepository.imsState
+            .map { it.isVoWifiAvailable() }
 }

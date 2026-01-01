@@ -195,6 +195,9 @@ class CarrierMergedConnectionRepositoryKairos(
      */
     override val hasPrioritizedNetworkCapabilities: State<Boolean> = stateOf(false)
 
+    override val imsState: State<com.android.systemui.statusbar.pipeline.ims.data.model.ImsStateModel> =
+        stateOf(com.android.systemui.statusbar.pipeline.ims.data.model.ImsStateModel())
+
     override val dataEnabled: State<Boolean>
         get() = isWifiEnabled
 

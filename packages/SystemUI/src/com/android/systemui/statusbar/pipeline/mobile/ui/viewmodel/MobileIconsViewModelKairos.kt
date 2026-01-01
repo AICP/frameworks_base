@@ -166,6 +166,10 @@ constructor(
             override val isRoaming: State<Boolean> = latest(false) { isRoaming }
             override val isForceHidden: State<Boolean> = latest(false) { isForceHidden }
             override val isRoamingForceHidden: State<Boolean> = latest(false) { isRoamingForceHidden }
+            override val isMobileHd: State<Boolean> = latest(false) { isMobileHd }
+            override val isMobileHdForceHidden: State<Boolean> = latest(true) { isMobileHdForceHidden }
+            override val isVoWifi: State<Boolean> = latest(false) { isVoWifi }
+            override val isVoWifiForceHidden: State<Boolean> = latest(true) { isVoWifiForceHidden }
             override val isAllowedDuringAirplaneMode: State<Boolean> =
                 latest(false) { isAllowedDuringAirplaneMode }
             override val carrierNetworkChangeActive: State<Boolean> =

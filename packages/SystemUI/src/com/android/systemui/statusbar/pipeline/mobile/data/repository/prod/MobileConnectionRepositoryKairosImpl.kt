@@ -75,6 +75,7 @@ import com.android.systemui.statusbar.pipeline.mobile.data.model.SystemUiCarrier
 import com.android.systemui.statusbar.pipeline.mobile.data.model.toDataConnectionType
 import com.android.systemui.statusbar.pipeline.mobile.data.model.toNetworkNameModel
 import com.android.systemui.statusbar.pipeline.mobile.data.repository.MobileConnectionRepository.Companion.DEFAULT_NUM_LEVELS
+import com.android.systemui.statusbar.pipeline.ims.data.repository.ImsRepository
 import com.android.systemui.statusbar.pipeline.mobile.data.repository.MobileConnectionRepositoryKairos
 import com.android.systemui.statusbar.pipeline.mobile.util.MobileMappingsProxy
 import com.android.systemui.statusbar.pipeline.shared.data.model.DataActivityModel
@@ -113,6 +114,7 @@ constructor(
     logger: MobileInputLogger,
     @Assisted override val tableLogBuffer: TableLogBuffer,
     flags: FeatureFlagsClassic,
+    @Assisted private val imsRepo: ImsRepository,
 ) : MobileConnectionRepositoryKairos, KairosBuilder by kairosBuilder() {
 
     init {
@@ -525,6 +527,9 @@ constructor(
             )
     }
 
+    override val imsState: State<com.android.systemui.statusbar.pipeline.ims.data.model.ImsStateModel> =
+        buildState { imsRepo.imsState.toState() }
+
     @AssistedFactory
     fun interface Factory {
         fun create(
@@ -535,6 +540,7 @@ constructor(
             networkNameSeparator: String,
             systemUiCarrierConfig: SystemUiCarrierConfig,
             telephonyManager: TelephonyManager,
+            imsRepo: ImsRepository,
         ): MobileConnectionRepositoryKairosImpl
     }
 }

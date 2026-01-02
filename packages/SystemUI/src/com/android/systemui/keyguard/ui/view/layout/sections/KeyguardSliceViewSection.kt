@@ -17,6 +17,7 @@
 
 package com.android.systemui.keyguard.ui.view.layout.sections
 
+import android.content.Context
 import android.os.Handler
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.Barrier
@@ -24,12 +25,15 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import com.android.keyguard.KeyguardSliceView
 import com.android.keyguard.KeyguardSliceViewController
+import com.android.systemui.customization.clocks.R as clocksR
 import com.android.systemui.dagger.qualifiers.Background
 import com.android.systemui.dagger.qualifiers.Main
 import com.android.systemui.dump.DumpManager
+import com.android.systemui.keyguard.domain.interactor.KeyguardInteractor
 import com.android.systemui.keyguard.shared.model.KeyguardSection
 import com.android.systemui.plugins.ActivityStarter
 import com.android.systemui.plugins.clocks.ClockViewIds
+import com.android.systemui.power.domain.interactor.PowerInteractor
 import com.android.systemui.res.R
 import com.android.systemui.settings.DisplayTracker
 import com.android.systemui.statusbar.lockscreen.LockscreenSmartspaceController
@@ -39,6 +43,7 @@ import javax.inject.Inject
 class KeyguardSliceViewSection
 @Inject
 constructor(
+    private val context: Context,
     val smartspaceController: LockscreenSmartspaceController,
     val layoutInflater: LayoutInflater,
     @Main val handler: Handler,
@@ -47,6 +52,8 @@ constructor(
     val configurationController: ConfigurationController,
     val dumpManager: DumpManager,
     val displayTracker: DisplayTracker,
+    val keyguardInteractor: KeyguardInteractor,
+    val powerInteractor: PowerInteractor,
 ) : KeyguardSection() {
     private lateinit var sliceView: KeyguardSliceView
 
@@ -70,6 +77,8 @@ constructor(
                 configurationController,
                 dumpManager,
                 displayTracker,
+                keyguardInteractor,
+                powerInteractor,
             )
         controller.init()
     }
@@ -83,6 +92,10 @@ constructor(
                 ConstraintSet.START,
                 ConstraintSet.PARENT_ID,
                 ConstraintSet.START,
+                context.resources.getDimensionPixelSize(clocksR.dimen.clock_padding_start) +
+                    context.resources.getDimensionPixelSize(
+                        clocksR.dimen.status_view_margin_horizontal
+                    ),
             )
             connect(
                 R.id.keyguard_slice_view,
@@ -108,9 +121,5 @@ constructor(
         }
     }
 
-    override fun removeViews(constraintLayout: ConstraintLayout) {
-        if (smartspaceController.isEnabled) return
-
-        constraintLayout.removeView(R.id.keyguard_slice_view)
-    }
+    override fun removeViews(constraintLayout: ConstraintLayout) {}
 }

@@ -18,6 +18,7 @@ package com.android.systemui.statusbar.pipeline.shared.ui.binder
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
+import android.app.WindowConfiguration
 import android.content.ContentResolver
 import android.database.ContentObserver
 import android.net.Uri
@@ -35,6 +36,9 @@ import com.android.systemui.display.dagger.SystemUIDisplaySubcomponent.PerDispla
 import com.android.systemui.lifecycle.repeatWhenAttached
 import com.android.systemui.res.R
 import com.android.systemui.scene.shared.flag.SceneContainerFlag
+import com.android.systemui.shared.system.ActivityManagerWrapper
+import com.android.systemui.shared.system.TaskStackChangeListener
+import com.android.systemui.shared.system.TaskStackChangeListeners
 import com.android.systemui.statusbar.chips.mediaprojection.domain.model.MediaProjectionStopDialogModel
 import com.android.systemui.statusbar.chips.ui.binder.OngoingActivityChipBinder
 import com.android.systemui.statusbar.chips.ui.binder.OngoingActivityChipViewBinding
@@ -58,7 +62,6 @@ import com.android.systemui.statusbar.policy.Clock
 import javax.inject.Inject
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.update
@@ -101,10 +104,11 @@ constructor(
     }
 
     private data class ClockState(
-        val visibilityModel: VisibilityModel,
+        val autoHide: Boolean,
         val denyListed: Boolean,
         val hideForHun: Boolean,
-        val position: Int
+        val position: Int,
+        val visibilityModel: VisibilityModel,
     )
 
     override fun bind(
@@ -138,54 +142,99 @@ constructor(
             repeatOnLifecycle(Lifecycle.State.CREATED) {
                 val context = view.context
 
-                val clockState = MutableStateFlow(
-                    ClockState(
-                        visibilityModel = VisibilityModel(View.GONE, true),
-                        denyListed = false,
-                        hideForHun = false,
-                        position = context.contentResolver.readClockPosition()
+                val clockState =
+                    MutableStateFlow(
+                        ClockState(
+                            autoHide = false,
+                            denyListed = false,
+                            hideForHun = false,
+                            position = context.contentResolver.readClockPosition(),
+                            visibilityModel = VisibilityModel(View.GONE, true),
+                        )
                     )
-                )
 
+                val clockAutoHideUri: Uri =
+                    LineageSettings.System.getUriFor(
+                        LineageSettings.System.STATUS_BAR_CLOCK_AUTO_HIDE
+                    )
                 val iconHideListUri: Uri =
                     Settings.Secure.getUriFor(StatusBarIconController.ICON_HIDE_LIST)
                 val statusBarClockUri: Uri =
                     LineageSettings.System.getUriFor(LineageSettings.System.STATUS_BAR_CLOCK)
 
-                val contentObserver = object : ContentObserver(Handler(Looper.getMainLooper())) {
-                    override fun onChange(selfChange: Boolean, uri: Uri?) {
-                        clockState.update { current ->
-                            when (uri) {
-                                iconHideListUri -> current.copy(
-                                    denyListed = StatusBarIconController.getIconHideList(context,
-                                        Settings.Secure.getString(context.contentResolver,
-                                            StatusBarIconController.ICON_HIDE_LIST)
-                                    ).contains("clock")
-                                )
-                                statusBarClockUri -> current.copy(
-                                    position = context.contentResolver.readClockPosition()
-                                )
-                                else -> current
+                val taskStackListener =
+                    object : TaskStackChangeListener {
+                        override fun onTaskStackChanged() {
+                            val autoHide = shouldClockAutoHideForCurrentTask()
+
+                            if (clockState.value.autoHide != autoHide) {
+                                clockState.update { it.copy(autoHide = autoHide) }
                             }
                         }
                     }
+
+                val contentObserver =
+                    object : ContentObserver(Handler(Looper.getMainLooper())) {
+                        override fun onChange(selfChange: Boolean, uri: Uri?) {
+                            clockState.update { current ->
+                                when (uri) {
+                                    clockAutoHideUri -> {
+                                        val enabled =
+                                            context.contentResolver.readClockAutoHide() != 0
+
+                                        if (enabled) {
+                                            TaskStackChangeListeners.getInstance()
+                                                .registerTaskStackListener(taskStackListener)
+                                        } else {
+                                            TaskStackChangeListeners.getInstance()
+                                                .unregisterTaskStackListener(taskStackListener)
+                                        }
+
+                                        current.copy(
+                                            autoHide =
+                                                enabled && shouldClockAutoHideForCurrentTask()
+                                        )
+                                    }
+                                    iconHideListUri ->
+                                        current.copy(
+                                            denyListed =
+                                                StatusBarIconController.getIconHideList(
+                                                        context,
+                                                        Settings.Secure.getString(
+                                                            context.contentResolver,
+                                                            StatusBarIconController.ICON_HIDE_LIST,
+                                                        ),
+                                                    )
+                                                    .contains("clock")
+                                        )
+                                    statusBarClockUri ->
+                                        current.copy(
+                                            position = context.contentResolver.readClockPosition()
+                                        )
+                                    else -> current
+                                }
+                            }
+                        }
+                    }
+
+                val urisToObserve = listOf(clockAutoHideUri, iconHideListUri, statusBarClockUri)
+                urisToObserve.forEach { uri ->
+                    context.contentResolver.registerContentObserver(
+                        uri,
+                        false,
+                        contentObserver,
+                        UserHandle.USER_ALL,
+                    )
+                    contentObserver.onChange(false, uri)
                 }
-
-                context.contentResolver.registerContentObserver(
-                    iconHideListUri, false, contentObserver, UserHandle.USER_ALL
-                )
-                context.contentResolver.registerContentObserver(
-                    statusBarClockUri, false, contentObserver, UserHandle.USER_ALL
-                )
-
-                contentObserver.onChange(false, iconHideListUri)
-                contentObserver.onChange(false, statusBarClockUri)
 
                 // Ensure cleanup when lifecycle ends
                 val job = coroutineContext[Job]
                 job?.invokeOnCompletion {
                     runCatching {
                         context.contentResolver.unregisterContentObserver(contentObserver)
+                        TaskStackChangeListeners.getInstance()
+                            .unregisterTaskStackListener(taskStackListener)
                     }
                 }
 
@@ -370,35 +419,34 @@ constructor(
 
                     launch {
                         combine(
-                            viewModel.isClockVisible,
-                            viewModel.hideStartSideContentForHeadsUp
-                        ) { visibilityModel, hideForHun ->
-                            visibilityModel to hideForHun
-                        }.collect { (visibilityModel, hideForHun) ->
-                            clockState.update { current ->
-                                current.copy(
-                                    visibilityModel = visibilityModel,
-                                    hideForHun = hideForHun
-                                )
+                                viewModel.isClockVisible,
+                                viewModel.hideStartSideContentForHeadsUp,
+                            ) { visibilityModel, hideForHun ->
+                                visibilityModel to hideForHun
                             }
-                        }
+                            .collect { (visibilityModel, hideForHun) ->
+                                clockState.update { current ->
+                                    current.copy(
+                                        visibilityModel = visibilityModel,
+                                        hideForHun = hideForHun,
+                                    )
+                                }
+                            }
                     }
-
-                    var activeClock: Clock = leftClock
-                    activeClock.setIsActiveClock(true)
-                    centerClock.setIsActiveClock(false)
-                    rightClock.setIsActiveClock(false)
 
                     launch {
                         clockState.collect { state ->
                             // We only want to hide left clock for HUN
-                            val hunBlocksClock = state.position == CLOCK_POSITION_LEFT
-                                && state.hideForHun
+                            val hunBlocksClock =
+                                state.position == CLOCK_POSITION_LEFT && state.hideForHun
 
                             // Apply denylist on top of ViewModel visibility
                             val finalVisibility =
-                                if (state.visibilityModel.visibility == View.VISIBLE &&
-                                    !hunBlocksClock && !state.denyListed
+                                if (
+                                    state.visibilityModel.visibility == View.VISIBLE &&
+                                        !hunBlocksClock &&
+                                        !state.autoHide &&
+                                        !state.denyListed
                                 ) {
                                     state.visibilityModel
                                 } else {
@@ -406,25 +454,13 @@ constructor(
                                 }
 
                             // Pick active clock view
-                            val newActiveClock: Clock =
+                            val activeClock: Clock =
                                 when (state.position) {
                                     CLOCK_POSITION_CENTER -> centerClock ?: leftClock
                                     CLOCK_POSITION_RIGHT -> rightClock ?: leftClock
                                     CLOCK_POSITION_LEFT -> leftClock
                                     else -> leftClock
                                 }
-
-                            if (newActiveClock !== activeClock) {
-                                // Deactivate previous clock
-                                activeClock.setIsActiveClock(false)
-                                activeClock.visibility = View.GONE
-
-                                // Activate new one
-                                activeClock = newActiveClock
-                                activeClock.setIsActiveClock(true)
-                            }
-
-                            val showClock = finalVisibility.visibility == View.VISIBLE
 
                             // Hide all clocks first
                             leftClock.visibility = View.GONE
@@ -433,16 +469,6 @@ constructor(
 
                             // Show only the active one
                             activeClock.adjustVisibility(finalVisibility)
-
-                            leftClock.setVisibleByModernization(
-                                showClock && activeClock === leftClock
-                            )
-                            centerClock.setVisibleByModernization(
-                                showClock && activeClock === centerClock
-                            )
-                            rightClock.setVisibleByModernization(
-                                showClock && activeClock === rightClock
-                            )
                         }
                     }
 
@@ -524,13 +550,30 @@ constructor(
         }
     }
 
+    private fun ContentResolver.readClockAutoHide(): Int {
+        return LineageSettings.System.getIntForUser(
+            this,
+            LineageSettings.System.STATUS_BAR_CLOCK_AUTO_HIDE,
+            0,
+            UserHandle.USER_CURRENT,
+        )
+    }
+
     private fun ContentResolver.readClockPosition(): Int {
         return LineageSettings.System.getIntForUser(
             this,
             LineageSettings.System.STATUS_BAR_CLOCK,
             CLOCK_POSITION_LEFT,
-            UserHandle.USER_CURRENT
+            UserHandle.USER_CURRENT,
         )
+    }
+
+    private fun shouldClockAutoHideForCurrentTask(): Boolean {
+        return ActivityManagerWrapper.getInstance()
+            .runningTask
+            ?.configuration
+            ?.windowConfiguration
+            ?.activityType == WindowConfiguration.ACTIVITY_TYPE_HOME
     }
 
     private fun SystemEventAnimationState.isAnimatingChip() =

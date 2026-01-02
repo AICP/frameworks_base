@@ -27,6 +27,7 @@ import com.android.systemui.statusbar.pipeline.mobile.domain.interactor.MobileIc
 import com.android.systemui.statusbar.pipeline.mobile.domain.interactor.MobileIconsInteractor
 import com.android.systemui.statusbar.pipeline.mobile.domain.model.SignalIconModel
 import com.android.systemui.statusbar.pipeline.mobile.ui.model.MobileContentDescription
+import com.android.systemui.statusbar.pipeline.netspeed.ui.model.NetworkSpeedIcon
 import com.android.systemui.statusbar.pipeline.shared.ConnectivityConstants
 import com.android.systemui.statusbar.pipeline.shared.data.model.DataActivityModel
 import kotlinx.coroutines.CoroutineScope
@@ -145,6 +146,9 @@ class MobileIconViewModel(
     override val activityContainerVisible: Flow<Boolean> =
         vmProvider.flatMapLatest { it.activityContainerVisible }
 
+    override val networkSpeedIcon: Flow<NetworkSpeedIcon> =
+        vmProvider.flatMapLatest { it.networkSpeedIcon }
+
     override val isRoamingVisible: Flow<Boolean> = vmProvider.flatMapLatest { it.isRoamingVisible }
     override val showHd: Flow<Boolean> = vmProvider.flatMapLatest { it.showHd }
 }
@@ -172,6 +176,7 @@ private class CarrierBasedSatelliteViewModelImpl(
     override val activityInVisible: Flow<Boolean> = flowOf(false)
     override val activityOutVisible: Flow<Boolean> = flowOf(false)
     override val activityContainerVisible: Flow<Boolean> = flowOf(false)
+    override val networkSpeedIcon: Flow<NetworkSpeedIcon> = flowOf(NetworkSpeedIcon.Hidden)
     override val isRoamingVisible: Flow<Boolean> = flowOf(false)
     override val showHd: Flow<Boolean> = flowOf(false)
 }
@@ -371,4 +376,6 @@ private class CellularIconViewModel(
             }
             .stateIn(scope, SharingStarted.WhileSubscribed(), false)
 
+    override val networkSpeedIcon: Flow<NetworkSpeedIcon> = flowOf(NetworkSpeedIcon.Hidden)
 }
+

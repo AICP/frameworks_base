@@ -594,6 +594,8 @@ android_library {
         "displaylib",
         "aconfig_settings_flags_lib",
         "vendor.lineage.powershare-V1-java",
+        "smartspace-proto-java",
+        "smartspace-proto-lite-java",
     ],
     javacflags: [
         "-Aroom.schemaLocation=frameworks/base/packages/SystemUI/schemas",

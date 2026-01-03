@@ -159,6 +159,7 @@ interface AicpModule {
     fun bindWifiTile(wifiTile: WifiTile): QSTileImpl<*>
 
     companion object {
+        const val AICP_EXTRAS_TILE_SPEC = "aicp_extras"
         const val AMBIENT_DISPLAY_TILE_SPEC = "ambient_display"
         const val AOD_TILE_SPEC = "aod"
         const val CAFFEINE_TILE_SPEC = "caffeine"
@@ -171,6 +172,21 @@ interface AicpModule {
         const val USB_TETHER_TILE_SPEC = "usb_tether"
         const val VPN_TILE_SPEC = "vpn"
         const val WIFI_TILE_SPEC = "wifi"
+
+        @Provides
+        @IntoMap
+        @StringKey(AICP_EXTRAS_TILE_SPEC)
+        fun provideAicpExtrasTileConfig(uiEventLogger: QsEventLogger): QSTileConfig =
+            QSTileConfig(
+                tileSpec = TileSpec.create(AICP_EXTRAS_TILE_SPEC),
+                uiConfig =
+                    QSTileUIConfig.Resource(
+                        iconRes = R.drawable.ic_qs_aicp_extras,
+                        labelRes = R.string.quick_aicp_extras_label
+                    ),
+                instanceId = uiEventLogger.getNewInstanceId(),
+                category = TileCategory.UTILITIES,
+            )
 
         @Provides
         @IntoMap

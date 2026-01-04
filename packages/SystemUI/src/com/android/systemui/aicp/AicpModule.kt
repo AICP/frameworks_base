@@ -165,6 +165,7 @@ interface AicpModule {
         const val CAFFEINE_TILE_SPEC = "caffeine"
         const val CELLULAR_TILE_SPEC = "cell"
         const val COMPASS_TILE_SPEC = "compass"
+        const val CPUINFO_TILE_SPEC = "cpuinfo"
         const val HEADS_UP_TILE_SPEC = "heads_up"
         const val MUSIC_TILE_SPEC = "music"
         const val ONTHEGO_TILE_SPEC = "onthego"
@@ -262,6 +263,21 @@ interface AicpModule {
                     QSTileUIConfig.Resource(
                         iconRes = R.drawable.ic_qs_compass_on,
                         labelRes = R.string.quick_settings_compass_label
+                    ),
+                instanceId = uiEventLogger.getNewInstanceId(),
+                category = TileCategory.UTILITIES,
+            )
+
+        @Provides
+        @IntoMap
+        @StringKey(CPUINFO_TILE_SPEC)
+        fun provideCpuInfoTileConfig(uiEventLogger: QsEventLogger): QSTileConfig =
+            QSTileConfig(
+                tileSpec = TileSpec.create(CPUINFO_TILE_SPEC),
+                uiConfig =
+                    QSTileUIConfig.Resource(
+                        iconRes = R.drawable.ic_qs_cpu_info,
+                        labelRes = R.string.quick_settings_cpuinfo_label
                     ),
                 instanceId = uiEventLogger.getNewInstanceId(),
                 category = TileCategory.UTILITIES,

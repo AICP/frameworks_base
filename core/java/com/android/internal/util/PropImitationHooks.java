@@ -367,6 +367,12 @@ public class PropImitationHooks {
     private static Set<String> getPixelSpoofingPackages(Context context) {
         Set<String> packages = new HashSet<>(sDefaultPixelSpoofingPackages);
         
+        // Guard: isolated processes cannot access content providers (Settings.*).
+        if (android.os.Process.isIsolated()) {
+            dlog("Skipping getPixelSpoofingPackages in isolated process");
+            return packages;
+        }
+        
         // Merge with user-selected packages from Settings
         String userPackages = Settings.Secure.getString(
                 context.getContentResolver(),

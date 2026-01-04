@@ -88,6 +88,7 @@ public class PropImitationHooks {
     private static final String PROP_FIRST_API_LEVEL = "persist.sys.pihooks.first_api_level";
 
     private static final String SPOOF_PIHOOKS_PI = "persist.sys.pihooks.pi";
+    private static final String SPOOF_PIXEL_GPHOTOS = "persist.sys.pihooks.gphotos";
 
     private static final ComponentName GMS_ADD_ACCOUNT_ACTIVITY = ComponentName.unflattenFromString(
             "com.google.android.gms/.auth.uiflows.minutemaid.MinuteMaidActivity");
@@ -121,6 +122,8 @@ public class PropImitationHooks {
 
     private static volatile String sProcessName;
     private static volatile boolean sIsPixelTenXLSpoof;
+    private static volatile boolean sIsPhotos;
+    private static volatile boolean sIsPixelDevice;
 
     public static void setProps(Context context) {
         final String packageName = context.getPackageName();
@@ -144,6 +147,7 @@ public class PropImitationHooks {
         sNetflixModel = res.getString(R.string.config_netflixSpoofModel);
 
         sProcessName = processName;
+        sIsPixelDevice = Build.MANUFACTURER.equals("Google") && Build.MODEL.contains("Pixel");
 
         /* Set certified properties for GMSCore
          * Set stock fingerprint for ARCore
@@ -163,11 +167,21 @@ public class PropImitationHooks {
         }
 
         switch (packageName) {
+            case PACKAGE_GPHOTOS:
+                if (SystemProperties.getBoolean(SPOOF_PIXEL_GPHOTOS, true)) {
+                    dlog("Spoofing Pixel 10 Pro XL for: " + packageName + " process: " + processName);
+                    setProps(sPixelTenXLProps);
+                    sIsPixelTenXLSpoof = true;
+                    sIsPhotos = true;
+                } else {
+                    dlog("Google Photos spoof disabled via " + SPOOF_PIXEL_GPHOTOS);
+                    sIsPhotos = false;
+                }
+                return;
             case PACKAGE_AIWALLPAPERS:
             case PACKAGE_BARD:
             case PACKAGE_EMOJIWALLPAPER:
             case PACKAGE_LIVEWALLPAPER:
-            case PACKAGE_GPHOTOS:
             case PACKAGE_PIXELCREATIVE:
             case PACKAGE_PIXELTHEMES:
             case PACKAGE_PIXELWALLPAPER:
@@ -351,6 +365,11 @@ public class PropImitationHooks {
     }
 
     public static boolean hasSystemFeature(String name, boolean has) {
+        if (sIsPhotos && !sIsPixelDevice && has
+                && sTensorFeatures.stream().anyMatch(name::contains)) {
+            dlog("Blocked system feature " + name + " for Google Photos");
+            return false;
+        }
         if (sTensorFeatures.stream().anyMatch(name::contains)) {
         if (sIsPixelTenXLSpoof) {
             dlog("Tensor feature " + name + " => true (Pixel 10 XL spoof)");

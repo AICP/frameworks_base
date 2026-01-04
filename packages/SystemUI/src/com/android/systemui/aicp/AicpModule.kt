@@ -167,6 +167,7 @@ interface AicpModule {
         const val COMPASS_TILE_SPEC = "compass"
         const val HEADS_UP_TILE_SPEC = "heads_up"
         const val MUSIC_TILE_SPEC = "music"
+        const val ONTHEGO_TILE_SPEC = "onthego"
         const val POWERSHARE_TILE_SPEC = "powershare"
         const val PROFILES_TILE_SPEC = "profiles"
         const val READING_MODE_TILE_SPEC = "reading_mode"
@@ -291,6 +292,21 @@ interface AicpModule {
                     QSTileUIConfig.Resource(
                         iconRes = R.drawable.ic_qs_media_play,
                         labelRes = R.string.quick_settings_music_label
+                    ),
+                instanceId = uiEventLogger.getNewInstanceId(),
+                category = TileCategory.UTILITIES,
+            )
+
+        @Provides
+        @IntoMap
+        @StringKey(ONTHEGO_TILE_SPEC)
+        fun provideOnTheGoTileConfig(uiEventLogger: QsEventLogger): QSTileConfig =
+            QSTileConfig(
+                tileSpec = TileSpec.create(ONTHEGO_TILE_SPEC),
+                uiConfig =
+                    QSTileUIConfig.Resource(
+                        iconRes = R.drawable.ic_qs_onthego,
+                        labelRes = R.string.quick_settings_onthego_label
                     ),
                 instanceId = uiEventLogger.getNewInstanceId(),
                 category = TileCategory.UTILITIES,

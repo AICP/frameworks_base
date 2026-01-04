@@ -1574,9 +1574,8 @@ public class VolumeDialogImpl implements VolumeDialog, Dumpable,
                     AccessibilityManager.FLAG_CONTENT_TEXT
                             | AccessibilityManager.FLAG_CONTENT_CONTROLS);
         }
-        int volumeDialogTimeout = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.VOLUME_DIALOG_TIMEOUT, 3000);
-        return volumeDialogTimeout;
+        return mAccessibilityMgr.getRecommendedTimeoutMillis(mDialogTimeoutMillis,
+                AccessibilityManager.FLAG_CONTENT_CONTROLS);
     }
 
     protected void scheduleCsdTimeoutH(int timeoutMs) {

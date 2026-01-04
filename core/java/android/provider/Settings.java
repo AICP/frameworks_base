@@ -6683,12 +6683,6 @@ public final class Settings {
          */
         public static final String SCREEN_OFF_ANIMATION = "screen_off_animation";
 
-        /**
-          * Volume dialog timeout
-          * @hide
-          */
-         public static final String VOLUME_DIALOG_TIMEOUT = "volume_dialog_timeout";
-
        /**
          * Whether to show charging animation
          * @hide
@@ -7034,7 +7028,6 @@ public final class Settings {
             PRIVATE_SETTINGS.add(ON_THE_GO_ALPHA);
             PRIVATE_SETTINGS.add(ON_THE_GO_SERVICE_RESTART);
             PRIVATE_SETTINGS.add(ON_THE_GO_CAMERA);
-            PRIVATE_SETTINGS.add(VOLUME_DIALOG_TIMEOUT);
             PRIVATE_SETTINGS.add(CHARGING_ANIMATION);
             PRIVATE_SETTINGS.add(TRANSPARENT_POWER_MENU);
             PRIVATE_SETTINGS.add(TRANSPARENT_POWER_DIALOG_DIM);

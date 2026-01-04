@@ -14040,6 +14040,13 @@ public final class Settings {
         public static final String FETCHED_PIF = "fetched_pif";
 
         /**
+         * User selectable list of apps to spoof as Pixel (pipe-separated package names).
+         * @hide
+         */
+        @Readable
+        public static final String PIXEL_SPOOFING_APPS = "pixel_spoofing_apps";
+
+        /**
          * Control whether FLAG_SECURE is ignored for all windows.
          * @hide
          */

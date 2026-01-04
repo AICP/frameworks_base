@@ -36,8 +36,8 @@ constructor(@ShadeDisplayAware private val resources: Resources) {
             resources.getBoolean(com.android.internal.R.bool.config_evenDimmerEnabled)
 
     val stockTiles =
-        resources
-            .getString(R.string.quick_settings_tiles_stock)
+        (resources.getString(R.string.quick_settings_tiles_stock) + "," +
+         resources.getString(R.string.quick_settings_tiles_extra))
             .split(",")
             .filterNot { shouldRemoveRbcTile && it.equals("reduce_brightness") }
             .map(TileSpec::create)

@@ -185,7 +185,7 @@ public class PropImitationHooks {
         }
 
         switch (packageName) {
-        if (getPixelSpoofingPackages(context).contains(packageName)) {
+        if (isPixelSpoofingTarget(packageName, processName, context)) {
             dlog("Spoofing Pixel 10 Pro XL for: " + packageName + " process: " + processName);
             setProps(sPixelTenXLProps);
             sIsPixelTenXLSpoof = true;
@@ -383,6 +383,26 @@ public class PropImitationHooks {
         }
         
         return packages;
+    }
+
+    private static boolean isPixelSpoofingTarget(String packageName, String processName, Context context) {
+        Set<String> spoofingTargets = getPixelSpoofingPackages(context);
+        
+        // Check exact package name match
+        if (spoofingTargets.contains(packageName)) {
+            dlog("Pixel spoofing target match (package): " + packageName);
+            return true;
+        }
+        
+        // Check process name contains any target (for flexibility with sub-processes)
+        for (String target : spoofingTargets) {
+            if (processName.contains(target)) {
+                dlog("Pixel spoofing target match (process): " + target + " in " + processName);
+                return true;
+            }
+        }
+        
+        return false;
     }
 
     public static boolean hasSystemFeature(String name, boolean has) {

@@ -28,7 +28,6 @@ import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
 import android.text.TextUtils;
 import android.util.ArraySet;
-import android.util.Log;
 import android.widget.Button;
 
 import androidx.annotation.Nullable;
@@ -50,8 +49,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
-import java.util.HashSet;
 import java.util.concurrent.Executor;
 
 import javax.inject.Inject;
@@ -104,14 +101,19 @@ public class TileQueryHelper {
         String stock = mContext.getString(R.string.quick_settings_tiles_stock);
         String current = Settings.Secure.getString(mContext.getContentResolver(),
                 Settings.Secure.QS_TILES);
-        String possible = stock
-                + "," + mContext.getString(R.string.quick_settings_tiles_extra);
-
-        final Set<String> possibleTiles = new HashSet<>();
+        final ArrayList<String> possibleTiles = new ArrayList<>();
         if (current != null) {
+            // The setting QS_TILES is not populated immediately upon Factory Reset
             possibleTiles.addAll(Arrays.asList(current.split(",")));
+        } else {
+            current = "";
         }
-        possibleTiles.addAll(Arrays.asList(possible.split(",")));
+        String[] stockSplit =  stock.split(",");
+        for (String spec : stockSplit) {
+            if (!current.contains(spec)) {
+                possibleTiles.add(spec);
+            }
+        }
 
         final ArrayList<QSTile> tilesToAdd = new ArrayList<>();
         if (Flags.evenDimmer() && mContext.getResources().getBoolean(

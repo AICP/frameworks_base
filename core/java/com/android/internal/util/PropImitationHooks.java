@@ -47,6 +47,7 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -116,6 +117,25 @@ public class PropImitationHooks {
             "PIXEL_2025_MIDYEAR_EXPERIENCE"
     );
 
+    // Default packages to spoof as Pixel 10 Pro XL
+    private static final Set<String> sDefaultPixelSpoofingPackages = Set.of(
+            PACKAGE_AIWALLPAPERS,
+            PACKAGE_BARD,
+            PACKAGE_EMOJIWALLPAPER,
+            PACKAGE_LIVEWALLPAPER,
+            PACKAGE_PIXELCREATIVE,
+            PACKAGE_PIXELTHEMES,
+            PACKAGE_PIXELWALLPAPER,
+            PACKAGE_SUBSCRIPTION_RED,
+            PACKAGE_WALLPAPER,
+            PACKAGE_WALLPAPEREFFECTS,
+            PACKAGE_WEATHER,
+            PACKAGE_CUSTOMIZATION,
+            PACKAGE_MAGICPORTRAIT,
+            PACKAGE_MAPS,
+            PACKAGE_VELVET
+    );
+
     private static volatile List<String> sCertifiedProps = new ArrayList<>();
     private static volatile String sStockFp;
     private static volatile String sNetflixModel;
@@ -163,26 +183,14 @@ public class PropImitationHooks {
 		}
         }
 
+        if (getPixelSpoofingPackages(context).contains(packageName)) {
+            dlog("Spoofing Pixel 10 Pro XL for: " + packageName + " process: " + processName);
+            setProps(sPixelTenXLProps);
+            sIsPixelTenXLSpoof = true;
+            return;
+        }
+
         switch (packageName) {
-            case PACKAGE_AIWALLPAPERS:
-            case PACKAGE_BARD:
-            case PACKAGE_EMOJIWALLPAPER:
-            case PACKAGE_LIVEWALLPAPER:
-            case PACKAGE_PIXELCREATIVE:
-            case PACKAGE_PIXELTHEMES:
-            case PACKAGE_PIXELWALLPAPER:
-            case PACKAGE_SUBSCRIPTION_RED:
-            case PACKAGE_WALLPAPER:
-            case PACKAGE_WALLPAPEREFFECTS:
-            case PACKAGE_WEATHER:
-            case PACKAGE_CUSTOMIZATION:
-            case PACKAGE_MAGICPORTRAIT:
-            case PACKAGE_MAPS:
-            case PACKAGE_VELVET:
-                dlog("Spoofing Pixel 10 Pro XL for: " + packageName + " process: " + processName);
-                setProps(sPixelTenXLProps);
-                sIsPixelTenXLSpoof = true;
-                return;
             case PACKAGE_NETFLIX:
                 if (!sNetflixModel.isEmpty()) {
                     dlog("Setting model to " + sNetflixModel + " for Netflix");
@@ -354,6 +362,26 @@ public class PropImitationHooks {
             Log.e(TAG, "shouldBypassTaskPermission: unable to get gms/finsky uid", e);
             return false;
         }
+    }
+
+    private static Set<String> getPixelSpoofingPackages(Context context) {
+        Set<String> packages = new HashSet<>(sDefaultPixelSpoofingPackages);
+        
+        // Merge with user-selected packages from Settings
+        String userPackages = Settings.Secure.getString(
+                context.getContentResolver(),
+                Settings.Secure.PIXEL_SPOOFING_APPS);
+        
+        if (userPackages != null && !userPackages.isEmpty()) {
+            String[] userPackageArray = userPackages.split("\\|");
+            for (String pkg : userPackageArray) {
+                if (!pkg.isEmpty()) {
+                    packages.add(pkg);
+                }
+            }
+        }
+        
+        return packages;
     }
 
     public static boolean hasSystemFeature(String name, boolean has) {

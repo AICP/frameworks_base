@@ -172,6 +172,7 @@ interface AicpModule {
         const val READING_MODE_TILE_SPEC = "reading_mode"
         const val SYNC_TILE_SPEC = "sync"
         const val USB_TETHER_TILE_SPEC = "usb_tether"
+        const val VOLUME_PANEL_TILE_SPEC = "volume_panel"
         const val VPN_TILE_SPEC = "vpn"
         const val WIFI_TILE_SPEC = "wifi"
 
@@ -368,6 +369,21 @@ interface AicpModule {
                     ),
                 instanceId = uiEventLogger.getNewInstanceId(),
                 category = TileCategory.CONNECTIVITY,
+            )
+
+        @Provides
+        @IntoMap
+        @StringKey(VOLUME_PANEL_TILE_SPEC)
+        fun provideVolumePanelConfig(uiEventLogger: QsEventLogger): QSTileConfig =
+            QSTileConfig(
+                tileSpec = TileSpec.create(VOLUME_PANEL_TILE_SPEC),
+                uiConfig =
+                    QSTileUIConfig.Resource(
+                        iconRes = R.drawable.ic_qs_volume_panel,
+                        labelRes = R.string.quick_settings_volume_panel_label
+                    ),
+                instanceId = uiEventLogger.getNewInstanceId(),
+                category = TileCategory.UTILITIES,
             )
 
         @Provides

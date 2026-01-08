@@ -7142,6 +7142,12 @@ public final class Settings {
         public static final String QS_BT_SHOW_DIALOG = "qs_bt_show_dialog";
 
         /**
+         * define flashlight brightness
+         * @hide
+         */
+        public static final String FLASHLIGHT_BRIGHTNESS_SETTING = "flashlight_brightness";
+
+        /**
          * Statusbar clock background
          * 0 - hide accented chip  (default)
          * 1 - show accented chip

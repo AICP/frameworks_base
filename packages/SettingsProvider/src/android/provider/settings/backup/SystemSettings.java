@@ -164,7 +164,8 @@ public class SystemSettings {
                 Settings.System.SENSOR_BLOCK,
                 Settings.System.QS_FOOTER_TEXT_SHOW,
                 Settings.System.QS_FOOTER_TEXT_STRING,
-                Settings.System.QS_FOOTER_TEXT_FONT_WEIGHT
+                Settings.System.QS_FOOTER_TEXT_FONT_WEIGHT,
+                Settings.System.FLASHLIGHT_BRIGHTNESS_SETTING
         ));
         if (Flags.backUpSmoothDisplayAndForcePeakRefreshRate()) {
             settings.add(Settings.System.PEAK_REFRESH_RATE);

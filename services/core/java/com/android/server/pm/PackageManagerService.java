@@ -11827,13 +11827,15 @@ public class PackageManagerService extends IPackageManager.Stub
 
     private ProviderInfo resolveContentProviderInternal(String name, int flags, int userId,
             int callingUid) {
-        if (!mUserManager.exists(userId)) return null;
-        flags = updateFlagsForComponent(flags, userId);
 
         // Callers of this API may not always separate the userID and authority. Let's parse it
         // before resolving
         String authorityWithoutUserId = ContentProvider.getAuthorityWithoutUserId(name);
         userId = ContentProvider.getUserIdFromAuthority(name, userId);
+
+        if (!mUserManager.exists(userId)) return null;
+        flags = updateFlagsForComponent(flags, userId);
+
         final ProviderInfo providerInfo = mComponentResolver.queryProvider(
                 authorityWithoutUserId, flags, userId);
         boolean checkedGrants = false;

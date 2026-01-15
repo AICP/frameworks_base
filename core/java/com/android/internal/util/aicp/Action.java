@@ -275,7 +275,7 @@ public class Action {
     }
 
     public static void triggerVirtualKeypress(final int keyCode, boolean longpress) {
-        InputManager im = InputManager.getInstance();
+//        InputManager im = InputManager.getInstance();
         long now = SystemClock.uptimeMillis();
         int downflags = 0;
         int upflags = 0;

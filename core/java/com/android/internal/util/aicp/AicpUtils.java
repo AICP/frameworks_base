@@ -97,7 +97,7 @@ public class AicpUtils {
                 InputDevice.SOURCE_KEYBOARD);
         final KeyEvent evUp = KeyEvent.changeAction(evDown, KeyEvent.ACTION_UP);
 
-        final Handler handler = new Handler(Looper.getMainLooper());
+/*        final Handler handler = new Handler(Looper.getMainLooper());
         handler.post(new Runnable() {
             @Override
             public void run() {
@@ -112,7 +112,7 @@ public class AicpUtils {
                         InputManager.INJECT_INPUT_EVENT_MODE_ASYNC);
             }
         }, 20);
-    }
+    } */
 
     // Screen off
     public static void goToSleep(Context context) {

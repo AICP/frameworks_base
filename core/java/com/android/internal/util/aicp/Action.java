@@ -275,7 +275,7 @@ public class Action {
     }
 
     public static void triggerVirtualKeypress(final int keyCode, boolean longpress) {
-        InputManager im = InputManager.getInstance();
+//        InputManager im = InputManager.getInstance();
         long now = SystemClock.uptimeMillis();
         int downflags = 0;
         int upflags = 0;
@@ -295,13 +295,13 @@ public class Action {
                 keyCode, 0, 0, KeyCharacterMap.VIRTUAL_KEYBOARD, 0,
                 downflags,
                 InputDevice.SOURCE_KEYBOARD);
-        im.injectInputEvent(downEvent, InputManager.INJECT_INPUT_EVENT_MODE_ASYNC);
+//        im.injectInputEvent(downEvent, InputManager.INJECT_INPUT_EVENT_MODE_ASYNC);
 
         final KeyEvent upEvent = new KeyEvent(now, now, KeyEvent.ACTION_UP,
                 keyCode, 0, 0, KeyCharacterMap.VIRTUAL_KEYBOARD, 0,
                 upflags,
                 InputDevice.SOURCE_KEYBOARD);
-        im.injectInputEvent(upEvent, InputManager.INJECT_INPUT_EVENT_MODE_ASYNC);
+//        im.injectInputEvent(upEvent, InputManager.INJECT_INPUT_EVENT_MODE_ASYNC);
     }
 
 }

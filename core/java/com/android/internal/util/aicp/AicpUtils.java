@@ -99,18 +99,18 @@ public class AicpUtils {
 
         final Handler handler = new Handler(Looper.getMainLooper());
         handler.post(new Runnable() {
-            @Override
+/*            @Override
             public void run() {
                 InputManager.getInstance().injectInputEvent(evDown,
                         InputManager.INJECT_INPUT_EVENT_MODE_ASYNC);
-            }
+            }*/
         });
         handler.postDelayed(new Runnable() {
-            @Override
+/*            @Override
             public void run() {
                 InputManager.getInstance().injectInputEvent(evUp,
                         InputManager.INJECT_INPUT_EVENT_MODE_ASYNC);
-            }
+            }*/
         }, 20);
     }
 

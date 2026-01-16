@@ -102,8 +102,8 @@ public class PropImitationHooks {
             "MANUFACTURER", "Google",
             "BRAND", "google",
             "MODEL", "Pixel 10 Pro XL",
-            "ID", "BP4A.251205.006",
-            "FINGERPRINT", "google/mustang/mustang:16/BP4A.251205.006/14401865:user/release-keys"
+            "ID", "BP4A.260105.004.A2",
+            "FINGERPRINT", "google/mustang/mustang:16/BP4A.260105.004.A2/14587090:user/release-keys"
     );
 
     private static final Set<String> sTensorFeatures = Set.of(

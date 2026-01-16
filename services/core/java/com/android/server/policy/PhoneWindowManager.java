@@ -669,7 +669,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
     boolean mMenuPressed;
     boolean mAssistPressed;
-    boolean mAppSwitchLongPressed;
     Intent mHomeIntent;
     Intent mCarDockIntent;
     Intent mDeskDockIntent;
@@ -1725,6 +1724,36 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
             performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, "Back - Long Press");
             performKeyAction(mBackLongPressAction, event);
+        }
+    }
+
+    private void appSwitchPress() {
+        if (!keyguardOn() && mAppSwitchPressAction != Action.NOTHING) {
+            if (mAppSwitchPressAction != Action.APP_SWITCH) {
+                cancelPreloadRecentApps();
+            }
+            long now = SystemClock.uptimeMillis();
+            KeyEvent event = new KeyEvent(now, now, KeyEvent.ACTION_DOWN,
+                    KeyEvent.KEYCODE_APP_SWITCH, 0, 0, KeyCharacterMap.VIRTUAL_KEYBOARD, 0,
+                    KeyEvent.FLAG_FROM_SYSTEM, InputDevice.SOURCE_KEYBOARD);
+
+            performKeyAction(mAppSwitchPressAction, event);
+        }
+    }
+
+    private void appSwitchLongPress() {
+        if (!keyguardOn() && mAppSwitchLongPressAction != Action.NOTHING) {
+            if (mAppSwitchLongPressAction != Action.APP_SWITCH) {
+                cancelPreloadRecentApps();
+            }
+
+            long now = SystemClock.uptimeMillis();
+            KeyEvent event = new KeyEvent(now, now, KeyEvent.ACTION_DOWN,
+                    KeyEvent.KEYCODE_APP_SWITCH, 0, 0, KeyCharacterMap.VIRTUAL_KEYBOARD, 0,
+                    KeyEvent.FLAG_FROM_SYSTEM, InputDevice.SOURCE_KEYBOARD);
+
+            performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, "Recents - Long Press");
+            performKeyAction(mAppSwitchLongPressAction, event);
         }
     }
 
@@ -2911,6 +2940,40 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     }
 
     /**
+     * Rule for single app switch key gesture.
+     */
+    private final class AppSwitchKeyRule extends SingleKeyGestureDetector.SingleKeyRule {
+        AppSwitchKeyRule() {
+            super(KeyEvent.KEYCODE_APP_SWITCH);
+        }
+
+        @Override
+        boolean supportLongPress() {
+            return mAppSwitchLongPressAction != Action.NOTHING;
+        }
+
+        @Override
+        int getMaxMultiPressCount() {
+            return 1;
+        }
+
+        @Override
+        void onKeyGesture(@NonNull SingleKeyGestureEvent event) {
+            if (event.getAction() != ACTION_COMPLETE) {
+                return;
+            }
+            switch (event.getType()) {
+                case SINGLE_KEY_GESTURE_TYPE_PRESS:
+                    appSwitchPress();
+                    break;
+                case SINGLE_KEY_GESTURE_TYPE_LONG_PRESS:
+                    appSwitchLongPress();
+                    break;
+            }
+        }
+    }
+
+    /**
      * Rule for single stem primary key gesture.
      */
     private final class StemPrimaryKeyRule extends SingleKeyGestureDetector.SingleKeyRule {
@@ -3125,6 +3188,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         mSingleKeyGestureDetector.addRule(new PowerKeyRule());
         mSingleKeyGestureDetector.addRule(new StylusTailButtonRule());
         mSingleKeyGestureDetector.addRule(new BackKeyRule());
+        mSingleKeyGestureDetector.addRule(new AppSwitchKeyRule());
     }
 
     private void updateKeyAssignments() {
@@ -3157,25 +3221,14 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
         mBackLongPressAction = Action.fromIntSafe(res.getInteger(
                 org.lineageos.platform.internal.R.integer.config_longPressOnBackBehavior));
-        if (mBackLongPressAction.ordinal() > Action.SLEEP.ordinal()) {
-            mBackLongPressAction = Action.NOTHING;
-        }
-
         mBackLongPressAction = Action.fromSettings(resolver,
                 LineageSettings.System.KEY_BACK_LONG_PRESS_ACTION,
                 mBackLongPressAction);
 
         mHomeLongPressAction = Action.fromIntSafe(res.getInteger(
                 org.lineageos.platform.internal.R.integer.config_longPressOnHomeBehavior));
-        if (mHomeLongPressAction.ordinal() > Action.SLEEP.ordinal()) {
-            mHomeLongPressAction = Action.NOTHING;
-        }
-
         mHomeDoubleTapAction = Action.fromIntSafe(res.getInteger(
                 org.lineageos.platform.internal.R.integer.config_doubleTapOnHomeBehavior));
-        if (mHomeDoubleTapAction.ordinal() > Action.SLEEP.ordinal()) {
-            mHomeDoubleTapAction = Action.NOTHING;
-        }
 
         mHomeLongPressAction = Action.fromSettings(resolver,
                 LineageSettings.System.KEY_HOME_LONG_PRESS_ACTION,
@@ -3204,10 +3257,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             mAppSwitchPressAction = Action.fromSettings(resolver,
                     LineageSettings.System.KEY_APP_SWITCH_ACTION,
                     mAppSwitchPressAction);
-            mAppSwitchLongPressAction = Action.fromSettings(resolver,
-                    LineageSettings.System.KEY_APP_SWITCH_LONG_PRESS_ACTION,
-                    mAppSwitchLongPressAction);
         }
+        mAppSwitchLongPressAction = Action.fromSettings(resolver,
+                LineageSettings.System.KEY_APP_SWITCH_LONG_PRESS_ACTION,
+                mAppSwitchLongPressAction);
 
         mEdgeLongSwipeAction = Action.fromSettings(resolver,
                 LineageSettings.System.KEY_EDGE_LONG_SWIPE_ACTION,
@@ -3825,40 +3878,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 }
 
                 return true;
-            case KeyEvent.KEYCODE_APP_SWITCH:
-                if (!keyguardOn) {
-                    if (down) {
-                        if (mAppSwitchPressAction == Action.APP_SWITCH
-                                || mAppSwitchLongPressAction == Action.APP_SWITCH) {
-                            preloadRecentApps();
-                        }
-                        if (repeatCount == 0) {
-                            mAppSwitchLongPressed = false;
-                        } else if (longPress) {
-                            if (!keyguardOn && mAppSwitchLongPressAction != Action.NOTHING) {
-                                if (mAppSwitchLongPressAction != Action.APP_SWITCH) {
-                                    cancelPreloadRecentApps();
-                                }
-                                performHapticFeedback(HapticFeedbackConstants.LONG_PRESS,
-                                        "Recents - Long Press");
-                                performKeyAction(mAppSwitchLongPressAction, event);
-                                mAppSwitchLongPressed = true;
-                            }
-                        }
-                    } else {
-                        if (mAppSwitchLongPressed) {
-                            mAppSwitchLongPressed = false;
-                        } else {
-                            if (mAppSwitchPressAction != Action.APP_SWITCH) {
-                                cancelPreloadRecentApps();
-                            }
-                            if (!canceled) {
-                                performKeyAction(mAppSwitchPressAction, event);
-                            }
-                        }
-                    }
-                }
-                return true;
             case KeyEvent.KEYCODE_VOLUME_UP:
             case KeyEvent.KEYCODE_VOLUME_DOWN:
             case KeyEvent.KEYCODE_VOLUME_MUTE:
@@ -3903,7 +3922,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     @SuppressLint("MissingPermission")
     private void initKeyGestures() {
         List<Integer> supportedGestures = new ArrayList<>(List.of(
-                KeyGestureEvent.KEY_GESTURE_TYPE_APP_SWITCH,
                 KeyGestureEvent.KEY_GESTURE_TYPE_LAUNCH_ASSISTANT,
                 KeyGestureEvent.KEY_GESTURE_TYPE_LAUNCH_VOICE_ASSISTANT,
                 KeyGestureEvent.KEY_GESTURE_TYPE_HOME,
@@ -3960,15 +3978,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             case KeyGestureEvent.KEY_GESTURE_TYPE_RECENT_APPS:
                 if (complete) {
                     showRecentApps(false);
-                }
-                break;
-            case KeyGestureEvent.KEY_GESTURE_TYPE_APP_SWITCH:
-                if (!keyguardOn) {
-                    if (start) {
-                        preloadRecentApps();
-                    } else if (complete) {
-                        toggleRecentApps();
-                    }
                 }
                 break;
             case KeyGestureEvent.KEY_GESTURE_TYPE_LAUNCH_ASSISTANT:
@@ -5074,6 +5083,18 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     // Don't pass back press to app if we've already handled it via long press
                     if (mBackKeyHandled) {
                         result &= ~ACTION_PASS_TO_USER;
+                    }
+                }
+                break;
+            }
+
+            case KeyEvent.KEYCODE_APP_SWITCH: {
+                if (!keyguardOn()) {
+                    if (down) {
+                        if (mAppSwitchPressAction == Action.APP_SWITCH
+                                || mAppSwitchLongPressAction == Action.APP_SWITCH) {
+                            preloadRecentApps();
+                        }
                     }
                 }
                 break;

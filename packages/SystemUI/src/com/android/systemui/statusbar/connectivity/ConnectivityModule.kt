@@ -277,9 +277,7 @@ interface ConnectivityModule {
                 uiConfig =
                     QSTileUIConfig.Resource(
                         iconRes = WifiIcons.WIFI_FULL_ICONS[4],
-                        // Wifi tile will still show internet for now until we migrate to a
-                        // Wifi-only tile.
-                        labelRes = R.string.quick_settings_internet_label,
+                        labelRes = R.string.quick_settings_wifi_label,
                     ),
                 instanceId = uiEventLogger.getNewInstanceId(),
                 category = TileCategory.CONNECTIVITY,

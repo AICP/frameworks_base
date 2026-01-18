@@ -39,9 +39,7 @@ constructor(
 
     override fun map(config: QSTileConfig, data: WifiTileModel): QSTileState =
         QSTileState.build(resources, theme, config.uiConfig) {
-            // Wifi tile will still show internet for now until we migrate to a
-            // Wifi-only tile.
-            label = resources.getString(R.string.quick_settings_internet_label)
+            label = resources.getString(R.string.quick_settings_wifi_label)
             expandedAccessibilityClass = Switch::class
 
             secondaryLabel =

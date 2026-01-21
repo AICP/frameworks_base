@@ -1438,16 +1438,32 @@ private fun ContentScope.MediaObject(
         Box {
             AndroidView(
                 modifier = modifier,
-                factory = {
-                    mediaHost.hostView.apply {
-                        layoutParams =
+                factory = { ctx ->
+                    FrameLayout(ctx).apply {
+                        layoutParams = FrameLayout.LayoutParams(
+                            FrameLayout.LayoutParams.MATCH_PARENT,
+                            FrameLayout.LayoutParams.WRAP_CONTENT,
+                        )
+                    }
+                },
+                update = { container ->
+                    val view = mediaHost.hostView
+
+                    (view.parent as? ViewGroup)?.let { p ->
+                        if (p !== container) p.removeView(view)
+                    }
+
+                    if (view.parent == null) {
+                        container.removeAllViews()
+                        container.addView(
+                            view,
                             FrameLayout.LayoutParams(
                                 FrameLayout.LayoutParams.MATCH_PARENT,
                                 FrameLayout.LayoutParams.WRAP_CONTENT,
                             )
+                        )
                     }
-                },
-                update = { view ->
+
                     view.update()
                     if (!Flags.mediaFrameDimensionsFix()) {
                         // Update layout params if host view bounds are higher than its child.
@@ -1471,7 +1487,10 @@ private fun ContentScope.MediaObject(
                         }
                     }
                 },
-                onReset = {},
+                onReset = { container ->
+                    val view = mediaHost.hostView
+                    if (view.parent === container) container.removeView(view)
+                },
             )
         }
     }

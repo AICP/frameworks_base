@@ -146,7 +146,13 @@ private fun BatteryAndPercentChip(
                 levelProvider = { level },
                 showLevelProvider = { false },
                 isFullProvider = { isFull },
-                glyphsProvider = { emptyList() },
+                glyphsProvider = {
+                    if (showPercentNextToIcon) {
+                        emptyList()
+                    } else {
+                        level.glyphRepresentation()
+                    }
+                },
                 colorsProvider = { BatteryColors.DarkTheme.Charging },
                 modifier = Modifier.height(height).wrapContentWidth(),
                 contentDescription = "",

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 The LineageOS Project
+ * Copyright (C) 2024-2025 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,6 +32,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.repeatOnLifecycle
 import com.android.systemui.lifecycle.repeatWhenAttached
+import com.android.systemui.settings.brightness.domain.interactor.BrightnessMirrorShowingInteractor
 import com.android.systemui.shade.domain.interactor.ShadeInteractor
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
@@ -49,6 +50,7 @@ class UdfpsHelper(
     private val windowManager: WindowManager,
     private val shadeInteractor: ShadeInteractor,
     @RequestReason val requestReason: Int,
+    private val brightnessMirrorShowingInteractor: BrightnessMirrorShowingInteractor,
     private var view: View = View(context).apply {
         setBackgroundColor(Color.BLACK)
         visibility = View.GONE
@@ -56,7 +58,6 @@ class UdfpsHelper(
 ) {
     private val displayManager = context.getSystemService(DisplayManager::class.java)!!
     private val isKeyguard = requestReason == REASON_AUTH_KEYGUARD
-    private var newIsQsExpanded = false
 
     private val currentBrightness: Float get() =
         displayManager.getBrightness(Display.DEFAULT_DISPLAY)
@@ -165,16 +166,23 @@ class UdfpsHelper(
     fun addDimLayer() {
         brightnessToAlpha()
         windowManager.addView(view, dimLayoutParams)
+        displayManager.registerDisplayListener(
+            displayListener,
+            null,
+            /* eventFlags */ 0,
+            DisplayManager.PRIVATE_EVENT_TYPE_DISPLAY_BRIGHTNESS,
+        )
     }
 
     fun removeDimLayer() {
         windowManager.removeView(view)
+        displayManager.unregisterDisplayListener(displayListener)
     }
 
     init {
         view.repeatWhenAttached {
             repeatOnLifecycle(Lifecycle.State.CREATED) {
-                listenForQsExpansion(this)
+                listenForBrightnessMirror(this)
 
                 if (isKeyguard) {
                     listenForShadeTouchability(this)
@@ -187,25 +195,10 @@ class UdfpsHelper(
         }
     }
 
-    // We don't have ways to get temporary brightness when operating the brightness slider.
-    // Therefore, the dim layer is hidden when the slider is expected to be utilized.
-    private suspend fun listenForQsExpansion(scope: CoroutineScope): Job {
+    private suspend fun listenForBrightnessMirror(scope: CoroutineScope): Job {
         return scope.launch {
-            shadeInteractor.qsExpansion.collect { qsExpansion ->
-                if (qsExpansion == 1f && !newIsQsExpanded) {
-                    newIsQsExpanded = true
-                    displayManager.registerDisplayListener(
-                        displayListener,
-                        null,
-                        /* eventFlags */ 0,
-                        DisplayManager.PRIVATE_EVENT_TYPE_DISPLAY_BRIGHTNESS,
-                    )
-                    view.isVisible = false
-                } else if (qsExpansion == 0f && newIsQsExpanded) {
-                    newIsQsExpanded = false
-                    displayManager.unregisterDisplayListener(displayListener)
-                    view.isVisible = true
-                }
+            brightnessMirrorShowingInteractor.isShowing.collect {
+                view.isVisible = !it
             }
         }
     }

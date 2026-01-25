@@ -95,6 +95,17 @@ public class PropImitationHooks {
     private static final ComponentName GMS_ADD_ACCOUNT_ACTIVITY = ComponentName.unflattenFromString(
             "com.google.android.gms/.auth.uiflows.minutemaid.MinuteMaidActivity");
 
+    private static final Map<String, String> sPixelXLProps = Map.of(
+            "BRAND", "google",
+            "MANUFACTURER", "Google",
+            "DEVICE", "marlin",
+            "PRODUCT", "marlin",
+            "HARDWARE", "marlin",
+            "MODEL", "Pixel XL",
+            "ID", "QP1A.191005.007.A3",
+            "FINGERPRINT", "google/marlin/marlin:10/QP1A.191005.007.A3/5972272:user/release-keys"
+    );
+
     private static final Map<String, String> sPixelTenXLProps = Map.of(
             "PRODUCT", "mustang",
             "DEVICE", "mustang",
@@ -190,9 +201,8 @@ public class PropImitationHooks {
         switch (packageName) {
             case PACKAGE_GPHOTOS:
                 if (SystemProperties.getBoolean(SPOOF_PIXEL_GPHOTOS, true)) {
-                    dlog("Spoofing Pixel 10 Pro XL for: " + packageName + " process: " + processName);
-                    setProps(sPixelTenXLProps);
-                    sIsPixelTenXLSpoof = true;
+                    dlog("Spoofing Pixel XL (marlin) for: " + packageName + " process: " + processName);
+                    setProps(sPixelXLProps);
                     sIsPhotos = true;
                 } else {
                     dlog("Google Photos spoof disabled via " + SPOOF_PIXEL_GPHOTOS);

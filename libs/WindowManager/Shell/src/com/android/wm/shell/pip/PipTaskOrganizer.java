@@ -92,7 +92,6 @@ import com.android.wm.shell.splitscreen.SplitScreenController;
 import com.android.wm.shell.transition.Transitions;
 
 import java.io.PrintWriter;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -126,8 +125,6 @@ public class PipTaskOrganizer implements ShellTaskOrganizer.TaskListener,
      * to portrait PiP in button navigation mode.
      */
     private static final int CONTENT_OVERLAY_FADE_OUT_DELAY_MS = 500;
-
-    private static final int CRASH_RECOVERY_CHECK_DELAY_MS = 3000;
 
     private final Context mContext;
     private final SyncTransactionQueue mSyncTransactionQueue;
@@ -323,8 +320,6 @@ public class PipTaskOrganizer implements ShellTaskOrganizer.TaskListener,
     @Nullable
     SurfaceControl mSwipePipToHomeOverlay;
 
-    private Runnable mRemoveStaledPinnedTaskRunnable;
-
     public PipTaskOrganizer(Context context,
             @NonNull SyncTransactionQueue syncTransactionQueue,
             @NonNull PipTransitionState pipTransitionState,
@@ -373,14 +368,6 @@ public class PipTaskOrganizer implements ShellTaskOrganizer.TaskListener,
         mPipTransitionController.setPipOrganizer(this);
         displayController.addDisplayWindowListener(this);
         pipTransitionController.registerPipTransitionCallback(mPipTransitionCallback);
-        mPipTransitionState.addOnPipTransitionStateChangedListener(
-                (oldState, newState) -> {
-                    if (mPipTransitionState.isEnteringPip()
-                            && mRemoveStaledPinnedTaskRunnable != null) {
-                        mMainExecutor.removeCallbacks(mRemoveStaledPinnedTaskRunnable);
-                        mRemoveStaledPinnedTaskRunnable = null;
-                    }
-                });
     }
 
     public PipTransitionController getTransitionController() {
@@ -678,30 +665,6 @@ public class PipTaskOrganizer implements ShellTaskOrganizer.TaskListener,
             mPipParamsChangedForwarder.notifySubtitleChanged(
                     mPictureInPictureParams.getSubtitle());
         }
-
-        mRemoveStaledPinnedTaskRunnable = () -> {
-            ProtoLog.w(ShellProtoLogGroup.WM_SHELL_PICTURE_IN_PICTURE,
-                    "SystemUI reboot detected, remove staled PiP task");
-            // Remove the staled Task by matching component name.
-            final ComponentName toRemove = info.topActivity;
-            try {
-                List<ActivityManager.RunningTaskInfo> tasks = ActivityTaskManager.getService()
-                        .getTasks(10 /* maxNum */,
-                                false /* filterOnlyVisibleRecents */,
-                                false /* keepIntentExtra */,
-                                Display.DEFAULT_DISPLAY);
-                for (ActivityManager.RunningTaskInfo task : tasks) {
-                    if (toRemove.equals(task.topActivity)) {
-                        ActivityTaskManager.getService().removeTask(task.taskId);
-                    }
-                }
-            } catch (RemoteException e) {
-                ProtoLog.e(ShellProtoLogGroup.WM_SHELL_PICTURE_IN_PICTURE,
-                        "%s: Failed to remove PiP, %s", TAG, e);
-            }
-        };
-        mMainExecutor.executeDelayed(mRemoveStaledPinnedTaskRunnable,
-                CRASH_RECOVERY_CHECK_DELAY_MS);
 
         mPipUiEventLoggerLogger.setTaskInfo(mTaskInfo);
 

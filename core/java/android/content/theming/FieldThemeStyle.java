@@ -28,7 +28,7 @@ import java.util.Objects;
 public final class FieldThemeStyle extends ThemeSettingsField<Integer, String> {
     private static final @ThemeStyle.Type List<Integer> sValidStyles = Arrays.asList(
             ThemeStyle.EXPRESSIVE, ThemeStyle.SPRITZ, ThemeStyle.TONAL_SPOT, ThemeStyle.FRUIT_SALAD,
-            ThemeStyle.RAINBOW, ThemeStyle.VIBRANT, ThemeStyle.MONOCHROMATIC);
+            ThemeStyle.RAINBOW, ThemeStyle.VIBRANT, ThemeStyle.MONOCHROMATIC, ThemeStyle.FIDELITY);
 
     @Override
     public String serialize(@ThemeStyle.Type Integer typedValue) {

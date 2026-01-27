@@ -56,7 +56,8 @@ public final class ThemeStyle {
             CONTENT,
             MONOCHROMATIC,
             CLOCK,
-            CLOCK_VIBRANT
+            CLOCK_VIBRANT,
+            FIDELITY
     })
     @Retention(SOURCE)
     @Target({PARAMETER, METHOD, LOCAL_VARIABLE, FIELD})
@@ -103,6 +104,10 @@ public final class ThemeStyle {
      * Represents the CLOCK_VIBRANT style.
      */
     public static final int CLOCK_VIBRANT = 9;
+    /**
+     * Represents the FIDELITY style.
+     */
+    public static final int FIDELITY = 10;
 
 
     /**
@@ -126,6 +131,7 @@ public final class ThemeStyle {
             case MONOCHROMATIC -> "MONOCHROMATIC";
             case CLOCK -> "CLOCK";
             case CLOCK_VIBRANT -> "CLOCK_VIBRANT";
+            case FIDELITY -> "FIDELITY";
             default -> throw new IllegalArgumentException("Invalid style value: " + style);
         };
     }
@@ -151,6 +157,7 @@ public final class ThemeStyle {
             case "MONOCHROMATIC" -> MONOCHROMATIC;
             case "CLOCK" -> CLOCK;
             case "CLOCK_VIBRANT" -> CLOCK_VIBRANT;
+            case "FIDELITY" -> FIDELITY;
             default -> throw new IllegalArgumentException("Invalid style name: " + styleName);
         };
     }
@@ -183,7 +190,8 @@ public final class ThemeStyle {
                 CONTENT,
                 MONOCHROMATIC,
                 CLOCK,
-                CLOCK_VIBRANT
+                CLOCK_VIBRANT,
+                FIDELITY
         };
     }
 }

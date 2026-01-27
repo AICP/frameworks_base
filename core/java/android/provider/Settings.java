@@ -13458,6 +13458,8 @@ public final class Settings {
          *   subtle color experience for users.</li>
          *   <li> {@code FRUIT_SALAD} experiments with the concept of "two tone colors" to give
          *   users more expression.</li>
+         *   <li> {@code FIDELITY} is a style that maintains high color fidelity to the source
+         *   material.</li>
          * </ul>
          *
          * Example of valid fabricated theme specification:

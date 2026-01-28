@@ -34,6 +34,7 @@ import android.os.Handler;
 import android.os.Parcelable;
 import android.os.SystemClock;
 import android.os.UserHandle;
+import android.provider.Settings;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
@@ -68,6 +69,7 @@ import lineageos.providers.LineageSettings;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
@@ -87,6 +89,15 @@ public class Clock extends TextView implements
     private static final String VISIBLE_BY_USER = "visible_by_user";
     private static final String SHOW_SECONDS = "show_seconds";
     private static final String VISIBILITY = "visibility";
+
+    public static final String STATUS_BAR_CLOCK_DATE_DISPLAY =
+            "system:" + Settings.System.STATUS_BAR_CLOCK_DATE_DISPLAY;
+    public static final String STATUS_BAR_CLOCK_DATE_STYLE =
+            "system:" + Settings.System.STATUS_BAR_CLOCK_DATE_STYLE;
+    public static final String STATUS_BAR_CLOCK_DATE_POSITION =
+            "system:" + Settings.System.STATUS_BAR_CLOCK_DATE_POSITION;
+    public static final String STATUS_BAR_CLOCK_DATE_FORMAT =
+            "system:" + Settings.System.STATUS_BAR_CLOCK_DATE_FORMAT;
 
     private final UserTracker mUserTracker;
     private final CommandQueue mCommandQueue;
@@ -109,10 +120,27 @@ public class Clock extends TextView implements
     private static final int AM_PM_STYLE_SMALL   = 1;
     private static final int AM_PM_STYLE_GONE    = 2;
 
+    private static final int CLOCK_DATE_DISPLAY_GONE = 0;
+    private static final int CLOCK_DATE_DISPLAY_SMALL = 1;
+    private static final int CLOCK_DATE_DISPLAY_NORMAL = 2;
+
+    private static final int CLOCK_DATE_STYLE_REGULAR = 0;
+    private static final int CLOCK_DATE_STYLE_LOWERCASE = 1;
+    private static final int CLOCK_DATE_STYLE_UPPERCASE = 2;
+
+    private static final int STYLE_DATE_LEFT = 0;
+    private static final int STYLE_DATE_RIGHT = 1;
+
     private int mAmPmStyle = AM_PM_STYLE_GONE;
     private boolean mShowSeconds;
     private ContentObserver mContentObserver;
     private Handler mSecondsHandler;
+    private int mClockDateDisplay = CLOCK_DATE_DISPLAY_GONE;
+    private int mClockDateStyle = CLOCK_DATE_STYLE_REGULAR;
+    private int mClockDatePosition;
+    private String mClockDateFormat = null;
+
+    private boolean mIsStatusBar;
 
     // Tracks config changes that will make the clock change dimensions
     private final InterestingConfigChanges mInterestingConfigChanges;
@@ -157,6 +185,7 @@ public class Clock extends TextView implements
                     });
                 }
             };
+            mIsStatusBar = a.getBoolean(R.styleable.Clock_isStatusBar, mIsStatusBar);
             mNonAdaptedColor = getCurrentTextColor();
         } finally {
             a.recycle();
@@ -228,7 +257,11 @@ public class Clock extends TextView implements
             mBroadcastDispatcher.registerReceiverWithHandler(mIntentReceiver, filter,
                     Dependency.get(Dependency.TIME_TICK_HANDLER), UserHandle.ALL);
             Dependency.get(TunerService.class).addTunable(this, CLOCK_SECONDS,
-                    StatusBarIconController.ICON_HIDE_LIST);
+                    StatusBarIconController.ICON_HIDE_LIST,
+                    STATUS_BAR_CLOCK_DATE_DISPLAY,
+                    STATUS_BAR_CLOCK_DATE_STYLE,
+                    STATUS_BAR_CLOCK_DATE_POSITION,
+                    STATUS_BAR_CLOCK_DATE_FORMAT);
             mContext.getContentResolver().registerContentObserver(
                     LineageSettings.System.getUriFor(LineageSettings.System.STATUS_BAR_AM_PM),
                     false, mContentObserver);
@@ -375,6 +408,17 @@ public class Clock extends TextView implements
         if (CLOCK_SECONDS.equals(key)) {
             mShowSeconds = TunerService.parseIntegerSwitch(newValue, false);
             updateShowSeconds();
+        } else if (STATUS_BAR_CLOCK_DATE_DISPLAY.equals(key)) {
+            mClockDateDisplay =
+                    TunerService.parseInteger(newValue, CLOCK_DATE_DISPLAY_GONE);
+        } else if (STATUS_BAR_CLOCK_DATE_STYLE.equals(key)) {
+            mClockDateStyle =
+                    TunerService.parseInteger(newValue, CLOCK_DATE_STYLE_REGULAR);
+        } else if (STATUS_BAR_CLOCK_DATE_POSITION.equals(key)) {
+            mClockDatePosition =
+                    TunerService.parseInteger(newValue, STYLE_DATE_LEFT);
+        } else if (STATUS_BAR_CLOCK_DATE_FORMAT.equals(key)) {
+            mClockDateFormat = newValue;
         } else if (!StatusBarRootModernization.isEnabled()) {
             if (StatusBarIconController.ICON_HIDE_LIST.equals(key)) {
                 setClockVisibleByUser(
@@ -384,6 +428,10 @@ public class Clock extends TextView implements
                 updateClockVisibility();
             }
         }
+        // Force refresh of dependent variables.
+        mContentDescriptionFormatString = "";
+        mDateTimePatternGenerator = null;
+        updateClock(true);
     }
 
     @Override
@@ -533,13 +581,61 @@ public class Clock extends TextView implements
             }
             mClockFormat = new SimpleDateFormat(format);
         }
-        String result = mClockFormat.format(mCalendar.getTime());
+
+        CharSequence dateString = null;
+
+        String result = "";
+        String timeResult = mClockFormat.format(mCalendar.getTime());
+        String dateResult = "";
+
+        if (mIsStatusBar && mClockDateDisplay != CLOCK_DATE_DISPLAY_GONE) {
+            Date now = new Date();
+
+            if (mClockDateFormat == null || mClockDateFormat.isEmpty()) {
+                // Set dateString to short uppercase Weekday if empty
+                dateString = DateFormat.format("EEE", now);
+            } else {
+                dateString = DateFormat.format(mClockDateFormat, now);
+            }
+            if (mClockDateStyle == CLOCK_DATE_STYLE_LOWERCASE) {
+                // When Date style is small, convert date to uppercase
+                dateResult = dateString.toString().toLowerCase();
+            } else if (mClockDateStyle == CLOCK_DATE_STYLE_UPPERCASE) {
+                dateResult = dateString.toString().toUpperCase();
+            } else {
+                dateResult = dateString.toString();
+            }
+            result = (mClockDatePosition == STYLE_DATE_LEFT) ? dateResult + " " + timeResult
+                    : timeResult + " " + dateResult;
+        } else {
+            // No date, just show time
+            result = timeResult;
+        }
+
+        SpannableStringBuilder formatted = new SpannableStringBuilder(result);
+
+        if (mClockDateDisplay != CLOCK_DATE_DISPLAY_NORMAL) {
+            if (dateString != null) {
+                int dateStringLen = dateString.length();
+                int timeStringOffset = (mClockDatePosition == STYLE_DATE_RIGHT)
+                        ? timeResult.length() + 1 : 0;
+                if (mClockDateDisplay == CLOCK_DATE_DISPLAY_GONE) {
+                   formatted.delete(0, dateStringLen);
+                } else {
+                    if (mClockDateDisplay == CLOCK_DATE_DISPLAY_SMALL) {
+                        CharacterStyle style = new RelativeSizeSpan(0.7f);
+                        formatted.setSpan(style, timeStringOffset,
+                                timeStringOffset + dateStringLen,
+                                Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+                    }
+                }
+            }
+        }
 
         if (mAmPmStyle != AM_PM_STYLE_NORMAL) {
             int magic1 = result.indexOf(MAGIC1);
             int magic2 = result.indexOf(MAGIC2);
             if (magic1 >= 0 && magic2 > magic1) {
-                SpannableStringBuilder formatted = new SpannableStringBuilder(result);
                 if (mAmPmStyle == AM_PM_STYLE_GONE) {
                     formatted.delete(magic1, magic2 + 1);
                 } else {
@@ -551,12 +647,10 @@ public class Clock extends TextView implements
                     formatted.delete(magic2, magic2 + 1);
                     formatted.delete(magic1, magic1 + 1);
                 }
-                return formatted;
             }
         }
 
-        return result;
-
+        return formatted;
     }
 
     private boolean mDemoMode;

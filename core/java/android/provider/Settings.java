@@ -7197,6 +7197,38 @@ public final class Settings {
         public static final String LS_MEDIA_ART_BLUR_LEVEL = "ls_media_art_blur_level";
 
         /**
+         * Shows custom date before clock time
+         * 0 - No Date
+         * 1 - Small Date
+         * 2 - Normal Date
+         * @hide
+         */
+        public static final String STATUS_BAR_CLOCK_DATE_DISPLAY = "status_bar_clock_date_display";
+
+        /**
+         * Sets the date string style
+         * 0 - Regular style
+         * 1 - Lowercase
+         * 2 - Uppercase
+         * @hide
+         */
+        public static final String STATUS_BAR_CLOCK_DATE_STYLE = "status_bar_clock_date_style";
+
+        /**
+         * Position of date
+         * 0 - Left of clock
+         * 1 - Right of clock
+         * @hide
+         */
+        public static final String STATUS_BAR_CLOCK_DATE_POSITION = "status_bar_clock_date_position";
+
+        /**
+         * Stores the java DateFormat string for the date
+         * @hide
+         */
+        public static final String STATUS_BAR_CLOCK_DATE_FORMAT = "status_bar_clock_date_format";
+
+        /**
          * GameSpace: List of added games by user
          * @hide
          */

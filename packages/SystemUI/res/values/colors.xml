@@ -288,4 +288,9 @@
     <color name="pin_bouncer_action_button_bg">@androidprv:color/surface_effect_0</color>
     <!-- Bouncer background when blur is not enabled.   -->
     <color name="bouncer_fallback_bg">@android:color/system_accent2_200</color>
+
+    <!-- Statusbar clock chip colors -->
+    <color name="rippleDark">#1F000000</color>
+    <color name="neumorph_outline_start">#FFFFFFFF</color>
+    <color name="neumorph_outline_end">#00FFFFFF</color>
 </resources>

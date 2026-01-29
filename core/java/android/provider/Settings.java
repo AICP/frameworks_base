@@ -6569,6 +6569,14 @@ public final class Settings {
                 "mouse_pointer_acceleration_enabled";
 
         /**
+         * Whether to enable smart 5G mode.
+         * When enabled, 5G is disabled when battery saver is on, mobile data is inactive
+         * (e.g. on WiFi), or the subscription is not the default data SIM.
+         * @hide
+         */
+        public static final String SMART_5G = "smart_5g";
+
+        /**
          * Mouse scrolling speed setting.
          *
          * This is an integer value in a range between -7 and +7, so there are 15 possible values.

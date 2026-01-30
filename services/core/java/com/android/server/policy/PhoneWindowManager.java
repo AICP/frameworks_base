@@ -1082,7 +1082,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     LineageSettings.System.KEY_EDGE_LONG_SWIPE_ACTION), false, this,
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(LineageSettings.System.getUriFor(
-                    LineageSettings.System.KEY_THREE_FINGERS_SWIPE_ACTION), false, this,
+                    Settings.System.KEY_THREE_FINGERS_SWIPE_ACTION), false, this,
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(LineageSettings.System.getUriFor(
                     LineageSettings.System.CAMERA_WAKE_SCREEN), false, this,
@@ -3327,7 +3327,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 mEdgeLongSwipeAction);
 
         Action threeFingersSwipeAction = Action.fromSettings(resolver,
-                LineageSettings.System.KEY_THREE_FINGERS_SWIPE_ACTION,
+                Settings.System.KEY_THREE_FINGERS_SWIPE_ACTION,
                 Action.NOTHING);
 
         if (mThreeFingersSwipe != null && mThreeFingersSwipeAction != threeFingersSwipeAction) {

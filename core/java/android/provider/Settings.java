@@ -7192,6 +7192,14 @@ public final class Settings {
         public static final String GAMESPACE_SUPPRESS_FULLSCREEN_INTENT = "gamespace_suppress_fullscreen_intent";
 
         /**
+         * Action to perform when three fingers swipe action is detected. (Default is 0)
+         * @hide
+         * (See KEY_HOME_LONG_PRESS_ACTION for valid values)
+         */
+        @Readable
+        public static final String KEY_THREE_FINGERS_SWIPE_ACTION = "key_three_fingers_swipe_action";
+
+        /**
          * Current status of whether gestures are locked
          * @hide
          */

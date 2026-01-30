@@ -161,6 +161,7 @@ public class SystemSettings {
                 Settings.System.STATUS_BAR_LOGO_STYLE,
                 Settings.System.STATUS_BAR_LOGO_COLOR_ACCENT,
                 Settings.System.SENSOR_BLOCK,
+                Settings.System.KEY_THREE_FINGERS_SWIPE_ACTION,
                 // SLIM RECENTS START
                 Settings.System.USE_SLIM_RECENTS,
                 Settings.System.RECENTS_MAX_APPS,

@@ -888,6 +888,10 @@ public class GlobalActionsDialogLite implements DialogInterface.OnDismissListene
             Settings.System.POWERMENU_ONTHEGO, 0) == 1) {
             addIfShouldShowAction(tempActions, new getOnTheGoAction());
         }
+        if (Settings.System.getInt(mContext.getContentResolver(),
+            Settings.System.POWERMENU_RESTART_SYSTEMUI, 0) == 1) {
+            addIfShouldShowAction(tempActions, new RestartSystemUIAction());
+        }
 
         for (int i = 0; i < restartActions.length; i++) {
             String actionKey = restartActions[i];

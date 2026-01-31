@@ -6747,6 +6747,12 @@ public final class Settings {
          */
         public static final String POWERMENU_ONTHEGO = "powermenu_onthego";
 
+	/**
+         * Whether to display the restart systemui option in the power menu
+         * @hide
+         */
+        public static final String POWERMENU_RESTART_SYSTEMUI = "powermenu_restart_systemui";
+
         /**
          * If On-The-Go should be displayed at the power menu.
          * @hide

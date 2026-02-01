@@ -18,6 +18,7 @@ package com.android.keyguard;
 
 import static com.android.keyguard.logging.CarrierTextManagerLogger.REASON_ACTIVE_DATA_SUB_CHANGED;
 import static com.android.keyguard.logging.CarrierTextManagerLogger.REASON_CARRIER_ON_LOCKSCREEN_CHANGED;
+import static com.android.keyguard.logging.CarrierTextManagerLogger.REASON_CUSTOM_CARRIER_ON_LOCKSCREEN_CHANGED;
 import static com.android.keyguard.logging.CarrierTextManagerLogger.REASON_ON_TELEPHONY_CAPABLE;
 import static com.android.keyguard.logging.CarrierTextManagerLogger.REASON_REFRESH_CARRIER_INFO;
 import static com.android.keyguard.logging.CarrierTextManagerLogger.REASON_SATELLITE_CHANGED;
@@ -101,6 +102,8 @@ public class CarrierTextManager {
     @Nullable private String mSatelliteCarrierText;
 
     private boolean mShowCarrierText = true;
+    private String mShowCustomCarrierText = "";
+    private boolean mCustomCarrierText;
 
     private final Context mContext;
     private final TelephonyManager mTelephonyManager;
@@ -470,6 +473,9 @@ public class CarrierTextManager {
         // Hide the carrier text if the user requests
         if (!mShowCarrierText) {
             displayText = "";
+        // Show custom carrier text if the user requests
+        } else if (mCustomCarrierText) {
+            displayText = mShowCustomCarrierText;
         }
 
         final CarrierTextCallbackInfo info = new CarrierTextCallbackInfo(
@@ -695,18 +701,33 @@ public class CarrierTextManager {
             mContext.getContentResolver().registerContentObserver(Settings.System.getUriFor(
                     Settings.System.LOCKSCREEN_SHOW_CARRIER), false, this,
                     UserHandle.USER_ALL);
+            mContext.getContentResolver().registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.LOCKSCREEN_SHOW_CUSTOM_CARRIER_TEXT), false, this,
+                    UserHandle.USER_ALL);
             updateSettings();
         }
 
         void updateSettings() {
             mShowCarrierText = Settings.System.getIntForUser(mContext.getContentResolver(),
                 Settings.System.LOCKSCREEN_SHOW_CARRIER, 1, UserHandle.USER_CURRENT) != 0;
+
+            mShowCustomCarrierText = Settings.System.getStringForUser(
+                mContext.getContentResolver(),
+                Settings.System.LOCKSCREEN_SHOW_CUSTOM_CARRIER_TEXT,
+                UserHandle.USER_CURRENT
+           );
+           mCustomCarrierText = !TextUtils.isEmpty(mShowCustomCarrierText);
         }
 
         @Override
         public void onChange(boolean selfChange, Uri uri) {
             if (Settings.System.getUriFor(Settings.System.LOCKSCREEN_SHOW_CARRIER).equals(uri)) {
                 mLogger.logUpdateCarrierTextForReason(REASON_CARRIER_ON_LOCKSCREEN_CHANGED);
+                updateSettings();
+                updateCarrierText();
+            }
+            if (Settings.System.getUriFor(Settings.System.LOCKSCREEN_SHOW_CUSTOM_CARRIER_TEXT).equals(uri)) {
+                mLogger.logUpdateCarrierTextForReason(REASON_CUSTOM_CARRIER_ON_LOCKSCREEN_CHANGED);
                 updateSettings();
                 updateCarrierText();
             }

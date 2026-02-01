@@ -7218,6 +7218,12 @@ public final class Settings {
         public static final String LOCKSCREEN_SHOW_CARRIER = "lockscreen_show_carrier";
 
         /**
+         * Whether to show custom carrier text on the lockscreen
+	 * @hide
+         */
+        public static final String LOCKSCREEN_SHOW_CUSTOM_CARRIER_TEXT = "lockscreen_show_custom_carrier_text";
+
+        /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.
          *
@@ -7424,6 +7430,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(QS_FOOTER_TEXT_STRING);
             PRIVATE_SETTINGS.add(QS_FOOTER_TEXT_FONT_WEIGHT);
             PRIVATE_SETTINGS.add(SCREEN_OFF_ANIMATION);
+            PRIVATE_SETTINGS.add(LOCKSCREEN_SHOW_CUSTOM_CARRIER_TEXT);
         }
 
         /**

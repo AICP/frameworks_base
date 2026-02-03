@@ -18,7 +18,6 @@
  */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="clock">Đồng hồ</string>
     <string name="global_action_restart_more">Khởi động lại\u2026</string>
     <string name="global_action_restart_system">Hệ thống</string>
     <string name="global_action_restart_recovery">Chế độ phục hồi</string>
@@ -32,8 +31,8 @@
     <string name="global_action_restart_fastboot_progress">Đang khởi động lại vào chế độ fastboot\u2026</string>
     <string name="global_action_current_user">Hiện tại</string>
     <string name="global_action_users">Người dùng</string>
+    <string name="clock">Đồng hồ</string>
     <string name="status_bar_icons_title">Biểu tượng thanh trạng thái</string>
-    <string name="drag_or_tap_to_add_tiles">Giữ &amp;  kéo hoặc nhấn để thêm ô</string>
     <string name="quick_settings_ambient_display_label">Hiển thị môi trường xung quanh</string>
     <string name="accessibility_quick_settings_ambient_display_off">Tắt hiển thị môi trường xung quanh.</string>
     <string name="accessibility_quick_settings_ambient_display_on">Hiển thị môi trường xung quanh bật.</string>
@@ -65,7 +64,11 @@
     <string name="vpn_credentials_username">Tên người dùng</string>
     <string name="vpn_credentials_password">Mật khẩu</string>
     <string name="vpn_credentials_dialog_connect">Kết nối</string>
+    <string name="accessibility_adaptive_brightness">Tự động điều chỉnh độ sáng</string>
     <string name="status_bar_firewall">Tường lửa</string>
+    <string name="battery_notification_channel_tv">Cảnh báo pin</string>
+    <string name="screenshot_delete_label">Xóa</string>
+    <string name="screenshot_delete_description">Xóa ảnh chụp màn hình</string>
     <string name="screenrecord_lowquality_label">Chất lượng thấp hơn</string>
     <string name="screenrecord_lowquality_summary">Để có kích thước tệp nhỏ hơn</string>
     <string name="screenrecord_longer_timeout_switch_label">Giới hạn kích thước tệp lớn hơn</string>
@@ -74,9 +77,4 @@
     <string name="screenrecord_skip_time_summary">Loại bỏ 3 giây đếm ngược</string>
     <string name="screenrecord_hevc_switch_label">Mã hóa HEVC</string>
     <string name="screenrecord_hevc_switch_summary">Sử dụng bộ mã hóa HEVC hiệu quả hơn</string>
-    <string name="battery_notification_channel_tv">Cảnh báo pin</string>
-    <string name="screenshot_delete_label">Xóa</string>
-    <string name="screenshot_delete_description">Xóa ảnh chụp màn hình</string>
-    <string name="screen_pinning_description_no_navbar">Thao tác này sẽ duy trì hiển thị màn hình cho đến khi bạn bỏ ghim. Chạm &amp; giữ Quay lại để bỏ ghim.</string>
-    <string name="screen_pinning_toast_no_navbar">Để bỏ ghim màn hình này, chạm &amp; giữ nút Quay lại</string>
 </resources>

@@ -18,7 +18,6 @@
  */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="clock">时钟</string>
     <string name="global_action_restart_more">重新启动\u2026</string>
     <string name="global_action_restart_system">系统</string>
     <string name="global_action_restart_recovery">恢复模式</string>
@@ -32,8 +31,8 @@
     <string name="global_action_restart_fastboot_progress">正在重启到 fastbootd 模式\u2026</string>
     <string name="global_action_current_user">当前</string>
     <string name="global_action_users">用户</string>
+    <string name="clock">时钟</string>
     <string name="status_bar_icons_title">状态栏图标</string>
-    <string name="drag_or_tap_to_add_tiles">按住并拖动或点击添加图块</string>
     <string name="quick_settings_ambient_display_label">息屏显示</string>
     <string name="accessibility_quick_settings_ambient_display_off">关闭主动显示。</string>
     <string name="accessibility_quick_settings_ambient_display_on">开启主动显示。</string>
@@ -65,7 +64,11 @@
     <string name="vpn_credentials_username">用户名</string>
     <string name="vpn_credentials_password">密码</string>
     <string name="vpn_credentials_dialog_connect">连接</string>
+    <string name="accessibility_adaptive_brightness">自适应亮度</string>
     <string name="status_bar_firewall">防火墙</string>
+    <string name="battery_notification_channel_tv">电量警告</string>
+    <string name="screenshot_delete_label">删除</string>
+    <string name="screenshot_delete_description">删除屏幕截图</string>
     <string name="screenrecord_lowquality_label">低画质</string>
     <string name="screenrecord_lowquality_summary">以压缩文件体积</string>
     <string name="screenrecord_longer_timeout_switch_label">更大的文件体积限制</string>
@@ -74,9 +77,4 @@
     <string name="screenrecord_skip_time_summary">关闭3秒倒计时</string>
     <string name="screenrecord_hevc_switch_label">HEVC编码</string>
     <string name="screenrecord_hevc_switch_summary">使用效率更高的HEVC编码器</string>
-    <string name="battery_notification_channel_tv">电量警告</string>
-    <string name="screenshot_delete_label">删除</string>
-    <string name="screenshot_delete_description">删除屏幕截图</string>
-    <string name="screen_pinning_description_no_navbar">这会将其固定在此屏幕上，直至您取消固定为止。点击&amp;即可取消固定。</string>
-    <string name="screen_pinning_toast_no_navbar">要取消固定此屏幕，请点击&amp;按钮</string>
 </resources>

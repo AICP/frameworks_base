@@ -18,7 +18,6 @@
  */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="clock">Годинник</string>
     <string name="global_action_restart_more">Перезапуск\u2026</string>
     <string name="global_action_restart_system">Система</string>
     <string name="global_action_restart_recovery">Відновлення</string>
@@ -32,6 +31,7 @@
     <string name="global_action_restart_fastboot_progress">Перезапуск у режим fastbootd\u2026</string>
     <string name="global_action_current_user">Поточний</string>
     <string name="global_action_users">Користувачі</string>
+    <string name="clock">Годинник</string>
     <string name="quick_settings_ambient_display_label">Ambient дисплей</string>
     <string name="accessibility_quick_settings_ambient_display_off">Ambient дисплей вимкнено.</string>
     <string name="accessibility_quick_settings_ambient_display_on">Ambient дисплей увімкнено.</string>

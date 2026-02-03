@@ -18,7 +18,6 @@
  */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="clock">שעון</string>
     <string name="global_action_restart_more">אתחול\u2026</string>
     <string name="global_action_restart_system">מערכת</string>
     <string name="global_action_restart_recovery">Recovery</string>
@@ -32,8 +31,8 @@
     <string name="global_action_restart_fastboot_progress">מפעיל מחדש למצב fastboot\u2026</string>
     <string name="global_action_current_user">נוכחי</string>
     <string name="global_action_users">משתמשים</string>
+    <string name="clock">שעון</string>
     <string name="status_bar_icons_title">סמלי שורת המצב</string>
-    <string name="drag_or_tap_to_add_tiles">החזקה וגרירה, או הקשה להוספת אריחים</string>
     <string name="quick_settings_ambient_display_label">תצוגת התראות עמומה</string>
     <string name="accessibility_quick_settings_ambient_display_off">תצוגת התראות עמומה כבויה.</string>
     <string name="accessibility_quick_settings_ambient_display_on">תצוגת התראות עמומה פעילה.</string>
@@ -66,6 +65,9 @@
     <string name="vpn_credentials_password">סיסמה</string>
     <string name="vpn_credentials_dialog_connect">התחברות</string>
     <string name="status_bar_firewall">חומת אש</string>
+    <string name="battery_notification_channel_tv">התראת סוללה</string>
+    <string name="screenshot_delete_label">מחיקה</string>
+    <string name="screenshot_delete_description">מחיקת צילום מסך</string>
     <string name="screenrecord_lowquality_label">איכות פחותה</string>
     <string name="screenrecord_lowquality_summary">לגודל קובץ קטן יותר</string>
     <string name="screenrecord_longer_timeout_switch_label">מגבלת גודל לקובץ גדול יותר</string>
@@ -74,9 +76,4 @@
     <string name="screenrecord_skip_time_summary">הסרת המתנת 3 השניות</string>
     <string name="screenrecord_hevc_switch_label">קידוד HEVC </string>
     <string name="screenrecord_hevc_switch_summary">שימוש במקודד HEVC  יעיל יותר</string>
-    <string name="battery_notification_channel_tv">התראת סוללה</string>
-    <string name="screenshot_delete_label">מחיקה</string>
-    <string name="screenshot_delete_description">מחיקת צילום מסך</string>
-    <string name="screen_pinning_description_no_navbar">זה שומר את המסך בתצוגה עד להסרת הנעיצה. יש לגעת ולהחזיק את לחצן החזרה כדי לבטל את הנעיצה.</string>
-    <string name="screen_pinning_toast_no_navbar">כדי לבטל נעיצת מסך זה, יש לגעת ולהחזיק את לחצן החזרה</string>
 </resources>

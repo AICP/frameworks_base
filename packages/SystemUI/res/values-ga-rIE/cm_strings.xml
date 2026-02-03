@@ -18,7 +18,6 @@
  */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="clock">Clog</string>
     <string name="global_action_restart_more">Atosaigh\u2026</string>
     <string name="global_action_restart_system">Córas</string>
     <string name="global_action_restart_recovery">Aisghabháil</string>
@@ -32,8 +31,8 @@
     <string name="global_action_restart_fastboot_progress">Ag atosú go mód fastbootd\u2026</string>
     <string name="global_action_current_user">Reatha</string>
     <string name="global_action_users">Úsáideoirí</string>
+    <string name="clock">Clog</string>
     <string name="status_bar_icons_title">Deilbhíní barra stádais</string>
-    <string name="drag_or_tap_to_add_tiles">Coinnigh &amp; tarraing nó tapáil chun tíleanna a chur leis</string>
     <string name="quick_settings_ambient_display_label">Taispeántas comhthimpeallach</string>
     <string name="accessibility_quick_settings_ambient_display_off">Taispeántas comhthimpeallach múchta.</string>
     <string name="accessibility_quick_settings_ambient_display_on">Taispeántas comhthimpeallach ar.</string>
@@ -65,7 +64,11 @@
     <string name="vpn_credentials_username">Ainm úsáideora</string>
     <string name="vpn_credentials_password">Pasfhocal</string>
     <string name="vpn_credentials_dialog_connect">Ceangal</string>
+    <string name="accessibility_adaptive_brightness">Gile oiriúnaitheach</string>
     <string name="status_bar_firewall">Balla dóiteáin</string>
+    <string name="battery_notification_channel_tv">Rabhadh ceallraí</string>
+    <string name="screenshot_delete_label">Scrios</string>
+    <string name="screenshot_delete_description">Scrios seat scáileáin</string>
     <string name="screenrecord_lowquality_label">Caighdeán níos ísle</string>
     <string name="screenrecord_lowquality_summary">Le haghaidh méid comhaid níos lú</string>
     <string name="screenrecord_longer_timeout_switch_label">Teorainn méid comhaid níos mó</string>
@@ -74,9 +77,4 @@
     <string name="screenrecord_skip_time_summary">Bain an 3 soicind fanacht</string>
     <string name="screenrecord_hevc_switch_label">Ionchódú HEVC</string>
     <string name="screenrecord_hevc_switch_summary">Bain úsáid as an ionchódóir HEVC níos éifeachtaí</string>
-    <string name="battery_notification_channel_tv">Rabhadh ceallraí</string>
-    <string name="screenshot_delete_label">Scrios</string>
-    <string name="screenshot_delete_description">Scrios seat scáileáin</string>
-    <string name="screen_pinning_description_no_navbar">Coinníonn sé seo san amharc é go dtí go ndíphionn tú. Dteagmháil &amp; coinnigh siar go dtí unpin.</string>
-    <string name="screen_pinning_toast_no_navbar">Chun an scáileán seo a dhíphionnáil, déan teagmháil le &amp; coinnigh an cnaipe Ar Ais</string>
 </resources>

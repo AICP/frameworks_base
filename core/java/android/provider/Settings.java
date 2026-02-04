@@ -19853,6 +19853,8 @@ public final class Settings {
          * AICP Global Settings start
          *****************************/
 
+       public static final String DESKTOP_MODE_INTERNAL_DISPLAY = "desktop_mode_internal_display";
+
         /**
          * This preference enables showing the power menu on LockScreen.
          * @hide

@@ -73,8 +73,12 @@ public final class DesktopModeHelper {
     /**
      * Return {@code true} if the current device can hosts desktop sessions on its internal display.
      */
-    private static boolean canInternalDisplayHostDesktops(@NonNull Context context) {
-        return context.getResources().getBoolean(R.bool.config_canInternalDisplayHostDesktops);
+    public static boolean canInternalDisplayHostDesktops(@NonNull Context context) {
+        boolean isEnabledInSettings = Settings.System.getInt(mContext.getContentResolver(),
+            Settings.System.DESKTOP_MODE_INTERNAL_DISPLAY, 0) == 1;
+        return mContext.getResources().getBoolean(com.android.internal.R.bool.config_canInternalDisplayHostDesktops)
+           || isEnabledInSettings;
+}
     }
 
     /**

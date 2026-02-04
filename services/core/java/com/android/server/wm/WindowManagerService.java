@@ -735,6 +735,7 @@ public class WindowManagerService extends IWindowManager.Stub
      * - TODO: Show mouse pointer on external screen.
      */
     boolean mForceDesktopModeOnExternalDisplays;
+    boolean mForceDesktopModeOnInternalDisplays;
 
     public boolean mAlwaysSeqId;
 
@@ -841,6 +842,8 @@ public class WindowManagerService extends IWindowManager.Stub
                 Settings.Global.getUriFor(Settings.Global.POLICY_CONTROL);
         private final Uri mForceDesktopModeOnExternalDisplaysUri = Settings.Global.getUriFor(
                         Settings.Global.DEVELOPMENT_FORCE_DESKTOP_MODE_ON_EXTERNAL_DISPLAYS);
+        private final Uri mForceDesktopModeOnInternalDisplaysUri = Settings.Global.getUriFor(
+                        Settings.Global.DEVELOPMENT_FORCE_DESKTOP_MODE_ON_INTERNAL_DISPLAYS);
         private final Uri mFreeformWindowUri = Settings.Global.getUriFor(
                 Settings.Global.DEVELOPMENT_ENABLE_FREEFORM_WINDOWS_SUPPORT);
         private final Uri mForceResizableUri = Settings.Global.getUriFor(
@@ -881,6 +884,13 @@ public class WindowManagerService extends IWindowManager.Stub
                         this,
                         UserHandle.USER_ALL);
             }
+            if (DesktopModeHelper.isDesktopExperienceDevOptionSupported(mContext)) {
+                disableForceDesktopModeOnInternalDisplays();
+            } else {
+                resolver.registerContentObserver(mForceDesktopModeOnInternalDisplaysUri, false,
+                        this,
+                        UserHandle.USER_ALL);
+            }
             resolver.registerContentObserver(mFreeformWindowUri, false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(mForceResizableUri, false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(mDevEnableNonResizableMultiWindowUri, false, this,
@@ -901,6 +911,11 @@ public class WindowManagerService extends IWindowManager.Stub
 
             if (mForceDesktopModeOnExternalDisplaysUri.equals(uri)) {
                 updateForceDesktopModeOnExternalDisplays();
+                return;
+            }
+
+            if (mForceDesktopModeOnInternalDisplaysUri.equals(uri)) {
+                updateForceDesktopModeOnInternalDisplays();
                 return;
             }
 
@@ -994,6 +1009,25 @@ public class WindowManagerService extends IWindowManager.Stub
                 return;
             }
             setForceDesktopModeOnExternalDisplays(enableForceDesktopMode);
+        }
+
+        void disableForceDesktopModeOnInternalDisplays() {
+            ContentResolver resolver = mContext.getContentResolver();
+            Settings.Global.putInt(resolver,
+                    DEVELOPMENT_FORCE_DESKTOP_MODE_ON_INTERNAL_DISPLAYS, 0);
+            if (mForceDesktopModeOnInternalDisplays) {
+                setForceDesktopModeOnInternalDisplays(false);
+            }
+        }
+
+        void updateForceDesktopModeOnInternalDisplays() {
+            ContentResolver resolver = mContext.getContentResolver();
+            final boolean enableForceDesktopMode = Settings.Global.getInt(resolver,
+                    DEVELOPMENT_FORCE_DESKTOP_MODE_ON_INTERNAL_DISPLAYS, 0) != 0;
+            if (mForceDesktopModeOnInternalDisplays == enableForceDesktopMode) {
+                return;
+            }
+            setForceDesktopModeOnInternalDisplays(enableForceDesktopMode);
         }
 
         void updateFreeformWindowManagement() {
@@ -1468,6 +1502,9 @@ public class WindowManagerService extends IWindowManager.Stub
 
         mForceDesktopModeOnExternalDisplays = Settings.Global.getInt(resolver,
                 DEVELOPMENT_FORCE_DESKTOP_MODE_ON_EXTERNAL_DISPLAYS, 0) != 0;
+
+        mForceDesktopModeOnInternalDisplays = Settings.Global.getInt(resolver,
+                DEVELOPMENT_FORCE_DESKTOP_MODE_ON_INTERNAL_DISPLAYS, 0) != 0;
 
         final String displaySettingsPath = Settings.Global.getString(resolver,
                 DEVELOPMENT_WM_DISPLAY_SETTINGS_PATH);
@@ -7690,6 +7727,13 @@ public class WindowManagerService extends IWindowManager.Stub
     void setForceDesktopModeOnExternalDisplays(boolean forceDesktopModeOnExternalDisplays) {
         synchronized (mGlobalLock) {
             mForceDesktopModeOnExternalDisplays = forceDesktopModeOnExternalDisplays;
+            mRoot.updateDisplayImePolicyCache();
+        }
+    }
+
+    void setForceDesktopModeOnInternalDisplays(boolean forceDesktopModeOnInternalDisplays) {
+        synchronized (mGlobalLock) {
+            mForceDesktopModeOnInternalDisplays = forceDesktopModeOnInternalDisplays;
             mRoot.updateDisplayImePolicyCache();
         }
     }

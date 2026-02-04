@@ -15274,6 +15274,16 @@ public final class Settings {
                 "force_desktop_mode_on_external_displays";
 
         /**
+         * Whether to enable the legacy freeform support on internal displays. If enabled, the
+         * SECONDARY_HOME of the launcher is started on any internal display, allowing for a
+         * desktop experience.
+         * @hide
+         */
+        @Readable
+        public static final String DEVELOPMENT_FORCE_DESKTOP_MODE_ON_INTERNAL_DISPLAYS =
+                "force_desktop_mode_on_internal_displays";
+
+        /**
          * Whether to allow non-resizable apps to be shown in multi-window. The app will be
          * letterboxed if the request orientation is not met, and will be shown in size-compat
          * mode if the container size has changed.

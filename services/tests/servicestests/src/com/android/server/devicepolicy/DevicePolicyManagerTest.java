@@ -1,4 +1,4 @@
-/*
+ /*
  * Copyright (C) 2015 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -7725,6 +7725,25 @@ public class DevicePolicyManagerTest extends DpmTestBase {
         setAsProfileOwner(admin2);
 
         assertThrows(SecurityException.class, () -> dpm.setRecommendedGlobalProxy(admin1, null));
+    }
+
+    @Test
+    public void testSetGlobalProxy_tooLongStrings() throws Exception {
+        setDeviceOwner();
+        // PolicySizeVerifier uses ModifiedUtf8.countBytes() to check the length of strings
+        // which is max 65535 UTF bytes.
+        final String tooLong = new String(new char[65536]).replace('\0', 'A');
+
+        // Test long proxy spec
+        Proxy proxy = new Proxy(Proxy.Type.HTTP, InetSocketAddress.createUnresolved(tooLong, 8080));
+        assertThrows(IllegalArgumentException.class,
+                () -> dpm.setGlobalProxy(admin1, proxy, Collections.emptyList()));
+
+        // Test long exclusion list
+        Proxy validProxy = new Proxy(Proxy.Type.HTTP,
+                InetSocketAddress.createUnresolved("example.com", 8080));
+        assertThrows(IllegalArgumentException.class,
+                () -> dpm.setGlobalProxy(admin1, validProxy, Collections.singletonList(tooLong)));
     }
 
     @Test

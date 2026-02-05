@@ -73,8 +73,9 @@ public final class DesktopModeHelper {
     /**
      * Return {@code true} if the current device can hosts desktop sessions on its internal display.
      */
-    private static boolean canInternalDisplayHostDesktops(@NonNull Context context) {
-        return context.getResources().getBoolean(R.bool.config_canInternalDisplayHostDesktops);
+    public static boolean canInternalDisplayHostDesktops(@NonNull Context context) {
+        boolean propertyOverride = SystemProperties.getBoolean("persist.sys.desktop_mode", false);
+        return propertyOverride || context.getResources().getBoolean(com.android.internal.R.bool.config_canInternalDisplayHostDesktops);
     }
 
     /**

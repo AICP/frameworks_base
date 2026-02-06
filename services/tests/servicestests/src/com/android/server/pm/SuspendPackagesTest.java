@@ -32,6 +32,7 @@ import static org.junit.Assert.fail;
 import static org.junit.Assume.assumeTrue;
 
 import android.app.AppGlobals;
+import android.app.AppOpsManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -43,6 +44,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.SuspendDialogInfo;
 import android.content.res.Resources;
 import android.os.BaseBundle;
+import android.os.Binder;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -584,13 +586,27 @@ public class SuspendPackagesTest {
         iAppOps.startWatchingMode(code, TEST_APP_PACKAGE_NAME, watcher);
         final int testPackageUid = mPackageManager.getPackageUid(TEST_APP_PACKAGE_NAME, 0);
         int opMode = iAppOps.checkOperation(code, testPackageUid, TEST_APP_PACKAGE_NAME);
-        assertEquals("Op " + opToName(code) + " disallowed for unsuspended package", MODE_ALLOWED,
-                opMode);
+        assertEquals("checkOperation: Op " + opToName(code) + " disallowed for unsuspended package",
+                MODE_ALLOWED, opMode);
         suspendTestPackage(null, null, null);
         assertTrue("AppOpsWatcher did not callback", latch.await(5, TimeUnit.SECONDS));
+
         opMode = iAppOps.checkOperation(code, testPackageUid, TEST_APP_PACKAGE_NAME);
-        assertEquals("Op " + opToName(code) + " allowed for suspended package", MODE_IGNORED,
-                opMode);
+        assertEquals("checkOperation: Op " + opToName(code) + " allowed for suspended package",
+                MODE_IGNORED, opMode);
+
+        opMode = iAppOps.noteOperation(code, testPackageUid, TEST_APP_PACKAGE_NAME, null, false,
+                "test", false).getOpMode();
+        assertEquals("noteOperation: Op " + opToName(code) + " allowed for suspended package",
+                MODE_IGNORED, opMode);
+
+        opMode = iAppOps.startOperation(new Binder(), code, testPackageUid,
+                TEST_APP_PACKAGE_NAME, null, false, false, "test", false,
+                AppOpsManager.ATTRIBUTION_FLAGS_NONE, AppOpsManager.ATTRIBUTION_CHAIN_ID_NONE)
+                .getOpMode();
+        assertEquals("startOperation: Op " + opToName(code) + " allowed for suspended package",
+                MODE_IGNORED, opMode);
+
         iAppOps.stopWatchingMode(watcher);
     }
 

@@ -38,9 +38,11 @@ import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemClock;
 import android.os.SystemProperties;
+import android.os.UserHandle;
 import android.provider.Settings;
 import android.text.format.Time;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.InputDevice;
 import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
@@ -53,6 +55,8 @@ import java.util.List;
 import java.util.Locale;
 
 public class AicpUtils {
+   public static final String TAG = "AicpUtils";
+
     /**
      * @hide
      */
@@ -381,6 +385,23 @@ public class AicpUtils {
              return false;
          }
      }
+
+     public static int getBackgroundBlurRadius(Context context) {
+         int blurRadius;
+
+         try {
+              blurRadius = Settings.System.getIntForUser(
+              context.getContentResolver(),
+              Settings.System.BACKGROUND_BLUR_RADIUS,
+              UserHandle.USER_CURRENT
+             );
+             Log.d(TAG, "BACKGROUND_BLUR_RADIUS found: " + blurRadius);
+         } catch (Settings.SettingNotFoundException e) {
+             blurRadius = 0;
+             Log.w(TAG, "BACKGROUND_BLUR_RADIUS not defined, using: " + blurRadius);
+         }
+     return blurRadius;
+}
 
 /*
     public static void killForegroundApp() {

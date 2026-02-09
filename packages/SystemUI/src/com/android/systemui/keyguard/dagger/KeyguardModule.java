@@ -102,6 +102,8 @@ import dagger.Provides;
 import dagger.multibindings.ClassKey;
 import dagger.multibindings.IntoMap;
 
+import com.android.internal.util.aicp.AicpUtils;
+
 import kotlinx.coroutines.CoroutineScope;
 
 import java.util.concurrent.Executor;
@@ -253,13 +255,17 @@ public interface KeyguardModule {
     /** */
     @Provides
     @SysUISingleton
-    static BlurConfig provideBlurConfig(@Main Resources resources) {
-        int maxBlurRadius =
+    static BlurConfig provideBlurConfig(@Main Resources resources, Context context) {
+       int maxBlurRadius =
                 Flags.notificationShadeBlur() || Flags.bouncerUiRevamp()
                         || Flags.glanceableHubBlurredBackground()
                         ? resources.getDimensionPixelSize(R.dimen.max_shade_window_blur_radius)
                         : resources.getDimensionPixelSize(R.dimen.max_window_blur_radius);
 
+        int blurRadius = AicpUtils.getBackgroundBlurRadius(context);
+        if (blurRadius != 0){
+            maxBlurRadius = blurRadius;
+        }
         return new BlurConfig(0.0f, maxBlurRadius);
     }
 

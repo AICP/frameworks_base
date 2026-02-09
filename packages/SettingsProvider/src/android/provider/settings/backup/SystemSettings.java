@@ -191,7 +191,8 @@ public class SystemSettings {
                 Settings.System.QS_FOOTER_TEXT_STRING,
                 Settings.System.QS_FOOTER_TEXT_FONT_WEIGHT,
                 Settings.System.SCREEN_OFF_ANIMATION,
-                Settings.System.LOCKSCREEN_SHOW_CUSTOM_CARRIER_TEXT
+                Settings.System.LOCKSCREEN_SHOW_CUSTOM_CARRIER_TEXT,
+                Settings.System.BACKGROUND_BLUR_RADIUS
         ));
         if (Flags.backUpSmoothDisplayAndForcePeakRefreshRate()) {
             settings.add(Settings.System.PEAK_REFRESH_RATE);

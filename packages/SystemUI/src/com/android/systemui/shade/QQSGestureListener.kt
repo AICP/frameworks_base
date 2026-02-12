@@ -69,11 +69,15 @@ class QQSGestureListener @Inject constructor(
     }
 
     override fun onDoubleTapEvent(e: MotionEvent): Boolean {
-        // Go to sleep on double tap the QQS status bar
-        if (e.actionMasked == MotionEvent.ACTION_UP &&
+        // Go to sleep when double tapping the QQS status bar
+        // or lockscreen (keyguard showing, but not bouncer)
+        if (
+            e.actionMasked == MotionEvent.ACTION_UP &&
                 !statusBarStateController.isDozing &&
                 doubleTapToSleepEnabled &&
-                e.getY() < quickQsOffsetHeight &&
+                (e.getY() < quickQsOffsetHeight ||
+                    statusBarStateController.getState() == StatusBarState.KEYGUARD &&
+                        !centralSurfaces.isBouncerShowing()) &&
                 !falsingManager.isFalseDoubleTap
         ) {
             powerManager.goToSleep(e.getEventTime())

@@ -25,6 +25,8 @@ import android.view.View;
 import com.android.systemui.res.R;
 import com.android.systemui.shared.statusbar.phone.BarTransitions;
 
+import org.lineageos.internal.statusbar.NetworkTraffic;
+
 public final class PhoneStatusBarTransitions extends BarTransitions {
     private static final float ICON_ALPHA_WHEN_NOT_OPAQUE = 1;
     private static final float ICON_ALPHA_WHEN_LIGHTS_OUT_BATTERY_CLOCK = 0.5f;
@@ -37,6 +39,7 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
     private View mStartSide, mStatusIcons, mBattery, mStatusBarLogo, mStatusBarLogoRight;
     private View mBatteryBars[] = new View[2];
 
+    private NetworkTraffic mNetworkTrafficStart, mNetworkTrafficCenter, mNetworkTrafficEnd;
     private Animator mCurrentAnimation;
 
     /**
@@ -48,11 +51,17 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
         mIconAlphaWhenOpaque = res.getFraction(R.dimen.status_bar_icon_drawing_alpha, 1, 1);
         mStartSide = statusBarView.findViewById(R.id.status_bar_start_side_except_heads_up);
         mStatusIcons = statusBarView.findViewById(R.id.statusIcons);
+        mNetworkTrafficStart = statusBarView.findViewById(R.id.network_traffic_start);
+        mNetworkTrafficCenter = statusBarView.findViewById(R.id.network_traffic_center);
+        mNetworkTrafficEnd = statusBarView.findViewById(R.id.network_traffic_end);
         mBattery = statusBarView.findViewById(R.id.battery);
         mBatteryBars[0] = statusBarView.findViewById(R.id.battery_bar);
         mBatteryBars[1] = statusBarView.findViewById(R.id.battery_bar_1);
         mStatusBarLogo = statusBarView.findViewById(R.id.statusbar_logo);
         mStatusBarLogoRight = statusBarView.findViewById(R.id.statusbar_logo_right);
+        mNetworkTrafficStart.setViewPosition(0);        /* start side display */
+        mNetworkTrafficCenter.setViewPosition(1);       /* center display */
+        mNetworkTrafficEnd.setViewPosition(2);          /* end side display */
         applyModeBackground(-1, getMode(), false /*animate*/);
         applyMode(getMode(), false /*animate*/);
     }
@@ -126,7 +135,11 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
                     animateTransitionTo(mBatteryBars[0], newBatteryAlpha),
                     animateTransitionTo(mBatteryBars[1], newBatteryAlpha),
                     animateTransitionTo(mStatusBarLogo, newAlphaBC),
-                    animateTransitionTo(mStatusBarLogoRight, newAlphaBC)
+                    animateTransitionTo(mStatusBarLogoRight, newAlphaBC),
+                    animateTransitionTo(mNetworkTrafficStart, newStatusIconsAlpha),
+                    animateTransitionTo(mNetworkTrafficCenter, newStatusIconsAlpha),
+                    animateTransitionTo(mNetworkTrafficEnd, newStatusIconsAlpha),
+                    animateTransitionTo(mBattery, newBatteryAlpha)
                     );
             if (isLightsOut(mode)) {
                 anims.setDuration(LIGHTS_OUT_DURATION);
@@ -136,6 +149,9 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
         } else {
             mStartSide.setAlpha(newStartSideAlpha);
             mStatusIcons.setAlpha(newStatusIconsAlpha);
+            mNetworkTrafficStart.setAlpha(newStatusIconsAlpha);
+            mNetworkTrafficCenter.setAlpha(newStatusIconsAlpha);
+            mNetworkTrafficEnd.setAlpha(newStatusIconsAlpha);
             mBattery.setAlpha(newBatteryAlpha);
             mBatteryBars[0].setAlpha(newBatteryAlpha);
             mBatteryBars[1].setAlpha(newBatteryAlpha);

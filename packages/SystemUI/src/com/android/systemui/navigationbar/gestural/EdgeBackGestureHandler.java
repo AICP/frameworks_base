@@ -966,6 +966,7 @@ public class EdgeBackGestureHandler implements TunerService.Tunable {
 
     private void updateLongSwipeWidth() {
         if (!mIsEnabled) return;
+
         if (DesktopExperienceFlags.ENABLE_MULTIDISPLAY_TRACKPAD_BACK_GESTURE.isTrue()) {
             for (DisplayBackGestureHandler displayBackGestureHandler :
                     mDisplayBackGestureHandlers.values()) {

@@ -64,6 +64,7 @@
     <string name="vpn_credentials_username">பயனர்பெயர்</string>
     <string name="vpn_credentials_password">கடவுச்சொல்</string>
     <string name="vpn_credentials_dialog_connect">பிணைக்க</string>
+    <string name="accessibility_adaptive_brightness">சூழலுக்கேற்ற ஒளிச்செறிவு</string>
     <string name="status_bar_firewall">தீயரண்</string>
     <string name="battery_notification_channel_tv">மின்கல எச்சரிக்கை</string>
     <string name="screenshot_delete_label">நீக்குக</string>

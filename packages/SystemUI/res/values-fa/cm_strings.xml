@@ -64,6 +64,7 @@
     <string name="vpn_credentials_username">نام کاربری</string>
     <string name="vpn_credentials_password">گذرواژه</string>
     <string name="vpn_credentials_dialog_connect">اتصال</string>
+    <string name="accessibility_adaptive_brightness">روشنایی تطبیقی</string>
     <string name="status_bar_firewall">دیوار آتش</string>
     <string name="battery_notification_channel_tv">هشدار باتری</string>
     <string name="screenshot_delete_label">حذف</string>

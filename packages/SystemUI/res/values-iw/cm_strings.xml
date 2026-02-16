@@ -64,6 +64,7 @@
     <string name="vpn_credentials_username">שם משתמש</string>
     <string name="vpn_credentials_password">סיסמה</string>
     <string name="vpn_credentials_dialog_connect">התחברות</string>
+    <string name="accessibility_adaptive_brightness">בהירות מסתגלת</string>
     <string name="status_bar_firewall">חומת אש</string>
     <string name="battery_notification_channel_tv">התראת סוללה</string>
     <string name="screenshot_delete_label">מחיקה</string>

@@ -320,7 +320,7 @@ constructor(
                     0,
                     userTracker.userId,
                 ) == 1
-            return showCustomWeather && !isWeatherEnabled
+            return showCustomWeather
         }
 
     val isEnabled: Boolean

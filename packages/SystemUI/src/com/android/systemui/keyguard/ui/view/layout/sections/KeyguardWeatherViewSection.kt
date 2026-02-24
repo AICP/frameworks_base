@@ -42,7 +42,8 @@ constructor(
     private lateinit var weatherView: WeatherInfoView
 
     override fun addViews(constraintLayout: ConstraintLayout) {
-        if (!smartspaceController.isOmniWeatherEnabled || smartspaceController.isEnabled) return
+        if (!smartspaceController.isOmniWeatherEnabled) return
+
 
         weatherView =
             layoutInflater.inflate(R.layout.keyguard_weather_area, null, false) as WeatherInfoView
@@ -50,13 +51,13 @@ constructor(
     }
 
     override fun bindData(constraintLayout: ConstraintLayout) {
-        if (!smartspaceController.isOmniWeatherEnabled || smartspaceController.isEnabled) return
+        if (!smartspaceController.isOmniWeatherEnabled) return
 
         weatherView.init()
     }
 
     override fun applyConstraints(constraintSet: ConstraintSet) {
-        if (!smartspaceController.isOmniWeatherEnabled || smartspaceController.isEnabled) return
+       if (!smartspaceController.isOmniWeatherEnabled) return
 
         constraintSet.apply {
             connect(
@@ -92,7 +93,7 @@ constructor(
     }
 
     override fun removeViews(constraintLayout: ConstraintLayout) {
-        if (!smartspaceController.isOmniWeatherEnabled || smartspaceController.isEnabled) return
+        if (!smartspaceController.isOmniWeatherEnabled) return
 
         constraintLayout.findViewById<WeatherInfoView?>(R.id.keyguard_weather_area)?.let { weatherArea ->
             weatherArea.cleanup()

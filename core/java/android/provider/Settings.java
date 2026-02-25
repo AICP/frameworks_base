@@ -14164,7 +14164,7 @@ public final class Settings {
          * Whether to use color from wallpaper for Ambient edge light
          * @hide
          */
-        public static final String PULSE_AMBIENT_LIGHT_COLOR_MODE = "pulse_ambient_light_color_mode";
+        public static final String PULSE_AMBIENT_LIGHT_AUTO_COLOR = "pulse_ambient_light_auto_color";
 
         /**
          * Number of times to repeat animations of Ambient edge light

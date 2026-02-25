@@ -45,9 +45,6 @@ import com.android.systemui.res.R;
 
 public class NotificationLightsView extends RelativeLayout {
 
-    private static final boolean DEBUG = false;
-    private static final String TAG = "NotificationLightsView";
-
     private View mNotificationAnimView;
     private ValueAnimator mLightAnimator;
     private boolean mPulsing;
@@ -68,13 +65,13 @@ public class NotificationLightsView extends RelativeLayout {
 
     public NotificationLightsView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        if (DEBUG) Log.d(TAG, "new");
+        Log.e("NotificationLightsView", "new");
     }
 
     private Runnable mLightUpdate = new Runnable() {
         @Override
         public void run() {
-            if (DEBUG) Log.d(TAG, "run");
+            Log.e("NotificationLightsView", "run");
             animateNotification();
         }
     };
@@ -89,7 +86,7 @@ public class NotificationLightsView extends RelativeLayout {
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        if (DEBUG) Log.d(TAG, "draw");
+        Log.e("NotificationLightsView", "draw");
     }
 
     public void animateNotification() {
@@ -147,7 +144,7 @@ public class NotificationLightsView extends RelativeLayout {
         mLightAnimator.setRepeatMode(directionIsRestart ? ValueAnimator.RESTART : ValueAnimator.REVERSE);
         mLightAnimator.addUpdateListener(new AnimatorUpdateListener() {
             public void onAnimationUpdate(ValueAnimator animation) {
-                if (DEBUG) Log.d(TAG, "onAnimationUpdate");
+                Log.e("NotificationLightsView", "onAnimationUpdate");
                 float progress = ((Float) animation.getAnimatedValue()).floatValue();
                 leftView.setScaleY(progress);
                 rightView.setScaleY(progress);
@@ -161,7 +158,7 @@ public class NotificationLightsView extends RelativeLayout {
                 rightView.setAlpha(alpha);
             }
         });
-        if (DEBUG) Log.d(TAG, "start");
+        Log.e("NotificationLightsView", "start");
         mLightAnimator.start();
     }
 }

@@ -1873,7 +1873,14 @@ public class DomainVerificationService extends SystemService
                 }
 
                 String domain = stateMap.keyAt(index);
-                if (domain.startsWith("*.") && host.endsWith(domain.substring(2))) {
+                // Ensure that a wildcard domain (e.g. *.xyz.com) only matches the following:
+                // 1. The domain itself (in this case xyz.com exactly)
+                // 2. Subdomains ending in the domain (such as abc.xyz.com)
+                // This should not match every single domain ending in this string (xyz.com) e.g.
+                // *.xyz.com should not match abcxyz.com.
+                if (domain.startsWith("*.")
+                        && (host.endsWith(domain.substring(1))
+                            || host.equals(domain.substring(2)))) {
                     if (DEBUG_APPROVAL) {
                         debugApproval(packageName, debugObject, userId, true,
                                 "host verified by wildcard");

@@ -105,6 +105,7 @@ public final class ThemeStyle {
      */
     public static final int CLOCK_VIBRANT = 9;
     /**
+     * @hide
      * Represents the FIDELITY style.
      */
     public static final int FIDELITY = 10;

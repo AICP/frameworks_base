@@ -875,7 +875,7 @@ public class UdfpsController implements DozeReceiver, Dumpable {
         }
 
         if (com.android.internal.util.aicp.PackageUtils.isPackageInstalled(mContext,
-                "org.derpfest.overlay.customization.udfps.animations")) {
+                "com.aicp.overlay.udfps.animations")) {
             updateUdfpsAnimation();
             mConfigurationController.addCallback(mConfigurationListener);
         }

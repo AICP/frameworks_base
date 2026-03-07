@@ -75,7 +75,7 @@ constructor(
     private val fingerprintDrawable: UdfpsIconDrawable = UdfpsFpIconDrawable(context)
 
     private val packageInstalled = com.android.internal.util.aicp.PackageUtils.isPackageInstalled(
-        context, "org.derpfest.udfps.icons"
+        context, "com.aicp.overlay.udfps.icons"
     )
 
     private val udfpsIconObserver = object : ContentObserver(Handler(Looper.getMainLooper())) {

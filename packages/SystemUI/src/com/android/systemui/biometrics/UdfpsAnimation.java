@@ -64,7 +64,7 @@ public class UdfpsAnimation extends ImageView {
     private final int mMaxBurnInOffsetX;
     private final int mMaxBurnInOffsetY;
 
-    private static final String UDFPS_ANIMATIONS_PACKAGE = "org.derpfest.overlay.customization.udfps.animations";
+    private static final String UDFPS_ANIMATIONS_PACKAGE = "com.aicp.overlay.udfps.animations";
 
     private final KeyguardStateController mKeyguardStateController;
     private final AuthController mAuthController;

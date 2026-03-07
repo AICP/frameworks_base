@@ -32,7 +32,7 @@ import com.android.systemui.res.R;
  */
 public abstract class UdfpsIconDrawable extends Drawable {
 
-    private final String udfpsResourcesPackage = "org.derpfest.udfps.icons";
+    private final String udfpsResourcesPackage = "com.aicp.udfps.icons";
 
     @NonNull private final Context mContext;
     private Drawable mUdfpsDrawable;

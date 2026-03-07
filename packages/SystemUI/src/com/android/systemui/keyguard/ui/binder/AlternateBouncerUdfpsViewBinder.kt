@@ -51,7 +51,7 @@ object AlternateBouncerUdfpsViewBinder {
         val bgView = view.bgView
 
         val packageInstalled = PackageUtils.isPackageInstalled(
-            view.context, "org.derpfest.udfps.icons"
+            view.context, "com.aicp.udfps.icons"
         )
 
         val shouldUseCustomUdfpsIcon: StateFlow<Boolean> = callbackFlow {

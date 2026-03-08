@@ -18,22 +18,69 @@
 package com.android.systemui.keyguard.ui.binder
 
 import android.content.res.ColorStateList
+import android.database.ContentObserver
+import android.net.Uri
+import android.os.Handler
+import android.os.Looper
+import android.os.UserHandle
+import android.provider.Settings
 import android.view.View
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.repeatOnLifecycle
 import com.android.app.tracing.coroutines.launchTraced as launch
+import com.android.systemui.biometrics.UdfpsIconDrawable
 import com.android.systemui.keyguard.ui.view.DeviceEntryIconView
 import com.android.systemui.keyguard.ui.viewmodel.AlternateBouncerUdfpsIconViewModel
 import com.android.systemui.lifecycle.repeatWhenAttached
 import com.android.systemui.scene.shared.flag.SceneContainerFlag
+import com.android.internal.util.aicp.PackageUtils
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.launch
 
 object AlternateBouncerUdfpsViewBinder {
 
     /** Updates UI for the UDFPS icon on the alternate bouncer. */
     @JvmStatic
-    fun bind(view: DeviceEntryIconView, viewModel: AlternateBouncerUdfpsIconViewModel) {
+    fun bind(applicationScope: CoroutineScope, view: DeviceEntryIconView, viewModel: AlternateBouncerUdfpsIconViewModel) {
         val fgIconView = view.iconView
         val bgView = view.bgView
+
+        val packageInstalled = PackageUtils.isPackageInstalled(
+            view.context, "com.aicp.overlay.udfps.icons"
+        )
+
+        val shouldUseCustomUdfpsIcon: StateFlow<Boolean> = callbackFlow {
+            fun readValue(): Boolean =
+                Settings.System.getIntForUser(
+                    view.context.contentResolver,
+                    Settings.System.UDFPS_ICON,
+                    0,
+                    UserHandle.USER_CURRENT
+                ) != 0
+
+            val observer = object : ContentObserver(Handler(Looper.getMainLooper())) {
+                override fun onChange(selfChange: Boolean, uri: Uri?) {
+                    trySend(readValue())
+                }
+            }
+            view.context.contentResolver.registerContentObserver(
+                Settings.System.getUriFor(Settings.System.UDFPS_ICON),
+                false,
+                observer,
+                UserHandle.USER_CURRENT
+            )
+            trySend(readValue())
+            awaitClose { view.context.contentResolver.unregisterContentObserver(observer) }
+        }.stateIn(
+            scope = applicationScope,
+            started = SharingStarted.Eagerly,
+            initialValue = false
+        )
 
         view.repeatWhenAttached {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -66,12 +113,16 @@ object AlternateBouncerUdfpsViewBinder {
                         /* merge */ false,
                     )
                     fgIconView.imageTintList = ColorStateList.valueOf(fgViewModel.tint)
-                    fgIconView.setPadding(
-                        fgViewModel.padding,
-                        fgViewModel.padding,
-                        fgViewModel.padding,
-                        fgViewModel.padding,
-                    )
+                    if (fgIconView.drawable.current !is UdfpsIconDrawable) {
+                        fgIconView.setPadding(
+                            fgViewModel.padding,
+                            fgViewModel.padding,
+                            fgViewModel.padding,
+                            fgViewModel.padding
+                        )
+                    } else {
+                        fgIconView.setPadding(0, 0, 0, 0)
+                    }
                 }
             }
         }
@@ -80,8 +131,14 @@ object AlternateBouncerUdfpsViewBinder {
         bgView.repeatWhenAttached {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch("$TAG#viewModel.bgColor") {
-                    viewModel.bgColor.collect { color ->
-                        bgView.imageTintList = ColorStateList.valueOf(color)
+                    if (!shouldUseCustomUdfpsIcon.value || !packageInstalled) {
+                        viewModel.bgColor.collect { color ->
+                            bgView.imageTintList = ColorStateList.valueOf(color)
+                        }
+                    } else {
+                        viewModel.bgColor.collect { color ->
+                            bgView.imageTintList = null
+                        }
                     }
                 }
                 launch("$TAG#viewModel.bgAlpha") {

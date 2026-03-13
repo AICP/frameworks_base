@@ -253,7 +253,25 @@ class InstallRepository(private val context: Context) : EventResultPersister.Eve
             return InstallAborted(ABORT_REASON_INTERNAL_ERROR)
         }
 
-        isTrustedSource = isInstallRequestFromTrustedSource(sourceInfo, this.intent, originatingUid)
+        val isPrivilegedAndKnown = sourceInfo != null && sourceInfo.isPrivilegedApp &&
+                intent.getBooleanExtra(Intent.EXTRA_NOT_UNKNOWN_SOURCE, false)
+        val isInstallPkgPermissionGranted = originatingUid != Process.INVALID_UID &&
+                isPermissionGranted(context, Manifest.permission.INSTALL_PACKAGES, originatingUid)
+
+        // Bypass the unknown source user restrictions check when either of the following
+        // two conditions is met:
+        // 1. An installer with the INSTALL_PACKAGES permission initiated the
+        // installation via the PackageInstaller APIs and not via an
+        // ACTION_VIEW or ACTION_INSTALL_PACKAGE intent.
+        // 2. An installer is a privileged app and it has set the
+        // EXTRA_NOT_UNKNOWN_SOURCE flag to be true in the intent.
+        val isIntentInstall =
+            Intent.ACTION_VIEW == intent.action
+                    || Intent.ACTION_INSTALL_PACKAGE == intent.action
+
+        isTrustedSource =
+            (!isIntentInstall && isInstallPkgPermissionGranted) || isPrivilegedAndKnown
+
         // In general case, the originatingUid is callingUid. If callingUid is INVALID_UID, return
         // InstallAborted in the check above. When the originatingUid is INVALID_UID here, it means
         // the originatingUid is from the system download manager or the system documents manager,
@@ -288,19 +306,6 @@ class InstallRepository(private val context: Context) : EventResultPersister.Eve
         } catch (ignored: PackageManager.NameNotFoundException) {
             null
         }
-    }
-
-    private fun isInstallRequestFromTrustedSource(
-        sourceInfo: ApplicationInfo?,
-        intent: Intent,
-        callingUid: Int,
-    ): Boolean {
-        val isPrivilegedAndKnown = sourceInfo != null && sourceInfo.isPrivilegedApp &&
-            intent.getBooleanExtra(Intent.EXTRA_NOT_UNKNOWN_SOURCE, false)
-        val isInstallPkgPermissionGranted = callingUid != Process.INVALID_UID
-                && isPermissionGranted(context, Manifest.permission.INSTALL_PACKAGES, callingUid)
-
-        return isPrivilegedAndKnown || isInstallPkgPermissionGranted
     }
 
     private fun getDevicePolicyRestrictions(isTrustedSource: Boolean): String? {

@@ -3543,17 +3543,29 @@ public class ActivityManagerService extends IActivityManager.Stub
             FrameworkStatsLog.write(FrameworkStatsLog.APP_DIED, SystemClock.elapsedRealtime());
         }
     }
-
     @Override
     public boolean clearApplicationUserData(final String packageName, boolean keepState,
             final IPackageDataObserver observer, @CanBeCURRENT @UserIdInt int userId) {
+        return clearApplicationUserData(packageName, keepState, observer, userId, true);
+    }
+
+    @Override
+    public boolean clearApplicationUserDataWithoutPermissionReset(final String packageName,
+            boolean keepState, final IPackageDataObserver observer,
+            @CanBeCURRENT @UserIdInt int userId) {
+        return clearApplicationUserData(packageName, keepState, observer, userId, false);
+    }
+
+    private boolean clearApplicationUserData(final String packageName, boolean keepState,
+            final IPackageDataObserver observer, @CanBeCURRENT @UserIdInt int userId,
+            boolean restorePregrantedPermissions) {
         return clearApplicationUserData(packageName, keepState, /*isRestore=*/ false, observer,
-                userId);
+                userId, restorePregrantedPermissions);
     }
 
     private boolean clearApplicationUserData(final String packageName, boolean keepState,
             boolean isRestore, final IPackageDataObserver observer,
-            @CanBeCURRENT @UserIdInt int userId) {
+            @CanBeCURRENT @UserIdInt int userId, boolean restorePregrantedPermissions) {
         enforceNotIsolatedCaller("clearApplicationUserData");
         int uid = Binder.getCallingUid();
         int pid = Binder.getCallingPid();
@@ -3589,7 +3601,8 @@ public class ActivityManagerService extends IActivityManager.Stub
                 } catch (RemoteException e) {
                     /* ignore */
                 }
-                permitted = (applicationInfo != null && applicationInfo.uid == uid) // own uid data
+                permitted = (applicationInfo != null && applicationInfo.uid == uid
+                        && !restorePregrantedPermissions) // own uid data, not changing pregrants
                         || (checkComponentPermission(permission.CLEAR_APP_USER_DATA,
                                 pid, uid, -1, true) == PackageManager.PERMISSION_GRANTED);
             }
@@ -3656,7 +3669,8 @@ public class ActivityManagerService extends IActivityManager.Stub
 
             try {
                 // Clear application user data
-                pm.clearApplicationUserData(packageName, localObserver, resolvedUserId);
+                pm.clearApplicationUserData(packageName, localObserver, resolvedUserId,
+                        restorePregrantedPermissions);
 
                 if (appInfo != null) {
                     // Restore already established notification state and permission grants,
@@ -16194,6 +16208,10 @@ public class ActivityManagerService extends IActivityManager.Stub
     @NeverCompile // Avoid size overhead of debugging code.
     public void dumpBitmapsProto(ParcelFileDescriptor fd, String[] processes, int userId,
                             boolean allPkgs, String dumpFormat) {
+        // note: re-use the same permission as dumpHeap until its own permission is available
+        enforceCallingPermission(android.Manifest.permission.SET_ACTIVITY_WATCHER,
+                "dumpBitmapsProto()");
+
         ProtoOutputStream proto = new ProtoOutputStream(fd.getFileDescriptor());
         final ArrayList<ProcessRecord> procs = collectProcesses(null, 0, allPkgs, processes);
         if (procs == null) {
@@ -16210,6 +16228,13 @@ public class ActivityManagerService extends IActivityManager.Stub
                 if (thread == null) {
                     continue;
                 }
+
+                // check process debuggability
+                if (!Build.IS_DEBUGGABLE && !r.isDebuggable()) {
+                    Slog.w(TAG, "Process not debuggable: " + r.info.packageName);
+                    continue;
+                }
+
                 try {
                     if (pid == Process.myPid()) {
                         // Directly dump to target proto for local dump to avoid hang.
@@ -18285,7 +18310,7 @@ public class ActivityManagerService extends IActivityManager.Stub
                 boolean isRestore, final IPackageDataObserver observer,
                 @CanBeCURRENT @UserIdInt int userId) {
             return ActivityManagerService.this.clearApplicationUserData(packageName, keepState,
-                    isRestore, observer, userId);
+                    isRestore, observer, userId, /* restorePregrantedPermissions */ true);
         }
 
         @Override

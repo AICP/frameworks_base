@@ -196,21 +196,6 @@ public class BackgroundLaunchProcessControllerTests {
     }
 
     @Test
-    public void testForegroundTaskBlockedIfPinned() {
-        mAppSwitchState = APP_SWITCH_ALLOW;
-        mHasActivityInVisibleTask = true;
-        mInPinnedWindowMode = true;
-        BalVerdict balVerdict = mController.areBackgroundActivityStartsAllowed(
-                mPid, mUid, mPackageName,
-                mAppSwitchState, mBalCheckConfiguration,
-                mHasActivityInVisibleTask, mInPinnedWindowMode,
-                mHasBackgroundActivityStartPrivileges,
-                mLastStopAppSwitchesTime, mLastActivityLaunchTime,
-                mLastActivityFinishTime);
-        assertThat(balVerdict.getCode()).isEqualTo(BAL_BLOCK);
-    }
-
-    @Test
     public void testForegroundTask() {
         mAppSwitchState = APP_SWITCH_ALLOW;
         mHasActivityInVisibleTask = true;

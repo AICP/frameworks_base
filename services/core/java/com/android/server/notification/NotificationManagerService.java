@@ -7012,7 +7012,7 @@ public class NotificationManagerService extends SystemService {
                         pkg, userId, mConditionProviders.getRequiredPermission())) {
                     boolean changed = mConditionProviders.setPackageOrComponentEnabled(pkg, userId,
                             /* isPrimary= */ true, granted);
-                    if (Flags.limitManagedServicesCount() && !changed) {
+                    if (!changed) {
                         return;
                     }
 
@@ -7282,7 +7282,7 @@ public class NotificationManagerService extends SystemService {
                     boolean changed = mListeners.setPackageOrComponentEnabled(
                             listener.flattenToString(), userId, /* isPrimary= */ true, granted,
                             userSet);
-                    if (Flags.limitManagedServicesCount() && !changed) {
+                    if (!changed) {
                         return;
                     }
 
@@ -13851,7 +13851,7 @@ public class NotificationManagerService extends SystemService {
                 boolean isPrimary, boolean enabled, boolean userSet) {
             boolean changed = super.setPackageOrComponentEnabled(pkgOrComponent, userId, isPrimary,
                     enabled, userSet);
-            if (Flags.limitManagedServicesCount() && !changed) {
+            if (!changed) {
                 return false;
             }
 

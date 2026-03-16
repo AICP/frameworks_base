@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2024 The LibreMobileOS Foundation
+ * Copyright (C) 2026 Android Ice Cold Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +17,8 @@
 
 package com.android.systemui.statusbar.pipeline.wifi.ui.model
 
+import android.app.AppGlobals
+import android.provider.Settings
 import androidx.annotation.DrawableRes
 import com.android.systemui.common.shared.model.Icon
 import com.android.systemui.res.R
@@ -29,6 +32,15 @@ sealed interface VoWifiIcon {
 val VoWifiState.icon: VoWifiIcon
     get() = when (this) {
         is VoWifiState.Enabled -> {
+
+            val context = AppGlobals.getInitialApplication()
+            val settingValue = Settings.System.getInt(
+                context.contentResolver,
+                "vowifi_icon_style",
+                0
+            )
+
+            @DrawableRes
             val ic = if (activeSubCount == 2) {
                 if (slots.size >= 2) {
                     R.drawable.ic_vowifi_dual
@@ -45,15 +57,25 @@ val VoWifiState.icon: VoWifiIcon
                     }
                 }
             } else {
-                R.drawable.ic_vowifi
+                when (settingValue) {
+                    1 -> R.drawable.ic_vowifi_oneplus
+                    2 -> R.drawable.ic_vowifi_moto
+                    3 -> R.drawable.ic_vowifi_asus
+                    4 -> R.drawable.ic_vowifi_emui
+                    5 -> R.drawable.ic_vowifi_simple1
+                    6 -> R.drawable.ic_vowifi_simple2
+                    7 -> R.drawable.ic_vowifi_simple3
+                    8 -> R.drawable.ic_vowifi_vivo
+                    9 -> R.drawable.ic_vowifi_margaritov
+                    else -> R.drawable.ic_vowifi
+                }
             }
+
             if (ic == 0) {
                 VoWifiIcon.Hidden
             } else {
                 VoWifiIcon.Visible(
-                    Icon.Resource(
-                        ic, null /* Content description */
-                    )
+                    Icon.Resource(ic, null)
                 )
             }
         }

@@ -194,7 +194,8 @@ public class SystemSettings {
                 Settings.System.LOCKSCREEN_SHOW_CUSTOM_CARRIER_TEXT,
                 Settings.System.BACKGROUND_BLUR_RADIUS,
                 Settings.System.ENABLE_BLURS_ON_WINDOWS,
-                Settings.System.AE_THEME
+                Settings.System.AE_THEME,
+                Settings.System.VOWIFI_ICON_STYLE
         ));
         if (Flags.backUpSmoothDisplayAndForcePeakRefreshRate()) {
             settings.add(Settings.System.PEAK_REFRESH_RATE);

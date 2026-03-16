@@ -26,6 +26,10 @@
     android:clipToPadding="false"
     android:background="@drawable/system_bar_background">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+android:background="#CCCCCC" />
     <com.android.systemui.navigationbar.views.NavigationBarInflaterView
         android:id="@+id/navigation_inflater"
         android:layout_width="match_parent"

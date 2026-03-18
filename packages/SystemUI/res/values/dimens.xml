@@ -2299,4 +2299,7 @@
     <dimen name="tile_details_entry_start_margin">16dp</dimen>
     <!-- Tile Details end -->
 
+    <!-- Logo customization -->
+    <dimen name="keyguard_carrier_text_start_padding">35dp</dimen>
+
 </resources>

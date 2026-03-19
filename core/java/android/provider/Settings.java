@@ -7403,10 +7403,16 @@ public final class Settings {
         public static final String SHOW_APP_VOLUME = "show_app_volume";
 
         /**
-	 * VoWiFi icon style
+         * VoWiFi icon style
          * @hide
          */
         public static final String VOWIFI_ICON_STYLE = "vowifi_icon_style";
+
+        /**
+         * VoLTE icon style
+         * @hide
+         */
+        public static final String VOLTE_ICON_STYLE = "volte_icon_style";
 
         /**
          * Keys we no longer back up under the current schema, but want to continue to
@@ -7620,6 +7626,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(BACKGROUND_BLUR_RADIUS);
             PRIVATE_SETTINGS.add(ENABLE_BLURS_ON_WINDOWS);
             PRIVATE_SETTINGS.add(VOWIFI_ICON_STYLE);
+            PRIVATE_SETTINGS.add(VOLTE_ICON_STYLE);
         }
 
         /**

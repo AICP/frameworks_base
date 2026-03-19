@@ -195,7 +195,8 @@ public class SystemSettings {
                 Settings.System.BACKGROUND_BLUR_RADIUS,
                 Settings.System.ENABLE_BLURS_ON_WINDOWS,
                 Settings.System.AE_THEME,
-                Settings.System.VOWIFI_ICON_STYLE
+                Settings.System.VOWIFI_ICON_STYLE,
+                Settings.System.VOLTE_ICON_STYLE
         ));
         if (Flags.backUpSmoothDisplayAndForcePeakRefreshRate()) {
             settings.add(Settings.System.PEAK_REFRESH_RATE);

@@ -73,6 +73,15 @@ public abstract class UdfpsIconDrawable extends Drawable {
                 // Load initial value
                 int selectedIcon = Settings.System.getIntForUser(mContext.getContentResolver(),
                         Settings.System.UDFPS_ICON, 0, UserHandle.USER_CURRENT);
+                // max Udfps icon value -> see https://github.com/AICP/packages_overlays_AICP/blob/w16.2/UdfpsIcons/res/values/arrays.xml
+                int maxIcons = 52;
+                boolean isValidIcon = selectedIcon >= 1 && selectedIcon < maxIcons;
+                // if value is invalid, reset it to 0 to prevent boot failure
+                // see: https://gerrit.aicp-rom.com/c/AICP/packages_overlays_AICP/+/125538
+                if (!isValidIcon){
+                    selectedIcon= 1;
+                    Log.d("UdfpsIconDrawable","invalid value of Settings.System.UDFPS_ICON is: "+selectedIcon+" resetting to 0");
+                }
                 mUdfpsDrawable = selectedIcon == 0 ? null
                         : loadDrawable(udfpsRes, mUdfpsIcons[selectedIcon]);
             } catch (PackageManager.NameNotFoundException e) {

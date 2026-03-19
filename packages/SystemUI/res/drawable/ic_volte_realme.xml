@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:height="14.0dip" android:width="14.0dip" android:viewportWidth="14.0" android:viewportHeight="14.0">
+	<group android:pivotX="7.0" android:pivotY="7.0" android:scaleX="0.9" android:scaleY="0.9" android:translateX="0.0" android:translateY="1.0">
+		<path android:fillColor="#ffffffff" android:pathData="M2.2,7.655L2.2,11.9991L4.2819,12L4.2819,13.2L1,13.2L1,7.655L2.2,7.655ZM8.2,7.655L8.2,8.855L6.9,8.8548L6.9,13.2L5.7,13.2L5.7,8.8548L4.4,8.855L4.4,7.655L8.2,7.655ZM12.7761,7.655L12.7761,8.855L10.2,8.855L10.2,9.85L12.7761,9.85L12.7761,11.05L10.2,11.05L10.2,12L12.7761,12L12.7761,13.2L9,13.2L9,7.655L12.7761,7.655ZM8,2.455C9.1046,2.455 10,3.3504 10,4.455C10,5.5595 9.1046,6.455 8,6.455C6.8954,6.455 6,5.5595 6,4.455C6,3.3504 6.8954,2.455 8,2.455ZM2.3,1.455L3.85,4.978L5.4,1.455L6.7,1.455L4.5,6.455L3.2,6.455L1,1.455L2.3,1.455ZL9.7547,1.4259ZM8,3.455C7.4477,3.455 7,3.9027 7,4.455C7,5.0073 7.4477,5.455 8,5.455C8.5523,5.455 9,5.0073 9,4.455C9,3.9027 8.5523,3.455 8,3.455Z" android:strokeColor="#00000000" android:strokeWidth="1.0" />
+	</group>
+</vector>

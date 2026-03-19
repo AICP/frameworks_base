@@ -17,7 +17,9 @@
 package com.android.systemui.statusbar.pipeline.mobile.ui.binder
 
 import android.annotation.ColorInt
+import android.app.AppGlobals
 import android.content.res.ColorStateList
+import android.provider.Settings
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
@@ -51,6 +53,8 @@ import kotlinx.coroutines.awaitCancellation
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
 
+
+
 data class MobileIconColors(@ColorInt val tint: Int, @ColorInt val contrast: Int)
 
 object MobileIconBinder {
@@ -72,6 +76,7 @@ object MobileIconBinder {
         val mobileDrawable = SignalDrawable(view.context)
         val mobileHdView = view.requireViewById<ImageView>(R.id.mobile_hd)
         val mobileHdSpace = view.requireViewById<Space>(R.id.mobile_hd_space)
+        val mobileVolteView = view.requireViewById<ImageView>(R.id.volte)
         val dotView = view.requireViewById<StatusBarIconView>(R.id.status_bar_dot)
 
         view.isVisible = viewModel.isVisible.value
@@ -222,11 +227,48 @@ object MobileIconBinder {
                         }
                     }
 
+                    val context = AppGlobals.getInitialApplication()
+                    val settingValue = Settings.System.getInt(
+                        context.contentResolver,
+                        "volte_icon_style",
+                        0
+                    )
+
                     // Set the mobile HD indicator (VoLTE/VoNR)
                     launch {
                         viewModel.showHd.distinctUntilChanged().collect { isHd ->
                             mobileHdView.isVisible = isHd
                             mobileHdSpace.isVisible = isHd
+                            mobileVolteView.isVisible = isHd
+
+                            val volteDrawable = when (settingValue) {
+                                1 -> R.drawable.ic_volte1
+                                2 -> R.drawable.ic_volte2
+                                3 -> R.drawable.ic_volte3
+                                4 -> R.drawable.ic_volte_hd
+                                5 -> R.drawable.ic_volte_hd2
+                                6 -> R.drawable.ic_volte_miui
+                                7 -> R.drawable.ic_volte_emui
+                                8 -> R.drawable.ic_volte_margaritov
+                                9 -> R.drawable.ic_volte_margaritov2
+                                10 -> R.drawable.ic_volte_vivo
+                                11 -> R.drawable.ic_volte_aris
+                                12 -> R.drawable.ic_volte_beast
+                                13 -> R.drawable.ic_volte_ios
+                                14 -> R.drawable.ic_volte_lr
+                                15 -> R.drawable.ic_volte_realme
+                                16 -> R.drawable.ic_volte_typeA
+                                17 -> R.drawable.ic_volte_typeB
+                                18 -> R.drawable.ic_volte_typeC
+                                19 -> R.drawable.ic_volte_typeD
+                                20 -> R.drawable.ic_volte_typeE
+                                21 -> R.drawable.ic_volte_vcircle
+                                22 -> R.drawable.ic_volte_vimeo
+                                23 -> R.drawable.ic_volte_volit
+                                24 -> R.drawable.ic_volte_zirco
+                                else -> R.drawable.ic_volte
+                            }
+                            mobileVolteView.setImageResource(volteDrawable)
                         }
                     }
 
@@ -286,6 +328,7 @@ object MobileIconBinder {
                             }
 
                             mobileHdView.imageTintList = tint
+                            mobileVolteView.imageTintList = tint
                             if (NewStatusBarIcons.isEnabled) {
                                 val endSideRoamingView = view.requireViewById<ImageView>(R.id.mobile_roaming_updated)
                                 endSideRoamingView.imageTintList = tint

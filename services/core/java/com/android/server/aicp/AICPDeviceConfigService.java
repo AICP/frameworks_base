@@ -3,20 +3,20 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package com.android.server.derpfest;
+package com.android.server.aicp;
 
 import android.content.Context;
 import com.android.server.SystemService;
 
-import com.android.internal.util.derpfest.DeviceConfigUtils;
+import com.android.internal.util.aicp.DeviceConfigUtils;
 
-public class DerpFestDeviceConfigService extends SystemService {
+public class AICPDeviceConfigService extends SystemService {
 
-    private static final String TAG = "DerpFestDeviceConfigService";
+    private static final String TAG = "AICPDeviceConfigService";
 
     private final Context mContext;
 
-    public DerpFestDeviceConfigService(Context context) {
+    public AICPDeviceConfigService(Context context) {
         super(context);
         mContext = context;
     }

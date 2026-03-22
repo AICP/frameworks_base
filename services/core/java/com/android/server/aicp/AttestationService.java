@@ -6,7 +6,7 @@
  *
  */
 
-package com.android.server.derpfest;
+package com.android.server.aicp;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -36,7 +36,7 @@ public final class AttestationService extends SystemService {
 
     private static final String TAG = AttestationService.class.getSimpleName();
 
-    private static final String API = "https://raw.githubusercontent.com/DerpFest-AOSP/android_vendor_certification/refs/heads/16.2/gms_certified_props.json";
+    private static final String API = "https://raw.githubusercontent.com/AICP/vendor_aicp/df769a823b705595a0ad5f6c917c662bd5a63db4/props.json";
     private static final String DATA_FILE = "gms_certified_props.json";
     private static final long INITIAL_DELAY = 0; // Start immediately on boot
     private static final long INTERVAL = 8; // Interval in hours

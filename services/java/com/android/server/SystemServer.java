@@ -153,8 +153,8 @@ import com.android.server.blob.BlobStoreManagerService;
 import com.android.server.broadcastradio.BroadcastRadioService;
 import com.android.server.camera.CameraServiceProxy;
 import com.android.server.clipboard.ClipboardService;
-import com.android.server.derpfest.AttestationService;
-import com.android.server.derpfest.DerpFestDeviceConfigService;
+import com.android.server.aicp.AttestationService;
+import com.android.server.aicp.AICPDeviceConfigService;
 import com.android.server.companion.CompanionDeviceManagerService;
 import com.android.server.companion.datatransfer.continuity.TaskContinuityManagerService;
 import com.android.server.companion.datatransfer.continuity.UniversalClipboardService;
@@ -2896,9 +2896,9 @@ public final class SystemServer implements Dumpable {
             mSystemServiceManager.startService(AttestationService.class);
             t.traceEnd();
 
-           // DerpFestDeviceConfigService
-            t.traceBegin("StartDerpFestDeviceConfigService");
-            mSystemServiceManager.startService(DerpFestDeviceConfigService.class);
+           // AICPDeviceConfigService
+            t.traceBegin("StartAICPDeviceConfigService");
+            mSystemServiceManager.startService(AICPDeviceConfigService.class);
             t.traceEnd();
 
             if (SystemProperties.getBoolean(

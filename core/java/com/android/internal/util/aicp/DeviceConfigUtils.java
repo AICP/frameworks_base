@@ -17,10 +17,8 @@
 package com.android.internal.util.aicp;
 
 import android.content.res.Resources;
-import android.os.SystemProperties;
 import android.provider.Settings;
 import android.util.Log;
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -28,17 +26,12 @@ import java.util.Set;
 
 import com.android.internal.util.ArrayUtils;
 
-/**
- * @hide
- */
-public final class DeviceConfigUtils {
+public class DeviceConfigUtils {
 
     private static final String TAG = DeviceConfigUtils.class.getSimpleName();
+
     private static final boolean DEBUG = false;
 
-    private static Boolean sEnableDeviceConfigUtils =
-            SystemProperties.getBoolean("persist.sys.dchooks.enable", true);
-/*
     private static String[] getDeviceConfigsOverride() {
         String[] globalDeviceConfigs =
             Resources.getSystem().getStringArray(com.android.internal.R.array.global_device_configs_override);
@@ -50,26 +43,23 @@ public final class DeviceConfigUtils {
     }
 
     public static boolean shouldDenyDeviceConfigControl(String namespace, String property) {
-        if (!sEnableDeviceConfigUtils) return false;
-
         if (DEBUG) Log.d(TAG, "shouldAllowDeviceConfigControl, namespace=" + namespace + ", property=" + property);
         for (String p : getDeviceConfigsOverride()) {
             String[] kv = p.split("=");
             String fullKey = kv[0];
             String[] nsKey = fullKey.split("/");
-            if (nsKey[0] == namespace && nsKey[1] == property){
-                logd("shouldAllowDeviceConfigControl, deny, namespace=" + namespace + ", property=" + property);
+            if (namespace != null && property != null
+                    && namespace.equals(nsKey[0]) && property.equals(nsKey[1])){
+                if (DEBUG) Log.d(TAG, "shouldAllowDeviceConfigControl, deny, namespace=" + namespace + ", property=" + property);
                 return true;
             }
         }
-        logd("shouldAllowDeviceConfigControl, allow, namespace=" + namespace + ", property=" + property);
+        if (DEBUG) Log.d(TAG, "shouldAllowDeviceConfigControl, allow, namespace=" + namespace + ", property=" + property);
         return false;
     }
 
     public static void setDefaultProperties(String filterNamespace, String filterProperty) {
-        if (!sEnableDeviceConfigUtils) return;
-
-        logd("setDefaultProperties");
+        if (DEBUG) Log.d(TAG, "setDefaultProperties");
         for (String p : getDeviceConfigsOverride()) {
             String[] kv = p.split("=");
             String fullKey = kv[0];
@@ -78,11 +68,11 @@ public final class DeviceConfigUtils {
             String namespace = nsKey[0];
             String key = nsKey[1];
 
-            if (filterNamespace != null && filterNamespace == namespace){
+            if (filterNamespace != null && filterNamespace.equals(namespace)){
                 continue;
             }
 
-            if (filterProperty != null && filterProperty == key){
+            if (filterProperty != null && filterProperty.equals(key)){
                 continue;
             }
 
@@ -92,9 +82,5 @@ public final class DeviceConfigUtils {
             }
             Settings.Config.putString(namespace, key, value, false);
         }
-    }
-*/
-    private static void logd(String msg) {
-        if (DEBUG) Log.d(TAG, msg);
     }
 }

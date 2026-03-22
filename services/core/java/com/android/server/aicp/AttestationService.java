@@ -36,7 +36,7 @@ public final class AttestationService extends SystemService {
 
     private static final String TAG = AttestationService.class.getSimpleName();
 
-    private static final String API = "https://raw.githubusercontent.com/AICP/vendor_aicp/w16.2/gms_certified_props.json";
+    private static final String API = "https://raw.githubusercontent.com/AICP/vendor_aicp/refs/heads/w16.2/certified_props.json";
     private static final String DATA_FILE = "gms_certified_props.json";
     private static final long INITIAL_DELAY = 0; // Start immediately on boot
     private static final long INTERVAL = 8; // Interval in hours

@@ -195,5 +195,10 @@ interface ISystemUiProxy {
      */
     oneway void onKeyEvent(int keycode, int displayId) = 60;
 
-    // Next id = 61
+    /**
+     * Notifies SystemUI of a double tap to sleep event.
+     */
+    oneway void onSleepEvent(in MotionEvent event) = 61;
+
+    // Next id = 62
 }

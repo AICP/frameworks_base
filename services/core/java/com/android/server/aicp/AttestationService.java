@@ -6,7 +6,7 @@
  *
  */
 
-package com.android.server.derpfest;
+package com.android.server.aicp;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;

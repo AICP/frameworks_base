@@ -87,6 +87,7 @@ import android.view.DisplayInfo;
 import android.view.Gravity;
 import android.view.IDisplayWindowInsetsController;
 import android.view.IWindow;
+import android.view.IWindowSessionCallback;
 import android.view.InsetsFrameProvider;
 import android.view.InsetsSourceControl;
 import android.view.InsetsState;
@@ -436,6 +437,15 @@ class WindowTestsBase extends SystemServiceTestsBase {
         };
         dc.getDisplayPolicy().addWindowLw(navbar, navbar.mAttrs);
         return navbar;
+    }
+
+    static Session createTestSession(ActivityTaskManagerService atms, int pid, int uid) {
+        // This method is a partial backport which omits process creation.
+        return new Session(atms.mWindowManager, new IWindowSessionCallback.Stub() {
+            @Override
+            public void onAnimatorScaleChanged(float scale) {
+            }
+        }, pid, uid);
     }
 
     WindowState createAppWindow(Task task, int type, String name) {

@@ -118,10 +118,16 @@ class Session extends IWindowSession.Stub implements IBinder.DeathRecipient {
     private final InsetsSourceControl[] mDummyControls =  new InsetsSourceControl[0];
 
     public Session(WindowManagerService service, IWindowSessionCallback callback) {
+        this(service, callback, Binder.getCallingPid(), Binder.getCallingUid());
+    }
+
+    @VisibleForTesting
+    Session(WindowManagerService service, IWindowSessionCallback callback,
+            int callingPid, int callingUid) {
         mService = service;
         mCallback = callback;
-        mUid = Binder.getCallingUid();
-        mPid = Binder.getCallingPid();
+        mPid = callingPid;
+        mUid = callingUid;
         mLastReportedAnimatorScale = service.getCurrentAnimatorScale();
         mCanAddInternalSystemWindow = service.mContext.checkCallingOrSelfPermission(
                 INTERNAL_SYSTEM_WINDOW) == PERMISSION_GRANTED;

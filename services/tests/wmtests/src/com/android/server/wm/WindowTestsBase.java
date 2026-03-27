@@ -91,6 +91,7 @@ import android.view.DisplayInfo;
 import android.view.Gravity;
 import android.view.IDisplayWindowInsetsController;
 import android.view.IWindow;
+import android.view.IWindowSessionCallback;
 import android.view.InsetsSourceControl;
 import android.view.InsetsState;
 import android.view.Surface;
@@ -399,6 +400,15 @@ class WindowTestsBase extends SystemServiceTestsBase {
     private WindowToken createWallpaperToken(DisplayContent dc) {
         return new WallpaperWindowToken(mWm, mock(IBinder.class), true /* explicit */, dc,
                 true /* ownerCanManageAppTokens */);
+    }
+
+    static Session createTestSession(ActivityTaskManagerService atms, int pid, int uid) {
+        // This method is a partial backport which omits process creation.
+        return new Session(atms.mWindowManager, new IWindowSessionCallback.Stub() {
+            @Override
+            public void onAnimatorScaleChanged(float scale) {
+            }
+        }, pid, uid);
     }
 
     WindowState createAppWindow(Task task, int type, String name) {

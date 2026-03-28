@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4501019c_dba25e88",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 209
+      },
+      "writtenOn": "2026-03-28T14:39:10Z",
+      "side": 1,
+      "message": "This one makes tidal crash immediately whenever I try to play anything...\n\nWhat is this goal of this commit, is it related to any of our features or just messing with AOSP default functionality?\n\nCould probably fix by properly handling if the input configuration is a hardware bitmap but not sure if it\u0027s worth it\n\nmsg: java.lang.IllegalArgumentException: can\u0027t create mutable bitmap with Config.HARDWARE\nstacktrace: java.lang.IllegalArgumentException: can\u0027t create mutable bitmap with Config.HARDWARE\n\tat android.graphics.Bitmap.createBitmap(Bitmap.java:1283)\n\tat android.graphics.Bitmap.createBitmap(Bitmap.java:1246)\n\tat android.graphics.Bitmap.createBitmap(Bitmap.java:1194)\n\tat android.graphics.Bitmap.createBitmap(Bitmap.java:1153)\n\tat android.media.MediaMetadata$Builder.scaleBitmap(MediaMetadata.java:1025)\n\tat android.media.MediaMetadata$Builder.build(MediaMetadata.java:1005)\n\tat android.media.session.MediaSession.setMetadata(MediaSession.java:539)\n\tat android.support.v4.media.session.MediaSessionCompat$MediaSessionImplApi21.setMetadata(SourceFile:15)\n\tat android.support.v4.media.session.MediaSessionCompat.setMetadata(SourceFile:3)\n\tat com.aspiro.wamp.player.a0.invoke(SourceFile:43)\n\tat com.aspiro.wamp.player.MediaArtworkHelper$getArtwork$1.invokeSuspend(SourceFile:60)\n\tat kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(SourceFile:9)\n\tat kotlinx.coroutines.DispatchedTask.run(SourceFile:122)\n\tat kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(SourceFile:4)\n\tat kotlinx.coroutines.scheduling.TaskImpl.run(SourceFile:3)\n\tat kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(SourceFile:1)\n\tat kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(SourceFile:34)\n\tat kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(SourceFile:29)\n\tat kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(SourceFile:1)\n\tSuppressed: kotlinx.coroutines.internal.DiagnosticCoroutineContextException: [StandaloneCoroutine{Cancelling}@c3dbab0, Dispatchers.IO]",
+      "revId": "252adbc0aa17711746a18b020ab37367a3864128",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2790fd50_79567088",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 209
+      },
+      "writtenOn": "2026-03-28T14:42:32Z",
+      "side": 1,
+      "message": "As commented on https://gerrit.aicp-rom.com/c/AICP/frameworks_base/+/124847\n\nCould probably fix the original patch by properly handling if the input configuration is a hardware bitmap but not sure if it\u0027s worth it",
+      "revId": "61b549207ab003785aa6421969ade756488ece34",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

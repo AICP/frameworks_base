@@ -98,6 +98,10 @@ public class NotificationListener extends NotificationListenerWithPlugins implem
         mNotificationHandlers.add(handler);
     }
 
+    public void removeNotificationHandler(NotificationHandler handler) {
+        mNotificationHandlers.remove(handler);
+    }
+
     @Override
     public void onListenerConnected() {
         if (DEBUG) Log.d(TAG, "onListenerConnected");

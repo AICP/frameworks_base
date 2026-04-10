@@ -65,7 +65,9 @@ constructor(
         INSTANCE = this
 
         ScrimUtils.get().addListener(this)
-        updateView()
+        listener.addNotificationHandler(this)
+
+        startObservingSettings()
     }
 
     fun getEdgeLightView(): FrameLayout = edgeLightView
@@ -81,21 +83,33 @@ constructor(
             else -> Utils.getColorAccentDefaultColor(context)
         }
 
-    private fun updateView() {
+    private fun startObservingSettings() {
         job?.cancel()
         job = scope.launch {
-            currentSettings = settingsRepo.settingsFlow.first()
-            if (!currentSettings.isEnabled) {
-                edgeLightView.pulseRunning = false
-                edgeLightView.visible = false
-            } else {
-                edgeLightView.paintColor = getColor()
-                edgeLightView.userPulseCount = currentSettings.pulseCount
-                edgeLightView.userStrokeWidth = currentSettings.strokeWidth
-                edgeLightView.edgeStyle = currentSettings.edgeStyle
-                edgeLightView.animationEffect = currentSettings.animationEffect
-            }
+            settingsRepo.settingsFlow
+                .catch {
+                    edgeLightView.pulseRunning = false
+                    edgeLightView.visible = false
+                }
+                .collect { settings ->
+                    currentSettings = settings
+                    applySettings(settings)
+                }
         }
+    }
+
+    private fun applySettings(settings: EdgeLightSettings) {
+        if (!settings.isEnabled) {
+            edgeLightView.pulseRunning = false
+            edgeLightView.visible = false
+            return
+        }
+
+        edgeLightView.paintColor = getColor()
+        edgeLightView.userPulseCount = settings.pulseCount
+        edgeLightView.userStrokeWidth = settings.strokeWidth
+        edgeLightView.edgeStyle = settings.edgeStyle
+        edgeLightView.animationEffect = settings.animationEffect
     }
 
     override fun onNotificationPosted(sbn: StatusBarNotification, rankingMap: RankingMap) {
@@ -116,7 +130,7 @@ constructor(
         lastNotificationText = currentText
         lastNotificationTime = now
 
-        val notifColor = sbn?.notification?.color ?: Color.TRANSPARENT
+        val notifColor = sbn.notification.color
         val accent = Utils.getColorAccentDefaultColor(context)
 
         lastNotifColor = when {
@@ -124,6 +138,7 @@ constructor(
             ContrastColorUtil.isColorDark(notifColor) -> accent
             else -> notifColor
         }
+
         edgeLightView.paintColor = lastNotifColor
     }
 
@@ -141,10 +156,8 @@ constructor(
         if (!showing) {
             edgeLightView.pulseRunning = false
             edgeLightView.visible = false
-            listener.removeNotificationHandler(this)
         } else {
-            listener.addNotificationHandler(this)
-            updateView()
+            startObservingSettings()
         }
     }
 
@@ -165,7 +178,13 @@ constructor(
     }
 
     override fun setPulsing(pulsing: Boolean) {
-        if (!currentSettings.isEnabled || !pulsing || !isDozing) return
+        if (!currentSettings.isEnabled || !isDozing) return
+
+        if (!pulsing) {
+            edgeLightView.pulseRunning = false
+            return
+        }
+
         edgeLightView.apply {
             visible = true
             pulseRunning = true

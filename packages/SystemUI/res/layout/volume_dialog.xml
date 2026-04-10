@@ -45,7 +45,7 @@
         app:layout_constraintBottom_toTopOf="@id/volume_dialog_main_slider_container"
         app:layout_constraintEnd_toEndOf="@id/volume_dialog_background"
         app:layout_constraintHeight_default="spread"
-        app:layout_constraintStart_toStartOf="@id/volume_dialog_background"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_default="spread">
 

@@ -57,6 +57,9 @@ class PulseViewController @Inject constructor(
     val ambientEnabled: Boolean
         get() = settingsRepository.isPulseAmbientEnabled()
 
+    val pulseMoreScreenEnabled: Boolean
+        get() = settingsRepository.isPulseMoreScreenEnabled()
+
     private val isCollapsed: Boolean
         get() = ScrimUtils.get().isPanelFullyCollapsed()
 
@@ -83,11 +86,15 @@ class PulseViewController @Inject constructor(
             pulseRunning = false
             return
         }
-        pulseRunning = isMediaPlaying 
-                && !bouncerShowingOrKeyguardDismissing
-                && isCollapsed
-                && ((keyguardShowing && !isDozing)
-                || (isDozing && ambientEnabled))
+        if (pulseMoreScreenEnabled) {
+            pulseRunning = isMediaPlaying
+        } else {
+            pulseRunning = isMediaPlaying
+                    && !bouncerShowingOrKeyguardDismissing
+                    && isCollapsed
+                    && ((keyguardShowing && !isDozing)
+                    || (isDozing && ambientEnabled))
+        }
     }
 
     private fun onSettingsChanged() {

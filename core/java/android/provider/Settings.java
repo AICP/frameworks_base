@@ -14218,6 +14218,12 @@ public final class Settings {
          */
         public static final String AMBIENT_PULSE_ENABLED = "ambient_pulse_enabled";
 
+	/**
+         * Pulse music visualizer on more screens
+         * @hide
+         */
+        public static final String MORE_SCREEN_PULSE_ENABLED = "more_screen_pulse_enabled";
+
         /**
          * @hide
          */

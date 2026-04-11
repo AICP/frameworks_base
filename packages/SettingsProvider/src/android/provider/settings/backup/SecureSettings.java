@@ -330,6 +330,7 @@ public class SecureSettings {
         Settings.Secure.NOTIFICATION_BUNDLES_ALWAYS_EXPAND,
         Settings.Secure.WINDOW_IGNORE_SECURE,
         Settings.Secure.SHOW_CPU_OVERLAY,
-        Settings.Secure.SECURE_LOCKSCREEN_QS_DISABLED
+        Settings.Secure.SECURE_LOCKSCREEN_QS_DISABLED,
+        Settings.Secure.MORE_SCREEN_PULSE_ENABLED
     };
 }

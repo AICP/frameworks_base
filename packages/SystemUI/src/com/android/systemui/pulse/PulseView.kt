@@ -46,13 +46,16 @@ class PulseView @JvmOverloads constructor(
         renderer = PulseRenderer(context, settingsRepo)
         engine = PulseEngine(context, settingsRepo) { processedHeights ->
             renderer?.updateHeights(processedHeights)
-            postInvalidate()
+
+            postInvalidateOnAnimation()
         }
     }
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         isAttached = true
+
+        postInvalidateOnAnimation()
     }
 
     override fun onDetachedFromWindow() {
@@ -64,14 +67,18 @@ class PulseView @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        if (isAttached && isVisible) {
+
+        if (renderer != null && isVisible) {
             renderer?.onDraw(canvas, width, height)
+        }
+
+        if (isAttached) {
             postInvalidateOnAnimation()
         }
     }
 
     fun updateVisualizerData(data: PulseData) {
-        if (isAttached && isVisible && data.isDataValid) {
+        if (data.isDataValid) {
             engine?.processFFT(data.fftBytes!!)
         }
     }
@@ -81,7 +88,11 @@ class PulseView @JvmOverloads constructor(
     }
 
     fun setVisibility(visible: Boolean) {
+        if (visible == isVisible) return
+
         isVisible = visible
-        visibility = if (visible) VISIBLE else GONE
+
+        visibility = if (visible) VISIBLE else INVISIBLE
+
     }
 }

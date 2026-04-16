@@ -64,6 +64,7 @@
     <string name="vpn_credentials_username">Perdoruesi</string>
     <string name="vpn_credentials_password">Fjalëkalimi</string>
     <string name="vpn_credentials_dialog_connect">Lidhu</string>
+    <string name="accessibility_adaptive_brightness">Ndriçimi i përshtatshëm</string>
     <string name="status_bar_firewall">Muri i zjarrit</string>
     <string name="battery_notification_channel_tv">Paralajmërim për baterinë</string>
     <string name="screenshot_delete_label">Fshije</string>

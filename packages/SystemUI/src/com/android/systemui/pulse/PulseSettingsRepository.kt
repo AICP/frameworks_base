@@ -29,6 +29,7 @@ class PulseSettingsRepository(private val context: Context) {
     companion object {
         private const val PULSE_ENABLED = Settings.Secure.LOCKSCREEN_PULSE_ENABLED
         private const val PULSE_AMBIENT_ENABLED = Settings.Secure.AMBIENT_PULSE_ENABLED
+        private const val PULSE_QS_ENABLED = Settings.Secure.PULSE_QS_ENABLED
         private const val PULSE_BAR_COUNT = Settings.Secure.PULSE_BAR_COUNT
         private const val PULSE_ROUNDED_BARS = Settings.Secure.PULSE_ROUNDED_BARS
         private const val PULSE_COLOR = Settings.Secure.PULSE_COLOR
@@ -36,6 +37,7 @@ class PulseSettingsRepository(private val context: Context) {
 
         private const val DEFAULT_ENABLED = false
         private const val DEFAULT_AMBIENT_ENABLED = true
+        private const val DEFAULT_QS_ENABLED = false
         private const val DEFAULT_BAR_COUNT = 32
         private const val DEFAULT_ROUNDED_BARS = false
         private const val DEFAULT_COLOR = "lavalamp"
@@ -48,6 +50,7 @@ class PulseSettingsRepository(private val context: Context) {
 
     private var cachedEnabled: Boolean? = null
     private var cachedAmbientEnabled: Boolean? = null
+    private var cachedQsEnabled: Boolean? = null
     private var cachedBarCount: Int? = null
     private var cachedRoundedBars: Boolean? = null
     private var cachedColorMode: String? = null
@@ -61,6 +64,7 @@ class PulseSettingsRepository(private val context: Context) {
         listOf(
             Settings.Secure.getUriFor(PULSE_ENABLED),
             Settings.Secure.getUriFor(PULSE_AMBIENT_ENABLED),
+            Settings.Secure.getUriFor(PULSE_QS_ENABLED),
             Settings.Secure.getUriFor(PULSE_BAR_COUNT),
             Settings.Secure.getUriFor(PULSE_ROUNDED_BARS),
             Settings.Secure.getUriFor(PULSE_COLOR),
@@ -94,6 +98,13 @@ class PulseSettingsRepository(private val context: Context) {
             cachedAmbientEnabled = getSecureSetting(PULSE_AMBIENT_ENABLED, DEFAULT_AMBIENT_ENABLED)
         }
         return cachedAmbientEnabled!!
+    }
+
+    fun isPulseQsEnabled(): Boolean {
+        if (cachedQsEnabled == null) {
+            cachedQsEnabled = getSecureSetting(PULSE_QS_ENABLED, DEFAULT_QS_ENABLED)
+        }
+        return cachedQsEnabled!!
     }
 
     fun getBarCount(): Int {

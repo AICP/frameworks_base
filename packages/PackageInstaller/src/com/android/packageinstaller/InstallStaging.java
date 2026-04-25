@@ -34,6 +34,7 @@ import android.view.View;
 import com.android.internal.app.AlertActivity;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -171,31 +172,46 @@ public class InstallStaging extends AlertActivity {
                 return false;
             }
             Uri packageUri = params[0];
-            try (InputStream in = getContentResolver().openInputStream(packageUri)) {
-                // Despite the comments in ContentResolver#openInputStream the returned stream can
-                // be null.
-                if (in == null) {
-                    return false;
-                }
+	try (InputStream in = getContentResolver().openInputStream(packageUri)) {
+		if (in == null) {
+			Log.e(LOG_TAG, "Null input stream for " + packageUri);
+			return false;
+		}
 
-                try (OutputStream out = new FileOutputStream(mStagedFile)) {
-                    byte[] buffer = new byte[1024 * 1024];
-                    int bytesRead;
-                    while ((bytesRead = in.read(buffer)) >= 0) {
-                        // Be nice and respond to a cancellation
-                        if (isCancelled()) {
-                            return false;
-                        }
-                        out.write(buffer, 0, bytesRead);
-                    }
-                }
-            } catch (IOException | SecurityException | IllegalStateException e) {
-                Log.w(LOG_TAG, "Error staging apk from content URI", e);
-                return false;
-            }
-            return true;
+		try (OutputStream out = new FileOutputStream(mStagedFile)) {
+			byte[] buffer = new byte[1024 * 1024];
+			int bytesRead;
+			while ((bytesRead = in.read(buffer)) >= 0) {
+				if (isCancelled()) {
+					return false;
+				}
+				out.write(buffer, 0, bytesRead);
+			}
+		}
+
+	} catch (FileNotFoundException e) {
+		Log.e(LOG_TAG, "File not found staging apk: " + packageUri, e);
+		return false;
+
+	} catch (SecurityException e) {
+		Log.e(LOG_TAG, "Security exception staging apk: " + packageUri, e);
+		return false;
+
+	} catch (IOException e) {
+		Log.e(LOG_TAG, "IO exception staging apk: " + packageUri, e);
+		return false;
+
+	} catch (RuntimeException e) {
+		// 👈 THIS IS THE KEY FIX
+		Log.e(LOG_TAG, "Runtime exception staging apk: " + packageUri, e);
+		return false;
+
+	} catch (Exception e) {
+		Log.e(LOG_TAG, "Unexpected exception staging apk: " + packageUri, e);
+		return false;
+	}
+        return true;
         }
-
         @Override
         protected void onPostExecute(Boolean success) {
             if (success) {

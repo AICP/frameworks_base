@@ -352,20 +352,16 @@ public final class KeyboxChainGenerator {
     }
 
     private static KeyPair buildECKeyPair(KeyGenParameters params) throws Exception {
-        Security.removeProvider(BouncyCastleProvider.PROVIDER_NAME);
-        Security.addProvider(new BouncyCastleProvider());
         ECGenParameterSpec spec = new ECGenParameterSpec(params.ecCurveName);
-        KeyPairGenerator kpg = KeyPairGenerator.getInstance("EC", BouncyCastleProvider.PROVIDER_NAME);
+        KeyPairGenerator kpg = KeyPairGenerator.getInstance("EC");
         kpg.initialize(spec);
         return kpg.generateKeyPair();
     }
 
     private static KeyPair buildRSAKeyPair(KeyGenParameters params) throws Exception {
-        Security.removeProvider(BouncyCastleProvider.PROVIDER_NAME);
-        Security.addProvider(new BouncyCastleProvider());
         RSAKeyGenParameterSpec spec = new RSAKeyGenParameterSpec(
                 params.keySize, params.rsaPublicExponent);
-        KeyPairGenerator kpg = KeyPairGenerator.getInstance("RSA", BouncyCastleProvider.PROVIDER_NAME);
+        KeyPairGenerator kpg = KeyPairGenerator.getInstance("RSA");
         kpg.initialize(spec);
         return kpg.generateKeyPair();
     }

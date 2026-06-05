@@ -6225,6 +6225,15 @@ public class ActivityTaskManagerService extends IActivityTaskManager.Stub {
         return mActiveUids.hasNonAppVisibleWindow(uid);
     }
 
+    /** Similar to {@link #hasActiveVisibleWindow(int)}, but only considers non pinned app
+     * windows */
+    boolean hasActiveVisibleNotPinnedWindow(int uid) {
+        if (mVisibleActivityProcessTracker.hasVisibleNotPinnedActivity(uid)) {
+            return true;
+        }
+        return mActiveUids.hasNonAppVisibleWindow(uid);
+    }
+
     boolean isDeviceOwner(int uid) {
         return uid >= 0 && mDeviceOwnerUid == uid;
     }
@@ -6308,7 +6317,10 @@ public class ActivityTaskManagerService extends IActivityTaskManager.Stub {
     }
 
     @Override
-    public void setRunningRemoteTransitionDelegate(IApplicationThread delegate) {
+    public void setRunningRemoteTransitionDelegate(IBinder transitionToken) {
+        final Transition transition = Transition.fromBinder(transitionToken);
+        if (transition == null) return;
+        final IApplicationThread delegate = transition.mRemoteDelegate;
         final TransitionController controller = getTransitionController();
         // A quick path without entering WM lock.
         if (delegate != null && controller.mRemotePlayer.reportRunning(delegate)) {

@@ -7306,6 +7306,18 @@ public final class Settings {
         public static final String UDFPS_ICON = "udfps_icon";
 
         /**
+         * Volume slider next to brightness slider
+         * @hide
+         */
+        public static final String QS_SHOW_VOLUME_SLIDER = "qs_show_volume_slider";
+
+        /**
+         * Ringer mode with volume slider
+         * @hide
+         */
+        public static final String QS_SHOW_RINGER_MODE = "qs_show_ringer_mode";
+
+        /**
          * @hide
          */
         public static final String QS_TILES_COLUMNS_LANDSCAPE = "qs_tiles_columns_landscape";

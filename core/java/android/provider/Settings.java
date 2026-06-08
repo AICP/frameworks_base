@@ -7306,6 +7306,130 @@ public final class Settings {
         public static final String UDFPS_ICON = "udfps_icon";
 
         /**
+<<<<<<< HEAD
+=======
+         * Whether to vibrate on succesful fingerprint authentication
+         * @hide
+         */
+        public static final String FP_SUCCESS_VIBRATE = "fp_success_vibrate";
+
+        /**
+         * Whether to vibrate on unsuccesful fingerprint authentication
+         * @hide
+         */
+        public static final String FP_ERROR_VIBRATE = "fp_error_vibrate";
+
+        /**
+         * @hide
+         */
+        public static final String RECENTS_LOCKED_TASKS = "recents_locked_tasks";
+
+        /**
+         * Whether to show the carrier name on the lockscreen
+         * @hide
+         */
+        public static final String LOCKSCREEN_SHOW_CARRIER = "lockscreen_show_carrier";
+
+        /**
+         * Whether to override carrier text with custom text
+         * @hide
+         */
+        public static final String LOCKSCREEN_SHOW_CUSTOM_CARRIER_TEXT = "lockscreen_show_custom_carrier_text";
+
+        /**
+         * Disable hw buttons
+         * @hide
+         */
+        public static final String HARDWARE_KEYS_DISABLE = "hardware_keys_disable";
+
+        /**
+         * Swap capacitive keys
+         * @hide
+         */
+        public static final String SWAP_CAPACITIVE_KEYS = "swap_capacitive_keys";
+
+        /**
+         * Indicates whether ANBI (Accidental navigation button interaction) is enabled.
+         * @hide
+         */
+        public static final String ANBI_ENABLED = "anbi_enabled";
+
+        /**
+         * If On-The-Go should be displayed at the power menu.
+         * @hide
+         */
+        public static final String GLOBAL_ACTIONS_ONTHEGO = "global_actions_onthego";
+
+        /**
+         * The alpha value of the On-The-Go overlay.
+         * @hide
+         */
+        public static final String ON_THE_GO_ALPHA = "on_the_go_alpha";
+
+        /**
+         * Whether the service should restart itself or not.
+         * @hide
+         */
+        public static final String ON_THE_GO_SERVICE_RESTART = "on_the_go_service_restart";
+
+        /**
+         * The camera instance to use.
+         * 0 = Rear Camera
+         * 1 = Front Camera
+         * @hide
+         */
+        public static final String ON_THE_GO_CAMERA = "on_the_go_camera";
+
+        /**
+         * Whether to show daily/weekly data usage in the QS footer.
+         * @hide
+         */
+        public static final String QS_SHOW_DATA_USAGE = "qs_show_data_usage";
+
+        /**
+         * Persist setting for showing either daily or weekly data usage in the QS footer.
+         * @hide
+         */
+        public static final String QS_SHOW_DATA_USAGE_WINDOW = "qs_show_data_usage_window";
+
+        /**
+         * Haptic feedback on brightness slider
+         * @hide
+         */
+        public static final String QS_BRIGHTNESS_SLIDER_HAPTIC = "qs_brightness_slider_haptic";
+
+        /**
+         * Volume slider next to brightness slider
+         * @hide
+         */
+        public static final String QS_SHOW_VOLUME_SLIDER = "qs_show_volume_slider";
+
+        /**
+         * Ringer mode with volume slider
+         * @hide
+         */
+        public static final String QS_SHOW_RINGER_MODE = "qs_show_ringer_mode";
+
+        /**
+         * Customize QS tile shape.
+         * @hide
+         */
+        public static final String QS_TILE_SHAPE = "qs_tile_shape";
+
+        /**
+         * Customize Brightness slider shape.
+         * @hide
+         */
+        public static final String QS_BRIGHTNESS_SLIDER_SHAPE = "qs_brightness_slider_shape";
+
+        /**
+         * Haptic feedback on QS tiles
+         * @hide
+         */
+        public static final String QS_TILE_HAPTIC = "qs_tile_haptic";
+
+        /**
+>>>>>>> ea21868430b5 (SystemUI: Add volume slider and ringer mode in QS panel)
          * @hide
          */
         public static final String QS_TILES_COLUMNS_LANDSCAPE = "qs_tiles_columns_landscape";

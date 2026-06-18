@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2012-2022 AICP
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="aerr_copy">Salin URL riwayat kerusakan</string>
+    <string name="url_copy_success">URL berhasil disalin</string>
+    <string name="url_copy_failed">Terjadi kesalahan saat mengunggah log ke AICP haste</string>
+    <string name="gamespace_new_game_added"><xliff:g id="name" example="MyApp">%s</xliff:g> ditambahkan ke Ruang Game</string>
+    <string name="gesture_locked_warning">Geser lagi untuk membuka kunci gestur</string>
+    <string name="unlock_application">Buka <xliff:g id="label" example="Telegram">%1$s</xliff:g></string>
+    <string name="pocket_mode_title">Mode saku aktif</string>
+    <string name="pocket_mode_illustration_description">Ilustrasi telepon di saku</string>
+    <string name="pocket_mode_instructions_header">Untuk mengaktifkan ponsel Anda:</string>
+    <string name="pocket_mode_instruction_step1">1. Pastikan area hijau (sensor jarak) yang ditunjukkan di atas tidak terhalang dan bebas dari kotoran atau debu.</string>
+    <string name="pocket_mode_instruction_step2">2. Tekan dan tahan tombol daya untuk keluar dari mode saku.</string>
+</resources>

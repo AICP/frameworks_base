@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2012-2025 AICP
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="onthego_notif_ticker">Режим «На ходу» активовано</string>
+    <string name="onthego_notif_title">Режим «На ходу» активний</string>
+    <string name="onthego_notif_stop">Зупинити</string>
+    <string name="onthego_notif_options">Параметри</string>
+    <string name="onthego_notif_error">Не вдається запустити режим \"На ходу\"</string>
+    <string name="onthego_notif_restart">Перезавантажити режим \"На ходу\"</string>
+    <string name="onthego_notif_camera_changed">Режим камери змінено</string>
+    <string name="onthego_transparency">Прозорість</string>
+    <string name="onthego_front_camera">Використовувати фронтальну камеру</string>
+    <string name="onthego_service_toggle">Автоматично перезапустити службу</string>
+    <string name="onthego_channel_name">Головний</string>
+    <string name="global_action_onthego">Режим \"На ходу\"</string>
+    <string name="keyguard_indication_warp_charging_time"><xliff:g id="percentage">%2$s</xliff:g>Warp зарядження (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> до повного заряду)</string>
+    <string name="keyguard_plugged_in_warp_charging"><xliff:g id="percentage">%s</xliff:g> • Warp зарядження</string>
+    <string name="keyguard_indication_vooc_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • VOOC зарядження (<xliff:g id="charging_time_left" example="4 години та 2 хвилини">%1$s</xliff:g> до повної зарядки)</string>
+    <string name="keyguard_plugged_in_vooc_charging"><xliff:g id="percentage">%s</xliff:g> • VOOC зарядження</string>
+    <string name="keyguard_indication_turbo_power_time"><xliff:g id="percentage">%2$s</xliff:g> • Турбо зарядження (<xliff:g id="charging_time_left" example="4 години та 2 хвилини">%1$s</xliff:g> до повної зарядки)</string>
+    <string name="keyguard_plugged_in_turbo_charging"><xliff:g id="percentage">%s</xliff:g> • Турбо зарядження</string>
+    <string name="quick_settings_cpuinfo_label">Інформація про ЦП</string>
+    <string name="quick_settings_music_label">Музика</string>
+    <string name="quick_settings_music_play">Відтворити</string>
+    <string name="quick_settings_music_pause">Пауза</string>
+    <string name="quick_aicp_extras_label">Додатки AICP</string>
+    <string name="quick_aicp_extras_toast">Лол, ви насправді думали, що затиснення клавіши вас кудись приведе!?!</string>
+    <string name="quick_settings_volume_panel_label">Панель гучності</string>
+    <string name="quick_settings_onthego_label">Режим \"На ходу\"</string>
+    <string name="quick_settings_locale_label">Мова</string>
+    <string name="quick_settings_compass_label">Компас</string>
+    <string name="quick_settings_compass_init">Ініціалізація\u2026</string>
+    <string name="accessibility_quick_settings_compass_off">Компас вимк.</string>
+    <string name="accessibility_quick_settings_compass_on">Компас увімк.</string>
+    <string name="accessibility_quick_settings_compass_changed_off">Компас вимкнено.</string>
+    <string name="accessibility_quick_settings_compass_changed_on">Компас увімкнено.</string>
+    <string name="quick_settings_compass_N">Пн</string>
+    <string name="quick_settings_compass_NE">ПнСх</string>
+    <string name="quick_settings_compass_E">Сх</string>
+    <string name="quick_settings_compass_SE">ПдС</string>
+    <string name="quick_settings_compass_S">Пд</string>
+    <string name="quick_settings_compass_SW">ПдЗ</string>
+    <string name="quick_settings_compass_W">З</string>
+    <string name="quick_settings_compass_NW">ПнЗ</string>
+    <string name="global_action_restart_systemui">Інтерфейс системи</string>
+    <string name="omnijaws_service_error">Помилка завантаження даних про погоду</string>
+    <string name="omnijaws_service_unknown">Немає даних про погоду</string>
+    <string name="omnijaws_label_default">Погода</string>
+</resources>

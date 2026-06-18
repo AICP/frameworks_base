@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2012-2025 AICP
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="onthego_notif_ticker">On-The-Go attivato</string>
+    <string name="onthego_notif_title">On-The-Go è attivo</string>
+    <string name="onthego_notif_stop">Stop</string>
+    <string name="onthego_notif_options">Opzioni</string>
+    <string name="onthego_notif_error">Impossibile avviare On-The-Go</string>
+    <string name="onthego_notif_restart">Riavvia On-The-Go</string>
+    <string name="onthego_notif_camera_changed">Modalità fotocamera cambiata</string>
+    <string name="onthego_transparency">Trasparenza</string>
+    <string name="onthego_front_camera">Usa la fotocamera frontale</string>
+    <string name="onthego_service_toggle">Riavvia automaticamente il servizio</string>
+    <string name="onthego_channel_name">Principale</string>
+    <string name="global_action_onthego">On-The-Go</string>
+    <string name="keyguard_indication_warp_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Carica Rapida (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> al completamento)</string>
+    <string name="keyguard_plugged_in_warp_charging"><xliff:g id="percentage">%s</xliff:g> • Carica Rapida</string>
+    <string name="keyguard_indication_vooc_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Carica VOOC (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> al completamento)</string>
+    <string name="keyguard_plugged_in_vooc_charging"><xliff:g id="percentage">%s</xliff:g> • Carica VOOC</string>
+    <string name="keyguard_indication_turbo_power_time"><xliff:g id="percentage">%2$s</xliff:g> • Carica Turbo (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> al completamento)</string>
+    <string name="keyguard_plugged_in_turbo_charging"><xliff:g id="percentage">%s</xliff:g> • Carica Turbo</string>
+    <string name="quick_settings_cpuinfo_label">Info CPU</string>
+    <string name="quick_settings_music_label">Musica</string>
+    <string name="quick_settings_music_play">Play</string>
+    <string name="quick_settings_music_pause">Pausa</string>
+    <string name="quick_aicp_extras_label">AICP Extra</string>
+    <string name="quick_aicp_extras_toast">LOL, credete davvero che quel click lungo vi porterà da qualche parte!!!</string>
+    <string name="quick_settings_volume_panel_label">Pannello del volume</string>
+    <string name="quick_settings_onthego_label">On-The-Go</string>
+    <string name="quick_settings_locale_label">Lingua</string>
+    <string name="quick_settings_compass_label">Bussola</string>
+    <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
+    <string name="quick_settings_compass_init">Inizializzando\u2026</string>
+    <string name="accessibility_quick_settings_compass_off">Bussola spenta.</string>
+    <string name="accessibility_quick_settings_compass_on">Bussola accesa.</string>
+    <string name="accessibility_quick_settings_compass_changed_off">Bussola disattivata.</string>
+    <string name="accessibility_quick_settings_compass_changed_on">Bussola attivata.</string>
+    <string name="quick_settings_compass_N">N</string>
+    <string name="quick_settings_compass_NE">NE</string>
+    <string name="quick_settings_compass_E">E</string>
+    <string name="quick_settings_compass_SE">SE</string>
+    <string name="quick_settings_compass_S">S</string>
+    <string name="quick_settings_compass_SW">SO</string>
+    <string name="quick_settings_compass_W">O</string>
+    <string name="quick_settings_compass_NW">NO</string>
+    <string name="global_action_restart_systemui">SystemUI</string>
+    <string name="omnijaws_service_error">Errore durante il caricamento dei dati meteo</string>
+    <string name="omnijaws_service_unknown">Dati meteo non disponibili</string>
+    <string name="omnijaws_label_default">Meteo</string>
+</resources>

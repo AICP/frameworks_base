@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2012-2025 AICP
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="onthego_notif_ticker">وضع المشي مفعل</string>
+    <string name="onthego_notif_title">وضع المشي نشط</string>
+    <string name="onthego_notif_stop">إيقاف</string>
+    <string name="onthego_notif_options">الخيارات</string>
+    <string name="onthego_notif_error">غير قادر على بدء وضع المشي</string>
+    <string name="onthego_notif_restart">إعادة تشغيل وضع المشي</string>
+    <string name="onthego_notif_camera_changed">تم تغيير وضع الكاميرا</string>
+    <string name="onthego_transparency">الشفافية</string>
+    <string name="onthego_front_camera">استخدام الكاميرا الأمامية</string>
+    <string name="onthego_service_toggle">إعادة تشغيل الخدمة تلقائياً</string>
+    <string name="onthego_channel_name">الأساسية</string>
+    <string name="global_action_onthego">وضع المشي</string>
+    <string name="quick_settings_cpuinfo_label">معلومات المعالج</string>
+    <string name="quick_settings_music_label">موسيقى</string>
+    <string name="quick_settings_music_play">تشغيل</string>
+    <string name="quick_settings_music_pause">إيقاف مؤقت</string>
+    <string name="quick_aicp_extras_toast">ههه, هل ظننت أن الضغط مطولاً قد يأخذك لخيارات أخرى!!!</string>
+    <string name="quick_settings_onthego_label">وضع المشي</string>
+    <string name="quick_settings_locale_label">اللّغة</string>
+    <string name="quick_settings_compass_label">البوصلة</string>
+    <string name="quick_settings_compass_init">تهيئة/u2026</string>
+    <string name="accessibility_quick_settings_compass_off">البوصلة لا تعمل.</string>
+    <string name="accessibility_quick_settings_compass_on">البوصلة تعمل.</string>
+    <string name="accessibility_quick_settings_compass_changed_off">تم تعطيل البوصلة.</string>
+    <string name="accessibility_quick_settings_compass_changed_on">تم تفعيل البوصلة.</string>
+    <string name="quick_settings_compass_N">الشمال</string>
+    <string name="quick_settings_compass_NE">الشمال الشرقي</string>
+    <string name="quick_settings_compass_E">شرق</string>
+    <string name="quick_settings_compass_SE">الجنوب الشرقي</string>
+    <string name="quick_settings_compass_S">الجنوب</string>
+    <string name="quick_settings_compass_SW">الجنوب الغربي</string>
+    <string name="quick_settings_compass_W">الغرب</string>
+    <string name="quick_settings_compass_NW">الشمال الغربي</string>
+    <string name="omnijaws_service_error">خطأ في تحميل بيانات الطقس</string>
+    <string name="omnijaws_service_unknown">لا يوجد بيانات الطقس</string>
+    <string name="omnijaws_label_default">الطقس</string>
+</resources>

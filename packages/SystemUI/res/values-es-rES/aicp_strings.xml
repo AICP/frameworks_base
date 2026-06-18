@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2012-2025 AICP
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="onthego_notif_ticker">Modo En-Marcha activado</string>
+    <string name="onthego_notif_title">El modo En-Marcha está activado</string>
+    <string name="onthego_notif_stop">Detener</string>
+    <string name="onthego_notif_options">Opciones</string>
+    <string name="onthego_notif_error">No se pudo iniciar el modo En-Marcha</string>
+    <string name="onthego_notif_restart">Reiniciar modo En-Marcha</string>
+    <string name="onthego_notif_camera_changed">Modo de cámara cambiado</string>
+    <string name="onthego_transparency">Transparencia</string>
+    <string name="onthego_front_camera">Utilizar la cámara frontal</string>
+    <string name="onthego_service_toggle">Reiniciar el servicio automáticamente</string>
+    <string name="onthego_channel_name">Principal</string>
+    <string name="global_action_onthego">En-marcha</string>
+    <string name="keyguard_indication_warp_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Carga Warp (<xliff:g id="charging_time_left" example="4 horas y 2 minutos">%1$s</xliff:g> para completar)</string>
+    <string name="keyguard_plugged_in_warp_charging"><xliff:g id="percentage">%s</xliff:g> • Carga Warp</string>
+    <string name="keyguard_indication_vooc_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Carga VOOC (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> para carga completa)</string>
+    <string name="keyguard_plugged_in_vooc_charging"><xliff:g id="percentage">%s</xliff:g> Carga VOOC</string>
+    <string name="keyguard_indication_turbo_power_time"><xliff:g id="percentage">%2$s</xliff:g> • Carga Turbo (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> para completar)</string>
+    <string name="keyguard_plugged_in_turbo_charging"><xliff:g id="percentage">%s</xliff:g> • Carga Turbo</string>
+    <string name="quick_settings_cpuinfo_label">Información de la CPU</string>
+    <string name="quick_settings_music_label">Música</string>
+    <string name="quick_settings_music_play">Reproducir</string>
+    <string name="quick_settings_music_pause">Pausar</string>
+    <string name="quick_aicp_extras_label">AICP Extras</string>
+    <string name="quick_aicp_extras_toast">Jajaja, esperabas que la pulsación larga mostrara algo!!!</string>
+    <string name="quick_settings_volume_panel_label">Panel de volumen</string>
+    <string name="quick_settings_onthego_label">En-marcha</string>
+    <string name="quick_settings_smart_pixels">Píxeles inteligentes</string>
+    <string name="quick_settings_smart_pixels_on_power_save">Habilitar píxeles inteligentes automáticamente</string>
+    <string name="quick_settings_locale_label">Idioma</string>
+    <string name="refresh_rate_tile_label">Tasa de refresco</string>
+    <string name="quick_settings_compass_label">Brújula</string>
+    <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
+    <string name="quick_settings_compass_init">Iniciando\u2026</string>
+    <string name="accessibility_quick_settings_compass_off">Brújula deshabilitada.</string>
+    <string name="accessibility_quick_settings_compass_on">Brújula habilitada.</string>
+    <string name="accessibility_quick_settings_compass_changed_off">Brújula apagada.</string>
+    <string name="accessibility_quick_settings_compass_changed_on">Brujula encendida.</string>
+    <string name="quick_settings_compass_N">N</string>
+    <string name="quick_settings_compass_NE">NE</string>
+    <string name="quick_settings_compass_E">E</string>
+    <string name="quick_settings_compass_SE">SE</string>
+    <string name="quick_settings_compass_S">S</string>
+    <string name="quick_settings_compass_SW">SO</string>
+    <string name="quick_settings_compass_W">O</string>
+    <string name="quick_settings_compass_NW">NO</string>
+    <string name="global_action_restart_systemui">SystemUI</string>
+    <string name="omnijaws_service_error">Error al cargar datos meteorológicos</string>
+    <string name="omnijaws_service_unknown">No hay datos metereológicos</string>
+    <string name="omnijaws_label_default">Clima</string>
+</resources>

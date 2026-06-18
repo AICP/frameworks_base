@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2012-2025 AICP
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="onthego_notif_ticker">پاشبنەمای کامێرا چالاککرا</string>
+    <string name="onthego_notif_title">پاشبنەمای کامێرا چالاکە</string>
+    <string name="onthego_notif_stop">ڕاگرتن</string>
+    <string name="onthego_notif_options">بژاردەکان</string>
+    <string name="onthego_notif_error">ناتوانرێ پاشبنەمای کامێرا بکرێتەوە</string>
+    <string name="onthego_notif_restart">دەسپێکردنەوەی پاشبنەمای کامێرا</string>
+    <string name="onthego_notif_camera_changed">دۆخی کامێرا گۆڕدرا</string>
+    <string name="onthego_transparency">ڕوونایەتی</string>
+    <string name="onthego_front_camera">بەکارهێنانی کامێرای پێشەوە</string>
+    <string name="onthego_service_toggle">کارکردنەوەی خۆکاری خزمەتگوزاری</string>
+    <string name="onthego_channel_name">سەرەکی</string>
+    <string name="global_action_onthego">پ. کامێرا</string>
+    <string name="keyguard_indication_warp_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • خێرا بارگاویبوونەوە (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> بۆ پڕبوون)</string>
+    <string name="quick_settings_cpuinfo_label">CPU زانیاری</string>
+    <string name="quick_settings_music_label">میوزیک</string>
+    <string name="quick_settings_music_play">لێدان</string>
+    <string name="quick_settings_music_pause">ڕاگرتن</string>
+    <string name="quick_aicp_extras_toast">لۆل، بەڕاستی واتەزانی ئەو گرتە درێژە دەتباتە شوێنێکیترەوە!!!</string>
+    <string name="quick_settings_onthego_label">پ. کامێرا</string>
+    <string name="quick_settings_locale_label">زمان</string>
+    <string name="quick_settings_compass_label">قیبلەنما</string>
+    <string name="quick_settings_compass_init">ئامادە دەکرێ\u2026</string>
+    <string name="accessibility_quick_settings_compass_off">قیبلەنما ناکارایە.</string>
+    <string name="accessibility_quick_settings_compass_on">قیبلەنما کارایە.</string>
+    <string name="accessibility_quick_settings_compass_changed_off">قیبلەنما ناکاراکرا.</string>
+    <string name="accessibility_quick_settings_compass_changed_on">قیبلەنما کاراکرا.</string>
+    <string name="quick_settings_compass_N">N</string>
+    <string name="quick_settings_compass_NE">NE</string>
+    <string name="quick_settings_compass_E">E</string>
+    <string name="quick_settings_compass_SE">SE</string>
+    <string name="quick_settings_compass_S">S</string>
+    <string name="quick_settings_compass_SW">SW</string>
+    <string name="quick_settings_compass_W">W</string>
+    <string name="quick_settings_compass_NW">NW</string>
+    <string name="global_action_restart_systemui">ڕووکاری سیستەم</string>
+    <string name="omnijaws_service_error">کێشە لە بارکردنی داتای کەش هەیە</string>
+    <string name="omnijaws_service_unknown">زانیاری کەش نییە</string>
+    <string name="omnijaws_label_default">که‌ش وهەوا</string>
+</resources>

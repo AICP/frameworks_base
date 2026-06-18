@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2012-2025 AICP
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="onthego_notif_ticker">On-The-Go aktiviert</string>
+    <string name="onthego_notif_title">On-The-Go ist aktiv</string>
+    <string name="onthego_notif_stop">Stop</string>
+    <string name="onthego_notif_options">Einstellungen</string>
+    <string name="onthego_notif_error">On-The-Go Modus kann nicht gestartet werden</string>
+    <string name="onthego_notif_restart">On-The-Go Modus neu starten</string>
+    <string name="onthego_notif_camera_changed">Kamera-Modus geändert</string>
+    <string name="onthego_transparency">Transparenz</string>
+    <string name="onthego_front_camera">Frontkamera verwenden</string>
+    <string name="onthego_service_toggle">Service automatisch neu starten</string>
+    <string name="onthego_channel_name">Hauptseite</string>
+    <string name="global_action_onthego">On-The-Go</string>
+    <string name="keyguard_indication_dash_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Schnellladen (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> bis zur vollständigen Aufladung.)</string>
+    <string name="keyguard_plugged_in_dash_charging"><xliff:g id="percentage">%s</xliff:g> • Schnellladen</string>
+    <string name="keyguard_indication_warp_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Warp-Ladevorgang (<xliff:g id="charging_time_left" example="4 Stunden und 2 Minuten">%1$s</xliff:g> bis voll)</string>
+    <string name="keyguard_plugged_in_warp_charging"><xliff:g id="percentage">%s</xliff:g> • Warp-Ladevorgang</string>
+    <string name="keyguard_indication_vooc_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • VOOC-Ladevorgang (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> bis zur vollständigen Aufladung)</string>
+    <string name="keyguard_plugged_in_vooc_charging"><xliff:g id="percentage">%s</xliff:g> • VOOC-Ladevorgang</string>
+    <string name="keyguard_indication_turbo_power_time"><xliff:g id="percentage">%2$s</xliff:g> • Turbo-Ladevorgang (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> bis zur vollständigen Aufladung)</string>
+    <string name="keyguard_plugged_in_turbo_charging"><xliff:g id="percentage">%s</xliff:g> • Turbo-Ladevorgang</string>
+    <string name="quick_settings_cpuinfo_label">CPU-Info</string>
+    <string name="quick_settings_music_label">Musik</string>
+    <string name="quick_settings_music_play">Abspielen</string>
+    <string name="quick_settings_music_pause">Pause</string>
+    <string name="quick_aicp_extras_label">AICP Extras</string>
+    <string name="quick_aicp_extras_toast">LOL, Du hast tatsächlich geglaubt, dass \'Langes Drücken\' dich irgendwo hinbringt?!</string>
+    <string name="quick_settings_volume_panel_label">Lautstärkepanel</string>
+    <string name="quick_settings_onthego_label">On-The-Go</string>
+    <string name="quick_settings_smart_pixels">Smart Pixels</string>
+    <string name="quick_settings_smart_pixels_on_power_save">Smart Pixels automatisch einschalten</string>
+    <string name="quick_settings_locale_label">Sprache</string>
+    <string name="quick_settings_locale_more_locales_toast">Konfigurieren Sie zuerst mehrere Sprachen</string>
+    <string name="refresh_rate_tile_label">Aktualisierungsrate</string>
+    <string name="auto_mode_label">Automatisch</string>
+    <string name="quick_settings_compass_label">Kompass</string>
+    <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
+    <string name="quick_settings_compass_init">Initialisierung\u2026</string>
+    <string name="accessibility_quick_settings_compass_off">Kompass AUS</string>
+    <string name="accessibility_quick_settings_compass_on">Kompass AN</string>
+    <string name="accessibility_quick_settings_compass_changed_off">Kompass abgeschaltet.</string>
+    <string name="accessibility_quick_settings_compass_changed_on">Kompass eingeschaltet.</string>
+    <string name="quick_settings_compass_N">N</string>
+    <string name="quick_settings_compass_NE">NO</string>
+    <string name="quick_settings_compass_E">O</string>
+    <string name="quick_settings_compass_SE">SO</string>
+    <string name="quick_settings_compass_S">S</string>
+    <string name="quick_settings_compass_SW">SW</string>
+    <string name="quick_settings_compass_W">W</string>
+    <string name="quick_settings_compass_NW">NW</string>
+    <plurals name="quick_settings_internet_hotspot_summary_num_devices">
+        <item quantity="one">%d Gerät verbunden</item>
+        <item quantity="other">%d Geräte verbunden</item>
+    </plurals>
+    <string name="global_action_restart_systemui">SystemUI</string>
+    <string name="enable_fiveg">5G aktivieren</string>
+    <string name="omnijaws_service_error">Fehler beim Laden der Wetterdaten</string>
+    <string name="omnijaws_service_unknown">keine Wetterdaten</string>
+    <string name="omnijaws_label_default">Wetter</string>
+    <string name="weather_condition_clouds">Bewölkt</string>
+    <string name="weather_condition_rain">Regnerisch</string>
+    <string name="weather_condition_clear">Wolkenlos</string>
+    <string name="weather_condition_storm">Stürmisch</string>
+    <string name="weather_condition_snow">Schnee</string>
+    <string name="weather_condition_wind">Windig</string>
+    <string name="weather_condition_mist">Nebel</string>
+    <string name="status_bar_roaming">Roaming-Anzeige</string>
+    <string name="status_bar_hd_calling">HD-Anruf (VoLTE/VoNR)</string>
+    <string name="status_bar_vowifi">WLAN-Anruf (VoWiFi)</string>
+    <string name="status_bar_wifi_standard">WLAN-Standard anzeigen</string>
+    <string name="mic_camera_privacy_indicator_title">Anzeige bei Mikrofon-/Kamerazugriff</string>
+    <string name="location_privacy_indicator_title">Anzeige bei Standortzugriff</string>
+    <string name="projection_privacy_indicator_title">Anzeige bei Streamen des Bildschirms</string>
+    <string name="data_disabled_icon_title">Symbol für deaktivierte Mobile Daten anzeigen</string>
+    <string name="show_fourg_icon_title">4G Symbol</string>
+</resources>

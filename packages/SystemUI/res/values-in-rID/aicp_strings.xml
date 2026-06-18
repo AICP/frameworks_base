@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2012-2025 AICP
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="onthego_notif_ticker">On-The-Go diaktifkan</string>
+    <string name="onthego_notif_title">On-The-Go aktif</string>
+    <string name="onthego_notif_stop">Hentikan</string>
+    <string name="onthego_notif_options">Pilihan</string>
+    <string name="onthego_notif_error">Tidak dapat memulai On-The-Go</string>
+    <string name="onthego_notif_restart">Mulai ulang On-The-Go</string>
+    <string name="onthego_notif_camera_changed">Modus kamera berubah</string>
+    <string name="onthego_transparency">Transparansi</string>
+    <string name="onthego_front_camera">Gunakan kamera depan</string>
+    <string name="onthego_service_toggle">Otomatis mulai ulang layanan</string>
+    <string name="onthego_channel_name">Utama</string>
+    <string name="global_action_onthego">On-The-Go</string>
+    <string name="keyguard_plugged_in_dash_charging"><xliff:g id="percentage">%s</xliff:g> • Pengisian Daya Cepat</string>
+    <string name="keyguard_indication_warp_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Pengisian daya pintar (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> hingga penuh)</string>
+    <string name="keyguard_plugged_in_warp_charging"><xliff:g id="percentage">%s</xliff:g> • Pengisian Warp</string>
+    <string name="keyguard_indication_vooc_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Pengisian VOOC (<xliff:g id="charging_time_left" example="4 jam 2 menit">%1$s</xliff:g> hingga penuh)</string>
+    <string name="keyguard_plugged_in_vooc_charging"><xliff:g id="percentage">%s</xliff:g> • Pengisian VOOC</string>
+    <string name="keyguard_indication_turbo_power_time"><xliff:g id="percentage">%2$s</xliff:g> • Pengisian Turbo (<xliff:g id="charging_time_left" example="4 jam 2 menit">%1$s</xliff:g> hingga penuh)</string>
+    <string name="keyguard_plugged_in_turbo_charging"><xliff:g id="percentage">%s</xliff:g> • Pengisian Turbo</string>
+    <string name="quick_settings_cpuinfo_label">Info CPU</string>
+    <string name="quick_settings_music_label">Musik</string>
+    <string name="quick_settings_music_play">Putar</string>
+    <string name="quick_settings_music_pause">Jeda</string>
+    <string name="quick_aicp_extras_label">AICP Extras</string>
+    <string name="quick_aicp_extras_toast">LOL, Anda benar-benar berpikir bahwa dengan menekan lama akan membawa Anda ke suatu tempat!!!</string>
+    <string name="quick_settings_volume_panel_label">Panel volume</string>
+    <string name="quick_settings_onthego_label">On-The-Go</string>
+    <string name="quick_settings_smart_pixels">Piksel Cerdas</string>
+    <string name="quick_settings_smart_pixels_on_power_save">Aktifkan otomatis Piksel Cerdas</string>
+    <string name="quick_settings_locale_label">Bahasa</string>
+    <string name="quick_settings_locale_more_locales_toast">Konfigurasikan beberapa bahasa terlebih dahulu</string>
+    <string name="refresh_rate_tile_label">Kecepatan refresh</string>
+    <string name="auto_mode_label">Otomatis</string>
+    <string name="quick_settings_compass_label">Kompas</string>
+    <string name="quick_settings_compass_init">Memulai\u2026</string>
+    <string name="accessibility_quick_settings_compass_off">Kompas mati.</string>
+    <string name="accessibility_quick_settings_compass_on">Kompas hidup.</string>
+    <string name="accessibility_quick_settings_compass_changed_off">Kompas dimatikan.</string>
+    <string name="accessibility_quick_settings_compass_changed_on">Kompas dihidupkan.</string>
+    <string name="quick_settings_compass_N">U</string>
+    <string name="quick_settings_compass_NE">TL</string>
+    <string name="quick_settings_compass_E">T</string>
+    <string name="quick_settings_compass_SE">TG</string>
+    <string name="quick_settings_compass_S">S</string>
+    <string name="quick_settings_compass_SW">BD</string>
+    <string name="quick_settings_compass_W">B</string>
+    <string name="quick_settings_compass_NW">BL</string>
+    <plurals name="quick_settings_internet_hotspot_summary_num_devices">
+        <item quantity="other">%d perangkat terhubung</item>
+    </plurals>
+    <string name="global_action_restart_systemui">SystemUI</string>
+    <string name="enable_fiveg">Aktifkan 5G</string>
+    <string name="omnijaws_service_error">Kesalahan saat memuat data cuaca</string>
+    <string name="omnijaws_service_unknown">Tidak ada data cuaca</string>
+    <string name="omnijaws_label_default">Cuaca</string>
+    <string name="weather_condition_clouds">Berawan</string>
+    <string name="weather_condition_rain">Hujan</string>
+    <string name="weather_condition_clear">Langit Cerah</string>
+    <string name="weather_condition_storm">Badai</string>
+    <string name="weather_condition_snow">Salju</string>
+    <string name="weather_condition_wind">Berangin</string>
+    <string name="weather_condition_mist">Berkabut</string>
+    <string name="status_bar_roaming">Indikator roaming</string>
+    <string name="status_bar_hd_calling">Panggilan HD (VoLTE/VoNR)</string>
+    <string name="status_bar_vowifi">Panggilan Wi-Fi (VoWiFi)</string>
+    <string name="status_bar_wifi_standard">Nomor standar Wi-Fi</string>
+    <string name="mic_camera_privacy_indicator_title">Indikator privasi mikrofon dan kamera</string>
+    <string name="location_privacy_indicator_title">Indikator privasi lokasi</string>
+    <string name="projection_privacy_indicator_title">Indikator privasi proyeksi media</string>
+    <string name="data_disabled_icon_title">Ikon data dinonaktifkan</string>
+    <string name="show_fourg_icon_title">Ikon 4G</string>
+</resources>

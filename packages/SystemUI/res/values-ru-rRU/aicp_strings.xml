@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2012-2025 AICP
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="onthego_notif_ticker">Режим \"На ходу\" активирован</string>
+    <string name="onthego_notif_title">Режим \"На ходу\" активен</string>
+    <string name="onthego_notif_stop">Стоп</string>
+    <string name="onthego_notif_options">Настройки</string>
+    <string name="onthego_notif_error">Не удаётся включить режим \"На ходу\"</string>
+    <string name="onthego_notif_restart">Перезапустить режим \"На ходу\"</string>
+    <string name="onthego_notif_camera_changed">Изменён режим камеры</string>
+    <string name="onthego_transparency">Прозрачность</string>
+    <string name="onthego_front_camera">Использовать переднюю камеру</string>
+    <string name="onthego_service_toggle">Автоматически перезапустить службу</string>
+    <string name="onthego_channel_name">Главный</string>
+    <string name="global_action_onthego">Режим \"На ходу\"</string>
+    <string name="keyguard_indication_warp_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Warp зарядка (<xliff:g id="charging_time_left" example="4 часа и 2 минуты">%1$s</xliff:g> до полной зарядки)</string>
+    <string name="keyguard_plugged_in_warp_charging"><xliff:g id="percentage">%s</xliff:g> • Warp зарядка</string>
+    <string name="keyguard_indication_vooc_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • VOOC зарядка (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> до полной)</string>
+    <string name="keyguard_plugged_in_vooc_charging"><xliff:g id="percentage">%s</xliff:g> • VOOC зарядка</string>
+    <string name="keyguard_indication_turbo_power_time"><xliff:g id="percentage">%2$s</xliff:g> • Турбо зарядка (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> до полной)</string>
+    <string name="keyguard_plugged_in_turbo_charging"><xliff:g id="percentage">%s</xliff:g> • Турбо зарядка</string>
+    <string name="quick_settings_cpuinfo_label">Информация о процессоре</string>
+    <string name="quick_settings_music_label">Музыка</string>
+    <string name="quick_settings_music_play">Пуск</string>
+    <string name="quick_settings_music_pause">Пауза</string>
+    <string name="quick_aicp_extras_label">AICP Extras</string>
+    <string name="quick_aicp_extras_toast">АХАХАХ, вы действительно думали, что долгое нажатие перенесёт вас куда-то!!!</string>
+    <string name="quick_settings_volume_panel_label">Панель громкости</string>
+    <string name="quick_settings_onthego_label">Режим \"На ходу\"</string>
+    <string name="quick_settings_smart_pixels">Умные пиксели</string>
+    <string name="quick_settings_smart_pixels_on_power_save">Авто-включаемые умные пиксели</string>
+    <string name="quick_settings_locale_label">Язык</string>
+    <string name="refresh_rate_tile_label">Частота обновления</string>
+    <string name="quick_settings_compass_label">Компас</string>
+    <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
+    <string name="quick_settings_compass_init">Инициализация\u2026</string>
+    <string name="accessibility_quick_settings_compass_off">Компас выкл.</string>
+    <string name="accessibility_quick_settings_compass_on">Компас вкл.</string>
+    <string name="accessibility_quick_settings_compass_changed_off">Компас выключен.</string>
+    <string name="accessibility_quick_settings_compass_changed_on">Компас включен.</string>
+    <string name="quick_settings_compass_N">С</string>
+    <string name="quick_settings_compass_NE">СВ</string>
+    <string name="quick_settings_compass_E">В</string>
+    <string name="quick_settings_compass_SE">ЮВ</string>
+    <string name="quick_settings_compass_S">Ю</string>
+    <string name="quick_settings_compass_SW">ЮЗ</string>
+    <string name="quick_settings_compass_W">З</string>
+    <string name="quick_settings_compass_NW">СЗ</string>
+    <string name="global_action_restart_systemui">Системный интерфейс</string>
+    <string name="omnijaws_service_error">Ошибка при загрузке данных о погоде</string>
+    <string name="omnijaws_service_unknown">Нет данных о погоде</string>
+    <string name="omnijaws_label_default">Погода</string>
+</resources>

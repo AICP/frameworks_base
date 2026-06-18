@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2012-2025 AICP
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="onthego_notif_ticker">On-The-Go aktivováno</string>
+    <string name="onthego_notif_title">On-The-Go je aktivní</string>
+    <string name="onthego_notif_stop">Zastavit</string>
+    <string name="onthego_notif_options">Možnosti</string>
+    <string name="onthego_notif_error">On-The-Go nelze spustit</string>
+    <string name="onthego_notif_restart">Restartovat On-The-Go</string>
+    <string name="onthego_notif_camera_changed">Režim fotoaparátu byl změněn</string>
+    <string name="onthego_transparency">Průhlednost</string>
+    <string name="onthego_front_camera">Použít přední fotoaparát</string>
+    <string name="onthego_service_toggle">Automaticky restartovat službu</string>
+    <string name="onthego_channel_name">Hlavní</string>
+    <string name="global_action_onthego">On-The-Go</string>
+    <string name="keyguard_indication_warp_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Warp nabíjení (zbývá <xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> do plného nabití)</string>
+    <string name="keyguard_plugged_in_warp_charging"><xliff:g id="percentage">%s</xliff:g> • Warp nabíjení</string>
+    <string name="keyguard_indication_vooc_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • VOOC nabíjení (zbývá <xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> do plného nabití)</string>
+    <string name="keyguard_plugged_in_vooc_charging"><xliff:g id="percentage">%s</xliff:g> • VOOC nabíjení</string>
+    <string name="keyguard_indication_turbo_power_time"><xliff:g id="percentage">%2$s</xliff:g> • Turbo nabíjení (zbývá <xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> do plného nabití)</string>
+    <string name="keyguard_plugged_in_turbo_charging"><xliff:g id="percentage">%s</xliff:g> • Turbo nabíjení</string>
+    <string name="quick_settings_cpuinfo_label">Informace o CPU</string>
+    <string name="quick_settings_music_label">Hudba</string>
+    <string name="quick_settings_music_play">Přehrát</string>
+    <string name="quick_settings_music_pause">Pozastavit</string>
+    <string name="quick_aicp_extras_label">AICP Extras</string>
+    <string name="quick_aicp_extras_toast">Haha! Vážně sis myslel, že dlouhé kliknutí tě někam dostane!</string>
+    <string name="quick_settings_volume_panel_label">Panel hlasitosti</string>
+    <string name="quick_settings_onthego_label">On-The-Go</string>
+    <string name="quick_settings_smart_pixels">Smart Pixels</string>
+    <string name="quick_settings_smart_pixels_on_power_save">Automaticky povolit Smart Pixels</string>
+    <string name="quick_settings_locale_label">Jazyk</string>
+    <string name="refresh_rate_tile_label">Obnovovací frekvence</string>
+    <string name="quick_settings_compass_label">Kompas</string>
+    <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
+    <string name="quick_settings_compass_init">Spouštění\u2026</string>
+    <string name="accessibility_quick_settings_compass_off">Kompas vypnutý.</string>
+    <string name="accessibility_quick_settings_compass_on">Kompas zapnutý.</string>
+    <string name="accessibility_quick_settings_compass_changed_off">Kompas vypnutý.</string>
+    <string name="accessibility_quick_settings_compass_changed_on">Kompas zapnutý.</string>
+    <string name="quick_settings_compass_N">S</string>
+    <string name="quick_settings_compass_NE">SV</string>
+    <string name="quick_settings_compass_E">V</string>
+    <string name="quick_settings_compass_SE">JV</string>
+    <string name="quick_settings_compass_S">J</string>
+    <string name="quick_settings_compass_SW">JZ</string>
+    <string name="quick_settings_compass_W">Z</string>
+    <string name="quick_settings_compass_NW">SZ</string>
+    <string name="global_action_restart_systemui">SystemUI</string>
+    <string name="omnijaws_service_error">Chyba při načítání údajů o počasí</string>
+    <string name="omnijaws_service_unknown">Žádné údaje o počasí</string>
+    <string name="omnijaws_label_default">Počasí</string>
+</resources>

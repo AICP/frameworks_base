@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2012-2025 AICP
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="onthego_notif_ticker">På-Farten aktiveret</string>
+    <string name="onthego_notif_title">På-Farten er aktiv</string>
+    <string name="onthego_notif_stop">Stop</string>
+    <string name="onthego_notif_options">Valgmuligheder</string>
+    <string name="onthego_notif_error">Kan ikke starte På-Farten</string>
+    <string name="onthego_notif_restart">Genstart På-Farten</string>
+    <string name="onthego_notif_camera_changed">Kameratilstand ændret</string>
+    <string name="onthego_transparency">Gennemsigtighed</string>
+    <string name="onthego_front_camera">Brug frontkamera</string>
+    <string name="onthego_service_toggle">Genstart automatisk tjenesten</string>
+    <string name="onthego_channel_name">Primær</string>
+    <string name="global_action_onthego">På-Farten</string>
+    <string name="keyguard_indication_warp_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Warp-Lader (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> til fuld)</string>
+    <string name="keyguard_plugged_in_warp_charging"><xliff:g id="percentage">%s</xliff:g> • Warp-Lader</string>
+    <string name="keyguard_indication_vooc_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • VOOC-Lader (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> indtil fuld)</string>
+    <string name="keyguard_plugged_in_vooc_charging"><xliff:g id="percentage">%s</xliff:g> • VOOC-Lader</string>
+    <string name="keyguard_indication_turbo_power_time"><xliff:g id="percentage">%2$s</xliff:g> • Turbolader (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> indtil fuld)</string>
+    <string name="keyguard_plugged_in_turbo_charging"><xliff:g id="percentage">%s</xliff:g> • Turbolader</string>
+    <string name="quick_settings_cpuinfo_label">CPU-info</string>
+    <string name="quick_settings_music_label">Musik</string>
+    <string name="quick_settings_music_play">Afspil</string>
+    <string name="quick_settings_music_pause">Pause</string>
+    <string name="quick_aicp_extras_label">AICP-Ekstra</string>
+    <string name="quick_aicp_extras_toast">Ha! Du troede virkelig, at et langt tryk ville gøre noget for dig!!!</string>
+    <string name="quick_settings_volume_panel_label">Lydstyrkepanel</string>
+    <string name="quick_settings_onthego_label">På-Farten</string>
+    <string name="quick_settings_locale_label">Sprog</string>
+    <string name="quick_settings_compass_label">Kompas</string>
+    <string name="quick_settings_compass_init">Initialiserer\u2026</string>
+    <string name="accessibility_quick_settings_compass_off">Kompas fra.</string>
+    <string name="accessibility_quick_settings_compass_on">Kompas til.</string>
+    <string name="accessibility_quick_settings_compass_changed_off">Kompas slået fra.</string>
+    <string name="accessibility_quick_settings_compass_changed_on">Kompas slået til.</string>
+    <string name="quick_settings_compass_N">N</string>
+    <string name="quick_settings_compass_NE">NØ</string>
+    <string name="quick_settings_compass_E">Ø</string>
+    <string name="quick_settings_compass_SE">SØ</string>
+    <string name="quick_settings_compass_S">S</string>
+    <string name="quick_settings_compass_SW">SV</string>
+    <string name="quick_settings_compass_W">V</string>
+    <string name="quick_settings_compass_NW">NV</string>
+    <string name="global_action_restart_systemui">Systembrugerfalde</string>
+    <string name="omnijaws_service_error">Fejl ved indlæsning af vejrdata</string>
+    <string name="omnijaws_service_unknown">Ingen vejrdata</string>
+    <string name="omnijaws_label_default">Vejr</string>
+</resources>

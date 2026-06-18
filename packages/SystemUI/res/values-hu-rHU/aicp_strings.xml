@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2012-2025 AICP
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="onthego_notif_ticker">Menet közben mód aktiválva</string>
+    <string name="onthego_notif_title">A Menet közben mód aktív</string>
+    <string name="onthego_notif_stop">Megállítás</string>
+    <string name="onthego_notif_options">Beállítások</string>
+    <string name="onthego_notif_error">Nem lehet elindítani a Menet közben módot</string>
+    <string name="onthego_notif_restart">A Menet közben mód újraindítása</string>
+    <string name="onthego_notif_camera_changed">A Kameramód megváltoztatva</string>
+    <string name="onthego_transparency">Átlátszóság</string>
+    <string name="onthego_front_camera">Előlapi kamera használata</string>
+    <string name="onthego_service_toggle">Szolgáltatás automatikus újraindítása</string>
+    <string name="onthego_channel_name">Fő</string>
+    <string name="global_action_onthego">Menet közben</string>
+    <string name="keyguard_indication_warp_charging_time"><xliff:g id="percentage">%2$s</xliff:g> Lánctöltés (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> a teljes töltöttségig)</string>
+    <string name="keyguard_plugged_in_warp_charging"><xliff:g id="percentage">%s</xliff:g> • Lánctöltés</string>
+    <string name="keyguard_indication_vooc_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • VOOC Töltés (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> a teljes feltöltésig)</string>
+    <string name="keyguard_plugged_in_vooc_charging"><xliff:g id="percentage">%s</xliff:g> • VOOC Töltés</string>
+    <string name="keyguard_indication_turbo_power_time"><xliff:g id="percentage">%2$s</xliff:g> • Turbó töltés (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> a teljes töltöttségig)</string>
+    <string name="keyguard_plugged_in_turbo_charging"><xliff:g id="percentage">%s</xliff:g> • Turbó töltés</string>
+    <string name="quick_settings_cpuinfo_label">CPU-adatok</string>
+    <string name="quick_settings_music_label">Zene</string>
+    <string name="quick_settings_music_play">Lejátszás</string>
+    <string name="quick_settings_music_pause">Szüneteltetés</string>
+    <string name="quick_aicp_extras_label">AICP-Extrák</string>
+    <string name="quick_aicp_extras_toast">Hűha, komolyan azt hitted a hosszan kattintás eljuttat téged valahová!!!</string>
+    <string name="quick_settings_volume_panel_label">Hangerőszabályzó</string>
+    <string name="quick_settings_onthego_label">Menet közben</string>
+    <string name="quick_settings_smart_pixels">Intelligens pixelek</string>
+    <string name="quick_settings_smart_pixels_on_power_save">Intelligens pixelek automatikus engedélyezése</string>
+    <string name="quick_settings_locale_label">Nyelv</string>
+    <string name="refresh_rate_tile_label">Frissítési gyakoriság</string>
+    <string name="quick_settings_compass_label">Iránytű</string>
+    <string name="quick_settings_compass_init">Előkészítés\u2026</string>
+    <string name="accessibility_quick_settings_compass_off">Iránytű ki.</string>
+    <string name="accessibility_quick_settings_compass_on">Iránytű be.</string>
+    <string name="accessibility_quick_settings_compass_changed_off">Iránytű kikapcsolva.</string>
+    <string name="accessibility_quick_settings_compass_changed_on">Iránytű bekapcsolva.</string>
+    <string name="quick_settings_compass_N">É</string>
+    <string name="quick_settings_compass_NE">ÉK</string>
+    <string name="quick_settings_compass_E">K</string>
+    <string name="quick_settings_compass_SE">DK</string>
+    <string name="quick_settings_compass_S">D</string>
+    <string name="quick_settings_compass_SW">DNY</string>
+    <string name="quick_settings_compass_W">NY</string>
+    <string name="quick_settings_compass_NW">ÉNY</string>
+    <string name="global_action_restart_systemui">Felhasználói felület</string>
+    <string name="omnijaws_service_error">Hiba az időjárásadatok betöltésekor</string>
+    <string name="omnijaws_service_unknown">Nincsenek időjárási adatok</string>
+    <string name="omnijaws_label_default">Időjárás</string>
+</resources>

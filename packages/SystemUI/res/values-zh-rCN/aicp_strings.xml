@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2012-2025 AICP
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="onthego_notif_ticker">行走模式已启用</string>
+    <string name="onthego_notif_title">行走模式正在运行</string>
+    <string name="onthego_notif_stop">停止</string>
+    <string name="onthego_notif_options">选项</string>
+    <string name="onthego_notif_error">无法启动行走模式</string>
+    <string name="onthego_notif_restart">重新启动行走模式</string>
+    <string name="onthego_notif_camera_changed">相机模式已更改</string>
+    <string name="onthego_transparency">透明度</string>
+    <string name="onthego_front_camera">使用前置摄像头</string>
+    <string name="onthego_service_toggle">自动重启服务</string>
+    <string name="onthego_channel_name">主要</string>
+    <string name="global_action_onthego">行走模式</string>
+    <string name="keyguard_indication_warp_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Warp 闪充中 (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> 后充满)</string>
+    <string name="keyguard_plugged_in_warp_charging"><xliff:g id="percentage">%s</xliff:g> • Warp闪充</string>
+    <string name="keyguard_indication_vooc_charging_time">&lt;xliff:g id=\"percentage\"&gt;%2$s&lt;/xliff:g&gt; • VOOC闪充中 (预计&lt;xliff:g id=\"charging_time_left\" 后&gt;%1$s&lt;/xliff:g&gt; 充满)</string>
+    <string name="keyguard_plugged_in_vooc_charging"><xliff:g id="percentage">%s</xliff:g> • VOOC 闪充中</string>
+    <string name="keyguard_indication_turbo_power_time"><xliff:g id="percentage">%2$s</xliff:g> • 快速充电中 (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> 后充满)</string>
+    <string name="keyguard_plugged_in_turbo_charging"><xliff:g id="percentage">%s</xliff:g> • 快速充电中</string>
+    <string name="quick_settings_cpuinfo_label">CPU 信息</string>
+    <string name="quick_settings_music_label">音乐</string>
+    <string name="quick_settings_music_play">播放</string>
+    <string name="quick_settings_music_pause">暂停</string>
+    <string name="quick_aicp_extras_label">AICP 额外设置</string>
+    <string name="quick_aicp_extras_toast">你真的认为长按会打开什么!? (大声笑)</string>
+    <string name="quick_settings_volume_panel_label">音量面板</string>
+    <string name="quick_settings_onthego_label">行走模式</string>
+    <string name="quick_settings_smart_pixels">智能像素</string>
+    <string name="quick_settings_smart_pixels_on_power_save">自动启用智能像素</string>
+    <string name="quick_settings_locale_label">语言</string>
+    <string name="refresh_rate_tile_label">刷新率</string>
+    <string name="quick_settings_compass_label">指南针</string>
+    <string name="quick_settings_compass_init">正在初始化\u2026</string>
+    <string name="accessibility_quick_settings_compass_off">指南针关闭</string>
+    <string name="accessibility_quick_settings_compass_on">指南针开启</string>
+    <string name="accessibility_quick_settings_compass_changed_off">指南针已关闭</string>
+    <string name="accessibility_quick_settings_compass_changed_on">指南针已开启</string>
+    <string name="quick_settings_compass_N">北</string>
+    <string name="quick_settings_compass_NE">东北</string>
+    <string name="quick_settings_compass_E">东</string>
+    <string name="quick_settings_compass_SE">东南</string>
+    <string name="quick_settings_compass_S">南</string>
+    <string name="quick_settings_compass_SW">西南</string>
+    <string name="quick_settings_compass_W">西</string>
+    <string name="quick_settings_compass_NW">西北</string>
+    <string name="global_action_restart_systemui">系统界面</string>
+    <string name="omnijaws_service_error">加载天气数据时出错</string>
+    <string name="omnijaws_service_unknown">没有天气数据</string>
+    <string name="omnijaws_label_default">天气</string>
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2012-2022 AICP
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="aerr_copy">Skopiuj URL logu</string>
+    <string name="url_copy_success">Pomyślnie skopiowano URL</string>
+    <string name="url_copy_failed">Wystąpił błąd podczas przesyłania logów do serwisu AICP</string>
+    <string name="unlock_application">Odblokuj <xliff:g id="label" example="Telegram">%1$s</xliff:g></string>
+    <string name="pocket_mode_instructions_header">Aby użyć telefonu:</string>
+</resources>

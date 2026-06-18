@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2012-2025 AICP
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="quick_settings_cpuinfo_label">CPU informacije</string>
+    <string name="quick_aicp_extras_toast">LOL, stvarno ste mislili da će Vas dugi pritisak nekamo odvesti!!!</string>
+    <string name="quick_settings_compass_label">Kompas</string>
+    <string name="quick_settings_compass_init">Inicijalizacija\u2026</string>
+    <string name="accessibility_quick_settings_compass_off">Kompas isključen.</string>
+    <string name="accessibility_quick_settings_compass_on">Kompas uključen.</string>
+    <string name="accessibility_quick_settings_compass_changed_off">Kompas je isključen.</string>
+    <string name="accessibility_quick_settings_compass_changed_on">Kompas je uključen.</string>
+    <string name="quick_settings_compass_N">S</string>
+    <string name="quick_settings_compass_NE">SI</string>
+    <string name="quick_settings_compass_E">I</string>
+    <string name="quick_settings_compass_SE">JI</string>
+    <string name="quick_settings_compass_S">J</string>
+    <string name="quick_settings_compass_SW">JZ</string>
+    <string name="quick_settings_compass_W">Z</string>
+    <string name="quick_settings_compass_NW">SZ</string>
+    <string name="omnijaws_service_error">Greška pri učitavanju podataka o vremenu</string>
+    <string name="omnijaws_service_unknown">Nema podataka o vremenu</string>
+    <string name="omnijaws_label_default">Vrijeme</string>
+</resources>

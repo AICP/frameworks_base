@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2012-2025 AICP
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="keyguard_plugged_in_warp_charging"><xliff:g id="percentage">%s</xliff:g> • Wشارژ بی‌سیم</string>
+    <string name="keyguard_indication_vooc_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • شارژ فوق سریع (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> تا کامل شود)</string>
+    <string name="keyguard_plugged_in_vooc_charging"><xliff:g id="percentage">%s</xliff:g> • شارژ فوق سریع</string>
+    <string name="keyguard_indication_turbo_power_time"><xliff:g id="percentage">%2$s</xliff:g> • شارژ سریع (<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g> تا کامل شود)</string>
+    <string name="keyguard_plugged_in_turbo_charging"><xliff:g id="percentage">%s</xliff:g> • شارژ سریع</string>
+    <string name="quick_aicp_extras_label">موارد اضافی AICP</string>
+    <string name="quick_settings_volume_panel_label">پنل صدا</string>
+</resources>

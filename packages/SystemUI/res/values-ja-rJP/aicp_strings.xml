@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2012-2025 AICP
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="onthego_notif_ticker">On-The-Go モードを有効化しました</string>
+    <string name="onthego_notif_title">On-The-Go が有効です</string>
+    <string name="onthego_notif_stop">停止</string>
+    <string name="onthego_notif_options">オプション</string>
+    <string name="onthego_notif_error">On-The-Go を開始できません</string>
+    <string name="onthego_notif_restart">On-The-Go を再起動</string>
+    <string name="onthego_notif_camera_changed">カメラモードを変更しました</string>
+    <string name="onthego_transparency">透過度</string>
+    <string name="onthego_front_camera">フロントカメラを使用</string>
+    <string name="onthego_service_toggle">サービスを自動的に再起動する</string>
+    <string name="onthego_channel_name">メイン</string>
+    <string name="global_action_onthego">On-The-Go</string>
+    <string name="keyguard_indication_warp_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • Warp Charging (充電完了まで残り<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g>)</string>
+    <string name="keyguard_plugged_in_warp_charging"><xliff:g id="percentage">%s</xliff:g> • Warp Charging</string>
+    <string name="keyguard_indication_vooc_charging_time"><xliff:g id="percentage">%2$s</xliff:g> • VOOC Charging (充電完了まで残り<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g>)</string>
+    <string name="keyguard_plugged_in_vooc_charging"><xliff:g id="percentage">%s</xliff:g> • VOOC Charging</string>
+    <string name="keyguard_indication_turbo_power_time"><xliff:g id="percentage">%2$s</xliff:g> • Turbo Charging (充電完了まで残り<xliff:g id="charging_time_left" example="4 hours and 2 minutes">%1$s</xliff:g>)</string>
+    <string name="keyguard_plugged_in_turbo_charging"><xliff:g id="percentage">%s</xliff:g> • Turbo Charging</string>
+    <string name="quick_settings_cpuinfo_label">CPU 情報</string>
+    <string name="quick_settings_music_label">音楽</string>
+    <string name="quick_settings_music_play">再生</string>
+    <string name="quick_settings_music_pause">一時停止</string>
+    <string name="quick_aicp_extras_label">AICP エクストラ</string>
+    <string name="quick_aicp_extras_toast">長押しで何か起きると思った? 残念! 何も起こりません!</string>
+    <string name="quick_settings_volume_panel_label">音量パネル</string>
+    <string name="quick_settings_onthego_label">On-The-Go</string>
+    <string name="quick_settings_smart_pixels">スマートピクセル</string>
+    <string name="quick_settings_smart_pixels_on_power_save">自動有効</string>
+    <string name="quick_settings_locale_label">言語</string>
+    <string name="refresh_rate_tile_label">リフレッシュレート</string>
+    <string name="quick_settings_compass_label">コンパス</string>
+    <string name="quick_settings_compass_value"><xliff:g id="degrees">%1$.0f</xliff:g>\u00b0 <xliff:g id="direction">%2$s</xliff:g></string>
+    <string name="quick_settings_compass_init">初期化中...</string>
+    <string name="accessibility_quick_settings_compass_off">コンパス OFF</string>
+    <string name="accessibility_quick_settings_compass_on">コンパス ON</string>
+    <string name="accessibility_quick_settings_compass_changed_off">コンパスを OFF にしました</string>
+    <string name="accessibility_quick_settings_compass_changed_on">コンパスを ON にしました</string>
+    <string name="quick_settings_compass_N">北</string>
+    <string name="quick_settings_compass_NE">北東</string>
+    <string name="quick_settings_compass_E">東</string>
+    <string name="quick_settings_compass_SE">南東</string>
+    <string name="quick_settings_compass_S">南</string>
+    <string name="quick_settings_compass_SW">南西</string>
+    <string name="quick_settings_compass_W">西</string>
+    <string name="quick_settings_compass_NW">北西</string>
+    <string name="global_action_restart_systemui">システム UI</string>
+    <string name="omnijaws_service_error">気象データの読み込みエラー</string>
+    <string name="omnijaws_service_unknown">天気データがありません</string>
+    <string name="omnijaws_label_default">天気</string>
+</resources>

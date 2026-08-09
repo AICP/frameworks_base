@@ -27,8 +27,6 @@ import com.android.systemui.statusbar.policy.DeviceProvisionedController;
 import com.android.systemui.statusbar.policy.ExtensionController;
 import com.android.systemui.statusbar.policy.KeyguardStateController;
 
-import com.libremobileos.providers.LMOSettings;
-
 import javax.inject.Inject;
 
 public class GlobalActionsImpl implements GlobalActions, CommandQueue.Callbacks {
@@ -43,6 +41,7 @@ public class GlobalActionsImpl implements GlobalActions, CommandQueue.Callbacks 
     private boolean mDisabled;
     private ShutdownUi mShutdownUi;
     private ShadeController mShadeController;
+    private boolean fullDialog = true;
 
     @Inject
     public GlobalActionsImpl(Context context, CommandQueue commandQueue,
@@ -79,7 +78,7 @@ public class GlobalActionsImpl implements GlobalActions, CommandQueue.Callbacks 
     public void showGlobalActions(GlobalActionsManager manager) {
         if (mDisabled) return;
         fullDialog = Settings.Secure.getInt(
-                mContext.getContentResolver(), LMOSettings.Secure.POWER_MENU_TYPE, 0) == 1;
+                mContext.getContentResolver(), Settings.Secure.POWER_MENU_TYPE, 0) == 1;
         GlobalActionsDialogLite globalActionsDialog =
                 fullDialog ? mGlobalActionsDialog : mGlobalActionsDialogLite;
         globalActionsDialog.showOrHideDialog(mKeyguardStateController.isShowing(),

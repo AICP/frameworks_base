@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c5d53d0_0a910506",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2103
+      },
+      "writtenOn": "2026-08-09T14:33:32Z",
+      "side": 1,
+      "message": "frameworks/base/services/core/java/com/android/server/policy/GlobalActions.java:26: Fehler: Package com.libremobileos.providers ist nicht vorhanden\nimport com.libremobileos.providers.LMOSettings;\n                                  ^\nI assume you are already aware of it\nNot sure what the aicp substitute of that is yet\nThanks though :)",
+      "revId": "9fc67a2efd3e7d0e6dfa59f0be4ce561095adc56",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

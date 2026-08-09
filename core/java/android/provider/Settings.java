@@ -7457,17 +7457,6 @@ public final class Settings {
         public static final String EDGE_LIGHT_ANIMATION_EFFECT = "edge_light_animation_effect";
 
         /**
-         * Int value specifying the power menu type (default is 0)
-         * 0 - Lite
-         * 1 - Full
-         * 2 - Classic
-         * 3 - Grid
-         * 4 - Legacy
-         * @hide
-         */
-        public static final String POWER_MENU_TYPE = "power_menu_type";
-
-        /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.
          *
@@ -8679,6 +8668,17 @@ public final class Settings {
                 @CanBeCURRENT @UserIdInt int userId) {
             return putStringForUser(cr, name, Float.toString(value), userId);
         }
+
+        /**
+         * Int value specifying the power menu type (default is 0)
+         * 0 - Lite
+         * 1 - Full
+         * 2 - Classic
+         * 3 - Grid
+         * 4 - Legacy
+         * @hide
+         */
+        public static final String POWER_MENU_TYPE = "power_menu_type";
 
         /**
          * Control whether to enable adaptive sleep mode.

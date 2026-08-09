@@ -3685,11 +3685,11 @@ public class GlobalActionsDialogLite implements DialogInterface.OnDismissListene
 
     protected boolean shouldUseControlsLayout() {
         return Settings.Secure.getInt(
-                mContext.getContentResolver(), LMOSettings.Secure.POWER_MENU_TYPE, 0) == 0;
+                mContext.getContentResolver(), Settings.Secure.POWER_MENU_TYPE, 0) == 0;
     }
 
     protected boolean useGridLayout() {
         return Settings.Secure.getInt(
-                mContext.getContentResolver(), LMOSettings.Secure.POWER_MENU_TYPE, 0) == 3;
+                mContext.getContentResolver(), Settings.Secure.POWER_MENU_TYPE, 0) == 3;
     }
 }

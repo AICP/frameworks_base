@@ -65,8 +65,8 @@ class GlobalActions implements GlobalActionsProvider.GlobalActionsListener {
         mKeyguardShowing = keyguardShowing;
         mDeviceProvisioned = deviceProvisioned;
         mShowing = true;
-        if (mGlobalActionsAvailable && Settings.getInt(mContext.getContentResolver(),
-                Settings.POWER_MENU_TYPE, 0) != 4) {
+        if (mGlobalActionsAvailable && Settings.Secure.getInt(mContext.getContentResolver(),
+                Settings.Secure.POWER_MENU_TYPE, 0) != 4) {
             mHandler.postDelayed(mShowTimeout, 5000);
             mGlobalActionsProvider.showGlobalActions();
         } else {

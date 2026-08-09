@@ -331,6 +331,7 @@ public class SecureSettings {
         Settings.Secure.WINDOW_IGNORE_SECURE,
         Settings.Secure.SHOW_CPU_OVERLAY,
         Settings.Secure.SECURE_LOCKSCREEN_QS_DISABLED,
-        Settings.Secure.PULSE_QS_ENABLED
+        Settings.Secure.PULSE_QS_ENABLED,
+        Settings.Secure.POWER_MENU_TYPE
     };
 }

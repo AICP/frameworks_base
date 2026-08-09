@@ -87,7 +87,7 @@ import com.android.systemui.plugins.GlobalActionsPanelPlugin;
 import com.android.systemui.settings.UserContextProvider;
 import com.android.systemui.settings.UserTracker;
 import com.android.systemui.shade.ShadeController;
-import com.android.systemui.statusbar.NotificationShadeWindowController;
+import com.android.systemui.topui.TopUiController;
 import com.android.systemui.statusbar.VibratorHelper;
 import com.android.systemui.statusbar.phone.CentralSurfaces;
 import com.android.systemui.statusbar.phone.LightBarController;
@@ -138,7 +138,7 @@ public class GlobalActionsDialog extends GlobalActionsDialogLite
     private final ActivityStarter mActivityStarter;
     private final SysuiColorExtractor mSysuiColorExtractor;
     private final IStatusBarService mCentralSurfacesService;
-    private final NotificationShadeWindowController mNotificationShadeWindowController;
+    private final TopUiController mTopUiController;
     private GlobalActionsPanelPlugin mWalletPlugin;
     private Optional<ControlsUiController> mControlsUiControllerOptional;
     private List<ControlsServiceInfo> mControlsServiceInfos = new ArrayList<>();
@@ -201,7 +201,7 @@ public class GlobalActionsDialog extends GlobalActionsDialogLite
             SysuiColorExtractor colorExtractor,
             IStatusBarService statusBarService,
             LightBarController lightBarController,
-            NotificationShadeWindowController notificationShadeWindowController,
+            TopUiController topUiController,
             StatusBarWindowControllerStore statusBarWindowControllerStore,
             IWindowManager iWindowManager,
             @Background Executor backgroundExecutor,
@@ -240,7 +240,7 @@ public class GlobalActionsDialog extends GlobalActionsDialogLite
                 colorExtractor,
                 statusBarService,
                 lightBarController,
-                notificationShadeWindowController,
+                topUiController,
                 statusBarWindowControllerStore,
                 iWindowManager,
                 backgroundExecutor,
@@ -262,7 +262,7 @@ public class GlobalActionsDialog extends GlobalActionsDialogLite
         mKeyguardStateController = keyguardStateController;
         mSysuiColorExtractor = colorExtractor;
         mCentralSurfacesService = statusBarService;
-        mNotificationShadeWindowController = notificationShadeWindowController;
+        mTopUiController = topUiController;
         mControlsComponent = controlsComponent;
         mControlsUiControllerOptional = controlsComponent.getControlsUiController();
         mControlsControllerOptional = controlsComponent.getControlsController();
@@ -413,7 +413,7 @@ public class GlobalActionsDialog extends GlobalActionsDialogLite
         ActionsDialog dialog = new ActionsDialog(getContext(), mAdapter, mOverflowAdapter,
                 this::getWalletViewController, mSysuiColorExtractor,
                 mCentralSurfacesService, mLightBarController, mKeyguardStateController,
-                mNotificationShadeWindowController, 
+                mTopUiController,
                 mStatusBarWindowControllerStore.getDefaultDisplay(),
                 controlsAvailable(), uiController, this::onRefresh, mKeyguardShowing,
                 mPowerAdapter, mRestartAdapter, mUsersAdapter, mUiEventLogger,
@@ -486,7 +486,7 @@ public class GlobalActionsDialog extends GlobalActionsDialogLite
                 SysuiColorExtractor sysuiColorExtractor, IStatusBarService statusBarService,
                 LightBarController lightBarController,
                 KeyguardStateController keyguardStateController,
-                NotificationShadeWindowController notificationShadeWindowController,
+                TopUiController topUiController,
                 StatusBarWindowController statusBarOptional, boolean controlsAvailable,
                 @Nullable ControlsUiController controlsUiController, Runnable onRotateCallback,
                 boolean keyguardShowing, MyPowerOptionsAdapter powerAdapter,
@@ -496,7 +496,7 @@ public class GlobalActionsDialog extends GlobalActionsDialogLite
                 SelectedUserInteractor selectedUserInteractor) {
             super(context, com.android.systemui.res.R.style.Theme_SystemUI_Dialog_GlobalActions,
                     adapter, overflowAdapter, sysuiColorExtractor, statusBarService,
-                    lightBarController, keyguardStateController, notificationShadeWindowController,
+                    lightBarController, keyguardStateController, topUiController,
                     statusBarOptional, onRotateCallback, keyguardShowing, powerAdapter,
                     restartAdapter, usersAdapter, uiEventLogger, shadeController,
                     keyguardUpdateMonitor, lockPatternUtils, selectedUserInteractor);

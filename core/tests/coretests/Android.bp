@@ -483,7 +483,6 @@ test_module_config {
     ],
     include_filters: ["com.android.internal.app."],
     exclude_filters: [
-        "com.android.internal.app.IntentForwarderActivityTest",
         "com.android.internal.app.WindowDecorActionBarTest",
     ],
 }
@@ -593,6 +592,17 @@ test_module_config {
         "device-tests",
     ],
     include_filters: ["com.android.internal.util.LatencyTrackerTest"],
+}
+
+test_module_config {
+    name: "FrameworksCoreTests_android_appwidget",
+    base: "FrameworksCoreTests",
+    test_suites: [
+        "automotive-tests",
+        "device-platinum-tests",
+        "device-tests",
+    ],
+    include_filters: ["android.appwidget."],
 }
 
 test_module_config {

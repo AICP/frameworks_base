@@ -3514,31 +3514,22 @@ class StorageManagerService extends IStorageManager.Stub
             throw new SecurityException("Only File Manager Apps permitted");
         }
 
-        // We want to call the manageSpaceActivity as a SystemService and clear identity
-        // of the calling App
-        final long token = Binder.clearCallingIdentity();
-        try {
-            Context targetAppContext = mContext.createPackageContextAsUser(packageName,
-                    /* flags= */ 0, UserHandle.of(UserHandle.getUserId(originalUid)));
-            Intent intent = new Intent(Intent.ACTION_DEFAULT);
-            intent.setClassName(packageName,
-                    appInfo.manageSpaceActivityName);
-            intent.setFlags(FLAG_ACTIVITY_NEW_TASK);
+        Intent intent = new Intent(Intent.ACTION_DEFAULT);
+        intent.setClassName(packageName,
+                appInfo.manageSpaceActivityName);
+        intent.setFlags(FLAG_ACTIVITY_NEW_TASK);
 
-            final ActivityOptions options = ActivityOptions.makeBasic()
-                    .setPendingIntentCreatorBackgroundActivityStartMode(
-                            ActivityOptions.MODE_BACKGROUND_ACTIVITY_START_DENIED);
+        final ActivityOptions options = ActivityOptions.makeBasic()
+                .setPendingIntentCreatorBackgroundActivityStartMode(
+                        ActivityOptions.MODE_BACKGROUND_ACTIVITY_START_DENIED);
 
-            PendingIntent activity = PendingIntent.getActivity(targetAppContext, requestCode,
-                    intent,
-                    FLAG_ONE_SHOT | FLAG_CANCEL_CURRENT | FLAG_IMMUTABLE, options.toBundle());
-            return activity;
-        } catch (PackageManager.NameNotFoundException e) {
-            throw new IllegalArgumentException(
-                    "packageName not found");
-        } finally {
-            Binder.restoreCallingIdentity(token);
-        }
+        ActivityManagerInternal amInternal =
+                LocalServices.getService(ActivityManagerInternal.class);
+        PendingIntent activity = amInternal.getPendingIntentActivityAsApp(
+                requestCode, intent,
+                FLAG_ONE_SHOT | FLAG_CANCEL_CURRENT | FLAG_IMMUTABLE,
+                options.toBundle(), packageName, appInfo.uid);
+        return activity;
     }
 
     @Override
@@ -3737,6 +3728,7 @@ class StorageManagerService extends IStorageManager.Stub
     public @Nullable ParcelFileDescriptor openProxyFileDescriptor(
             int mountId, int fileId, int mode) {
         Slog.v(TAG, "mountProxyFileDescriptor");
+        final int uid = Binder.getCallingUid();
 
         // We only support a narrow set of incoming mode flags
         mode &= MODE_READ_WRITE;
@@ -3747,7 +3739,7 @@ class StorageManagerService extends IStorageManager.Stub
                     Slog.e(TAG, "FuseBridge has not been created");
                     return null;
                 }
-                return mAppFuseBridge.openFile(mountId, fileId, mode);
+                return mAppFuseBridge.openFile(uid, mountId, fileId, mode);
             }
         } catch (FuseUnavailableMountException | InterruptedException error) {
             Slog.v(TAG, "The mount point has already been invalid", error);

@@ -62,6 +62,7 @@
     <uses-permission android:name="android.permission.DOWNLOAD_CACHE_NON_PURGEABLE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <uses-permission android:name="android.permission.GET_PACKAGE_SIZE" />
+    <uses-permission android:name="android.permission.HIDE_OVERLAY_WINDOWS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.INJECT_EVENTS" />
     <uses-permission android:name="android.permission.MANAGE_APP_PREDICTIONS"/>
@@ -184,6 +185,12 @@
         <meta-data
             android:name="android.content.APP_RESTRICTIONS"
             android:resource="@xml/app_restrictions" />
+        <activity android:name="android.appwidget.FakeConfigActivity"
+                  android:exported="true" />
+        <activity android:name="android.appwidget.FakeConfigWithFlagsActivity"
+                  android:exported="true" />
+        <activity android:name="android.appwidget.AppWidgetConfigActivityProxy"
+                  android:exported="true" />
         <activity android:name="android.view.ViewAttachTestActivity"
             android:label="View Attach Test"
             android:exported="true">

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4deccd15_ef8924de",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2103
+      },
+      "writtenOn": "2026-09-20T20:17:23Z",
+      "side": 1,
+      "message": "Legacy (A7) power menu does not show advanced reboot\nFull (A11) does not look as intended",
+      "revId": "814b269f445da54d971b57a805a7a2e2213c8e88",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

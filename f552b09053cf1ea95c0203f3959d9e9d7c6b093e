@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7262bd48_9f725818",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2103
+      },
+      "writtenOn": "2026-09-23T08:39:51Z",
+      "side": 1,
+      "message": "only required for gmscompat",
+      "revId": "f552b09053cf1ea95c0203f3959d9e9d7c6b093e",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}

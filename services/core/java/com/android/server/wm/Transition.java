@@ -190,6 +190,12 @@ class Transition implements BLASTSyncEngine.TransactionReadyListener {
 
     private @Nullable ActivityRecord mPipActivity;
 
+    /**
+     * If this transition has a corresponding RemoteTransition, this tracks the process which will
+     * play the animation.
+     */
+    IApplicationThread mRemoteDelegate = null;
+
     /** Only use for clean-up after binder death! */
     private SurfaceControl.Transaction mStartTransaction = null;
     private SurfaceControl.Transaction mFinishTransaction = null;
@@ -1508,10 +1514,20 @@ class Transition implements BLASTSyncEngine.TransactionReadyListener {
         // Update the input-sink (touch-blocking) state now that the animation is finished.
         boolean scheduleAnimation = false;
         for (int i = 0; i < mParticipants.size(); ++i) {
-            final ActivityRecord ar = mParticipants.valueAt(i).asActivityRecord();
-            if (ar == null || !ar.isVisible() || ar.getParent() == null) continue;
-            scheduleAnimation = true;
-            ar.mActivityRecordInputSink.applyChangesToSurfaceIfChanged(ar.getPendingTransaction());
+            final WindowContainer wc = mParticipants.valueAt(i);
+            final ActivityRecord ar = wc.asActivityRecord();
+            if (ar != null && ar.isVisible() && ar.getParent() != null) {
+                scheduleAnimation = true;
+                ar.mActivityRecordInputSink.applyChangesToSurfaceIfChanged(
+                        ar.getPendingTransaction());
+            }
+            final Task task = wc.asTask();
+            if (task != null && task.isVisible() && task.getParent() != null
+                    && task.mTaskInputSink != null) {
+                scheduleAnimation = true;
+                task.mTaskInputSink.applyChangesToSurfaceIfChanged(
+                        task.getPendingTransaction());
+            }
         }
         // To apply pending transactions.
         if (scheduleAnimation) mController.mAtm.mWindowManager.scheduleAnimationLocked();

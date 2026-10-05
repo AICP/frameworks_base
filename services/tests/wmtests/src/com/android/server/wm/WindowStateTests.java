@@ -226,6 +226,18 @@ public class WindowStateTests extends WindowTestsBase {
     }
 
     @Test
+    public void testSubWindowHiddenWhenSuspended() {
+        final WindowState parent = createWindow(null, TYPE_APPLICATION_OVERLAY, "parent");
+        final WindowState subWindow = spy(
+                createWindow(parent, TYPE_APPLICATION_PANEL, "subWindow"));
+
+        subWindow.setHiddenWhileSuspended(true);
+        verify(subWindow).hide(true /* doAnimation */, true /* requestAnim */);
+        subWindow.setHiddenWhileSuspended(false);
+        verify(subWindow).show(true /* doAnimation */, true /* requestAnim */);
+    }
+
+    @Test
     public void testGetTopParentWindow() {
         final WindowState root = createWindow(null, TYPE_APPLICATION, "root");
         final WindowState child1 = createWindow(root, FIRST_SUB_WINDOW, "child1");
@@ -249,10 +261,13 @@ public class WindowStateTests extends WindowTestsBase {
         assertTrue(window.isOnScreen());
         window.hide(false /* doAnimation */, false /* requestAnim */);
         assertFalse(window.isOnScreen());
+        verify(mTransaction).hide(window.mSurfaceControl);
+        clearInvocations(mTransaction);
 
         // Verifies that a window without animation can be hidden even if its parent is animating.
         window.show(false /* doAnimation */, false /* requestAnim */);
         assertTrue(window.isVisibleByPolicy());
+        verify(mTransaction).show(window.mSurfaceControl);
         window.getParent().startAnimation(mTransaction, mock(AnimationAdapter.class),
                 false /* hidden */, SurfaceAnimator.ANIMATION_TYPE_TOKEN_TRANSFORM);
         window.mAttrs.windowAnimations = 0;

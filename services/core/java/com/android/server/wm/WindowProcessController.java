@@ -36,6 +36,7 @@ import static com.android.server.wm.ActivityRecord.State.PAUSED;
 import static com.android.server.wm.ActivityRecord.State.PAUSING;
 import static com.android.server.wm.ActivityRecord.State.RESUMED;
 import static com.android.server.wm.ActivityRecord.State.STARTED;
+import static com.android.server.wm.ActivityRecord.State.STOPPED;
 import static com.android.server.wm.ActivityRecord.State.STOPPING;
 import static com.android.server.wm.ActivityTaskManagerDebugConfig.DEBUG_RELEASE;
 import static com.android.server.wm.ActivityTaskManagerDebugConfig.POSTFIX_CONFIGURATION;
@@ -355,7 +356,8 @@ public class WindowProcessController extends ConfigurationContainer<Configuratio
         mListener = listener;
         mAtm = atm;
         mBgLaunchController = new BackgroundLaunchProcessController(
-                atm::hasActiveVisibleWindow, atm.getBackgroundActivityStartCallback());
+                atm::hasActiveVisibleWindow, atm::hasActiveVisibleNotPinnedWindow,
+                atm.getBackgroundActivityStartCallback());
 
         boolean isSysUiPackage = info.packageName.equals(
                 mAtm.getSysUiServiceComponentLocked().getPackageName());
@@ -1257,8 +1259,7 @@ public class WindowProcessController extends ConfigurationContainer<Configuratio
         int stateFlags = 0;
         int nonOccludedRatio = 0;
         final boolean wasResumed = hasResumedActivity();
-        final boolean wasAnyVisible = (mActivityStateFlags
-                & (ACTIVITY_STATE_FLAG_IS_VISIBLE | ACTIVITY_STATE_FLAG_IS_WINDOW_VISIBLE)) != 0;
+        final boolean wasAnyVisible = (mActivityStateFlags & ACTIVITY_STATE_FLAG_IS_VISIBLE) != 0;
         for (int i = mActivities.size() - 1; i >= 0; i--) {
             final ActivityRecord r = mActivities.get(i);
             if (r.isVisible()) {
@@ -1272,8 +1273,9 @@ public class WindowProcessController extends ConfigurationContainer<Configuratio
             if (task.mLayerRank != Task.LAYER_RANK_INVISIBLE) {
                 stateFlags |= ACTIVITY_STATE_FLAG_HAS_ACTIVITY_IN_VISIBLE_TASK;
             }
+            final ActivityRecord.State state = r.getState();
             if (r.isVisibleRequested()) {
-                if (r.isState(RESUMED)) {
+                if (state == RESUMED) {
                     stateFlags |= ACTIVITY_STATE_FLAG_HAS_RESUMED;
                     final int windowingMode = r.getWindowingMode();
                     if (windowingMode == WINDOWING_MODE_MULTI_WINDOW
@@ -1298,12 +1300,21 @@ public class WindowProcessController extends ConfigurationContainer<Configuratio
                 // this process, we'd find out the one with the minimal layer, thus it'll
                 // get a higher adj score.
             } else if (!visible && bestInvisibleState != PAUSING) {
-                if (r.isState(PAUSING, PAUSED)) {
+                if (state == PAUSING) {
                     bestInvisibleState = PAUSING;
-                } else if (r.isState(STOPPING)) {
+                    // Treat PAUSING as visible in case the next activity in the same process has
+                    // not yet been set as visible-requested.
+                    if (r.isVisible()) {
+                        stateFlags |= ACTIVITY_STATE_FLAG_IS_VISIBLE;
+                    }
+                } else if (state == PAUSED) {
+                    bestInvisibleState = PAUSED;
+                } else if (state == STOPPING) {
                     bestInvisibleState = STOPPING;
                     // Not "finishing" if any of activity isn't finishing.
                     allStoppingFinishing &= r.finishing;
+                } else if (bestInvisibleState == DESTROYED && state == STOPPED) {
+                    // not backporting ag/29606106 (set perceptibleTaskStoppedTimeMillis)
                 }
             }
         }
@@ -1332,7 +1343,7 @@ public class WindowProcessController extends ConfigurationContainer<Configuratio
         stateFlags |= minTaskLayer & ACTIVITY_STATE_FLAG_MASK_MIN_TASK_LAYER;
         if (visible) {
             stateFlags |= ACTIVITY_STATE_FLAG_IS_VISIBLE;
-        } else if (bestInvisibleState == PAUSING) {
+        } else if (bestInvisibleState == PAUSING || bestInvisibleState == PAUSED) {
             stateFlags |= ACTIVITY_STATE_FLAG_IS_PAUSING_OR_PAUSED;
         } else if (bestInvisibleState == STOPPING) {
             stateFlags |= ACTIVITY_STATE_FLAG_IS_STOPPING;
@@ -1342,8 +1353,7 @@ public class WindowProcessController extends ConfigurationContainer<Configuratio
         }
         mActivityStateFlags = stateFlags;
 
-        final boolean anyVisible = (stateFlags
-                & (ACTIVITY_STATE_FLAG_IS_VISIBLE | ACTIVITY_STATE_FLAG_IS_WINDOW_VISIBLE)) != 0;
+        final boolean anyVisible = (stateFlags & ACTIVITY_STATE_FLAG_IS_VISIBLE) != 0;
         if (!wasAnyVisible && anyVisible) {
             mAtm.mVisibleActivityProcessTracker.onAnyActivityVisible(this);
             mAtm.mWindowManager.onProcessActivityVisibilityChanged(mUid, true /*visible*/);

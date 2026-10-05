@@ -565,6 +565,18 @@ status_t ResStringPool::setTo(incfs::map_ptr<void> data, size_t size, bool copyD
         return (mError=BAD_TYPE);
     }
     mSize = mHeader->header.size;
+
+    if (mHeader->stringsStart > mSize) {
+        ALOGW("Bad string block: string pool starts at %u, after total size %u\n",
+                (unsigned int)mHeader->stringsStart, (unsigned int)mSize);
+        return (mError=BAD_TYPE);
+    }
+    if (mHeader->stylesStart > mSize) {
+        ALOGW("Bad string block: style pool starts at %u, after total size %u\n",
+                (unsigned int)mHeader->stylesStart, (unsigned int)mSize);
+        return (mError=BAD_TYPE);
+    }
+
     mEntries = data.offset(mHeader->header.headerSize).convert<uint32_t>();
 
     if (mHeader->stringCount > 0) {
@@ -659,18 +671,33 @@ status_t ResStringPool::setTo(incfs::map_ptr<void> data, size_t size, bool copyD
             return (mError=BAD_TYPE);
         }
 
-        if ((mEntryStyles.convert<uint8_t>() - mHeader.convert<uint8_t>()) > (int)size) {
-            ALOGW("Bad string block: entry of %d styles extends past data size %d\n",
-                    (int)(mEntryStyles.convert<uint8_t>()-mHeader.convert<uint8_t>()),
-                    (int)size);
+        const size_t styleOffsetsStart =
+            mEntryStyles.convert<uint8_t>() - mHeader.convert<uint8_t>();
+        // Check for integer overflow before calculating styleOffsetsSize.
+        if (mHeader->styleCount > SIZE_MAX / sizeof(uint32_t)) {
+            ALOGW("Bad string block: integer overflow calculating style offsets size\n");
+            return (mError = BAD_TYPE);
+        }
+        const size_t styleOffsetsSize = mHeader->styleCount * sizeof(uint32_t);
+        if (styleOffsetsSize > size || styleOffsetsStart > (size - styleOffsetsSize)) {
+            ALOGW("Bad string block: entry of %d styles extends past data size %zu\n",
+                    (int)mHeader->styleCount, size);
             return (mError=BAD_TYPE);
         }
+
+        if (styleOffsetsStart > mHeader->stringsStart ||
+            styleOffsetsSize > (mHeader->stringsStart - styleOffsetsStart)) {
+          ALOGW("Bad string block: style offsets extend past style data start\n");
+          return (mError = BAD_TYPE);
+        }
+
         mStyles = data.offset(mHeader->stylesStart).convert<uint32_t>();
         if (mHeader->stylesStart >= mHeader->header.size) {
             ALOGW("Bad string block: style pool starts %d, after total size %d\n",
                     (int)mHeader->stylesStart, (int)mHeader->header.size);
             return (mError=BAD_TYPE);
         }
+
         mStylePoolSize =
             (mHeader->header.size-mHeader->stylesStart)/sizeof(uint32_t);
 
@@ -1973,6 +2000,11 @@ status_t ResXMLTree::validateNode(const ResXMLTree_node* node) const
         // check for sensical values pulled out of the stream so far...
         if ((size >= headerSize + sizeof(ResXMLTree_attrExt))
                 && ((void*)attrExt > (void*)node)) {
+            if (dtohs(attrExt->attributeSize) < sizeof(ResXMLTree_attribute)) {
+                ALOGW("Bad XML block: attribute size %d is smaller than min expected %d\n",
+                      int(dtohs(attrExt->attributeSize)), int(sizeof(ResXMLTree_attribute)));
+                return BAD_TYPE;
+            }
             const size_t attrSize = ((size_t)dtohs(attrExt->attributeSize))
                 * dtohs(attrExt->attributeCount);
             if ((dtohs(attrExt->attributeStart)+attrSize) <= (size-headerSize)) {

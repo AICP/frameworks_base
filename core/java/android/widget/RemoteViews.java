@@ -5671,13 +5671,11 @@ public class RemoteViews implements Parcelable, Filter {
             Object tag = button.getTag(R.id.remote_checked_change_listener_tag);
             // Temporarily unset the checked change listener so calling setChecked doesn't launch
             // the intent.
-            if (tag instanceof OnCheckedChangeListener) {
-                button.setOnCheckedChangeListener(null);
-                button.setChecked(mChecked);
-                button.setOnCheckedChangeListener((OnCheckedChangeListener) tag);
-            } else {
-                button.setChecked(mChecked);
-            }
+            OnCheckedChangeListener saved = (tag instanceof OnCheckedChangeListener)
+                    ? (OnCheckedChangeListener) tag : null;
+            button.setOnCheckedChangeListener(null);
+            button.setChecked(mChecked);
+            button.setOnCheckedChangeListener(saved);
         }
 
         @Override
@@ -5755,6 +5753,18 @@ public class RemoteViews implements Parcelable, Filter {
             dest.writeInt(mCheckedId);
         }
 
+        private static void forAllCompoundButtons(ViewGroup group,
+                Consumer<CompoundButton> consumer) {
+            for (int i = 0; i < group.getChildCount(); i++) {
+                View child = group.getChildAt(i);
+                if (child instanceof CompoundButton cb) {
+                    consumer.accept(cb);
+                } else if (child instanceof ViewGroup vg) {
+                    forAllCompoundButtons(vg, consumer);
+                }
+            }
+        }
+
         @Override
         public void apply(View root, ViewGroup rootParent, ActionApplyParams params)
                 throws ActionException {
@@ -5768,30 +5778,22 @@ public class RemoteViews implements Parcelable, Filter {
 
             RadioGroup group = (RadioGroup) target;
 
-            // Temporarily unset all the checked change listeners while we check the group.
-            for (int i = 0; i < group.getChildCount(); i++) {
-                View child = group.getChildAt(i);
-                if (!(child instanceof CompoundButton)) continue;
-
-                Object tag = child.getTag(R.id.remote_checked_change_listener_tag);
-                if (!(tag instanceof OnCheckedChangeListener)) continue;
-
-                // Clear the checked change listener, we'll restore it after the check.
-                ((CompoundButton) child).setOnCheckedChangeListener(null);
-            }
-
+            // Temporarily unset all checked change listeners across the entire subtree while we check the group.
+            forAllCompoundButtons(group, cb -> {
+                Object tag = cb.getTag(R.id.remote_checked_change_listener_tag);
+                if (tag instanceof OnCheckedChangeListener) {
+                    cb.setOnCheckedChangeListener(null);
+                }
+            });
             group.check(mCheckedId);
 
-            // Loop through the children again and restore the checked change listeners.
-            for (int i = 0; i < group.getChildCount(); i++) {
-                View child = group.getChildAt(i);
-                if (!(child instanceof CompoundButton)) continue;
-
-                Object tag = child.getTag(R.id.remote_checked_change_listener_tag);
-                if (!(tag instanceof OnCheckedChangeListener)) continue;
-
-                ((CompoundButton) child).setOnCheckedChangeListener((OnCheckedChangeListener) tag);
-            }
+            // Restore checked change listeners across the entire subtree.
+            forAllCompoundButtons(group, cb -> {
+                Object tag = cb.getTag(R.id.remote_checked_change_listener_tag);
+                if (tag instanceof OnCheckedChangeListener listener) {
+                    cb.setOnCheckedChangeListener(listener);
+                }
+            });
         }
 
         @Override

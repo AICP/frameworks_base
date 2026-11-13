@@ -1584,9 +1584,13 @@ final class VirtualDeviceImpl extends IVirtualDevice.Stub implements IBinder.Dea
 
     private void checkCallerIsDeviceOwner() {
         final int callingUid = Binder.getCallingUid();
-        if (callingUid != mOwnerUid && callingUid != Process.SYSTEM_UID) {
+        checkUidIsDeviceOwner(callingUid);
+    }
+
+    private void checkUidIsDeviceOwner(int uid) {
+        if (uid != mOwnerUid && uid != Process.SYSTEM_UID) {
             throw new SecurityException(
-                "Caller is not the owner of this virtual device");
+                    "Caller is not the owner of this virtual device");
         }
     }
 
@@ -1748,7 +1752,11 @@ final class VirtualDeviceImpl extends IVirtualDevice.Stub implements IBinder.Dea
     }
 
     void playSoundEffect(int effectType) {
-        checkCallerIsDeviceOwner();
+        final int callingUid = Binder.getCallingUid();
+        // Allow virtual device owner and apps running on the virtual device to play sound effects.
+        if (!isAppRunningOnVirtualDevice(callingUid)) {
+            checkUidIsDeviceOwner(callingUid);
+        }
         if (mSoundEffectListener == null) {
             return;
         }

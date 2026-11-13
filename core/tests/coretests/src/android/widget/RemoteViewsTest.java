@@ -79,6 +79,7 @@ import androidx.annotation.Nullable;
 import androidx.test.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.SmallTest;
+import org.junit.Ignore;
 
 import com.android.frameworks.coretests.R;
 
@@ -730,6 +731,80 @@ public class RemoteViewsTest {
 
         assertEquals(
                 index, inflated.getTag(com.android.internal.R.id.notification_action_index_tag));
+    }
+
+    private RemoteViews createRemoteViewsWithClobberedCheckedListener(int layoutId) {
+        RemoteViews views = new RemoteViews(mPackage, layoutId);
+        PendingIntent pi = PendingIntent.getBroadcast(mContext, 0,
+                new Intent("dummy_action").setPackage(mContext.getPackageName()),
+                PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_MUTABLE);
+        views.setOnCheckedChangeResponse(R.id.value_two,
+                RemoteViews.RemoteResponse.fromPendingIntent(pi));
+
+        int tagKey = com.android.internal.R.id.remote_checked_change_listener_tag;
+        views.setIntTag(R.id.value_two, tagKey, 0);
+        return views;
+    }
+
+    private RemoteViews createRemoteViewsWithClobberedCheckedListener() {
+        return createRemoteViewsWithClobberedCheckedListener(R.layout.radiogroup_checkedchild);
+    }
+
+    @Ignore("b/529138788")
+    @Test
+    public void setCompoundButtonChecked_doesNotFireListenerWhenClobbered() throws Exception {
+        RemoteViews views = createRemoteViewsWithClobberedCheckedListener();
+        views.setCompoundButtonChecked(R.id.value_two, true);
+
+        boolean[] interactionFired = new boolean[1];
+        RemoteViews.InteractionHandler handler = (view, pendingIntent, response) -> {
+            interactionFired[0] = true;
+            return true;
+        };
+
+        views.apply(mContext, mContainer, handler);
+
+        assertFalse("Interaction should not have been fired!", interactionFired[0]);
+    }
+
+    @Test
+    public void setRadioGroupChecked_doesNotFireListenerWhenClobbered() throws Exception {
+        RemoteViews views = createRemoteViewsWithClobberedCheckedListener();
+        views.setRadioGroupChecked(R.id.group, R.id.value_two);
+
+        boolean[] interactionFired = new boolean[1];
+        RemoteViews.InteractionHandler handler = (view, pendingIntent, response) -> {
+            interactionFired[0] = true;
+            return true;
+        };
+
+        views.apply(mContext, mContainer, handler);
+
+        assertFalse("Interaction should not have been fired on RadioGroup check!",
+                interactionFired[0]);
+    }
+
+    @Test
+    public void setRadioGroupChecked_doesNotFireListenerOnNestedChildWhenClobbered()
+            throws Exception {
+        RemoteViews views = new RemoteViews(mPackage, R.layout.radiogroup_checkedchild);
+        RemoteViews nestedContainer = new RemoteViews(mPackage, R.layout.remote_view_host);
+        RemoteViews nestedRadio = createRemoteViewsWithClobberedCheckedListener(
+                R.layout.radiogroup_checkedchild);
+        nestedContainer.addView(R.id.container, nestedRadio);
+        views.addView(R.id.group, nestedContainer);
+        views.setRadioGroupChecked(R.id.group, R.id.value_two);
+
+        boolean[] interactionFired = new boolean[1];
+        RemoteViews.InteractionHandler handler = (view, pendingIntent, response) -> {
+            interactionFired[0] = true;
+            return true;
+        };
+
+        views.apply(mContext, mContainer, handler);
+
+        assertFalse("Interaction should not have been fired on nested RadioGroup check!",
+                interactionFired[0]);
     }
 
     @Test
